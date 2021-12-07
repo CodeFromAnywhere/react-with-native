@@ -1,7 +1,7 @@
 import React from "react";
-import { PressableComponentType } from "./Pressable.type";
+import { PressableType } from "./Pressable.type";
 
-const Pressable = ({ native, ...props }: PressableComponentType) => {
+const Pressable = ({ native, ...props }: PressableType) => {
   return <button {...props} />;
 };
 
