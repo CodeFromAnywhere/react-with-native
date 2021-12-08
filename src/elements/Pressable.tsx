@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { PressableType } from "./Pressable.type";
 
 const Pressable = ({ native, ...props }: PressableType) => {

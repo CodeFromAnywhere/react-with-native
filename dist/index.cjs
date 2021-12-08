@@ -1,0 +1,2 @@
+function n(n,r){if(null==n)return{};var t,e,i={},o=Object.keys(n);for(e=0;e<o.length;e++)r.indexOf(t=o[e])>=0||(i[t]=n[t]);return i}var r=["native"],t=["native"],e=["native"],i=["native"];exports.Div=function(t){var e=n(t,r);return h("div",e)},exports.H2=function(r){var e=n(r,t);return h("h2",e)},exports.Pressable=function(r){var t=n(r,e);return h("button",t)},exports.Strong=function(r){var t=n(r,i);return h("strong",t)};
+//# sourceMappingURL=index.cjs.map

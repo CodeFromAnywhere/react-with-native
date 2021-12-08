@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { DivType } from "./Div.type";
 
 const Div = ({ native, ...props }: DivType) => {
