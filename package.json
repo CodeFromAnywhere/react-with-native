@@ -1,21 +1,14 @@
 {
   "type": "module",
   "source": "src/index.ts",
-  "exports": {
-    "require": "./dist/index.cjs",
-    "default": "./dist/index.modern.js"
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.module.js",
-  "unpkg": "./dist/foo.umd.js",
+  "main": "./build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pub": "npm version patch --force && npm publish",
-    "build": "microbundle",
-    "dev": "microbundle watch"
+    "build": "webpack"
   },
   "name": "react-with-native",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "HTML elements with React Native capabilities.",
   "repository": {
     "type": "git",
@@ -36,16 +29,23 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
     "@types/react": "^17.0.21",
     "@types/react-native": "~0.64.12",
     "autoprefixer": "^9",
-    "microbundle": "^0.14.2",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "dryduck": "^0.0.119",
     "postcss": "7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-native": "^0.66.3",
+    "react-native": "^0.66.4",
+    "style-loader": "^3.3.1",
     "tailwind-rn": "^3.0.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   }
 }
