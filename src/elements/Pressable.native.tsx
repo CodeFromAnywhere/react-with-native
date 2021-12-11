@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Pressable as ReactNativePressable } from "react-native";
 import tailwind from "tailwind-rn";
 import { PressableType } from "./Pressable.type";

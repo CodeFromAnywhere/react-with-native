@@ -1,2 +1,0 @@
-function n(n,r){if(null==n)return{};var t,e,u={},i=Object.keys(n);for(e=0;e<i.length;e++)r.indexOf(t=i[e])>=0||(u[t]=n[t]);return u}var r=["native"],t=function(t){var e=n(t,r);return h("div",e)},e=["native"],u=function(r){var t=n(r,e);return h("h2",t)},i=["native"],v=function(r){var t=n(r,i);return h("button",t)},a=["native"],o=function(r){var t=n(r,a);return h("strong",t)};export{t as Div,u as H2,v as Pressable,o as Strong};
-//# sourceMappingURL=index.module.js.map

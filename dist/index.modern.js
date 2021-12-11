@@ -1,2 +1,0 @@
-function t(t,e){if(null==t)return{};var n,r,u={},i=Object.keys(t);for(r=0;r<i.length;r++)e.indexOf(n=i[r])>=0||(u[n]=t[n]);return u}const e=["native"],n=n=>{let r=t(n,e);return h("div",r)},r=["native"],u=e=>{let n=t(e,r);return h("h2",n)},i=["native"],l=e=>{let n=t(e,i);return h("button",n)},o=["native"],v=e=>{let n=t(e,o);return h("strong",n)};export{n as Div,u as H2,l as Pressable,v as Strong};
-//# sourceMappingURL=index.modern.js.map

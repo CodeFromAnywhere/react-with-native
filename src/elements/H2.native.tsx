@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Text } from "react-native";
 import tailwind from "tailwind-rn";
 import { H2Type } from "./H2.type";
