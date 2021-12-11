@@ -5,7 +5,7 @@ import { H2Type } from "./H2.type";
 
 const H2 = ({ native, children, ...props }: H2Type) => {
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = tailwind(props.className);
+  const tailwindStyle = props.className ? tailwind(props.className) : {};
   return (
     <Text style={[tailwindStyle, style]} {...nativeWithoutStyle}>
       {children}

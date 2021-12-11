@@ -5,7 +5,7 @@ import { StrongType } from "./Strong.type";
 
 const Strong = ({ native, children, ...props }: StrongType) => {
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = tailwind(props.className);
+  const tailwindStyle = props.className ? tailwind(props.className) : {};
   return (
     <Text
       style={[{ fontWeight: "bold" }, tailwindStyle, style]}

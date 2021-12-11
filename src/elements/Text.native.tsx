@@ -1,16 +1,16 @@
 import * as React from "react";
-import { View } from "react-native";
+import { Text as RNText } from "react-native";
 import tailwind from "tailwind-rn";
-import { DivType } from "./Div.type";
+import { TextType } from "./Text.type";
 
-const Div = ({ native, ...props }: DivType) => {
+const Text = ({ native, ...props }: TextType) => {
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = props.className ? tailwind(props.className) : {};
   return (
-    <View style={[tailwindStyle, style]} {...nativeWithoutStyle}>
+    <RNText style={[tailwindStyle, style]} {...nativeWithoutStyle}>
       {props.children}
-    </View>
+    </RNText>
   );
 };
 
-export default Div;
+export default Text;

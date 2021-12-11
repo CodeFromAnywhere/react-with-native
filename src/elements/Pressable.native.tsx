@@ -5,7 +5,7 @@ import { PressableType } from "./Pressable.type";
 
 const Pressable = ({ native, ...props }: PressableType) => {
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = tailwind(props.className);
+  const tailwindStyle = props.className ? tailwind(props.className) : {};
   return (
     <ReactNativePressable
       style={typeof style === "function" ? style : [tailwindStyle, style]}
