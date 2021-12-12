@@ -1,8 +1,9 @@
-// @refresh reset
-import { BiBold, BiCode, BiItalic, BiUnderline } from "react-icons/bi";
+import * as React from "react";
+
+import { BiBold, BiItalic, BiUnderline } from "react-icons/bi";
 import { MdLooksOne, MdLooksTwo } from "react-icons/md";
 import { ImCross, ImQuotesLeft } from "react-icons/im";
-import { FaImages, FaListOl, FaListUl, FaYoutube } from "react-icons/fa";
+import { FaImages, FaListOl, FaListUl } from "react-icons/fa";
 import { UploadIcon } from "@heroicons/react/outline";
 
 // Import the Slate components and React plugin.
@@ -31,18 +32,15 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 
 import { ReactEditor } from "slate-react";
-import {
-  Button,
-  Toolbar,
-} from "../../../../CoworkSurf/web/src/components/SlateComponents";
+import { Button, Toolbar } from "./SlateComponents";
 import { IconType } from "react-icons";
-import H3 from "../../../../CoworkSurf/web/src/components/Elements/H3";
-import Ul from "../../../../CoworkSurf/web/src/components/Elements/Ul";
-import Ol from "../../../../CoworkSurf/web/src/components/Elements/Ol";
-import Li from "../../../../CoworkSurf/web/src/components/Elements/Li";
-import P from "../../../../CoworkSurf/web/src/components/Elements/P";
-import H2 from "../../../../CoworkSurf/web/src/components/Elements/H2";
-import Youtube from "../../../../CoworkSurf/web/src/components/Elements/Youtube";
+import H3 from "./Elements/H3";
+import Ul from "./Elements/Ul";
+import Ol from "./Elements/Ol";
+import Li from "./Elements/Li";
+import P from "./Elements/P";
+import H2 from "./Elements/H2";
+import Youtube from "./Elements/Youtube";
 
 import {
   selectLoginToken,

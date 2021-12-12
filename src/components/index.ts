@@ -1,6 +1,7 @@
 import RichTextArea, {
   serializeToStyledHtml,
   serializeToText,
-} from "./RichTextArea";
+} from "./RichTextArea/RichTextArea";
 
-export { RichTextArea, serializeToText, serializeToStyledHtml };
+import UIButton from "./UIButton";
+export { RichTextArea, serializeToText, serializeToStyledHtml, UIButton };
