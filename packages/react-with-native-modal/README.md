@@ -12,12 +12,6 @@ yarn add react-with-native-modal
 npm install react-with-native-modal
 ```
 
-### Add modal div to root body
-
-```
-<div id="modal" />
-```
-
 ### Wrap your whole app in the ModalProvider
 
 ```
