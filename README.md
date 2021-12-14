@@ -9,7 +9,11 @@
 
 ### Libraries
 
-- react-with-native: the core elements
-- react-with-native-\*: many components
-- react-with-native-form: form builder
-- react-with-native-\*-input: input components that can be attached to the form builder
+- `react-with-native`: the core elements
+- `react-with-native-*`: many components
+- `react-with-native-form`: form builder
+- `react-with-native-*-input`: input components that can be attached to the form builder
+
+### NB
+
+- Tailwind is a peer dependency! Without it, `react-with-native` still works, but lots of components won't have a default styling
