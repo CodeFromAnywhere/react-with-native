@@ -1,6 +1,6 @@
 import * as React from "react";
 import DatePicker from "react-datepicker";
-import { inputClass, Inputs } from "./DataForm";
+import { inputClass, Inputs } from "../DataForm";
 import "react-datepicker/dist/react-datepicker.css";
 
 type Value = Inputs["date"]["value"];

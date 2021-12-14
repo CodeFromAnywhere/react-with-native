@@ -16,4 +16,4 @@
 
 ### NB
 
-- Tailwind is a peer dependency! Without it, `react-with-native` still works, but lots of components won't have a default styling
+- Tailwind is a peer dependency! Without it, `react-with-native` still works, but lots of components won't have a default styling and you need to supply your own classNames via `replaceClassName`
