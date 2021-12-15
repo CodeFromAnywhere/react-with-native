@@ -1,29 +1,34 @@
 {
-  "name": "react-with-native-github",
-  "version": "1.0.0",
-  "description": "### Why?",
-  "main": "\"\"",
+  "name": "react-with-native-notification",
+  "version": "1.0.2",
+  "description": "",
+  "main": "src/Notification.tsx",
   "scripts": {
-    "dryduckdebug": "DEBUG=1 dryduck",
-    "husky-install": "npm set-script prepare \"husky install\" && npm run prepare && npx husky add .husky/pre-commit",
-    "prepare": "husky install"
+    "pub": "npm version patch --force && npm publish"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Code-From-Anywhere/react-with-native.git"
   },
   "keywords": [
+    "notification",
+    "component",
     "react",
     "with",
     "native"
   ],
-  "author": "Wijnand Karsens <wijnand@karsens.com>",
+  "author": "Wijnand Karsens",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Code-From-Anywhere/react-with-native/issues"
   },
   "homepage": "https://github.com/Code-From-Anywhere/react-with-native#readme",
   "devDependencies": {
-    "husky": "^7.0.4"
+    "expo-notifications": "^0.13.3",
+    "react-toastify": "^8.1.0",
+    "react-with-native": "^1.0.34"
+  },
+  "dependencies": {
+    "@types/react-toastify": "^4.1.0"
   }
 }

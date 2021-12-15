@@ -4,14 +4,11 @@
   "main": "./src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pub": "npm version patch --force && npm publish",
     "build": "webpack",
-    "dryduckdebug": "DEBUG=1 dryduck",
-    "husky-install": "npm set-script prepare \"husky install\" && npm run prepare && npx husky add .husky/pre-commit",
-    "prepare": "husky install"
+    "pub": "npm version patch --force && npm publish"
   },
   "name": "react-with-native",
-  "version": "1.0.31",
+  "version": "1.0.34",
   "description": "HTML elements with React Native capabilities.",
   "repository": {
     "type": "git",

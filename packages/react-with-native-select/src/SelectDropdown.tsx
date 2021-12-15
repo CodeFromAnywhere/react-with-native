@@ -1,12 +1,12 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react';
-import { Listbox, Transition } from '@headlessui/react';
-import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
-import SelectedIcon from './SelectedIcon';
-import { Item } from './types';
+import { Fragment } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import SelectedIcon from "./SelectedIcon";
+import { Item } from "./types";
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 const renderOption = <T extends unknown>({
@@ -29,8 +29,8 @@ const renderOption = <T extends unknown>({
       <div className="flex items-center">
         <span
           className={classNames(
-            selected || active ? 'font-semibold text-pink' : 'font-normal',
-            'ml-3 block truncate'
+            selected || active ? "font-semibold text-pink" : "font-normal",
+            "ml-3 block truncate"
           )}
         >
           {item?.label}
@@ -55,12 +55,14 @@ export default function SelectDropDown<T>({
   onChange,
   options,
   className,
+  children,
 }: {
   title?: string;
   value: Item<T>;
   onChange: (value: Item<T>) => void;
   options: Item<T>[];
   className?: string;
+  children?: any;
 }) {
   return (
     <Listbox value={value} onChange={onChange}>
@@ -93,8 +95,8 @@ export default function SelectDropDown<T>({
                     key={`option${index}`}
                     className={({ active }) =>
                       classNames(
-                        'text-gray-900',
-                        'cursor-pointer select-none relative py-2 pl-3 pr-3'
+                        "text-gray-900",
+                        "cursor-pointer select-none relative py-2 pl-3 pr-3"
                       )
                     }
                     value={option}

@@ -1,15 +1,14 @@
-import { SwipeableDrawer } from '@mui/material';
-import { useState } from 'react';
-import DropdownButton from './DropdownButton';
-import { Item } from './types';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import { grey } from '@mui/material/colors';
-import SelectedIcon from './SelectedIcon';
-import { t } from 'i18next';
+import { SwipeableDrawer } from "@mui/material";
+import { useState } from "react";
+import DropdownButton from "./DropdownButton";
+import { Item } from "./types";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import { grey } from "@mui/material/colors";
+import SelectedIcon from "./SelectedIcon";
 
 const StyledBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
+  backgroundColor: theme.palette.mode === "light" ? "#fff" : grey[800],
 }));
 
 const SelectDrawer = <T extends unknown>({
@@ -17,11 +16,13 @@ const SelectDrawer = <T extends unknown>({
   value,
   onChange,
   title,
+  children,
 }: {
   value: Item<T>;
   options: Item<T>[];
   onChange: (value: Item<T> | null) => void;
   title: string;
+  children?: any;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -40,7 +41,7 @@ const SelectDrawer = <T extends unknown>({
     <div>
       <DropdownButton onClick={switchOpen} label={value.label} />
       <SwipeableDrawer
-        anchor={'bottom'}
+        anchor={"bottom"}
         open={open}
         onClose={switchOpen}
         onOpen={switchOpen}
@@ -57,20 +58,20 @@ const SelectDrawer = <T extends unknown>({
             <button
               disabled={valueNoOption}
               className={`text-left ${
-                valueNoOption ? 'disabled:opacity-50' : 'text-pink'
+                valueNoOption ? "disabled:opacity-50" : "text-pink"
               }`}
               onClick={reset}
             >
-              {t('app.ui.reset')}
+              Reset
             </button>
             <div className="col-span-2 font-bold text-center">{title}</div>
             <button className="text-right text-pink" onClick={switchOpen}>
-              {t('app.ui.ready')}
+              Ready
             </button>
           </div>
           <div className="flex flex-col">
             {options.map((option, index) => {
-              // @TODO do a shallow diff compare, or add id to Item for example.
+              // TODO do a shallow diff compare, or add id to Item for example.
               const isSelected = option.label === value.label;
               return (
                 <div

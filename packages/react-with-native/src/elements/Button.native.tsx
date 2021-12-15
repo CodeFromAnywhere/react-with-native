@@ -30,3 +30,5 @@ const Button = ({ native, ...props }: ButtonType) => {
 };
 
 export default Button;
+
+//nartive
