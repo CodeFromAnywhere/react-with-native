@@ -12,6 +12,17 @@ For a react-native expo project
 
 `expo install react-with-native-notification expo-notifications`
 
+For a next.js project:
+(This module is not transpiled yet)
+
+```
+const withTM = require('next-transpile-modules')([
+  'react-with-native-notification',
+]); // pass the modules you would like to see transpiled
+
+module.exports = withTM({ your config });
+```
+
 ## Usage
 
 In your apps root:

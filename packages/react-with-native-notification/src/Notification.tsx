@@ -7,7 +7,9 @@ export { ToastContainer } from "react-toastify";
  */
 export const toast = (
   message: { title: string; body: string },
-  options: ToastOptions<{}>
+  options?: ToastOptions<{}>
 ) => {
   toastifyToast(message.body, options);
 };
+
+export type { ToastOptions };

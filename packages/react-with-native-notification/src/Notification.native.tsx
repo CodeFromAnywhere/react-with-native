@@ -3,7 +3,7 @@ import * as Notifications from "expo-notifications";
 
 export const toast = (
   content: { title: string; body: string },
-  options: ToastOptions<{}>
+  options?: ToastOptions<{}>
 ) => {
   Notifications.scheduleNotificationAsync({
     content,
@@ -16,3 +16,5 @@ export const toast = (
 export const ToastContainer = () => {
   return null;
 };
+
+export type { ToastOptions };
