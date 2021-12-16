@@ -2,7 +2,8 @@ import * as React from "react";
 import { SvgType } from "./Svg.type";
 
 const Svg = ({ src, width, height, className }: SvgType) => {
-  return <img src={src} width={width} height={height} className={className} />;
+  const Icon: any = src;
+  return <Icon width={width} height={height} className={className} />; //<img src={src} width={width} height={height} className={className} />;
 };
 
 export default Svg;
