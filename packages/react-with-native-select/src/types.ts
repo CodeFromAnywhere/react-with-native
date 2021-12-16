@@ -1,7 +1,18 @@
-import { IconType } from 'react-icons/lib';
+import { ActionSheetIOSOptions } from "react-native";
 
 export type Item<T> = {
   value: T;
   label: string;
-  icon?: IconType;
+  icon?: any;
+  onClick?: () => void;
+};
+
+export type SelectProps<T> = {
+  title: string;
+  options: Item<T>[];
+  onChange: (value: Item<T> | null) => void;
+  value?: Item<T>;
+  className?: string;
+  children?: any;
+  ios?: ActionSheetIOSOptions;
 };

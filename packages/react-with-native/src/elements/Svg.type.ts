@@ -1,1 +1,6 @@
-export type SvgType = { src:string, width:number, height:number, className?:string }
+export type SvgType = {
+  src: string;
+  width?: number;
+  height?: number;
+  className?: string;
+};

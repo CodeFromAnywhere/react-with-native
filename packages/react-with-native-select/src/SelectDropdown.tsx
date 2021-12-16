@@ -1,8 +1,10 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import SelectedIcon from "./SelectedIcon";
+import { Svg } from "react-with-native";
+import AiFillCaretDown from "./assets/AiFillCaretDown.svg";
+import AiFillCaretUp from "./assets/AiFillCaretUp.svg";
 import { Item } from "./types";
 
 function classNames(...classes: string[]) {
@@ -40,7 +42,7 @@ const renderOption = <T extends unknown>({
 
       {isHeader ? (
         <div className="flex items-center justify-center w-6 h-6">
-          {isOpen ? <AiFillCaretUp /> : <AiFillCaretDown />}
+          {isOpen ? <Svg src={AiFillCaretUp} /> : <Svg src={AiFillCaretDown} />}
         </div>
       ) : (
         <SelectedIcon selected={selected!} />
