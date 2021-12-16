@@ -1,7 +1,7 @@
 import SelectDropdown from "./SelectDropdown";
 import SelectDrawer from "./SelectDrawer";
 import SelectMenu from "./SelectMenu";
-import { Item } from "./types";
+import { Item, SelectProps } from "./types";
 
 /**
  * renders either a SelectDropdown or SelectDrawer, based on screensize
@@ -13,14 +13,7 @@ const Select = <T extends unknown>({
   title,
   className,
   children,
-}: {
-  title: string;
-  options: Item<T>[];
-  onChange: (value: Item<T> | null) => void;
-  value?: Item<T>;
-  className?: string;
-  children?: any;
-}) => {
+}: SelectProps<T>) => {
   const realValue: Item<T> = value || { label: title, value: undefined as T };
   return (
     <div>
