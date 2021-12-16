@@ -5,6 +5,7 @@ import Strong from "./Strong";
 import Text from "./Text";
 import Image from "./Image";
 import Button from "./Button";
+import Svg from "./Svg";
 import { DivType } from "./Div.type";
 import { H2Type } from "./H2.type";
 import { PressableType } from "./Pressable.type";
@@ -12,8 +13,9 @@ import { StrongType } from "./Strong.type";
 import { TextType } from "./Text.type";
 import { ImageType } from "./Image.type";
 import { ButtonType } from "./Button.type";
+import { SvgType } from "./Svg.type";
 
-export { Div, H2, Pressable, Text, Strong, Image, Button };
+export { Div, H2, Pressable, Text, Strong, Image, Button, Svg };
 
 export type {
   DivType,
@@ -23,4 +25,5 @@ export type {
   TextType,
   ImageType,
   ButtonType,
+  SvgType,
 };
