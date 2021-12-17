@@ -63,6 +63,10 @@ export interface AnyInput {
    */
   type: string;
   /**
+   * default value of the input on submitting, if no defaultValues are given
+   */
+  defaultValue: unknown;
+  /**
    * universal configuration options of the input
    */
   config: { [key: string]: any };
@@ -92,8 +96,8 @@ export type DataFormConfig = {
   saveButtonText?: string;
   title?: string;
   backButton?: () => void;
-  plugins: Plugins;
-  config: { [key in keyof Plugins]: any };
+  plugins?: Plugins;
+  config?: { [key in keyof Plugins]: any };
   onError?: (message: string) => void;
 };
 
@@ -103,9 +107,9 @@ export type ValuesObject = {
 
 export type DataFormProps<TValues extends ValuesObject> = {
   fields: Field<AnyInput, any>[];
-  defaultValues: TValues;
+  defaultValues?: Partial<TValues>;
   onSubmit: (
-    values: TValues,
+    values: Partial<TValues>,
     resolve?: (message: string) => void,
     reject?: (props: { field: string; message: string }) => void
   ) => void;
@@ -139,7 +143,7 @@ const Input = <TInput extends AnyInput, TState>({
   title: string;
   onChange: (newValue: TInput["value"]) => void;
   value: TInput["value"];
-  error?: boolean;
+  error?: string;
   isLast: boolean;
   startSection?: boolean;
   sectionTitle?: string;
@@ -147,6 +151,7 @@ const Input = <TInput extends AnyInput, TState>({
   reference?: RefObject<HTMLDivElement>;
   description?: string;
 }) => {
+  const InputComponent = plugin;
   return (
     <div ref={reference}>
       {startSection ? (
@@ -182,16 +187,19 @@ const Input = <TInput extends AnyInput, TState>({
           </p>
         ) : null}
 
-        {plugin}
+        <InputComponent
+          config={config}
+          extra={extra}
+          hasError={!!error}
+          onChange={onChange}
+          value={value}
+        />
       </div>
     </div>
   );
 };
 
-type ErrorsType = {
-  field: string;
-  message: string;
-};
+type UtilityState = { _success: string; _errors: { [key: string]: string } };
 
 const DataForm = <TValues extends ValuesObject>({
   fields,
@@ -216,9 +224,11 @@ const DataForm = <TValues extends ValuesObject>({
     );
   }, [fields]);
 
-  const [state, setState] = useState<
-    TValues & { _success?: String; _errors?: ErrorsType[] }
-  >(defaultValues);
+  const [state, setState] = useState<Partial<TValues> & UtilityState>({
+    ...defaultValues,
+    _errors: {},
+    _success: undefined,
+  });
 
   const notReadyField = fieldsWithReferences.filter(
     (x) => x.isValid && !x.isValid(state[x.field])
@@ -271,7 +281,7 @@ const DataForm = <TValues extends ValuesObject>({
 
           return field.shouldHide?.(state) ? null : (
             <Input
-              plugin={plugins[field.field]}
+              plugin={plugins[field.type]}
               config={config[field.type]}
               reference={field.reference}
               field={field.field}
@@ -283,8 +293,8 @@ const DataForm = <TValues extends ValuesObject>({
                   ? field.titleFromState(state)
                   : field.title || "NO TITLE"
               }
-              value={state?.[field.field]}
-              error={state._errors[field.field] as boolean | undefined}
+              value={state[field.field]}
+              error={state._errors[field.field]}
               onChange={(newValue) => {
                 const newState = { [field.field]: newValue };
 
@@ -331,7 +341,7 @@ const DataForm = <TValues extends ValuesObject>({
               onSubmit(state, setSuccess, setError);
             } else {
               //scroll to the error
-              onError("Please fill in all fields correctly");
+              /// onError("Please fill in all fields correctly");
 
               const top =
                 (notReadyField?.reference?.current?.getBoundingClientRect()
@@ -358,11 +368,11 @@ const DataForm = <TValues extends ValuesObject>({
   );
 };
 
-export const setConfig = (
-  DataForm: (props: DataFormProps<unknown>) => JSX.Element,
+export const setConfig = <TValues extends ValuesObject>(
+  DataForm: (props: DataFormProps<TValues>) => JSX.Element,
   config: DataFormConfig
 ) => {
-  return (props: DataFormProps<unknown>) => <DataForm {...config} {...props} />;
+  return (props: DataFormProps<TValues>) => <DataForm {...config} {...props} />;
 };
 
 export default DataForm;

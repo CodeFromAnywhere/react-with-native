@@ -38,6 +38,7 @@ const TextInput: Plugin<TextInputType> = ({
 };
 
 export interface TextInputType extends AnyInput {
+  type: "text";
   /**
    * value type
    */
