@@ -6,7 +6,7 @@ import {
   Text,
 } from "react-native";
 import { ButtonType } from "./Button.type";
-
+//lkjljlkj
 const Button = ({ native, ...props }: ButtonType) => {
   native = native!;
   return Platform.OS === "ios" ? (

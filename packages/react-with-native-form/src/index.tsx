@@ -43,7 +43,7 @@ export interface ExtendedField<TInput extends AnyInput, TState>
   reference?: RefObject<HTMLDivElement>;
 }
 
-export const inputClassWithoutWidth = `text-sm px-3 py-3 text-gray-700 border-gray-300 border-[0.5px] rounded-md focus:outline-none`;
+export const inputClassWithoutWidth = `text-sm px-3 py-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none`;
 export const inputClass = `w-full ${inputClassWithoutWidth}`;
 export type DefaultConfig = {
   extraClassName?: string;
@@ -199,7 +199,7 @@ const Input = <TInput extends AnyInput, TState>({
   );
 };
 
-type UtilityState = { _success: string; _errors: { [key: string]: string } };
+type UtilityState = { _success?: string; _errors: { [key: string]: string } };
 
 const DataForm = <TValues extends ValuesObject>({
   fields,
@@ -224,11 +224,10 @@ const DataForm = <TValues extends ValuesObject>({
     );
   }, [fields]);
 
-  const [state, setState] = useState<Partial<TValues> & UtilityState>({
-    ...defaultValues,
-    _errors: {},
-    _success: undefined,
-  });
+  const [state, setState] = useState<Partial<TValues>>(defaultValues || {});
+
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [success, setSuccess] = useState<string | undefined>();
 
   const notReadyField = fieldsWithReferences.filter(
     (x) => x.isValid && !x.isValid(state[x.field])
@@ -256,10 +255,6 @@ const DataForm = <TValues extends ValuesObject>({
     }
   };
 
-  const setSuccess = (message: string) => {
-    setState({ ...state, _success: message });
-  };
-
   return (
     <>
       <div className="w-full mx-auto mt-2 mb-20 pr-28">
@@ -281,8 +276,8 @@ const DataForm = <TValues extends ValuesObject>({
 
           return field.shouldHide?.(state) ? null : (
             <Input
-              plugin={plugins[field.type]}
-              config={config[field.type]}
+              plugin={plugins![field.type]}
+              config={config![field.type]}
               reference={field.reference}
               field={field.field}
               next={next}
@@ -294,12 +289,14 @@ const DataForm = <TValues extends ValuesObject>({
                   : field.title || "NO TITLE"
               }
               value={state[field.field]}
-              error={state._errors[field.field]}
+              error={errors[field.field]}
               onChange={(newValue) => {
                 const newState = { [field.field]: newValue };
 
-                if (state._errors[field.field] && field.isValid?.(newValue)) {
-                  newState[`${field.field}Error`] = false;
+                if (errors[field.field] && field.isValid?.(newValue)) {
+                  const newErrors = errors;
+                  delete newErrors[field.field];
+                  setErrors(newErrors);
                 }
 
                 setState({ ...state, ...newState });
@@ -318,19 +315,20 @@ const DataForm = <TValues extends ValuesObject>({
           title={saveButtonText || "💾 Save"}
           className="px-10"
           onClick={() => {
-            const _errors = fields
-              .map((field) => {
-                const error =
-                  !field.isValid || field.isValid?.(state[field.field]);
-                if (error) {
-                  //continue
-                  return false;
-                } else {
-                  return { [field.field]: error };
-                }
-              })
-              .filter(Boolean)
-              .reduce(mergeObjectsArray, {}) as { [key: string]: string };
+            const _errors = (
+              fields
+                .map((field) => {
+                  const error =
+                    !field.isValid || field.isValid?.(state[field.field]);
+                  if (error) {
+                    //continue
+                    return false;
+                  } else {
+                    return { [field.field]: error };
+                  }
+                })
+                .filter(Boolean) as { [key: string]: string }[]
+            ).reduce(mergeObjectsArray, {}) as { [key: string]: string };
 
             const newState = { ...state, _errors };
 
