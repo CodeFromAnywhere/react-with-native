@@ -21,7 +21,7 @@ const TextInput: Plugin<TextInputType> = ({
         : " border border-red-400"
       : ""
   }`;
-
+  //test...
   const onChangeText = (value: TextInputType["value"]) => onChange(value);
   const placeholder = extra?.placeholder;
   const maxLength = extra?.maxLength;

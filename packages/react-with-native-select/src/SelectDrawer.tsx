@@ -1,7 +1,7 @@
 import { SwipeableDrawer } from "@mui/material";
 import { useState } from "react";
 import DropdownButton from "./DropdownButton";
-import { Item } from "./types";
+import { ChildrenType, Item } from "./types";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { grey } from "@mui/material/colors";
@@ -17,12 +17,14 @@ const SelectDrawer = <T extends unknown>({
   onChange,
   title,
   children,
+  className,
 }: {
   value: Item<T>;
   options: Item<T>[];
   onChange: (value: Item<T> | null) => void;
   title: string;
-  children?: any;
+  children?: ChildrenType<T>;
+  className?: string;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -36,10 +38,15 @@ const SelectDrawer = <T extends unknown>({
   }
 
   const valueNoOption = !options.find((x) => x.value === value.value);
+  const realValue: Item<T> = value || { label: title, value: undefined as T };
 
   return (
     <div>
-      <DropdownButton onClick={switchOpen} label={value.label} />
+      {children ? (
+        children({ onClick: switchOpen, value: realValue, className })
+      ) : (
+        <DropdownButton onClick={switchOpen} label={value.label} />
+      )}
       <SwipeableDrawer
         anchor={"bottom"}
         open={open}

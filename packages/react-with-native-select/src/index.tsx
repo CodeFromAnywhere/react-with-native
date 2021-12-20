@@ -12,12 +12,13 @@ const Select = <T extends unknown>({
   value,
   title,
   className,
+  containerClassName,
   children,
 }: SelectProps<T>) => {
   const realValue: Item<T> = value || { label: title, value: undefined as T };
   return (
-    <div>
-      <div className="hidden lg:flex">
+    <>
+      <div className={`hidden lg:flex ${containerClassName}`}>
         {children ? (
           <SelectMenu value={realValue} onChange={onChange} options={options}>
             {children}
@@ -32,17 +33,18 @@ const Select = <T extends unknown>({
         )}
       </div>
 
-      <div className="lg:hidden">
+      <div className={`lg:hidden ${containerClassName}`}>
         <SelectDrawer
           onChange={onChange}
           options={options}
           value={realValue}
           title={title}
+          className={className}
         >
           {children}
         </SelectDrawer>
       </div>
-    </div>
+    </>
   );
 };
 
