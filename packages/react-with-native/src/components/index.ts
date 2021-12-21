@@ -1,2 +1,3 @@
 import UIButton from "./UIButton";
-export { UIButton };
+import ActivityIndicator from "./ActivityIndicator";
+export { UIButton, ActivityIndicator };

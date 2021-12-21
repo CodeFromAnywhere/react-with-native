@@ -1,19 +1,23 @@
-import { OnChange, AnyInput, inputClass, Plugin } from "react-with-native-form";
+import {
+  OnChange,
+  AnyInput,
+  inputClass,
+  PluginComponent,
+  PluginsProp,
+  Field,
+  InputProps,
+} from "react-with-native-form";
 import { Input } from "react-with-native";
 
-const TextInput: Plugin<TextInputType> = ({
+const TextInput = ({
   onChange,
   value,
   extra,
   config,
   hasError,
-}: {
-  onChange: OnChange<TextInputType["value"]>;
-  value: TextInputType["value"];
-  extra: TextInputType["extra"];
-  config: TextInputType["config"];
-  hasError: boolean;
-}) => {
+}: InputProps<TextInputType>) => {
+  config = config || {};
+
   const inputClassWithError = `${inputClass}${
     hasError
       ? config.errorClassName
@@ -27,12 +31,19 @@ const TextInput: Plugin<TextInputType> = ({
   const maxLength = extra?.maxLength;
   return (
     <Input
+      type={extra?.isPassword ? "password" : undefined}
       className={inputClassWithError}
       value={value}
       onChange={(event) => onChangeText(event.target.value)}
       placeholder={placeholder}
       maxLength={extra?.maxLength}
-      native={{ value, onChangeText, placeholder, maxLength }}
+      native={{
+        value,
+        onChangeText,
+        placeholder,
+        maxLength,
+        secureTextEntry: extra?.isPassword,
+      }}
     />
   );
 };
@@ -44,10 +55,12 @@ export interface TextInputType extends AnyInput {
    */
   value: string;
 
+  defaultValue: "";
+
   /**
    * input generic configuration
    */
-  config: {
+  config?: {
     errorClassName?: string;
     extraClassName?: string;
     replaceClassName?: string;
@@ -55,7 +68,7 @@ export interface TextInputType extends AnyInput {
   /**
    * field specific configuration
    */
-  extra: { maxLength?: number; placeholder?: string };
+  extra?: { maxLength?: number; placeholder?: string; isPassword?: boolean };
 }
 
 export default TextInput;

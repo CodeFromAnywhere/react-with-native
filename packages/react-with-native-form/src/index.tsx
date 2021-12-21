@@ -1,11 +1,40 @@
 import * as React from "react";
 import { useState, RefObject, createRef, useEffect } from "react";
-import { Button } from "react-with-native";
+import { ActivityIndicator, Div } from "react-with-native";
+
+export interface PluginInputProps<TInput extends AnyInput> {
+  onChange: OnChange<TInput["value"]>;
+  value: TInput["value"];
+  extra: TInput["extra"];
+  config: TInput["config"];
+  hasError: boolean;
+  id: string;
+}
+
+export type EmptyValues<T> = {
+  [K in keyof T]: T[K] extends string ? "" : never;
+};
 
 const mergeObjectsArray = (
   previous: { [key: string]: any },
   current: { [key: string]: any }
 ) => ({ ...previous, ...current });
+
+export function notEmpty<TValue>(
+  value: TValue | null | undefined
+): value is TValue {
+  return value !== null && value !== undefined;
+}
+
+export const makeField = <
+  TInputs extends AnyInputs<any>,
+  K extends keyof TInputs
+>(
+  type: K,
+  config: Omit<Field<TInputs[K], any>, "type">
+) => {
+  return { type, ...config };
+};
 
 /**
  * type of every specific field in a form
@@ -25,7 +54,13 @@ export interface Field<TInput extends AnyInput, TState> {
   title?: string;
   shouldHide?: (state: TState) => boolean;
   titleFromState?: (state: TState) => string;
-  isValid?: (value: TInput["value"]) => true | string;
+  /**
+   * returns either false if there's no error or a string of an error message if there is one
+   */
+  hasError?: (
+    value: TInput["value"],
+    state: Partial<PossibleState>
+  ) => boolean | string;
   startSection?: boolean;
   sectionTitle?: string;
   description?: string;
@@ -34,6 +69,8 @@ export interface Field<TInput extends AnyInput, TState> {
    */
   extra?: TInput["extra"];
 }
+
+export type Keys<TObject> = Extract<keyof TObject, string>;
 
 export interface ExtendedField<TInput extends AnyInput, TState>
   extends Field<TInput, TState> {
@@ -65,57 +102,90 @@ export interface AnyInput {
   /**
    * default value of the input on submitting, if no defaultValues are given
    */
-  defaultValue: unknown;
+  defaultValue: any;
   /**
    * universal configuration options of the input
    */
-  config: { [key: string]: any };
+  config?: { [key: string]: any };
   /**
    * type of the value of the input
    */
-  value: unknown;
+  value: any;
   /**
    * extra possible field specific settings of the input
    */
-  extra: unknown;
+  extra?: any;
+  /**
+   *
+   */
+  component?: any;
 }
 
-export type Plugin<TInput extends AnyInput> = (props: {
-  onChange: OnChange<TInput["value"]>;
-  value: TInput["value"];
-  extra: TInput["extra"];
+export type Plugin<TInput extends AnyInput, TPlugins extends PluginsProp> = {
+  component: PluginComponent<TInput, TPlugins>;
   config: TInput["config"];
-  hasError: boolean;
-}) => JSX.Element;
-
-export type Plugins = {
-  [key: string]: Plugin<any>;
 };
 
-export type DataFormConfig = {
-  saveButtonText?: string;
+export type PluginComponent<
+  TInput extends AnyInput,
+  TPlugins extends PluginsProp //can be thrown away?
+> = (props: PluginInputProps<TInput>) => JSX.Element;
+
+export type PluginsProp = {
+  [key: string]: <TInput extends AnyInput, TPlugins extends PluginsProp>() => {
+    component: PluginComponent<TInput, TPlugins>;
+    config: TInput["config"];
+    type: TInput;
+  };
+};
+
+type Plugins<TInputs> = { [key in keyof TInputs]: Plugin<any, any> };
+
+export type DataFormConfig<TInputs> = {
+  submitButtonText?: string;
   title?: string;
   backButton?: () => void;
-  plugins?: Plugins;
-  config?: { [key in keyof Plugins]: any };
+  plugins?: Plugins<TInputs>; //<TValues>;
   onError?: (message: string) => void;
+  renderSubmitComponent?: (props: {
+    onSubmit: () => void;
+    loading: boolean;
+    available: boolean;
+  }) => JSX.Element;
+  stickySubmit?: boolean;
 };
 
-export type ValuesObject = {
+/**
+ * the possible states, like { password: string, text: string }
+ */
+export type PossibleValues<TInputs extends AnyInputs<TInputs[keyof TInputs]>> =
+  {
+    [K in keyof TInputs]: TInputs[K]["value"];
+  };
+
+export type PossibleState = {
   [key: string]: any;
 };
+/**
+ * how do i get this?
+ 
+{
+  [K in Fields["field"]]: TInputs[Field["type"]]["value"]
+}
 
-export type DataFormProps<TValues extends ValuesObject> = {
-  fields: Field<AnyInput, any>[];
-  defaultValues?: Partial<TValues>;
+ */
+
+export type DataFormProps<TInputs extends AnyInputs<any>> = {
+  fields: Array<Field<TInputs[keyof TInputs], PossibleValues<TInputs>>>;
+  defaultValues?: Partial<PossibleValues<TInputs>>;
   onSubmit: (
-    values: Partial<TValues>,
-    resolve?: (message: string) => void,
-    reject?: (props: { field: string; message: string }) => void
+    values: Partial<PossibleValues<TInputs>>,
+    resolve: (message: string) => void,
+    reject: (props: { field: string; message: string }) => void
   ) => void;
-} & DataFormConfig;
+} & DataFormConfig<TInputs>;
 
-const Input = <TInput extends AnyInput, TState>({
+const Input = <TInput extends AnyInput, TState, TPlugins extends PluginsProp>({
   type,
   plugin,
   title,
@@ -133,7 +203,7 @@ const Input = <TInput extends AnyInput, TState>({
   description,
   config,
 }: {
-  plugin: Plugin<TInput>;
+  plugin: PluginComponent<TInput, TPlugins>;
   type: TInput["type"];
   config: TInput["config"];
   extra: TInput["extra"];
@@ -175,22 +245,24 @@ const Input = <TInput extends AnyInput, TState>({
 
       {/* This is the section title */}
       <div className="pt-0 mb-6">
-        <label className="block mb-2 text-sm font-bold">{title}</label>
+        {title ? (
+          <label className="block mb-2 text-sm font-bold">{title}</label>
+        ) : null}
         {description && (
           <div className={`flex mx-3 mb-2 items-start `}>
             <p className={`text-gray-500 italic ml-4`}>{description}</p>
           </div>
         )}
         {error ? (
-          <p className={`mx-3 mb-2 text-red-500`}>
-            {errorMessage || "Invalid value"}
-          </p>
+          <p className={`mr-3 mb-2 text-red-500`}>{error || "Invalid value"}</p>
         ) : null}
 
         <InputComponent
+          // assuming field is unique here
+          id={field}
           config={config}
           extra={extra}
-          hasError={!!error}
+          hasError={error !== undefined}
           onChange={onChange}
           value={value}
         />
@@ -199,21 +271,21 @@ const Input = <TInput extends AnyInput, TState>({
   );
 };
 
-type UtilityState = { _success?: string; _errors: { [key: string]: string } };
-
-const DataForm = <TValues extends ValuesObject>({
+const DataForm = <TInputs extends AnyInputs<any>>({
   fields,
   defaultValues,
   onSubmit,
-  saveButtonText,
+  submitButtonText,
   title,
   backButton,
-  plugins,
-  config,
-  onError,
-}: DataFormProps<TValues>) => {
+  plugins: maybePlugins,
+  renderSubmitComponent,
+  stickySubmit,
+}: DataFormProps<TInputs>) => {
+  const plugins: Plugins<TInputs> = maybePlugins!; //we always have plugins.
+
   const [fieldsWithReferences, setFieldsWithReferences] = useState<
-    ExtendedField<any, any>[]
+    ExtendedField<AnyInput, PossibleValues<TInputs>>[]
   >([]);
 
   useEffect(() => {
@@ -224,18 +296,21 @@ const DataForm = <TValues extends ValuesObject>({
     );
   }, [fields]);
 
-  const [state, setState] = useState<Partial<TValues>>(defaultValues || {});
+  const [state, setState] = useState<Partial<PossibleValues<TInputs>>>(
+    defaultValues || {}
+  );
 
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [success, setSuccess] = useState<string | undefined>();
 
-  const notReadyField = fieldsWithReferences.filter(
-    (x) => x.isValid && !x.isValid(state[x.field])
-  )[0];
+  const notReadyField = fieldsWithReferences.find((x) =>
+    x.hasError?.(state[x.field], state)
+  );
 
   const setError = ({ field, message }: { field: string; message: string }) => {
-    if (field) {
-      setState({ ...state, _errors: { ...state._errors, [field]: message } });
+    if (field && message) {
+      setErrors({ ...errors, [field]: message });
 
       const notReadyField = fieldsWithReferences.filter(
         (x) => x.field === field
@@ -255,9 +330,60 @@ const DataForm = <TValues extends ValuesObject>({
     }
   };
 
+  const onClickSubmit = () => {
+    const errorArray = fields
+      .map((field) => {
+        const hasError = field.hasError?.(state[field.field], state);
+
+        if (hasError) {
+          //continue
+          return { [field.field]: hasError };
+        } else {
+          return null;
+        }
+      })
+      .filter(notEmpty);
+    const errors = errorArray.reduce(mergeObjectsArray, {});
+
+    setErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      //no errors
+      setLoading(true);
+      onSubmit(
+        state,
+        (message) => {
+          setSuccess(message);
+          setLoading(false);
+        },
+        (props) => {
+          setError(props);
+          setLoading(false);
+        }
+      );
+    } else {
+      //scroll to the error
+      /// onError("Please fill in all fields correctly");
+
+      const top =
+        (notReadyField?.reference?.current?.getBoundingClientRect().top || 0) +
+        window.scrollY -
+        100;
+
+      if (typeof window !== "undefined") {
+        window.scrollTo({
+          top,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
+
+  const available = !loading && !notReadyField;
+
   return (
     <>
-      <div className="w-full mx-auto mt-2 mb-20 pr-28">
+      <div className="w-full mx-auto mt-2">
         {title && (
           <div className="flex items-center mb-10 ">
             {backButton && (
@@ -269,108 +395,84 @@ const DataForm = <TValues extends ValuesObject>({
           </div>
         )}
 
-        {state._success ? <p>{state._success}</p> : null}
+        {success ? <p>{success}</p> : null}
 
         {fieldsWithReferences.map((field, index) => {
+          const plugin = field.type
+            ? plugins[field.type]
+            : plugins[Object.keys(plugins)[0]]; //take the first plugin if the plugin isn't defined.
+
           const next = fields[index + 1];
 
+          const onChange = (newValue: any) => {
+            const newState = { [field.field]: newValue };
+
+            if (errors[field.field] && !field.hasError?.(newValue, state)) {
+              const newErrors = errors;
+              delete newErrors[field.field];
+              setErrors(newErrors);
+            }
+
+            setState({ ...state, ...newState });
+          };
           return field.shouldHide?.(state) ? null : (
             <Input
-              plugin={plugins![field.type]}
-              config={config![field.type]}
+              config={plugin.config}
+              plugin={plugin.component}
+              extra={field.extra}
               reference={field.reference}
               field={field.field}
               next={next}
               key={`field-${field.field}`}
-              type={field.type || "text"}
+              type={field.type!}
               title={
-                field.titleFromState
-                  ? field.titleFromState(state)
-                  : field.title || "NO TITLE"
+                field.titleFromState ? field.titleFromState(state) : field.title
               }
               value={state[field.field]}
               error={errors[field.field]}
-              onChange={(newValue) => {
-                const newState = { [field.field]: newValue };
-
-                if (errors[field.field] && field.isValid?.(newValue)) {
-                  const newErrors = errors;
-                  delete newErrors[field.field];
-                  setErrors(newErrors);
-                }
-
-                setState({ ...state, ...newState });
-              }}
+              onChange={onChange}
               isLast={index === fields.length - 1}
               startSection={field.startSection}
               sectionTitle={field.sectionTitle}
-              extra={field.extra}
               description={field.description}
             />
           );
         })}
       </div>
-      <div className={`sticky bottom-0 mb-2 py-2 bg-gray-50`}>
-        <Button
-          title={saveButtonText || "💾 Save"}
-          className="px-10"
-          onClick={() => {
-            const _errors = (
-              fields
-                .map((field) => {
-                  const error =
-                    !field.isValid || field.isValid?.(state[field.field]);
-                  if (error) {
-                    //continue
-                    return false;
-                  } else {
-                    return { [field.field]: error };
-                  }
-                })
-                .filter(Boolean) as { [key: string]: string }[]
-            ).reduce(mergeObjectsArray, {}) as { [key: string]: string };
-
-            const newState = { ...state, _errors };
-
-            setState(newState);
-
-            if (Object.keys(_errors).length === 0) {
-              //no errors
-              onSubmit(state, setSuccess, setError);
-            } else {
-              //scroll to the error
-              /// onError("Please fill in all fields correctly");
-
-              const top =
-                (notReadyField?.reference?.current?.getBoundingClientRect()
-                  .top || 0) +
-                window.scrollY -
-                100;
-
-              if (typeof window !== "undefined") {
-                window.scrollTo({
-                  top,
-                  behavior: "smooth",
-                });
-              }
-            }
-          }}
-          color={
-            notReadyField //find one that's not valid
-              ? "gray"
-              : undefined
-          }
-        />
+      <div className={`${stickySubmit ? "sticky bottom-0" : ""} mb-2 py-2`}>
+        {renderSubmitComponent ? (
+          renderSubmitComponent({
+            onSubmit: onClickSubmit,
+            loading,
+            available,
+          })
+        ) : (
+          <button
+            disabled={loading}
+            className={`${
+              available ? "bg-orange" : "bg-gray-300"
+            }  inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+            onClick={onClickSubmit}
+          >
+            {loading ? (
+              <Div className="mr-2">
+                <ActivityIndicator />
+              </Div>
+            ) : null}
+            {submitButtonText || "Save"}
+          </button>
+        )}
       </div>
     </>
   );
 };
+export type AnyInputs<TInputs> = { [key in keyof TInputs]: AnyInput };
 
-export const setConfig = <TValues extends ValuesObject>(
-  DataForm: (props: DataFormProps<TValues>) => JSX.Element,
-  config: DataFormConfig
+export const setConfig = <TInputs extends AnyInputs<TInputs>>(
+  DataForm: (props: DataFormProps<TInputs>) => JSX.Element,
+  config: DataFormConfig<TInputs>
 ) => {
-  return (props: DataFormProps<TValues>) => <DataForm {...config} {...props} />;
+  return (props: DataFormProps<TInputs>) => <DataForm {...config} {...props} />;
 };
 
 export default DataForm;
