@@ -415,7 +415,7 @@ const DataForm = <TInputs extends AnyInputs<any>>({
           if (!plugin) {
             return <p>Cant find plugin {field.field}</p>;
           }
-          const next = fields[index + 1]();
+          const next = fields[index + 1]?.();
 
           const onChange = (newValue: any) => {
             const newState = { [field.field]: newValue };
