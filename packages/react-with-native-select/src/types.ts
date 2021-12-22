@@ -5,7 +5,7 @@ export type Item<T> = {
   value: T;
   label: string;
   icon?: any;
-  onClick?: (value: T) => void;
+  onClick?: (id?: string|number) => void;
 };
 
 export type ChildrenType<T> = ({
@@ -13,7 +13,7 @@ export type ChildrenType<T> = ({
   className,
   value,
 }: {
-  onClick: (e: MouseEvent<Element>) => void;
+  onClick: (e: MouseEvent<Element>, id?: string|number) => void;
   className?: string;
   value: Item<T>;
 }) => any;

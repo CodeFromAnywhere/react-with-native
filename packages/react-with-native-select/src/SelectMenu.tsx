@@ -21,11 +21,13 @@ const SelectMenu = <T extends unknown>({
 }) => {
   const { toggleMenu, ...menuProps } = useMenuState();
   const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
+  const [id, setId] = useState<string|number|null>(null);
 
-  const onClick = (e: MouseEvent<Element>) => {
+  const onClick = (e: MouseEvent<Element>, id: string | number) => {
     e.preventDefault();
     setAnchorPoint({ x: e.clientX, y: e.clientY });
     toggleMenu(true);
+    setId(id);
   };
 
   if (typeof document === "undefined") {
@@ -46,7 +48,7 @@ const SelectMenu = <T extends unknown>({
               <MenuItem
                 key={`menu${index}`}
                 onClick={(e) => {
-                  option.onClick?.(option.value);
+                  option.onClick?.(id);
                   onChange(option);
                 }}
                 className={"flex items-center"}
