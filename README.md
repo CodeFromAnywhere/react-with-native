@@ -12,10 +12,10 @@
 ### React with native core and separate libraries:
 
 - `react-with-native`: the core elements [docs](/packages/react-with-native)
-- `react-with-nativve-alert`: alert component [docs](/packages/react-with-native-alert)
-- `react-with-nativve-modal`: modal component [docs](/packages/react-with-native-modal)
-- `react-with-nativve-notification`: notification component [docs](/packages/react-with-native-notification)
-- `react-with-nativve-rte`: rte component [docs](/packages/react-with-native-rte)
+- `react-with-native-alert`: alert component [docs](/packages/react-with-native-alert)
+- `react-with-native-modal`: modal component [docs](/packages/react-with-native-modal)
+- `react-with-native-notification`: notification component [docs](/packages/react-with-native-notification)
+- `react-with-native-rte`: rte component [docs](/packages/react-with-native-rte)
 - `react-with-native-select`: select component [docs](/packages/react-with-native-alert)
 
 ### Form builder with input elements:
