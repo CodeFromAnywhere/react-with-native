@@ -3,7 +3,7 @@ import { MenuItem, ControlledMenu, useMenuState } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { MouseEvent, useState } from "react";
-import { ChildrenType, Item } from "./types";
+import { ChildrenType, Item, ID } from "./types";
 import { Svg } from "react-with-native";
 
 const SelectMenu = <T extends unknown>({
@@ -21,9 +21,9 @@ const SelectMenu = <T extends unknown>({
 }) => {
   const { toggleMenu, ...menuProps } = useMenuState();
   const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
-  const [id, setId] = useState<string|number|null>(null);
+  const [id, setId] = useState<ID>();
 
-  const onClick = (e: MouseEvent<Element>, id: string | number) => {
+  const onClick = (e: MouseEvent<Element>, id: ID) => {
     e.preventDefault();
     setAnchorPoint({ x: e.clientX, y: e.clientY });
     toggleMenu(true);
