@@ -1,7 +1,7 @@
 import { SwipeableDrawer } from "@mui/material";
 import { useState } from "react";
 import DropdownButton from "./DropdownButton";
-import { ChildrenType, Item } from "./types";
+import { ChildrenType, ID, Item } from "./types";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { grey } from "@mui/material/colors";
@@ -18,22 +18,28 @@ const SelectDrawer = <T extends unknown>({
   title,
   children,
   className,
+  hasReset,
+  id,
 }: {
   value: Item<T>;
   options: Item<T>[];
-  onChange: (value: Item<T> | null) => void;
+  onChange?: (value: Item<T> | null) => void;
   title: string;
   children?: ChildrenType<T>;
   className?: string;
+  hasReset?: boolean;
+  id?: ID;
 }) => {
   const [open, setOpen] = useState(false);
+
+  const [customId, setCustomId] = useState<ID>();
 
   function switchOpen() {
     setOpen(!open);
   }
 
   function reset() {
-    onChange(null);
+    onChange?.(null);
     switchOpen();
   }
 
@@ -43,7 +49,14 @@ const SelectDrawer = <T extends unknown>({
   return (
     <div>
       {children ? (
-        children({ onClick: switchOpen, value: realValue, className })
+        children({
+          onClick: (e, id) => {
+            switchOpen();
+            setCustomId(id);
+          },
+          value: realValue,
+          className,
+        })
       ) : (
         <DropdownButton onClick={switchOpen} label={value.label} />
       )}
@@ -69,7 +82,7 @@ const SelectDrawer = <T extends unknown>({
               }`}
               onClick={reset}
             >
-              Reset
+              {hasReset ? "Reset" : null}
             </button>
             <div className="col-span-2 font-bold text-center">{title}</div>
             <button className="text-right text-pink" onClick={switchOpen}>
@@ -83,8 +96,9 @@ const SelectDrawer = <T extends unknown>({
               return (
                 <div
                   key={index}
-                  onClick={() => {
-                    onChange(option);
+                  onClick={(e) => {
+                    option.onClick?.(customId ? customId : id);
+                    onChange?.(option);
                     switchOpen();
                   }}
                   className="flex items-center mb-2"

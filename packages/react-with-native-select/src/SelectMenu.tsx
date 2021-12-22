@@ -15,7 +15,7 @@ const SelectMenu = <T extends unknown>({
 }: {
   options: Item<T>[];
   value: Item<T>;
-  onChange: (value: Item<T>) => void;
+  onChange?: (value: Item<T>) => void;
   children: ChildrenType<T>;
   className?: string;
 }) => {
@@ -49,7 +49,7 @@ const SelectMenu = <T extends unknown>({
                 key={`menu${index}`}
                 onClick={(e) => {
                   option.onClick?.(id);
-                  onChange(option);
+                  onChange?.(option);
                 }}
                 className={"flex items-center"}
               >

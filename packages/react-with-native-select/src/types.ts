@@ -29,4 +29,6 @@ export type SelectProps<T> = {
   className?: string;
   children?: ChildrenType<T>;
   ios?: ActionSheetIOSOptions;
+  hasReset?: boolean;
+  id?: ID;
 };

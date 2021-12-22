@@ -61,13 +61,15 @@ export default function SelectDropDown<T>({
 }: {
   title?: string;
   value: Item<T>;
-  onChange: (value: Item<T>) => void;
+  onChange?: (value: Item<T>) => void;
   options: Item<T>[];
   className?: string;
   children?: any;
 }) {
+  const onChangeFn = onChange ? onChange : () => null;
+
   return (
-    <Listbox value={value} onChange={onChange}>
+    <Listbox value={value} onChange={onChangeFn}>
       {({ open }) => (
         <>
           {title && (

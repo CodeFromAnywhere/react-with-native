@@ -14,6 +14,8 @@ const Select = <T extends unknown>({
   className,
   containerClassName,
   children,
+  hasReset,
+  id,
 }: SelectProps<T>) => {
   const realValue: Item<T> = value || { label: title, value: undefined as T };
   return (
@@ -40,6 +42,8 @@ const Select = <T extends unknown>({
           value={realValue}
           title={title}
           className={className}
+          hasReset={hasReset}
+          id={id}
         >
           {children}
         </SelectDrawer>
