@@ -9,10 +9,27 @@
 
 ### Libraries
 
-- `react-with-native`: the core elements
-- `react-with-native-*`: many components
-- `react-with-native-form`: form builder
-- `react-with-native-*-input`: input components that can be attached to the form builder
+### React with native core and separate libraries:
+
+- `react-with-native`: the core elements [docs](/packages/react-with-native)
+- `react-with-nativve-alert`: alert component [docs](/packages/react-with-native-alert)
+- `react-with-nativve-modal`: modal component [docs](/packages/react-with-native-modal)
+- `react-with-nativve-notification`: notification component [docs](/packages/react-with-native-notification)
+- `react-with-nativve-rte`: rte component [docs](/packages/react-with-native-rte)
+- `react-with-native-select`: select component [docs](/packages/react-with-native-alert)
+
+### Form builder with input elements:
+
+- `react-with-native-form`: form builder [docs](/packages/react-with-native-form)
+- `react-with-native-date-input`: date input [docs](/packages/react-with-native-date-input)
+- `react-with-native-map-input`: map input [docs](/packages/react-with-native-map-input)
+- `react-with-native-password-input`: password input [docs](/packages/react-with-native-password-input)
+- `react-with-native-text-input`: text input [docs](/packages/react-with-native-text-input)
+- `react-with-native-toggle-input`: toggle input [docs](/packages/react-with-native-toggle-input)
+
+### CLI
+
+- `react-with-native-cli`: cli for fast project transformation [docs](/packages/react-with-native-cli)
 
 ### NB
 
