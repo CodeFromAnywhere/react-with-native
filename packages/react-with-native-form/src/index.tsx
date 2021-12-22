@@ -194,7 +194,7 @@ export type DataFormProps<TInputs extends AnyInputs<any>> = {
   ) => void;
 } & DataFormConfig<TInputs>;
 
-const Input = <
+export const Input = <
   TInputs extends AnyInputs<any>,
   T extends keyof TInputs,
   TPlugins extends PluginsProp
@@ -309,6 +309,12 @@ const DataForm = <TInputs extends AnyInputs<any>>({
   const [state, setState] = useState<Partial<PossibleValues<TInputs>>>(
     defaultValues || {}
   );
+
+  useEffect(() => {
+    if (defaultValues) {
+      setState(defaultValues);
+    }
+  }, [defaultValues]);
 
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});

@@ -1,5 +1,5 @@
 export type SvgType = {
-  src: string;
+  src: any;
   width?: number;
   height?: number;
   className?: string;

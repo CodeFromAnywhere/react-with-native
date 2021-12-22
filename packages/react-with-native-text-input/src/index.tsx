@@ -1,12 +1,4 @@
-import {
-  OnChange,
-  AnyInput,
-  inputClass,
-  PluginComponent,
-  PluginsProp,
-  Field,
-  InputProps,
-} from "react-with-native-form";
+import { AnyInput, inputClass, PluginInputProps } from "react-with-native-form";
 import { Input } from "react-with-native";
 
 const TextInput = ({
@@ -15,7 +7,7 @@ const TextInput = ({
   extra,
   config,
   hasError,
-}: InputProps<TextInputType>) => {
+}: PluginInputProps<TextInputType>) => {
   config = config || {};
 
   const inputClassWithError = `${inputClass}${

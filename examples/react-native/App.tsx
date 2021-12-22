@@ -1,12 +1,12 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Div, Pressable, Text, H2 } from "react-with-native";
+import * as React from "react";
+import { Div, Pressable, Text, H2, Svg, Image } from "react-with-native";
+import Icon from "./assets/AiFillDashboard.svg";
 export default function App() {
-  const onClick = () => {
+  constonClick = () => {
     console.log("Lkjdslkfdjslakjdsfk");
   };
   return (
+ 
     <Div
       className={
         "bg-green-400 flex flex-col  absolute top-0 bottom-0 left-0 right-0 flex-1 justify-center items-center"
@@ -20,9 +20,17 @@ export default function App() {
           onClick={onClick}
           native={{ onPress: onClick }}
         >
-          <Text>WAT DAN</Text>
+          <Text>kkk k</Text>
+          <Svg src={Icon} width={23} height={23} />
         </Pressable>
+        <Image
+          className=""
+          src={require("./assets/favicon.png")}
+          alt=""
+          height="100"
+          width="100"
+          native={{source:require('./assets/favicon.png')}}ts/')}}
+ />     />
       </Div>
-    </Div>
-  );
+    </Div> );
 }
