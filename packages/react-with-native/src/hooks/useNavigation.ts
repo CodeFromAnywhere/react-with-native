@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { NavigationProp } from "@react-navigation/native";
 
 function useNavigation() {
   const router = useRouter();
