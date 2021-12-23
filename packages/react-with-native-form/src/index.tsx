@@ -93,10 +93,6 @@ export type Error = {
 
 export interface AnyInput {
   /**
-   * typename of the input
-   */
-  type: string;
-  /**
    * default value of the input on submitting, if no defaultValues are given
    */
   defaultValue: any;
@@ -196,9 +192,10 @@ export const Input = <
   reference,
   description,
   config,
+  id,
 }: {
   plugin: PluginComponent<TInputs[T], TPlugins>;
-  type: TInputs[T]["type"];
+  type: string;
   config: TInputs[T]["config"];
   extra: TInputs[T]["extra"];
   field: string;
@@ -212,6 +209,7 @@ export const Input = <
   sectionTitle?: string;
   reference?: RefObject<HTMLDivElement>;
   description?: string;
+  id: string;
 }) => {
   const InputComponent = plugin;
   return (
@@ -416,6 +414,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
           };
           return field.shouldHide?.(state) ? null : (
             <Input
+              id={field.field}
               config={plugin.config}
               plugin={plugin.component}
               extra={field.extra}

@@ -1,7 +1,10 @@
-import { InputProps } from "react-with-native-form";
+import { PluginInputProps } from "react-with-native-form";
 import TextInput, { TextInputType } from "react-with-native-text-input";
 
-const PasswordInput = ({ extra, ...props }: InputProps<PasswordInputType>) => {
+const PasswordInput = ({
+  extra,
+  ...props
+}: PluginInputProps<PasswordInputType>) => {
   const newExtra = { ...extra, isPassword: true };
   return <TextInput {...props} extra={newExtra} />;
 };
