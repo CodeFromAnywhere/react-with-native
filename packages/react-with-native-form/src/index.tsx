@@ -26,31 +26,21 @@ export function notEmpty<TValue>(
   return value !== null && value !== undefined;
 }
 
-export const makeField = <
-  TInputs extends AnyInputs<any>,
-  T extends keyof TInputs
->(
+export const makeInputField = <TInputs, T extends Keys<TInputs>>(
   type: T,
-  config: Field<TInputs, T>
+  config: Omit<Field<TInputs, T>, "type">
 ) => {
-  // function fieldCreator<K extends T>(){
-  //   return {type, ...config };
-  // }
-
-  return () => ({ ...config });
+  return () => ({ type, ...config });
 };
 
 /**
  * type of every specific field in a form
  */
-export interface Field<
-  TInputs extends AnyInputs<any>,
-  T extends keyof TInputs
-> {
+export interface Field<TInputs, T extends Keys<TInputs> = Keys<TInputs>> {
   /**
-   * type of the field (any plugin type)
+   * type of the field (any plugin type), defaults to first plugin
    */
-  type: keyof TInputs;
+  type?: Keys<TInputs>;
   /**
    * unique identifier of the field
    */
@@ -65,7 +55,7 @@ export interface Field<
    * returns either false if there's no error or a string of an error message if there is one
    */
   hasError?: (
-    value: TInputs[T]["value"],
+    value: TInputs[T] extends AnyInput ? TInputs[T]["value"] : any,
     state: Partial<PossibleState>
   ) => boolean | string;
   startSection?: boolean;
@@ -74,15 +64,13 @@ export interface Field<
   /**
    * any extra properties that can be given to a specific input
    */
-  extra?: TInputs[T]["extra"];
+  extra?: TInputs[T] extends AnyInput ? TInputs[T]["extra"] : any;
 }
 
 export type Keys<TObject> = Extract<keyof TObject, string>;
 
-export interface ExtendedField<
-  TInputs extends AnyInputs<any>,
-  T extends keyof TInputs
-> extends Field<TInputs, T> {
+export interface ExtendedField<TInputs, T extends Keys<TInputs>>
+  extends Field<TInputs, T> {
   /**
    * this is added to any field
    */
@@ -160,6 +148,7 @@ export type DataFormConfig<TInputs> = {
     onSubmit: () => void;
     loading: boolean;
     available: boolean;
+    submitButtonText?: string;
   }) => JSX.Element;
   stickySubmit?: boolean;
 };
@@ -167,35 +156,28 @@ export type DataFormConfig<TInputs> = {
 /**
  * the possible states, like { password: string, text: string }
  */
-export type PossibleValues<TInputs extends AnyInputs<TInputs[keyof TInputs]>> =
-  {
-    [K in keyof TInputs]: TInputs[K]["value"];
-  };
+export type PossibleValues<TInputs> = {
+  [K in keyof TInputs]: TInputs[K] extends AnyInput
+    ? TInputs[K]["value"]
+    : never;
+};
 
 export type PossibleState = {
   [key: string]: any;
 };
-/**
- * how do i get this?
- 
-{
-  [K in Fields["field"]]: TInputs[Field["type"]]["value"]
-}
 
- */
-
-export type DataFormProps<TInputs extends AnyInputs<any>> = {
-  fields: Array<<T extends keyof TInputs>() => Field<TInputs, T>>;
-  defaultValues?: Partial<PossibleValues<TInputs>>;
+export type DataFormProps<TInputs, TState = any> = {
+  fields: Array<<T extends Keys<TInputs>>() => Field<TInputs, T>>;
+  defaultValues?: Partial<TState>;
   onSubmit: (
-    values: Partial<PossibleValues<TInputs>>,
+    values: Partial<TState>,
     resolve: (message: string) => void,
     reject: (props: { field: string; message: string }) => void
   ) => void;
 } & DataFormConfig<TInputs>;
 
 export const Input = <
-  TInputs extends AnyInputs<any>,
+  TInputs extends AnyInputs,
   T extends keyof TInputs,
   TPlugins extends PluginsProp
 >({
@@ -281,7 +263,7 @@ export const Input = <
   );
 };
 
-const DataForm = <TInputs extends AnyInputs<any>>({
+const DataForm = <TInputs, TState extends { [key: string]: any }>({
   fields,
   defaultValues,
   onSubmit,
@@ -295,7 +277,7 @@ const DataForm = <TInputs extends AnyInputs<any>>({
   const plugins: Plugins<TInputs> = maybePlugins!; //we always have plugins.
 
   const [fieldsWithReferences, setFieldsWithReferences] = useState<
-    ExtendedField<TInputs, string>[]
+    ExtendedField<TInputs, Keys<TInputs>>[]
   >([]);
 
   useEffect(() => {
@@ -306,9 +288,7 @@ const DataForm = <TInputs extends AnyInputs<any>>({
     );
   }, [fields]);
 
-  const [state, setState] = useState<Partial<PossibleValues<TInputs>>>(
-    defaultValues || {}
-  );
+  const [state, setState] = useState<Partial<TState>>(defaultValues || {});
 
   useEffect(() => {
     if (defaultValues) {
@@ -416,7 +396,7 @@ const DataForm = <TInputs extends AnyInputs<any>>({
         {fieldsWithReferences.map((field, index) => {
           const plugin = field.type
             ? plugins[field.type]
-            : plugins[Object.keys(plugins)[0]]; //take the first plugin if the plugin isn't defined.
+            : plugins[Object.keys(plugins)[0] as keyof Plugins<TInputs>]; //take the first plugin if the plugin isn't defined.
 
           if (!plugin) {
             return <p>Cant find plugin {field.field}</p>;
@@ -464,6 +444,7 @@ const DataForm = <TInputs extends AnyInputs<any>>({
             onSubmit: onClickSubmit,
             loading,
             available,
+            submitButtonText,
           })
         ) : (
           <button
@@ -485,13 +466,15 @@ const DataForm = <TInputs extends AnyInputs<any>>({
     </>
   );
 };
-export type AnyInputs<TInputs> = { [key: string]: AnyInput };
+export type AnyInputs = { [key: string]: AnyInput };
 
-export const setConfig = <TInputs extends AnyInputs<TInputs>>(
-  DataForm: (props: DataFormProps<TInputs>) => JSX.Element,
+export const setConfig = <TInputs, TState>(
+  DataForm: (props: DataFormProps<TInputs, TState>) => JSX.Element,
   config: DataFormConfig<TInputs>
 ) => {
-  return (props: DataFormProps<TInputs>) => <DataForm {...config} {...props} />;
+  return (props: DataFormProps<TInputs, TState>) => (
+    <DataForm {...config} {...props} />
+  );
 };
 
 export default DataForm;
