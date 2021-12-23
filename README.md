@@ -31,6 +31,12 @@
 
 - `react-with-native-cli`: cli for fast project transformation [docs](./packages/react-with-native-cli)
 
+### Examples
+
+- React Next.js project [docs](./packages/react-with-native-next-example)
+- React Native Expo project [docs](./packages/react-with-native-expo-example)
+- Shared example code [docs](./packages/react-with-native-example-shared)
+
 ### NB
 
 - Tailwind is a peer dependency! Without it, `react-with-native` still works, but lots of components won't have a default styling and you need to supply your own classNames via `replaceClassName`
