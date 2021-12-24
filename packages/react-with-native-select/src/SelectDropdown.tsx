@@ -6,7 +6,7 @@ import { Svg } from "react-with-native";
 import AiFillCaretDown from "./assets/AiFillCaretDown.svg";
 import AiFillCaretUp from "./assets/AiFillCaretUp.svg";
 import { Item } from "./types";
-
+import { Div, Span } from "react-with-native";
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -27,27 +27,27 @@ const renderOption = <T extends unknown>({
   const Icon = item?.icon;
 
   return (
-    <div className="flex justify-between">
-      <div className="flex items-center">
-        <span
+    <Div className="flex justify-between">
+      <Div className="flex items-center">
+        <Span
           className={classNames(
             selected || active ? "font-semibold text-pink" : "font-normal",
             "ml-3 block truncate"
           )}
         >
           {item?.label}
-        </span>
+        </Span>
         {Icon && <Icon />}
-      </div>
+      </Div>
 
       {isHeader ? (
-        <div className="flex items-center justify-center w-6 h-6">
+        <Div className="flex items-center justify-center w-6 h-6">
           {isOpen ? <Svg src={AiFillCaretUp} /> : <Svg src={AiFillCaretDown} />}
-        </div>
+        </Div>
       ) : (
         <SelectedIcon selected={selected!} />
       )}
-    </div>
+    </Div>
   );
 };
 
@@ -77,7 +77,7 @@ export default function SelectDropDown<T>({
               {title}
             </Listbox.Label>
           )}
-          <div className={`relative z-50 mt-1 ${className}`}>
+          <Div className={`relative z-50 mt-1 ${className}`}>
             <Listbox.Button className="relative w-full py-2 pl-3 pr-3 text-left bg-white border border-gray-300 rounded-sm shadow-sm cursor-default focus:outline-none focus:ring-1 sm:text-sm">
               {renderOption({
                 item: value,
@@ -112,7 +112,7 @@ export default function SelectDropDown<T>({
                 ))}
               </Listbox.Options>
             </Transition>
-          </div>
+          </Div>
         </>
       )}
     </Listbox>

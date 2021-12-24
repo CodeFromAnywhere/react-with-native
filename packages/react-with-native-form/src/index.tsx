@@ -1,14 +1,16 @@
 import * as React from "react";
 import { useState, RefObject, createRef, useEffect } from "react";
-import { ActivityIndicator, Div } from "react-with-native";
+import { ActivityIndicator, Div, Label, Strong } from "react-with-native";
 
 export interface PluginInputProps<TInput extends AnyInput> {
-  onChange: OnChange<TInput["value"]>;
+  onChange: (value: TInput["value"]) => void;
   value: TInput["value"];
   extra: TInput["extra"];
   config: TInput["config"];
   hasError: boolean;
   id: string;
+  error?: string;
+  errorClassName?: string;
 }
 
 export type EmptyValues<T> = {
@@ -84,8 +86,6 @@ export type DefaultConfig = {
   replaceClassName?: string;
 };
 
-export type OnChange<T> = (value: T) => void;
-
 export type Error = {
   message: string;
   fieldKey: string;
@@ -133,6 +133,23 @@ export type PluginsProp = {
 };
 
 type Plugins<TInputs> = { [key in keyof TInputs]: Plugin<any, any> };
+export type RenderInputContainerType =
+  | undefined
+  | ((props: InputContainerProps) => JSX.Element);
+
+export type InputContainerProps = {
+  children: any;
+  description?: string;
+  sectionTitle?: string;
+  startSection?: boolean;
+  title?: string;
+  next?: any;
+  isLast?: boolean;
+  error?: string | boolean;
+  extra?: AnyInput["extra"];
+  config?: AnyInput["config"];
+  errorClassName?: string;
+};
 
 export type DataFormConfig<TInputs> = {
   submitButtonText?: string;
@@ -146,7 +163,15 @@ export type DataFormConfig<TInputs> = {
     available: boolean;
     submitButtonText?: string;
   }) => JSX.Element;
+  renderInputContainer: RenderInputContainerType;
+  renderTitle: (props: {
+    title?: string;
+    backButton?: () => void;
+  }) => JSX.Element;
   stickySubmit?: boolean;
+  submitClassName?: string;
+  errorClassName?: string;
+  successClassName?: string;
 };
 
 /**
@@ -172,11 +197,61 @@ export type DataFormProps<TInputs, TState = any> = {
     resolve: ResolveType,
     reject: RejectType
   ) => void;
-  /**
-   * optionally give an id to the form so it works well if you have two forms on the same page with equally named fields that need the input id prop
-   */
-  id?: string;
 } & DataFormConfig<TInputs>;
+
+export const DefaultInputContainer = ({
+  children,
+  startSection,
+  sectionTitle,
+  title,
+  description,
+  error,
+  extra,
+  errorClassName,
+  config,
+  isLast,
+  next,
+}: InputContainerProps) => (
+  <Div>
+    {startSection ? (
+      <Div
+        style={{
+          display: "flex",
+          height: 40,
+          justifyContent: "center",
+          paddingLeft: 10,
+        }}
+      >
+        {sectionTitle ? (
+          <p>
+            <Strong>{sectionTitle}</Strong>
+          </p>
+        ) : (
+          <div style={{ height: 40 }} />
+        )}
+      </Div>
+    ) : null}
+
+    {/* This is the section title */}
+    <Div className="pt-0 mb-6">
+      {title ? (
+        <Label className="block mb-2 text-sm font-bold">{title}</Label>
+      ) : null}
+      {description && (
+        <Div className={`flex mx-3 mb-2 items-start `}>
+          <p className={`text-gray-500 italic`}>{description}</p>
+        </Div>
+      )}
+      {error ? (
+        <p className={errorClassName || `mr-3 mb-2 text-red-500`}>
+          {error || "Invalid value"}
+        </p>
+      ) : null}
+
+      {children}
+    </Div>
+  </Div>
+);
 
 export const Input = <
   TInputs extends AnyInputs,
@@ -194,17 +269,17 @@ export const Input = <
   next,
   extra,
   error,
-  field,
   reference,
   description,
   config,
   id,
+  renderInputContainer,
+  errorClassName,
 }: {
   plugin: PluginComponent<TInputs[T], TPlugins>;
   type: string;
   config: TInputs[T]["config"];
   extra: TInputs[T]["extra"];
-  field: string;
   next: any;
   title?: string;
   onChange: (newValue: TInputs[T]["value"]) => void;
@@ -216,55 +291,64 @@ export const Input = <
   reference?: RefObject<HTMLDivElement>;
   description?: string;
   id: string;
+  renderInputContainer: RenderInputContainerType;
+  errorClassName?: string;
 }) => {
   const InputComponent = plugin;
+  const InputContainer = renderInputContainer || DefaultInputContainer;
+  const hasError = error !== undefined;
   return (
-    <div ref={reference}>
-      {startSection ? (
-        <div
-          style={{
-            display: "flex",
-            height: 40,
-            justifyContent: "center",
-            paddingLeft: 10,
-          }}
-        >
-          {sectionTitle ? (
-            <p>
-              <strong>{sectionTitle}</strong>
-            </p>
-          ) : (
-            <div style={{ height: 40 }} />
-          )}
-        </div>
-      ) : null}
-
-      {/* This is the section title */}
-      <div className="pt-0 mb-6">
-        {title ? (
-          <label className="block mb-2 text-sm font-bold">{title}</label>
-        ) : null}
-        {description && (
-          <div className={`flex mx-3 mb-2 items-start `}>
-            <p className={`text-gray-500 italic ml-4`}>{description}</p>
-          </div>
-        )}
-        {error ? (
-          <p className={`mr-3 mb-2 text-red-500`}>{error || "Invalid value"}</p>
-        ) : null}
-
+    <Div ref={reference}>
+      <InputContainer
+        {...{
+          description,
+          sectionTitle,
+          startSection,
+          title,
+          next,
+          isLast,
+          id,
+          type,
+          error,
+          extra,
+          config,
+          errorClassName,
+        }}
+      >
         <InputComponent
-          // assuming field is unique here
-          id={id}
-          config={config}
-          extra={extra}
-          hasError={error !== undefined}
-          onChange={onChange}
-          value={value}
+          {...{
+            id,
+            config,
+            extra,
+            hasError,
+            onChange,
+            value,
+            error,
+            errorClassName,
+          }}
         />
-      </div>
-    </div>
+      </InputContainer>
+    </Div>
   );
+};
+
+const DefaultTitle = ({
+  title,
+  backButton,
+}: {
+  title: string;
+  backButton: () => void;
+}) => {
+  return title ? (
+    <Div className="flex items-center mb-10 ">
+      {backButton && (
+        <Div onClick={backButton} className={`p-4 cursor-pointer`}>
+          back
+        </Div>
+      )}
+      <h3 className="text-2xl font-bold">{title}</h3>
+    </Div>
+  ) : null;
 };
 
 const DataForm = <TInputs, TState extends { [key: string]: any }>({
@@ -276,9 +360,16 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   backButton,
   plugins: maybePlugins,
   renderSubmitComponent,
+  renderInputContainer,
   stickySubmit,
-  id,
+  renderTitle,
+  submitClassName,
+  errorClassName,
+  successClassName,
 }: DataFormProps<TInputs>) => {
+  //Generate unique id for the form
+  const [id] = useState(`Form${String(Math.round(Math.random() * 1000000))}`);
+
   const plugins: Plugins<TInputs> = maybePlugins!; //we always have plugins.
 
   const [fieldsWithReferences, setFieldsWithReferences] = useState<
@@ -387,33 +478,59 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   };
 
   const available = !loading && !notReadyField;
+  const Title = renderTitle || DefaultTitle;
+
+  const Submit = () =>
+    renderSubmitComponent ? (
+      renderSubmitComponent({
+        onSubmit: onClickSubmit,
+        loading,
+        available,
+        submitButtonText,
+      })
+    ) : (
+      <button
+        disabled={loading}
+        className={`${
+          available ? "bg-orange" : "bg-gray-300"
+        }  inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+        onClick={onClickSubmit}
+      >
+        {loading ? (
+          <Div className="mr-2">
+            <ActivityIndicator />
+          </Div>
+        ) : null}
+        {submitButtonText || "Save"}
+      </button>
+    );
 
   return (
     <>
-      <div className="w-full mx-auto mt-2">
-        {title && (
-          <div className="flex items-center mb-10 ">
-            {backButton && (
-              <div onClick={backButton} className={`p-4 cursor-pointer`}>
-                back
-              </div>
-            )}
-            <h3 className="text-2xl font-bold">{title}</h3>
-          </div>
-        )}
+      <Div className="w-full">
+        <Title title={title} backButton={backButton} />
 
-        {success ? <p>{success}</p> : null}
+        {success ? <p className={successClassName}>{success}</p> : null}
         {errors?.__GLOBAL__ ? (
-          <p className={"text-red-600"}>{errors.__GLOBAL__}</p>
+          <p className={errorClassName || "text-red-600"}>
+            {errors.__GLOBAL__}
+          </p>
         ) : null}
+
         {fieldsWithReferences.map((field, index) => {
+          // Take the first plugin if the plugin isn't defined.
           const plugin = field.type
             ? plugins[field.type]
-            : plugins[Object.keys(plugins)[0] as keyof Plugins<TInputs>]; //take the first plugin if the plugin isn't defined.
+            : plugins[Object.keys(plugins)[0] as keyof Plugins<TInputs>];
 
           if (!plugin) {
-            return <p>Cant find plugin {field.field}</p>;
+            return (
+              <p>
+                Plugin not found ({field.field}, {field.type})
+              </p>
+            );
           }
+
           const next = fields[index + 1]?.();
 
           const onChange = (newValue: any) => {
@@ -427,14 +544,17 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
             setState({ ...state, ...newState });
           };
+
+          const uniqueId = `${id || ""}.${field.field}`;
+
           return field.shouldHide?.(state) ? null : (
             <Input
-              id={`${id || ""}.${field.field}`}
+              renderInputContainer={renderInputContainer}
+              id={uniqueId}
               config={plugin.config}
               plugin={plugin.component}
               extra={field.extra}
               reference={field.reference}
-              field={field.field}
               next={next}
               key={`field-${field.field}`}
               type={field.type!}
@@ -451,32 +571,14 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
             />
           );
         })}
-      </div>
-      <div className={`${stickySubmit ? "sticky bottom-0" : ""} mb-2 py-2`}>
-        {renderSubmitComponent ? (
-          renderSubmitComponent({
-            onSubmit: onClickSubmit,
-            loading,
-            available,
-            submitButtonText,
-          })
-        ) : (
-          <button
-            disabled={loading}
-            className={`${
-              available ? "bg-orange" : "bg-gray-300"
-            }  inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
-            onClick={onClickSubmit}
-          >
-            {loading ? (
-              <Div className="mr-2">
-                <ActivityIndicator />
-              </Div>
-            ) : null}
-            {submitButtonText || "Save"}
-          </button>
-        )}
-      </div>
+      </Div>
+      <Div
+        className={`${stickySubmit ? "sticky bottom-0" : ""} ${
+          submitClassName || "mb-2 py-2"
+        }`}
+      >
+        <Submit />
+      </Div>
     </>
   );
 };

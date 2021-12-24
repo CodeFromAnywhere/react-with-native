@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { grey } from "@mui/material/colors";
 import SelectedIcon from "./SelectedIcon";
+import { Button, Div, Label } from "react-with-native";
 
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "light" ? "#fff" : grey[800],
@@ -47,7 +48,7 @@ const SelectDrawer = <T extends unknown>({
   const realValue: Item<T> = value || { label: title, value: undefined as T };
 
   return (
-    <div>
+    <Div>
       {children ? (
         children({
           onClick: (e, id) => {
@@ -74,8 +75,8 @@ const SelectDrawer = <T extends unknown>({
           }}
           role="presentation"
         >
-          <div className="grid grid-cols-4 mb-10">
-            <button
+          <Div className="grid grid-cols-4 mb-10">
+            <Button
               disabled={valueNoOption}
               className={`text-left ${
                 valueNoOption ? "disabled:opacity-50" : "text-pink"
@@ -83,18 +84,18 @@ const SelectDrawer = <T extends unknown>({
               onClick={reset}
             >
               {hasReset ? "Reset" : null}
-            </button>
+            </Button>
             <div className="col-span-2 font-bold text-center">{title}</div>
-            <button className="text-right text-pink" onClick={switchOpen}>
+            <Button className="text-right text-pink" onClick={switchOpen}>
               Ready
-            </button>
-          </div>
-          <div className="flex flex-col">
+            </Button>
+          </Div>
+          <Div className="flex flex-col">
             {options.map((option, index) => {
               // TODO do a shallow diff compare, or add id to Item for example.
               const isSelected = option.label === value.label;
               return (
-                <div
+                <Div
                   key={index}
                   onClick={(e) => {
                     option.onClick?.(customId ? customId : id);
@@ -103,17 +104,17 @@ const SelectDrawer = <T extends unknown>({
                   }}
                   className="flex items-center mb-2"
                 >
-                  <label className="flex-1 min-w-0 text-t-primary">
+                  <Label className="flex-1 min-w-0 text-t-primary">
                     {option.label}
-                  </label>
+                  </Label>
                   <SelectedIcon selected={isSelected} />
-                </div>
+                </Div>
               );
             })}
-          </div>
+          </Div>
         </StyledBox>
       </SwipeableDrawer>
-    </div>
+    </Div>
   );
 };
 

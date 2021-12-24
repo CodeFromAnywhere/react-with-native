@@ -4,7 +4,7 @@ import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { MouseEvent, useState } from "react";
 import { ChildrenType, Item, ID } from "./types";
-import { Svg } from "react-with-native";
+import { Div, Svg } from "react-with-native";
 
 const SelectMenu = <T extends unknown>({
   options,
@@ -35,7 +35,7 @@ const SelectMenu = <T extends unknown>({
   }
 
   return (
-    <div className="w-full">
+    <Div className="w-full">
       {ReactDOM.createPortal(
         <ControlledMenu
           {...menuProps}
@@ -53,9 +53,9 @@ const SelectMenu = <T extends unknown>({
                 }}
                 className={"flex items-center"}
               >
-                <div className="w-6 mr-4">
+                <Div className="w-6 mr-4">
                   {Icon && <Svg src={Icon} className="w-6 h-6 text-black" />}
-                </div>
+                </Div>
                 {option.label}
               </MenuItem>
             );
@@ -64,7 +64,7 @@ const SelectMenu = <T extends unknown>({
         document.getElementById("contextmenu")!
       )}
       {children({ onClick, value, className })}
-    </div>
+    </Div>
   );
 };
 export default SelectMenu;

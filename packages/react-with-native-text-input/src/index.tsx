@@ -31,7 +31,7 @@ const TextInput = ({
       onChange={(event) => onChangeText(event.target.value)}
       placeholder={placeholder}
       maxLength={extra?.maxLength}
-      autocomplete={extra?.autocomplete}
+      autoComplete={extra?.autoComplete}
       required={extra?.required}
       native={{
         value,
@@ -56,7 +56,6 @@ export interface TextInputType extends AnyInput {
    * input generic configuration
    */
   config?: {
-    errorClassName?: string;
     extraClassName?: string;
     replaceClassName?: string;
   };
@@ -67,7 +66,7 @@ export interface TextInputType extends AnyInput {
     maxLength?: number;
     placeholder?: string;
     isPassword?: boolean;
-    autocomplete?: string;
+    autoComplete?: string;
     required?: boolean;
     type?: string;
   };
