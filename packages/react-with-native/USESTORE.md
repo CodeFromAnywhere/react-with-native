@@ -15,15 +15,24 @@ for react native, also install this:
 First create a wrapper and save it somewhere
 
 ```
-import { useStoreCreator, StoreOptions } from 'react-with-native';
-import { Address, Cart, Account } from '../types/types';
 
 const defaultValues: StoreType = {
-  account: null,
   cart: null,
   currentTaxonCode: null,
   invoiceAddress: null,
   shippingAddress: null,
+};
+
+type Address = {
+  a: string;
+  b: string;
+  c: number;
+};
+
+type Cart = {
+  x: string;
+  y: string;
+  z: number;
 };
 
 type StoreType = {
@@ -31,14 +40,18 @@ type StoreType = {
   invoiceAddress: Address | null;
   cart: Cart | null;
   currentTaxonCode: string | null;
-  account: Account | null;
 };
 
-export default function useStore(key: keyof StoreType, options?: StoreOptions) {
-  return useStoreCreator({
+function useStore<K extends Keys<StoreType>>(key: K, options?: StoreOptions) {
+  return useStoreCreator<StoreType>({
     defaultValues,
   })(key, options);
 }
+
+export const Component = () => {
+  const [cart, setCart] = useStore("cart");
+};
+
 
 ```
 
