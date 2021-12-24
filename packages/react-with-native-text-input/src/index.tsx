@@ -23,12 +23,16 @@ const TextInput = ({
   const maxLength = extra?.maxLength;
   return (
     <Input
-      type={extra?.isPassword ? "password" : undefined}
+      type={
+        extra?.type ? extra.type : extra?.isPassword ? "password" : undefined
+      }
       className={inputClassWithError}
       value={value}
       onChange={(event) => onChangeText(event.target.value)}
       placeholder={placeholder}
       maxLength={extra?.maxLength}
+      autocomplete={extra?.autocomplete}
+      required={extra?.required}
       native={{
         value,
         onChangeText,
@@ -59,7 +63,14 @@ export interface TextInputType extends AnyInput {
   /**
    * field specific configuration
    */
-  extra?: { maxLength?: number; placeholder?: string; isPassword?: boolean };
+  extra?: {
+    maxLength?: number;
+    placeholder?: string;
+    isPassword?: boolean;
+    autocomplete?: string;
+    required?: boolean;
+    type?: string;
+  };
 }
 
 export default TextInput;

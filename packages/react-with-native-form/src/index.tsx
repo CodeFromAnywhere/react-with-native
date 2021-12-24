@@ -162,13 +162,15 @@ export type PossibleState = {
   [key: string]: any;
 };
 
+export type ResolveType = (message: string) => void;
+export type RejectType = (props: { field?: string; message: string }) => void;
 export type DataFormProps<TInputs, TState = any> = {
   fields: Array<<T extends Keys<TInputs>>() => Field<TInputs, T>>;
   defaultValues?: Partial<TState>;
   onSubmit: (
     values: Partial<TState>,
-    resolve: (message: string) => void,
-    reject: (props: { field: string; message: string }) => void
+    resolve: ResolveType,
+    reject: RejectType
   ) => void;
 } & DataFormConfig<TInputs>;
 
@@ -302,9 +304,15 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     x.hasError?.(state[x.field], state)
   );
 
-  const setError = ({ field, message }: { field: string; message: string }) => {
-    if (field && message) {
-      setErrors({ ...errors, [field]: message });
+  const setError = ({
+    field,
+    message,
+  }: {
+    field?: string;
+    message: string;
+  }) => {
+    if (message) {
+      setErrors({ ...errors, [field || "__GLOBAL__"]: message });
 
       const notReadyField = fieldsWithReferences.filter(
         (x) => x.field === field
@@ -390,7 +398,9 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         )}
 
         {success ? <p>{success}</p> : null}
-
+        {errors?.__GLOBAL__ ? (
+          <p className={"text-red-600"}>{errors.__GLOBAL__}</p>
+        ) : null}
         {fieldsWithReferences.map((field, index) => {
           const plugin = field.type
             ? plugins[field.type]
