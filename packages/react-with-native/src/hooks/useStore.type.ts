@@ -18,3 +18,5 @@ export type StoreOptions = {
 };
 
 export type Keys<T> = Extract<keyof T, string>;
+
+export type Dispatch<T> = (value: T) => Promise<void>;

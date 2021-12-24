@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { StoreConfig, StoreOptions, AnyObject, Keys } from "./useStore.type";
+import { StoreConfig, StoreOptions, Dispatch, Keys } from "./useStore.type";
 import { setItem, getItem } from "./useStore.util";
 
 const getKey = (key: string, baseKey: string) => `${baseKey}.${key}`;
 
 const useStoreCreator =
-  <T extends AnyObject>(config?: StoreConfig<T>) =>
-  <K extends Keys<T>>(key: K, options?: StoreOptions) => {
+  <TStore>(config?: StoreConfig<TStore>) =>
+  <K extends Keys<TStore>>(
+    key: K,
+    options?: StoreOptions
+  ): [TStore[K] | null, Dispatch<TStore[K]>] => {
     const [rawValue, setRawValue] = useState();
 
     const baseKey = config?.baseKey || "useStore";
@@ -21,21 +24,60 @@ const useStoreCreator =
     const defaultValues = config?.defaultValues;
 
     //@ts-ignore
-    const value: typeof defaultValues extends undefined ? T[K] | null : T[K] =
-      rawValue !== undefined
+    const value: typeof defaultValues extends undefined
+      ? TStore[K] | null
+      : TStore[K] =
+      options?.return === "dispatch"
+        ? null
+        : rawValue !== undefined
         ? rawValue
         : config?.defaultValues[key] !== undefined
         ? config.defaultValues[key]
         : null;
 
-    const dispatch = (value: T[K]) => setItem(fullKey, value);
+    const dispatch: Dispatch<TStore[K]> =
+      options?.return === "value"
+        ? async (_) => {}
+        : (value) => setItem(fullKey, value);
 
-    if (options?.return === "value") {
-      return [value];
-    } else if (options?.return === "dispatch") {
-      return [dispatch];
-    } else {
-      return [value, dispatch];
-    }
+    return [value, dispatch];
   };
 export default useStoreCreator;
+
+// testing purposes
+
+// const defaultValues: StoreType = {
+//   cart: null,
+//   currentTaxonCode: null,
+//   invoiceAddress: null,
+//   shippingAddress: null,
+// };
+
+// type Address = {
+//   a: string;
+//   b: string;
+//   c: number;
+// };
+
+// type Cart = {
+//   x: string;
+//   y: string;
+//   z: number;
+// };
+
+// type StoreType = {
+//   shippingAddress: Address | null;
+//   invoiceAddress: Address | null;
+//   cart: Cart | null;
+//   currentTaxonCode: string | null;
+// };
+
+// function useStore<K extends Keys<StoreType>>(key: K, options?: StoreOptions) {
+//   return useStoreCreator<StoreType>({
+//     defaultValues,
+//   })(key, options);
+// }
+
+// export const Component = () => {
+//   const [cart, setCart] = useStore("cart");
+// };
