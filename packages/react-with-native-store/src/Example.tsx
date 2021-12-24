@@ -1,7 +1,11 @@
 import * as React from "react";
 import { useContext } from "react";
-import { StoreContextProvider, StoreContext } from "./StoreProvider";
-import { StoreOptions, Dispatch, Keys } from "./types";
+import {
+  StoreContextProvider,
+  StoreContext,
+  UseStoreType,
+} from "./StoreProvider";
+import { StoreOptions, Keys } from "./types";
 
 // testing purposes
 
@@ -31,8 +35,13 @@ type StoreType = {
   currentTaxonCode: string | null;
 };
 
-const useStore = <K extends Keys<StoreType>>(key: K, options?: StoreOptions) =>
-  useContext<[StoreType[K] | null, Dispatch<StoreType[K]>]>(StoreContext);
+const useStore = <K extends Keys<StoreType>>(
+  key: K,
+  options?: StoreOptions
+) => {
+  const useStoreHook = useContext<UseStoreType<StoreType>>(StoreContext);
+  return useStoreHook(key, options);
+};
 
 export default useStore;
 

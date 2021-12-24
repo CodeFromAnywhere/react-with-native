@@ -5,12 +5,9 @@ import { setItem, getItem } from "./Util";
 
 const getKey = (key: string, baseKey: string) => `${baseKey}.${key}`;
 
-export const createStoreContext = <K extends Keys<TStore>>(
-  key: K,
-  options?: StoreOptions
-) => createContext<any>({ key, options });
+export const StoreContext = createContext<any>(null);
 
-type UseStoreType<TStore> = <K extends Keys<TStore>>(
+export type UseStoreType<TStore> = <K extends Keys<TStore>>(
   key: K,
   options?: StoreOptions
 ) => [TStore[K] | null, Dispatch<TStore[K]>];
@@ -37,38 +34,41 @@ export const StoreContextProvider = <TStore extends object>({
     });
   }, []);
 
-  // const useStore: UseStoreType<TStore> = <K extends Keys<TStore>>(
-  //   key: K,
-  //   options?: StoreOptions
-  // ) => {
-  const fullKey = getKey(key, baseKey);
+  const useStoreHook: UseStoreType<TStore> = <K extends Keys<TStore>>(
+    key: K,
+    options?: StoreOptions
+  ) => {
+    const fullKey = getKey(key, baseKey);
 
-  const defaultValues = config?.defaultValues;
+    const defaultValues = config?.defaultValues;
 
-  //@ts-ignore
-  const value: typeof defaultValues extends undefined
-    ? TStore[K] | null
-    : TStore[K] =
-    options?.return === "dispatch"
-      ? null
-      : store[key] !== undefined
-      ? store[key]
-      : config?.defaultValues[key] !== undefined
-      ? config.defaultValues[key]
-      : null;
+    //@ts-ignore
+    const value: typeof defaultValues extends undefined
+      ? TStore[K] | null
+      : TStore[K] =
+      options?.return === "dispatch"
+        ? null
+        : store[key] !== undefined
+        ? store[key]
+        : config?.defaultValues[key] !== undefined
+        ? config.defaultValues[key]
+        : null;
 
-  const dispatch: Dispatch<TStore[K]> =
-    options?.return === "value"
-      ? async (_) => {}
-      : async (value) => {
-          //NB: Also return new value that we set
-          // console.log(`Rendering dispatch`, { newValue: value });
-          setStore((store) => ({ ...store, [key]: value }));
-          await setItem(fullKey, value);
-        };
+    const dispatch: Dispatch<TStore[K]> =
+      options?.return === "value"
+        ? async (_) => {}
+        : async (value) => {
+            //NB: Also return new value that we set
+            // console.log(`Rendering dispatch`, { newValue: value });
+            setStore((store) => ({ ...store, [key]: value }));
+            await setItem(fullKey, value);
+          };
+
+    return [value, dispatch];
+  };
 
   return (
-    <StoreContext.Provider value={[value, dispatch]}>
+    <StoreContext.Provider value={useStoreHook}>
       {children}
     </StoreContext.Provider>
   );

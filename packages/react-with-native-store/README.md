@@ -17,8 +17,16 @@ for bare react-native, also follow [these instructions](https://react-native-asy
 First create a wrapper and save it somewhere
 
 ```
-import { StoreOptions, Keys, useStoreCreator } from 'react-with-native-store';
-import { Address, Cart } from '../types/types';//your types
+
+import { useContext } from 'react';
+import {
+  StoreOptions,
+  Keys,
+  StoreContext,
+  UseStoreType,
+} from 'react-with-native-store';
+import { Address, Cart } from '../types/types';
+
 
 const defaultValues: StoreType = {
   cart: null,
@@ -27,17 +35,6 @@ const defaultValues: StoreType = {
   shippingAddress: null,
 };
 
-type Address = {
-  a: string;
-  b: string;
-  c: number;
-};
-
-type Cart = {
-  x: string;
-  y: string;
-  z: number;
-};
 
 type StoreType = {
   shippingAddress: Address | null;
@@ -46,24 +43,44 @@ type StoreType = {
   currentTaxonCode: string | null;
 };
 
-function useStore<K extends Keys<StoreType>>(key: K, options?: StoreOptions) {
-  return useStoreCreator<StoreType>({
-    defaultValues,
-  })(key, options);
-}
+const useStore = <K extends Keys<StoreType>>(
+  key: K,
+  options?: StoreOptions
+) => {
+  const useStoreHook = useContext<UseStoreType<StoreType>>(StoreContext);
+  return useStoreHook(key, options);
+};
+
+export default useStore;
+
+```
+
+Then wrap your app in the StoreContextProvider
+
+```
+import { StoreContextProvider } from 'react-with-native-store';
 
 
+const App = () => (
+  <StoreContextProvider config={{ defaultValues }}>
+    {/* Other components */}
+    <Component />
+  </StoreContextProvider>
+);
 
 ```
 
-It can be used like this
+Finally, you can use useStore everywhere!
 
 ```
-import useStore from "..";
+import useStore from "./your/wrapper/file/location";
 
 const YourComponent = () => {
-  const [account, setAccount] = useStore('account');
+const [account, setAccount] = useStore('account');
 
-  // your code
+// your code
 };
+
 ```
+
+Enjoy!

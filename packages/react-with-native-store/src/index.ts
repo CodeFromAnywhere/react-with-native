@@ -1,6 +1,9 @@
-import useStoreCreator from "./useStoreWrapper";
 import { Keys, Dispatch, StoreConfig, StoreOptions } from "./types";
+import {
+  StoreContextProvider,
+  StoreContext,
+  UseStoreType,
+} from "./StoreProvider";
 
-export default useStoreCreator;
-export { useStoreCreator };
+export { StoreContextProvider, StoreContext, UseStoreType };
 export type { Keys, Dispatch, StoreConfig, StoreOptions };
