@@ -19,6 +19,7 @@ const useStoreCreator =
     const fullKey = getKey(key, baseKey);
 
     useEffect(() => {
+      console.log("running useEffect", key);
       getItem(fullKey).then((value) => {
         setRawValue(value);
       });
@@ -43,6 +44,7 @@ const useStoreCreator =
         ? async (_) => {}
         : async (value) => {
             //NB: Also return new value that we set
+            console.log(`Rendering dispatch`, { newValue: value });
             setRawValue(value);
             await setItem(fullKey, value);
           };
