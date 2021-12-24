@@ -17,4 +17,4 @@ export type StoreOptions = {
   return?: "value" | "dispatch";
 };
 
-export type Keys<T> = Extract<keyof T, "string">;
+export type Keys<T> = Extract<keyof T, string>;
