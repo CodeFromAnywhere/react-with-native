@@ -17,6 +17,7 @@
 - `react-with-native-notification`: notification component [docs](./packages/react-with-native-notification)
 - `react-with-native-rte`: rte component [docs](./packages/react-with-native-rte)
 - `react-with-native-select`: select component [docs](./packages/react-with-native-alert)
+- `react-with-native-store`: redux replacement [docs](./packages/react-with-native-store)
 
 ### Form builder with input elements:
 

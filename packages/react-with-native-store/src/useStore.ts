@@ -12,14 +12,14 @@ const useStoreCreator =
     key: K,
     options?: StoreOptions
   ): [TStore[K] | null, Dispatch<TStore[K]>] => {
-    console.log("running useStore");
+    // console.log("running useStore");
     const [rawValue, setRawValue] = useState<any>();
 
     const baseKey = config?.baseKey || "useStore";
     const fullKey = getKey(key, baseKey);
 
     useEffect(() => {
-      console.log("running useEffect", key);
+      // console.log("running useEffect", key);
       getItem(fullKey).then((value) => {
         setRawValue(value);
       });
@@ -44,7 +44,7 @@ const useStoreCreator =
         ? async (_) => {}
         : async (value) => {
             //NB: Also return new value that we set
-            console.log(`Rendering dispatch`, { newValue: value });
+            // console.log(`Rendering dispatch`, { newValue: value });
             setRawValue(value);
             await setItem(fullKey, value);
           };
