@@ -6,10 +6,6 @@ export type StoreConfig<T extends { [key: string]: any }> = {
   baseKey?: string;
 };
 
-export type AnyObject = {
-  [key: string]: any;
-};
-
 export type StoreOptions = {
   /**
    * by default, both are returned

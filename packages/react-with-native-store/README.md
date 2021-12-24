@@ -4,17 +4,21 @@ Simple localStorage/asyncStorage-based and fully typed redux replacement with gl
 
 ## Installation
 
-`yarn add react-with-native`
+`yarn add react-with-native-store`
 
-for react native, also install this:
+for expo, also install this:
 
 `yarn add @react-native-async-storage/async-storage`
+
+for bare react-native, also follow [these instructions](https://react-native-async-storage.github.io/async-storage/docs/install/)
 
 ## Usage
 
 First create a wrapper and save it somewhere
 
 ```
+import { StoreOptions, Keys, useStoreCreator } from 'react-with-native-store';
+import { Address, Cart } from '../types/types';//your types
 
 const defaultValues: StoreType = {
   cart: null,
@@ -48,9 +52,6 @@ function useStore<K extends Keys<StoreType>>(key: K, options?: StoreOptions) {
   })(key, options);
 }
 
-export const Component = () => {
-  const [cart, setCart] = useStore("cart");
-};
 
 
 ```
