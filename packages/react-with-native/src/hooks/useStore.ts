@@ -9,14 +9,15 @@ const useStoreCreator =
   <K extends Keys<T>>(key: K, options?: StoreOptions) => {
     const [rawValue, setRawValue] = useState();
 
+    const baseKey = config?.baseKey || "useStore";
+    const fullKey = getKey(key, baseKey);
+
     useEffect(() => {
       getItem(fullKey).then((value) => {
         setRawValue(value);
       });
     }, [key]);
 
-    const baseKey = config?.baseKey || "useStore";
-    const fullKey = getKey(key, baseKey);
     const defaultValues = config?.defaultValues;
 
     //@ts-ignore
