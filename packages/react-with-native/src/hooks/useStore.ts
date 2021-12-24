@@ -4,13 +4,16 @@ import { setItem, getItem } from "./useStore.util";
 
 const getKey = (key: string, baseKey: string) => `${baseKey}.${key}`;
 
+//problem: if we set the value somewhere else, it doesn't get updated. It only gets updated if you set it yourself.
+// a solution would be to select the data every render. maybe it's already the case?
 const useStoreCreator =
   <TStore>(config?: StoreConfig<TStore>) =>
   <K extends Keys<TStore>>(
     key: K,
     options?: StoreOptions
   ): [TStore[K] | null, Dispatch<TStore[K]>] => {
-    const [rawValue, setRawValue] = useState();
+    console.log("running useStore");
+    const [rawValue, setRawValue] = useState<any>();
 
     const baseKey = config?.baseKey || "useStore";
     const fullKey = getKey(key, baseKey);
@@ -38,7 +41,11 @@ const useStoreCreator =
     const dispatch: Dispatch<TStore[K]> =
       options?.return === "value"
         ? async (_) => {}
-        : (value) => setItem(fullKey, value);
+        : async (value) => {
+            //NB: Also return new value that we set
+            setRawValue(value);
+            await setItem(fullKey, value);
+          };
 
     return [value, dispatch];
   };
