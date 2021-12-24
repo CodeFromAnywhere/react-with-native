@@ -1,6 +1,7 @@
 import useRouter from "./useRouter";
 import useNavigation from "./useNavigation";
 import useStoreCreator from "./useStore";
-export { useRouter };
-export { useNavigation };
-export { useStoreCreator };
+import { StoreConfig, StoreOptions } from "./useStore.type";
+
+export { useStoreCreator, useNavigation, useRouter };
+export type { StoreConfig, StoreOptions };
