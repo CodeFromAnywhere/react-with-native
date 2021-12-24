@@ -58,6 +58,7 @@ export interface TextInputType extends AnyInput {
   config?: {
     extraClassName?: string;
     replaceClassName?: string;
+    errorClassName?: string;
   };
   /**
    * field specific configuration
