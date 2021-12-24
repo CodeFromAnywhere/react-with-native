@@ -172,6 +172,10 @@ export type DataFormProps<TInputs, TState = any> = {
     resolve: ResolveType,
     reject: RejectType
   ) => void;
+  /**
+   * optionally give an id to the form so it works well if you have two forms on the same page with equally named fields that need the input id prop
+   */
+  id?: string;
 } & DataFormConfig<TInputs>;
 
 export const Input = <
@@ -251,7 +255,7 @@ export const Input = <
 
         <InputComponent
           // assuming field is unique here
-          id={field}
+          id={id}
           config={config}
           extra={extra}
           hasError={error !== undefined}
@@ -273,6 +277,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   plugins: maybePlugins,
   renderSubmitComponent,
   stickySubmit,
+  id,
 }: DataFormProps<TInputs>) => {
   const plugins: Plugins<TInputs> = maybePlugins!; //we always have plugins.
 
@@ -424,7 +429,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
           };
           return field.shouldHide?.(state) ? null : (
             <Input
-              id={field.field}
+              id={`${id || ""}.${field.field}`}
               config={plugin.config}
               plugin={plugin.component}
               extra={field.extra}
