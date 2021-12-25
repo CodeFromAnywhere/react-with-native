@@ -8,18 +8,6 @@ This is not as powerful as redux itself (you ca't define custom selectors, so re
 
 I think that especially for apps with little state this could be a very good choice, and because we have tools like React Query now, most apps won't need a lot of global persisted state anymore.
 
-# To-do
-
-There are a few things I would like to add in the future, but I don't know yet how easy it will be. If you have any other ideas or would like to contribute, don't hestitate to contact me.
-
-1. Make it possible to only fetch some value from deeper inside one of the objects using an option that takes the result and selects a value from it. The value and dispatch then both adapt to this change.
-
-2. Make it possible to enter any string as key and use a generic to type them, so that you don't have to declare them in a global place. The default value is then assumed to be, and will return 'null'.
-
-3. Make it work with SSR on Next.js: just make sure it doesn't try to do anything with localStorage on the server.
-
-4. Currently you can specify which function to return, but I think it won't reduce rerenders, as the context still updates if you do a dispatch. Either split up the dispatch and the value into two contexts somehow, or just remove the possibility to return one thing instead of both, as it's not needed much anyway.
-
 ## Installation
 
 `yarn add react-with-native-store`
@@ -113,3 +101,15 @@ const [account, setAccount] = useStore('account');
 ```
 
 Enjoy!
+
+# To-do
+
+There are a few things I would like to add in the future, but I don't know yet how easy it will be. If you have any other ideas or would like to contribute, don't hestitate to contact me.
+
+1. Make it possible to only fetch some value from deeper inside one of the objects using an option that takes the result and selects a value from it. The value and dispatch then both adapt to this change.
+
+2. Make it possible to enter any string as key and use a generic to type them, so that you don't have to declare them in a global place. The default value is then assumed to be, and will return 'null'.
+
+3. Make it work with SSR on Next.js: just make sure it doesn't try to do anything with localStorage on the server.
+
+4. Currently you can specify which function to return, but I think it won't reduce rerenders, as the context still updates if you do a dispatch. Either split up the dispatch and the value into two contexts somehow, or just remove the possibility to return one thing instead of both, as it's not needed much anyway.
