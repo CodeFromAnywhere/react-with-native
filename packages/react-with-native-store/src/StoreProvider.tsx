@@ -1,66 +1,66 @@
 import * as React from "react";
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { StoreConfig, StoreOptions, Dispatch, Keys } from "./types";
 import { setItem, getItem } from "./Util";
 
 const getKey = (key: string, baseKey: string) => `${baseKey}.${key}`;
-
-export const StoreContext = createContext<any>(null);
+const contextKey = (key: string) => `${key}Context`;
 
 export type UseStoreType<TStore> = <K extends Keys<TStore>>(
   key: K,
   options?: StoreOptions
-) => [TStore[K] | null, Dispatch<TStore[K]>];
+) => [TStore[K], Dispatch<TStore[K]>];
 
-export const StoreContextProvider = <TStore extends object>({
+const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
+  DynamicContext,
   children,
   config,
+  storeKey,
 }: {
+  DynamicContext: React.Context<any>;
   children: any;
   config: StoreConfig<TStore>;
+  storeKey: K;
 }) => {
-  const [storeInitialized, setStoreInitialized] = useState(false);
-  const [store, setStore] = useState<TStore>(config?.defaultValues);
+  const [store, setStore] = useState<TStore[K]>(
+    config?.defaultValues[storeKey]
+  ); //null or some object or string or whatever
   const baseKey = config?.baseKey || "useStore";
 
   // On mount, get the current value from storage
   useEffect(() => {
-    Object.keys(config.defaultValues).map((key) => {
-      const fullKey = getKey(key, baseKey);
-
-      getItem(fullKey).then((value) => {
-        setStore((store) => ({ ...store, [key]: value }));
-      });
+    const fullKey = getKey(storeKey, baseKey);
+    getItem(fullKey).then((value) => {
+      console.log("Initialized storevalue for ", storeKey);
+      setStore(value);
     });
   }, []);
 
-  const useStoreHook: UseStoreType<TStore> = <K extends Keys<TStore>>(
-    key: K,
+  const defaultValues = config?.defaultValues;
+
+  const useStoreHook: UseStoreType<TStore> = <K2 extends Keys<TStore>>(
+    key: K2,
     options?: StoreOptions
   ) => {
     const fullKey = getKey(key, baseKey);
 
-    const defaultValues = config?.defaultValues;
-
-    //@ts-ignore
-    const value: typeof defaultValues extends undefined
-      ? TStore[K] | null
-      : TStore[K] =
+    const defaultValue = defaultValues[key];
+    // @ts-ignore
+    const value: TStore[K2] =
       options?.return === "dispatch"
         ? null
-        : store[key] !== undefined
-        ? store[key]
-        : config?.defaultValues[key] !== undefined
-        ? config.defaultValues[key]
+        : store !== undefined
+        ? store
+        : defaultValue !== undefined
+        ? defaultValue
         : null;
 
-    const dispatch: Dispatch<TStore[K]> =
+    const dispatch: Dispatch<TStore[K2]> =
       options?.return === "value"
         ? async (_) => {}
         : async (value) => {
-            //NB: Also return new value that we set
-            // console.log(`Rendering dispatch`, { newValue: value });
-            setStore((store) => ({ ...store, [key]: value }));
+            //should do a deep equal here, and only set the store and item if the value actually has changed
+            setStore(value);
             await setItem(fullKey, value);
           };
 
@@ -68,8 +68,39 @@ export const StoreContextProvider = <TStore extends object>({
   };
 
   return (
-    <StoreContext.Provider value={useStoreHook}>
+    <DynamicContext.Provider value={useStoreHook}>
       {children}
-    </StoreContext.Provider>
+    </DynamicContext.Provider>
   );
 };
+
+let contexts: { [key: string]: React.Context<any> } = {};
+
+export const getContextProvider =
+  <TStore extends object>(config: StoreConfig<TStore>) =>
+  ({ children }: { children: any }) => {
+    const keys = Object.keys(config.defaultValues) as Keys<TStore>[];
+
+    contexts = keys.reduce((acc, key) => {
+      const Context = React.createContext(null);
+      return {
+        ...acc,
+        [contextKey(key)]: Context,
+      };
+    }, {});
+
+    return keys.reduce((acc, key) => {
+      const context = contexts[contextKey(key)];
+      return (
+        <StoreContextProvider
+          config={config}
+          storeKey={key}
+          DynamicContext={context}
+        >
+          {acc}
+        </StoreContextProvider>
+      );
+    }, children);
+  };
+
+export const getContext = (key: string) => contexts[contextKey(key)];

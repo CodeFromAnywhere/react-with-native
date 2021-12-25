@@ -1,9 +1,4 @@
 import { Keys, Dispatch, StoreConfig, StoreOptions } from "./types";
-import {
-  StoreContextProvider,
-  StoreContext,
-  UseStoreType,
-} from "./StoreProvider";
-
-export { StoreContextProvider, StoreContext, UseStoreType };
+import { UseStoreType, getContext, getContextProvider } from "./StoreProvider";
+export { getContext, UseStoreType, getContextProvider };
 export type { Keys, Dispatch, StoreConfig, StoreOptions };

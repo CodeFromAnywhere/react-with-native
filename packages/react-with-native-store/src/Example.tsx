@@ -1,10 +1,6 @@
 import * as React from "react";
 import { useContext } from "react";
-import {
-  StoreContextProvider,
-  StoreContext,
-  UseStoreType,
-} from "./StoreProvider";
+import { UseStoreType } from "./StoreProvider";
 import { StoreOptions, Keys } from "./types";
 
 // testing purposes
@@ -39,21 +35,21 @@ const useStore = <K extends Keys<StoreType>>(
   key: K,
   options?: StoreOptions
 ) => {
-  const useStoreHook = useContext<UseStoreType<StoreType>>(StoreContext);
-  return useStoreHook(key, options);
+  // const useStoreHook = useContext<UseStoreType<StoreType>>(StoreContext);
+  // return useStoreHook(key, options);
 };
 
 export default useStore;
 
-const App = () => (
-  <StoreContextProvider config={{ defaultValues }}>
-    {/* Other components */}
-    <Component />
-  </StoreContextProvider>
-);
+// const App = () => (
+//   <StoreContextProvider config={{ defaultValues }}>
+//     {/* Other components */}
+//     <Component />
+//   </StoreContextProvider>
+// );
 
-export const Component = () => {
-  const [cart, setCart] = useStore("cart");
+// export const Component = () => {
+//   const [cart, setCart] = useStore("cart");
 
-  return <div>Hey, {JSON.stringify(cart)}</div>;
-};
+//   return <div>Hey, {JSON.stringify(cart)}</div>;
+// };
