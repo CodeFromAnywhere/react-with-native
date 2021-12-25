@@ -60,6 +60,7 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
         ? async (_) => {}
         : async (value) => {
             //should do a deep equal here, and only set the store and item if the value actually has changed
+            //@ts-ignore
             setStore(value);
             await setItem(fullKey, value);
           };
