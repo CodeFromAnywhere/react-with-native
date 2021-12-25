@@ -110,6 +110,4 @@ There are a few things I would like to add in the future, but I don't know yet h
 
 2. Make it possible to enter any string as key and use a generic to type them, so that you don't have to declare them in a global place. The default value is then assumed to be, and will return 'null'.
 
-3. Make it work with SSR on Next.js: just make sure it doesn't try to do anything with localStorage on the server.
-
-4. Currently you can specify which function to return, but I think it won't reduce rerenders, as the context still updates if you do a dispatch. Either split up the dispatch and the value into two contexts somehow, or just remove the possibility to return one thing instead of both, as it's not needed much anyway.
+3. Currently you can specify which function to return, but I think it won't reduce rerenders, as the context still updates if you do a dispatch. Either split up the dispatch and the value into two contexts somehow, or just remove the possibility to return one thing instead of both, as it's not needed much anyway.
