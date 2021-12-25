@@ -1,6 +1,6 @@
 # useStore
 
-Simple localStorage/asyncStorage-based and fully typed redux replacement with global persisted storage by default for react and react-native apps.
+These 163 lines of code without dependencies make it possible to get a simple localStorage/asyncStorage-based and fully typed redux replacement with global persisted storage by default for react and react-native apps.
 
 ## Installation
 
