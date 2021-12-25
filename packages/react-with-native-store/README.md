@@ -1,6 +1,20 @@
-# useStore
+# react-with-native-store
 
 These 163 lines of code without dependencies make it possible to get a simple localStorage/asyncStorage-based and fully typed redux replacement with global persisted storage by default for react and react-native apps.
+
+Every key has its own context so you won't get too many rerenders.
+
+This is not as powerful as redux itself (you ca't define custom selectors, so rerenders will happen in all components where you use the same key), but compared to bare redux, there is way less boilerplate and it's fully typed out of the box.
+
+I think that especially for apps with little state this could be a very good choice, and because we have tools like React Query now, most apps won't need a lot of global persisted state anymore.
+
+# To-do
+
+There are a few things I would like to add in the future, but I don't know yet how easy it will be. If you have any other ideas or would like to contribute, don't hestitate to contact me.
+
+1. Make it possible to only fetch some value from deeper inside one of the objects using an option that takes the result and selects a value from it. The value and dispatch then both adapt to this change.
+
+2. Make it possible to enter any string as key and use a generic to type them, so that you don't have to declare them in a global place. The default value is then assumed to be, and will return 'null'.
 
 ## Installation
 
@@ -95,9 +109,3 @@ const [account, setAccount] = useStore('account');
 ```
 
 Enjoy!
-
-# To-do
-
-1. Make it possible to only fetch some value from deeper inside one of the objects using an option that takes the result and selects a value from it. The value and dispatch then both adapt to this change.
-
-2. Make it possible to enter any string as key and use a generic to type them, so that you don't have to declare them in a global place. The default value is then assumed to be, and will return 'null'.
