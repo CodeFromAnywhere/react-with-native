@@ -5,7 +5,6 @@ const path = require("path");
 const withTM = require("next-transpile-modules")(
   [
     "react-with-native-shared-example",
-    "react-with-native-shared-example/node_modules/react-with-native",
     "react-with-native",
   ],
   { resolveSymlinks: false, debug: true }
