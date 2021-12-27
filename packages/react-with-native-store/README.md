@@ -63,7 +63,15 @@ const useStore = <K extends Keys<StoreType>>(
   if (!Object.keys(defaultValues).includes(key)) {
     throw new Error(`Using undefined key in useStore: ${key}`);
   }
-  const useStoreHook = useContext<UseStoreType<StoreType>>(getContext(key));
+
+  const context = getContext(key);
+  if (!context) {
+    throw new Error(
+      `Failed loading the context with key: ${key}. Did you wrap your component/app with a StoreContextProvider?`
+    );
+  }
+
+  const useStoreHook = useContext<UseStoreType<StoreType>>(context);
   return useStoreHook(key, options);
 };
 
