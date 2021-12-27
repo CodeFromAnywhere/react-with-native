@@ -45,7 +45,6 @@ const SelectDrawer = <T extends unknown>({
   }
 
   const valueNoOption = !options.filter((x) => x.value === value.value)[0];
-  const realValue: Item<T> = value || { label: title, value: undefined as T };
 
   return (
     <Div>
@@ -55,7 +54,7 @@ const SelectDrawer = <T extends unknown>({
             switchOpen();
             setCustomId(id);
           },
-          value: realValue,
+          value,
           className,
         })
       ) : (
@@ -77,7 +76,7 @@ const SelectDrawer = <T extends unknown>({
         >
           <Div className="grid grid-cols-4 mb-10">
             <Button
-              // disabled={valueNoOption}
+              disabled={valueNoOption}
               className={`text-left ${
                 valueNoOption ? "disabled:opacity-50" : "text-pink"
               }`}
@@ -93,7 +92,8 @@ const SelectDrawer = <T extends unknown>({
           <Div className="flex flex-col">
             {options.map((option, index) => {
               // TODO do a shallow diff compare, or add id to Item for example.
-              const isSelected = option.label === value.label;
+
+              const isSelected = option.value === value.value;
               return (
                 <Div
                   key={index}

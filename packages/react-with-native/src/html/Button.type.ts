@@ -1,8 +1,8 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { DetailedHTMLProps, ButtonHTMLAttributes } from "react";
 import { ButtonProps } from "react-native";
 
 export type ButtonType = DetailedHTMLProps<
-  HTMLAttributes<HTMLButtonElement>,
+  ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
   native?: ButtonProps;
