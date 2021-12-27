@@ -77,7 +77,7 @@ const SelectDrawer = <T extends unknown>({
         >
           <Div className="grid grid-cols-4 mb-10">
             <Button
-              disabled={valueNoOption}
+              // disabled={valueNoOption}
               className={`text-left ${
                 valueNoOption ? "disabled:opacity-50" : "text-pink"
               }`}
