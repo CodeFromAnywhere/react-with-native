@@ -163,8 +163,8 @@ export type DataFormConfig<TInputs> = {
     available: boolean;
     submitButtonText?: string;
   }) => JSX.Element;
-  renderInputContainer: RenderInputContainerType;
-  renderTitle: (props: {
+  renderInputContainer?: RenderInputContainerType;
+  renderTitle?: (props: {
     title?: string;
     backButton?: () => void;
   }) => JSX.Element;
@@ -291,7 +291,7 @@ export const Input = <
   reference?: RefObject<HTMLDivElement>;
   description?: string;
   id: string;
-  renderInputContainer: RenderInputContainerType;
+  renderInputContainer?: RenderInputContainerType;
   errorClassName?: string;
 }) => {
   const InputComponent = plugin;
@@ -336,8 +336,8 @@ const DefaultTitle = ({
   title,
   backButton,
 }: {
-  title: string;
-  backButton: () => void;
+  title?: string;
+  backButton?: () => void;
 }) => {
   return title ? (
     <Div className="flex items-center mb-10 ">

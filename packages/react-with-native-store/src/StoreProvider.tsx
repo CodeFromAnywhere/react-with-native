@@ -11,6 +11,10 @@ export type UseStoreType<TStore> = <K extends Keys<TStore>>(
   options?: StoreOptions
 ) => [TStore[K], Dispatch<TStore[K]>];
 
+// export type UseDispatchType<TStore> = <K extends Keys<TStore>>(
+//   key: K
+// ) => Dispatch<TStore[K]>;
+
 const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
   DynamicContext,
   children,
@@ -68,6 +72,18 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
     return [value, dispatch];
   };
 
+  // const useDispatchHook = useCallback(<K2 extends Keys<TStore>>(key: K2) => {
+  //   const fullKey = getKey(key, baseKey);
+  //   const dispatch: Dispatch<TStore[K2]> = async (value) => {
+  //     //@ts-ignore
+  //     setStore(value);
+
+  //     await setItem(fullKey, value);
+  //   };
+
+  //   return dispatch;
+  // }, []);
+
   return (
     <DynamicContext.Provider value={useStoreHook}>
       {children}
@@ -103,5 +119,10 @@ export const getContextProvider =
       );
     }, children);
   };
+
+// export type RWNStoreContext<TStore> = {
+//   useDispatchHook: UseDispatchType<TStore>;
+//   useStoreHook: UseStoreType<TStore>;
+// };
 
 export const getContext = (key: string) => contexts[contextKey(key)];
