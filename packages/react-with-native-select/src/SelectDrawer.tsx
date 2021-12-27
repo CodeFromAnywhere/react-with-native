@@ -44,7 +44,7 @@ const SelectDrawer = <T extends unknown>({
     switchOpen();
   }
 
-  const valueNoOption = !options.find((x) => x.value === value.value);
+  const valueNoOption = !options.filter((x) => x.value === value.value)[0];
   const realValue: Item<T> = value || { label: title, value: undefined as T };
 
   return (
