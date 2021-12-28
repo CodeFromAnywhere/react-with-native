@@ -9,5 +9,21 @@ import LabelScreen from "./label";
 import StrongScreen from "./strong";
 import DivScreen from "./div";
 import ActivityIndicatorScreen from "./activityIndicator";
+import FormScreen from "./form";
+import SelectScreen from "./select";
 
-export { TextScreen, ButtonScreen, ImageScreen, PressableScreen, ToggleScreen, InputScreen, H2Screen, LabelScreen, StrongScreen, DivScreen, ActivityIndicatorScreen };
+export {
+  TextScreen,
+  ButtonScreen,
+  ImageScreen,
+  PressableScreen,
+  ToggleScreen,
+  InputScreen,
+  H2Screen,
+  LabelScreen,
+  StrongScreen,
+  DivScreen,
+  ActivityIndicatorScreen,
+  FormScreen,
+  SelectScreen,
+};
