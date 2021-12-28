@@ -1,19 +1,20 @@
 import * as React from "react";
-import { useEffect, useState, useCallback } from "react";
-import { StoreConfig, StoreOptions, Dispatch, Keys } from "./types";
-import { setItem, getItem } from "./Util";
+import { useEffect, useState } from "react";
+import { setItem, getItem } from "./storage";
+
+export type StoreConfig<T extends object> = {
+  initialValues: T;
+  baseKey?: string;
+};
+
+type Keys<T> = Extract<keyof T, string>;
 
 const getKey = (key: string, baseKey: string) => `${baseKey}.${key}`;
 const contextKey = (key: string) => `${key}Context`;
 
 export type UseStoreType<TStore> = <K extends Keys<TStore>>(
-  key: K,
-  options?: StoreOptions
-) => [TStore[K], Dispatch<TStore[K]>];
-
-// export type UseDispatchType<TStore> = <K extends Keys<TStore>>(
-//   key: K
-// ) => Dispatch<TStore[K]>;
+  key: K
+) => [TStore[K], (value: TStore[K]) => Promise<void>];
 
 const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
   DynamicContext,
@@ -27,7 +28,7 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
   storeKey: K;
 }) => {
   const [store, setStore] = useState<TStore[K]>(
-    config?.defaultValues[storeKey]
+    config?.initialValues[storeKey]
   ); //null or some object or string or whatever
   const baseKey = config?.baseKey || "useStore";
 
@@ -40,49 +41,31 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
     });
   }, []);
 
-  const defaultValues = config?.defaultValues;
+  const initialValues = config?.initialValues;
 
   const useStoreHook: UseStoreType<TStore> = <K2 extends Keys<TStore>>(
-    key: K2,
-    options?: StoreOptions
+    key: K2
   ) => {
     const fullKey = getKey(key, baseKey);
 
-    const defaultValue = defaultValues[key];
+    const defaultValue = initialValues[key];
     // @ts-ignore
     const value: TStore[K2] =
-      options?.return === "dispatch"
-        ? null
-        : store !== undefined
+      store !== undefined
         ? store
         : defaultValue !== undefined
         ? defaultValue
         : null;
 
-    const dispatch: Dispatch<TStore[K2]> =
-      options?.return === "value"
-        ? async (_) => {}
-        : async (value) => {
-            //should do a deep equal here, and only set the store and item if the value actually has changed
-            //@ts-ignore
-            setStore(value);
-            await setItem(fullKey, value);
-          };
+    const dispatch: (value: TStore[K2]) => Promise<void> = async (value) => {
+      //should do a deep equal here, and only set the store and item if the value actually has changed
+      //@ts-ignore
+      setStore(value);
+      await setItem(fullKey, value);
+    };
 
     return [value, dispatch];
   };
-
-  // const useDispatchHook = useCallback(<K2 extends Keys<TStore>>(key: K2) => {
-  //   const fullKey = getKey(key, baseKey);
-  //   const dispatch: Dispatch<TStore[K2]> = async (value) => {
-  //     //@ts-ignore
-  //     setStore(value);
-
-  //     await setItem(fullKey, value);
-  //   };
-
-  //   return dispatch;
-  // }, []);
 
   return (
     <DynamicContext.Provider value={useStoreHook}>
@@ -93,10 +76,10 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
 
 let contexts: { [key: string]: React.Context<any> } = {};
 
-export const getContextProvider =
+export const createStoreProvider =
   <TStore extends object>(config: StoreConfig<TStore>) =>
   ({ children }: { children: any }) => {
-    const keys = Object.keys(config.defaultValues) as Keys<TStore>[];
+    const keys = Object.keys(config.initialValues) as Keys<TStore>[];
 
     contexts = keys.reduce((acc, key) => {
       const Context = React.createContext(null);
@@ -120,9 +103,23 @@ export const getContextProvider =
     }, children);
   };
 
-// export type RWNStoreContext<TStore> = {
-//   useDispatchHook: UseDispatchType<TStore>;
-//   useStoreHook: UseStoreType<TStore>;
-// };
+const getContext = (key: string) => contexts[contextKey(key)];
 
-export const getContext = (key: string) => contexts[contextKey(key)];
+export const createUseStore = <TState extends object>(
+  initialValues: TState
+) => {
+  const useStore = <K extends Keys<TState>>(key: K) => {
+    if (!Object.keys(initialValues).includes(key)) {
+      throw new Error(`Using undefined key in useStore: ${key}`);
+    }
+    const context = getContext(key);
+    if (!context) {
+      throw new Error(
+        `Failed loading the context with key: ${key}. Did you wrap your component/app with a StoreContextProvider?`
+      );
+    }
+    const useStoreHook = React.useContext<UseStoreType<TState>>(context);
+    return useStoreHook(key);
+  };
+  return useStore;
+};

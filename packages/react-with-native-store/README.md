@@ -23,59 +23,20 @@ for bare react-native, also follow [these instructions](https://react-native-asy
 First create a wrapper and save it somewhere
 
 ```
-import { useContext } from 'react';
-import {
-  StoreOptions,
-  Keys,
-  getContext,
-  UseStoreType,
-  getContextProvider,
-  contextKey,
-} from 'react-with-native-store';
-import { Address, Cart, Account } from '../your/types';
+import { createStoreProvider, createUseStore } from 'react-with-native-store';
 
-
-//define your default values here
-export const defaultValues: StoreType = {
-  account: null,
-  billingAddress: null,
-  cart: null,
-  shippingAddress: null,
-};
-
-//define your store type here. beware, only keys are callable, subkeys aren't
 type StoreType = {
-  shippingAddress: Address | null;
-  billingAddress: Address | null;
-  account: Account | null;
-  cart: Cart | null;
+  key1: YourType | null;
+  key2: string | null;
 };
 
-export const StoreContextProvider = getContextProvider({
-  defaultValues,
-  baseKey: 'AVDD', //optional
-});
-
-const useStore = <K extends Keys<StoreType>>(
-  key: K,
-  options?: StoreOptions
-) => {
-  if (!Object.keys(defaultValues).includes(key)) {
-    throw new Error(`Using undefined key in useStore: ${key}`);
-  }
-
-  const context = getContext(key);
-  if (!context) {
-    throw new Error(
-      `Failed loading the context with key: ${key}. Did you wrap your component/app with a StoreContextProvider?`
-    );
-  }
-
-  const useStoreHook = useContext<UseStoreType<StoreType>>(context);
-  return useStoreHook(key, options);
+export const initialValues: StoreType = {
+  key1: null,
+  key2: null,
 };
 
-
+export const StoreProvider = createStoreProvider({ initialValues });
+export const useStore = createUseStore(initialValues);
 export default useStore;
 
 ```
@@ -83,14 +44,14 @@ export default useStore;
 Then wrap your app in the StoreContextProvider
 
 ```
-import { StoreContextProvider } from 'react-with-native-store';
+import { StoreProvider } from '../store';
 
 
 const App = () => (
-  <StoreContextProvider>
+  <StoreProvider>
     {/* Other components */}
     <Component />
-  </StoreContextProvider>
+  </StoreProvider>
 );
 
 ```
@@ -98,10 +59,10 @@ const App = () => (
 Finally, you can use useStore everywhere!
 
 ```
-import useStore from "./your/wrapper/file/location";
+import useStore from "../store";
 
 const YourComponent = () => {
-const [account, setAccount] = useStore('account');
+const [key1, setKey1] = useStore('key1');
 
 // your code
 };
@@ -109,13 +70,3 @@ const [account, setAccount] = useStore('account');
 ```
 
 Enjoy!
-
-# To-do
-
-There are a few things I would like to add in the future, but I don't know yet how easy it will be. If you have any other ideas or would like to contribute, don't hestitate to contact me.
-
-1. Make it possible to only fetch some value from deeper inside one of the objects using an option that takes the result and selects a value from it. The value and dispatch then both adapt to this change.
-
-2. Make it possible to enter any string as key and use a generic to type them, so that you don't have to declare them in a global place. The default value is then assumed to be, and will return 'null'.
-
-3. Currently you can specify which function to return, but I think it won't reduce rerenders, as the context still updates if you do a dispatch. Either split up the dispatch and the value into two contexts somehow, or just remove the possibility to return one thing instead of both, as it's not needed much anyway.
