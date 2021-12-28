@@ -1,3 +1,5 @@
+import * as React from "react";
+
 //renders a native ActionSheet on iOS, a custom actionsheet on Android (using expo-actionsheet)
 import { ActionSheetIOS } from "react-native";
 import { Item, SelectProps } from "./types";
