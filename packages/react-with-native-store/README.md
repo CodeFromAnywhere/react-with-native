@@ -1,6 +1,6 @@
 # react-with-native-store
 
-These 163 lines of code without dependencies make it possible to get a simple localStorage/asyncStorage-based and fully typed redux replacement with global persisted storage by default for react and react-native apps.
+These 164 lines of code without dependencies make it possible to get a simple localStorage/asyncStorage-based and fully typed redux replacement with global persisted storage by default for react and react-native apps.
 
 Every key has its own context so you won't get too many rerenders.
 
