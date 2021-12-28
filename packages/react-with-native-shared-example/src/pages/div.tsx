@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Div, Text } from "react-with-native";
+import { Div } from "react-with-native";
 
 const DivScreen = () => {
   return (
