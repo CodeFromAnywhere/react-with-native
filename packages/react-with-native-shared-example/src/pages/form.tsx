@@ -1,5 +1,5 @@
 import * as React from "react";
-import Form, { makeField } from "./formprops";
+import Form, { makeField } from "../wrappers/formProps";
 import { Div } from "react-with-native";
 
 const FormScreen = () => {
