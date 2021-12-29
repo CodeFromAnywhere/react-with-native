@@ -5,7 +5,12 @@ import { setItem, getItem } from "./storage";
 export type StoreConfig<T extends object> = {
   initialValues: T;
   baseKey?: string;
+  debug?: boolean;
 };
+
+//local variables
+let debug = false;
+let contexts: { [key: string]: React.Context<any> } = {};
 
 type Keys<T> = Extract<keyof T, string>;
 
@@ -36,7 +41,9 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
   useEffect(() => {
     const fullKey = getKey(storeKey, baseKey);
     getItem(fullKey).then((value) => {
-      // console.log("Initialized storevalue for ", storeKey);
+      if (debug) {
+        console.log(`Hydrated store for ${fullKey}:`, value);
+      }
       setStore(value);
     });
   }, []);
@@ -74,11 +81,16 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
   );
 };
 
-let contexts: { [key: string]: React.Context<any> } = {};
-
 export const createStoreProvider = <TStore extends object>(
   config: StoreConfig<TStore>
 ) => {
+  if (config.debug) {
+    debug = config.debug;
+  }
+  if (debug) {
+    console.log("Create StoreProvider");
+  }
+
   const keys = Object.keys(config.initialValues) as Keys<TStore>[];
 
   contexts = keys.reduce((acc, key) => {
@@ -113,7 +125,9 @@ const getContext = (key: string) => contexts[contextKey(key)];
 export const createUseStore = <TState extends object>(
   initialValues: TState
 ) => {
-  // console.log("Create use store");
+  if (debug) {
+    console.log("Create useStore");
+  }
   const useStore = <K extends Keys<TState>>(key: K) => {
     if (!Object.keys(initialValues).includes(key)) {
       throw new Error(`Using undefined key in useStore: ${key}`);
