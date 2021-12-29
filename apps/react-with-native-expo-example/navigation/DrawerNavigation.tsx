@@ -13,6 +13,8 @@ import {
   StrongScreen,
   DivScreen,
   ActivityIndicatorScreen,
+  // FormScreen,
+  SelectScreen
 } from "react-with-native-shared-example";
 
 const Drawer = createDrawerNavigator();
@@ -26,7 +28,7 @@ const DrawerNavigation = () => {
       <Drawer.Screen name="label" component={LabelScreen} />
       <Drawer.Screen name="strong" component={StrongScreen} />
       <Drawer.Screen name="button" component={ButtonScreen} />
-      {/* <Drawer.Screen name="image" component={ImageScreen} /> */}
+      <Drawer.Screen name="image" component={ImageScreen} />
       <Drawer.Screen name="pressable" component={PressableScreen} />
       <Drawer.Screen name="toggle" component={ToggleScreen} />
       <Drawer.Screen name="input" component={InputScreen} />
@@ -34,6 +36,8 @@ const DrawerNavigation = () => {
         name="activityIndicator"
         component={ActivityIndicatorScreen}
       />
+      {/* <Drawer.Screen name="form" component={FormScreen} /> */}
+      <Drawer.Screen name="select" component={SelectScreen} />
     </Drawer.Navigator>
   );
 };
