@@ -36,7 +36,7 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
   useEffect(() => {
     const fullKey = getKey(storeKey, baseKey);
     getItem(fullKey).then((value) => {
-      console.log("Initialized storevalue for ", storeKey);
+      // console.log("Initialized storevalue for ", storeKey);
       setStore(value);
     });
   }, []);
@@ -76,20 +76,21 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
 
 let contexts: { [key: string]: React.Context<any> } = {};
 
-export const createStoreProvider =
-  <TStore extends object>(config: StoreConfig<TStore>) =>
-  ({ children }: { children: any }) => {
-    const keys = Object.keys(config.initialValues) as Keys<TStore>[];
+export const createStoreProvider = <TStore extends object>(
+  config: StoreConfig<TStore>
+) => {
+  const keys = Object.keys(config.initialValues) as Keys<TStore>[];
 
-    contexts = keys.reduce((acc, key) => {
-      const Context = React.createContext(null);
-      return {
-        ...acc,
-        [contextKey(key)]: Context,
-      };
-    }, {});
+  contexts = keys.reduce((acc, key) => {
+    const Context = React.createContext(null);
+    return {
+      ...acc,
+      [contextKey(key)]: Context,
+    };
+  }, {});
 
-    return keys.reduce((acc, key) => {
+  const MainProvider = ({ children }: { children: any }) =>
+    keys.reduce((acc, key) => {
       const context = contexts[contextKey(key)];
       return (
         <StoreContextProvider
@@ -101,13 +102,18 @@ export const createStoreProvider =
         </StoreContextProvider>
       );
     }, children);
+
+  return ({ children }: { children: any }) => {
+    return <MainProvider>{children}</MainProvider>;
   };
+};
 
 const getContext = (key: string) => contexts[contextKey(key)];
 
 export const createUseStore = <TState extends object>(
   initialValues: TState
 ) => {
+  // console.log("Create use store");
   const useStore = <K extends Keys<TState>>(key: K) => {
     if (!Object.keys(initialValues).includes(key)) {
       throw new Error(`Using undefined key in useStore: ${key}`);
@@ -115,7 +121,7 @@ export const createUseStore = <TState extends object>(
     const context = getContext(key);
     if (!context) {
       throw new Error(
-        `Failed loading the context with key: ${key}. Did you wrap your component/app with a StoreContextProvider?`
+        `Failed loading the context with key: ${key}. Did you wrap your component/app with a StoreProvider?`
       );
     }
     const useStoreHook = React.useContext<UseStoreType<TState>>(context);

@@ -54,6 +54,7 @@ export const ModalProvider = ({ children }: { children: any }) => {
 };
 
 export default function Modal() {
+  const [inside, setInside] = useState(false);
   let { modalContent, title, handleModal, showModal } =
     useContext(ModalContext);
 
@@ -61,10 +62,14 @@ export default function Modal() {
     return (
       <>
         <Div
-          onClick={() => handleModal(null)}
+          onClick={() => !inside && handleModal(null)}
           className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
         >
-          <Div className="relative w-auto max-w-3xl mx-auto my-6 lg:w-8/12 lg:h-8/12">
+          <Div
+            onMouseEnter={() => setInside(true)}
+            onMouseLeave={() => setInside(false)}
+            className="relative w-auto max-w-3xl mx-auto my-6 lg:w-10/12 lg:h-10/12"
+          >
             {/*content*/}
             <Div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
               {/*header*/}

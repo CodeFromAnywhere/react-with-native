@@ -41,7 +41,7 @@ export default useStore;
 
 ```
 
-Then wrap your app in the StoreContextProvider
+Then wrap your app in the StoreProvider
 
 ```
 import { StoreProvider } from '../store';
