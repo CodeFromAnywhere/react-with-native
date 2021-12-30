@@ -1,6 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run prepush
+if git-branch-is main; then puball packages; fi
 git add .
 git commit -m "up version numbers"
