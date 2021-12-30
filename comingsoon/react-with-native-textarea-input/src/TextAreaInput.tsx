@@ -39,6 +39,7 @@ export interface TextAreaInputType extends AnyInput {
   extra: {
     rows?: number;
     maxLength?: number;
+    placeholder?: string;
   };
 }
 

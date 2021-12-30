@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, RefObject, createRef, useEffect } from "react";
-import { ActivityIndicator, Div, Label, Strong } from "react-with-native";
+import { ActivityIndicator, Div, Label, Strong, Form } from "react-with-native";
 
 export interface PluginInputProps<TInput extends AnyInput> {
   onChange: (value: TInput["value"]) => void;
@@ -26,7 +26,7 @@ export function notEmpty<TValue>(
   value: TValue | null | undefined
 ): value is TValue {
   return value !== null && value !== undefined;
-}
+} //
 
 export const makeInputField = <TInputs, T extends Keys<TInputs>>(
   type: T,
@@ -78,6 +78,13 @@ export interface ExtendedField<TInputs, T extends Keys<TInputs>>
    */
   reference?: RefObject<HTMLDivElement>;
 }
+
+export type SubmitProps = {
+  onSubmit: () => void;
+  loading: boolean;
+  available: boolean;
+  submitButtonText?: string;
+};
 
 export const inputClassWithoutWidth = `text-sm px-3 py-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none`;
 export const inputClass = `w-full ${inputClassWithoutWidth}`;
@@ -190,13 +197,30 @@ export type PossibleState = {
 export type ResolveType = (message: string) => void;
 export type RejectType = (props: { field?: string; message: string }) => void;
 export type DataFormProps<TInputs, TState = any> = {
+  /**
+   * array of fields created with makeField
+   */
   fields: Array<<T extends Keys<TInputs>>() => Field<TInputs, T>>;
+  /**
+   * optionally, you can pass partial default values here.
+   */
   defaultValues?: Partial<TState>;
+  /**
+   * callback that's called when submit button has been pressed
+   */
   onSubmit: (
     values: Partial<TState>,
     resolve: ResolveType,
     reject: RejectType
   ) => void;
+  /**
+   * optionally, you can use the onClickSubmit externally
+   */
+  withSubmitProps?: (props: SubmitProps) => void;
+  /**
+   * if true no submit button will be rendered. handy in combination with withSubmitProps
+   */
+  noSubmit?: boolean;
 } & DataFormConfig<TInputs>;
 
 export const DefaultInputContainer = ({
@@ -355,6 +379,8 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   fields,
   defaultValues,
   onSubmit,
+  withSubmitProps,
+  noSubmit,
   submitButtonText,
   title,
   backButton,
@@ -478,16 +504,22 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   };
 
   const available = !loading && !notReadyField;
+
+  const submitProps: SubmitProps = {
+    onSubmit: onClickSubmit,
+    loading,
+    available,
+    submitButtonText,
+  };
+
+  //pass them every render
+  withSubmitProps?.(submitProps);
+
   const Title = renderTitle || DefaultTitle;
 
   const Submit = () =>
-    renderSubmitComponent ? (
-      renderSubmitComponent({
-        onSubmit: onClickSubmit,
-        loading,
-        available,
-        submitButtonText,
-      })
+    noSubmit ? null : renderSubmitComponent ? (
+      renderSubmitComponent(submitProps)
     ) : (
       <button
         disabled={loading}
@@ -504,9 +536,13 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         {submitButtonText || "Save"}
       </button>
     );
-
   return (
-    <>
+    <Form
+      onSubmit={(e) => {
+        e.preventDefault();
+        onClickSubmit();
+      }}
+    >
       <Div className="w-full">
         <Title title={title} backButton={backButton} />
 
@@ -572,14 +608,16 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
           );
         })}
       </Div>
-      <Div
-        className={`${stickySubmit ? "sticky bottom-0" : ""} ${
-          submitClassName || "mb-2 py-2"
-        }`}
-      >
-        <Submit />
-      </Div>
-    </>
+      {Submit ? (
+        <Div
+          className={`${stickySubmit ? "sticky bottom-0" : ""} ${
+            submitClassName || "mb-2 py-2"
+          }`}
+        >
+          <Submit />
+        </Div>
+      ) : null}
+    </Form>
   );
 };
 export type AnyInputs = { [key: string]: AnyInput };
@@ -594,3 +632,4 @@ export const setConfig = <TInputs, TState>(
 };
 
 export default DataForm;
+//

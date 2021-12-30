@@ -13,6 +13,7 @@ import Li from "./Li";
 import Ul from "./Ul";
 import Ol from "./Ol";
 import I from "./I";
+import Form from "./Form";
 import { DivType } from "./Div.type";
 import { H2Type } from "./H2.type";
 import { StrongType } from "./Strong.type";
@@ -28,7 +29,26 @@ import { LiType } from "./Li.type";
 import { UlType } from "./Ul.type";
 import { OlType } from "./Ol.type";
 import { IType } from "./I.type";
-export { Div, H2, Strong, Image, Button, Svg, Input, Toggle, Label, Span, P, Li, Ul, Ol, I };
+import { FormType } from "./Form.type";
+
+export {
+  Div,
+  H2,
+  Strong,
+  Image,
+  Button,
+  Svg,
+  Input,
+  Toggle,
+  Label,
+  Span,
+  P,
+  Li,
+  Ul,
+  Ol,
+  I,
+  Form,
+};
 
 export type {
   DivType,
@@ -46,4 +66,5 @@ export type {
   UlType,
   OlType,
   IType,
+  FormType,
 };
