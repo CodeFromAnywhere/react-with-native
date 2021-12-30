@@ -5,4 +5,4 @@ const P = ({ native, ...props }: PType) => {
   return <p {...props} />;
 };
 
-export default H2;
+export default P;

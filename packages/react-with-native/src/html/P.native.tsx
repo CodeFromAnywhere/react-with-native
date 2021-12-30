@@ -1,16 +1,18 @@
 import * as React from "react";
-import { Text } from "react-native";
+import { View, Text } from "react-native";
 import tailwind from "tailwind-rn";
-import { H2Type } from "./H2.type";
+import { PType } from "./P.type";
 
-const H2 = ({ native, children, ...props }: H2Type) => {
+const P = ({ native, children, ...props }: PType) => {
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = props.className ? tailwind(props.className) : {};
   return (
-    <Text style={[tailwindStyle, style]} {...nativeWithoutStyle}>
-      {children}
-    </Text>
+    <View style={{ flexDirection: "row" }}>
+      <Text style={[{ flexShrink: 1 }, tailwindStyle, style]} {...nativeWithoutStyle}>
+        {children}
+      </Text>
+    </View>
   );
 };
 
-export default H2;
+export default P;

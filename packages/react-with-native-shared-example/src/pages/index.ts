@@ -11,6 +11,8 @@ import DivScreen from "./div";
 import ActivityIndicatorScreen from "./activityIndicator";
 import FormScreen from "./form";
 import SelectScreen from "./select";
+import PScreen from "./p";
+import LiScreen from "./li";
 
 export {
   TextScreen,
@@ -26,4 +28,6 @@ export {
   ActivityIndicatorScreen,
   FormScreen,
   SelectScreen,
+  PScreen,
+  LiScreen,
 };

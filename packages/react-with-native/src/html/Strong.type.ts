@@ -7,6 +7,3 @@ export type StrongType = DetailedHTMLProps<
 > & {
   native?: TextProps;
 };
-//kjlkjk
-//ikjklj
-//kjklj
