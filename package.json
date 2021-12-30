@@ -6,8 +6,8 @@
   "scripts": {
     "husky-install": "npm set-script prepare \"husky install\" && npm run prepare && npx husky add .husky/pre-commit",
     "prepare": "husky install",
-    "pub": "for f in packages/*; do ( cd $f; pubmain ); done;",
-    "prepush": "if git-branch-is main; then npm run pub; fi",
+    "pub": "echo \"please run 'puball packages'\"",
+    "prepush": "if git-branch-is main; then puball packages; fi",
     "allowhusky": "chmod ug+x .husky/*"
   },
   "repository": {
