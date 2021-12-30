@@ -33,6 +33,7 @@ const TextInput = ({
       maxLength={extra?.maxLength}
       autoComplete={extra?.autoComplete}
       required={extra?.required}
+      disabled={extra?.disabled}
       native={{
         value,
         onChangeText,
@@ -69,6 +70,7 @@ export interface TextInputType extends AnyInput {
     isPassword?: boolean;
     autoComplete?: string;
     required?: boolean;
+    disabled?: boolean;
     type?: string;
   };
 }
