@@ -1,6 +1,7 @@
 import {} from "react-native";
 import { Item, SelectProps } from "./types";
 import { Div } from "react-with-native";
+import { getRealValue } from "./util";
 const Select = <T extends unknown>({
   options,
   onChange,
@@ -8,9 +9,10 @@ const Select = <T extends unknown>({
   title,
   className,
   children,
+  selectFirstOption,
   ios,
 }: SelectProps<T>) => {
-  const realValue: Item<T> = value || { label: title, value: undefined as T };
+  const realValue = getRealValue({ value, selectFirstOption, options, title });
 
   const onClick = () => {
     //should implement this

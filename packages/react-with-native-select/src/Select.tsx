@@ -2,6 +2,7 @@ import SelectDropdown from "./SelectDropdown";
 import SelectDrawer from "./SelectDrawer";
 import SelectMenu from "./SelectMenu";
 import { Item, SelectProps } from "./types";
+import { getRealValue } from "./util";
 
 /**
  * renders either a SelectDropdown or SelectDrawer, based on screensize
@@ -15,9 +16,10 @@ const Select = <T extends unknown>({
   containerClassName,
   children,
   hasReset,
+  selectFirstOption,
   id,
 }: SelectProps<T>) => {
-  const realValue: Item<T> = value || { label: title, value: undefined as T };
+  const realValue = getRealValue({ value, selectFirstOption, options, title });
   return (
     <>
       <div className={`hidden lg:flex ${containerClassName}`}>

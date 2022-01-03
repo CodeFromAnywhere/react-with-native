@@ -30,5 +30,6 @@ export type SelectProps<T> = {
   children?: ChildrenType<T>;
   ios?: ActionSheetIOSOptions;
   hasReset?: boolean;
+  selectFirstOption?: boolean;
   id?: ID;
 };
