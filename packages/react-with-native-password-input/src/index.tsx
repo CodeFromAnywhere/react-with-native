@@ -5,7 +5,7 @@ const PasswordInput = ({
   extra,
   ...props
 }: PluginInputProps<PasswordInputType>) => {
-  const newExtra = { ...extra, isPassword: true };
+  const newExtra: PasswordInputType["extra"] = { ...extra, isPassword: true };
   return <TextInput {...props} extra={newExtra} />;
 };
 

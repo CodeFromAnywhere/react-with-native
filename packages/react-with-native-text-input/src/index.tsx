@@ -21,13 +21,16 @@ const TextInput = ({
   const onChangeText = (value: TextInputType["value"]) => onChange(value);
   const placeholder = extra?.placeholder;
   const maxLength = extra?.maxLength;
+
+  const realValue = typeof value !== "string" ? "" : value; //must be a string
+
   return (
     <Input
       type={
         extra?.type ? extra.type : extra?.isPassword ? "password" : undefined
       }
       className={inputClassWithError}
-      value={value}
+      value={realValue}
       onChange={(event) => onChangeText(event.target.value)}
       placeholder={placeholder}
       maxLength={extra?.maxLength}
@@ -35,7 +38,7 @@ const TextInput = ({
       required={extra?.required}
       disabled={extra?.disabled}
       native={{
-        value,
+        value: realValue,
         onChangeText,
         placeholder,
         maxLength,

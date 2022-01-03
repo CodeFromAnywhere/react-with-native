@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useState, RefObject, createRef, useEffect } from "react";
 import { ActivityIndicator, Div, Label, Strong, Form } from "react-with-native";
-//
+
 export interface PluginInputProps<TInput extends AnyInput> {
   onChange: (value: TInput["value"]) => void;
-  value: TInput["value"];
+  value: TInput["value"] | undefined; //with partial state, it can be undefined!
   extra: TInput["extra"];
   config: TInput["config"];
   hasError: boolean;
@@ -26,7 +26,7 @@ export function notEmpty<TValue>(
   value: TValue | null | undefined
 ): value is TValue {
   return value !== null && value !== undefined;
-} //
+}
 
 export const makeInputField = <TInputs, T extends Keys<TInputs>>(
   type: T,
@@ -541,7 +541,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     submitButtonText,
   };
 
-  console.log("Rendering Form");
+  // console.log("Rendering Form");
 
   useEffect(() => {
     withSubmitProps?.(submitProps);

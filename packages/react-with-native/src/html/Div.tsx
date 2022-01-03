@@ -1,8 +1,10 @@
 import * as React from "react";
 import { DivType } from "./Div.type";
 
-const Div = ({ native, ...props }: DivType) => {
-  return <div {...props} />;
+const PureDiv = ({ native, ...props }: DivType, ref: any) => {
+  return <div {...props} ref={ref} />;
 };
+
+const Div = React.forwardRef(PureDiv);
 
 export default Div;
