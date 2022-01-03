@@ -1,5 +1,6 @@
 import React from "react";
-import { Div, useRouter } from "react-with-native";
+import { Div } from "react-with-native";
+import { useRouter } from "react-with-native-router";
 import MenuComponent from "../components/menu";
 
 const pages = [

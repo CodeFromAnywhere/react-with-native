@@ -5,4 +5,4 @@ const A = ({ native, ...props }: AType) => {
   return <a {...props} />;
 };
 
-export default A;
+export default A; //

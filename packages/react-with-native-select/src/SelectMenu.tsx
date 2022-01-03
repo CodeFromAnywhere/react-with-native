@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 import { MenuItem, ControlledMenu, useMenuState } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";

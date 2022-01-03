@@ -1,6 +1,6 @@
 import React from "react";
-import { Div, Pressable, useRouter } from "react-with-native";
-
+import { Div, Pressable } from "react-with-native";
+import { useRouter } from "react-with-native-router";
 function Item({ page }) {
   const router = useRouter();
   return (
