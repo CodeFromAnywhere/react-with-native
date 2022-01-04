@@ -1,19 +1,35 @@
 import ReactMapGL, { Marker, MapRef } from "react-map-gl";
 import { useState, useRef } from "react";
 
-import { LocationMarkerIcon } from "@heroicons/react/outline";
-import { Inputs, MapLocation } from "./DataForm";
+import { AnyInput, PluginInputProps } from "react-with-native-form";
+import HiOutlineLocationMarker from "./HiOutlineLocationMarker.svg";
+import { Svg } from "react-with-native";
 import Autosuggest from "react-autosuggest";
-import { apiCall } from "./Util";
-// import { get } from "../../general/Util";
+
 type ViewPort = MapLocation & {
   width: string | number;
   height: string | number;
 };
 
-type Value = Inputs["map"]["value"];
-type Extra = Inputs["map"]["extra"];
-type Config = Inputs["map"]["config"];
+export type MapLocation = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
+
+export interface MapInputType extends AnyInput {
+  type: "select";
+  value: MapLocation
+  defaultValue: MapLocation;
+  config?: {
+    errorClassName?: string;
+    extraClassName?: string;
+    replaceClassName?: string;
+    mapboxKey:string;
+  };
+  extra: { showMarker: boolean; showZoom: boolean }
+}
+
 type Suggestion = {
   bbox: number[];
   center: [number, number];
@@ -28,12 +44,7 @@ function MapInput({
   onChange,
   extra,
   config,
-}: {
-  value?: MapLocation;
-  onChange: (value: Value) => void;
-  extra?: Extra;
-  config: Config;
-}) {
+}: PluginInputProps<MapInputType>) {
   //amsterdam
   const defaultLatidue = 52.377956;
   const defaultLongitude = 4.89707;
@@ -59,7 +70,21 @@ function MapInput({
 
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${inputValue}.json?access_token=${config.mapboxKey}&limit=4`;
 
-    const suggestions = await apiCall(url, "GET");
+    const suggestions = await fetch(url, {
+      method:"GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        // "User-Agent": "*",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 
     return inputValue.length === 0 ? [] : suggestions?.features || [];
   };
@@ -136,7 +161,7 @@ function MapInput({
       latitude: nextViewport?.latitude as number,
       longitude: nextViewport?.longitude,
       zoom: nextViewport?.zoom,
-    } as Value);
+    });
   };
 
   return (
@@ -147,7 +172,7 @@ function MapInput({
           ref={mapRef}
           mapStyle="mapbox://styles/picozzimichele/ckty78kzo0q4t17qubs9yi8ok"
           className={`w-full h-40`}
-          mapboxApiAccessToken={process.env.mapbox_key}
+          mapboxApiAccessToken={config.mapboxKey}
           {...viewport}
           onViewportChange={(nextViewport: ViewPort | undefined) => {
             //@ts-ignore
@@ -156,7 +181,7 @@ function MapInput({
               latitude: nextViewport?.latitude as number,
               longitude: nextViewport?.longitude,
               zoom: nextViewport?.zoom,
-            } as Value);
+            });
           }}
         >
           <div
@@ -166,7 +191,7 @@ function MapInput({
                 latitude: value?.latitude as number,
                 longitude: value?.longitude,
                 zoom: viewport?.zoom + 1,
-              } as Value);
+              });
             }}
             className={`z-10 cursor-pointer absolute top-4 right-4 w-10 h-10 bg-white rounded flex justify-center items-center`}
           >
@@ -180,7 +205,7 @@ function MapInput({
                 latitude: value?.latitude as number,
                 longitude: value?.longitude,
                 zoom: viewport?.zoom - 1,
-              } as Value);
+              });
             }}
             className={`z-10 cursor-pointer absolute top-16 right-4 w-10 h-10 bg-white rounded flex justify-center items-center`}
           >
@@ -209,7 +234,7 @@ function MapInput({
               offsetTop={0}
             >
               <p className="text-2xl cursor-pointer animate-bounce">
-                <LocationMarkerIcon className="h-6 text-blue-500" />
+                <Svg src={HiOutlineLocationMarker} className="h-6 text-blue-500" />
               </p>
             </Marker>
           )}

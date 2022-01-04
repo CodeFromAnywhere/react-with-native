@@ -16,7 +16,7 @@ const TextAreaInput = ({
       className={
         config?.replaceClassName ||
         `block w-full px-4 py-3 text-gray-900 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ${
-          hasError ? config?.erroClassName || "border-red-600" : ""
+          hasError ? config?.errorClassName || "border-red-600" : ""
         } ${config?.extraClassName}`
       }
       value={value}

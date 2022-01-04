@@ -4,6 +4,8 @@ import { FileWithPath, useDropzone } from "react-dropzone";
 import { Li, Div, Label, P, Input, Aside, Ul } from "react-with-native";
 import Icon from "./icon.svg";
 
+
+
 const FileInput = ({ extra, onChange }: PluginInputProps<FileInputType>) => {
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     accept: extra.allowedFileTypes,

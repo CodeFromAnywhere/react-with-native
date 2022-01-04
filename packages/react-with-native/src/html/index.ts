@@ -15,6 +15,8 @@ import Ol from "./Ol";
 import I from "./I";
 import A from "./A";
 import Form from "./Form";
+import TextArea from "./TextArea";
+import Aside from "./Aside";
 import { DivType } from "./Div.type";
 import { H2Type } from "./H2.type";
 import { StrongType } from "./Strong.type";
@@ -32,6 +34,8 @@ import { OlType } from "./Ol.type";
 import { IType } from "./I.type";
 import { FormType } from "./Form.type";
 import { AType } from "./A.type";
+import { TextAreaType } from "./TextArea.type";
+import { AsideType } from "./Aside.type";
 export {
   Div,
   A,
@@ -50,6 +54,8 @@ export {
   Ol,
   I,
   Form,
+  TextArea,
+  Aside,
 };
 
 export type {
@@ -70,4 +76,6 @@ export type {
   OlType,
   IType,
   FormType,
+  TextAreaType,
+  AsideType,
 };
