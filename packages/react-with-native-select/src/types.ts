@@ -15,7 +15,7 @@ export type ChildrenType<T> = ({
   className,
   value,
 }: {
-  onClick: (e: MouseEvent<Element>, id?: ID) => void;
+  onClick: (e?: MouseEvent<Element>, id?: ID) => void;
   className?: string;
   value: Item<T>;
 }) => any;

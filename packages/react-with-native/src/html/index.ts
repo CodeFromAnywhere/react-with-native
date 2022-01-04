@@ -13,6 +13,7 @@ import Li from "./Li";
 import Ul from "./Ul";
 import Ol from "./Ol";
 import I from "./I";
+import A from "./A";
 import Form from "./Form";
 import { DivType } from "./Div.type";
 import { H2Type } from "./H2.type";
@@ -30,9 +31,10 @@ import { UlType } from "./Ul.type";
 import { OlType } from "./Ol.type";
 import { IType } from "./I.type";
 import { FormType } from "./Form.type";
-
+import { AType } from "./A.type";
 export {
   Div,
+  A,
   H2,
   Strong,
   Image,
@@ -52,6 +54,7 @@ export {
 
 export type {
   DivType,
+  AType,
   H2Type,
   StrongType,
   ImageType,

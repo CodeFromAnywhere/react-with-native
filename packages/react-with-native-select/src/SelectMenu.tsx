@@ -23,11 +23,15 @@ const SelectMenu = <T extends unknown>({
   const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
   const [id, setId] = useState<ID>();
 
-  const onClick = (e: MouseEvent<Element>, id: ID) => {
-    e.preventDefault();
-    setAnchorPoint({ x: e.clientX, y: e.clientY });
-    toggleMenu(true);
+  const onClick = (e?: MouseEvent<Element>, id?: ID) => {
+    if (e) {
+      e.preventDefault();
+      setAnchorPoint({ x: e.clientX, y: e.clientY });
+    }
+
     setId(id);
+
+    toggleMenu(true);
   };
 
   if (typeof document === "undefined") {
