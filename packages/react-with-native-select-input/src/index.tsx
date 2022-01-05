@@ -32,7 +32,7 @@ export class SelectInputType implements PluginInputType {
     replaceClassName?: string;
   };
   extra!: {
-    title: string;
+    title?: string;
     options: Item<string>[];
   };
 }
