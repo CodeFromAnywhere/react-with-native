@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, RefObject, createRef, useEffect } from "react";
 import { ActivityIndicator, Div, Label, Strong, Form } from "react-with-native";
 
-export interface PluginInputProps<TInput extends AnyInput> {
+export type PluginInputProps<TInput extends AnyInput> = {
   onChange: (value: TInput["value"]) => void;
   value: TInput["value"] | undefined; //with partial state, it can be undefined!
   extra: TInput["extra"];
@@ -11,7 +11,7 @@ export interface PluginInputProps<TInput extends AnyInput> {
   id: string;
   error?: string;
   errorClassName?: string;
-}
+};
 
 export type EmptyValues<T> = {
   [K in keyof T]: T[K] extends string ? "" : never;
@@ -38,7 +38,7 @@ export const makeInputField = <TInputs, T extends Keys<TInputs>>(
 /**
  * type of every specific field in a form
  */
-export interface Field<TInputs, T extends Keys<TInputs> = Keys<TInputs>> {
+export type Field<TInputs, T extends Keys<TInputs> = Keys<TInputs>> = {
   /**
    * type of the field (any plugin type), defaults to first plugin
    */
@@ -64,10 +64,14 @@ export interface Field<TInputs, T extends Keys<TInputs> = Keys<TInputs>> {
   sectionTitle?: string;
   description?: string;
   /**
+   * initalValue (can be declared here or on Form defaultValues prop). This has priority
+   */
+  initialValue?: TInputs[T] extends AnyInput ? TInputs[T]["value"] : any;
+  /**
    * any extra properties that can be given to a specific input
    */
   extra?: TInputs[T] extends AnyInput ? TInputs[T]["extra"] : any;
-}
+};
 
 export type Keys<TObject> = Extract<keyof TObject, string>;
 
@@ -96,13 +100,9 @@ export type DefaultConfig = {
 export type Error = {
   message: string;
   fieldKey: string;
-};
+}; //
 
 export interface AnyInput {
-  /**
-   * default value of the input on submitting, if no defaultValues are given
-   */
-  defaultValue: any;
   /**
    * universal configuration options of the input
    */
@@ -122,18 +122,19 @@ export interface AnyInput {
 }
 
 export type Plugin<TInput extends AnyInput, TPlugins extends PluginsProp> = {
-  component: PluginComponent<TInput, TPlugins>;
+  component: PluginComponent<TInput>;
   config: TInput["config"];
 };
 
-export type PluginComponent<
-  TInput extends AnyInput,
-  TPlugins extends PluginsProp //can be thrown away?
-> = (props: PluginInputProps<TInput>) => JSX.Element;
+export type PluginComponent<TInput extends AnyInput> = ((
+  props: PluginInputProps<TInput>
+) => JSX.Element) & {
+  defaultInitialValue: TInput["value"];
+};
 
 export type PluginsProp = {
   [key: string]: <TInput extends AnyInput, TPlugins extends PluginsProp>() => {
-    component: PluginComponent<TInput, TPlugins>;
+    component: PluginComponent<TInput>;
     config: TInput["config"];
     type: TInput;
   };
@@ -204,15 +205,15 @@ export type DataFormProps<TInputs, TState = any> = {
   /**
    * optionally, you can pass partial default values here.
    */
+  initialValues?: Partial<TState>;
+  /**
+   * DEPRECATED, you can pass partial default values here. Please use initialValues
+   */
   defaultValues?: Partial<TState>;
   /**
    * callback that's called when submit button has been pressed
    */
-  onSubmit: (
-    values: Partial<TState>,
-    resolve: ResolveType,
-    reject: RejectType
-  ) => void;
+  onSubmit: (values: TState, resolve: ResolveType, reject: RejectType) => void;
   /**
    * optionally, you can use the onClickSubmit externally
    */
@@ -277,11 +278,7 @@ export const DefaultInputContainer = ({
   </Div>
 );
 
-export const Input = <
-  TInputs extends AnyInputs,
-  T extends keyof TInputs,
-  TPlugins extends PluginsProp
->({
+export const Input = <TInputs extends AnyInputs, T extends keyof TInputs>({
   type,
   plugin,
   title,
@@ -300,7 +297,7 @@ export const Input = <
   renderInputContainer,
   errorClassName,
 }: {
-  plugin: PluginComponent<TInputs[T], TPlugins>;
+  plugin: PluginComponent<TInputs[T]>;
   type: string;
   config: TInputs[T]["config"];
   extra: TInputs[T]["extra"];
@@ -404,13 +401,14 @@ export function isObject(object: any): object is object {
 const DataForm = <TInputs, TState extends { [key: string]: any }>({
   fields,
   defaultValues,
+  initialValues,
   onSubmit,
   withSubmitProps,
   noSubmit,
   submitButtonText,
   title,
   backButton,
-  plugins: maybePlugins,
+  plugins,
   renderSubmitComponent,
   renderInputContainer,
   stickySubmit,
@@ -418,11 +416,14 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   submitClassName,
   errorClassName,
   successClassName,
-}: DataFormProps<TInputs>) => {
+}: DataFormProps<TInputs, TState>) => {
+  //sometimes use defaultValues (deprecated)
+  initialValues = initialValues ? initialValues : defaultValues;
+  if (!plugins) {
+    throw new Error("No plugins given");
+  }
   //Generate unique id for the form
   const [id] = useState(`Form${String(Math.round(Math.random() * 1000000))}`);
-
-  const plugins: Plugins<TInputs> = maybePlugins!; //we always have plugins.
 
   const [fieldsWithReferences, setFieldsWithReferences] = useState<
     ExtendedField<TInputs, Keys<TInputs>>[]
@@ -436,16 +437,31 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     );
   }, [fields]);
 
-  const [state, setState] = useState<Partial<TState>>(defaultValues || {});
-  const [defaultValuesState, setDefaultValues] = useState<Partial<TState>>({});
+  const initialValuesPartial: TState = fields.reduce((all, field) => {
+    const defaultInital = plugins[field().type!].component.defaultInitialValue;
+    const initial = field().initialValue;
+    const key = field().field;
+    return {
+      ...all,
+      [key]: initial ? initial : defaultInital ? defaultInital : undefined,
+    };
+  }, {}) as TState;
+
+  const initialState = { ...initialValuesPartial, ...initialValues };
+  const [state, setState] = useState<TState>(initialState);
+
+  //used to check if the initialValues have changed
+  const [initialValuesState, setInitialValuesState] = useState<
+    TState | undefined
+  >();
 
   useEffect(() => {
-    if (defaultValues && !deepEqual(defaultValues, defaultValuesState)) {
-      console.log("defaultValues have changed");
-      setState(defaultValues);
-      setDefaultValues(defaultValues);
+    if (!initialValuesState || !deepEqual(initialState, initialValuesState)) {
+      console.log("initialValues have changed");
+      setState(initialState);
+      setInitialValuesState(initialState);
     }
-  }, [defaultValues]);
+  }, [initialState]);
 
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -666,4 +682,3 @@ export const setConfig = <TInputs, TState>(
 };
 
 export default DataForm;
-//

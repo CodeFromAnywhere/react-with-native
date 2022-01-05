@@ -1,13 +1,13 @@
-import { AnyInput, inputClass, PluginInputProps } from "react-with-native-form";
+import { AnyInput, inputClass, PluginComponent } from "react-with-native-form";
 import { Input } from "react-with-native";
 
-const TextInput = ({
+const TextInput: PluginComponent<TextInputType> = ({
   onChange,
   value,
   extra,
   config,
   hasError,
-}: PluginInputProps<TextInputType>) => {
+}) => {
   config = config || {};
 
   const inputClassWithError = `${inputClass}${
@@ -17,12 +17,10 @@ const TextInput = ({
         : " border border-red-400"
       : ""
   }`;
-  //test...
+
   const onChangeText = (value: TextInputType["value"]) => onChange(value);
   const placeholder = extra?.placeholder;
   const maxLength = extra?.maxLength;
-
-  const realValue = typeof value !== "string" ? "" : value; //must be a string
 
   return (
     <Input
@@ -30,7 +28,7 @@ const TextInput = ({
         extra?.type ? extra.type : extra?.isPassword ? "password" : undefined
       }
       className={inputClassWithError}
-      value={realValue}
+      value={value}
       onChange={(event) => onChangeText(event.target.value)}
       placeholder={placeholder}
       maxLength={extra?.maxLength}
@@ -38,7 +36,7 @@ const TextInput = ({
       required={extra?.required}
       disabled={extra?.disabled}
       native={{
-        value: realValue,
+        value,
         onChangeText,
         placeholder,
         maxLength,
@@ -48,13 +46,13 @@ const TextInput = ({
   );
 };
 
+TextInput.defaultInitialValue = "";
+
 export interface TextInputType extends AnyInput {
   /**
    * value type
    */
   value: string;
-
-  defaultValue: "";
 
   /**
    * input generic configuration
