@@ -2,20 +2,6 @@ import * as React from "react";
 import { useState, RefObject, createRef, useEffect } from "react";
 import { ActivityIndicator, Div, Label, Strong, Form } from "react-with-native";
 
-export type PluginInputProps<TInput extends PluginInputType> = {
-  onChange: (value: TInput["value"]) => void;
-  /**
-   * value is never undefined, unless you didn't declare defaultInitialValue
-   */
-  value: TInput["value"];
-  extra: TInput["extra"];
-  config: TInput["config"];
-  hasError: boolean;
-  id: string;
-  error?: string;
-  errorClassName?: string;
-};
-
 const mergeObjectsArray = (
   previous: { [key: string]: any },
   current: { [key: string]: any }
@@ -96,10 +82,12 @@ export type DefaultConfig = {
   replaceClassName?: string;
 };
 
+type ErrorsArray = Error[];
+type RejectValue = string | ErrorsArray;
 export type Error = {
-  message: string;
-  fieldKey: string;
-}; //
+  message: string | true;
+  propertyPath: string;
+};
 
 export interface PluginInputType {
   /**
@@ -125,9 +113,26 @@ export type Plugin<TInput extends PluginInputType> = {
   config?: TInput["config"];
 };
 
-export type PluginComponent<TInput extends PluginInputType> = ((
-  props: PluginInputProps<TInput>
-) => JSX.Element) & {
+//NB: why are the prop comments not shown in intellisense?
+export type PluginComponent<TInput extends PluginInputType> = ((props: {
+  onChange: (value: TInput["value"]) => void;
+  /**
+   * value is never undefined, unless you didn't declare defaultInitialValue
+   */
+  value: TInput["value"];
+  extra: TInput["extra"];
+  config: TInput["config"];
+  /**
+   * randomly generated id when initialized the form
+   */
+  id: string;
+
+  /**
+   * if there are multiple errors for this single field (from the backend), they can be given here. Key is in format `{fieldName}.{subfieldName}`, value should be the string containing the error
+   */
+  errors?: Error[];
+  errorClassName?: string;
+}) => JSX.Element) & {
   defaultInitialValue: TInput["value"];
 };
 
@@ -187,7 +192,8 @@ export type PossibleState = {
 };
 
 export type ResolveType = (message: string) => void;
-export type RejectType = (props: { field?: string; message: string }) => void;
+
+export type RejectType = (stringOrErrorArray: RejectValue) => void;
 export type DataFormProps<TInputs, TState extends { [key: string]: any }> = {
   /**
    * array of fields created with makeField
@@ -290,7 +296,7 @@ export const Input = <
   sectionTitle,
   next,
   extra,
-  error,
+  errors,
   reference,
   description,
   config,
@@ -306,7 +312,7 @@ export const Input = <
   title?: string;
   onChange: (newValue: TInputs[T]["value"]) => void;
   value: TInputs[T]["value"];
-  error?: string;
+  errors?: ErrorsArray;
   isLast: boolean;
   startSection?: boolean;
   sectionTitle?: string;
@@ -318,7 +324,7 @@ export const Input = <
 }) => {
   const InputComponent = plugin;
   const InputContainer = renderInputContainer || DefaultInputContainer;
-  const hasError = error !== undefined;
+
   return (
     <Div ref={reference}>
       <InputContainer
@@ -331,7 +337,7 @@ export const Input = <
           isLast,
           id,
           type,
-          error,
+          error: errors?.find((x) => x.propertyPath === id)?.message,
           extra,
           config,
           errorClassName,
@@ -342,10 +348,9 @@ export const Input = <
             id,
             config,
             extra,
-            hasError,
             onChange,
             value,
-            error,
+            errors,
             errorClassName,
           }}
         />
@@ -475,29 +480,32 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   }, [initialState]);
 
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [errors, setErrors] = useState<ErrorsArray>([]);
   const [success, setSuccess] = useState<string | undefined>();
 
   const notReadyField = fieldsWithReferences.find((x) =>
     x.hasError?.(state[x.field], state)
   );
 
-  const setError = ({
-    field,
-    message,
-  }: {
-    field?: string;
-    message: string;
-  }) => {
-    if (message) {
-      setErrors({ ...errors, [field || "__GLOBAL__"]: message });
+  const setErrorsReject = (stringOrErrorArray: RejectValue) => {
+    if (stringOrErrorArray) {
+      const newErrors: ErrorsArray =
+        typeof stringOrErrorArray === "string"
+          ? [{ propertyPath: "__GLOBAL", message: stringOrErrorArray }]
+          : stringOrErrorArray;
 
-      const notReadyField = fieldsWithReferences.filter(
-        (x) => x.field === field
+      //this will be frontend and backenderrrors
+      const allErrors = { ...errors, ...newErrors };
+      setErrors(allErrors);
+
+      //scroll to the first field that contains an error
+      const firstNotReadyField = fieldsWithReferences.filter(
+        (x) => newErrors.find((y) => y.propertyPath === x.field) !== undefined
       )[0];
 
       const top =
-        (notReadyField?.reference?.current?.getBoundingClientRect().top || 0) +
+        (firstNotReadyField?.reference?.current?.getBoundingClientRect().top ||
+          0) +
         window.scrollY -
         100;
 
@@ -511,33 +519,28 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   };
 
   const onClickSubmit = () => {
-    const errorArray = fields
+    const frontendErrorArray: ErrorsArray = fields
       .map((field) => {
         const hasError = field().hasError?.(state[field().field], state);
-
-        if (hasError) {
-          //continue
-          return { [field().field]: hasError };
-        } else {
-          return null;
-        }
+        return hasError
+          ? { propertyPath: field().field, message: hasError }
+          : null;
       })
       .filter(notEmpty);
-    const errors = errorArray.reduce(mergeObjectsArray, {});
 
-    setErrors(errors);
+    setErrors(frontendErrorArray);
 
-    if (Object.keys(errors).length === 0) {
+    if (frontendErrorArray.length === 0) {
       //no errors
       setLoading(true);
       onSubmit(
         state,
-        (message) => {
-          setSuccess(message);
+        (successMessage) => {
+          setSuccess(successMessage);
           setLoading(false);
         },
-        (props) => {
-          setError(props);
+        (stringOrErrorArray) => {
+          setErrorsReject(stringOrErrorArray);
           setLoading(false);
         }
       );
@@ -595,6 +598,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         {submitButtonText || "Save"}
       </button>
     );
+  const globalError = errors?.find((x) => x.propertyPath === "__GLOBAL__");
   return (
     <Form
       onSubmit={(e) => {
@@ -606,9 +610,9 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         <Title title={title} backButton={backButton} />
 
         {success ? <p className={successClassName}>{success}</p> : null}
-        {errors?.__GLOBAL__ ? (
+        {globalError ? (
           <p className={errorClassName || "text-red-600"}>
-            {errors.__GLOBAL__}
+            {globalError.message}
           </p>
         ) : null}
 
@@ -629,9 +633,14 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
           const onChange = (newValue: any) => {
             const newState = { [field.field]: newValue };
 
-            if (errors[field.field] && !field.hasError?.(newValue, state)) {
-              const newErrors = errors;
-              delete newErrors[field.field];
+            const fieldError = errors.find(
+              (x) => x.propertyPath === field.field
+            );
+
+            if (fieldError && !field.hasError?.(newValue, state)) {
+              const newErrors = errors.filter(
+                (x) => x.propertyPath !== field.field
+              );
               setErrors(newErrors);
             }
 
@@ -657,12 +666,16 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
                 field.titleFromState ? field.titleFromState(state) : field.title
               }
               value={state[field.field]}
-              error={errors[field.field]}
               onChange={onChange}
               isLast={index === fields.length - 1}
               startSection={field.startSection}
               sectionTitle={field.sectionTitle}
               description={field.description}
+              errors={errors.filter(
+                (e) =>
+                  e.propertyPath === field.field ||
+                  e.propertyPath.includes(`${field.field}.`)
+              )}
             />
           );
         })}

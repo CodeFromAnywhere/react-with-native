@@ -1,8 +1,4 @@
-import {
-  PluginInputType,
-  PluginInputProps,
-  PluginComponent,
-} from "react-with-native-form";
+import { PluginInputType, PluginComponent } from "react-with-native-form";
 import React from "react";
 import { TextArea } from "react-with-native";
 
