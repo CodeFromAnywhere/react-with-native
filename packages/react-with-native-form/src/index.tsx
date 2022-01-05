@@ -20,6 +20,7 @@ export const makeInputField = <TInputs, T extends Keys<TInputs>>(
   return () => ({ type, ...config });
 };
 
+const GLOBAL_PROPERTY_PATH = "__GLOBAL__";
 /**
  * type of every specific field in a form
  */
@@ -44,7 +45,8 @@ export type Field<TInputs, T extends Keys<TInputs> = Keys<TInputs>> = {
   hasError?: (
     value: TInputs[T] extends PluginInputType ? TInputs[T]["value"] : any,
     state: Partial<PossibleState>
-  ) => boolean | string;
+  ) => boolean | string | Error[];
+
   startSection?: boolean;
   sectionTitle?: string;
   description?: string;
@@ -82,8 +84,7 @@ export type DefaultConfig = {
   replaceClassName?: string;
 };
 
-type ErrorsArray = Error[];
-type RejectValue = string | ErrorsArray;
+type RejectValue = string | Error[];
 export type Error = {
   message: string | true;
   propertyPath: string;
@@ -123,15 +124,17 @@ export type PluginComponent<TInput extends PluginInputType> = ((props: {
   extra: TInput["extra"];
   config: TInput["config"];
   /**
-   * randomly generated id when initialized the form
+   * Format: {randomId}.{fieldName}
    */
-  id: string;
+  uniqueFieldId: string;
+  fieldName: string;
 
   /**
    * if there are multiple errors for this single field (from the backend), they can be given here. Key is in format `{fieldName}.{subfieldName}`, value should be the string containing the error
    */
   errors?: Error[];
   errorClassName?: string;
+  isSubmitted?: boolean;
 }) => JSX.Element) & {
   defaultInitialValue: TInput["value"];
 };
@@ -300,27 +303,34 @@ export const Input = <
   reference,
   description,
   config,
-  id,
+  uniqueFieldId,
   renderInputContainer,
   errorClassName,
+  isSubmitted,
+  fieldName,
 }: {
   plugin: PluginComponent<TInputs[T]>;
   type: string;
+  fieldName: string;
   config: TInputs[T]["config"];
   extra: TInputs[T]["extra"];
   next: any;
   title?: string;
   onChange: (newValue: TInputs[T]["value"]) => void;
   value: TInputs[T]["value"];
-  errors?: ErrorsArray;
+  errors?: Error[];
   isLast: boolean;
   startSection?: boolean;
   sectionTitle?: string;
   reference?: RefObject<HTMLDivElement>;
   description?: string;
-  id: string;
+  /**
+   * format: {uniqueGeneratedNumber}.{fieldName}
+   */
+  uniqueFieldId: string;
   renderInputContainer?: RenderInputContainerType;
   errorClassName?: string;
+  isSubmitted?: boolean;
 }) => {
   const InputComponent = plugin;
   const InputContainer = renderInputContainer || DefaultInputContainer;
@@ -335,9 +345,9 @@ export const Input = <
           title,
           next,
           isLast,
-          id,
+          id: uniqueFieldId,
           type,
-          error: errors?.find((x) => x.propertyPath === id)?.message,
+          error: errors?.find(errorOnField(fieldName))?.message,
           extra,
           config,
           errorClassName,
@@ -345,13 +355,15 @@ export const Input = <
       >
         <InputComponent
           {...{
-            id,
+            uniqueFieldId,
+            fieldName,
             config,
             extra,
             onChange,
             value,
             errors,
             errorClassName,
+            isSubmitted,
           }}
         />
       </InputContainer>
@@ -403,6 +415,10 @@ export function deepEqual(
 export function isObject(object: any): object is object {
   return object != null && typeof object === "object";
 }
+
+export const errorOnField = (fieldName: string) => (error: Error) =>
+  error.propertyPath === fieldName ||
+  error.propertyPath.startsWith(fieldName + ".");
 
 const DataForm = <TInputs, TState extends { [key: string]: any }>({
   fields,
@@ -480,27 +496,35 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   }, [initialState]);
 
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<ErrorsArray>([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const [errors, setErrors] = useState<Error[]>([]);
   const [success, setSuccess] = useState<string | undefined>();
 
-  const notReadyField = fieldsWithReferences.find((x) =>
+  const notReadyFields = fieldsWithReferences.filter((x) =>
     x.hasError?.(state[x.field], state)
   );
 
+  const hasNotReadyFields = notReadyFields.length > 0;
+
   const setErrorsReject = (stringOrErrorArray: RejectValue) => {
     if (stringOrErrorArray) {
-      const newErrors: ErrorsArray =
+      const newErrors: Error[] =
         typeof stringOrErrorArray === "string"
-          ? [{ propertyPath: "__GLOBAL", message: stringOrErrorArray }]
+          ? [
+              {
+                propertyPath: GLOBAL_PROPERTY_PATH,
+                message: stringOrErrorArray,
+              },
+            ]
           : stringOrErrorArray;
 
-      //this will be frontend and backenderrrors
-      const allErrors = { ...errors, ...newErrors };
-      setErrors(allErrors);
+      //this only happens when there are no frontend errors, so it's safe to replace errors
+      setErrors(newErrors);
 
       //scroll to the first field that contains an error
       const firstNotReadyField = fieldsWithReferences.filter(
-        (x) => newErrors.find((y) => y.propertyPath === x.field) !== undefined
+        (x) => newErrors.find(errorOnField(x.field)) !== undefined
       )[0];
 
       const top =
@@ -519,17 +543,22 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   };
 
   const onClickSubmit = () => {
-    const frontendErrorArray: ErrorsArray = fields
-      .map((field) => {
-        const hasError = field().hasError?.(state[field().field], state);
-        return hasError
-          ? { propertyPath: field().field, message: hasError }
-          : null;
-      })
-      .filter(notEmpty);
+    setIsSubmitted(true);
+    const frontendErrorArray = fields.reduce((all, field) => {
+      const hasError = field().hasError?.(state[field().field], state);
 
-    setErrors(frontendErrorArray);
+      const errors =
+        typeof hasError === "string"
+          ? [{ propertyPath: field().field, message: hasError }]
+          : Array.isArray(hasError)
+          ? hasError
+          : [];
 
+      return [...all, ...errors];
+    }, [] as Error[]);
+
+    setErrors(frontendErrorArray); //
+    //
     if (frontendErrorArray.length === 0) {
       //no errors
       setLoading(true);
@@ -549,7 +578,8 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
       /// onError("Please fill in all fields correctly");
 
       const top =
-        (notReadyField?.reference?.current?.getBoundingClientRect().top || 0) +
+        (notReadyFields[0]?.reference?.current?.getBoundingClientRect().top ||
+          0) +
         window.scrollY -
         100;
 
@@ -562,7 +592,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     }
   };
 
-  const available = !loading && !notReadyField;
+  const available = !loading && !hasNotReadyFields;
 
   const submitProps: SubmitProps = {
     onSubmit: onClickSubmit,
@@ -598,7 +628,9 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         {submitButtonText || "Save"}
       </button>
     );
-  const globalError = errors?.find((x) => x.propertyPath === "__GLOBAL__");
+  const globalError = errors?.find(
+    (x) => x.propertyPath === GLOBAL_PROPERTY_PATH
+  );
   return (
     <Form
       onSubmit={(e) => {
@@ -649,12 +681,13 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
             withSubmitProps?.(submitProps);
           };
 
-          const uniqueId = `${id || ""}.${field.field}`;
+          const uniqueFieldId = `${id || ""}.${field.field}`;
 
           return field.shouldHide?.(state) ? null : (
             <Input
+              fieldName={field.field}
               renderInputContainer={renderInputContainer}
-              id={uniqueId}
+              uniqueFieldId={uniqueFieldId}
               config={plugin.config}
               plugin={plugin.component}
               extra={field.extra}
@@ -674,8 +707,9 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
               errors={errors.filter(
                 (e) =>
                   e.propertyPath === field.field ||
-                  e.propertyPath.includes(`${field.field}.`)
+                  e.propertyPath.startsWith(`${field.field}.`)
               )}
+              isSubmitted={isSubmitted}
             />
           );
         })}
