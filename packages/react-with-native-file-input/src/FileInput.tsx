@@ -1,12 +1,10 @@
-import { AnyInput, PluginInputProps } from "react-with-native-form";
+import { PluginComponent, PluginInputType } from "react-with-native-form";
 import React, { useEffect } from "react";
 import { FileWithPath, useDropzone } from "react-dropzone";
 import { Li, Div, Label, P, Input, Aside, Ul } from "react-with-native";
 import Icon from "./icon.svg";
 
-
-
-const FileInput = ({ extra, onChange }: PluginInputProps<FileInputType>) => {
+const FileInput: PluginComponent<FileInputType> = ({ extra, onChange }) => {
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     accept: extra.allowedFileTypes,
   });
@@ -47,7 +45,9 @@ const FileInput = ({ extra, onChange }: PluginInputProps<FileInputType>) => {
   );
 };
 
-export interface FileInputType extends AnyInput {
+FileInput.defaultInitialValue = [];
+
+export class FileInputType implements PluginInputType {
   type: "file";
   value: File[];
   defaultValue: File[];

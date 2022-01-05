@@ -1,4 +1,8 @@
-import { AnyInput, inputClass, PluginComponent } from "react-with-native-form";
+import {
+  PluginInputType,
+  inputClass,
+  PluginComponent,
+} from "react-with-native-form";
 import { Input } from "react-with-native";
 
 const TextInput: PluginComponent<TextInputType> = ({
@@ -48,11 +52,11 @@ const TextInput: PluginComponent<TextInputType> = ({
 
 TextInput.defaultInitialValue = "";
 
-export interface TextInputType extends AnyInput {
+export class TextInputType implements PluginInputType {
   /**
    * value type
    */
-  value: string;
+  value!: string;
 
   /**
    * input generic configuration

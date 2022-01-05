@@ -2,9 +2,12 @@ import * as React from "react";
 import { useState, RefObject, createRef, useEffect } from "react";
 import { ActivityIndicator, Div, Label, Strong, Form } from "react-with-native";
 
-export type PluginInputProps<TInput extends AnyInput> = {
+export type PluginInputProps<TInput extends PluginInputType> = {
   onChange: (value: TInput["value"]) => void;
-  value: TInput["value"] | undefined; //with partial state, it can be undefined!
+  /**
+   * value is never undefined, unless you didn't declare defaultInitialValue
+   */
+  value: TInput["value"];
   extra: TInput["extra"];
   config: TInput["config"];
   hasError: boolean;
@@ -57,7 +60,7 @@ export type Field<TInputs, T extends Keys<TInputs> = Keys<TInputs>> = {
    * returns either false if there's no error or a string of an error message if there is one
    */
   hasError?: (
-    value: TInputs[T] extends AnyInput ? TInputs[T]["value"] : any,
+    value: TInputs[T] extends PluginInputType ? TInputs[T]["value"] : any,
     state: Partial<PossibleState>
   ) => boolean | string;
   startSection?: boolean;
@@ -66,11 +69,11 @@ export type Field<TInputs, T extends Keys<TInputs> = Keys<TInputs>> = {
   /**
    * initalValue (can be declared here or on Form defaultValues prop). This has priority
    */
-  initialValue?: TInputs[T] extends AnyInput ? TInputs[T]["value"] : any;
+  initialValue?: TInputs[T] extends PluginInputType ? TInputs[T]["value"] : any;
   /**
    * any extra properties that can be given to a specific input
    */
-  extra?: TInputs[T] extends AnyInput ? TInputs[T]["extra"] : any;
+  extra?: TInputs[T] extends PluginInputType ? TInputs[T]["extra"] : any;
 };
 
 export type Keys<TObject> = Extract<keyof TObject, string>;
@@ -102,7 +105,7 @@ export type Error = {
   fieldKey: string;
 }; //
 
-export interface AnyInput {
+export interface PluginInputType {
   /**
    * universal configuration options of the input
    */
@@ -121,26 +124,18 @@ export interface AnyInput {
   component?: any;
 }
 
-export type Plugin<TInput extends AnyInput, TPlugins extends PluginsProp> = {
+export type Plugin<TInput extends PluginInputType> = {
   component: PluginComponent<TInput>;
   config: TInput["config"];
 };
 
-export type PluginComponent<TInput extends AnyInput> = ((
+export type PluginComponent<TInput extends PluginInputType> = ((
   props: PluginInputProps<TInput>
 ) => JSX.Element) & {
   defaultInitialValue: TInput["value"];
 };
 
-export type PluginsProp = {
-  [key: string]: <TInput extends AnyInput, TPlugins extends PluginsProp>() => {
-    component: PluginComponent<TInput>;
-    config: TInput["config"];
-    type: TInput;
-  };
-};
-
-type Plugins<TInputs> = { [key in keyof TInputs]: Plugin<any, any> };
+type Plugins<TInputs> = { [key in keyof TInputs]: Plugin<any> };
 export type RenderInputContainerType =
   | undefined
   | ((props: InputContainerProps) => JSX.Element);
@@ -154,8 +149,8 @@ export type InputContainerProps = {
   next?: any;
   isLast?: boolean;
   error?: string | boolean;
-  extra?: AnyInput["extra"];
-  config?: AnyInput["config"];
+  extra?: PluginInputType["extra"];
+  config?: PluginInputType["config"];
   errorClassName?: string;
 };
 
@@ -186,7 +181,7 @@ export type DataFormConfig<TInputs> = {
  * the possible states, like { password: string, text: string }
  */
 export type PossibleValues<TInputs> = {
-  [K in keyof TInputs]: TInputs[K] extends AnyInput
+  [K in keyof TInputs]: TInputs[K] extends PluginInputType
     ? TInputs[K]["value"]
     : never;
 };
@@ -278,7 +273,10 @@ export const DefaultInputContainer = ({
   </Div>
 );
 
-export const Input = <TInputs extends AnyInputs, T extends keyof TInputs>({
+export const Input = <
+  TInputs extends AllPluginInputTypes,
+  T extends keyof TInputs
+>({
   type,
   plugin,
   title,
@@ -670,7 +668,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     </Form>
   );
 };
-export type AnyInputs = { [key: string]: AnyInput };
+export type AllPluginInputTypes = { [key: string]: PluginInputType };
 
 export const setConfig = <TInputs, TState>(
   DataForm: (props: DataFormProps<TInputs, TState>) => JSX.Element,

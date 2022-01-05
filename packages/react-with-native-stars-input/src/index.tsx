@@ -1,14 +1,18 @@
-import { AnyInput, inputClass, PluginInputProps } from "react-with-native-form";
+import {
+  inputClass,
+  PluginComponent,
+  PluginInputType,
+} from "react-with-native-form";
 import { Input } from "react-with-native";
-import ReactStars from"react-stars";
+import ReactStars from "react-stars";
 
-const StarsInput = ({
+const StarsInput: PluginComponent<StarsInputType> = ({
   onChange,
   value,
   extra,
   config,
   hasError,
-}: PluginInputProps<StarsInputType>) => {
+}) => {
   config = config || {};
 
   const inputClassWithError = `${inputClass}${
@@ -22,23 +26,24 @@ const StarsInput = ({
   // later, this can be extrahered into a react-with-native-stars component, because now this will only work on web
   return (
     <ReactStars
-          className={`m-3`}
-          count={5}
-          value={typeof value === "number" ? value : 0}
-          onChange={onChange}
-          half={false}
-          size={24}
-          color2={"#ffd700"}
-        />
-
+      className={`m-3`}
+      count={5}
+      value={typeof value === "number" ? value : 0}
+      onChange={onChange}
+      half={false}
+      size={24}
+      color2={"#ffd700"}
+    />
   );
 };
 
-export interface StarsInputType extends AnyInput {
+StarsInput.defaultInitialValue = null;
+
+export class StarsInputType implements PluginInputType {
   /**
    * value type
    */
-  value: number;
+  value!: number | null;
 
   /**
    * input generic configuration
@@ -55,7 +60,7 @@ export interface StarsInputType extends AnyInput {
     /**
      * allow half stars
      */
-    half?:boolean;
+    half?: boolean;
   };
 }
 

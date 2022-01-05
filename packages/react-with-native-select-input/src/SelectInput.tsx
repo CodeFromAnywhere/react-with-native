@@ -1,12 +1,12 @@
-import { AnyInput, PluginInputProps } from "react-with-native-form";
+import { PluginComponent, PluginInputType } from "react-with-native-form";
 import React from "react";
 import Select, { Item } from "react-with-native-select";
 
-const SelectInput = <T extends unknown = string>({
+const SelectInput: PluginComponent<SelectInputType> = ({
   value,
   extra,
   onChange,
-}: PluginInputProps<SelectInputType<T>>) => {
+}) => {
   return (
     <Select
       className="w-full"
@@ -22,18 +22,18 @@ const SelectInput = <T extends unknown = string>({
   );
 };
 
-export interface SelectInputType<T = string> extends AnyInput {
-  type: "select";
-  value: Item<T>;
-  defaultValue: Item<T>;
+SelectInput.defaultInitialValue = null;
+
+export class SelectInputType implements PluginInputType {
+  value!: Item<string> | null;
   config?: {
     errorClassName?: string;
     extraClassName?: string;
     replaceClassName?: string;
   };
-  extra: {
+  extra!: {
     title: string;
-    options: Item<T>[];
+    options: Item<string>[];
   };
 }
 

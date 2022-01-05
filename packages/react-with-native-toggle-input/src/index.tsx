@@ -1,14 +1,14 @@
-import { AnyInput, PluginInputProps } from "react-with-native-form";
+import { PluginInputType, PluginComponent } from "react-with-native-form";
 import { Toggle, Label, Div } from "react-with-native";
 
-const ToggleInput = ({
+const ToggleInput: PluginComponent<ToggleInputType> = ({
   onChange,
   value,
   extra,
   config,
   hasError,
   id,
-}: PluginInputProps<ToggleInputType>) => {
+}) => {
   config = config || {};
 
   const defaultClass = "";
@@ -44,15 +44,13 @@ const ToggleInput = ({
   );
 };
 
-export interface ToggleInputType extends AnyInput {
-  type: "toggle";
+ToggleInput.defaultInitialValue = false;
+
+export class ToggleInputType implements PluginInputType {
   /**
    * value type
    */
-  value: boolean;
-
-  defaultValue: false;
-
+  value!: boolean;
   /**
    * input generic configuration
    */

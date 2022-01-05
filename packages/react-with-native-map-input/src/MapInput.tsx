@@ -1,7 +1,7 @@
 import ReactMapGL, { Marker, MapRef } from "react-map-gl";
 import { useState, useRef } from "react";
 
-import { AnyInput, PluginInputProps } from "react-with-native-form";
+import { PluginComponent, PluginInputType } from "react-with-native-form";
 import HiOutlineLocationMarker from "./HiOutlineLocationMarker.svg";
 import { Svg } from "react-with-native";
 import Autosuggest from "react-autosuggest";
@@ -17,17 +17,16 @@ export type MapLocation = {
   zoom: number;
 };
 
-export interface MapInputType extends AnyInput {
+export class MapInputType implements PluginInputType {
   type: "select";
-  value: MapLocation
-  defaultValue: MapLocation;
+  value: MapLocation;
   config?: {
     errorClassName?: string;
     extraClassName?: string;
     replaceClassName?: string;
-    mapboxKey:string;
+    mapboxKey: string;
   };
-  extra: { showMarker: boolean; showZoom: boolean }
+  extra: { showMarker: boolean; showZoom: boolean };
 }
 
 type Suggestion = {
@@ -39,25 +38,22 @@ type Suggestion = {
   text: string;
 };
 
-function MapInput({
+const MapInput: PluginComponent<MapInputType> = ({
   value,
   onChange,
   extra,
   config,
-}: PluginInputProps<MapInputType>) {
+}) => {
   //amsterdam
-  const defaultLatidue = 52.377956;
-  const defaultLongitude = 4.89707;
-
   const mapRef = useRef<MapRef>(null);
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [viewport, setViewport] = useState({
     width: "100%",
     height: 300,
-    latitude: value?.latitude || defaultLatidue,
-    longitude: value?.longitude || defaultLongitude,
-    zoom: value?.zoom || 11,
+    latitude: value?.latitude,
+    longitude: value?.longitude,
+    zoom: value?.zoom,
   });
 
   // Teach Autosuggest how to calculate suggestions for any given input value.
@@ -71,7 +67,7 @@ function MapInput({
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${inputValue}.json?access_token=${config.mapboxKey}&limit=4`;
 
     const suggestions = await fetch(url, {
-      method:"GET",
+      method: "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -234,7 +230,10 @@ function MapInput({
               offsetTop={0}
             >
               <p className="text-2xl cursor-pointer animate-bounce">
-                <Svg src={HiOutlineLocationMarker} className="h-6 text-blue-500" />
+                <Svg
+                  src={HiOutlineLocationMarker}
+                  className="h-6 text-blue-500"
+                />
               </p>
             </Marker>
           )}
@@ -255,6 +254,16 @@ function MapInput({
       </div>
     </div>
   );
-}
+};
+
+const defaultLatidue = 52.377956;
+const defaultLongitude = 4.89707;
+const defaultZoom = 11;
+
+MapInput.defaultInitialValue = {
+  latitude: defaultLatidue,
+  longitude: defaultLongitude,
+  zoom: defaultZoom,
+};
 
 export default MapInput;

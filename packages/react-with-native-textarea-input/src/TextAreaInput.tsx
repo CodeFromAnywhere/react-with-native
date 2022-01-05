@@ -1,14 +1,18 @@
-import { AnyInput, PluginInputProps } from "react-with-native-form";
+import {
+  PluginInputType,
+  PluginInputProps,
+  PluginComponent,
+} from "react-with-native-form";
 import React from "react";
 import { TextArea } from "react-with-native";
 
-const TextAreaInput = ({
+const TextAreaInput: PluginComponent<TextAreaInputType> = ({
   value,
   extra,
   config,
   onChange,
   hasError,
-}: PluginInputProps<TextAreaInputType>) => {
+}) => {
   return (
     <TextArea
       rows={extra?.rows}
@@ -26,17 +30,15 @@ const TextAreaInput = ({
     />
   );
 };
-
-export interface TextAreaInputType extends AnyInput {
-  type: "textarea";
-  value: string;
-  defaultValue: string;
+TextAreaInput.defaultInitialValue = "";
+export class TextAreaInputType implements PluginInputType {
+  value!: string;
   config?: {
     errorClassName?: string;
     extraClassName?: string;
     replaceClassName?: string;
   };
-  extra: {
+  extra?: {
     rows?: number;
     maxLength?: number;
     placeholder?: string;

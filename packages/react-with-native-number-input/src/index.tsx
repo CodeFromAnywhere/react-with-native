@@ -1,12 +1,12 @@
-import { AnyInput, PluginInputProps } from "react-with-native-form";
+import { PluginInputType, PluginComponent } from "react-with-native-form";
 import TextInput from "react-with-native-text-input";
 
-const NumberInput = ({
+const NumberInput: PluginComponent<NumberInputType> = ({
   extra,
   onChange,
   value,
   ...props
-}: PluginInputProps<NumberInputType>) => {
+}) => {
   const newExtra: NumberInputType["extra"] = { ...extra, type: "number" };
   return (
     <TextInput
@@ -20,11 +20,11 @@ const NumberInput = ({
   );
 };
 
-export interface NumberInputType extends AnyInput {
+export class NumberInputType implements PluginInputType {
   /**
    * value type
    */
-  value: number;
+  value!: number | null;
 
   /**
    * input generic configuration
@@ -46,4 +46,6 @@ export interface NumberInputType extends AnyInput {
     type?: string;
   };
 }
+NumberInput.defaultInitialValue = null;
+
 export default NumberInput;
