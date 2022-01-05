@@ -8,7 +8,7 @@ const canUseDOM = !!(
 );
 
 const Portal = ({ node, children }: { node?: any; children: any }) => {
-  let defaultNode = null;
+  let defaultNode: Element | null = null;
 
   useEffect(() => {
     return () => {

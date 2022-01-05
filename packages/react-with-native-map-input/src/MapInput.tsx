@@ -33,7 +33,7 @@ const MapInput: PluginComponent<MapInputType> = ({
       return [];
     }
 
-    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${inputValue}.json?access_token=${config.mapboxKey}&limit=4`;
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${inputValue}.json?access_token=${config?.mapboxKey}&limit=4`;
 
     const suggestions = await fetch(url, {
       method: "GET",
@@ -123,8 +123,8 @@ const MapInput: PluginComponent<MapInputType> = ({
     setViewport(nextViewport);
 
     onChange({
-      latitude: nextViewport?.latitude as number,
-      longitude: nextViewport?.longitude,
+      latitude: nextViewport.latitude as number,
+      longitude: nextViewport.longitude,
       zoom: nextViewport?.zoom,
     });
   };
@@ -137,15 +137,15 @@ const MapInput: PluginComponent<MapInputType> = ({
           ref={mapRef}
           mapStyle="mapbox://styles/picozzimichele/ckty78kzo0q4t17qubs9yi8ok"
           className={`w-full h-40`}
-          mapboxApiAccessToken={config.mapboxKey}
+          mapboxApiAccessToken={config?.mapboxKey}
           {...viewport}
           onViewportChange={(nextViewport: ViewPort | undefined) => {
             //@ts-ignore
             setViewport(nextViewport);
             onChange({
               latitude: nextViewport?.latitude as number,
-              longitude: nextViewport?.longitude,
-              zoom: nextViewport?.zoom,
+              longitude: nextViewport?.longitude as number,
+              zoom: nextViewport?.zoom as number,
             });
           }}
         >
