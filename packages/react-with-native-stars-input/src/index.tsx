@@ -1,9 +1,4 @@
-import {
-  inputClass,
-  PluginComponent,
-  PluginInputType,
-} from "react-with-native-form";
-import { Input } from "react-with-native";
+import { PluginComponent, PluginInputType } from "react-with-native-form";
 import ReactStars from "react-stars";
 
 const StarsInput: PluginComponent<StarsInputType> = ({
@@ -11,17 +6,8 @@ const StarsInput: PluginComponent<StarsInputType> = ({
   value,
   extra,
   config,
-  hasError,
 }) => {
   config = config || {};
-
-  const inputClassWithError = `${inputClass}${
-    hasError
-      ? config.errorClassName
-        ? config.errorClassName
-        : " border border-red-400"
-      : ""
-  }`;
 
   // later, this can be extrahered into a react-with-native-stars component, because now this will only work on web
   return (

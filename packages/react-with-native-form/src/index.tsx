@@ -45,7 +45,7 @@ export type Field<TInputs, T extends Keys<TInputs> = Keys<TInputs>> = {
   hasError?: (
     value: TInputs[T] extends PluginInputType ? TInputs[T]["value"] : any,
     state: Partial<PossibleState>
-  ) => boolean | string | Error[];
+  ) => boolean | string | Error[]; //
 
   startSection?: boolean;
   sectionTitle?: string;

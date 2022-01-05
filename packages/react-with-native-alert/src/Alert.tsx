@@ -64,7 +64,7 @@ export const Alert = ({
                   </HeadlessUiDialog.Title>
                 ) : null}
                 <P>{message}</P>
-                {buttons.map((button) => {
+                {buttons?.map((button) => {
                   return <Div>{button.text}</Div>;
                 })}
               </Div>

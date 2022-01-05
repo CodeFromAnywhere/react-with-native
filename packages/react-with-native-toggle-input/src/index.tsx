@@ -6,13 +6,13 @@ const ToggleInput: PluginComponent<ToggleInputType> = ({
   value,
   extra,
   config,
-  hasError,
-  id,
+  uniqueFieldId,
+  errors,
 }) => {
   config = config || {};
 
   const defaultClass = "";
-
+  const hasError = errors && errors.length > 0;
   const errorClass = hasError
     ? config.errorClassName
       ? config.errorClassName
@@ -26,7 +26,7 @@ const ToggleInput: PluginComponent<ToggleInputType> = ({
   return (
     <Div>
       <Toggle
-        id={id}
+        id={uniqueFieldId}
         // class not working with border on checkbox
         className={classWithError}
         checked={value}
@@ -35,7 +35,7 @@ const ToggleInput: PluginComponent<ToggleInputType> = ({
       {extra?.label ? (
         <Label
           className={`pl-3 select-none ${hasError ? "text-red-500" : ""}`}
-          htmlFor={id}
+          htmlFor={uniqueFieldId}
         >
           {extra.label}
         </Label>

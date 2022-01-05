@@ -7,8 +7,10 @@ const TextAreaInput: PluginComponent<TextAreaInputType> = ({
   extra,
   config,
   onChange,
-  hasError,
+  errors,
 }) => {
+  const hasError = errors && errors.length > 0;
+
   return (
     <TextArea
       rows={extra?.rows}
@@ -20,7 +22,7 @@ const TextAreaInput: PluginComponent<TextAreaInputType> = ({
         } ${config?.extraClassName}`
       }
       value={value}
-      onChange={(event) => {
+      onChange={(event: any) => {
         onChange(event.target.value);
       }}
     />

@@ -1,42 +1,11 @@
 import ReactMapGL, { Marker, MapRef } from "react-map-gl";
 import { useState, useRef } from "react";
 
-import { PluginComponent, PluginInputType } from "react-with-native-form";
+import { PluginComponent } from "react-with-native-form";
 import HiOutlineLocationMarker from "./HiOutlineLocationMarker.svg";
 import { Svg } from "react-with-native";
 import Autosuggest from "react-autosuggest";
-
-type ViewPort = MapLocation & {
-  width: string | number;
-  height: string | number;
-};
-
-export type MapLocation = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
-
-export class MapInputType implements PluginInputType {
-  type: "select";
-  value: MapLocation;
-  config?: {
-    errorClassName?: string;
-    extraClassName?: string;
-    replaceClassName?: string;
-    mapboxKey: string;
-  };
-  extra: { showMarker: boolean; showZoom: boolean };
-}
-
-type Suggestion = {
-  bbox: number[];
-  center: [number, number];
-  id: string;
-  place_name: string;
-  place_type: string[];
-  text: string;
-};
+import { MapInputType, Suggestion, ViewPort } from "./types";
 
 const MapInput: PluginComponent<MapInputType> = ({
   value,

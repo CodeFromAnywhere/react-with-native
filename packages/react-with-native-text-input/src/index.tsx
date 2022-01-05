@@ -10,9 +10,10 @@ const TextInput: PluginComponent<TextInputType> = ({
   value,
   extra,
   config,
-  hasError,
+  errors,
 }) => {
   config = config || {};
+  const hasError = errors && errors.length > 0;
 
   const inputClassWithError = `${inputClass}${
     hasError
