@@ -16,10 +16,6 @@ export type PluginInputProps<TInput extends PluginInputType> = {
   errorClassName?: string;
 };
 
-export type EmptyValues<T> = {
-  [K in keyof T]: T[K] extends string ? "" : never;
-};
-
 const mergeObjectsArray = (
   previous: { [key: string]: any },
   current: { [key: string]: any }
@@ -126,7 +122,7 @@ export interface PluginInputType {
 
 export type Plugin<TInput extends PluginInputType> = {
   component: PluginComponent<TInput>;
-  config: TInput["config"];
+  config?: TInput["config"];
 };
 
 export type PluginComponent<TInput extends PluginInputType> = ((
@@ -192,7 +188,7 @@ export type PossibleState = {
 
 export type ResolveType = (message: string) => void;
 export type RejectType = (props: { field?: string; message: string }) => void;
-export type DataFormProps<TInputs, TState = any> = {
+export type DataFormProps<TInputs, TState extends { [key: string]: any }> = {
   /**
    * array of fields created with makeField
    */
@@ -272,7 +268,14 @@ export const DefaultInputContainer = ({
     </Div>
   </Div>
 );
-
+const getPlugin = <TInputs extends AllPluginInputTypes>(
+  type: string | undefined,
+  plugins: Plugins<TInputs>
+) => {
+  return type
+    ? plugins[type]
+    : plugins[Object.keys(plugins)[0] as keyof Plugins<TInputs>];
+};
 export const Input = <
   TInputs extends AllPluginInputTypes,
   T extends keyof TInputs
@@ -436,16 +439,26 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   }, [fields]);
 
   const initialValuesPartial: TState = fields.reduce((all, field) => {
-    const defaultInital = plugins[field().type!].component.defaultInitialValue;
+    const type = field().type!;
+    const plugin = getPlugin(type, plugins);
+    const defaultInital = plugin.component.defaultInitialValue;
     const initial = field().initialValue;
     const key = field().field;
+    const value =
+      initial !== undefined
+        ? initial
+        : defaultInital !== undefined
+        ? defaultInital
+        : undefined;
+
     return {
       ...all,
-      [key]: initial ? initial : defaultInital ? defaultInital : undefined,
+      [key]: value,
     };
   }, {}) as TState;
 
   const initialState = { ...initialValuesPartial, ...initialValues };
+
   const [state, setState] = useState<TState>(initialState);
 
   //used to check if the initialValues have changed
@@ -601,9 +614,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
         {fieldsWithReferences.map((field, index) => {
           // Take the first plugin if the plugin isn't defined.
-          const plugin = field.type
-            ? plugins[field.type]
-            : plugins[Object.keys(plugins)[0] as keyof Plugins<TInputs>];
+          const plugin = getPlugin(field.type, plugins);
 
           if (!plugin) {
             return (
