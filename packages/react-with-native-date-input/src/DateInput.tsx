@@ -1,12 +1,8 @@
 import * as React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {
-  inputClass,
-  PluginComponent,
-  PluginInputType,
-} from "react-with-native-form";
-
+import { inputClass, PluginComponent } from "react-with-native-form";
+import { DateInputType } from "./types";
 // CSS Modules, react-datepicker-cssmodules.css
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 
@@ -25,21 +21,5 @@ const DateInput: PluginComponent<DateInputType> = ({ value, onChange }) => {
 };
 
 DateInput.defaultInitialValue = null;
-
-export class DateInputType implements PluginInputType {
-  /**
-   * value type
-   */
-  value!: Date | null;
-
-  /**
-   * input generic configuration
-   */
-  config?: {};
-  /**
-   * field specific configuration
-   */
-  extra?: {};
-}
 
 export default DateInput;
