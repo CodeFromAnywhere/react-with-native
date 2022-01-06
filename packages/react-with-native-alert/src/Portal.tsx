@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 
 const canUseDOM = !!(
   typeof window !== "undefined" &&
