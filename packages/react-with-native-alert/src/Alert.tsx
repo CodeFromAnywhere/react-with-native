@@ -4,14 +4,14 @@ import { Dialog as HeadlessUiDialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { Div, P } from "react-with-native";
 
-type Parameters<T> = T extends (...args: infer T) => any ? T : never;
+// type Parameters<T> = T extends (...args: infer T) => any ? T : never;
 
-type AlertPropsArray = Parameters<AlertStatic["alert"]>;
+// type AlertPropsArray = Parameters<AlertStatic["alert"]>;
 
 export const Alert = ({
   props: [title, message, buttons, options],
 }: {
-  props: AlertPropsArray;
+  props: any;
 }) => {
   return (
     <div id={"__alertprovider"}>
