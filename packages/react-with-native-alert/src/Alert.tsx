@@ -1,10 +1,9 @@
-///// doesnt work (module not found) <reference path="../node_modules/@types/react-native/index.d.ts" />
 import type { AlertStatic } from "react-native";
 import Portal from "./Portal";
 import { Dialog as HeadlessUiDialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { Div, P } from "react-with-native";
-
+//
 type Parameters<T> = T extends (...args: infer T) => any ? T : never;
 
 type AlertPropsArray = Parameters<AlertStatic["alert"]>;
