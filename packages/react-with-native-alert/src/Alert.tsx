@@ -1,4 +1,4 @@
-/// <reference path="../node_modules/@types/react-native/index.d.ts" />
+///// doesnt work (module not found) <reference path="../node_modules/@types/react-native/index.d.ts" />
 import type { AlertStatic } from "react-native";
 import Portal from "./Portal";
 import { Dialog as HeadlessUiDialog, Transition } from "@headlessui/react";
