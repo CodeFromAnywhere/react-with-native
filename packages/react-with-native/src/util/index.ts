@@ -1,3 +1,3 @@
 import { getEnv } from "./getEnv";
-
-export { getEnv };
+import { isDevelopment } from "./isDevelopment";
+export { getEnv, isDevelopment };
