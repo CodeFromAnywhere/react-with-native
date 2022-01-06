@@ -1,9 +1,9 @@
 import { DetailedHTMLProps, TextareaHTMLAttributes } from "react";
-import { TextProps } from "react-native";
+import type { TextProps } from "react-native";
 
 export type TextAreaType = DetailedHTMLProps<
-TextareaHTMLAttributes<HTMLTextAreaElement>,
-HTMLTextAreaElement
+  TextareaHTMLAttributes<HTMLTextAreaElement>,
+  HTMLTextAreaElement
 > & {
   native?: TextProps;
 };

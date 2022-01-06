@@ -1,17 +1,17 @@
-// import { AlertStatic } from "react-native";
+import type { AlertStatic } from "react-native";
 import Portal from "./Portal";
 import { Dialog as HeadlessUiDialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { Div, P } from "react-with-native";
 
-// type Parameters<T> = T extends (...args: infer T) => any ? T : never;
+type Parameters<T> = T extends (...args: infer T) => any ? T : never;
 
-// type AlertPropsArray = Parameters<AlertStatic["alert"]>;
+type AlertPropsArray = Parameters<AlertStatic["alert"]>;
 
 export const Alert = ({
   props: [title, message, buttons, options],
 }: {
-  props: any;
+  props: AlertPropsArray;
 }) => {
   return (
     <div id={"__alertprovider"}>
@@ -64,7 +64,7 @@ export const Alert = ({
                   </HeadlessUiDialog.Title>
                 ) : null}
                 <P>{message}</P>
-                {buttons?.map((button: any) => {
+                {buttons?.map((button) => {
                   return <Div>{button.text}</Div>;
                 })}
               </Div>
@@ -76,7 +76,7 @@ export const Alert = ({
   );
 };
 
-export const alert: any = (...args: any[]) => {
+export const alert: AlertStatic["alert"] = (...args) => {
   return (
     <Portal>
       <Alert props={args} />

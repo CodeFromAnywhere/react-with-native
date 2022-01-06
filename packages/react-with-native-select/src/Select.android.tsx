@@ -1,4 +1,3 @@
-import {} from "react-native";
 import { Item, SelectProps } from "./types";
 import { Div } from "react-with-native";
 import { getRealValue } from "./util";

@@ -1,9 +1,9 @@
 import { DetailedHTMLProps, OlHTMLAttributes } from "react";
-import { ViewProps } from "react-native";
+import type { ViewProps } from "react-native";
 
 export type OlType = DetailedHTMLProps<
-OlHTMLAttributes<HTMLOListElement>,
-HTMLOListElement
+  OlHTMLAttributes<HTMLOListElement>,
+  HTMLOListElement
 > & {
   native?: ViewProps;
 };

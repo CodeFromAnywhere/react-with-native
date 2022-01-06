@@ -1,5 +1,5 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
-import { GestureResponderEvent, PressableProps } from "react-native";
+import type { GestureResponderEvent, PressableProps } from "react-native";
 
 export type PressableType = Omit<
   DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,

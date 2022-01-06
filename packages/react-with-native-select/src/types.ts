@@ -1,5 +1,5 @@
-import { MouseEvent } from "react";
-import { ActionSheetIOSOptions } from "react-native";
+import type { MouseEvent } from "react";
+import type { ActionSheetIOSOptions } from "react-native";
 
 export type Item<T> = {
   value: T;
