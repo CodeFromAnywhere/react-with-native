@@ -2,10 +2,24 @@ import * as React from "react";
 import { useState, RefObject, createRef, useEffect } from "react";
 import { ActivityIndicator, Div, Label, Strong, Form } from "react-with-native";
 
-const mergeObjectsArray = (
-  previous: { [key: string]: any },
-  current: { [key: string]: any }
-) => ({ ...previous, ...current });
+const sameFieldArray = <
+  T extends Field<TInputs, Keys<TInputs>>[],
+  TInputs extends any
+>(
+  arr1: T,
+  arr2: T
+) => {
+  const simpleArr1 = arr1.map(
+    ({ shouldHide, titleFromState, hasError, ...item }) => item
+  );
+  const simpleArr2 = arr2.map(
+    ({ shouldHide, titleFromState, hasError, ...item }) => item
+  );
+
+  //console.log({ simpleArr1, simpleArr2 });
+
+  return deepEqual(simpleArr1, simpleArr2);
+};
 
 export function notEmpty<TValue>(
   value: TValue | null | undefined
@@ -134,9 +148,9 @@ export type PluginComponent<TInput extends PluginInputType> = ((props: {
    */
   errors?: Error[];
   errorClassName?: string;
-  isSubmitted?: boolean;
 }) => JSX.Element) & {
   defaultInitialValue: TInput["value"];
+  hideContainerError?: boolean;
 };
 
 type Plugins<TInputs> = { [key in keyof TInputs]: Plugin<any> };
@@ -306,7 +320,6 @@ export const Input = <
   uniqueFieldId,
   renderInputContainer,
   errorClassName,
-  isSubmitted,
   fieldName,
 }: {
   plugin: PluginComponent<TInputs[T]>;
@@ -330,7 +343,6 @@ export const Input = <
   uniqueFieldId: string;
   renderInputContainer?: RenderInputContainerType;
   errorClassName?: string;
-  isSubmitted?: boolean;
 }) => {
   const InputComponent = plugin;
   const InputContainer = renderInputContainer || DefaultInputContainer;
@@ -347,7 +359,9 @@ export const Input = <
           isLast,
           id: uniqueFieldId,
           type,
-          error: errors?.find(errorOnField(fieldName))?.message,
+          error:
+            !plugin.hideContainerError &&
+            errors?.find(errorOnField(fieldName))?.message,
           extra,
           config,
           errorClassName,
@@ -363,7 +377,6 @@ export const Input = <
             value,
             errors,
             errorClassName,
-            isSubmitted,
           }}
         />
       </InputContainer>
@@ -451,12 +464,30 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     ExtendedField<TInputs, Keys<TInputs>>[]
   >([]);
 
+  // need to have because we want to see when it's changed
+  const [fieldsWithoutReferences, setFieldsWithoutReferences] = useState<
+    Field<TInputs, Keys<TInputs>>[]
+  >([]);
+
   useEffect(() => {
-    setFieldsWithReferences(
-      fields.map((field) => {
-        return { ...field(), reference: createRef<HTMLDivElement>() };
-      })
-    );
+    const fieldsWithoutReferencesLocal = fields.map((f) => f());
+    if (
+      fieldsWithoutReferences.length === 0 &&
+      !sameFieldArray<Field<TInputs, Keys<TInputs>>[], TInputs>(
+        fieldsWithoutReferencesLocal,
+        fieldsWithoutReferences
+      )
+    ) {
+      setFieldsWithReferences(
+        fieldsWithoutReferencesLocal.map((fieldWithoutReference) => {
+          return {
+            ...fieldWithoutReference,
+            reference: createRef<HTMLDivElement>(),
+          };
+        })
+      );
+      setFieldsWithoutReferences(fieldsWithoutReferencesLocal);
+    }
   }, [fields]);
 
   const initialValuesPartial: TState = fields.reduce((all, field) => {
@@ -496,13 +527,12 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   }, [initialState]);
 
   const [loading, setLoading] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [errors, setErrors] = useState<Error[]>([]);
   const [success, setSuccess] = useState<string | undefined>();
 
-  const notReadyFields = fieldsWithReferences.filter((x) =>
-    x.hasError?.(state[x.field], state)
+  const notReadyFields = fieldsWithReferences.filter(
+    (x) => !x.shouldHide?.(state) && x.hasError?.(state[x.field], state)
   );
 
   const hasNotReadyFields = notReadyFields?.length > 0;
@@ -542,10 +572,13 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     }
   };
 
-  const onClickSubmit = () => {
-    setIsSubmitted(true);
+  const firstErrorRef = notReadyFields[0]?.reference?.current;
+
+  function onClickSubmit() {
     const frontendErrorArray = fields.reduce((all, field) => {
-      const hasError = field().hasError?.(state[field().field], state);
+      const hasError =
+        !field().shouldHide?.(state) &&
+        field().hasError?.(state[field().field], state);
 
       const errors =
         typeof hasError === "string"
@@ -557,10 +590,11 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
       return [...all, ...errors];
     }, [] as Error[]);
 
-    setErrors(frontendErrorArray); //
+    setErrors(frontendErrorArray);
     //
     if (frontendErrorArray?.length === 0) {
       //no errors
+
       setLoading(true);
       onSubmit(
         state,
@@ -578,8 +612,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
       /// onError("Please fill in all fields correctly");
 
       const top =
-        (notReadyFields[0]?.reference?.current?.getBoundingClientRect().top ||
-          0) +
+        (firstErrorRef?.getBoundingClientRect().top || 0) +
         window.scrollY -
         100;
 
@@ -590,7 +623,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         });
       }
     }
-  };
+  }
 
   const available = !loading && !hasNotReadyFields;
 
@@ -604,8 +637,9 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   // console.log("Rendering Form");
 
   useEffect(() => {
+    //console.log({ available, withSubmitProps: submitProps });
     withSubmitProps?.(submitProps);
-  }, [loading, available, submitButtonText]);
+  }, [loading, available, submitButtonText, firstErrorRef]);
 
   const Title = renderTitle || DefaultTitle;
 
@@ -683,6 +717,12 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
           const uniqueFieldId = `${id || ""}.${field.field}`;
 
+          const inputErrors = errors.filter(
+            (e) =>
+              e.propertyPath === field.field ||
+              e.propertyPath.startsWith(`${field.field}.`)
+          );
+
           return field.shouldHide?.(state) ? null : (
             <Input
               fieldName={field.field}
@@ -704,12 +744,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
               startSection={field.startSection}
               sectionTitle={field.sectionTitle}
               description={field.description}
-              errors={errors.filter(
-                (e) =>
-                  e.propertyPath === field.field ||
-                  e.propertyPath.startsWith(`${field.field}.`)
-              )}
-              isSubmitted={isSubmitted}
+              errors={inputErrors}
             />
           );
         })}
