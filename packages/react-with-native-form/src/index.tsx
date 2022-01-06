@@ -396,7 +396,7 @@ export function deepEqual(
 ) {
   const keys1 = Object.keys(object1);
   const keys2 = Object.keys(object2);
-  if (keys1.length !== keys2.length) {
+  if (keys1?.length !== keys2?.length) {
     return false;
   }
   for (const key of keys1) {
@@ -505,7 +505,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     x.hasError?.(state[x.field], state)
   );
 
-  const hasNotReadyFields = notReadyFields.length > 0;
+  const hasNotReadyFields = notReadyFields?.length > 0;
 
   const setErrorsReject = (stringOrErrorArray: RejectValue) => {
     if (stringOrErrorArray) {
@@ -559,7 +559,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
     setErrors(frontendErrorArray); //
     //
-    if (frontendErrorArray.length === 0) {
+    if (frontendErrorArray?.length === 0) {
       //no errors
       setLoading(true);
       onSubmit(
@@ -700,7 +700,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
               }
               value={state[field.field]}
               onChange={onChange}
-              isLast={index === fields.length - 1}
+              isLast={index === fields?.length - 1}
               startSection={field.startSection}
               sectionTitle={field.sectionTitle}
               description={field.description}

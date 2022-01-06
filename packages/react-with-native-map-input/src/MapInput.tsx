@@ -29,7 +29,7 @@ const MapInput: PluginComponent<MapInputType> = ({
   const getSuggestions = async (value: string): Promise<Suggestion[]> => {
     const inputValue = value.trim().toLowerCase();
 
-    if (inputValue.length === 0) {
+    if (inputValue?.length === 0) {
       return [];
     }
 
@@ -51,7 +51,7 @@ const MapInput: PluginComponent<MapInputType> = ({
         console.error(error);
       });
 
-    return inputValue.length === 0 ? [] : suggestions?.features || [];
+    return inputValue?.length === 0 ? [] : suggestions?.features || [];
   };
 
   // const debouncedGetSuggestions = useMemo(
@@ -70,7 +70,7 @@ const MapInput: PluginComponent<MapInputType> = ({
 
     return (
       <div className={`bg-white hover:bg-gray-200 p-4`}>
-        {text.length > 30 ? text.slice(0, 28) + ".." : text}
+        {text?.length > 30 ? text.slice(0, 28) + ".." : text}
       </div>
     );
   };
