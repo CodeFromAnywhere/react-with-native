@@ -8,7 +8,7 @@ export const getRealValue = <T extends unknown>({
 }: {
   title: string;
   options: Item<T>[];
-  value?: Item<T>;
+  value?: Item<T> | null;
   selectFirstOption?: boolean;
 }): Item<T> => {
   return value

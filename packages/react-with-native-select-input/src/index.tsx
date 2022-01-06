@@ -10,7 +10,7 @@ const SelectInput: PluginComponent<SelectInputType> = ({
   return (
     <Select
       className="w-full"
-      title={extra.title}
+      title={extra.title || ""}
       options={extra.options}
       value={value}
       onChange={(value) => {

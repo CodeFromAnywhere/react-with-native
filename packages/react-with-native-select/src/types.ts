@@ -20,12 +20,14 @@ export type ChildrenType<T> = ({
   value: Item<T>;
 }) => any;
 
-export type SelectProps<T,TMultiple extends boolean = false> = {
+export type SelectProps<T, TMultiple extends boolean = false> = {
   containerClassName?: string;
   title: string;
   options: Item<T>[];
-  onChange?: (value: (TMultiple extends true ? Item<T>[] : Item<T>) | null) => void;
-  value?: TMultiple extends true ? Item<T>[] : Item<T>;
+  onChange?: (
+    value: (TMultiple extends true ? Item<T>[] : Item<T>) | null
+  ) => void;
+  value?: TMultiple extends true ? Item<T>[] : Item<T> | null;
   multiple?: TMultiple;
   className?: string;
   children?: ChildrenType<T>;
