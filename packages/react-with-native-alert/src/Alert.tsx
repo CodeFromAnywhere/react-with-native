@@ -1,4 +1,4 @@
-import { AlertStatic } from "react-native";
+// import { AlertStatic } from "react-native";
 import Portal from "./Portal";
 import { Dialog as HeadlessUiDialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
@@ -76,7 +76,7 @@ export const Alert = ({
   );
 };
 
-export const alert: AlertStatic["alert"] = (...args) => {
+export const alert: any = (...args: any[]) => {
   return (
     <Portal>
       <Alert props={args} />
