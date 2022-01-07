@@ -89,6 +89,7 @@ export type SubmitProps = {
   loading: boolean;
   available: boolean;
   submitButtonText?: string;
+  submitButtonColor?: string;
 };
 
 export const inputClassWithoutWidth = `text-sm px-3 py-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none`;
@@ -174,6 +175,7 @@ export type InputContainerProps = {
 
 export type DataFormConfig<TInputs> = {
   submitButtonText?: string;
+  submitButtonColor?: string;
   title?: string;
   backButton?: () => void;
   plugins?: Plugins<TInputs>; //<TValues>;
@@ -183,6 +185,7 @@ export type DataFormConfig<TInputs> = {
     loading: boolean;
     available: boolean;
     submitButtonText?: string;
+    submitButtonColor?: string;
   }) => JSX.Element;
   renderInputContainer?: RenderInputContainerType;
   renderTitle?: (props: {
@@ -441,6 +444,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   withSubmitProps,
   noSubmit,
   submitButtonText,
+  submitButtonColor,
   title,
   backButton,
   plugins,
@@ -630,14 +634,16 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     loading,
     available,
     submitButtonText,
+    submitButtonColor,
   };
 
   useEffect(() => {
     console.log({ withSubmitProps: submitProps });
     withSubmitProps?.(submitProps);
-  }, [loading, available, submitButtonText, firstErrorRef]);
+  }, [loading, available, submitButtonText, submitButtonColor, firstErrorRef]);
 
   const Title = renderTitle || DefaultTitle;
+  console.log(submitButtonColor);
 
   const Submit = () =>
     noSubmit ? null : renderSubmitComponent ? (
@@ -646,7 +652,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
       <button
         disabled={loading}
         className={`${
-          available ? "bg-orange" : "bg-gray-300"
+          available ? `${submitButtonColor ? "bg-green-500" : submitButtonColor}` : "bg-gray-300"
         }  inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
         onClick={onClickSubmit}
       >

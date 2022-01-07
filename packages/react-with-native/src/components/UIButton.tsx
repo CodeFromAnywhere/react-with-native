@@ -36,7 +36,7 @@ const UIButton = ({
 
   return (
     <Button
-      className={`flex px-6 py-2 text-white transition duration-200  rounded-lg ${bgColor} ${bgColorHover} ${extraClassName}`}
+      className={`flex px-6 py-2 justify-center text-white transition duration-200 rounded-lg ${bgColor} ${bgColorHover} ${extraClassName}`}
       style={style}
       onClick={onClick}
       native={{ title, onPress: onClick, color, disabled }}
