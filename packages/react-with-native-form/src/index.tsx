@@ -535,8 +535,6 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     (x) => !x.shouldHide?.(state) && x.hasError?.(state[x.field], state)
   );
 
-  const hasNotReadyFields = notReadyFields?.length > 0;
-
   const setErrorsReject = (stringOrErrorArray: RejectValue) => {
     if (stringOrErrorArray) {
       const newErrors: Error[] =
@@ -576,9 +574,9 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
   function onClickSubmit() {
     const frontendErrorArray = fields.reduce((all, field) => {
-      const hasError =
-        !field().shouldHide?.(state) &&
-        field().hasError?.(state[field().field], state);
+      const shouldNotHide = !field().shouldHide?.(state);
+      const errorMessage = field().hasError?.(state[field().field], state);
+      const hasError = shouldNotHide && errorMessage;
 
       const errors =
         typeof hasError === "string"
@@ -625,7 +623,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     }
   }
 
-  const available = !loading && !hasNotReadyFields;
+  const available = !loading && notReadyFields.length === 0;
 
   const submitProps: SubmitProps = {
     onSubmit: onClickSubmit,
@@ -634,10 +632,8 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     submitButtonText,
   };
 
-  // console.log("Rendering Form");
-
   useEffect(() => {
-    //console.log({ available, withSubmitProps: submitProps });
+    console.log({ withSubmitProps: submitProps });
     withSubmitProps?.(submitProps);
   }, [loading, available, submitButtonText, firstErrorRef]);
 
@@ -698,20 +694,35 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
           const onChange = (newValue: any) => {
             const newState = { [field.field]: newValue };
+            const newFullState = { ...state, ...newState };
+            const fieldErrors = errors.filter(errorOnField(field.field));
 
-            const fieldError = errors.find(
-              (x) => x.propertyPath === field.field
-            );
-
-            if (fieldError && !field.hasError?.(newValue, state)) {
+            //check if field still has error(s)
+            const newFieldErrors = field.hasError?.(newValue, newFullState);
+            const newFieldErrorsAmount =
+              typeof newFieldErrors === "string"
+                ? 1
+                : Array.isArray(newFieldErrors)
+                ? newFieldErrors.length
+                : 0;
+            if (
+              fieldErrors.length > 0 &&
+              newFieldErrorsAmount !== fieldErrors.length
+            ) {
               const newErrors = errors.filter(
-                (x) => x.propertyPath !== field.field
+                (error) => !errorOnField(field.field)(error)
               );
-              setErrors(newErrors);
+              const newFieldErrorsArray: Error[] =
+                typeof newFieldErrors === "string"
+                  ? [{ message: newFieldErrors, propertyPath: field.field }]
+                  : Array.isArray(newFieldErrors)
+                  ? newFieldErrors
+                  : [];
+
+              setErrors([...newErrors, ...newFieldErrorsArray]);
             }
 
-            setState({ ...state, ...newState });
-
+            setState(newFullState);
             withSubmitProps?.(submitProps);
           };
 
