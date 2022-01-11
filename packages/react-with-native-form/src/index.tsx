@@ -566,6 +566,8 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         100;
 
       if (typeof window !== "undefined") {
+        console.log("setErrorsReject: scrolling to first error field");
+
         window.scrollTo({
           top,
           behavior: "smooth",
@@ -619,6 +621,8 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         100;
 
       if (typeof window !== "undefined") {
+        console.log("onClickSubmit: scrolling to first error field");
+
         window.scrollTo({
           top,
           behavior: "smooth",
@@ -652,7 +656,9 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
       <button
         disabled={loading}
         className={`${
-          available ? `${submitButtonColor ? "bg-green-500" : submitButtonColor}` : "bg-gray-300"
+          available
+            ? `${submitButtonColor ? "bg-green-500" : submitButtonColor}`
+            : "bg-gray-300"
         }  inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
         onClick={onClickSubmit}
       >
