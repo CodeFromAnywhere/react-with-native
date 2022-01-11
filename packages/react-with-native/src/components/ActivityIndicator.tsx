@@ -14,7 +14,9 @@ const ActivityIndicator = (props: UIActivityIndicatorType) => {
       : undefined;
 
   const borderClass =
-    props.color === "white" ? "border-white" : "border-gray-900";
+    props.color === "white"
+      ? "border-white dark:border-gray-900"
+      : "border-gray-900 dark:border-white";
   return (
     <div
       style={sizeStyle}
