@@ -1,12 +1,12 @@
 import React from "react";
-import { Div } from "react-with-native";
-import { useRouter } from "react-with-native-router";
-import MenuComponent from "../components/menu";
+import { Div, Pressable } from "react-with-native";
+import Menu, { CategoryType } from "./Menu";
+import Search from "./Search";
 
-const pages = [
+const categories: CategoryType[] = [
   {
     name: "html",
-    elements: [
+    pages: [
       { path: "activityIndicator", label: "Activity Indicator" },
       { path: "button", label: "Button" },
       { path: "div", label: "Div" },
@@ -25,23 +25,19 @@ const pages = [
   },
   {
     name: "components",
-    elements: [
+    pages: [
       { path: "form", label: "Form" },
-      { path: "select", label: "Select" },
     ],
   },
 ];
 
-function Menu({ Component, pageProps }) {
-  const router = useRouter();
+function Sidebar() {
   return (
-    <Div className="flex flex-1 min-h-screen ">
-      <MenuComponent pages={pages} />
-      <Div className="relative flex flex-1">
-        <Component {...pageProps} />
-      </Div>
+    <Div className="flex-row border-r border-gray-200 w-60 justify-items-center bg-[#fefefe]">
+      <Search />
+      <Menu categories={categories}/>
     </Div>
   );
 }
 
-export default Menu;
+export default Sidebar;

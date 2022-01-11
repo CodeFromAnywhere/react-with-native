@@ -1,14 +1,26 @@
 import * as React from "react";
-import { Div, Text } from 'react-with-native';
+import { Text } from "react-with-native";
+import Template from "../template";
 
 const TextScreen = () => {
   return (
-    <Div className={"flex absolute inset-0 justify-center items-center"}>
-      <Text>This is a react with native Text component</Text>
-      <Text className={"text-base"}>This is a react with native Text component</Text>
-      <Text className={"text-lg"}>This is a react with native Text component</Text>
-    </Div>
+    <Template
+      component={<Text>This is a react with native Text component</Text>}
+      title={"Text"}
+      instalation={INSTALATION}
+      imports={IMPORTS}
+      usage={USAGE}
+    />
   );
-}
+};
+
+const INSTALATION = `
+yarn add react-with-native`;
+
+const IMPORTS = `
+import { Text } from "react-with-native";`;
+
+const USAGE = `
+<Text>This is a react with native Text component</Text>`;
 
 export default TextScreen;

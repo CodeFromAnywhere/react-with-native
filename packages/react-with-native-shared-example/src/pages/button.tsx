@@ -1,36 +1,44 @@
 import * as React from "react";
-import { Div, Button } from "react-with-native";
+import { Button } from "react-with-native";
+import Template from "../template";
 
 const ButtonScreen = () => {
   const handleModal = () => {
     alert("I'm a RWN button");
   };
-  const title = "Button";
+  const title = "Click me";
   return (
-    <Div className={"flex absolute inset-0 justify-center items-center"}>
-      <Button
-        onClick={handleModal}
-        className="text-red-500"
-        native={{ title, onPress: handleModal, color: "red" }}
-      >
-        {title}
-      </Button>
-      <Button
-        onClick={handleModal}
-        className="text-green-500"
-        native={{ title, onPress: handleModal, color: "green" }}
-      >
-        {title}
-      </Button>
-      <Button 
-        onClick={handleModal} 
-        className="text-blue-500" 
-        native={{ title, onPress: handleModal }}
-      >
-        {title}
-      </Button>
-    </Div>
+    <Template
+      component={
+        <Button
+          onClick={handleModal}
+          className="text-blue-500"
+          native={{ title, onPress: handleModal, color: "blue" }}
+        >
+          {title}
+        </Button>
+      }
+      title={"Button"}
+      instalation={INSTALATION}
+      imports={IMPORTS}
+      usage={USAGE}
+    />
   );
 };
+
+const INSTALATION = `
+yarn add react-with-native`;
+
+const IMPORTS = `
+import { Button } from "react-with-native";`;
+
+const USAGE = `
+  <Button
+    onClick={handleModal}
+    className="text-blue-500"
+    native={{ title, onPress: handleModal, color: "blue" }}
+  >
+    {title}
+  </Button>`;
 
 export default ButtonScreen;

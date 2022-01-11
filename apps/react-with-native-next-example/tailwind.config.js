@@ -23,10 +23,7 @@ module.exports = {
     ...rwnModulesContent
   ],
   theme: {
-    extend: {},
-    colors: {
-      transparent: 'transparent'
-    },
+    extend: {}
   },
   plugins: [],
 };

@@ -1,12 +1,26 @@
 import * as React from "react";
-import { Div, ActivityIndicator } from "react-with-native";
+import { ActivityIndicator } from "react-with-native";
+import Template from "../template";
 
 const ActivityIndicatorScreen = () => {
   return (
-    <Div className={"flex absolute inset-0 justify-center items-center"}>
-        <ActivityIndicator />
-    </Div>
+    <Template
+      component={<ActivityIndicator />}
+      title={"Activity Indicator"}
+      instalation={INSTALATION}
+      imports={IMPORTS}
+      usage={USAGE}
+    />
   );
 };
+
+const INSTALATION = `
+yarn add react-with-native`;
+
+const IMPORTS = `
+import { ActivityIndicator } from "react-with-native";`;
+
+const USAGE = `
+<ActivityIndicator/>`;
 
 export default ActivityIndicatorScreen;

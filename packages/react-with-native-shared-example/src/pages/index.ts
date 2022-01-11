@@ -13,6 +13,7 @@ import FormScreen from "./form";
 import SelectScreen from "./select";
 import PScreen from "./p";
 import LiScreen from "./li";
+import IScreen from "./i";
 
 export {
   TextScreen,
@@ -30,4 +31,5 @@ export {
   SelectScreen,
   PScreen,
   LiScreen,
+  IScreen,
 };

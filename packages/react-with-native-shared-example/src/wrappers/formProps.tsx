@@ -1,4 +1,3 @@
-import * as React from "react";
 import DataForm, {
   setConfig,
   makeInputField,
@@ -9,7 +8,6 @@ import DataForm, {
 import TextInput, { TextInputType } from "react-with-native-text-input";
 import PasswordInput, { PasswordInputType } from "react-with-native-password-input";
 import ToggleInput, { ToggleInputType } from "react-with-native-toggle-input";
-import { Div } from "react-with-native";
 
 const text = {
   component: TextInput,
@@ -43,17 +41,13 @@ export interface AllInputs {
   toggle: ToggleInputType;
 }
 
-const Form = <TState extends unknown = any>(
+type alias = { [key: string]: any; };
+
+const Form = <TState extends alias = any>(
   props: DataFormProps<AllInputs, TState>
 ) =>
   setConfig<AllInputs, TState>(DataForm, {
     plugins,
-    renderSubmitComponent:
-    () => {
-      return (
-        <Div></Div>
-      );
-    },
   })(props);
 
 export default Form;

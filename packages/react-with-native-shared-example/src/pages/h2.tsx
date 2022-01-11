@@ -1,12 +1,26 @@
 import * as React from "react";
-import { Div, H2 } from "react-with-native";
+import { H2 } from "react-with-native";
+import Template from "../template";
 
 const H2Screen = () => {
   return (
-    <Div className={"flex absolute inset-0 justify-center items-center"}>
-      <H2>H2</H2>
-    </Div>
+    <Template
+      component={<H2>Text here!</H2>}
+      title={"H2"}
+      instalation={INSTALATION}
+      imports={IMPORTS}
+      usage={USAGE}
+    />
   );
 };
+
+const INSTALATION = `
+yarn add react-with-native`;
+
+const IMPORTS = `
+import { H2 } from "react-with-native";`;
+
+const USAGE = `
+<H2>Text here!</H2>`;
 
 export default H2Screen;

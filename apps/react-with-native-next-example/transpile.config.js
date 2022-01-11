@@ -7,6 +7,7 @@ const transpileModules = [
   "react-with-native-select",
   "react-with-native-toggle-input",
   "react-with-native-shared-example",
+  "react-with-native-code-block",
 ];
 
 module.exports = transpileModules;

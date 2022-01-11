@@ -1,13 +1,36 @@
 import * as React from "react";
-import { Div, P, Strong } from "react-with-native";
+import { P, Strong } from "react-with-native";
+import Template from "../template";
 
 const PScreen = () => {
   return (
-    <Div className={"flex absolute inset-0 justify-center items-center"}>
-      <P>The <Strong>Netherlands</Strong>, informally Holland,[15][16] is a country located in Western Europe with territories 
-        in the Caribbean. It is the largest of four constituent countries of the Kingdom of the Netherlands.</P>
-    </Div>
+    <Template
+      component={
+        <P className="w-1/2">
+          The <Strong>Netherlands</Strong>, informally Holland, is a
+          country located in Western Europe with territories in the Caribbean.
+          It is the largest of four constituent countries of the Kingdom of the
+          Netherlands.
+        </P>
+      }
+      title={"P"}
+      instalation={INSTALATION}
+      imports={IMPORTS}
+      usage={USAGE}
+    />
   );
 };
+
+const INSTALATION = `
+yarn add react-with-native`;
+
+const IMPORTS = `
+import { P } from "react-with-native";`;
+
+const USAGE = `
+<P>The <Strong>Netherlands</Strong>, informally Holland, is 
+a country located in Western Europe with territories in the Caribbean. 
+It is the largest of four constituent countries of the Kingdom of the 
+Netherlands.</P>`;
 
 export default PScreen;
