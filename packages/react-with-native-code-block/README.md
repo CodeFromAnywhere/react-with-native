@@ -6,6 +6,6 @@ CodeBlock component for React and React Native apps
 
 1. make sure you install [react-with-native](../..)
 
-2. `yarn add react-with-native-code-block cogo-toast prism-react-renderer copy-to-clipboard`
+2. `yarn add react-with-native-code-block prism-react-renderer copy-to-clipboard`
 
 # Usage

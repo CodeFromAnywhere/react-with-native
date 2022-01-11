@@ -1,17 +1,10 @@
-import React, { useState } from "react";
-import { Div, Svg } from "react-with-native";
+import React from "react";
+import { Div } from "react-with-native";
 import Category from "./Category";
-import HiOutlineMenu from "../../assets/icons/HiOutlineMenu.svg";
-import CgClose from "../../assets/icons/CgClose.svg";
 import MenuItem from "./MenuItem";
 import { useRouter } from "react-with-native-router";
 
 function Menu({ categories }: { categories: CategoryType[] }) {
-  const [isEnabled, setIsEnabled] = useState(false);
-
-  const toggleEnabled = () => {
-    setIsEnabled(!isEnabled);
-  };
   const router = useRouter();
   const search = (router.query.search || "") as string;
 
