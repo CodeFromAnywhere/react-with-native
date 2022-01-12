@@ -129,9 +129,17 @@ export type Plugin<TInput extends PluginInputType> = {
   config?: TInput["config"];
 };
 
+export type ValueOrGetter<TInput extends PluginInputType> =
+  | ((oldValue: TInput["value"]) => TInput["value"])
+  | TInput["value"];
+
+export type OnChange<TInput extends PluginInputType> = (
+  value: ValueOrGetter<TInput>
+) => void;
+
 //NB: why are the prop comments not shown in intellisense?
 export type PluginComponent<TInput extends PluginInputType> = ((props: {
-  onChange: (value: TInput["value"]) => void;
+  onChange: OnChange<TInput>;
   /**
    * value is never undefined, unless you didn't declare defaultInitialValue
    */
@@ -332,7 +340,7 @@ export const Input = <
   extra: TInputs[T]["extra"];
   next: any;
   title?: string;
-  onChange: (newValue: TInputs[T]["value"]) => void;
+  onChange: OnChange<TInputs[T]>;
   value: TInputs[T]["value"];
   errors?: Error[];
   isLast: boolean;
@@ -349,7 +357,6 @@ export const Input = <
 }) => {
   const InputComponent = plugin;
   const InputContainer = renderInputContainer || DefaultInputContainer;
-
   return (
     <Div ref={reference}>
       <InputContainer
@@ -703,7 +710,13 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
           const next = fields[index + 1]?.();
 
-          const onChange = (newValue: any) => {
+          const onChange = (state: TState) => (newValueOrGetter: any) => {
+            console.log("onChange", newValueOrGetter);
+            const newValue =
+              typeof newValueOrGetter === "function"
+                ? newValueOrGetter(state[field.field])
+                : newValueOrGetter;
+
             const newState = { [field.field]: newValue };
             const newFullState = { ...state, ...newState };
             const fieldErrors = errors.filter(errorOnField(field.field));
@@ -761,7 +774,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
                 field.titleFromState ? field.titleFromState(state) : field.title
               }
               value={state[field.field]}
-              onChange={onChange}
+              onChange={onChange(state)}
               isLast={index === fields?.length - 1}
               startSection={field.startSection}
               sectionTitle={field.sectionTitle}
