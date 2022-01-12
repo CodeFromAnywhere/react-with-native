@@ -711,7 +711,6 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
           const next = fields[index + 1]?.();
 
           const onChange = (state: TState) => (newValueOrGetter: any) => {
-            console.log("onChange", newValueOrGetter);
             const newValue =
               typeof newValueOrGetter === "function"
                 ? newValueOrGetter(state[field.field])
