@@ -1,5 +1,6 @@
 import React from "react";
 import { Div, Pressable } from "react-with-native";
+import Head from "./Head";
 import Menu, { CategoryType } from "./Menu";
 import Search from "./Search";
 
@@ -25,17 +26,15 @@ const categories: CategoryType[] = [
   },
   {
     name: "components",
-    pages: [
-      { path: "form", label: "Form" },
-    ],
+    pages: [{ path: "form", label: "Form" }],
   },
 ];
 
 function Sidebar() {
   return (
-    <Div className="flex-row border-r border-gray-200 w-60 justify-items-center bg-[#fefefe]">
+    <Div className="flex-row border-r border-gray-200 w-64 max-h-full justify-items-center bg-[#fefefe]">
       <Search />
-      <Menu categories={categories}/>
+      <Menu categories={categories} />
     </Div>
   );
 }
