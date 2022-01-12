@@ -647,7 +647,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   }, [loading, available, submitButtonText, submitButtonColor, firstErrorRef]);
 
   const Title = renderTitle || DefaultTitle;
-  console.log(submitButtonColor);
+  //console.log(submitButtonColor); //
 
   const Submit = () =>
     noSubmit ? null : renderSubmitComponent ? (
