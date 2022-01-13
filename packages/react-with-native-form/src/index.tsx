@@ -90,6 +90,7 @@ export type SubmitProps = {
   available: boolean;
   submitButtonText?: string;
   submitButtonColor?: string;
+  state?: any;
 };
 
 export const inputClassWithoutWidth = `text-sm px-3 py-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none`;
@@ -531,7 +532,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
   useEffect(() => {
     if (!initialValuesState || !deepEqual(initialState, initialValuesState)) {
-      console.log("initialValues have changed");
+      // console.log("initialValues have changed");
       setState(initialState);
       setInitialValuesState(initialState);
     }
@@ -573,7 +574,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         100;
 
       if (typeof window !== "undefined") {
-        console.log("setErrorsReject: scrolling to first error field");
+        // console.log("setErrorsReject: scrolling to first error field");
 
         window.scrollTo({
           top,
@@ -585,7 +586,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
   const firstErrorRef = notReadyFields[0]?.reference?.current;
 
-  function onClickSubmit() {
+  function onClickSubmit(state: TState) {
     const frontendErrorArray = fields.reduce((all, field) => {
       const shouldNotHide = !field().shouldHide?.(state);
       const errorMessage = field().hasError?.(state[field().field], state);
@@ -628,7 +629,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         100;
 
       if (typeof window !== "undefined") {
-        console.log("onClickSubmit: scrolling to first error field");
+        // console.log("onClickSubmit: scrolling to first error field");
 
         window.scrollTo({
           top,
@@ -641,11 +642,13 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   const available = !loading && notReadyFields.length === 0;
 
   const submitProps: SubmitProps = {
-    onSubmit: onClickSubmit,
     loading,
     available,
     submitButtonText,
     submitButtonColor,
+    //should be overwritten on state change
+    onSubmit: () => onClickSubmit(state),
+    state,
   };
 
   useEffect(() => {
@@ -666,7 +669,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
             ? `${submitButtonColor ? submitButtonColor : "bg-green-500"}`
             : "bg-gray-300"
         }  inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
-        onClick={onClickSubmit}
+        onClick={() => onClickSubmit(state)}
       >
         {loading ? (
           <Div className="mr-2">
@@ -683,7 +686,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     <Form
       onSubmit={(e) => {
         e.preventDefault();
-        onClickSubmit();
+        onClickSubmit(state);
       }}
     >
       <Div className="w-full">
@@ -746,7 +749,12 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
             }
 
             setState(newFullState);
-            withSubmitProps?.(submitProps);
+            //NB: make sure to add the new state to the submitprops
+            withSubmitProps?.({
+              ...submitProps,
+              state: newFullState,
+              onSubmit: () => onClickSubmit(newFullState),
+            });
           };
 
           const uniqueFieldId = `${id || ""}.${field.field}`;
