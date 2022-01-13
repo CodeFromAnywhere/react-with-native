@@ -6,16 +6,19 @@ function Footer() {
   return (
     <Div
       className={
-        "flex flex-1 h-28 w-full p-4 justify-center bg-gradient-to-tl from-[#203c12] to-[#1e3a0f]"
+        "flex flex-1 w-full p-4 justify-center absolute bottom-0 right-0"
       }
     >
       <Svg
         src={BrandIcon}
         width={8}
         height={8}
-        className="self-center w-8 h-8 p-2 text-white"
+        className="self-center w-8 h-8 p-2 text-green-300"
       />
-      <Text className="flex self-center text-white"> react-with-native </Text>
+      <Text className="flex self-center text-gray-400">
+        {" "}
+        react-with-native{" "}
+      </Text>
     </Div>
   );
 }

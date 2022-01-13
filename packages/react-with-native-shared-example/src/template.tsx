@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Div, Text } from "react-with-native";
-import CodeBlock from "react-with-native-code-block";
+import { Div, Text, CodeBlock } from "react-with-native";
 
 const Template = ({
   component,

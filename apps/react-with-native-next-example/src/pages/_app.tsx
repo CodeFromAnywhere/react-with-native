@@ -7,18 +7,16 @@ import Sidebar from "../components/Sidebar";
 import Page from "../components/Page";
 import Footer from "../components/Footer";
 
-
 function App({ Component, pageProps }: AppProps) {
   return (
     <Div className="flex-1 w-screen h-screen">
       <Head />
       <Div className="relative flex w-full">
-        <Sidebar />        
+        <Sidebar />
         <Div className="flex-1 w-full">
           <Page Component={Component} pageProps={pageProps} />
         </Div>
       </Div>
-      <Footer/>
     </Div>
   );
 }
