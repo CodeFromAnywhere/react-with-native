@@ -19,7 +19,7 @@ const contextKey = (key: string) => `${key}Context`;
 
 export type UseStoreType<TStore> = <K extends Keys<TStore>>(
   key: K
-) => [TStore[K], (value: TStore[K]) => Promise<void>];
+) => [TStore[K], (value: TStore[K]) => Promise<void>, { hydrated: boolean }];
 
 const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
   DynamicContext,
@@ -32,6 +32,7 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
   config: StoreConfig<TStore>;
   storeKey: K;
 }) => {
+  const [hydrated, setHydrated] = useState(false);
   const [store, setStore] = useState<TStore[K]>(
     config?.initialValues[storeKey]
   ); //null or some object or string or whatever
@@ -45,6 +46,7 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
         console.log(`Hydrated store for ${fullKey}:`, value);
       }
       setStore(value);
+      setHydrated(true);
     });
   }, []);
 
@@ -71,7 +73,7 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
       await setItem(fullKey, value);
     };
 
-    return [value, dispatch];
+    return [value, dispatch, { hydrated }];
   };
 
   return (
