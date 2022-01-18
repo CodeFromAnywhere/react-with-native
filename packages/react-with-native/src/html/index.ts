@@ -2,7 +2,7 @@ import Div from "./Div";
 import H2 from "./H2";
 import Strong from "./Strong";
 import Image from "./Image";
-import Button from "./Button";
+import Button from "./Button/Button";
 import Svg from "./Svg";
 import Input from "./Input";
 import Toggle from "./Toggle";
@@ -17,6 +17,9 @@ import A from "./A";
 import Form from "./Form";
 import TextArea from "./TextArea";
 import Aside from "./Aside";
+import Nav from "./nav/Nav";
+
+// types
 import { DivType } from "./Div.type";
 import { H2Type } from "./H2.type";
 import { StrongType } from "./Strong.type";
@@ -36,6 +39,8 @@ import { FormType } from "./Form.type";
 import { AType } from "./A.type";
 import { TextAreaType } from "./TextArea.type";
 import { AsideType } from "./Aside.type";
+import { NavType } from "./nav/Nav.type";
+
 export {
   Div,
   A,
@@ -56,6 +61,7 @@ export {
   Form,
   TextArea,
   Aside,
+  Nav,
 };
 
 export type {
@@ -78,4 +84,5 @@ export type {
   FormType,
   TextAreaType,
   AsideType,
+  NavType,
 };
