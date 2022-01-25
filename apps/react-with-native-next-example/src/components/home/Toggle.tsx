@@ -1,6 +1,15 @@
+import React from "react";
 // import Image from "next/image";
 // import { useDispatch } from "react-redux";
 // import { setDarkMode, useDarkMode, useIsDark } from "../context/store";
+
+const DarkModeToggle = ({ className }: { className?: string }) => {
+  return (
+    <div className={`flex items-center justify-center ${className || ""}`}>
+      <label className="flex items-center cursor-pointer"></label>
+    </div>
+  );
+};
 
 // const DarkModeToggle = ({ className }: { className?: string }) => {
 //   const isDark = useIsDark();
@@ -12,8 +21,7 @@
 //     };
 //     setDarkMode(dispatch, newMode);
 //   };
-
-//   return (
+// return (
 //     <div className={`flex items-center justify-center ${className || ""}`}>
 //       <label className="flex items-center cursor-pointer">
 //         <div className="relative">
@@ -43,4 +51,4 @@
 //   );
 // };
 
-// export default DarkModeToggle;
+export default DarkModeToggle;
