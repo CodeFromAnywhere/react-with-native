@@ -48,7 +48,7 @@ function HomeWrapper() {
             <Text className="text-2xl text-white bold">Open source</Text>
             <P className="p-4 text-white">
               React With Native is an open-source framework that solves
-              react-native-web's severe limitations.
+              react-native-web severe limitations.
             </P>
 
             <P className="p-4 text-white">
