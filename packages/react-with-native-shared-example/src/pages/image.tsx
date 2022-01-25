@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Image } from "react-with-native";
-import Template from "../template";
+import Template, { TemplateType } from "../components/Template";
 
 const ImageScreen = () => {
   return (
@@ -16,29 +16,30 @@ const ImageScreen = () => {
           }}
         />
       }
-      title={"Image"}
-      instalation={INSTALATION}
-      imports={IMPORTS}
-      usage={USAGE}
+      info={info}
     />
   );
 };
 
-const INSTALATION = `
-yarn add react-with-native`;
-
-const IMPORTS = `
-import { Image } from "react-with-native";`;
-
-const USAGE = `
-<Image
-  src={require("../../assets/kawaii.png")}
-  width={120}
-  height={120}
-  native={{
-    source: require("../../assets/kawaii.png"),
-    resizeMode: "repeat",
-  }}
-/>`;
+const info: TemplateType = {
+  title: "Image",
+  instalation: "yarn add react-with-native",
+  imports: 'import { Image } from "react-with-native";',
+  usage: [
+    {
+      title: "Usage",
+      code: `
+      <Image
+        src={require("../../assets/kawaii.png")}
+        width={120}
+        height={120}
+        native={{
+          source: require("../../assets/kawaii.png"),
+          resizeMode: "repeat",
+        }}
+      />`,
+    },
+  ],
+};
 
 export default ImageScreen;

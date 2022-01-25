@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Text, Pressable } from "react-with-native";
-import Template from "../template";
+import Template, { TemplateType } from "../components/Template";
 
 const PressableScreen = () => {
   const handleModal = () => {
@@ -16,26 +16,27 @@ const PressableScreen = () => {
           <Text>Press me :)</Text>
         </Pressable>
       }
-      title={"Pressable"}
-      instalation={INSTALATION}
-      imports={IMPORTS}
-      usage={USAGE}
+      info={info}
     />
   );
 };
 
-const INSTALATION = `
-yarn add react-with-native`;
-
-const IMPORTS = `
-import { Pressable } from "react-with-native";`;
-
-const USAGE = `
-<Pressable
-  className="p-4 bg-yellow-400 rounded-full"
-  onClick={handleModal}
->
-  <Text>Press me :)</Text>
-</Pressable>`;
+const info: TemplateType = {
+  title: "Pressable",
+  instalation: "yarn add react-with-native",
+  imports: 'import { Pressable } from "react-with-native";',
+  usage: [
+    {
+      title: "Usage",
+      code: `
+      <Pressable
+        className="p-4 bg-yellow-400 rounded-full"
+        onClick={handleModal}
+      >
+        <Text>Press me :)</Text>
+      </Pressable>`,
+    },
+  ],
+};
 
 export default PressableScreen;

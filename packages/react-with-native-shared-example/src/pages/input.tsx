@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Input } from "react-with-native";
-import Template from "../template";
+import Template, { TemplateType } from "../components/Template";
 
 const InputScreen = () => {
   return (
@@ -12,25 +12,26 @@ const InputScreen = () => {
           native={{ placeholder: "Type here..." }}
         />
       }
-      title={"Input"}
-      instalation={INSTALATION}
-      imports={IMPORTS}
-      usage={USAGE}
+      info={info}
     />
   );
 };
 
-const INSTALATION = `
-yarn add react-with-native`;
-
-const IMPORTS = `
-import { Input } from "react-with-native";`;
-
-const USAGE = `
-<Input
-  placeholder="Type here..."
-  className="text-2xl"
-  native={{placeholder:"Type here..."}}
-/>`;
+const info: TemplateType = {
+  title: "Input",
+  instalation: "yarn add react-with-native",
+  imports: 'import { Input } from "react-with-native";',
+  usage: [
+    {
+      title: "Usage",
+      code: `
+      <Input
+        placeholder="Type here..."
+        className="text-2xl"
+        native={{placeholder:"Type here..."}}
+      />`,
+    },
+  ],
+};
 
 export default InputScreen;
