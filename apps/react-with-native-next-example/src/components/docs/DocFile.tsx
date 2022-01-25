@@ -14,9 +14,6 @@ export default function DocFile({ fileData }: { fileData: FileData }) {
             <title>{fileData.title}</title>
           </Head>
           <Text className="p-4 text-2xl text-gray-600">{fileData.title}</Text>
-          <br />
-          {fileData.id}
-          <br />
           {fileData.date}
           <br />
           <div
