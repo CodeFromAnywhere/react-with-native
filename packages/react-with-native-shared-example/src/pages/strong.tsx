@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Strong, Text } from "react-with-native";
-import Template from "../template";
+import Template, { TemplateType } from "../components/Template";
 
 const StrongScreen = () => {
   return (
@@ -10,21 +10,21 @@ const StrongScreen = () => {
           React <Strong>with</Strong> Native
         </Text>
       }
-      title={"Strong"}
-      instalation={INSTALATION}
-      imports={IMPORTS}
-      usage={USAGE}
+      info={info}
     />
   );
 };
 
-const INSTALATION = `
-yarn add react-with-native`;
-
-const IMPORTS = `
-import { Strong } from "react-with-native";`;
-
-const USAGE = `
-<Text>React <Strong>with</Strong> Native</Text>`;
+const info: TemplateType = {
+  title: "Strong",
+  instalation: "yarn add react-with-native",
+  imports: 'import { Strong } from "react-with-native";',
+  usage: [
+    {
+      title: "Usage",
+      code: "<Text>React <Strong>with</Strong> Native</Text>",
+    },
+  ],
+};
 
 export default StrongScreen;

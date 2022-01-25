@@ -1,26 +1,21 @@
 import * as React from "react";
 import { ActivityIndicator } from "react-with-native";
-import Template from "../template";
+import Template, { TemplateType } from "../components/Template";
 
 const ActivityIndicatorScreen = () => {
-  return (
-    <Template
-      component={<ActivityIndicator />}
-      title={"Activity Indicator"}
-      instalation={INSTALATION}
-      imports={IMPORTS}
-      usage={USAGE}
-    />
-  );
+  return <Template component={<ActivityIndicator />} info={info} />;
 };
 
-const INSTALATION = `
-yarn add react-with-native`;
-
-const IMPORTS = `
-import { ActivityIndicator } from "react-with-native";`;
-
-const USAGE = `
-<ActivityIndicator/>`;
+const info: TemplateType = {
+  title: "Activity Indicator",
+  instalation: "yarn add react-with-native",
+  imports: 'import { ActivityIndicator } from "react-with-native',
+  usage: [
+    {
+      title: "Usage",
+      code: "<ActivityIndicator/>",
+    },
+  ],
+};
 
 export default ActivityIndicatorScreen;

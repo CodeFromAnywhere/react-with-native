@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button } from "react-with-native";
-import Template from "../template";
+import Template, { TemplateType } from "../components/Template";
 
 const ButtonScreen = () => {
   const handleModal = () => {
@@ -18,27 +18,28 @@ const ButtonScreen = () => {
           {title}
         </Button>
       }
-      title={"Button"}
-      instalation={INSTALATION}
-      imports={IMPORTS}
-      usage={USAGE}
+      info={info}
     />
   );
 };
 
-const INSTALATION = `
-yarn add react-with-native`;
-
-const IMPORTS = `
-import { Button } from "react-with-native";`;
-
-const USAGE = `
-  <Button
-    onClick={handleModal}
-    className="text-blue-500"
-    native={{ title, onPress: handleModal, color: "blue" }}
-  >
-    {title}
-  </Button>`;
+const info: TemplateType = {
+  title: "Button",
+  instalation: "yarn add react-with-native",
+  imports: 'import { Button } from "react-with-native";',
+  usage: [
+    {
+      title: "Usage",
+      code: `
+      <Button
+        onClick={handleModal}
+        className="text-blue-500"
+        native={{ title, onPress: handleModal, color: "blue" }}
+      >
+        {title}
+      </Button>`,
+    },
+  ],
+};
 
 export default ButtonScreen;
