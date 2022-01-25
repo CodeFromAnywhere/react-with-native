@@ -1,9 +1,9 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import type { ViewProps } from "react-native";
 
-export type DivType = DetailedHTMLProps<
-  HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
+export type NavType = DetailedHTMLProps<
+  HTMLAttributes<HTMLElement>,
+  HTMLElement
 > & {
   native?: ViewProps;
 };
