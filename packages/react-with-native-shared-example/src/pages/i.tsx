@@ -1,6 +1,6 @@
 import * as React from "react";
 import { I, Text } from "react-with-native";
-import Template from "../template";
+import Template, { TemplateType } from "../components/Template";
 
 const IScreen = () => {
   return (
@@ -10,21 +10,30 @@ const IScreen = () => {
           React <I>with</I> Native
         </Text>
       }
-      title={"I"}
-      instalation={INSTALATION}
-      imports={IMPORTS}
-      usage={USAGE}
+      info={info}
     />
   );
 };
 
 const INSTALATION = `
-yarn add react-with-native`;
+`;
 
 const IMPORTS = `
-import { I } from "react-with-native";`;
+`;
 
 const USAGE = `
 <Text>React <I>with</I> Native</Text>`;
+
+const info: TemplateType = {
+  title: "I",
+  instalation: "yarn add react-with-native",
+  imports: 'import { I } from "react-with-native";',
+  usage: [
+    {
+      title: "Usage",
+      code: "<Text>React <I>with</I> Native</Text>",
+    },
+  ],
+};
 
 export default IScreen;

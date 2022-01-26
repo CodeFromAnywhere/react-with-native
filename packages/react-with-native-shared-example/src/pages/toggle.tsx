@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { Div, Label, Toggle } from "react-with-native";
-import Template from "../template";
+import Template, { TemplateType } from "../components/Template";
 
 const ToggleScreen = () => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -20,31 +20,32 @@ const ToggleScreen = () => {
           </Label>
         </Div>
       }
-      title={"Toggle"}
-      instalation={INSTALATION}
-      imports={IMPORTS}
-      usage={USAGE}
+      info={info}
     />
   );
 };
 
-const INSTALATION = `
-yarn add react-with-native`;
-
-const IMPORTS = `
-import { Toggle } from "react-with-native";`;
-
-const USAGE = `
-<Toggle
-  id="toggle"
-  checked={isEnabled}
-  onChange={ toggleState }
-/>
-<Label
-  className="text-3xl text-white p-14"
-  htmlFor="toggle"
->
-  {isEnabled ? "on":"off"}
-</Label>`;
+const info: TemplateType = {
+  title: "Toggle",
+  instalation: "yarn add react-with-native",
+  imports: 'import { Toggle } from "react-with-native";',
+  usage: [
+    {
+      title: "Usage",
+      code: `
+      <Toggle
+        id="toggle"
+        checked={isEnabled}
+        onChange={ toggleState }
+      />
+      <Label
+        className="text-3xl text-white p-14"
+        htmlFor="toggle"
+      >
+        {isEnabled ? "on":"off"}
+      </Label>`,
+    },
+  ],
+};
 
 export default ToggleScreen;

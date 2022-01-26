@@ -1,26 +1,26 @@
 import * as React from "react";
 import { Text } from "react-with-native";
-import Template from "../template";
+import Template, { TemplateType } from "../components/Template";
 
 const TextScreen = () => {
   return (
     <Template
       component={<Text>This is a react with native Text component</Text>}
-      title={"Text"}
-      instalation={INSTALATION}
-      imports={IMPORTS}
-      usage={USAGE}
+      info={info}
     />
   );
 };
 
-const INSTALATION = `
-yarn add react-with-native`;
-
-const IMPORTS = `
-import { Text } from "react-with-native";`;
-
-const USAGE = `
-<Text>This is a react with native Text component</Text>`;
+const info: TemplateType = {
+  title: "Text",
+  instalation: "yarn add react-with-native",
+  imports: 'import { Text } from "react-with-native";',
+  usage: [
+    {
+      title: "Usage",
+      code: "<Text>This is a react with native Text component</Text>",
+    },
+  ],
+};
 
 export default TextScreen;

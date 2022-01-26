@@ -14,6 +14,7 @@ import SelectScreen from "./select";
 import PScreen from "./p";
 import LiScreen from "./li";
 import IScreen from "./i";
+import AScreen from "./a";
 
 export {
   TextScreen,
@@ -32,4 +33,5 @@ export {
   PScreen,
   LiScreen,
   IScreen,
+  AScreen,
 };
