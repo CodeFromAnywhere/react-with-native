@@ -17,12 +17,12 @@ const ActivityIndicator = (props: UIActivityIndicatorType) => {
     props.color === "white"
       ? "border-white dark:border-gray-900"
       : "border-gray-900 dark:border-white";
-  return (
-    <div
-      style={sizeStyle}
-      className={`${sizeClass} border-b-2 ${borderClass} rounded-full animate-spin ${props.className}`}
-    ></div>
-  );
+
+  const className = `${sizeClass} border-b-2 ${borderClass} rounded-full animate-spin ${
+    props.className || ""
+  }`;
+
+  return <div style={sizeStyle} className={className}></div>;
 };
 
 export default ActivityIndicator;

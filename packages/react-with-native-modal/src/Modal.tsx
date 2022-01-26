@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { Div, Button } from "react-with-native";
 
 type HandleModal = (newModal: ModalContent, title?: string) => void;
-type ModalContent = Element | string | null;
+type ModalContent = JSX.Element | string | null;
 
 type ModalType = {
   modalContent: ModalContent;
