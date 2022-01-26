@@ -21,7 +21,7 @@ import { OlType } from "./ol/Ol.type";
 import { IType } from "./i/I.type";
 import { FormType } from "./form/Form.type";
 import { TextAreaType } from "./textarea/TextArea.type";
-import { AsideType } from "./Aside/Aside.type";
+import { AsideType } from "./aside/Aside.type";
 import Div from "./div/Div";
 import A from "./a/A";
 import H2 from "./h2/H2";
