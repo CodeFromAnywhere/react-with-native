@@ -1,8 +1,8 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { DetailedHTMLProps, LabelHTMLAttributes } from "react";
 import type { TextProps } from "react-native";
 
 export type LabelType = DetailedHTMLProps<
-  HTMLAttributes<HTMLLabelElement>,
+  LabelHTMLAttributes<HTMLLabelElement>,
   HTMLLabelElement
 > & {
   htmlFor?: string;

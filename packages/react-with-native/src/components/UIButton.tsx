@@ -1,16 +1,29 @@
 import * as React from "react";
-import { Button } from "..";
+import { ButtonProps } from "react-native";
+import { ActivityIndicator } from ".";
+import { Button, Div } from "..";
 
 const UIButton = ({
   onClick,
+  onPress,
   title,
   style,
   color,
+  loading,
   extraClassName,
   disabled,
 }: {
-  onClick: () => void;
+  /**
+   * not needed inside a form
+   */
+  onClick?: () => void;
+  /**
+   * always needed, unless you give onClick
+   */
+  onPress?: () => void;
+
   title: string;
+  loading?: boolean;
   style?: object;
   extraClassName?: string;
   color?: "red" | "green" | "gray";
@@ -34,13 +47,25 @@ const UIButton = ({
     bgColorHover = `hover:bg-gray-500`;
   }
 
+  const native: ButtonProps = {
+    title,
+    color,
+    disabled,
+    onPress: (onClick || onPress)!,
+  };
+
   return (
     <Button
       className={`flex px-6 py-2 justify-center text-white transition duration-200 rounded-lg ${bgColor} ${bgColorHover} ${extraClassName}`}
       style={style}
       onClick={onClick}
-      native={{ title, onPress: onClick, color, disabled }}
+      native={native}
     >
+      {loading ? (
+        <Div className="mr-2">
+          <ActivityIndicator />
+        </Div>
+      ) : null}
       {title}
     </Button>
   );

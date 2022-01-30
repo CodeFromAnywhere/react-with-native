@@ -684,6 +684,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   );
   return (
     <Form
+      className="w-full"
       onSubmit={(e) => {
         e.preventDefault();
         onClickSubmit(state);

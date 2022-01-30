@@ -10,7 +10,7 @@ const TextAreaInput: PluginComponent<TextAreaInputType> = ({
   errors,
 }) => {
   const hasError = errors && errors.length > 0;
-
+  //
   return (
     <TextArea
       rows={extra?.rows}
