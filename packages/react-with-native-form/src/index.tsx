@@ -547,8 +547,10 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     (x) => !x.shouldHide?.(state) && x.hasError?.(state[x.field], state)
   );
 
-  const setErrorsReject = (stringOrErrorArray: RejectValue) => {
+  const setErrorsReject: RejectType = (stringOrErrorArray) => {
     if (stringOrErrorArray) {
+      //if the rejection provides a string, just return an array with 1 element: that string, on the global property path
+      //however, if it's an error array, return that. But make sure that if the propertyPath doesn't exist, it's still rendered globally.
       const newErrors: Error[] =
         typeof stringOrErrorArray === "string"
           ? [
@@ -557,7 +559,16 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
                 message: stringOrErrorArray,
               },
             ]
-          : stringOrErrorArray;
+          : stringOrErrorArray.map(({ propertyPath, message }) => ({
+              message,
+              propertyPath: fields
+                .map((f) => f().field)
+                .find(
+                  (x) => propertyPath === x || propertyPath.startsWith(`${x}.`)
+                )
+                ? propertyPath
+                : GLOBAL_PROPERTY_PATH,
+            }));
 
       //this only happens when there are no frontend errors, so it's safe to replace errors
       setErrors(newErrors);
