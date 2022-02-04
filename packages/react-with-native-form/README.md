@@ -237,35 +237,9 @@ const fields =
  <Form
     title="Become a host"
     fields={fields}
-    onSubmit={(fields) => {
-        if (user?.role === "guest") {
-        post("updateUser", { loginToken, role: "host" })
-            .then((resp) => {
-            //login and go to property manage page
-            setResponse(resp);
-            toast(resp.response);
-            reload();
-            window.scrollTo({ top: 0, behavior: "smooth" }); //scroll to top
-            })
-            .catch((error) => {
-            console.log("error updateUser", error);
-            });
-        } else {
-        post("signupHost", {
-            ...fields,
-            // image: (fields.image as ImageValue)?.url,
-            // base64: (fields.image as ImageValue)?.base64,
-        })
-            .then((resp) => {
-            //login and go to property manage page
-            setResponse(resp);
-            toast(resp.response);
-            window.scrollTo({ top: 0, behavior: "smooth" }); //scroll to top
-            })
-            .catch((error) => {
-            console.log("error signupHost", error);
-            });
-        }
+    onSubmit={(values,resolve,reject) => {
+
+        //do something with those values
     }}
     />
 
