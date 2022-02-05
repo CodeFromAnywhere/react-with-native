@@ -7,6 +7,8 @@ import {
   Strong,
   Form,
   P,
+  H2,
+  Button,
 } from "react-with-native";
 
 const sameFieldArray = <
@@ -416,7 +418,7 @@ const DefaultTitle = ({
           back
         </Div>
       )}
-      <h3 className="text-2xl font-bold">{title}</h3>
+      <H2 className="text-2xl font-bold">{title}</H2>
     </Div>
   ) : null;
 };
@@ -680,7 +682,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     noSubmit ? null : renderSubmitComponent ? (
       renderSubmitComponent(submitProps)
     ) : (
-      <button
+      <Button
         disabled={loading}
         className={`${
           available
@@ -695,7 +697,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
           </Div>
         ) : null}
         {submitButtonText || "Save"}
-      </button>
+      </Button>
     );
   const globalError = errors?.find(
     (x) => x.propertyPath === GLOBAL_PROPERTY_PATH
