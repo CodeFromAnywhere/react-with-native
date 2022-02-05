@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 import { useTailwind } from "tailwind-rn";
+import { trimClassName } from "../../util/trimClassName";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { NavType } from "./Nav.type";
 
