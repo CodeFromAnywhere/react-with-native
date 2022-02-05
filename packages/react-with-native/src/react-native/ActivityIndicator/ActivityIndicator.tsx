@@ -1,7 +1,7 @@
 import * as React from "react";
-import { UIActivityIndicatorType } from "./ActivityIndicator.type";
+import { ActivityIndicatorType } from "./ActivityIndicator.type";
 
-const ActivityIndicator = (props: UIActivityIndicatorType) => {
+const ActivityIndicator = (props: ActivityIndicatorType) => {
   const sizeClass =
     typeof props.size === "number"
       ? ""
@@ -22,7 +22,7 @@ const ActivityIndicator = (props: UIActivityIndicatorType) => {
     props.className || ""
   }`;
 
-  return <div style={sizeStyle} className={className}></div>;
+  return <div style={sizeStyle} className={className} />;
 };
 
 export default ActivityIndicator;

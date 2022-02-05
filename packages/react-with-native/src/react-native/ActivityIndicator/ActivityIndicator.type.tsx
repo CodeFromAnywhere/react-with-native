@@ -1,6 +1,6 @@
 import { ViewProps } from "react-native";
 
-export type UIActivityIndicatorType = {
+export type ActivityIndicatorType = {
   /**
    * Whether to show the indicator (true, the default) or hide it (false).
    */
