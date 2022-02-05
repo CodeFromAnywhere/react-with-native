@@ -7,7 +7,7 @@ export const trimClassName = (className: string) => {
     )
     .join(" ");
 
-  console.log("trimClassName", { className, classNames, trimmedClassName });
+  // console.log("trimClassName", { className, classNames, trimmedClassName });
 
   return trimmedClassName;
 };
