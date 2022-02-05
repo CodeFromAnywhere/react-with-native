@@ -1,9 +1,10 @@
 import * as React from "react";
 import { TextInput } from "react-native";
-import tailwind from "tailwind-rn";
+import { useTailwind } from "tailwind-rn";
 import { InputType } from "./Input.type";
 
 const Input = ({ native, children, ...props }: InputType) => {
+  const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = props.className ? tailwind(props.className) : {};
   return (
