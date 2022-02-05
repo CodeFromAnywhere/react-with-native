@@ -1,12 +1,13 @@
 import * as React from "react";
 import { Text } from "react-native";
 import { useTailwind } from "tailwind-rn";
+import { trimClassName } from "../../util/trimClassName";
 import { PType } from "./P.type";
 
-const P = ({ native, children, ...props }: PType) => {
+const P = ({ native, children, className }: PType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = props.className ? tailwind(props.className) : {};
+  const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
   return (
     //why would be need a view around this?
     // <View style={{ flexDirection: "row" }}>

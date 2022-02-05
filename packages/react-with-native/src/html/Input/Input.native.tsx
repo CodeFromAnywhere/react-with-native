@@ -1,12 +1,13 @@
 import * as React from "react";
 import { TextInput } from "react-native";
 import { useTailwind } from "tailwind-rn";
+import { trimClassName } from "../../util/trimClassName";
 import { InputType } from "./Input.type";
 
-const Input = ({ native, children, ...props }: InputType) => {
+const Input = ({ native, children, className }: InputType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = props.className ? tailwind(props.className) : {};
+  const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
   return (
     <TextInput
       style={[{ fontWeight: "bold" }, tailwindStyle, style]}

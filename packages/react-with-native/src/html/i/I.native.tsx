@@ -1,12 +1,13 @@
 import * as React from "react";
 import { Text } from "react-native";
 import { useTailwind } from "tailwind-rn";
+import { trimClassName } from "../../util/trimClassName";
 import { IType } from "./I.type";
 
-const I = ({ native, children, ...props }: IType) => {
+const I = ({ native, children, className }: IType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = props.className ? tailwind(props.className) : {};
+  const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
   return (
     <Text
       style={[{ fontStyle: "italic" }, tailwindStyle, style]}

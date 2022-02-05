@@ -1,7 +1,13 @@
 export const trimClassName = (className: string) => {
   const classNames = className.split(" ");
-  console.log("gonna trim ", className, classNames);
-  return classNames
-    .filter((c) => !c.startsWith("focus:") && !c.startsWith("shadow-"))
+
+  const trimmedClassName = classNames
+    .filter(
+      (c) => !(c === "" || c.startsWith("focus:") || c.startsWith("shadow-"))
+    )
     .join(" ");
+
+  console.log("trimClassName", { className, classNames, trimmedClassName });
+
+  return trimmedClassName;
 };
