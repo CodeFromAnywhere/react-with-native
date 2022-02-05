@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Linking, Pressable } from "react-native";
 import { useTailwind } from "tailwind-rn";
+import { wrapInTextIfNeeded } from "../../util/util";
 import { AType } from "./A.type";
 
 const A = ({ native, children, href, ...props }: AType) => {
@@ -14,7 +15,7 @@ const A = ({ native, children, href, ...props }: AType) => {
       onPress={() => href && Linking.openURL(href)}
       {...nativeWithoutStyle}
     >
-      {children}
+      {wrapInTextIfNeeded(children)}
     </Pressable>
   );
 };

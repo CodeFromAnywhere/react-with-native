@@ -1,6 +1,13 @@
 import * as React from "react";
 import { useState, RefObject, createRef, useEffect } from "react";
-import { ActivityIndicator, Div, Label, Strong, Form } from "react-with-native";
+import {
+  ActivityIndicator,
+  Div,
+  Label,
+  Strong,
+  Form,
+  P,
+} from "react-with-native";
 
 const sameFieldArray = <
   T extends Field<TInputs, Keys<TInputs>>[],
@@ -274,11 +281,11 @@ export const DefaultInputContainer = ({
         }}
       >
         {sectionTitle ? (
-          <p>
+          <P>
             <Strong>{sectionTitle}</Strong>
-          </p>
+          </P>
         ) : (
-          <div style={{ height: 40 }} />
+          <Div style={{ height: 40 }} />
         )}
       </Div>
     ) : null}
@@ -290,13 +297,13 @@ export const DefaultInputContainer = ({
       ) : null}
       {description && (
         <Div className={`flex mx-3 mb-2 items-start `}>
-          <p className={`text-gray-500 italic`}>{description}</p>
+          <P className={`text-gray-500 italic`}>{description}</P>
         </Div>
       )}
       {error ? (
-        <p className={errorClassName || `mr-3 mb-2 text-red-500`}>
+        <P className={errorClassName || `mr-3 mb-2 text-red-500`}>
           {error || "Invalid value"}
-        </p>
+        </P>
       ) : null}
 
       {children}
@@ -704,11 +711,11 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
       <Div className="w-full">
         <Title title={title} backButton={backButton} />
 
-        {success ? <p className={successClassName}>{success}</p> : null}
+        {success ? <P className={successClassName}>{success}</P> : null}
         {globalError ? (
-          <p className={errorClassName || "text-red-600"}>
+          <P className={errorClassName || "text-red-600"}>
             {globalError.message}
-          </p>
+          </P>
         ) : null}
 
         {fieldsWithReferences.map((field, index) => {
@@ -717,9 +724,9 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
           if (!plugin) {
             return (
-              <p>
+              <P>
                 Plugin not found ({field.field}, {field.type})
-              </p>
+              </P>
             );
           }
 

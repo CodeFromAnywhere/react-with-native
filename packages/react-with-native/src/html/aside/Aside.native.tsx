@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 import { useTailwind } from "tailwind-rn";
+import { wrapInTextIfNeeded } from "../../util/util";
 import { AsideType } from "./Aside.type";
 
 const Aside = ({ native, ...props }: AsideType) => {
@@ -9,7 +10,7 @@ const Aside = ({ native, ...props }: AsideType) => {
   const tailwindStyle = props.className ? tailwind(props.className) : {};
   return (
     <View style={[tailwindStyle, style]} {...nativeWithoutStyle}>
-      {props.children}
+      {wrapInTextIfNeeded(props.children)}
     </View>
   );
 };

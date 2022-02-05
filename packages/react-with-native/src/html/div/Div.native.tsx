@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 import { useTailwind } from "tailwind-rn";
+import { wrapInTextIfNeeded } from "../../util/util";
 import { DivType } from "./Div.type";
 
 const Div = ({ native, ...props }: DivType) => {
@@ -9,7 +10,7 @@ const Div = ({ native, ...props }: DivType) => {
   const tailwindStyle = props.className ? tailwind(props.className) : {};
   return (
     <View style={[tailwindStyle, style]} {...nativeWithoutStyle}>
-      {props.children}
+      {wrapInTextIfNeeded(props.children)}
     </View>
   );
 };
