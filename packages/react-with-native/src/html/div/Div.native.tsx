@@ -4,13 +4,13 @@ import { useTailwind } from "tailwind-rn";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { DivType } from "./Div.type";
 
-const Div = ({ native, ...props }: DivType) => {
+const Div = ({ native, textClassName, ...props }: DivType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = props.className ? tailwind(props.className) : {};
   return (
     <View style={[tailwindStyle, style]} {...nativeWithoutStyle}>
-      {wrapInTextIfNeeded(props.children)}
+      {wrapInTextIfNeeded(props.children, textClassName)}
     </View>
   );
 };

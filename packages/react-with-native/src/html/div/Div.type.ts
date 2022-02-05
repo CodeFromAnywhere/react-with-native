@@ -6,4 +6,5 @@ export type DivType = DetailedHTMLProps<
   HTMLDivElement
 > & {
   native?: ViewProps;
+  textClassName?: string;
 };
