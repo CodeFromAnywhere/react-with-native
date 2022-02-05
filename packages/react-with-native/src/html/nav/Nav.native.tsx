@@ -7,7 +7,7 @@ import { NavType } from "./Nav.type";
 const Nav = ({ native, textClassName, className, children }: NavType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = className ? tailwind(className) : {};
+  const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
 
   return (
     <View

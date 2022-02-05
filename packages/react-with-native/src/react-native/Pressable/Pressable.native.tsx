@@ -3,6 +3,7 @@ import { Pressable as ReactNativePressable } from "react-native";
 import { useTailwind } from "tailwind-rn";
 import { PressableType } from "./Pressable.type";
 import { wrapInTextIfNeeded } from "../../util/util";
+import { trimClassName } from "../../util/trimClassName";
 const Pressable = ({
   native,
   className,
@@ -12,7 +13,7 @@ const Pressable = ({
 }: PressableType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = className ? tailwind(className) : {};
+  const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
   return (
     <ReactNativePressable
       style={typeof style === "function" ? style : [tailwindStyle, style]}

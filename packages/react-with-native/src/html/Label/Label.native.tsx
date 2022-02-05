@@ -6,7 +6,7 @@ import { LabelType } from "./Label.type";
 const Label = ({ native, children, className }: LabelType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = className ? tailwind(className) : {};
+  const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
   return (
     <Text style={[tailwindStyle, style]} {...nativeWithoutStyle}>
       {children}

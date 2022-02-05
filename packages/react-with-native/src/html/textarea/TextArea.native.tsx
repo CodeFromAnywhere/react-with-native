@@ -3,6 +3,7 @@ import { useTailwind } from "tailwind-rn";
 import { TextInput } from "react-native";
 import { TextAreaType } from "./TextArea.type";
 import { wrapInTextIfNeeded } from "../../util/util";
+import { trimClassName } from "../../util/trimClassName";
 
 const TextArea = ({
   native,
@@ -12,7 +13,7 @@ const TextArea = ({
 }: TextAreaType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = className ? tailwind(className) : {};
+  const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
 
   return (
     <TextInput
