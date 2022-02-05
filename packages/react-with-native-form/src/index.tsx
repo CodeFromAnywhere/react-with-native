@@ -308,7 +308,7 @@ export const DefaultInputContainer = ({
         </P>
       ) : null}
 
-      {children}
+      <Div>{children}</Div>
     </Div>
   </Div>
 );
@@ -696,7 +696,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
             <ActivityIndicator />
           </Div>
         ) : null}
-        {submitButtonText || "Save"}
+        <Div>{submitButtonText || "Save"}</Div>
       </Button>
     );
   const globalError = errors?.find(
