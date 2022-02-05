@@ -77,7 +77,7 @@ export default function SelectDropDown<T>({
               {title}
             </Listbox.Label>
           )}
-          <Div className={`relative z-50 mt-1 ${className}`}>
+          <Div className={`relative z-10 mt-1 ${className}`}>
             <Listbox.Button className="relative w-full py-2 pl-3 pr-3 text-left bg-white border border-gray-300 rounded-sm shadow-sm cursor-default focus:outline-none focus:ring-1 sm:text-sm">
               {renderOption({
                 item: value,
