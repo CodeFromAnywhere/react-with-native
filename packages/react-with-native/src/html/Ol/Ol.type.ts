@@ -6,4 +6,5 @@ export type OlType = DetailedHTMLProps<
   HTMLOListElement
 > & {
   native?: ViewProps;
+  textClassName?: string;
 };

@@ -8,4 +8,3 @@ export type ButtonType = DetailedHTMLProps<
   native?: PressableProps;
   textClassName?: string;
 };
-//

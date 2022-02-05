@@ -6,4 +6,5 @@ export type SpanType = DetailedHTMLProps<
   HTMLSpanElement
 > & {
   native?: ViewProps;
+  textClassName?: string;
 };

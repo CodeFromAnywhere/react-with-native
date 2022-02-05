@@ -14,4 +14,5 @@ export type PressableType = Omit<
       | GestureResponderEvent
   ) => void;
   native?: PressableProps;
+  textClassName?: string;
 };

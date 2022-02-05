@@ -11,5 +11,6 @@ export type SelectType = DetailedHTMLProps<
 > & {
   native?: TextInputProps;
   options: SelectOptionType[];
+  //TODO: why do we need this?
   customOptionSelector?: (option: SelectOptionType) => JSX.Element;
 };

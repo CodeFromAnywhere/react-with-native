@@ -6,4 +6,5 @@ export type UlType = DetailedHTMLProps<
   HTMLUListElement
 > & {
   native?: ViewProps;
+  textClassName?: string;
 };

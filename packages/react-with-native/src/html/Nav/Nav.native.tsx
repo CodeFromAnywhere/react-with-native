@@ -1,12 +1,13 @@
 import * as React from "react";
 import { View } from "react-native";
 import { useTailwind } from "tailwind-rn";
+import { wrapInTextIfNeeded } from "../../util/util";
 import { NavType } from "./Nav.type";
 
-const Nav = ({ native, ...props }: NavType) => {
+const Nav = ({ native, textClassName, className, children }: NavType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = props.className ? tailwind(props.className) : {};
+  const tailwindStyle = className ? tailwind(className) : {};
 
   return (
     <View
@@ -21,7 +22,7 @@ const Nav = ({ native, ...props }: NavType) => {
       ]}
       {...nativeWithoutStyle}
     >
-      {props.children}
+      {wrapInTextIfNeeded(children, textClassName)}
     </View>
   );
 };

@@ -2,13 +2,13 @@ import * as React from "react";
 import { Pressable as ReactNativePressable } from "react-native";
 import { useTailwind } from "tailwind-rn";
 import { PressableType } from "./Pressable.type";
-
+import { wrapInTextIfNeeded } from "../../util/util";
 const Pressable = ({
   native,
   className,
+  textClassName,
   children,
   onClick,
-  ...props
 }: PressableType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
@@ -19,7 +19,7 @@ const Pressable = ({
       onPress={onClick}
       {...nativeWithoutStyle}
     >
-      {children}
+      {wrapInTextIfNeeded(children, textClassName)}
     </ReactNativePressable>
   );
 };

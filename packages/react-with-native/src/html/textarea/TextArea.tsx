@@ -1,8 +1,16 @@
 import React from "react";
+import { joinClassNames } from "../../util/util";
 import { TextAreaType } from "./TextArea.type";
 
-const TextArea = ({ native, ...props }: TextAreaType) => {
-  return <textarea {...props} />;
+const TextArea = ({
+  native,
+  className,
+  textClassName,
+  ...props
+}: TextAreaType) => {
+  return (
+    <textarea {...props} className={joinClassNames(className, textClassName)} />
+  );
 };
 
 export default TextArea;

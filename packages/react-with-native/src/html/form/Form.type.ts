@@ -6,4 +6,5 @@ export type FormType = DetailedHTMLProps<
   HTMLFormElement
 > & {
   native?: ViewProps;
+  textClassName?: string;
 };

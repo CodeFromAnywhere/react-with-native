@@ -6,4 +6,5 @@ export type NavType = DetailedHTMLProps<
   HTMLElement
 > & {
   native?: ViewProps;
+  textClassName?: string;
 };

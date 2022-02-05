@@ -6,4 +6,5 @@ export type LiType = DetailedHTMLProps<
   HTMLLIElement
 > & {
   native?: ViewProps;
+  textClassName?: string;
 };

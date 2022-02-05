@@ -8,7 +8,6 @@ import { NavType } from "./Nav/Nav.type";
 import { AType } from "./A/A.type";
 import { SvgType } from "./Svg/Svg.type";
 import { InputType } from "./Input/Input.type";
-import { ToggleType } from "./Toggle/Toggle.type";
 import { LabelType } from "./Label/Label.type";
 import { SpanType } from "./Span/Span.type";
 import { PType } from "./P/P.type";
@@ -29,7 +28,7 @@ import Strong from "./Strong/Strong";
 import Button from "./Button/Button";
 import Svg from "./Svg/Svg";
 import Input from "./Input/Input";
-import Toggle from "./Toggle/Toggle";
+
 import Label from "./Label/Label";
 import Span from "./Span/Span";
 import P from "./P/P";
@@ -51,7 +50,6 @@ export {
   Button,
   Svg,
   Input,
-  Toggle,
   Label,
   Span,
   P,
@@ -74,7 +72,6 @@ export type {
   ButtonType,
   SvgType,
   InputType,
-  ToggleType,
   LabelType,
   SpanType,
   PType,

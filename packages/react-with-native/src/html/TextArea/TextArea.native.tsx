@@ -2,11 +2,17 @@ import * as React from "react";
 import { useTailwind } from "tailwind-rn";
 import { TextInput } from "react-native";
 import { TextAreaType } from "./TextArea.type";
+import { wrapInTextIfNeeded } from "../../util/util";
 
-const TextArea = ({ native, children, ...props }: TextAreaType) => {
+const TextArea = ({
+  native,
+  children,
+  className,
+  textClassName,
+}: TextAreaType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
-  const tailwindStyle = props.className ? tailwind(props.className) : {};
+  const tailwindStyle = className ? tailwind(className) : {};
 
   return (
     <TextInput
@@ -14,7 +20,7 @@ const TextArea = ({ native, children, ...props }: TextAreaType) => {
       style={[{ textAlignVertical: "top" }, tailwindStyle, style]}
       {...nativeWithoutStyle}
     >
-      {children}
+      {wrapInTextIfNeeded(children, textClassName)}
     </TextInput>
   );
 };

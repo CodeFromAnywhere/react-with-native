@@ -6,4 +6,5 @@ export type TextAreaType = DetailedHTMLProps<
   HTMLTextAreaElement
 > & {
   native?: TextProps;
+  textClassName?: string;
 };
