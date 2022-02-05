@@ -16,9 +16,9 @@ const sameFieldArray = <
     ({ shouldHide, titleFromState, hasError, ...item }) => item
   );
 
-  //console.log({ simpleArr1, simpleArr2 });
-
-  return deepEqual(simpleArr1, simpleArr2);
+  const isDeepEqual = deepEqual(simpleArr1, simpleArr2);
+  // console.log({ simpleArr1, simpleArr2, isDeepEqual });
+  return isDeepEqual;
 };
 
 export function notEmpty<TValue>(
@@ -484,7 +484,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   useEffect(() => {
     const fieldsWithoutReferencesLocal = fields.map((f) => f());
     if (
-      fieldsWithoutReferences.length === 0 &&
+      // fieldsWithoutReferences.length === 0 && //NB: why was this here? caused the fields not to refresh
       !sameFieldArray<Field<TInputs, Keys<TInputs>>[], TInputs>(
         fieldsWithoutReferencesLocal,
         fieldsWithoutReferences

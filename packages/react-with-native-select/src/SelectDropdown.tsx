@@ -67,7 +67,7 @@ export default function SelectDropDown<T>({
   children?: any;
 }) {
   const onChangeFn = onChange ? onChange : () => null;
-
+  console.log("we've the newest");
   return (
     <Listbox value={value} onChange={onChangeFn}>
       {({ open }) => (
@@ -77,8 +77,8 @@ export default function SelectDropDown<T>({
               {title}
             </Listbox.Label>
           )}
-          <Div className={`relative z-10 mt-1 ${className}`}>
-            <Listbox.Button className="relative w-full py-2 pl-3 pr-3 text-left bg-white border border-gray-300 rounded-sm shadow-sm cursor-default focus:outline-none focus:ring-1 sm:text-sm">
+          <Div className={`relative mt-1 ${className}`}>
+            <Listbox.Button className="relative z-0 w-full py-2 pl-3 pr-3 text-left bg-white border border-gray-300 rounded-sm shadow-sm cursor-default focus:outline-none focus:ring-1 sm:text-sm">
               {renderOption({
                 item: value,
                 isHeader: true,

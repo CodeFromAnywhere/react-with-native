@@ -7,6 +7,7 @@ const SelectInput: PluginComponent<SelectInputType> = ({
   extra,
   onChange,
 }) => {
+  //console.log({ value, extraOptions: extra.options });
   return (
     <Select
       className="w-full"
