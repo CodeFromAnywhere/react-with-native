@@ -294,9 +294,7 @@ export const DefaultInputContainer = ({
 
     {/* This is the section title */}
     <Div className="pt-0 mb-6">
-      {title ? (
-        <Label className="block mb-2 text-sm font-bold">{title}</Label>
-      ) : null}
+      {title ? <Label className="mb-2 text-sm font-bold">{title}</Label> : null}
       {description && (
         <Div className={`flex mx-3 mb-2 items-start `}>
           <P className={`text-gray-500 italic`}>{description}</P>
@@ -596,7 +594,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
       if (typeof window !== "undefined") {
         // console.log("setErrorsReject: scrolling to first error field");
 
-        window.scrollTo({
+        window.scrollTo?.({
           top,
           behavior: "smooth",
         });
@@ -651,7 +649,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
       if (typeof window !== "undefined") {
         // console.log("onClickSubmit: scrolling to first error field");
 
-        window.scrollTo({
+        window.scrollTo?.({
           top,
           behavior: "smooth",
         });

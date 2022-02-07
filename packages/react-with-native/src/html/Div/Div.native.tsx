@@ -5,15 +5,19 @@ import { trimClassName } from "../../util/trimClassName";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { DivType } from "./Div.type";
 
-const Div = ({ native, textClassName, className, children }: DivType) => {
+const PureDiv = (
+  { native, textClassName, className, children }: DivType,
+  ref: any
+) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
   return (
-    <View style={[tailwindStyle, style]} {...nativeWithoutStyle}>
+    <View style={[tailwindStyle, style]} {...nativeWithoutStyle} ref={ref}>
       {wrapInTextIfNeeded(children, textClassName)}
     </View>
   );
 };
+const Div = React.forwardRef(PureDiv);
 
 export default Div;

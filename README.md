@@ -41,3 +41,7 @@
 ### NB
 
 - Tailwind is a peer dependency! Without it, `react-with-native` still works, but lots of components won't have a default styling and you need to supply your own classNames via `replaceClassName`
+
+#### Differences from react-native and react
+
+- you need to apply your text-related classNames to the text itself directly or if your children are a string you can add textClassName as a prop.
