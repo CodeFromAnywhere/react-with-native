@@ -642,12 +642,11 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
       //scroll to the error
       /// onError("Please fill in all fields correctly");
 
-      const top =
-        (firstErrorRef?.getBoundingClientRect().top || 0) +
-        window.scrollY -
-        100;
-
       if (isWeb) {
+        const top =
+          (firstErrorRef?.getBoundingClientRect().top || 0) +
+          window.scrollY -
+          100;
         // console.log("onClickSubmit: scrolling to first error field");
 
         window.scrollTo?.({
