@@ -267,11 +267,7 @@ export const DefaultInputContainer = ({
   title,
   description,
   error,
-  extra,
   errorClassName,
-  config,
-  isLast,
-  next,
 }: InputContainerProps) => (
   <Div>
     {startSection ? (
