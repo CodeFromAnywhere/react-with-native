@@ -11,6 +11,7 @@ import {
   Button,
 } from "react-with-native";
 
+const isWeb = typeof window !== "undefined" && !!window.scrollTo;
 const sameFieldArray = <
   T extends Field<TInputs, Keys<TInputs>>[],
   TInputs extends any
@@ -585,13 +586,13 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         (x) => newErrors.find(errorOnField(x.field)) !== undefined
       )[0];
 
-      const top =
-        (firstNotReadyField?.reference?.current?.getBoundingClientRect().top ||
-          0) +
-        window.scrollY -
-        100;
+      if (isWeb) {
+        const top =
+          (firstNotReadyField?.reference?.current?.getBoundingClientRect?.()
+            .top || 0) +
+          (window.scrollY || 0) -
+          100;
 
-      if (typeof window !== "undefined") {
         // console.log("setErrorsReject: scrolling to first error field");
 
         window.scrollTo?.({
@@ -646,7 +647,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         window.scrollY -
         100;
 
-      if (typeof window !== "undefined") {
+      if (isWeb) {
         // console.log("onClickSubmit: scrolling to first error field");
 
         window.scrollTo?.({
@@ -686,7 +687,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
           available
             ? `${submitButtonColor ? submitButtonColor : "bg-green-500"}`
             : "bg-gray-300"
-        }  inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+        }  inline-flex justify-center flex-row w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
         onClick={() => onClickSubmit(state)}
       >
         {loading ? (
