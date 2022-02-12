@@ -146,12 +146,13 @@ export const createUseStore = <TState extends object>(
 
     const useStoreHookType = typeof useStoreHook;
 
-    console.log({
-      key: `useStoreHookType for ${key}: ${useStoreHookType}`,
-    });
-    return useStoreHookType === "function"
-      ? useStoreHook(key)
-      : (key: string) => [null, () => null, { isHydrated: false }];
+    if (useStoreHookType !== "function") {
+      console.error(
+        `useStoreHookType for ${key} is ${useStoreHookType}... wtf?`
+      );
+    }
+
+    return useStoreHook(key);
   };
   return useStore;
 };
