@@ -20,13 +20,15 @@ export const setItem = async (key: string, value: any) => {
   const stringValue = JSON.stringify(value);
   try {
     await AsyncStorage.setItem(key, stringValue, (error) => {
-      console.warn(
-        `asyncStorage.setItem ${JSON.stringify({
-          key,
-          stringValue,
-          error,
-        })}`
-      );
+      if (error) {
+        console.warn(
+          `asyncStorage.setItem error: ${JSON.stringify({
+            key,
+            stringValue,
+            error,
+          })}`
+        );
+      }
     });
     console.log(`we set ${key} to ${stringValue}`);
   } catch (e) {

@@ -103,6 +103,8 @@ export const createStoreProvider = <TStore extends object>(
     };
   }, {});
 
+  console.log({ contexts });
+
   const MainProvider = ({ children }: { children: any }) =>
     keys.reduce((acc, key) => {
       const context = contexts[contextKey(key)];
