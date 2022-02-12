@@ -143,7 +143,15 @@ export const createUseStore = <TState extends object>(
       );
     }
     const useStoreHook = React.useContext<UseStoreType<TState>>(context);
-    return useStoreHook(key);
+
+    const useStoreHookType = typeof useStoreHook;
+
+    console.log({
+      key: `useStoreHookType for ${key}: ${useStoreHookType}`,
+    });
+    return useStoreHookType === "function"
+      ? useStoreHook(key)
+      : (key: string) => [null, () => null, { isHydrated: false }];
   };
   return useStore;
 };
