@@ -1,4 +1,3 @@
-/// <reference types="react" />
 export declare type StoreConfig<T extends object> = {
     initialValues: T;
     baseKey?: string;
