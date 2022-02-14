@@ -1,7 +1,6 @@
 import { DivType } from "./Div/Div.type";
 import { H2Type } from "./H2/H2.type";
 import { StrongType } from "./Strong/Strong.type";
-import { ImageType } from "./Image/Image.type";
 import { ButtonType } from "./Button/Button.type";
 import { NavType } from "./Nav/Nav.type";
 import { AType } from "./A/A.type";
@@ -35,7 +34,6 @@ import Form from "./Form/Form";
 import TextArea from "./TextArea/TextArea";
 import Aside from "./Aside/Aside";
 import I from "./I/I";
-import Image from "./Image/Image";
-export { Div, A, H2, Strong, Image, Button, Svg, Input, Label, Span, P, Li, Ul, Ol, I, Form, TextArea, Aside, Nav, };
-export type { DivType, AType, H2Type, StrongType, ImageType, ButtonType, SvgType, InputType, LabelType, SpanType, PType, LiType, UlType, OlType, IType, FormType, TextAreaType, AsideType, NavType, };
+export { Div, A, H2, Strong, Button, Svg, Input, Label, Span, P, Li, Ul, Ol, I, Form, TextArea, Aside, Nav, };
+export type { DivType, AType, H2Type, StrongType, ButtonType, SvgType, InputType, LabelType, SpanType, PType, LiType, UlType, OlType, IType, FormType, TextAreaType, AsideType, NavType, };
 //# sourceMappingURL=index.d.ts.map

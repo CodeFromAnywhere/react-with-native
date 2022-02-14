@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -8,6 +9,25 @@ var __assign = (this && this.__assign) || function () {
         return t;
     };
     return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -20,20 +40,21 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import * as React from "react";
-import { TouchableOpacity } from "react-native";
-import { useTailwind } from "tailwind-rn";
-import { trimClassName } from "../../util/trimClassName";
-import { wrapInTextIfNeeded } from "../../util/util";
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __importStar(require("react"));
+var react_native_1 = require("react-native");
+var tailwind_rn_1 = require("tailwind-rn");
+var trimClassName_1 = require("../../util/trimClassName");
+var util_1 = require("../../util/util");
 var Button = function (_a) {
     var native = _a.native, textClassName = _a.textClassName, className = _a.className, children = _a.children, onClick = _a.onClick;
     native = native;
-    var tailwind = useTailwind();
+    var tailwind = (0, tailwind_rn_1.useTailwind)();
     var _b = native || {}, style = _b.style, onPress = _b.onPress, otherNative = __rest(_b, ["style", "onPress"]);
-    var tailwindStyle = className ? tailwind(trimClassName(className)) : {};
+    var tailwindStyle = className ? tailwind((0, trimClassName_1.trimClassName)(className)) : {};
     //NB: figure out how I make it work without casting to any because it would need an event which we dont have in rn
     var onPressHandler = onPress ? onPress : function () { var _a; return (_a = onClick) === null || _a === void 0 ? void 0 : _a(); };
-    return (React.createElement(TouchableOpacity, __assign({ style: [tailwindStyle, style], onPress: onPressHandler }, otherNative), wrapInTextIfNeeded(children, textClassName)));
+    return (React.createElement(react_native_1.TouchableOpacity, __assign({ style: [tailwindStyle, style], onPress: onPressHandler }, otherNative), (0, util_1.wrapInTextIfNeeded)(children, textClassName)));
 };
-export default Button;
+exports.default = Button;
 //# sourceMappingURL=Button.native.js.map

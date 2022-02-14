@@ -1,4 +1,3 @@
-import { getEnv } from "./getEnv";
-import { isDevelopment } from "./isDevelopment";
-export { getEnv, isDevelopment };
+export * from "./util";
+export * from "./trimClassName";
 //# sourceMappingURL=index.d.ts.map

@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -20,10 +21,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from "react";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(require("react"));
 var Toggle = function (_a) {
     var native = _a.native, onChange = _a.onChange, checked = _a.checked, props = __rest(_a, ["native", "onChange", "checked"]);
-    return (React.createElement("input", __assign({ type: "checkbox", checked: checked, onChange: function (e) { return onChange(e.target.checked); } }, props)));
+    return (react_1.default.createElement("input", __assign({ type: "checkbox", checked: checked, onChange: function (e) { return onChange(e.target.checked); } }, props)));
 };
-export default Toggle;
+exports.default = Toggle;
 //# sourceMappingURL=Toggle.js.map
