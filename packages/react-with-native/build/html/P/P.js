@@ -21,14 +21,11 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
+var jsx_runtime_1 = require("react/jsx-runtime");
 var P = function (_a) {
     var native = _a.native, props = __rest(_a, ["native"]);
-    return react_1.default.createElement("p", __assign({}, props));
+    return (0, jsx_runtime_1.jsx)("p", __assign({}, props), void 0);
 };
 exports.default = P;
 //# sourceMappingURL=P.js.map

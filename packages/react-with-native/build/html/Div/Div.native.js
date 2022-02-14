@@ -41,6 +41,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var React = __importStar(require("react"));
 var react_native_1 = require("react-native");
 var tailwind_rn_1 = require("tailwind-rn");
@@ -51,7 +52,7 @@ var PureDiv = function (_a, ref) {
     var tailwind = (0, tailwind_rn_1.useTailwind)();
     var _b = native || {}, style = _b.style, nativeWithoutStyle = __rest(_b, ["style"]);
     var tailwindStyle = className ? tailwind((0, trimClassName_1.trimClassName)(className)) : {};
-    return (React.createElement(react_native_1.View, __assign({ style: [tailwindStyle, style] }, nativeWithoutStyle, { ref: ref }), (0, util_1.wrapInTextIfNeeded)(children, textClassName)));
+    return ((0, jsx_runtime_1.jsx)(react_native_1.View, __assign({ style: [tailwindStyle, style] }, nativeWithoutStyle, { ref: ref }, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) }), void 0));
 };
 var Div = React.forwardRef(PureDiv);
 exports.default = Div;

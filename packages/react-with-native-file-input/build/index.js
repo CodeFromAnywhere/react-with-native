@@ -1,3 +1,8 @@
-import FileInput from "./FileInput";
-export default FileInput;
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var FileInput_1 = __importDefault(require("./FileInput"));
+exports.default = FileInput_1.default;
 //# sourceMappingURL=index.js.map

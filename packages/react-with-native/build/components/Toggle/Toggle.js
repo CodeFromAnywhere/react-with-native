@@ -21,14 +21,11 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
+var jsx_runtime_1 = require("react/jsx-runtime");
 var Toggle = function (_a) {
     var native = _a.native, onChange = _a.onChange, checked = _a.checked, props = __rest(_a, ["native", "onChange", "checked"]);
-    return (react_1.default.createElement("input", __assign({ type: "checkbox", checked: checked, onChange: function (e) { return onChange(e.target.checked); } }, props)));
+    return ((0, jsx_runtime_1.jsx)("input", __assign({ type: "checkbox", checked: checked, onChange: function (e) { return onChange(e.target.checked); } }, props), void 0));
 };
 exports.default = Toggle;
 //# sourceMappingURL=Toggle.js.map

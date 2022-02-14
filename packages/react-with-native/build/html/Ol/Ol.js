@@ -21,15 +21,12 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
+var jsx_runtime_1 = require("react/jsx-runtime");
 var util_1 = require("../../util/util");
 var Ol = function (_a) {
     var native = _a.native, className = _a.className, textClassName = _a.textClassName, props = __rest(_a, ["native", "className", "textClassName"]);
-    return react_1.default.createElement("ol", __assign({}, props, { className: (0, util_1.joinClassNames)(className, textClassName) }));
+    return (0, jsx_runtime_1.jsx)("ol", __assign({}, props, { className: (0, util_1.joinClassNames)(className, textClassName) }), void 0);
 };
 exports.default = Ol;
 //# sourceMappingURL=Ol.js.map

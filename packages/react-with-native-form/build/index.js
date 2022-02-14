@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -29,9 +30,11 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-import * as React from "react";
-import { useState, createRef, useEffect } from "react";
-import { ActivityIndicator, Div, Label, Strong, Form, P, H2, Button, } from "react-with-native";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.setConfig = exports.errorOnField = exports.isObject = exports.deepEqual = exports.Input = exports.DefaultInputContainer = exports.inputClass = exports.inputClassWithoutWidth = exports.makeInputField = exports.notEmpty = void 0;
+var jsx_runtime_1 = require("react/jsx-runtime");
+var react_1 = require("react");
+var react_with_native_1 = require("react-with-native");
 var isWeb = typeof window !== "undefined" && !!window.scrollTo;
 var sameFieldArray = function (arr1, arr2) {
     var simpleArr1 = arr1.map(function (_a) {
@@ -46,44 +49,38 @@ var sameFieldArray = function (arr1, arr2) {
     // console.log({ simpleArr1, simpleArr2, isDeepEqual });
     return isDeepEqual;
 };
-export function notEmpty(value) {
+function notEmpty(value) {
     return value !== null && value !== undefined;
 }
-export var makeInputField = function (type, config) {
+exports.notEmpty = notEmpty;
+var makeInputField = function (type, config) {
     return function () { return (__assign({ type: type }, config)); };
 };
+exports.makeInputField = makeInputField;
 var GLOBAL_PROPERTY_PATH = "__GLOBAL__";
-export var inputClassWithoutWidth = "text-sm px-3 py-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none";
-export var inputClass = "w-full ".concat(inputClassWithoutWidth);
-export var DefaultInputContainer = function (_a) {
+exports.inputClassWithoutWidth = "text-sm px-3 py-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none";
+exports.inputClass = "w-full ".concat(exports.inputClassWithoutWidth);
+var DefaultInputContainer = function (_a) {
     var children = _a.children, startSection = _a.startSection, sectionTitle = _a.sectionTitle, title = _a.title, description = _a.description, error = _a.error, errorClassName = _a.errorClassName;
-    return (React.createElement(Div, null,
-        startSection ? (React.createElement(Div, { style: {
-                display: "flex",
-                height: 40,
-                justifyContent: "center",
-                paddingLeft: 10,
-            } }, sectionTitle ? (React.createElement(P, null,
-            React.createElement(Strong, null, sectionTitle))) : (React.createElement(Div, { style: { height: 40 } })))) : null,
-        React.createElement(Div, { className: "pt-0 mb-6" },
-            title ? React.createElement(Label, { className: "mb-2 text-sm font-bold" }, title) : null,
-            description && (React.createElement(Div, { className: "flex mx-3 mb-2 items-start " },
-                React.createElement(P, { className: "text-gray-500 italic" }, description))),
-            error ? (React.createElement(P, { className: errorClassName || "mr-3 mb-2 text-red-500" }, error || "Invalid value")) : null,
-            React.createElement(Div, null, children))));
+    return ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, { children: [startSection ? ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ style: {
+                    display: "flex",
+                    height: 40,
+                    justifyContent: "center",
+                    paddingLeft: 10,
+                } }, { children: sectionTitle ? ((0, jsx_runtime_1.jsx)(react_with_native_1.P, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.Strong, { children: sectionTitle }, void 0) }, void 0)) : ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, { style: { height: 40 } }, void 0)) }), void 0)) : null, (0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "pt-0 mb-6" }, { children: [title ? (0, jsx_runtime_1.jsx)(react_with_native_1.Label, __assign({ className: "mb-2 text-sm font-bold" }, { children: title }), void 0) : null, description && ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "flex mx-3 mb-2 items-start " }, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.P, __assign({ className: "text-gray-500 italic" }, { children: description }), void 0) }), void 0)), error ? ((0, jsx_runtime_1.jsx)(react_with_native_1.P, __assign({ className: errorClassName || "mr-3 mb-2 text-red-500" }, { children: error || "Invalid value" }), void 0)) : null, (0, jsx_runtime_1.jsx)(react_with_native_1.Div, { children: children }, void 0)] }), void 0)] }, void 0));
 };
+exports.DefaultInputContainer = DefaultInputContainer;
 var getPlugin = function (type, plugins) {
     return type
         ? plugins[type]
         : plugins[Object.keys(plugins)[0]];
 };
-export var Input = function (_a) {
+var Input = function (_a) {
     var _b;
     var type = _a.type, plugin = _a.plugin, title = _a.title, onChange = _a.onChange, value = _a.value, isLast = _a.isLast, startSection = _a.startSection, sectionTitle = _a.sectionTitle, next = _a.next, extra = _a.extra, errors = _a.errors, reference = _a.reference, description = _a.description, config = _a.config, uniqueFieldId = _a.uniqueFieldId, renderInputContainer = _a.renderInputContainer, errorClassName = _a.errorClassName, fieldName = _a.fieldName;
     var InputComponent = plugin;
-    var InputContainer = renderInputContainer || DefaultInputContainer;
-    return (React.createElement(Div, { ref: reference },
-        React.createElement(InputContainer, __assign({}, {
+    var InputContainer = renderInputContainer || exports.DefaultInputContainer;
+    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ ref: reference }, { children: (0, jsx_runtime_1.jsx)(InputContainer, __assign({}, {
             description: description,
             sectionTitle: sectionTitle,
             startSection: startSection,
@@ -93,12 +90,11 @@ export var Input = function (_a) {
             id: uniqueFieldId,
             type: type,
             error: !plugin.hideContainerError &&
-                ((_b = errors === null || errors === void 0 ? void 0 : errors.find(errorOnField(fieldName))) === null || _b === void 0 ? void 0 : _b.message),
+                ((_b = errors === null || errors === void 0 ? void 0 : errors.find((0, exports.errorOnField)(fieldName))) === null || _b === void 0 ? void 0 : _b.message),
             extra: extra,
             config: config,
             errorClassName: errorClassName,
-        }),
-            React.createElement(InputComponent, __assign({}, {
+        }, { children: (0, jsx_runtime_1.jsx)(InputComponent, __assign({}, {
                 uniqueFieldId: uniqueFieldId,
                 fieldName: fieldName,
                 config: config,
@@ -107,15 +103,14 @@ export var Input = function (_a) {
                 value: value,
                 errors: errors,
                 errorClassName: errorClassName,
-            })))));
+            }), void 0) }), void 0) }), void 0));
 };
+exports.Input = Input;
 var DefaultTitle = function (_a) {
     var title = _a.title, backButton = _a.backButton;
-    return title ? (React.createElement(Div, { className: "flex items-center mb-10 " },
-        backButton && (React.createElement(Div, { onClick: backButton, className: "p-4 cursor-pointer" }, "back")),
-        React.createElement(H2, { className: "text-2xl font-bold" }, title))) : null;
+    return title ? ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "flex items-center mb-10 " }, { children: [backButton && ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ onClick: backButton, className: "p-4 cursor-pointer" }, { children: "back" }), void 0)), (0, jsx_runtime_1.jsx)(react_with_native_1.H2, __assign({ className: "text-2xl font-bold" }, { children: title }), void 0)] }), void 0)) : null;
 };
-export function deepEqual(object1, object2) {
+function deepEqual(object1, object2) {
     var keys1 = Object.keys(object1);
     var keys2 = Object.keys(object2);
     if ((keys1 === null || keys1 === void 0 ? void 0 : keys1.length) !== (keys2 === null || keys2 === void 0 ? void 0 : keys2.length)) {
@@ -133,13 +128,16 @@ export function deepEqual(object1, object2) {
     }
     return true;
 }
-export function isObject(object) {
+exports.deepEqual = deepEqual;
+function isObject(object) {
     return object != null && typeof object === "object";
 }
-export var errorOnField = function (fieldName) { return function (error) {
+exports.isObject = isObject;
+var errorOnField = function (fieldName) { return function (error) {
     return error.propertyPath === fieldName ||
         error.propertyPath.startsWith(fieldName + ".");
 }; };
+exports.errorOnField = errorOnField;
 var DataForm = function (_a) {
     var _b, _c;
     var fields = _a.fields, defaultValues = _a.defaultValues, initialValues = _a.initialValues, onSubmit = _a.onSubmit, withSubmitProps = _a.withSubmitProps, noSubmit = _a.noSubmit, submitButtonText = _a.submitButtonText, submitButtonColor = _a.submitButtonColor, title = _a.title, backButton = _a.backButton, plugins = _a.plugins, renderSubmitComponent = _a.renderSubmitComponent, renderInputContainer = _a.renderInputContainer, stickySubmit = _a.stickySubmit, renderTitle = _a.renderTitle, submitClassName = _a.submitClassName, errorClassName = _a.errorClassName, successClassName = _a.successClassName;
@@ -149,17 +147,17 @@ var DataForm = function (_a) {
         throw new Error("No plugins given");
     }
     //Generate unique id for the form
-    var id = useState("Form".concat(String(Math.round(Math.random() * 1000000))))[0];
-    var _d = useState([]), fieldsWithReferences = _d[0], setFieldsWithReferences = _d[1];
+    var id = (0, react_1.useState)("Form".concat(String(Math.round(Math.random() * 1000000))))[0];
+    var _d = (0, react_1.useState)([]), fieldsWithReferences = _d[0], setFieldsWithReferences = _d[1];
     // need to have because we want to see when it's changed
-    var _e = useState([]), fieldsWithoutReferences = _e[0], setFieldsWithoutReferences = _e[1];
-    useEffect(function () {
+    var _e = (0, react_1.useState)([]), fieldsWithoutReferences = _e[0], setFieldsWithoutReferences = _e[1];
+    (0, react_1.useEffect)(function () {
         var fieldsWithoutReferencesLocal = fields.map(function (f) { return f(); });
         if (
         // fieldsWithoutReferences.length === 0 && //NB: why was this here? caused the fields not to refresh
         !sameFieldArray(fieldsWithoutReferencesLocal, fieldsWithoutReferences)) {
             setFieldsWithReferences(fieldsWithoutReferencesLocal.map(function (fieldWithoutReference) {
-                return __assign(__assign({}, fieldWithoutReference), { reference: createRef() });
+                return __assign(__assign({}, fieldWithoutReference), { reference: (0, react_1.createRef)() });
             }));
             setFieldsWithoutReferences(fieldsWithoutReferencesLocal);
         }
@@ -179,19 +177,19 @@ var DataForm = function (_a) {
         return __assign(__assign({}, all), (_a = {}, _a[key] = value, _a));
     }, {});
     var initialState = __assign(__assign({}, initialValuesPartial), initialValues);
-    var _f = useState(initialState), state = _f[0], setState = _f[1];
+    var _f = (0, react_1.useState)(initialState), state = _f[0], setState = _f[1];
     //used to check if the initialValues have changed
-    var _g = useState(), initialValuesState = _g[0], setInitialValuesState = _g[1];
-    useEffect(function () {
+    var _g = (0, react_1.useState)(), initialValuesState = _g[0], setInitialValuesState = _g[1];
+    (0, react_1.useEffect)(function () {
         if (!initialValuesState || !deepEqual(initialState, initialValuesState)) {
             // console.log("initialValues have changed");
             setState(initialState);
             setInitialValuesState(initialState);
         }
     }, [initialState]);
-    var _h = useState(false), loading = _h[0], setLoading = _h[1];
-    var _j = useState([]), errors = _j[0], setErrors = _j[1];
-    var _k = useState(), success = _k[0], setSuccess = _k[1];
+    var _h = (0, react_1.useState)(false), loading = _h[0], setLoading = _h[1];
+    var _j = (0, react_1.useState)([]), errors = _j[0], setErrors = _j[1];
+    var _k = (0, react_1.useState)(), success = _k[0], setSuccess = _k[1];
     var notReadyFields = fieldsWithReferences.filter(function (x) { var _a, _b; return !((_a = x.shouldHide) === null || _a === void 0 ? void 0 : _a.call(x, state)) && ((_b = x.hasError) === null || _b === void 0 ? void 0 : _b.call(x, state[x.field], state)); });
     var setErrorsReject = function (stringOrErrorArray) {
         var _a, _b, _c, _d;
@@ -219,7 +217,7 @@ var DataForm = function (_a) {
             //this only happens when there are no frontend errors, so it's safe to replace errors
             setErrors(newErrors_1);
             //scroll to the first field that contains an error
-            var firstNotReadyField = fieldsWithReferences.filter(function (x) { return newErrors_1.find(errorOnField(x.field)) !== undefined; })[0];
+            var firstNotReadyField = fieldsWithReferences.filter(function (x) { return newErrors_1.find((0, exports.errorOnField)(x.field)) !== undefined; })[0];
             if (isWeb) {
                 var top_1 = (((_c = (_b = (_a = firstNotReadyField === null || firstNotReadyField === void 0 ? void 0 : firstNotReadyField.reference) === null || _a === void 0 ? void 0 : _a.current) === null || _b === void 0 ? void 0 : _b.getBoundingClientRect) === null || _c === void 0 ? void 0 : _c.call(_b).top) || 0) +
                     (window.scrollY || 0) -
@@ -285,83 +283,69 @@ var DataForm = function (_a) {
         onSubmit: function () { return onClickSubmit(state); },
         state: state,
     };
-    useEffect(function () {
+    (0, react_1.useEffect)(function () {
         //console.log({ withSubmitProps: submitProps });
         withSubmitProps === null || withSubmitProps === void 0 ? void 0 : withSubmitProps(submitProps);
     }, [loading, available, submitButtonText, submitButtonColor, firstErrorRef]);
     var Title = renderTitle || DefaultTitle;
     var Submit = function () {
-        return noSubmit ? null : renderSubmitComponent ? (renderSubmitComponent(submitProps)) : (React.createElement(Button, { disabled: loading, className: "".concat(available
+        return noSubmit ? null : renderSubmitComponent ? (renderSubmitComponent(submitProps)) : ((0, jsx_runtime_1.jsxs)(react_with_native_1.Button, __assign({ disabled: loading, className: "".concat(available
                 ? "".concat(submitButtonColor ? submitButtonColor : "bg-green-500")
-                : "bg-gray-300", "  inline-flex justify-center flex-row w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"), onClick: function () { return onClickSubmit(state); } },
-            loading ? (React.createElement(Div, { className: "mr-2" },
-                React.createElement(ActivityIndicator, null))) : null,
-            React.createElement(Div, null, submitButtonText || "Save")));
+                : "bg-gray-300", "  inline-flex justify-center flex-row w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"), onClick: function () { return onClickSubmit(state); } }, { children: [loading ? ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "mr-2" }, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.ActivityIndicator, {}, void 0) }), void 0)) : null, (0, jsx_runtime_1.jsx)(react_with_native_1.Div, { children: submitButtonText || "Save" }, void 0)] }), void 0));
     };
     var globalError = errors === null || errors === void 0 ? void 0 : errors.find(function (x) { return x.propertyPath === GLOBAL_PROPERTY_PATH; });
-    return (React.createElement(Form, { className: "w-full", onSubmit: function (e) {
+    return ((0, jsx_runtime_1.jsxs)(react_with_native_1.Form, __assign({ className: "w-full", onSubmit: function (e) {
             e.preventDefault();
             onClickSubmit(state);
-        } },
-        React.createElement(Div, { className: "w-full" },
-            React.createElement(Title, { title: title, backButton: backButton }),
-            success ? React.createElement(P, { className: successClassName }, success) : null,
-            globalError ? (React.createElement(P, { className: errorClassName || "text-red-600" }, globalError.message)) : null,
-            fieldsWithReferences.map(function (field, index) {
-                var _a, _b;
-                // Take the first plugin if the plugin isn't defined.
-                var plugin = getPlugin(field.type, plugins);
-                if (!plugin) {
-                    return (React.createElement(P, null,
-                        "Plugin not found (",
-                        field.field,
-                        ", ",
-                        field.type,
-                        ")"));
-                }
-                var next = (_a = fields[index + 1]) === null || _a === void 0 ? void 0 : _a.call(fields);
-                var onChange = function (state) { return function (newValueOrGetter) {
-                    var _a;
-                    var _b;
-                    var newValue = typeof newValueOrGetter === "function"
-                        ? newValueOrGetter(state[field.field])
-                        : newValueOrGetter;
-                    var newState = (_a = {}, _a[field.field] = newValue, _a);
-                    var newFullState = __assign(__assign({}, state), newState);
-                    var fieldErrors = errors.filter(errorOnField(field.field));
-                    //check if field still has error(s)
-                    var newFieldErrors = (_b = field.hasError) === null || _b === void 0 ? void 0 : _b.call(field, newValue, newFullState);
-                    var newFieldErrorsAmount = typeof newFieldErrors === "string"
-                        ? 1
-                        : Array.isArray(newFieldErrors)
-                            ? newFieldErrors.length
-                            : 0;
-                    if (fieldErrors.length > 0 &&
-                        newFieldErrorsAmount !== fieldErrors.length) {
-                        var newErrors = errors.filter(function (error) { return !errorOnField(field.field)(error); });
-                        var newFieldErrorsArray = typeof newFieldErrors === "string"
-                            ? [{ message: newFieldErrors, propertyPath: field.field }]
-                            : Array.isArray(newFieldErrors)
-                                ? newFieldErrors
-                                : [];
-                        setErrors(__spreadArray(__spreadArray([], newErrors, true), newFieldErrorsArray, true));
-                    }
-                    setState(newFullState);
-                    //NB: make sure to add the new state to the submitprops
-                    withSubmitProps === null || withSubmitProps === void 0 ? void 0 : withSubmitProps(__assign(__assign({}, submitProps), { state: newFullState, onSubmit: function () { return onClickSubmit(newFullState); } }));
-                }; };
-                var uniqueFieldId = "".concat(id || "", ".").concat(field.field);
-                var inputErrors = errors.filter(function (e) {
-                    return e.propertyPath === field.field ||
-                        e.propertyPath.startsWith("".concat(field.field, "."));
-                });
-                return ((_b = field.shouldHide) === null || _b === void 0 ? void 0 : _b.call(field, state)) ? null : (React.createElement(Input, { fieldName: field.field, renderInputContainer: renderInputContainer, uniqueFieldId: uniqueFieldId, config: plugin.config, plugin: plugin.component, extra: field.extra, reference: field.reference, next: next, key: "field-".concat(field.field), type: field.type, title: field.titleFromState ? field.titleFromState(state) : field.title, value: state[field.field], onChange: onChange(state), isLast: index === (fields === null || fields === void 0 ? void 0 : fields.length) - 1, startSection: field.startSection, sectionTitle: field.sectionTitle, description: field.description, errors: inputErrors }));
-            })),
-        Submit ? (React.createElement(Div, { className: "".concat(stickySubmit ? "sticky bottom-0" : "", " ").concat(submitClassName || "mb-2 py-2") },
-            React.createElement(Submit, null))) : null));
+        } }, { children: [(0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "w-full" }, { children: [(0, jsx_runtime_1.jsx)(Title, { title: title, backButton: backButton }, void 0), success ? (0, jsx_runtime_1.jsx)(react_with_native_1.P, __assign({ className: successClassName }, { children: success }), void 0) : null, globalError ? ((0, jsx_runtime_1.jsx)(react_with_native_1.P, __assign({ className: errorClassName || "text-red-600" }, { children: globalError.message }), void 0)) : null, fieldsWithReferences.map(function (field, index) {
+                        var _a, _b;
+                        // Take the first plugin if the plugin isn't defined.
+                        var plugin = getPlugin(field.type, plugins);
+                        if (!plugin) {
+                            return ((0, jsx_runtime_1.jsxs)(react_with_native_1.P, { children: ["Plugin not found (", field.field, ", ", field.type, ")"] }, void 0));
+                        }
+                        var next = (_a = fields[index + 1]) === null || _a === void 0 ? void 0 : _a.call(fields);
+                        var onChange = function (state) { return function (newValueOrGetter) {
+                            var _a;
+                            var _b;
+                            var newValue = typeof newValueOrGetter === "function"
+                                ? newValueOrGetter(state[field.field])
+                                : newValueOrGetter;
+                            var newState = (_a = {}, _a[field.field] = newValue, _a);
+                            var newFullState = __assign(__assign({}, state), newState);
+                            var fieldErrors = errors.filter((0, exports.errorOnField)(field.field));
+                            //check if field still has error(s)
+                            var newFieldErrors = (_b = field.hasError) === null || _b === void 0 ? void 0 : _b.call(field, newValue, newFullState);
+                            var newFieldErrorsAmount = typeof newFieldErrors === "string"
+                                ? 1
+                                : Array.isArray(newFieldErrors)
+                                    ? newFieldErrors.length
+                                    : 0;
+                            if (fieldErrors.length > 0 &&
+                                newFieldErrorsAmount !== fieldErrors.length) {
+                                var newErrors = errors.filter(function (error) { return !(0, exports.errorOnField)(field.field)(error); });
+                                var newFieldErrorsArray = typeof newFieldErrors === "string"
+                                    ? [{ message: newFieldErrors, propertyPath: field.field }]
+                                    : Array.isArray(newFieldErrors)
+                                        ? newFieldErrors
+                                        : [];
+                                setErrors(__spreadArray(__spreadArray([], newErrors, true), newFieldErrorsArray, true));
+                            }
+                            setState(newFullState);
+                            //NB: make sure to add the new state to the submitprops
+                            withSubmitProps === null || withSubmitProps === void 0 ? void 0 : withSubmitProps(__assign(__assign({}, submitProps), { state: newFullState, onSubmit: function () { return onClickSubmit(newFullState); } }));
+                        }; };
+                        var uniqueFieldId = "".concat(id || "", ".").concat(field.field);
+                        var inputErrors = errors.filter(function (e) {
+                            return e.propertyPath === field.field ||
+                                e.propertyPath.startsWith("".concat(field.field, "."));
+                        });
+                        return ((_b = field.shouldHide) === null || _b === void 0 ? void 0 : _b.call(field, state)) ? null : ((0, jsx_runtime_1.jsx)(exports.Input, { fieldName: field.field, renderInputContainer: renderInputContainer, uniqueFieldId: uniqueFieldId, config: plugin.config, plugin: plugin.component, extra: field.extra, reference: field.reference, next: next, type: field.type, title: field.titleFromState ? field.titleFromState(state) : field.title, value: state[field.field], onChange: onChange(state), isLast: index === (fields === null || fields === void 0 ? void 0 : fields.length) - 1, startSection: field.startSection, sectionTitle: field.sectionTitle, description: field.description, errors: inputErrors }, "field-".concat(field.field)));
+                    })] }), void 0), Submit ? ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "".concat(stickySubmit ? "sticky bottom-0" : "", " ").concat(submitClassName || "mb-2 py-2") }, { children: (0, jsx_runtime_1.jsx)(Submit, {}, void 0) }), void 0)) : null] }), void 0));
 };
-export var setConfig = function (DataForm, config) {
-    return function (props) { return (React.createElement(DataForm, __assign({}, config, props))); };
+var setConfig = function (DataForm, config) {
+    return function (props) { return ((0, jsx_runtime_1.jsx)(DataForm, __assign({}, config, props), void 0)); };
 };
-export default DataForm;
+exports.setConfig = setConfig;
+exports.default = DataForm;
 //# sourceMappingURL=index.js.map

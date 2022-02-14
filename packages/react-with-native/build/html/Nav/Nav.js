@@ -41,11 +41,12 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var React = __importStar(require("react"));
 var util_1 = require("../../util/util");
 var PureNav = function (_a, ref) {
     var native = _a.native, className = _a.className, textClassName = _a.textClassName, props = __rest(_a, ["native", "className", "textClassName"]);
-    return (React.createElement("nav", __assign({}, props, { ref: ref, className: (0, util_1.joinClassNames)(className, textClassName) })));
+    return ((0, jsx_runtime_1.jsx)("nav", __assign({}, props, { ref: ref, className: (0, util_1.joinClassNames)(className, textClassName) }), void 0));
 };
 var Nav = React.forwardRef(PureNav);
 exports.default = Nav;

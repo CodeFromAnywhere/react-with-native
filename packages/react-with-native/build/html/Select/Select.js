@@ -21,19 +21,16 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
+var jsx_runtime_1 = require("react/jsx-runtime");
 var Select = function (_a) {
     var native = _a.native, options = _a.options, customOptionSelector = _a.customOptionSelector, props = __rest(_a, ["native", "options", "customOptionSelector"]);
     // default option selector
     var defaultOptionSelector = (options || []).map(function (option) {
-        react_1.default.createElement("option", { value: option.value }, option.label);
+        (0, jsx_runtime_1.jsx)("option", __assign({ value: option.value }, { children: option.label }), void 0);
     });
     // return component with custom option selector or default
-    return (react_1.default.createElement("select", __assign({}, props), customOptionSelector ? customOptionSelector : defaultOptionSelector));
+    return ((0, jsx_runtime_1.jsx)("select", __assign({}, props, { children: customOptionSelector ? customOptionSelector : defaultOptionSelector }), void 0));
 };
 exports.default = Select;
 //# sourceMappingURL=Select.js.map
