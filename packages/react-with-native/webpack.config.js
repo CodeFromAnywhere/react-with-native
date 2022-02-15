@@ -1,6 +1,6 @@
 var path = require("path");
 var webpack = require("webpack");
-
+//TODO: figure out if we still need this
 module.exports = {
   entry: "./index",
   output: {
