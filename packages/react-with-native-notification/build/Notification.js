@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.toast = exports.ToastContainer = void 0;
+exports.ToastContainer = exports.toast = void 0;
 var react_toastify_1 = require("react-toastify");
 require("react-toastify/dist/ReactToastify.css");
 var react_toastify_2 = require("react-toastify");

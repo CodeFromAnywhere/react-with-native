@@ -1,6 +1,6 @@
 import { toast as toastifyToast, ToastOptions } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-export { ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 /**
  * title is only shown on native
@@ -11,5 +11,7 @@ export const toast = (
 ) => {
   toastifyToast(message.body, options);
 };
+
+export { ToastContainer };
 
 export type { ToastOptions };
