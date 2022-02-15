@@ -19,7 +19,7 @@ const Select = <T extends unknown>({
   };
   return (
     <Div className={className}>
-      {children({ onClick, className, value: realValue })}
+      {children?.({ onClick, className, value: realValue })}
     </Div>
   );
 };

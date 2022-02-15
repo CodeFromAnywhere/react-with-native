@@ -27,13 +27,13 @@ const Select = <T extends unknown>({
         const selected = options[buttonIndex];
 
         selected.onClick?.();
-        onChange(selected);
+        onChange?.(selected);
       }
     );
   };
   return (
     <Div className={className}>
-      {children({ onClick, className, value: realValue })}
+      {children?.({ onClick, className, value: realValue })}
     </Div>
   );
 };

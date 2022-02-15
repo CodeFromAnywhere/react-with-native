@@ -1,5 +1,5 @@
 import { PluginComponent, PluginInputType } from "react-with-native-form";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { FileWithPath, useDropzone } from "react-dropzone";
 import { Li, Div, Label, P, Input, Aside, Ul } from "react-with-native";
 import Icon from "./icon.svg";
@@ -48,9 +48,7 @@ const FileInput: PluginComponent<FileInputType> = ({ extra, onChange }) => {
 FileInput.defaultInitialValue = [];
 
 export class FileInputType implements PluginInputType {
-  type: "file";
   value: File[];
-  defaultValue: File[];
   config?: {
     errorClassName?: string;
     extraClassName?: string;
