@@ -30,11 +30,15 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setConfig = exports.errorOnField = exports.isObject = exports.deepEqual = exports.Input = exports.DefaultInputContainer = exports.inputClass = exports.inputClassWithoutWidth = exports.makeInputField = exports.notEmpty = void 0;
+exports.setConfig = exports.errorOnField = exports.isObject = exports.Input = exports.DefaultInputContainer = exports.inputClass = exports.inputClassWithoutWidth = exports.makeInputField = exports.notEmpty = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
 var react_with_native_1 = require("react-with-native");
+var react_2 = __importDefault(require("fast-deep-equal/react"));
 var isWeb = typeof window !== "undefined" && !!window.scrollTo;
 var sameFieldArray = function (arr1, arr2) {
     var simpleArr1 = arr1.map(function (_a) {
@@ -45,7 +49,7 @@ var sameFieldArray = function (arr1, arr2) {
         var shouldHide = _a.shouldHide, titleFromState = _a.titleFromState, hasError = _a.hasError, item = __rest(_a, ["shouldHide", "titleFromState", "hasError"]);
         return item;
     });
-    var isDeepEqual = deepEqual(simpleArr1, simpleArr2);
+    var isDeepEqual = (0, react_2.default)(simpleArr1, simpleArr2);
     // console.log({ simpleArr1, simpleArr2, isDeepEqual });
     return isDeepEqual;
 };
@@ -110,25 +114,6 @@ var DefaultTitle = function (_a) {
     var title = _a.title, backButton = _a.backButton;
     return title ? ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "flex items-center mb-10 " }, { children: [backButton && ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ onClick: backButton, className: "p-4 cursor-pointer" }, { children: "back" }), void 0)), (0, jsx_runtime_1.jsx)(react_with_native_1.H2, __assign({ className: "text-2xl font-bold" }, { children: title }), void 0)] }), void 0)) : null;
 };
-function deepEqual(object1, object2) {
-    var keys1 = Object.keys(object1);
-    var keys2 = Object.keys(object2);
-    if ((keys1 === null || keys1 === void 0 ? void 0 : keys1.length) !== (keys2 === null || keys2 === void 0 ? void 0 : keys2.length)) {
-        return false;
-    }
-    for (var _i = 0, keys1_1 = keys1; _i < keys1_1.length; _i++) {
-        var key = keys1_1[_i];
-        var val1 = object1[key];
-        var val2 = object2[key];
-        var areObjects = isObject(val1) && isObject(val2);
-        if ((areObjects && !deepEqual(val1, val2)) ||
-            (!areObjects && val1 !== val2)) {
-            return false;
-        }
-    }
-    return true;
-}
-exports.deepEqual = deepEqual;
 function isObject(object) {
     return object != null && typeof object === "object";
 }
@@ -181,7 +166,7 @@ var DataForm = function (_a) {
     //used to check if the initialValues have changed
     var _g = (0, react_1.useState)(), initialValuesState = _g[0], setInitialValuesState = _g[1];
     (0, react_1.useEffect)(function () {
-        if (!initialValuesState || !deepEqual(initialState, initialValuesState)) {
+        if (!initialValuesState || !(0, react_2.default)(initialState, initialValuesState)) {
             // console.log("initialValues have changed");
             setState(initialState);
             setInitialValuesState(initialState);

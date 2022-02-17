@@ -1,4 +1,3 @@
-import * as React from "react";
 import { RefObject } from "react";
 export declare function notEmpty<TValue>(value: TValue | null | undefined): value is TValue;
 export declare const makeInputField: <TInputs, T extends Extract<keyof TInputs, string>>(type: T, config: Omit<Field<TInputs, T>, "type">) => () => {
@@ -217,7 +216,7 @@ export declare const Input: <TInputs extends AllPluginInputTypes, T extends keyo
     isLast: boolean;
     startSection?: boolean | undefined;
     sectionTitle?: string | undefined;
-    reference?: React.RefObject<HTMLDivElement> | undefined;
+    reference?: RefObject<HTMLDivElement> | undefined;
     description?: string | undefined;
     /**
      * format: {uniqueGeneratedNumber}.{fieldName}
@@ -226,11 +225,6 @@ export declare const Input: <TInputs extends AllPluginInputTypes, T extends keyo
     renderInputContainer?: RenderInputContainerType;
     errorClassName?: string | undefined;
 }) => JSX.Element;
-export declare function deepEqual(object1: {
-    [key: string]: any;
-}, object2: {
-    [key: string]: any;
-}): boolean;
 export declare function isObject(object: any): object is object;
 export declare const errorOnField: (fieldName: string) => (error: Error) => boolean;
 declare const DataForm: <TInputs, TState extends {

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState, RefObject, createRef, useEffect } from "react";
 import {
   ActivityIndicator,
@@ -10,6 +9,7 @@ import {
   H2,
   Button,
 } from "react-with-native";
+import deepEqual from "fast-deep-equal/react";
 
 const isWeb = typeof window !== "undefined" && !!window.scrollTo;
 const sameFieldArray = <
@@ -418,28 +418,6 @@ const DefaultTitle = ({
   ) : null;
 };
 
-export function deepEqual(
-  object1: { [key: string]: any },
-  object2: { [key: string]: any }
-) {
-  const keys1 = Object.keys(object1);
-  const keys2 = Object.keys(object2);
-  if (keys1?.length !== keys2?.length) {
-    return false;
-  }
-  for (const key of keys1) {
-    const val1 = object1[key];
-    const val2 = object2[key];
-    const areObjects = isObject(val1) && isObject(val2);
-    if (
-      (areObjects && !deepEqual(val1, val2)) ||
-      (!areObjects && val1 !== val2)
-    ) {
-      return false;
-    }
-  }
-  return true;
-}
 export function isObject(object: any): object is object {
   return object != null && typeof object === "object";
 }
