@@ -34,11 +34,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setConfig = exports.errorOnField = exports.isObject = exports.Input = exports.DefaultInputContainer = exports.inputClass = exports.inputClassWithoutWidth = exports.makeInputField = exports.notEmpty = void 0;
+exports.setConfig = exports.errorOnField = exports.isObject = exports.Input = exports.DefaultInputContainer = exports.inputClass = exports.inputClassWithoutWidth = exports.makeInputField = exports.notEmpty = exports.deepEqual = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
 var react_with_native_1 = require("react-with-native");
 var react_2 = __importDefault(require("fast-deep-equal/react"));
+exports.deepEqual = react_2.default;
 var isWeb = typeof window !== "undefined" && !!window.scrollTo;
 var sameFieldArray = function (arr1, arr2) {
     var simpleArr1 = arr1.map(function (_a) {

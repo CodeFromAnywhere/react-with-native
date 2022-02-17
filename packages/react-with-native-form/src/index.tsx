@@ -11,6 +11,7 @@ import {
 } from "react-with-native";
 import deepEqual from "fast-deep-equal/react";
 
+export { deepEqual };
 const isWeb = typeof window !== "undefined" && !!window.scrollTo;
 const sameFieldArray = <
   T extends Field<TInputs, Keys<TInputs>>[],

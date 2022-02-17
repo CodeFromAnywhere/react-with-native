@@ -1,4 +1,6 @@
 import { RefObject } from "react";
+import deepEqual from "fast-deep-equal/react";
+export { deepEqual };
 export declare function notEmpty<TValue>(value: TValue | null | undefined): value is TValue;
 export declare const makeInputField: <TInputs, T extends Extract<keyof TInputs, string>>(type: T, config: Omit<Field<TInputs, T>, "type">) => () => {
     field: string;
