@@ -1,14 +1,7 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./Notification"), exports);
+exports.ToastContainer = exports.toast = void 0;
+var Notification_1 = require("./Notification");
+Object.defineProperty(exports, "toast", { enumerable: true, get: function () { return Notification_1.toast; } });
+Object.defineProperty(exports, "ToastContainer", { enumerable: true, get: function () { return Notification_1.ToastContainer; } });
 //# sourceMappingURL=index.js.map

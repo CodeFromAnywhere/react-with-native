@@ -1,5 +1,4 @@
 import { toast as toastifyToast, ToastOptions } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
 /**

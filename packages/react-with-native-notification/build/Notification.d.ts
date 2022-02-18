@@ -1,5 +1,4 @@
 import { ToastOptions } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 /**
  * title is only shown on native
