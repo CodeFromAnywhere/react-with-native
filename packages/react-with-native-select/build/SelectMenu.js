@@ -44,8 +44,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var jsx_runtime_1 = require("react/jsx-runtime");
 var ReactDOM = __importStar(require("react-dom"));
 var react_menu_1 = require("@szhsin/react-menu");
-require("@szhsin/react-menu/dist/index.css");
-require("@szhsin/react-menu/dist/transitions/slide.css");
 var react_1 = require("react");
 var react_with_native_1 = require("react-with-native");
 var SelectMenu = function (_a) {

@@ -17,6 +17,14 @@ It renders a native ActionSheet on iOS, a custom actionsheet on Android, a botto
 For React/Next.js apps:
 `yarn add react-with-native-select react-with-native @mui/material @szhsin/react-menu @emotion/react @emotion/styled @headlessui/react`
 
+Put this in your `_app.tsx`
+
+```
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
+
+```
+
 For React Native/Expo apps:
 `yarn add react-with-native-select react-with-native`
 

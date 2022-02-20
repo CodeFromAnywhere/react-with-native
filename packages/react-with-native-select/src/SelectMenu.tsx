@@ -1,7 +1,5 @@
 import * as ReactDOM from "react-dom";
 import { MenuItem, ControlledMenu, useMenuState } from "@szhsin/react-menu";
-import "@szhsin/react-menu/dist/index.css";
-import "@szhsin/react-menu/dist/transitions/slide.css";
 import { MouseEvent, useState } from "react";
 import { ChildrenType, Item, ID } from "./types";
 import { Div, Svg } from "react-with-native";
