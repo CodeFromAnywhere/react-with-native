@@ -1,2 +1,2 @@
-export declare const getEnv: (key: string) => any;
+export declare const getEnv: (key: string) => string | undefined;
 //# sourceMappingURL=getEnv.d.ts.map
