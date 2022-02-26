@@ -2,7 +2,7 @@ import ReactMapGL, { Marker, MapRef } from "react-map-gl";
 import { useState, useRef } from "react";
 
 import { PluginComponent } from "react-with-native-form";
-import HiOutlineLocationMarker from "./HiOutlineLocationMarker.svg";
+import HiOutlineLocationMarker from "../assets/HiOutlineLocationMarker.svg";
 import { Svg } from "react-with-native";
 import Autosuggest from "react-autosuggest";
 import { MapInputType, Suggestion, ViewPort } from "./types";

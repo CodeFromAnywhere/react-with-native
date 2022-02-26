@@ -72,7 +72,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_map_gl_1 = __importStar(require("react-map-gl"));
 var react_1 = require("react");
-var HiOutlineLocationMarker_svg_1 = __importDefault(require("./HiOutlineLocationMarker.svg"));
+var HiOutlineLocationMarker_svg_1 = __importDefault(require("../assets/HiOutlineLocationMarker.svg"));
 var react_with_native_1 = require("react-with-native");
 var react_autosuggest_1 = __importDefault(require("react-autosuggest"));
 var MapInput = function (_a) {

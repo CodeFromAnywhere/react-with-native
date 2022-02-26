@@ -20,8 +20,8 @@ var react_1 = require("react");
 var react_2 = require("@headlessui/react");
 var SelectedIcon_1 = __importDefault(require("./SelectedIcon"));
 var react_with_native_1 = require("react-with-native");
-var AiFillCaretDown_svg_1 = __importDefault(require("./assets/AiFillCaretDown.svg"));
-var AiFillCaretUp_svg_1 = __importDefault(require("./assets/AiFillCaretUp.svg"));
+var AiFillCaretDown_svg_1 = __importDefault(require("../assets/AiFillCaretDown.svg"));
+var AiFillCaretUp_svg_1 = __importDefault(require("../assets/AiFillCaretUp.svg"));
 var react_with_native_2 = require("react-with-native");
 function classNames() {
     var classes = [];

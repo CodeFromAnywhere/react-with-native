@@ -3,8 +3,8 @@ import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import SelectedIcon from "./SelectedIcon";
 import { Svg } from "react-with-native";
-import AiFillCaretDown from "./assets/AiFillCaretDown.svg";
-import AiFillCaretUp from "./assets/AiFillCaretUp.svg";
+import AiFillCaretDown from "../assets/AiFillCaretDown.svg";
+import AiFillCaretUp from "../assets/AiFillCaretUp.svg";
 import { Item } from "./types";
 import { Div, Span } from "react-with-native";
 function classNames(...classes: string[]) {

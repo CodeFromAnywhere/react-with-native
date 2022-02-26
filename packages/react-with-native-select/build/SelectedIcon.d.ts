@@ -1,3 +1,4 @@
+/// <reference types="react" />
 declare const SelectedIcon: ({ selected }: {
     selected: boolean;
 }) => JSX.Element;

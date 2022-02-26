@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Svg, Div } from "react-with-native";
-import AiFillCaretDown from "./assets/AiFillCaretDown.svg";
+import AiFillCaretDown from "../assets/AiFillCaretDown.svg";
 
 export default function DropdownButton({
   onClick,

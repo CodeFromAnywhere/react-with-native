@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { Item } from "./types";
 export default function SelectDropDown<T>({ title, value, onChange, options, className, children, }: {
     title?: string;

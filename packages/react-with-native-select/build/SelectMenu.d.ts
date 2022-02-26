@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { ChildrenType, Item } from "./types";
 declare const SelectMenu: <T extends unknown>({ options, value, onChange, children, className, }: {
     options: Item<T>[];
