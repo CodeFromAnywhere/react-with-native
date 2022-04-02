@@ -78,14 +78,14 @@ const SelectDrawer = <T extends unknown>({
             <Button
               disabled={valueNoOption}
               className={`text-left ${
-                valueNoOption ? "disabled:opacity-50" : "text-pink"
+                valueNoOption ? "disabled:opacity-50" : "text-primary"
               }`}
               onClick={reset}
             >
               {hasReset ? "Reset" : null}
             </Button>
             <div className="col-span-2 font-bold text-center">{title}</div>
-            <Button className="text-right text-pink" onClick={switchOpen}>
+            <Button className="text-right text-primary" onClick={switchOpen}>
               Ready
             </Button>
           </Div>
