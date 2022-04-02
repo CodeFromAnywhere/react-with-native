@@ -31,7 +31,7 @@ const renderOption = <T extends unknown>({
       <Div className="flex items-center">
         <Span
           className={classNames(
-            selected || active ? "font-semibold text-pink" : "font-normal",
+            selected || active ? "font-semibold text-primary" : "font-normal",
             "ml-3 block truncate"
           )}
         >
