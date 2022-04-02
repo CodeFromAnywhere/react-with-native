@@ -1,5 +1,8 @@
-import { PluginInputType, PluginComponent } from "react-with-native-form";
-import TextInput from "react-with-native-text-input";
+import {
+  PluginInputType,
+  PluginComponent,
+} from "../../react-with-native-form/src/";
+import TextInput from "../../react-with-native-text-input/src/";
 
 const NumberInput: PluginComponent<NumberInputType> = ({
   extra,

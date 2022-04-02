@@ -1,4 +1,4 @@
-import { PluginInputType } from "react-with-native-form";
+import { PluginInputType } from "../../react-with-native-form/src";
 
 export class DateInputType implements PluginInputType {
   /**

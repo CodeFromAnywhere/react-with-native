@@ -6,11 +6,11 @@ import { wrapInTextIfNeeded } from "../../util/util";
 import { DivType } from "./Div.type";
 
 const PureDiv = (
-  { native, textClassName, className, children }: DivType,
+  { native, textClassName, className, children, style }: DivType,
   ref: any
 ) => {
   const tailwind = useTailwind();
-  const { style, ...nativeWithoutStyle } = native || {};
+  const { ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
   return (
     <View style={[tailwindStyle, style]} {...nativeWithoutStyle} ref={ref}>

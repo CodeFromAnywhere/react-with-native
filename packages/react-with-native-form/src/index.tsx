@@ -8,11 +8,13 @@ import {
   P,
   H2,
   Button,
-} from "react-with-native";
+} from "../../react-with-native/src";
 import deepEqual from "fast-deep-equal/react";
 
 export { deepEqual };
+
 const isWeb = typeof window !== "undefined" && !!window.scrollTo;
+
 const sameFieldArray = <
   T extends Field<TInputs, Keys<TInputs>>[],
   TInputs extends any
@@ -291,7 +293,7 @@ export const DefaultInputContainer = ({
     ) : null}
 
     {/* This is the section title */}
-    <Div className="pt-0 mb-6">
+    <Div className="pt-0 mb-6" style={{ marginBottom: 10 }}>
       {title ? <Label className="mb-2 text-sm font-bold">{title}</Label> : null}
       {description && (
         <Div className={`flex mx-3 mb-2 items-start `}>
@@ -308,6 +310,7 @@ export const DefaultInputContainer = ({
     </Div>
   </Div>
 );
+
 const getPlugin = <TInputs extends AllPluginInputTypes>(
   type: string | undefined,
   plugins: Plugins<TInputs>
@@ -448,6 +451,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
   successClassName,
 }: DataFormProps<TInputs, TState>) => {
   //sometimes use defaultValues (deprecated)
+
   initialValues = initialValues ? initialValues : defaultValues;
   if (!plugins) {
     throw new Error("No plugins given");
@@ -466,6 +470,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
   useEffect(() => {
     const fieldsWithoutReferencesLocal = fields.map((f) => f());
+
     if (
       // fieldsWithoutReferences.length === 0 && //NB: why was this here? caused the fields not to refresh
       !sameFieldArray<Field<TInputs, Keys<TInputs>>[], TInputs>(
@@ -663,13 +668,29 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
             : "bg-gray-300"
         }  inline-flex justify-center flex-row w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
         onClick={() => onClickSubmit(state)}
+        //......Extra
+        style={{
+          backgroundColor: "#4ade80",
+          color: "white",
+          width: "100%",
+          marginTop: 5,
+          marginBottom: 5,
+          display: "flex",
+          justifyContent: "center",
+          borderRadius: 10,
+          alignItems: "center",
+          borderColor: "white",
+          padding: 8,
+        }}
       >
         {loading ? (
           <Div className="mr-2">
             <ActivityIndicator />
           </Div>
         ) : null}
-        <Div>{submitButtonText || "Save"}</Div>
+        <Label style={{ color: "white", fontWeight: "bold" }}>
+          {submitButtonText || "Save"}
+        </Label>
       </Button>
     );
   const globalError = errors?.find(
@@ -797,15 +818,16 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     </Form>
   );
 };
+
 export type AllPluginInputTypes = { [key: string]: PluginInputType };
 
 export const setConfig = <TInputs, TState>(
   DataForm: (props: DataFormProps<TInputs, TState>) => JSX.Element,
   config: DataFormConfig<TInputs>
 ) => {
-  return (props: DataFormProps<TInputs, TState>) => (
-    <DataForm {...config} {...props} />
-  );
+  return (props: DataFormProps<TInputs, TState>) => {
+    return <DataForm {...config} {...props} />;
+  };
 };
 
 export default DataForm;

@@ -38,7 +38,7 @@ const SelectMenu = <T extends unknown>({
 
   return (
     <Div className="w-full">
-      {ReactDOM.createPortal(
+      {/* {ReactDOM.createPortal(
         <ControlledMenu
           {...menuProps}
           anchorPoint={anchorPoint}
@@ -64,7 +64,7 @@ const SelectMenu = <T extends unknown>({
           })}
         </ControlledMenu>,
         document.getElementById("contextmenu")!
-      )}
+      )} */}
       {children({ onClick, value, className })}
     </Div>
   );

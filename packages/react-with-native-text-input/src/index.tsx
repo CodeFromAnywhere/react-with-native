@@ -2,8 +2,8 @@ import {
   PluginInputType,
   inputClass,
   PluginComponent,
-} from "react-with-native-form";
-import { Input } from "react-with-native";
+} from "../../react-with-native-form/src";
+import { Input } from "../../react-with-native/src";
 
 const TextInput: PluginComponent<TextInputType> = ({
   onChange,
@@ -33,6 +33,7 @@ const TextInput: PluginComponent<TextInputType> = ({
         extra?.type ? extra.type : extra?.isPassword ? "password" : undefined
       }
       className={inputClassWithError}
+      style={{ padding: 5, marginTop: 5, marginBottom: 5 }}
       value={value}
       onChange={(event) => onChangeText(event.target.value)}
       placeholder={placeholder}
