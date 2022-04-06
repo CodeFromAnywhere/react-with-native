@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useContext } from "react";
-import { Div, Button } from "react-with-native";
+import { Div, Button, P, H2, Span } from "react-with-native";
 
 type HandleModal = (newModal: ModalContent, title?: string) => void;
 type ModalContent = JSX.Element | string | null;
@@ -74,21 +74,21 @@ export default function Modal() {
             <Div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
               {/*header*/}
               <Div className="flex items-start justify-between p-5 border-b border-gray-200 border-solid rounded-t">
-                <h3 className="text-3xl font-semibold">{title}</h3>
+                <H2 className="text-3xl font-semibold">{title}</H2>
                 <Button
-                  className="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none"
+                  className="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-50 focus:outline-none"
                   onClick={() => handleModal(null)}
                 >
-                  <span className="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                  <Span className="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-50 focus:outline-none">
                     x
-                  </span>
+                  </Span>
                 </Button>
               </Div>
               {/*body*/}
               <Div className="relative flex-auto p-6">
-                <p className="my-4 text-lg leading-relaxed text-gray-500">
+                <Div className="my-4 text-lg leading-relaxed text-gray-500">
                   {modalContent}
-                </p>
+                </Div>
               </Div>
               {/*footer*/}
               <Div className="flex items-center justify-end p-6 border-t border-gray-200 border-solid rounded-b">
