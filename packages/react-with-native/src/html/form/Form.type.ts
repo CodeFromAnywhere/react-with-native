@@ -1,5 +1,5 @@
 import { DetailedHTMLProps, FormHTMLAttributes } from "react";
-import type { StyleProp, ViewProps, ViewStyle } from "react-native";
+import type { ViewProps } from "react-native";
 
 export type FormType = DetailedHTMLProps<
   FormHTMLAttributes<HTMLFormElement>,
@@ -7,5 +7,4 @@ export type FormType = DetailedHTMLProps<
 > & {
   native?: ViewProps;
   textClassName?: string;
-  style?: StyleProp<ViewStyle>;
 };

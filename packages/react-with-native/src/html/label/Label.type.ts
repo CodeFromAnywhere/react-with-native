@@ -1,5 +1,5 @@
 import { DetailedHTMLProps, LabelHTMLAttributes } from "react";
-import type { StyleProp, TextProps, TextStyle } from "react-native";
+import type { TextProps } from "react-native";
 
 export type LabelType = DetailedHTMLProps<
   LabelHTMLAttributes<HTMLLabelElement>,
@@ -7,5 +7,4 @@ export type LabelType = DetailedHTMLProps<
 > & {
   htmlFor?: string;
   native?: TextProps;
-  style?: StyleProp<TextStyle>;
 };

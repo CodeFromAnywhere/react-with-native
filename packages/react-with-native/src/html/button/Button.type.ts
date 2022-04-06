@@ -1,5 +1,5 @@
 import { DetailedHTMLProps, ButtonHTMLAttributes } from "react";
-import type { StyleProp, TouchableOpacityProps, ViewStyle } from "react-native";
+import type { TouchableOpacityProps } from "react-native";
 
 export type ButtonType = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -7,5 +7,4 @@ export type ButtonType = DetailedHTMLProps<
 > & {
   native?: TouchableOpacityProps;
   textClassName?: string;
-  style?: StyleProp<ViewStyle>;
 };

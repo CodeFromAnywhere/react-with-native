@@ -4,13 +4,13 @@ import { useTailwind } from "tailwind-rn";
 import { trimClassName } from "../../util/trimClassName";
 import { InputType } from "./Input.type";
 
-const Input = ({ native, children, className, style, ...props }: InputType) => {
+const Input = ({ native, children, className }: InputType) => {
   const tailwind = useTailwind();
-  const { style: nativeStyle, ...nativeWithoutStyle } = native || {};
+  const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
   return (
     <TextInput
-      style={[{ fontWeight: "bold" }, tailwindStyle, style, nativeStyle]}
+      style={[{ fontWeight: "bold" }, tailwindStyle, style]}
       {...nativeWithoutStyle}
     >
       {nativeWithoutStyle.children || children}
