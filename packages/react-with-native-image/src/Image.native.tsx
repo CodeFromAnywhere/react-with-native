@@ -9,7 +9,9 @@ export const Image = ({ native, className, style, src }: ImageType) => {
   native = native!; //TODO: How can I make the native prop required, if you render a native component?
 
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
-  return <RNImage style={[tailwindStyle, style]} {...native} source={src} />;
+  return (
+    <RNImage style={[tailwindStyle, style]} {...native} source={{ uri: src }} />
+  );
 };
 
 export default Image;
