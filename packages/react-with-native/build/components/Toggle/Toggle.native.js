@@ -15,7 +15,7 @@ var jsx_runtime_1 = require("react/jsx-runtime");
 var react_native_1 = require("react-native");
 var Toggle = function (_a) {
     var native = _a.native, checked = _a.checked, onChange = _a.onChange;
-    return ((0, jsx_runtime_1.jsx)(react_native_1.Switch, __assign({ value: checked, onValueChange: function (value) { return onChange(value); } }, native), void 0));
+    return ((0, jsx_runtime_1.jsx)(react_native_1.Switch, __assign({ value: checked, onValueChange: function (value) { return onChange(value); } }, native)));
 };
 exports.default = Toggle;
 //# sourceMappingURL=Toggle.native.js.map

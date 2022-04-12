@@ -14,7 +14,7 @@ var ActivityIndicator = function (props) {
         ? "border-white dark:border-gray-900"
         : "border-gray-900 dark:border-white";
     var className = "".concat(sizeClass, " border-b-2 ").concat(borderClass, " rounded-full animate-spin ").concat(props.className || "");
-    return (0, jsx_runtime_1.jsx)("div", { style: sizeStyle, className: className }, void 0);
+    return (0, jsx_runtime_1.jsx)("div", { style: sizeStyle, className: className });
 };
 exports.default = ActivityIndicator;
 //# sourceMappingURL=ActivityIndicator.js.map

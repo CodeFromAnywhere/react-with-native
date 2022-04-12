@@ -8,7 +8,7 @@ var Svg = function (_a) {
     var tailwind = (0, tailwind_rn_1.useTailwind)();
     var tailwindStyle = className ? tailwind((0, trimClassName_1.trimClassName)(className)) : {};
     var Icon = src;
-    return (0, jsx_runtime_1.jsx)(Icon, { width: width, height: height, style: [style, tailwindStyle] }, void 0);
+    return (0, jsx_runtime_1.jsx)(Icon, { width: width, height: height, style: [style, tailwindStyle] });
 };
 exports.default = Svg;
 //# sourceMappingURL=Svg.native.js.map

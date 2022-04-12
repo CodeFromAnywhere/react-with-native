@@ -28,14 +28,14 @@ var tailwind_rn_1 = require("tailwind-rn");
 var trimClassName_1 = require("../../util/trimClassName");
 var util_1 = require("../../util/util");
 var Button = function (_a) {
-    var native = _a.native, textClassName = _a.textClassName, className = _a.className, children = _a.children, onClick = _a.onClick;
+    var native = _a.native, textClassName = _a.textClassName, className = _a.className, children = _a.children, onClick = _a.onClick, style = _a.style;
     native = native;
     var tailwind = (0, tailwind_rn_1.useTailwind)();
-    var _b = native || {}, style = _b.style, onPress = _b.onPress, otherNative = __rest(_b, ["style", "onPress"]);
+    var _b = native || {}, nativeStyle = _b.style, onPress = _b.onPress, otherNative = __rest(_b, ["style", "onPress"]);
     var tailwindStyle = className ? tailwind((0, trimClassName_1.trimClassName)(className)) : {};
     //NB: figure out how I make it work without casting to any because it would need an event which we dont have in rn
-    var onPressHandler = onPress ? onPress : function () { var _a; return (_a = onClick) === null || _a === void 0 ? void 0 : _a(); };
-    return ((0, jsx_runtime_1.jsx)(react_native_1.TouchableOpacity, __assign({ style: [tailwindStyle, style], onPress: onPressHandler }, otherNative, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) }), void 0));
+    var onPressHandler = onPress ? onPress : function () { return onClick === null || onClick === void 0 ? void 0 : onClick(); };
+    return ((0, jsx_runtime_1.jsx)(react_native_1.TouchableOpacity, __assign({ style: [tailwindStyle, style, nativeStyle], onPress: onPressHandler }, otherNative, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) })));
 };
 exports.default = Button;
 //# sourceMappingURL=Button.native.js.map

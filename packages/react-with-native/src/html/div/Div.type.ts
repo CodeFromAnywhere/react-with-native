@@ -8,4 +8,5 @@ export type DivType = DetailedHTMLProps<
   native?: ViewProps;
   textClassName?: string;
   style?: StyleProp<ViewStyle>;
+  scrollable?: boolean;
 };

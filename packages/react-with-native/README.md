@@ -1,7 +1,7 @@
 # react-with-native
 
 - Exposes all html elements with their most suitable react-native counterpart, e.g. `button, div, strong, label, p, h1, h2`, etc.
-- Exposes all `react-native` components with their most suitable html counterpart, e.g. `View, Text, TextInput, Pressable`, etc.
+- Exposes all `react-native` components with their most suitable html counterpart, e.g. `View, Text, TextInput, Pressable`,`Scrollview` etc.
 
 ## Installation
 
@@ -27,6 +27,17 @@
 - To add the SVG Transformer, follow [these instructions](https://github.com/kristerkari/react-native-svg-transformer#installation-and-configuration).
 
 - Make sure to [install tailwind-rn](https://github.com/vadimdemedes/tailwind-rn) and wrap your app in a tailwind provider.
+
+# Div
+
+## Div Props
+
+| Prop       |   Type   | Default |                                  Description                                   |
+| ---------- | :------: | :-----: | :----------------------------------------------------------------------------: |
+| scrollable | boolean  |  false  | Scrollable div (ScrollView for native)(E.g. `<Div scrollable>conten... </Div>` |
+| onChange   | Function |    -    |                    onChange (E.g. onChange={customOnChange}                    |
+| style      |  Object  |  null   |                         Styling the div/View component                         |
+| className  |  String  |  null   |                 tailwind classes (E.g. "flex-1 bg-slate-500")                  |
 
 ## What's not shared?
 
