@@ -27,10 +27,10 @@ var Select = function (_a) {
     var native = _a.native, options = _a.options, customOptionSelector = _a.customOptionSelector, props = __rest(_a, ["native", "options", "customOptionSelector"]);
     // default option selector
     var defaultOptionSelector = (options || []).map(function (option) {
-        (0, jsx_runtime_1.jsx)("option", __assign({ value: option.value }, { children: option.label }), void 0);
+        (0, jsx_runtime_1.jsx)("option", __assign({ value: option.value }, { children: option.label }));
     });
     // return component with custom option selector or default
-    return ((0, jsx_runtime_1.jsx)("select", __assign({}, props, { children: customOptionSelector ? customOptionSelector : defaultOptionSelector }), void 0));
+    return ((0, jsx_runtime_1.jsx)("select", __assign({}, props, { children: customOptionSelector ? customOptionSelector : defaultOptionSelector })));
 };
 exports.default = Select;
 //# sourceMappingURL=Select.js.map

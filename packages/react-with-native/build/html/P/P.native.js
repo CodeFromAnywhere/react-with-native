@@ -34,7 +34,7 @@ var P = function (_a) {
     return (
     //why would be need a view around this?
     // <View style={{ flexDirection: "row" }}>
-    (0, jsx_runtime_1.jsx)(react_native_1.Text, __assign({ style: [{ flexShrink: 1 }, tailwindStyle, style] }, nativeWithoutStyle, { children: children }), void 0)
+    (0, jsx_runtime_1.jsx)(react_native_1.Text, __assign({ style: [{ flexShrink: 1 }, tailwindStyle, style] }, nativeWithoutStyle, { children: children }))
     //</View>
     );
 };

@@ -19,7 +19,7 @@ var jsx_runtime_1 = require("react/jsx-runtime");
 var Text_1 = __importDefault(require("../react-native/Text/Text"));
 // NB: figure out a way to do the styles of the text right.
 var wrapInTextIfNeeded = function (children, textClassName) {
-    return typeof children === "string" ? ((0, jsx_runtime_1.jsx)(Text_1.default, __assign({ className: textClassName }, { children: children }), void 0)) : (children);
+    return typeof children === "string" ? ((0, jsx_runtime_1.jsx)(Text_1.default, __assign({ className: textClassName }, { children: children }))) : (children);
 };
 exports.wrapInTextIfNeeded = wrapInTextIfNeeded;
 var joinClassNames = function () {

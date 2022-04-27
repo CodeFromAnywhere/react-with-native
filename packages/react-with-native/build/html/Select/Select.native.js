@@ -21,8 +21,8 @@ var Select = function (_a) {
     var style = (native || {}).style;
     var tailwindStyle = className ? tailwind((0, trimClassName_1.trimClassName)(className)) : {};
     return ((0, jsx_runtime_1.jsx)(react_native_1.Picker, __assign({ style: [{ fontWeight: "bold" }, tailwindStyle, style] }, { children: (options || []).map(function (option) {
-            (0, jsx_runtime_1.jsx)(react_native_1.Picker.Item, { value: String(option.value), label: String(option.label) }, void 0);
-        }) }), void 0));
+            (0, jsx_runtime_1.jsx)(react_native_1.Picker.Item, { value: String(option.value), label: String(option.label) });
+        }) })));
 };
 exports.default = Select;
 //# sourceMappingURL=Select.native.js.map

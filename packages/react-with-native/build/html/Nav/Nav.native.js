@@ -40,7 +40,7 @@ var Nav = function (_a) {
                 alignItems: "center",
                 elevation: 0,
             },
-        ] }, nativeWithoutStyle, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) }), void 0));
+        ] }, nativeWithoutStyle, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) })));
 };
 exports.default = Nav;
 //# sourceMappingURL=Nav.native.js.map

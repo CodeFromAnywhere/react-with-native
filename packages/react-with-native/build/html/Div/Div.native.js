@@ -12,7 +12,11 @@ var __assign = (this && this.__assign) || function () {
 };
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -48,11 +52,11 @@ var tailwind_rn_1 = require("tailwind-rn");
 var trimClassName_1 = require("../../util/trimClassName");
 var util_1 = require("../../util/util");
 var PureDiv = function (_a, ref) {
-    var native = _a.native, textClassName = _a.textClassName, className = _a.className, children = _a.children;
+    var native = _a.native, textClassName = _a.textClassName, className = _a.className, children = _a.children, style = _a.style;
     var tailwind = (0, tailwind_rn_1.useTailwind)();
-    var _b = native || {}, style = _b.style, nativeWithoutStyle = __rest(_b, ["style"]);
+    var nativeWithoutStyle = __rest(native || {}, []);
     var tailwindStyle = className ? tailwind((0, trimClassName_1.trimClassName)(className)) : {};
-    return ((0, jsx_runtime_1.jsx)(react_native_1.View, __assign({ style: [tailwindStyle, style] }, nativeWithoutStyle, { ref: ref }, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) }), void 0));
+    return ((0, jsx_runtime_1.jsx)(react_native_1.View, __assign({ style: [tailwindStyle, style] }, nativeWithoutStyle, { ref: ref }, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) })));
 };
 var Div = React.forwardRef(PureDiv);
 exports.default = Div;

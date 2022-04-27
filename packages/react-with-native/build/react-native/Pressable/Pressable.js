@@ -29,7 +29,7 @@ var util_1 = require("../../util/util");
  */
 var Pressable = function (_a) {
     var native = _a.native, textClassName = _a.textClassName, className = _a.className, props = __rest(_a, ["native", "textClassName", "className"]);
-    return ((0, jsx_runtime_1.jsx)("button", __assign({}, props, { className: (0, util_1.joinClassNames)(className, textClassName) }), void 0));
+    return ((0, jsx_runtime_1.jsx)("button", __assign({}, props, { className: (0, util_1.joinClassNames)(className, textClassName) })));
 };
 exports.default = Pressable;
 //# sourceMappingURL=Pressable.js.map

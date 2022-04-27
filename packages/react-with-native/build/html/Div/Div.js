@@ -12,7 +12,11 @@ var __assign = (this && this.__assign) || function () {
 };
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -46,7 +50,7 @@ var React = __importStar(require("react"));
 var util_1 = require("../../util/util");
 var PureDiv = function (_a, ref) {
     var native = _a.native, className = _a.className, textClassName = _a.textClassName, props = __rest(_a, ["native", "className", "textClassName"]);
-    return ((0, jsx_runtime_1.jsx)("div", __assign({}, props, { ref: ref, className: (0, util_1.joinClassNames)(className, textClassName) }), void 0));
+    return ((0, jsx_runtime_1.jsx)("div", __assign({}, props, { ref: ref, className: (0, util_1.joinClassNames)(className, textClassName) })));
 };
 var Div = React.forwardRef(PureDiv);
 exports.default = Div;

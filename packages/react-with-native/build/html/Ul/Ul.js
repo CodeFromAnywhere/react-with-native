@@ -26,7 +26,7 @@ var jsx_runtime_1 = require("react/jsx-runtime");
 var util_1 = require("../../util/util");
 var Ul = function (_a) {
     var native = _a.native, className = _a.className, textClassName = _a.textClassName, props = __rest(_a, ["native", "className", "textClassName"]);
-    return (0, jsx_runtime_1.jsx)("ul", __assign({}, props, { className: (0, util_1.joinClassNames)(className, textClassName) }), void 0);
+    return (0, jsx_runtime_1.jsx)("ul", __assign({}, props, { className: (0, util_1.joinClassNames)(className, textClassName) }));
 };
 exports.default = Ul;
 //# sourceMappingURL=Ul.js.map
