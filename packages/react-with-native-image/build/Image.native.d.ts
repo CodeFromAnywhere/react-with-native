@@ -1,4 +1,4 @@
-import type { ImageType } from "./Image.type";
-declare const Image: ({ native, className }: ImageType) => JSX.Element;
+import type { NativeImageType } from "./Image.type";
+export declare const Image: ({ native, className, style, src }: NativeImageType) => JSX.Element;
 export default Image;
 //# sourceMappingURL=Image.native.d.ts.map

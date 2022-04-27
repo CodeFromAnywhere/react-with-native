@@ -21,15 +21,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Image = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
-var image_1 = __importDefault(require("next/image"));
 var Image = function (_a) {
     var native = _a.native, props = __rest(_a, ["native"]);
-    return (0, jsx_runtime_1.jsx)(image_1.default, __assign({}, props), void 0);
+    //@ts-ignore
+    return (0, jsx_runtime_1.jsx)("img", __assign({}, props));
 };
-exports.default = Image;
+exports.Image = Image;
+exports.default = exports.Image;
 //# sourceMappingURL=Image.js.map
