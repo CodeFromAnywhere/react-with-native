@@ -1,6 +1,6 @@
 import { PluginComponent } from "react-with-native-form";
 import TextInput, { TextInputType } from "react-with-native-text-input";
-import DatePicker from "react-datepicker";
+//import DatePicker from "react-datepicker";
 import { DatetimeInputType } from "./types";
 import Datetime from "react-datetime";
 import React, { useState } from "react";
