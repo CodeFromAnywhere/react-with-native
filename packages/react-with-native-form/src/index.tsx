@@ -1,5 +1,5 @@
 import { useState, RefObject, createRef, useEffect } from "react";
-import { trimClassName } from "./util/trimClassName";
+import { filterClassName } from "./util/filterClassName";
 import {
   ActivityIndicator,
   Div,
@@ -663,7 +663,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
     ) : (
       <Button
         disabled={loading}
-        className={trimClassName(
+        className={filterClassName(
           `${
             available
               ? `${submitButtonColor ? submitButtonColor : "bg-green-500"}`
@@ -687,7 +687,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         }}
       >
         {loading ? (
-          <Div className={trimClassName("mr-2")}>
+          <Div className={filterClassName("mr-2")}>
             <ActivityIndicator />
           </Div>
         ) : null}
@@ -813,7 +813,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
       </Div>
       {Submit ? (
         <Div
-          className={trimClassName(
+          className={filterClassName(
             `${stickySubmit ? "sticky bottom-0" : ""} ${
               submitClassName || "mb-2 py-2"
             }`

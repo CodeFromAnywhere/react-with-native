@@ -3,8 +3,8 @@ import deepEqual from "fast-deep-equal/react";
 export { deepEqual };
 export declare function notEmpty<TValue>(value: TValue | null | undefined): value is TValue;
 export declare const makeInputField: <TInputs, T extends Extract<keyof TInputs, string>>(type: T, config: Omit<Field<TInputs, T>, "type">) => () => {
-    field: string;
     title?: string | undefined;
+    field: string;
     shouldHide?: ((state: any) => boolean) | undefined;
     titleFromState?: ((state: any) => string) | undefined;
     hasError?: ((value: TInputs[T] extends PluginInputType ? TInputs[T]["value"] : any, state: Partial<PossibleState>) => boolean | string | Error[]) | undefined;

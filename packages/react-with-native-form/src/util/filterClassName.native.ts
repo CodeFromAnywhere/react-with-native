@@ -1,4 +1,4 @@
-export const trimClassName = (className: string) => {
+export const filterClassName = (className: string) => {
   const classNames = className.split(" ");
 
   const trimmedClassName = classNames
