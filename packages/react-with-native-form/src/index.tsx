@@ -1,4 +1,5 @@
 import { useState, RefObject, createRef, useEffect } from "react";
+import { trimClassName } from "./util/trimClassName";
 import {
   ActivityIndicator,
   Div,
@@ -656,17 +657,19 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
   const Title = renderTitle || DefaultTitle;
 
-  const Submit = () =>
-    noSubmit ? null : renderSubmitComponent ? (
+  const Submit = () => {
+    return noSubmit ? null : renderSubmitComponent ? (
       renderSubmitComponent(submitProps)
     ) : (
       <Button
         disabled={loading}
-        className={`${
-          available
-            ? `${submitButtonColor ? submitButtonColor : "bg-green-500"}`
-            : "bg-gray-300"
-        }  inline-flex justify-center flex-row w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+        className={trimClassName(
+          `${
+            available
+              ? `${submitButtonColor ? submitButtonColor : "bg-green-500"}`
+              : "bg-gray-300"
+          }  inline-flex justify-center flex-row w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`
+        )}
         onClick={() => onClickSubmit(state)}
         //......Extra
         style={{
@@ -684,7 +687,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         }}
       >
         {loading ? (
-          <Div className="mr-2">
+          <Div className={trimClassName("mr-2")}>
             <ActivityIndicator />
           </Div>
         ) : null}
@@ -693,6 +696,8 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
         </Label>
       </Button>
     );
+  };
+
   const globalError = errors?.find(
     (x) => x.propertyPath === GLOBAL_PROPERTY_PATH
   );
@@ -808,9 +813,11 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
       </Div>
       {Submit ? (
         <Div
-          className={`${stickySubmit ? "sticky bottom-0" : ""} ${
-            submitClassName || "mb-2 py-2"
-          }`}
+          className={trimClassName(
+            `${stickySubmit ? "sticky bottom-0" : ""} ${
+              submitClassName || "mb-2 py-2"
+            }`
+          )}
         >
           <Submit />
         </Div>
