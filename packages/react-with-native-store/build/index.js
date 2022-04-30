@@ -12,7 +12,11 @@ var __assign = (this && this.__assign) || function () {
 };
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -118,7 +122,7 @@ var StoreContextProvider = function (_a) {
         }); };
         return [value, dispatch, { hydrated: hydrated }];
     };
-    return ((0, jsx_runtime_1.jsx)(DynamicContext.Provider, __assign({ value: useStoreHook }, { children: children }), void 0));
+    return ((0, jsx_runtime_1.jsx)(DynamicContext.Provider, __assign({ value: useStoreHook }, { children: children })));
 };
 var createStoreProvider = function (config) {
     if (config.debug) {
@@ -137,12 +141,12 @@ var createStoreProvider = function (config) {
         var children = _a.children;
         return keys.reduce(function (acc, key) {
             var context = contexts[contextKey(key)];
-            return ((0, jsx_runtime_1.jsx)(StoreContextProvider, __assign({ config: config, storeKey: key, DynamicContext: context }, { children: acc }), void 0));
+            return ((0, jsx_runtime_1.jsx)(StoreContextProvider, __assign({ config: config, storeKey: key, DynamicContext: context }, { children: acc })));
         }, children);
     };
     return function (_a) {
         var children = _a.children;
-        return (0, jsx_runtime_1.jsx)(MainProvider, { children: children }, void 0);
+        return (0, jsx_runtime_1.jsx)(MainProvider, { children: children });
     };
 };
 exports.createStoreProvider = createStoreProvider;
