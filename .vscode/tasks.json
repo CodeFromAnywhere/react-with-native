@@ -1,0 +1,60 @@
+{
+  "version": "2.0.0",
+  "type": "shell",
+  "tasks": [
+    {
+      "label": "Open sensible docs",
+      "presentation": { "reveal": "never", "close": true },
+      "command": "open https://docs.sensibleframework.co/localhost:4000",
+      "runOptions": { "runOn": "folderOpen" }
+    },
+
+    // the below scripts are ran in one panel with different tabs (group=run)
+
+    {
+      "label": "Core",
+      "isBackground": true, //prevent loading indicator ui
+      "options": { "cwd": "${workspaceFolder}/packages/core" },
+      "presentation": { "group": "run" },
+      "command": "yarn dev",
+      "type": "shell",
+      "runOptions": { "runOn": "folderOpen" }
+    },
+
+    {
+      "label": "Server",
+      "isBackground": true, //prevent loading indicator ui
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/apps/server",
+        "shell": { "executable": "zsh", "args": ["-c"] }
+      },
+      "presentation": { "group": "run" },
+      "command": "yarn dev"
+      // "runOptions": { "runOn": "folderOpen" }
+    },
+
+    //the below two should be REMOVED once I get it from the *.install.json
+
+    {
+      "label": "App packager",
+      "isBackground": true,
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/apps/app"
+      },
+      "command": "yarn dev",
+      "presentation": { "group": "run" }
+      // "runOptions": { "runOn": "folderOpen" }
+    },
+
+    {
+      "label": "Web packager",
+      "isBackground": true,
+      "options": { "cwd": "${workspaceFolder}/apps/web" },
+      "presentation": { "group": "run" },
+      "command": "yarn dev"
+      // "runOptions": { "runOn": "folderOpen" }
+    }
+  ]
+}

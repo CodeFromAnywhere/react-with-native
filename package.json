@@ -1,10 +1,13 @@
 {
-  "name": "@/react-with-native-github",
-  "version": "1.0.0",
-  "description": "### Why?",
-  "main": "\"\"",
+  "version": "0.0.0",
+  "private": true,
+  "name": "react-with-native-github",
   "scripts": {
-    "pub": "echo \"please run 'puball packages'\""
+    "pub": "echo \"please run 'puball packages'\"",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "repository": {
     "type": "git",
@@ -24,10 +27,22 @@
   "devDependencies": {
     "@types/react-stars": "^2.2.1",
     "git-branch-is": "^4.0.0",
-    "husky": "^7.0.4"
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1",
+    "turbo": "latest"
   },
   "dependencies": {
     "react-with-native": "^1.3.3",
     "react-with-native-store": "^1.0.10"
-  }
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "third-party/*/packages/*"
+  ],
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "packageManager": "yarn@1.22.17"
 }
