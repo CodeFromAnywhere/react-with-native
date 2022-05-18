@@ -1,6 +1,6 @@
 import * as React from "react";
 import DatePicker from "react-datepicker";
-import { inputClass, PluginComponent } from "../../react-with-native-form/src";
+import { inputClass, PluginComponent } from "react-with-native-form";
 import { DateInputType } from "./types";
 // CSS Modules, react-datepicker-cssmodules.css
 

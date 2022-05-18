@@ -1,7 +1,7 @@
 import { PluginComponent } from "react-with-native-form";
 import TextInput, {
   TextInputType,
-} from "../../react-with-native-text-input/src";
+} from "react-with-native-text-input";
 
 const PasswordInput: PluginComponent<PasswordInputType> = ({
   extra,

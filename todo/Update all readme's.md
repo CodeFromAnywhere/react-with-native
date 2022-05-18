@@ -1,0 +1,1 @@
+- [ ] simplify all readme's and place those info's on the reactwithnative.com website instead. From the `README.md` just link to the right page inside reactwithnative.com.

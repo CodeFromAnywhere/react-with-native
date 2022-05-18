@@ -1,0 +1,7 @@
+- [ ] Implement all HTML tags #21 
+- [ ] Create React and RN components (https://reactnative.dev/docs/components-and-apis and https://docs.expo.dev/versions/latest/)
+- [ ] Improve the README of all packages
+- [ ] #28
+- [ ] Create Expo example
+- [ ] Test all the components in both platforms
+- [ ] Make sure the shared codebase (react-with-native-shared-example) is working for both examples (Expo and NextJS)

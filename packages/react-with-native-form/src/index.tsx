@@ -8,7 +8,7 @@ import {
   P,
   H2,
   Button,
-} from "../../react-with-native/src";
+} from "react-with-native";
 import deepEqual from "fast-deep-equal/react";
 
 export { deepEqual };
@@ -666,7 +666,7 @@ const DataForm = <TInputs, TState extends { [key: string]: any }>({
           available
             ? `${submitButtonColor ? submitButtonColor : "bg-green-500"}`
             : "bg-gray-300"
-        }  inline-flex justify-center flex-row w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+        }  flex justify-center flex-row w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
         onClick={() => onClickSubmit(state)}
         //......Extra
         style={{

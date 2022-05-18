@@ -1,0 +1,5 @@
+- [ ] migrate from PNPM to Yarn
+- [ ] use script to convert all html tags to components (div to Div, etc)
+- [ ] Apply react-with-native cli on CoworkSurf codebase
+- [ ] See what more needs to be done so the app works in React Native
+- [ ] Do those things (keep track of 'em here)
