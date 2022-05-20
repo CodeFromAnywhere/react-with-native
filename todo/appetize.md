@@ -1,0 +1,1 @@
+Just like react-native and expo docs do, start using https://appetize.io for all examples so people can see the code next to the result inside of the docs. On top of iOS, Android and Web, we need a tab for Web through Next.js, so it's clear it runs the same code on all platforms.

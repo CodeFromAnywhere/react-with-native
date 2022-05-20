@@ -1,2 +1,0 @@
-Title, description, keywords, etc.
-
