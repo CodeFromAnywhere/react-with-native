@@ -25,11 +25,11 @@ var ToggleInput = function (_a) {
             : " border border-red-400"
         : "";
     var classWithError = config.replaceClassName
-        ? "".concat(config.replaceClassName, " ").concat(errorClass)
-        : "".concat(defaultClass, " ").concat(config.extraClassName, " ").concat(errorClass);
-    return ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, { children: [(0, jsx_runtime_1.jsx)(react_with_native_1.Toggle, { id: uniqueFieldId, 
+        ? config.replaceClassName + " " + errorClass
+        : defaultClass + " " + config.extraClassName + " " + errorClass;
+    return (jsx_runtime_1.jsxs(react_with_native_1.Div, __assign({ className: "flex flex-row" }, { children: [jsx_runtime_1.jsx(react_with_native_1.Toggle, { id: uniqueFieldId, 
                 // class not working with border on checkbox
-                className: classWithError, checked: value, onChange: function (value) { return onChange(value); } }, void 0), (extra === null || extra === void 0 ? void 0 : extra.label) ? ((0, jsx_runtime_1.jsx)(react_with_native_1.Label, __assign({ className: "pl-3 select-none ".concat(hasError ? "text-red-500" : ""), htmlFor: uniqueFieldId }, { children: extra.label }), void 0)) : null] }, void 0));
+                className: classWithError, checked: value, onChange: function (value) { return onChange(value); } }, void 0), (extra === null || extra === void 0 ? void 0 : extra.label) ? (jsx_runtime_1.jsx(react_with_native_1.Label, __assign({ className: "pl-3 select-none " + (hasError ? "text-red-500" : ""), htmlFor: uniqueFieldId }, { children: extra.label }), void 0)) : null] }), void 0));
 };
 ToggleInput.defaultInitialValue = false;
 var ToggleInputType = /** @class */ (function () {
