@@ -29,9 +29,9 @@ yarn add react-native-modal-datetime-picker @react-native-community/datetimepick
 # Usage
 
 See the [API](#API) for which input types are included.
-These form inputs can be used to create the default input types for [react-with-native-form](/react-with-native/react-with-native-form), but you can also use them outside of this form component.
+These form inputs can be used to create the default input types for [react-with-native-form](/react-with-native/form), but you can also use them outside of this form component.
 
-For an example on how to use them in the form, see [react-with-native-form](/react-with-native/react-with-native-form).
+For an example on how to use them in the form, see [react-with-native-form](/react-with-native/form).
 
 To use them outside of the form, every input type has the same props:
 
