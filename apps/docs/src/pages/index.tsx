@@ -16,7 +16,7 @@ const Home = () => {
           <Div className="flex flex-wrap justify-center">
             <Div className="flex-row order-last p-4 space-y-4 lg:order-first">
               <Text className="text-4xl text-brand md:text-6xl">
-                React With Native
+                React with Native
               </Text>
               <Text className="text-2xl text-white md:text-4xl">
                 Write once, see it everywhere
@@ -46,8 +46,8 @@ const Home = () => {
             <Div className="flex-1 text-center ">
               <Text className="text-2xl text-white bold">Open source</Text>
               <P className="p-4 text-white">
-                React With Native is an open-source framework that solves
-                react-native-web severe limitations.
+                React with Native is an open-source framework that solves
+                react-native-web's severe limitations.
               </P>
 
               <P className="p-4 text-white">
