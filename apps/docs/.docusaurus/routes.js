@@ -44,11 +44,11 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '9ac'),
+    component: ComponentCreator('/', '62f'),
     routes: [
       {
         path: '/about',
-        component: ComponentCreator('/about', '0db'),
+        component: ComponentCreator('/about', '62f'),
         exact: true,
         sidebar: "docSidebar"
       },
@@ -97,6 +97,12 @@ export default [
       {
         path: '/react-with-native/store',
         component: ComponentCreator('/react-with-native/store', '8de'),
+        exact: true,
+        sidebar: "docSidebar"
+      },
+      {
+        path: '/react-with-native/unsupported-things',
+        component: ComponentCreator('/react-with-native/unsupported-things', 'd0a'),
         exact: true,
         sidebar: "docSidebar"
       }

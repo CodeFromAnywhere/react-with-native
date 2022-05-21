@@ -8,48 +8,50 @@ These 164 lines of code without dependencies make it possible to get a simple lo
 
 Every key has its own context so you won't get too many rerenders.
 
-This is not as powerful as redux itself (you ca't define custom selectors, so rerenders will happen in all components where you use the same key), but compared to bare redux, there is way less boilerplate and it's fully typed out of the box.
+This is not as powerful as redux itself (you can't define custom selectors, so rerenders will happen in all components where you use the same key), but compared to bare redux, there is way less boilerplate and it's fully typed out of the box.
 
 I think that especially for apps with little state this could be a very good choice, and because we have tools like React Query now, most apps won't need a lot of global persisted state anymore.
 
 ## Installation
 
-`yarn add react-with-native-store`
+```bash
+yarn add react-with-native-store
+```
 
 for expo, also install this:
 
-`yarn add @react-native-async-storage/async-storage`
+```
+yarn add @react-native-async-storage/async-storage
+```
 
-for bare react-native, also follow [these instructions](https://react-native-async-storage.github.io/async-storage/docs/install/)
+For bare react-native, also follow [these instructions](https://react-native-async-storage.github.io/async-storage/docs/install/)
 
 ## Usage
 
 First create a wrapper and save it somewhere
 
-```
-import { createStoreProvider, createUseStore } from 'react-with-native-store';
+```tsx
+import { createStoreProvider, createUseStore } from "react-with-native-store";
 
 type StoreType = {
-  key1: YourType | null;
-  key2: string | null;
+  name: string | null;
+  email: string | null;
 };
 
 export const initialValues: StoreType = {
-  key1: null,
-  key2: null,
+  name: null,
+  email: null,
 };
 
 export const StoreProvider = createStoreProvider({ initialValues });
 export const useStore = createUseStore(initialValues);
 export default useStore;
-
 ```
 
 Then wrap your app in the StoreProvider
 
-```
-import { StoreProvider } from '../store';
-
+```tsx
+import { StoreProvider } from "../store";
 
 const App = () => (
   <StoreProvider>
@@ -57,20 +59,18 @@ const App = () => (
     <Component />
   </StoreProvider>
 );
-
 ```
 
 Finally, you can use useStore everywhere!
 
-```
+```tsx
 import useStore from "../store";
 
 const YourComponent = () => {
-const [key1, setKey1] = useStore('key1');
+  const [name, setName] = useStore("name");
 
-// your code
+  // your code
 };
-
 ```
 
 Enjoy!
