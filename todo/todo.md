@@ -1,13 +1,14 @@
-## Docs
+Urgent improvements needed for King and CoworkSurf
 
-- rwn
-- rwn forms
+- Have a look at all imports. Fix mistakes
+- Publish react-with-native-form-inputs and anything else that changed
+- Apply newest packages on King, make it run, merge to main
 
-### Tech
+Then:
 
+- Try to use third-party folder for RWN
 - Improve rwn-select
 - Create rwn-select-multiple-input that selects one per time using rwn-select and adds the results to an Item[]
 - Create rwn-multiple-input that lets you type and every time you press comma the input becomes a box you can delete. returns string[]
-- Publish react-with-native-form-inputs
-- Have a look at the imports. Is that allright?
 - Refactor/simplify rwn-form
+- What was the reason we needed those packages in coworksurf again? Can we fix that?

@@ -1,4 +1,4 @@
-- [ ] Tell the story of transforming CoworkSurf into an expo app
+- [ ] Tell the story of transforming CoworkSurf/King into an expo app
 - [ ] Build X with react-with-native
 - [ ] Attract senior devs by showing painpoints of alternatives and weighing pros and cons
 - [ ] Write for publications: Javascript plain English, Geek culture, Log Rocket, etc.
