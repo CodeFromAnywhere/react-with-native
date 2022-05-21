@@ -1,8 +1,8 @@
 import * as React from "react";
-import { ImageType } from "./Image.type";
+import { ImgType } from "./Img.type";
 import NextImage from "next/image";
 
-export const Image = ({ native, ...props }: ImageType) => {
+export const Image = ({ native, ...props }: ImgType) => {
   //@ts-ignore
   return <img {...props} />;
 };

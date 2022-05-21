@@ -56,7 +56,7 @@ var getItem = function (key) { return __awaiter(void 0, void 0, void 0, function
             case 2:
                 e_1 = _a.sent();
                 // error reading value
-                console.warn("Something went wrong with asyncStorage from useStore (key ".concat(key, ")"), e_1);
+                console.warn("Something went wrong with asyncStorage from useStore (key " + key + ")", e_1);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -74,11 +74,11 @@ var setItem = function (key, value) { return __awaiter(void 0, void 0, void 0, f
                 _a.trys.push([1, 3, , 4]);
                 return [4 /*yield*/, async_storage_1.default.setItem(key, stringValue, function (error) {
                         if (error) {
-                            console.warn("asyncStorage.setItem error: ".concat(JSON.stringify({
+                            console.warn("asyncStorage.setItem error: " + JSON.stringify({
                                 key: key,
                                 stringValue: stringValue,
                                 error: error,
-                            })));
+                            }));
                         }
                     })];
             case 2:
@@ -87,7 +87,7 @@ var setItem = function (key, value) { return __awaiter(void 0, void 0, void 0, f
             case 3:
                 e_2 = _a.sent();
                 // saving error
-                console.warn("Something went wrong with asyncStorage from useStore (key ".concat(key, ")"), e_2);
+                console.warn("Something went wrong with asyncStorage from useStore (key " + key + ")", e_2);
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }

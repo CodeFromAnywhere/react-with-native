@@ -27,7 +27,7 @@ var canUseDOM = !!(typeof window !== "undefined" &&
 var Portal = function (_a) {
     var node = _a.node, children = _a.children;
     var defaultNode = null;
-    (0, react_1.useEffect)(function () {
+    react_1.useEffect(function () {
         return function () {
             if (defaultNode) {
                 document.body.removeChild(defaultNode);

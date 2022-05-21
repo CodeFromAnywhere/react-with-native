@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Nav = exports.Aside = exports.TextArea = exports.Form = exports.I = exports.Ol = exports.Ul = exports.Li = exports.P = exports.Span = exports.Label = exports.Input = exports.Svg = exports.Button = exports.Strong = exports.H2 = exports.A = exports.Div = void 0;
+exports.Img = exports.Nav = exports.Aside = exports.TextArea = exports.Form = exports.I = exports.Ol = exports.Ul = exports.Li = exports.P = exports.Span = exports.Label = exports.Input = exports.Svg = exports.Button = exports.Strong = exports.H2 = exports.A = exports.Div = void 0;
 // elements
 var Nav_1 = __importDefault(require("./Nav/Nav"));
 exports.Nav = Nav_1.default;
@@ -21,6 +21,8 @@ var Svg_1 = __importDefault(require("./Svg/Svg"));
 exports.Svg = Svg_1.default;
 var Input_1 = __importDefault(require("./Input/Input"));
 exports.Input = Input_1.default;
+var Img_1 = __importDefault(require("./Img/Img"));
+exports.Img = Img_1.default;
 var Label_1 = __importDefault(require("./Label/Label"));
 exports.Label = Label_1.default;
 var Span_1 = __importDefault(require("./Span/Span"));

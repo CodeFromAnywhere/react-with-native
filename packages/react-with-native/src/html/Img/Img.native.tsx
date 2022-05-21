@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Image as RNImage } from "react-native";
 import { useTailwind } from "tailwind-rn";
-import { trimClassName } from "react-with-native";
-import type { NativeImageType } from "./Image.type";
+import { trimClassName } from "../../util/trimClassName";
+import type { NativeImgType } from "./Img.type";
 
-export const Image = ({ native, className, style, src }: NativeImageType) => {
+export const Image = ({ native, className, style, src }: NativeImgType) => {
   const tailwind = useTailwind();
   native = native!; //TODO: How can I make the native prop required, if you render a native component?
 

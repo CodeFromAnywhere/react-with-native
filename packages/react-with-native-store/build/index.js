@@ -12,11 +12,7 @@ var __assign = (this && this.__assign) || function () {
 };
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -78,19 +74,19 @@ var storage_1 = require("./storage");
 //local variables
 var debug = false;
 var contexts = {};
-var getKey = function (key, baseKey) { return "".concat(baseKey, ".").concat(key); };
-var contextKey = function (key) { return "".concat(key, "Context"); };
+var getKey = function (key, baseKey) { return baseKey + "." + key; };
+var contextKey = function (key) { return key + "Context"; };
 var StoreContextProvider = function (_a) {
     var DynamicContext = _a.DynamicContext, children = _a.children, config = _a.config, storeKey = _a.storeKey;
-    var _b = (0, react_1.useState)(false), hydrated = _b[0], setHydrated = _b[1];
-    var _c = (0, react_1.useState)(config === null || config === void 0 ? void 0 : config.initialValues[storeKey]), store = _c[0], setStore = _c[1]; //null or some object or string or whatever
+    var _b = react_1.useState(false), hydrated = _b[0], setHydrated = _b[1];
+    var _c = react_1.useState(config === null || config === void 0 ? void 0 : config.initialValues[storeKey]), store = _c[0], setStore = _c[1]; //null or some object or string or whatever
     var baseKey = (config === null || config === void 0 ? void 0 : config.baseKey) || "useStore";
     // On mount, get the current value from storage
-    (0, react_1.useEffect)(function () {
+    react_1.useEffect(function () {
         var fullKey = getKey(storeKey, baseKey);
-        (0, storage_1.getItem)(fullKey).then(function (value) {
+        storage_1.getItem(fullKey).then(function (value) {
             if (debug) {
-                console.log("Hydrated store for ".concat(fullKey, ":"), value);
+                console.log("Hydrated store for " + fullKey + ":", value);
             }
             setStore(value);
             setHydrated(true);
@@ -113,7 +109,7 @@ var StoreContextProvider = function (_a) {
                         //should do a deep equal here, and only set the store and item if the value actually has changed
                         //@ts-ignore
                         setStore(value);
-                        return [4 /*yield*/, (0, storage_1.setItem)(fullKey, value)];
+                        return [4 /*yield*/, storage_1.setItem(fullKey, value)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -122,7 +118,7 @@ var StoreContextProvider = function (_a) {
         }); };
         return [value, dispatch, { hydrated: hydrated }];
     };
-    return ((0, jsx_runtime_1.jsx)(DynamicContext.Provider, __assign({ value: useStoreHook }, { children: children })));
+    return (jsx_runtime_1.jsx(DynamicContext.Provider, __assign({ value: useStoreHook }, { children: children }), void 0));
 };
 var createStoreProvider = function (config) {
     if (config.debug) {
@@ -141,12 +137,12 @@ var createStoreProvider = function (config) {
         var children = _a.children;
         return keys.reduce(function (acc, key) {
             var context = contexts[contextKey(key)];
-            return ((0, jsx_runtime_1.jsx)(StoreContextProvider, __assign({ config: config, storeKey: key, DynamicContext: context }, { children: acc })));
+            return (jsx_runtime_1.jsx(StoreContextProvider, __assign({ config: config, storeKey: key, DynamicContext: context }, { children: acc }), void 0));
         }, children);
     };
     return function (_a) {
         var children = _a.children;
-        return (0, jsx_runtime_1.jsx)(MainProvider, { children: children });
+        return jsx_runtime_1.jsx(MainProvider, { children: children }, void 0);
     };
 };
 exports.createStoreProvider = createStoreProvider;
@@ -157,16 +153,16 @@ var createUseStore = function (initialValues) {
     }
     var useStore = function (key) {
         if (!Object.keys(initialValues).includes(key)) {
-            throw new Error("Using undefined key in useStore: ".concat(key));
+            throw new Error("Using undefined key in useStore: " + key);
         }
         var context = getContext(key);
         if (!context) {
-            throw new Error("Failed loading the context with key: ".concat(key, ". Did you wrap your component/app with a StoreProvider?"));
+            throw new Error("Failed loading the context with key: " + key + ". Did you wrap your component/app with a StoreProvider?");
         }
         var useStoreHook = React.useContext(context);
         var useStoreHookType = typeof useStoreHook;
         if (useStoreHookType !== "function") {
-            console.error("useStoreHookType for ".concat(key, " is ").concat(useStoreHookType, "... wtf?"));
+            console.error("useStoreHookType for " + key + " is " + useStoreHookType + "... wtf?");
         }
         return useStoreHook(key);
     };

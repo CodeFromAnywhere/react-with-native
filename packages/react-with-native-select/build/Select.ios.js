@@ -26,6 +26,7 @@ var Select = function (_a) {
             onChange === null || onChange === void 0 ? void 0 : onChange(selected);
         });
     };
+    console;
     return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: className }, { children: children ? (children({ onClick: onClick, className: className, value: realValue })) : ((0, jsx_runtime_1.jsx)(react_with_native_1.Button, { title: (value === null || value === void 0 ? void 0 : value.label) || "Select a value", onClick: onClick })) })));
 };
 exports.default = Select;
