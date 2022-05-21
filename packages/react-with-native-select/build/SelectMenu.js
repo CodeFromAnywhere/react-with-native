@@ -10,25 +10,6 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -42,7 +23,6 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var jsx_runtime_1 = require("react/jsx-runtime");
-var ReactDOM = __importStar(require("react-dom"));
 var react_menu_1 = require("@szhsin/react-menu");
 var react_1 = require("react");
 var react_with_native_1 = require("react-with-native");
@@ -62,14 +42,7 @@ var SelectMenu = function (_a) {
     if (typeof document === "undefined") {
         return null;
     }
-    return ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "w-full" }, { children: [ReactDOM.createPortal((0, jsx_runtime_1.jsx)(react_menu_1.ControlledMenu, __assign({}, menuProps, { anchorPoint: anchorPoint, onClose: function () { return toggleMenu(false); } }, { children: options.map(function (option, index) {
-                    var Icon = option.icon;
-                    return ((0, jsx_runtime_1.jsxs)(react_menu_1.MenuItem, __assign({ onClick: function (e) {
-                            var _a;
-                            (_a = option.onClick) === null || _a === void 0 ? void 0 : _a.call(option, id);
-                            onChange === null || onChange === void 0 ? void 0 : onChange(option);
-                        }, className: "flex items-center" }, { children: [(0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "w-6 mr-4" }, { children: Icon && (0, jsx_runtime_1.jsx)(react_with_native_1.Svg, { src: Icon, className: "w-6 h-6 text-black" }, void 0) }), void 0), option.label] }), "menu".concat(index)));
-                }) }), void 0), document.getElementById("contextmenu")), children({ onClick: onClick, value: value, className: className })] }), void 0));
+    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "w-full" }, { children: children({ onClick: onClick, value: value, className: className }) })));
 };
 exports.default = SelectMenu;
 //# sourceMappingURL=SelectMenu.js.map

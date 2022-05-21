@@ -4,7 +4,13 @@ exports.trimClassName = void 0;
 var trimClassName = function (className) {
     var classNames = className.split(" ");
     var trimmedClassName = classNames
-        .filter(function (c) { return !(c === "" || c.startsWith("focus:") || c.startsWith("shadow-")); })
+        .filter(function (c) {
+        return !((c === "" ||
+            c.startsWith("focus:") ||
+            c.startsWith("shadow-") ||
+            c === "block") // block crashes android
+        );
+    })
         .join(" ");
     // console.log("trimClassName", { className, classNames, trimmedClassName });
     return trimmedClassName;

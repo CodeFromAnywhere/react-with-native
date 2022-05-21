@@ -1,0 +1,23 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TextAreaInputType = void 0;
+var jsx_runtime_1 = require("react/jsx-runtime");
+var react_with_native_1 = require("react-with-native");
+var TextAreaInput = function (_a) {
+    var value = _a.value, extra = _a.extra, config = _a.config, onChange = _a.onChange, errors = _a.errors;
+    var hasError = errors && errors.length > 0;
+    //
+    return (jsx_runtime_1.jsx(react_with_native_1.TextArea, { rows: extra === null || extra === void 0 ? void 0 : extra.rows, maxLength: extra === null || extra === void 0 ? void 0 : extra.maxLength, className: (config === null || config === void 0 ? void 0 : config.replaceClassName) ||
+            "block w-full px-4 py-3 text-gray-900 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " + (hasError ? (config === null || config === void 0 ? void 0 : config.errorClassName) || "border-red-600" : "") + " " + (config === null || config === void 0 ? void 0 : config.extraClassName), value: value, onChange: function (event) {
+            onChange(event.target.value);
+        } }, void 0));
+};
+TextAreaInput.defaultInitialValue = "";
+var TextAreaInputType = /** @class */ (function () {
+    function TextAreaInputType() {
+    }
+    return TextAreaInputType;
+}());
+exports.TextAreaInputType = TextAreaInputType;
+exports.default = TextAreaInput;
+//# sourceMappingURL=index.js.map

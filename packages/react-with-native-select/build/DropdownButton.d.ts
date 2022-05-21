@@ -1,4 +1,3 @@
-/// <reference types="react" />
 export default function DropdownButton({ onClick, label, }: {
     onClick: () => void;
     label: string;

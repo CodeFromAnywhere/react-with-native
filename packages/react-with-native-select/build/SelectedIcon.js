@@ -15,7 +15,7 @@ var jsx_runtime_1 = require("react/jsx-runtime");
 var react_with_native_1 = require("react-with-native");
 var SelectedIcon = function (_a) {
     var selected = _a.selected;
-    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "flex items-center justify-center w-6 h-6 border-2 border-blue-400 rounded-full" }, { children: selected ? ((0, jsx_runtime_1.jsx)(react_with_native_1.Span, { className: "w-4 h-4 bg-blue-400 rounded-full", "aria-hidden": "true" }, void 0)) : null }), void 0));
+    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "flex items-center justify-center w-6 h-6 border-2 border-blue-400 rounded-full" }, { children: selected ? ((0, jsx_runtime_1.jsx)(react_with_native_1.Span, { className: "w-4 h-4 bg-blue-400 rounded-full", "aria-hidden": "true" })) : null })));
 };
 exports.default = SelectedIcon;
 //# sourceMappingURL=SelectedIcon.js.map

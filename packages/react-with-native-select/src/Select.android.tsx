@@ -1,5 +1,6 @@
 import { Item, SelectProps } from "./types";
-import { Div } from "react-with-native";
+import { Button, Div } from "react-with-native";
+import { Alert } from "react-native";
 import { getRealValue } from "./util";
 const Select = <T extends unknown>({
   options,
@@ -15,11 +16,16 @@ const Select = <T extends unknown>({
 
   const onClick = () => {
     //should implement this
+    Alert.alert("Coming soon");
     console.log("Coming soon");
   };
   return (
     <Div className={className}>
-      {children?.({ onClick, className, value: realValue })}
+      {children ? (
+        children({ onClick, className, value: realValue })
+      ) : (
+        <Button title={value?.label || "Select a value"} onClick={onClick} />
+      )}
     </Div>
   );
 };

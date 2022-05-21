@@ -1,9 +1,6 @@
-import * as React from "react";
-
-//renders a native ActionSheet on iOS, a custom actionsheet on Android (using expo-actionsheet)
 import { ActionSheetIOS } from "react-native";
 import { Item, SelectProps } from "./types";
-import { Div } from "react-with-native";
+import { Button, Div } from "react-with-native";
 import { getRealValue } from "./util";
 const Select = <T extends unknown>({
   options,
@@ -31,9 +28,14 @@ const Select = <T extends unknown>({
       }
     );
   };
+  console;
   return (
     <Div className={className}>
-      {children?.({ onClick, className, value: realValue })}
+      {children ? (
+        children({ onClick, className, value: realValue })
+      ) : (
+        <Button title={value?.label || "Select a value"} onClick={onClick} />
+      )}
     </Div>
   );
 };

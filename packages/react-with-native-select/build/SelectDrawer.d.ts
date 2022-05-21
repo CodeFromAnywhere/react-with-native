@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ChildrenType, ID, Item } from "./types";
 declare const SelectDrawer: <T extends unknown>({ options, value, onChange, title, children, className, hasReset, id, }: {
     value: Item<T>;

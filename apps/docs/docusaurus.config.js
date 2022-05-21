@@ -6,13 +6,13 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Sensible",
-  tagline: "The Typescript Framework for Effective Teams",
-  url: "https://sensiblestack.com",
+  title: "React with Native",
+  tagline: "Use HTML with tailwind in react-native",
+  url: "https://reactwithnative.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  favicon: "logo.png",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -51,14 +51,14 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/Code-From-Anywhere/sensible/tree/main/apps/web/",
+            "https://github.com/Code-From-Anywhere/react-with-native/tree/main/apps/docs/",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/Code-From-Anywhere/sensible/tree/main/apps/web/",
+            "https://github.com/Code-From-Anywhere/react-with-native/tree/main/apps/docs/",
         },
 
         theme: {
@@ -72,10 +72,10 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "Your app",
+        title: "React with Native",
         logo: {
           alt: "Logo",
-          src: "img/icon.png",
+          src: "/logo.png",
         },
         items: [
           {
@@ -86,7 +86,7 @@ const config = {
           },
 
           {
-            href: "https://github.com/Code-From-Anywhere/sensible",
+            href: "https://github.com/Code-From-Anywhere/react-with-native",
             label: "GitHub",
             position: "right",
           },
@@ -104,35 +104,19 @@ const config = {
               },
             ],
           },
-          {
-            title: "Community",
-            items: [
-              {
-                label: "Twitter",
-                href: "https://twitter.com/cfa_company",
-              },
-            ],
-          },
+
           {
             title: "More",
             items: [
-              // {
-              //   label: "Blog",
-              //   to: "/blog",
-              // },
               {
                 label: "GitHub",
-                href: "https://github.com/Code-From-Anywhere/sensible",
+                href: "https://github.com/Code-From-Anywhere/react-with-native",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Sensible`,
+        copyright: `Copyright © ${new Date().getFullYear()} Code From Anywhere`,
       },
-      // prism: {
-      //   theme: lightCodeTheme,
-      //   darkTheme: darkCodeTheme,
-      // },
     }),
 };
 

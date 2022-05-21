@@ -12,7 +12,6 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var jsx_runtime_1 = require("react/jsx-runtime");
-//renders a native ActionSheet on iOS, a custom actionsheet on Android (using expo-actionsheet)
 var react_native_1 = require("react-native");
 var react_with_native_1 = require("react-with-native");
 var util_1 = require("./util");
@@ -27,7 +26,7 @@ var Select = function (_a) {
             onChange === null || onChange === void 0 ? void 0 : onChange(selected);
         });
     };
-    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: className }, { children: children === null || children === void 0 ? void 0 : children({ onClick: onClick, className: className, value: realValue }) }), void 0));
+    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: className }, { children: children ? (children({ onClick: onClick, className: className, value: realValue })) : ((0, jsx_runtime_1.jsx)(react_with_native_1.Button, { title: (value === null || value === void 0 ? void 0 : value.label) || "Select a value", onClick: onClick })) })));
 };
 exports.default = Select;
 //# sourceMappingURL=Select.ios.js.map

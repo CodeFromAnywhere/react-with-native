@@ -48,10 +48,10 @@ var SelectDrawer = function (_a) {
                 },
                 value: value,
                 className: className,
-            })) : ((0, jsx_runtime_1.jsx)(DropdownButton_1.default, { onClick: switchOpen, label: value.label }, void 0)), (0, jsx_runtime_1.jsx)(material_1.SwipeableDrawer, __assign({ anchor: "bottom", open: open, onClose: switchOpen, onOpen: switchOpen, sx: { borderTopLeftRadius: 10, borderTopRightRadius: 10 } }, { children: (0, jsx_runtime_1.jsxs)(StyledBox, __assign({ sx: {
+            })) : ((0, jsx_runtime_1.jsx)(DropdownButton_1.default, { onClick: switchOpen, label: value.label })), (0, jsx_runtime_1.jsx)(material_1.SwipeableDrawer, __assign({ anchor: "bottom", open: open, onClose: switchOpen, onOpen: switchOpen, sx: { borderTopLeftRadius: 10, borderTopRightRadius: 10 } }, { children: (0, jsx_runtime_1.jsxs)(StyledBox, __assign({ sx: {
                         padding: 2,
                         marginBottom: 20,
-                    }, role: "presentation" }, { children: [(0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "grid grid-cols-4 mb-10" }, { children: [(0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ disabled: valueNoOption, className: "text-left ".concat(valueNoOption ? "disabled:opacity-50" : "text-pink"), onClick: reset }, { children: hasReset ? "Reset" : null }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({ className: "col-span-2 font-bold text-center" }, { children: title }), void 0), (0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ className: "text-right text-pink", onClick: switchOpen }, { children: "Ready" }), void 0)] }), void 0), (0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "flex flex-col" }, { children: options.map(function (option, index) {
+                    }, role: "presentation" }, { children: [(0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "grid grid-cols-4 mb-10" }, { children: [(0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ disabled: valueNoOption, className: "text-left ".concat(valueNoOption ? "disabled:opacity-50" : "text-primary"), onClick: reset }, { children: hasReset ? "Reset" : null })), (0, jsx_runtime_1.jsx)("div", __assign({ className: "col-span-2 font-bold text-center" }, { children: title })), (0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ className: "text-right text-primary", onClick: switchOpen }, { children: "Ready" }))] })), (0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "flex flex-col" }, { children: options.map(function (option, index) {
                                 // TODO do a shallow diff compare, or add id to Item for example.
                                 var isSelected = option.value === value.value;
                                 return ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ onClick: function (e) {
@@ -59,8 +59,8 @@ var SelectDrawer = function (_a) {
                                         (_a = option.onClick) === null || _a === void 0 ? void 0 : _a.call(option, customId ? customId : id);
                                         onChange === null || onChange === void 0 ? void 0 : onChange(option);
                                         switchOpen();
-                                    }, className: "flex items-center mb-2" }, { children: [(0, jsx_runtime_1.jsx)(react_with_native_1.Label, __assign({ className: "flex-1 min-w-0 text-t-primary" }, { children: option.label }), void 0), (0, jsx_runtime_1.jsx)(SelectedIcon_1.default, { selected: isSelected }, void 0)] }), index));
-                            }) }), void 0)] }), void 0) }), void 0)] }, void 0));
+                                    }, className: "flex items-center mb-2" }, { children: [(0, jsx_runtime_1.jsx)(react_with_native_1.Label, __assign({ className: "flex-1 min-w-0 text-t-primary" }, { children: option.label })), (0, jsx_runtime_1.jsx)(SelectedIcon_1.default, { selected: isSelected })] }), index));
+                            }) }))] })) }))] }));
 };
 exports.default = SelectDrawer;
 //# sourceMappingURL=SelectDrawer.js.map

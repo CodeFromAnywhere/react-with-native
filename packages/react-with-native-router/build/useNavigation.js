@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var router_1 = require("next/router");
 function useNavigation() {
-    var router = (0, router_1.useRouter)();
+    var router = router_1.useRouter();
     return {
         addListener: function () { },
         canGoBack: function () { return true; },

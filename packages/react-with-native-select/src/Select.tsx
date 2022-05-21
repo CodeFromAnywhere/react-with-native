@@ -1,6 +1,6 @@
-// import SelectDropdown from "./SelectDropdown";
-// import SelectDrawer from "./SelectDrawer";
-// import SelectMenu from "./SelectMenu";
+import SelectDropdown from "./SelectDropdown";
+import SelectDrawer from "./SelectDrawer";
+import SelectMenu from "./SelectMenu";
 import { Item, SelectProps } from "./types";
 import { getRealValue } from "./util";
 
@@ -22,7 +22,7 @@ const Select = <T extends unknown>({
   const realValue = getRealValue({ value, selectFirstOption, options, title });
   return (
     <>
-      {/* <div className={`hidden lg:flex ${containerClassName}`}>
+      <div className={`hidden lg:flex ${containerClassName}`}>
         {children ? (
           <SelectMenu value={realValue} onChange={onChange} options={options}>
             {children}
@@ -49,7 +49,7 @@ const Select = <T extends unknown>({
         >
           {children}
         </SelectDrawer>
-      </div> */}
+      </div>
     </>
   );
 };
