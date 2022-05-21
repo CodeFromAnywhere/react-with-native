@@ -1,20 +1,24 @@
 # Notifications
 
-> This library is experimental!
+## `NB: Experimental package!`
 
-Wrapper of react-toastify for web and expo-notifications on iOS and Android
+`react-with-native-notification` is a wrapper of react-toastify for web and expo-notifications on iOS and Android
 
 ## Installation
 
 For a react project:
 
-`yarn add react-with-native-notification react-toastify`
+```bash
+yarn add react-with-native-notification react-toastify
+```
 
 For a react-native expo project
 
-`expo install react-with-native-notification expo-notifications`
+```bash
+expo install react-with-native-notification expo-notifications
+```
 
-For a next.js project:
+For a Next.js project:
 (This module is not transpiled yet)
 
 ```
@@ -29,18 +33,18 @@ module.exports = withTM({ your config });
 
 In your apps root:
 
-```
+```tsx
 import { ToastContainer } from "react-with-native-notification";
 
-# and in somewhere high up your tree:
+// and in somewhere high up your tree:
 
-<ToastContainer />
+<ToastContainer />;
 ```
 
 When you want to fire a notification:
 
-```
+```tsx
 import { toast } from "react-with-native-notification";
 
-<Button onClick={() => toast("Hello world")}>Click me!</Button>
+<Button onClick={() => toast("Hello world")}>Click me!</Button>;
 ```

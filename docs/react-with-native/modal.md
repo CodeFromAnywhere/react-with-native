@@ -1,39 +1,39 @@
 # Modal
 
-> This library is experimental!
+## `NB: Experimental package!`
 
-### Setup
+## Setup
 
-Install
+1. Install
 
-```
+```bash
 yarn add react-with-native-modal
-
-# or
-
-npm install react-with-native-modal
 ```
 
-### Wrap your whole app in the ModalProvider
+2. Wrap your whole app in the ModalProvider
 
-```
+```tsx
 import { ModalProvider } from "react-with-native-modal";
 
-# and
+// and
 
-<ModalProvider><YourApp /></ModalProvider>
+<ModalProvider>
+  <YourApp />
+</ModalProvider>;
 ```
 
-### Whenever you need a modal, use this hook:
+## Usage
 
-```
+Whenever you need a modal, use this hook:
+
+```tsx
 import { useModal } from "react-with-native-modal";
 
-# and
+// and
 
 const { handleModal } = useModal();
 
-# and then
+// and then
 
-<button onClick={() => handleModal(Element | string)}>Show a modal</button>
+<Button onClick={() => handleModal(Element | string)}>Show a modal</Button>;
 ```

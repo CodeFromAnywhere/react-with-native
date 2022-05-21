@@ -1,17 +1,38 @@
----
-sidebar_position: 1
----
-
 # Router
 
-Exposes `useNavigation` and `useRouter` which are 1:1 wrappers around `useNavigation` from `react-navigation` and `useRouter` from `next/router` respectively, and provide the most suitable result on web and native.
+## `NB: Experimental package!`
+
+`react-with-native-router` exposes `useNavigation` and `useRouter` which are 1:1 wrappers around `useNavigation` from `react-navigation` and `useRouter` from `next/router` respectively, and provide the most suitable result on web and native.
 
 ## Installation
 
-### Next.js project
+```bash
+yarn add react-with-native-router
+```
 
-Make sure you have `next` installed
+In react-native-apps, you also need to be using [react-navigation](https://reactnavigation.org/) in order to use this.
 
-### React Native project
+## Usage
 
-Make sure you have `@react-navigation/native` installed
+```tsx
+import { useRouter, useNavigation } from "react-with-native-router";
+import { Button, P } from "react-with-native";
+const YourPage = () => {
+  // of course, it's better to just use one of them
+  // as they have the same functionality (just a different api)
+  const router = useRouter();
+  const navigation = useNavigation();
+
+  return (
+    <Div>
+      <Button onClick={() => router.push("/")}>
+        <P>Go home</P>
+      </Button>
+
+      <Button onClick={() => navigation.navigate("login")}>
+        <P>Login</P>
+      </Button>
+    </Div>
+  );
+};
+```
