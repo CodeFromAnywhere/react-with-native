@@ -28,6 +28,7 @@ yarn add react-native-modal-datetime-picker @react-native-community/datetimepick
 
 # Usage
 
+See the [API](#API) for which input types are included.
 These form inputs can be used to create the default input types for [react-with-native-form](/react-with-native/react-with-native-form), but you can also use them outside of this form component.
 
 For an example on how to use them in the form, see [react-with-native-form](/react-with-native/react-with-native-form).
@@ -56,8 +57,6 @@ type PluginInputComponentProps = {
   errorClassName?: string;
 };
 ```
-
-If you want to know the exact type interface of TInput (which differs per input type), please look inside of [the package](https://github.com/Code-From-Anywhere/react-with-native/tree/main/packages/react-with-native-form-inputs/src) and find the line `export xxxInputType` to see the type definition.
 
 ## Creating your own inputs
 
@@ -97,3 +96,23 @@ export class YourInputType implements PluginInputType {
   extra?: {};
 }
 ```
+
+## API
+
+These are the inputs that are currently exposed. The type interface is also exposed like `xxxInputType`
+
+- DateInput
+- DatetimeInput
+- FileInput
+- MapInput
+- NumberInput
+- PasswordInput
+- PhoneInput
+- SelectInput
+- StarsInput
+- TextInput
+- TextAreaInput
+- TimeInput
+- ToggleInput
+
+If you want to know the exact type interface of the input (which differs per input type), please look inside of [the package](https://github.com/Code-From-Anywhere/react-with-native/tree/main/packages/react-with-native-form-inputs/src) and find the line `export xxxInputType` to see the type definition.

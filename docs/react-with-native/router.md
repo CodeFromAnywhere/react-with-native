@@ -4,6 +4,8 @@
 
 `react-with-native-router` exposes `useNavigation` and `useRouter` which are 1:1 wrappers around `useNavigation` from `react-navigation` and `useRouter` from `next/router` respectively, and provide the most suitable result on web and native.
 
+Creating screens and pages should still be done with `react-navigation` on `react-native` and using the `/pages` folder in `next.js`.
+
 ## Installation
 
 ```bash

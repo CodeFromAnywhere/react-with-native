@@ -1,37 +1,82 @@
 # react-with-native
 
-- Exposes all html elements with their most suitable react-native counterpart, e.g. `button, div, strong, label, p, h1, h2`, etc.
-- Exposes all `react-native` components with their most suitable html counterpart, e.g. `View, Text, TextInput, Pressable`, etc.
+react-with-native exposes:
+
+- the most popular html elements but wraps them to add the most suitable react-native counterpart.
+- the most popular react-native components with their most suitable html counterpart
+- some useful utility functions and components
+
+`react-with-native` is integrated into [sensible stack](https://sensiblestack.com) by default, but you can install it into any project.
 
 ## Installation
 
-### Next.js
-
-- `yarn add react-with-native`
-
-- This is to be able to import svg files in this project (also in any dependencies)
-
-```
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"]
-    });
+```bash
+yarn add react-with-native
 ```
 
-> `yarn add -D @svgr/webpack`
+### For Next.js
 
-- Make sure you also have tailwind installed.
+Add the following to your webpack config in `next.config.js`:
+
+```js
+config.module.rules.push({
+  test: /\.svg$/,
+  use: ["@svgr/webpack"],
+});
+```
+
+```bash
+yarn add -D @svgr/webpack
+```
+
+Make sure you also have [tailwind](https://tailwindcss.com) installed.
 
 ### Expo
 
-- To add the SVG Transformer, follow [these instructions](https://github.com/kristerkari/react-native-svg-transformer#installation-and-configuration).
+To add the SVG Transformer, follow [these instructions](https://github.com/kristerkari/react-native-svg-transformer#installation-and-configuration).
 
-- Make sure to [install tailwind-rn](https://github.com/vadimdemedes/tailwind-rn) and wrap your app in a tailwind provider.
+Make sure to [install tailwind-rn](https://github.com/vadimdemedes/tailwind-rn) and wrap your app in a tailwind provider.
 
-## What's not shared?
+## API
 
-- creating screens and pages should still be done with react-navigation on react-native and using the pages folder in next.js. However, you can use the `useNavigation` or `useRouter` hook from `react-with-native`. These are wrappers to expose the other api too.
+### HTML
 
-- react-native and react have 2 completely different libraries for maps. A wrapper for those is currently out of scope for this library.
+- `<A>`
+- `<Aside>`
+- `<Button>`
+- `<Div>`
+- `<Form>`
+- `<H2>`
+- `<I>`
+- `<Img>`
+- `<Input>`
+- `<Label>`
+- `<Li>`
+- `<Ol>`
+- `<Ul>`
+- `<Nav>`
+- `<P>`
+- `<Select>`
+- `<Span>`
+- `<Strong>`
+- `<Svg>` (experimental)
+- `<TextArea>`
 
-For the rest, almost anything can be done!
+### react-native
+
+- `<ActivityIndicator>`
+- `<Pressable>`
+- `<Text>`
+- `<TouchableOpacity>`
+- `<View>`
+
+### Components
+
+- `<ScrollableDiv scroll={boolean}>`
+- `<Toggle {...HTMLInputProps} native={...SwitchProps} onChange={(value: boolean) => void} />`
+
+### Utilities
+
+- `trimClassName` removes classNames that aren't supported by react-native
+- `joinClassNames` merges an array of className strings
+- `wrapInTextIfNeeded` wraps a Text coponent around a string if you're react-native so the app can render.
