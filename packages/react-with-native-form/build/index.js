@@ -21,10 +21,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -46,7 +50,7 @@ var sameFieldArray = function (arr1, arr2) {
         var shouldHide = _a.shouldHide, titleFromState = _a.titleFromState, hasError = _a.hasError, item = __rest(_a, ["shouldHide", "titleFromState", "hasError"]);
         return item;
     });
-    var isDeepEqual = react_2.default(simpleArr1, simpleArr2);
+    var isDeepEqual = (0, react_2.default)(simpleArr1, simpleArr2);
     // console.log({ simpleArr1, simpleArr2, isDeepEqual });
     return isDeepEqual;
 };
@@ -60,15 +64,15 @@ var makeInputField = function (type, config) {
 exports.makeInputField = makeInputField;
 var GLOBAL_PROPERTY_PATH = "__GLOBAL__";
 exports.inputClassWithoutWidth = "text-sm px-3 py-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none";
-exports.inputClass = "w-full " + exports.inputClassWithoutWidth;
+exports.inputClass = "w-full ".concat(exports.inputClassWithoutWidth);
 var DefaultInputContainer = function (_a) {
     var children = _a.children, startSection = _a.startSection, sectionTitle = _a.sectionTitle, title = _a.title, description = _a.description, error = _a.error, errorClassName = _a.errorClassName;
-    return (jsx_runtime_1.jsxs(react_with_native_1.Div, { children: [startSection ? (jsx_runtime_1.jsx(react_with_native_1.Div, __assign({ style: {
+    return ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, { children: [startSection ? ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ style: {
                     display: "flex",
                     height: 40,
                     justifyContent: "center",
                     paddingLeft: 10,
-                } }, { children: sectionTitle ? (jsx_runtime_1.jsx(react_with_native_1.P, { children: jsx_runtime_1.jsx(react_with_native_1.Strong, { children: sectionTitle }, void 0) }, void 0)) : (jsx_runtime_1.jsx(react_with_native_1.Div, { style: { height: 40 } }, void 0)) }), void 0)) : null, jsx_runtime_1.jsxs(react_with_native_1.Div, __assign({ className: "pt-0 mb-6", style: { marginBottom: 10 } }, { children: [title ? jsx_runtime_1.jsx(react_with_native_1.Label, __assign({ className: "mb-2 text-sm font-bold" }, { children: title }), void 0) : null, description && (jsx_runtime_1.jsx(react_with_native_1.Div, __assign({ className: "flex mx-3 mb-2 items-start " }, { children: jsx_runtime_1.jsx(react_with_native_1.P, __assign({ className: "text-gray-500 italic" }, { children: description }), void 0) }), void 0)), error ? (jsx_runtime_1.jsx(react_with_native_1.P, __assign({ className: errorClassName || "mr-3 mb-2 text-red-500" }, { children: error || "Invalid value" }), void 0)) : null, jsx_runtime_1.jsx(react_with_native_1.Div, { children: children }, void 0)] }), void 0)] }, void 0));
+                } }, { children: sectionTitle ? ((0, jsx_runtime_1.jsx)(react_with_native_1.P, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.Strong, { children: sectionTitle }) })) : ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, { style: { height: 40 } })) }))) : null, (0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "pt-0 mb-6", style: { marginBottom: 10 } }, { children: [title ? (0, jsx_runtime_1.jsx)(react_with_native_1.Label, __assign({ className: "mb-2 text-sm font-bold" }, { children: title })) : null, description && ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "flex mx-3 mb-2 items-start " }, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.P, __assign({ className: "text-gray-500 italic" }, { children: description })) }))), error ? ((0, jsx_runtime_1.jsx)(react_with_native_1.P, __assign({ className: errorClassName || "mr-3 mb-2 text-red-500" }, { children: error || "Invalid value" }))) : null, (0, jsx_runtime_1.jsx)(react_with_native_1.Div, { children: children })] }))] }));
 };
 exports.DefaultInputContainer = DefaultInputContainer;
 var getPlugin = function (type, plugins) {
@@ -81,7 +85,7 @@ var Input = function (_a) {
     var type = _a.type, plugin = _a.plugin, title = _a.title, onChange = _a.onChange, value = _a.value, isLast = _a.isLast, startSection = _a.startSection, sectionTitle = _a.sectionTitle, next = _a.next, extra = _a.extra, errors = _a.errors, reference = _a.reference, description = _a.description, config = _a.config, uniqueFieldId = _a.uniqueFieldId, renderInputContainer = _a.renderInputContainer, errorClassName = _a.errorClassName, fieldName = _a.fieldName;
     var InputComponent = plugin;
     var InputContainer = renderInputContainer || exports.DefaultInputContainer;
-    return (jsx_runtime_1.jsx(react_with_native_1.Div, __assign({ ref: reference }, { children: jsx_runtime_1.jsx(InputContainer, __assign({}, {
+    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ ref: reference }, { children: (0, jsx_runtime_1.jsx)(InputContainer, __assign({}, {
             description: description,
             sectionTitle: sectionTitle,
             startSection: startSection,
@@ -91,11 +95,11 @@ var Input = function (_a) {
             id: uniqueFieldId,
             type: type,
             error: !plugin.hideContainerError &&
-                ((_b = errors === null || errors === void 0 ? void 0 : errors.find(exports.errorOnField(fieldName))) === null || _b === void 0 ? void 0 : _b.message),
+                ((_b = errors === null || errors === void 0 ? void 0 : errors.find((0, exports.errorOnField)(fieldName))) === null || _b === void 0 ? void 0 : _b.message),
             extra: extra,
             config: config,
             errorClassName: errorClassName,
-        }, { children: jsx_runtime_1.jsx(InputComponent, __assign({}, {
+        }, { children: (0, jsx_runtime_1.jsx)(InputComponent, __assign({}, {
                 uniqueFieldId: uniqueFieldId,
                 fieldName: fieldName,
                 config: config,
@@ -104,12 +108,12 @@ var Input = function (_a) {
                 value: value,
                 errors: errors,
                 errorClassName: errorClassName,
-            }), void 0) }), void 0) }), void 0));
+            })) })) })));
 };
 exports.Input = Input;
 var DefaultTitle = function (_a) {
     var title = _a.title, backButton = _a.backButton;
-    return title ? (jsx_runtime_1.jsxs(react_with_native_1.Div, __assign({ className: "flex items-center mb-10 " }, { children: [backButton && (jsx_runtime_1.jsx(react_with_native_1.Div, __assign({ onClick: backButton, className: "p-4 cursor-pointer" }, { children: "back" }), void 0)), jsx_runtime_1.jsx(react_with_native_1.H2, __assign({ className: "text-2xl font-bold" }, { children: title }), void 0)] }), void 0)) : null;
+    return title ? ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "flex items-center mb-10 " }, { children: [backButton && ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ onClick: backButton, className: "p-4 cursor-pointer" }, { children: "back" }))), (0, jsx_runtime_1.jsx)(react_with_native_1.H2, __assign({ className: "text-2xl font-bold" }, { children: title }))] }))) : null;
 };
 function isObject(object) {
     return object != null && typeof object === "object";
@@ -129,17 +133,17 @@ var DataForm = function (_a) {
         throw new Error("No plugins given");
     }
     //Generate unique id for the form
-    var id = react_1.useState("Form" + String(Math.round(Math.random() * 1000000)))[0];
-    var _d = react_1.useState([]), fieldsWithReferences = _d[0], setFieldsWithReferences = _d[1];
+    var id = (0, react_1.useState)("Form".concat(String(Math.round(Math.random() * 1000000))))[0];
+    var _d = (0, react_1.useState)([]), fieldsWithReferences = _d[0], setFieldsWithReferences = _d[1];
     // need to have because we want to see when it's changed
-    var _e = react_1.useState([]), fieldsWithoutReferences = _e[0], setFieldsWithoutReferences = _e[1];
-    react_1.useEffect(function () {
+    var _e = (0, react_1.useState)([]), fieldsWithoutReferences = _e[0], setFieldsWithoutReferences = _e[1];
+    (0, react_1.useEffect)(function () {
         var fieldsWithoutReferencesLocal = fields.map(function (f) { return f(); });
         if (
         // fieldsWithoutReferences.length === 0 && //NB: why was this here? caused the fields not to refresh
         !sameFieldArray(fieldsWithoutReferencesLocal, fieldsWithoutReferences)) {
             setFieldsWithReferences(fieldsWithoutReferencesLocal.map(function (fieldWithoutReference) {
-                return __assign(__assign({}, fieldWithoutReference), { reference: react_1.createRef() });
+                return __assign(__assign({}, fieldWithoutReference), { reference: (0, react_1.createRef)() });
             }));
             setFieldsWithoutReferences(fieldsWithoutReferencesLocal);
         }
@@ -159,19 +163,19 @@ var DataForm = function (_a) {
         return __assign(__assign({}, all), (_a = {}, _a[key] = value, _a));
     }, {});
     var initialState = __assign(__assign({}, initialValuesPartial), initialValues);
-    var _f = react_1.useState(initialState), state = _f[0], setState = _f[1];
+    var _f = (0, react_1.useState)(initialState), state = _f[0], setState = _f[1];
     //used to check if the initialValues have changed
-    var _g = react_1.useState(), initialValuesState = _g[0], setInitialValuesState = _g[1];
-    react_1.useEffect(function () {
-        if (!initialValuesState || !react_2.default(initialState, initialValuesState)) {
+    var _g = (0, react_1.useState)(), initialValuesState = _g[0], setInitialValuesState = _g[1];
+    (0, react_1.useEffect)(function () {
+        if (!initialValuesState || !(0, react_2.default)(initialState, initialValuesState)) {
             // console.log("initialValues have changed");
             setState(initialState);
             setInitialValuesState(initialState);
         }
     }, [initialState]);
-    var _h = react_1.useState(false), loading = _h[0], setLoading = _h[1];
-    var _j = react_1.useState([]), errors = _j[0], setErrors = _j[1];
-    var _k = react_1.useState(), success = _k[0], setSuccess = _k[1];
+    var _h = (0, react_1.useState)(false), loading = _h[0], setLoading = _h[1];
+    var _j = (0, react_1.useState)([]), errors = _j[0], setErrors = _j[1];
+    var _k = (0, react_1.useState)(), success = _k[0], setSuccess = _k[1];
     var notReadyFields = fieldsWithReferences.filter(function (x) { var _a, _b; return !((_a = x.shouldHide) === null || _a === void 0 ? void 0 : _a.call(x, state)) && ((_b = x.hasError) === null || _b === void 0 ? void 0 : _b.call(x, state[x.field], state)); });
     var setErrorsReject = function (stringOrErrorArray) {
         var _a, _b, _c, _d;
@@ -191,7 +195,7 @@ var DataForm = function (_a) {
                         message: message,
                         propertyPath: fields
                             .map(function (f) { return f().field; })
-                            .find(function (x) { return propertyPath === x || propertyPath.startsWith(x + "."); })
+                            .find(function (x) { return propertyPath === x || propertyPath.startsWith("".concat(x, ".")); })
                             ? propertyPath
                             : GLOBAL_PROPERTY_PATH,
                     });
@@ -199,7 +203,7 @@ var DataForm = function (_a) {
             //this only happens when there are no frontend errors, so it's safe to replace errors
             setErrors(newErrors_1);
             //scroll to the first field that contains an error
-            var firstNotReadyField = fieldsWithReferences.filter(function (x) { return newErrors_1.find(exports.errorOnField(x.field)) !== undefined; })[0];
+            var firstNotReadyField = fieldsWithReferences.filter(function (x) { return newErrors_1.find((0, exports.errorOnField)(x.field)) !== undefined; })[0];
             if (isWeb) {
                 var top_1 = (((_c = (_b = (_a = firstNotReadyField === null || firstNotReadyField === void 0 ? void 0 : firstNotReadyField.reference) === null || _a === void 0 ? void 0 : _a.current) === null || _b === void 0 ? void 0 : _b.getBoundingClientRect) === null || _c === void 0 ? void 0 : _c.call(_b).top) || 0) +
                     (window.scrollY || 0) -
@@ -225,7 +229,7 @@ var DataForm = function (_a) {
                 : Array.isArray(hasError)
                     ? hasError
                     : [];
-            return __spreadArray(__spreadArray([], all), errors);
+            return __spreadArray(__spreadArray([], all, true), errors, true);
         }, []);
         setErrors(frontendErrorArray);
         //
@@ -265,15 +269,15 @@ var DataForm = function (_a) {
         onSubmit: function () { return onClickSubmit(state); },
         state: state,
     };
-    react_1.useEffect(function () {
+    (0, react_1.useEffect)(function () {
         //console.log({ withSubmitProps: submitProps });
         withSubmitProps === null || withSubmitProps === void 0 ? void 0 : withSubmitProps(submitProps);
     }, [loading, available, submitButtonText, submitButtonColor, firstErrorRef]);
     var Title = renderTitle || DefaultTitle;
     var Submit = function () {
-        return noSubmit ? null : renderSubmitComponent ? (renderSubmitComponent(submitProps)) : (jsx_runtime_1.jsxs(react_with_native_1.Button, __assign({ disabled: loading, className: (available
-                ? "" + (submitButtonColor ? submitButtonColor : "bg-green-500")
-                : "bg-gray-300") + "  flex justify-center flex-row w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", onClick: function () { return onClickSubmit(state); }, 
+        return noSubmit ? null : renderSubmitComponent ? (renderSubmitComponent(submitProps)) : ((0, jsx_runtime_1.jsxs)(react_with_native_1.Button, __assign({ disabled: loading, className: "".concat(available
+                ? "".concat(submitButtonColor ? submitButtonColor : "bg-green-500")
+                : "bg-gray-300", "  flex justify-center flex-row w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"), onClick: function () { return onClickSubmit(state); }, 
             //......Extra
             style: {
                 backgroundColor: "#4ade80",
@@ -287,18 +291,18 @@ var DataForm = function (_a) {
                 alignItems: "center",
                 borderColor: "white",
                 padding: 8,
-            } }, { children: [loading ? (jsx_runtime_1.jsx(react_with_native_1.Div, __assign({ className: "mr-2" }, { children: jsx_runtime_1.jsx(react_with_native_1.ActivityIndicator, {}, void 0) }), void 0)) : null, jsx_runtime_1.jsx(react_with_native_1.Label, __assign({ style: { color: "white", fontWeight: "bold" } }, { children: submitButtonText || "Save" }), void 0)] }), void 0));
+            } }, { children: [loading ? ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "mr-2" }, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.ActivityIndicator, {}) }))) : null, (0, jsx_runtime_1.jsx)(react_with_native_1.Label, __assign({ style: { color: "white", fontWeight: "bold" } }, { children: submitButtonText || "Save" }))] })));
     };
     var globalError = errors === null || errors === void 0 ? void 0 : errors.find(function (x) { return x.propertyPath === GLOBAL_PROPERTY_PATH; });
-    return (jsx_runtime_1.jsxs(react_with_native_1.Form, __assign({ className: "w-full", onSubmit: function (e) {
+    return ((0, jsx_runtime_1.jsxs)(react_with_native_1.Form, __assign({ className: "w-full", onSubmit: function (e) {
             e.preventDefault();
             onClickSubmit(state);
-        } }, { children: [jsx_runtime_1.jsxs(react_with_native_1.Div, __assign({ className: "w-full" }, { children: [jsx_runtime_1.jsx(Title, { title: title, backButton: backButton }, void 0), success ? jsx_runtime_1.jsx(react_with_native_1.P, __assign({ className: successClassName }, { children: success }), void 0) : null, globalError ? (jsx_runtime_1.jsx(react_with_native_1.P, __assign({ className: errorClassName || "text-red-600" }, { children: globalError.message }), void 0)) : null, fieldsWithReferences.map(function (field, index) {
+        } }, { children: [(0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "w-full" }, { children: [(0, jsx_runtime_1.jsx)(Title, { title: title, backButton: backButton }), success ? (0, jsx_runtime_1.jsx)(react_with_native_1.P, __assign({ className: successClassName }, { children: success })) : null, globalError ? ((0, jsx_runtime_1.jsx)(react_with_native_1.P, __assign({ className: errorClassName || "text-red-600" }, { children: globalError.message }))) : null, fieldsWithReferences.map(function (field, index) {
                         var _a, _b;
                         // Take the first plugin if the plugin isn't defined.
                         var plugin = getPlugin(field.type, plugins);
                         if (!plugin) {
-                            return (jsx_runtime_1.jsxs(react_with_native_1.P, { children: ["Plugin not found (", field.field, ", ", field.type, ")"] }, void 0));
+                            return ((0, jsx_runtime_1.jsxs)(react_with_native_1.P, { children: ["Plugin not found (", field.field, ", ", field.type, ")"] }));
                         }
                         var next = (_a = fields[index + 1]) === null || _a === void 0 ? void 0 : _a.call(fields);
                         var onChange = function (state) { return function (newValueOrGetter) {
@@ -309,7 +313,7 @@ var DataForm = function (_a) {
                                 : newValueOrGetter;
                             var newState = (_a = {}, _a[field.field] = newValue, _a);
                             var newFullState = __assign(__assign({}, state), newState);
-                            var fieldErrors = errors.filter(exports.errorOnField(field.field));
+                            var fieldErrors = errors.filter((0, exports.errorOnField)(field.field));
                             //check if field still has error(s)
                             var newFieldErrors = (_b = field.hasError) === null || _b === void 0 ? void 0 : _b.call(field, newValue, newFullState);
                             var newFieldErrorsAmount = typeof newFieldErrors === "string"
@@ -319,29 +323,29 @@ var DataForm = function (_a) {
                                     : 0;
                             if (fieldErrors.length > 0 &&
                                 newFieldErrorsAmount !== fieldErrors.length) {
-                                var newErrors = errors.filter(function (error) { return !exports.errorOnField(field.field)(error); });
+                                var newErrors = errors.filter(function (error) { return !(0, exports.errorOnField)(field.field)(error); });
                                 var newFieldErrorsArray = typeof newFieldErrors === "string"
                                     ? [{ message: newFieldErrors, propertyPath: field.field }]
                                     : Array.isArray(newFieldErrors)
                                         ? newFieldErrors
                                         : [];
-                                setErrors(__spreadArray(__spreadArray([], newErrors), newFieldErrorsArray));
+                                setErrors(__spreadArray(__spreadArray([], newErrors, true), newFieldErrorsArray, true));
                             }
                             setState(newFullState);
                             //NB: make sure to add the new state to the submitprops
                             withSubmitProps === null || withSubmitProps === void 0 ? void 0 : withSubmitProps(__assign(__assign({}, submitProps), { state: newFullState, onSubmit: function () { return onClickSubmit(newFullState); } }));
                         }; };
-                        var uniqueFieldId = (id || "") + "." + field.field;
+                        var uniqueFieldId = "".concat(id || "", ".").concat(field.field);
                         var inputErrors = errors.filter(function (e) {
                             return e.propertyPath === field.field ||
-                                e.propertyPath.startsWith(field.field + ".");
+                                e.propertyPath.startsWith("".concat(field.field, "."));
                         });
-                        return ((_b = field.shouldHide) === null || _b === void 0 ? void 0 : _b.call(field, state)) ? null : (jsx_runtime_1.jsx(exports.Input, { fieldName: field.field, renderInputContainer: renderInputContainer, uniqueFieldId: uniqueFieldId, config: plugin.config, plugin: plugin.component, extra: field.extra, reference: field.reference, next: next, type: field.type, title: field.titleFromState ? field.titleFromState(state) : field.title, value: state[field.field], onChange: onChange(state), isLast: index === (fields === null || fields === void 0 ? void 0 : fields.length) - 1, startSection: field.startSection, sectionTitle: field.sectionTitle, description: field.description, errors: inputErrors }, "field-" + field.field));
-                    })] }), void 0), Submit ? (jsx_runtime_1.jsx(react_with_native_1.Div, __assign({ className: (stickySubmit ? "sticky bottom-0" : "") + " " + (submitClassName || "mb-2 py-2") }, { children: jsx_runtime_1.jsx(Submit, {}, void 0) }), void 0)) : null] }), void 0));
+                        return ((_b = field.shouldHide) === null || _b === void 0 ? void 0 : _b.call(field, state)) ? null : ((0, jsx_runtime_1.jsx)(exports.Input, { fieldName: field.field, renderInputContainer: renderInputContainer, uniqueFieldId: uniqueFieldId, config: plugin.config, plugin: plugin.component, extra: field.extra, reference: field.reference, next: next, type: field.type, title: field.titleFromState ? field.titleFromState(state) : field.title, value: state[field.field], onChange: onChange(state), isLast: index === (fields === null || fields === void 0 ? void 0 : fields.length) - 1, startSection: field.startSection, sectionTitle: field.sectionTitle, description: field.description, errors: inputErrors }, "field-".concat(field.field)));
+                    })] })), Submit ? ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "".concat(stickySubmit ? "sticky bottom-0" : "", " ").concat(submitClassName || "mb-2 py-2") }, { children: (0, jsx_runtime_1.jsx)(Submit, {}) }))) : null] })));
 };
 var setConfig = function (DataForm, config) {
     return function (props) {
-        return jsx_runtime_1.jsx(DataForm, __assign({}, config, props), void 0);
+        return (0, jsx_runtime_1.jsx)(DataForm, __assign({}, config, props));
     };
 };
 exports.setConfig = setConfig;

@@ -8,7 +8,7 @@ Object.defineProperty(exports, "ToastContainer", { enumerable: true, get: functi
  * title is only shown on native
  */
 var toast = function (message, options) {
-    react_toastify_1.toast(message.body, options);
+    (0, react_toastify_1.toast)(message.body, options);
 };
 exports.toast = toast;
 //# sourceMappingURL=Notification.js.map

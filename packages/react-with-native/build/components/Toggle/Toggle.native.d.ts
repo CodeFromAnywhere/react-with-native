@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { ToggleType } from "./Toggle.type";
 declare const Toggle: ({ native, checked, onChange }: ToggleType) => JSX.Element;
 export default Toggle;

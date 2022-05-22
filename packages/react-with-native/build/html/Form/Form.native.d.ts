@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { FormType } from "./Form.type";
 declare const Form: ({ native, textClassName, className, children, style, }: FormType) => JSX.Element;
 export default Form;

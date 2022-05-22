@@ -18,7 +18,7 @@ var Alert_1 = require("./Alert");
 var AlertProvider = function (_a) {
     var children = _a.children;
     var alert = react_native_1.Alert.alert;
-    return (jsx_runtime_1.jsx(Alert_1.AlertContext.Provider, __assign({ value: alert }, { children: children }), void 0));
+    return ((0, jsx_runtime_1.jsx)(Alert_1.AlertContext.Provider, __assign({ value: alert }, { children: children })));
 };
 exports.AlertProvider = AlertProvider;
 //# sourceMappingURL=AlertProvider.native.js.map

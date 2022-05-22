@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var native_1 = require("@react-navigation/native");
 var useRouter = function () {
-    var navigation = native_1.useNavigation();
+    var navigation = (0, native_1.useNavigation)();
     var push = function (route, options) { return __awaiter(void 0, void 0, void 0, function () {
         var realRoute;
         return __generator(this, function (_a) {

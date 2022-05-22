@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { LabelType } from "./Label.type";
 declare const Label: ({ native, children, className, style }: LabelType) => JSX.Element;
 export default Label;
