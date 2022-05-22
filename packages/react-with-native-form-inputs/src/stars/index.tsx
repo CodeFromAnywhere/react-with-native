@@ -1,7 +1,7 @@
 import { PluginComponent, PluginInputType } from "react-with-native-form";
 import ReactStars from "react-stars";
 
-const StarsInput: PluginComponent<StarsInputType> = ({
+export const StarsInput: PluginComponent<StarsInputType> = ({
   onChange,
   value,
   extra,

@@ -5,7 +5,10 @@ import { inputClass, PluginComponent } from "react-with-native-form";
 import { TimeInputType } from "./types";
 // CSS Modules, react-datepicker-cssmodules.css
 
-const DateInput: PluginComponent<TimeInputType> = ({ value, onChange }) => {
+export const DateInput: PluginComponent<TimeInputType> = ({
+  value,
+  onChange,
+}) => {
   return (
     <DateTimepicker
       mode="time"

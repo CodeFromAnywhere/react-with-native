@@ -5,7 +5,7 @@ import {
 } from "react-with-native-form";
 import { Input } from "react-with-native";
 
-const TextInput: PluginComponent<TextInputType> = ({
+export const TextInput: PluginComponent<TextInputType> = ({
   onChange,
   value,
   extra,

@@ -1,7 +1,10 @@
 import { PluginComponent } from "react-with-native-form";
 import TextInput, { TextInputType } from "../text";
 
-const PhoneInput: PluginComponent<PhoneInputType> = ({ extra, ...props }) => {
+export const PhoneInput: PluginComponent<PhoneInputType> = ({
+  extra,
+  ...props
+}) => {
   const newExtra: PhoneInputType["extra"] = { ...extra, type: "phone" };
   return <TextInput {...props} extra={newExtra} />;
 };

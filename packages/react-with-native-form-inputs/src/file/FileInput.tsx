@@ -2,12 +2,13 @@ import { PluginComponent, PluginInputType } from "react-with-native-form";
 import { useEffect } from "react";
 import { FileWithPath, useDropzone } from "react-dropzone";
 import { Li, Div, Label, P, Input, Aside, Ul } from "react-with-native";
-import Icon from "./icon.svg";
+// import Icon from "./icon.svg";
 
-const FileInput: PluginComponent<FileInputType> = ({ extra, onChange }) => {
-  const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
-    accept: extra.allowedFileTypes,
-  });
+export const FileInput: PluginComponent<FileInputType> = ({
+  extra,
+  onChange,
+}) => {
+  const { getRootProps, getInputProps, acceptedFiles } = useDropzone({});
 
   useEffect(() => {
     onChange(acceptedFiles);
@@ -26,7 +27,7 @@ const FileInput: PluginComponent<FileInputType> = ({ extra, onChange }) => {
       {...getRootProps()}
     >
       <Div className="space-y-1 text-center">
-        <Icon />
+        {/* <Icon /> */}
         <Div className="flex text-sm text-center text-gray-600">
           <Label
             htmlFor="file-upload"

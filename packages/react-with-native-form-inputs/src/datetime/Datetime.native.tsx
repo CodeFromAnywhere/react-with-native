@@ -4,7 +4,7 @@ import { DatetimeInputType } from "./types";
 import { Text, Button } from "react-native";
 import React, { useState } from "react";
 
-const DatetimeInput: PluginComponent<DatetimeInputType> = ({
+export const DatetimeInput: PluginComponent<DatetimeInputType> = ({
   extra,
   value,
   onChange,

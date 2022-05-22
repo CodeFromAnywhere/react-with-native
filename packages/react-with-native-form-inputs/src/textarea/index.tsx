@@ -1,7 +1,7 @@
 import { PluginInputType, PluginComponent } from "react-with-native-form";
 import { TextArea } from "react-with-native";
 
-const TextAreaInput: PluginComponent<TextAreaInputType> = ({
+export const TextAreaInput: PluginComponent<TextAreaInputType> = ({
   value,
   extra,
   config,

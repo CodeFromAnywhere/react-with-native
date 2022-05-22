@@ -1,7 +1,7 @@
 import { PluginComponent, PluginInputType } from "react-with-native-form";
 import Select, { Item } from "react-with-native-select";
 
-const SelectInput: PluginComponent<SelectInputType> = ({
+export const SelectInput: PluginComponent<SelectInputType> = ({
   value,
   extra,
   onChange,

@@ -11,4 +11,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./Alert"), exports);
+__exportStar(require("./AlertProvider"), exports);
 //# sourceMappingURL=index.js.map

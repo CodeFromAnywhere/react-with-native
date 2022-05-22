@@ -12,21 +12,16 @@ For a react project:
 yarn add react-with-native-notification react-toastify
 ```
 
+Also, add this to your root `App.tsx` or `_app.tsx`
+
+```tsx
+import "react-toastify/dist/ReactToastify.css";
+```
+
 For a react-native expo project
 
 ```bash
 expo install react-with-native-notification expo-notifications
-```
-
-For a Next.js project:
-(This module is not transpiled yet)
-
-```
-const withTM = require('next-transpile-modules')([
-  'react-with-native-notification',
-]); // pass the modules you would like to see transpiled
-
-module.exports = withTM({ your config });
 ```
 
 ## Usage

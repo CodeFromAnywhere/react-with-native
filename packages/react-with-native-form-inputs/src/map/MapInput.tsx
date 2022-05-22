@@ -2,12 +2,12 @@ import ReactMapGL, { Marker, MapRef } from "react-map-gl";
 import { useState, useRef } from "react";
 
 import { PluginComponent } from "react-with-native-form";
-import HiOutlineLocationMarker from "../assets/HiOutlineLocationMarker.svg";
-import { Svg } from "react-with-native";
-import Autosuggest from "react-autosuggest";
+// import HiOutlineLocationMarker from "../assets/HiOutlineLocationMarker.svg";
+// import { Svg } from "react-with-native";
+// import Autosuggest from "react-autosuggest";
 import { MapInputType, Suggestion, ViewPort } from "./types";
 
-const MapInput: PluginComponent<MapInputType> = ({
+export const MapInput: PluginComponent<MapInputType> = ({
   value,
   onChange,
   extra,
@@ -132,23 +132,24 @@ const MapInput: PluginComponent<MapInputType> = ({
   return (
     <div className={`w-full bg-white border rounded-lg`}>
       <div className={`w-full bg-white`}>
-        <ReactMapGL
+        {/* <ReactMapGL
           doubleClickZoom={false}
           ref={mapRef}
           mapStyle="mapbox://styles/picozzimichele/ckty78kzo0q4t17qubs9yi8ok"
-          className={`w-full h-40`}
-          mapboxApiAccessToken={config?.mapboxKey}
+          // className={`w-full h-40`}
+          mapboxAccessToken=""={config?.mapboxKey}
           {...viewport}
-          onViewportChange={(nextViewport: ViewPort | undefined) => {
-            //@ts-ignore
-            setViewport(nextViewport);
-            onChange({
-              latitude: nextViewport?.latitude as number,
-              longitude: nextViewport?.longitude as number,
-              zoom: nextViewport?.zoom as number,
-            });
-          }}
-        >
+          // TODO: Fix this, doesn't seem to exist anymore
+          // onViewportChange={(nextViewport: ViewPort | undefined) => {
+          //   //@ts-ignore
+          //   setViewport(nextViewport);
+          //   onChange({
+          //     latitude: nextViewport?.latitude as number,
+          //     longitude: nextViewport?.longitude as number,
+          //     zoom: nextViewport?.zoom as number,
+          //   });
+          // }}
+        ><div>
           <div
             onClick={() => {
               setViewport({ ...viewport, zoom: viewport.zoom + 1 });
@@ -206,7 +207,8 @@ const MapInput: PluginComponent<MapInputType> = ({
               </p>
             </Marker>
           )}
-        </ReactMapGL>
+          </div>
+        </ReactMapGL> */}
       </div>
       <div className={`m-3`}>
         <p>

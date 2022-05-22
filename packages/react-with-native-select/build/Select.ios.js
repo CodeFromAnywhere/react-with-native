@@ -20,14 +20,14 @@ var Select = function (_a) {
     var realValue = (0, util_1.getRealValue)({ value: value, selectFirstOption: selectFirstOption, options: options, title: title });
     var onClick = function () {
         react_native_1.ActionSheetIOS.showActionSheetWithOptions(__assign({ options: options.map(function (o) { return o.label; }) }, ios), function (buttonIndex) {
-            var _a;
             var selected = options[buttonIndex];
-            (_a = selected.onClick) === null || _a === void 0 ? void 0 : _a.call(selected);
+            // selected.onClick?.();
             onChange === null || onChange === void 0 ? void 0 : onChange(selected);
         });
     };
-    console;
-    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: className }, { children: children ? (children({ onClick: onClick, className: className, value: realValue })) : ((0, jsx_runtime_1.jsx)(react_with_native_1.Button, { title: (value === null || value === void 0 ? void 0 : value.label) || "Select a value", onClick: onClick })) })));
+    console.log({ children: children });
+    var buttonTitle = (value === null || value === void 0 ? void 0 : value.label) || title || "Select a value";
+    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: className }, { children: children ? (children({ onClick: onClick, className: className, value: realValue })) : ((0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ onClick: onClick }, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.Text, { children: buttonTitle }) }))) })));
 };
 exports.default = Select;
 //# sourceMappingURL=Select.ios.js.map

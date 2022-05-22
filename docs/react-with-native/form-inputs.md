@@ -12,12 +12,20 @@ yarn add react-with-native-form-inputs
 
 NB: Make sure have [react-with-native](/react-with-native) installed.
 
-Make sure you also install these `peerDependencies`:
+Make sure you also install these `peerDependencies` and `devDependencies`:
 
 react:
 
 ```bash
-yarn add react-datepicker react-dropzone react-map-gl react-autosuggest react-stars rc-time-picker
+yarn add react-datepicker react-dropzone react-map-gl react-autosuggest react-stars rc-time-picker react-datetime
+yarn add -D @types/react-datepicker @types/react-autosuggest
+```
+
+Add the needed CSS to your root `App.tsx` or `_app.tsx`
+
+```tsx
+import "react-datetime/css/react-datetime.css";
+import "rc-time-picker/assets/index.css";
 ```
 
 react-native:

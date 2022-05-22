@@ -29,6 +29,15 @@ const Home = () => {
                   Get started
                 </a>
               </Div>
+              <Div className="mt-8 pt-7 flex justify-center lg:justify-start">
+                <a
+                  className="px-6 py-4 text-lg text-white transition duration-300 ease-linear lg:text-xl bg-brand hover:bg-white"
+                  href="https://demo.reactwithnative.com"
+                  target="_blank"
+                >
+                  Demo
+                </a>
+              </Div>
             </Div>
             <Div className="flex p-4 space-y-6">
               <img
