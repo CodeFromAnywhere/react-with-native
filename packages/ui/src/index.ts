@@ -1,4 +1,5 @@
 export * from "./api";
-export * from "./Store";
-import * as Screens from "./plugins/user/screens";
-export { Screens };
+export * from "./store";
+import * as Pages from "./pages";
+import * as Components from "./components";
+export { Pages, Components };

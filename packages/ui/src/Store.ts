@@ -1,17 +1,18 @@
-import {
-  createStoreProvider,
-  createUseStore,
-} from "react-with-native-store";
+import { createStoreProvider, createUseStore } from "react-with-native-store";
 
 type StoreType = {
-  loginToken: string | null;
+  name: string | null;
+  email: string | null;
 };
 
 export const initialValues: StoreType = {
-  loginToken: null,
+  name: null,
+  email: null,
 };
 
-export const StoreProvider = createStoreProvider({ initialValues });
+export const StoreProvider = createStoreProvider({
+  initialValues,
+  baseKey: "test",
+});
 export const useStore = createUseStore(initialValues);
-
 export default useStore;
