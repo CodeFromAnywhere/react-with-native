@@ -1,5 +1,5 @@
 export * from "./api";
-export * from "./store";
+import { StoreProvider, initialValues, useStore } from "./store";
 import * as Pages from "./pages";
 import * as Components from "./components";
-export { Pages, Components };
+export { Pages, Components, StoreProvider, initialValues, useStore };
