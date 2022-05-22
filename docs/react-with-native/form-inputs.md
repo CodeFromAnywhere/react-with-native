@@ -18,7 +18,7 @@ react:
 
 ```bash
 yarn add react-datepicker react-dropzone react-map-gl react-autosuggest react-stars rc-time-picker react-datetime
-yarn add -D @types/react-datepicker @types/react-autosuggest
+yarn add -D @types/react-datepicker @types/react-autosuggest @types/react-stars
 ```
 
 Add the needed CSS to your root `App.tsx` or `_app.tsx`
