@@ -1,5 +1,4 @@
-import { Button, Div, Input, P } from "react-with-native";
-import { useRouter } from "react-with-native-router";
+import { Div, Input, P } from "react-with-native";
 import useStore from "../store";
 
 const HomePage = () => {
