@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Text } from "react-native";
 import { useTailwind } from "tailwind-rn";
 import { trimClassName } from "../../util/trimClassName";

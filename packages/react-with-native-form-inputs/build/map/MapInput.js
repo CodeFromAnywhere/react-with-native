@@ -65,7 +65,7 @@ var MapInput = function (_a) {
         zoom: value === null || value === void 0 ? void 0 : value.zoom,
     }), viewport = _g[0], setViewport = _g[1];
     // Teach Autosuggest how to calculate suggestions for any given input value.
-    var getSuggestions = function (value) { return __awaiter(void 0, void 0, void 0, function () {
+    var getSuggestions = function (value) { return __awaiter(void 0, void 0, Promise, function () {
         var inputValue, url, suggestions;
         return __generator(this, function (_a) {
             switch (_a.label) {

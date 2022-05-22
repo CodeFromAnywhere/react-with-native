@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { PluginInputType, PluginComponent } from "react-with-native-form";
 declare const ToggleInput: PluginComponent<ToggleInputType>;
 export declare class ToggleInputType implements PluginInputType {

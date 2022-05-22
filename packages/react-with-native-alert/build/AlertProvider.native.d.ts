@@ -1,4 +1,4 @@
 export declare const AlertProvider: ({ children }: {
     children: any;
-}) => JSX.Element;
+}) => any;
 //# sourceMappingURL=AlertProvider.native.d.ts.map
