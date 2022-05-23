@@ -35,6 +35,8 @@ import {
   DateInputType,
   DatetimeInput,
   DatetimeInputType,
+  // MapInput,
+  // MapInputType,
   NumberInput,
   NumberInputType,
   SelectInput,
@@ -49,6 +51,8 @@ import {
   TimeInput,
   ToggleInput,
   ToggleInputType,
+  SelectMultipleInput,
+  SelectMultipleInputType,
 } from "react-with-native-form-inputs";
 
 const text = { component: TextInput };
@@ -57,6 +61,7 @@ const date = { component: DateInput };
 const datetime = { component: DatetimeInput };
 const number = { component: NumberInput };
 const select = { component: SelectInput };
+const selectMultiple = { component: SelectMultipleInput };
 const stars = { component: StarsInput };
 const phone = { component: PhoneInput };
 const textArea = { component: TextAreaInput };
@@ -70,6 +75,7 @@ const plugins = {
   datetime,
   number,
   select,
+  selectMultiple,
   stars,
   phone,
   textArea,
@@ -89,6 +95,7 @@ export interface Inputs {
   datetime: DatetimeInputType;
   number: NumberInputType;
   select: SelectInputType;
+  selectMultiple: SelectMultipleInputType;
   stars: StarsInputType;
   phone: PhoneInputType;
   textArea: TextAreaInputType;
@@ -108,11 +115,21 @@ export const Form = <TState extends { [key: string]: any } = any>(
   })(props);
 ```
 
-Now you can create a form like this:
+Now you can create a form like this. Please note we use all possible inputs that we created from `react-with-native-form-inputs` here, but of course you can always create your own inputs if you want. We also set a defaultValue here from the local storage:
 
 ```tsx
 import { Div } from "react-with-native";
+import { Item } from "react-with-native-select";
 import { Form, InputValues, makeField } from "../components/Form";
+import useStore from "../store";
+
+const options: Item<string>[] = [
+  { value: "1", label: "Option 1" },
+  { value: "2", label: "Option 2" },
+  { value: "3", label: "Option 3" },
+  { value: "4", label: "Option 4" },
+];
+
 const fields = [
   makeField("text", {
     field: "text",
@@ -134,16 +151,25 @@ const fields = [
     field: "select",
     title: "Select",
     extra: {
-      options: [
-        { value: "1", label: "Option 1" },
-        { value: "2", label: "Option 2" },
-      ],
+      options,
+    },
+  }),
+
+  makeField("selectMultiple", {
+    field: "selectMultiple",
+    title: "Select multiple",
+    extra: {
+      options,
     },
   }),
   makeField("stars", { field: "stars", title: "Stars" }),
   makeField("textArea", { field: "textArea", title: "Text area" }),
   makeField("time", { field: "time", title: "Time" }),
-  makeField("toggle", { field: "toggle", title: "Toggle" }),
+  makeField("toggle", {
+    field: "toggle",
+    title: "Toggle",
+    extra: { label: "Toggle this on or off" },
+  }),
 ];
 
 // Now your form can be rendered like this
@@ -151,8 +177,9 @@ const fields = [
 // otherwise your form won't be typesafe!
 
 const FormPage = () => {
+  const [name] = useStore("name");
   return (
-    <Div scroll className="p-4">
+    <Div scroll className="p-4 w-full mx-4 lg:mx-20">
       <Form<{
         text: InputValues["text"];
         password: InputValues["password"];
@@ -161,6 +188,7 @@ const FormPage = () => {
         number: InputValues["number"];
         phone: InputValues["phone"];
         select: InputValues["select"];
+        selectMultiple: InputValues["selectMultiple"];
         stars: InputValues["stars"];
         textArea: InputValues["textArea"];
         time: InputValues["time"];
@@ -173,6 +201,7 @@ const FormPage = () => {
           const message = `Form submitted. Hello, ${values.text}`;
           resolve(message);
         }}
+        defaultValues={{ text: name || "" }}
       />
     </Div>
   );

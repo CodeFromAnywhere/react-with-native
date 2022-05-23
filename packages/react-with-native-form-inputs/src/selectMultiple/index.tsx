@@ -14,7 +14,7 @@ export const SelectMultipleInput: PluginComponent<SelectMultipleInputType> = ({
     .concat(extra.options)
     .filter((x) => !value.includes(x));
   return (
-    <Div className="flex flex-row flex-wrap px-3">
+    <Div className="flex flex-row flex-wrap">
       {value.map((item, index) => (
         <Button
           onClick={() => {
@@ -22,7 +22,7 @@ export const SelectMultipleInput: PluginComponent<SelectMultipleInputType> = ({
             onChange(newValue);
           }}
           key={`selected${uniqueFieldId}${index}`}
-          className={`mr-3 px-3 py-2 rounded-xl border border-gray-400`}
+          className={`mr-3 px-3 py-2 rounded-md border border-gray-400`}
         >
           <P>
             {item.label} <Span textClassName="text-red-500">(x)</Span>

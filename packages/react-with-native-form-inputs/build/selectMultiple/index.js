@@ -25,10 +25,10 @@ var SelectMultipleInput = function (_a) {
     var optionsLeft = [{ label: "Choose a value", value: "" }]
         .concat(extra.options)
         .filter(function (x) { return !value.includes(x); });
-    return ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "flex flex-row flex-wrap px-3" }, { children: [value.map(function (item, index) { return ((0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ onClick: function () {
+    return ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "flex flex-row flex-wrap" }, { children: [value.map(function (item, index) { return ((0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ onClick: function () {
                     var newValue = value.filter(function (x) { return x.value !== item.value; });
                     onChange(newValue);
-                }, className: "mr-3 px-3 py-2 rounded-xl border border-gray-400" }, { children: (0, jsx_runtime_1.jsxs)(react_with_native_1.P, { children: [item.label, " ", (0, jsx_runtime_1.jsx)(react_with_native_1.Span, __assign({ textClassName: "text-red-500" }, { children: "(x)" }))] }) }), "selected".concat(uniqueFieldId).concat(index))); }), optionsLeft.length > 1 ? ((0, jsx_runtime_1.jsx)(react_with_native_select_1.default, { className: react_with_native_ui_1.default.selectInput, title: extra.title || "", options: optionsLeft, onChange: function (selected) {
+                }, className: "mr-3 px-3 py-2 rounded-md border border-gray-400" }, { children: (0, jsx_runtime_1.jsxs)(react_with_native_1.P, { children: [item.label, " ", (0, jsx_runtime_1.jsx)(react_with_native_1.Span, __assign({ textClassName: "text-red-500" }, { children: "(x)" }))] }) }), "selected".concat(uniqueFieldId).concat(index))); }), optionsLeft.length > 1 ? ((0, jsx_runtime_1.jsx)(react_with_native_select_1.default, { className: react_with_native_ui_1.default.selectInput, title: extra.title || "", options: optionsLeft, onChange: function (selected) {
                     console.log({ selected: selected });
                     if (selected) {
                         var newValue = value;
