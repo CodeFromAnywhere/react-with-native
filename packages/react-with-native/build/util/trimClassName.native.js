@@ -7,8 +7,11 @@ var trimClassName = function (className) {
         .filter(function (c) {
         return !((c === "" ||
             c.startsWith("focus:") ||
+            c.startsWith("hover:") ||
             c.startsWith("shadow-") ||
-            c === "block") // block crashes android
+            c === "block" ||
+            c === "h-screen" ||
+            c === "w-screen") // block crashes android
         );
     })
         .join(" ");

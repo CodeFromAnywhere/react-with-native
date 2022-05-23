@@ -8,6 +8,7 @@ export const trimClassName = (className: string) => {
           (
             c === "" ||
             c.startsWith("focus:") ||
+            c.startsWith("hover:") ||
             c.startsWith("shadow-") ||
             c === "block" ||
             c === "h-screen" ||

@@ -11,9 +11,10 @@ const Menu = ({ menu }: { menu?: string[] }) => {
     <Ul>
       {menu.map((page) => {
         return (
-          <Li>
+          <Li key={`page${page}`}>
             <Button
-              className="hover:text-blue-800 text-3xl"
+              className="p-4"
+              textClassName="text-3xl hover:text-blue-800"
               onClick={() => router.push(page === "index" ? "/" : page)}
             >
               {page.charAt(0).toUpperCase().concat(page.slice(1))}

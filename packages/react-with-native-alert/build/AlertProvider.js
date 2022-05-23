@@ -20,6 +20,7 @@ var react_3 = require("react");
 var react_with_native_1 = require("react-with-native");
 var AlertProvider = function (_a) {
     var children = _a.children;
+    console.log("normal alertprovider");
     var _b = (0, react_1.useState)([]), alertState = _b[0], setAlertState = _b[1];
     var firstAlert = alertState[0];
     // console.log({ firstAlert, alertState });
