@@ -50,6 +50,7 @@ const fields = [
     title: "Toggle",
     extra: { label: "Toggle this on or off" },
   }),
+  makeField("labels", { field: "labels", title: "Labels input" }),
 ];
 
 // Now your form can be rendered like this
@@ -73,6 +74,7 @@ const FormPage = () => {
         textArea: InputValues["textArea"];
         time: InputValues["time"];
         toggle: InputValues["toggle"];
+        labels: InputValues["labels"];
       }>
         title="Form Example"
         fields={fields}

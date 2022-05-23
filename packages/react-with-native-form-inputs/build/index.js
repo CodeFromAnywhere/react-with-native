@@ -28,4 +28,5 @@ __exportStar(require("./text"), exports);
 __exportStar(require("./textarea"), exports);
 __exportStar(require("./time"), exports);
 __exportStar(require("./toggle"), exports);
+__exportStar(require("./labels"), exports);
 //# sourceMappingURL=index.js.map

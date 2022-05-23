@@ -12,3 +12,4 @@ export * from "./text";
 export * from "./textarea";
 export * from "./time";
 export * from "./toggle";
+export * from "./labels";

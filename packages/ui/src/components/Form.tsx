@@ -33,6 +33,8 @@ import {
   ToggleInputType,
   SelectMultipleInput,
   SelectMultipleInputType,
+  LabelsInput,
+  LabelsInputType,
 } from "react-with-native-form-inputs";
 
 const text = { component: TextInput };
@@ -47,7 +49,7 @@ const phone = { component: PhoneInput };
 const textArea = { component: TextAreaInput };
 const time = { component: TimeInput };
 const toggle = { component: ToggleInput };
-
+const labels = { component: LabelsInput };
 const plugins = {
   text,
   password,
@@ -61,6 +63,7 @@ const plugins = {
   textArea,
   time,
   toggle,
+  labels,
 };
 
 export const makeField = <T extends Keys<Inputs>>(
@@ -81,6 +84,7 @@ export interface Inputs {
   textArea: TextAreaInputType;
   time: TimeInputType;
   toggle: ToggleInputType;
+  labels: LabelsInputType;
 }
 
 export type InputValues = {
