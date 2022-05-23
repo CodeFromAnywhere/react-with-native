@@ -1,5 +1,6 @@
 import { PluginInputType, PluginComponent } from "react-with-native-form";
 import { TextArea } from "react-with-native";
+import UI from "react-with-native-ui";
 
 export const TextAreaInput: PluginComponent<TextAreaInputType> = ({
   value,
@@ -18,7 +19,7 @@ export const TextAreaInput: PluginComponent<TextAreaInputType> = ({
       maxLength={extra?.maxLength}
       className={
         config?.replaceClassName ||
-        `block w-full px-4 py-3 text-gray-500 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ${errorClass} ${config?.extraClassName}`
+        `${UI.input} ${errorClass} ${config?.extraClassName}`
       }
       value={value}
       onChange={(event: any) => {

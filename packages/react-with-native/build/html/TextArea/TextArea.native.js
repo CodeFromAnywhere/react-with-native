@@ -28,11 +28,15 @@ var react_native_1 = require("react-native");
 var util_1 = require("../../util/util");
 var trimClassName_1 = require("../../util/trimClassName");
 var TextArea = function (_a) {
-    var native = _a.native, children = _a.children, className = _a.className, textClassName = _a.textClassName;
+    var native = _a.native, children = _a.children, className = _a.className, textClassName = _a.textClassName, rows = _a.rows;
     var tailwind = (0, tailwind_rn_1.useTailwind)();
     var _b = native || {}, style = _b.style, nativeWithoutStyle = __rest(_b, ["style"]);
     var tailwindStyle = className ? tailwind((0, trimClassName_1.trimClassName)(className)) : {};
-    return ((0, jsx_runtime_1.jsx)(react_native_1.TextInput, __assign({ multiline: true, style: [{ textAlignVertical: "top" }, tailwindStyle, style] }, nativeWithoutStyle, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) })));
+    return ((0, jsx_runtime_1.jsx)(react_native_1.TextInput, __assign({ multiline: true, style: [
+            { textAlignVertical: "top", height: rows ? rows * 30 : 200 },
+            tailwindStyle,
+            style,
+        ] }, nativeWithoutStyle, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) })));
 };
 exports.default = TextArea;
 //# sourceMappingURL=TextArea.native.js.map
