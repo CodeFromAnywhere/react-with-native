@@ -7,7 +7,9 @@
   "scripts": {
     "pub": "npm version patch --force && npm publish",
     "build": "tsc",
-    "dev": "tsc -w"
+    "dev:ts": "tsc -w",
+    "dev:tw": "tailwindcss -w -o css.css",
+    "dev": "npm-run-all --parallel dev:**"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,8 @@
   "devDependencies": {
     "@react-navigation/native": "^6.0.6",
     "next": "^12.0.7",
-    "react-with-native": "*"
+    "npm-run-all": "^4.1.5",
+    "react-with-native": "*",
+    "tailwindcss": "^3.0.24"
   }
 }
