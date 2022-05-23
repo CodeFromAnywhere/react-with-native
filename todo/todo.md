@@ -1,6 +1,5 @@
 # TODAY
 
-- Create rwn-labels-input that lets you type and every time you press comma the input becomes a box you can delete. returns string[]
 - Sensible/RWN Docs: Provide instructions to run it locally so you can test it on any platform
 - Sensible/RWN Docs: Have links to the code on docs pages for when people want to internalise the code
 - Provide good in-code instructions as well in the DEMO code so people can easily learn everything

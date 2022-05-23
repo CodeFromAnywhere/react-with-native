@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "main": "App.tsx",
   "scripts": {
-    "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
     "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
-    "dev:tailwindcss": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch",
-    "dev:tailwindrn": "tailwind-rn --watch",
-    "dev:expo": "expo start",
-    "dev": "npm-run-all --parallel dev:**"
+    "start:tailwindcss": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch",
+    "start:tailwindrn": "tailwind-rn --watch",
+    "start:expo": "expo start",
+    "start": "npm-run-all --parallel start:**"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "~1.17.3",
