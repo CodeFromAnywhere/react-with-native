@@ -22,9 +22,10 @@ export const TextAreaInput: PluginComponent<TextAreaInputType> = ({
         `${UI.input} ${errorClass} ${config?.extraClassName}`
       }
       value={value}
-      onChange={(event: any) => {
+      onChange={(event) => {
         onChange(event.target.value);
       }}
+      native={{ onChangeText: onChange }}
     />
   );
 };

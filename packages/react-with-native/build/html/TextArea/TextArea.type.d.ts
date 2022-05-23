@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, TextareaHTMLAttributes } from "react";
-import type { TextProps } from "react-native";
+import type { TextInputProps } from "react-native";
 export declare type TextAreaType = DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> & {
-    native?: TextProps;
+    native?: TextInputProps;
     textClassName?: string;
 };
 //# sourceMappingURL=TextArea.type.d.ts.map
