@@ -9,7 +9,9 @@ export const trimClassName = (className: string) => {
             c === "" ||
             c.startsWith("focus:") ||
             c.startsWith("shadow-") ||
-            c === "block"
+            c === "block" ||
+            c === "h-screen" ||
+            c === "w-screen"
           ) // block crashes android
         )
     )

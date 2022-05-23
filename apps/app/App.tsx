@@ -1,10 +1,14 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StoreProvider, Screens } from "ui";
+import { StoreProvider, Pages } from "ui";
 import { TailwindProvider } from "tailwind-rn";
+import { AlertProvider } from "react-with-native-alert";
+
 import utilities from "./tailwind.json";
 const Stack = createNativeStackNavigator();
+
+import { registerRootComponent } from "expo";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -16,30 +20,33 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TailwindProvider utilities={utilities}>
         <StoreProvider>
-          <NavigationContainer>
-            <Stack.Navigator initialRouteName="HomeScreen">
-              {Object.keys(Screens).map((screen) => {
-                // @ts-ignore
-                const component = Screens[screen];
-                //@ts-ignore
-                const options: ScreenOptions = Screens[screen].options;
-                return (
-                  <Stack.Screen
-                    key={`Screen${screen}`}
-                    name={screen}
-                    component={component}
-                    options={options}
-                  />
-                );
-              })}
-            </Stack.Navigator>
-          </NavigationContainer>
+          <AlertProvider>
+            <NavigationContainer>
+              <Stack.Navigator initialRouteName="menu">
+                {Object.keys(Pages).map((page) => {
+                  // @ts-ignore
+                  const component = Pages[page];
+                  //@ts-ignore
+                  const options: ScreenOptions = component.options;
+                  return (
+                    <Stack.Screen
+                      key={`page${page}`}
+                      name={page}
+                      component={component}
+                      options={options}
+                    />
+                  );
+                })}
+              </Stack.Navigator>
+            </NavigationContainer>
+          </AlertProvider>
         </StoreProvider>
       </TailwindProvider>
     </QueryClientProvider>
   );
 }
 
-export default App;
-//
-//
+// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
+// It also ensures that whether you load the app in Expo Go or in a native build,
+// the environment is set up appropriately
+registerRootComponent(App);

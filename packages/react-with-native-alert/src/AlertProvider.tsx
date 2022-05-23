@@ -7,6 +7,7 @@ import { Fragment } from "react";
 import { Div, P } from "react-with-native";
 
 export const AlertProvider = ({ children }: { children: any }) => {
+  console.log("normal alertprovider");
   const [alertState, setAlertState] = useState<AlertState[]>([]);
 
   const firstAlert: AlertState | undefined = alertState[0];

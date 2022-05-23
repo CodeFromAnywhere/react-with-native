@@ -13,7 +13,7 @@ const Menu = ({ menu }: { menu?: string[] }) => {
         return (
           <Li>
             <Button
-              className="hover:text-blue-800"
+              className="hover:text-blue-800 text-3xl"
               onClick={() => router.push(page === "index" ? "/" : page)}
             >
               {page.charAt(0).toUpperCase().concat(page.slice(1))}

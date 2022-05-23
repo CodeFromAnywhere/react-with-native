@@ -1,2 +1,4 @@
-export * from "./Alert";
-export * from "./AlertProvider";
+import { AlertContext, useAlert } from "./Alert";
+import { AlertProvider } from "./AlertProvider";
+
+export { AlertContext, AlertProvider, useAlert };

@@ -1,7 +1,7 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "App.tsx",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -11,7 +11,8 @@
     "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
     "dev:tailwindcss": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch",
     "dev:tailwindrn": "tailwind-rn --watch",
-    "dev": "npm-run-all build:tailwind --parallel dev:**"
+    "dev:expo": "expo start",
+    "dev": "npm-run-all --parallel dev:**"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "~1.17.3",
