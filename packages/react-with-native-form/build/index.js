@@ -34,12 +34,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setConfig = exports.errorOnField = exports.isObject = exports.Input = exports.DefaultInputContainer = exports.inputClass = exports.inputClassWithoutWidth = exports.makeInputField = exports.notEmpty = exports.deepEqual = void 0;
+exports.setConfig = exports.errorOnField = exports.isObject = exports.Input = exports.DefaultInputContainer = exports.makeInputField = exports.notEmpty = exports.inputClass = exports.inputClassWithoutWidth = exports.deepEqual = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
 var react_with_native_1 = require("react-with-native");
+var react_with_native_ui_1 = require("react-with-native-ui");
+Object.defineProperty(exports, "inputClass", { enumerable: true, get: function () { return react_with_native_ui_1.inputClass; } });
 var react_2 = __importDefault(require("fast-deep-equal/react"));
 exports.deepEqual = react_2.default;
+var inputClassWithoutWidth = react_with_native_ui_1.bareInputClass;
+exports.inputClassWithoutWidth = inputClassWithoutWidth;
 var isWeb = typeof window !== "undefined" && !!window.scrollTo;
 var sameFieldArray = function (arr1, arr2) {
     var simpleArr1 = arr1.map(function (_a) {
@@ -63,8 +67,6 @@ var makeInputField = function (type, config) {
 };
 exports.makeInputField = makeInputField;
 var GLOBAL_PROPERTY_PATH = "__GLOBAL__";
-exports.inputClassWithoutWidth = "text-sm px-3 py-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none";
-exports.inputClass = "w-full ".concat(exports.inputClassWithoutWidth);
 var DefaultInputContainer = function (_a) {
     var children = _a.children, startSection = _a.startSection, sectionTitle = _a.sectionTitle, title = _a.title, description = _a.description, error = _a.error, errorClassName = _a.errorClassName;
     return ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, { children: [startSection ? ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ style: {

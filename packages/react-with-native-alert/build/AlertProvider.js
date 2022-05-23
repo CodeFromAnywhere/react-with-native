@@ -20,7 +20,7 @@ var react_3 = require("react");
 var react_with_native_1 = require("react-with-native");
 var AlertProvider = function (_a) {
     var children = _a.children;
-    console.log("normal alertprovider");
+    // console.log("normal alertprovider");
     var _b = (0, react_1.useState)([]), alertState = _b[0], setAlertState = _b[1];
     var firstAlert = alertState[0];
     // console.log({ firstAlert, alertState });
@@ -32,10 +32,10 @@ var AlertProvider = function (_a) {
     };
     var renderAlert = function (firstAlert) {
         if (!firstAlert) {
-            console.log("HMMMM");
+            // console.log("HMMMM");
             return null;
         }
-        console.log("Should render alert");
+        // console.log("Should render alert");
         var title = firstAlert.title, buttons = firstAlert.buttons, message = firstAlert.message, options = firstAlert.options;
         var value = undefined; //TODO: make it possible to fill in value here (prompt-alert)
         return ((0, jsx_runtime_1.jsxs)("div", __assign({ className: "absolute w-screen h-screen inset-0" }, { children: ["TEST", (0, jsx_runtime_1.jsx)(react_2.Transition, __assign({ appear: true, show: true, as: react_3.Fragment }, { children: (0, jsx_runtime_1.jsx)(react_2.Dialog, __assign({ as: "div", className: "fixed inset-0 z-50 overflow-y-auto backdrop-blur-sm", onClose: function () {

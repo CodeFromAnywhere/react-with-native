@@ -7,7 +7,7 @@ import { Fragment } from "react";
 import { Div, P } from "react-with-native";
 
 export const AlertProvider = ({ children }: { children: any }) => {
-  console.log("normal alertprovider");
+  // console.log("normal alertprovider");
   const [alertState, setAlertState] = useState<AlertState[]>([]);
 
   const firstAlert: AlertState | undefined = alertState[0];
@@ -23,11 +23,11 @@ export const AlertProvider = ({ children }: { children: any }) => {
 
   const renderAlert = (firstAlert: AlertState | undefined) => {
     if (!firstAlert) {
-      console.log("HMMMM");
+      // console.log("HMMMM");
       return null;
     }
 
-    console.log("Should render alert");
+    // console.log("Should render alert");
 
     const { title, buttons, message, options } = firstAlert;
 

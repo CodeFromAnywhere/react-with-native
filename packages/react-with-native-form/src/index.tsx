@@ -9,9 +9,10 @@ import {
   H2,
   Button,
 } from "react-with-native";
-import { inputClass, inputClassWithoutWidth } from "react-with-native-ui";
+import { inputClass, bareInputClass } from "react-with-native-ui";
 import deepEqual from "fast-deep-equal/react";
 
+const inputClassWithoutWidth = bareInputClass;
 export { deepEqual };
 // TODO: to be removed
 export { inputClassWithoutWidth, inputClass };

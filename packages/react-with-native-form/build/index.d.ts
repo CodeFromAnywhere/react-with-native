@@ -1,6 +1,9 @@
 import { RefObject } from "react";
+import { inputClass } from "react-with-native-ui";
 import deepEqual from "fast-deep-equal/react";
+declare const inputClassWithoutWidth = "text-sm px-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none";
 export { deepEqual };
+export { inputClassWithoutWidth, inputClass };
 export declare function notEmpty<TValue>(value: TValue | null | undefined): value is TValue;
 export declare const makeInputField: <TInputs, T extends Extract<keyof TInputs, string>>(type: T, config: Omit<Field<TInputs, T>, "type">) => () => {
     field: string;
@@ -64,8 +67,6 @@ export declare type SubmitProps = {
     submitButtonColor?: string;
     state?: any;
 };
-export declare const inputClassWithoutWidth = "text-sm px-3 py-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none";
-export declare const inputClass: string;
 export declare type DefaultConfig = {
     extraClassName?: string;
     replaceClassName?: string;
