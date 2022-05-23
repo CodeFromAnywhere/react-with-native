@@ -10,7 +10,7 @@ const Input = ({ native, children, className, style, ...props }: InputType) => {
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
   return (
     <TextInput
-      style={[{ fontWeight: "bold" }, tailwindStyle, style, nativeStyle]}
+      style={[tailwindStyle, style, nativeStyle]}
       {...nativeWithoutStyle}
     >
       {nativeWithoutStyle.children || children}

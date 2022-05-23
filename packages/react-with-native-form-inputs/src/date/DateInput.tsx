@@ -1,6 +1,8 @@
 import DatePicker from "react-datepicker";
-import { inputClass, PluginComponent } from "react-with-native-form";
+import { PluginComponent } from "react-with-native-form";
 import { DateInputType } from "./types";
+import UI from "react-with-native-ui";
+
 // CSS Modules, react-datepicker-cssmodules.css
 
 const DateInput: PluginComponent<DateInputType> = ({ value, onChange }) => {
@@ -12,7 +14,7 @@ const DateInput: PluginComponent<DateInputType> = ({ value, onChange }) => {
         onChange(date);
       }}
       dateFormat="dd-MM-yyyy"
-      className={inputClass}
+      className={UI.dateInput}
     />
   );
 };

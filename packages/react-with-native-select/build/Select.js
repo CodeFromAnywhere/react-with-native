@@ -25,7 +25,7 @@ var Select = function (_a) {
                 var value = e.target.value;
                 var newValue = options.find(function (x) { return x.value === value; }) || null;
                 onChange === null || onChange === void 0 ? void 0 : onChange(newValue);
-            } }, { children: options.map(function (option, index) {
+            }, className: className }, { children: options.map(function (option, index) {
                 var isSelected = (realValue === null || realValue === void 0 ? void 0 : realValue.value) === option.value;
                 return ((0, jsx_runtime_1.jsx)("option", __assign({ selected: isSelected }, { children: option.label }), index));
             }) })) })));

@@ -1,7 +1,8 @@
 import TimePicker from "rc-time-picker";
-import { inputClass, PluginComponent } from "react-with-native-form";
+import { PluginComponent } from "react-with-native-form";
 import { TimeInputType } from "./types";
 import Moment from "moment";
+import UI from "react-with-native-ui";
 
 // CSS Modules, react-datepicker-cssmodules.css
 
@@ -17,7 +18,8 @@ const TimeInput: PluginComponent<TimeInputType> = ({
       showSecond={false}
       format="h:mm a"
       use12Hours
-      className={inputClass}
+      className={UI.dateInput}
+      // className={inputClass}
     />
   );
 };

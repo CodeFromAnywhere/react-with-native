@@ -29,6 +29,7 @@ exports.DatetimeInput = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_datetime_1 = __importDefault(require("react-datetime"));
 var react_1 = require("react");
+var react_with_native_ui_1 = __importDefault(require("react-with-native-ui"));
 var DatetimeInput = function (_a) {
     var extra = _a.extra, value = _a.value, onChange = _a.onChange, props = __rest(_a, ["extra", "value", "onChange"]);
     var newExtra = __assign(__assign({}, extra), { type: "dateTime" });
@@ -43,7 +44,7 @@ var DatetimeInput = function (_a) {
         // @ts-ignore
         (0, jsx_runtime_1.jsx)(react_datetime_1.default, __assign({}, props, { value: value ? new Date(value) : new Date(), initialValue: date, onChange: function (value) {
                 handleChange(new Date(value));
-            } })) }));
+            }, className: react_with_native_ui_1.default.dateInput })) }));
 };
 exports.DatetimeInput = DatetimeInput;
 DatetimeInput.defaultInitialValue = new Date();

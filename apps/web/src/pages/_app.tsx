@@ -1,7 +1,8 @@
 import "../globals.css";
+import "react-toastify/dist/ReactToastify.css";
 import "react-datetime/css/react-datetime.css";
 import "rc-time-picker/assets/index.css";
-import "react-toastify/dist/ReactToastify.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 import { AppProps } from "next/app";
 import ProgressBar from "@badrap/bar-of-progress";

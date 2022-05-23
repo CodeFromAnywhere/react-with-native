@@ -1,14 +1,17 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TextInputType = exports.TextInput = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
-var react_with_native_form_1 = require("react-with-native-form");
+var react_with_native_ui_1 = __importDefault(require("react-with-native-ui"));
 var react_with_native_1 = require("react-with-native");
 var TextInput = function (_a) {
     var onChange = _a.onChange, value = _a.value, extra = _a.extra, config = _a.config, errors = _a.errors;
     config = config || {};
     var hasError = errors && errors.length > 0;
-    var inputClassWithError = "".concat(react_with_native_form_1.inputClass).concat(hasError
+    var inputClassWithError = "".concat(react_with_native_ui_1.default.textInput).concat(hasError
         ? config.errorClassName
             ? config.errorClassName
             : " border border-red-400"

@@ -9,16 +9,16 @@ export const TextAreaInput: PluginComponent<TextAreaInputType> = ({
   errors,
 }) => {
   const hasError = errors && errors.length > 0;
-  //
+
+  const errorClass = hasError ? config?.errorClassName || "border-red-600" : "";
+
   return (
     <TextArea
       rows={extra?.rows}
       maxLength={extra?.maxLength}
       className={
         config?.replaceClassName ||
-        `block w-full px-4 py-3 text-gray-500 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ${
-          hasError ? config?.errorClassName || "border-red-600" : ""
-        } ${config?.extraClassName}`
+        `block w-full px-4 py-3 text-gray-500 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ${errorClass} ${config?.extraClassName}`
       }
       value={value}
       onChange={(event: any) => {

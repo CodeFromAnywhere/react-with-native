@@ -1,5 +1,6 @@
 import { Div } from "react-with-native";
 import { Form, InputValues, makeField } from "../components/Form";
+import useStore from "../store";
 const fields = [
   makeField("text", {
     field: "text",
@@ -30,7 +31,11 @@ const fields = [
   makeField("stars", { field: "stars", title: "Stars" }),
   makeField("textArea", { field: "textArea", title: "Text area" }),
   makeField("time", { field: "time", title: "Time" }),
-  makeField("toggle", { field: "toggle", title: "Toggle" }),
+  makeField("toggle", {
+    field: "toggle",
+    title: "Toggle",
+    extra: { label: "Toggle this on or off" },
+  }),
 ];
 
 // Now your form can be rendered like this
@@ -38,8 +43,9 @@ const fields = [
 // otherwise your form won't be typesafe!
 
 const FormPage = () => {
+  const [name] = useStore("name");
   return (
-    <Div scroll className="p-4">
+    <Div scroll className="p-4 w-full mx-4 lg:mx-20">
       <Form<{
         text: InputValues["text"];
         password: InputValues["password"];
@@ -53,13 +59,14 @@ const FormPage = () => {
         time: InputValues["time"];
         toggle: InputValues["toggle"];
       }>
-        title="Login"
+        title="Form Example"
         fields={fields}
         onSubmit={(values, resolve, reject) => {
           //do something with those values
           const message = `Form submitted. Hello, ${values.text}`;
           resolve(message);
         }}
+        defaultValues={{ text: name || "" }}
       />
     </Div>
   );

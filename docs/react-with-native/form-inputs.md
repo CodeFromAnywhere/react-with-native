@@ -26,6 +26,7 @@ Add the needed CSS to your root `App.tsx` or `_app.tsx`
 ```tsx
 import "react-datetime/css/react-datetime.css";
 import "rc-time-picker/assets/index.css";
+import "react-datepicker/dist/react-datepicker.css";
 ```
 
 react-native:

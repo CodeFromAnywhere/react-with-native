@@ -3,6 +3,7 @@ import { PluginComponent } from "react-with-native-form";
 import { DatetimeInputType } from "./types";
 import Datetime from "react-datetime";
 import { useState } from "react";
+import UI from "react-with-native-ui";
 
 const DatetimeInput: PluginComponent<DatetimeInputType> = ({
   extra,
@@ -31,6 +32,7 @@ const DatetimeInput: PluginComponent<DatetimeInputType> = ({
           onChange={(value: any) => {
             handleChange(new Date(value));
           }}
+          className={UI.dateInput}
         />
       }
     </div>

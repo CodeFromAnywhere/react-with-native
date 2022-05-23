@@ -24,7 +24,7 @@ const ToggleInput: PluginComponent<ToggleInputType> = ({
     : `${defaultClass} ${config.extraClassName} ${errorClass}`;
 
   return (
-    <Div className="flex flex-row">
+    <Div className="flex flex-row items-center">
       <Toggle
         id={uniqueFieldId}
         // class not working with border on checkbox

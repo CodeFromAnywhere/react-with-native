@@ -9,9 +9,12 @@ import {
   H2,
   Button,
 } from "react-with-native";
+import { inputClass, inputClassWithoutWidth } from "react-with-native-ui";
 import deepEqual from "fast-deep-equal/react";
 
 export { deepEqual };
+// TODO: to be removed
+export { inputClassWithoutWidth, inputClass };
 
 const isWeb = typeof window !== "undefined" && !!window.scrollTo;
 
@@ -106,8 +109,6 @@ export type SubmitProps = {
   state?: any;
 };
 
-export const inputClassWithoutWidth = `text-sm px-3 py-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none`;
-export const inputClass = `w-full ${inputClassWithoutWidth}`;
 export type DefaultConfig = {
   extraClassName?: string;
   replaceClassName?: string;

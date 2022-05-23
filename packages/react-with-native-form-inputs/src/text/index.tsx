@@ -1,8 +1,6 @@
-import {
-  PluginInputType,
-  inputClass,
-  PluginComponent,
-} from "react-with-native-form";
+import { PluginInputType, PluginComponent } from "react-with-native-form";
+
+import UI from "react-with-native-ui";
 import { Input } from "react-with-native";
 
 export const TextInput: PluginComponent<TextInputType> = ({
@@ -15,7 +13,7 @@ export const TextInput: PluginComponent<TextInputType> = ({
   config = config || {};
   const hasError = errors && errors.length > 0;
 
-  const inputClassWithError = `${inputClass}${
+  const inputClassWithError = `${UI.textInput}${
     hasError
       ? config.errorClassName
         ? config.errorClassName

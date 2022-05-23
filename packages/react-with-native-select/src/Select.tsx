@@ -25,6 +25,7 @@ const Select = <T extends unknown>({
           const newValue = options.find((x) => x.value === value) || null;
           onChange?.(newValue);
         }}
+        className={className}
       >
         {options.map((option, index) => {
           const isSelected = realValue?.value === option.value;
