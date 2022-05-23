@@ -20,7 +20,7 @@ const TextArea = ({
     <TextInput
       multiline={true}
       style={[
-        { textAlignVertical: "top", height: rows ? rows * 30 : 200 },
+        { textAlignVertical: "top", height: rows ? rows * 30 : 120 },
         tailwindStyle,
         style,
       ]}
