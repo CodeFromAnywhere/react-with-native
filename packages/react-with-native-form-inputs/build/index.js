@@ -22,6 +22,7 @@ __exportStar(require("./number"), exports);
 __exportStar(require("./password"), exports);
 __exportStar(require("./phone"), exports);
 __exportStar(require("./select"), exports);
+__exportStar(require("./selectMultiple"), exports);
 __exportStar(require("./stars"), exports);
 __exportStar(require("./text"), exports);
 __exportStar(require("./textarea"), exports);

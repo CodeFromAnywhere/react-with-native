@@ -11,7 +11,7 @@ var TextInput = function (_a) {
     var onChange = _a.onChange, value = _a.value, extra = _a.extra, config = _a.config, errors = _a.errors;
     config = config || {};
     var hasError = errors && errors.length > 0;
-    var inputClassWithError = "".concat(react_with_native_ui_1.default.textInput).concat(hasError
+    var inputClassWithError = "my-2 ".concat(react_with_native_ui_1.default.textInput).concat(hasError
         ? config.errorClassName
             ? config.errorClassName
             : " border border-red-400"
@@ -19,7 +19,15 @@ var TextInput = function (_a) {
     var onChangeText = function (value) { return onChange(value); };
     var placeholder = extra === null || extra === void 0 ? void 0 : extra.placeholder;
     var maxLength = extra === null || extra === void 0 ? void 0 : extra.maxLength;
-    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Input, { type: (extra === null || extra === void 0 ? void 0 : extra.type) ? extra.type : (extra === null || extra === void 0 ? void 0 : extra.isPassword) ? "password" : undefined, className: inputClassWithError, style: { padding: 5, marginTop: 5, marginBottom: 5 }, value: value, onChange: function (event) { return onChangeText(event.target.value); }, placeholder: placeholder, maxLength: extra === null || extra === void 0 ? void 0 : extra.maxLength, autoComplete: extra === null || extra === void 0 ? void 0 : extra.autoComplete, required: extra === null || extra === void 0 ? void 0 : extra.required, disabled: extra === null || extra === void 0 ? void 0 : extra.disabled, native: {
+    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Input, { type: (extra === null || extra === void 0 ? void 0 : extra.type) ? extra.type : (extra === null || extra === void 0 ? void 0 : extra.isPassword) ? "password" : undefined, className: inputClassWithError, 
+        //why doesn't it get applied corectly?
+        style: {
+            padding: 5,
+            paddingTop: 8,
+            paddingBottom: 8,
+            marginTop: 5,
+            marginBottom: 5,
+        }, value: value, onChange: function (event) { return onChangeText(event.target.value); }, placeholder: placeholder, maxLength: extra === null || extra === void 0 ? void 0 : extra.maxLength, autoComplete: extra === null || extra === void 0 ? void 0 : extra.autoComplete, required: extra === null || extra === void 0 ? void 0 : extra.required, disabled: extra === null || extra === void 0 ? void 0 : extra.disabled, native: {
             value: value,
             onChangeText: onChangeText,
             placeholder: placeholder,

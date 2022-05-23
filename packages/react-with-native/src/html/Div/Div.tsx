@@ -3,7 +3,7 @@ import { joinClassNames } from "../../util/util";
 import { DivType } from "./Div.type";
 
 const PureDiv = (
-  { native, className, textClassName, ...props }: DivType,
+  { native, className, textClassName, scroll, ...props }: DivType,
   ref: any
 ) => {
   return (

@@ -24,10 +24,10 @@ var Select = function (_a) {
     return ((0, jsx_runtime_1.jsx)("div", __assign({ className: containerClassName }, { children: (0, jsx_runtime_1.jsx)("select", __assign({ onChange: function (e) {
                 var value = e.target.value;
                 var newValue = options.find(function (x) { return x.value === value; }) || null;
+                console.log("select change", { value: value, newValue: newValue });
                 onChange === null || onChange === void 0 ? void 0 : onChange(newValue);
-            }, className: className }, { children: options.map(function (option, index) {
-                var isSelected = (realValue === null || realValue === void 0 ? void 0 : realValue.value) === option.value;
-                return ((0, jsx_runtime_1.jsx)("option", __assign({ selected: isSelected }, { children: option.label }), index));
+            }, className: className, value: String(value === null || value === void 0 ? void 0 : value.value) }, { children: options.map(function (option, index) {
+                return ((0, jsx_runtime_1.jsx)("option", __assign({ value: String(option.value) }, { children: option.label }), index));
             }) })) })));
 };
 exports.default = Select;

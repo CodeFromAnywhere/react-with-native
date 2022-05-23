@@ -13,7 +13,7 @@ export const TextInput: PluginComponent<TextInputType> = ({
   config = config || {};
   const hasError = errors && errors.length > 0;
 
-  const inputClassWithError = `${UI.textInput}${
+  const inputClassWithError = `my-2 ${UI.textInput}${
     hasError
       ? config.errorClassName
         ? config.errorClassName
@@ -31,7 +31,14 @@ export const TextInput: PluginComponent<TextInputType> = ({
         extra?.type ? extra.type : extra?.isPassword ? "password" : undefined
       }
       className={inputClassWithError}
-      style={{ padding: 5, marginTop: 5, marginBottom: 5 }}
+      //why doesn't it get applied corectly?
+      style={{
+        padding: 5,
+        paddingTop: 8,
+        paddingBottom: 8,
+        marginTop: 5,
+        marginBottom: 5,
+      }}
       value={value}
       onChange={(event) => onChangeText(event.target.value)}
       placeholder={placeholder}

@@ -31,7 +31,7 @@ var Input = function (_a) {
     var tailwind = (0, tailwind_rn_1.useTailwind)();
     var _b = native || {}, nativeStyle = _b.style, nativeWithoutStyle = __rest(_b, ["style"]);
     var tailwindStyle = className ? tailwind((0, trimClassName_1.trimClassName)(className)) : {};
-    return ((0, jsx_runtime_1.jsx)(react_native_1.TextInput, __assign({ style: [{ fontWeight: "bold" }, tailwindStyle, style, nativeStyle] }, nativeWithoutStyle, { children: nativeWithoutStyle.children || children })));
+    return ((0, jsx_runtime_1.jsx)(react_native_1.TextInput, __assign({ style: [tailwindStyle, style, nativeStyle] }, nativeWithoutStyle, { children: nativeWithoutStyle.children || children })));
 };
 exports.default = Input;
 //# sourceMappingURL=Input.native.js.map

@@ -2,10 +2,11 @@ export const bareInputClass = `text-sm px-3 text-gray-700 border-gray-300 border
 export const inputClass = `w-full ${bareInputClass}`;
 
 const UI = {
-  textInput: `${inputClass} py-3`,
-  input: `${inputClass} py-3`,
-  selectInput: `${inputClass} py-2`,
-  dateInput: `${inputClass} py-2`,
+  bareInput: bareInputClass,
+  textInput: `${inputClass} py-4`,
+  input: `${inputClass} py-4`,
+  selectInput: `${inputClass} py-3`,
+  dateInput: `${inputClass} py-3`,
 };
 
 export default UI;

@@ -31,6 +31,8 @@ import {
   TimeInput,
   ToggleInput,
   ToggleInputType,
+  SelectMultipleInput,
+  SelectMultipleInputType,
 } from "react-with-native-form-inputs";
 
 const text = { component: TextInput };
@@ -39,6 +41,7 @@ const date = { component: DateInput };
 const datetime = { component: DatetimeInput };
 const number = { component: NumberInput };
 const select = { component: SelectInput };
+const selectMultiple = { component: SelectMultipleInput };
 const stars = { component: StarsInput };
 const phone = { component: PhoneInput };
 const textArea = { component: TextAreaInput };
@@ -52,6 +55,7 @@ const plugins = {
   datetime,
   number,
   select,
+  selectMultiple,
   stars,
   phone,
   textArea,
@@ -71,6 +75,7 @@ export interface Inputs {
   datetime: DatetimeInputType;
   number: NumberInputType;
   select: SelectInputType;
+  selectMultiple: SelectMultipleInputType;
   stars: StarsInputType;
   phone: PhoneInputType;
   textArea: TextAreaInputType;

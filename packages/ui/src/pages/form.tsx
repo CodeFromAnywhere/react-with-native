@@ -1,6 +1,19 @@
 import { Div } from "react-with-native";
+import { Item } from "react-with-native-select";
 import { Form, InputValues, makeField } from "../components/Form";
 import useStore from "../store";
+
+const options: Item<string>[] = [
+  { value: "1", label: "Option 1" },
+  { value: "2", label: "Option 2" },
+  { value: "3", label: "Option 3" },
+  { value: "4", label: "Option 4" },
+  { value: "5", label: "Option 5" },
+  { value: "6", label: "Option 6" },
+  { value: "7", label: "Option 7" },
+  { value: "8", label: "Option 8" },
+];
+
 const fields = [
   makeField("text", {
     field: "text",
@@ -22,10 +35,15 @@ const fields = [
     field: "select",
     title: "Select",
     extra: {
-      options: [
-        { value: "1", label: "Option 1" },
-        { value: "2", label: "Option 2" },
-      ],
+      options,
+    },
+  }),
+
+  makeField("selectMultiple", {
+    field: "selectMultiple",
+    title: "Select multiple",
+    extra: {
+      options,
     },
   }),
   makeField("stars", { field: "stars", title: "Stars" }),
@@ -54,6 +72,7 @@ const FormPage = () => {
         number: InputValues["number"];
         phone: InputValues["phone"];
         select: InputValues["select"];
+        selectMultiple: InputValues["selectMultiple"];
         stars: InputValues["stars"];
         textArea: InputValues["textArea"];
         time: InputValues["time"];

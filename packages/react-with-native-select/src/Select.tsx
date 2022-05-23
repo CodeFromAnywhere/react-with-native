@@ -23,14 +23,16 @@ const Select = <T extends unknown>({
         onChange={(e) => {
           const value = e.target.value;
           const newValue = options.find((x) => x.value === value) || null;
+
+          console.log("select change", { value, newValue });
           onChange?.(newValue);
         }}
         className={className}
+        value={String(value?.value)}
       >
         {options.map((option, index) => {
-          const isSelected = realValue?.value === option.value;
           return (
-            <option key={index} selected={isSelected}>
+            <option value={String(option.value)} key={index}>
               {option.label}
             </option>
           );
