@@ -6,6 +6,7 @@ export type DivType = DetailedHTMLProps<
   HTMLDivElement
 > & {
   native?: ViewProps;
+  scroll?: boolean;
   textClassName?: string;
   style?: StyleProp<ViewStyle>;
 };

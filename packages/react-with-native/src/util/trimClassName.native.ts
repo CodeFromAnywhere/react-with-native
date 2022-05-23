@@ -12,7 +12,8 @@ export const trimClassName = (className: string) => {
             c.startsWith("shadow-") ||
             c === "block" ||
             c === "h-screen" ||
-            c === "w-screen"
+            c === "w-screen" ||
+            c === "undefined"
           ) // block crashes android
         )
     )

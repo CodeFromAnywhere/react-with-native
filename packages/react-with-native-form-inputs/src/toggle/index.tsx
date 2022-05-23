@@ -65,4 +65,5 @@ export class ToggleInputType implements PluginInputType {
   extra?: { disabled?: boolean; label?: string | JSX.Element };
 }
 
+export { ToggleInput };
 export default ToggleInput;

@@ -22,5 +22,6 @@ export declare class ToggleInputType implements PluginInputType {
         label?: string | JSX.Element;
     };
 }
+export { ToggleInput };
 export default ToggleInput;
 //# sourceMappingURL=index.d.ts.map

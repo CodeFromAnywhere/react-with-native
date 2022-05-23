@@ -28,9 +28,7 @@ var Notifications = __importStar(require("expo-notifications"));
 var toast = function (content, options) {
     Notifications.scheduleNotificationAsync({
         content: content,
-        trigger: {
-            seconds: 0,
-        },
+        trigger: { seconds: 1 },
     });
 };
 exports.toast = toast;

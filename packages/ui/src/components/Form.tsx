@@ -4,7 +4,6 @@ import DataForm, {
   Field,
   Keys,
   DataFormProps,
-  Plugin,
 } from "react-with-native-form";
 
 import {
@@ -12,25 +11,80 @@ import {
   TextInputType,
   PasswordInput,
   PasswordInputType,
+  DateInput,
+  DateInputType,
+  DatetimeInput,
+  DatetimeInputType,
+  // MapInput,
+  // MapInputType,
+  NumberInput,
+  NumberInputType,
+  SelectInput,
+  SelectInputType,
+  StarsInput,
+  StarsInputType,
+  PhoneInput,
+  PhoneInputType,
+  TextAreaInput,
+  TextAreaInputType,
+  TimeInputType,
+  TimeInput,
+  ToggleInput,
+  ToggleInputType,
 } from "react-with-native-form-inputs";
 
 const text = { component: TextInput };
 const password = { component: PasswordInput };
-const plugins = { text, password };
+const date = { component: DateInput };
+const datetime = { component: DatetimeInput };
+const number = { component: NumberInput };
+const select = { component: SelectInput };
+const stars = { component: StarsInput };
+const phone = { component: PhoneInput };
+const textArea = { component: TextAreaInput };
+const time = { component: TimeInput };
+const toggle = { component: ToggleInput };
 
-export const makeField = <T extends Keys<AllInputs>>(
+const plugins = {
+  text,
+  password,
+  date,
+  datetime,
+  number,
+  select,
+  stars,
+  phone,
+  textArea,
+  time,
+  toggle,
+};
+
+export const makeField = <T extends Keys<Inputs>>(
   type: T,
-  config: Omit<Field<AllInputs, T>, "type">
-) => makeInputField<AllInputs, T>(type, config);
+  config: Omit<Field<Inputs, T>, "type">
+) => makeInputField<Inputs, T>(type, config);
 
-export interface AllInputs {
+export interface Inputs {
   text: TextInputType;
   password: PasswordInputType;
+  date: DateInputType;
+  datetime: DatetimeInputType;
+  number: NumberInputType;
+  select: SelectInputType;
+  stars: StarsInputType;
+  phone: PhoneInputType;
+  textArea: TextAreaInputType;
+  time: TimeInputType;
+  toggle: ToggleInputType;
 }
 
+export type InputValues = {
+  [key in keyof Inputs]: Inputs[key]["value"];
+};
+
 export const Form = <TState extends { [key: string]: any } = any>(
-  props: DataFormProps<AllInputs, TState>
+  props: DataFormProps<Inputs, TState>
 ) =>
-  setConfig<AllInputs, TState>(DataForm, {
+  setConfig<Inputs, TState>(DataForm, {
     plugins,
   })(props);

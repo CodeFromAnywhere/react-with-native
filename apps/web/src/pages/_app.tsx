@@ -11,6 +11,7 @@ import { StoreProvider, Components } from "ui";
 import { Div, P } from "react-with-native";
 import { ToastContainer } from "react-with-native-notification";
 import { AlertProvider } from "react-with-native-alert";
+import { ModalProvider } from "react-with-native-modal";
 
 const progress = new ProgressBar();
 
@@ -25,15 +26,17 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <ToastContainer />
       <AlertProvider>
-        <StoreProvider>
-          <Div className="flex flex-row">
-            <Div className="bg-gray-300 p-4 h-screen w-40">
-              <P className="font-bold">Menu</P>
-              <Components.Menu />
+        <ModalProvider>
+          <StoreProvider>
+            <Div className="flex flex-row">
+              <Div className="bg-gray-300 p-4 h-screen w-40">
+                <P className="font-bold">Menu</P>
+                <Components.Menu />
+              </Div>
+              <Component {...pageProps} />
             </Div>
-            <Component {...pageProps} />
-          </Div>
-        </StoreProvider>
+          </StoreProvider>
+        </ModalProvider>
       </AlertProvider>
     </QueryClientProvider>
   );

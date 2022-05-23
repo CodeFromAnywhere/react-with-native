@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StoreProvider, Pages } from "ui";
 import { TailwindProvider } from "tailwind-rn";
 import { AlertProvider } from "react-with-native-alert";
+import { ModalProvider } from "react-with-native-modal";
 
 import utilities from "./tailwind.json";
 const Stack = createNativeStackNavigator();
@@ -21,24 +22,26 @@ function App() {
       <TailwindProvider utilities={utilities}>
         <StoreProvider>
           <AlertProvider>
-            <NavigationContainer>
-              <Stack.Navigator initialRouteName="menu">
-                {Object.keys(Pages).map((page) => {
-                  // @ts-ignore
-                  const component = Pages[page];
-                  //@ts-ignore
-                  const options: ScreenOptions = component.options;
-                  return (
-                    <Stack.Screen
-                      key={`page${page}`}
-                      name={page}
-                      component={component}
-                      options={options}
-                    />
-                  );
-                })}
-              </Stack.Navigator>
-            </NavigationContainer>
+            <ModalProvider>
+              <NavigationContainer>
+                <Stack.Navigator initialRouteName="menu">
+                  {Object.keys(Pages).map((page) => {
+                    // @ts-ignore
+                    const component = Pages[page];
+                    //@ts-ignore
+                    const options: ScreenOptions = component.options;
+                    return (
+                      <Stack.Screen
+                        key={`page${page}`}
+                        name={page}
+                        component={component}
+                        options={options}
+                      />
+                    );
+                  })}
+                </Stack.Navigator>
+              </NavigationContainer>
+            </ModalProvider>
           </AlertProvider>
         </StoreProvider>
       </TailwindProvider>

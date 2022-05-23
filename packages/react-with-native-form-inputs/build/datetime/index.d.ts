@@ -1,6 +1,6 @@
-import Datetime from "./Datetime";
-import { TextInputType } from "react-with-native-text-input";
+import { DatetimeInput } from "./Datetime";
+import { TextInputType } from "../text";
 export interface DatetimeInputType extends TextInputType {
 }
-export default Datetime;
+export { DatetimeInput };
 //# sourceMappingURL=index.d.ts.map

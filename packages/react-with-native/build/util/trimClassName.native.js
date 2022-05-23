@@ -11,7 +11,8 @@ var trimClassName = function (className) {
             c.startsWith("shadow-") ||
             c === "block" ||
             c === "h-screen" ||
-            c === "w-screen") // block crashes android
+            c === "w-screen" ||
+            c === "undefined") // block crashes android
         );
     })
         .join(" ");

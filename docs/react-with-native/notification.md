@@ -24,6 +24,8 @@ For a react-native expo project
 expo install react-with-native-notification expo-notifications
 ```
 
+Also, make sure to follow the [installation instructions](https://docs.expo.dev/versions/latest/sdk/notifications/) from the expo docs. You may have to request for permission first. It may not work within expo itself due to permission problems.
+
 ## Usage
 
 In your apps root:

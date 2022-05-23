@@ -48,8 +48,8 @@ export const ModalProvider = ({ children }: { children: any }) => {
   let { showModal, handleModal, modalContent, title } = useModalState();
   return (
     <Provider value={{ showModal, handleModal, modalContent, title }}>
-      <Modal />
       {children}
+      <Modal />
     </Provider>
   );
 };
@@ -60,16 +60,19 @@ export default function Modal() {
 
   return (
     <RNModal visible={showModal} transparent animationType="slide">
-      <Div className="flex-1 w-full justify-center items-center">
-        <Div className="p-2 bg-white border border-gray-200 rounded-lg shadow-lg">
-          <H2 className="text-2xl font-semibold p-2">{title}</H2>
+      <Div className="flex flex-1">
+        <Div className="flex flex-col flex-1 m-2 p-2 bg-white border border-gray-200 rounded-lg shadow-lg">
+          <Div className="flex flex-row justify-between items-center">
+            <H2 className="text-2xl font-semibold p-2">{title}</H2>
+            <Button
+              className="flex items-center justify-end p-4"
+              textClassName="font-bold text-2xl"
+              onClick={() => handleModal(null)}
+            >
+              X
+            </Button>
+          </Div>
           <Div>{modalContent}</Div>
-          <Button
-            className="flex items-center justify-end p-5 border-t border-gray-200 border-solid rounded-b"
-            onClick={() => handleModal(null)}
-          >
-            Close
-          </Button>
         </Div>
       </Div>
     </RNModal>

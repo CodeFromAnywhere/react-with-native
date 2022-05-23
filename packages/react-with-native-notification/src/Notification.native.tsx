@@ -7,9 +7,7 @@ export const toast = (
 ) => {
   Notifications.scheduleNotificationAsync({
     content,
-    trigger: {
-      seconds: 0,
-    },
+    trigger: { seconds: 1 },
   });
 };
 

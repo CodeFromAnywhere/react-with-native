@@ -1,3 +1,2 @@
-import DateInput from "./DateInput";
-export * from "./types";
-export default DateInput;
+export { DateInput } from "./DateInput";
+export { DateInputType } from "./types";

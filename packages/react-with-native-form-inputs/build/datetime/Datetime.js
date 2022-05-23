@@ -46,6 +46,6 @@ var DatetimeInput = function (_a) {
             } })) }));
 };
 exports.DatetimeInput = DatetimeInput;
-exports.DatetimeInput.defaultInitialValue = new Date();
-exports.default = exports.DatetimeInput;
+DatetimeInput.defaultInitialValue = new Date();
+exports.default = DatetimeInput;
 //# sourceMappingURL=Datetime.js.map

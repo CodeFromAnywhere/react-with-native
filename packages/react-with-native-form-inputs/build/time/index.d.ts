@@ -1,4 +1,3 @@
-import TimeInput from "./TimeInput";
-export * from "./types";
-export default TimeInput;
+export { TimeInput } from "./TimeInput";
+export { TimeInputType } from "./types";
 //# sourceMappingURL=index.d.ts.map

@@ -20,7 +20,6 @@ exports.AlertContext = (0, react_1.createContext)(null);
 var AlertProvider = function (_a) {
     var children = _a.children;
     var alert = react_native_1.Alert.alert;
-    console.log({ provi: exports.AlertContext.Provider });
     return ((0, jsx_runtime_1.jsx)(exports.AlertContext.Provider, __assign({ value: alert }, { children: children })));
 };
 exports.AlertProvider = AlertProvider;

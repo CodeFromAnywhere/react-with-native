@@ -16,6 +16,6 @@ var DateInput = function (_a) {
         }, dateFormat: "dd-MM-yyyy", className: react_with_native_form_1.inputClass }));
 };
 exports.DateInput = DateInput;
-exports.DateInput.defaultInitialValue = null;
-exports.default = exports.DateInput;
+DateInput.defaultInitialValue = null;
+exports.default = DateInput;
 //# sourceMappingURL=DateInput.js.map

@@ -67,12 +67,12 @@ var useModalState = function () {
 var ModalProvider = function (_a) {
     var children = _a.children;
     var _b = useModalState(), showModal = _b.showModal, handleModal = _b.handleModal, modalContent = _b.modalContent, title = _b.title;
-    return ((0, jsx_runtime_1.jsxs)(Provider, __assign({ value: { showModal: showModal, handleModal: handleModal, modalContent: modalContent, title: title } }, { children: [(0, jsx_runtime_1.jsx)(Modal, {}), children] })));
+    return ((0, jsx_runtime_1.jsxs)(Provider, __assign({ value: { showModal: showModal, handleModal: handleModal, modalContent: modalContent, title: title } }, { children: [children, (0, jsx_runtime_1.jsx)(Modal, {})] })));
 };
 exports.ModalProvider = ModalProvider;
 function Modal() {
     var _a = (0, react_1.useContext)(exports.ModalContext), modalContent = _a.modalContent, title = _a.title, handleModal = _a.handleModal, showModal = _a.showModal;
-    return ((0, jsx_runtime_1.jsx)(react_native_1.Modal, __assign({ visible: showModal, transparent: true, animationType: "slide" }, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "flex-1 w-full justify-center items-center" }, { children: (0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "p-2 bg-white border border-gray-200 rounded-lg shadow-lg" }, { children: [(0, jsx_runtime_1.jsx)(react_with_native_1.H2, __assign({ className: "text-2xl font-semibold p-2" }, { children: title })), (0, jsx_runtime_1.jsx)(react_with_native_1.Div, { children: modalContent }), (0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ className: "flex items-center justify-end p-5 border-t border-gray-200 border-solid rounded-b", onClick: function () { return handleModal(null); } }, { children: "Close" }))] })) })) })));
+    return ((0, jsx_runtime_1.jsx)(react_native_1.Modal, __assign({ visible: showModal, transparent: true, animationType: "slide" }, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "flex flex-1" }, { children: (0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "flex flex-col flex-1 m-2 p-2 bg-white border border-gray-200 rounded-lg shadow-lg" }, { children: [(0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "flex flex-row justify-between items-center" }, { children: [(0, jsx_runtime_1.jsx)(react_with_native_1.H2, __assign({ className: "text-2xl font-semibold p-2" }, { children: title })), (0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ className: "flex items-center justify-end p-4", textClassName: "font-bold text-2xl", onClick: function () { return handleModal(null); } }, { children: "X" }))] })), (0, jsx_runtime_1.jsx)(react_with_native_1.Div, { children: modalContent })] })) })) })));
 }
 exports.default = Modal;
 //# sourceMappingURL=Modal.native.js.map

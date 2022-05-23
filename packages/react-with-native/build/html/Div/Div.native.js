@@ -52,11 +52,12 @@ var tailwind_rn_1 = require("tailwind-rn");
 var trimClassName_1 = require("../../util/trimClassName");
 var util_1 = require("../../util/util");
 var PureDiv = function (_a, ref) {
-    var native = _a.native, textClassName = _a.textClassName, className = _a.className, children = _a.children, style = _a.style;
+    var native = _a.native, textClassName = _a.textClassName, className = _a.className, children = _a.children, style = _a.style, scroll = _a.scroll;
     var tailwind = (0, tailwind_rn_1.useTailwind)();
     var nativeWithoutStyle = __rest(native || {}, []);
     var tailwindStyle = className ? tailwind((0, trimClassName_1.trimClassName)(className)) : {};
-    return ((0, jsx_runtime_1.jsx)(react_native_1.View, __assign({ style: [tailwindStyle, style] }, nativeWithoutStyle, { ref: ref }, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) })));
+    var CorrectView = scroll ? react_native_1.ScrollView : react_native_1.View;
+    return ((0, jsx_runtime_1.jsx)(CorrectView, __assign({ style: [tailwindStyle, style] }, nativeWithoutStyle, { ref: ref }, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) })));
 };
 var Div = React.forwardRef(PureDiv);
 exports.default = Div;

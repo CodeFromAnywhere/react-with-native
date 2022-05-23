@@ -1,15 +1,10 @@
 import { Div } from "react-with-native";
-import {
-  PasswordInputType,
-  TextInputType,
-} from "react-with-native-form-inputs";
-import { Form, makeField } from "../components/Form";
+import { Form, InputValues, makeField } from "../components/Form";
 const fields = [
   makeField("text", {
-    field: "username",
-    title: "Username",
-    hasError: (value) =>
-      value.length === 0 ? "Please fill in a username" : false,
+    field: "text",
+    title: "Text",
+    hasError: (value) => (value.length === 0 ? "Please fill in a text" : false),
   }),
   makeField("password", {
     field: "password",
@@ -17,6 +12,25 @@ const fields = [
     hasError: (value) =>
       value.length === 0 ? "Please fill in a password" : false,
   }),
+
+  makeField("date", { field: "date", title: "Date" }),
+  makeField("datetime", { field: "datetime", title: "Datetime" }),
+  makeField("number", { field: "number", title: "Number" }),
+  makeField("phone", { field: "phone", title: "Phone" }),
+  makeField("select", {
+    field: "select",
+    title: "Select",
+    extra: {
+      options: [
+        { value: "1", label: "Option 1" },
+        { value: "2", label: "Option 2" },
+      ],
+    },
+  }),
+  makeField("stars", { field: "stars", title: "Stars" }),
+  makeField("textArea", { field: "textArea", title: "Text area" }),
+  makeField("time", { field: "time", title: "Time" }),
+  makeField("toggle", { field: "toggle", title: "Toggle" }),
 ];
 
 // Now your form can be rendered like this
@@ -25,16 +39,25 @@ const fields = [
 
 const FormPage = () => {
   return (
-    <Div className="p-4">
+    <Div scroll className="p-4">
       <Form<{
-        username: TextInputType["value"];
-        password: PasswordInputType["value"];
+        text: InputValues["text"];
+        password: InputValues["password"];
+        date: InputValues["date"];
+        datetime: InputValues["datetime"];
+        number: InputValues["number"];
+        phone: InputValues["phone"];
+        select: InputValues["select"];
+        stars: InputValues["stars"];
+        textArea: InputValues["textArea"];
+        time: InputValues["time"];
+        toggle: InputValues["toggle"];
       }>
         title="Login"
         fields={fields}
         onSubmit={(values, resolve, reject) => {
           //do something with those values
-          const message = `Form submitted. Hello, ${values.username}`;
+          const message = `Form submitted. Hello, ${values.text}`;
           resolve(message);
         }}
       />

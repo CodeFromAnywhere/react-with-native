@@ -16,7 +16,7 @@ export const TextAreaInput: PluginComponent<TextAreaInputType> = ({
       maxLength={extra?.maxLength}
       className={
         config?.replaceClassName ||
-        `block w-full px-4 py-3 text-gray-900 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ${
+        `block w-full px-4 py-3 text-gray-500 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ${
           hasError ? config?.errorClassName || "border-red-600" : ""
         } ${config?.extraClassName}`
       }

@@ -1,5 +1,9 @@
 // all modules i'm using that use custom tailwind classes without converting them to css should be added here.
-const transpileModules = ["react-with-native", "react-with-native-form"];
+const transpileModules = [
+  "react-with-native",
+  "react-with-native-form",
+  "react-with-native-modal",
+];
 
 const TAILWIND_CONTENT_MODULE_DIR_1 = "./node_modules/[module]/**/*.tsx";
 const TAILWIND_CONTENT_MODULE_DIR_2 = "../../node_modules/[module]/**/*.tsx";

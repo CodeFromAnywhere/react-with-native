@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ToggleInputType = void 0;
+exports.ToggleInput = exports.ToggleInputType = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_with_native_1 = require("react-with-native");
 var ToggleInput = function (_a) {
@@ -31,6 +31,7 @@ var ToggleInput = function (_a) {
                 // class not working with border on checkbox
                 className: classWithError, checked: value, onChange: function (value) { return onChange(value); } }), (extra === null || extra === void 0 ? void 0 : extra.label) ? ((0, jsx_runtime_1.jsx)(react_with_native_1.Label, __assign({ className: "pl-3 select-none ".concat(hasError ? "text-red-500" : ""), htmlFor: uniqueFieldId }, { children: extra.label }))) : null] })));
 };
+exports.ToggleInput = ToggleInput;
 ToggleInput.defaultInitialValue = false;
 var ToggleInputType = /** @class */ (function () {
     function ToggleInputType() {

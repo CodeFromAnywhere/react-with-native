@@ -1,5 +1,6 @@
 import { PluginComponent, PluginInputType } from "react-with-native-form";
 import ReactStars from "react-stars";
+import { StarsInputType } from "./types";
 
 export const StarsInput: PluginComponent<StarsInputType> = ({
   onChange,
@@ -24,30 +25,5 @@ export const StarsInput: PluginComponent<StarsInputType> = ({
 };
 
 StarsInput.defaultInitialValue = null;
-
-export class StarsInputType implements PluginInputType {
-  /**
-   * value type
-   */
-  value!: number | null;
-
-  /**
-   * input generic configuration
-   */
-  config?: {
-    extraClassName?: string;
-    replaceClassName?: string;
-    errorClassName?: string;
-  };
-  /**
-   * field specific configuration
-   */
-  extra?: {
-    /**
-     * allow half stars
-     */
-    half?: boolean;
-  };
-}
 
 export default StarsInput;

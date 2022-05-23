@@ -4,7 +4,7 @@ import { DatetimeInputType } from "./types";
 import Datetime from "react-datetime";
 import { useState } from "react";
 
-export const DatetimeInput: PluginComponent<DatetimeInputType> = ({
+const DatetimeInput: PluginComponent<DatetimeInputType> = ({
   extra,
   value,
   onChange,
@@ -39,3 +39,4 @@ export const DatetimeInput: PluginComponent<DatetimeInputType> = ({
 
 DatetimeInput.defaultInitialValue = new Date();
 export default DatetimeInput;
+export { DatetimeInput };

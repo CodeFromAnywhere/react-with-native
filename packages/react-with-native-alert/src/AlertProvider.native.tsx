@@ -8,7 +8,6 @@ export const AlertContext = createContext<AlertStatic["alert"] | null>(null);
 export const AlertProvider = ({ children }: { children: any }) => {
   const alert: AlertStatic["alert"] = Alert.alert;
 
-  console.log({ provi: AlertContext.Provider });
   return (
     <AlertContext.Provider value={alert}>{children}</AlertContext.Provider>
   );

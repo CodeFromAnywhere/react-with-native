@@ -5,7 +5,7 @@ import Moment from "moment";
 
 // CSS Modules, react-datepicker-cssmodules.css
 
-export const TimeInput: PluginComponent<TimeInputType> = ({
+const TimeInput: PluginComponent<TimeInputType> = ({
   extra,
   value,
   onChange,
@@ -23,5 +23,5 @@ export const TimeInput: PluginComponent<TimeInputType> = ({
 };
 
 TimeInput.defaultInitialValue = new Date();
-
+export { TimeInput };
 export default TimeInput;

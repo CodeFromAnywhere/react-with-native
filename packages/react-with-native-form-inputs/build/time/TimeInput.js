@@ -14,6 +14,6 @@ var TimeInput = function (_a) {
     return ((0, jsx_runtime_1.jsx)(rc_time_picker_1.default, { onChange: function (time) { return onChange(time); }, value: (0, moment_1.default)(value), showSecond: false, format: "h:mm a", use12Hours: true, className: react_with_native_form_1.inputClass }));
 };
 exports.TimeInput = TimeInput;
-exports.TimeInput.defaultInitialValue = new Date();
-exports.default = exports.TimeInput;
+TimeInput.defaultInitialValue = new Date();
+exports.default = TimeInput;
 //# sourceMappingURL=TimeInput.js.map

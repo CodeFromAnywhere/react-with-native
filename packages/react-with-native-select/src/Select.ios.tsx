@@ -28,7 +28,6 @@ const Select = <T extends unknown>({
       }
     );
   };
-  console.log({ children });
 
   const buttonTitle = value?.label || title || "Select a value";
   return (
