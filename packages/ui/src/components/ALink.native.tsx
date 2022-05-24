@@ -1,5 +1,5 @@
-import Link, { LinkProps } from "next/link";
-import { A, AType } from "react-with-native";
+import { A } from "react-with-native";
+import type { ALinkType } from "./ALink.type";
 import { hrefIsOutgoing } from "./ALink.util";
 
 const ALink = ({
@@ -9,7 +9,7 @@ const ALink = ({
   rel,
   linkProps,
   ...otherAProps
-}: { linkProps?: LinkProps } & AType) => {
+}: ALinkType) => {
   //overwrites rel and target if href is outgoing in order to enforce good SEO tactics (unless you specify them yourselves)
   [rel, target] =
     href && hrefIsOutgoing(href)
@@ -17,11 +17,9 @@ const ALink = ({
       : [rel, target];
 
   return (
-    <Link {...linkProps} href={href || "#"} passHref>
-      <A {...otherAProps} rel={rel} target={target}>
-        {children}
-      </A>
-    </Link>
+    <A {...otherAProps} rel={rel} target={target}>
+      {children}
+    </A>
   );
 };
 
