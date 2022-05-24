@@ -83,7 +83,10 @@ const FormPage = () => {
           const message = `Form submitted. Hello, ${values.text}`;
           resolve(message);
         }}
-        defaultValues={{ text: name || "" }}
+        defaultValues={{
+          text: name || "",
+          textArea: "Enter you text here...",
+        }}
       />
     </Div>
   );

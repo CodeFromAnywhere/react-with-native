@@ -4,12 +4,12 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
   {
     path: '/',
-    component: ComponentCreator('/', '44d'),
+    component: ComponentCreator('/', 'b83'),
     exact: true
   },
   {
     path: '/',
-    component: ComponentCreator('/', '403'),
+    component: ComponentCreator('/', '089'),
     routes: [
       {
         path: '/about',

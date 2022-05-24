@@ -28,7 +28,7 @@ export default {
         "docs": {
           "path": "../../docs",
           "routeBasePath": "/",
-          "sidebarPath": "/Users/wijnandkarsens/Documents/domains/react-with-native/apps/docs/sidebars.js",
+          "sidebarPath": "/Users/mac/workspace/react-with-native/apps/docs/sidebars.js",
           "editUrl": "https://github.com/Code-From-Anywhere/react-with-native/tree/main/apps/docs/"
         },
         "blog": {
@@ -36,7 +36,7 @@ export default {
           "editUrl": "https://github.com/Code-From-Anywhere/react-with-native/tree/main/apps/docs/"
         },
         "theme": {
-          "customCss": "/Users/wijnandkarsens/Documents/domains/react-with-native/apps/docs/src/css/custom.css"
+          "customCss": "/Users/mac/workspace/react-with-native/apps/docs/src/css/custom.css"
         }
       }
     ]

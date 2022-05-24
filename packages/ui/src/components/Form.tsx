@@ -35,7 +35,7 @@ import {
   SelectMultipleInputType,
   LabelsInput,
   LabelsInputType,
-} from "react-with-native-form-inputs";
+} from "react-with-native-form-inputs/src";
 
 const text = { component: TextInput };
 const password = { component: PasswordInput };
