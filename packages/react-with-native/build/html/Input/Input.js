@@ -25,7 +25,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var jsx_runtime_1 = require("react/jsx-runtime");
 var Input = function (_a) {
     var native = _a.native, props = __rest(_a, ["native"]);
-    return (0, jsx_runtime_1.jsx)("input", __assign({}, props), void 0);
+    return (0, jsx_runtime_1.jsx)("input", __assign({}, props));
 };
 exports.default = Input;
 //# sourceMappingURL=Input.js.map

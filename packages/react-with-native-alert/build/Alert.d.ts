@@ -1,9 +1,4 @@
-import type { AlertStatic } from "react-native";
-declare type Parameters<T> = T extends (...args: infer T) => any ? T : never;
-declare type AlertPropsArray = Parameters<AlertStatic["alert"]>;
-export declare const Alert: ({ props: [title, message, buttons, options], }: {
-    props: AlertPropsArray;
-}) => JSX.Element;
-export declare const alert: AlertStatic["alert"];
-export default alert;
+import * as React from "react";
+export declare const AlertContext: React.Context<((title: string, message?: string | undefined, buttons?: import("react-native").AlertButton[] | undefined, options?: import("react-native").AlertOptions | undefined) => void) | null>;
+export declare const useAlert: () => ((title: string, message?: string | undefined, buttons?: import("react-native").AlertButton[] | undefined, options?: import("react-native").AlertOptions | undefined) => void) | null;
 //# sourceMappingURL=Alert.d.ts.map

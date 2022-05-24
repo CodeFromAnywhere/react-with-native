@@ -10,6 +10,7 @@ const TextArea = ({
   children,
   className,
   textClassName,
+  rows,
 }: TextAreaType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
@@ -18,7 +19,11 @@ const TextArea = ({
   return (
     <TextInput
       multiline={true}
-      style={[{ textAlignVertical: "top" }, tailwindStyle, style]}
+      style={[
+        { textAlignVertical: "top", height: rows ? rows * 30 : 120 },
+        tailwindStyle,
+        style,
+      ]}
       {...nativeWithoutStyle}
     >
       {wrapInTextIfNeeded(children, textClassName)}

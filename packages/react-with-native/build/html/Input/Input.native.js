@@ -27,11 +27,11 @@ var react_native_1 = require("react-native");
 var tailwind_rn_1 = require("tailwind-rn");
 var trimClassName_1 = require("../../util/trimClassName");
 var Input = function (_a) {
-    var native = _a.native, children = _a.children, className = _a.className;
+    var native = _a.native, children = _a.children, className = _a.className, style = _a.style, props = __rest(_a, ["native", "children", "className", "style"]);
     var tailwind = (0, tailwind_rn_1.useTailwind)();
-    var _b = native || {}, style = _b.style, nativeWithoutStyle = __rest(_b, ["style"]);
+    var _b = native || {}, nativeStyle = _b.style, nativeWithoutStyle = __rest(_b, ["style"]);
     var tailwindStyle = className ? tailwind((0, trimClassName_1.trimClassName)(className)) : {};
-    return ((0, jsx_runtime_1.jsx)(react_native_1.TextInput, __assign({ style: [{ fontWeight: "bold" }, tailwindStyle, style] }, nativeWithoutStyle, { children: nativeWithoutStyle.children || children }), void 0));
+    return ((0, jsx_runtime_1.jsx)(react_native_1.TextInput, __assign({ style: [tailwindStyle, style, nativeStyle] }, nativeWithoutStyle, { children: nativeWithoutStyle.children || children })));
 };
 exports.default = Input;
 //# sourceMappingURL=Input.native.js.map

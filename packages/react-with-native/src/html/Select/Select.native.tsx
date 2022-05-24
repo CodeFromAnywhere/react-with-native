@@ -8,16 +8,15 @@ const Select = ({ native, options, className }: SelectType) => {
   const tailwind = useTailwind();
   const { style } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
-  return (
-    <Picker style={[{ fontWeight: "bold" }, tailwindStyle, style]}>
-      {(options || []).map((option: SelectOptionType) => {
-        <Picker.Item
-          value={String(option.value)}
-          label={String(option.label)}
-        />;
-      })}
-    </Picker>
-  );
+  return null;
+  // <Picker style={[{ fontWeight: "bold" }, tailwindStyle, style]}>
+  //   {(options || []).map((option: SelectOptionType) => {
+  //     <Picker.Item
+  //       value={String(option.value)}
+  //       label={String(option.label)}
+  //     />;
+  //   })}
+  // </Picker>
 };
 
 export default Select;

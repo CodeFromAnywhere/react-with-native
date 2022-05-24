@@ -4,7 +4,17 @@ exports.trimClassName = void 0;
 var trimClassName = function (className) {
     var classNames = className.split(" ");
     var trimmedClassName = classNames
-        .filter(function (c) { return !(c === "" || c.startsWith("focus:") || c.startsWith("shadow-")); })
+        .filter(function (c) {
+        return !((c === "" ||
+            c.startsWith("focus:") ||
+            c.startsWith("hover:") ||
+            c.startsWith("shadow-") ||
+            c === "block" ||
+            c === "h-screen" ||
+            c === "w-screen" ||
+            c === "undefined") // block crashes android
+        );
+    })
         .join(" ");
     // console.log("trimClassName", { className, classNames, trimmedClassName });
     return trimmedClassName;

@@ -40,9 +40,11 @@ var native_1 = require("@react-navigation/native");
 var useRouter = function () {
     var navigation = (0, native_1.useNavigation)();
     var push = function (route, options) { return __awaiter(void 0, void 0, void 0, function () {
+        var realRoute;
         return __generator(this, function (_a) {
+            realRoute = route === "/" ? "index" : route;
             //@ts-ignore
-            navigation.navigate(route, options === null || options === void 0 ? void 0 : options.query);
+            navigation.navigate(realRoute, options === null || options === void 0 ? void 0 : options.query);
             return [2 /*return*/, true];
         });
     }); };

@@ -91,12 +91,12 @@ export default function Modal() {
                 </p>
               </Div>
               {/*footer*/}
-              <Div className="flex items-center justify-end p-6 border-t border-gray-200 border-solid rounded-b">
+              <Div className="flex items-center justify-end p-6 border-t border-gray-200 border-solid">
                 <Button
                   className="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none"
                   onClick={() => handleModal(null)}
                 >
-                  Close
+                  Close...
                 </Button>
               </Div>
             </Div>

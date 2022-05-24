@@ -14,8 +14,9 @@ const useRouter = (): NextRouter => {
   const navigation = useNavigation();
 
   const push = async (route: any, options: any) => {
+    const realRoute = route === "/" ? "index" : route;
     //@ts-ignore
-    navigation.navigate(route, options?.query);
+    navigation.navigate(realRoute, options?.query);
     return true;
   };
 

@@ -17,6 +17,7 @@ import { IType } from "./I/I.type";
 import { FormType } from "./Form/Form.type";
 import { TextAreaType } from "./TextArea/TextArea.type";
 import { AsideType } from "./Aside/Aside.type";
+import { ImgType } from "./Img/Img.type";
 
 // elements
 import Nav from "./Nav/Nav";
@@ -27,6 +28,7 @@ import Strong from "./Strong/Strong";
 import Button from "./Button/Button";
 import Svg from "./Svg/Svg";
 import Input from "./Input/Input";
+import Img from "./Img/Img";
 
 import Label from "./Label/Label";
 import Span from "./Span/Span";
@@ -58,6 +60,7 @@ export {
   TextArea,
   Aside,
   Nav,
+  Img,
 };
 
 export type {
@@ -79,4 +82,5 @@ export type {
   TextAreaType,
   AsideType,
   NavType,
+  ImgType,
 };

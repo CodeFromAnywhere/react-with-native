@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { PType } from "./P.type";
 declare const P: ({ native, children, className }: PType) => JSX.Element;
 export default P;

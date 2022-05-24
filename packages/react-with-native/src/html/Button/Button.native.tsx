@@ -11,17 +11,18 @@ const Button = ({
   className,
   children,
   onClick,
+  style,
 }: ButtonType) => {
   native = native!;
   const tailwind = useTailwind();
-  const { style, onPress, ...otherNative } = native || {};
+  const { style: nativeStyle, onPress, ...otherNative } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
 
   //NB: figure out how I make it work without casting to any because it would need an event which we dont have in rn
   const onPressHandler = onPress ? onPress : () => (onClick as any)?.();
   return (
     <TouchableOpacity
-      style={[tailwindStyle, style]}
+      style={[tailwindStyle, style, nativeStyle]}
       onPress={onPressHandler}
       {...otherNative}
     >

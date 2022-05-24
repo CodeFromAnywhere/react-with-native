@@ -3,7 +3,19 @@ export const trimClassName = (className: string) => {
 
   const trimmedClassName = classNames
     .filter(
-      (c) => !(c === "" || c.startsWith("focus:") || c.startsWith("shadow-"))
+      (c) =>
+        !(
+          (
+            c === "" ||
+            c.startsWith("focus:") ||
+            c.startsWith("hover:") ||
+            c.startsWith("shadow-") ||
+            c === "block" ||
+            c === "h-screen" ||
+            c === "w-screen" ||
+            c === "undefined"
+          ) // block crashes android
+        )
     )
     .join(" ");
 

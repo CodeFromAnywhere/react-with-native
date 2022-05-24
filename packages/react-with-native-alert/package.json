@@ -1,12 +1,14 @@
 {
   "name": "react-with-native-alert",
-  "version": "1.0.26",
+  "version": "1.0.32",
   "description": "Alert for web and native",
   "source": "src/index.ts",
   "main": "build/index.js",
   "scripts": {
     "pub": "npm version patch --force && npm publish",
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
+    "dev:tw": "tailwindcss -o css.css"
   },
   "repository": {
     "type": "git",
@@ -29,7 +31,8 @@
     "next": "^12.0.9",
     "react-dom": "^17.0.2",
     "react-native": "^0.66.4",
-    "react-with-native": "^1.3.6"
+    "react-with-native": "*",
+    "tailwindcss": "^3.0.24"
   },
   "dependencies": {
     "@types/react-native": "^0.66.11"

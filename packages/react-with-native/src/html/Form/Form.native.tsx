@@ -5,12 +5,18 @@ import { trimClassName } from "../../util/trimClassName";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { FormType } from "./Form.type";
 
-const Form = ({ native, textClassName, className, children }: FormType) => {
+const Form = ({
+  native,
+  textClassName,
+  className,
+  children,
+  style,
+}: FormType) => {
   const tailwind = useTailwind();
-  const { style, ...nativeWithoutStyle } = native || {};
+  const { style: nativeStyle, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
   return (
-    <View style={[tailwindStyle, style]} {...nativeWithoutStyle}>
+    <View style={[tailwindStyle, style, nativeStyle]} {...nativeWithoutStyle}>
       {wrapInTextIfNeeded(children, textClassName)}
     </View>
   );

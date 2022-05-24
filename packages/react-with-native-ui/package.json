@@ -1,0 +1,33 @@
+{
+  "name": "react-with-native-ui",
+  "version": "1.0.6",
+  "description": "Simple basic Tailwind class strings for sensible UI components",
+  "main": "build/index.js",
+  "source": "src/index.tsx",
+  "scripts": {
+    "pub": "npm version patch --force && npm publish",
+    "build": "tsc",
+    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
+    "dev:tw": "tailwindcss -o css.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Code-From-Anywhere/react-with-native.git"
+  },
+  "keywords": [
+    "storage",
+    "persist",
+    "redux",
+    "replacement"
+  ],
+  "author": "Wijnand Karsens",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Code-From-Anywhere/react-with-native/issues"
+  },
+  "homepage": "https://github.com/Code-From-Anywhere/react-with-native#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  },
+  "peerDependencies": {}
+}

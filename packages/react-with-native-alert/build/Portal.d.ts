@@ -1,4 +1,3 @@
-/// <reference types="react" />
 declare const Portal: ({ node, children }: {
     node?: any;
     children: any;

@@ -1,6 +1,3 @@
-import SelectDropdown from "./SelectDropdown";
-import SelectDrawer from "./SelectDrawer";
-import SelectMenu from "./SelectMenu";
 import { Item, SelectProps } from "./types";
 import { getRealValue } from "./util";
 
@@ -12,45 +9,36 @@ const Select = <T extends unknown>({
   onChange,
   value,
   title,
-  className,
   containerClassName,
-  children,
-  hasReset,
   selectFirstOption,
-  id,
+  //unused atm
+  children,
+  className,
+  ios,
 }: SelectProps<T>) => {
   const realValue = getRealValue({ value, selectFirstOption, options, title });
   return (
-    <>
-      <div className={`hidden lg:flex ${containerClassName}`}>
-        {children ? (
-          <SelectMenu value={realValue} onChange={onChange} options={options}>
-            {children}
-          </SelectMenu>
-        ) : (
-          <SelectDropdown
-            value={realValue}
-            onChange={onChange}
-            options={options}
-            className={className || "w-60"}
-          />
-        )}
-      </div>
+    <div className={containerClassName}>
+      <select
+        onChange={(e) => {
+          const value = e.target.value;
+          const newValue = options.find((x) => x.value === value) || null;
 
-      <div className={`lg:hidden ${containerClassName}`}>
-        <SelectDrawer
-          onChange={onChange}
-          options={options}
-          value={realValue}
-          title={title}
-          className={className}
-          hasReset={hasReset}
-          id={id}
-        >
-          {children}
-        </SelectDrawer>
-      </div>
-    </>
+          console.log("select change", { value, newValue });
+          onChange?.(newValue);
+        }}
+        className={className}
+        value={String(value?.value)}
+      >
+        {options.map((option, index) => {
+          return (
+            <option value={String(option.value)} key={index}>
+              {option.label}
+            </option>
+          );
+        })}
+      </select>
+    </div>
   );
 };
 

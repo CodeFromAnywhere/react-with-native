@@ -10,22 +10,25 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var jsx_runtime_1 = require("react/jsx-runtime");
-var SelectDropdown_1 = __importDefault(require("./SelectDropdown"));
-var SelectDrawer_1 = __importDefault(require("./SelectDrawer"));
-var SelectMenu_1 = __importDefault(require("./SelectMenu"));
 var util_1 = require("./util");
 /**
  * renders either a SelectDropdown or SelectDrawer, based on screensize
  */
 var Select = function (_a) {
-    var options = _a.options, onChange = _a.onChange, value = _a.value, title = _a.title, className = _a.className, containerClassName = _a.containerClassName, children = _a.children, hasReset = _a.hasReset, selectFirstOption = _a.selectFirstOption, id = _a.id;
+    var options = _a.options, onChange = _a.onChange, value = _a.value, title = _a.title, containerClassName = _a.containerClassName, selectFirstOption = _a.selectFirstOption, 
+    //unused atm
+    children = _a.children, className = _a.className, ios = _a.ios;
     var realValue = (0, util_1.getRealValue)({ value: value, selectFirstOption: selectFirstOption, options: options, title: title });
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", __assign({ className: "hidden lg:flex ".concat(containerClassName) }, { children: children ? ((0, jsx_runtime_1.jsx)(SelectMenu_1.default, __assign({ value: realValue, onChange: onChange, options: options }, { children: children }), void 0)) : ((0, jsx_runtime_1.jsx)(SelectDropdown_1.default, { value: realValue, onChange: onChange, options: options, className: className || "w-60" }, void 0)) }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({ className: "lg:hidden ".concat(containerClassName) }, { children: (0, jsx_runtime_1.jsx)(SelectDrawer_1.default, __assign({ onChange: onChange, options: options, value: realValue, title: title, className: className, hasReset: hasReset, id: id }, { children: children }), void 0) }), void 0)] }, void 0));
+    return ((0, jsx_runtime_1.jsx)("div", __assign({ className: containerClassName }, { children: (0, jsx_runtime_1.jsx)("select", __assign({ onChange: function (e) {
+                var value = e.target.value;
+                var newValue = options.find(function (x) { return x.value === value; }) || null;
+                console.log("select change", { value: value, newValue: newValue });
+                onChange === null || onChange === void 0 ? void 0 : onChange(newValue);
+            }, className: className, value: String(value === null || value === void 0 ? void 0 : value.value) }, { children: options.map(function (option, index) {
+                return ((0, jsx_runtime_1.jsx)("option", __assign({ value: String(option.value) }, { children: option.label }), index));
+            }) })) })));
 };
 exports.default = Select;
 //# sourceMappingURL=Select.js.map
