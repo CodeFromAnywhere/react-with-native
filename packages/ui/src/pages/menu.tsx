@@ -1,12 +1,17 @@
 import { Div, P } from "react-with-native";
 import { Menu } from "../components";
+import { RWNPage } from "../types";
 
-const MenuPage = () => {
+const Page: RWNPage = () => {
   return (
-    <Div className="bg-gray-300 p-4 h-screen w-screen">
-      <P className="font-bold">Menu</P>
+    <Div className="py-4 w-full" scroll>
       <Menu />
     </Div>
   );
 };
-export default MenuPage;
+
+Page.options = {
+  hideFromMenu: true,
+};
+
+export default Page;

@@ -2,6 +2,7 @@ import { Div } from "react-with-native";
 import { Item } from "react-with-native-select";
 import { Form, InputValues, makeField } from "../components/Form";
 import useStore from "../store";
+import { RWNPage } from "../types";
 
 const options: Item<string>[] = [
   { value: "1", label: "Option 1" },
@@ -57,10 +58,10 @@ const fields = [
 // Make sure to provide the generic based on the inputs type interfaces
 // otherwise your form won't be typesafe!
 
-const FormPage = () => {
+const Page: RWNPage = () => {
   const [name] = useStore("name");
   return (
-    <Div scroll className="p-4 w-full mx-4 lg:mx-20">
+    <Div scroll className="p-4 mx-4 lg:mx-20">
       <Form<{
         text: InputValues["text"];
         password: InputValues["password"];
@@ -91,4 +92,6 @@ const FormPage = () => {
   );
 };
 
-export default FormPage;
+Page.options = {};
+
+export default Page;

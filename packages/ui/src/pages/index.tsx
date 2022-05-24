@@ -1,8 +1,9 @@
 import { Div, Input, P } from "react-with-native";
 import UI from "react-with-native-ui";
 import useStore from "../store";
+import { RWNPage } from "../types";
 
-const HomePage = () => {
+const Page: RWNPage = () => {
   const [name, setName] = useStore("name");
   const [email, setEmail] = useStore("email");
   return (
@@ -31,4 +32,8 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+Page.options = {
+  title: "Home",
+};
+
+export default Page;

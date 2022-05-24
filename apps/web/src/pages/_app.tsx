@@ -9,7 +9,8 @@ import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { StoreProvider, Components } from "ui";
-import { Div, P } from "react-with-native";
+import { Div, P, Span } from "react-with-native";
+import { pagesObject } from "ui";
 import { ToastContainer } from "react-with-native-notification";
 import { AlertProvider } from "react-with-native-alert";
 import { ModalProvider } from "react-with-native-modal";
@@ -29,12 +30,18 @@ function MyApp({ Component, pageProps }: AppProps) {
       <AlertProvider>
         <ModalProvider>
           <StoreProvider>
-            <Div className="flex flex-row">
-              <Div className="bg-gray-300 p-4 h-screen w-40">
-                <P className="font-bold">Menu</P>
-                <Components.Menu />
+            <Div className="border-gray-200 border-b">
+              <P className="text-3xl h-32 flex justify-center items-center">
+                React With Native Demo
+              </P>
+            </Div>
+            <Div className="grid grid-cols-4">
+              <Span className="col-span-1 border-r border-r-gray-200 min-h-screen">
+                <pagesObject.menu />
+              </Span>
+              <Div className="col-span-3">
+                <Component {...pageProps} />
               </Div>
-              <Component {...pageProps} />
             </Div>
           </StoreProvider>
         </ModalProvider>

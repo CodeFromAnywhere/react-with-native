@@ -1,6 +1,5 @@
 export * from "./api";
 export * from "./store";
-import * as Pages from "./pages";
+import Pages, { pagesObject } from "./pages";
 import * as Components from "./components";
-export { Pages, Components };
-//
+export { Pages, pagesObject, Components };

@@ -1,2 +1,2 @@
-import { Pages } from "ui";
-export default Pages.form;
+import { pagesObject } from "ui";
+export default pagesObject.form;

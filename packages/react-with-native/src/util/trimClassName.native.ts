@@ -13,7 +13,8 @@ export const trimClassName = (className: string) => {
             c === "block" ||
             c === "h-screen" ||
             c === "w-screen" ||
-            c === "undefined"
+            c === "undefined" ||
+            c === "select-none"
           ) // block crashes android
         )
     )

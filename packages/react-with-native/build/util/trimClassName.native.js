@@ -12,7 +12,8 @@ var trimClassName = function (className) {
             c === "block" ||
             c === "h-screen" ||
             c === "w-screen" ||
-            c === "undefined") // block crashes android
+            c === "undefined" ||
+            c === "select-none") // block crashes android
         );
     })
         .join(" ");

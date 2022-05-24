@@ -1,8 +1,9 @@
 import { Button, Div, P } from "react-with-native";
 import { toast } from "react-with-native-notification";
 import { useModal } from "react-with-native-modal";
+import { RWNPage } from "../types";
 // import { useAlert } from "react-with-native-alert";
-const HomePage = () => {
+const Page: RWNPage = () => {
   // fix this
   // const alert = useAlert();
   //console.log({ alert });
@@ -41,4 +42,5 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+Page.options = {};
+export default Page;

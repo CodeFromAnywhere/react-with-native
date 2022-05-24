@@ -12,6 +12,7 @@ const Stack = createNativeStackNavigator();
 import { registerRootComponent } from "expo";
 
 import { QueryClient, QueryClientProvider } from "react-query";
+import { getPageTitle } from "ui/src/pages";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -25,17 +26,23 @@ function App() {
             <ModalProvider>
               <NavigationContainer>
                 <Stack.Navigator initialRouteName="menu">
-                  {Object.keys(Pages).map((page) => {
-                    // @ts-ignore
-                    const component = Pages[page];
-                    //@ts-ignore
-                    const options: ScreenOptions = component.options;
+                  {Pages.map((page) => {
+                    const defaultNavigationOptions = {
+                      title: getPageTitle(page),
+                    };
                     return (
                       <Stack.Screen
-                        key={`page${page}`}
-                        name={page}
-                        component={component}
-                        options={options}
+                        key={`page${page.key}`}
+                        name={page.key}
+                        component={page.component}
+                        options={
+                          page.reactNavigationOptions
+                            ? {
+                                ...defaultNavigationOptions,
+                                ...page.reactNavigationOptions,
+                              }
+                            : defaultNavigationOptions
+                        }
                       />
                     );
                   })}

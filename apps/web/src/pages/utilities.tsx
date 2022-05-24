@@ -1,2 +1,2 @@
-import { Pages } from "ui";
-export default Pages.utilities;
+import { pagesObject } from "ui";
+export default pagesObject.utilities;
