@@ -10,6 +10,9 @@ react-with-native exposes:
 
 ## Installation
 
+<details><summary>Tip for new projects!</summary>
+Maybe it's better to use [Sensible](https://sensiblestack.com)! Sensible is a boilerplate that gets you up to speed quickly for full stack apps and it uses react-with-native out of the box! This will save you a lot of time.</details>
+
 ```bash
 yarn add react-with-native
 ```
