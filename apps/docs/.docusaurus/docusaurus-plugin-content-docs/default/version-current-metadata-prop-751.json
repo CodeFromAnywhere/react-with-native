@@ -15,12 +15,6 @@
         "docId": "about"
       },
       {
-        "type": "link",
-        "label": "Demo",
-        "href": "/demo",
-        "docId": "demo"
-      },
-      {
         "type": "category",
         "label": "react-with-native",
         "collapsible": false,
@@ -73,15 +67,29 @@
             "label": "Select input",
             "href": "/react-with-native/select",
             "docId": "react-with-native/select"
+          }
+        ],
+        "href": "/react-with-native/"
+      },
+      {
+        "type": "category",
+        "label": "Extra",
+        "collapsible": false,
+        "collapsed": false,
+        "items": [
+          {
+            "type": "link",
+            "label": "Creating a RWN package",
+            "href": "/extra/creating-packages",
+            "docId": "extra/creating-packages"
           },
           {
             "type": "link",
             "label": "Unsupported things",
-            "href": "/react-with-native/unsupported-things",
-            "docId": "react-with-native/unsupported-things"
+            "href": "/extra/unsupported-things",
+            "docId": "extra/unsupported-things"
           }
-        ],
-        "href": "/react-with-native/"
+        ]
       }
     ]
   },
@@ -92,28 +100,34 @@
       "description": "Why?",
       "sidebar": "docSidebar"
     },
-    "demo": {
-      "id": "demo",
-      "title": "Demo",
-      "description": "Check our demo here. It runs on Sensible using all functionalities of react-with-native. There is almost no app-specific code!",
+    "extra/creating-packages": {
+      "id": "extra/creating-packages",
+      "title": "Creating a RWN package",
+      "description": "How to make css in a package that you use react-with-native in?",
+      "sidebar": "docSidebar"
+    },
+    "extra/unsupported-things": {
+      "id": "extra/unsupported-things",
+      "title": "Unsupported things",
+      "description": "Of course, react-with-native doesn't support everything.",
       "sidebar": "docSidebar"
     },
     "react-with-native/alert": {
       "id": "react-with-native/alert",
       "title": "Alert",
-      "description": "Setup",
+      "description": "NB: Experimental package!",
       "sidebar": "docSidebar"
     },
     "react-with-native/form": {
       "id": "react-with-native/form",
       "title": "Forms",
-      "description": "Plug-and-play yet unopinionated and extensible forms constructor for React and React Native apps with high-class typescript support!",
+      "description": "NB: Experimental package!",
       "sidebar": "docSidebar"
     },
     "react-with-native/form-inputs": {
       "id": "react-with-native/form-inputs",
       "title": "Form inputs",
-      "description": "Form inputs provide a set of default form input types that can be used together with rwn form or without it. Please note that we have quite some peer dependencies for these inputs, and the inputs can't be installed separately. We are still looking for ways to reduce the amount of dependencies. If you don't want this, you can just create your own inputs. You could use our inputs as examples and go from there.",
+      "description": "NB: Experimental package!",
       "sidebar": "docSidebar"
     },
     "react-with-native/modal": {
@@ -150,12 +164,6 @@
       "id": "react-with-native/store",
       "title": "Store",
       "description": "These 164 lines of code without dependencies make it possible to get a simple localStorage/asyncStorage-based and fully typed redux replacement with global persisted storage by default for react and react-native apps.",
-      "sidebar": "docSidebar"
-    },
-    "react-with-native/unsupported-things": {
-      "id": "react-with-native/unsupported-things",
-      "title": "Unsupported things",
-      "description": "Of course, react-with-native doesn't support everything.",
       "sidebar": "docSidebar"
     }
   }

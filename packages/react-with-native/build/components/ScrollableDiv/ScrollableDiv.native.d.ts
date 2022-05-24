@@ -4,6 +4,6 @@ declare const ScrollableDiv: React.ForwardRefExoticComponent<Pick<React.ClassAtt
     textClassName?: string | undefined;
     scroll?: boolean | undefined;
     style?: import("react-native").StyleProp<import("react-native").ViewStyle>;
-}, "native" | "textClassName" | "scroll" | "key" | keyof React.HTMLAttributes<HTMLDivElement>> & React.RefAttributes<unknown>>;
+}, "key" | "native" | "textClassName" | "scroll" | keyof React.HTMLAttributes<HTMLDivElement>> & React.RefAttributes<unknown>>;
 export default ScrollableDiv;
 //# sourceMappingURL=ScrollableDiv.native.d.ts.map

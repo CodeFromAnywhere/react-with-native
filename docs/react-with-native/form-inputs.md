@@ -1,5 +1,7 @@
 # Form inputs
 
+## `NB: Experimental package!`
+
 Form inputs provide a set of default form input types that can be used together with rwn form or without it. Please note that we have quite some peer dependencies for these inputs, and the inputs can't be installed separately. We are still looking for ways to reduce the amount of dependencies. If you don't want this, you can just create your own inputs. You could use our inputs as examples and go from there.
 
 All input types are still subject to breaking changes!

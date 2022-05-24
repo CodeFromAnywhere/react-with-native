@@ -7,9 +7,8 @@
   "scripts": {
     "pub": "npm version patch --force && npm publish",
     "build": "tsc",
-    "dev:ts": "tsc -w",
-    "dev:tw": "tailwindcss -w -o css.css",
-    "dev": "npm-run-all --parallel dev:**"
+    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
+    "dev:tw": "tailwindcss -o css.css"
   },
   "repository": {
     "type": "git",
@@ -30,7 +29,6 @@
     "@headlessui/react": "^1.4.2",
     "@types/react-dom": "^17.0.11",
     "next": "^12.0.9",
-    "npm-run-all": "^4.1.5",
     "react-dom": "^17.0.2",
     "react-native": "^0.66.4",
     "react-with-native": "*",

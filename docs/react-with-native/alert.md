@@ -1,5 +1,7 @@
 # Alert
 
+## `NB: Experimental package!`
+
 ## Setup
 
 ```bash

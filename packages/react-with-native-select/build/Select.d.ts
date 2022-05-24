@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { SelectProps } from "./types";
 /**
  * renders either a SelectDropdown or SelectDrawer, based on screensize

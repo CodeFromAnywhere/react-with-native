@@ -26,9 +26,8 @@ yarn add -D tailwindcss npm-run-all
 
 ```json
 {
-  "dev:ts": "tsc -w",
-  "dev:tw": "tailwindcss -w -o css.css",
-  "dev": "npm-run-all --parallel dev:**"
+  "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
+  "dev:tw": "tailwindcss -o css.css"
 }
 ```
 

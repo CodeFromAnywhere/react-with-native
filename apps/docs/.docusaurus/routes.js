@@ -44,7 +44,7 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '259'),
+    component: ComponentCreator('/', '403'),
     routes: [
       {
         path: '/about',
@@ -53,8 +53,14 @@ export default [
         sidebar: "docSidebar"
       },
       {
-        path: '/demo',
-        component: ComponentCreator('/demo', 'add'),
+        path: '/extra/creating-packages',
+        component: ComponentCreator('/extra/creating-packages', '54e'),
+        exact: true,
+        sidebar: "docSidebar"
+      },
+      {
+        path: '/extra/unsupported-things',
+        component: ComponentCreator('/extra/unsupported-things', 'b84'),
         exact: true,
         sidebar: "docSidebar"
       },
@@ -109,12 +115,6 @@ export default [
       {
         path: '/react-with-native/store',
         component: ComponentCreator('/react-with-native/store', '8de'),
-        exact: true,
-        sidebar: "docSidebar"
-      },
-      {
-        path: '/react-with-native/unsupported-things',
-        component: ComponentCreator('/react-with-native/unsupported-things', 'd0a'),
         exact: true,
         sidebar: "docSidebar"
       }

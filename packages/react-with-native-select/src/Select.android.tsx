@@ -18,7 +18,7 @@ const Select = <T extends unknown>({
   const onClick = () => {
     //should implement this
     Alert.alert("Coming soon");
-    console.log("Coming soon");
+    console.log("Coming soon"); //ok
   };
 
   const buttonTitle = value?.label || title || "Select a value";

@@ -6,13 +6,10 @@ const HomePage = () => {
   const [name, setName] = useStore("name");
   const [email, setEmail] = useStore("email");
   return (
-    <Div className="p-4">
-      <P>
-        Hello World! Please fill in your name and email here. We use a global
-        persisted storage.
-      </P>
+    <Div className="p-4 lg:p-20">
+      <P>Welcome to this demo. This project...</P>
 
-      <Div className="bg-gray-100 rounded-xl p-4">
+      <Div className="bg-gray-200 rounded-xl p-4">
         <P>Your name:</P>
         <Input
           value={name || ""}

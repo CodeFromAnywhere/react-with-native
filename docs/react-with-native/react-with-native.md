@@ -14,6 +14,50 @@ react-with-native exposes:
 yarn add react-with-native
 ```
 
+### Tailwind
+
+[Tailwind](https://tailwindcss.com) must be installed on both the web and on your react-native project.
+
+- [react-native instructions](https://github.com/vadimdemedes/tailwind-rn)
+- [react instructions](https://tailwindcss.com/docs/installation)
+
+After installation, make sure you add all `react-with-native-*` to the content of your `tailwind.config.js` files, like this:
+
+> `tailwind.config.js`
+
+```js
+const { getTailwindModules } = require("react-with-native");
+
+const tailwindModules = getTailwindModules({
+  //if you are using a sensible monorepo, put the packages with tailwind-based ui here
+  packages: ["ui"],
+
+  //if you are using any tailwind-based modules, put them here.
+  modules: [
+    "react-with-native",
+    "react-with-native-alert",
+    "react-with-native-form",
+    "react-with-native-form-inputs",
+    "react-with-native-modal",
+    "react-with-native-notification",
+    "react-with-native-router",
+    "react-with-native-select",
+    "react-with-native-store",
+    "react-with-native-ui"
+  ],
+  //if you have a yarn workspace, put true here
+  isWorkspace: false,
+});
+
+module.exports = {
+  content: ["./src/**/*.{ts,tsx}", ...tailwindModules],
+  ...your other config
+};
+
+```
+
+In react project it's also possible to generate the css using the tailwind cli and import it into your code. With react-native this is not possible as far as I know.
+
 ### For Next.js
 
 Add the following to your webpack config in `next.config.js`:
@@ -29,17 +73,9 @@ config.module.rules.push({
 yarn add -D @svgr/webpack
 ```
 
-Make sure you also have [tailwind](https://tailwindcss.com) installed. Tailwind is a peer dependency! Without it, `react-with-native` still works, but lots of components won't have a default styling and you need to supply your own classNames via `replaceClassName`
-
-## Differences from react-native and react
-
-- you need to apply your text-related classNames to the text itself directly or if your children are a string you can add textClassName as a prop.
-
 ### Expo
 
 To add the SVG Transformer, follow [these instructions](https://github.com/kristerkari/react-native-svg-transformer#installation-and-configuration).
-
-Make sure to [install tailwind-rn](https://github.com/vadimdemedes/tailwind-rn) and wrap your app in a tailwind provider.
 
 ## API
 
@@ -84,3 +120,8 @@ Make sure to [install tailwind-rn](https://github.com/vadimdemedes/tailwind-rn) 
 - `trimClassName` removes classNames that aren't supported by react-native
 - `joinClassNames` merges an array of className strings
 - `wrapInTextIfNeeded` wraps a Text coponent around a string if you're react-native so the app can render.
+- `getTailwindModules` provides the needed `node_modules` paths to include in your `tailwind.config.js`
+
+## Differences from react-native and react
+
+- you need to apply your text-related classNames to the text itself directly or if your children are a string you can add textClassName as a prop.

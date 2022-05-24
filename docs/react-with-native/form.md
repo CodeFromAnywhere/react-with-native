@@ -1,5 +1,7 @@
 # Forms
 
+## `NB: Experimental package!`
+
 Plug-and-play yet unopinionated and extensible forms constructor for React and React Native apps with high-class typescript support!
 
 # Installation

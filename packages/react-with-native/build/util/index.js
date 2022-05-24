@@ -16,4 +16,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./util"), exports);
 __exportStar(require("./trimClassName"), exports);
+__exportStar(require("./getTailwindModules"), exports);
 //# sourceMappingURL=index.js.map

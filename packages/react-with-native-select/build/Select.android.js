@@ -21,7 +21,7 @@ var Select = function (_a) {
     var onClick = function () {
         //should implement this
         react_native_1.Alert.alert("Coming soon");
-        console.log("Coming soon");
+        console.log("Coming soon"); //ok
     };
     var buttonTitle = (value === null || value === void 0 ? void 0 : value.label) || title || "Select a value";
     return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: className }, { children: children ? (children({ onClick: onClick, className: className, value: realValue })) : ((0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ onClick: onClick }, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.Text, { children: buttonTitle }) }))) })));
