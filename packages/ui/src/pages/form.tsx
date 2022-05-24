@@ -85,7 +85,6 @@ const FormPage = () => {
         }}
         defaultValues={{
           text: name || "",
-          textArea: "Enter you text here...",
         }}
       />
     </Div>
