@@ -1,5 +1,6 @@
 import { Div } from "react-with-native";
 import { Item } from "react-with-native-select";
+import { CodeLink } from "../components";
 import { Form, InputValues, makeField } from "../components/Form";
 import useStore from "../store";
 import { RWNPage } from "../types";
@@ -62,6 +63,9 @@ const Page: RWNPage = () => {
   const [name] = useStore("name");
   return (
     <Div scroll className="p-4 mx-4 lg:mx-20">
+      <Div className="flex justify-end">
+        <CodeLink pageKey="form" />
+      </Div>
       <Form<{
         text: InputValues["text"];
         password: InputValues["password"];

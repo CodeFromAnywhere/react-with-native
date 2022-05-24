@@ -2,6 +2,7 @@ import { Button, Div, P } from "react-with-native";
 import { toast } from "react-with-native-notification";
 import { useModal } from "react-with-native-modal";
 import { RWNPage } from "../types";
+import { CodeLink } from "../components";
 // import { useAlert } from "react-with-native-alert";
 const Page: RWNPage = () => {
   // fix this
@@ -9,8 +10,11 @@ const Page: RWNPage = () => {
   //console.log({ alert });
   const { handleModal } = useModal();
   return (
-    <Div className="p-4">
-      <P>Utilities</P>
+    <Div className="p-4 lg:p-20">
+      <Div className="flex justify-end">
+        <CodeLink pageKey="utilities" />
+      </Div>
+      <P className="text-3xl">Utilities</P>
 
       <Div>
         <Button

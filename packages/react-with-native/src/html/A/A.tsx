@@ -6,4 +6,5 @@ const A = ({ native, className, textClassName, ...props }: AType) => {
   return <a {...props} className={joinClassNames(className, textClassName)} />;
 };
 
+export type { AType };
 export default A;

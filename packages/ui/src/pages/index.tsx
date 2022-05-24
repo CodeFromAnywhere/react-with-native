@@ -1,5 +1,6 @@
 import { Div, Input, P } from "react-with-native";
 import UI from "react-with-native-ui";
+import { CodeLink } from "../components";
 import useStore from "../store";
 import { RWNPage } from "../types";
 
@@ -8,6 +9,9 @@ const Page: RWNPage = () => {
   const [email, setEmail] = useStore("email");
   return (
     <Div className="p-4 lg:p-20">
+      <Div className="flex justify-end">
+        <CodeLink pageKey="index" />
+      </Div>
       <P>
         Welcome to this demo. This demo runs on React with Next.js as well as on
         React Native with Expo.

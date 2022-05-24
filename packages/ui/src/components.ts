@@ -1,3 +1,3 @@
 import Menu from "./components/Menu";
-import CodeIframe from "./components/CodeIframe";
-export { Menu, CodeIframe };
+import CodeLink from "./components/CodeLink";
+export { Menu, CodeLink };

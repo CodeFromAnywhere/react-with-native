@@ -40,11 +40,8 @@ function MyApp({ Component, pageProps }: AppProps) {
               <Span className="col-span-1 border-r border-r-gray-200 min-h-screen">
                 <pagesObject.menu />
               </Span>
-              <Div className="col-span-3 flex flex-row">
+              <Div className="col-span-3">
                 <Component {...pageProps} />
-                <Div className="lg:flex hidden">
-                  <Components.CodeIframe pageKey={"index"} />
-                </Div>
               </Div>
             </Div>
           </StoreProvider>
