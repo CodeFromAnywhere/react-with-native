@@ -14,7 +14,7 @@ var TextAreaInput = function (_a) {
     return ((0, jsx_runtime_1.jsx)(react_with_native_1.TextArea, { rows: extra === null || extra === void 0 ? void 0 : extra.rows, maxLength: extra === null || extra === void 0 ? void 0 : extra.maxLength, className: (config === null || config === void 0 ? void 0 : config.replaceClassName) ||
             "".concat(react_with_native_ui_1.default.input, " ").concat(errorClass, " ").concat(config === null || config === void 0 ? void 0 : config.extraClassName), value: value, onChange: function (event) {
             onChange(event.target.value);
-        }, native: { onChangeText: onChange } }));
+        }, native: { onChangeText: onChange, value: value } }));
 };
 exports.TextAreaInput = TextAreaInput;
 exports.TextAreaInput.defaultInitialValue = "";
