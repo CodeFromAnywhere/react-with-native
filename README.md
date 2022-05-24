@@ -17,3 +17,16 @@ React with Native has been built with [sensible](https://sensiblestack.com). To 
 
 - run `yarn dev` to watch all package changes & open the dev dashboard.
 - run `yarn start:label`, where label can be one of `app`, `docs`, `server`, or `web` depending on what you are developing
+
+## Demo
+
+Check [our demo](https://demo.reactwithnative.com) here. It runs on [Sensible](https://sensiblestack.com) using all functionalities of react-with-native. There is almost no app-specific code!
+
+To run the app locally, do the following
+
+- clone this repo
+- follow the [expo installation instructions](https://docs.expo.dev/get-started/installation/) of expo (react-native)
+- `yarn` in root folder
+- `yarn dev` in root folder
+- new terminal tab: `yarn start:app` in root folder. Open your camera and **scan the QR code** or run the app using the simulator ([XCode required](https://docs.expo.dev/workflow/ios-simulator/))
+- new terminal tab: `yarn start:web` in root folder (show it at http://localhost:3000)

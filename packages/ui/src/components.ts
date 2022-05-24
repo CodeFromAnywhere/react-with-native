@@ -1,3 +1,3 @@
 import Menu from "./components/Menu";
-
-export { Menu };
+import CodeIframe from "./components/CodeIframe";
+export { Menu, CodeIframe };

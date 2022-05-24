@@ -18,3 +18,5 @@ We simply create wrappers for all html tags and react(native) components to make
 ## Demo
 
 Check [our demo](https://demo.reactwithnative.com) here. It runs on [Sensible](https://sensiblestack.com) using all functionalities of react-with-native. There is almost no app-specific code!
+
+The website can also be shown as a mobile app (please check our [GitHub repo](https://github.com/Code-From-Anywhere/react-with-native) and view the demoing instructions to run the demo in the simulator)

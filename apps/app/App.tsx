@@ -30,19 +30,20 @@ function App() {
                     const defaultNavigationOptions = {
                       title: getPageTitle(page),
                     };
+
+                    const options = page.reactNavigationOptions
+                      ? {
+                          ...defaultNavigationOptions,
+                          ...page.reactNavigationOptions,
+                        }
+                      : defaultNavigationOptions;
+
                     return (
                       <Stack.Screen
                         key={`page${page.key}`}
                         name={page.key}
                         component={page.component}
-                        options={
-                          page.reactNavigationOptions
-                            ? {
-                                ...defaultNavigationOptions,
-                                ...page.reactNavigationOptions,
-                              }
-                            : defaultNavigationOptions
-                        }
+                        options={options}
                       />
                     );
                   })}

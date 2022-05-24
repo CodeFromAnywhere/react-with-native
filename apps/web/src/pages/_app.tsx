@@ -24,6 +24,7 @@ Router.events.on("routeChangeError", progress.finish);
 
 const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
+  console.log({ pageProps });
   return (
     <QueryClientProvider client={queryClient}>
       <ToastContainer />
@@ -39,8 +40,11 @@ function MyApp({ Component, pageProps }: AppProps) {
               <Span className="col-span-1 border-r border-r-gray-200 min-h-screen">
                 <pagesObject.menu />
               </Span>
-              <Div className="col-span-3">
+              <Div className="col-span-3 flex flex-row">
                 <Component {...pageProps} />
+                <Div className="lg:flex hidden">
+                  <Components.CodeIframe pageKey={"index"} />
+                </Div>
               </Div>
             </Div>
           </StoreProvider>

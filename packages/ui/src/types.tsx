@@ -24,3 +24,15 @@ export type RWNPage = {
   (): JSX.Element;
   options: PageOptions;
 };
+
+/**
+ * coming soon! We could ask people to add examples of the usage of their component to automatically generate frontend-docs!
+ */
+
+export type ComponentOptions = {
+  example?: JSX.Element;
+};
+export type RWNComponent = {
+  (): JSX.Element;
+  options: ComponentOptions;
+};
