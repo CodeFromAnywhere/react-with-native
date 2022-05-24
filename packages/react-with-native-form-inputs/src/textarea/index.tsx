@@ -10,7 +10,6 @@ export const TextAreaInput: PluginComponent<TextAreaInputType> = ({
   errors,
 }) => {
   const hasError = errors && errors.length > 0;
-  console.log("text area called", value);
   const errorClass = hasError ? config?.errorClassName || "border-red-600" : "";
 
   return (
