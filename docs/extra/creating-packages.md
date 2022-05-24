@@ -19,7 +19,7 @@ module.exports = {
 2. Install some devDependencies:
 
 ```bash
-yarn add -D tailwindcss npm-run-all
+yarn add -D tailwindcss tsc-watch
 ```
 
 3. Add this to your package.json scripts
