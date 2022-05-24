@@ -9,7 +9,7 @@ const Page: RWNPage = () => {
   const [email, setEmail] = useStore("email");
   return (
     <Div className="p-4 lg:p-20">
-      <Div className="flex justify-end">
+      <Div className="flex flex-row justify-end">
         <CodeLink pageKey="index" />
       </Div>
       <P>
@@ -22,6 +22,7 @@ const Page: RWNPage = () => {
         <Input
           value={name || ""}
           onChange={(e) => setName(e.target.value)}
+          native={{ onChangeText: setName }}
           className={UI.input}
         />
 
@@ -29,6 +30,7 @@ const Page: RWNPage = () => {
         <Input
           value={email || ""}
           onChange={(e) => setEmail(e.target.value)}
+          native={{ onChangeText: setName }}
           className={UI.input}
         />
       </Div>

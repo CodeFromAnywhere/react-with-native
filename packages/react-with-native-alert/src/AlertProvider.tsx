@@ -35,7 +35,6 @@ export const AlertProvider = ({ children }: { children: any }) => {
 
     return (
       <div className="absolute w-screen h-screen inset-0">
-        TEST
         <Transition appear show={true} as={Fragment}>
           <HeadlessUiDialog
             as="div"

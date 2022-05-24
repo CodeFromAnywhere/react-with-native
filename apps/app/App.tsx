@@ -14,6 +14,9 @@ import { registerRootComponent } from "expo";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { getPageTitle } from "ui/src/pages";
 
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs(["ViewPropTypes will be removed", "Require cycle"]);
 // Create a client
 const queryClient = new QueryClient();
 
@@ -22,9 +25,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TailwindProvider utilities={utilities}>
         <StoreProvider>
-          <AlertProvider>
-            <ModalProvider>
-              <NavigationContainer>
+          <NavigationContainer>
+            <AlertProvider>
+              <ModalProvider>
                 <Stack.Navigator initialRouteName="menu">
                   {Pages.map((page) => {
                     const defaultNavigationOptions = {
@@ -48,9 +51,9 @@ function App() {
                     );
                   })}
                 </Stack.Navigator>
-              </NavigationContainer>
-            </ModalProvider>
-          </AlertProvider>
+              </ModalProvider>
+            </AlertProvider>
+          </NavigationContainer>
         </StoreProvider>
       </TailwindProvider>
     </QueryClientProvider>

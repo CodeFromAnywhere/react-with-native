@@ -1,5 +1,5 @@
 import { Div, P } from "react-with-native";
-import { Menu } from "../components";
+import Menu from "../components/Menu";
 import { RWNPage } from "../types";
 
 const Page: RWNPage = () => {

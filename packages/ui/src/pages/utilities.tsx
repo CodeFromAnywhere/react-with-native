@@ -3,19 +3,16 @@ import { toast } from "react-with-native-notification";
 import { useModal } from "react-with-native-modal";
 import { RWNPage } from "../types";
 import { CodeLink } from "../components";
-// import { useAlert } from "react-with-native-alert";
+import { useAlert } from "react-with-native-alert";
 const Page: RWNPage = () => {
   // fix this
-  // const alert = useAlert();
-  //console.log({ alert });
+  const alert = useAlert();
   const { handleModal } = useModal();
   return (
     <Div className="p-4 lg:p-20">
-      <Div className="flex justify-end">
+      <Div className="flex justify-end flex-row">
         <CodeLink pageKey="utilities" />
       </Div>
-      <P className="text-3xl">Utilities</P>
-
       <Div>
         <Button
           onClick={() => toast({ title: "Yes yes", body: "This is a toast" })}
@@ -27,7 +24,11 @@ const Page: RWNPage = () => {
 
         <Button
           //@ts-ignore
-          onClick={() => alert?.("Test alert", "test body")}
+          onClick={() => {
+            console.log({ alert });
+
+            alert?.("Test alert", "test body");
+          }}
           className="m-2 bg-black p-2 rounded-xl"
           textClassName="text-white text-center"
         >

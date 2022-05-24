@@ -5,7 +5,9 @@ const CodeLink = ({ pageKey }: { pageKey: string }) => {
   return (
     <ALink
       href={href}
-      className="bg-black flex items-center justify-center rounded-md p-2 hover:bg-gray-600 cursor-pointer"
+      target="_blank"
+      rel="nofollow"
+      className="bg-black flex items-center justify-center rounded-md w-40 p-2 hover:bg-gray-600 cursor-pointer"
       textClassName="text-white"
     >
       Check the code

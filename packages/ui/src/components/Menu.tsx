@@ -1,7 +1,6 @@
 import { Button, Div, Li, Span, Ul } from "react-with-native";
 import pages, { getPageTitle } from "../pages";
 import { useRouter } from "react-with-native-router";
-import { RWNPage } from "../types";
 
 const Menu = () => {
   const router = useRouter();

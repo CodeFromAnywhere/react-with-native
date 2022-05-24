@@ -25,11 +25,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useAlert = exports.AlertContext = void 0;
 var React = __importStar(require("react"));
-var react_native_1 = require("react-native");
-exports.AlertContext = React.createContext(react_native_1.Alert.alert);
+exports.AlertContext = React.createContext(null);
 var useAlert = function () {
     var alert = React.useContext(exports.AlertContext);
     return alert;
 };
 exports.useAlert = useAlert;
-//# sourceMappingURL=Alert.native.js.map
+//# sourceMappingURL=Alert%20copy.js.map

@@ -9,6 +9,7 @@ var trimClassName = function (className) {
             c.startsWith("focus:") ||
             c.startsWith("hover:") ||
             c.startsWith("shadow-") ||
+            c.startsWith("cursor-") ||
             c === "block" ||
             c === "h-screen" ||
             c === "w-screen" ||

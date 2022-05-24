@@ -62,8 +62,8 @@ const fields = [
 const Page: RWNPage = () => {
   const [name] = useStore("name");
   return (
-    <Div scroll className="p-4 mx-4 lg:mx-20">
-      <Div className="flex justify-end">
+    <Div scroll className="py-4 px-8 lg:px-20">
+      <Div className="flex flex-row justify-end">
         <CodeLink pageKey="form" />
       </Div>
       <Form<{
