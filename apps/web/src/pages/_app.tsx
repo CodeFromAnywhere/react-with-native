@@ -1,10 +1,5 @@
-import "../globals.css";
-import "react-toastify/dist/ReactToastify.css";
-import "react-datetime/css/react-datetime.css";
-import "rc-time-picker/assets/index.css";
-import "react-datepicker/dist/react-datepicker.css";
-
 import { AppProps } from "next/app";
+import Head from "next/head";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -14,7 +9,14 @@ import { pagesObject } from "ui";
 import { ToastContainer } from "react-with-native-notification";
 import { AlertProvider } from "react-with-native-alert";
 import { ModalProvider } from "react-with-native-modal";
+import { useRouter } from "react-with-native-router";
+import pages, { getPageTitle } from "ui/src/pages";
 
+import "../globals.css";
+import "react-toastify/dist/ReactToastify.css";
+import "react-datetime/css/react-datetime.css";
+import "rc-time-picker/assets/index.css";
+import "react-datepicker/dist/react-datepicker.css";
 const progress = new ProgressBar();
 
 //Binding events.
@@ -24,16 +26,28 @@ Router.events.on("routeChangeError", progress.finish);
 
 const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
-  console.log({ pageProps });
+  const router = useRouter();
+  const path = router.route.slice(1);
+  const siteName =
+    process.env.NEXT_PUBLIC_SITE === "sensible"
+      ? "Sensible"
+      : "React with Native";
+  const pageKey = (path === "" ? "index" : path) as keyof typeof pagesObject;
+  const page = pages.find((x) => x.key === pageKey);
+  const title = page ? `${getPageTitle(page)} - ${siteName}` : siteName;
+
   return (
     <QueryClientProvider client={queryClient}>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <ToastContainer />
       <AlertProvider>
         <ModalProvider>
           <StoreProvider>
             <Div className="border-gray-200 border-b">
               <P className="text-3xl h-32 flex justify-center items-center">
-                React With Native Demo
+                {siteName} Demo
               </P>
             </Div>
             <Div className="grid grid-cols-4">
