@@ -37,6 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     publicRuntimeConfig.NEXT_PUBLIC_SITE === "sensible"
       ? "Sensible"
       : "React with Native";
+  console.log({ site: publicRuntimeConfig.NEXT_PUBLIC_SITE, siteName });
   const pageKey = (path === "" ? "index" : path) as keyof typeof pagesObject;
   const page = pages.find((x) => x.key === pageKey);
   const title = page ? `${getPageTitle(page)} - ${siteName}` : siteName;
