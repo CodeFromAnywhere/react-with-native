@@ -1,10 +1,13 @@
 # TODAY
 
-User signup/login/logout/read, Message CRD
+auto-install core
+Add new commands to scripts and readme:
+yarn dev (builds all packages & server)
+yarn dev app
+yarn dev web
+yarn dev docs
 Comments
-Copy code into base template
 CFA Fullstack Section
-Test nonsense init
 
 What else can I prepare to blow **AI Heroes** mind? 🤯🤯🤯🤯🤯 And everyone after them..?
 

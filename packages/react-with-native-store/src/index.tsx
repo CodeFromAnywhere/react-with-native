@@ -154,3 +154,14 @@ export const createUseStore = <TState extends object>(
   };
   return useStore;
 };
+
+// const getStore = (key:string,{baseKey="useStore"}:{baseKey?:string})=>{
+
+//   const xxx = `${baseKey}.${key}`
+//   const value = getItem(xxxx);
+//   const setValue => setItem(xxx)
+//   return [value, setValue];
+
+// }
+
+// const [getName, setName]= getStore("name",{key:"test"})
