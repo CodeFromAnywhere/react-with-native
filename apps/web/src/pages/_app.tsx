@@ -11,6 +11,7 @@ import { AlertProvider } from "react-with-native-alert";
 import { ModalProvider } from "react-with-native-modal";
 import { useRouter } from "react-with-native-router";
 import pages, { getPageTitle } from "ui/src/pages";
+import getConfig from "next/config";
 
 import "../globals.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,11 +26,15 @@ Router.events.on("routeChangeComplete", progress.finish);
 Router.events.on("routeChangeError", progress.finish);
 
 const queryClient = new QueryClient();
+
+// Only holds serverRuntimeConfig and publicRuntimeConfig
+const { publicRuntimeConfig } = getConfig();
+
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const path = router.route.slice(1);
   const siteName =
-    process.env.NEXT_PUBLIC_SITE === "sensible"
+    publicRuntimeConfig.NEXT_PUBLIC_SITE === "sensible"
       ? "Sensible"
       : "React with Native";
   const pageKey = (path === "" ? "index" : path) as keyof typeof pagesObject;
