@@ -1,8 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var Select_1 = __importDefault(require("./Select"));
-exports.default = Select_1.default;
+// THIS FILE HAS BEEN GENERATED
+Object.defineProperty(exports,"__esModule",{value:!0}),exports.getRealValue=exports.Select=void 0;var Select_1=require("./Select");Object.defineProperty(exports,"Select",{enumerable:!0,get:function(){return Select_1.Select}});var util_1=require("./util");Object.defineProperty(exports,"getRealValue",{enumerable:!0,get:function(){return util_1.getRealValue}});
+// THANK YOU
 //# sourceMappingURL=index.js.map

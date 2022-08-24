@@ -17,5 +17,3 @@ export const Image = ({ native, className, style, src }: NativeImgType) => {
     <RNImage style={[tailwindStyle, style]} {...native} source={{ uri: src }} />
   );
 };
-
-export default Image;

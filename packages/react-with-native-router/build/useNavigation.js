@@ -1,26 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var router_1 = require("next/router");
-function useNavigation() {
-    var router = (0, router_1.useRouter)();
-    return {
-        addListener: function () { },
-        canGoBack: function () { return true; },
-        dispatch: function () { },
-        getParent: function () { },
-        getState: function () { },
-        goBack: function () {
-            router.back();
-        },
-        isFocused: function () { },
-        removeListener: function () { },
-        reset: function () { },
-        setOptions: function () { },
-        setParams: function () { },
-        navigate: function (screen, params) {
-            router.push(screen, { query: params });
-        },
-    };
-}
-exports.default = useNavigation;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.useNavigation=void 0;var router_1=require("next/router");function useNavigation(){var t=(0,router_1.useRouter)();return{addListener:function(){},canGoBack:function(){return!0},dispatch:function(){},getParent:function(){},getState:function(){},goBack:function(){t.back()},isFocused:function(){},removeListener:function(){},reset:function(){},setOptions:function(){},setParams:function(){},navigate:function(e,n){t.push(e,{query:n})}}}exports.useNavigation=useNavigation;
 //# sourceMappingURL=useNavigation.js.map

@@ -13,6 +13,5 @@ var TimeInput = function (_a) {
     return ((0, jsx_runtime_1.jsx)(datetimepicker_1.default, { mode: "time", value: value || new Date(), onChange: function (event, time) { return onChange(time); } }));
 };
 exports.TimeInput = TimeInput;
-TimeInput.defaultInitialValue = new Date();
-exports.default = TimeInput;
+exports.TimeInput.defaultInitialValue = new Date();
 //# sourceMappingURL=TimeInput.native.js.map

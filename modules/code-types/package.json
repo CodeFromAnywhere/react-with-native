@@ -1,0 +1,19 @@
+{
+  "name": "code-types",
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "source": "src/index.ts",
+  "scripts": {
+    "test": "node build/index.js",
+    "dev": "tsc -w",
+    "build": "tsc",
+    "up": "npm version patch -f",
+    "pub": "npm run up && npm publish"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.33",
+    "typescript": "^4.6.4"
+  }
+}

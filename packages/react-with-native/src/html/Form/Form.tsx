@@ -5,10 +5,13 @@ import { FormType } from "./Form.type";
 /**
  * Form is just a html form on web. On react-native, it's a View
  */
-const Form = ({ native, className, textClassName, ...props }: FormType) => {
+export const Form = ({
+  native,
+  className,
+  textClassName,
+  ...props
+}: FormType) => {
   return (
     <form {...props} className={joinClassNames(className, textClassName)} />
   );
 };
-
-export default Form;

@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+import { MarkdownChunk } from "code-types";
+/**
+ * recursively parses a string containing markdown (without frontmatter) into a MarkdownChunk[]
+ 
+Improve:
+- include the comment-type (TODO/NB/etc), both on a chunk level and on root level
+- parse paragraphs further around the assets
+ */
+export declare const mdContentParseRecursively: (markdownString: string, level: number) => MarkdownChunk[];
+export declare const test: () => Promise<boolean>;
+//# sourceMappingURL=mdContentParseRecursively.d.ts.map

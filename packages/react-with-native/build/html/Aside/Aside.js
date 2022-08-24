@@ -45,6 +45,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Aside = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var React = __importStar(require("react"));
 var util_1 = require("../../util/util");
@@ -53,6 +54,5 @@ var PureAside = function (_a, ref) {
     return ((0, jsx_runtime_1.jsx)("aside", __assign({}, props, { ref: ref, className: (0, util_1.joinClassNames)(className, textClassName) })));
 };
 // this is needed if you want to pass refs to it sometimes
-var Aside = React.forwardRef(PureAside);
-exports.default = Aside;
+exports.Aside = React.forwardRef(PureAside);
 //# sourceMappingURL=Aside.js.map

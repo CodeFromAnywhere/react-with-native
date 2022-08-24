@@ -1,0 +1,24 @@
+{
+  "name": "k-explore",
+  "version": "0.0.2",
+  "description": "",
+  "main": "build/index.js",
+  "source": "src/index.ts",
+  "scripts": {
+    "initpub": "npm publish --access public",
+    "pub": "npm version patch --force && npm publish",
+    "build": "tsc",
+    "dev": "tsc -w",
+    "minify": "echo build/**/*.js | xargs -n1 sh -c 'terser --output build/${1#build/} --compress --mangle -- $1' argv0",
+    "minify2": "bash -c \"for f in build/*.js; do terser $f --output $f --compress --mangle; done\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.33",
+    "typescript": "^4.6.4"
+  }
+}

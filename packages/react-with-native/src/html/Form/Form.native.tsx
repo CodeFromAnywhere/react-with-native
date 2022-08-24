@@ -5,7 +5,7 @@ import { trimClassName } from "../../util/trimClassName";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { FormType } from "./Form.type";
 
-const Form = ({
+export const Form = ({
   native,
   textClassName,
   className,
@@ -21,5 +21,3 @@ const Form = ({
     </View>
   );
 };
-
-export default Form;

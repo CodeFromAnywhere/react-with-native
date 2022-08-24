@@ -1,48 +1,24 @@
 {
   "version": "0.0.0",
   "private": true,
-  "name": "react-with-native-github",
+  "workspaces": ["apps/*", "packages/*", "modules/*"],
   "scripts": {
     "build": "turbo run build",
-    "buildWithoutCache": "turbo run build --force",
-    "dev": "bash -c 'if [ $0 -eq \"bash\" ]; then yarn packagesAndServer; else cd apps/$0 && yarn dev; fi'",
-    "packagesAndServer": "turbo run dev --parallel --concurrency=15 --filter=./packages/* --filter=server",
+    "dev": "turbo run dev --parallel",
+    "start": "turbo run start --parallel",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "clean": "rm -rf node_modules yarn.lock && yarn && yarn buildWithoutCache"
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Code-From-Anywhere/react-with-native.git"
-  },
-  "keywords": [
-    "react",
-    "with",
-    "native"
-  ],
-  "author": "Wijnand Karsens <wijnand@karsens.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Code-From-Anywhere/react-with-native/issues"
-  },
-  "homepage": "https://github.com/Code-From-Anywhere/react-with-native#readme",
   "devDependencies": {
-    "nodemon": "^2.0.16",
     "prettier": "^2.5.1",
     "turbo": "latest"
   },
-  "dependencies": {},
-  "resolutions": {
-    "@types/react": "17.0.30"
-  },
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "third-party/*/packages/*"
-  ],
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=14.0.0"
   },
-  "packageManager": "yarn@1.22.17"
+  "packageManager": "yarn@1.22.17",
+  "sensible": {
+    "isSensibleProject": true
+  }
 }

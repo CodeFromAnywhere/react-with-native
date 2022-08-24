@@ -22,6 +22,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Form = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var util_1 = require("../../util/util");
 /**
@@ -31,5 +32,5 @@ var Form = function (_a) {
     var native = _a.native, className = _a.className, textClassName = _a.textClassName, props = __rest(_a, ["native", "className", "textClassName"]);
     return ((0, jsx_runtime_1.jsx)("form", __assign({}, props, { className: (0, util_1.joinClassNames)(className, textClassName) })));
 };
-exports.default = Form;
+exports.Form = Form;
 //# sourceMappingURL=Form.js.map

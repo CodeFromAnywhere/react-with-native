@@ -1,5 +1,4 @@
 /// <reference types="react" />
 import { PType } from "./P.type";
-declare const P: ({ native, ...props }: PType) => JSX.Element;
-export default P;
+export declare const P: ({ native, ...props }: PType) => JSX.Element;
 //# sourceMappingURL=P.d.ts.map

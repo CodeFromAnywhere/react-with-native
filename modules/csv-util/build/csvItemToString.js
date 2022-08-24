@@ -1,0 +1,4 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.test=exports.csvItemToString=void 0;var make_test_1=require("make-test"),example_1=require("./example"),csvItemToString=function(e){if(0===e.length)return"";
+// let propertyNames = simplifiedSchema?.properties?.map((x) => x.name);
+var t=e.reduce((function(e,t){var n=Object.keys(t).length;return n>e.keysAmount?{keysAmount:n,item:t}:e}),{keysAmount:0,item:void 0}).item,n=Object.keys(t),r=n.join(","),o=e.map((function(e){return n.map((function(t){return String(e[t])})).join(",")}));return"".concat(r,"\n").concat(o.join("\n"))};exports.csvItemToString=csvItemToString,exports.test=(0,make_test_1.makeTest)((function(){return(0,exports.csvItemToString)(example_1.exampleCsvItems)}),(function(e){return e===example_1.exampleCsvString}));
+//# sourceMappingURL=csvItemToString.js.map

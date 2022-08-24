@@ -177,5 +177,4 @@ exports.MapInput.defaultInitialValue = {
     longitude: defaultLongitude,
     zoom: defaultZoom,
 };
-exports.default = exports.MapInput;
 //# sourceMappingURL=MapInput.js.map

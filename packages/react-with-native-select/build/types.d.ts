@@ -12,6 +12,10 @@ export declare type ChildrenType<T> = ({ onClick, className, value, }: {
 }) => any;
 export declare type SelectProps<T> = {
     containerClassName?: string;
+    /**
+     * only for web (uses datalist html element)
+     */
+    autoSuggest?: boolean;
     title: string;
     options: Item<T>[];
     onChange?: (value: Item<T> | null) => void;

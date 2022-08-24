@@ -1,0 +1,27 @@
+{
+  "name": "markdown-reader-ui",
+  "version": "0.0.0",
+  "description": "All frontend components can go here",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
+    "dev:tw": "tailwindcss -o css.css",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.0",
+    "react-minimal-pie-chart": "^8.3.0",
+    "rehype-highlight": "^5.0.2"
+  },
+  "devDependencies": {
+    "@headlessui/react": "^1.6.2",
+    "@react-navigation/native-stack": "^6.6.2",
+    "react-datepicker": "^4.8.0",
+    "react-datetime": "^3.1.1",
+    "react-native": "*",
+    "react-toastify": "^9.0.1",
+    "tailwindcss": "^3.0.24"
+  }
+}

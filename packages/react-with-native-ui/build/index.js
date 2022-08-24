@@ -1,14 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.inputClass = exports.bareInputClass = void 0;
-exports.bareInputClass = "text-sm px-3 text-gray-700 border-gray-300 border rounded-md focus:outline-none";
-exports.inputClass = "w-full ".concat(exports.bareInputClass);
-var UI = {
-    bareInput: exports.bareInputClass,
-    textInput: "".concat(exports.inputClass, " py-4"),
-    input: "".concat(exports.inputClass, " py-4"),
-    selectInput: "".concat(exports.inputClass, " py-3"),
-    dateInput: "".concat(exports.inputClass, " py-3"),
-};
-exports.default = UI;
+// THIS FILE HAS BEEN GENERATED
+Object.defineProperty(exports,"__esModule",{value:!0}),exports.UI=exports.inputClass=exports.bareInputClass=void 0;var general_1=require("./general");Object.defineProperty(exports,"bareInputClass",{enumerable:!0,get:function(){return general_1.bareInputClass}});var general_2=require("./general");Object.defineProperty(exports,"inputClass",{enumerable:!0,get:function(){return general_2.inputClass}});var general_3=require("./general");Object.defineProperty(exports,"UI",{enumerable:!0,get:function(){return general_3.UI}});
+// THANK YOU
 //# sourceMappingURL=index.js.map

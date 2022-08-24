@@ -33,7 +33,7 @@ const { getTailwindModules } = require("react-with-native");
 
 const tailwindModules = getTailwindModules({
   //if you are using a sensible monorepo, put the packages with tailwind-based ui here
-  packages: ["ui"],
+  packages: ["rwn-ui"],
 
   //if you are using any tailwind-based modules, put them here.
   modules: [

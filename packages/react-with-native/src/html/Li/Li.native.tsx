@@ -5,7 +5,7 @@ import { trimClassName } from "../../util/trimClassName";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { LiType } from "./Li.type";
 
-const Li = ({ native, children, textClassName, className }: LiType) => {
+export const Li = ({ native, children, textClassName, className }: LiType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
@@ -15,5 +15,3 @@ const Li = ({ native, children, textClassName, className }: LiType) => {
     </View>
   );
 };
-
-export default Li;

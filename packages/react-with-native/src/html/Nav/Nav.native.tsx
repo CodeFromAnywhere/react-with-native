@@ -5,7 +5,12 @@ import { trimClassName } from "../../util/trimClassName";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { NavType } from "./Nav.type";
 
-const Nav = ({ native, textClassName, className, children }: NavType) => {
+export const Nav = ({
+  native,
+  textClassName,
+  className,
+  children,
+}: NavType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
@@ -27,5 +32,3 @@ const Nav = ({ native, textClassName, className, children }: NavType) => {
     </View>
   );
 };
-
-export default Nav;

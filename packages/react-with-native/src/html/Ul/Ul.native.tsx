@@ -5,7 +5,7 @@ import { trimClassName } from "../../util/trimClassName";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { UlType } from "./Ul.type";
 
-const Ul = ({ native, children, className, textClassName }: UlType) => {
+export const Ul = ({ native, children, className, textClassName }: UlType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
@@ -15,5 +15,3 @@ const Ul = ({ native, children, className, textClassName }: UlType) => {
     </View>
   );
 };
-
-export default Ul;

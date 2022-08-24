@@ -26,5 +26,4 @@ var Image = function (_a) {
     return ((0, jsx_runtime_1.jsx)(react_native_1.Image, __assign({ style: [tailwindStyle, style] }, native, { source: { uri: src } })));
 };
 exports.Image = Image;
-exports.default = exports.Image;
 //# sourceMappingURL=Img.native.js.map

@@ -1,6 +1,6 @@
 {
   "name": "react-with-native-select",
-  "version": "2.0.8",
+  "version": "2.0.7",
   "description": "",
   "main": "build/index.js",
   "source": "src/index.tsx",
@@ -8,7 +8,9 @@
     "pub": "npm version patch --force && npm publish",
     "build": "tsc",
     "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
-    "dev:tw": "tailwindcss -o css.css"
+    "dev:tw": "tailwindcss -o css.css",
+    "minify": "echo build/**/*.js | xargs -n1 sh -c 'terser --output build/${1#build/} --compress --mangle -- $1' argv0",
+    "minify2": "bash -c \"for f in build/*.js; do terser $f --output $f --compress --mangle; done\""
   },
   "repository": {
     "type": "git",
@@ -42,9 +44,5 @@
   },
   "peerDependencies": {
     "react-with-native": "*"
-  },
-  "dependencies": {
-    "@types/react-native-actionsheet": "^2.4.3",
-    "react-native-actionsheet": "^2.4.2"
   }
 }

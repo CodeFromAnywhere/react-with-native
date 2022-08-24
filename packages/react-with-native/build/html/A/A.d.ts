@@ -1,5 +1,4 @@
+/// <reference types="react" />
 import { AType } from "./A.type";
-declare const A: ({ native, className, textClassName, ...props }: AType) => JSX.Element;
-export type { AType };
-export default A;
+export declare const A: ({ native, className, textClassName, ...props }: AType) => JSX.Element;
 //# sourceMappingURL=A.d.ts.map

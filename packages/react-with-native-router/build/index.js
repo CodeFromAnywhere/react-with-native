@@ -1,11 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useRouter = exports.useNavigation = void 0;
-var useRouter_1 = __importDefault(require("./useRouter"));
-exports.useRouter = useRouter_1.default;
-var useNavigation_1 = __importDefault(require("./useNavigation"));
-exports.useNavigation = useNavigation_1.default;
+// THIS FILE HAS BEEN GENERATED
+Object.defineProperty(exports,"__esModule",{value:!0}),exports.useRouter=exports.useNavigation=void 0;var useNavigation_1=require("./useNavigation");Object.defineProperty(exports,"useNavigation",{enumerable:!0,get:function(){return useNavigation_1.useNavigation}});var useRouter_1=require("./useRouter");Object.defineProperty(exports,"useRouter",{enumerable:!0,get:function(){return useRouter_1.useRouter}});
+// THANK YOU
 //# sourceMappingURL=index.js.map

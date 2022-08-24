@@ -1,7 +1,7 @@
 import React from "react";
 import type { SelectOptionType, SelectType } from "./Select.type";
 
-const Select = ({
+export const Select = ({
   native,
   options,
   customOptionSelector,
@@ -21,5 +21,3 @@ const Select = ({
     </select>
   );
 };
-
-export default Select;

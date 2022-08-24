@@ -1,16 +1,18 @@
-import { toast as toastifyToast, ToastOptions } from "react-toastify";
-import { ToastContainer } from "react-toastify";
+import {
+  toast as toastifyToast,
+  ToastOptions as ToastifyToastOptions,
+} from "react-toastify";
+import { ToastContainer as ToastifyToastContainer } from "react-toastify";
 
+export type ToastOptions = ToastifyToastOptions;
 /**
  * title is only shown on native
  */
 export const toast = (
   message: { title: string; body: string },
-  options?: ToastOptions<{}>
+  options?: ToastOptions
 ) => {
   toastifyToast(message.body, options);
 };
 
-export { ToastContainer };
-
-export type { ToastOptions };
+export const ToastContainer = ToastifyToastContainer;

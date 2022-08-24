@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.commentTypes=exports.commentTypesConst=void 0,exports.commentTypesConst=["todo","discussion","idea","later","nb"],exports.commentTypes=[...exports.commentTypesConst];
+//# sourceMappingURL=TsComment.js.map

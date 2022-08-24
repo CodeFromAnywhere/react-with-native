@@ -1,0 +1,12 @@
+"use strict";var __awaiter=this&&this.__awaiter||function(e,n,r,t){return new(r||(r=Promise))((function(a,i){function o(e){try{l(t.next(e))}catch(e){i(e)}}function s(e){try{l(t.throw(e))}catch(e){i(e)}}function l(e){var n;e.done?a(e.value):(n=e.value,n instanceof r?n:new r((function(e){e(n)}))).then(o,s)}l((t=t.apply(e,n||[])).next())}))},__generator=this&&this.__generator||function(e,n){var r,t,a,i,o={label:0,sent:function(){if(1&a[0])throw a[1];return a[1]},trys:[],ops:[]};return i={next:s(0),throw:s(1),return:s(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function s(i){return function(s){return function(i){if(r)throw new TypeError("Generator is already executing.");for(;o;)try{if(r=1,t&&(a=2&i[0]?t.return:i[0]?t.throw||((a=t.return)&&a.call(t),0):t.next)&&!(a=a.call(t,i[1])).done)return a;switch(t=0,a&&(i=[2&i[0],a.value]),i[0]){case 0:case 1:a=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(a=o.trys,(a=a.length>0&&a[a.length-1])||6!==i[0]&&2!==i[0])){o=0;continue}if(3===i[0]&&(!a||i[1]>a[0]&&i[1]<a[3])){o.label=i[1];break}if(6===i[0]&&o.label<a[1]){o.label=a[1],a=i;break}if(a&&o.label<a[2]){o.label=a[2],o.ops.push(i);break}a[2]&&o.ops.pop(),o.trys.pop();continue}i=n.call(e,o)}catch(e){i=[6,e],t=0}finally{r=a=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,s])}}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.readJsonFileSync=exports.readJsonFile=void 0;var fs_util_1=require("fs-util"),tryParseJson_1=require("./tryParseJson"),readJsonFile=function(e){return __awaiter(void 0,void 0,void 0,(function(){var n;return __generator(this,(function(r){switch(r.label){case 0:return e&&fs_util_1.fs.existsSync(e)?[4/*yield*/,(0,fs_util_1.canRead)(e)]:[2/*return*/,null];
+// TODO: is this needed?
+case 1:return r.sent()?[4/*yield*/,fs_util_1.fs.readFile(e,"utf8")]:[2/*return*/,null];case 2:return(n=r.sent())?[2/*return*/,(0,tryParseJson_1.tryParseJson)(n)]:[2/*return*/,null]}}))}))};exports.readJsonFile=readJsonFile;
+/**
+ * Reads and parses JSON file
+ *
+ * make sure to specify what type the file contains as a generic!
+ */
+var readJsonFileSync=function(e){
+// TODO: is this needed?
+if(!fs_util_1.fs.existsSync(e))return null;if(!(0,fs_util_1.canReadSync)(e))return null;var n=fs_util_1.fs.readFileSync(e,"utf8");return n?(0,tryParseJson_1.tryParseJson)(n):null};exports.readJsonFileSync=readJsonFileSync;
+//# sourceMappingURL=readJsonFile.js.map

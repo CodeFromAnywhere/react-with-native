@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ActivityIndicator = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var ActivityIndicator = function (props) {
     var sizeClass = typeof props.size === "number"
@@ -16,5 +17,5 @@ var ActivityIndicator = function (props) {
     var className = "".concat(sizeClass, " border-b-2 ").concat(borderClass, " rounded-full animate-spin ").concat(props.className || "");
     return (0, jsx_runtime_1.jsx)("div", { style: sizeStyle, className: className });
 };
-exports.default = ActivityIndicator;
+exports.ActivityIndicator = ActivityIndicator;
 //# sourceMappingURL=ActivityIndicator.js.map

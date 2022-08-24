@@ -1,4 +1,10 @@
-import useRouter from "./useRouter";
-import useNavigation from "./useNavigation";
+// THIS FILE HAS BEEN GENERATED
+
+import { useNavigation } from "./useNavigation";
+import { useRouter } from "./useRouter";
+
+
 
 export { useNavigation, useRouter };
+
+// THANK YOU

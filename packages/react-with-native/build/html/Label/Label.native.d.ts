@@ -1,5 +1,4 @@
 /// <reference types="react" />
 import { LabelType } from "./Label.type";
-declare const Label: ({ native, children, className, style }: LabelType) => JSX.Element;
-export default Label;
+export declare const Label: ({ native, children, className, style }: LabelType) => JSX.Element;
 //# sourceMappingURL=Label.native.d.ts.map

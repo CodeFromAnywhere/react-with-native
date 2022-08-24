@@ -57,5 +57,3 @@ export class FileInputType implements PluginInputType {
   };
   extra: { allowedFileTypes: string[] };
 }
-
-export default FileInput;

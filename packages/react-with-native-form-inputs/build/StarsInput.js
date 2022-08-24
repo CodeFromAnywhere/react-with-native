@@ -1,0 +1,4 @@
+"use strict";var __importDefault=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.StarsInput=void 0;var jsx_runtime_1=require("react/jsx-runtime"),react_stars_1=__importDefault(require("react-stars")),StarsInput=function(t){var e=t.onChange,r=t.value,a=(t.extra,t.config);
+// later, this can be extrahered into a react-with-native-stars component, because now this will only work on web
+return a=a||{},(0,jsx_runtime_1.jsx)(react_stars_1.default,{className:"m-3",count:5,value:"number"==typeof r?r:0,onChange:e,half:!1,size:24,color2:"#ffd700"})};exports.StarsInput=StarsInput,exports.StarsInput.defaultInitialValue=null;
+//# sourceMappingURL=StarsInput.js.map

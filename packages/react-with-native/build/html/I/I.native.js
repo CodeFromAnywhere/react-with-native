@@ -22,6 +22,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.I = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_native_1 = require("react-native");
 var tailwind_rn_1 = require("tailwind-rn");
@@ -33,5 +34,5 @@ var I = function (props) {
     var tailwindStyle = className ? tailwind((0, trimClassName_1.trimClassName)(className)) : {};
     return ((0, jsx_runtime_1.jsx)(react_native_1.Text, __assign({ style: [{ fontStyle: "italic" }, tailwindStyle, style] }, nativeWithoutStyle, { children: children })));
 };
-exports.default = I;
+exports.I = I;
 //# sourceMappingURL=I.native.js.map

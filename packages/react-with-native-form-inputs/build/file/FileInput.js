@@ -35,5 +35,4 @@ var FileInputType = /** @class */ (function () {
     return FileInputType;
 }());
 exports.FileInputType = FileInputType;
-exports.default = exports.FileInput;
 //# sourceMappingURL=FileInput.js.map

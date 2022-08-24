@@ -14,5 +14,3 @@ export const StarsInput: PluginComponent<StarsInputType> = ({
 };
 
 StarsInput.defaultInitialValue = null;
-
-export default StarsInput;

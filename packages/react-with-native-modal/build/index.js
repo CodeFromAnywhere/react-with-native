@@ -1,18 +1,5 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./Modal"), exports);
+// THIS FILE HAS BEEN GENERATED
+Object.defineProperty(exports,"__esModule",{value:!0}),exports.ModalProvider=exports.useModal=exports.ModalContext=exports.Modal=void 0;var Modal_1=require("./Modal");Object.defineProperty(exports,"Modal",{enumerable:!0,get:function(){return Modal_1.Modal}});var Modal_2=require("./Modal");Object.defineProperty(exports,"ModalContext",{enumerable:!0,get:function(){return Modal_2.ModalContext}});var Modal_3=require("./Modal");Object.defineProperty(exports,"useModal",{enumerable:!0,get:function(){return Modal_3.useModal}});var Modal_4=require("./Modal");Object.defineProperty(exports,"ModalProvider",{enumerable:!0,get:function(){return Modal_4.ModalProvider}});
+// THANK YOU
 //# sourceMappingURL=index.js.map

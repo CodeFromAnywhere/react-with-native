@@ -22,10 +22,11 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Label = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var Label = function (_a) {
     var native = _a.native, props = __rest(_a, ["native"]);
     return (0, jsx_runtime_1.jsx)("label", __assign({}, props));
 };
-exports.default = Label;
+exports.Label = Label;
 //# sourceMappingURL=Label.js.map

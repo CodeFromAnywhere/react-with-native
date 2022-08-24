@@ -1,5 +1,4 @@
 /// <reference types="react" />
 import { PressableType } from "./Pressable.type";
-declare const Pressable: ({ native, className, textClassName, children, onClick, }: PressableType) => JSX.Element;
-export default Pressable;
+export declare const Pressable: ({ native, className, textClassName, children, onClick, }: PressableType) => JSX.Element;
 //# sourceMappingURL=Pressable.native.d.ts.map

@@ -1,6 +1,4 @@
 import { PluginComponent } from "react-with-native-form";
 import { TimeInputType } from "./types";
-declare const TimeInput: PluginComponent<TimeInputType>;
-export { TimeInput };
-export default TimeInput;
+export declare const TimeInput: PluginComponent<TimeInputType>;
 //# sourceMappingURL=TimeInput.d.ts.map

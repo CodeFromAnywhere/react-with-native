@@ -8,6 +8,5 @@ var DateInput = function (_a) {
     return (0, jsx_runtime_1.jsx)(react_with_native_1.Div, { children: "DateInput (Coming soon)" });
 };
 exports.DateInput = DateInput;
-DateInput.defaultInitialValue = null;
-exports.default = DateInput;
+exports.DateInput.defaultInitialValue = null;
 //# sourceMappingURL=DateInput.native.js.map

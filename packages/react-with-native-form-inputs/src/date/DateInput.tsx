@@ -1,11 +1,14 @@
 import DatePicker from "react-datepicker";
 import { PluginComponent } from "react-with-native-form";
 import { DateInputType } from "./types";
-import UI from "react-with-native-ui";
+import { UI } from "react-with-native-ui";
 
 // CSS Modules, react-datepicker-cssmodules.css
 
-const DateInput: PluginComponent<DateInputType> = ({ value, onChange }) => {
+export const DateInput: PluginComponent<DateInputType> = ({
+  value,
+  onChange,
+}) => {
   return (
     <DatePicker
       selected={value}
@@ -20,6 +23,3 @@ const DateInput: PluginComponent<DateInputType> = ({ value, onChange }) => {
 };
 
 DateInput.defaultInitialValue = null;
-
-export { DateInput };
-export default DateInput;

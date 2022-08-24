@@ -22,6 +22,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Nav = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_native_1 = require("react-native");
 var tailwind_rn_1 = require("tailwind-rn");
@@ -42,5 +43,5 @@ var Nav = function (_a) {
             },
         ] }, nativeWithoutStyle, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) })));
 };
-exports.default = Nav;
+exports.Nav = Nav;
 //# sourceMappingURL=Nav.native.js.map

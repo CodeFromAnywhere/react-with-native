@@ -4,7 +4,7 @@ import { useTailwind } from "tailwind-rn";
 import { trimClassName } from "../../util/trimClassName";
 import { TextType } from "./Text.type";
 
-const Text = ({ native, className, children }: TextType) => {
+export const Text = ({ native, className, children }: TextType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
@@ -14,5 +14,3 @@ const Text = ({ native, className, children }: TextType) => {
     </RNText>
   );
 };
-
-export default Text;

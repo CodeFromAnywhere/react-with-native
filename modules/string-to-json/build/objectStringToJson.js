@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.objectStringToJson=void 0;var stringToJson_1=require("./stringToJson"),js_util_1=require("js-util"),objectStringToJson=function(t){var r=t.split(",").map((function(t){return t.trim()})).map((function(t){var r,o=t.split(":").map((function(t){return t.trim()})),n=o[0],e=o[1];return(r={})[n]=(0,stringToJson_1.stringToJson)(e),r}));return(0,js_util_1.mergeObjectsArray)(r)};exports.objectStringToJson=objectStringToJson;
+//# sourceMappingURL=objectStringToJson.js.map

@@ -5,7 +5,7 @@ import { TextAreaType } from "./TextArea.type";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { trimClassName } from "../../util/trimClassName";
 
-const TextArea = ({
+export const TextArea = ({
   native,
   children,
   className,
@@ -30,5 +30,3 @@ const TextArea = ({
     </TextInput>
   );
 };
-
-export default TextArea;

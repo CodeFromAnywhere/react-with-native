@@ -1,0 +1,4 @@
+"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(e){for(var s,t=1,r=arguments.length;t<r;t++)for(var o in s=arguments[t])Object.prototype.hasOwnProperty.call(s,o)&&(e[o]=s[o]);return e},__assign.apply(this,arguments)};Object.defineProperty(exports,"__esModule",{value:!0}),exports.set=exports.push=exports.get=exports.db=void 0;var code_types_1=require("code-types"),sdk_db_1=require("sdk-db"),js_util_1=require("js-util"),fs_orm_1=require("fs-orm"),indexDefaults=(0,js_util_1.mergeObjectsArray)(code_types_1.indexDbModels.map((function(e){var s;return(s={})[e]={operation:"*"},s})));exports.db=(0,fs_orm_1.createDb)({
+// @ts-ignore
+defaultDbStorageMethods:sdk_db_1.defaultDbStorageMethods,defaults:__assign({},indexDefaults)}),exports.get=exports.db.get,exports.push=exports.db.push,exports.set=exports.db.set;
+//# sourceMappingURL=db.js.map

@@ -5,7 +5,7 @@ import { PressableType } from "./Pressable.type";
 /**
  * button on web, pressable on react-native
  */
-const Pressable = ({
+export const Pressable = ({
   native,
   textClassName,
   className,
@@ -15,5 +15,3 @@ const Pressable = ({
     <button {...props} className={joinClassNames(className, textClassName)} />
   );
 };
-
-export default Pressable;

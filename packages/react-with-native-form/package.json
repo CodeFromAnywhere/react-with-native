@@ -8,7 +8,9 @@
     "pub": "npm version patch --force && npm publish",
     "build": "tsc",
     "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
-    "dev:tw": "tailwindcss -o css.css"
+    "dev:tw": "tailwindcss -o css.css",
+    "minify": "echo build/**/*.js | xargs -n1 sh -c 'terser --output build/${1#build/} --compress --mangle -- $1' argv0",
+    "minify2": "bash -c \"for f in build/*.js; do terser $f --output $f --compress --mangle; done\""
   },
   "repository": {
     "type": "git",

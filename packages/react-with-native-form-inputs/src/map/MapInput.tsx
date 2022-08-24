@@ -236,5 +236,3 @@ MapInput.defaultInitialValue = {
   longitude: defaultLongitude,
   zoom: defaultZoom,
 };
-
-export default MapInput;

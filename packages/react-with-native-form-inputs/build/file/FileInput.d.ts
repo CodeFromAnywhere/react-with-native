@@ -11,5 +11,4 @@ export declare class FileInputType implements PluginInputType {
         allowedFileTypes: string[];
     };
 }
-export default FileInput;
 //# sourceMappingURL=FileInput.d.ts.map

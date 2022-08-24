@@ -4,7 +4,7 @@ import { useTailwind } from "tailwind-rn";
 import { PressableType } from "./Pressable.type";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { trimClassName } from "../../util/trimClassName";
-const Pressable = ({
+export const Pressable = ({
   native,
   className,
   textClassName,
@@ -24,5 +24,3 @@ const Pressable = ({
     </ReactNativePressable>
   );
 };
-
-export default Pressable;

@@ -1,3 +1,3 @@
-import Div from "../../html/Div/Div";
+import { Div as View } from "../../html/Div/Div";
 
-export default Div;
+export { View };

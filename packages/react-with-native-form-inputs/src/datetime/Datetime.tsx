@@ -3,9 +3,9 @@ import { PluginComponent } from "react-with-native-form";
 import { DatetimeInputType } from "./types";
 import Datetime from "react-datetime";
 import { useState } from "react";
-import UI from "react-with-native-ui";
+import { UI } from "react-with-native-ui";
 
-const DatetimeInput: PluginComponent<DatetimeInputType> = ({
+export const DatetimeInput: PluginComponent<DatetimeInputType> = ({
   extra,
   value,
   onChange,
@@ -40,5 +40,3 @@ const DatetimeInput: PluginComponent<DatetimeInputType> = ({
 };
 
 DatetimeInput.defaultInitialValue = new Date();
-export default DatetimeInput;
-export { DatetimeInput };

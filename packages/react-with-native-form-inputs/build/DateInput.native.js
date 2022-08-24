@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.DateInput=void 0;var jsx_runtime_1=require("react/jsx-runtime"),react_with_native_1=require("react-with-native"),DateInput=function(e){e.value,e.onChange;return(0,jsx_runtime_1.jsx)(react_with_native_1.Div,{children:"DateInput (Coming soon)"})};exports.DateInput=DateInput,exports.DateInput.defaultInitialValue=null;
+//# sourceMappingURL=DateInput.native.js.map

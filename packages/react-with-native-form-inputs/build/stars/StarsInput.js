@@ -14,5 +14,4 @@ var StarsInput = function (_a) {
 };
 exports.StarsInput = StarsInput;
 exports.StarsInput.defaultInitialValue = null;
-exports.default = exports.StarsInput;
 //# sourceMappingURL=StarsInput.js.map

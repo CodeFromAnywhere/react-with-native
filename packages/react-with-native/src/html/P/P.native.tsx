@@ -3,7 +3,7 @@ import { useTailwind } from "tailwind-rn";
 import { trimClassName } from "../../util/trimClassName";
 import { PType } from "./P.type";
 
-const P = ({ native, children, className }: PType) => {
+export const P = ({ native, children, className }: PType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
@@ -19,5 +19,3 @@ const P = ({ native, children, className }: PType) => {
     //</View>
   );
 };
-
-export default P;

@@ -2,7 +2,7 @@ import { ActionSheetIOS } from "react-native";
 import { Item, SelectProps } from "./types";
 import { Button, Div, Text } from "react-with-native";
 import { getRealValue } from "./util";
-const Select = <T extends unknown>({
+export const Select = <T extends unknown>({
   options,
   onChange,
   value,
@@ -42,5 +42,3 @@ const Select = <T extends unknown>({
     </Div>
   );
 };
-
-export default Select;

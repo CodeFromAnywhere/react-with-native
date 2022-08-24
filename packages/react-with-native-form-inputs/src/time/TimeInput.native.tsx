@@ -4,7 +4,10 @@ import { PluginComponent } from "react-with-native-form";
 import { TimeInputType } from "./types";
 // CSS Modules, react-datepicker-cssmodules.css
 
-const TimeInput: PluginComponent<TimeInputType> = ({ value, onChange }) => {
+export const TimeInput: PluginComponent<TimeInputType> = ({
+  value,
+  onChange,
+}) => {
   return (
     <DateTimepicker
       mode="time"
@@ -15,5 +18,3 @@ const TimeInput: PluginComponent<TimeInputType> = ({ value, onChange }) => {
 };
 
 TimeInput.defaultInitialValue = new Date();
-export { TimeInput };
-export default TimeInput;

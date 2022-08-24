@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Select = void 0;
 var tailwind_rn_1 = require("tailwind-rn");
 var trimClassName_1 = require("../../util/trimClassName");
 var Select = function (_a) {
@@ -17,5 +18,5 @@ var Select = function (_a) {
     //   })}
     // </Picker>
 };
-exports.default = Select;
+exports.Select = Select;
 //# sourceMappingURL=Select.native.js.map

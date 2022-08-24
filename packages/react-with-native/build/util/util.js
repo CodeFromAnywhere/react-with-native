@@ -10,16 +10,13 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.joinClassNames = exports.wrapInTextIfNeeded = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
-var Text_1 = __importDefault(require("../react-native/Text/Text"));
+var Text_1 = require("../react-native/Text/Text");
 // NB: figure out a way to do the styles of the text right.
 var wrapInTextIfNeeded = function (children, textClassName) {
-    return typeof children === "string" ? ((0, jsx_runtime_1.jsx)(Text_1.default, __assign({ className: textClassName }, { children: children }))) : (children);
+    return typeof children === "string" ? ((0, jsx_runtime_1.jsx)(Text_1.Text, __assign({ className: textClassName }, { children: children }))) : (children);
 };
 exports.wrapInTextIfNeeded = wrapInTextIfNeeded;
 var joinClassNames = function () {

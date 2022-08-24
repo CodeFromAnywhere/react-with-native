@@ -9,8 +9,7 @@ type TransitionOptions = {
   locale?: string | false;
   scroll?: boolean;
 };
-
-const useRouter = (): NextRouter => {
+export const useRouter = (): NextRouter => {
   const navigation = useNavigation();
 
   const push = async (route: any, options: any) => {
@@ -77,5 +76,3 @@ const useRouter = (): NextRouter => {
     events,
   };
 };
-
-export default useRouter;

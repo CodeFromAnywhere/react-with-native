@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ActivityIndicatorType } from "./ActivityIndicator.type";
 
-const ActivityIndicator = (props: ActivityIndicatorType) => {
+export const ActivityIndicator = (props: ActivityIndicatorType) => {
   const sizeClass =
     typeof props.size === "number"
       ? ""
@@ -24,5 +24,3 @@ const ActivityIndicator = (props: ActivityIndicatorType) => {
 
   return <div style={sizeStyle} className={className} />;
 };
-
-export default ActivityIndicator;

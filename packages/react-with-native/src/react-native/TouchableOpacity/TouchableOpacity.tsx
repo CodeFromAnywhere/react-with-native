@@ -5,7 +5,7 @@ import { TouchableOpacityType } from "./TouchableOpacity.type";
 /**
  * button on web, pressable on react-native
  */
-const TouchableOpacity = ({
+export const TouchableOpacity = ({
   native,
   textClassName,
   className,
@@ -15,5 +15,3 @@ const TouchableOpacity = ({
     <button {...props} className={joinClassNames(className, textClassName)} />
   );
 };
-
-export default TouchableOpacity;

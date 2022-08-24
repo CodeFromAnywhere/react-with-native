@@ -4,7 +4,7 @@ import { useTailwind } from "tailwind-rn";
 import { trimClassName } from "../../util/trimClassName";
 import { SelectOptionType, SelectType } from "./Select.type";
 
-const Select = ({ native, options, className }: SelectType) => {
+export const Select = ({ native, options, className }: SelectType) => {
   const tailwind = useTailwind();
   const { style } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
@@ -18,5 +18,3 @@ const Select = ({ native, options, className }: SelectType) => {
   //   })}
   // </Picker>
 };
-
-export default Select;

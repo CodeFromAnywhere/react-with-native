@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.mdToJsonParse=void 0;var mdContentParseRecursively_1=require("./mdContentParseRecursively"),parseFrontmatterMarkdownString_1=require("./parseFrontmatterMarkdownString"),mdToJsonParse=function(r,e){var t=(0,parseFrontmatterMarkdownString_1.parseFrontmatterMarkdownString)(r),a=t.parameters,n=t.raw;return{fileName:e,raw:r,parameters:a,content:(0,mdContentParseRecursively_1.mdContentParseRecursively)(n,1)}};exports.mdToJsonParse=mdToJsonParse;
+//# sourceMappingURL=mdToJsonParse.js.map

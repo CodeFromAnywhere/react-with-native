@@ -1,5 +1,4 @@
 /// <reference types="react" />
 import { TextType } from "./Text.type";
-declare const Text: ({ native, className, children }: TextType) => JSX.Element;
-export default Text;
+export declare const Text: ({ native, className, children }: TextType) => JSX.Element;
 //# sourceMappingURL=Text.native.d.ts.map

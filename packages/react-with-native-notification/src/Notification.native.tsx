@@ -1,9 +1,11 @@
-import { ToastOptions } from "react-toastify";
+import { ToastOptions as ToastifyToastOptions } from "react-toastify";
 import * as Notifications from "expo-notifications";
+
+export type ToastOptions = ToastifyToastOptions;
 
 export const toast = (
   content: { title: string; body: string },
-  options?: ToastOptions<{}>
+  options?: ToastOptions
 ) => {
   Notifications.scheduleNotificationAsync({
     content,
@@ -14,5 +16,3 @@ export const toast = (
 export const ToastContainer = () => {
   return null;
 };
-
-export type { ToastOptions };

@@ -22,6 +22,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.P = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_native_1 = require("react-native");
 var tailwind_rn_1 = require("tailwind-rn");
@@ -38,5 +39,5 @@ var P = function (_a) {
     //</View>
     );
 };
-exports.default = P;
+exports.P = P;
 //# sourceMappingURL=P.native.js.map

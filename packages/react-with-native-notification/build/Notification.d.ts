@@ -1,12 +1,12 @@
-import { ToastOptions } from "react-toastify";
-import { ToastContainer } from "react-toastify";
+/// <reference types="react" />
+import { ToastOptions as ToastifyToastOptions } from "react-toastify";
+export declare type ToastOptions = ToastifyToastOptions;
 /**
  * title is only shown on native
  */
 export declare const toast: (message: {
     title: string;
     body: string;
-}, options?: ToastOptions<{}> | undefined) => void;
-export { ToastContainer };
-export type { ToastOptions };
+}, options?: ToastOptions) => void;
+export declare const ToastContainer: import("react").FC<import("react-toastify").ToastContainerProps>;
 //# sourceMappingURL=Notification.d.ts.map

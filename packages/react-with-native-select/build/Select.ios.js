@@ -1,32 +1,4 @@
-"use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var jsx_runtime_1 = require("react/jsx-runtime");
-var react_native_1 = require("react-native");
-var react_with_native_1 = require("react-with-native");
-var util_1 = require("./util");
-var Select = function (_a) {
-    var options = _a.options, onChange = _a.onChange, value = _a.value, title = _a.title, className = _a.className, children = _a.children, selectFirstOption = _a.selectFirstOption, ios = _a.ios;
-    var realValue = (0, util_1.getRealValue)({ value: value, selectFirstOption: selectFirstOption, options: options, title: title });
-    var onClick = function () {
-        react_native_1.ActionSheetIOS.showActionSheetWithOptions(__assign({ options: options.map(function (o) { return o.label; }) }, ios), function (buttonIndex) {
-            var selected = options[buttonIndex];
-            // selected.onClick?.();
-            onChange === null || onChange === void 0 ? void 0 : onChange(selected);
-        });
-    };
-    var buttonTitle = (value === null || value === void 0 ? void 0 : value.label) || title || "Select a value";
-    return ((0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: className }, { children: children ? (children({ onClick: onClick, className: className, value: realValue })) : ((0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ onClick: onClick }, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.Text, { children: buttonTitle }) }))) })));
-};
-exports.default = Select;
+"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(e){for(var t,i=1,n=arguments.length;i<n;i++)for(var r in t=arguments[i])Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r]);return e},__assign.apply(this,arguments)};Object.defineProperty(exports,"__esModule",{value:!0}),exports.Select=void 0;var jsx_runtime_1=require("react/jsx-runtime"),react_native_1=require("react-native"),react_with_native_1=require("react-with-native"),util_1=require("./util"),Select=function(e){var t=e.options,i=e.onChange,n=e.value,r=e.title,a=e.className,s=e.children,_=e.selectFirstOption,l=e.ios,c=(0,util_1.getRealValue)({value:n,selectFirstOption:_,options:t,title:r}),o=function(){react_native_1.ActionSheetIOS.showActionSheetWithOptions(__assign({options:t.map((function(e){return e.label}))},l),(function(e){var n=t[e];
+// selected.onClick?.();
+null==i||i(n)}))},u=(null==n?void 0:n.label)||r||"Select a value";return(0,jsx_runtime_1.jsx)(react_with_native_1.Div,__assign({className:a},{children:s?s({onClick:o,className:a,value:c}):(0,jsx_runtime_1.jsx)(react_with_native_1.Button,__assign({onClick:o},{children:(0,jsx_runtime_1.jsx)(react_with_native_1.Text,{children:u})}))}))};exports.Select=Select;
 //# sourceMappingURL=Select.ios.js.map

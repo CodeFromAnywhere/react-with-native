@@ -1,4 +1,4 @@
-import useRouter from "./useRouter";
-import useNavigation from "./useNavigation";
+import { useNavigation } from "./useNavigation";
+import { useRouter } from "./useRouter";
 export { useNavigation, useRouter };
 //# sourceMappingURL=index.d.ts.map

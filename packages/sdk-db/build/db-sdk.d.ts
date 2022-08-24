@@ -1,0 +1,40 @@
+import type { BundleConfig } from "bundle-types";
+import type { OperationIndex } from "code-types";
+import type { PackageJSON } from "code-types";
+import type { TsComment } from "code-types";
+import type { TsFunction } from "code-types";
+import type { TsInterface } from "code-types";
+import type { TsBuildError } from "code-types";
+import type { TsLintWarning } from "code-types";
+import type { TsExport } from "code-types";
+import type { TsImport } from "code-types";
+import type { TsVariable } from "code-types";
+export declare type DbModels = {
+    BundleConfig: BundleConfig;
+    OperationIndex: OperationIndex;
+    PackageJSON: PackageJSON;
+    TsComment: TsComment;
+    TsFunction: TsFunction;
+    TsInterface: TsInterface;
+    TsBuildError: TsBuildError;
+    TsLintWarning: TsLintWarning;
+    TsExport: TsExport;
+    TsImport: TsImport;
+    TsVariable: TsVariable;
+};
+export declare const dbModelKeys: readonly ["BundleConfig", "OperationIndex", "PackageJSON", "TsComment", "TsFunction", "TsInterface", "TsBuildError", "TsLintWarning", "TsExport", "TsImport", "TsVariable"];
+export declare type DbModelEnum = typeof dbModelKeys[number];
+export declare const defaultDbStorageMethods: {
+    BundleConfig: string;
+    OperationIndex: string;
+    PackageJSON: string;
+    TsComment: string;
+    TsFunction: string;
+    TsInterface: string;
+    TsBuildError: string;
+    TsLintWarning: string;
+    TsVariable: string;
+    TsImport: string;
+    TsExport: string;
+};
+//# sourceMappingURL=db-sdk.d.ts.map

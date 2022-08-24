@@ -3,6 +3,5 @@ import { PressableType } from "./Pressable.type";
 /**
  * button on web, pressable on react-native
  */
-declare const Pressable: ({ native, textClassName, className, ...props }: PressableType) => JSX.Element;
-export default Pressable;
+export declare const Pressable: ({ native, textClassName, className, ...props }: PressableType) => JSX.Element;
 //# sourceMappingURL=Pressable.d.ts.map

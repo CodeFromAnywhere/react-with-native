@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "source": "src/index.ts",
+  "scripts": {
+    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
+    "dev:tw": "tailwindcss -o css.css",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "license": "ISC",
+  "name": "react-with-native-table",
+  "dependencies": {
+    "react": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "tailwindcss": "^3.1.6",
+    "typescript": "^4.7.4"
+  }
+}

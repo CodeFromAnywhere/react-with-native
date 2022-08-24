@@ -1,8 +1,8 @@
-import { ToastOptions } from "react-toastify";
+import { ToastOptions as ToastifyToastOptions } from "react-toastify";
+export declare type ToastOptions = ToastifyToastOptions;
 export declare const toast: (content: {
     title: string;
     body: string;
-}, options?: ToastOptions<{}> | undefined) => void;
+}, options?: ToastOptions) => void;
 export declare const ToastContainer: () => null;
-export type { ToastOptions };
 //# sourceMappingURL=Notification.native.d.ts.map

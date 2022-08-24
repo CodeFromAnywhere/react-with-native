@@ -23,6 +23,4 @@ const PureDiv = (
     </CorrectView>
   );
 };
-const Div = React.forwardRef(PureDiv);
-
-export default Div;
+export const Div = React.forwardRef(PureDiv);

@@ -1,4 +1,4 @@
-declare function useNavigation(): {
+export declare function useNavigation(): {
     addListener: () => void;
     canGoBack: () => boolean;
     dispatch: () => void;
@@ -14,5 +14,4 @@ declare function useNavigation(): {
         [key: string]: any;
     } | undefined) => void;
 };
-export default useNavigation;
 //# sourceMappingURL=useNavigation.d.ts.map

@@ -1,4 +1,3 @@
 import { NextRouter } from "next/router";
-declare const useRouter: () => NextRouter;
-export default useRouter;
+export declare const useRouter: () => NextRouter;
 //# sourceMappingURL=useRouter.native.d.ts.map

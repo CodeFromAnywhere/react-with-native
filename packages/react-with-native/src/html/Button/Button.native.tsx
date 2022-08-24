@@ -5,7 +5,7 @@ import { trimClassName } from "../../util/trimClassName";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { ButtonType } from "./Button.type";
 
-const Button = ({
+export const Button = ({
   native,
   textClassName,
   className,
@@ -30,5 +30,3 @@ const Button = ({
     </TouchableOpacity>
   );
 };
-
-export default Button;

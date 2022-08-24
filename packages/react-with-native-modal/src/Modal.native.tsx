@@ -54,7 +54,7 @@ export const ModalProvider = ({ children }: { children: any }) => {
   );
 };
 
-export default function Modal() {
+export function Modal() {
   let { modalContent, title, handleModal, showModal } =
     useContext(ModalContext);
 

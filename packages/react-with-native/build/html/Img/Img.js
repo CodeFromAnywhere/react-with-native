@@ -26,9 +26,8 @@ exports.Image = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var Image = function (_a) {
     var native = _a.native, props = __rest(_a, ["native"]);
-    //@ts-ignore
+    //@ts-ignore TODO: what's this?
     return (0, jsx_runtime_1.jsx)("img", __assign({}, props));
 };
 exports.Image = Image;
-exports.default = exports.Image;
 //# sourceMappingURL=Img.js.map

@@ -6,7 +6,9 @@
     "build": "tsc",
     "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
     "dev:tw": "tailwindcss -w -o css.css",
-    "pub": "npm version patch --force && npm publish"
+    "pub": "npm version patch --force && npm publish",
+    "minify": "echo build/**/*.js | xargs -n1 sh -c 'terser --output build/${1#build/} --compress --mangle -- $1' argv0",
+    "minify2": "bash -c \"for f in build/*.js; do terser $f --output $f --compress --mangle; done\""
   },
   "name": "react-with-native",
   "version": "1.4.9",

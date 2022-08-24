@@ -3,7 +3,7 @@ import { useTailwind } from "tailwind-rn";
 import { trimClassName } from "../../util/trimClassName";
 import { H2Type } from "./H2.type";
 
-const H2 = ({ native, children, className }: H2Type) => {
+export const H2 = ({ native, children, className }: H2Type) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
@@ -13,5 +13,3 @@ const H2 = ({ native, children, className }: H2Type) => {
     </Text>
   );
 };
-
-export default H2;

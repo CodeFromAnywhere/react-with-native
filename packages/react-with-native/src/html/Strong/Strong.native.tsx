@@ -4,7 +4,7 @@ import { useTailwind } from "tailwind-rn";
 import { trimClassName } from "../../util/trimClassName";
 import { StrongType } from "./Strong.type";
 
-const Strong = ({ native, children, className }: StrongType) => {
+export const Strong = ({ native, children, className }: StrongType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
@@ -17,5 +17,3 @@ const Strong = ({ native, children, className }: StrongType) => {
     </Text>
   );
 };
-
-export default Strong;

@@ -1,5 +1,4 @@
 /// <reference types="react" />
 import { IType } from "./I.type";
-declare const I: ({ native, ...props }: IType) => JSX.Element;
-export default I;
+export declare const I: ({ native, ...props }: IType) => JSX.Element;
 //# sourceMappingURL=I.d.ts.map

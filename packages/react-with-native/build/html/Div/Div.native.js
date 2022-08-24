@@ -45,6 +45,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Div = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var React = __importStar(require("react"));
 var react_native_1 = require("react-native");
@@ -59,6 +60,5 @@ var PureDiv = function (_a, ref) {
     var CorrectView = scroll ? react_native_1.ScrollView : react_native_1.View;
     return ((0, jsx_runtime_1.jsx)(CorrectView, __assign({ style: [tailwindStyle, style] }, nativeWithoutStyle, { ref: ref }, { children: (0, util_1.wrapInTextIfNeeded)(children, textClassName) })));
 };
-var Div = React.forwardRef(PureDiv);
-exports.default = Div;
+exports.Div = React.forwardRef(PureDiv);
 //# sourceMappingURL=Div.native.js.map

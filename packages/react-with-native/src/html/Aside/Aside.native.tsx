@@ -5,7 +5,12 @@ import { trimClassName } from "../../util/trimClassName";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { AsideType } from "./Aside.type";
 
-const Aside = ({ native, textClassName, className, children }: AsideType) => {
+export const Aside = ({
+  native,
+  textClassName,
+  className,
+  children,
+}: AsideType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
@@ -15,5 +20,3 @@ const Aside = ({ native, textClassName, className, children }: AsideType) => {
     </View>
   );
 };
-
-export default Aside;

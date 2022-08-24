@@ -53,7 +53,7 @@ export const ModalProvider = ({ children }: { children: any }) => {
   );
 };
 
-export default function Modal() {
+export function Modal() {
   const [inside, setInside] = useState(false);
   let { modalContent, title, handleModal, showModal } =
     useContext(ModalContext);

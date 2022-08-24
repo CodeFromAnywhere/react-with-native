@@ -1,8 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var Div_1 = __importDefault(require("../../html/Div/Div"));
-exports.default = Div_1.default;
+exports.View = void 0;
+var Div_1 = require("../../html/Div/Div");
+Object.defineProperty(exports, "View", { enumerable: true, get: function () { return Div_1.Div; } });
 //# sourceMappingURL=View.js.map

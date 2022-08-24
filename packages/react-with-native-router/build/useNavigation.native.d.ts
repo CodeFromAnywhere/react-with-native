@@ -1,3 +1,3 @@
 import { useNavigation } from "@react-navigation/native";
-export default useNavigation;
+export { useNavigation };
 //# sourceMappingURL=useNavigation.native.d.ts.map

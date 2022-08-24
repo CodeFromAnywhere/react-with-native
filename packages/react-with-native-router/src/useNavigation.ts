@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-function useNavigation() {
+export function useNavigation() {
   const router = useRouter();
 
   return {
@@ -23,4 +23,3 @@ function useNavigation() {
     },
   };
 }
-export default useNavigation;

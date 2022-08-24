@@ -15,5 +15,4 @@ const PureNav = (
   );
 };
 
-const Nav = React.forwardRef(PureNav);
-export default Nav;
+export const Nav = React.forwardRef(PureNav);

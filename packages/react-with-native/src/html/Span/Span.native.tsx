@@ -5,7 +5,12 @@ import { trimClassName } from "../../util/trimClassName";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { SpanType } from "./Span.type";
 
-const Span = ({ native, className, children, textClassName }: SpanType) => {
+export const Span = ({
+  native,
+  className,
+  children,
+  textClassName,
+}: SpanType) => {
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
   const tailwindStyle = className ? tailwind(trimClassName(className)) : {};
@@ -15,5 +20,3 @@ const Span = ({ native, className, children, textClassName }: SpanType) => {
     </View>
   );
 };
-
-export default Span;

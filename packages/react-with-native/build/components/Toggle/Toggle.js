@@ -22,10 +22,11 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Toggle = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var Toggle = function (_a) {
     var native = _a.native, onChange = _a.onChange, checked = _a.checked, props = __rest(_a, ["native", "onChange", "checked"]);
     return ((0, jsx_runtime_1.jsx)("input", __assign({ type: "checkbox", checked: checked, onChange: function (e) { return onChange(e.target.checked); } }, props)));
 };
-exports.default = Toggle;
+exports.Toggle = Toggle;
 //# sourceMappingURL=Toggle.js.map

@@ -22,11 +22,12 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ActivityIndicator = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_native_1 = require("react-native");
 var ActivityIndicator = function (_a) {
     var className = _a.className, props = __rest(_a, ["className"]);
     return (0, jsx_runtime_1.jsx)(react_native_1.ActivityIndicator, __assign({}, props, props.native));
 };
-exports.default = ActivityIndicator;
+exports.ActivityIndicator = ActivityIndicator;
 //# sourceMappingURL=ActivityIndicator.native.js.map

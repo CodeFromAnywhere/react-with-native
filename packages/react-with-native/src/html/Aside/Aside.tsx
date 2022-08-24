@@ -16,6 +16,4 @@ const PureAside = (
 };
 
 // this is needed if you want to pass refs to it sometimes
-const Aside = React.forwardRef(PureAside);
-
-export default Aside;
+export const Aside = React.forwardRef(PureAside);

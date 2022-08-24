@@ -4,7 +4,7 @@ import { useTailwind } from "tailwind-rn";
 import { TouchableOpacityType } from "./TouchableOpacity.type";
 import { wrapInTextIfNeeded } from "../../util/util";
 import { trimClassName } from "../../util/trimClassName";
-const TouchableOpacity = ({
+export const TouchableOpacity = ({
   native,
   className,
   textClassName,
@@ -24,5 +24,3 @@ const TouchableOpacity = ({
     </ReactNativeTouchableOpacity>
   );
 };
-
-export default TouchableOpacity;

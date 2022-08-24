@@ -1,0 +1,3 @@
+import { TsInterface } from "k-types";
+export declare const renderTsInterface: ({ rawText, extensions, type: { isArray, isEnum, isEnumLiteral, isObject, isPrimitive, rawType, typeCoverage, typeDefinition, }, isDbModel, defaultDbStorageMethod, name, slug, operationFolderName, relativePathFromProjectRoot, relativeFilePathFromSrc, operationName, commentsInside, description, }: TsInterface) => JSX.Element;
+//# sourceMappingURL=renderTsInterface.d.ts.map

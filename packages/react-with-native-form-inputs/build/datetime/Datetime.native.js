@@ -53,6 +53,5 @@ var DatetimeInput = function (_a) {
     return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(react_native_modal_datetime_picker_1.default, { isVisible: isDatePickerVisible, mode: "datetime", onConfirm: handleConfirm, onCancel: hideDatePicker }), (0, jsx_runtime_1.jsx)(react_native_1.Text, { children: date && date.toDateString() + " " + date.toLocaleTimeString() }), (0, jsx_runtime_1.jsx)(react_native_1.Button, { title: "Pick a different Date", onPress: showDatePicker })] }));
 };
 exports.DatetimeInput = DatetimeInput;
-DatetimeInput.defaultInitialValue = new Date();
-exports.default = DatetimeInput;
+exports.DatetimeInput.defaultInitialValue = new Date();
 //# sourceMappingURL=Datetime.native.js.map

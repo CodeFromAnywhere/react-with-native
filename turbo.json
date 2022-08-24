@@ -2,14 +2,10 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["build/**", ".next/**", "css.css"]
+      "outputs": ["build/**", ".next/**"]
     },
     "lint": {
       "outputs": []
-    },
-    "dev:tw": {
-      "cache": false,
-      "outputs": ["css.css"]
     },
     "dev": {
       "cache": false

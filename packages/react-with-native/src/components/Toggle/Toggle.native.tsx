@@ -2,7 +2,7 @@ import * as React from "react";
 import { Switch } from "react-native";
 import { ToggleType } from "./Toggle.type";
 
-const Toggle = ({ native, checked, onChange }: ToggleType) => {
+export const Toggle = ({ native, checked, onChange }: ToggleType) => {
   return (
     <Switch
       value={checked}
@@ -11,5 +11,3 @@ const Toggle = ({ native, checked, onChange }: ToggleType) => {
     />
   );
 };
-
-export default Toggle;

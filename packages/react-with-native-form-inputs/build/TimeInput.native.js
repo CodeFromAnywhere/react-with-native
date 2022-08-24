@@ -1,0 +1,4 @@
+"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.TimeInput=void 0;var jsx_runtime_1=require("react/jsx-runtime"),datetimepicker_1=__importDefault(require("@react-native-community/datetimepicker")),TimeInput=function(e){var t=e.value,i=e.onChange;return(0,jsx_runtime_1.jsx)(datetimepicker_1.default,{mode:"time",value:t||new Date,onChange:function(e,t){return i(t)}})};
+//todo
+exports.TimeInput=TimeInput,exports.TimeInput.defaultInitialValue=new Date;
+//# sourceMappingURL=TimeInput.native.js.map

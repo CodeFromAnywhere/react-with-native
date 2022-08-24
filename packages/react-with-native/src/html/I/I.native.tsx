@@ -4,7 +4,7 @@ import { useTailwind } from "tailwind-rn";
 import { trimClassName } from "../../util/trimClassName";
 import { IType } from "./I.type";
 
-const I = (props: IType) => {
+export const I = (props: IType) => {
   const { native, className, children } = props;
   const tailwind = useTailwind();
   const { style, ...nativeWithoutStyle } = native || {};
@@ -18,5 +18,3 @@ const I = (props: IType) => {
     </Text>
   );
 };
-
-export default I;

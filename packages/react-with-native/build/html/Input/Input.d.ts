@@ -1,5 +1,4 @@
 /// <reference types="react" />
 import { InputType } from "./Input.type";
-declare const Input: ({ native, ...props }: InputType) => JSX.Element;
-export default Input;
+export declare const Input: ({ native, ...props }: InputType) => JSX.Element;
 //# sourceMappingURL=Input.d.ts.map

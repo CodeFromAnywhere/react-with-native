@@ -1,3 +1,3 @@
 import { useRouter } from "next/router";
-export default useRouter;
+export { useRouter };
 //# sourceMappingURL=useRouter.d.ts.map

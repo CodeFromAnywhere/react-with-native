@@ -1,5 +1,4 @@
 /// <reference types="react" />
 import { LiType } from "./Li.type";
-declare const Li: ({ native, children, textClassName, className }: LiType) => JSX.Element;
-export default Li;
+export declare const Li: ({ native, children, textClassName, className }: LiType) => JSX.Element;
 //# sourceMappingURL=Li.native.d.ts.map

@@ -12,6 +12,6 @@ export declare const useModal: () => ModalType;
 export declare const ModalProvider: ({ children }: {
     children: any;
 }) => JSX.Element;
-export default function Modal(): JSX.Element | null;
+export declare function Modal(): JSX.Element | null;
 export {};
 //# sourceMappingURL=Modal.d.ts.map
