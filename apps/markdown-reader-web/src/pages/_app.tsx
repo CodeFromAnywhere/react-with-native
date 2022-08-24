@@ -48,6 +48,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/default.min.css"
         />
       </Head>
+      {/* @ts-ignore */}
       <Component {...pageProps} />
     </QueryClientProvider>
   );
