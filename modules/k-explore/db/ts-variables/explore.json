@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259118132,
+  "updatedAt": 1666259118132,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259118132,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "explore",
+  "slug": "explore",
+  "operationRelativeTypescriptFilePath": "src/explore.ts",
+  "type": {
+    "rawType": "({ basePath, searchLevel, debug, ...other }: import(\"/Users/king/King/operations/tools/control-project/k-explore/src/explore\").SearchConfig) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TextJson\").TextJson[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async ({\n  basePath,\n  searchLevel = \"fileName\",\n  debug,\n  ...other\n}: SearchConfig): Promise<TextJson[]> => {\n  /** accessability depends on whether we need to be able to read the file, or just see it */\n  const canAccess = async (p: string) =>\n    await (searchLevel === \"outline\" || searchLevel === \"full\"\n      ? canRead\n      : canSee)(p);\n\n  /** basepaths becomes an array of only the basepaths that we can access */\n  const accessibleBasePaths = makeArray(basePath || getProjectRoot())\n    .filter(fs.existsSync)\n    .filter(canAccess);\n\n  if (debug) console.log(`finding files in ${accessibleBasePaths.join(\",\")}`);\n\n  const textJsonPromises = accessibleBasePaths.map(async (p) =>\n    findFilesRecursively({ basePath: p, searchLevel, debug, ...other })\n  );\n\n  const textJsons = (await Promise.all(textJsonPromises)).flat();\n\n  return textJsons;\n}",
+  "description": "this is the safe and friendly version of findFilesRecursively: it",
+  "id": "ezkoopfpnctogmsvmylxbcgs"
+}

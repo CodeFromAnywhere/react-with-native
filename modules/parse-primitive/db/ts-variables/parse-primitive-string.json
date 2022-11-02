@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262975218,
+  "updatedAt": 1666262975218,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262975218,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "parsePrimitiveString",
+  "slug": "parse-primitive-string",
+  "operationRelativeTypescriptFilePath": "src/parsePrimitive.ts",
+  "type": {
+    "rawType": "(string: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(string: string) => {\n  if (string.startsWith('\"') && string.endsWith('\"')) {\n    return string.substring(1, string.length - 1);\n  }\n  if (string.charAt(0) === \" \") return string.slice(1);\n  return string;\n}",
+  "description": "",
+  "id": "tpaaodkrlxihsylvlvxgfyfd"
+}

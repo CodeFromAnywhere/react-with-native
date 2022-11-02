@@ -1,0 +1,196 @@
+{
+  "createdAt": 1666262974891,
+  "updatedAt": 1666262974891,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262974891,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/parsePrimitive.ts",
+  "commentsInside": [],
+  "rawText": " (\n  string: string,\n  simplifiedSchema?: SimplifiedSchema\n): PrimitiveResult => {\n  if (simplifiedSchema) {\n    if (simplifiedSchema.type === \"boolean\") {\n      const parsedBoolean = parsePrimitiveBoolean(string);\n      return parsedBoolean || false;\n    }\n\n    if (simplifiedSchema.type === \"null\") {\n      return null;\n    }\n    if (simplifiedSchema.type === \"number\") {\n      return !isNaN(Number(string)) ? Number(string) : undefined;\n    }\n\n    if (simplifiedSchema.type === \"string\") {\n      return parsePrimitiveString(string);\n    }\n\n    if (simplifiedSchema.type === \"array\") {\n      return parsePrimitiveArray(string);\n    }\n  }\n\n  // NB: failsafes\n  if (string === undefined) return undefined;\n  if (string === null) return null;\n\n  const parsedBoolean = parsePrimitiveBoolean(string);\n  if (parsedBoolean !== undefined) return parsedBoolean;\n\n  if (string === \"true\") return true;\n  if (string === \"false\") return false;\n  if (string === \"null\") return null;\n  if (string === \"undefined\") return undefined;\n  // NB: an empty string will count as 0 in the next statement\n  if (string === \"\") return \"\";\n  if (!isNaN(Number(string))) return Number(string);\n  return parsePrimitiveString(string);\n}",
+  "name": "parsePrimitive",
+  "slug": "parse-primitive",
+  "parameters": [
+    {
+      "name": "string",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "simplifiedSchema",
+      "schema": {
+        "$ref": "#/definitions/SimplifiedSchema"
+      },
+      "simplifiedSchema": {
+        "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+        "properties": [
+          {
+            "name": "todo",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "discussion",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idea",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "later",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nb",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "title",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "section",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "circularRefName",
+            "required": false,
+            "schema": {
+              "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+              "type": "string"
+            }
+          },
+          {
+            "name": "enum",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "properties",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of object, this will always appear",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "items",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of arrays, this will always appear",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "fullComment",
+            "required": false,
+            "schema": {
+              "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+              "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "parses a string into the value it should be\n\nif you provide a `simplifiedSchema`, that will be used to parse according to the shape of the schema",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/parsing/parse-primitive/src/parsePrimitive\").PrimitiveResult",
+    "typeDefinition": {
+      "optional": true,
+      "enum": [
+        "ul",
+        "trin",
+        "umbe",
+        "als",
+        "ru",
+        "tring["
+      ],
+      "x-enumNames": [
+        "ul",
+        "trin",
+        "umbe",
+        "als",
+        "ru",
+        "tring["
+      ],
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "enum": [
+        "ul",
+        "trin",
+        "umbe",
+        "als",
+        "ru",
+        "tring["
+      ],
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1353,
+    "lines": 44,
+    "bytes": 1353,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 44,
+    "numberOfFiles": 1
+  },
+  "id": "dnrtilvnnllgbshlzydrdjmm"
+}

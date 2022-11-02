@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512743959,
+  "updatedAt": 1666512743959,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512743959,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDbStorageMethodExtension",
+  "slug": "get-db-storage-method-extension",
+  "operationRelativeTypescriptFilePath": "src/convention/getDbStorageMethodExtension.ts",
+  "type": {
+    "rawType": "(dbStorageMethod: any) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  dbStorageMethod: DbStorageMethod\n): string => {\n  if (dbStorageMethod === \"csv\") return \".csv\";\n  if (dbStorageMethod === \"jsonMultiple\") return \".json\";\n  if (dbStorageMethod === \"jsonSingle\") return \".json\";\n  if (dbStorageMethod === \"keyValueMarkdown\") return \".md\";\n  return \".md\";\n}",
+  "description": "",
+  "id": "adjwiybvigezpwmuvegrocty"
+}

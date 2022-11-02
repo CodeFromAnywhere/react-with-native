@@ -1,0 +1,63 @@
+{
+  "createdAt": 1666259069868,
+  "updatedAt": 1666259069868,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259069868,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getRelativePath.ts",
+  "commentsInside": [],
+  "rawText": " (\n  absolutePath: string,\n  relativeFrom: \"project-root\"\n) => {\n  const rootPath =\n    relativeFrom === \"project-root\" ? getRootPath() : getRootPath();\n\n  if (!rootPath) return;\n\n  const relativePath = absolutePath.replace(rootPath, \"\");\n\n  return relativePath;\n}",
+  "name": "getRelativePath",
+  "slug": "get-relative-path",
+  "parameters": [
+    {
+      "name": "absolutePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "relativeFrom",
+      "schema": {
+        "type": "string",
+        "const": "project-root"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "gets the relative path from a specified root\n\nwill start with \"/\"",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 329,
+    "lines": 15,
+    "bytes": 329,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "defyuvcdzphvsiejjuscaynd"
+}

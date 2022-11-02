@@ -1,0 +1,88 @@
+{
+  "createdAt": 1667111119975,
+  "updatedAt": 1667111119975,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111119975,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getReferencedAssetApiUrl.ts",
+  "commentsInside": [],
+  "rawText": " (\n  apiUrl: string,\n  projectRelativeReferencingFilePath: string,\n  referencingFileRelativeAssetPath: string,\n  /**\n   * If true, asset will be returned as download\n   */\n  isDownload?: boolean\n) => {\n  return getGetApiUrl(apiUrl, \"getReferencedAssetGetApi\", {\n    projectRelativeReferencingFilePath,\n    referencingFileRelativeAssetPath,\n    isDownload: isDownload ? \"1\" : undefined,\n  });\n}",
+  "name": "getReferencedAssetApiUrl",
+  "slug": "get-referenced-asset-api-url",
+  "parameters": [
+    {
+      "name": "apiUrl",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "projectRelativeReferencingFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "referencingFileRelativeAssetPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "isDownload",
+      "schema": {
+        "type": "boolean",
+        "description": "If true, asset will be returned as download"
+      },
+      "simplifiedSchema": {
+        "fullComment": "If true, asset will be returned as download",
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 393,
+    "lines": 15,
+    "bytes": 393,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "efonhijwuityagbakecrmchf"
+}

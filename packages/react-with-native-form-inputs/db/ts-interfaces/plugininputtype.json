@@ -1,0 +1,85 @@
+{
+  "createdAt": 1666261457201,
+  "updatedAt": 1666261457201,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261457201,
+  "id": "plugininputtype",
+  "name": "PluginInputType",
+  "slug": "plugininputtype",
+  "operationRelativeTypescriptFilePath": "src/map/types.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "description": "universal configuration options of the input"
+        },
+        "value": {
+          "description": "type of the value of the input"
+        },
+        "extra": {
+          "description": "extra possible field specific settings of the input"
+        },
+        "component": {}
+      },
+      "required": [
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": false,
+          "schema": {
+            "fullComment": "universal configuration options of the input",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "value",
+          "required": true,
+          "schema": {
+            "fullComment": "type of the value of the input",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "extra",
+          "required": false,
+          "schema": {
+            "fullComment": "extra possible field specific settings of the input",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "component",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "PluginInputType",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

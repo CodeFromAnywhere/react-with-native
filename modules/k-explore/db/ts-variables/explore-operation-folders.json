@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259121348,
+  "updatedAt": 1666259121348,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259121348,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "exploreOperationFolders",
+  "slug": "explore-operation-folders",
+  "operationRelativeTypescriptFilePath": "src/exploreOperationFolders.ts",
+  "type": {
+    "rawType": "(config: import(\"/Users/king/King/operations/tools/control-project/k-explore/src/explore\").BaseConfig) => Promise<string[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  config: BaseConfig\n): Promise<string[]> => {\n  const folders = (\n    await findAllPackages({\n      basePath: config?.basePath,\n    })\n  )\n    .map((x) => x.path)\n    .map((p) => getFolder(p))\n    .filter((p) => {\n      const alsoTsConfig = fs.existsSync(path.join(p, \"tsconfig.json\"));\n      return alsoTsConfig;\n    });\n\n  return folders;\n}",
+  "description": "find all active operations (folders having `package.json` but also `tsconfig.json`)\n\nreturns folder path array",
+  "id": "gnybhcskpgewtmdsurjylnvq"
+}

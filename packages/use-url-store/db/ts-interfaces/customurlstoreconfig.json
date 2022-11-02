@@ -1,0 +1,81 @@
+{
+  "createdAt": 1666262064331,
+  "updatedAt": 1666262064331,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262064331,
+  "id": "customurlstoreconfig",
+  "name": "CustomUrlStoreConfig",
+  "slug": "customurlstoreconfig",
+  "operationRelativeTypescriptFilePath": "src/use-url-store.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type CustomUrlStoreConfig = {\n  type: \"string\" | \"number\" | \"boolean\";\n  isArray?: boolean;\n  allowUndefined?: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "boolean"
+          ]
+        },
+        "isArray": {
+          "type": "boolean"
+        },
+        "allowUndefined": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "string",
+              "number",
+              "boolean"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "isArray",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "allowUndefined",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CustomUrlStoreConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

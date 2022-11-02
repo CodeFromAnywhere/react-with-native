@@ -1,0 +1,71 @@
+{
+  "createdAt": 1667111124110,
+  "updatedAt": 1667111124110,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111124110,
+  "id": "namedparameterstypeof-ensuretoken",
+  "name": "NamedParameters<typeof ensureToken>",
+  "slug": "namedparameterstypeof-ensuretoken",
+  "operationRelativeTypescriptFilePath": "src/token/ensureToken.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "newToken": {
+          "type": "string",
+          "description": "if given, is used for generating new token\n\nif already present, token is used from the name instead of this one"
+        },
+        "attachTokenToFilename": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "newToken",
+          "required": false,
+          "schema": {
+            "fullComment": "if given, is used for generating new token\n\nif already present, token is used from the name instead of this one",
+            "type": "string"
+          }
+        },
+        {
+          "name": "attachTokenToFilename",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof ensureToken>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

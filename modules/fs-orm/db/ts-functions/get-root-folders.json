@@ -1,0 +1,104 @@
+{
+  "createdAt": 1666512739301,
+  "updatedAt": 1666512739301,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512739301,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/convention/getDatabaseFiles.ts",
+  "commentsInside": [],
+  "rawText": " async (config: {\n  manualProjectRoot?: string;\n  projectRoot: string;\n  mergedConfig: MergedQueryConfig;\n  operationPath: string | false;\n}): Promise<RootDbFolder[]> => {\n  const { mergedConfig, operationPath, projectRoot, manualProjectRoot } =\n    config;\n\n  const shouldSearchOperations = mergedConfig.operationName !== null;\n  const shouldSearchProject = !mergedConfig.operationName;\n\n  // NB: for this we need to be sure that sdk-operations is up-to-date!\n  const realProjectRelativeOperationPathsObject: {\n    [operationName: string]: string;\n  } = manualProjectRoot\n    ? await calculateOperationsObject(manualProjectRoot)\n    : operations;\n\n  const operationFolders: RootDbFolder[] = shouldSearchOperations\n    ? mergedConfig.operationName && operationPath // NB: specific operation\n      ? [\n          {\n            basePath: operationPath,\n            operationName: mergedConfig.operationName,\n          },\n        ]\n      : Object.keys(realProjectRelativeOperationPathsObject).map(\n          (operationName) => {\n            const operationBasePath = path.join(\n              projectRoot,\n              realProjectRelativeOperationPathsObject[operationName]\n            );\n\n            return {\n              basePath: operationBasePath,\n              operationName,\n            };\n          }\n        )\n    : [];\n\n  const projectFolder: RootDbFolder | undefined = shouldSearchProject\n    ? { operationName: null, basePath: projectRoot }\n    : undefined;\n\n  const rootFolders: RootDbFolder[] = [\n    projectFolder,\n    ...operationFolders,\n  ].filter(notEmpty);\n\n  return rootFolders;\n}",
+  "name": "getRootFolders",
+  "slug": "get-root-folders",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "manualProjectRoot": {
+            "type": "string"
+          },
+          "projectRoot": {
+            "type": "string"
+          },
+          "mergedConfig": {
+            "$ref": "#/definitions/MergedQueryConfig"
+          },
+          "operationPath": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean",
+                "const": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "projectRoot",
+          "mergedConfig",
+          "operationPath"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "manualProjectRoot",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectRoot",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationPath",
+            "required": true,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").RootDbFolder[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 1598,
+    "lines": 53,
+    "bytes": 1598,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 53,
+    "numberOfFiles": 1
+  },
+  "id": "cfvgtrralrizhguuuffecprw"
+}

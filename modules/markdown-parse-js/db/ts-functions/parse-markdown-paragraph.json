@@ -1,0 +1,255 @@
+{
+  "createdAt": 1667379668548,
+  "updatedAt": 1667379668548,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379668548,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/parseMarkdownParagraph.ts",
+  "commentsInside": [],
+  "rawText": " (\n  paragraph: string\n): MarkdownParagraphChunk[] => {\n  return [];\n}",
+  "name": "parseMarkdownParagraph",
+  "slug": "parse-markdown-paragraph",
+  "parameters": [
+    {
+      "name": "paragraph",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Parse markdown paragraph\n\nShould split it up for every thing it encounters...",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parse-js/src/MarkdownParagraphChunk\").MarkdownParagraphChunk[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "isNewline": {
+            "type": "boolean"
+          },
+          "codeblock": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              },
+              "code": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              }
+            }
+          },
+          "text": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "isBolded": {
+            "type": "boolean"
+          },
+          "isItalic": {
+            "type": "boolean"
+          },
+          "isBackticked": {
+            "type": "boolean"
+          },
+          "reference": {
+            "type": "object",
+            "properties": {
+              "alt": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              },
+              "path": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              },
+              "isAsset": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "path"
+            ]
+          }
+        }
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [
+              {
+                "name": "isNewline",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "codeblock",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "type",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "code",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "text",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "isBolded",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "isItalic",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "isBackticked",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "reference",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "alt",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isAsset",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 147,
+    "lines": 7,
+    "bytes": 147,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "pynbqtnyatarinhbqduhgjzz"
+}

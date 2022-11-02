@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1666258870313,
+    "updatedAt": 1666258870313,
+    "deletedAt": 0,
+    "createdFirstAt": 1666258870313,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/writeToAssets.ts",
+    "comment": "Writes anything (string or json) the assets folder of the operation of the caller function of this function\n\nUseful for testing",
+    "rawStatement": "export const writeToAssets = async (\n  /**\n   * Insert `__filename` here or the typescript file path\n   */\n  filePath: string,\n  /**\n   * The data you want to write to a file, can also be a promise\n   */\n  data: any,\n  assetsFileName?: string\n) => {\n  // NB: it may be a promise, so first await it\n  const realData = await data;\n\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) return;\n\n  const extension = typeof realData === \"string\" ? \".md\" : \".json\";\n\n  const realAssetsFileName =\n    assetsFileName || `${path.parse(filePath).name}${extension}`;\n  const assetsFilePath = path.join(\n    operationBasePath,\n    \"assets\",\n    realAssetsFileName\n  );\n\n  console.log({ assetsFilePath });\n\n  if (typeof data === \"string\") {\n    return writeStringToFile(assetsFilePath, realData);\n  }\n\n  return writeJsonToFile(assetsFilePath, realData);\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 4,
+    "lastLine": 8,
+    "id": "krejnbhmqaixgffmicdwxvkn"
+  }
+]

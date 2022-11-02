@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666260924265,
+  "updatedAt": 1666260924265,
+  "deletedAt": 0,
+  "createdFirstAt": 1666260924265,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/parseIfJson.ts",
+  "commentsInside": [],
+  "rawText": " (string: string) => {\n  try {\n    return JSON.parse(string);\n  } catch (e) {\n    return string;\n  }\n}",
+  "name": "parseIfJson",
+  "slug": "parse-if-json",
+  "parameters": [
+    {
+      "name": "string",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "if it's a string with a parsable JSON inside, parse it and return the object/array",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 184,
+    "lines": 7,
+    "bytes": 184,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "uiuqbelqbrqshidepwwirlyc"
+}

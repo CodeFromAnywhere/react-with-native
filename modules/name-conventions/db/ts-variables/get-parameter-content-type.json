@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259791515,
+  "updatedAt": 1666259791515,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259791515,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getParameterContentType",
+  "slug": "get-parameter-content-type",
+  "operationRelativeTypescriptFilePath": "src/name-conventions.ts",
+  "type": {
+    "rawType": "(parameterName: string) => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(parameterName: string) => {\n  // todo: Match parameterName against all patterns in the ParameterName array until it finds one that matches\n  // 1) replace all patternmatch words with the %x\n  // 2) whatever's left, make sure to distinguish the descriptor from the type indicator (e.g. authorName indicates a nametype which is a string, while the descriptor is an author)\n  // 3) return some object that describes all the different parts individually and with that the whole name together. It can then be used in the admin UI to explain any type interface\n}",
+  "description": "",
+  "id": "evxkyaouovjzaahwbqgnbejv"
+}

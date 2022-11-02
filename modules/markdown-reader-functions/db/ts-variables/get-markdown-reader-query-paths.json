@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262311608,
+  "updatedAt": 1666262311608,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262311608,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getMarkdownReaderQueryPaths",
+  "slug": "get-markdown-reader-query-paths",
+  "operationRelativeTypescriptFilePath": "src/getMarkdownReaderQueryPaths.ts",
+  "type": {
+    "rawType": "(config?: { manualProjectRoot?: string | undefined; } | undefined) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config?: {\n  manualProjectRoot?: string;\n}) => {\n  const pages = await getAllMarkdownReaderPages(config);\n  // NB: this is kind of a hack, but it's way harder to add it into the pages I guess, so it's easier like this.\n  const queryPaths = pages?.map((x) => x.queryPath);\n\n  const queryPaths2 = pages\n    ?.map((x) => x.queryPath)\n    .map((queryPath) => getAllFoldersUntilFolder(queryPath))\n    .flat()\n    .filter(onlyUnique2())\n    .filter((x) => x !== \"/\")\n    .map((x) => trimSlashes(x));\n\n  // console.log({ queryPaths2 });\n  return queryPaths2;\n}",
+  "description": "",
+  "id": "qkdkpfxvvwpniqxuhjsvmqia"
+}

@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666259117417,
+  "updatedAt": 1666259117417,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259117417,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/explore.ts",
+  "commentsInside": [],
+  "rawText": " async (filePath: string) => {\n  // console.log(\"Get contents\", filePath);\n  const extension = getExtension(filePath);\n  if (!isSearchContentExtension(extension)) {\n    return;\n  }\n\n  if (extension === \"json\") {\n    return readJsonFile<any>(filePath);\n  } else if (markdownExtensions.includes(extension)) {\n    const contents = await fs.readFile(filePath, \"utf8\");\n    const markdownParse = mdToJsonParse(contents);\n    return markdownParse;\n  } else {\n    const fileString = fs.readFile(filePath, \"utf8\");\n    return fileString;\n  }\n}",
+  "name": "getContents",
+  "slug": "get-contents",
+  "parameters": [],
+  "description": "gets needed contents of file path, based on the extension\n\nreturns a markdownparse if it's markdown, a json parse for json, or a file content string for anything else",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 701,
+    "lines": 20,
+    "bytes": 701,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 35,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "myehjkdvnhewjrwvzjresxbi"
+}

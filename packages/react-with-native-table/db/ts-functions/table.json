@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666261633062,
+  "updatedAt": 1666261633062,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261633062,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/Table.tsx",
+  "commentsInside": [],
+  "rawText": " <TModel extends { [key: string]: any }>({\n  data,\n  columns,\n  renderExtraColumns,\n  extraColumnsAtStart,\n  onEndReached,\n  shouldHighlightItem,\n}: TableType<TModel>) => {\n  const endOfTableDiv = useRef<HTMLDivElement>(null);\n  const isEndReached = useIsInViewport(endOfTableDiv);\n  useEffect(() => {\n    console.log(\"END REACHED\");\n    onEndReached?.();\n  }, [isEndReached]);\n  return (\n    <Div className=\"px-4 sm:px-6 lg:px-8\">\n      <Div className=\"mt-8 flex flex-col\">\n        <Div className=\"-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8\">\n          <Div className=\"inline-block min-w-full py-2 align-middle md:px-6 lg:px-8\">\n            <table className=\"min-w-full divide-y divide-gray-300\">\n              <thead>\n                <tr>\n                  {extraColumnsAtStart ? (\n                    <TableHeadItem name=\"\" objectParameterKey={\"\"} />\n                  ) : null}\n                  {columns.map((column, index) => (\n                    // NB: here we are destructuring column to provide all the props to a component\n                    <TableHeadItem {...column} />\n                  ))}\n                  {renderExtraColumns && !extraColumnsAtStart ? (\n                    <TableHeadItem objectParameterKey={\"\"} name=\"\" />\n                  ) : null}\n                </tr>\n              </thead>\n              <tbody className=\"divide-y divide-gray-200\">\n                {data\n                  ? // If data is undefined, we have to render the skelletonview\n                    data.map((item, index) => {\n                      const shouldHighlight = shouldHighlightItem?.(item);\n                      return (\n                        <TableRow\n                          shouldHighlight={shouldHighlight}\n                          key={`row${index}`}\n                          row={item}\n                          columns={columns}\n                          renderExtraColumns={renderExtraColumns}\n                          extraColumnsAtStart={extraColumnsAtStart}\n                        />\n                      );\n                    })\n                  : // Without data we are assuming it's still loading and show 10 skelletons, which are simply TableRow's without any data\n                    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((_, index) => (\n                      <TableRow\n                        key={`skeleton${index}`}\n                        row={undefined}\n                        columns={columns}\n                      />\n                    ))}\n              </tbody>\n            </table>\n            <div ref={endOfTableDiv}>&nbsp;</div>\n          </Div>\n        </Div>\n      </Div>\n    </Div>\n  );\n}",
+  "name": "Table",
+  "slug": "table",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 13,
+  "size": {
+    "characters": 2643,
+    "lines": 67,
+    "bytes": 2643,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 39,
+    "linesPerFile": 67,
+    "numberOfFiles": 1
+  },
+  "id": "jluabwlcbgztnubudegrczxq"
+}

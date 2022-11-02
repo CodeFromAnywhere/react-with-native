@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262318822,
+  "updatedAt": 1666262318822,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262318822,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "markdownReaderGetStaticProps",
+  "slug": "markdown-reader-get-static-props",
+  "operationRelativeTypescriptFilePath": "src/markdownReaderGetStaticProps.ts",
+  "type": {
+    "rawType": "(context: import(\"/Users/king/King/operations/node_modules/next/types/index\").GetStaticPropsContext<import(\"querystring\").ParsedUrlQuery, import(\"/Users/king/King/operations/node_modules/next/types/index\").PreviewData>) => Promise<{ props: import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPageProps\").MarkdownReaderPageProps; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  context: GetStaticPropsContext\n): Promise<{\n  props: MarkdownReaderPageProps;\n}> => {\n  const pages = (await getAllMarkdownReaderPages()) || [];\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { props: { pages } };\n  }\n\n  const queryPath = getQueryPath(context.params);\n\n  // console.log(\"get static props\", queryPath);\n\n  // definitions/statements/functions/interfaces/operations\n\n  const queryPathsArray = pages\n    .filter((x) => x.isMenuItem)\n    .map((x) => x.queryPath);\n\n  const nestedPathObject = queryPathsArrayToNestedPathObject(queryPathsArray);\n\n  // NB: finds a page with actual content\n  const contentPage = pages.find((x) => x.queryPath === queryPath);\n\n  if (!contentPage) {\n    // NB: we need to render an exploration page\n    const { children, title, description } = await getFolderExplorationInfo(\n      nestedPathObject,\n      queryPath,\n      projectRoot\n    );\n    return { props: { pages, children, title, description } };\n  }\n\n  // NB: There's a content page. We need to return it (`MarkdownFile`), including its previous, next pages, and a title\n\n  const {\n    markdownFile,\n    nextQueryPath,\n    previousQueryPath,\n    projectRelativeMarkdownPath,\n  } = await getMarkdownPageInfo(\n    projectRoot,\n    nestedPathObject,\n    queryPath,\n    contentPage\n  );\n\n  const augmentedWordObject = await getAugmentedWordObject(projectRoot);\n\n  return {\n    // Passed to the page component as props\n    props: {\n      pages,\n      markdownFile,\n      nextQueryPath,\n      previousQueryPath,\n      augmentedWordObject,\n      projectRelativeMarkdownPath,\n    },\n  };\n}",
+  "description": "Fix `operationBasePath not working` error when building: log `getStaticProps`/`getStaticPaths`",
+  "id": "sguouwdtamdcihsorgoygfeh"
+}

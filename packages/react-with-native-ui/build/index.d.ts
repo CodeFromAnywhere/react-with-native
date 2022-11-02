@@ -1,5 +1,2 @@
-import { bareInputClass } from "./general";
-import { inputClass } from "./general";
-import { UI } from "./general";
-export { bareInputClass, inputClass, UI };
+export * from "./general";
 //# sourceMappingURL=index.d.ts.map

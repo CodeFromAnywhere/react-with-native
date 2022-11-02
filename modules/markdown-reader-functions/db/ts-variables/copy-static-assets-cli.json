@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262292373,
+  "updatedAt": 1666262292373,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262292373,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "copyStaticAssetsCli",
+  "slug": "copy-static-assets-cli",
+  "operationRelativeTypescriptFilePath": "src/cli/copyStaticAssets.cli.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const markdownReaderPages = await getAllMarkdownReaderPages();\n\n  if (!markdownReaderPages) return;\n  const isSuccessful = await copyStaticAssets(markdownReaderPages);\n\n  console.log({ isSuccessful });\n}",
+  "description": "",
+  "id": "moibzlethvtqrjxzikhpuxts"
+}

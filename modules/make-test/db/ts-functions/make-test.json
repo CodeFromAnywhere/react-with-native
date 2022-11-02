@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666264430102,
+  "updatedAt": 1666264430102,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264430102,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " <TResult>(\n  /**\n   * callback that calls the function to test with a certain input\n   */\n  testFunction: (() => Promise<TResult>) | (() => TResult),\n  /** If not given, assumes it passes if it returns the type interface it says it returns (and it doesn't crash) */\n  isValid?: (result: TResult) => boolean\n) => {\n  // NB: don't execute the test immideately, so we return a callback that actually tests\n  return async () => {\n    // try because funning the test may crash the app if the function doesn't work properly\n    try {\n      // TODO: what's the difference between TResult and Awaited<TResult>?\n      const result: TResult = await testFunction();\n\n      /**\n       * TODO:\n       */\n      const shouldBeInterface = {};\n\n      const correctInterface = isResultOfInterface(result, shouldBeInterface);\n      const isResultValid = isValid\n        ? correctInterface && isValid(result)\n        : correctInterface;\n\n      if (!isResultValid) {\n        console.dir(\n          {\n            response: `❌ TEST FAILED`,\n            test: testFunction.toString(),\n            result,\n          },\n          { depth: 999 }\n        );\n      } //\n\n      return isResultValid;\n    } catch (error) {\n      // TODO: check if toString here returns the right thing (a string representation of the function to test). otherwise, find a different solution.\n      console.log(`❌ TEST FAILED: ${testFunction.toString()}`, error);\n      return false;\n    }\n  };\n}",
+  "name": "makeTest",
+  "slug": "make-test",
+  "parameters": [],
+  "description": "create a test that is testable with `runAllTests`...",
+  "returnType": {
+    "rawType": "() => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 1499,
+    "lines": 44,
+    "bytes": 1503,
+    "bytesPerCharacter": 1.0026684456304202,
+    "charactersPerLine": 34,
+    "linesPerFile": 44,
+    "numberOfFiles": 1
+  },
+  "id": "ywhmswjczsfjkwrtqikpnryq"
+}

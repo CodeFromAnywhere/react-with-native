@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666261338907,
+  "updatedAt": 1666261338907,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261338907,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "AlertProvider",
+  "slug": "alert-provider",
+  "operationRelativeTypescriptFilePath": "src/AlertProvider.tsx",
+  "type": {
+    "rawType": "({ children }: { children: any; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "({ children }: { children: any }) => {\n  // console.log(\"normal alertprovider\");\n  const [alertState, setAlertState] = useState<AlertState[]>([]);\n\n  const firstAlert: AlertState | undefined = alertState[0];\n\n  // console.log({ firstAlert, alertState });\n  const alert: AlertStatic[\"alert\"] = (title, message, buttons, options) => {\n    const newState = { title, message, buttons, options };\n    const newAlertState = alertState.concat([newState]);\n\n    // console.log(\"push alert state\", { newState, alertState, newAlertState });\n    setAlertState(newAlertState);\n  };\n\n  const renderAlert = (firstAlert: AlertState | undefined) => {\n    if (!firstAlert) {\n      // console.log(\"HMMMM\");\n      return null;\n    }\n\n    // console.log(\"Should render alert\");\n\n    const { title, buttons, message, options } = firstAlert;\n\n    const value = undefined; //TODO: make it possible to fill in value here (prompt-alert)\n\n    return (\n      <div className=\"absolute w-screen h-screen inset-0\">\n        <Transition appear show={true} as={Fragment}>\n          <HeadlessUiDialog\n            as=\"div\"\n            className=\"fixed inset-0 z-50 overflow-y-auto backdrop-blur-sm\"\n            onClose={() => {\n              if (options?.cancelable === false) return;\n\n              options?.onDismiss?.();\n\n              setAlertState(alertState.slice(1));\n            }}\n          >\n            <div className=\"min-h-screen px-4 text-center\">\n              <Transition.Child\n                as={Fragment}\n                enter=\"ease-out duration-300\"\n                enterFrom=\"opacity-0\"\n                enterTo=\"opacity-100\"\n                leave=\"ease-in duration-200\"\n                leaveFrom=\"opacity-100\"\n                leaveTo=\"opacity-0\"\n              >\n                <HeadlessUiDialog.Overlay className=\"fixed inset-0\" />\n              </Transition.Child>\n\n              {/* This element is to trick the browser into centering the modal contents. */}\n              <span\n                className=\"inline-block h-screen align-middle\"\n                aria-hidden=\"true\"\n              >\n                &#8203;\n              </span>\n              <Transition.Child\n                as={Fragment}\n                enter=\"ease-out duration-300\"\n                enterFrom=\"opacity-0 scale-95\"\n                enterTo=\"opacity-100 scale-100\"\n                leave=\"ease-in duration-200\"\n                leaveFrom=\"opacity-100 scale-100\"\n                leaveTo=\"opacity-0 scale-95\"\n              >\n                <Div\n                  className={\n                    \"inline-block w-full max-w-lg p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl\"\n                  }\n                >\n                  {title ? (\n                    <HeadlessUiDialog.Title\n                      as=\"h3\"\n                      className={\"text-lg font-medium leading-6 text-gray-900\"}\n                    >\n                      {title}\n                    </HeadlessUiDialog.Title>\n                  ) : null}\n                  <P className=\"py-6\">{message}</P>\n                  <Div className=\"flex flex-row gap-4\">\n                    {buttons?.map((button, index) => {\n                      const buttonColor =\n                        button.style === \"cancel\"\n                          ? \"bg-gray-300 hover:bg-gray-400\"\n                          : button.style === \"destructive\"\n                          ? \"bg-red-500 hover:bg-red-600\"\n                          : \"bg-blue-500 hover:bg-blue-600\";\n                      return (\n                        <Div\n                          onClick={() => {\n                            button.onPress?.(value);\n                            setAlertState(alertState.slice(1));\n                          }}\n                          key={`button${index}`}\n                          className={`cursor-pointer py-2 ${buttonColor} rounded-md flex flex-1 items-center justify-center`}\n                        >\n                          {button.text}\n                        </Div>\n                      );\n                    })}\n                  </Div>\n                </Div>\n              </Transition.Child>\n            </div>\n          </HeadlessUiDialog>\n        </Transition>\n      </div>\n    );\n  };\n\n  return (\n    <AlertContext.Provider value={alert}>\n      {renderAlert(firstAlert)}\n      {children}\n    </AlertContext.Provider>\n  );\n}",
+  "description": "",
+  "id": "vsssytlsthxszbolulpjcuym"
+}

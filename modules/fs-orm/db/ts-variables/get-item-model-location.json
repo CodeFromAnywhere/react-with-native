@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512750065,
+  "updatedAt": 1666512750065,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512750065,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getItemModelLocation",
+  "slug": "get-item-model-location",
+  "operationRelativeTypescriptFilePath": "src/convention/storing-items.ts",
+  "type": {
+    "rawType": "<T extends { [key: string]: any; }>(item: T) => import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").ModelLocation",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends { [key: string]: any }>(\n  item: T\n): ModelLocation => {\n  const { operationName, projectRelativePath, operationRelativePath, ...rest } =\n    item;\n\n  return { operationName, projectRelativePath, operationRelativePath };\n}",
+  "description": "",
+  "id": "ytuzolqiyelvebfamzuyrnnr"
+}

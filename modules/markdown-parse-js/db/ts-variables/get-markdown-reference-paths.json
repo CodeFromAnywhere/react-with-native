@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379659808,
+  "updatedAt": 1667379659808,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379659808,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getMarkdownReferencePaths",
+  "slug": "get-markdown-reference-paths",
+  "operationRelativeTypescriptFilePath": "src/getMarkdownReferencePaths.ts",
+  "type": {
+    "rawType": "(markdownString: string) => string[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(markdownString: string): string[] => {\n  const markdownParse = mdToJsonParse(markdownString);\n  const paragraphs = getMarkdownParseParagraphs(markdownParse);\n  const references = paragraphs.map(getMarkdownReferencesFromParagraph).flat();\n  const paths = references.map((x) => x.path);\n  return paths;\n}",
+  "description": "",
+  "id": "lsjxtcxoblzkdciuzzjhltzm"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259122810,
+  "updatedAt": 1666259122810,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259122810,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findAllDocsFolderPaths",
+  "slug": "find-all-docs-folder-paths",
+  "operationRelativeTypescriptFilePath": "src/find-folders.ts",
+  "type": {
+    "rawType": "(ignoreOperations?: boolean | undefined) => Promise<string[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  ignoreOperations?: boolean\n): Promise<string[]> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return [];\n  const isSensible = isSensibleProject(projectRoot);\n\n  const docsBasePath = isSensible ? projectRoot : getRootPath(\"operations\");\n  if (!docsBasePath) return [];\n\n  const docsFolderPaths = await findAllFoldersWithName({\n    basePath: docsBasePath,\n    folderName: \"docs\",\n    ignoreOperations,\n  });\n  return docsFolderPaths;\n}",
+  "description": "",
+  "id": "xpyqtubpsalyhagugdrnqvav"
+}

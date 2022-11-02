@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666262312705,
+  "updatedAt": 1666262312705,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262312705,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getOperationPages.ts",
+  "commentsInside": [],
+  "rawText": " async (projectRoot: string) => {\n  const isSensible = isSensibleProject(projectRoot);\n  const operationBasePaths = getPathsWithOperations({\n    manualProjectRoot: projectRoot,\n  });\n\n  const operationPagesPerType: { [key: string]: MarkdownReaderPage[] } =\n    mergeObjectsArray(\n      await Promise.all(\n        operationBasePaths.map(async (basePath) => {\n          const folders = (await exploreOperationFolders({ basePath })).map(\n            (result) => ({\n              projectRelativePath: makeRelative(result, projectRoot),\n            })\n          );\n\n          // console.log({ folders });\n\n          const pages: MarkdownReaderPage[] = folders.map((folder) => {\n            const folderName = getLastFolder(folder.projectRelativePath);\n\n            return {\n              queryPath: folder.projectRelativePath,\n              // operation filePath is README.md\n              filePath: path.join(folder.projectRelativePath, \"README.md\"),\n              internalLinkWord: folderName,\n              isMenuItem: true,\n            };\n          });\n\n          const projectRelativeBasePath = makeRelative(basePath, projectRoot);\n\n          return { [projectRelativeBasePath]: pages };\n        })\n      )\n    );\n  // NB: we need to get the right order, so it needs to be done separately\n  const operationPages: MarkdownReaderPage[] = isSensible\n    ? [\n        ...operationPagesPerType.packages,\n        ...operationPagesPerType.apps,\n        ...operationPagesPerType.modules,\n      ]\n    : [\n        ...operationPagesPerType[\"operations/tools\"],\n        ...operationPagesPerType[\"operations/niches\"],\n      ];\n\n  return operationPages;\n}",
+  "name": "getOperationPages",
+  "slug": "get-operation-pages",
+  "parameters": [
+    {
+      "name": "projectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 1640,
+    "lines": 50,
+    "bytes": 1640,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 50,
+    "numberOfFiles": 1
+  },
+  "id": "imhxrutlonqrpcxwwvdyltmj"
+}

@@ -1,0 +1,73 @@
+{
+  "createdAt": 1666263145767,
+  "updatedAt": 1666263145767,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263145767,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/url-util.ts",
+  "commentsInside": [],
+  "rawText": " (strings: string[], queryKey: string) =>\n  strings.map((v) => `${queryKey}=${v}`).join(\"&\")",
+  "name": "getQueryPart",
+  "slug": "get-query-part",
+  "parameters": [
+    {
+      "name": "strings",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    },
+    {
+      "name": "queryKey",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "creates a query-string with one key for all strings in an array",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 155,
+    "lines": 2,
+    "bytes": 155,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 78,
+    "linesPerFile": 2,
+    "numberOfFiles": 1
+  },
+  "id": "yymkarkhfbchrwgqwithoczk"
+}

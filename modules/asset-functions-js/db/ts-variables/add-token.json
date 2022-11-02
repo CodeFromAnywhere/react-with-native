@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667111123316,
+  "updatedAt": 1667111123316,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111123316,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "addToken",
+  "slug": "add-token",
+  "operationRelativeTypescriptFilePath": "src/token/addToken.ts",
+  "type": {
+    "rawType": "(name: string, previousToken?: string | undefined, attachTokenToFilename?: boolean | undefined) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  name: string,\n  /**\n   * if given, uses this token, otherwise generates a new random token\n   */\n  previousToken?: string,\n  attachTokenToFilename?: boolean\n): string => {\n  if (!attachTokenToFilename) return name;\n  const newRandomToken = generateRandomString(32);\n  return `${name}${tokenPrefix}${previousToken || newRandomToken}`;\n}",
+  "description": "If previousToken is not present, will be generated randomly",
+  "id": "jvozrwmaglsijnkglbvovlwe"
+}

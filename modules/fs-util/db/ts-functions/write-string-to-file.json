@@ -1,0 +1,41 @@
+{
+  "createdAt": 1667378792419,
+  "updatedAt": 1667378792419,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378792419,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/files.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  p: Path,\n  data: string\n): Promise<boolean> => {\n  if (data === undefined || data === null || typeof data !== \"string\") {\n    log(`Incorrect data provided`, data);\n    return false;\n  }\n\n  const folderToBe = getFolder(p);\n\n  if (!fs.existsSync(folderToBe)) {\n    //first, make sure the folder exists\n    await fs.mkdir(folderToBe, { recursive: true });\n  }\n\n  //then write it\n  await fs.writeFile(p, data, \"utf8\");\n\n  return true;\n}",
+  "name": "writeStringToFile",
+  "slug": "write-string-to-file",
+  "parameters": [],
+  "description": "write string to a file\n\nmakes the dir and file if they don't exist",
+  "returnType": {
+    "rawType": "Promise<boolean>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 509,
+    "lines": 23,
+    "bytes": 509,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 23,
+    "numberOfFiles": 1
+  },
+  "id": "azuqurvzhqxxqedcyykdfpxi"
+}

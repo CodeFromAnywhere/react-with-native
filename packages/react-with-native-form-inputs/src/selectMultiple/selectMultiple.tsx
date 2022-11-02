@@ -22,7 +22,7 @@ export const SelectMultipleInput: PluginComponent<SelectMultipleInputType> = ({
             onChange(newValue);
           }}
           key={`selected${uniqueFieldId}${index}`}
-          className={`mr-3 px-3 py-0 rounded-md border border-gray-400`}
+          className={`mr-3 px-3 py-2 rounded-md border border-gray-400`}
         >
           <P className="text-xs">
             {item.label} <Span textClassName="text-red-500 text-xs">(x)</Span>
@@ -32,6 +32,8 @@ export const SelectMultipleInput: PluginComponent<SelectMultipleInputType> = ({
 
       {optionsLeft.length > 1 ? (
         <Select
+          placeholder={extra?.placeholder}
+          noPlaceholder={extra?.noPlaceholder}
           autoSuggest={extra?.autoSuggest}
           className={UI.selectInput}
           title={extra.title || ""}
@@ -66,5 +68,7 @@ export class SelectMultipleInputType implements PluginInputType {
     autoSuggest?: boolean;
     title?: string;
     options: Item<string>[];
+    placeholder?: string;
+    noPlaceholder?: boolean;
   };
 }

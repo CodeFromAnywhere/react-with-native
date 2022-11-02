@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666513251921,
+  "updatedAt": 1666513251921,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513251921,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " <T extends readonly string[]>(\n  array: T\n): { [K in typeof array[number]]: K } =>\n  array.reduce((previous, current) => {\n    return { ...previous, [current]: current };\n  }, {} as any)",
+  "name": "createEnum",
+  "slug": "create-enum",
+  "parameters": [],
+  "description": "creates an enum object from a readonly const array so you don't have to\n------\nconst taskNames = [\"a\",\"b\",\"c\"] as const;\ntype TaskNames = typeof taskNames[number];\nconst enummm = createEnum(taskNames);\n(value of enummm: { a: \"a\", b: \"b\", c: \"c\" })",
+  "returnType": {
+    "rawType": "{ [K in T[number]]: K; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 434,
+    "lines": 11,
+    "bytes": 434,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 39,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "iaczwouaviuqrtsqptvbkalm"
+}

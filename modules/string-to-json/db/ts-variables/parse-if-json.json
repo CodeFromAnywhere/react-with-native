@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666260924426,
+  "updatedAt": 1666260924426,
+  "deletedAt": 0,
+  "createdFirstAt": 1666260924426,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "parseIfJson",
+  "slug": "parse-if-json",
+  "operationRelativeTypescriptFilePath": "src/parseIfJson.ts",
+  "type": {
+    "rawType": "(string: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(string: string) => {\n  try {\n    return JSON.parse(string);\n  } catch (e) {\n    return string;\n  }\n}",
+  "description": "if it's a string with a parsable JSON inside, parse it and return the object/array",
+  "id": "wvaluxqvggqyalqzijypaieg"
+}

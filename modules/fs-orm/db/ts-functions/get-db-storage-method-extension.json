@@ -1,0 +1,64 @@
+{
+  "createdAt": 1666512743786,
+  "updatedAt": 1666512743786,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512743786,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/convention/getDbStorageMethodExtension.ts",
+  "commentsInside": [],
+  "rawText": " (\n  dbStorageMethod: DbStorageMethod\n): string => {\n  if (dbStorageMethod === \"csv\") return \".csv\";\n  if (dbStorageMethod === \"jsonMultiple\") return \".json\";\n  if (dbStorageMethod === \"jsonSingle\") return \".json\";\n  if (dbStorageMethod === \"keyValueMarkdown\") return \".md\";\n  return \".md\";\n}",
+  "name": "getDbStorageMethodExtension",
+  "slug": "get-db-storage-method-extension",
+  "parameters": [
+    {
+      "name": "dbStorageMethod",
+      "schema": {
+        "$ref": "#/definitions/DbStorageMethod"
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "jsonMultiple",
+          "jsonSingle",
+          "markdown",
+          "keyValueMarkdown",
+          "csv"
+        ],
+        "fullComment": "The following strategies are available to store the data.\n\n- **jsonMultiple *(default)***: stores the data in a json file which is an array of this data structure. This file will be located in `db/[pluralized-kebab-case-model-name].json`\n\n- **jsonSingle**: stores the data in a json file which is of this data structure (single object) These files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].json`\n\n- **markdown**: stores the data in a markdown file. Takes \"markdown\" parameter as the main markdown. The other parameters are stored as front-matter. This these files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].md`\n\n- **keyValueMarkdown**: stores the data in key value markdown format. This file will be located in `db/[pluralized-kebab-case-model-name].md`\n\n- **csv**: stores the data in a csv file (only possible for flat object datastructures). This file will be located in `db/[pluralized-kebab-case-model-name].csv`\n\n## Definitions:\n\n- [pluralized-kebab-case-model-name]: e.g. `StudentUser` becomes `student-users`\n- [instance-slug-or-id]: For all models with a slug parameter, the filename will be that slug of that instance. Otherwise, `id` will be used",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 292,
+    "lines": 9,
+    "bytes": 292,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "wucljftkwconttldwuwpqogi"
+}

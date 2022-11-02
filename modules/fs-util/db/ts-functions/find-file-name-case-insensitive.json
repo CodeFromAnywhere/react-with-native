@@ -1,0 +1,64 @@
+{
+  "createdAt": 1667378795420,
+  "updatedAt": 1667378795420,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378795420,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/findFileNameCaseInsensitive.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  folderPath: string,\n  /**\n   * fileName with extension\n   */\n  fileName: string\n): Promise<string | undefined> => {\n  if (!fs.existsSync(folderPath)) return;\n\n  const results = await fs.readdir(folderPath);\n\n  const foundPath = results\n    .map((fileName) => {\n      const absolutePath = path.join(folderPath, fileName);\n      return absolutePath;\n    })\n    .find((absolutePath) => {\n      const parsedPath = path.parse(absolutePath);\n      const isMatchCaseInsensitive =\n        parsedPath.base.toLowerCase() === fileName.toLowerCase();\n\n      return isMatchCaseInsensitive;\n    });\n\n  return foundPath;\n}",
+  "name": "findFileNameCaseInsensitive",
+  "slug": "find-file-name-case-insensitive",
+  "parameters": [
+    {
+      "name": "folderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "fileName",
+      "schema": {
+        "type": "string",
+        "description": "fileName with extension"
+      },
+      "simplifiedSchema": {
+        "fullComment": "fileName with extension",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "returns a path of a fileName",
+  "returnType": {
+    "rawType": "Promise<string | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 646,
+    "lines": 26,
+    "bytes": 646,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 26,
+    "numberOfFiles": 1
+  },
+  "id": "oqmbvfyibyvfnrcwxhomwizt"
+}

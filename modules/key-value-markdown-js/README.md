@@ -1,26 +1,44 @@
 # Key value markdown js
 
-key-value-markdown-js (node operation)
+key-value-markdown-js (js operation)
 
-Size: 486 LOC, 2132 data characters, 266 text characters, 
- 
-Imported dependencies:
 
-- From Core Libraries: none
-- From Packages: none
-- From Operations: KeyValueMarkdownParse, MarkdownChunk, MarkdownParagraph, MarkdownChunk, MarkdownParagraph, CategoryStack, makeTest, mdToJsonParse, KeyValueMarkdownModelType, KeyValueMarkdownParse, makeTest, mdToJsonParse, KeyValueMarkdownModelType, MarkdownHeader, KeyValueMarkdownModelType, notEmpty, KeyValueMarkdownModelType, KeyValueMarkdownParse, frontmatterParseToString, makeTest, KeyValueMarkdownModelType, kebabCase, makeTest
 
 # Outline
 
 ## Functions
 
 - [flattenMarkdownChunks](#flattenMarkdownChunks)
+- [getKvmdItemsRecursively](#getKvmdItemsRecursively)
 - [getParagraphsRecursively](#getParagraphsRecursively)
-- [kvMdStringToJson](#kvMdStringToJson)
 - [kvmdDataMap](#kvmdDataMap)
 - [kvmdDataToString](#kvmdDataToString)
 - [kvmdParseToMarkdownString](#kvmdParseToMarkdownString)
-- [parseLine](#parseLine)
+- [markdownStringToKvmdParse](#markdownStringToKvmdParse)
+- [parseKvmdLine](#parseKvmdLine)
+
+## Interfaces
+
+- [CategoryStack](#categorystack)
+- [DbFileLocation](#dbfilelocation)
+- [KeyValueMarkdownModelType](#keyvaluemarkdownmodeltype)
+- [KeyValueMarkdownParse](#keyvaluemarkdownparse)
+- [MarkdownChunk](#markdownchunk)
+
+## Variables
+
+- [exampleKeyValueMarkdownParse](#examplekeyvaluemarkdownparse)
+- [exampleKvMdString](#examplekvmdstring)
+- [exampleLine](#exampleline)
+- [flattenMarkdownChunks](#flattenmarkdownchunks)
+- [getKvmdItemsRecursively](#getkvmditemsrecursively)
+- [getParagraphsRecursively](#getparagraphsrecursively)
+- [kvmdDataMap](#kvmddatamap)
+- [kvmdDataToString](#kvmddatatostring)
+- [kvmdParseToMarkdownString](#kvmdparsetomarkdownstring)
+- [markdownStringToKvmdParse](#markdownstringtokvmdparse)
+- [parseKvmdLine](#parsekvmdline)
+- [test](#test)
 
 
 
@@ -28,10 +46,6 @@ Imported dependencies:
 
 ## flattenMarkdownChunks
 
-Max. indexation depth: 2, 
-
-
-
 ### Returns: array
 
 - null: object
@@ -40,9 +54,10 @@ Max. indexation depth: 2,
 
 
 
-### Arguments
 
-#### markdownChunks: array
+### Parameters (1)
+
+#### Parameter 1: markdownChunks: array
 
 - MarkdownChunk: object
 
@@ -50,11 +65,13 @@ Max. indexation depth: 2,
 
 
 
-## getParagraphsRecursively
 
-Max. indexation depth: 3, 
+## getKvmdItemsRecursively
 
-recursively dives into the Chunk to get all paragraphs inside
+recursively dives into the Chunk to get all kvmd items
+
+NB: this doesn't have a reference to its parent yet, but this will be added in fs-orm on the fly because the key for that is based on the model name
+
 
 ### Returns: array
 
@@ -64,25 +81,22 @@ recursively dives into the Chunk to get all paragraphs inside
 
 
 
-### Arguments
 
-#### chunk: object
+### Parameters (2)
 
-
-
-
+#### Parameter 1: chunk: object
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| level  | number | 0 is a paragraph 1-6 is h1 until h6 |
 | content (optional) | string |  |
-| title (optional) | string | NB: title can also be an empty string ("") |
-| children (optional) | array | all content until the next title. it's either a content array if there's any titles found, or a string[] if it's paragraphs |
+| title (optional) | string |  |
+| children (optional) | array |  |
 
 
-#### categoryStackUntilNow (optional): array
+
+#### Parameter 2: categoryStackCalculatedUntilNow (optional): array
 
 - null: string
 
@@ -90,38 +104,38 @@ Properties:
 
 
 
-## kvMdStringToJson
 
-Max. indexation depth: 5, 
+## getParagraphsRecursively
 
-parses a key value md string (with support for headings and frontmatter)
-
-### Returns: object
+recursively dives into the Chunk to get all paragraphs inside
 
 
+### Returns: array
+
+- null: object
 
 
+
+
+
+
+### Parameters (2)
+
+#### Parameter 1: chunk: object
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| parameters  | object |  |
-| data  | array |  |
-
-
-### Arguments
-
-#### kvMdString: string
+| content (optional) | string |  |
+| title (optional) | string |  |
+| children (optional) | array |  |
 
 
 
+#### Parameter 2: categoryStackCalculatedUntilNow (optional): array
 
-
-
-
-#### relativeFilePath (optional): string
-
+- null: string
 
 
 
@@ -130,13 +144,12 @@ Properties:
 
 ## kvmdDataMap
 
-Max. indexation depth: 3, 
-
 DEPRECATED: probably never needed, unless I make it useful
 
 mapper function to give a kvmd data object other parameters.
 
 NB: not sure if this is useful. it would be useful if we could auto-generate the application of this function for multiple db models.
+
 
 ### Returns: array
 
@@ -146,9 +159,10 @@ NB: not sure if this is useful. it would be useful if we could auto-generate the
 
 
 
-### Arguments
 
-#### data: array
+### Parameters (2)
+
+#### Parameter 1: data: array
 
 - KeyValueMarkdownModelType: object
 
@@ -156,111 +170,92 @@ NB: not sure if this is useful. it would be useful if we could auto-generate the
 
 
 
-#### {    keyName,    valueName,    categoryStackName,    commentName,  }: object
 
-
-
-
+#### Parameter 2: {    keyName,    valueName,    categoryStackCalculatedName,    commentName,  }: object
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| keyName (optional) | string | key by default |
-| valueName (optional) | string | value by default |
-| commentName (optional) | string | comment by default |
-| categoryStackName (optional) | string | categoryStack by default |
+| keyName (optional) | string |  |
+| valueName (optional) | string |  |
+| commentName (optional) | string |  |
+| categoryStackCalculatedName (optional) | string |  |
+
 
 
 ## kvmdDataToString
-
-Max. indexation depth: 6, 
 
 parses KeyValueMarkdownModelType into a string which can be part of a new markdown file
 
 NB: we need to know the previous line as well because the header we need to print depends on it
 
-### Returns: string
 
 
 
+### Parameters (2)
 
-
-
-
-### Arguments
-
-#### kvmdData: object
-
-
-
-```md
-handy model type for storing stuff in a KeyValue Markdown file. empty lines are omitted
-
-all you need to specify in the kvmd is the key and the value, separated by ":"
-```
-
+#### Parameter 1: kvmdData: object
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| id  | string | Calculated:<br /><br />by taking the relative file path + a stringified version of the index.<br /><br />used for compatibility with some general purpose functions |
-| index  | number | line where the kv was found (at any given moment this is an unqiue identifier, but it may change without notice, so it's not a good idea to store stuff in kvmd if it has references to the id) |
-| relativeIndex  | number | relative index from the category header, starting count with 1. if there is no header, also counts starting with 1 |
-| name  | string | key<br /><br />should be english because it's kind of part of the codebase! |
-| slug  | string | calculated: slug for this key (kebab case form of the name) |
-| value (optional) | string | value behind the semicolom (:). If not given, will be undefined.<br /><br />If possible, will be parsed to a number, boolean, null or undefined... otherwise it's a string<br /><br />can be any language that we can detect |
-| comment  | string | comment in html syntax. if not given, will be null |
-| categoryStack  | array |  |
-
-
-#### previous (optional): object
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| value (optional) | string |  |
+| comment  | string |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| isHeaderCalculated  | boolean |  |
 
 
 
-```md
-handy model type for storing stuff in a KeyValue Markdown file. empty lines are omitted
-
-all you need to specify in the kvmd is the key and the value, separated by ":"
-```
-
+#### Parameter 2: previous (optional): object
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| id  | string | Calculated:<br /><br />by taking the relative file path + a stringified version of the index.<br /><br />used for compatibility with some general purpose functions |
-| index  | number | line where the kv was found (at any given moment this is an unqiue identifier, but it may change without notice, so it's not a good idea to store stuff in kvmd if it has references to the id) |
-| relativeIndex  | number | relative index from the category header, starting count with 1. if there is no header, also counts starting with 1 |
-| name  | string | key<br /><br />should be english because it's kind of part of the codebase! |
-| slug  | string | calculated: slug for this key (kebab case form of the name) |
-| value (optional) | string | value behind the semicolom (:). If not given, will be undefined.<br /><br />If possible, will be parsed to a number, boolean, null or undefined... otherwise it's a string<br /><br />can be any language that we can detect |
-| comment  | string | comment in html syntax. if not given, will be null |
-| categoryStack  | array |  |
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| value (optional) | string |  |
+| comment  | string |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| isHeaderCalculated  | boolean |  |
+
 
 
 ## kvmdParseToMarkdownString
 
-Max. indexation depth: 4, 
-
 parses KeyValueMarkdownParse into a markdown string so it can be saved as a markdown file
 
-### Returns: string
 
 
 
+### Parameters (1)
+
+#### Parameter 1: keyValueMarkdownParse: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| data  | array |  |
 
 
 
+## markdownStringToKvmdParse
 
-### Arguments
-
-#### keyValueMarkdownParse: object
-
+parses a key value md string (with support for headings and frontmatter)
 
 
-
+### Returns: object
 
 Properties: 
 
@@ -270,21 +265,189 @@ Properties:
 | data  | array |  |
 
 
-## parseLine
 
-Max. indexation depth: 2, 
+### Parameters (2)
+
+#### Parameter 1: kvMdString: string
+
+#### Parameter 2: dbFileLocation: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| absolutePath  | string |  |
+| modelName  | string |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+
+
+
+## parseKvmdLine
 
 parses a kv md line with data into a key, value, and comment (if available)
 
-## Returns: unknown
-
-### Arguments
-
-#### string: string
+if the key is an empty string, the line will return undefined
 
 
+### Returns: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| value (optional) | string |  |
+| comment (optional) | object |  |
+
+
+
+### Parameters (1)
+
+#### Parameter 1: string: string
+
+# Interfaces
+
+## CategoryStack
+
+- null: string
 
 
 
 
+
+
+## DbFileLocation
+
+Object used to hand over all information about the location of a db-file in a structured way
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| absolutePath  | string |  |
+| modelName  | string |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+
+
+
+## KeyValueMarkdownModelType
+
+handy model type for storing stuff in a KeyValue Markdown file. empty lines are omitted
+
+all you need to specify in the kvmd is the key and the value, separated by ":"
+
+NB: there can be a `parent_modelNameSlug` key exposed that should refer to the parent slug
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| value (optional) | string |  |
+| comment  | string |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| categoryStackCalculated  | array |  |
+| isHeaderCalculated  | boolean |  |
+
+
+
+## KeyValueMarkdownParse
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| parameters  | object |  |
+| data  | array |  |
+
+
+
+## MarkdownChunk
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| level  | number |  |
+| content (optional) | string |  |
+| markdownEmbed (optional) | object |  |
+| markdownLink (optional) | object |  |
+| title (optional) | string |  |
+| children (optional) | array |  |
+
+
+# Variables
+
+## exampleKeyValueMarkdownParse (exported const)
+
+## exampleKvMdString (exported const)
+
+## exampleLine (exported const)
+
+## flattenMarkdownChunks (exported const)
+
+## getKvmdItemsRecursively (exported const)
+
+recursively dives into the Chunk to get all kvmd items
+
+NB: this doesn't have a reference to its parent yet, but this will be added in fs-orm on the fly because the key for that is based on the model name
+
+
+## getParagraphsRecursively (exported const)
+
+recursively dives into the Chunk to get all paragraphs inside
+
+
+## kvmdDataMap (exported const)
+
+DEPRECATED: probably never needed, unless I make it useful
+
+mapper function to give a kvmd data object other parameters.
+
+NB: not sure if this is useful. it would be useful if we could auto-generate the application of this function for multiple db models.
+
+
+## kvmdDataToString (exported const)
+
+parses KeyValueMarkdownModelType into a string which can be part of a new markdown file
+
+NB: we need to know the previous line as well because the header we need to print depends on it
+
+
+## kvmdParseToMarkdownString (exported const)
+
+parses KeyValueMarkdownParse into a markdown string so it can be saved as a markdown file
+
+
+## markdownStringToKvmdParse (exported const)
+
+parses a key value md string (with support for headings and frontmatter)
+
+
+## parseKvmdLine (exported const)
+
+parses a kv md line with data into a key, value, and comment (if available)
+
+if the key is an empty string, the line will return undefined
+
+
+## test (unexported const)
 

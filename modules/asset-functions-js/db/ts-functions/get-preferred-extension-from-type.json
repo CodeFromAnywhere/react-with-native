@@ -1,0 +1,52 @@
+{
+  "createdAt": 1667111118720,
+  "updatedAt": 1667111118720,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111118720,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getPreferredExtensionFromType.ts",
+  "commentsInside": [],
+  "rawText": " (type: string | undefined) => {\n  if (type === \"audio/mp4\") return \"mp3\";\n  return type?.split(\"/\").pop();\n}",
+  "name": "getPreferredExtensionFromType",
+  "slug": "get-preferred-extension-from-type",
+  "parameters": [
+    {
+      "name": "type",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Received files contain a \"type\" like \"audio/mp3\" or \"image/jpeg\", etc...\n\nHere the extension is decided.\n\nNB: we also need to convert the file itself in case of mp3",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 273,
+    "lines": 8,
+    "bytes": 273,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 8,
+    "numberOfFiles": 1
+  },
+  "id": "qoswbfsfidvviuyabzrlqloy"
+}

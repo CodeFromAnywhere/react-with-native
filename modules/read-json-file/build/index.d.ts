@@ -1,5 +1,2 @@
-import { readJsonFile } from "./readJsonFile";
-import { readJsonFileSync } from "./readJsonFile";
-import { tryParseJson } from "./tryParseJson";
-export { readJsonFile, readJsonFileSync, tryParseJson };
+export * from "./readJsonFile";
 //# sourceMappingURL=index.d.ts.map

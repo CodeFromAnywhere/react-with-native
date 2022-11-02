@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666261373854,
+  "updatedAt": 1666261373854,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261373854,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "commentsInside": [],
+  "rawText": " <\n  T extends Field<TInputs, Keys<TInputs>>[],\n  TInputs extends any\n>(\n  arr1: T,\n  arr2: T\n) => {\n  const simpleArr1 = arr1.map(\n    ({ shouldHide, titleFromState, hasError, ...item }) => item\n  );\n  const simpleArr2 = arr2.map(\n    ({ shouldHide, titleFromState, hasError, ...item }) => item\n  );\n\n  const isDeepEqual = deepEqual(simpleArr1, simpleArr2);\n  // console.log({ simpleArr1, simpleArr2, isDeepEqual });\n  return isDeepEqual;\n}",
+  "name": "sameFieldArray",
+  "slug": "same-field-array",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 441,
+    "lines": 18,
+    "bytes": 441,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "id": "vsxisytvkjscfqbxqkitncyu"
+}

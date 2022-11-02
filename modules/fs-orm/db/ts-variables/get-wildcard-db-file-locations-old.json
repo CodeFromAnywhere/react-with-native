@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512747690,
+  "updatedAt": 1666512747690,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512747690,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getWildcardDbFileLocations__OLD",
+  "slug": "get-wildcard-db-file-locations-old",
+  "operationRelativeTypescriptFilePath": "src/convention/getWildcardDbFileLocations.ts",
+  "type": {
+    "rawType": "(options: { modelName: string; parsedPath: import(\"path\").ParsedPath; operationName: string | null; projectRoot: string; rootFolder: import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").RootDbFolder; }) => Promise<import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").DbFileLocation[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (options: {\n  modelName: string;\n  parsedPath: ParsedPath;\n  operationName: string | null;\n  projectRoot: string;\n  rootFolder: RootDbFolder;\n}): Promise<DbFileLocation[]> => {\n  const { modelName, operationName, parsedPath, projectRoot, rootFolder } =\n    options;\n  if (fs.existsSync(parsedPath.dir)) {\n    // if parsedPath ends with *, read everything in the folder\n    const fileNames: DbFileLocation[] = (await fs.readdir(parsedPath.dir))\n      .filter((fileName) => fileName.endsWith(parsedPath.ext))\n      .map((fileName) => {\n        const absolutePath = path.join(parsedPath.dir, fileName);\n        const projectRelativePath = absolutePath.substring(projectRoot.length);\n        const operationRelativePath = absolutePath.substring(\n          rootFolder.basePath.length\n        );\n        const dbFileLocation: DbFileLocation = {\n          modelName,\n          absolutePath,\n          operationName: rootFolder.operationName,\n          projectRelativePath,\n          operationRelativePath,\n        };\n\n        return dbFileLocation;\n      });\n\n    return fileNames;\n  }\n\n  return [];\n}",
+  "description": "If it all seems good, I can delete this. This is the old method of looking just in the folder itself, it's replaced by looking in all subfolders as well, recursively.",
+  "id": "plswxdppbfnbcnvehrcuzdud"
+}

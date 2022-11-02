@@ -1,0 +1,20 @@
+[
+  {
+    "createdAt": 1666262253846,
+    "updatedAt": 1666262253846,
+    "deletedAt": 0,
+    "createdFirstAt": 1666262253846,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/getBundleAugmentedWords.ts",
+    "comment": "NB: should only be executed if this is not a sensible-project, as it might not have `BundleConfig` otherwise",
+    "rawStatement": "export const getBundleAugmentedWords = async (): Promise<AugmentedWord[]> => {\n  // NB: we need to cast the string because in non-sensible-projects this might otherwise fail\n  const bundles: AugmentedAnyModelType[] = await db.get(\n    \"BundleConfig\" as keyof DbModels\n  );\n\n  const bundleAugmentedWords: AugmentedWord[] = bundles.map((bundle) => {\n    const augmentedWord: AugmentedWord = {\n      queryPath: bundle.docsRelativeFolderPath,\n      spoiler: bundle.description,\n      type: \"bundle\",\n      word: bundle.slug,\n      projectRelativeMarkdownSourcePath: bundle.projectRelativePath,\n    };\n\n    return augmentedWord;\n  });\n\n  return bundleAugmentedWords;\n};",
+    "parameters": {},
+    "types": [
+      "nb"
+    ],
+    "firstLine": 6,
+    "lastLine": 8,
+    "id": "qqdmfpqcnkclehnvamltcezg"
+  }
+]

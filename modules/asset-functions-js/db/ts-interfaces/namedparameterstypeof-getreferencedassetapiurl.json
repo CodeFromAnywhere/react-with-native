@@ -1,0 +1,83 @@
+{
+  "createdAt": 1667111119822,
+  "updatedAt": 1667111119822,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111119822,
+  "id": "namedparameterstypeof-getreferencedassetapiurl",
+  "name": "NamedParameters<typeof getReferencedAssetApiUrl>",
+  "slug": "namedparameterstypeof-getreferencedassetapiurl",
+  "operationRelativeTypescriptFilePath": "src/getReferencedAssetApiUrl.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "apiUrl": {
+          "type": "string"
+        },
+        "projectRelativeReferencingFilePath": {
+          "type": "string"
+        },
+        "referencingFileRelativeAssetPath": {
+          "type": "string"
+        },
+        "isDownload": {
+          "type": "boolean",
+          "description": "If true, asset will be returned as download"
+        }
+      },
+      "required": [
+        "apiUrl",
+        "projectRelativeReferencingFilePath",
+        "referencingFileRelativeAssetPath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "apiUrl",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "projectRelativeReferencingFilePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "referencingFileRelativeAssetPath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isDownload",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, asset will be returned as download",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getReferencedAssetApiUrl>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

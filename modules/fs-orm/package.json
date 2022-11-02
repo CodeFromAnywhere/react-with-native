@@ -1,1 +1,53 @@
-{"version":"1.0.1","main":"build/index.js","source":"src/index.ts","scripts":{"dev":"tsc -w","build":"tsc","cli":"node ./build/cli.js","test":"node ./build/test.js","up":"npm version patch -f","pub":"yarn up && npm publish","minify":"echo build/**/*.js | xargs -n1 sh -c 'terser --output build/${1#build/} --compress --mangle -- $1' argv0","minify2":"bash -c \"for f in build/*.js; do terser $f --output $f --compress --mangle; done\""},"license":"ISC","devDependencies":{"@types/node":"^17.0.33","typescript":"^4.6.4"},"name":"fs-orm","description":"ORM that works with JSON and FS","author":"Wijnand Karsens","bin":{"get":"build/get.cli.js","push":"build/push.cli.js"}}
+{
+  "createdAt": 1662709577328,
+  "updatedAt": 1662709577328,
+  "deletedAt": 0,
+  "createdFirstAt": 1662709577328,
+  "version": "1.0.1",
+  "main": "build/index.js",
+  "source": "src/index.ts",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "cli": "node ./build/cli.js",
+    "test": "node ./build/test.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.6.4"
+  },
+  "name": "fs-orm",
+  "description": "ORM that works with JSON and FS",
+  "author": "Wijnand Karsens",
+  "bin": {
+    "get": "build/get.cli.js",
+    "push": "build/push.cli.js"
+  },
+  "slug": "fs-orm",
+  "id": "KyZBnDkelitkjOpb",
+  "dependencies": {
+    "js-util": "0.0.1",
+    "fs-util": "1.0.5",
+    "model-types": "0.0.1",
+    "log": "0.0.1",
+    "code-types": "0.0.1",
+    "matter-types": "0.0.1",
+    "csv-util": "0.0.1",
+    "key-value-markdown-js": "0.0.1",
+    "read-csv-file": "0.0.1",
+    "read-json-file": "0.0.1",
+    "read-kvmd-file": "0.0.1",
+    "read-markdown-file": "0.0.1",
+    "convert-case": "0.0.1",
+    "get-path": "0.0.1",
+    "pluralize": "0.0.1",
+    "k-explore": "0.0.2",
+    "schema-util": "0.0.1"
+  },
+  "sensible": {
+    "hasGeneratedDependencies": false
+  }
+}

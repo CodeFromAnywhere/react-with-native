@@ -1,0 +1,59 @@
+{
+  "createdAt": 1667379879533,
+  "updatedAt": 1667379879533,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379879533,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/markdownParseToMarkdownModelType.ts",
+  "commentsInside": [],
+  "rawText": " (dateString: string): number | undefined => {\n  try {\n    return new Date(dateString).valueOf();\n  } catch {}\n}",
+  "name": "tryParseDate",
+  "slug": "try-parse-date",
+  "parameters": [
+    {
+      "name": "dateString",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Tries to parse a date from a string\n- implements default behavior of `new Date` with a try catch\n- returns a unix timestamp (ms since 1970 AD)\n\nTODO: put in a better location... date-util?",
+  "returnType": {
+    "rawType": "number | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "number"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "number"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 300,
+    "lines": 9,
+    "bytes": 300,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "smkxftthrarzthqcabgivrvt"
+}

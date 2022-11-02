@@ -1,0 +1,101 @@
+{
+  "createdAt": 1666512757737,
+  "updatedAt": 1666512757737,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512757737,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util/augmentItemWithReferencedDataRecursively.ts",
+  "commentsInside": [],
+  "rawText": " (\n  item: AugmentedAnyModelType,\n\n  includeArray: Include[],\n  /**\n   * Final includeData object to take items from\n   */\n  includeData: IncludeDataObject\n): AugmentedAnyModelType => {\n  // basecase\n  if (includeArray.length === 0) {\n    return item;\n  }\n\n  const newItem = includeArray.reduce((itemNow, include) => {\n    if (!include.referenceKey) return itemNow;\n\n    const parameterInfo = getReferenceParameterInfo(include.referenceKey);\n\n    if (!parameterInfo.interfaceName) return itemNow;\n\n    const referencedItems = includeData[parameterInfo.interfaceName];\n\n    if (!referencedItems) return itemNow;\n    if (!parameterInfo.dataParameterName) return itemNow;\n    if (!parameterInfo.keyInModel) return itemNow;\n\n    const referenceItems = referencedItems.filter((x) => {\n      if (!parameterInfo.keyInModel) return false;\n      const itemReference: string | string[] | undefined =\n        itemNow[parameterInfo.parameterName];\n      const referenceItemReference = (x as any)[parameterInfo.keyInModel];\n\n      const isMatchingReference = parameterInfo.isReferenceSingleParameter\n        ? itemReference === referenceItemReference\n        : parameterInfo.isReferenceMultipleParameter\n        ? itemReference?.includes?.(referenceItemReference) || false\n        : false;\n\n      return isMatchingReference;\n    });\n\n    const augmentedReferenceData:\n      | AugmentedAnyModelType\n      | AugmentedAnyModelType[]\n      | undefined = parameterInfo.isReferenceSingleParameter\n      ? augmentItemWithReferencedDataRecursively(\n          referenceItems[0],\n          makeArray(include.include),\n          includeData\n        )\n      : parameterInfo.isReferenceMultipleParameter\n      ? referenceItems.map((i) =>\n          augmentItemWithReferencedDataRecursively(\n            i,\n            makeArray(include.include),\n            includeData\n          )\n        )\n      : undefined;\n\n    const newItemNow: AugmentedAnyModelType = {\n      ...itemNow,\n      [parameterInfo.dataParameterName]: augmentedReferenceData,\n    };\n\n    return newItemNow;\n  }, item);\n\n  return newItem;\n}",
+  "name": "augmentItemWithReferencedDataRecursively",
+  "slug": "augment-item-with-referenced-data-recursively",
+  "parameters": [
+    {
+      "name": "item",
+      "schema": {
+        "$ref": "#/definitions/AugmentedAnyModelType"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "operationName",
+            "required": true,
+            "schema": {
+              "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "null"
+            }
+          },
+          {
+            "name": "projectRelativePath",
+            "required": true,
+            "schema": {
+              "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationRelativePath",
+            "required": false,
+            "schema": {
+              "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "includeArray",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Include"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [],
+        "type": "array"
+      },
+      "required": true
+    },
+    {
+      "name": "includeData",
+      "schema": {
+        "$ref": "#/definitions/IncludeDataObject",
+        "description": "Final includeData object to take items from"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").AugmentedAnyModelType",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 2079,
+    "lines": 71,
+    "bytes": 2079,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 71,
+    "numberOfFiles": 1
+  },
+  "id": "ehpgvedieaqugwdxawwnqvxd"
+}

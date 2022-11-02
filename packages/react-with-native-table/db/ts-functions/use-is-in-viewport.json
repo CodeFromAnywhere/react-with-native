@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666261633062,
+  "updatedAt": 1666261633062,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261633062,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "name": "useIsInViewport",
+  "slug": "use-is-in-viewport",
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/Table.tsx",
+  "commentsInside": [],
+  "description": "",
+  "parameters": [],
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "size": {
+    "characters": 489,
+    "lines": 25,
+    "bytes": 489,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 20,
+    "linesPerFile": 25,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\nexport function useIsInViewport(ref: React.MutableRefObject<Element | null>) {\n  const [isIntersecting, setIsIntersecting] = useState(false);\n\n  const observer = useMemo(\n    () =>\n      new IntersectionObserver(([entry]) =>\n        setIsIntersecting(entry.isIntersecting)\n      ),\n    []\n  );\n\n  useEffect(() => {\n    if (!ref.current) return;\n\n    observer.observe(ref.current);\n\n    return () => {\n      observer.disconnect();\n    };\n  }, [ref, observer]);\n\n  return isIntersecting;\n}",
+  "maxIndentationDepth": 4,
+  "id": "fgjlhzzwxdbndctrometztmy"
+}

@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666513251920,
+  "updatedAt": 1666513251920,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513251920,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " <T>(functions: ((input: T) => T)[], value: T) => {\n  return functions.reduce((val, fn) => {\n    return fn(val);\n  }, value);\n}",
+  "name": "apply",
+  "slug": "apply",
+  "parameters": [],
+  "description": "sum([1, 2, 3]);\n\nfunction that takes an array of functions and applies them one by one, on the value or the result of the previous function. Only possible if the type of the value stays the same.",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 322,
+    "lines": 7,
+    "bytes": 322,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 46,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "jqzhnoscacqoifahrsguinpk"
+}

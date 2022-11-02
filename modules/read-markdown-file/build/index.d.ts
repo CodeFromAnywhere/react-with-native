@@ -1,3 +1,3 @@
-import { readMarkdownFile } from "./readMarkdownFile";
-export { readMarkdownFile };
+export * from "./readMarkdownFile";
+export * from "./readMarkdownFileToModel";
 //# sourceMappingURL=index.d.ts.map

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259852474,
+  "updatedAt": 1666259852474,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259852474,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "upsertCli",
+  "slug": "upsert-cli",
+  "operationRelativeTypescriptFilePath": "src/cli/test-upsert.cli.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const [modelName, dataString] = process.argv.slice(2);\n\n  /**\n   FOR kvmd type:\n\n   - required: name\n   - optional: parent_xxxSlug, value, comment\n   */\n  if (!dataString || !modelName) {\n    console.log(\"please choose a model and data\");\n  }\n\n  const theObject = getObjectFromParamsString(dataString);\n  //@ts-ignore\n  const result = await testDb.upsert(modelName as any, theObject);\n\n  console.table(result);\n}",
+  "description": "",
+  "id": "mepuucwpigpprypbxscllhvs"
+}

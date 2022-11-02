@@ -1,0 +1,81 @@
+{
+  "createdAt": 1666263123646,
+  "updatedAt": 1666263123646,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263123646,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/tryParseJson.ts",
+  "commentsInside": [],
+  "rawText": " <T>(\n  text: string,\n  logParseError?: boolean\n): T | null => {\n  try {\n    const jsonStringWithoutComments = text.replace(\n      removeCommentsRegex,\n      (m, g) => (g ? \"\" : m)\n    );\n    return JSON.parse(jsonStringWithoutComments) as T;\n  } catch (parseError) {\n    if (logParseError) console.log(\"JSON Parse error:\", parseError);\n    return null;\n  }\n}",
+  "name": "tryParseJson",
+  "slug": "try-parse-json",
+  "parameters": [
+    {
+      "name": "text",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "logParseError",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "if text isn't json, returns null",
+  "returnType": {
+    "rawType": "T | null",
+    "typeDefinition": {
+      "optional": true,
+      "enum": [
+        "ul",
+        ""
+      ],
+      "x-enumNames": [
+        "ul",
+        ""
+      ],
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "enum": [
+        "ul",
+        ""
+      ],
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 391,
+    "lines": 15,
+    "bytes": 391,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "guqykmxmavctkatgrmjzjedm"
+}

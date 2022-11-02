@@ -1,0 +1,70 @@
+[
+  {
+    "createdAt": 1666261375372,
+    "updatedAt": 1666261375372,
+    "deletedAt": 0,
+    "createdFirstAt": 1666261375372,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.tsx",
+    "comment": "TODO: to be removed",
+    "rawStatement": "export { inputClassWithoutWidth, inputClass };",
+    "parameters": {},
+    "types": [
+      "todo"
+    ],
+    "firstLine": 17,
+    "lastLine": 17,
+    "id": "iznrjmzxmbvnzkpqbkntbaxp"
+  },
+  {
+    "createdAt": 1666261375372,
+    "updatedAt": 1666261375372,
+    "deletedAt": 0,
+    "createdFirstAt": 1666261375372,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.tsx",
+    "comment": "type of every specific field in a form",
+    "rawStatement": "export type Field<TInputs, T extends Keys<TInputs> = Keys<TInputs>> = {\n  /**\n   * type of the field (any plugin type), defaults to first plugin\n   */\n  type?: Keys<TInputs>;\n  /**\n   * unique identifier of the field\n   */\n  field: string;\n  /**\n   * title of the field\n   */\n  title?: string;\n  shouldHide?: (state: any) => boolean;\n  titleFromState?: (state: any) => string;\n  /**\n   * returns either false if there's no error or a string of an error message if there is one\n   */\n  hasError?: (\n    value: TInputs[T] extends PluginInputType ? TInputs[T][\"value\"] : any,\n    state: Partial<PossibleState>\n  ) => boolean | string | Error[]; //\n\n  startSection?: boolean;\n  sectionTitle?: string;\n  description?: string;\n  /**\n   * initalValue (can be declared here or on Form defaultValues prop). This has priority\n   */\n  initialValue?: TInputs[T] extends PluginInputType ? TInputs[T][\"value\"] : any;\n  /**\n   * any extra properties that can be given to a specific input\n   */\n  extra?: TInputs[T] extends PluginInputType ? TInputs[T][\"extra\"] : any;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 55,
+    "lastLine": 57,
+    "id": "khyeqmpqvgfkwfxexqtuisbb"
+  },
+  {
+    "createdAt": 1666261375372,
+    "updatedAt": 1666261375372,
+    "deletedAt": 0,
+    "createdFirstAt": 1666261375372,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.tsx",
+    "comment": "NB: why are the prop comments not shown in intellisense?",
+    "rawStatement": "export type PluginComponent<TInput extends PluginInputType> = ((props: {\n  onChange: OnChange<TInput>;\n  /**\n   * value is never undefined, unless you didn't declare defaultInitialValue\n   */\n  value: TInput[\"value\"];\n  extra: TInput[\"extra\"];\n  config: TInput[\"config\"];\n  /**\n   * Format: {randomId}.{fieldName}\n   */\n  uniqueFieldId: string;\n  fieldName: string;\n\n  /**\n   * if there are multiple errors for this single field (from the backend), they can be given here. Key is in format `{fieldName}.{subfieldName}`, value should be the string containing the error\n   */\n  errors?: Error[];\n  errorClassName?: string;\n}) => JSX.Element) & {\n  defaultInitialValue: TInput[\"value\"];\n  hideContainerError?: boolean;\n};",
+    "parameters": {},
+    "types": [
+      "nb"
+    ],
+    "firstLine": 152,
+    "lastLine": 152,
+    "id": "atkkctnvpgjffsjgcugazccy"
+  },
+  {
+    "createdAt": 1666261375372,
+    "updatedAt": 1666261375372,
+    "deletedAt": 0,
+    "createdFirstAt": 1666261375372,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.tsx",
+    "comment": "the possible states, like { password: string, text: string }",
+    "rawStatement": "export type PossibleValues<TInputs> = {\n  [K in keyof TInputs]: TInputs[K] extends PluginInputType\n    ? TInputs[K][\"value\"]\n    : never;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 221,
+    "lastLine": 223,
+    "id": "twrvrirhghgdqxklqchgwwog"
+  }
+]

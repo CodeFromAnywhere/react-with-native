@@ -1,4 +1,8 @@
 {
+  "createdAt": 1662709577328,
+  "updatedAt": 1662709577328,
+  "deletedAt": 0,
+  "createdFirstAt": 1662709577328,
   "name": "k-explore",
   "version": "0.0.2",
   "description": "",
@@ -8,17 +12,27 @@
     "initpub": "npm publish --access public",
     "pub": "npm version patch --force && npm publish",
     "build": "tsc",
-    "dev": "tsc -w",
-    "minify": "echo build/**/*.js | xargs -n1 sh -c 'terser --output build/${1#build/} --compress --mangle -- $1' argv0",
-    "minify2": "bash -c \"for f in build/*.js; do terser $f --output $f --compress --mangle; done\""
+    "dev": "tsc -w"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gray-matter": "^4.0.3"
+    "gray-matter": "^4.0.3",
+    "fs-util": "1.0.5",
+    "read-json-file": "0.0.1",
+    "code-types": "0.0.1",
+    "js-util": "0.0.1",
+    "markdown-parse-js": "0.0.1",
+    "get-path": "0.0.1",
+    "make-test": "0.0.1"
   },
   "devDependencies": {
-    "@types/node": "^17.0.33",
+    "@types/node": "^18.0.1",
     "typescript": "^4.6.4"
+  },
+  "slug": "k-explore",
+  "id": "CjtxcuPobvSETpNJ",
+  "sensible": {
+    "hasGeneratedDependencies": false
   }
 }

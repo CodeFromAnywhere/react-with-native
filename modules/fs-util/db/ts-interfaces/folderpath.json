@@ -1,0 +1,64 @@
+{
+  "createdAt": 1667378809243,
+  "updatedAt": 1667378809243,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378809243,
+  "id": "folderpath",
+  "name": "FolderPath",
+  "slug": "folderpath",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n/**\n * DEPRECATED: just use ParsedPath\n */\nexport type FolderPath = { relativeFolder: string | undefined; path: Path };",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "DEPRECATED: just use ParsedPath",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "relativeFolder": {
+          "type": "string"
+        },
+        "path": {
+          "$ref": "#/definitions/Path"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "description": "DEPRECATED: just use ParsedPath"
+    },
+    "simplifiedSchema": {
+      "fullComment": "DEPRECATED: just use ParsedPath",
+      "properties": [
+        {
+          "name": "relativeFolder",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "path",
+          "required": true,
+          "schema": {
+            "fullComment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "FolderPath",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

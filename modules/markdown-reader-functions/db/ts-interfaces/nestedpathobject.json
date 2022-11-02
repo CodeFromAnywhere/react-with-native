@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666262307167,
+  "updatedAt": 1666262307167,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262307167,
+  "id": "nestedpathobject",
+  "name": "NestedPathObject",
+  "slug": "nestedpathobject",
+  "operationRelativeTypescriptFilePath": "src/getMarkdownPageInfo.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "A different way to represent a path array in a nested object of folders\n\n{  \"folderName\": {    \"file1\": null,    \"file2\": null  },  \"folderName2\": {    \"file1\": null,    \"file2\": null  } }",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/NestedObject"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "properties": {},
+      "description": "A different way to represent a path array in a nested object of folders\n\n{  \"folderName\": {    \"file1\": null,    \"file2\": null  },  \"folderName2\": {    \"file1\": null,    \"file2\": null  } }"
+    },
+    "simplifiedSchema": {
+      "fullComment": "A different way to represent a path array in a nested object of folders\n\n{  \"folderName\": {    \"file1\": null,    \"file2\": null  },  \"folderName2\": {    \"file1\": null,    \"file2\": null  } }",
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NestedPathObject",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

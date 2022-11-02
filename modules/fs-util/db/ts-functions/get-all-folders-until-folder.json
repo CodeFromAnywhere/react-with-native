@@ -1,0 +1,80 @@
+{
+  "createdAt": 1667378800060,
+  "updatedAt": 1667378800060,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378800060,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getAllFoldersUntilFolder.ts",
+  "commentsInside": [],
+  "rawText": " (folderPath: string): string[] => {\n  const chunks = trimSlashes(folderPath).split(\"/\");\n  // chunks = ['a', 'random', 'path']\n\n  const result = chunks.map((_, index, array) => {\n    return \"/\" + array.slice(0, index + 1).join(\"/\");\n  });\n\n  return result;\n}",
+  "name": "getAllFoldersUntilFolder",
+  "slug": "get-all-folders-until-folder",
+  "parameters": [
+    {
+      "name": "folderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "NB: I already have this somewhere else but couldn't find it!\n\nIf the path is /a/random/path\n\nThe result of this function will be:\n\n['/a', '/a/random', '/a/random/path']",
+  "returnType": {
+    "rawType": "string[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "allOf": [
+          {
+            "transform": [
+              "trim"
+            ]
+          },
+          {
+            "minLength": 1
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 427,
+    "lines": 16,
+    "bytes": 427,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "msjdwhwpxhhptewrggzplcis"
+}

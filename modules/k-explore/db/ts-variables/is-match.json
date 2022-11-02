@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259118132,
+  "updatedAt": 1666259118132,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259118132,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "isMatch",
+  "slug": "is-match",
+  "operationRelativeTypescriptFilePath": "src/explore.ts",
+  "type": {
+    "rawType": "({ exact, searchContender, searches, }: { exact: boolean | undefined; searches: string[]; searchContender: string; }) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "({\n  exact,\n  searchContender,\n  searches,\n}: {\n  exact: boolean | undefined;\n  searches: string[];\n  searchContender: string;\n}) => {\n  return searches.length === 0\n    ? true\n    : exact\n    ? searches.includes(searchContender)\n    : searches.find((s) => searchContender.includes(s));\n}",
+  "description": "",
+  "id": "ibjesotrpoqyuddsplanvmqy"
+}

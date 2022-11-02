@@ -19,6 +19,7 @@ export interface TextJson {
      * full path to the file or folder
      */
     path: string;
+    isFolder: boolean;
     /**
      * DEPRECATED: to be replaced with metaData
      *

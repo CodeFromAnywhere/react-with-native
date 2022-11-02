@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259118132,
+  "updatedAt": 1666259118132,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259118132,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "exploreGitRepoFolders",
+  "slug": "explore-git-repo-folders",
+  "operationRelativeTypescriptFilePath": "src/explore.ts",
+  "type": {
+    "rawType": "(config: import(\"/Users/king/King/operations/tools/control-project/k-explore/src/explore\").BaseConfig) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config: BaseConfig) => {\n  return (await findAllDotGitFolders(config))\n    .map((textJson) => textJson.path)\n    .map((p) => path.resolve(p, \"..\"));\n}",
+  "description": "find all active git folders (folders having `.git`)",
+  "id": "hysasvzalusrvfbpsnpggsdo"
+}

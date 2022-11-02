@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666513251920,
+  "updatedAt": 1666513251920,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513251920,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (items: number[]) => {\n  const total = items.reduce((total, num) => {\n    if (typeof num !== \"number\") {\n      console.log(\"WTF\", num);\n    }\n    return total + num;\n  }, 0);\n\n  return total;\n}",
+  "name": "sum",
+  "slug": "sum",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 194,
+    "lines": 10,
+    "bytes": 194,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 19,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "rlausweoghdnugxpiykqaumh"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259791515,
+  "updatedAt": 1666259791515,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259791515,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "isGeneratedParameterName",
+  "slug": "is-generated-parameter-name",
+  "operationRelativeTypescriptFilePath": "src/name-conventions.ts",
+  "type": {
+    "rawType": "(parameterName: string) => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(parameterName: string) => {\n  const generatedPatterns = parameterNames\n    .filter(\n      (x) => x.contentType.length === 1 && x.contentType[0] === \"generated\"\n    )\n    .map((x) => x.pattern);\n  // TODO: match the patterns against the name to find match\n}",
+  "description": "",
+  "id": "zigvbdpkarbtctlnrnrhnbgu"
+}

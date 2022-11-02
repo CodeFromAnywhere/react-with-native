@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666512731178,
+  "updatedAt": 1666512731178,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512731178,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  dbStorageMethod: DbStorageMethod,\n  ...alterParameters: AlterParameters\n): Promise<DbQueryResult> => {\n  if (dbStorageMethod === \"csv\") return alterCsv(...alterParameters);\n  if (dbStorageMethod === \"jsonSingle\")\n    return alterJsonSingle(...alterParameters);\n  if (dbStorageMethod === \"keyValueMarkdown\") {\n    // this case never happens, this is never the case\n    log(\"Wut??? this case should be prevented by its parent function\", {\n      type: \"warning\",\n    });\n    return alterKeyValueMarkdown(...alterParameters);\n  }\n  if (dbStorageMethod === \"markdown\") return alterMarkdown(...alterParameters);\n  return alterJsonMultiple(...alterParameters);\n}",
+  "name": "alterAny",
+  "slug": "alter-any",
+  "parameters": [],
+  "description": "low level function that alters data from any storage method at a certain location\n\ncomprises all dbStorageMethods",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").DbQueryResult>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 779,
+    "lines": 19,
+    "bytes": 779,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 41,
+    "linesPerFile": 19,
+    "numberOfFiles": 1
+  },
+  "id": "bmquswbpwdtjurckaxrnesvo"
+}

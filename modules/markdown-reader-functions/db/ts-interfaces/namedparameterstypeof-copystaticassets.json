@@ -1,0 +1,114 @@
+{
+  "createdAt": 1666262293278,
+  "updatedAt": 1666262293278,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262293278,
+  "id": "namedparameterstypeof-copystaticassets",
+  "name": "NamedParameters<typeof copyStaticAssets>",
+  "slug": "namedparameterstypeof-copystaticassets",
+  "operationRelativeTypescriptFilePath": "src/copyStaticAssets.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "markdownReaderPages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarkdownReaderPage"
+          }
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "operationName": {
+              "type": "string",
+              "description": "by default, uses `markdown-reader-web`"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "markdownReaderPages"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "markdownReaderPages",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "for markdown-reader-ui, the pages can be markdown files, but they can also be connected to models",
+                  "properties": [
+                    {
+                      "name": "queryPath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "path to be used as the url. no preceding slash",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "filePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if given, the md-file will be provided to the frontend\n\nproject relative path",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isMenuItem",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if true, this item will be shown in the menu",
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "MarkdownReaderPage"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "config",
+          "required": false,
+          "schema": {
+            "properties": [
+              {
+                "name": "operationName",
+                "required": false,
+                "schema": {
+                  "fullComment": "by default, uses `markdown-reader-web`",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof copyStaticAssets>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

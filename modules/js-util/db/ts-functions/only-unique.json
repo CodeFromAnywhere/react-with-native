@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666513251921,
+  "updatedAt": 1666513251921,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513251921,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "name": "onlyUnique",
+  "slug": "only-unique",
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "description": "/**\n * DEPRECATED: should refactor everything to use onlyUnique2 and call it onlyUnique again\n *\n * to be used as a filter. removes duplicates\n */",
+  "parameters": [],
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "size": {
+    "characters": 443,
+    "lines": 18,
+    "bytes": 443,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\n/**\n * DEPRECATED: should refactor everything to use onlyUnique2 and call it onlyUnique again\n *\n * to be used as a filter. removes duplicates\n */\nexport function onlyUnique<T extends unknown>(\n  value: T,\n  index: number,\n  self: T[]\n) {\n  return self.findIndex((v) => v === value) === index;\n}",
+  "maxIndentationDepth": 1,
+  "id": "szqhigarddcplulhlfohayqj"
+}

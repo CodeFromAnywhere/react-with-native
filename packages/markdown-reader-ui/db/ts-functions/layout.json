@@ -1,0 +1,125 @@
+{
+  "createdAt": 1666262427382,
+  "updatedAt": 1666262427382,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262427382,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/components/Layout.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  pages: MarkdownReaderPage[];\n  children: any;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n}) => {\n  const { pages, children, augmentedWordObject } = props;\n\n  const queryPaths = pages.filter((x) => x.isMenuItem).map((x) => x.queryPath);\n  const nestedPathObject = queryPathsArrayToNestedPathObject(queryPaths);\n  const menu = nestedPathObjectToNestedMenuRecursive(nestedPathObject);\n\n  const results: AugmentedWord[] = augmentedWordObject\n    ? Object.keys(augmentedWordObject).map(\n        (key) => augmentedWordObject[key] as AugmentedWord\n      )\n    : [];\n\n  return (\n    <Div className=\"h-screen grid grid-rows-6\">\n      <Div className=\"row-span-6 grid grid-cols-5\">\n        <Div\n          className={`\n        col-span-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white`}\n          textClassName=\"dark:text-white\"\n        >\n          {children}\n        </Div>\n        <Span className=\"border-l col-span-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white border-l-gray-400\">\n          <Search results={results} />\n          {menu ? (\n            <NestedMenu menu={menu} headersClickable={true} />\n          ) : (\n            \"Menu couldn't be found\"\n          )}\n        </Span>\n      </Div>\n    </Div>\n  );\n}",
+  "name": "Layout",
+  "slug": "layout",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "pages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/MarkdownReaderPage"
+            }
+          },
+          "children": {},
+          "augmentedWordObject": {
+            "$ref": "#/definitions/MappedObject%3CAugmentedWord%3E"
+          }
+        },
+        "required": [
+          "pages",
+          "children"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "pages",
+            "required": true,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "for markdown-reader-ui, the pages can be markdown files, but they can also be connected to models",
+                    "properties": [
+                      {
+                        "name": "queryPath",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "path to be used as the url. no preceding slash",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "filePath",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "if given, the md-file will be provided to the frontend\n\nproject relative path",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "isMenuItem",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "if true, this item will be shown in the menu",
+                          "type": "boolean"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "MarkdownReaderPage"
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "children",
+            "required": true,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 1258,
+    "lines": 39,
+    "bytes": 1258,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 39,
+    "numberOfFiles": 1
+  },
+  "id": "bzzmctmzyfusqscjbjbiwith"
+}

@@ -1,0 +1,44 @@
+{
+  "createdAt": 1666259755062,
+  "updatedAt": 1666259755062,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259755062,
+  "id": "searchableextension",
+  "name": "SearchableExtension",
+  "slug": "searchableextension",
+  "operationRelativeTypescriptFilePath": "src/extensions.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\nexport type SearchableExtension =\n  | TypescriptExtension\n  | MarkdownExtension\n  | JsonExtension;",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/TypescriptExtension"
+        },
+        {
+          "$ref": "#/definitions/MarkdownExtension"
+        },
+        {
+          "$ref": "#/definitions/JsonExtension"
+        }
+      ]
+    },
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "SearchableExtension",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

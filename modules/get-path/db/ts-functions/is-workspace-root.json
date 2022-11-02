@@ -1,0 +1,87 @@
+{
+  "createdAt": 1666259076819,
+  "updatedAt": 1666259076819,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259076819,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/isWorkspaceRoot.ts",
+  "commentsInside": [],
+  "rawText": " (\n  folderPath: string\n): undefined | { isSensibleProject: boolean; isWorkspaceRoot: boolean } => {\n  const packageJsonPath = path.join(folderPath, \"package.json\");\n  const existsPackageJson = fs.existsSync(packageJsonPath);\n  if (!existsPackageJson) return;\n\n  const packageJson = tryParseJson<PackageJson>(\n    fs.readFileSync(packageJsonPath, \"utf8\")\n  );\n\n  const sensibleConfig: SensibleConfig | undefined = packageJson?.sensible;\n  const isSensibleProject = sensibleConfig?.isSensibleProject || false;\n\n  if (!packageJson || !packageJson.workspaces) {\n    return;\n  }\n\n  return { isSensibleProject, isWorkspaceRoot: true };\n}",
+  "name": "isWorkspaceRoot",
+  "slug": "is-workspace-root",
+  "parameters": [
+    {
+      "name": "folderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "simple sync function to check if a folder is the root of a workspace (not operation but a workspace)",
+  "returnType": {
+    "rawType": "{ isSensibleProject: boolean; isWorkspaceRoot: boolean; } | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "isSensibleProject": {
+          "type": "boolean"
+        },
+        "isWorkspaceRoot": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "isSensibleProject",
+        "isWorkspaceRoot"
+      ],
+      "optional": true
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "isSensibleProject",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isWorkspaceRoot",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 732,
+    "lines": 20,
+    "bytes": 732,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 37,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "xkuhjqvqjglfunmcbksvflss"
+}

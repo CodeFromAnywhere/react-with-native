@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262427619,
+  "updatedAt": 1666262427619,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262427619,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "Search",
+  "slug": "search",
+  "operationRelativeTypescriptFilePath": "src/components/Layout.tsx",
+  "type": {
+    "rawType": "(props: { results: import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/AugmentedWord\").AugmentedWord[]; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: { results: AugmentedWord[] }) => {\n  const { results } = props;\n  const router = useRouter();\n  const options: Item<string>[] = results.map((result) => ({\n    label: result.spoiler || result.word,\n    value: result.word,\n  }));\n\n  return (\n    <Div>\n      <SelectInput\n        config={{}}\n        extra={{ autoSuggest: true, options }}\n        fieldName=\"search\"\n        onChange={(select) => {\n          const path = results.find((x) => x.word === select?.value)?.queryPath;\n          if (path) {\n            router.push(`/${path}`);\n          }\n        }}\n        uniqueFieldId=\"search\"\n        value={null}\n      />\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "rizrcnbiccywajffxvtvoout"
+}

@@ -1,0 +1,53 @@
+{
+  "createdAt": 1666262680238,
+  "updatedAt": 1666262680238,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262680238,
+  "id": "csvitemtype",
+  "name": "CsvItemType",
+  "slug": "csvitemtype",
+  "operationRelativeTypescriptFilePath": "src/tryParseCsv.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\nexport type CsvItemType = {\n  [key: string]: string | number | boolean | null | undefined;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          },
+          {
+            "not": {}
+          }
+        ]
+      }
+    },
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CsvItemType",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

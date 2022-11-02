@@ -1,0 +1,58 @@
+{
+  "createdAt": 1667378840104,
+  "updatedAt": 1667378840104,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378840104,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/js.ts",
+  "commentsInside": [],
+  "rawText": " (fileName: string): string | undefined => {\n  const parts = fileName.split(\".\");\n  //removes extension\n  parts.pop();\n  //returns extension that's left (the sub-extension)\n  const subExtension = parts.pop();\n  return subExtension;\n}",
+  "name": "getSubExtension",
+  "slug": "get-sub-extension",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "string | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 233,
+    "lines": 8,
+    "bytes": 233,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 8,
+    "numberOfFiles": 1
+  },
+  "id": "wxnhackfzwbdkcjcjtpomivj"
+}

@@ -1,0 +1,52 @@
+{
+  "createdAt": 1667379403044,
+  "updatedAt": 1667379403044,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379403044,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/useExpanded.ts",
+  "commentsInside": [],
+  "rawText": " (queryPath: string = \"\") => {\n  const [expanded, setExpanded, { hydrated }] = useStore(\"menu.expanded\");\n\n  const isExpanded =\n    expanded[queryPath] !== undefined ? expanded[queryPath] : false;\n\n  // console.log({ queryPath, isExpanded });\n  const setIsExpanded = () => {\n    return setExpanded({ ...expanded, [queryPath]: true });\n  };\n\n  const setNotExpanded = () => {\n    return setExpanded({ ...expanded, [queryPath]: false });\n  };\n\n  const toggleExpanded = () => {\n    return setExpanded({\n      ...expanded,\n      [queryPath]: !isExpanded,\n    });\n  };\n\n  const tuple: [\n    boolean,\n    () => Promise<void>,\n    () => Promise<void>,\n    () => Promise<void>,\n    { hydrated: boolean }\n  ] = [isExpanded, toggleExpanded, setIsExpanded, setNotExpanded, { hydrated }];\n\n  return tuple;\n}",
+  "name": "useExpanded",
+  "slug": "use-expanded",
+  "parameters": [
+    {
+      "name": "queryPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "[boolean, () => Promise<void>, () => Promise<void>, () => Promise<void>, { hydrated: boolean; }]",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 794,
+    "lines": 32,
+    "bytes": 794,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 32,
+    "numberOfFiles": 1
+  },
+  "id": "zzbutfvccqgroxjnskqcuuag"
+}

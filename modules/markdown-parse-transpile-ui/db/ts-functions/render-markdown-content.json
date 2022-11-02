@@ -1,0 +1,63 @@
+{
+  "createdAt": 1667379367485,
+  "updatedAt": 1667379367485,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379367485,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/renderMarkdownContent.tsx",
+  "commentsInside": [],
+  "rawText": " (\n  content: string,\n  config: MarkdownParseRenderConfig\n) => {\n  // console.log(\"Need to render:\", content);\n  return (\n    <>\n      <ReactTooltip multiline className=\"w-40\" />\n      <ReactMarkdown\n        className={config?.big ? \"max-w-lg\" : undefined}\n        rehypePlugins={[rehypeHighlight, remarkGfm]}\n        components={{\n          img: ({ node, src, ...props }) => {\n            const realSrc = getRealSrc(src, config);\n            return <img src={realSrc} {...props} />;\n          },\n          //Fix newlines with `<br>`\n          br: ({ node, ...props }) => (\n            // @ts-ignore\n            <br {...props} />\n          ),\n\n          details: ({ node, ...props }) => (\n            // @ts-ignore\n            <details {...props} />\n          ),\n          summary: ({ node, ...props }) => (\n            // @ts-ignore\n            <summary {...props} />\n          ),\n          td: ({ node, children, ...props }) => {\n            return (\n              // @ts-ignore\n              <td\n                className=\"border border-gray-900 dark:border-gray-100\"\n                {...props}\n              >\n                {children?.map((child) =>\n                  child === \"<br />\" ? <br /> : child\n                )}\n              </td>\n            );\n          },\n          th: ({ node, ...props }) => (\n            // @ts-ignore\n            <th\n              className=\"border border-gray-900 dark:border-gray-100\"\n              {...props}\n            />\n          ),\n\n          ol: ({ node, ...props }) => (\n            <ol className=\"list-decimal mx-3 p-2\" {...props} />\n          ),\n          ul: ({ node, ...props }) => (\n            <ul\n              style={{ listStyleType: \"circle\" }}\n              className=\"mx-3 p-2\"\n              {...props}\n            />\n          ),\n          p: ({ node, ...props }) => (\n            <p style={{ marginTop: 15, marginBottom: 15 }} {...props} />\n          ),\n          li: ({ node, ...props }) => <li className=\"\" {...props} />,\n          code: ({ node, children, ...props }) => {\n            const word: React.ReactNode | string = children[0];\n\n            // WERKT NU NIET\n            const foundWord: AugmentedWord | undefined =\n              typeof word === \"string\"\n                ? config?.augmentedWordObject?.[word]\n                : undefined;\n\n            return foundWord ? (\n              <a\n                href={`/${foundWord?.queryPath}`}\n                style={{ color: \"darkred\" }}\n                {...props}\n                data-tip={foundWord.spoiler}\n              >\n                {children}\n              </a>\n            ) : (\n              <code\n                className=\"dark:bg-gray-700\"\n                style={{ color: \"darkcyan\" }}\n                {...props}\n              >\n                {children}\n              </code>\n            );\n          },\n          a: ({ node, ...props }) => (\n            <a\n              className=\"text-blue-500\"\n              style={{ color: \"darkblue\" }}\n              {...props}\n            />\n          ),\n        }}\n      >\n        {content}\n      </ReactMarkdown>\n    </>\n  );\n}",
+  "name": "renderMarkdownContent",
+  "slug": "render-markdown-content",
+  "parameters": [
+    {
+      "name": "content",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "config",
+      "schema": {
+        "$ref": "#/definitions/MarkdownParseRenderConfig"
+      },
+      "required": true
+    }
+  ],
+  "description": "renders a markdown striing (without frontmatter)",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 9,
+  "size": {
+    "characters": 3156,
+    "lines": 107,
+    "bytes": 3156,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 107,
+    "numberOfFiles": 1
+  },
+  "id": "ikgcjfiyxpjmslbnzuyejkbf"
+}

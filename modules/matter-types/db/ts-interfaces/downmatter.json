@@ -1,0 +1,69 @@
+{
+  "createdAt": 1666263620564,
+  "updatedAt": 1666263620564,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263620564,
+  "id": "downmatter",
+  "name": "Downmatter",
+  "slug": "downmatter",
+  "operationRelativeTypescriptFilePath": "src/Downmatter.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type Downmatter = Partial<MarkdownIndex>;",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "detectedLanguage": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "detectedLanguage",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "labels",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "Downmatter",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "createdAt": 1667379212583,
+  "updatedAt": 1667379212583,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379212583,
+  "id": "namedparameterstypeof-gettailwindmodules",
+  "name": "NamedParameters<typeof getTailwindModules>",
+  "slug": "namedparameterstypeof-gettailwindmodules",
+  "operationRelativeTypescriptFilePath": "src/util/getTailwindModules.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "options": {
+          "type": "object",
+          "properties": {
+            "packages": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "if you are using a sensible monorepo, put the packages with tailwind-based ui here"
+            },
+            "modules": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "isWorkspace": {
+              "type": "boolean",
+              "description": "if this is a yarn workspace, put true here"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "options"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "options",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "packages",
+                "required": false,
+                "schema": {
+                  "fullComment": "if you are using a sensible monorepo, put the packages with tailwind-based ui here",
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "modules",
+                "required": false,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "isWorkspace",
+                "required": false,
+                "schema": {
+                  "fullComment": "if this is a yarn workspace, put true here",
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getTailwindModules>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

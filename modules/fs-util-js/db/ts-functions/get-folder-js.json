@@ -1,0 +1,58 @@
+{
+  "createdAt": 1667378840103,
+  "updatedAt": 1667378840103,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378840103,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/js.ts",
+  "commentsInside": [],
+  "rawText": " <T extends string | undefined>(\n  filePath: T\n): string | undefined => {\n  if (filePath === undefined) return;\n  const chunks = filePath.split(\"/\");\n  chunks.pop();\n  const allWithoutFile = chunks.join(\"/\");\n  return allWithoutFile;\n}",
+  "name": "getFolderJs",
+  "slug": "get-folder-js",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "string | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 235,
+    "lines": 9,
+    "bytes": 235,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "msnadkprhbtokoombvitoosw"
+}

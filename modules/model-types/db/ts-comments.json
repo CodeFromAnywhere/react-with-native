@@ -1,0 +1,50 @@
+[
+  {
+    "createdAt": 1667379928995,
+    "updatedAt": 1667379928995,
+    "deletedAt": 0,
+    "createdFirstAt": 1667379928995,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/time.ts",
+    "comment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time.\nI can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+    "rawStatement": "export type Time = number;",
+    "parameters": {},
+    "types": [],
+    "firstLine": 1,
+    "lastLine": 11,
+    "id": "bqliozeqiwwcfeulmemktzfe"
+  },
+  {
+    "createdAt": 1667379928995,
+    "updatedAt": 1667379928995,
+    "deletedAt": 0,
+    "createdFirstAt": 1667379928995,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/time.ts",
+    "comment": "in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.",
+    "rawStatement": "export type CreatedFirstAt = Time;",
+    "parameters": {},
+    "types": [],
+    "firstLine": 17,
+    "lastLine": 19,
+    "id": "ktipgrrihjggtdfbbjszqlvy"
+  },
+  {
+    "createdAt": 1667379928995,
+    "updatedAt": 1667379928995,
+    "deletedAt": 0,
+    "createdFirstAt": 1667379928995,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/time.ts",
+    "comment": "TimeTypes is often extended with modelTypes.",
+    "rawStatement": "export type TimeTypes = {\n  createdAt: CreatedAt;\n  updatedAt: UpdatedAt;\n  deletedAt: DeletedAt;\n  createdFirstAt: CreatedFirstAt;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 24,
+    "lastLine": 26,
+    "id": "nvaphcvawxkvmvadjecfikuk"
+  }
+]

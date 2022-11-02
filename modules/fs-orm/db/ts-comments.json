@@ -1,0 +1,34 @@
+[
+  {
+    "createdAt": 1666512760721,
+    "updatedAt": 1666512760721,
+    "deletedAt": 0,
+    "createdFirstAt": 1666512760721,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/util/groupByFile.ts",
+    "comment": "relative",
+    "rawStatement": "import { MergedQueryConfig } from \"../types\";",
+    "parameters": {},
+    "types": [],
+    "firstLine": 3,
+    "lastLine": 3,
+    "id": "nfnbvffvyqoilabyiwfupitp"
+  },
+  {
+    "createdAt": 1666512760721,
+    "updatedAt": 1666512760721,
+    "deletedAt": 0,
+    "createdFirstAt": 1666512760721,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/util/groupByFile.ts",
+    "comment": "Used for `set` and `upsert`. Groups creation items into an object where keys are file paths and values are items that need to be stored",
+    "rawStatement": "export const groupByFile = async <T extends { [key: string]: any }>(\n  creationItems: Creation<T>[],\n  mergedConfig: MergedQueryConfig,\n  modelName: string\n): Promise<ItemPerFileObject<T>> => {\n  const dataWithLocations = (\n    await Promise.all(\n      creationItems.map(async (item) => {\n        if (!item) {\n          console.log(\"WARN\");\n          return;\n        }\n\n        const fullItem = addDefaultValues(item);\n        const storingItem = makeStoringItem(fullItem) as Storing<T>;\n\n        const itemModelLocation = getItemModelLocation(fullItem);\n\n        const dbFileLocation = await getDbFileLocation(\n          storingItem,\n          itemModelLocation.operationName,\n          mergedConfig,\n          modelName\n        );\n\n        if (!dbFileLocation) return;\n\n        return { storingItem, dbFileLocation };\n      })\n    )\n  ).filter(notEmpty);\n\n  const dataPerStorageFile = dataWithLocations.reduce(\n    (fileObject, itemWithLocation) => {\n      const { absolutePath } = itemWithLocation.dbFileLocation;\n\n      const newItems = fileObject[absolutePath]\n        ? fileObject[absolutePath].items.concat(itemWithLocation.storingItem)\n        : [itemWithLocation.storingItem];\n\n      fileObject[absolutePath] = {\n        items: newItems,\n        dbFileLocation: itemWithLocation.dbFileLocation,\n      };\n\n      return fileObject;\n    },\n    {} as ItemPerFileObject<T>\n  );\n\n  return dataPerStorageFile;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 19,
+    "lastLine": 21,
+    "id": "hwgpdsshujqjlwzugzfcwcnn"
+  }
+]

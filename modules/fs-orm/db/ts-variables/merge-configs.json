@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512748951,
+  "updatedAt": 1666512748951,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512748951,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "mergeConfigs",
+  "slug": "merge-configs",
+  "operationRelativeTypescriptFilePath": "src/convention/mergeConfigs.ts",
+  "type": {
+    "rawType": "<TModels extends import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").AnyModelObject>(modelName: Extract<keyof TObject, string>, dbConfig?: import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").DbConfig<TModels> | undefined, config?: any) => import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").MergedQueryConfig",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<TModels extends AnyModelObject>(\n  modelName: Keys<TModels>,\n  dbConfig?: DbConfig<TModels>,\n  config?: CustomQueryConfig | GetQueryConfig<TModels[keyof TModels]>\n) => {\n  const hardcodedDefaultQueryConfig: QueryConfig = {\n    dbStorageMethod: \"jsonMultiple\",\n    manualProjectRoot: getProjectRoot(),\n  };\n\n  const modelConfig = dbConfig?.modelQueryConfig?.[modelName];\n\n  const mergedQueryConfig = mergeObjects<QueryConfig>(\n    hardcodedDefaultQueryConfig,\n    dbConfig?.defaultQueryConfig,\n    modelConfig,\n    config\n  )!;\n\n  // NB: dbStorageMethod is now always set\n  const merged = mergedQueryConfig as MergedQueryConfig;\n  return merged;\n}",
+  "description": "",
+  "id": "wvxnfbkagmiigcdjiytceedq"
+}

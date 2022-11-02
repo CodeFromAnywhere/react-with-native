@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259078154,
+  "updatedAt": 1666259078154,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259078154,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "makeRelative",
+  "slug": "make-relative",
+  "operationRelativeTypescriptFilePath": "src/makeRelative.ts",
+  "type": {
+    "rawType": "(absolutePath: string, baseFolderPath: string) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  /**\n   * absolute path of a file or folder without a slash at the end\n   */\n  absolutePath: string,\n  /**\n   * folder path without a slash at the end\n   */\n  baseFolderPath: string\n): string => {\n  // basecase should be handled, we don't want to get some weird slice edgecase\n  if (absolutePath.length < baseFolderPath.length) return \"\";\n\n  return absolutePath.slice(baseFolderPath.length + 1);\n}",
+  "description": "Makes a path relative using proper parsing\n\nResulting path will apply the paths conventions\n- no slash at the end\n- no slash at the beginning",
+  "id": "escjpqjvmuvrejzmlorsyhtn"
+}

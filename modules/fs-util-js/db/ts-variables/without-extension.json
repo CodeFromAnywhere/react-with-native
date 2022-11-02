@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667378840498,
+  "updatedAt": 1667378840498,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378840498,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "withoutExtension",
+  "slug": "without-extension",
+  "operationRelativeTypescriptFilePath": "src/js.ts",
+  "type": {
+    "rawType": "(fileName: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(fileName: string) => {\n  const pieces = fileName.split(\".\");\n  pieces.pop();\n  return pieces.join(\".\");\n}",
+  "description": "removes extension from the filename",
+  "id": "tivgiqxzunkeqxpoleyjgvik"
+}

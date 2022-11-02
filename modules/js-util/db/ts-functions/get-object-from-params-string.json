@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666513251921,
+  "updatedAt": 1666513251921,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513251921,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (paramsString: string) =>\n  mergeObjectsArray(\n    paramsString\n      .split(\",\")\n      .map((x) => x.trim().split(\":\"))\n      .map((pair) =>\n        pair[0] && pair[1] ? { [pair[0].trim()]: pair[1] } : null\n      )\n      .filter(notEmpty)\n  )",
+  "name": "getObjectFromParamsString",
+  "slug": "get-object-from-params-string",
+  "parameters": [],
+  "description": "useful for cli's that only take strings. This creates an object from a string\n\ninput: \"x:a, y:b, z:c\"\noutput: { x: \"a\", y: \"b\", z: \"c\" }\n\nTODO: would be nice if we can validate this string immediately using a JSON SCHEMA",
+  "returnType": {
+    "rawType": "{ [key: string]: any; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 464,
+    "lines": 15,
+    "bytes": 464,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "oshqrfknkdnixrtlhbkavhun"
+}

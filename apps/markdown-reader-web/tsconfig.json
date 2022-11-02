@@ -1,9 +1,15 @@
 {
+  "createdAt": 1662717424100,
+  "updatedAt": 1662717424100,
+  "deletedAt": 0,
+  "createdFirstAt": 1662717424100,
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+
     "strict": true,
     "forceConsistentCasingInFileNames": false,
     "noEmit": true,
@@ -14,8 +20,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "noEmitOnError": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "id": "gNWvNXJHDEaasVuZ"
 }

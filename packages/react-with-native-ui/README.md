@@ -2,15 +2,23 @@
 
 react-with-native-ui (js operation)
 
-Simple basic Tailwind class strings for sensible UI components
 
-Size: 12 LOC, 2702 data characters, 
- 
-Imported dependencies:
-
-- From Core Libraries: none
-- From Packages: none
-- From Operations: none
 
 # Outline
+
+## Variables
+
+- [bareInputClass](#bareinputclass)
+- [inputClass](#inputclass)
+- [UI](#ui)
+
+
+
+# Variables
+
+## bareInputClass (exported const)
+
+## inputClass (exported const)
+
+## UI (exported const)
 

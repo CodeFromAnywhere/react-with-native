@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513252702,
+  "updatedAt": 1666513252702,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513252702,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getSubsetFromObject",
+  "slug": "get-subset-from-object",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "<T>(object: { [key: string]: T; }, keys: string[]) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T>(\n  object: { [key: string]: T },\n  keys: string[]\n) => {\n  const subsetObject = keys.reduce((obj, key) => {\n    return { ...obj, [key]: object[key] };\n  }, {} as { [key: string]: T });\n  return subsetObject;\n}",
+  "description": "takes an object and a subset of its keys and returns a subset of that object\n\ninput: { x: \"a\", y: \"b\", z: \"c\" } and [\"x\"]\n\noutput: { x: \"a\" }",
+  "id": "xzeswqsefcldclclwponddfb"
+}

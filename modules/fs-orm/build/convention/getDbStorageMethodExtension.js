@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getDbStorageMethodExtension=void 0;var getDbStorageMethodExtension=function(e){return"csv"===e?".csv":"jsonMultiple"===e||"jsonSingle"===e?".json":".md"};exports.getDbStorageMethodExtension=getDbStorageMethodExtension;
+//# sourceMappingURL=getDbStorageMethodExtension.js.map

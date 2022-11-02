@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666261465681,
+  "updatedAt": 1666261465681,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261465681,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/stars/StarsInput.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  onChange,\n  value,\n  extra,\n  config,\n}) => {\n  config = config || {};\n\n  // later, this can be extrahered into a react-with-native-stars component, because now this will only work on web\n  return (\n    <ReactStars\n      className={`m-3`}\n      count={5}\n      value={typeof value === \"number\" ? value : 0}\n      onChange={onChange}\n      half={false}\n      size={24}\n      color2={\"#ffd700\"}\n    />\n  );\n}",
+  "name": "StarsInput",
+  "slug": "stars-input",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 412,
+    "lines": 21,
+    "bytes": 412,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 20,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "sxazvclsvsprsteyjrfzynaz"
+}

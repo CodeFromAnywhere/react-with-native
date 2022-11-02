@@ -1,0 +1,152 @@
+{
+  "createdAt": 1667379651874,
+  "updatedAt": 1667379651874,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379651874,
+  "id": "markdownparagraphchunk",
+  "name": "MarkdownParagraphChunk",
+  "slug": "markdownparagraphchunk",
+  "operationRelativeTypescriptFilePath": "src/MarkdownParagraphChunk.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type MarkdownParagraphChunk = {\n  isNewline?: boolean;\n  codeblock?: MarkdownCodeblock;\n  text?: string;\n  isBolded?: boolean;\n  isItalic?: boolean;\n  isBackticked?: boolean;\n  reference?: MarkdownReference;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "isNewline": {
+          "type": "boolean"
+        },
+        "codeblock": {
+          "$ref": "#/definitions/MarkdownCodeblock"
+        },
+        "text": {
+          "type": "string"
+        },
+        "isBolded": {
+          "type": "boolean"
+        },
+        "isItalic": {
+          "type": "boolean"
+        },
+        "isBackticked": {
+          "type": "boolean"
+        },
+        "reference": {
+          "$ref": "#/definitions/MarkdownReference"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "isNewline",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "codeblock",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "type",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "code",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "text",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isBolded",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isItalic",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isBackticked",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "reference",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "alt",
+                "required": false,
+                "schema": {
+                  "fullComment": "Alternate text inside of the reference, if available",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "path",
+                "required": true,
+                "schema": {
+                  "fullComment": "Absolute path to the refered object",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "isAsset",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, it's an asset (with !)\n\notherwise, it's a link",
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MarkdownParagraphChunk",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

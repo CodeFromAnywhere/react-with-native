@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667378802574,
+  "updatedAt": 1667378802574,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378802574,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getOneFolderUpPath",
+  "slug": "get-one-folder-up-path",
+  "operationRelativeTypescriptFilePath": "src/getOneFolderUpPath.ts",
+  "type": {
+    "rawType": "(folderPath: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(folderPath: string) => {\n  const pathParts = folderPath.split(\"/\");\n  pathParts.pop();\n  return pathParts.join(\"/\");\n}",
+  "description": "Takes a folder path and returns a path that is one folder up",
+  "id": "eedvhonmlblbzrlbdymjexpp"
+}

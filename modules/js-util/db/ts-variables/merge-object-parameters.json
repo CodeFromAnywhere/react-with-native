@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513263372,
+  "updatedAt": 1666513263372,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513263372,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "mergeObjectParameters",
+  "slug": "merge-object-parameters",
+  "operationRelativeTypescriptFilePath": "src/object-merge.ts",
+  "type": {
+    "rawType": "<T>(config: T | undefined, defaults: T | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T>(\n  config: T | undefined,\n  defaults: T | undefined\n) => {\n  const parameters = Object.keys({\n    ...config,\n    ...defaults,\n  }) as (keyof T)[];\n\n  const mergedConfig = parameters.reduce(\n    (getConfig, p) => ({ ...getConfig, [p]: config?.[p] || defaults?.[p] }),\n    {} as Partial<T>\n  );\n  return mergedConfig;\n}",
+  "description": "merges two objects: a config object and a defaults object. If the config object has something missing, a default will be used from the defaults object.\n\nIn short: merges two objects, for every parameter, use the default as a fallback\n\nDEPRECATED: in favor of mergeObjects",
+  "id": "lyqwaaxvwklynwtrqqvmnffo"
+}

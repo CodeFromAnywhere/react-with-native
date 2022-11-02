@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+export declare const sum: (items: number[]) => number;
 /**
  * function that takes an array of functions and applies them one by one, on the value or the result of the previous function. Only possible if the type of the value stays the same.
  */
@@ -29,34 +30,6 @@ export declare const groupByKey: <T extends {
  */
 export declare const isAllTrue: (array: boolean[]) => boolean;
 /**
- * maps over all keys in an object and replaces them using a mapfn
- */
-export declare const mapKeys: (object: {
-    [key: string]: any;
-}, mapFn: (key: string) => string | Promise<string> | undefined) => Promise<{
-    [x: string]: any;
-}>;
-/**
- * maps over all values in an object and replaces them using a mapfn
- *
- * NB: TODO: the current type interface leads this object to be detyped if it had a clear type. I hope I can find a way to solve this!
- */
-export declare const mapValues: <T, U>(object: {
-    [key: string]: T;
-}, mapFn: (value: T) => U | Promise<U>) => Promise<{
-    [x: string]: Awaited<U>;
-}>;
-/**
- * maps over all values in an object and replaces them using a mapfn
- *
- * sync
- */
-export declare const mapValuesSync: <T, U>(object: {
-    [key: string]: T;
-}, mapFn: (value: T) => U) => {
-    [x: string]: U;
-};
-/**
  * DEPRECATED: should refactor everything to use onlyUnique2 and call it onlyUnique again
  *
  * to be used as a filter. removes duplicates
@@ -78,16 +51,6 @@ export declare const onlyUnique2: <U>(isEqualFn?: ((a: U, b: U) => boolean) | un
  * NB: TODO: find out the workings of the array constructor (`Array("any value")`), because maybe it does something very similar. No need to have a dependency then if it's similar.
  */
 export declare const makeArray: <T>(...arrayOrNotArray: (T | T[] | undefined)[]) => T[];
-/**
- * not sure if this is the best way, but it does save some lines of code!
- *
- * maps over an object's values with a map function
- */
-export declare function objectValuesMap<T extends {
-    [key: string]: T[string];
-}, U extends unknown>(object: T, mapFn: (value: T[string], key: string) => U): {
-    [key: string]: U;
-};
 /**
  * takes any type T or an array of T and returns T or the first of the array (which is T)
  */
@@ -125,19 +88,8 @@ export declare const sumObjectParameters: <TObject extends {
 export declare const sumAllKeys: <T extends {
     [key: string]: number | undefined;
 }>(objectArray: T[], keys: (keyof T)[]) => T;
-export declare const mergeObjectsArray: <T extends {
-    [key: string]: any;
-}>(objectsArray: T[]) => T;
 /**
  * Removes empty values (null or undefined) from your arrays in a type-safe way
  */
 export declare function notEmpty<TValue>(value: TValue | null | undefined): value is TValue;
-/**
- * merges two objects: a config object and a defaults object. If the config object has something missing, a default will be used from the defaults object.
- *
- * In short: merges two objects, for every parameter, use the default as a fallback
- *
- * NB: could be useful to rewrite this later if I need multiple levels of defaults... The only provided argument can just be a T[], which reduces that by using deeper and deeper fallbacks. For example, VSCode does this with settings: you have workspace settings, user settings, and global settings
- */
-export declare const mergeObjectParameters: <T>(config: T | undefined, defaults: T | undefined) => Partial<T>;
 //# sourceMappingURL=general.d.ts.map

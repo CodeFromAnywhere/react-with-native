@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var getProjectRoot_1=require("./getProjectRoot"),getRelativeLinkPath_1=require("./getRelativeLinkPath"),test=function(){var e=__filename,t=(0,getProjectRoot_1.getProjectRoot)();if(t){var o="".concat(t,"/README.md");console.log((0,getRelativeLinkPath_1.getRelativeLinkPath)(e,o))}};test();
+//# sourceMappingURL=getRelativeLinkPath.test.js.map

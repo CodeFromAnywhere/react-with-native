@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667111125437,
+  "updatedAt": 1667111125437,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111125437,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getNameWithTokenFromRelativePath",
+  "slug": "get-name-with-token-from-relative-path",
+  "operationRelativeTypescriptFilePath": "src/token/getNameWithTokenFromRelativePath.ts",
+  "type": {
+    "rawType": "(relativePath: string, attachTokenToFilename?: boolean | undefined, newToken?: string | undefined) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  relativePath: string,\n  attachTokenToFilename?: boolean,\n  newToken?: string\n): string => {\n  const name = getNameFromRelativePath(relativePath);\n  if (!attachTokenToFilename) return name;\n  return ensureToken(name, newToken, attachTokenToFilename);\n}",
+  "description": "first gets the name from the relativePath\n\nthen ensures the token is attached (if not already there)",
+  "id": "fitmjvgvkjabhktyyniqjudb"
+}

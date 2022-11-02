@@ -1,0 +1,135 @@
+{
+  "createdAt": 1667379361754,
+  "updatedAt": 1667379361754,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379361754,
+  "id": "namedparameterstypeof-markdowncodeblock",
+  "name": "NamedParameters<typeof MarkdownCodeblock>",
+  "slug": "namedparameterstypeof-markdowncodeblock",
+  "operationRelativeTypescriptFilePath": "src/MarkdownCodeblock.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "props": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "extension": {
+              "type": "string"
+            },
+            "minimalMode": {
+              "$ref": "#/definitions/CodeblockMode",
+              "description": "If set, this is the mode when minimised"
+            },
+            "expandedMode": {
+              "$ref": "#/definitions/CodeblockMode",
+              "description": "If set, this is the mode when expanded"
+            },
+            "isInitiallyExpanded": {
+              "type": "boolean",
+              "description": "if true, by default it's expanded"
+            },
+            "isModeStatic": {
+              "type": "boolean",
+              "description": "if true, mode cannot be changed"
+            }
+          },
+          "required": [
+            "text"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "props"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "props",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "text",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "extension",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "minimalMode",
+                "required": false,
+                "schema": {
+                  "enum": [
+                    "preview",
+                    "scroll",
+                    "full"
+                  ],
+                  "fullComment": "If set, this is the mode when minimised\n\n",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "expandedMode",
+                "required": false,
+                "schema": {
+                  "enum": [
+                    "preview",
+                    "scroll",
+                    "full"
+                  ],
+                  "fullComment": "If set, this is the mode when expanded\n\n",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "isInitiallyExpanded",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, by default it's expanded",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "isModeStatic",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, mode cannot be changed",
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof MarkdownCodeblock>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

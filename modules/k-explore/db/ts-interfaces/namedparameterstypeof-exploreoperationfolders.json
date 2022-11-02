@@ -1,0 +1,72 @@
+{
+  "createdAt": 1666259121012,
+  "updatedAt": 1666259121012,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259121012,
+  "id": "namedparameterstypeof-exploreoperationfolders",
+  "name": "NamedParameters<typeof exploreOperationFolders>",
+  "slug": "namedparameterstypeof-exploreoperationfolders",
+  "operationRelativeTypescriptFilePath": "src/exploreOperationFolders.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "basePath": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": false,
+          "schema": {
+            "properties": [
+              {
+                "name": "basePath",
+                "required": false,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof exploreOperationFolders>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

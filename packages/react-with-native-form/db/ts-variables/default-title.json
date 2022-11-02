@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666261374616,
+  "updatedAt": 1666261374616,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261374616,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "DefaultTitle",
+  "slug": "default-title",
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "type": {
+    "rawType": "({ title, backButton, }: { title?: string | undefined; backButton?: (() => void) | undefined; }) => JSX.Element | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "({\n  title,\n  backButton,\n}: {\n  title?: string;\n  backButton?: () => void;\n}) => {\n  return title ? (\n    <Div className=\"flex items-center mb-10 \">\n      {backButton && (\n        <Div onClick={backButton} className={`p-4 cursor-pointer`}>\n          back\n        </Div>\n      )}\n      <H2 className=\"text-2xl font-bold\">{title}</H2>\n    </Div>\n  ) : null;\n}",
+  "description": "",
+  "id": "vbqmozdnmkopimzrteknysao"
+}

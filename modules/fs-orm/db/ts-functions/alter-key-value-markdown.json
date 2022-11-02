@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666512731178,
+  "updatedAt": 1666512731178,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512731178,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n\n  const kvmdParse: KeyValueMarkdownParse | null = await readKvmdFile(\n    absolutePath,\n    dbFileLocation\n  );\n\n  const isNewFile = !kvmdParse;\n\n  const storedData = kvmdParse?.data || [];\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n\n  const newKvmdParse: KeyValueMarkdownParse = {\n    parameters: kvmdParse?.parameters || {},\n    data: newStoredData as KeyValueMarkdownModelType[],\n  };\n\n  const newDataString = kvmdParseToMarkdownString(newKvmdParse);\n  const isSuccesful = await writeStringToFile(absolutePath, newDataString);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
+  "name": "alterKeyValueMarkdown",
+  "slug": "alter-key-value-markdown",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 790,
+    "lines": 31,
+    "bytes": 790,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "id": "rscllblhqgaluygzxfwtkxpc"
+}

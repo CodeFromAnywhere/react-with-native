@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379429433,
+  "updatedAt": 1667379429433,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379429433,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "StoreContextProvider",
+  "slug": "store-context-provider",
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "type": {
+    "rawType": "<TStore extends object, K extends Extract<keyof T, string>>({ DynamicContext, children, config, storeKey, }: { DynamicContext: React.Context<any>; children: any; config: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/react-with-native-store/src/general\").StoreConfig<TStore>; storeKey: K; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<TStore extends object, K extends Keys<TStore>>({\n  DynamicContext,\n  children,\n  config,\n  storeKey,\n}: {\n  DynamicContext: React.Context<any>;\n  children: any;\n  config: StoreConfig<TStore>;\n  storeKey: K;\n}) => {\n  const [hydrated, setHydrated] = useState(false);\n  const [store, setStore] = useState<TStore[K]>(\n    config?.initialValues[storeKey]\n  ); //null or some object or string or whatever\n  const baseKey = config?.baseKey;\n\n  // On mount, get the current value from storage\n  useEffect(() => {\n    const fullKey = getKey(storeKey, baseKey);\n    getItem(fullKey).then((value) => {\n      if (debug) {\n        console.log(`Hydrated store for ${fullKey}:`, value);\n      }\n      setStore(value);\n      setHydrated(true);\n    });\n  }, []);\n\n  const initialValues = config?.initialValues;\n\n  const useStoreHook: UseStoreType<TStore> = <K2 extends Keys<TStore>>(\n    key: K2\n  ) => {\n    const fullKey = getKey(key, baseKey);\n\n    const defaultValue = initialValues[key];\n    // @ts-ignore\n    const value: TStore[K2] =\n      store !== undefined\n        ? store\n        : defaultValue !== undefined\n        ? defaultValue\n        : null;\n\n    const dispatch: (value: TStore[K2]) => Promise<void> = async (value) => {\n      //should do a deep equal here, and only set the store and item if the value actually has changed\n      //@ts-ignore\n      setStore(value);\n      await setItem(fullKey, value);\n    };\n\n    return [value, dispatch, { hydrated }];\n  };\n\n  return (\n    <DynamicContext.Provider value={useStoreHook}>\n      {children}\n    </DynamicContext.Provider>\n  );\n}",
+  "description": "",
+  "id": "nvjbdrodhokhpfugzgtdjhss"
+}

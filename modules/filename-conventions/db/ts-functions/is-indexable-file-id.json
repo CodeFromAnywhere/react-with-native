@@ -1,0 +1,61 @@
+{
+  "createdAt": 1666259757726,
+  "updatedAt": 1666259757726,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259757726,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/filename-conventions.ts",
+  "commentsInside": [],
+  "rawText": " (fileId: string): boolean => {\n  const isOperationName = hasSubExtension(\n    fileId,\n    operationUnindexableNamesOrSubExtensions,\n    true\n  );\n\n  const isFrontendOptionalName = hasSubExtension(\n    fileId,\n    frontendOptionalFileSubExtensions,\n    false\n  );\n\n  const isIndex = fileId === \"index\";\n\n  const isIndexable = !isIndex && !isFrontendOptionalName && !isOperationName;\n\n  return isIndexable;\n}",
+  "name": "isIndexableFileId",
+  "slug": "is-indexable-file-id",
+  "parameters": [
+    {
+      "name": "fileId",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 407,
+    "lines": 19,
+    "bytes": 407,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 19,
+    "numberOfFiles": 1
+  },
+  "id": "rexpzzhwfqfzigujlkvyxvoi"
+}

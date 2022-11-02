@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262345232,
+  "updatedAt": 1666262345232,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262345232,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getQueryPath",
+  "slug": "get-query-path",
+  "operationRelativeTypescriptFilePath": "src/getQueryPath.ts",
+  "type": {
+    "rawType": "(parsedUrlQuery: import(\"/Users/king/King/operations/node_modules/next/dist/server/request-meta\").NextParsedUrlQuery | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  parsedUrlQuery: NextParsedUrlQuery | undefined\n) => {\n  const paths = parsedUrlQuery?.paths;\n  const queryPath = Array.isArray(paths)\n    ? paths.join(\"/\")\n    : paths === undefined\n    ? \"\"\n    : paths;\n  return queryPath;\n}",
+  "description": "",
+  "id": "veqzetfrusbkcpdklbhnplci"
+}

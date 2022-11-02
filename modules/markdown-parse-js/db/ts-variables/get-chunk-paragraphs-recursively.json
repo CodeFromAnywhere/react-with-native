@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379655197,
+  "updatedAt": 1667379655197,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379655197,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getChunkParagraphsRecursively",
+  "slug": "get-chunk-paragraphs-recursively",
+  "operationRelativeTypescriptFilePath": "src/getChunkParagraphsRecursively.ts",
+  "type": {
+    "rawType": "(chunk: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownChunk) => string[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  chunk: MarkdownChunk\n): string[] => {\n  const childrenParagraphs =\n    chunk.children?.map(getChunkParagraphsRecursively).flat() || [];\n  const thisParagraph = chunk.content;\n  const paragraphs = [thisParagraph, ...childrenParagraphs].filter(notEmpty);\n  return paragraphs;\n}",
+  "description": "Get all paragraphs (`content` values) recursively from a `MarkdownChunk`",
+  "id": "frhazeqtuxttwoqvalonvmdb"
+}

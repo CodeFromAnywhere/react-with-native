@@ -1,0 +1,77 @@
+{
+  "createdAt": 1666512736489,
+  "updatedAt": 1666512736489,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512736489,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/alter/upsertKeyValueMarkdown.ts",
+  "commentsInside": [],
+  "rawText": " (\n  arrayItem: Storing<KeyValueMarkdownModelType>,\n  newCategoryStack: CategoryStack\n) => {\n  const categoryStackCalculatedWithItself =\n    arrayItem.categoryStackCalculated.concat(arrayItem.slug);\n  const locationString = categoryStackCalculatedWithItself.join(\",\");\n  const newItemLocationString = newCategoryStack.join(\",\");\n  const isSameLocation = locationString === newItemLocationString;\n\n  return isSameLocation;\n}",
+  "name": "findParent",
+  "slug": "find-parent",
+  "parameters": [
+    {
+      "name": "arrayItem",
+      "schema": {
+        "$ref": "#/definitions/Storing%3CKeyValueMarkdownModelType%3E"
+      },
+      "required": true
+    },
+    {
+      "name": "newCategoryStack",
+      "schema": {
+        "$ref": "#/definitions/CategoryStack"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "this location matches any category that equals the categorystack",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 487,
+    "lines": 12,
+    "bytes": 487,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 41,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "wehsadetbvvvungywerklyqw"
+}

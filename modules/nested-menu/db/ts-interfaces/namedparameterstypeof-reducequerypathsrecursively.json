@@ -1,0 +1,73 @@
+{
+  "createdAt": 1667379406465,
+  "updatedAt": 1667379406465,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379406465,
+  "id": "namedparameterstypeof-reducequerypathsrecursively",
+  "name": "NamedParameters<typeof reduceQueryPathsRecursively>",
+  "slug": "namedparameterstypeof-reducequerypathsrecursively",
+  "operationRelativeTypescriptFilePath": "src/util/queryPathsArrayToNestedPathObject.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "queryPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "initialValue": {
+          "$ref": "#/definitions/NestedPathObject"
+        }
+      },
+      "required": [
+        "queryPaths",
+        "initialValue"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "queryPaths",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "initialValue",
+          "required": true,
+          "schema": {
+            "fullComment": "A different way to represent a path array in a nested object of folders\n\n{  \"folderName\": {    \"file1\": null,    \"file2\": null  },  \"folderName2\": {    \"file1\": null,    \"file2\": null  } }",
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof reduceQueryPathsRecursively>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

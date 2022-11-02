@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666513267479,
+  "updatedAt": 1666513267479,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513267479,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/trimSlashes.ts",
+  "commentsInside": [],
+  "rawText": " (absoluteOrRelativePath: string) => {\n  const isFirstCharacterSlash = absoluteOrRelativePath.charAt(0) === \"/\";\n  const isLastCharacterSlash =\n    absoluteOrRelativePath.charAt(absoluteOrRelativePath.length - 1) === \"/\";\n\n  const withoutSlashPrefix = isFirstCharacterSlash\n    ? absoluteOrRelativePath.slice(1)\n    : absoluteOrRelativePath;\n  const withoutSlashSuffix = isLastCharacterSlash\n    ? withoutSlashPrefix.slice(0, withoutSlashPrefix.length - 1)\n    : withoutSlashPrefix;\n\n  return withoutSlashSuffix;\n}",
+  "name": "trimSlashes",
+  "slug": "trim-slashes",
+  "parameters": [
+    {
+      "name": "absoluteOrRelativePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Trims a slash on both sides in any path",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 553,
+    "lines": 14,
+    "bytes": 553,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 40,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "ujzlxufzcdfcyqryblzytenk"
+}

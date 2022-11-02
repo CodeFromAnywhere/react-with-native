@@ -1,0 +1,75 @@
+{
+  "createdAt": 1667379857055,
+  "updatedAt": 1667379857055,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379857055,
+  "id": "modelinfo",
+  "name": "ModelInfo",
+  "slug": "modelinfo",
+  "operationRelativeTypescriptFilePath": "src/Menu.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "/**\n * used to show a list of models available in a menu structure\n */\nexport type ModelInfo = {\n  name: string;\n  slug: string;\n  rows: number;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "used to show a list of models available in a menu structure",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "rows": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name",
+        "slug",
+        "rows"
+      ],
+      "additionalProperties": false,
+      "description": "used to show a list of models available in a menu structure"
+    },
+    "simplifiedSchema": {
+      "fullComment": "used to show a list of models available in a menu structure",
+      "properties": [
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "rows",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ModelInfo",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

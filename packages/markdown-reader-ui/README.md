@@ -2,96 +2,86 @@
 
 markdown-reader-ui (ui-es6 operation)
 
-All frontend components can go here
 
-Size: 392 LOC, 2483 data characters, 
- 
-Imported dependencies:
-
-- From Core Libraries: none
-- From Packages: LinkProps, LinkProps, AppProps, NativeStackNavigationOptions
-- From Operations: A, AType, A, AType, Div, Span, Div, Ul, Button, Span, useRouter, FolderExploration, Div, P, MarkdownChunk, MarkdownParse, FrontMatter, Div, localhostServer, remoteServer, runLocalServer, localIpServer, remoteServer, runLocalServer
 
 # Outline
 
 ## Functions
 
-- [Layout](#Layout)
-- [Page](#Page)
+- [AugmentedWordComponent](#AugmentedWordComponent)
+- [Dictionary](#Dictionary)
 - [getPageTitle](#getPageTitle)
-- [getQueryPath](#getQueryPath)
+- [Layout](#Layout)
+- [Search](#Search)
+
+## Interfaces
+
+- [AugmentedWord](#augmentedword)
+- [MarkdownReaderPage](#markdownreaderpage)
+
+## Variables
+
+- [AugmentedWordComponent](#augmentedwordcomponent)
+- [Dictionary](#dictionary)
+- [getPageTitle](#getpagetitle)
+- [Layout](#layout)
+- [pageKeys](#pagekeys)
+- [pagesObject](#pagesobject)
+- [pages](#pages)
+- [Search](#search)
 
 
 
 # Functions
 
-## Layout
+## AugmentedWordComponent
 
-Max. indexation depth: 5, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### {  queryPaths,  children,}: object
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| queryPaths  | array |  |
-| children  | object |  |
-
-
-## Page
-
-Max. indexation depth: 5, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### props: object
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| markdownString  | null |  |
-| queryPaths  | array |  |
-
+## Dictionary
 
 ## getPageTitle
 
-Max. indexation depth: 1, 
-
 utility function to get a title from a page
 
-## Returns: unknown
-
-## getQueryPath
-
-Max. indexation depth: 2, 
 
 
 
-## Returns: unknown
+## Layout
 
-### Arguments
+### Parameters (1)
 
-#### parsedUrlQuery (optional): object
+#### Parameter 1: props: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| pages  | array |  |
+| children  | object |  |
+
+
+
+## Search
+
+### Parameters (1)
+
+#### Parameter 1: props: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| results  | array |  |
+
+
+# Interfaces
+
+## AugmentedWord
+
+AugmentedWords should have a small footprint since there can be many of them
+
+Words with a specific affix (backticks, bolded, italic) will match against these.
+
+Used to link automatically to functionNames, InterfaceNames, operation-names, words, and more..
 
 
 
@@ -101,13 +91,50 @@ Properties:
 
  | Name | Type | Description |
 |---|---|---|
-| amp (optional) | string |  |
-| __nextNotFoundSrcPage (optional) | string |  |
-| __nextDefaultLocale (optional) | string |  |
-| __nextFallback (optional) | string |  |
-| __nextLocale (optional) | string |  |
-| __nextSsgPath (optional) | string |  |
-| _nextBubbleNoFallback (optional) | string |  |
-| _nextDataReq (optional) | string |  |
+| type  | string |  |
+| word  | string |  |
+| queryPath (optional) | string |  |
+| projectRelativeMarkdownSourcePath  | string |  |
+| spoiler (optional) | string |  |
+| isCaseInsensitive (optional) | boolean |  |
 
+
+
+## MarkdownReaderPage
+
+for markdown-reader-ui, the pages can be markdown files, but they can also be connected to models
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| queryPath  | string |  |
+| filePath (optional) | string |  |
+| isMenuItem (optional) | boolean |  |
+
+
+# Variables
+
+## AugmentedWordComponent (exported const)
+
+## Dictionary (exported const)
+
+## getPageTitle (exported const)
+
+utility function to get a title from a page
+
+
+## Layout (exported const)
+
+## pageKeys (unexported const)
+
+## pagesObject (exported const)
+
+## pages (exported const)
+
+## Search (exported const)
 

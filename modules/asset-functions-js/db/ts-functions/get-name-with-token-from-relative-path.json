@@ -1,0 +1,76 @@
+{
+  "createdAt": 1667111125290,
+  "updatedAt": 1667111125290,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111125290,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/token/getNameWithTokenFromRelativePath.ts",
+  "commentsInside": [],
+  "rawText": " (\n  relativePath: string,\n  attachTokenToFilename?: boolean,\n  newToken?: string\n): string => {\n  const name = getNameFromRelativePath(relativePath);\n  if (!attachTokenToFilename) return name;\n  return ensureToken(name, newToken, attachTokenToFilename);\n}",
+  "name": "getNameWithTokenFromRelativePath",
+  "slug": "get-name-with-token-from-relative-path",
+  "parameters": [
+    {
+      "name": "relativePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "attachTokenToFilename",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    },
+    {
+      "name": "newToken",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "first gets the name from the relativePath\n\nthen ensures the token is attached (if not already there)",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 356,
+    "lines": 11,
+    "bytes": 356,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "qynmuyrnkgtyufeiuzpgexhy"
+}

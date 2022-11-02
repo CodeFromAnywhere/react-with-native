@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getQueryPath=void 0;var getQueryPath=function(e){var r=null==e?void 0:e.paths;return Array.isArray(r)?r.join("/"):void 0===r?"":r};exports.getQueryPath=getQueryPath;
+//# sourceMappingURL=getQueryPath.js.map

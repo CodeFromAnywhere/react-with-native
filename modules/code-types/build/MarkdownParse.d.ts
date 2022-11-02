@@ -1,7 +1,28 @@
-import { FrontMatter, CategoryStack } from "common-types";
-export declare type ImageMarkdownJson = {
+import { CategoryStack } from "model-types";
+import { Frontmatter, Downmatter } from "matter-types";
+/**
+ * type of asset that is being embedded
+ */
+export declare type MarkdownAssetType = "youtube" | "video" | "image" | "audio" | "markdown" | "json" | "typescript" | "file";
+/**
+ * Anything in the format `[alt](href)`
+ *
+ * It needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here
+ */
+export declare type MarkdownLink = {
     alt: string;
-    url: string;
+    href: string;
+    type: MarkdownAssetType;
+};
+/**
+ * Anything in the format `![alt](src)`
+ *
+ * NB: I need to be very clear how this one works
+ */
+export declare type MarkdownEmbed = {
+    alt: string;
+    src: string;
+    type: MarkdownAssetType;
 };
 /**
  * 0 is a paragraph
@@ -9,12 +30,23 @@ export declare type ImageMarkdownJson = {
  */
 export declare type MarkdownContentLevel = number;
 export declare type MarkdownParagraph = {
+    /** the raw text of this paragraph */
     paragraph: string;
-    categoryStack: CategoryStack;
+    /**
+     * the parent stack
+     */
+    categoryStackCalculated: CategoryStack;
+    /**
+     * if the paragraph is
+     * NB: not always used!
+     */
+    level?: MarkdownContentLevel;
 };
 export declare type MarkdownChunk = {
     level: MarkdownContentLevel;
     content?: string;
+    markdownEmbed?: MarkdownEmbed;
+    markdownLink?: MarkdownLink;
     /**
      * NB: title can also be an empty string ("")
      */
@@ -24,22 +56,24 @@ export declare type MarkdownChunk = {
      */
     children?: MarkdownChunk[];
 };
-export declare type MarkdownFileParse = MarkdownParse & {
-    fileName: string;
-    createdAt: number;
-    openedAt: number;
-    updatedAt: number;
-    modifiedAt: number;
-};
 export declare type MarkdownParse = {
     /**
-     * if available, this can be the filename of the markdown in this markdownparse. Can be used for things like merging
+     * if available, this can be the filename of the markdown in this markdown-parse. Can be used for things like merging
      */
     fileName?: string;
+    createdAt?: number;
+    openedAt?: number;
+    updatedAt?: number;
+    deletedAt?: number;
+    createdFirstAt?: number;
     /**
      * parameters found in frontmatter
      */
-    parameters: FrontMatter;
+    parameters: Frontmatter;
+    /**
+     * downmatter is the same as frontmatter, but it is to be found at the end of the file. It is supposed to be containing things that are not important for the user to know, yet it is important metadata that is connected to this file. This can be indexed things, for example.
+     */
+    downmatterParameters?: Downmatter;
     /**
      * structured content based on h1, h2, h3, etc (paragraphs, recursive)
      */

@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666259852282,
+  "updatedAt": 1666259852282,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259852282,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/cli/test-upsert.cli.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const [modelName, dataString] = process.argv.slice(2);\n\n  /**\n   FOR kvmd type:\n\n   - required: name\n   - optional: parent_xxxSlug, value, comment\n   */\n  if (!dataString || !modelName) {\n    console.log(\"please choose a model and data\");\n  }\n\n  const theObject = getObjectFromParamsString(dataString);\n  //@ts-ignore\n  const result = await testDb.upsert(modelName as any, theObject);\n\n  console.table(result);\n}",
+  "name": "upsertCli",
+  "slug": "upsert-cli",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 429,
+    "lines": 19,
+    "bytes": 429,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 19,
+    "numberOfFiles": 1
+  },
+  "id": "jrqbhartldyxyqvqxoeaptwo"
+}

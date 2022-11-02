@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666259864874,
+  "updatedAt": 1666259864874,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259864874,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/test.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const result = await testDb.update(\n    \"TsConfig\",\n    () => true,\n    (tsConfig) => ({\n      ...tsConfig,\n      compilerOptions: { ...tsConfig.compilerOptions, resolveJsonModule: true },\n    })\n  );\n\n  console.dir(result, { depth: 111 });\n}",
+  "name": "migration",
+  "slug": "migration",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 259,
+    "lines": 12,
+    "bytes": 259,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "ybuseyvvwvtquidmklsmofpm"
+}

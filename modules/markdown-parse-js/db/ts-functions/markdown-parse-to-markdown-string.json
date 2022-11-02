@@ -1,0 +1,119 @@
+{
+  "createdAt": 1667379661778,
+  "updatedAt": 1667379661778,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379661778,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/markdownParseToMarkdownString.ts",
+  "commentsInside": [],
+  "rawText": " (\n  markdownParse: MarkdownParse\n): string => {\n  const frontMatterString = frontmatterParseToString(markdownParse.parameters);\n\n  return `${frontMatterString}${markdownParse.raw}`;\n}",
+  "name": "markdownParseToMarkdownString",
+  "slug": "markdown-parse-to-markdown-string",
+  "parameters": [
+    {
+      "name": "markdownParse",
+      "schema": {
+        "$ref": "#/definitions/MarkdownParse"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "fileName",
+            "required": false,
+            "schema": {
+              "fullComment": "if available, this can be the filename of the markdown in this markdown-parse. Can be used for things like merging",
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "openedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "updatedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "deletedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "createdFirstAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "content",
+            "required": false,
+            "schema": {
+              "fullComment": "structured content based on h1, h2, h3, etc (paragraphs, recursive)",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "raw",
+            "required": true,
+            "schema": {
+              "fullComment": "raw markdown without frontmatter",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 184,
+    "lines": 7,
+    "bytes": 184,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "wnawkeswbkniauoggkdktsue"
+}

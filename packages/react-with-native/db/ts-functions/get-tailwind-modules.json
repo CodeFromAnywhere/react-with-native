@@ -1,0 +1,113 @@
+{
+  "createdAt": 1667379212740,
+  "updatedAt": 1667379212740,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379212740,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util/getTailwindModules.ts",
+  "commentsInside": [],
+  "rawText": " (options: {\n  /**\n   * if you are using a sensible monorepo, put the packages with tailwind-based ui here\n   */\n  packages?: string[] /**\n  if you are using any tailwind-based node-modules, put them here.\n */;\n  modules?: string[];\n  /**\n *  if this is a yarn workspace, put true here\n\n */\n  isWorkspace?: boolean;\n}) => {\n  const packages =\n    options.packages?.map((module) => {\n      return `../../packages/${module}/src/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  const modules =\n    options.modules?.map((module) => {\n      return options.isWorkspace\n        ? `../../node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`\n        : `./node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  return packages?.concat(modules);\n}",
+  "name": "getTailwindModules",
+  "slug": "get-tailwind-modules",
+  "parameters": [
+    {
+      "name": "options",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "packages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "if you are using a sensible monorepo, put the packages with tailwind-based ui here"
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWorkspace": {
+            "type": "boolean",
+            "description": "if this is a yarn workspace, put true here"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "packages",
+            "required": false,
+            "schema": {
+              "fullComment": "if you are using a sensible monorepo, put the packages with tailwind-based ui here",
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "modules",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "isWorkspace",
+            "required": false,
+            "schema": {
+              "fullComment": "if this is a yarn workspace, put true here",
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 761,
+    "lines": 28,
+    "bytes": 761,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "zqjhdccplgkfgjsfczfiazvx"
+}

@@ -1,0 +1,56 @@
+{
+  "createdAt": 1667379656146,
+  "updatedAt": 1667379656146,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379656146,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getImplicitId.ts",
+  "commentsInside": [],
+  "rawText": " (title: string): string => {\n  return slugify(title);\n}",
+  "name": "getImplicitId",
+  "slug": "get-implicit-id",
+  "parameters": [
+    {
+      "name": "title",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Implicit ids are a convention in markdown. A title gets an implicit id by removing spaces and making the title lowercase.\n\nSee https://stackoverflow.com/questions/6695439/how-to-link-to-a-named-anchor-in-multimarkdown",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 273,
+    "lines": 5,
+    "bytes": 273,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 55,
+    "linesPerFile": 5,
+    "numberOfFiles": 1
+  },
+  "id": "qtupmzllicjkisinzhgzzbew"
+}

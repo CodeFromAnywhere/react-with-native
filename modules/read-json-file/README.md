@@ -2,89 +2,61 @@
 
 read-json-file (node operation)
 
-Size: 61 LOC, 2125 data characters, 
- 
-Imported dependencies:
 
-- From Core Libraries: none
-- From Packages: none
-- From Operations: canRead, fs, Path, canReadSync
 
 # Outline
 
 ## Functions
 
-- [readJsonFile](#readJsonFile)
 - [readJsonFileSync](#readJsonFileSync)
-- [tryParseJson](#tryParseJson)
+- [readJsonFile](#readJsonFile)
+
+## Interfaces
+
+- [Path](#path)
+
+## Variables
+
+- [readJsonFileSync](#readjsonfilesync)
+- [readJsonFile](#readjsonfile)
 
 
 
 # Functions
 
-## readJsonFile
-
-Max. indexation depth: 1, 
-
-Reads and parses JSON file
-
-make sure to specify what type the file contains as a generic!
-
-## Returns: unknown
-
-### Arguments
-
-#### filePath (optional): string
-
-
-
-```md
-unlike PathLike, this is only a string
-
-For now, we don't have a clear convention whether or not this string should be absolute or anything.
-```
-
-
-
-
 ## readJsonFileSync
 
-Max. indexation depth: 1, 
+Reads and parses JSON file
+
+make sure to specify what type the file contains as a generic!
+
+
+### Returns: string(Enum: ul | )
+
+### Parameters (1)
+
+#### Parameter 1: filePath: string
+
+## readJsonFile
 
 Reads and parses JSON file
 
 make sure to specify what type the file contains as a generic!
 
-### Returns: string(Enum: ul | ) 
 
 
 
+### Parameters (1)
 
+#### Parameter 1: filePath (optional): string
 
+# Interfaces
 
+## Path
 
-### Arguments
-
-#### filePath: string
-
-
-
-```md
 unlike PathLike, this is only a string
 
 For now, we don't have a clear convention whether or not this string should be absolute or anything.
-```
-
-
-
-
-## tryParseJson
-
-Max. indexation depth: 3, 
-
-if text isn't json, returns null
-
-### Returns: string(Enum: ul | ) 
 
 
 
@@ -92,21 +64,18 @@ if text isn't json, returns null
 
 
 
-### Arguments
+# Variables
 
-#### text: string
+## readJsonFileSync (exported const)
 
+Reads and parses JSON file
 
-
-
-
-
-
-#### logParseError (optional): boolean
+make sure to specify what type the file contains as a generic!
 
 
+## readJsonFile (exported const)
 
+Reads and parses JSON file
 
-
-
+make sure to specify what type the file contains as a generic!
 

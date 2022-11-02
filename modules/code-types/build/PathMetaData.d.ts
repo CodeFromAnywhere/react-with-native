@@ -55,11 +55,13 @@ export declare type OperationPathParse = PathParse & {
      *
      * e.g. general.ts
      */
-    relativeFilePathFromSrc: string;
+    operationRelativeTypescriptFilePath: string;
     /**
-     * file id (same as relativeFilePathFromSrc but without extension)
+     * file id (same as operationRelativeTypescriptFilePath but without extension)
      *
      * e.g. "general"
+     *
+     * TODO: figure out if this can be omitted
      */
     srcFileId: string;
     /**

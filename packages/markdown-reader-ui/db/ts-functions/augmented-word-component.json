@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666262425692,
+  "updatedAt": 1666262425692,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262425692,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/components/Dictionary.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  augmentedWord: AugmentedWord;\n  augmentedWordObject: MappedObject<AugmentedWord>;\n}) => {\n  const { augmentedWord, augmentedWordObject } = props;\n\n  const projectRelativeBaseFolderPath = getFolderJs(\n    augmentedWord.projectRelativeMarkdownSourcePath\n  )!;\n\n  const projectRelativeMarkdownFilePath =\n    augmentedWord.projectRelativeMarkdownSourcePath;\n  return (\n    <Div className=\"border border-gray-500 rounded-md m-2 p-2\">\n      <P className=\"font-bold\">{augmentedWord.word}</P>\n      {augmentedWord.spoiler ? (\n        <P>\n          {renderMarkdownContent(augmentedWord.spoiler, {\n            isDev,\n            isStatic: false,\n            projectRelativeMarkdownFilePath,\n            projectRelativeBaseFolderPath,\n            augmentedWordObject,\n          })}\n        </P>\n      ) : null}\n    </Div>\n  );\n}",
+  "name": "AugmentedWordComponent",
+  "slug": "augmented-word-component",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 830,
+    "lines": 29,
+    "bytes": 830,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 29,
+    "numberOfFiles": 1
+  },
+  "id": "sqwggdwbkzraslqfuznyvuxa"
+}

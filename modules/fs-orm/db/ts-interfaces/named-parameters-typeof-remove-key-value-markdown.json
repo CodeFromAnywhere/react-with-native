@@ -1,0 +1,66 @@
+{
+  "createdAt": 1664524624502,
+  "updatedAt": 1664524624502,
+  "deletedAt": 0,
+  "createdFirstAt": 1664524624502,
+  "id": "named-parameters-<typeof-remove-key-value-markdown->",
+  "name": "NamedParameters<typeof removeKeyValueMarkdown>",
+  "slug": "named-parameters-typeof-remove-key-value-markdown",
+  "operationRelativeTypescriptFilePath": "src/alter/removeKeyValueMarkdown.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "storedData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Storing%3CKeyValueMarkdownModelType%3E"
+          }
+        },
+        "slug": {
+          "type": "string",
+          "description": "slug to remove"
+        }
+      },
+      "required": [
+        "storedData",
+        "slug"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "storedData",
+          "required": true,
+          "schema": {
+            "items": [],
+            "type": "array"
+          }
+        },
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "description": "slug to remove",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof removeKeyValueMarkdown>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

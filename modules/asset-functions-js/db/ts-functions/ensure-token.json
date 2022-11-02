@@ -1,0 +1,78 @@
+{
+  "createdAt": 1667111124255,
+  "updatedAt": 1667111124255,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111124255,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/token/ensureToken.ts",
+  "commentsInside": [],
+  "rawText": " (\n  name: string,\n  /**\n   * if given, is used for generating new token\n   *\n   * if already present, token is used from the name instead of this one\n   */\n  newToken?: string,\n  attachTokenToFilename?: boolean\n) => {\n  const { nameWithoutToken, token } = removeTokenIfPresent(\n    name,\n    attachTokenToFilename\n  );\n  const nameWithToken = addToken(\n    nameWithoutToken,\n    token || newToken,\n    attachTokenToFilename\n  );\n  return nameWithToken;\n}",
+  "name": "ensureToken",
+  "slug": "ensure-token",
+  "parameters": [
+    {
+      "name": "name",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "newToken",
+      "schema": {
+        "type": "string",
+        "description": "if given, is used for generating new token\n\nif already present, token is used from the name instead of this one"
+      },
+      "simplifiedSchema": {
+        "fullComment": "if given, is used for generating new token\n\nif already present, token is used from the name instead of this one",
+        "type": "string"
+      },
+      "required": false
+    },
+    {
+      "name": "attachTokenToFilename",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "Remove the token (if present), then add it again",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 503,
+    "lines": 21,
+    "bytes": 503,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "dchbkqdqrynxvnyypmewntfw"
+}

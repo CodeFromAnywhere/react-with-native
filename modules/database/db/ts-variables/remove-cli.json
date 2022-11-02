@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259850132,
+  "updatedAt": 1666259850132,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259850132,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "removeCli",
+  "slug": "remove-cli",
+  "operationRelativeTypescriptFilePath": "src/cli/test-remove.cli.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const [model, key, value] = process.argv.slice(2);\n\n  if (!value || !model || !key) {\n    console.log(\"please provide a modelName and a key + value to remove\");\n    return;\n  }\n\n  const result = await testDb.remove(\n    model as any,\n    (content) => content[key] == value\n  );\n\n  console.table(result);\n}",
+  "description": "",
+  "id": "tgfppqvagjarbigggoogyqur"
+}

@@ -1,0 +1,80 @@
+{
+  "createdAt": 1666264373628,
+  "updatedAt": 1666264373628,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264373628,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getReferenceParameterInfo.ts",
+  "commentsInside": [],
+  "rawText": " (\n  parameterName: string\n): string[] => {\n  const possibleReferenceParameterNames = isPlural(parameterName)\n    ? referencePluralParameterNames\n        .map(capitaliseFirstLetter)\n        .map((ref) => `${singularize(parameterName)}${ref}`)\n    : referenceParameterNames\n        .map(capitaliseFirstLetter)\n        .map((ref) => `${parameterName}${ref}`);\n\n  return possibleReferenceParameterNames;\n}",
+  "name": "getPossibleReferenceParameterNames",
+  "slug": "get-possible-reference-parameter-names",
+  "parameters": [
+    {
+      "name": "parameterName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "returns the reference parameterNames...\n\n\ne.g.:\n```\ntodos -> todoSlugs + todoIds\ntodo -> todoSlug + todoId\n```",
+  "returnType": {
+    "rawType": "string[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "allOf": [
+          {
+            "transform": [
+              "trim"
+            ]
+          },
+          {
+            "minLength": 1
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 512,
+    "lines": 20,
+    "bytes": 512,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "edftogxypqqcplcmakhlctpg"
+}

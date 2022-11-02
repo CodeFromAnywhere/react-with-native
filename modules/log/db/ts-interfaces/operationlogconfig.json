@@ -1,0 +1,111 @@
+{
+  "createdAt": 1666264721079,
+  "updatedAt": 1666264721079,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264721079,
+  "id": "operationlogconfig",
+  "name": "OperationLogConfig",
+  "slug": "operationlogconfig",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type OperationLogConfig = {\n  config: GlobalLogConfig;\n  fileConfig?: { [srcRelativeFilePath: string]: GlobalLogConfig };\n  functionConfig?: { [functionName: string]: GlobalLogConfig };\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "$ref": "#/definitions/GlobalLogConfig"
+        },
+        "fileConfig": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/GlobalLogConfig"
+          }
+        },
+        "functionConfig": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/GlobalLogConfig"
+          }
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "fullComment": "a logging configuration object that you can set using a file in the root of your operation or project.",
+            "properties": [
+              {
+                "name": "showDebug",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "showDefault",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "sayTitles",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "logFolder",
+                "required": false,
+                "schema": {
+                  "fullComment": "Folder where logs can be stored. If i can access the caller location this can be the operation db.",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "fileConfig",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "functionConfig",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "OperationLogConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "createdAt": 1666512738966,
+  "updatedAt": 1666512738966,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512738966,
+  "id": "namedparameterstypeof-getdatabasefiles",
+  "name": "NamedParameters<typeof getDatabaseFiles>",
+  "slug": "namedparameterstypeof-getdatabasefiles",
+  "operationRelativeTypescriptFilePath": "src/convention/getDatabaseFiles.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "modelName": {
+          "type": "string"
+        },
+        "mergedConfig": {
+          "$ref": "#/definitions/MergedQueryConfig"
+        }
+      },
+      "required": [
+        "modelName",
+        "mergedConfig"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "modelName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "mergedConfig",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "dbStorageMethod",
+                "required": true,
+                "schema": {
+                  "enum": [
+                    "jsonMultiple",
+                    "jsonSingle",
+                    "markdown",
+                    "keyValueMarkdown",
+                    "csv"
+                  ],
+                  "fullComment": "When setting this, make sure your models are able to use this storage method, this is not always possible!\n\ndefaults to jsonMultiple\n\nThe following strategies are available to store the data.\n\n- **jsonMultiple *(default)***: stores the data in a json file which is an array of this data structure. This file will be located in `db/[pluralized-kebab-case-model-name].json`\n\n- **jsonSingle**: stores the data in a json file which is of this data structure (single object) These files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].json`\n\n- **markdown**: stores the data in a markdown file. Takes \"markdown\" parameter as the main markdown. The other parameters are stored as front-matter. This these files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].md`\n\n- **keyValueMarkdown**: stores the data in key value markdown format. This file will be located in `db/[pluralized-kebab-case-model-name].md`\n\n- **csv**: stores the data in a csv file (only possible for flat object datastructures). This file will be located in `db/[pluralized-kebab-case-model-name].csv`\n\n## Definitions:\n\n- [pluralized-kebab-case-model-name]: e.g. `StudentUser` becomes `student-users`\n- [instance-slug-or-id]: For all models with a slug parameter, the filename will be that slug of that instance. Otherwise, `id` will be used",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "manualProjectRoot",
+                "required": true,
+                "schema": {
+                  "fullComment": "if specified, this will be used as the root path to find your data in\n\nif not specified, uses the db folder in your project root and in any operation\n\nNB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+                  "nb": "If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationName",
+                "required": false,
+                "schema": {
+                  "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "projectRelativePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "if specified, only this location will be used",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationRelativePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "if specified, only this location will be used (also need an `operationName`)",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getDatabaseFiles>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

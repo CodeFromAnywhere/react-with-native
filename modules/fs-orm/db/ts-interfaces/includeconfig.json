@@ -1,0 +1,78 @@
+{
+  "createdAt": 1666512755059,
+  "updatedAt": 1666512755059,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512755059,
+  "id": "includeconfig",
+  "name": "IncludeConfig",
+  "slug": "includeconfig",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * All possible ways to include items from references into a get query\n */\nexport type IncludeConfig =\n  | (Include & {\n      /**\n       * NOT SUPPORTED YET\n       *\n       * If this is set to true, regular include will be ignored. More depth is not possible.\n       *\n       * You can simply specify `auto: true`. This is the easiest way to include. This will fetch all references in the model for every item in an as efficient way as possible, but only with a depth of 1.\n       *\n       * Assumptions:\n       *\n       * 1) The first item in the db contains all reference-keys that need to be filled. Keys not present in the first item will not be filled\n       *\n       */\n      auto?: boolean;\n    })\n  | Include[];",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "All possible ways to include items from references into a get query",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "auto": {
+              "type": "boolean",
+              "description": "NOT SUPPORTED YET\n\nIf this is set to true, regular include will be ignored. More depth is not possible.\n\nYou can simply specify `auto: true`. This is the easiest way to include. This will fetch all references in the model for every item in an as efficient way as possible, but only with a depth of 1.\n\nAssumptions:\n\n1) The first item in the db contains all reference-keys that need to be filled. Keys not present in the first item will not be filled"
+            },
+            "referenceKey": {
+              "type": "string",
+              "description": "The key that contains a reference. The name of this key should follow the convention, e.g. `xxxSlug`. If this is given, `xxx` will be filled with the item of the referenced model."
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AugmentedAnyModelType"
+              },
+              "description": "If provided, the items will be filled from this array. If not provided, the required model will first be fetched using get. It is often more efficient to provide it yourself if you have already fetched it anyway. Nonetheless, `fs-orm` will try and reuse the fetched data to minimize amount of reads to the file system."
+            },
+            "include": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/Include"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Include"
+                  }
+                }
+              ],
+              "description": "Optionally, you can provide another include config for this model"
+            }
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Include"
+          }
+        }
+      ],
+      "description": "All possible ways to include items from references into a get query"
+    },
+    "simplifiedSchema": {
+      "fullComment": "All possible ways to include items from references into a get query",
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "IncludeConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

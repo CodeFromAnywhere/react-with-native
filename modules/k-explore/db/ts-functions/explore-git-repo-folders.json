@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666259117417,
+  "updatedAt": 1666259117417,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259117417,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/explore.ts",
+  "commentsInside": [],
+  "rawText": " async (config: BaseConfig) => {\n  return (await findAllDotGitFolders(config))\n    .map((textJson) => textJson.path)\n    .map((p) => path.resolve(p, \"..\"));\n}",
+  "name": "exploreGitRepoFolders",
+  "slug": "explore-git-repo-folders",
+  "parameters": [],
+  "description": "find all active git folders (folders having `.git`)",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 209,
+    "lines": 5,
+    "bytes": 209,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 42,
+    "linesPerFile": 5,
+    "numberOfFiles": 1
+  },
+  "id": "haqzerhvpaxaznqwkhnjedmm"
+}

@@ -1,0 +1,86 @@
+{
+  "createdAt": 1666264527457,
+  "updatedAt": 1666264527457,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264527457,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (target: Casing) => {\n  if (target === \"capital\") return \"_\";\n  if (target === \"human\") return \" \";\n  if (target === \"kebab\") return \"-\";\n  if (target === \"snake\") return \"_\";\n  return \"\";\n}",
+  "name": "getDelimiter",
+  "slug": "get-delimiter",
+  "parameters": [
+    {
+      "name": "target",
+      "schema": {
+        "$ref": "#/definitions/Casing"
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "camel",
+          "pascal",
+          "snake",
+          "kebab",
+          "capital",
+          "human"
+        ],
+        "fullComment": "",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "\"_\" | \" \" | \"-\" | \"\"",
+    "typeDefinition": {
+      "optional": false,
+      "enum": [
+        "_",
+        " ",
+        "-",
+        ""
+      ],
+      "x-enumNames": [
+        "_",
+        " ",
+        "-",
+        ""
+      ],
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "enum": [
+        "_",
+        " ",
+        "-",
+        ""
+      ],
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 191,
+    "lines": 7,
+    "bytes": 191,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "pqwivsretphsidtlijgwrxsr"
+}

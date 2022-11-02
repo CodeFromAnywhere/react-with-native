@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513261958,
+  "updatedAt": 1666513261958,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513261958,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "mapKeys",
+  "slug": "map-keys",
+  "operationRelativeTypescriptFilePath": "src/object-maps.ts",
+  "type": {
+    "rawType": "(object: { [key: string]: any; }, mapFn: (key: string) => any) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  object: { [key: string]: any },\n  mapFn: (key: string) => string | Promise<string> | undefined\n) => {\n  const keyPairs = await Promise.all(\n    Object.keys(object).map(async (oldKey) => {\n      return { oldKey, newKey: await mapFn(oldKey) };\n    })\n  );\n\n  return mergeObjectsArray(\n    keyPairs\n      .map((pair) => {\n        return pair.newKey ? { [pair.newKey]: object[pair.oldKey] } : null;\n      })\n      .filter(notEmpty)\n  );\n}",
+  "description": "maps over all keys in an object and replaces them using a mapfn",
+  "id": "tucidbxmlwajxhlzqwbobnky"
+}

@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666259866242,
+  "updatedAt": 1666259866242,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259866242,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/tsconfig.test.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const result = await db.update(\n    \"TsConfig\",\n    undefined,\n\n    (old) => {\n      const newCompilerOptions: TsConfig[\"compilerOptions\"] = {\n        ...old.compilerOptions,\n        noEmitOnError: true,\n      };\n\n      return { ...old, compilerOptions: newCompilerOptions };\n    }\n  );\n\n  console.log(result);\n}",
+  "name": "main",
+  "slug": "main",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 329,
+    "lines": 17,
+    "bytes": 329,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 19,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "gtivkzmlnoozerdlnyheuwpq"
+}

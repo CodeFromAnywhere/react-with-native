@@ -1,17 +1,10 @@
 {
   "version": "0.0.0",
   "private": true,
-  "workspaces": ["apps/*", "packages/*", "modules/*"],
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "start": "turbo run start --parallel",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
+  "workspaces": ["apps/**/*", "packages/**/*", "modules/**/*"],
+  "scripts": {},
   "devDependencies": {
-    "prettier": "^2.5.1",
-    "turbo": "latest"
+    "prettier": "^2.5.1"
   },
   "engines": {
     "npm": ">=7.0.0",

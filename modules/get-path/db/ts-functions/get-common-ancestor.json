@@ -1,0 +1,66 @@
+{
+  "createdAt": 1666259056832,
+  "updatedAt": 1666259056832,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259056832,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getCommonAncestor.ts",
+  "commentsInside": [],
+  "rawText": " (path1: string, path2: string): string => {\n  const chunks = path1.split(\"/\");\n  const chunks2 = path2.split(\"/\");\n\n  const firstFolderMismatchIndex = chunks.findIndex((chunk, index, array) => {\n    const isMismatch = chunks2[index] !== chunk;\n\n    return isMismatch;\n  });\n\n  const commonAncestor = chunks.slice(0, firstFolderMismatchIndex).join(\"/\");\n\n  return commonAncestor;\n}",
+  "name": "getCommonAncestor",
+  "slug": "get-common-ancestor",
+  "parameters": [
+    {
+      "name": "path1",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "path2",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Finds the common ancestor for two absolute pahts",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 429,
+    "lines": 14,
+    "bytes": 429,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "egcegkqkwjbtxesesewkkjhw"
+}

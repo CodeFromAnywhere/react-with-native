@@ -1,0 +1,187 @@
+{
+  "createdAt": 1666262774253,
+  "updatedAt": 1666262774253,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262774253,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/flattenMarkdownChunks.ts",
+  "commentsInside": [],
+  "rawText": " (\n  markdownChunks: MarkdownChunk[]\n): MarkdownParagraph[] => {\n  const flatMarkdownChunks = markdownChunks\n    .map((chunk) => getParagraphsRecursively(chunk))\n    .flat();\n  return flatMarkdownChunks;\n}",
+  "name": "flattenMarkdownChunks",
+  "slug": "flatten-markdown-chunks",
+  "parameters": [
+    {
+      "name": "markdownChunks",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/MarkdownChunk"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "content",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "title",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "NB: title can also be an empty string (\"\")",
+                    "nb": "title can also be an empty string (\"\")",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "children",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "all content until the next title. it's either a content array if there's any titles found, or a string[] if it's paragraphs",
+                    "items": [
+                      {
+                        "schema": {
+                          "circularRefName": "MarkdownChunk",
+                          "properties": [],
+                          "type": "object"
+                        },
+                        "name": "MarkdownChunk"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                }
+              ],
+              "type": "object"
+            },
+            "name": "MarkdownChunk"
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParagraph[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "paragraph": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "categoryStackCalculated": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "allOf": [
+                {
+                  "transform": [
+                    "trim"
+                  ]
+                },
+                {
+                  "minLength": 1
+                }
+              ]
+            }
+          },
+          "level": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "paragraph",
+          "categoryStackCalculated"
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [
+              {
+                "name": "paragraph",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "categoryStackCalculated",
+                "required": true,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "level",
+                "required": false,
+                "schema": {
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 205,
+    "lines": 8,
+    "bytes": 205,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 8,
+    "numberOfFiles": 1
+  },
+  "id": "ovfikjmydndutpoqgqulluwg"
+}

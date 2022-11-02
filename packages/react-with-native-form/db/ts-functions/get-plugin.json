@@ -1,0 +1,74 @@
+{
+  "createdAt": 1666261373855,
+  "updatedAt": 1666261373855,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261373855,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "commentsInside": [],
+  "rawText": " <TInputs extends AllPluginInputTypes>(\n  type: string | undefined,\n  plugins: Plugins<TInputs>\n) => {\n  return type\n    ? plugins[type]\n    : plugins[Object.keys(plugins)[0] as keyof Plugins<TInputs>];\n}",
+  "name": "getPlugin",
+  "slug": "get-plugin",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").Plugin<any>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "component": {},
+        "config": {}
+      },
+      "required": [
+        "component",
+        "config"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "component",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 204,
+    "lines": 8,
+    "bytes": 204,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 8,
+    "numberOfFiles": 1
+  },
+  "id": "bxrvyhonmipjrzmavvdsmitn"
+}

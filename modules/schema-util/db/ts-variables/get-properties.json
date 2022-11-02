@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666264376017,
+  "updatedAt": 1666264376017,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264376017,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getProperties",
+  "slug": "get-properties",
+  "operationRelativeTypescriptFilePath": "src/schema-util.ts",
+  "type": {
+    "rawType": "(schema: import(\"/Users/king/King/operations/node_modules/@types/json-schema/index\").JSONSchema7 | undefined) => import(\"/Users/king/King/operations/tools/typescript/schema-util/src/schema-util\").SchemaProperty[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(schema: Schema | undefined): SchemaProperty[] => {\n  if (!schema) return [];\n  const propertyKeys = schema.properties ? Object.keys(schema.properties) : [];\n  const properties = propertyKeys\n    .map((key) => {\n      const propertySchema = getSchema(schema.properties?.[key]);\n      return propertySchema\n        ? {\n            name: key,\n            schema: propertySchema,\n            required: schema.required?.includes(key) || false,\n          }\n        : null;\n    })\n    .filter(notEmpty);\n\n  return properties;\n}",
+  "description": "Gets all the properties of a schema",
+  "id": "cuvdbyvkwbdnduamkqbccvnz"
+}

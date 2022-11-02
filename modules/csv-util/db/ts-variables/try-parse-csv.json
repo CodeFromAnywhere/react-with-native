@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262680606,
+  "updatedAt": 1666262680606,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262680606,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "tryParseCsv",
+  "slug": "try-parse-csv",
+  "operationRelativeTypescriptFilePath": "src/tryParseCsv.ts",
+  "type": {
+    "rawType": "<T extends import(\"/Users/king/King/operations/tools/parsing/file-conversion/csv/csv-util/src/tryParseCsv\").CsvItemType>(csvString: string) => T[] | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends CsvItemType>(\n  csvString: string\n): T[] | null => {\n  const [columnsString, ...rowStrings] = csvString.split(\"\\n\");\n\n  const columns = columnsString.split(\",\").map((x) => x.trim());\n\n  const rows = rowStrings.map((rowString) => {\n    const values = rowString.split(\",\");\n\n    const rowObject = mergeObjectsArray(\n      columns.map((columnName, index) => {\n        return { [columnName]: parsePrimitive(values[index]) };\n      })\n    ) as T;\n\n    return rowObject;\n  });\n\n  return rows;\n}",
+  "description": "This function parses a CSV into the object it says it has in the header",
+  "id": "gqqctnkscnoqvwggzikgbcdn"
+}

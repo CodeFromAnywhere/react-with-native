@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379429433,
+  "updatedAt": 1667379429433,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379429433,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "createUseStore",
+  "slug": "create-use-store",
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "type": {
+    "rawType": "<TStore extends object>(initialValues: TStore) => <K extends Extract<keyof T, string>>(key: K) => import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/react-with-native-store/src/general\").UseStoreResult<TStore[K]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<TStore extends object>(\n  initialValues: TStore\n) => {\n  if (debug) {\n    console.log(\"Create useStore\");\n  }\n  const useStore = <K extends Keys<TStore>>(key: K) => {\n    if (!Object.keys(initialValues).includes(key)) {\n      throw new Error(`Using undefined key in useStore: ${key}`);\n    }\n    const context = getContext(key);\n    if (!context) {\n      throw new Error(\n        `Failed loading the context with key: ${key}. Did you wrap your component/app with a StoreProvider?`\n      );\n    }\n    const useStoreHook = React.useContext<UseStoreType<TStore>>(context);\n\n    const useStoreHookType = typeof useStoreHook;\n\n    if (useStoreHookType !== \"function\") {\n      console.error(\n        `useStoreHookType for ${key} is ${useStoreHookType}... wtf?`\n      );\n    }\n\n    return useStoreHook?.(key);\n  };\n  return useStore;\n}",
+  "description": "Function to create a hook for accessing the store",
+  "id": "tpsziybbeqietwivkyxrzdtm"
+}

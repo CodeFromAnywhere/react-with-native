@@ -1,0 +1,55 @@
+{
+  "createdAt": 1667379867422,
+  "updatedAt": 1667379867422,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379867422,
+  "id": "commenttype",
+  "name": "CommentType",
+  "slug": "commenttype",
+  "operationRelativeTypescriptFilePath": "src/TsComment.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * special line prefixes:\n *\n * **Developer related comments**\n *\n * - TODO: for developer to know what to do\n * - DISCUSSION: for developer to state that discussion is needed\n * - IDEA: for developer to state ideas\n * - LATER: for developer to mark as thing that needs to be done later\n * - NB: for developer to add a note\n *\n * **Form related comments**\n *\n * - TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n * - SECTION: start a new section in the form from this point, the value behind here can be the title\n * - DESCRIPTION: if available, will be used as description of the form input\n *\n */\nexport type CommentType = typeof commentTypesConst[number];",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "special line prefixes:\n\n**Developer related comments**\n\n- TODO: for developer to know what to do\n- DISCUSSION: for developer to state that discussion is needed\n- IDEA: for developer to state ideas\n- LATER: for developer to mark as thing that needs to be done later\n- NB: for developer to add a note\n\n**Form related comments**\n\n- TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n- SECTION: start a new section in the form from this point, the value behind here can be the title\n- DESCRIPTION: if available, will be used as description of the form input",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "string",
+      "enum": [
+        "todo",
+        "discussion",
+        "idea",
+        "later",
+        "nb",
+        "title",
+        "section",
+        "description"
+      ],
+      "description": "special line prefixes:\n\n**Developer related comments**\n\n- TODO: for developer to know what to do\n- DISCUSSION: for developer to state that discussion is needed\n- IDEA: for developer to state ideas\n- LATER: for developer to mark as thing that needs to be done later\n- NB: for developer to add a note\n\n**Form related comments**\n\n- TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n- SECTION: start a new section in the form from this point, the value behind here can be the title\n- DESCRIPTION: if available, will be used as description of the form input"
+    },
+    "simplifiedSchema": {
+      "enum": [
+        "todo",
+        "discussion",
+        "idea",
+        "later",
+        "nb",
+        "title",
+        "section",
+        "description"
+      ],
+      "fullComment": "special line prefixes:\n\n**Developer related comments**\n\n- TODO: for developer to know what to do\n- DISCUSSION: for developer to state that discussion is needed\n- IDEA: for developer to state ideas\n- LATER: for developer to mark as thing that needs to be done later\n- NB: for developer to add a note\n\n**Form related comments**\n\n- TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n- SECTION: start a new section in the form from this point, the value behind here can be the title\n- DESCRIPTION: if available, will be used as description of the form input",
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "rawType": "CommentType",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

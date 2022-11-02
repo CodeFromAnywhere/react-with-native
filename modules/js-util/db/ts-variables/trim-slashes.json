@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513267666,
+  "updatedAt": 1666513267666,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513267666,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "trimSlashes",
+  "slug": "trim-slashes",
+  "operationRelativeTypescriptFilePath": "src/trimSlashes.ts",
+  "type": {
+    "rawType": "(absoluteOrRelativePath: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(absoluteOrRelativePath: string) => {\n  const isFirstCharacterSlash = absoluteOrRelativePath.charAt(0) === \"/\";\n  const isLastCharacterSlash =\n    absoluteOrRelativePath.charAt(absoluteOrRelativePath.length - 1) === \"/\";\n\n  const withoutSlashPrefix = isFirstCharacterSlash\n    ? absoluteOrRelativePath.slice(1)\n    : absoluteOrRelativePath;\n  const withoutSlashSuffix = isLastCharacterSlash\n    ? withoutSlashPrefix.slice(0, withoutSlashPrefix.length - 1)\n    : withoutSlashPrefix;\n\n  return withoutSlashSuffix;\n}",
+  "description": "Trims a slash on both sides in any path",
+  "id": "anelhyjzagjlrsdcobkhvhne"
+}

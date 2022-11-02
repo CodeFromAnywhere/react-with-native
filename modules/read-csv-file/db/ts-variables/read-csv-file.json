@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262997618,
+  "updatedAt": 1666262997618,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262997618,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "readCsvFile",
+  "slug": "read-csv-file",
+  "operationRelativeTypescriptFilePath": "src/readCsvFile.ts",
+  "type": {
+    "rawType": "<T extends import(\"/Users/king/King/operations/tools/parsing/file-conversion/csv/csv-util/build/tryParseCsv\").CsvItemType>(filePath: string | undefined) => Promise<T[] | null>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async <T extends CsvItemType>(\n  filePath: Path | undefined\n): Promise<T[] | null> => {\n  if (!filePath) return null;\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const parsed = tryParseCsv<T>(fileString);\n  return parsed;\n}",
+  "description": "Reads and parses CSV file\n\nspecify a generic of what type of item the file contains an array of",
+  "id": "edycujpfgiyavcagiwrnoaue"
+}

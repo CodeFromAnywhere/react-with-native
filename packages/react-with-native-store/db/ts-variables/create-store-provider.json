@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379429433,
+  "updatedAt": 1667379429433,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379429433,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "createStoreProvider",
+  "slug": "create-store-provider",
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "type": {
+    "rawType": "<TStore extends object>(config: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/react-with-native-store/src/general\").StoreConfig<TStore>) => ({ children }: { children: any; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<TStore extends object>(\n  config: StoreConfig<TStore>\n) => {\n  if (config.debug) {\n    debug = config.debug;\n  }\n  if (debug) {\n    console.log(\"Create StoreProvider\");\n  }\n\n  const keys = Object.keys(config.initialValues) as Keys<TStore>[];\n\n  const newContext = keys.reduce((acc, key) => {\n    const Context = React.createContext(null);\n    return {\n      ...acc,\n      [contextKey(key)]: Context,\n    };\n  }, {});\n\n  contexts = { ...contexts, ...newContext };\n\n  // console.log({ keys, contexts });\n\n  const MainProvider = ({ children }: { children: any }) =>\n    keys.reduce((acc, key) => {\n      const context = contexts[contextKey(key)];\n\n      // console.log({ context });\n      return (\n        <StoreContextProvider\n          config={config}\n          storeKey={key}\n          DynamicContext={context}\n        >\n          {acc}\n        </StoreContextProvider>\n      );\n    }, children);\n\n  return ({ children }: { children: any }) => {\n    return <MainProvider>{children}</MainProvider>;\n  };\n}",
+  "description": "Function to create the StoreProvider\n\nNB: this function uses a local variable on the main scope of javascript in order to create the Context components dynamically. Beware!",
+  "id": "mezltgehyeofdoawbgvvgmyn"
+}

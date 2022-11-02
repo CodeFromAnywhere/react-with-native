@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259858089,
+  "updatedAt": 1666259858089,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259858089,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "get",
+  "slug": "get",
+  "operationRelativeTypescriptFilePath": "src/setNestedFiles.test.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  await upsert();\n\n  const items = await testDb.get(\"MarkdownTestModel\");\n  console.dir({ items }, { depth: 99 });\n}",
+  "description": "",
+  "id": "erykanfnymkusyfeclmmgyqm"
+}

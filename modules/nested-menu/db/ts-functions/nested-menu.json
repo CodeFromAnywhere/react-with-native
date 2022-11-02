@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667379398770,
+  "updatedAt": 1667379398770,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379398770,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/NestedMenu.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  menu: MenuType;\n  headersClickable?: boolean;\n}) => {\n  const router = useRouter();\n  const [expanded, setExpanded, { hydrated }] = useStore(\"menu.expanded\");\n\n  const expandCompleteUrlInMenu = () => {\n    const parts = trimSlashes(router.asPath).split(\"/\");\n    const cummulativeParts = parts\n      .map((part, index, array) => {\n        if (part === \"\") return;\n        return array.slice(0, index + 1).join(\"/\");\n      })\n      .filter(notEmpty);\n    const cumulativePartsExpandedObject = mergeObjectsArray(\n      cummulativeParts.map((url) => ({ [url]: true }))\n    );\n    setExpanded({ ...expanded, ...cumulativePartsExpandedObject });\n  };\n  useEffect(() => {\n    expandCompleteUrlInMenu();\n  }, [router.asPath]);\n\n  const { menu, headersClickable } = props;\n  const menuItems = menu?.map((menuItem, index) => {\n    return (\n      <NestedMenuItem\n        {...menuItem}\n        headersClickable={headersClickable}\n        key={`menu${index}`}\n      />\n    );\n  });\n  return <Div className=\"w-full\">{menuItems}</Div>;\n}",
+  "name": "NestedMenu",
+  "slug": "nested-menu",
+  "parameters": [],
+  "description": "General purpose nested menu component\n\nPlease make sure that you also wrap your app with `MenuStoreProvider`, or this will crash...!",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1168,
+    "lines": 38,
+    "bytes": 1168,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 38,
+    "numberOfFiles": 1
+  },
+  "id": "vjawxeipwovsnurykqohpkdl"
+}

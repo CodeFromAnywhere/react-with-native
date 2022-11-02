@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259858089,
+  "updatedAt": 1666259858089,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259858089,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "upsert",
+  "slug": "upsert",
+  "operationRelativeTypescriptFilePath": "src/setNestedFiles.test.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  await set();\n\n  const item: Creation<MarkdownTestModel> = {\n    categoryStackCalculated: [\"hello\", \"world\"],\n    name: \"hell-yeah\",\n    markdown: \"some other markdown....\",\n  };\n\n  //@ts-ignore\n  const x = await testDb.upsert(\"MarkdownTestModel\", item);\n\n  console.log({ x });\n\n  return;\n}",
+  "description": "",
+  "id": "zfgysjlskefdhbzieikenuyb"
+}

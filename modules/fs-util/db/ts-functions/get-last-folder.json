@@ -1,0 +1,52 @@
+{
+  "createdAt": 1667378803634,
+  "updatedAt": 1667378803634,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378803634,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/js.ts",
+  "commentsInside": [],
+  "rawText": " (pathString: string) => {\n  const lastFolder = getFolder(pathString).split(\"/\").pop()!;\n  // console.log({ pathString, lastFolder });\n  return lastFolder;\n}",
+  "name": "getLastFolder",
+  "slug": "get-last-folder",
+  "parameters": [
+    {
+      "name": "pathString",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "removes everything after the last slash to get folder path\n\ninput: /Users/king/Documents/some/folder/xyz\noutput: xyz\n\ninput: /Users/king/Documents/some/folder/xyz.txt\noutput: folder",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 338,
+    "lines": 11,
+    "bytes": 338,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "sbeppjscmxwkoctmedunglyy"
+}

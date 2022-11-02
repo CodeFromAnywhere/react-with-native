@@ -1,0 +1,141 @@
+{
+  "createdAt": 1666261457201,
+  "updatedAt": 1666261457201,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261457201,
+  "id": "suggestion",
+  "name": "Suggestion",
+  "slug": "suggestion",
+  "operationRelativeTypescriptFilePath": "src/map/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type Suggestion = {\n  bbox: number[];\n  center: [number, number];\n  id: string;\n  place_name: string;\n  place_type: string[];\n  text: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "bbox": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "center": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "id": {
+          "type": "string"
+        },
+        "place_name": {
+          "type": "string"
+        },
+        "place_type": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "bbox",
+        "center",
+        "id",
+        "place_name",
+        "place_type",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "bbox",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "number"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "center",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "number"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "place_name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "place_type",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "text",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "Suggestion",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

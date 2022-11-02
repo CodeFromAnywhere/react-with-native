@@ -1,0 +1,110 @@
+{
+  "createdAt": 1666262369366,
+  "updatedAt": 1666262369366,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262369366,
+  "id": "augmentedword",
+  "name": "AugmentedWord",
+  "slug": "augmentedword",
+  "operationRelativeTypescriptFilePath": "src/AugmentedWord.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * AugmentedWords should have a small footprint since there can be many of them\n *\n * Words with a specific affix (backticks, bolded, italic) will match against these.\n *\n * Used to link automatically to functionNames, InterfaceNames, operation-names, words, and more..\n */\nexport type AugmentedWord = {\n  type: AugmentedWordTypeEnum;\n  /**\n   * Word without affixes. The affixes will be decided in the frontend parser based on the type\n   */\n  word: string;\n  queryPath: string | undefined;\n  projectRelativeMarkdownSourcePath: string;\n  spoiler: string | undefined;\n  /**\n   * If true, will match on lowercase variant of the word\n   */\n  isCaseInsensitive?: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/AugmentedWordTypeEnum"
+        },
+        "word": {
+          "type": "string",
+          "description": "Word without affixes. The affixes will be decided in the frontend parser based on the type"
+        },
+        "queryPath": {
+          "type": "string"
+        },
+        "projectRelativeMarkdownSourcePath": {
+          "type": "string"
+        },
+        "spoiler": {
+          "type": "string"
+        },
+        "isCaseInsensitive": {
+          "type": "boolean",
+          "description": "If true, will match on lowercase variant of the word"
+        }
+      },
+      "required": [
+        "type",
+        "word",
+        "projectRelativeMarkdownSourcePath"
+      ],
+      "additionalProperties": false,
+      "description": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more.."
+    },
+    "simplifiedSchema": {
+      "fullComment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..",
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "type": "string"
+          }
+        },
+        {
+          "name": "word",
+          "required": true,
+          "schema": {
+            "fullComment": "Word without affixes. The affixes will be decided in the frontend parser based on the type",
+            "type": "string"
+          }
+        },
+        {
+          "name": "queryPath",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "projectRelativeMarkdownSourcePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "spoiler",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isCaseInsensitive",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, will match on lowercase variant of the word",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "AugmentedWord",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

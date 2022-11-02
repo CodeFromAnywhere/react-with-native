@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262315832,
+  "updatedAt": 1666262315832,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262315832,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getTodoPages",
+  "slug": "get-todo-pages",
+  "operationRelativeTypescriptFilePath": "src/getTodoPages.ts",
+  "type": {
+    "rawType": "(projectRoot: string) => Promise<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  projectRoot: string\n): Promise<MarkdownReaderPage[]> => {\n  const operationsPath = getRootPath(\"operations\");\n  if (!operationsPath) return [];\n\n  const todoFolderPaths = await findAllTodoFolderPaths(operationsPath, false);\n  const markdownReaderPages: MarkdownReaderPage[] =\n    await getMarkdownReaderPages({\n      projectRoot,\n      basePaths: todoFolderPaths,\n      mapQueryPath: (queryPath) => {\n        return queryPath\n          .replaceAll(\"todo/\", \"\")\n          .replace(\"operations/\", \"todo/\");\n      },\n    });\n\n  return markdownReaderPages;\n}",
+  "description": "gets all todo pages as markdownreader pages",
+  "id": "tjmbgoygigmqihkygiybuypq"
+}

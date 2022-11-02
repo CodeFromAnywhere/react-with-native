@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259070085,
+  "updatedAt": 1666259070085,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259070085,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getRelativePath",
+  "slug": "get-relative-path",
+  "operationRelativeTypescriptFilePath": "src/getRelativePath.ts",
+  "type": {
+    "rawType": "(absolutePath: string, relativeFrom: \"project-root\") => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  absolutePath: string,\n  relativeFrom: \"project-root\"\n) => {\n  const rootPath =\n    relativeFrom === \"project-root\" ? getRootPath() : getRootPath();\n\n  if (!rootPath) return;\n\n  const relativePath = absolutePath.replace(rootPath, \"\");\n\n  return relativePath;\n}",
+  "description": "gets the relative path from a specified root\n\nwill start with \"/\"",
+  "id": "gpxciallphcngbkdvjsvkptz"
+}

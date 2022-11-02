@@ -1,0 +1,77 @@
+{
+  "createdAt": 1667379652775,
+  "updatedAt": 1667379652775,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379652775,
+  "id": "markdownreference",
+  "name": "MarkdownReference",
+  "slug": "markdownreference",
+  "operationRelativeTypescriptFilePath": "src/MarkdownReference.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type MarkdownReference = {\n  /**\n   * Alternate text inside of the reference, if available\n   */\n  alt?: string;\n  /**\n   * Absolute path to the refered object\n   */\n  path: string;\n  /**\n   * if true, it's an asset (with !)\n   *\n   * otherwise, it's a link\n   */\n  isAsset?: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "alt": {
+          "type": "string",
+          "description": "Alternate text inside of the reference, if available"
+        },
+        "path": {
+          "type": "string",
+          "description": "Absolute path to the refered object"
+        },
+        "isAsset": {
+          "type": "boolean",
+          "description": "if true, it's an asset (with !)\n\notherwise, it's a link"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "alt",
+          "required": false,
+          "schema": {
+            "fullComment": "Alternate text inside of the reference, if available",
+            "type": "string"
+          }
+        },
+        {
+          "name": "path",
+          "required": true,
+          "schema": {
+            "fullComment": "Absolute path to the refered object",
+            "type": "string"
+          }
+        },
+        {
+          "name": "isAsset",
+          "required": false,
+          "schema": {
+            "fullComment": "if true, it's an asset (with !)\n\notherwise, it's a link",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MarkdownReference",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

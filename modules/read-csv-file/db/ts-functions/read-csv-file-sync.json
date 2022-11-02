@@ -1,0 +1,70 @@
+{
+  "createdAt": 1666262997396,
+  "updatedAt": 1666262997396,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262997396,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/readCsvFile.ts",
+  "commentsInside": [],
+  "rawText": " <T extends CsvItemType>(\n  filePath: Path\n): T[] | null => {\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = canReadSync(filePath);\n  if (!readable) return null;\n  const fileString = fs.readFileSync(filePath, \"utf8\");\n  if (!fileString) return null;\n  const parsed = tryParseCsv<T>(fileString);\n  return parsed;\n}",
+  "name": "readCsvFileSync",
+  "slug": "read-csv-file-sync",
+  "parameters": [
+    {
+      "name": "filePath",
+      "schema": {
+        "$ref": "#/definitions/Path"
+      },
+      "simplifiedSchema": {
+        "fullComment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Reads and parses CSV file\n\nspecify a generic of what type of item the file contains an array of",
+  "returnType": {
+    "rawType": "T[] | null",
+    "typeDefinition": {
+      "optional": true,
+      "type": "array",
+      "items": {}
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 453,
+    "lines": 15,
+    "bytes": 453,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "pyqjrosjiqybluoiaaryuzcw"
+}

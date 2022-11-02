@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666513258148,
+  "updatedAt": 1666513258148,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513258148,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/mapMany.test.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const urls = [\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n  ];\n  console.log(\"Normal map with unlimited concurrency\");\n  console.time(\"normalmap\");\n  const results1 = await Promise.all(urls.map(concatenate));\n  console.timeEnd(\"normalmap\");\n\n  console.log(\"Map many with 10 concurrency\");\n  console.time(\"mapMany\");\n  const results2 = await mapMany(urls, concatenate, 10);\n  console.timeEnd(\"mapMany\");\n}",
+  "name": "main",
+  "slug": "main",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 1278,
+    "lines": 113,
+    "bytes": 1278,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 11,
+    "linesPerFile": 113,
+    "numberOfFiles": 1
+  },
+  "id": "qiqjkucabfhazivuzxkurwvu"
+}

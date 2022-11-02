@@ -8,5 +8,4 @@ Improve:
 - parse paragraphs further around the assets
  */
 export declare const mdContentParseRecursively: (markdownString: string, level: number) => MarkdownChunk[];
-export declare const test: () => Promise<boolean>;
 //# sourceMappingURL=mdContentParseRecursively.d.ts.map

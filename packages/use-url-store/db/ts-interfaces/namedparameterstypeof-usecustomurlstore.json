@@ -1,0 +1,89 @@
+{
+  "createdAt": 1666262064331,
+  "updatedAt": 1666262064331,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262064331,
+  "id": "namedparameterstypeof-usecustomurlstore",
+  "name": "NamedParameters<typeof useCustomUrlStore>",
+  "slug": "namedparameterstypeof-usecustomurlstore",
+  "operationRelativeTypescriptFilePath": "src/use-url-store.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "queryKey": {
+          "type": "string"
+        },
+        "config": {
+          "$ref": "#/definitions/CustomUrlStoreConfig"
+        }
+      },
+      "required": [
+        "queryKey",
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "queryKey",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "type",
+                "required": true,
+                "schema": {
+                  "enum": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ],
+                  "type": "string"
+                }
+              },
+              {
+                "name": "isArray",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "allowUndefined",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof useCustomUrlStore>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "createdAt": 1666264721079,
+  "updatedAt": 1666264721079,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264721079,
+  "id": "logconfig",
+  "name": "LogConfig",
+  "slug": "logconfig",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type LogConfig = {\n  /**\n   * The title of this log. If not given, a title will still be parsed from your message by taking the first sentence.\n   */\n  title?: string;\n  /**\n   * how it should look and feel for the user\n   */\n  type?: LogType;\n  /**\n   * Overwrite the global log config\n   */\n  customConfig?: GlobalLogConfig;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of this log. If not given, a title will still be parsed from your message by taking the first sentence."
+        },
+        "type": {
+          "$ref": "#/definitions/LogType",
+          "description": "how it should look and feel for the user"
+        },
+        "customConfig": {
+          "$ref": "#/definitions/GlobalLogConfig",
+          "description": "Overwrite the global log config"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "title",
+          "required": false,
+          "schema": {
+            "fullComment": "The title of this log. If not given, a title will still be parsed from your message by taking the first sentence.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "required": false,
+          "schema": {
+            "enum": [
+              "debug",
+              "error",
+              "warning",
+              "success",
+              "important",
+              "default"
+            ],
+            "fullComment": "how it should look and feel for the user\n\nhow should it look and feel?",
+            "type": "string"
+          }
+        },
+        {
+          "name": "customConfig",
+          "required": false,
+          "schema": {
+            "fullComment": "Overwrite the global log config\n\na logging configuration object that you can set using a file in the root of your operation or project.",
+            "properties": [
+              {
+                "name": "showDebug",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "showDefault",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "sayTitles",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "logFolder",
+                "required": false,
+                "schema": {
+                  "fullComment": "Folder where logs can be stored. If i can access the caller location this can be the operation db.",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "LogConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1666259078323,
+    "updatedAt": 1666259078323,
+    "deletedAt": 0,
+    "createdFirstAt": 1666259078323,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/makeRelative.ts",
+    "comment": "Makes a path relative using proper parsing\n\nResulting path will apply the paths conventions\n- no slash at the end\n- no slash at the beginning",
+    "rawStatement": "export const makeRelative = (\n  /**\n   * absolute path of a file or folder without a slash at the end\n   */\n  absolutePath: string,\n  /**\n   * folder path without a slash at the end\n   */\n  baseFolderPath: string\n): string => {\n  // basecase should be handled, we don't want to get some weird slice edgecase\n  if (absolutePath.length < baseFolderPath.length) return \"\";\n\n  return absolutePath.slice(baseFolderPath.length + 1);\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 1,
+    "lastLine": 7,
+    "id": "gppgctfjglhbnavlndsophjq"
+  }
+]

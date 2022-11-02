@@ -1,0 +1,74 @@
+{
+  "createdAt": 1666258869667,
+  "updatedAt": 1666258869667,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258869667,
+  "id": "namedparameterstypeof-writetoassets",
+  "name": "NamedParameters<typeof writeToAssets>",
+  "slug": "namedparameterstypeof-writetoassets",
+  "operationRelativeTypescriptFilePath": "src/writeToAssets.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "filePath": {
+          "type": "string",
+          "description": "Insert `__filename` here or the typescript file path"
+        },
+        "data": {
+          "description": "The data you want to write to a file, can also be a promise"
+        },
+        "assetsFileName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "filePath",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "filePath",
+          "required": true,
+          "schema": {
+            "fullComment": "Insert `__filename` here or the typescript file path",
+            "type": "string"
+          }
+        },
+        {
+          "name": "data",
+          "required": true,
+          "schema": {
+            "fullComment": "The data you want to write to a file, can also be a promise",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "assetsFileName",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof writeToAssets>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

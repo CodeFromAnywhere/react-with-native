@@ -1,0 +1,62 @@
+{
+  "createdAt": 1666262314252,
+  "updatedAt": 1666262314252,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262314252,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getPublicMarkdownFilePaths.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  baseFolderPath: string,\n  includeFoldersWithResults?: boolean\n) => {\n  const publicMarkdownFilePaths: { path: string; isFolder: boolean }[] = (\n    await explore({\n      basePath: baseFolderPath,\n      extension: \"md\",\n      readmeOnTop: true,\n      includeFoldersWithResults,\n    })\n  )\n    .filter((x) => {\n      if (x.isFolder) return true;\n\n      // NB: we have a file\n      const markdownString = fs.readFileSync(x.path, \"utf8\");\n      const { parameters } = parseFrontmatterMarkdownString(markdownString);\n      if (!shouldExposeMarkdownFile(parameters)) {\n        return false;\n      }\n      return true;\n    })\n    .map(({ path, isFolder }) => ({ path, isFolder }));\n\n  return publicMarkdownFilePaths;\n}",
+  "name": "getPublicMarkdownFilePaths",
+  "slug": "get-public-markdown-file-paths",
+  "parameters": [
+    {
+      "name": "baseFolderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "includeFoldersWithResults",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "Returns all absolute markdown file paths within a basePath which are not drafts and which are not marked private (through frontmatter)",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 856,
+    "lines": 27,
+    "bytes": 856,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 27,
+    "numberOfFiles": 1
+  },
+  "id": "jehmddgpolhbxpwgodyvhpjv"
+}

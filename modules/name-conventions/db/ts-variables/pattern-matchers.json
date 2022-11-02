@@ -1,0 +1,100 @@
+{
+  "createdAt": 1666259791515,
+  "updatedAt": 1666259791515,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259791515,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "patternMatchers",
+  "slug": "pattern-matchers",
+  "operationRelativeTypescriptFilePath": "src/name-conventions.ts",
+  "type": {
+    "rawType": "import(\"/Users/king/King/operations/tools/conventions/name-conventions/src/name-conventions\").PatternMatcher[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pattern": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "matches": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "isSingleWord": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "pattern",
+          "matches"
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [
+              {
+                "name": "pattern",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "matches",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "isSingleWord",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "value": "[\n  {\n    pattern: \"%m\",\n    matches: \"modelName\",\n  },\n  {\n    pattern: \"%d\",\n    matches: \"descriptor\",\n  },\n  {\n    pattern: \"%r\",\n    matches: \"referenceKeyword\",\n    isSingleWord: true,\n  },\n  {\n    pattern: \"%n\",\n    matches: \"nameKeyword\",\n    isSingleWord: true,\n  },\n]",
+  "description": "",
+  "id": "kxwqucehvvdglyscddlcxnxb"
+}

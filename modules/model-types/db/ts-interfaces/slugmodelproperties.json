@@ -1,0 +1,102 @@
+{
+  "createdAt": 1667379926977,
+  "updatedAt": 1667379926977,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379926977,
+  "id": "slugmodelproperties",
+  "name": "SlugModelProperties",
+  "slug": "slugmodelproperties",
+  "operationRelativeTypescriptFilePath": "src/modelTypes.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type SlugModelProperties = {\n  /**\n   * kebab-case of the name, should be unique\n   */\n  slug: Slug;\n  name: string;\n  /**\n   * @default en\n   */\n  language: Language;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "$ref": "#/definitions/Slug",
+          "description": "kebab-case of the name, should be unique"
+        },
+        "name": {
+          "type": "string"
+        },
+        "language": {
+          "$ref": "#/definitions/Language",
+          "default": "en"
+        }
+      },
+      "required": [
+        "slug",
+        "name",
+        "language"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "fullComment": "kebab-case of the name, should be unique\n\nuse this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "language",
+          "required": true,
+          "schema": {
+            "enum": [
+              "english",
+              "dutch",
+              "nepali",
+              "portuguese",
+              "brazilian",
+              "german",
+              "french",
+              "spanish",
+              "italian",
+              "norwegian",
+              "swedish",
+              "danish",
+              "vietnamese",
+              "indonesian",
+              "southAfrican",
+              "tokiPona",
+              "hindi",
+              "mandarin",
+              "arabic",
+              "bengali",
+              "urdu",
+              "japanese",
+              "swahili"
+            ],
+            "fullComment": "all currently supported languages",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "SlugModelProperties",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

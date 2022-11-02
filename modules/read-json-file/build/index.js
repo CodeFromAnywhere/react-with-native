@@ -1,5 +1,2 @@
-"use strict";
-// THIS FILE HAS BEEN GENERATED
-Object.defineProperty(exports,"__esModule",{value:!0}),exports.tryParseJson=exports.readJsonFileSync=exports.readJsonFile=void 0;var readJsonFile_1=require("./readJsonFile");Object.defineProperty(exports,"readJsonFile",{enumerable:!0,get:function(){return readJsonFile_1.readJsonFile}});var readJsonFile_2=require("./readJsonFile");Object.defineProperty(exports,"readJsonFileSync",{enumerable:!0,get:function(){return readJsonFile_2.readJsonFileSync}});var tryParseJson_1=require("./tryParseJson");Object.defineProperty(exports,"tryParseJson",{enumerable:!0,get:function(){return tryParseJson_1.tryParseJson}});
-// THANK YOU
+"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,i){void 0===i&&(i=r);var n=Object.getOwnPropertyDescriptor(t,r);n&&!("get"in n?!t.__esModule:n.writable||n.configurable)||(n={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,i,n)}:function(e,t,r,i){void 0===i&&(i=r),e[i]=t[r]}),__exportStar=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||__createBinding(t,e,r)};Object.defineProperty(exports,"__esModule",{value:!0}),__exportStar(require("./readJsonFile"),exports);
 //# sourceMappingURL=index.js.map

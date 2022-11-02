@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666262315667,
+  "updatedAt": 1666262315667,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262315667,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getTodoPages.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  projectRoot: string\n): Promise<MarkdownReaderPage[]> => {\n  const operationsPath = getRootPath(\"operations\");\n  if (!operationsPath) return [];\n\n  const todoFolderPaths = await findAllTodoFolderPaths(operationsPath, false);\n  const markdownReaderPages: MarkdownReaderPage[] =\n    await getMarkdownReaderPages({\n      projectRoot,\n      basePaths: todoFolderPaths,\n      mapQueryPath: (queryPath) => {\n        return queryPath\n          .replaceAll(\"todo/\", \"\")\n          .replace(\"operations/\", \"todo/\");\n      },\n    });\n\n  return markdownReaderPages;\n}",
+  "name": "getTodoPages",
+  "slug": "get-todo-pages",
+  "parameters": [
+    {
+      "name": "projectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "gets all todo pages as markdownreader pages",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 608,
+    "lines": 20,
+    "bytes": 608,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "qyccvahsolyupxqkutccylcw"
+}

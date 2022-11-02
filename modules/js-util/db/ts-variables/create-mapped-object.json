@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513250954,
+  "updatedAt": 1666513250954,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513250954,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "createMappedObject",
+  "slug": "create-mapped-object",
+  "operationRelativeTypescriptFilePath": "src/createMappedObject.ts",
+  "type": {
+    "rawType": "<T extends { [key: string]: any; }>(array: T[], mapKey: keyof T) => import(\"/Users/king/King/operations/tools/util/js-util/src/createMappedObject\").MappedObject<T>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends { [key: string]: any }>(\n  array: T[],\n  /**\n   * key to make the map from. Must be unique or it could be overwritten. must be a string\n   */\n  mapKey: keyof T\n): MappedObject<T> => {\n  const mappedObject = mergeObjectsArray(\n    array.map((item) => {\n      const key: string = item[mapKey];\n      return {\n        [key]: item,\n      };\n    })\n  );\n\n  return mappedObject;\n}",
+  "description": "Creates a `MappedObject` of an array of any type. `MappedObject`s are great for increasing efficiency to get an item from an array. Especially useful when finds are needed on a specific key match for huge arrays. Instead of finding on the array you can simply get the right property from this object.\n\nNB: Don't use this inside of render functions, it's a very slow function, the whole idea is that this makes it faster, so just do it once!",
+  "id": "dpxgoihucmljslkjtfbhsqjt"
+}

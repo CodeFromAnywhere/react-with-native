@@ -1,0 +1,111 @@
+{
+  "createdAt": 1666262307460,
+  "updatedAt": 1666262307460,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262307460,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getMarkdownPageInfo.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  projectRoot: string,\n  nestedPathObject: NestedPathObject,\n  queryPath: string,\n  contentPage: MarkdownReaderPage\n): Promise<{\n  markdownFile: MarkdownFile | null;\n  nextQueryPath: string | null;\n  previousQueryPath: string | null;\n  projectRelativeMarkdownPath: string | null;\n}> => {\n  const parentQuery = getOneFolderUpPath(queryPath);\n  const siblings = getKeysAtPathFromNestedObject(nestedPathObject, parentQuery);\n  const meIndex = siblings.findIndex(\n    (sibling) => queryPath.split(\"/\").pop() === sibling\n  );\n\n  const previousFolder = siblings[meIndex - 1];\n  const previousQueryPath = previousFolder\n    ? `${parentQuery}/${previousFolder}`\n    : null;\n  const nextFolder = siblings[meIndex + 1];\n  const nextQueryPath = nextFolder ? `${parentQuery}/${nextFolder}` : null;\n\n  const absoluteMarkdownPath = contentPage.filePath\n    ? path.join(projectRoot, contentPage.filePath)\n    : undefined;\n\n  const markdownFile = absoluteMarkdownPath\n    ? await readMarkdownFileToModel(absoluteMarkdownPath)\n    : null;\n\n  const projectRelativeMarkdownPath = absoluteMarkdownPath\n    ? makeRelative(absoluteMarkdownPath, projectRoot)\n    : null;\n\n  return {\n    markdownFile,\n    nextQueryPath,\n    previousQueryPath,\n    projectRelativeMarkdownPath,\n  };\n}",
+  "name": "getMarkdownPageInfo",
+  "slug": "get-markdown-page-info",
+  "parameters": [
+    {
+      "name": "projectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "nestedPathObject",
+      "schema": {
+        "$ref": "#/definitions/NestedPathObject"
+      },
+      "simplifiedSchema": {
+        "fullComment": "A different way to represent a path array in a nested object of folders\n\n{  \"folderName\": {    \"file1\": null,    \"file2\": null  },  \"folderName2\": {    \"file1\": null,    \"file2\": null  } }",
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "queryPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "contentPage",
+      "schema": {
+        "$ref": "#/definitions/MarkdownReaderPage"
+      },
+      "simplifiedSchema": {
+        "fullComment": "for markdown-reader-ui, the pages can be markdown files, but they can also be connected to models",
+        "properties": [
+          {
+            "name": "queryPath",
+            "required": true,
+            "schema": {
+              "fullComment": "path to be used as the url. no preceding slash",
+              "type": "string"
+            }
+          },
+          {
+            "name": "filePath",
+            "required": false,
+            "schema": {
+              "fullComment": "if given, the md-file will be provided to the frontend\n\nproject relative path",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isMenuItem",
+            "required": false,
+            "schema": {
+              "fullComment": "if true, this item will be shown in the menu",
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "If a markdown page is found, this function fetches all metadata needed to render that markdown page",
+  "returnType": {
+    "rawType": "Promise<{ markdownFile: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownFile\").MarkdownFile | null; nextQueryPath: string | null; previousQueryPath: string | null; projectRelativeMarkdownPath: string | null; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 1367,
+    "lines": 43,
+    "bytes": 1367,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 43,
+    "numberOfFiles": 1
+  },
+  "id": "fcblflfvzvsswlwbcseyvhgk"
+}

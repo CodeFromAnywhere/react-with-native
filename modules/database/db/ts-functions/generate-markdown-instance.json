@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666259860418,
+  "updatedAt": 1666259860418,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259860418,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/test-db.ts",
+  "commentsInside": [],
+  "rawText": " (): Creation<MarkdownTestModel> => {\n  return {\n    // Needed for deletion later\n    id: generateId(),\n\n    age: 19,\n    canBeNull: null,\n    markdown:\n      \" jaja dit is gewoon markdown \\n\\n mooi he \\n\\n # header \\n\\n test\",\n    name: randomName(),\n    stringA: \"A\",\n    stringB: \"B\",\n    stringC: \"C\",\n    yes: true,\n    canBeUndefined: undefined,\n  };\n}",
+  "name": "generateMarkdownInstance",
+  "slug": "generate-markdown-instance",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 358,
+    "lines": 17,
+    "bytes": 358,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "kguukzattbyanrsidtcwrlko"
+}

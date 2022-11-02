@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getMarkdownReferencesFromParagraph=void 0;var js_util_1=require("js-util"),parseMarkdownParagraph_1=require("./parseMarkdownParagraph"),getMarkdownReferencesFromParagraph=function(r){return(0,parseMarkdownParagraph_1.parseMarkdownParagraph)(r).map((function(r){return r.reference})).filter(js_util_1.notEmpty)};exports.getMarkdownReferencesFromParagraph=getMarkdownReferencesFromParagraph;
+//# sourceMappingURL=getMarkdownReferencesFromParagraph.js.map

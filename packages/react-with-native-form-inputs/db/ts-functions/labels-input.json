@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666261454504,
+  "updatedAt": 1666261454504,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261454504,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/labels/labels.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  value,\n  extra,\n  onChange,\n  uniqueFieldId,\n}) => {\n  const [textValue, setTextValue] = useState(\"\");\n\n  const processText = (text: string) => {\n    if (text.endsWith(\",\")) {\n      const newValue = value;\n      const trimmedText = text.slice(0, text.length - 1).trim();\n      if (!value.includes(trimmedText)) {\n        value.push(trimmedText);\n      }\n      onChange(newValue);\n      setTextValue(\"\");\n    } else {\n      setTextValue(text);\n    }\n  };\n\n  return (\n    <Div className=\"flex flex-row flex-wrap\">\n      {value.map((text, index) => (\n        <Button\n          onClick={() => {\n            const newValue = value.filter((x) => x !== text);\n            onChange(newValue);\n          }}\n          key={`selected${uniqueFieldId}${index}`}\n          className={`mr-3 px-3 py-2 rounded-md border border-gray-400`}\n        >\n          <P>\n            {text} <Span textClassName=\"text-red-500\">(x)</Span>\n          </P>\n        </Button>\n      ))}\n\n      <Input\n        className={`${UI.bareInput} py-3`}\n        onChange={({ target: { value: text } }) => processText(text)}\n        value={textValue}\n        native={{ onChangeText: processText }}\n      />\n    </Div>\n  );\n}",
+  "name": "LabelsInput",
+  "slug": "labels-input",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 1186,
+    "lines": 48,
+    "bytes": 1186,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 48,
+    "numberOfFiles": 1
+  },
+  "id": "eynirrqyiflkcwlkiimhpkve"
+}

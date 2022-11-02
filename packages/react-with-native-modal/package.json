@@ -1,4 +1,8 @@
 {
+  "createdAt": 1662709577330,
+  "updatedAt": 1662709577330,
+  "deletedAt": 0,
+  "createdFirstAt": 1662709577330,
   "name": "react-with-native-modal",
   "version": "1.0.60",
   "description": "",
@@ -8,9 +12,7 @@
     "pub": "npm version patch --force && npm publish",
     "build": "tsc",
     "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
-    "dev:tw": "tailwindcss -o css.css",
-    "minify": "echo build/**/*.js | xargs -n1 sh -c 'terser --output build/${1#build/} --compress --mangle -- $1' argv0",
-    "minify2": "bash -c \"for f in build/*.js; do terser $f --output $f --compress --mangle; done\""
+    "dev:tw": "tailwindcss -o css.css"
   },
   "repository": {
     "type": "git",
@@ -31,5 +33,14 @@
     "react-with-native": "*",
     "tailwindcss": "^3.0.24",
     "typescript": "^4.6.4"
+  },
+  "slug": "react-with-native-modal",
+  "id": "HtONHJUCgYpeRlAf",
+  "dependencies": {
+    "react-with-native": "1.4.9",
+    "react": "*"
+  },
+  "sensible": {
+    "hasGeneratedDependencies": false
   }
 }

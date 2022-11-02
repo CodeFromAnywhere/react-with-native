@@ -1,0 +1,73 @@
+{
+  "createdAt": 1666262304428,
+  "updatedAt": 1666262304428,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262304428,
+  "id": "namedparameterstypeof-getfolderexplorationinfo",
+  "name": "NamedParameters<typeof getFolderExplorationInfo>",
+  "slug": "namedparameterstypeof-getfolderexplorationinfo",
+  "operationRelativeTypescriptFilePath": "src/getFolderExplorationInfo.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "nestedPathObject": {
+          "$ref": "#/definitions/NestedPathObject"
+        },
+        "queryPath": {
+          "type": "string"
+        },
+        "projectRoot": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nestedPathObject",
+        "queryPath",
+        "projectRoot"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "nestedPathObject",
+          "required": true,
+          "schema": {
+            "fullComment": "A different way to represent a path array in a nested object of folders\n\n{  \"folderName\": {    \"file1\": null,    \"file2\": null  },  \"folderName2\": {    \"file1\": null,    \"file2\": null  } }",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "queryPath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "projectRoot",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getFolderExplorationInfo>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

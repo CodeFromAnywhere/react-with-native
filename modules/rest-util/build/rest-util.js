@@ -13,7 +13,10 @@ return r[t.key]?(r[t.key]=__spreadArray(__spreadArray([],(0,js_util_1.makeArray)
 }),{});return n}};
 /**
  * converts a query string into an object that can be used as a body
- */exports.bodyFromQueryString=bodyFromQueryString;var isValidEntry=function(r){r[0];var t=r[1];return void 0!==t&&""!==t&&null!==t},toQueryString=function(r){var t;return r&&(null===(t=Object.entries(r))||void 0===t?void 0:t.filter(isValidEntry).length)>0?"?"+Object.entries(r).filter(isValidEntry).map((function(r){var t=r[0],e=r[1],n=encodeURIComponent(String(e));return"".concat(t,"=").concat(n)})).join("&"):""};exports.toQueryString=toQueryString;
+ */exports.bodyFromQueryString=bodyFromQueryString;var isValidEntry=function(r){r[0];var t=r[1];return void 0!==t&&""!==t&&null!==t},toQueryString=function(r){var t;return r&&(null===(t=Object.entries(r))||void 0===t?void 0:t.filter(isValidEntry).length)>0?"?"+Object.entries(r).filter(isValidEntry).map((function(r){var t=r[0],e=r[1],n=encodeURIComponent(String(e));return"".concat(t,"=").concat(n)})).join("&"):""};
+/**
+ * returns something like `?x=a&y=b&z=c`
+ */exports.toQueryString=toQueryString;
 //NB: doesn't work in node.
 /**
  * Query keys can be string or string[] or undefined.

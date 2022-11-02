@@ -1,0 +1,108 @@
+{
+  "createdAt": 1667379859188,
+  "updatedAt": 1667379859188,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379859188,
+  "id": "categorizedfilepaths",
+  "name": "CategorizedFilePaths",
+  "slug": "categorizedfilepaths",
+  "operationRelativeTypescriptFilePath": "src/OperationIndex.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * filepaths categorized based on the filetype. With king os there are only these filetypes:\n *\n * - code: ts, tsx\n * - data: json\n * - text: md, mdx\n */\nexport type CategorizedFilePaths = {\n  code: string[];\n  data: string[];\n  text: string[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "filepaths categorized based on the filetype. With king os there are only these filetypes:\n\n- code: ts, tsx\n- data: json\n- text: md, mdx",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "text": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "code",
+        "data",
+        "text"
+      ],
+      "additionalProperties": false,
+      "description": "filepaths categorized based on the filetype. With king os there are only these filetypes:\n\n- code: ts, tsx\n- data: json\n- text: md, mdx"
+    },
+    "simplifiedSchema": {
+      "fullComment": "filepaths categorized based on the filetype. With king os there are only these filetypes:\n\n- code: ts, tsx\n- data: json\n- text: md, mdx",
+      "properties": [
+        {
+          "name": "code",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "data",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "text",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CategorizedFilePaths",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

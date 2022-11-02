@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.readableSize=void 0;var readableSize=function(e){return e<1024?"".concat(e," bytes"):e<1048576?"".concat(Math.round(e/1024)," kb"):e<1073741824?"".concat(Math.round(e/1048576)," mb"):e<1099511627776?"".concat(Math.round(e/1073741824)," gb"):e<0x4000000000000?"".concat(Math.round(e/1099511627776)," tb"):"waaaay to big"};exports.readableSize=readableSize;
+//# sourceMappingURL=readableSize.js.map

@@ -1,10 +1,5 @@
 import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
 
-export type MainPageProps = {
-  markdownString: null | string;
-  queryPaths: string[];
-};
-
 export type PageOptions = {
   /**
    * should this page be hidden in the root menu? Not hidden by default

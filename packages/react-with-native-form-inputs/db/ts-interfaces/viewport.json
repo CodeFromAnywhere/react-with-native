@@ -1,0 +1,101 @@
+{
+  "createdAt": 1666261457201,
+  "updatedAt": 1666261457201,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261457201,
+  "id": "viewport",
+  "name": "ViewPort",
+  "slug": "viewport",
+  "operationRelativeTypescriptFilePath": "src/map/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type ViewPort = MapLocation & {\n  width: string | number;\n  height: string | number;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "height": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "zoom": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "height",
+        "latitude",
+        "longitude",
+        "width",
+        "zoom"
+      ]
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "width",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "height",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "latitude",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "longitude",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "zoom",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ViewPort",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

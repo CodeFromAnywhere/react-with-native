@@ -1,16 +1,16 @@
-/// <reference types="node" />
 export type { ParsedPath } from "node:path";
 export declare const path: {
-    parse: (p: string) => import("path").ParsedPath;
-    basename: (p: string, ext?: string | undefined) => string;
-    delimiter: string;
-    dirname: (p: string) => string;
-    extname: (p: string) => string;
-    format: (pP: import("path").FormatInputPathObject) => string;
-    isAbsolute: (p: string) => boolean;
+    relative: (from: string, to: string) => string;
+    parse: (path: string) => import("path").ParsedPath;
+    basename: (path: string, suffix?: string | undefined) => string;
+    delimiter: ";" | ":";
+    dirname: (path: string) => string;
+    extname: (path: string) => string;
+    format: (pathObject: import("path").FormatInputPathObject) => string;
+    isAbsolute: (path: string) => boolean;
     join: (...paths: string[]) => string;
-    normalize: (p: string) => string;
-    resolve: (...pathSegments: string[]) => string;
-    sep: string;
+    normalize: (path: string) => string;
+    resolve: (...paths: string[]) => string;
+    sep: "\\" | "/";
 };
 //# sourceMappingURL=path.d.ts.map

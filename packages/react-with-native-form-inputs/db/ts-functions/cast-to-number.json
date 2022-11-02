@@ -1,0 +1,49 @@
+{
+  "createdAt": 1666261458643,
+  "updatedAt": 1666261458643,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261458643,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/number/number.tsx",
+  "commentsInside": [],
+  "rawText": " (\n  numberString: string | null | undefined\n): null | undefined | number => {\n  if (numberString === null) return null;\n  if (numberString === undefined) return undefined;\n  if (numberString === \"\") return undefined;\n\n  const number = Number(numberString);\n\n  if (isNaN(number)) return undefined;\n\n  return number;\n}",
+  "name": "castToNumber",
+  "slug": "cast-to-number",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "number | null | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "number | null"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 317,
+    "lines": 13,
+    "bytes": 317,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "zclywneshwrtpbpmydrhiqri"
+}

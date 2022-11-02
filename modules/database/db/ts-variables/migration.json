@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259865091,
+  "updatedAt": 1666259865091,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259865091,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "migration",
+  "slug": "migration",
+  "operationRelativeTypescriptFilePath": "src/test.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const result = await testDb.update(\n    \"TsConfig\",\n    () => true,\n    (tsConfig) => ({\n      ...tsConfig,\n      compilerOptions: { ...tsConfig.compilerOptions, resolveJsonModule: true },\n    })\n  );\n\n  console.dir(result, { depth: 111 });\n}",
+  "description": "",
+  "id": "xbgaacinioleyomupgezeqgs"
+}

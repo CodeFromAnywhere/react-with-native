@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.removeTokenIfPresent=void 0;var tokenPrefix_1=require("./tokenPrefix"),removeTokenIfPresent=function(e,o){if(!o)return{nameWithoutToken:e,token:void 0};var r=e.split(tokenPrefix_1.tokenPrefix);return{nameWithoutToken:r[0],token:r[1]}};exports.removeTokenIfPresent=removeTokenIfPresent;
+//# sourceMappingURL=removeTokenIfPresent.js.map

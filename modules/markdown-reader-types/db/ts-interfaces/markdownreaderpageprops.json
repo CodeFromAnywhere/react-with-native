@@ -1,0 +1,245 @@
+{
+  "createdAt": 1666262371949,
+  "updatedAt": 1666262371949,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262371949,
+  "id": "markdownreaderpageprops",
+  "name": "MarkdownReaderPageProps",
+  "slug": "markdownreaderpageprops",
+  "operationRelativeTypescriptFilePath": "src/MarkdownReaderPageProps.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\nexport type MarkdownReaderPageProps = {\n  projectRelativeMarkdownPath?: string | null;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n  /**\n   * If markdownfile is null, the page should exist, but the reading of the file failed\n   */\n  markdownFile?: MarkdownFile | null;\n  pages: MarkdownReaderPage[];\n  /**\n   * Title of the page\n   */\n  title?: string | null;\n  /**\n   * If path is not a markdownfile, will return all children here\n   */\n  children?: {\n    title: string;\n    firstParagraph: string | null;\n    folderName: string;\n  }[];\n  previousQueryPath?: string | null;\n  nextQueryPath?: string | null;\n  description?: string | null;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "projectRelativeMarkdownPath": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "augmentedWordObject": {
+          "$ref": "#/definitions/MappedObject%3CAugmentedWord%3E"
+        },
+        "markdownFile": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/MarkdownFile"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "If markdownfile is null, the page should exist, but the reading of the file failed"
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarkdownReaderPage"
+          }
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Title of the page"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "firstParagraph": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "folderName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "firstParagraph",
+              "folderName"
+            ],
+            "additionalProperties": false
+          },
+          "description": "If path is not a markdownfile, will return all children here"
+        },
+        "previousQueryPath": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nextQueryPath": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "pages"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "projectRelativeMarkdownPath",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "markdownFile",
+          "required": false,
+          "schema": {
+            "fullComment": "If markdownfile is null, the page should exist, but the reading of the file failed",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "pages",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "for markdown-reader-ui, the pages can be markdown files, but they can also be connected to models",
+                  "properties": [
+                    {
+                      "name": "queryPath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "path to be used as the url. no preceding slash",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "filePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if given, the md-file will be provided to the frontend\n\nproject relative path",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isMenuItem",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if true, this item will be shown in the menu",
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "MarkdownReaderPage"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "title",
+          "required": false,
+          "schema": {
+            "fullComment": "Title of the page",
+            "type": "string"
+          }
+        },
+        {
+          "name": "children",
+          "required": false,
+          "schema": {
+            "fullComment": "If path is not a markdownfile, will return all children here",
+            "items": [
+              {
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "title",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "firstParagraph",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "folderName",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "previousQueryPath",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "nextQueryPath",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "description",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MarkdownReaderPageProps",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

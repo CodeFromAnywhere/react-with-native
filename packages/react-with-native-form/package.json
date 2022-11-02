@@ -1,4 +1,8 @@
 {
+  "createdAt": 1662709577330,
+  "updatedAt": 1662709577330,
+  "deletedAt": 0,
+  "createdFirstAt": 1662709577330,
   "name": "react-with-native-form",
   "version": "1.0.114",
   "description": "Create forms, fast",
@@ -8,9 +12,7 @@
     "pub": "npm version patch --force && npm publish",
     "build": "tsc",
     "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
-    "dev:tw": "tailwindcss -o css.css",
-    "minify": "echo build/**/*.js | xargs -n1 sh -c 'terser --output build/${1#build/} --compress --mangle -- $1' argv0",
-    "minify2": "bash -c \"for f in build/*.js; do terser $f --output $f --compress --mangle; done\""
+    "dev:tw": "tailwindcss -o css.css"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,13 @@
   },
   "dependencies": {
     "fast-deep-equal": "^3.1.3",
-    "react-with-native-ui": "*"
+    "react-with-native-ui": "1.0.6",
+    "react-with-native": "1.4.9",
+    "react": "*"
+  },
+  "slug": "react-with-native-form",
+  "id": "QDSihJHrNrMynEee",
+  "sensible": {
+    "hasGeneratedDependencies": false
   }
 }

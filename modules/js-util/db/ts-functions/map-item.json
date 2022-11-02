@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666513259328,
+  "updatedAt": 1666513259328,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513259328,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/mapMany.ts",
+  "commentsInside": [],
+  "rawText": " async <T, U>(\n  mapFn: MapFn<T, U>,\n  currentValue: T,\n  index: number,\n  array: T[]\n): Promise<{\n  status: \"fulfilled\" | \"rejected\";\n  value?: U;\n  reason?: unknown;\n}> => {\n  try {\n    return {\n      status: \"fulfilled\",\n      value: await mapFn(currentValue, index, array),\n    };\n  } catch (reason) {\n    return {\n      status: \"rejected\",\n      reason,\n    };\n  }\n}",
+  "name": "mapItem",
+  "slug": "map-item",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<{ status: \"fulfilled\" | \"rejected\"; value?: U | undefined; reason?: unknown; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 371,
+    "lines": 22,
+    "bytes": 371,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 17,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "suypqvrjfxhzrmmiwhpmdxuv"
+}

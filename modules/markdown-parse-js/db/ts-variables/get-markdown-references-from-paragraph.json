@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379660775,
+  "updatedAt": 1667379660775,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379660775,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getMarkdownReferencesFromParagraph",
+  "slug": "get-markdown-references-from-paragraph",
+  "operationRelativeTypescriptFilePath": "src/getMarkdownReferencesFromParagraph.ts",
+  "type": {
+    "rawType": "(paragraph: string) => import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parse-js/src/MarkdownReference\").MarkdownReference[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  paragraph: string\n): MarkdownReference[] => {\n  const references = parseMarkdownParagraph(paragraph)\n    .map((x) => x.reference)\n    .filter(notEmpty);\n\n  return references;\n}",
+  "description": "Gets all markdown references from a paragraph",
+  "id": "pjlniigiqxtwvtpvmglyoeho"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666264722195,
+  "updatedAt": 1666264722195,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264722195,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getCallerFileName",
+  "slug": "get-caller-file-name",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  const stack = new Error().stack;\n  if (!stack) return;\n\n  // console.log(\"Complete stack\", stack);\n  const firstRelevantLine = stack.split(\"\\n\")[3];\n  if (!firstRelevantLine) return;\n\n  const jsFilePath = firstRelevantLine.split(\"at \")[1].split(\":\")[0];\n\n  if (!jsFilePath) return;\n\n  const srcPath = jsFilePath.replace(\"/build/\", \"/src/\").replace(\".js\", \".ts\");\n\n  return srcPath;\n}",
+  "description": "TODO: this is great. now also get the operationName. If the operationName appears in the config, for debug, show the log, otherwise don't show",
+  "id": "tfnudcoqbtdddyxmzfggouuy"
+}

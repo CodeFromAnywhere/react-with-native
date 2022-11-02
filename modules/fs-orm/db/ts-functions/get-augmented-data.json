@@ -1,0 +1,111 @@
+{
+  "createdAt": 1666512759108,
+  "updatedAt": 1666512759108,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512759108,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util/getAugmentedData.ts",
+  "commentsInside": [],
+  "rawText": " async <T>(\n  dbFileLocation: DbFileLocation,\n  dbStorageMethod: DbStorageMethod\n): Promise<T[] | null> => {\n  const { absolutePath, modelName, ...modelLocation } = dbFileLocation;\n\n  const parsedPath = path.parse(absolutePath);\n\n  const isSingleMethod =\n    dbStorageMethod === \"markdown\" || dbStorageMethod === \"jsonSingle\";\n\n  const hasOperationRelativePath = !!modelLocation.operationRelativePath;\n  const shouldAddSingleInfo = isSingleMethod && !hasOperationRelativePath;\n\n  const slugifiedName = shouldAddSingleInfo\n    ? slugify(parsedPath.name)\n    : undefined;\n  const isNameValid = shouldAddSingleInfo\n    ? slugifiedName === parsedPath.name\n    : true;\n  if (!isNameValid) {\n    log(`${parsedPath.name} is not a valid (slugified) filename`, {\n      type: \"warning\",\n    });\n  }\n\n  const rootRelativePath =\n    modelLocation.operationRelativePath || modelLocation.projectRelativePath;\n  const dbModelFolderPath = `db/${pluralize(kebabCase(modelName))}`;\n\n  const dbModelFolderRelativePath = makeRelative(\n    trimSlashes(rootRelativePath),\n    dbModelFolderPath\n  );\n  const chunks = dbModelFolderRelativePath.split(\"/\");\n  // remove the name\n  chunks.pop();\n  // What's left is the folders, if any.\n  const categoryStackCalculated = chunks;\n\n  const singleInfo = shouldAddSingleInfo\n    ? { name: slugifiedName, slug: slugifiedName, categoryStackCalculated }\n    : undefined;\n  const ext = parsedPath.ext;\n\n  if (ext === \".json\") {\n    const jsonContent = await readJsonFile<any>(absolutePath);\n    const jsonContentArray = jsonContent ? makeArray(jsonContent) : null;\n    const augmented: T[] | null = jsonContentArray\n      ? (jsonContentArray.map((x) => ({\n          ...x,\n          ...modelLocation,\n          ...singleInfo,\n        })) as T[])\n      : null;\n\n    return augmented;\n  }\n\n  if (ext === \".csv\") {\n    const csvContent = await readCsvFile<any>(absolutePath);\n\n    if (!csvContent) return null;\n\n    const augmented: T[] = csvContent.map((x) => ({\n      ...x,\n      ...modelLocation,\n    }));\n    return augmented;\n  }\n\n  if (ext === \".md\") {\n    const mdParse = await readMarkdownFile(absolutePath);\n\n    if (!mdParse) return null;\n    const frontmatter = mdParse?.parameters;\n    if (dbStorageMethod === \"markdown\") {\n      const markdownContent = {\n        ...frontmatter,\n\n        markdown: mdParse.raw,\n        ...modelLocation,\n        ...singleInfo,\n        // NB: have to convert to unknown here first because of the specified markdown prop\n      } as unknown as T;\n\n      // console.log({ frontmatter, modelLocation, singleInfo });\n      return [markdownContent];\n    }\n\n    const keyValueMarkdownParse = markdownStringToKvmdParse(\n      mdParse.raw,\n      dbFileLocation\n    );\n\n    // NB: typing as unknown is required because it will only work for keyValueMarkdown models\n    const keyValueMarkdown = keyValueMarkdownParse.data as unknown as T[];\n\n    return keyValueMarkdown;\n  }\n\n  return null;\n}",
+  "name": "getAugmentedData",
+  "slug": "get-augmented-data",
+  "parameters": [
+    {
+      "name": "dbFileLocation",
+      "schema": {
+        "$ref": "#/definitions/DbFileLocation"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Object used to hand over all information about the location of a db-file in a structured way",
+        "properties": [
+          {
+            "name": "absolutePath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "modelName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationName",
+            "required": true,
+            "schema": {
+              "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "null"
+            }
+          },
+          {
+            "name": "projectRelativePath",
+            "required": true,
+            "schema": {
+              "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationRelativePath",
+            "required": false,
+            "schema": {
+              "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "dbStorageMethod",
+      "schema": {
+        "$ref": "#/definitions/DbStorageMethod"
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "jsonMultiple",
+          "jsonSingle",
+          "markdown",
+          "keyValueMarkdown",
+          "csv"
+        ],
+        "fullComment": "The following strategies are available to store the data.\n\n- **jsonMultiple *(default)***: stores the data in a json file which is an array of this data structure. This file will be located in `db/[pluralized-kebab-case-model-name].json`\n\n- **jsonSingle**: stores the data in a json file which is of this data structure (single object) These files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].json`\n\n- **markdown**: stores the data in a markdown file. Takes \"markdown\" parameter as the main markdown. The other parameters are stored as front-matter. This these files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].md`\n\n- **keyValueMarkdown**: stores the data in key value markdown format. This file will be located in `db/[pluralized-kebab-case-model-name].md`\n\n- **csv**: stores the data in a csv file (only possible for flat object datastructures). This file will be located in `db/[pluralized-kebab-case-model-name].csv`\n\n## Definitions:\n\n- [pluralized-kebab-case-model-name]: e.g. `StudentUser` becomes `student-users`\n- [instance-slug-or-id]: For all models with a slug parameter, the filename will be that slug of that instance. Otherwise, `id` will be used",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Gets the stored data from any file with any storage method, and augments the modelLocation onto it...\n\nAlso augments the `name`, `slug` and `categoryStackCalculated` onto this if the `dbStorageMethod` is `markdown` or `jsonSingle` and if `operationRelativePath` is not set",
+  "returnType": {
+    "rawType": "Promise<T[] | null>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 3209,
+    "lines": 105,
+    "bytes": 3209,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 105,
+    "numberOfFiles": 1
+  },
+  "id": "rwbkhrbhabvreraphzmqawfw"
+}

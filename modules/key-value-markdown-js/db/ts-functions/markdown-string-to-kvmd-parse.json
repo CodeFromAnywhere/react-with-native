@@ -1,0 +1,150 @@
+{
+  "createdAt": 1666262781734,
+  "updatedAt": 1666262781734,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262781734,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/markdownStringToKvmdParse.ts",
+  "commentsInside": [],
+  "rawText": " (\n  kvMdString: string,\n  dbFileLocation: DbFileLocation\n): KeyValueMarkdownParse => {\n  const { parameters, content } = mdToJsonParse(kvMdString);\n  const { absolutePath, modelName, ...modelLocation } = dbFileLocation;\n\n  const parentKey = `parent_${camelCase(modelName)}Slug`;\n\n  if (!content) {\n    console.log(\"NO CONTENT FOUND\");\n    return { parameters: {}, data: [] };\n  }\n\n  const kvmdItems = content\n    .map((chunk) => getKvmdItemsRecursively(chunk))\n    .flat();\n\n  const data: KeyValueMarkdownModelType[] = kvmdItems.map((x) => ({\n    ...x,\n    ...modelLocation,\n    // NB: here we set the reference to its parent (which is equal to the last item in the categoryStackCalculated)\n    [parentKey]:\n      x.categoryStackCalculated[x.categoryStackCalculated.length - 1],\n  }));\n\n  return { parameters, data };\n}",
+  "name": "markdownStringToKvmdParse",
+  "slug": "markdown-string-to-kvmd-parse",
+  "parameters": [
+    {
+      "name": "kvMdString",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "dbFileLocation",
+      "schema": {
+        "$ref": "#/definitions/DbFileLocation"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Object used to hand over all information about the location of a db-file in a structured way",
+        "properties": [
+          {
+            "name": "absolutePath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "modelName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationName",
+            "required": true,
+            "schema": {
+              "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "null"
+            }
+          },
+          {
+            "name": "projectRelativePath",
+            "required": true,
+            "schema": {
+              "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationRelativePath",
+            "required": false,
+            "schema": {
+              "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "parses a key value md string (with support for headings and frontmatter)",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/model-types/build/keyValueMarkdown\").KeyValueMarkdownParse",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "parameters": {
+          "type": "object",
+          "properties": {}
+        },
+        "data": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [
+        "parameters",
+        "data"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "parameters",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "data",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 892,
+    "lines": 28,
+    "bytes": 892,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "hvlytixwwldfvzrqcsssstaf"
+}

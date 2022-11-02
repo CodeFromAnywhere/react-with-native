@@ -1,0 +1,170 @@
+{
+  "createdAt": 1666262782873,
+  "updatedAt": 1666262782873,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262782873,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/parseKvmdLine.ts",
+  "commentsInside": [],
+  "rawText": " (string: string): KvmdLine | undefined => {\n  const htmlCommentRegex = /<!--[\\s\\S]*?-->/g;\n  const lineWithoutComment = string.replace(htmlCommentRegex, \"\");\n\n  const commentMatch = string.match(htmlCommentRegex)?.[0];\n  const comment = commentMatch\n    ? commentMatch.replace(\"<!--\", \"\").replace(\"-->\", \"\").trim()\n    : null;\n\n  const [keyString, valueString] = lineWithoutComment\n    .split(\":\")\n    .map((x) => x.trim());\n\n  const value = valueString?.length ? valueString : undefined;\n  const slug = kebabCase(keyString);\n\n  if (keyString.length === 0) return;\n\n  return {\n    id: slug,\n    name: keyString,\n    value,\n    comment,\n    slug,\n  };\n}",
+  "name": "parseKvmdLine",
+  "slug": "parse-kvmd-line",
+  "parameters": [
+    {
+      "name": "string",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "parses a kv md line with data into a key, value, and comment (if available)\n\nif the key is an empty string, the line will return undefined",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/model-types/build/keyValueMarkdown\").KvmdLine | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "name": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "slug": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "value": {
+          "enum": [
+            "ul",
+            "trin",
+            "umbe",
+            "als",
+            "ru"
+          ],
+          "x-enumNames": [
+            "ul",
+            "trin",
+            "umbe",
+            "als",
+            "ru"
+          ],
+          "type": "string"
+        },
+        "comment": {
+          "type": "string | null"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "slug"
+      ],
+      "optional": true
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "value",
+          "required": false,
+          "schema": {
+            "enum": [
+              "ul",
+              "trin",
+              "umbe",
+              "als",
+              "ru"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "comment",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 791,
+    "lines": 28,
+    "bytes": 791,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "pdmphyuchhybeetiniwniydb"
+}

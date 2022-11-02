@@ -1,0 +1,34 @@
+[
+  {
+    "createdAt": 1666262997890,
+    "updatedAt": 1666262997890,
+    "deletedAt": 0,
+    "createdFirstAt": 1666262997890,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/readCsvFile.ts",
+    "comment": "Reads and parses CSV file\n\nspecify a generic of what type of item the file contains an array of",
+    "rawStatement": "export const readCsvFile = async <T extends CsvItemType>(\n  filePath: Path | undefined\n): Promise<T[] | null> => {\n  if (!filePath) return null;\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const parsed = tryParseCsv<T>(fileString);\n  return parsed;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 5,
+    "lastLine": 9,
+    "id": "oiylpqlldqrujplsmhqduwzy"
+  },
+  {
+    "createdAt": 1666262997890,
+    "updatedAt": 1666262997890,
+    "deletedAt": 0,
+    "createdFirstAt": 1666262997890,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/readCsvFile.ts",
+    "comment": "Reads and parses CSV file\n\nspecify a generic of what type of item the file contains an array of",
+    "rawStatement": "export const readCsvFileSync = <T extends CsvItemType>(\n  filePath: Path\n): T[] | null => {\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = canReadSync(filePath);\n  if (!readable) return null;\n  const fileString = fs.readFileSync(filePath, \"utf8\");\n  if (!fileString) return null;\n  const parsed = tryParseCsv<T>(fileString);\n  return parsed;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 26,
+    "lastLine": 30,
+    "id": "hijgqztefwctceggwwzljrbd"
+  }
+]

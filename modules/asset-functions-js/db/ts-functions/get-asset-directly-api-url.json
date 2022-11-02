@@ -1,0 +1,66 @@
+{
+  "createdAt": 1667111115444,
+  "updatedAt": 1667111115444,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111115444,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getAssetDirectlyApiUrl.ts",
+  "commentsInside": [],
+  "rawText": " (\n  apiUrl: string,\n  projectRelativeAssetPath: string\n) => {\n  return getGetApiUrl(apiUrl, \"getAssetDirectlyGetApi\", {\n    projectRelativeAssetPath,\n  });\n}",
+  "name": "getAssetDirectlyApiUrl",
+  "slug": "get-asset-directly-api-url",
+  "parameters": [
+    {
+      "name": "apiUrl",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "projectRelativeAssetPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 158,
+    "lines": 8,
+    "bytes": 158,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 20,
+    "linesPerFile": 8,
+    "numberOfFiles": 1
+  },
+  "id": "mkzppbivrskkptcbhpsolmnk"
+}

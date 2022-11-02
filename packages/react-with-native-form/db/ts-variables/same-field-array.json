@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666261374615,
+  "updatedAt": 1666261374615,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261374615,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "sameFieldArray",
+  "slug": "same-field-array",
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "type": {
+    "rawType": "<T extends import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").Field<TInputs, Extract<keyof TObject, string>>[], TInputs extends unknown>(arr1: T, arr2: T) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<\n  T extends Field<TInputs, Keys<TInputs>>[],\n  TInputs extends any\n>(\n  arr1: T,\n  arr2: T\n) => {\n  const simpleArr1 = arr1.map(\n    ({ shouldHide, titleFromState, hasError, ...item }) => item\n  );\n  const simpleArr2 = arr2.map(\n    ({ shouldHide, titleFromState, hasError, ...item }) => item\n  );\n\n  const isDeepEqual = deepEqual(simpleArr1, simpleArr2);\n  // console.log({ simpleArr1, simpleArr2, isDeepEqual });\n  return isDeepEqual;\n}",
+  "description": "",
+  "id": "tyzgdfwoldmnlqloklwwmqsq"
+}

@@ -1,0 +1,143 @@
+{
+  "createdAt": 1667379658438,
+  "updatedAt": 1667379658438,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379658438,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getMarkdownParseParagraphs.ts",
+  "commentsInside": [],
+  "rawText": " (\n  markdownParse: MarkdownParse\n): string[] => {\n  const paragraphs =\n    markdownParse.content?.map(getChunkParagraphsRecursively).flat() || [];\n\n  return paragraphs;\n}",
+  "name": "getMarkdownParseParagraphs",
+  "slug": "get-markdown-parse-paragraphs",
+  "parameters": [
+    {
+      "name": "markdownParse",
+      "schema": {
+        "$ref": "#/definitions/MarkdownParse"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "fileName",
+            "required": false,
+            "schema": {
+              "fullComment": "if available, this can be the filename of the markdown in this markdown-parse. Can be used for things like merging",
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "openedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "updatedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "deletedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "createdFirstAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "content",
+            "required": false,
+            "schema": {
+              "fullComment": "structured content based on h1, h2, h3, etc (paragraphs, recursive)",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "raw",
+            "required": true,
+            "schema": {
+              "fullComment": "raw markdown without frontmatter",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Gets all paragraphs (recursively) from a `MarkdownParse`",
+  "returnType": {
+    "rawType": "string[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "allOf": [
+          {
+            "transform": [
+              "trim"
+            ]
+          },
+          {
+            "minLength": 1
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 227,
+    "lines": 8,
+    "bytes": 227,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 8,
+    "numberOfFiles": 1
+  },
+  "id": "cyocnuiryuzmpgxdjxvhiewz"
+}

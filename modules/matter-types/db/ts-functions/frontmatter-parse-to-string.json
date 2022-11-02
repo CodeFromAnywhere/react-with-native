@@ -1,0 +1,53 @@
+{
+  "createdAt": 1666263624071,
+  "updatedAt": 1666263624071,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263624071,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/frontmatterParseToString.ts",
+  "commentsInside": [],
+  "rawText": " (frontmatter: Frontmatter): string => {\n  const keys = Object.keys(frontmatter);\n\n  const keyValueLines = keys\n    .map((key) => {\n      const value = frontmatter[key];\n      const valueString = getFrontmatterValueString(value);\n\n      if (valueString === null) {\n        return null;\n      }\n\n      const parsedFrontmatterLine = `${key}: ${valueString}`;\n\n      return parsedFrontmatterLine;\n    })\n    .filter(notEmpty);\n\n  return keyValueLines.length === 0\n    ? \"\"\n    : `---\\n${keyValueLines.join(\"\\n\")}\\n---\\n`;\n}",
+  "name": "frontmatterParseToString",
+  "slug": "frontmatter-parse-to-string",
+  "parameters": [
+    {
+      "name": "frontmatter",
+      "schema": {
+        "$ref": "#/definitions/Frontmatter"
+      },
+      "required": true
+    }
+  ],
+  "description": "Parses frontmatter object into a frontmatter string\n- includes a newline at the end\n- string[] becomes a comma separated string\nTODO: maybe parse xxxAt values into human readable dates",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 704,
+    "lines": 25,
+    "bytes": 704,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 25,
+    "numberOfFiles": 1
+  },
+  "id": "lgvcussfxszgcbnchhxviyhq"
+}

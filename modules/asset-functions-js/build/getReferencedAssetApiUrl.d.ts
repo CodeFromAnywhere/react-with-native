@@ -1,0 +1,2 @@
+export declare const getReferencedAssetApiUrl: (apiUrl: string, projectRelativeReferencingFilePath: string, referencingFileRelativeAssetPath: string, isDownload?: boolean) => string;
+//# sourceMappingURL=getReferencedAssetApiUrl.d.ts.map

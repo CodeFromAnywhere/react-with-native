@@ -1,0 +1,52 @@
+{
+  "createdAt": 1667379671753,
+  "updatedAt": 1667379671753,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379671753,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/removeHeaderPrefix.ts",
+  "commentsInside": [],
+  "rawText": " (string: string) => {\n  const trimmed = string.split(\"\").reduce(\n    (cum, letter) => {\n      const isHeaderPrefix = cum.isHeaderPrefix && letter === \"#\";\n      return {\n        string: isHeaderPrefix ? \"\" : cum.string.concat(letter),\n        isHeaderPrefix,\n      };\n    },\n    { string: \"\", isHeaderPrefix: true }\n  );\n\n  return trimmed.string.trim();\n}",
+  "name": "removeHeaderPrefix",
+  "slug": "remove-header-prefix",
+  "parameters": [
+    {
+      "name": "string",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "removes header prefix (##### etc) and trims whats behind that",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 417,
+    "lines": 14,
+    "bytes": 417,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "rvkuaqjqmwebjhftcwxsqkil"
+}

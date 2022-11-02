@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.apiUrl=void 0;var sdk_env_public_1=require("sdk-env-public"),isDev_1=require("./isDev");exports.apiUrl=isDev_1.isDev&&sdk_env_public_1.runLocalServer?sdk_env_public_1.localIpServer:sdk_env_public_1.remoteServer;
+//# sourceMappingURL=apiUrl.native.js.map

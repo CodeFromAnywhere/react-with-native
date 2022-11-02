@@ -1,0 +1,127 @@
+{
+  "createdAt": 1667379660632,
+  "updatedAt": 1667379660632,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379660632,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getMarkdownReferencesFromParagraph.ts",
+  "commentsInside": [],
+  "rawText": " (\n  paragraph: string\n): MarkdownReference[] => {\n  const references = parseMarkdownParagraph(paragraph)\n    .map((x) => x.reference)\n    .filter(notEmpty);\n\n  return references;\n}",
+  "name": "getMarkdownReferencesFromParagraph",
+  "slug": "get-markdown-references-from-paragraph",
+  "parameters": [
+    {
+      "name": "paragraph",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Gets all markdown references from a paragraph",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parse-js/src/MarkdownReference\").MarkdownReference[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "alt": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "path": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "isAsset": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [
+              {
+                "name": "alt",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "isAsset",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 226,
+    "lines": 9,
+    "bytes": 226,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "hcgmqaltruxydgjfelhyxpvz"
+}

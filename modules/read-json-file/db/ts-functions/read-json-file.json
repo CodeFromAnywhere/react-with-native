@@ -1,0 +1,53 @@
+{
+  "createdAt": 1666263018374,
+  "updatedAt": 1666263018374,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263018374,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/readJsonFile.ts",
+  "commentsInside": [],
+  "rawText": " async <T>(\n  filePath: Path | undefined\n): Promise<T | null> => {\n  if (!filePath) return null;\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n  const parsed = tryParseJson<T>(fileString);\n  return parsed;\n}",
+  "name": "readJsonFile",
+  "slug": "read-json-file",
+  "parameters": [
+    {
+      "name": "filePath",
+      "schema": {
+        "$ref": "#/definitions/Path"
+      },
+      "simplifiedSchema": {
+        "fullComment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Reads and parses JSON file\n\nmake sure to specify what type the file contains as a generic!",
+  "returnType": {
+    "rawType": "Promise<T | null>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 488,
+    "lines": 16,
+    "bytes": 488,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "sfunzrgqkigjjmzmjnbamtfx"
+}

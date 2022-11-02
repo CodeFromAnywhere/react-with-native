@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666262292201,
+  "updatedAt": 1666262292201,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262292201,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/cli/copyStaticAssets.cli.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const markdownReaderPages = await getAllMarkdownReaderPages();\n\n  if (!markdownReaderPages) return;\n  const isSuccessful = await copyStaticAssets(markdownReaderPages);\n\n  console.log({ isSuccessful });\n}",
+  "name": "copyStaticAssetsCli",
+  "slug": "copy-static-assets-cli",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 220,
+    "lines": 8,
+    "bytes": 220,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 8,
+    "numberOfFiles": 1
+  },
+  "id": "xxqriyadhywhfyxipcmrwjmf"
+}

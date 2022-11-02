@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513261958,
+  "updatedAt": 1666513261958,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513261958,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "objectValuesMap",
+  "slug": "object-values-map",
+  "operationRelativeTypescriptFilePath": "src/object-maps.ts",
+  "type": {
+    "rawType": "<T extends { [key: string]: T[string]; }, U extends unknown>(object: T, mapFn: (key: string, value: T[string]) => U) => { [key: string]: U; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<\n  T extends { [key: string]: T[string] },\n  U extends unknown\n>(\n  object: T,\n  mapFn: (key: string, value: T[string]) => U\n): { [key: string]: U } => {\n  return Object.keys(object).reduce(function (result, key) {\n    result[key] = mapFn(key, object[key]);\n    return result;\n  }, {} as any);\n}",
+  "description": "not sure if this is the best way, but it does save some lines of code!\n\nmaps over an object's values with a map function\n\nDEPRECATED in favour of objectMapSync and objectMapAsync",
+  "id": "aavwqwfacsbnxiswfamqlmlj"
+}

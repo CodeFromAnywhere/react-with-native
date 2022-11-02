@@ -1,0 +1,91 @@
+{
+  "createdAt": 1666512755059,
+  "updatedAt": 1666512755059,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512755059,
+  "id": "upsertqueryconfig",
+  "name": "UpsertQueryConfig",
+  "slug": "upsertqueryconfig",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type UpsertQueryConfig = CustomQueryConfig & {\n  /**\n   * Special config for upsert. If you set this to true, all items in the databasefiles that were altered that you didn't specify in the items, will be removed.\n   */\n  removeUntouched?: boolean;\n  /**\n   * If true, the query will fail if the slug or id already exists (normally this means upsert will update that value)\n   *\n   * NB: not supported for keyValueMarkdown\n   */\n  onlyInsert?: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "removeUntouched": {
+          "type": "boolean",
+          "description": "Special config for upsert. If you set this to true, all items in the databasefiles that were altered that you didn't specify in the items, will be removed."
+        },
+        "onlyInsert": {
+          "type": "boolean",
+          "description": "If true, the query will fail if the slug or id already exists (normally this means upsert will update that value)\n\nNB: not supported for keyValueMarkdown"
+        },
+        "manualProjectRoot": {
+          "type": "string",
+          "description": "if specified, this will be used as the root path to find your data in\n\nif not specified, uses the db folder in your project root and in any operation\n\nNB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries."
+        },
+        "operationName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        }
+      }
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "removeUntouched",
+          "required": false,
+          "schema": {
+            "fullComment": "Special config for upsert. If you set this to true, all items in the databasefiles that were altered that you didn't specify in the items, will be removed.",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "onlyInsert",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, the query will fail if the slug or id already exists (normally this means upsert will update that value)\n\nNB: not supported for keyValueMarkdown",
+            "nb": "not supported for keyValueMarkdown",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "manualProjectRoot",
+          "required": false,
+          "schema": {
+            "fullComment": "if specified, this will be used as the root path to find your data in\n\nif not specified, uses the db folder in your project root and in any operation\n\nNB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+            "nb": "If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationName",
+          "required": false,
+          "schema": {
+            "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "UpsertQueryConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

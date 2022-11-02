@@ -25,7 +25,7 @@ export declare type SizeSummary = {
     /**
      * rounded, amount of characters per line (averaged)
      */
-    charactersPerfLine: number;
+    charactersPerLine: number;
     /**
      * rounded, amount of bytes per character
      */

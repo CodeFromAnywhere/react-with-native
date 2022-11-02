@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379135311,
+  "updatedAt": 1667379135311,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379135311,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "Toggle",
+  "slug": "toggle",
+  "operationRelativeTypescriptFilePath": "src/components/Toggle/Toggle.tsx",
+  "type": {
+    "rawType": "({ native, onChange, checked, ...props }: any) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "({ native, onChange, checked, ...props }: ToggleType) => {\n  return (\n    <input\n      type=\"checkbox\"\n      checked={checked}\n      onChange={(e) => onChange(e.target.checked)}\n      {...props}\n    />\n  );\n}",
+  "description": "",
+  "id": "ufumifaedllnhpnitviwdeef"
+}

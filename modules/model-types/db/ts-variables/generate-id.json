@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379922238,
+  "updatedAt": 1667379922238,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379922238,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "generateId",
+  "slug": "generate-id",
+  "operationRelativeTypescriptFilePath": "src/id.ts",
+  "type": {
+    "rawType": "() => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(): Id => {\n  return generateRandomString(24).toLowerCase();\n}",
+  "description": "24 characters of the alphabet provides 9E33 combinations, wont be possible to brute-force in centuries, even if there are billions of entries",
+  "id": "olztkwjptarnhuiarvhvvkxc"
+}

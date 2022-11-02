@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666513261583,
+  "updatedAt": 1666513261583,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513261583,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/object-maps.ts",
+  "commentsInside": [],
+  "rawText": " async <\n  TObject extends { [key: string]: any },\n  TResultValue,\n  TResultObject extends {\n    [key in keyof TObject]: TResultValue;\n  }\n>(\n  object: TObject,\n  mapFn: (\n    key: Extract<keyof TObject, string>,\n    value: TObject[keyof TObject]\n  ) => Promise<TResultValue>\n): Promise<TResultObject> => {\n  const keys = getObjectKeysArray(object);\n\n  const result = mergeObjectsArray(\n    await Promise.all(\n      keys.map(async (key) => {\n        const value = object[key];\n        return { [key]: await mapFn(key, value) };\n      })\n    )\n  ) as unknown as TResultObject;\n\n  return result;\n}",
+  "name": "objectMapAsync",
+  "slug": "object-map-async",
+  "parameters": [],
+  "description": "Map an object asynchronously and return the same object with the mapped result in its values\n\nExample usage:\n\n\n```ts\n\nconst srcFileContentObject = {\n\"index.ts\": indexString,\n\"public-local.ts\": publicLocalTypescriptFileString,\n\"public.ts\": publicTypescriptFileString,\n};\n\nconst srcFileWriteSuccessObject = await objectMapAsync(srcFileContentObject, async (operationRelativeTypescriptFilePath,content)=>{\n\ntry {\nawait fs.writeFile(\npath.join(operationBasePath, \"src\", operationRelativeTypescriptFilePath),\ncontent,\n\"utf8\"\n);\n\nreturn true;\n\n} catch {\nreturn false;\n}\n\n});\n\n```",
+  "returnType": {
+    "rawType": "Promise<TResultObject>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1168,
+    "lines": 56,
+    "bytes": 1168,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 56,
+    "numberOfFiles": 1
+  },
+  "id": "nacugqoxupaeuizjymbmvwek"
+}

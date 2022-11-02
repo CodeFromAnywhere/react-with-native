@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667378793209,
+  "updatedAt": 1667378793209,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378793209,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "writeStringToFile",
+  "slug": "write-string-to-file",
+  "operationRelativeTypescriptFilePath": "src/files.ts",
+  "type": {
+    "rawType": "(p: string, data: string) => Promise<boolean>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  p: Path,\n  data: string\n): Promise<boolean> => {\n  if (data === undefined || data === null || typeof data !== \"string\") {\n    log(`Incorrect data provided`, data);\n    return false;\n  }\n\n  const folderToBe = getFolder(p);\n\n  if (!fs.existsSync(folderToBe)) {\n    //first, make sure the folder exists\n    await fs.mkdir(folderToBe, { recursive: true });\n  }\n\n  //then write it\n  await fs.writeFile(p, data, \"utf8\");\n\n  return true;\n}",
+  "description": "write string to a file\n\nmakes the dir and file if they don't exist",
+  "id": "wxtjxrnwivvuuvimorvbwcud"
+}

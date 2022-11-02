@@ -1,0 +1,62 @@
+{
+  "createdAt": 1666259122538,
+  "updatedAt": 1666259122538,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259122538,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/find-folders.ts",
+  "commentsInside": [],
+  "rawText": " (\n  basePath: string,\n  ignoreOperations?: boolean\n): Promise<string[]> => {\n  return findAllFoldersWithName({\n    basePath,\n    folderName: \"todo\",\n    ignoreOperations,\n  });\n}",
+  "name": "findAllTodoFolderPaths",
+  "slug": "find-all-todo-folder-paths",
+  "parameters": [
+    {
+      "name": "basePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "ignoreOperations",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<string[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 179,
+    "lines": 10,
+    "bytes": 179,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 18,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "ltniantiiwzkhxdyvaaxjggb"
+}

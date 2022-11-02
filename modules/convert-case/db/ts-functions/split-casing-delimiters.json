@@ -1,0 +1,80 @@
+{
+  "createdAt": 1666264527457,
+  "updatedAt": 1666264527457,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264527457,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (word: string): string[] => {\n  const letters = word.split(\"\");\n  const allWords = letters.reduce(\n    (words, letter) => {\n      //get the last word, we know it's always defined because of the initial value of the reduce\n      const lastWord: string = words.pop()!;\n      //let's also get the last letter\n      const lastLetter = lastWord.substring(-1);\n      const lastLetterIsLowercase = lastLetter.toUpperCase() !== lastLetter;\n      const letterIsUppercase = letter.toUpperCase() === letter;\n      const createNewWord = lastLetterIsLowercase && letterIsUppercase;\n      const newSequence = createNewWord\n        ? [lastWord, letter]\n        : [`${lastWord}${letter}`];\n      const newWords = words.concat(newSequence);\n      return newWords;\n    },\n    [\"\"]\n  );\n\n  return allWords;\n  // if it was lowercase but it became upper, it's a new word\n}",
+  "name": "splitCasingDelimiters",
+  "slug": "split-casing-delimiters",
+  "parameters": [
+    {
+      "name": "word",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "string[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "allOf": [
+          {
+            "transform": [
+              "trim"
+            ]
+          },
+          {
+            "minLength": 1
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 852,
+    "lines": 23,
+    "bytes": 852,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 37,
+    "linesPerFile": 23,
+    "numberOfFiles": 1
+  },
+  "id": "pkkhhgkldjfrlzhczxgugdxe"
+}

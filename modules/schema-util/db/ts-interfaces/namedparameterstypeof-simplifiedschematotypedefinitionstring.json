@@ -1,0 +1,237 @@
+{
+  "createdAt": 1666264377286,
+  "updatedAt": 1666264377286,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264377286,
+  "id": "namedparameterstypeof-simplifiedschematotypedefinitionstring",
+  "name": "NamedParameters<typeof simplifiedSchemaToTypeDefinitionString>",
+  "slug": "namedparameterstypeof-simplifiedschematotypedefinitionstring",
+  "operationRelativeTypescriptFilePath": "src/simplifiedSchemaToTypeDefinitionString.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "simplifiedSchema": {
+          "$ref": "#/definitions/SimplifiedSchema"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "simplifiedSchema",
+          "required": false,
+          "schema": {
+            "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+            "properties": [
+              {
+                "name": "todo",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "discussion",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "idea",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "later",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "nb",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "title",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "section",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "type",
+                "required": true,
+                "schema": {
+                  "enum": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "object",
+                    "array",
+                    "null"
+                  ],
+                  "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+                  "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "circularRefName",
+                "required": false,
+                "schema": {
+                  "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "enum",
+                "required": false,
+                "schema": {
+                  "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "Primitive type",
+                        "properties": [],
+                        "type": "object"
+                      },
+                      "name": "JSONSchema7Type"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "properties",
+                "required": false,
+                "schema": {
+                  "fullComment": "in case of object, this will always appear",
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "",
+                        "properties": [
+                          {
+                            "name": "name",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "schema",
+                            "required": true,
+                            "schema": {
+                              "circularRefName": "SimplifiedSchema",
+                              "properties": [],
+                              "type": "object"
+                            }
+                          },
+                          {
+                            "name": "required",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                              "nb": "can't we put this in the SimplifiedSchema itself?",
+                              "type": "boolean"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": "SimplifiedSchemaProperty"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "items",
+                "required": false,
+                "schema": {
+                  "fullComment": "in case of arrays, this will always appear",
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "",
+                        "properties": [
+                          {
+                            "name": "name",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "name in case of it being a reference, otherwise null",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "schema",
+                            "required": true,
+                            "schema": {
+                              "circularRefName": "SimplifiedSchema",
+                              "properties": [],
+                              "type": "object"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": "SimplifiedSchemaItem"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "fullComment",
+                "required": false,
+                "schema": {
+                  "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                  "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof simplifiedSchemaToTypeDefinitionString>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "createdAt": 1666262974242,
+  "updatedAt": 1666262974242,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262974242,
+  "id": "primitiveresult",
+  "name": "PrimitiveResult",
+  "slug": "primitiveresult",
+  "operationRelativeTypescriptFilePath": "src/parsePrimitive.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type PrimitiveResult =\n  | boolean\n  | null\n  | undefined\n  | number\n  | string\n  | string[];",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "not": {}
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "PrimitiveResult",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

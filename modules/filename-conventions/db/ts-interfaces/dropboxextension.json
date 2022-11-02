@@ -1,0 +1,53 @@
+{
+  "createdAt": 1666259755063,
+  "updatedAt": 1666259755063,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259755063,
+  "id": "dropboxextension",
+  "name": "DropboxExtension",
+  "slug": "dropboxextension",
+  "operationRelativeTypescriptFilePath": "src/extensions.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * these filetypes should never be opened with explore. They should be processed and either indexed or converted. This creates a md or json with the proper metadata, which, in turn, can be explored.\n */\nexport type DropboxExtension =\n  | \"doc\"\n  | \"docx\"\n  | \"csv\"\n  | \"xls\"\n  | \"xlsx\"\n  | \"epub\"\n  | \"pdf\";",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "these filetypes should never be opened with explore. They should be processed and either indexed or converted. This creates a md or json with the proper metadata, which, in turn, can be explored.",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "string",
+      "enum": [
+        "doc",
+        "docx",
+        "csv",
+        "xls",
+        "xlsx",
+        "epub",
+        "pdf"
+      ],
+      "description": "these filetypes should never be opened with explore. They should be processed and either indexed or converted. This creates a md or json with the proper metadata, which, in turn, can be explored."
+    },
+    "simplifiedSchema": {
+      "enum": [
+        "doc",
+        "docx",
+        "csv",
+        "xls",
+        "xlsx",
+        "epub",
+        "pdf"
+      ],
+      "fullComment": "these filetypes should never be opened with explore. They should be processed and either indexed or converted. This creates a md or json with the proper metadata, which, in turn, can be explored.",
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "rawType": "DropboxExtension",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

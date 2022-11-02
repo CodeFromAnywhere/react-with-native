@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379922238,
+  "updatedAt": 1667379922238,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379922238,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "generateRandomString",
+  "slug": "generate-random-string",
+  "operationRelativeTypescriptFilePath": "src/id.ts",
+  "type": {
+    "rawType": "(length: number) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(length: number) => {\n  const characters = \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n  const characterArray = \"x\".repeat(length).split(\"\");\n\n  const string: Id = characterArray\n    .map(() => {\n      const randomIndex = Math.floor(Math.random() * characters.length); //0-63 --> index for above\n      const character = characters.charAt(randomIndex);\n      return character;\n    })\n    .join(\"\");\n\n  return string;\n}",
+  "description": "",
+  "id": "zxcfvlxxpnuvmgqtfuklxotz"
+}

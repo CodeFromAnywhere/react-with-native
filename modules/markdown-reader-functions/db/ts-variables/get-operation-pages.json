@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262312896,
+  "updatedAt": 1666262312896,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262312896,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getOperationPages",
+  "slug": "get-operation-pages",
+  "operationRelativeTypescriptFilePath": "src/getOperationPages.ts",
+  "type": {
+    "rawType": "(projectRoot: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (projectRoot: string) => {\n  const isSensible = isSensibleProject(projectRoot);\n  const operationBasePaths = getPathsWithOperations({\n    manualProjectRoot: projectRoot,\n  });\n\n  const operationPagesPerType: { [key: string]: MarkdownReaderPage[] } =\n    mergeObjectsArray(\n      await Promise.all(\n        operationBasePaths.map(async (basePath) => {\n          const folders = (await exploreOperationFolders({ basePath })).map(\n            (result) => ({\n              projectRelativePath: makeRelative(result, projectRoot),\n            })\n          );\n\n          // console.log({ folders });\n\n          const pages: MarkdownReaderPage[] = folders.map((folder) => {\n            const folderName = getLastFolder(folder.projectRelativePath);\n\n            return {\n              queryPath: folder.projectRelativePath,\n              // operation filePath is README.md\n              filePath: path.join(folder.projectRelativePath, \"README.md\"),\n              internalLinkWord: folderName,\n              isMenuItem: true,\n            };\n          });\n\n          const projectRelativeBasePath = makeRelative(basePath, projectRoot);\n\n          return { [projectRelativeBasePath]: pages };\n        })\n      )\n    );\n  // NB: we need to get the right order, so it needs to be done separately\n  const operationPages: MarkdownReaderPage[] = isSensible\n    ? [\n        ...operationPagesPerType.packages,\n        ...operationPagesPerType.apps,\n        ...operationPagesPerType.modules,\n      ]\n    : [\n        ...operationPagesPerType[\"operations/tools\"],\n        ...operationPagesPerType[\"operations/niches\"],\n      ];\n\n  return operationPages;\n}",
+  "description": "",
+  "id": "ympdtawmxrwmayrnbcufdeyf"
+}

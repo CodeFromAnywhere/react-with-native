@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259058696,
+  "updatedAt": 1666259058696,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259058696,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getAllPackageJsonDependencies",
+  "slug": "get-all-package-json-dependencies",
+  "operationRelativeTypescriptFilePath": "src/getOperationClassification.ts",
+  "type": {
+    "rawType": "(p: import(\"/Users/king/King/operations/tools/types/code-types/build/PackageJson\").PackageJson) => string[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(p: PackageJson): string[] => {\n  const dependencies = p.dependencies ? Object.keys(p.dependencies) : [];\n  const devDependencies = p.devDependencies\n    ? Object.keys(p.devDependencies)\n    : [];\n  const peerDependencies = p.peerDependencies\n    ? Object.keys(p.peerDependencies)\n    : [];\n\n  return [...dependencies, ...devDependencies, ...peerDependencies];\n}",
+  "description": "",
+  "id": "qyilqreccytvhmwjyseocxsq"
+}

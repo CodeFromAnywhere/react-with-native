@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666261468965,
+  "updatedAt": 1666261468965,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261468965,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/textarea/textArea.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  value,\n  extra,\n  config,\n  onChange,\n  errors,\n}) => {\n  const hasError = errors && errors.length > 0;\n  const errorClass = hasError ? config?.errorClassName || \"border-red-600\" : \"\";\n\n  return (\n    <TextArea\n      rows={extra?.rows}\n      maxLength={extra?.maxLength}\n      className={\n        config?.replaceClassName ||\n        `${UI.input} ${errorClass} ${config?.extraClassName}`\n      }\n      value={value}\n      onChange={(event) => {\n        onChange(event.target.value);\n      }}\n      native={{ onChangeText: onChange, value }}\n    />\n  );\n}",
+  "name": "TextAreaInput",
+  "slug": "text-area-input",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 559,
+    "lines": 26,
+    "bytes": 559,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 26,
+    "numberOfFiles": 1
+  },
+  "id": "tptihmxhruwtcbptaijibdzh"
+}

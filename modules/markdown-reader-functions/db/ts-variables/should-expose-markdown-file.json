@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262314504,
+  "updatedAt": 1666262314504,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262314504,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "shouldExposeMarkdownFile",
+  "slug": "should-expose-markdown-file",
+  "operationRelativeTypescriptFilePath": "src/getPublicMarkdownFilePaths.ts",
+  "type": {
+    "rawType": "(parameters: import(\"/Users/king/King/operations/tools/types/matter-types/build/Frontmatter\").Frontmatter) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(parameters: Frontmatter) => {\n  return !Boolean(parameters.isDraft) && parameters.privacy !== \"private\";\n}",
+  "description": "",
+  "id": "kbahvgwcwyrpmfhvwnurhkeb"
+}

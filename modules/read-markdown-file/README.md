@@ -2,44 +2,72 @@
 
 read-markdown-file (node operation)
 
-Size: 26 LOC, 2129 data characters, 
- 
-Imported dependencies:
 
-- From Core Libraries: none
-- From Packages: none
-- From Operations: canRead, fs, path, Path, MarkdownParse, mdToJsonParse
 
 # Outline
 
 ## Functions
 
+- [readMarkdownFileToModel](#readMarkdownFileToModel)
 - [readMarkdownFile](#readMarkdownFile)
+
+## Interfaces
+
+- [Path](#path)
+
+## Variables
+
+- [readMarkdownFileToModel](#readmarkdownfiletomodel)
+- [readMarkdownFile](#readmarkdownfile)
 
 
 
 # Functions
 
-## readMarkdownFile
+## readMarkdownFileToModel
 
-Max. indexation depth: 1, 
+Reads a markdown absolute path to a `MarkdownFile` model
+
+
+
+
+### Parameters (1)
+
+#### Parameter 1: absoluteFilePath: string
+
+## readMarkdownFile
 
 Reads and parses a markdown file
 
-## Returns: unknown
-
-### Arguments
-
-#### filePath: string
 
 
 
-```md
+### Parameters (1)
+
+#### Parameter 1: filePath: string
+
+# Interfaces
+
+## Path
+
 unlike PathLike, this is only a string
 
 For now, we don't have a clear convention whether or not this string should be absolute or anything.
-```
 
 
 
+
+
+
+
+# Variables
+
+## readMarkdownFileToModel (exported const)
+
+Reads a markdown absolute path to a `MarkdownFile` model
+
+
+## readMarkdownFile (exported const)
+
+Reads and parses a markdown file
 

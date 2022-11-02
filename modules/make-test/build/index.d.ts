@@ -1,4 +1,2 @@
-import { isResultOfInterface } from "./general";
-import { makeTest } from "./general";
-export { isResultOfInterface, makeTest };
+export * from "./general";
 //# sourceMappingURL=index.d.ts.map

@@ -1,0 +1,91 @@
+{
+  "createdAt": 1666259122538,
+  "updatedAt": 1666259122538,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259122538,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/find-folders.ts",
+  "commentsInside": [],
+  "rawText": " async (config: {\n  basePath: string;\n  folderName: string;\n  ignoreOperations?: boolean;\n}): Promise<string[]> => {\n  const { basePath, folderName, ignoreOperations } = config;\n\n  const result = (\n    await explore({\n      basePath,\n      searchLevel: \"folder\",\n      search: folderName,\n      ignore: generatedFolders,\n      exact: true,\n      cancelRecursionOn: ignoreOperations ? pathArrayIsOperation : undefined,\n    })\n  ).map((x) => x.path);\n\n  return result;\n}",
+  "name": "findAllFoldersWithName",
+  "slug": "find-all-folders-with-name",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "basePath": {
+            "type": "string"
+          },
+          "folderName": {
+            "type": "string"
+          },
+          "ignoreOperations": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "basePath",
+          "folderName"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "basePath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "folderName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignoreOperations",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<string[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 468,
+    "lines": 20,
+    "bytes": 468,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "venxfqmcxbyobdkeufqolsum"
+}

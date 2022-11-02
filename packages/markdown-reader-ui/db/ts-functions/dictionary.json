@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666262425693,
+  "updatedAt": 1666262425693,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262425693,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/components/Dictionary.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  augmentedWordObject: MappedObject<AugmentedWord>;\n  word?: string;\n}) => {\n  const { augmentedWordObject, word } = props;\n\n  const augmentedWord = word ? augmentedWordObject[word] : undefined;\n\n  return (\n    <Div className=\"p-4\">\n      {augmentedWord ? (\n        <Div className=\"bg-blue-200 p-4 border border-blue-800 rounded-xl mb-20\">\n          <AugmentedWordComponent\n            augmentedWordObject={augmentedWordObject}\n            augmentedWord={augmentedWord}\n          />\n        </Div>\n      ) : null}\n\n      <P className=\"text-3xl\">Dictionary</P>\n      {Object.keys(augmentedWordObject).map((word, index) => {\n        const augmentedWord = augmentedWordObject[word];\n\n        if (!augmentedWord) return null;\n        return (\n          <AugmentedWordComponent\n            key={`aug${index}`}\n            augmentedWordObject={augmentedWordObject}\n            augmentedWord={augmentedWord}\n          />\n        );\n      })}\n    </Div>\n  );\n}",
+  "name": "Dictionary",
+  "slug": "dictionary",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 963,
+    "lines": 35,
+    "bytes": 963,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 35,
+    "numberOfFiles": 1
+  },
+  "id": "knctgujnricnnskgdfxnvjrx"
+}

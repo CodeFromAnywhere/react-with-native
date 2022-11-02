@@ -1,0 +1,125 @@
+{
+  "createdAt": 1667379850126,
+  "updatedAt": 1667379850126,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379850126,
+  "id": "folderexploration",
+  "name": "FolderExploration",
+  "slug": "folderexploration",
+  "operationRelativeTypescriptFilePath": "src/FolderExploration.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n/**\n * suggested type for menu is FolderExploration[]\n *\n * NB: recursive!\n */\nexport type FolderExploration = {\n  /**\n   * folder is a regular folder outside of operations\n   *\n   * operation is a folder that is the root of an operation\n   *\n   * operationFolder is a folder inside of an operation\n   *\n   * other things are self-explanatory\n   */\n  type:\n    | \"folder\"\n    | \"operation\"\n    | \"operationFolder\"\n    | \"markdown\"\n    | \"typescript\"\n    | \"function\"\n    | \"interface\"\n    | \"variable\";\n  name: string;\n  /** path to the folder, operation, operationFolder, or file. functions, interfaces or variables direct to the file they are defined in */\n  relativeProjectPath: string;\n  /**\n   * Every FolderExploration has children, which are simply the files/folders that can be found in there. The children of files are functions, interfaces and variables for typescript files. Markdownfiles don't get any children (although we could childify the outline of the file, maybe, later...)\n   */\n  children?: FolderExploration[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "suggested type for menu is FolderExploration[]\n\nNB: recursive!",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "folder",
+            "operation",
+            "operationFolder",
+            "markdown",
+            "typescript",
+            "function",
+            "interface",
+            "variable"
+          ],
+          "description": "folder is a regular folder outside of operations\n\noperation is a folder that is the root of an operation\n\noperationFolder is a folder inside of an operation\n\nother things are self-explanatory"
+        },
+        "name": {
+          "type": "string"
+        },
+        "relativeProjectPath": {
+          "type": "string",
+          "description": "path to the folder, operation, operationFolder, or file. functions, interfaces or variables direct to the file they are defined in"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FolderExploration"
+          },
+          "description": "Every FolderExploration has children, which are simply the files/folders that can be found in there. The children of files are functions, interfaces and variables for typescript files. Markdownfiles don't get any children (although we could childify the outline of the file, maybe, later...)"
+        }
+      },
+      "required": [
+        "type",
+        "name",
+        "relativeProjectPath"
+      ],
+      "additionalProperties": false,
+      "description": "suggested type for menu is FolderExploration[]\n\nNB: recursive!"
+    },
+    "simplifiedSchema": {
+      "fullComment": "suggested type for menu is FolderExploration[]\n\nNB: recursive!",
+      "nb": "recursive!",
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "folder",
+              "operation",
+              "operationFolder",
+              "markdown",
+              "typescript",
+              "function",
+              "interface",
+              "variable"
+            ],
+            "fullComment": "folder is a regular folder outside of operations\n\noperation is a folder that is the root of an operation\n\noperationFolder is a folder inside of an operation\n\nother things are self-explanatory",
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "relativeProjectPath",
+          "required": true,
+          "schema": {
+            "fullComment": "path to the folder, operation, operationFolder, or file. functions, interfaces or variables direct to the file they are defined in",
+            "type": "string"
+          }
+        },
+        {
+          "name": "children",
+          "required": false,
+          "schema": {
+            "fullComment": "Every FolderExploration has children, which are simply the files/folders that can be found in there. The children of files are functions, interfaces and variables for typescript files. Markdownfiles don't get any children (although we could childify the outline of the file, maybe, later...)",
+            "items": [
+              {
+                "schema": {
+                  "circularRefName": "FolderExploration",
+                  "properties": [],
+                  "type": "object"
+                },
+                "name": "FolderExploration"
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "FolderExploration",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

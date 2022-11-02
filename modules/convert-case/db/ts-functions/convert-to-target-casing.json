@@ -1,0 +1,81 @@
+{
+  "createdAt": 1666264527457,
+  "updatedAt": 1666264527457,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264527457,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (word: string, index: number, target: Casing) => {\n  if (target === \"capital\") return word.toUpperCase();\n  if (target === \"kebab\" || target === \"snake\") return word.toLowerCase();\n  if (target === \"pascal\") return capitaliseFirstLetter(word);\n  if (target === \"camel\")\n    return index === 0 ? word.toLowerCase() : capitaliseFirstLetter(word);\n\n  //human case\n  return index === 0 ? capitaliseFirstLetter(word) : word.toLowerCase();\n}",
+  "name": "convertToTargetCasing",
+  "slug": "convert-to-target-casing",
+  "parameters": [
+    {
+      "name": "word",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "index",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    },
+    {
+      "name": "target",
+      "schema": {
+        "$ref": "#/definitions/Casing"
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "camel",
+          "pascal",
+          "snake",
+          "kebab",
+          "capital",
+          "human"
+        ],
+        "fullComment": "",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 436,
+    "lines": 10,
+    "bytes": 436,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 44,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "suiuunsghnmoitwzwkrllxug"
+}

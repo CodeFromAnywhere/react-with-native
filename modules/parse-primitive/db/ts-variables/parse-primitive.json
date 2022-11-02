@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262975218,
+  "updatedAt": 1666262975218,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262975218,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "parsePrimitive",
+  "slug": "parse-primitive",
+  "operationRelativeTypescriptFilePath": "src/parsePrimitive.ts",
+  "type": {
+    "rawType": "(string: string, simplifiedSchema?: import(\"/Users/king/King/operations/tools/types/code-types/build/SimplifiedSchema\").SimplifiedSchema | undefined) => import(\"/Users/king/King/operations/tools/parsing/parse-primitive/src/parsePrimitive\").PrimitiveResult",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  string: string,\n  simplifiedSchema?: SimplifiedSchema\n): PrimitiveResult => {\n  if (simplifiedSchema) {\n    if (simplifiedSchema.type === \"boolean\") {\n      const parsedBoolean = parsePrimitiveBoolean(string);\n      return parsedBoolean || false;\n    }\n\n    if (simplifiedSchema.type === \"null\") {\n      return null;\n    }\n    if (simplifiedSchema.type === \"number\") {\n      return !isNaN(Number(string)) ? Number(string) : undefined;\n    }\n\n    if (simplifiedSchema.type === \"string\") {\n      return parsePrimitiveString(string);\n    }\n\n    if (simplifiedSchema.type === \"array\") {\n      return parsePrimitiveArray(string);\n    }\n  }\n\n  // NB: failsafes\n  if (string === undefined) return undefined;\n  if (string === null) return null;\n\n  const parsedBoolean = parsePrimitiveBoolean(string);\n  if (parsedBoolean !== undefined) return parsedBoolean;\n\n  if (string === \"true\") return true;\n  if (string === \"false\") return false;\n  if (string === \"null\") return null;\n  if (string === \"undefined\") return undefined;\n  // NB: an empty string will count as 0 in the next statement\n  if (string === \"\") return \"\";\n  if (!isNaN(Number(string))) return Number(string);\n  return parsePrimitiveString(string);\n}",
+  "description": "parses a string into the value it should be\n\nif you provide a `simplifiedSchema`, that will be used to parse according to the shape of the schema",
+  "id": "qudqmlgjllujrspvjybrqgud"
+}

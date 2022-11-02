@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259789882,
+  "updatedAt": 1666259789882,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259789882,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getAssetInputType",
+  "slug": "get-asset-input-type",
+  "operationRelativeTypescriptFilePath": "src/getAssetInputType.ts",
+  "type": {
+    "rawType": "(parameterName: string, valueType?: import(\"/Users/king/King/operations/tools/types/code-types/build/SimplifiedSchema\").SimplifiedSchemaType | undefined) => import(\"/Users/king/King/operations/tools/conventions/name-conventions/src/getAssetInputType\").AssetInputType | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  parameterName: string,\n  valueType?: SimplifiedSchemaType\n): AssetInputType | undefined => {\n  const lastWord = lowerCaseArray(parameterName).pop();\n  if (!lastWord) return;\n\n  const isObjectOrArray =\n    !valueType || valueType === \"array\" || valueType === \"object\";\n\n  if (!isObjectOrArray) return;\n\n  if (\n    [\"image\", \"video\", \"audio\", \"file\", \"asset\"].includes(singularize(lastWord))\n  ) {\n    return {\n      type: singularize(lastWord) as AssetInputType[\"type\"],\n      isMultiple: isPlural(lastWord),\n    };\n  }\n\n  return;\n}",
+  "description": "",
+  "id": "qqselhvwygzfkfjwtvhaxays"
+}

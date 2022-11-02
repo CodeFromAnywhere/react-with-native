@@ -1,0 +1,69 @@
+{
+  "createdAt": 1666262680451,
+  "updatedAt": 1666262680451,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262680451,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/tryParseCsv.ts",
+  "commentsInside": [],
+  "rawText": " <T extends CsvItemType>(\n  csvString: string\n): T[] | null => {\n  const [columnsString, ...rowStrings] = csvString.split(\"\\n\");\n\n  const columns = columnsString.split(\",\").map((x) => x.trim());\n\n  const rows = rowStrings.map((rowString) => {\n    const values = rowString.split(\",\");\n\n    const rowObject = mergeObjectsArray(\n      columns.map((columnName, index) => {\n        return { [columnName]: parsePrimitive(values[index]) };\n      })\n    ) as T;\n\n    return rowObject;\n  });\n\n  return rows;\n}",
+  "name": "tryParseCsv",
+  "slug": "try-parse-csv",
+  "parameters": [
+    {
+      "name": "csvString",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "This function parses a CSV into the object it says it has in the header",
+  "returnType": {
+    "rawType": "T[] | null",
+    "typeDefinition": {
+      "optional": true,
+      "type": "array",
+      "items": {}
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 571,
+    "lines": 21,
+    "bytes": 571,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "dvgttcuukfxbirdzqacvjnts"
+}

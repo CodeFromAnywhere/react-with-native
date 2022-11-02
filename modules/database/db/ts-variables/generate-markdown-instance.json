@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259860912,
+  "updatedAt": 1666259860912,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259860912,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "generateMarkdownInstance",
+  "slug": "generate-markdown-instance",
+  "operationRelativeTypescriptFilePath": "src/test-db.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(): Creation<MarkdownTestModel> => {\n  return {\n    // Needed for deletion later\n    id: generateId(),\n\n    age: 19,\n    canBeNull: null,\n    markdown:\n      \" jaja dit is gewoon markdown \\n\\n mooi he \\n\\n # header \\n\\n test\",\n    name: randomName(),\n    stringA: \"A\",\n    stringB: \"B\",\n    stringC: \"C\",\n    yes: true,\n    canBeUndefined: undefined,\n  };\n}",
+  "description": "",
+  "id": "bdyifckomiypjvxrausbkdza"
+}

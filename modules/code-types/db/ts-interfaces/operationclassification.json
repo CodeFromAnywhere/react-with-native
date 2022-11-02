@@ -1,0 +1,56 @@
+{
+  "createdAt": 1667379859188,
+  "updatedAt": 1667379859188,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379859188,
+  "id": "operationclassification",
+  "name": "OperationClassification",
+  "slug": "operationclassification",
+  "operationRelativeTypescriptFilePath": "src/OperationIndex.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * # Classification\n *\n * TODO: think about what the differences are and how we need to change processes to make it all work good\n *\n * ## Possible values\n *\n * js: only js (no node) (well, ts of course, but it gets built into js)\n *\n * ts: non-built ts code\n *\n * node: includes other node packages, operations, core-imports, or globals.\n *\n * server: exposes something on some port when it is ran and uses node code\n *\n * web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n *\n * app: uses react-native and exposes something on some port when it is ran\n *\n * ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)\n *\n * ui-es5: ui which main entry points to javascript es5 files (this ui package can be built)\n */\nexport type OperationClassification =\n  typeof operationClassificationConst[number];",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "string",
+      "enum": [
+        "js",
+        "ts",
+        "node",
+        "server",
+        "web",
+        "app",
+        "ui-es6",
+        "ui-es5"
+      ],
+      "description": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)"
+    },
+    "simplifiedSchema": {
+      "enum": [
+        "js",
+        "ts",
+        "node",
+        "server",
+        "web",
+        "app",
+        "ui-es6",
+        "ui-es5"
+      ],
+      "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)",
+      "todo": "think about what the differences are and how we need to change processes to make it all work good",
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "rawType": "OperationClassification",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,1 +1,44 @@
-{"name":"react-with-native-router","version":"1.0.14","description":"","main":"build/index.js","source":"src/index.ts","scripts":{"pub":"npm version patch --force && npm publish","build":"tsc","dev":"npx tsc-watch --onSuccess 'yarn dev:tw'","dev:tw":"tailwindcss -o css.css","minify":"echo build/**/*.js | xargs -n1 sh -c 'terser --output build/${1#build/} --compress --mangle -- $1' argv0","minify2":"bash -c \"for f in build/*.js; do terser $f --output $f --compress --mangle; done\""},"repository":{"type":"git","url":"git+https://github.com/Code-From-Anywhere/react-with-native.git"},"keywords":["router"],"author":"Wijnand Karsens","license":"ISC","bugs":{"url":"https://github.com/Code-From-Anywhere/react-with-native/issues"},"homepage":"https://github.com/Code-From-Anywhere/react-with-native#readme","devDependencies":{"@react-navigation/native":"^6.0.6","next":"^12.0.7","react-with-native":"*","tailwindcss":"^3.0.24"}}
+{
+  "createdAt": 1662709577330,
+  "updatedAt": 1662709577330,
+  "deletedAt": 0,
+  "createdFirstAt": 1662709577330,
+  "name": "react-with-native-router",
+  "version": "1.0.14",
+  "description": "",
+  "main": "build/index.js",
+  "source": "src/index.ts",
+  "scripts": {
+    "pub": "npm version patch --force && npm publish",
+    "build": "tsc",
+    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
+    "dev:tw": "tailwindcss -o css.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Code-From-Anywhere/react-with-native.git"
+  },
+  "keywords": [
+    "router"
+  ],
+  "author": "Wijnand Karsens",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Code-From-Anywhere/react-with-native/issues"
+  },
+  "homepage": "https://github.com/Code-From-Anywhere/react-with-native#readme",
+  "devDependencies": {
+    "@react-navigation/native": "^6.0.6",
+    "next": "^12.0.7",
+    "react-with-native": "*",
+    "tailwindcss": "^3.0.24"
+  },
+  "slug": "react-with-native-router",
+  "id": "RZVwdhmfmdetZNej",
+  "dependencies": {
+    "next": "*"
+  },
+  "sensible": {
+    "hasGeneratedDependencies": false
+  }
+}

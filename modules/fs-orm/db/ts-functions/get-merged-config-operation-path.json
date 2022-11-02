@@ -1,0 +1,59 @@
+{
+  "createdAt": 1666512739301,
+  "updatedAt": 1666512739301,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512739301,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/convention/getDatabaseFiles.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  mergedConfig: MergedQueryConfig,\n  manualProjectRoot?: string\n): Promise<false | string | undefined> => {\n  if (mergedConfig.operationName) {\n    const operationPath = await getOperationPath(mergedConfig.operationName, {\n      manualProjectRoot,\n      notUseSdk: !!manualProjectRoot,\n    });\n    //\n    if (operationPath === undefined) {\n      log(`Operation wasn't found ${mergedConfig.operationName}`, {\n        type: \"warning\",\n      });\n    }\n\n    return operationPath;\n  }\n\n  return false;\n}",
+  "name": "getMergedConfigOperationPath",
+  "slug": "get-merged-config-operation-path",
+  "parameters": [
+    {
+      "name": "mergedConfig",
+      "schema": {
+        "$ref": "#/definitions/MergedQueryConfig"
+      },
+      "required": true
+    },
+    {
+      "name": "manualProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<string | false | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 507,
+    "lines": 21,
+    "bytes": 507,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "uhdpaawftifpzzxfdokawiai"
+}

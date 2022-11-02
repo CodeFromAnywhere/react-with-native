@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666262996900,
+  "updatedAt": 1666262996900,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262996900,
+  "id": "namedparameterstypeof-readcsvfilesync",
+  "name": "NamedParameters<typeof readCsvFileSync>",
+  "slug": "namedparameterstypeof-readcsvfilesync",
+  "operationRelativeTypescriptFilePath": "src/readCsvFile.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "filePath": {
+          "$ref": "#/definitions/Path"
+        }
+      },
+      "required": [
+        "filePath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "filePath",
+          "required": true,
+          "schema": {
+            "fullComment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof readCsvFileSync>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "createdAt": 1666261507308,
+  "updatedAt": 1666261507308,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261507308,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/Modal.tsx",
+  "commentsInside": [],
+  "rawText": " () => useContext(ModalContext)",
+  "name": "useModal",
+  "slug": "use-modal",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "ModalType",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "modalContent": {
+          "enum": [
+            "ul",
+            "trin",
+            "SX.Elemen"
+          ],
+          "x-enumNames": [
+            "ul",
+            "trin",
+            "SX.Elemen"
+          ],
+          "type": "string"
+        },
+        "handleModal": {
+          "type": "object",
+          "properties": {}
+        },
+        "showModal": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "handleModal",
+        "showModal"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "modalContent",
+          "required": false,
+          "schema": {
+            "enum": [
+              "ul",
+              "trin",
+              "SX.Elemen"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "handleModal",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "showModal",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "title",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 0,
+  "size": {
+    "characters": 31,
+    "lines": 1,
+    "bytes": 31,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 1,
+    "numberOfFiles": 1
+  },
+  "id": "nvpxxxhvkiscrocbrxuoqegp"
+}

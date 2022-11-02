@@ -1,0 +1,52 @@
+{
+  "createdAt": 1667379432401,
+  "updatedAt": 1667379432401,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379432401,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/storage.ts",
+  "commentsInside": [],
+  "rawText": " async (key: string) => {\n  if (typeof window === \"undefined\") {\n    return undefined;\n  }\n  const item = localStorage.getItem(key);\n  return item ? JSON.parse(item) : undefined;\n}",
+  "name": "getItem",
+  "slug": "get-item",
+  "parameters": [
+    {
+      "name": "key",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 354,
+    "lines": 7,
+    "bytes": 354,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 51,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "kxlbortwbamojgdvlmhxynur"
+}

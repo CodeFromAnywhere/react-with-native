@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263144411,
+  "updatedAt": 1666263144411,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263144411,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getFirstQueryStrings",
+  "slug": "get-first-query-strings",
+  "operationRelativeTypescriptFilePath": "src/rest-util.ts",
+  "type": {
+    "rawType": "(query: QueryableObject) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(query: QueryableObject) => {\n  const queryStrings = Object.keys(query).map((key) => {\n    const value = query[key];\n    return Array.isArray(value) ? value[0] : value;\n  });\n\n  return queryStrings;\n}",
+  "description": "Query keys can be string or string[] or undefined.\n\nThis function takes only the first string if it's an array...",
+  "id": "sfzjpboggadfyzkytzhdmurq"
+}

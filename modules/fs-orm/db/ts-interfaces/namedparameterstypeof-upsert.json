@@ -1,0 +1,91 @@
+{
+  "createdAt": 1666512734978,
+  "updatedAt": 1666512734978,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512734978,
+  "id": "namedparameterstypeof-upsert",
+  "name": "NamedParameters<typeof upsert>",
+  "slug": "namedparameterstypeof-upsert",
+  "operationRelativeTypescriptFilePath": "src/alter/upsert.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "storedData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Storing%3CAugmentedAnyModelType%3E"
+          },
+          "description": "The items that were already there"
+        },
+        "storingItems": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Storing%3CAugmentedAnyModelType%3E"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Storing%3CAugmentedAnyModelType%3E"
+              }
+            }
+          ],
+          "description": "The items that need to be overwritten or inserted"
+        },
+        "onlyInsert": {
+          "type": "boolean",
+          "description": "If true, the upserting will fail if there are occuring items with equal slugs/ids"
+        }
+      },
+      "required": [
+        "storedData",
+        "storingItems"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "storedData",
+          "required": true,
+          "schema": {
+            "fullComment": "The items that were already there",
+            "items": [],
+            "type": "array"
+          }
+        },
+        {
+          "name": "storingItems",
+          "required": true,
+          "schema": {
+            "fullComment": "The items that need to be overwritten or inserted",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "onlyInsert",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, the upserting will fail if there are occuring items with equal slugs/ids",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof upsert>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "createdAt": 1666262345052,
+  "updatedAt": 1666262345052,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262345052,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getQueryPath.ts",
+  "commentsInside": [],
+  "rawText": " (\n  parsedUrlQuery: NextParsedUrlQuery | undefined\n) => {\n  const paths = parsedUrlQuery?.paths;\n  const queryPath = Array.isArray(paths)\n    ? paths.join(\"/\")\n    : paths === undefined\n    ? \"\"\n    : paths;\n  return queryPath;\n}",
+  "name": "getQueryPath",
+  "slug": "get-query-path",
+  "parameters": [
+    {
+      "name": "parsedUrlQuery",
+      "schema": {
+        "$ref": "#/definitions/NextParsedUrlQuery"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "amp",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "__nextNotFoundSrcPage",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "__nextDefaultLocale",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "__nextFallback",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "__nextLocale",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "__nextSsgPath",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_nextBubbleNoFallback",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_nextDataReq",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 230,
+    "lines": 11,
+    "bytes": 230,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "yslrmexxcinvucxawsgxheky"
+}

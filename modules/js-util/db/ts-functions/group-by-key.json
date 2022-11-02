@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666513251921,
+  "updatedAt": 1666513251921,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513251921,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " <T extends { [key: string]: any }>(\n  array: T[],\n  key: keyof T\n) => {\n  return array.reduce((all, item) => {\n    const newAll = all;\n\n    const keyToUse: string = item[key as string];\n\n    const already = newAll[keyToUse];\n    if (!already) {\n      // create a new parameter in the group-object\n      newAll[item[key]] = [item];\n    } else {\n      // push to existing group-object parameter\n      newAll[item[key]].push(item);\n    }\n\n    return newAll;\n  }, {} as { [key: string]: T[] });\n}",
+  "name": "groupByKey",
+  "slug": "group-by-key",
+  "parameters": [],
+  "description": "key should be of type string!\n\ninput = [{path:\"xyz\"},{path:\"xyz\"},{path:\"abc\"}]\ngroupByKey(input, \"path\")\nouput: { xyz: [{path:\"xyz\"},{path:\"xyz\"}], abc: [{path:\"abc\"}]}",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 662,
+    "lines": 25,
+    "bytes": 662,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 25,
+    "numberOfFiles": 1
+  },
+  "id": "livjyvarqbvwcbkpsueaywma"
+}

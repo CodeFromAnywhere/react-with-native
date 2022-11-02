@@ -1,0 +1,95 @@
+{
+  "createdAt": 1667378789036,
+  "updatedAt": 1667378789036,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378789036,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/copyAllRelativeFiles.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  relativeFilePaths: string[],\n  absoluteSourceRoot: string,\n  absoluteDestinationRoot: string,\n  /**\n   * Overwrite existing file or directory\n   */\n  force?: boolean\n) => {\n  const promises = relativeFilePaths.map(async (relativeFilePath) => {\n    const fullSourcePath = path.join(absoluteSourceRoot, relativeFilePath);\n    const fullDestinationPath = path.join(\n      absoluteDestinationRoot,\n      relativeFilePath\n    );\n    if (fs.existsSync(fullSourcePath)) {\n      await fs.cpAsync(fullSourcePath, fullDestinationPath, {\n        recursive: true,\n        force: force || false,\n      });\n    }\n  });\n  await Promise.all(promises);\n\n  return true;\n}",
+  "name": "copyAllRelativeFiles",
+  "slug": "copy-all-relative-files",
+  "parameters": [
+    {
+      "name": "relativeFilePaths",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    },
+    {
+      "name": "absoluteSourceRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "absoluteDestinationRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "force",
+      "schema": {
+        "type": "boolean",
+        "description": "Overwrite existing file or directory"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Overwrite existing file or directory",
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "copy a bunch of relative files from one root folder to another",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 726,
+    "lines": 26,
+    "bytes": 726,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 26,
+    "numberOfFiles": 1
+  },
+  "id": "haiwyrfhwzeexkfqokvhdxcd"
+}

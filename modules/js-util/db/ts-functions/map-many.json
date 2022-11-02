@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666513259328,
+  "updatedAt": 1666513259328,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513259328,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/mapMany.ts",
+  "commentsInside": [],
+  "rawText": " async <T, U>(\n  array: T[],\n  mapFn: (item: T, index: number, array: T[]) => Promise<U>,\n  limit?: number\n): Promise<U[]> => {\n  const result: U[] = [];\n\n  if (array.length === 0) {\n    return result;\n  }\n\n  const generator = arrayGenerator(array);\n  const realLimit = Math.min(limit || array.length, array.length);\n  const workers = new Array(realLimit);\n\n  for (let i = 0; i < realLimit; i++) {\n    workers.push(worker(i, generator, mapFn, result));\n  }\n\n  // console.log(`Initialized ${limit} workers`);\n\n  await Promise.all(workers);\n\n  return result;\n}",
+  "name": "mapMany",
+  "slug": "map-many",
+  "parameters": [],
+  "description": "Lets you map over any array with a async function while setting a max. concurrency\n\nTaken and improved from https://codeburst.io/async-map-with-limited-parallelism-in-node-js-2b91bd47af70",
+  "returnType": {
+    "rawType": "Promise<U[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 745,
+    "lines": 27,
+    "bytes": 745,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 27,
+    "numberOfFiles": 1
+  },
+  "id": "hitlifccdrrigpfhvwqztejn"
+}

@@ -1,0 +1,134 @@
+{
+  "createdAt": 1666262679252,
+  "updatedAt": 1666262679252,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262679252,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "exampleCsvItems",
+  "slug": "example-csv-items",
+  "operationRelativeTypescriptFilePath": "src/example.ts",
+  "type": {
+    "rawType": "({ a: number; b: number; c: number; } | { a: boolean; b: boolean; c: boolean; } | { a: string; b: string; c: string; })[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "number"
+              },
+              "b": {
+                "type": "number"
+              },
+              "c": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "a",
+              "b",
+              "c"
+            ],
+            "optional": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "boolean"
+              },
+              "b": {
+                "type": "boolean"
+              },
+              "c": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "a",
+              "b",
+              "c"
+            ],
+            "optional": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              },
+              "b": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              },
+              "c": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              }
+            },
+            "required": [
+              "a",
+              "b",
+              "c"
+            ],
+            "optional": false
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "value": "[\n  {\n    a: 1,\n    b: 2,\n    c: 3,\n  },\n  {\n    a: true,\n    b: true,\n    c: true,\n  },\n  {\n    a: \"a\",\n    b: \"b\",\n    c: \"c\",\n  },\n  {\n    a: \"x\",\n    b: \"x\",\n    c: \"x\",\n  },\n  {\n    a: \"\",\n    b: \"\",\n    c: \"\",\n  },\n  {\n    a: \"\",\n    b: \"x\",\n    c: \"x\",\n  },\n]",
+  "description": "the same as exampleCsvString",
+  "id": "qnpahdnugkjuycwaudvxnomo"
+}

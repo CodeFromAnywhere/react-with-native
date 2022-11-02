@@ -2,21 +2,21 @@
 
 markdown-reader-web (web operation)
 
-Size: 130 LOC, 16150 data characters, 
- 
-Imported dependencies:
 
-- From Core Libraries: none
-- From Packages: AppProps, QueryClient, QueryClientProvider, GetStaticPropsContext, GetStaticPaths, GetStaticPathsContext
-- From Operations: pagesObject, pages, getPageTitle, Layout, useRouter, getBundleQueryPaths, getRealPathFromQueryPath, fs, MainPageProps, getBundleQueryPaths
+## 📚 markdown-reader-web
 
 # Outline
 
 ## Functions
 
 - [MyApp](#MyApp)
-- [pathGetStaticProps](#pathGetStaticProps)
-- [pathsGetStaticPaths](#pathsGetStaticPaths)
+
+## Variables
+
+- [getStaticPaths](#getstaticpaths)
+- [getStaticProps](#getstaticprops)
+- [progress](#progress)
+- [queryClient](#queryclient)
 
 
 
@@ -24,61 +24,13 @@ Imported dependencies:
 
 ## MyApp
 
-Max. indexation depth: 5, 
+# Variables
 
+## getStaticPaths (exported const)
 
+## getStaticProps (exported const)
 
-## Returns: unknown
+## progress (unexported const)
 
-## pathGetStaticProps
-
-Max. indexation depth: 2, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### context: object
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| params (optional) | object |  |
-| preview (optional) | boolean |  |
-| previewData (optional) | object |  |
-| locale (optional) | string |  |
-| locales (optional) | array |  |
-| defaultLocale (optional) | string |  |
-
-
-## pathsGetStaticPaths
-
-Max. indexation depth: 2, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### context: object
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| locales (optional) | array |  |
-| defaultLocale (optional) | string |  |
-
+## queryClient (unexported const)
 

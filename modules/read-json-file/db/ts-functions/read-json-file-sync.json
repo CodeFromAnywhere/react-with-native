@@ -1,0 +1,72 @@
+{
+  "createdAt": 1666263018374,
+  "updatedAt": 1666263018374,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263018374,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/readJsonFile.ts",
+  "commentsInside": [],
+  "rawText": " <T>(filePath: Path): T | null => {\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = canReadSync(filePath);\n  if (!readable) return null;\n  const fileString = fs.readFileSync(filePath, \"utf8\");\n  if (!fileString) return null;\n  const parsed = tryParseJson<T>(fileString);\n  return parsed;\n}",
+  "name": "readJsonFileSync",
+  "slug": "read-json-file-sync",
+  "parameters": [
+    {
+      "name": "filePath",
+      "schema": {
+        "$ref": "#/definitions/Path"
+      },
+      "simplifiedSchema": {
+        "fullComment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Reads and parses JSON file\n\nmake sure to specify what type the file contains as a generic!",
+  "returnType": {
+    "rawType": "T | null",
+    "typeDefinition": {
+      "optional": true,
+      "enum": [
+        "ul",
+        ""
+      ],
+      "x-enumNames": [
+        "ul",
+        ""
+      ],
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "enum": [
+        "ul",
+        ""
+      ],
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 423,
+    "lines": 13,
+    "bytes": 423,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "ulwuxncmciljuydmzfyztmfz"
+}

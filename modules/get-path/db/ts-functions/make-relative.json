@@ -1,0 +1,70 @@
+{
+  "createdAt": 1666259077984,
+  "updatedAt": 1666259077984,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259077984,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/makeRelative.ts",
+  "commentsInside": [],
+  "rawText": " (\n  /**\n   * absolute path of a file or folder without a slash at the end\n   */\n  absolutePath: string,\n  /**\n   * folder path without a slash at the end\n   */\n  baseFolderPath: string\n): string => {\n  // basecase should be handled, we don't want to get some weird slice edgecase\n  if (absolutePath.length < baseFolderPath.length) return \"\";\n\n  return absolutePath.slice(baseFolderPath.length + 1);\n}",
+  "name": "makeRelative",
+  "slug": "make-relative",
+  "parameters": [
+    {
+      "name": "absolutePath",
+      "schema": {
+        "type": "string",
+        "description": "absolute path of a file or folder without a slash at the end"
+      },
+      "simplifiedSchema": {
+        "fullComment": "absolute path of a file or folder without a slash at the end",
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "baseFolderPath",
+      "schema": {
+        "type": "string",
+        "description": "folder path without a slash at the end"
+      },
+      "simplifiedSchema": {
+        "fullComment": "folder path without a slash at the end",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Makes a path relative using proper parsing\n\nResulting path will apply the paths conventions\n- no slash at the end\n- no slash at the beginning",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 542,
+    "lines": 19,
+    "bytes": 542,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 19,
+    "numberOfFiles": 1
+  },
+  "id": "ykjpnnqnltiyihncvejqjnoc"
+}

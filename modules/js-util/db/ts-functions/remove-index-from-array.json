@@ -1,0 +1,58 @@
+{
+  "createdAt": 1666513249399,
+  "updatedAt": 1666513249399,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513249399,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/array-modifications.ts",
+  "commentsInside": [],
+  "rawText": " <T>(array: T[], index: number) => {\n  const before = array.slice(0, index);\n  const after = array.slice(index + 1);\n  return [...before, ...after];\n}",
+  "name": "removeIndexFromArray",
+  "slug": "remove-index-from-array",
+  "parameters": [],
+  "description": "removes an index from an array\n\nexample:\n\n```ts\nconst exampleArray = [\"a\", \"b\", \"c\", \"d\", \"e\"];\nconsole.log(removeIndexFromArray(exampleArray, 2)); //c should be removed\n```",
+  "returnType": {
+    "rawType": "any[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {}
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 323,
+    "lines": 12,
+    "bytes": 323,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "fivlxflhmdkcbjfgbdpthqzu"
+}

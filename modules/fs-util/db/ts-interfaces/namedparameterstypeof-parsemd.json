@@ -1,0 +1,51 @@
+{
+  "createdAt": 1667378805064,
+  "updatedAt": 1667378805064,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378805064,
+  "id": "namedparameterstypeof-parsemd",
+  "name": "NamedParameters<typeof parseMd>",
+  "slug": "namedparameterstypeof-parsemd",
+  "operationRelativeTypescriptFilePath": "src/parseMd.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "mdFilePath": {
+          "$ref": "#/definitions/Path",
+          "description": "path to a md file"
+        }
+      },
+      "required": [
+        "mdFilePath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "mdFilePath",
+          "required": true,
+          "schema": {
+            "fullComment": "path to a md file\n\nunlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof parseMd>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "createdAt": 1667379659665,
+  "updatedAt": 1667379659665,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379659665,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getMarkdownReferencePaths.ts",
+  "commentsInside": [],
+  "rawText": " (markdownString: string): string[] => {\n  const markdownParse = mdToJsonParse(markdownString);\n  const paragraphs = getMarkdownParseParagraphs(markdownParse);\n  const references = paragraphs.map(getMarkdownReferencesFromParagraph).flat();\n  const paths = references.map((x) => x.path);\n  return paths;\n}",
+  "name": "getMarkdownReferencePaths",
+  "slug": "get-markdown-reference-paths",
+  "parameters": [
+    {
+      "name": "markdownString",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "string[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "allOf": [
+          {
+            "transform": [
+              "trim"
+            ]
+          },
+          {
+            "minLength": 1
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 304,
+    "lines": 7,
+    "bytes": 304,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 43,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "pmbvzigvmnzwwdiebmzcgiqf"
+}

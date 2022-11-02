@@ -1,0 +1,4 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getFirstAvailableFilename=exports.oneUp=void 0;var fs_1=require("./fs"),path_1=require("./path"),oneUp=function(e){var t,a=null===(t=e.match(/\d+$/))||void 0===t?void 0:t[0],r=a?String(Number(a)+1):"1";return"".concat(e).concat(r)};exports.oneUp=oneUp;var getFirstAvailableFilename=function(e){
+// If that doesn't exist, use that
+if(!fs_1.fs.existsSync(e))return e;var t=path_1.path.parse(e),a="".concat((0,exports.oneUp)(t.name)).concat(t.ext),r=path_1.path.join(t.dir,a);return(0,exports.getFirstAvailableFilename)(r)};exports.getFirstAvailableFilename=getFirstAvailableFilename;
+//# sourceMappingURL=getFirstAvailableFilename.js.map

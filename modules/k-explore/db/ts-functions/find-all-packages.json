@@ -1,0 +1,78 @@
+{
+  "createdAt": 1666259123896,
+  "updatedAt": 1666259123896,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259123896,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/findAllPackages.ts",
+  "commentsInside": [],
+  "rawText": " (config?: {\n  basePath: string | string[] | undefined;\n}) => {\n  return explore({\n    basePath: config?.basePath || getPathsWithOperations(),\n    search: \"package.json\",\n    exact: true,\n    extension: \"json\",\n    searchLevel: \"fileName\",\n    ignore: generatedFolders.concat([\"src\", \"assets\", \"data\"]),\n  });\n}",
+  "name": "findAllPackages",
+  "slug": "find-all-packages",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "basePath": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "basePath",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TextJson\").TextJson[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 311,
+    "lines": 12,
+    "bytes": 311,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "ixtbrnippgurnchyssgbdqdm"
+}

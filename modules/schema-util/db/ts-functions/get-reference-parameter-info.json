@@ -1,0 +1,199 @@
+{
+  "createdAt": 1666264373628,
+  "updatedAt": 1666264373628,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264373628,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getReferenceParameterInfo.ts",
+  "commentsInside": [],
+  "rawText": " (\n  parameterName: string\n): ReferenceParameterInfo => {\n  const descriptorModelSplit = parameterName.split(\"_\");\n  const descriptor = parameterName.includes(\"_\")\n    ? descriptorModelSplit[0]\n    : undefined;\n  const rest = parameterName.includes(\"_\")\n    ? descriptorModelSplit[1]\n    : parameterName;\n\n  const wordArray = lowerCaseArray(rest);\n\n  const singleWord = wordArray.length === 1;\n\n  const parameterLastWord = wordArray.pop()!;\n\n  const isReferenceSingleParameter =\n    !singleWord && referenceParameterNames.includes(parameterLastWord);\n  const isReferenceMultipleParameter =\n    !singleWord && referencePluralParameterNames.includes(parameterLastWord);\n\n  const isReferenceParameter =\n    isReferenceSingleParameter || isReferenceMultipleParameter;\n\n  // NB: the last item has been removed now\n  const interfaceName = isReferenceParameter\n    ? pascalCase(wordArray.join(\"-\"))\n    : undefined;\n\n  // slug or id\n  const keyInModel = isReferenceParameter\n    ? singularize(parameterLastWord)\n    : undefined;\n\n  /**\n   * the reference keyword should be removed from the parameterName to receive the dataParameterName\n   *\n   * e.g. `weirdSluggyModelSlugs` becomes `weirdSluggyModels`\n   */\n  const dataParameterName =\n    isReferenceParameter && keyInModel\n      ? replaceLastOccurence(\n          parameterName,\n          capitaliseFirstLetter(keyInModel),\n          \"\"\n        )\n      : undefined;\n\n  const referenceParameterInfo: ReferenceParameterInfo = {\n    descriptor,\n    keyInModel,\n    interfaceName,\n    isReferenceMultipleParameter,\n    isReferenceSingleParameter,\n    isReferenceParameter,\n    dataParameterName,\n    parameterName,\n  };\n\n  return referenceParameterInfo;\n}",
+  "name": "getReferenceParameterInfo",
+  "slug": "get-reference-parameter-info",
+  "parameters": [
+    {
+      "name": "parameterName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Takes a parameterName and returns information about it according to the convention `{descriptorName}_{modelName}{referenceKey}` where:\n\n- descriptorName with the suffixing underscore is optional\n- referenceKey can be slug, index, or id (or there plural variants)\n- modelName should refer to a database model",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/typescript/schema-util/src/getReferenceParameterInfo\").ReferenceParameterInfo",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "parameterName": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "dataParameterName": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "descriptor": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "keyInModel": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "interfaceName": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "isReferenceMultipleParameter": {
+          "type": "boolean"
+        },
+        "isReferenceSingleParameter": {
+          "type": "boolean"
+        },
+        "isReferenceParameter": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "parameterName",
+        "isReferenceMultipleParameter",
+        "isReferenceSingleParameter",
+        "isReferenceParameter"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "parameterName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "dataParameterName",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "descriptor",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "keyInModel",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "interfaceName",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isReferenceMultipleParameter",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isReferenceSingleParameter",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isReferenceParameter",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 2004,
+    "lines": 66,
+    "bytes": 2004,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 66,
+    "numberOfFiles": 1
+  },
+  "id": "mixcfsgvartitvcawqgdzxhe"
+}

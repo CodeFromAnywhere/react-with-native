@@ -1,0 +1,61 @@
+{
+  "createdAt": 1666259066222,
+  "updatedAt": 1666259066222,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259066222,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/getProjectRoot.ts",
+  "commentsInside": [],
+  "rawText": " (absolutePath: string) => {\n  const osRootFilePath = path.join(absolutePath, \".project-root\");\n  const osRootFileExists = fs.existsSync(osRootFilePath);\n  return osRootFileExists;\n}",
+  "name": "hasProjectRootFile",
+  "slug": "has-project-root-file",
+  "parameters": [
+    {
+      "name": "absolutePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 182,
+    "lines": 5,
+    "bytes": 182,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 36,
+    "linesPerFile": 5,
+    "numberOfFiles": 1
+  },
+  "id": "uypoxdyxuctitnsxjgrkivie"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513249687,
+  "updatedAt": 1666513249687,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513249687,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "removeIndexFromArray",
+  "slug": "remove-index-from-array",
+  "operationRelativeTypescriptFilePath": "src/array-modifications.ts",
+  "type": {
+    "rawType": "<T>(array: T[], index: number) => any[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T>(array: T[], index: number) => {\n  const before = array.slice(0, index);\n  const after = array.slice(index + 1);\n  return [...before, ...after];\n}",
+  "description": "removes an index from an array\n\nexample:\n\n```ts\nconst exampleArray = [\"a\", \"b\", \"c\", \"d\", \"e\"];\nconsole.log(removeIndexFromArray(exampleArray, 2)); //c should be removed\n```",
+  "id": "puoupbxjxlnhupuaicxtsnhg"
+}

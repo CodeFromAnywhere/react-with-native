@@ -1,0 +1,24 @@
+{
+  "createdAt": 1667379862255,
+  "updatedAt": 1667379862255,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379862255,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "contentTypeConst",
+  "slug": "content-type-const",
+  "operationRelativeTypescriptFilePath": "src/ParameterName.ts",
+  "type": {
+    "rawType": "readonly [\"generated\", \"markdown\", \"text\", \"number\", \"date\", \"time\", \"datetime\", \"toggle\", \"select\", \"selectMultiple\"]",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "value": "[\n  // automatic\n  \"generated\",\n  //string\n  \"markdown\",\n  \"text\",\n  // numbers\n  \"number\",\n  \"date\",\n  \"time\",\n  \"datetime\",\n  // boolean\n  \"toggle\",\n  // enum\n  \"select\",\n  // enum[]\n  \"selectMultiple\",\n] as const",
+  "description": "Improves the convention for parameter names that refer to models. probably it's better to do this: `slug/id/index` are reserved on every model, let's call them \"Ref\". `modelNameRef` refers to modelName. But what if you want to call it differently? Then you'd need to distinguish a prefix from the modelName. Let's do this with a underscore (no dash because underscore preserves ability to dotting on the object). If you want a reference to a user be called author, you'd name it `author_userSlug`.\n\nTODO: reduce all TsInterfaces and functions into their parameters :D",
+  "id": "obyrpjunatpinikjnzhjbcpm"
+}

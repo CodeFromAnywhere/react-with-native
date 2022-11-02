@@ -1,0 +1,3 @@
+import { DbConfig, Keys, MergedQueryConfig, AnyModelObject, CustomQueryConfig, GetQueryConfig } from "../types";
+export declare const mergeConfigs: <TModels extends AnyModelObject>(modelName: Extract<keyof TModels, string>, dbConfig?: DbConfig<TModels> | undefined, config?: CustomQueryConfig | GetQueryConfig<TModels[keyof TModels]> | undefined) => MergedQueryConfig;
+//# sourceMappingURL=mergeConfigs.d.ts.map

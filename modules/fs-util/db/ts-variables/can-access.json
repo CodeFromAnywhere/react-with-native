@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667378793208,
+  "updatedAt": 1667378793208,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378793208,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "canAccess",
+  "slug": "can-access",
+  "operationRelativeTypescriptFilePath": "src/files.ts",
+  "type": {
+    "rawType": "(p: import(\"fs\").PathLike, mode: number) => Promise<boolean>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  p: PathLike,\n  mode: number\n): Promise<boolean> => {\n  try {\n    await fs.access(p, mode);\n    return true;\n  } catch (e) {\n    return false;\n  }\n}",
+  "description": "uses fs.access to determine if something can be accessed\n\nCheck File access constants for possible values of mode. It is possible to create a mask consisting of the bitwise OR of two or more values (e.g. fs.constants.W_OK | fs.constants.R_OK).",
+  "id": "ooyarqnlujlflyvzuipxgfmh"
+}

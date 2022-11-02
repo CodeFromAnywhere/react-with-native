@@ -1,42 +1,153 @@
 # Convert case
 
-convert-case (node operation)
+convert-case (js operation)
 
-Size: 209 LOC, 2258 data characters, 
- 
-Imported dependencies:
 
-- From Core Libraries: none
-- From Packages: none
-- From Operations: makeTest
 
 # Outline
 
 ## Functions
 
-- [splitCasingDelimiters](#splitCasingDelimiters)
-- [getDelimiter](#getDelimiter)
-- [capitaliseFirstLetter](#capitaliseFirstLetter)
-- [convertToTargetCasing](#convertToTargetCasing)
-- [convertCase](#convertCase)
 - [camelCase](#camelCase)
-- [pascalCase](#pascalCase)
-- [snakeCase](#snakeCase)
-- [kebabCase](#kebabCase)
 - [capitalCase](#capitalCase)
+- [capitaliseFirstLetter](#capitaliseFirstLetter)
+- [convertCase](#convertCase)
+- [convertToTargetCasing](#convertToTargetCasing)
+- [getDelimiter](#getDelimiter)
 - [humanCase](#humanCase)
+- [kebabCase](#kebabCase)
 - [lowerCaseArray](#lowerCaseArray)
+- [pascalCase](#pascalCase)
 - [slugify](#slugify)
+- [snakeCase](#snakeCase)
+- [splitCasingDelimiters](#splitCasingDelimiters)
+
+## Interfaces
+
+- [Casing](#casing)
+
+## Variables
+
+- [camelCase](#camelcase)
+- [capitalCase](#capitalcase)
+- [capitaliseFirstLetter](#capitalisefirstletter)
+- [convertCase](#convertcase)
+- [convertToTargetCasing](#converttotargetcasing)
+- [getDelimiter](#getdelimiter)
+- [humanCase](#humancase)
+- [kebabCase](#kebabcase)
+- [lowerCaseArray](#lowercasearray)
+- [nonCasingDelimiters](#noncasingdelimiters)
+- [pascalCase](#pascalcase)
+- [snakeCase](#snakecase)
+- [splitCasingDelimiters](#splitcasingdelimiters)
+- [test](#test)
 
 
 
 # Functions
 
+## camelCase
+
+### Parameters (1)
+
+#### Parameter 1: text: string
+
+## capitalCase
+
+### Parameters (1)
+
+#### Parameter 1: text: string
+
+## capitaliseFirstLetter
+
+### Parameters (1)
+
+#### Parameter 1: word: string
+
+## convertCase
+
+### Parameters (2)
+
+#### Parameter 1: text: string
+
+#### Parameter 2: target: string(Enum: camel | pascal | snake | kebab | capital | human)
+
+## convertToTargetCasing
+
+### Parameters (3)
+
+#### Parameter 1: word: string
+
+#### Parameter 2: index: number
+
+#### Parameter 3: target: string(Enum: camel | pascal | snake | kebab | capital | human)
+
+## getDelimiter
+
+### Returns: string(Enum: _ |   | - | )
+
+### Parameters (1)
+
+#### Parameter 1: target: string(Enum: camel | pascal | snake | kebab | capital | human)
+
+## humanCase
+
+### Parameters (1)
+
+#### Parameter 1: text: string
+
+## kebabCase
+
+### Parameters (1)
+
+#### Parameter 1: text: string
+
+## lowerCaseArray
+
+converts any string to an array of lowercase words
+
+format ["word1","word2","word3"] from a string of any casing.
+
+
+
+
+### Parameters (1)
+
+#### Parameter 1: text: string
+
+## pascalCase
+
+### Parameters (1)
+
+#### Parameter 1: text: string
+
+## slugify
+
+/**
+ * this function does the same as kebabCase but it also does some more transformation on top
+ *
+ * useful for making simple URLs and filenames. Kebacase is not enough
+ *
+ * NB: this is no two way transformation. When slugifying something, information is lost and it cannot be converted back in the original name.
+ *
+ * TODO: make the tranformations that are done here into smaller util functions and make a clean function that can be ran before running every casing conversion (maybe in a config)
+ */
+
+
+
+
+### Parameters (1)
+
+#### Parameter 1: string: string
+
+## snakeCase
+
+### Parameters (1)
+
+#### Parameter 1: text: string
+
 ## splitCasingDelimiters
-
-Max. indexation depth: 4, 
-
-
 
 ### Returns: array
 
@@ -46,268 +157,47 @@ Max. indexation depth: 4,
 
 
 
-### Arguments
 
-#### word: string
+### Parameters (1)
 
+#### Parameter 1: word: string
 
+# Interfaces
 
+## Casing
 
+# Variables
 
+## camelCase (exported const)
 
+## capitalCase (exported const)
 
-## getDelimiter
+## capitaliseFirstLetter (exported const)
 
-Max. indexation depth: 1, 
+## convertCase (exported const)
 
+## convertToTargetCasing (unexported const)
 
+## getDelimiter (exported const)
 
-### Returns: string(Enum: _ |   | - | ) 
+## humanCase (exported const)
 
+## kebabCase (exported const)
 
-
-
-
-
-
-### Arguments
-
-#### target: string(Enum: camel | pascal | snake | kebab | capital | human) 
-
-
-
-
-
-
-
-## capitaliseFirstLetter
-
-Max. indexation depth: 1, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### word: string
-
-
-
-
-
-
-
-## convertToTargetCasing
-
-Max. indexation depth: 2, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### word: string
-
-
-
-
-
-
-
-#### index: number
-
-
-
-
-
-
-
-#### target: string(Enum: camel | pascal | snake | kebab | capital | human) 
-
-
-
-
-
-
-
-## convertCase
-
-Max. indexation depth: 3, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### text: string
-
-
-
-```md
-NB: texts of more than a sentence are not supported
-```
-
-
-
-
-#### target: string(Enum: camel | pascal | snake | kebab | capital | human) 
-
-
-
-
-
-
-
-## camelCase
-
-Max. indexation depth: 0, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### text: string
-
-
-
-
-
-
-
-## pascalCase
-
-Max. indexation depth: 0, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### text: string
-
-
-
-
-
-
-
-## snakeCase
-
-Max. indexation depth: 0, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### text: string
-
-
-
-
-
-
-
-## kebabCase
-
-Max. indexation depth: 0, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### text: string
-
-
-
-
-
-
-
-## capitalCase
-
-Max. indexation depth: 0, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### text: string
-
-
-
-
-
-
-
-## humanCase
-
-Max. indexation depth: 0, 
-
-
-
-## Returns: unknown
-
-### Arguments
-
-#### text: string
-
-
-
-
-
-
-
-## lowerCaseArray
-
-Max. indexation depth: 1, 
+## lowerCaseArray (exported const)
 
 converts any string to an array of lowercase words
 
 format ["word1","word2","word3"] from a string of any casing.
 
-## Returns: unknown
 
-### Arguments
+## nonCasingDelimiters (unexported const)
 
-#### text: string
+## pascalCase (exported const)
 
+## snakeCase (exported const)
 
+## splitCasingDelimiters (unexported const)
 
-
-
-
-
-## slugify
-
-Max. indexation depth: 2, 
-
-/**
- * this function does the same as kebabCase but it also does some more transformation on top
- *
- * TODO: make the tranformations that are done here into smaller util functions and make a clean function that can be ran before running every casing conversion (maybe in a config)
- */
-
-## Returns: unknown
-
-### Arguments
-
-#### string: string
-
-
-
-
-
-
+## test (exported const)
 

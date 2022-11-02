@@ -1,0 +1,38 @@
+[
+  {
+    "createdAt": 1662926903781,
+    "updatedAt": 1662926903781,
+    "deletedAt": 0,
+    "createdFirstAt": 1662926903781,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/pathGetStaticProps.ts",
+    "commentsInside": [],
+    "rawText": " async (\n  context: GetStaticPropsContext\n): Promise<{\n  props: MainPageProps;\n}> => {\n  const pages = (await getDocsMarkdownReaderPages()) || [];\n  const queryPath = getQueryPath(context.params);\n\n  // definitions/statements/functions/interfaces/operations\n\n  const realPage = pages.find((x) => x.queryPath === queryPath);\n\n  if (!realPage) {\n    return { props: { pages } };\n  }\n\n  const markdownFile = realPage.filePath\n    ? await readMarkdownFileToModel(realPage.filePath)\n    : undefined;\n\n  return {\n    // Passed to the page component as props\n    props: { pages, markdownFile },\n  };\n}",
+    "name": "pathGetStaticProps",
+    "slug": "path-get-static-props",
+    "parameters": [],
+    "description": "",
+    "returnType": {
+      "rawType": "Promise<{ props: import(\"/Users/king/King/operations/tools/ui/markdown-reader/markdown-reader-ui/src/types\").MainPageProps; }>",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 2,
+    "size": {
+      "characters": 594,
+      "lines": 25,
+      "bytes": 594,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 24,
+      "linesPerFile": 25,
+      "numberOfFiles": 1
+    },
+    "id": "bdYzDuKGnaIEsqEx"
+  }
+]

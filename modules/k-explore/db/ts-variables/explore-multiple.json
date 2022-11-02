@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259118132,
+  "updatedAt": 1666259118132,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259118132,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "exploreMultiple",
+  "slug": "explore-multiple",
+  "operationRelativeTypescriptFilePath": "src/explore.ts",
+  "type": {
+    "rawType": "(searchConfigs: import(\"/Users/king/King/operations/tools/control-project/k-explore/src/explore\").SearchConfig[]) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (searchConfigs: SearchConfig[]) => {\n  const textJsonPromises = searchConfigs.map(async (config) => {\n    return explore(config);\n  });\n\n  return (await Promise.all(textJsonPromises)).flat();\n}",
+  "description": "DEPRECATED: not sure if we still need it, look up usecases, can prob be replaced now",
+  "id": "gppuvntlplwqfjrydyidmnlu"
+}

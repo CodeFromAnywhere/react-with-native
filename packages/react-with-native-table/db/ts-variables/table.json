@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666261633572,
+  "updatedAt": 1666261633572,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261633572,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "Table",
+  "slug": "table",
+  "operationRelativeTypescriptFilePath": "src/Table.tsx",
+  "type": {
+    "rawType": "<TModel extends { [key: string]: any; }>({ data, columns, renderExtraColumns, extraColumnsAtStart, onEndReached, shouldHighlightItem, }: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-table/src/Table\").TableType<TModel>) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<TModel extends { [key: string]: any }>({\n  data,\n  columns,\n  renderExtraColumns,\n  extraColumnsAtStart,\n  onEndReached,\n  shouldHighlightItem,\n}: TableType<TModel>) => {\n  const endOfTableDiv = useRef<HTMLDivElement>(null);\n  const isEndReached = useIsInViewport(endOfTableDiv);\n  useEffect(() => {\n    console.log(\"END REACHED\");\n    onEndReached?.();\n  }, [isEndReached]);\n  return (\n    <Div className=\"px-4 sm:px-6 lg:px-8\">\n      <Div className=\"mt-8 flex flex-col\">\n        <Div className=\"-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8\">\n          <Div className=\"inline-block min-w-full py-2 align-middle md:px-6 lg:px-8\">\n            <table className=\"min-w-full divide-y divide-gray-300\">\n              <thead>\n                <tr>\n                  {extraColumnsAtStart ? (\n                    <TableHeadItem name=\"\" objectParameterKey={\"\"} />\n                  ) : null}\n                  {columns.map((column, index) => (\n                    // NB: here we are destructuring column to provide all the props to a component\n                    <TableHeadItem {...column} />\n                  ))}\n                  {renderExtraColumns && !extraColumnsAtStart ? (\n                    <TableHeadItem objectParameterKey={\"\"} name=\"\" />\n                  ) : null}\n                </tr>\n              </thead>\n              <tbody className=\"divide-y divide-gray-200\">\n                {data\n                  ? // If data is undefined, we have to render the skelletonview\n                    data.map((item, index) => {\n                      const shouldHighlight = shouldHighlightItem?.(item);\n                      return (\n                        <TableRow\n                          shouldHighlight={shouldHighlight}\n                          key={`row${index}`}\n                          row={item}\n                          columns={columns}\n                          renderExtraColumns={renderExtraColumns}\n                          extraColumnsAtStart={extraColumnsAtStart}\n                        />\n                      );\n                    })\n                  : // Without data we are assuming it's still loading and show 10 skelletons, which are simply TableRow's without any data\n                    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((_, index) => (\n                      <TableRow\n                        key={`skeleton${index}`}\n                        row={undefined}\n                        columns={columns}\n                      />\n                    ))}\n              </tbody>\n            </table>\n            <div ref={endOfTableDiv}>&nbsp;</div>\n          </Div>\n        </Div>\n      </Div>\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "uqdwiuanotgwayksuoozpzos"
+}

@@ -1,0 +1,78 @@
+{
+  "createdAt": 1667111123168,
+  "updatedAt": 1667111123168,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111123168,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/token/addToken.ts",
+  "commentsInside": [],
+  "rawText": " (\n  name: string,\n  /**\n   * if given, uses this token, otherwise generates a new random token\n   */\n  previousToken?: string,\n  attachTokenToFilename?: boolean\n): string => {\n  if (!attachTokenToFilename) return name;\n  const newRandomToken = generateRandomString(32);\n  return `${name}${tokenPrefix}${previousToken || newRandomToken}`;\n}",
+  "name": "addToken",
+  "slug": "add-token",
+  "parameters": [
+    {
+      "name": "name",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "previousToken",
+      "schema": {
+        "type": "string",
+        "description": "if given, uses this token, otherwise generates a new random token"
+      },
+      "simplifiedSchema": {
+        "fullComment": "if given, uses this token, otherwise generates a new random token",
+        "type": "string"
+      },
+      "required": false
+    },
+    {
+      "name": "attachTokenToFilename",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "If previousToken is not present, will be generated randomly",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 399,
+    "lines": 12,
+    "bytes": 399,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "bfakibixinlxuerapspcagjw"
+}

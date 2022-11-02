@@ -1,47 +1,13 @@
----
-```: undefined
-: undefined
-Properties: 
-| Name | Type | Description |: undefined
-|---|---|---|: undefined
-| id (optional) | string |  |: undefined
-| path  | string |  |: undefined
-| name (optional) | string |  |: undefined
-| main (optional) | string |  |: undefined
-| source (optional) | string |  |: undefined
-| description (optional) | string |  |: undefined
-| version (optional) | string |  |: undefined
-| private (optional) | boolean |  |: undefined
-| author (optional) | object |  |: undefined
-| repository  | object |  |: undefined
-| homepage (optional) | string |  |: undefined
-| dependencies (optional) | object |  |: undefined
-| devDependencies (optional) | object |  |: undefined
-| peerDependencies (optional) | object |  |: undefined
-| bin (optional) | object |  |: undefined
-| workspaces (optional) | array |  |: undefined
-| type (optional) | string | # Classification<br /><br />TODO: think about what the differences are and how we need to change processes to make it all work good<br /><br />### Possible values<br /><br />js
-| sensible (optional) | object | Sensible-global configurations |: undefined
-| operation (optional) | object | anything configurable about the operation.<br /><br />This can live in operation.json or as a prop in package.json. |: undefined
-## hasDependency: undefined
-Max. indexation depth: 1,
-## Returns: unknown
-### Arguments: undefined
-#### packageJson: object
-```md: undefined
---- defaultDbStorageMethod: jsonSingle
----
 # Get path
 
 get-path (js operation)
 
-Size: 549 LOC, 2187 data characters, 
- 
-Imported dependencies:
+Useful functions to get paths within King OS.
 
-- From Core Libraries: none
-- From Packages: none
-- From Operations: path, fs, log, OperationClassification, path, TypescriptIndex, kebabCase, fs, path, OperationClassification, PackageJSON, tryParseJson, exploreOperationFolders, getLastFolder, log, path, getLastFolder, OperationPathParse, PackageJSON, readJsonFileSync, PathParse, fs, path, log, path, fs, path, PackageJSON, tryParseJson, path, PackageJSON, SensibleConfig, readJsonFileSync
+Depends on `sdk-operations`, which makes it only work inside of a typerepo.
+
+
+
 
 # Outline
 
@@ -50,33 +16,488 @@ Imported dependencies:
 - [findFolderWhereMatch](#findFolderWhereMatch)
 - [findOperationBasePathWithClassification](#findOperationBasePathWithClassification)
 - [findOperationBasePath](#findOperationBasePath)
-- [getIndexFilePath](#getIndexFilePath)
 - [getAllPackageJsonDependencies](#getAllPackageJsonDependencies)
-- [hasDependency](#hasDependency)
+- [getCommonAncestor](#getCommonAncestor)
 - [getOperationClassification](#getOperationClassification)
-- [getOperationPath](#getOperationPath)
 - [getOperationPathParse](#getOperationPathParse)
+- [getOperationPath](#getOperationPath)
+- [getOperationRelativePath](#getOperationRelativePath)
 - [getPathParse](#getPathParse)
 - [getPathsWithOperations](#getPathsWithOperations)
 - [getProjectRoot](#getProjectRoot)
+- [getRelativeLinkPath](#getRelativeLinkPath)
 - [getRelativePath](#getRelativePath)
 - [getRootPath](#getRootPath)
-- [isProjectRoot](#isProjectRoot)
+- [getSrcRelativeFileId](#getSrcRelativeFileId)
+- [hasDependency](#hasDependency)
+- [hasProjectRootFile](#hasProjectRootFile)
+- [isOperation](#isOperation)
 - [isSensibleProject](#isSensibleProject)
+- [isWorkspaceRoot](#isWorkspaceRoot)
+- [makeRelative](#makeRelative)
+- [test](#test)
+
+## Interfaces
+
+- [OperationClassification](#operationclassification)
+- [PackageJson](#packagejson)
+
+## Variables
+
+- [findFolderWhereMatch](#findfolderwherematch)
+- [findOperationBasePathWithClassification](#findoperationbasepathwithclassification)
+- [findOperationBasePath](#findoperationbasepath)
+- [getAllPackageJsonDependencies](#getallpackagejsondependencies)
+- [getCommonAncestor](#getcommonancestor)
+- [getOperationClassification](#getoperationclassification)
+- [getOperationPathParse](#getoperationpathparse)
+- [getOperationPath](#getoperationpath)
+- [getOperationRelativePath](#getoperationrelativepath)
+- [getPathParse](#getpathparse)
+- [getPathsWithOperations](#getpathswithoperations)
+- [getProjectRoot](#getprojectroot)
+- [getRelativeLinkPath](#getrelativelinkpath)
+- [getRelativePath](#getrelativepath)
+- [getRootPath](#getrootpath)
+- [getSrcRelativeFileId](#getsrcrelativefileid)
+- [hasDependency](#hasdependency)
+- [hasProjectRootFile](#hasprojectrootfile)
+- [isOperation](#isoperation)
+- [isSensibleProject](#issensibleproject)
+- [isWorkspaceRoot](#isworkspaceroot)
+- [makeRelative](#makerelative)
+- [osRootFoldersConst](#osrootfoldersconst)
+- [osRootFolders](#osrootfolders)
+- [projectRootFoldersConst](#projectrootfoldersconst)
+- [projectRootFolders](#projectrootfolders)
+- [test](#test)
 
 
 
 # Functions
 
-```
+## findFolderWhereMatch
 
+recursive. goes up a folder until it finds a package.json
+
+
+### Returns: object
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| id (optional) | string |  |
-| path  | string |  |
+| folderPath  | string |  |
+| matchResult  | object |  |
+
+
+
+## findOperationBasePathWithClassification
+
+recursive. goes up until it finds a folder that's an operation
+
+because it had to read the package.json anyway, it's returning the operation classification as well
+
+
+### Returns: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| folderPath  | string |  |
+| classification  | object |  |
+
+
+
+### Parameters (1)
+
+#### Parameter 1: startPath: string
+
+## findOperationBasePath
+
+### Returns: string
+
+### Parameters (1)
+
+#### Parameter 1: startPath: string
+
+## getAllPackageJsonDependencies
+
+### Returns: array
+
+- null: string
+
+
+
+
+
+
+### Parameters (1)
+
+#### Parameter 1: p: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| path (optional) | string |  |
+| name (optional) | string |  |
+| main (optional) | string |  |
+| source (optional) | string |  |
+| description (optional) | string |  |
+| version (optional) | string |  |
+| private (optional) | boolean |  |
+| author (optional) | object |  |
+| repository  | object |  |
+| homepage (optional) | string |  |
+| bin (optional) | object |  |
+| workspaces (optional) | array |  |
+| scripts (optional) | object |  |
+| type (optional) | string |  |
+
+
+
+## getCommonAncestor
+
+Finds the common ancestor for two absolute pahts
+
+
+
+
+### Parameters (2)
+
+#### Parameter 1: path1: string
+
+#### Parameter 2: path2: string
+
+## getOperationClassification
+
+Returns OperationClassification if it's an operation, or undefined if it's not
+
+NB: don't confuse this with ProjectType or ImportClassification
+
+
+
+
+### Parameters (1)
+
+#### Parameter 1: folderPath: string
+
+## getOperationPathParse
+
+get all operation-related path information that can be inferred from the path
+
+NB: currently it also looks up the operation name from its packagejson
+
+
+
+
+### Parameters (1)
+
+#### Parameter 1: absolutePath: string
+
+## getOperationPath
+
+Gets a path of any operation in the project
+
+TODO: IDEA: maybe auto-generate key-value JSON where keys are the package-names of all operations and values are paths of their locations in the file system. we can easily generate this ourselves, but maybe it's also easy to use the npm yarn workspace for this, although it may not be available in all circumstances, so better not rely on it. The advantage of this would be that this function becomes sync and is much more efficient. The disadvantage is that every time you move something or add something new, this indexation has to happen, otherwise it fails.
+
+
+
+
+### Parameters (2)
+
+#### Parameter 1: operationName: string
+
+#### Parameter 2: config (optional): object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| manualProjectRoot (optional) | string |  |
+| notUseSdk (optional) | boolean |  |
+
+
+
+## getOperationRelativePath
+
+something like src/xxx/xxx/x.ts (no slash at start)
+
+
+
+
+### Parameters (2)
+
+#### Parameter 1: absolutePath: string
+
+#### Parameter 2: operationBasePath: string
+
+## getPathParse
+
+gets all kinds of information that can be inferred from any path (file or folder).
+
+
+### Returns: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| relativePathFromProjectRoot  | string |  |
+
+
+
+### Parameters (1)
+
+#### Parameter 1: absolutePath: string
+
+## getPathsWithOperations
+
+returns an array of all (absolute) paths containing operations
+
+for a sensible project, that means /apps and /packages
+
+for the OS project, that means /operations/tools and /operations/niches
+
+
+### Returns: array
+
+- null: string
+
+
+
+
+
+
+### Parameters (1)
+
+#### Parameter 1: config (optional): object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| manualProjectRoot (optional) | string |  |
+
+
+
+## getProjectRoot
+
+returns project root folder path
+
+recursive. goes up until it finds a folder that's the project root
+
+if no source path is given, uses the directory name where the function is executed from as a starting point
+
+
+### Returns: string
+
+### Parameters (1)
+
+#### Parameter 1: fullSourcePath (optional): string
+
+## getRelativeLinkPath
+
+returns a relative link between two files
+
+
+
+
+### Parameters (3)
+
+#### Parameter 1: absoluteFromFilePath: string
+
+#### Parameter 2: absoluteToFilePath: string
+
+#### Parameter 3: debug (optional): boolean
+
+## getRelativePath
+
+gets the relative path from a specified root
+
+will start with "/"
+
+
+
+
+### Parameters (2)
+
+#### Parameter 1: absolutePath: string
+
+#### Parameter 2: relativeFrom: string
+
+## getRootPath
+
+Gets project path, or a folder in the root that is convention
+
+
+### Returns: string
+
+## getSrcRelativeFileId
+
+returns a file id (path without extension) relative to the src folder of an operation
+
+e.g. "general" for src/general.ts
+
+NB: assumes all src is in the src folder
+
+NB: removes "/" in the beginning, if found
+
+
+
+
+### Parameters (1)
+
+#### Parameter 1: operationRelativePath: string
+
+## hasDependency
+
+### Parameters (2)
+
+#### Parameter 1: packageJson: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| path (optional) | string |  |
+| name (optional) | string |  |
+| main (optional) | string |  |
+| source (optional) | string |  |
+| description (optional) | string |  |
+| version (optional) | string |  |
+| private (optional) | boolean |  |
+| author (optional) | object |  |
+| repository  | object |  |
+| homepage (optional) | string |  |
+| bin (optional) | object |  |
+| workspaces (optional) | array |  |
+| scripts (optional) | object |  |
+| type (optional) | string |  |
+
+
+
+#### Parameter 2: dependency: string
+
+## hasProjectRootFile
+
+### Returns: object
+
+### Parameters (1)
+
+#### Parameter 1: absolutePath: string
+
+## isOperation
+
+Checks whether or not an absolute path contains an operation. The only check it's doing is that the folder must contain both a package.json as well as a tsconfig.json
+
+
+### Returns: object
+
+### Parameters (1)
+
+#### Parameter 1: absoluteFolderPath: string
+
+## isSensibleProject
+
+### Returns: object
+
+### Parameters (1)
+
+#### Parameter 1: folderPath (optional): string
+
+## isWorkspaceRoot
+
+simple sync function to check if a folder is the root of a workspace (not operation but a workspace)
+
+
+### Returns: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| isSensibleProject  | boolean |  |
+| isWorkspaceRoot  | boolean |  |
+
+
+
+### Parameters (1)
+
+#### Parameter 1: folderPath: string
+
+## makeRelative
+
+Makes a path relative using proper parsing
+
+Resulting path will apply the paths conventions
+- no slash at the end
+- no slash at the beginning
+
+
+
+
+### Parameters (2)
+
+#### Parameter 1: absolutePath: string
+
+#### Parameter 2: baseFolderPath: string
+
+## test
+
+# Interfaces
+
+## OperationClassification
+
+## Classification
+
+TODO: think about what the differences are and how we need to change processes to make it all work good
+
+
+### Possible values
+
+js: only js (no node) (well, ts of course, but it gets built into js)
+
+ts: non-built ts code
+
+node: includes other node packages, operations, core-imports, or globals.
+
+server: exposes something on some port when it is ran and uses node code
+
+web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...
+
+app: uses react-native and exposes something on some port when it is ran
+
+ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)
+
+ui-es5: ui which main entry points to javascript es5 files (this ui package can be built)
+
+
+
+
+
+
+
+
+## PackageJson
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| path (optional) | string |  |
 | name (optional) | string |  |
 | main (optional) | string |  |
 | source (optional) | string |  |
@@ -91,166 +512,71 @@ Properties:
 | peerDependencies (optional) | object |  |
 | bin (optional) | object |  |
 | workspaces (optional) | array |  |
-| type (optional) | string | # Classification<br /><br />TODO: think about what the differences are and how we need to change processes to make it all work good<br /><br />### Possible values<br /><br />js: only js (no node) (well, ts of course)<br /><br />node: includes other node packages, operations, core-imports, or globals.<br /><br />server: exposes something on some port when it is ran and uses node code<br /><br />web: uses react and exposes something on some port when it is ran<br /><br />app: uses react-native and exposes something on some port when it is ran<br /><br />ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)<br /><br />ui-es5: ui which main entry points to javascript es5 files (this ui package can be built) |
-| sensible (optional) | object | Sensible-global configurations |
-| operation (optional) | object | anything configurable about the operation.<br /><br />This can live in operation.json or as a prop in package.json. |
+| scripts (optional) | object |  |
+| type (optional) | string |  |
+| sensible (optional) | object |  |
+| operation (optional) | object |  |
 
 
-#### dependency: string
+# Variables
+
+## findFolderWhereMatch (exported const)
+
+recursive. goes up a folder until it finds a package.json
 
 
+## findOperationBasePathWithClassification (exported const)
+
+recursive. goes up until it finds a folder that's an operation
+
+because it had to read the package.json anyway, it's returning the operation classification as well
 
 
+## findOperationBasePath (exported const)
+
+## getAllPackageJsonDependencies (exported const)
+
+## getCommonAncestor (exported const)
+
+Finds the common ancestor for two absolute pahts
 
 
+## getOperationClassification (exported const)
 
-## getOperationClassification
-
-Max. indexation depth: 2, 
-
-returns OperationClassification if it's an operation, or undefined if it's not
+Returns OperationClassification if it's an operation, or undefined if it's not
 
 NB: don't confuse this with ProjectType or ImportClassification
 
-### Returns: string(Enum: js | node | server | web | app | ui-es6 | ui-es5) 
 
-
-
-
-
-
-
-### Arguments
-
-#### folderPath: string
-
-
-
-
-
-
-
-## getOperationPath
-
-Max. indexation depth: 3, 
-
-Gets a path of any operation in the project
-
-TODO: IDEA: maybe auto-generate key-value JSON where keys are the package-names of all operations and values are paths of their locations in the file system. we can easily generate this ourselves, but maybe it's also easy to use the npm yarn workspace for this, although it may not be available in all circumstances, so better not rely on it. The advantage of this would be that this function becomes sync and is much more efficient. The disadvantage is that every time you move something or add something new, this indexation has to happen, otherwise it fails.
-
-## Returns: unknown
-
-### Arguments
-
-#### operationName: string
-
-
-
-```md
-specify the operation folder name
-```
-
-
-
-
-#### config (optional): object
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| manualProjectRoot (optional) | string |  |
-
-
-## getOperationPathParse
-
-Max. indexation depth: 2, 
+## getOperationPathParse (exported const)
 
 get all operation-related path information that can be inferred from the path
 
 NB: currently it also looks up the operation name from its packagejson
 
-## Returns: unknown
 
-### Arguments
+## getOperationPath (exported const)
 
-#### absolutePath: string
+## getOperationRelativePath (exported const)
 
-
-
+something like src/xxx/xxx/x.ts (no slash at start)
 
 
-
-
-## getPathParse
-
-Max. indexation depth: 1, 
+## getPathParse (exported const)
 
 gets all kinds of information that can be inferred from any path (file or folder).
 
-### Returns: object
 
+## getPathsWithOperations (exported const)
 
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| relativePathFromProjectRoot  | string |  |
-
-
-### Arguments
-
-#### absolutePath: string
-
-
-
-
-
-
-
-## getPathsWithOperations
-
-Max. indexation depth: 3, 
-
-returns an array of all paths containing operations
+returns an array of all (absolute) paths containing operations
 
 for a sensible project, that means /apps and /packages
 
-for the OS project, that means /tools and /bundles
-
-### Returns: array
-
-- null: string
+for the OS project, that means /operations/tools and /operations/niches
 
 
-
-
-
-### Arguments
-
-#### config (optional): object
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| manualProjectRoot (optional) | string | if given, this will be taken as the project root instead of the one that can be found automatically (useful for bundling or working with multiple projects that alter each other) |
-
-
-## getProjectRoot
-
-Max. indexation depth: 1, 
+## getProjectRoot (exported const)
 
 returns project root folder path
 
@@ -258,142 +584,70 @@ recursive. goes up until it finds a folder that's the project root
 
 if no source path is given, uses the directory name where the function is executed from as a starting point
 
-### Returns: string
+
+## getRelativeLinkPath (exported const)
+
+returns a relative link between two files
 
 
-
-
-
-
-
-### Arguments
-
-#### fullSourcePath (optional): string
-
-
-
-
-
-
-
-## getRelativePath
-
-Max. indexation depth: 2, 
+## getRelativePath (exported const)
 
 gets the relative path from a specified root
 
 will start with "/"
 
-## Returns: unknown
 
-### Arguments
+## getRootPath (exported const)
 
-#### absolutePath: string
+## getSrcRelativeFileId (exported const)
 
+returns a file id (path without extension) relative to the src folder of an operation
 
+e.g. "general" for src/general.ts
 
+NB: assumes all src is in the src folder
 
+NB: removes "/" in the beginning, if found
 
 
+## hasDependency (exported const)
 
-#### relativeFrom: string
+## hasProjectRootFile (unexported const)
 
+## isOperation (exported const)
 
+Checks whether or not an absolute path contains an operation. The only check it's doing is that the folder must contain both a package.json as well as a tsconfig.json
 
 
+## isSensibleProject (exported const)
 
+## isWorkspaceRoot (exported const)
 
+simple sync function to check if a folder is the root of a workspace (not operation but a workspace)
 
-## getRootPath
 
-Max. indexation depth: 5, 
+## makeRelative (exported const)
 
-Gets project path, or a folder in the root that is convention
+Makes a path relative using proper parsing
 
-### Returns: string
+Resulting path will apply the paths conventions
+- no slash at the end
+- no slash at the beginning
 
 
+## osRootFoldersConst (exported const)
 
+can only be accessed in the OS
 
 
+## osRootFolders (exported const)
 
+## projectRootFoldersConst (exported const)
 
-### Arguments
+can be accessed in projects as well as in the OS
 
-#### name (optional): object
 
+## projectRootFolders (exported const)
 
-
-```md
-if not specified, will return project root path
-```
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-
-
-
-#### config (optional): object
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| manualProjectRoot (optional) | string |  |
-
-
-## isProjectRoot
-
-Max. indexation depth: 2, 
-
-simple sync function to check if a folder is the root of a project (not operation but a workspace)
-
-### Returns: boolean
-
-
-
-
-
-
-
-### Arguments
-
-#### folderPath: string
-
-
-
-
-
-
-
-## isSensibleProject
-
-Max. indexation depth: 2, 
-
-
-
-### Returns: boolean
-
-
-
-
-
-
-
-### Arguments
-
-#### folderPath (optional): string
-
-
-
-
-
-
+## test (unexported const)
 

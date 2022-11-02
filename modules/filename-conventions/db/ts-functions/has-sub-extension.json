@@ -1,0 +1,94 @@
+{
+  "createdAt": 1666259759221,
+  "updatedAt": 1666259759221,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259759221,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/hasSubExtension.ts",
+  "commentsInside": [],
+  "rawText": " (\n  srcRelativeFileId: string,\n  subExtensions: string | string[],\n  /**\n   * if true, also returns true if the extension is the complete name of the file\n   */\n  includeRootName?: boolean\n): boolean => {\n  const subExtensionsArray = makeArray(subExtensions);\n  const parts = srcRelativeFileId.split(\".\");\n  const isSinglePart = parts.length === 1;\n  const subExtension = parts.pop()!;\n  const includesSubExtension = subExtensionsArray.includes(subExtension);\n  const isCounting = includeRootName ? true : !isSinglePart;\n  const has = isCounting && includesSubExtension;\n  return has;\n}",
+  "name": "hasSubExtension",
+  "slug": "has-sub-extension",
+  "parameters": [
+    {
+      "name": "srcRelativeFileId",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "subExtensions",
+      "schema": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "includeRootName",
+      "schema": {
+        "type": "boolean",
+        "description": "if true, also returns true if the extension is the complete name of the file"
+      },
+      "simplifiedSchema": {
+        "fullComment": "if true, also returns true if the extension is the complete name of the file",
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "Returns true if a fileid includes one of the specified subextensions.",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 656,
+    "lines": 17,
+    "bytes": 656,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 39,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "ablwogvgbuuovhjalmomvong"
+}

@@ -1,0 +1,106 @@
+{
+  "createdAt": 1667378790178,
+  "updatedAt": 1667378790178,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378790178,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/deprecated.ts",
+  "commentsInside": [],
+  "rawText": " (\n  slug: string,\n  basePath: string\n): FolderPath[] => {\n  return findFilesRecursively({\n    basePath,\n    match: (fileName) =>\n      fileName === slug ||\n      fileName === slug + \"s\" ||\n      fileName.endsWith(`.${slug}`) ||\n      fileName.endsWith(`.${slug}s`),\n  });\n}",
+  "name": "findSensibleFiles",
+  "slug": "find-sensible-files",
+  "parameters": [],
+  "description": "DEPRECATED:\n\nthis is sensible-specific",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/control-fs/fs-util/src/types\").FolderPath[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relativeFolder": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "path": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          }
+        },
+        "required": [
+          "path"
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [
+              {
+                "name": "relativeFolder",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 312,
+    "lines": 15,
+    "bytes": 312,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "rkvhfsqothwyptpeejyfzxoh"
+}

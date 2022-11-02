@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666513263176,
+  "updatedAt": 1666513263176,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513263176,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/object-merge.ts",
+  "commentsInside": [],
+  "rawText": " <T>(\n  config: T | undefined,\n  defaults: T | undefined\n) => {\n  const parameters = Object.keys({\n    ...config,\n    ...defaults,\n  }) as (keyof T)[];\n\n  const mergedConfig = parameters.reduce(\n    (getConfig, p) => ({ ...getConfig, [p]: config?.[p] || defaults?.[p] }),\n    {} as Partial<T>\n  );\n  return mergedConfig;\n}",
+  "name": "mergeObjectParameters",
+  "slug": "merge-object-parameters",
+  "parameters": [],
+  "description": "merges two objects: a config object and a defaults object. If the config object has something missing, a default will be used from the defaults object.\n\nIn short: merges two objects, for every parameter, use the default as a fallback\n\nDEPRECATED: in favor of mergeObjects",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 593,
+    "lines": 19,
+    "bytes": 593,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 19,
+    "numberOfFiles": 1
+  },
+  "id": "numcfetflvdfulyixtbayztn"
+}

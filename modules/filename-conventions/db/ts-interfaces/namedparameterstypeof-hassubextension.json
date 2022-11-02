@@ -1,0 +1,83 @@
+{
+  "createdAt": 1666259759059,
+  "updatedAt": 1666259759059,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259759059,
+  "id": "namedparameterstypeof-hassubextension",
+  "name": "NamedParameters<typeof hasSubExtension>",
+  "slug": "namedparameterstypeof-hassubextension",
+  "operationRelativeTypescriptFilePath": "src/hasSubExtension.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "srcRelativeFileId": {
+          "type": "string"
+        },
+        "subExtensions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "includeRootName": {
+          "type": "boolean",
+          "description": "if true, also returns true if the extension is the complete name of the file"
+        }
+      },
+      "required": [
+        "srcRelativeFileId",
+        "subExtensions"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "srcRelativeFileId",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "subExtensions",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "includeRootName",
+          "required": false,
+          "schema": {
+            "fullComment": "if true, also returns true if the extension is the complete name of the file",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof hasSubExtension>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

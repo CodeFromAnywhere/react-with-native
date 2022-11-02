@@ -17,6 +17,8 @@ export const Select = <T extends unknown>({
   //unused atm
   children,
   className,
+  noPlaceholder,
+  placeholder,
   ios,
 }: SelectProps<T>) => {
   const [temporaryValue, setTemporaryValue] = useState("");
@@ -54,18 +56,28 @@ export const Select = <T extends unknown>({
         <span>
           <input
             list={id}
+            placeholder={
+              !noPlaceholder ? placeholder || "Type or select one" : undefined
+            }
             onChange={(event) => {
               const value = event.target.value;
 
               const foundOption = options.find((x) => x.value === value);
               if (foundOption) {
                 onChange?.(foundOption);
+                setTemporaryValue("");
+              } else {
+                setTemporaryValue(value);
               }
-
-              setTemporaryValue(value);
             }}
             className={className}
-            value={temporaryValue}
+            value={
+              temporaryValue && temporaryValue.length > 0
+                ? temporaryValue
+                : value?.value
+                ? String(value?.value)
+                : ""
+            }
           />
 
           <datalist placeholder={title} id={id}>

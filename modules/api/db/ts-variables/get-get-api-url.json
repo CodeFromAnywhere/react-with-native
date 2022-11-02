@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666260571233,
+  "updatedAt": 1666260571233,
+  "deletedAt": 0,
+  "createdFirstAt": 1666260571233,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getGetApiUrl",
+  "slug": "get-get-api-url",
+  "operationRelativeTypescriptFilePath": "src/getGetApiUrl.ts",
+  "type": {
+    "rawType": "(apiUrl: string, apiFunctionName: string, query: { [name: string]: string | string[] | undefined; }) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  apiUrl: string,\n  apiFunctionName: string,\n  query: { [name: string]: string[] | string | undefined }\n) => {\n  const ending = \"GetApi\";\n  const apiPath = apiFunctionName.slice(\n    0,\n    apiFunctionName.length - ending.length\n  );\n\n  const queryString = Object.keys(query).length > 0 ? toQueryString(query) : \"\";\n  const url = `${apiUrl}/${apiPath}${queryString}`;\n  return url;\n}",
+  "description": "gets an api url for a context get api\n\nreturns something like `[apiUrl]/[apiFunctionName][queryString]`",
+  "id": "ctdepvxjxnivjusmwkmumdir"
+}

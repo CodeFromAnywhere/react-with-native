@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getAssetDirectlyApiUrl=void 0;var api_1=require("api"),getAssetDirectlyApiUrl=function(e,t){return(0,api_1.getGetApiUrl)(e,"getAssetDirectlyGetApi",{projectRelativeAssetPath:t})};exports.getAssetDirectlyApiUrl=getAssetDirectlyApiUrl;
+//# sourceMappingURL=getAssetDirectlyApiUrl.js.map

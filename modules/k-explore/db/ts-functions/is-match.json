@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666259117417,
+  "updatedAt": 1666259117417,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259117417,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/explore.ts",
+  "commentsInside": [],
+  "rawText": " ({\n  exact,\n  searchContender,\n  searches,\n}: {\n  exact: boolean | undefined;\n  searches: string[];\n  searchContender: string;\n}) => {\n  return searches.length === 0\n    ? true\n    : exact\n    ? searches.includes(searchContender)\n    : searches.find((s) => searchContender.includes(s));\n}",
+  "name": "isMatch",
+  "slug": "is-match",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 289,
+    "lines": 15,
+    "bytes": 289,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 19,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "spbcjusnqzottcqlpfkwrffu"
+}

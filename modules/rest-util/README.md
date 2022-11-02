@@ -2,23 +2,25 @@
 
 rest-util (js operation)
 
-Size: 79 LOC, 2035 data characters, 
- 
-Imported dependencies:
 
-- From Core Libraries: none
-- From Packages: none
-- From Operations: makeArray
 
 # Outline
 
 ## Functions
 
 - [bodyFromQueryString](#bodyFromQueryString)
-- [isValidEntry](#isValidEntry)
-- [toQueryString](#toQueryString)
 - [getFirstQueryStrings](#getFirstQueryStrings)
 - [getQueryPart](#getQueryPart)
+- [isValidEntry](#isValidEntry)
+- [toQueryString](#toQueryString)
+
+## Variables
+
+- [bodyFromQueryString](#bodyfromquerystring)
+- [getFirstQueryStrings](#getfirstquerystrings)
+- [getQueryPart](#getquerypart)
+- [isValidEntry](#isvalidentry)
+- [toQueryString](#toquerystring)
 
 
 
@@ -26,54 +28,12 @@ Imported dependencies:
 
 ## bodyFromQueryString
 
-Max. indexation depth: 4, 
-
 converts a query string into an object that can be used as a body
+
 
 ### Returns: object
 
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-
-
-
-## isValidEntry
-
-Max. indexation depth: 1, 
-
-
-
-### Returns: boolean
-
-
-
-
-
-
-
-## toQueryString
-
-Max. indexation depth: 6, 
-
-
-
-### Returns: string
-
-
-
-
-
-
-
 ## getFirstQueryStrings
-
-Max. indexation depth: 2, 
 
 NB: doesn't work in node.
 
@@ -81,19 +41,19 @@ Query keys can be string or string[] or undefined.
 
 This function takes only the first string if it's an array...
 
-## Returns: unknown
+
+
 
 ## getQueryPart
 
-Max. indexation depth: 1, 
-
 creates a query-string with one key for all strings in an array
 
-## Returns: unknown
 
-### Arguments
 
-#### strings: array
+
+### Parameters (2)
+
+#### Parameter 1: strings: array
 
 - null: string
 
@@ -101,11 +61,41 @@ creates a query-string with one key for all strings in an array
 
 
 
-#### queryKey: string
+
+#### Parameter 2: queryKey: string
+
+## isValidEntry
+
+### Returns: object
+
+## toQueryString
+
+returns something like `?x=a&y=b&z=c`
 
 
 
+# Variables
+
+## bodyFromQueryString (exported const)
+
+converts a query string into an object that can be used as a body
 
 
+## getFirstQueryStrings (exported const)
 
+Query keys can be string or string[] or undefined.
+
+This function takes only the first string if it's an array...
+
+
+## getQueryPart (exported const)
+
+creates a query-string with one key for all strings in an array
+
+
+## isValidEntry (unexported const)
+
+## toQueryString (exported const)
+
+returns something like `?x=a&y=b&z=c`
 

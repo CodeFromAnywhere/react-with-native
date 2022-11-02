@@ -1,0 +1,66 @@
+{
+  "createdAt": 1666512746140,
+  "updatedAt": 1666512746140,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512746140,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/convention/getParentSlug.ts",
+  "commentsInside": [],
+  "rawText": " (\n  item: Storing<KeyValueMarkdownModelType>\n): string | undefined => {\n  const parentSlug: string | undefined =\n    item.categoryStackCalculated[item.categoryStackCalculated.length - 1];\n  return parentSlug;\n}",
+  "name": "getParentSlug",
+  "slug": "get-parent-slug",
+  "parameters": [
+    {
+      "name": "item",
+      "schema": {
+        "$ref": "#/definitions/Storing%3CKeyValueMarkdownModelType%3E"
+      },
+      "required": true
+    }
+  ],
+  "description": "get a parent slug without the parent_xxxSlug reference (uses the categoryStackCalculated)\n\ncan be undefined if the item has no parent",
+  "returnType": {
+    "rawType": "string | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 344,
+    "lines": 9,
+    "bytes": 344,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 38,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "erewaucayrytygmeyqmdqbis"
+}

@@ -1,0 +1,220 @@
+{
+  "createdAt": 1666262777989,
+  "updatedAt": 1666262777989,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262777989,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/kvmdDataMap.ts",
+  "commentsInside": [],
+  "rawText": " <\n  T extends { [key: string]: string | string[] | undefined }\n>(\n  data: KeyValueMarkdownModelType[],\n  {\n    keyName,\n    valueName,\n    categoryStackCalculatedName,\n    commentName,\n  }: {\n    /**\n     * key by default\n     */\n    keyName?: string;\n    /**\n     * value by default\n     */\n    valueName?: string;\n    /**\n     * comment by default\n     */\n    commentName?: string;\n    /**\n     * categoryStackCalculated by default\n     */\n    categoryStackCalculatedName?: string;\n  }\n): T[] => {\n  const newDataObject = data.map((item) => {\n    const newData = {\n      [keyName || \"name\"]: item.name,\n      [valueName || \"value\"]: item.value,\n      [commentName || \"comment\"]: item.comment,\n      [categoryStackCalculatedName || \"categoryStackCalculated\"]:\n        item.categoryStackCalculated,\n    } as T;\n\n    return newData;\n  });\n\n  return newDataObject;\n}",
+  "name": "kvmdDataMap",
+  "slug": "kvmd-data-map",
+  "parameters": [
+    {
+      "name": "data",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/KeyValueMarkdownModelType"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "fullComment": "handy model type for storing stuff in a KeyValue Markdown file. empty lines are omitted\n\nall you need to specify in the kvmd is the key and the value, separated by \":\"\n\nNB: there can be a `parent_modelNameSlug` key exposed that should refer to the parent slug",
+              "nb": "there can be a `parent_modelNameSlug` key exposed that should refer to the parent slug",
+              "properties": [
+                {
+                  "name": "id",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "same as slug\n\nused for compatibility with some general purpose functions\n\nNB: uniqueness is hard to enforce!",
+                    "nb": "uniqueness is hard to enforce!",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "name",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "key\n\nshould be english because it's kind of part of the codebase!",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "slug",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "calculated: slug for this key (kebab case form of the name)",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "value",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "value behind the semicolom (:). If not given, will be undefined.\n\nIf possible, will be parsed to a number, boolean, null or undefined... otherwise it's a string\n\ncan be any language that we can detect",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "comment",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "comment in html syntax. if not given, will be null",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "operationName",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                    "type": "null"
+                  }
+                },
+                {
+                  "name": "projectRelativePath",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "operationRelativePath",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "isHeaderCalculated",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "Calculated value indicating whether or not the item has children",
+                    "type": "boolean"
+                  }
+                }
+              ],
+              "type": "object"
+            },
+            "name": "KeyValueMarkdownModelType"
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    },
+    {
+      "name": "{\n    keyName,\n    valueName,\n    categoryStackCalculatedName,\n    commentName,\n  }",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "keyName": {
+            "type": "string",
+            "description": "key by default"
+          },
+          "valueName": {
+            "type": "string",
+            "description": "value by default"
+          },
+          "commentName": {
+            "type": "string",
+            "description": "comment by default"
+          },
+          "categoryStackCalculatedName": {
+            "type": "string",
+            "description": "categoryStackCalculated by default"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "keyName",
+            "required": false,
+            "schema": {
+              "fullComment": "key by default",
+              "type": "string"
+            }
+          },
+          {
+            "name": "valueName",
+            "required": false,
+            "schema": {
+              "fullComment": "value by default",
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentName",
+            "required": false,
+            "schema": {
+              "fullComment": "comment by default",
+              "type": "string"
+            }
+          },
+          {
+            "name": "categoryStackCalculatedName",
+            "required": false,
+            "schema": {
+              "fullComment": "categoryStackCalculated by default",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "DEPRECATED: probably never needed, unless I make it useful\n\nmapper function to give a kvmd data object other parameters.\n\nNB: not sure if this is useful. it would be useful if we could auto-generate the application of this function for multiple db models.",
+  "returnType": {
+    "rawType": "T[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {}
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1120,
+    "lines": 46,
+    "bytes": 1120,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 46,
+    "numberOfFiles": 1
+  },
+  "id": "zeusbjhrfceywjxngkonhonf"
+}

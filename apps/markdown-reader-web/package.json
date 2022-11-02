@@ -1,19 +1,31 @@
 {
+  "createdAt": 1662709577330,
+  "updatedAt": 1662709577330,
+  "deletedAt": 0,
+  "createdFirstAt": 1662709577330,
   "name": "markdown-reader-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "start": "next start -p 4204",
+    "dev": "next dev -p 4204",
+    "copyStaticAssets": "copyStaticAssets",
     "build": "next build",
+    "export": "next export",
     "lint": "next lint"
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.2.1",
+    "@floating-ui/react-dom-interactions": "^0.10.1",
     "@headlessui/react": "^1.6.2",
+    "fs-orm": "1.0.1",
+    "fs-util": "1.0.5",
+    "get-path": "0.0.1",
+    "markdown-reader-ui": "0.0.0",
+    "next": "12.3.1",
     "next-transpile-modules": "^9.0.0",
     "nightwind": "^1.1.12",
     "react": "17.0.2",
-    "next": "12.1.6",
     "react-datepicker": "^4.8.0",
     "react-datetime": "^3.1.1",
     "react-dom": "17.0.2",
@@ -21,15 +33,21 @@
     "react-query": "^3.39.0",
     "react-with-native": "*",
     "react-with-native-form": "*",
-    "react-with-native-router": "*",
+    "react-with-native-router": "1.0.14",
     "react-with-native-store": "*",
-    "rehype-highlight": "^5.0.2",
-    "markdown-reader-ui": "*"
+    "read-markdown-file": "0.0.1",
+    "rehype-highlight": "^5.0.2"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.3.0",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24"
+  },
+  "slug": "markdown-reader-web",
+  "id": "oqRhxGziXSELxSxM",
+  "sensible": {
+    "hasGeneratedDependencies": false,
+    "appPort": 4204
   }
 }

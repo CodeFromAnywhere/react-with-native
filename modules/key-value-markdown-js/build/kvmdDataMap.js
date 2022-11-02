@@ -6,5 +6,5 @@
  *
  * NB: not sure if this is useful. it would be useful if we could auto-generate the application of this function for multiple db models.
  */
-var kvmdDataMap=function(a,e){var t=e.keyName,m=e.valueName,r=e.categoryStackName,o=e.commentName,c=a.map((function(a){var e;return(e={})[t||"name"]=a.name,e[m||"value"]=a.value,e[o||"comment"]=a.comment,e[r||"categoryStack"]=a.categoryStack,e}));return c};exports.kvmdDataMap=kvmdDataMap;
+var kvmdDataMap=function(a,e){var t=e.keyName,m=e.valueName,c=e.categoryStackCalculatedName,r=e.commentName,o=a.map((function(a){var e;return(e={})[t||"name"]=a.name,e[m||"value"]=a.value,e[r||"comment"]=a.comment,e[c||"categoryStackCalculated"]=a.categoryStackCalculated,e}));return o};exports.kvmdDataMap=kvmdDataMap;
 //# sourceMappingURL=kvmdDataMap.js.map

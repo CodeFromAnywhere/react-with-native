@@ -1,0 +1,56 @@
+{
+  "createdAt": 1666259860912,
+  "updatedAt": 1666259860912,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259860912,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "dbConfig",
+  "slug": "db-config",
+  "operationRelativeTypescriptFilePath": "src/test-db.ts",
+  "type": {
+    "rawType": "import(\"/Users/king/King/operations/tools/database/fs-orm/build/types\").DbConfig<import(\"/Users/king/King/operations/tools/database/database/src/test-db\").TestModels>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "modelQueryConfig": {
+          "type": "object",
+          "properties": {}
+        },
+        "defaultQueryConfig": {}
+      },
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "modelQueryConfig",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "defaultQueryConfig",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "value": "{\n  modelQueryConfig: {\n    CsvTestModel: { dbStorageMethod: \"csv\" },\n\n    JsonMultipleTestModel: { dbStorageMethod: \"jsonMultiple\" },\n    DefaultTestModel: { dbStorageMethod: \"jsonSingle\" },\n\n    MarkdownTestModel: { dbStorageMethod: \"markdown\" },\n    KeyValueMarkdownTestModel: { dbStorageMethod: \"keyValueMarkdown\" },\n\n    // real models\n    OperationIndex: { dbStorageMethod: \"jsonSingle\" },\n    OperationConfig: {\n      dbStorageMethod: \"markdown\",\n      operationRelativePath: \"OPERATION.md\",\n    },\n    TsConfig: {\n      dbStorageMethod: \"jsonSingle\",\n      operationRelativePath: \"tsconfig.json\",\n    },\n    PackageJson: {\n      dbStorageMethod: \"jsonSingle\",\n      operationRelativePath: \"package.json\",\n    },\n  },\n}",
+  "description": "",
+  "id": "rkyabkmsgzwdjqwqclkvbyle"
+}

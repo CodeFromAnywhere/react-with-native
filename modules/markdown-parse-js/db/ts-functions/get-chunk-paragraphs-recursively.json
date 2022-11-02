@@ -1,0 +1,117 @@
+{
+  "createdAt": 1667379655042,
+  "updatedAt": 1667379655042,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379655042,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getChunkParagraphsRecursively.ts",
+  "commentsInside": [],
+  "rawText": " (\n  chunk: MarkdownChunk\n): string[] => {\n  const childrenParagraphs =\n    chunk.children?.map(getChunkParagraphsRecursively).flat() || [];\n  const thisParagraph = chunk.content;\n  const paragraphs = [thisParagraph, ...childrenParagraphs].filter(notEmpty);\n  return paragraphs;\n}",
+  "name": "getChunkParagraphsRecursively",
+  "slug": "get-chunk-paragraphs-recursively",
+  "parameters": [
+    {
+      "name": "chunk",
+      "schema": {
+        "$ref": "#/definitions/MarkdownChunk"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "content",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "title",
+            "required": false,
+            "schema": {
+              "fullComment": "NB: title can also be an empty string (\"\")",
+              "nb": "title can also be an empty string (\"\")",
+              "type": "string"
+            }
+          },
+          {
+            "name": "children",
+            "required": false,
+            "schema": {
+              "fullComment": "all content until the next title. it's either a content array if there's any titles found, or a string[] if it's paragraphs",
+              "items": [
+                {
+                  "schema": {
+                    "circularRefName": "MarkdownChunk",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "MarkdownChunk"
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Get all paragraphs (`content` values) recursively from a `MarkdownChunk`",
+  "returnType": {
+    "rawType": "string[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "allOf": [
+          {
+            "transform": [
+              "trim"
+            ]
+          },
+          {
+            "minLength": 1
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 352,
+    "lines": 9,
+    "bytes": 352,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 39,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "zcurdecdpxcwfbyvtnvzxfka"
+}

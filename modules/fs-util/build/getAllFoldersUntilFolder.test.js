@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var getAllFoldersUntilFolder_1=require("./getAllFoldersUntilFolder");console.log((0,getAllFoldersUntilFolder_1.getAllFoldersUntilFolder)(__dirname));
+//# sourceMappingURL=getAllFoldersUntilFolder.test.js.map

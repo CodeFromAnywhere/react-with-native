@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379216318,
+  "updatedAt": 1667379216318,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379216318,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "wrapInTextIfNeeded",
+  "slug": "wrap-in-text-if-needed",
+  "operationRelativeTypescriptFilePath": "src/util/util.tsx",
+  "type": {
+    "rawType": "(children: any, textClassName?: string | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(children: any, textClassName?: string) => {\n  return typeof children === \"string\" ? (\n    <Text className={textClassName}>{children}</Text>\n  ) : (\n    children\n  );\n}",
+  "description": "",
+  "id": "jasqxncksijuwujcfojflcxq"
+}

@@ -1,0 +1,142 @@
+{
+  "createdAt": 1666261655087,
+  "updatedAt": 1666261655087,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261655087,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "UI",
+  "slug": "ui",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "{ bareInput: string; textInput: string; input: string; selectInput: string; dateInput: string; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "bareInput": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "textInput": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "input": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "selectInput": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "dateInput": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "bareInput",
+        "textInput",
+        "input",
+        "selectInput",
+        "dateInput"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "bareInput",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "textInput",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "input",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "selectInput",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "dateInput",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "value": "{\n  bareInput: bareInputClass,\n  textInput: `${inputClass} py-4`,\n  input: `${inputClass} py-4`,\n  // NB: py doens't work for a select-input on safari\n  selectInput: `${inputClass} bg-white h-9`,\n  dateInput: `${inputClass} py-3`,\n}",
+  "description": "",
+  "id": "puxwjtxothsqnczvtqogdkid"
+}

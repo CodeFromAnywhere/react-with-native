@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263145929,
+  "updatedAt": 1666263145929,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263145929,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getQueryPart",
+  "slug": "get-query-part",
+  "operationRelativeTypescriptFilePath": "src/url-util.ts",
+  "type": {
+    "rawType": "(strings: string[], queryKey: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(strings: string[], queryKey: string) =>\n  strings.map((v) => `${queryKey}=${v}`).join(\"&\")",
+  "description": "creates a query-string with one key for all strings in an array",
+  "id": "frfkbiuykoggbuwunlufuwty"
+}

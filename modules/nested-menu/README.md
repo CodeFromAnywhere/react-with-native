@@ -1,108 +1,118 @@
 # Nested menu
 
-nested-menu (undefined operation)
+nested-menu (ui-es5 operation)
 
-Size: undefined LOC, 
- 
-Imported dependencies:
 
-- From Core Libraries: none
-- From Packages: none
-- From Operations: none
 
 # Outline
 
 ## Functions
 
-- [NestedMenu](#NestedMenu)
+- [getKeysAtPathFromNestedObject](#getKeysAtPathFromNestedObject)
 - [NestedMenuItem](#NestedMenuItem)
+- [NestedMenu](#NestedMenu)
 - [nestedPathObjectToNestedMenuRecursive](#nestedPathObjectToNestedMenuRecursive)
-- [reduceQueryPathsRecursively](#reduceQueryPathsRecursively)
 - [queryPathsArrayToNestedPathObject](#queryPathsArrayToNestedPathObject)
+- [reduceQueryPathsRecursively](#reduceQueryPathsRecursively)
+- [useExpanded](#useExpanded)
+
+## Interfaces
+
+- [ExpandedObject](#expandedobject)
+- [NestedObject](#nestedobject)
+- [NestedPathObject](#nestedpathobject)
+
+## Variables
+
+- [getKeysAtPathFromNestedObject](#getkeysatpathfromnestedobject)
+- [NestedMenuItem](#nestedmenuitem)
+- [nestedMenuStoreInitialValues](#nestedmenustoreinitialvalues)
+- [NestedMenu](#nestedmenu)
+- [nestedPathObjectToNestedMenuRecursive](#nestedpathobjecttonestedmenurecursive)
+- [queryPathsArrayToNestedPathObject](#querypathsarraytonestedpathobject)
+- [reduceQueryPathsRecursively](#reducequerypathsrecursively)
+- [{ StoreProvider, useStore }](#storeprovider-usestore)
+- [useExpanded](#useexpanded)
 
 
 
 # Functions
 
-## NestedMenu
+## getKeysAtPathFromNestedObject
 
-Max. indexation depth: 4, 
+Gets all children keys of a nested object at a certain (nested) location in the nested object
 
-General purpose nested menu component
+`nestedObject` should extend the NestedObject.
 
-TODO: support for expanded items
+The reduce is a bit vague, I need to  test this function further to make sure it does exactly what I want.
 
-## Returns: unknown
+
+
 
 ## NestedMenuItem
-
-Max. indexation depth: 8, 
 
 General purpose NestedMenuItem
 
 TODO: make style customizable
 
-## Returns: unknown
+
+
+
+## NestedMenu
+
+General purpose nested menu component
+
+Please make sure that you also wrap your app with `MenuStoreProvider`, or this will crash...!
+
+
+
 
 ## nestedPathObjectToNestedMenuRecursive
 
-Max. indexation depth: 3, 
-
 Transform a nested path object into a nested menu (MenuType), recursively
 
-## Returns: unknown
-
-### Arguments
-
-#### nestedPathObject: object
 
 
 
-```md
-your nested path object that you want to create a menu for
-```
+## queryPathsArrayToNestedPathObject
+
+Handy function to transform an array of `querypaths` into a nested menu, assuming you want to create a new sub-menu for every path
+
+May also work for relative filePaths
+
+Input:
+
+["hello/world","hello/moon","hello/sun"]
+
+Output:
+
+{
+"hello":{
+"moon":null,
+"world":null,
+"sun":null
+}
+}
 
 
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
 
 
+### Parameters (1)
 
-#### pathStack (optional): array
+#### Parameter 1: queryPaths: array
 
 - null: string
 
-```md
-used for recursion to get the final url (defaults to empty array)
-```
+
 
 
 
 
 ## reduceQueryPathsRecursively
 
-Max. indexation depth: 3, 
+### Parameters (2)
 
-
-
-### Returns: object
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-
-
-
-### Arguments
-
-#### queryPaths: array
+#### Parameter 1: queryPaths: array
 
 - null: string
 
@@ -110,48 +120,98 @@ Properties:
 
 
 
-#### initialValue: object
 
+#### Parameter 2: initialValue: object
 
+## useExpanded
 
-```md
+### Parameters (1)
+
+#### Parameter 1: queryPath (optional): string
+
+# Interfaces
+
+## ExpandedObject
+
+## NestedObject
+
+## NestedPathObject
+
 A different way to represent a path array in a nested object of folders
-```
 
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-
-
-
-## queryPathsArrayToNestedPathObject
-
-Max. indexation depth: 2, 
-
-Handy function to transform an array of querypaths into a nested menu, assuming you want to create a new sub-menu for every path
-
-### Returns: object
+{
+"folderName": {
+"file1": null,
+"file2": null
+},
+"folderName2": {
+"file1": null,
+"file2": null
+}
+}
 
 
 
 
 
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
 
 
+# Variables
 
-### Arguments
+## getKeysAtPathFromNestedObject (exported const)
 
-#### queryPaths: array
+Gets all children keys of a nested object at a certain (nested) location in the nested object
 
-- null: string
+`nestedObject` should extend the NestedObject.
+
+The reduce is a bit vague, I need to  test this function further to make sure it does exactly what I want.
 
 
+## NestedMenuItem (exported const)
+
+General purpose NestedMenuItem
+
+TODO: make style customizable
 
 
+## nestedMenuStoreInitialValues (exported const)
+
+## NestedMenu (exported const)
+
+General purpose nested menu component
+
+Please make sure that you also wrap your app with `MenuStoreProvider`, or this will crash...!
+
+
+## nestedPathObjectToNestedMenuRecursive (exported const)
+
+Transform a nested path object into a nested menu (MenuType), recursively
+
+
+## queryPathsArrayToNestedPathObject (exported const)
+
+Handy function to transform an array of `querypaths` into a nested menu, assuming you want to create a new sub-menu for every path
+
+May also work for relative filePaths
+
+Input:
+
+["hello/world","hello/moon","hello/sun"]
+
+Output:
+
+{
+"hello":{
+"moon":null,
+"world":null,
+"sun":null
+}
+}
+
+
+## reduceQueryPathsRecursively (exported const)
+
+## { StoreProvider, useStore } (exported const)
+
+## useExpanded (exported const)
 

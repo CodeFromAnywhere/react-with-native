@@ -1,0 +1,24 @@
+{
+  "createdAt": 1666260569375,
+  "updatedAt": 1666260569375,
+  "deletedAt": 0,
+  "createdFirstAt": 1666260569375,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "api",
+  "slug": "api",
+  "operationRelativeTypescriptFilePath": "src/api.ts",
+  "type": {
+    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/api/api-types/build/api-types\").ApiTypeWithoutConfig",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "value": "mergeObjectsArray(\n  functionApiKeys.map((fnName) => {\n    const config: ApiConfig = { apiUrl };\n    const apiWithConfigFunction = (...parameters: any[]) =>\n      untypedApiFunction(fnName, config, ...parameters);\n    const objectPart = { [fnName]: apiWithConfigFunction };\n\n    return objectPart;\n  })\n) as unknown as ApiTypeWithoutConfig",
+  "description": "This object contains an api function for every function in the backend\n\n\nNB: only use this if you can access localStorage of the browser or the app. This means this won't work in node or in getStaticProps functions or so",
+  "id": "tkledtggfhmqcinzgtyvzsjy"
+}

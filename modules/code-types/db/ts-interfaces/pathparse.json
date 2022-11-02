@@ -1,0 +1,56 @@
+{
+  "createdAt": 1667379863037,
+  "updatedAt": 1667379863037,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379863037,
+  "id": "pathparse",
+  "name": "PathParse",
+  "slug": "pathparse",
+  "operationRelativeTypescriptFilePath": "src/PathMetaData.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * object to represent a folder or file path in different ways\n *\n * NB: doesn't include the absolute path so the indexes can be exported easily witout creating incorrect paths\n */\nexport type PathParse = {\n  /**\n   * relative file or folder path from the project root\n   */\n  relativePathFromProjectRoot: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "object to represent a folder or file path in different ways\n\nNB: doesn't include the absolute path so the indexes can be exported easily witout creating incorrect paths",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "relativePathFromProjectRoot": {
+          "type": "string",
+          "description": "relative file or folder path from the project root"
+        }
+      },
+      "required": [
+        "relativePathFromProjectRoot"
+      ],
+      "additionalProperties": false,
+      "description": "object to represent a folder or file path in different ways\n\nNB: doesn't include the absolute path so the indexes can be exported easily witout creating incorrect paths"
+    },
+    "simplifiedSchema": {
+      "fullComment": "object to represent a folder or file path in different ways\n\nNB: doesn't include the absolute path so the indexes can be exported easily witout creating incorrect paths",
+      "nb": "doesn't include the absolute path so the indexes can be exported easily witout creating incorrect paths",
+      "properties": [
+        {
+          "name": "relativePathFromProjectRoot",
+          "required": true,
+          "schema": {
+            "fullComment": "relative file or folder path from the project root",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "PathParse",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259118132,
+  "updatedAt": 1666259118132,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259118132,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "explorePreset",
+  "slug": "explore-preset",
+  "operationRelativeTypescriptFilePath": "src/explore.ts",
+  "type": {
+    "rawType": "(preset: \"src\" | \"packages\" | \"markdown\" | \"todo\" | \"docs\" | \"git\", config?: import(\"/Users/king/King/operations/tools/control-project/k-explore/src/explore\").BaseConfig) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  preset: \"packages\" | \"markdown\" | \"todo\" | \"docs\" | \"src\" | \"git\",\n  config?: BaseConfig\n) => {\n  const basePath = config?.basePath;\n\n  const searchConfigs: SearchConfig[] =\n    preset === \"packages\"\n      ? [\n          {\n            basePath,\n            search: \"package.json\",\n            exact: true,\n            extension: \"json\",\n            ignore: generatedFolders,\n          },\n        ]\n      : preset === \"markdown\"\n      ? [\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            ignore: generatedFolders,\n          },\n        ]\n      : preset === \"todo\"\n      ? // finds all `*.todo.md`,` todo/**/*.md` and returns the path + content\n\n        [\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            search: \"/todo/\",\n            searchLevel: \"filePath\",\n            ignore: generatedFolders,\n          },\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            search: \"todo.md\",\n            exact: true,\n            searchLevel: \"fileName\",\n            ignore: generatedFolders,\n          },\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            subExtension: \"todo\",\n            exact: false,\n            searchLevel: \"fileName\",\n            ignore: generatedFolders,\n          },\n        ]\n      : preset === \"docs\"\n      ? [\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            search: \"/docs/\",\n            searchLevel: \"filePath\",\n            ignore: generatedFolders,\n          },\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            search: \"readme.md\",\n            exact: true,\n            searchLevel: \"fileName\",\n            ignore: generatedFolders,\n          },\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            subExtension: [\"readme\"],\n            exact: false,\n            searchLevel: \"fileName\",\n            ignore: generatedFolders,\n          },\n        ]\n      : preset === \"src\"\n      ? [\n          {\n            basePath,\n            searchLevel: \"folder\",\n            exact: true,\n            search: \"src\",\n            doNotExploreMatch: true,\n            ignore: generatedFolders,\n          },\n        ]\n      : [];\n\n  const textJsons = exploreMultiple(searchConfigs);\n  return textJsons;\n}",
+  "description": "",
+  "id": "veldputpbkpokjmmdwbtcgmx"
+}

@@ -1,0 +1,56 @@
+{
+  "createdAt": 1666262320933,
+  "updatedAt": 1666262320933,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262320933,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/removeExtensionsFromPath.ts",
+  "commentsInside": [],
+  "rawText": " (relativePath: string): string => {\n  const chunks = trimSlashes(relativePath).split(\"/\");\n\n  const chunksWithoutNumbers = chunks.map(removeNumberPrefix);\n\n  // could be file\n  const lastChunkIndex = chunksWithoutNumbers.length - 1;\n\n  const lastChunk = chunksWithoutNumbers[lastChunkIndex];\n  const parts = lastChunk.split(\".\");\n  const lastPart = parts[parts.length - 1];\n\n  if (availableExtensions.includes(lastPart)) {\n    // remove extension\n    parts.pop();\n    chunksWithoutNumbers[lastChunkIndex] = parts.join(\".\");\n  }\n\n  const simplifiedPath = chunksWithoutNumbers.join(\"/\");\n\n  return simplifiedPath;\n}",
+  "name": "removeExtensionsFromPath",
+  "slug": "remove-extensions-from-path",
+  "parameters": [
+    {
+      "name": "relativePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "- Removes numbers from file or foldernames in a path.\n- Removes extension of files\n- Returns the new path without numbers and without extension\n\nWorks for files and folders",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 786,
+    "lines": 26,
+    "bytes": 786,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 26,
+    "numberOfFiles": 1
+  },
+  "id": "hofhlabylcsclarybssqzjsk"
+}

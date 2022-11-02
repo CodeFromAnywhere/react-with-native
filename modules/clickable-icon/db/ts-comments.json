@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1666261773120,
+    "updatedAt": 1666261773120,
+    "deletedAt": 0,
+    "createdFirstAt": 1666261773120,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/ClickableIcon.tsx",
+    "comment": "Renders a simple clickable icon with some styling\n\nIcon can be either an icon (Svg src) or emoji (string)",
+    "rawStatement": "export const ClickableIcon = (button: ClickableIconType) => {\n  return (\n    <Button\n      className=\"flex flex-col items-center\"\n      onClick={button.disabled ? undefined : button.onClick}\n    >\n      {button.icon ? (\n        <Svg\n          src={button.icon}\n          width={24}\n          height={24}\n          className={button.disabled ? \"text-gray-500\" : \"text-black\"}\n        />\n      ) : button.emoji ? (\n        <P\n          className={`text-xl ${\n            button.disabled ? \"opacity-50\" : \"hover:scale-110\"\n          }`}\n        >\n          {button.emoji}\n        </P>\n      ) : null}\n    </Button>\n  );\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 9,
+    "lastLine": 13,
+    "id": "zvvuhntmoldgeeusfmjhnhzq"
+  }
+]

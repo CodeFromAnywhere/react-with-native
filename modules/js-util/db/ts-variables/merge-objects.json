@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513263372,
+  "updatedAt": 1666513263372,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513263372,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "mergeObjects",
+  "slug": "merge-objects",
+  "operationRelativeTypescriptFilePath": "src/object-merge.ts",
+  "type": {
+    "rawType": "<T extends { [key: string]: any; }>(...objects: any[]) => T | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends { [key: string]: any | undefined }>(\n  ...objects: (Partial<T> | undefined)[]\n): T | undefined => {\n  if (objects.length === 0) return;\n\n  const firstObject = objects[0];\n\n  const mergedObject = objects.reduce((previous, current) => {\n    if (!current) return previous;\n\n    const currentWithoutUndefined = omitUndefinedValues(current);\n\n    const newObject: Partial<T> | undefined = !previous\n      ? current\n      : { ...previous, ...currentWithoutUndefined };\n\n    return newObject;\n    // NB: we cannot guarantee this based on the input!\n  }, firstObject) as T;\n\n  return mergedObject;\n}",
+  "description": "merges multiple objects, overwriting the previous one with the next. Can be useful for configs where there are multiple layers of configs that overwrite each other.\n\nPlease note though, that only the root keys of the object are overwriting each other, so if there is nested datastructures, the last one with a specific key overwrites the previous ones copletely\n\nPlease note that you can provide partial objects as well, as long as you are sure that the final object is full, the type interface is correct.\n\nPlease note that if a latter object has a key which holds \"undefined\", it will NOT overwrite it. Anything else WILL",
+  "id": "cyvmkmibhzijwirefvyqcevw"
+}

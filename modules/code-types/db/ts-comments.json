@@ -1,0 +1,52 @@
+[
+  {
+    "createdAt": 1667379880027,
+    "updatedAt": 1667379880027,
+    "deletedAt": 0,
+    "createdFirstAt": 1667379880027,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/markdownParseToMarkdownModelType.ts",
+    "comment": "Tries to parse a date from a string\n- implements default behavior of `new Date` with a try catch\n- returns a unix timestamp (ms since 1970 AD)\n\nTODO: put in a better location... date-util?",
+    "rawStatement": "export const tryParseDate = (dateString: string): number | undefined => {\n  try {\n    return new Date(dateString).valueOf();\n  } catch {}\n};",
+    "parameters": {},
+    "types": [
+      "todo"
+    ],
+    "firstLine": 11,
+    "lastLine": 17,
+    "id": "bhvurkqmkedbvfjidpmahqaz"
+  },
+  {
+    "createdAt": 1667379880027,
+    "updatedAt": 1667379880027,
+    "deletedAt": 0,
+    "createdFirstAt": 1667379880027,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/markdownParseToMarkdownModelType.ts",
+    "comment": "First tries to look at the frontmatter value, this is leading because it is what the user sees and the file system of the os could be inconsistent\n\nIf this frontmatter doesn't exist, the markdownParse is checked for a date. This should be information collected from the file system\n\nIf that doesn't succeed, sometimes we'll set it to  the current timestamp",
+    "rawStatement": "export const parseMarkdownModelTimestamp = (\n  parameters: Frontmatter,\n  markdownParse: MarkdownParse,\n  parameterName:\n    | \"createdAt\"\n    | \"createdFirstAt\"\n    | \"updatedAt\"\n    | \"deletedAt\"\n    | \"openedAt\"\n): number => {\n  const parameterValue = parameters[parameterName];\n  const markdownParseValue = markdownParse[parameterName];\n\n  const parsedParameterValue =\n    typeof parameterValue === \"number\" && !isNaN(parameterValue)\n      ? parameterValue\n      : typeof parameterValue === \"string\"\n      ? tryParseDate(parameterValue)\n      : undefined;\n\n  const generatedValue =\n    parameterName === \"deletedAt\" || parameterName === \"openedAt\"\n      ? 0\n      : Date.now();\n\n  const parsedTimestamp =\n    parsedParameterValue !== undefined\n      ? parsedParameterValue\n      : markdownParseValue !== undefined\n      ? markdownParseValue\n      : generatedValue;\n\n  return parsedTimestamp;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 23,
+    "lastLine": 29,
+    "id": "foeqkmcuniadudtnobuadgkk"
+  },
+  {
+    "createdAt": 1667379880027,
+    "updatedAt": 1667379880027,
+    "deletedAt": 0,
+    "createdFirstAt": 1667379880027,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/markdownParseToMarkdownModelType.ts",
+    "comment": "makes a markdownModelType from a markdownParse.",
+    "rawStatement": "export const markdownParseToMarkdownModelType = (\n  markdownParse: MarkdownParse | null\n): Storing<MarkdownModelType> | null => {\n  if (!markdownParse) return null;\n\n  const { parameters, raw, fileName } = markdownParse;\n\n  const name = parameters.name ? String(parameters.name) : fileName!;\n  const slug = kebabCase(name);\n  const id = parameters.id ? String(parameters.id) : generateId();\n  const createdAt = parseMarkdownModelTimestamp(\n    parameters,\n    markdownParse,\n    \"createdAt\"\n  );\n  const createdFirstAt = parseMarkdownModelTimestamp(\n    parameters,\n    markdownParse,\n    \"createdFirstAt\"\n  );\n  const updatedAt = parseMarkdownModelTimestamp(\n    parameters,\n    markdownParse,\n    \"updatedAt\"\n  );\n  const deletedAt = parseMarkdownModelTimestamp(\n    parameters,\n    markdownParse,\n    \"deletedAt\"\n  );\n\n  const openedAt = parseMarkdownModelTimestamp(\n    parameters,\n    markdownParse,\n    \"openedAt\"\n  );\n\n  const markdownModelType: Storing<MarkdownModelType> = {\n    ...parameters,\n    id,\n    createdAt,\n    createdFirstAt,\n    deletedAt,\n    updatedAt,\n    openedAt,\n    markdown: raw,\n    name,\n    slug,\n  };\n\n  return markdownModelType;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 64,
+    "lastLine": 66,
+    "id": "yrdwofqmkvhhdcfxrzuzacau"
+  }
+]

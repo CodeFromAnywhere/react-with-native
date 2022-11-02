@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263144411,
+  "updatedAt": 1666263144411,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263144411,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "toQueryString",
+  "slug": "to-query-string",
+  "operationRelativeTypescriptFilePath": "src/rest-util.ts",
+  "type": {
+    "rawType": "(query?: any) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(query?: any) => {\n  const hasQuery =\n    query && Object.entries(query)?.filter(isValidEntry).length > 0;\n  return hasQuery\n    ? \"?\" +\n        Object.entries(query)\n          .filter(isValidEntry)\n          .map(([key, value]) => {\n            const encodedValue = encodeURIComponent(String(value));\n            return `${key}=${encodedValue}`;\n          })\n          .join(\"&\")\n    : \"\";\n}",
+  "description": "returns something like `?x=a&y=b&z=c`",
+  "id": "ptmisncmvgtirtmqzllyonio"
+}

@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666513249399,
+  "updatedAt": 1666513249399,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513249399,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/array-modifications.ts",
+  "commentsInside": [],
+  "rawText": " <T>(array: T[], findFn: (item: T) => boolean) => {\n  const lastIndex = array\n    .map((item, index) => ({ item, index }))\n    .filter(({ item }) => findFn(item))\n    .pop()?.index;\n\n  return lastIndex;\n}",
+  "name": "findLastIndex",
+  "slug": "find-last-index",
+  "parameters": [],
+  "description": "finds the last index of an array where a certain filter holds true",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 270,
+    "lines": 8,
+    "bytes": 270,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 8,
+    "numberOfFiles": 1
+  },
+  "id": "sxurxmeuxnlazelibhsazmtd"
+}

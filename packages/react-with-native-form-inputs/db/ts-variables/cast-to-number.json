@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666261458920,
+  "updatedAt": 1666261458920,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261458920,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "castToNumber",
+  "slug": "cast-to-number",
+  "operationRelativeTypescriptFilePath": "src/number/number.tsx",
+  "type": {
+    "rawType": "(numberString: string | null | undefined) => number | null | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  numberString: string | null | undefined\n): null | undefined | number => {\n  if (numberString === null) return null;\n  if (numberString === undefined) return undefined;\n  if (numberString === \"\") return undefined;\n\n  const number = Number(numberString);\n\n  if (isNaN(number)) return undefined;\n\n  return number;\n}",
+  "description": "",
+  "id": "sdoophrncqzquxhvnknjlokw"
+}

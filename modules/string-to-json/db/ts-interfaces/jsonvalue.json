@@ -1,0 +1,62 @@
+{
+  "createdAt": 1666260926944,
+  "updatedAt": 1666260926944,
+  "deletedAt": 0,
+  "createdFirstAt": 1666260926944,
+  "id": "jsonvalue",
+  "name": "JSONValue",
+  "slug": "jsonvalue",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type JSONValue =\n  | null\n  | undefined\n  | boolean\n  | number\n  | string\n  | { [key: string]: JSONValue }\n  | JSONValue[];",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "not": {}
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/JSONValue"
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/JSONValue"
+          }
+        }
+      ]
+    },
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "JSONValue",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

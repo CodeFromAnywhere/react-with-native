@@ -1,0 +1,56 @@
+{
+  "createdAt": 1667378801227,
+  "updatedAt": 1667378801227,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378801227,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getFirstAvailableFilename.ts",
+  "commentsInside": [],
+  "rawText": " (absoluteFilePath: string): string => {\n  // If that doesn't exist, use that\n  if (!fs.existsSync(absoluteFilePath)) return absoluteFilePath;\n\n  const parsedPath = path.parse(absoluteFilePath);\n\n  const newFilename = `${oneUp(parsedPath.name)}${parsedPath.ext}`;\n  const newProposedPath = path.join(parsedPath.dir, newFilename);\n  return getFirstAvailableFilename(newProposedPath);\n}",
+  "name": "getFirstAvailableFilename",
+  "slug": "get-first-available-filename",
+  "parameters": [
+    {
+      "name": "absoluteFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 384,
+    "lines": 10,
+    "bytes": 384,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 38,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "ugsljluyetukgliuhvmyyxfl"
+}

@@ -1,0 +1,143 @@
+{
+  "createdAt": 1666264721893,
+  "updatedAt": 1666264721893,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264721893,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (\n  /**\n   * the message to be displayed to the user\n   */\n  message: string,\n  /**\n   * the configuration (optional)\n   */\n  config?: LogConfig,\n  /**\n   * Extra data the user needs to be able to see.\n   */\n  data?: any\n) => {\n  if (config?.type === \"debug\" && !DEBUG) return;\n  // TODO: figure out if I can also get the path, so I can easily figure out the operation and also store logs somewhere nice\n\n  // const caller = log.caller?.name;\n\n  // const titleParse = parseTitle(message);\n  // const title = config?.title || titleParse.title;\n  const color =\n    config?.type === \"error\"\n      ? options.FgRed\n      : config?.type === \"important\"\n      ? options.FgBlue\n      : config?.type === \"success\"\n      ? options.FgGreen\n      : config?.type === \"warning\"\n      ? options.FgYellow\n      : null;\n\n  if (color) {\n    console.log(`${color}%s${resetString}`, message);\n  } else {\n    console.log(message);\n  }\n\n  if (config?.type === \"error\") {\n    console.log(`(error happened in ${getCallerFileName()})`);\n  }\n\n  if (data) {\n    if (typeof data === \"object\") {\n      console.table(data);\n    } else {\n      console.log(data);\n    }\n  }\n}",
+  "name": "log",
+  "slug": "log",
+  "parameters": [
+    {
+      "name": "message",
+      "schema": {
+        "type": "string",
+        "description": "the message to be displayed to the user"
+      },
+      "simplifiedSchema": {
+        "fullComment": "the message to be displayed to the user",
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "config",
+      "schema": {
+        "$ref": "#/definitions/LogConfig",
+        "description": "the configuration (optional)"
+      },
+      "simplifiedSchema": {
+        "fullComment": "the configuration (optional)\n\n",
+        "properties": [
+          {
+            "name": "title",
+            "required": false,
+            "schema": {
+              "fullComment": "The title of this log. If not given, a title will still be parsed from your message by taking the first sentence.",
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "debug",
+                "error",
+                "warning",
+                "success",
+                "important",
+                "default"
+              ],
+              "fullComment": "how it should look and feel for the user\n\nhow should it look and feel?",
+              "type": "string"
+            }
+          },
+          {
+            "name": "customConfig",
+            "required": false,
+            "schema": {
+              "fullComment": "Overwrite the global log config\n\na logging configuration object that you can set using a file in the root of your operation or project.",
+              "properties": [
+                {
+                  "name": "showDebug",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "showDefault",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "sayTitles",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "logFolder",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Folder where logs can be stored. If i can access the caller location this can be the operation db.",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    },
+    {
+      "name": "data",
+      "schema": {
+        "description": "Extra data the user needs to be able to see."
+      },
+      "simplifiedSchema": {
+        "fullComment": "Extra data the user needs to be able to see.",
+        "properties": [],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "Log a message with a special type",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1177,
+    "lines": 50,
+    "bytes": 1177,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 50,
+    "numberOfFiles": 1
+  },
+  "id": "usuewfrlbsvlwroqzuslevgr"
+}

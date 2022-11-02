@@ -1,0 +1,61 @@
+{
+  "createdAt": 1666259074123,
+  "updatedAt": 1666259074123,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259074123,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/isOperation.ts",
+  "commentsInside": [],
+  "rawText": " (absoluteFolderPath: string): boolean => {\n  const packageJsonPath = path.join(absoluteFolderPath, \"package.json\");\n  const existsPackageJson = fs.existsSync(packageJsonPath);\n  const tsConfigPath = path.join(absoluteFolderPath, \"tsconfig.json\");\n  const existsTsConfig = fs.existsSync(tsConfigPath);\n  // NB: must have these two in order to be an operation at all\n  if (!existsPackageJson || !existsTsConfig) {\n    return false;\n  }\n  return true;\n}",
+  "name": "isOperation",
+  "slug": "is-operation",
+  "parameters": [
+    {
+      "name": "absoluteFolderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Checks whether or not an absolute path contains an operation. The only check it's doing is that the folder must contain both a package.json as well as a tsconfig.json",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 617,
+    "lines": 11,
+    "bytes": 617,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 56,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "quojibtaoicpdzcemhtnwbdv"
+}

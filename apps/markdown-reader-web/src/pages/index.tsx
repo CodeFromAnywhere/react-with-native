@@ -1,5 +1,5 @@
 import { pagesObject } from "markdown-reader-ui";
-import { pathGetStaticProps } from "../pathGetStaticProps";
+import { markdownReaderGetStaticProps } from "markdown-reader-functions";
 
 export default pagesObject.index;
-export const getStaticProps = pathGetStaticProps;
+export const getStaticProps = markdownReaderGetStaticProps;

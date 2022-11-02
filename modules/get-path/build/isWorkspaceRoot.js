@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.isWorkspaceRoot=void 0;var fs_util_1=require("fs-util"),try_parse_json_1=require("try-parse-json"),isWorkspaceRoot=function(s){var e=fs_util_1.path.join(s,"package.json");if(fs_util_1.fs.existsSync(e)){var o=(0,try_parse_json_1.tryParseJson)(fs_util_1.fs.readFileSync(e,"utf8")),r=null==o?void 0:o.sensible,i=(null==r?void 0:r.isSensibleProject)||!1;if(o&&o.workspaces)return{isSensibleProject:i,isWorkspaceRoot:!0}}};exports.isWorkspaceRoot=isWorkspaceRoot;
+//# sourceMappingURL=isWorkspaceRoot.js.map

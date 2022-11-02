@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666512739301,
+  "updatedAt": 1666512739301,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512739301,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/convention/getDatabaseFiles.ts",
+  "commentsInside": [],
+  "rawText": " async (manualProjectRoot: string) => {\n  const operationBasePaths = await exploreOperationFolders({\n    basePath: getPathsWithOperations({ manualProjectRoot }),\n  });\n\n  const operationsObject = mergeObjectsArray(\n    operationBasePaths.map((operationBasePath) => {\n      return {\n        [getLastFolder(operationBasePath)]: makeRelative(\n          operationBasePath,\n          manualProjectRoot\n        ),\n      };\n    })\n  );\n\n  return operationsObject;\n}",
+  "name": "calculateOperationsObject",
+  "slug": "calculate-operations-object",
+  "parameters": [
+    {
+      "name": "manualProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Needed in case of manual project root, otherwise use SDK!\n\nReturns project relative operation base paths",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 562,
+    "lines": 20,
+    "bytes": 562,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "krcktantglyakxesumslyvpu"
+}

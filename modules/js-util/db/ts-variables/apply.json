@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513252701,
+  "updatedAt": 1666513252701,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513252701,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "apply",
+  "slug": "apply",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "<T>(functions: ((input: T) => T)[], value: T) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T>(functions: ((input: T) => T)[], value: T) => {\n  return functions.reduce((val, fn) => {\n    return fn(val);\n  }, value);\n}",
+  "description": "function that takes an array of functions and applies them one by one, on the value or the result of the previous function. Only possible if the type of the value stays the same.",
+  "id": "vgqqbzvmbgckewezxcpwznox"
+}

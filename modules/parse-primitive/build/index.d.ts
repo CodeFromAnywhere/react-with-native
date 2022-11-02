@@ -1,3 +1,2 @@
-import { parsePrimitive } from "./parsePrimitive";
-export { parsePrimitive };
+export * from "./parsePrimitive";
 //# sourceMappingURL=index.d.ts.map

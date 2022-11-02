@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259058696,
+  "updatedAt": 1666259058696,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259058696,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "hasDependency",
+  "slug": "has-dependency",
+  "operationRelativeTypescriptFilePath": "src/getOperationClassification.ts",
+  "type": {
+    "rawType": "(packageJson: import(\"/Users/king/King/operations/tools/types/code-types/build/PackageJson\").PackageJson, dependency: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(packageJson: PackageJson, dependency: string) => {\n  return getAllPackageJsonDependencies(packageJson).includes(dependency);\n}",
+  "description": "",
+  "id": "losigrzywzqlddehtdlxxfuq"
+}

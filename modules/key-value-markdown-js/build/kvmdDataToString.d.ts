@@ -1,4 +1,4 @@
-import { KeyValueMarkdownModelType } from "common-types";
+import { KeyValueMarkdownModelType } from "model-types";
 /**
  * parses KeyValueMarkdownModelType into a string which can be part of a new markdown file
  *

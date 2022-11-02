@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263123814,
+  "updatedAt": 1666263123814,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263123814,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "tryParseJson",
+  "slug": "try-parse-json",
+  "operationRelativeTypescriptFilePath": "src/tryParseJson.ts",
+  "type": {
+    "rawType": "<T>(text: string, logParseError?: boolean | undefined) => T | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T>(\n  text: string,\n  logParseError?: boolean\n): T | null => {\n  try {\n    const jsonStringWithoutComments = text.replace(\n      removeCommentsRegex,\n      (m, g) => (g ? \"\" : m)\n    );\n    return JSON.parse(jsonStringWithoutComments) as T;\n  } catch (parseError) {\n    if (logParseError) console.log(\"JSON Parse error:\", parseError);\n    return null;\n  }\n}",
+  "description": "if text isn't json, returns null",
+  "id": "cznogkadbuonjsuymlykwjgd"
+}

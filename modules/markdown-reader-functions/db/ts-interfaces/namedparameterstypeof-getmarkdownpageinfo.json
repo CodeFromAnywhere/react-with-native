@@ -1,0 +1,111 @@
+{
+  "createdAt": 1666262307167,
+  "updatedAt": 1666262307167,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262307167,
+  "id": "namedparameterstypeof-getmarkdownpageinfo",
+  "name": "NamedParameters<typeof getMarkdownPageInfo>",
+  "slug": "namedparameterstypeof-getmarkdownpageinfo",
+  "operationRelativeTypescriptFilePath": "src/getMarkdownPageInfo.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "projectRoot": {
+          "type": "string"
+        },
+        "nestedPathObject": {
+          "$ref": "#/definitions/NestedPathObject"
+        },
+        "queryPath": {
+          "type": "string"
+        },
+        "contentPage": {
+          "$ref": "#/definitions/MarkdownReaderPage"
+        }
+      },
+      "required": [
+        "projectRoot",
+        "nestedPathObject",
+        "queryPath",
+        "contentPage"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "projectRoot",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "nestedPathObject",
+          "required": true,
+          "schema": {
+            "fullComment": "A different way to represent a path array in a nested object of folders\n\n{  \"folderName\": {    \"file1\": null,    \"file2\": null  },  \"folderName2\": {    \"file1\": null,    \"file2\": null  } }",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "queryPath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "contentPage",
+          "required": true,
+          "schema": {
+            "fullComment": "for markdown-reader-ui, the pages can be markdown files, but they can also be connected to models",
+            "properties": [
+              {
+                "name": "queryPath",
+                "required": true,
+                "schema": {
+                  "fullComment": "path to be used as the url. no preceding slash",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "filePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "if given, the md-file will be provided to the frontend\n\nproject relative path",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "isMenuItem",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, this item will be shown in the menu",
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getMarkdownPageInfo>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "createdAt": 1666261450023,
+  "updatedAt": 1666261450023,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261450023,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "DatetimeInput",
+  "slug": "datetime-input",
+  "operationRelativeTypescriptFilePath": "src/datetime/Datetime.tsx",
+  "type": {
+    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form-inputs/src/datetime/types\").DatetimeInputType>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "value": "({\n  extra,\n  value,\n  onChange,\n  ...props\n}) => {\n  const newExtra: DatetimeInputType[\"extra\"] = { ...extra, type: \"dateTime\" };\n  const [date, setDate] = useState<Date>(new Date());\n  //return <TextInput {...props} extra={newExtra} />;\n  const handleChange = (date: any) => {\n    console.warn(\"A date has been picked: \", date);\n    setDate(date);\n    onChange(date);\n  };\n  return (\n    <div>\n      {/* <div>Selected date: </div> */}\n      {/* <div>{date && date.toDateString() + ` ` + date.toLocaleTimeString()}</div> */}\n      {\n        // @ts-ignore\n        <Datetime\n          {...props}\n          value={value ? new Date(value) : new Date()}\n          initialValue={date}\n          onChange={(value: any) => {\n            handleChange(new Date(value));\n          }}\n          className={UI.dateInput}\n        />\n      }\n    </div>\n  );\n}",
+  "description": "",
+  "id": "lfltgvwilvuihwaotrpgbzdo"
+}

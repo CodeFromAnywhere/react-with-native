@@ -1,0 +1,159 @@
+{
+  "createdAt": 1667379862004,
+  "updatedAt": 1667379862004,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379862004,
+  "id": "parametername",
+  "name": "ParameterName",
+  "slug": "parametername",
+  "operationRelativeTypescriptFilePath": "src/ParameterName.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface ParameterName {\n  //extends SlugModelType\n  pattern: string;\n  example: string;\n  description: string;\n  type: SimplifiedSchemaType;\n  /** in case of array, what's in the array? */\n  secondaryType?: SimplifiedSchemaType;\n  contentType: ContentType[];\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "type": "string"
+        },
+        "example": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/SimplifiedSchemaType"
+        },
+        "secondaryType": {
+          "$ref": "#/definitions/SimplifiedSchemaType",
+          "description": "in case of array, what's in the array?"
+        },
+        "contentType": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "generated",
+              "markdown",
+              "text",
+              "number",
+              "date",
+              "time",
+              "datetime",
+              "toggle",
+              "select",
+              "selectMultiple"
+            ]
+          }
+        }
+      },
+      "required": [
+        "pattern",
+        "example",
+        "description",
+        "type",
+        "contentType"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "pattern",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "example",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "description",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "null"
+            ],
+            "fullComment": "",
+            "type": "string"
+          }
+        },
+        {
+          "name": "secondaryType",
+          "required": false,
+          "schema": {
+            "enum": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "null"
+            ],
+            "fullComment": "in case of array, what's in the array?\n\n",
+            "type": "string"
+          }
+        },
+        {
+          "name": "contentType",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "enum": [
+                    "generated",
+                    "markdown",
+                    "text",
+                    "number",
+                    "date",
+                    "time",
+                    "datetime",
+                    "toggle",
+                    "select",
+                    "selectMultiple"
+                  ],
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ParameterName",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

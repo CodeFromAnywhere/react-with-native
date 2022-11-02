@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 export declare type Casing = "camel" | "pascal" | "snake" | "kebab" | "capital" | "human";
+export declare const getDelimiter: (target: Casing) => "_" | " " | "-" | "";
+export declare const capitaliseFirstLetter: (word: string) => string;
 /**
  *
  */
@@ -17,10 +19,4 @@ export declare const humanCase: (text: string) => string;
  */
 export declare const lowerCaseArray: (text: string) => string[];
 export declare const test: () => Promise<boolean>;
-/**
- * this function does the same as kebabCase but it also does some more transformation on top
- *
- * TODO: make the tranformations that are done here into smaller util functions and make a clean function that can be ran before running every casing conversion (maybe in a config)
- */
-export declare function slugify(string: string): string;
 //# sourceMappingURL=general.d.ts.map

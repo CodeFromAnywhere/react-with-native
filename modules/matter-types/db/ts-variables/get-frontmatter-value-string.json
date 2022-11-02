@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263624383,
+  "updatedAt": 1666263624383,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263624383,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getFrontmatterValueString",
+  "slug": "get-frontmatter-value-string",
+  "operationRelativeTypescriptFilePath": "src/frontmatterParseToString.ts",
+  "type": {
+    "rawType": "(value: import(\"/Users/king/King/operations/tools/types/matter-types/src/frontmatterParseToString\").FrontmatterValue) => string | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  value: FrontmatterValue\n): string | null => {\n  if (value === undefined) return null;\n  if (value === null) return \"null\";\n  if (typeof value === \"number\") return String(value);\n  if (typeof value === \"boolean\") return String(value);\n  if (typeof value === \"boolean\") return String(value);\n  if (Array.isArray(value))\n    return value.map(quotedOrNot).map(stringifyNewlines).join(\", \");\n  if (typeof value === \"string\") return stringifyNewlines(quotedOrNot(value));\n  // NB: according to current support this should never happen\n  if (typeof value === \"object\") return `\"${JSON.stringify(value)}\"`;\n\n  return null;\n}",
+  "description": "",
+  "id": "uuzxblssjizarviwwixtbyti"
+}

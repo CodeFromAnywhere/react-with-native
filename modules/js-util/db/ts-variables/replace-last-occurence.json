@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513266350,
+  "updatedAt": 1666513266350,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513266350,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "replaceLastOccurence",
+  "slug": "replace-last-occurence",
+  "operationRelativeTypescriptFilePath": "src/replaceLastOccurence.ts",
+  "type": {
+    "rawType": "(string: string, searchValue: string, replaceValue: string) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  string: string,\n  searchValue: string,\n  replaceValue: string\n) => {\n  const [reversedString, reversedSearchValue, reversedReplaceValue] = [\n    string,\n    searchValue,\n    replaceValue,\n  ].map(reverseString);\n\n  const replacedReversedString = reversedString.replace(\n    reversedSearchValue,\n    reversedReplaceValue\n  );\n\n  const replacedString = reverseString(replacedReversedString);\n\n  return replacedString;\n}",
+  "description": "Replaces the last occerence of something in a string by something else\n\nExample:\n\n```ts\nconst result = replaceLastOccurence(\"theBestSlugSlugSlug\", \"Slug\", \"Slack\");\nconsole.log(result); // returns theBestSlugSlugSlack\n```\n\nNB: this is not the most efficient method, as it reverses the string by making it an array, twice. It can probably be done more efficiently by using `String.lastIndexOf`",
+  "id": "hxxmbxkppidugdgnedasonqo"
+}

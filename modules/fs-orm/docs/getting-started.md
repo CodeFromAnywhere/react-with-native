@@ -1,4 +1,4 @@
-To get started with fs-orm, please have a look at the `db` package. This package shows you how to initiate a database object.
+To get started with `fs-orm`, please have a look at the `db` package. This package shows you how to initiate a database object.
 
 It is using a package `sdk-db` which you can create yourself (or generate, based on the models found in your monorepo)
 

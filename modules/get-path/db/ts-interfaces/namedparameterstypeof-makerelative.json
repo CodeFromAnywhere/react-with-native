@@ -1,0 +1,64 @@
+{
+  "createdAt": 1666259077812,
+  "updatedAt": 1666259077812,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259077812,
+  "id": "namedparameterstypeof-makerelative",
+  "name": "NamedParameters<typeof makeRelative>",
+  "slug": "namedparameterstypeof-makerelative",
+  "operationRelativeTypescriptFilePath": "src/makeRelative.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "absolutePath": {
+          "type": "string",
+          "description": "absolute path of a file or folder without a slash at the end"
+        },
+        "baseFolderPath": {
+          "type": "string",
+          "description": "folder path without a slash at the end"
+        }
+      },
+      "required": [
+        "absolutePath",
+        "baseFolderPath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "absolutePath",
+          "required": true,
+          "schema": {
+            "fullComment": "absolute path of a file or folder without a slash at the end",
+            "type": "string"
+          }
+        },
+        {
+          "name": "baseFolderPath",
+          "required": true,
+          "schema": {
+            "fullComment": "folder path without a slash at the end",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof makeRelative>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513252702,
+  "updatedAt": 1666513252702,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513252702,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "sumAllKeys",
+  "slug": "sum-all-keys",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "<T extends { [key: string]: number | undefined; }>(objectArray: T[], keys: (keyof T)[]) => T",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends { [key: string]: number | undefined }>(\n  objectArray: T[],\n  keys: (keyof T)[]\n): T => {\n  const sumObject = objectArray.reduce((total, item) => {\n    // NB: not needed normally, but there seems to be some corrupt data here and there\n    if (!item) return total;\n    const newTotal = mergeObjectsArray(\n      keys.map((key) => {\n        const value1: number = total ? total[key] || 0 : 0;\n        const value2: number = item?.[key] || 0;\n\n        const sum =\n          (!total || total[key] === undefined) && item[key] === undefined\n            ? undefined\n            : value1 + value2;\n\n        return { [key]: sum };\n      })\n    ) as T;\n\n    return newTotal;\n  }, null as null | T) as T;\n\n  return sumObject;\n}",
+  "description": "sums all keys of an array of objects, assuming the objects have the same datastructure and assuming the values contain either numbers or undefined",
+  "id": "cczdswfwqkkzlrturkajqpqz"
+}

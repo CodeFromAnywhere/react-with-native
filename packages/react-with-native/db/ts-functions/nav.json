@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667379171661,
+  "updatedAt": 1667379171661,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379171661,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/html/Nav/Nav.native.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  native,\n  textClassName,\n  className,\n  children,\n}: NavType) => {\n  const tailwind = useTailwind();\n  const { style, ...nativeWithoutStyle } = native || {};\n  const tailwindStyle = className ? tailwind(trimClassName(className)) : {};\n\n  return (\n    <View\n      style={[\n        tailwindStyle,\n        style,\n        {\n          flexDirection: \"row\",\n          alignItems: \"center\",\n          elevation: 0,\n        },\n      ]}\n      {...nativeWithoutStyle}\n    >\n      {wrapInTextIfNeeded(children, textClassName)}\n    </View>\n  );\n}",
+  "name": "Nav",
+  "slug": "nav",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 540,
+    "lines": 27,
+    "bytes": 540,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 20,
+    "linesPerFile": 27,
+    "numberOfFiles": 1
+  },
+  "id": "ihaxfxjqcuzmalfiqfivmylw"
+}

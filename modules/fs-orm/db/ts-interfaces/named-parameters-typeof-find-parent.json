@@ -1,0 +1,61 @@
+{
+  "createdAt": 1664524626034,
+  "updatedAt": 1664524626034,
+  "deletedAt": 0,
+  "createdFirstAt": 1664524626034,
+  "id": "named-parameters-<typeof-find-parent->",
+  "name": "NamedParameters<typeof findParent>",
+  "slug": "named-parameters-typeof-find-parent",
+  "operationRelativeTypescriptFilePath": "src/alter/upsertKeyValueMarkdown.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "arrayItem": {
+          "$ref": "#/definitions/Storing%3CKeyValueMarkdownModelType%3E"
+        },
+        "newCategoryStack": {
+          "$ref": "#/definitions/CategoryStack"
+        }
+      },
+      "required": [
+        "arrayItem",
+        "newCategoryStack"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "newCategoryStack",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof findParent>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

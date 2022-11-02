@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667111124398,
+  "updatedAt": 1667111124398,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111124398,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "ensureToken",
+  "slug": "ensure-token",
+  "operationRelativeTypescriptFilePath": "src/token/ensureToken.ts",
+  "type": {
+    "rawType": "(name: string, newToken?: string | undefined, attachTokenToFilename?: boolean | undefined) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  name: string,\n  /**\n   * if given, is used for generating new token\n   *\n   * if already present, token is used from the name instead of this one\n   */\n  newToken?: string,\n  attachTokenToFilename?: boolean\n) => {\n  const { nameWithoutToken, token } = removeTokenIfPresent(\n    name,\n    attachTokenToFilename\n  );\n  const nameWithToken = addToken(\n    nameWithoutToken,\n    token || newToken,\n    attachTokenToFilename\n  );\n  return nameWithToken;\n}",
+  "description": "Remove the token (if present), then add it again",
+  "id": "wmnvzpvestqmhbdhrjtbfdfi"
+}

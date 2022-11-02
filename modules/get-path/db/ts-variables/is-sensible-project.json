@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259075714,
+  "updatedAt": 1666259075714,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259075714,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "isSensibleProject",
+  "slug": "is-sensible-project",
+  "operationRelativeTypescriptFilePath": "src/isSensibleProject.ts",
+  "type": {
+    "rawType": "(folderPath?: string | undefined) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(folderPath?: string): boolean => {\n  const realFolderPath = folderPath || getProjectRoot();\n  if (!realFolderPath) return false;\n\n  // get package-json and check sensible config\n  const packageJson = readJsonFileSync<PackageJson>(\n    path.join(realFolderPath, \"package.json\")\n  );\n\n  const sensibleConfig: SensibleConfig | undefined = packageJson?.sensible;\n  const isSensibleProject = sensibleConfig?.isSensibleProject || false;\n\n  return isSensibleProject;\n}",
+  "description": "",
+  "id": "wfuwjztdbtcizrgnzgwgkiuw"
+}

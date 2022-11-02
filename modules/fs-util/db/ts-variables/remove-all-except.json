@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667378807484,
+  "updatedAt": 1667378807484,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378807484,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "removeAllExcept",
+  "slug": "remove-all-except",
+  "operationRelativeTypescriptFilePath": "src/removeAllExcept.ts",
+  "type": {
+    "rawType": "(folderPath: string, config?: { ignore?: string[] | undefined; typeToRemove?: \"file\" | \"folder\" | undefined; } | undefined) => Promise<{ name: string; removed: boolean; }[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  folderPath: string,\n  config?: {\n    /**\n     * array of relative folder paths and file paths that should not be removed (include the extensions!)\n     */\n    ignore?: string[];\n    typeToRemove?: \"file\" | \"folder\";\n  }\n): Promise<\n  {\n    name: string;\n    removed: boolean;\n  }[]\n> => {\n  const filesAndFolders = await fs.readdir(folderPath, {\n    encoding: \"utf8\",\n    withFileTypes: true,\n  });\n\n  const removePromises = filesAndFolders.map((dirent) => {\n    if (config?.ignore?.find((x) => x.includes(dirent.name)))\n      return { name: dirent.name, removed: false };\n\n    if (config?.typeToRemove === \"file\" && !dirent.isFile())\n      return { name: dirent.name, removed: false };\n\n    if (config?.typeToRemove === \"folder\" && !dirent.isDirectory())\n      return { name: dirent.name, removed: false };\n\n    return fs\n      .rm(path.join(folderPath, dirent.name), { recursive: true })\n      .then(() => ({ name: dirent.name, removed: true }));\n  });\n\n  const promised = await Promise.all(removePromises);\n  return promised;\n}",
+  "description": "Removes everything inside a folder except some files and folders that can, optionally, be ignored for removal. does not remove the folder itself\n\nNB: make this work with subdirectories!",
+  "id": "whuqehmthhwzokmnpqklllyk"
+}

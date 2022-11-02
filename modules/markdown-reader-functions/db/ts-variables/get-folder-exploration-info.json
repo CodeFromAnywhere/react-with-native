@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262304852,
+  "updatedAt": 1666262304852,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262304852,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getFolderExplorationInfo",
+  "slug": "get-folder-exploration-info",
+  "operationRelativeTypescriptFilePath": "src/getFolderExplorationInfo.ts",
+  "type": {
+    "rawType": "(nestedPathObject: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/nested-menu/build/util/queryPathsArrayToNestedPathObject\").NestedPathObject, queryPath: string, projectRoot: string) => Promise<{ title: string | undefined; description: string | null; children: { title: string; firstParagraph: string | null; folderName: string; }[]; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  nestedPathObject: NestedPathObject,\n  queryPath: string,\n  projectRoot: string\n): Promise<{\n  title: string | undefined;\n  description: string | null;\n  children: {\n    title: string;\n    firstParagraph: string | null;\n    folderName: string;\n  }[];\n}> => {\n  const childrenKeys = getKeysAtPathFromNestedObject(\n    nestedPathObject,\n    queryPath\n  );\n\n  const potentialReadmePath = path.join(projectRoot, queryPath, \"README.md\");\n\n  const readmeMarkdownParse = fs.existsSync(potentialReadmePath)\n    ? await readMarkdownFile(potentialReadmePath)\n    : null;\n\n  const queryPathTitle = queryPath.split(\"/\").pop();\n  const readmeInfo = getMarkdownIntro(readmeMarkdownParse);\n  const title = readmeInfo.title || queryPathTitle;\n  const description = readmeInfo.firstParagraph;\n\n  const children = await Promise.all(\n    childrenKeys.map(async (folderName) => {\n      const potentialReadmePath = path.join(\n        projectRoot,\n        queryPath,\n        folderName,\n        \"README.md\"\n      );\n      const potentialOperationPath = path.join(\n        projectRoot,\n        queryPath,\n        folderName,\n        \"OPERATION.md\"\n      );\n\n      const pathToRead = fs.existsSync(potentialOperationPath)\n        ? potentialOperationPath\n        : fs.existsSync(potentialReadmePath)\n        ? potentialReadmePath\n        : undefined;\n\n      const markdownParse = pathToRead\n        ? await readMarkdownFile(pathToRead)\n        : null;\n\n      const { title, firstParagraph } = getMarkdownIntro(markdownParse);\n      return { title: title || folderName, firstParagraph, folderName };\n    })\n  );\n\n  return { title, description, children };\n}",
+  "description": "Gets exploration information about a folder\n\n- reads README.md in current folder\n- reads OPERATION.md in child folders, or README.md if that doesn't exist\n- gets an intro from those markdown files and returns that (uses `getMarkdownIntro`)",
+  "id": "ppcrphvpomhuhjjxfuiyzduw"
+}

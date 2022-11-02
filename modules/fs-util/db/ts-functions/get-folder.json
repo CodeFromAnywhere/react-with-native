@@ -1,0 +1,52 @@
+{
+  "createdAt": 1667378803634,
+  "updatedAt": 1667378803634,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378803634,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/js.ts",
+  "commentsInside": [],
+  "rawText": " (pathString: string) => {\n  const parsedPath = path.parse(pathString);\n  const hasExtension = parsedPath.ext.length > 0;\n\n  if (hasExtension) {\n    // NB: assume it's a file, let's avoid folders with dots!\n    const pathChunks = pathString.split(\"/\");\n    pathChunks.pop(); //remove the filename\n    return pathChunks.join(\"/\");\n  } else {\n    // NB: it's already a folder!\n    return pathString;\n  }\n}",
+  "name": "getFolder",
+  "slug": "get-folder",
+  "parameters": [
+    {
+      "name": "pathString",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "if the path exists:\n- if the pathString is a folder, that is returned.\n- if the pathstring is not a folder, returns the pathstring without the file suffix\n\nif the path doesn't exist: returns pathString witout last chunk (this would only work for file paths)",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 660,
+    "lines": 18,
+    "bytes": 660,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 37,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "id": "wrgkuudbwjqikgyxmedhrdqp"
+}

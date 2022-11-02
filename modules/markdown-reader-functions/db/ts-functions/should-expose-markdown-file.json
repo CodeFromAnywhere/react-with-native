@@ -1,0 +1,64 @@
+{
+  "createdAt": 1666262314251,
+  "updatedAt": 1666262314251,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262314251,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getPublicMarkdownFilePaths.ts",
+  "commentsInside": [],
+  "rawText": " (parameters: Frontmatter) => {\n  return !Boolean(parameters.isDraft) && parameters.privacy !== \"private\";\n}",
+  "name": "shouldExposeMarkdownFile",
+  "slug": "should-expose-markdown-file",
+  "parameters": [
+    {
+      "name": "parameters",
+      "schema": {
+        "$ref": "#/definitions/Frontmatter"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Our version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+        "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 108,
+    "lines": 3,
+    "bytes": 108,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 36,
+    "linesPerFile": 3,
+    "numberOfFiles": 1
+  },
+  "id": "znorzspucvcytiutkvvnclbp"
+}

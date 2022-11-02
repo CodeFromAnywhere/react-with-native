@@ -1,0 +1,66 @@
+{
+  "createdAt": 1667379370149,
+  "updatedAt": 1667379370149,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379370149,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/renderMarkdownTitle.tsx",
+  "commentsInside": [],
+  "rawText": " (title: string, level: number) => {\n  const levelSize =\n    level === 1\n      ? \"text-3xl\"\n      : level === 2\n      ? \"text-2xl\"\n      : level === 3\n      ? \"text-xl\"\n      : level === 4\n      ? \"text-lg\"\n      : level === 5\n      ? \"text-md\"\n      : level === 6\n      ? \"text-sm\"\n      : \"text-xs\";\n\n  return (\n    <P id={getImplicitId(title)} className={levelSize}>\n      {title}\n    </P>\n  );\n}",
+  "name": "renderMarkdownTitle",
+  "slug": "render-markdown-title",
+  "parameters": [
+    {
+      "name": "title",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "level",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    }
+  ],
+  "description": "renders a markdown title (level should be 1 for h1 and 6 for h6)",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 463,
+    "lines": 22,
+    "bytes": 463,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "drjttgygfoknhnopnfiwhyka"
+}

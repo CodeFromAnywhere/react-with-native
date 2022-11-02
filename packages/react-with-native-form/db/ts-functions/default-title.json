@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666261373855,
+  "updatedAt": 1666261373855,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261373855,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  title,\n  backButton,\n}: {\n  title?: string;\n  backButton?: () => void;\n}) => {\n  return title ? (\n    <Div className=\"flex items-center mb-10 \">\n      {backButton && (\n        <Div onClick={backButton} className={`p-4 cursor-pointer`}>\n          back\n        </Div>\n      )}\n      <H2 className=\"text-2xl font-bold\">{title}</H2>\n    </Div>\n  ) : null;\n}",
+  "name": "DefaultTitle",
+  "slug": "default-title",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element | null",
+    "typeDefinition": {
+      "optional": true,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 359,
+    "lines": 18,
+    "bytes": 359,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 20,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "id": "jcunlnzgrvtwwqlycipepfha"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513260729,
+  "updatedAt": 1666513260729,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513260729,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "mergeObjectsArray",
+  "slug": "merge-objects-array",
+  "operationRelativeTypescriptFilePath": "src/mergeObjectsArray.ts",
+  "type": {
+    "rawType": "<T extends { [key: string]: any; }>(objectsArray: T[]) => T",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends { [key: string]: any }>(\n  objectsArray: T[]\n): T => {\n  const result = objectsArray.reduce((previous, current) => {\n    return { ...previous, ...current };\n  }, {} as T);\n\n  return result;\n}",
+  "description": "TODO: find a way to return the correct type interface",
+  "id": "ktxhznlucgyrwpnwtbfjtiqf"
+}

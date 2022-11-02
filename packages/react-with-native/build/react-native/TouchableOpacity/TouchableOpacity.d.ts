@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { TouchableOpacityType } from "./TouchableOpacity.type";
 /**
  * button on web, pressable on react-native

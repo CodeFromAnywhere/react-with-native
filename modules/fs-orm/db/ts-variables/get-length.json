@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512731880,
+  "updatedAt": 1666512731880,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512731880,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getLength",
+  "slug": "get-length",
+  "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+  "type": {
+    "rawType": "(array: any[]) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(array: any[]) => {\n  if (!Array.isArray(array)) {\n    log(`Array is not array`, { type: \"error\" }, { array });\n    return 0;\n  }\n  return array.length;\n}",
+  "description": "Safely gets the length of something",
+  "id": "udtwgndtpgwqdyzluawyywxk"
+}

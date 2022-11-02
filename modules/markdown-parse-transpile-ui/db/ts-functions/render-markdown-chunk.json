@@ -1,0 +1,100 @@
+{
+  "createdAt": 1667379366086,
+  "updatedAt": 1667379366086,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379366086,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/renderMarkdownChunk.tsx",
+  "commentsInside": [],
+  "rawText": " (\n  chunk: MarkdownChunk,\n  config: MarkdownParseRenderConfig\n) => {\n  const title = chunk.title\n    ? renderMarkdownTitle(chunk.title, chunk.level)\n    : null;\n  return (\n    <Div>\n      {title}\n      {chunk.content ? renderMarkdownContent(chunk.content, config) : null}\n      {chunk.children?.map((chunk) => renderMarkdownChunk(chunk, config))}\n    </Div>\n  );\n}",
+  "name": "renderMarkdownChunk",
+  "slug": "render-markdown-chunk",
+  "parameters": [
+    {
+      "name": "chunk",
+      "schema": {
+        "$ref": "#/definitions/MarkdownChunk"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "content",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "title",
+            "required": false,
+            "schema": {
+              "fullComment": "NB: title can also be an empty string (\"\")",
+              "nb": "title can also be an empty string (\"\")",
+              "type": "string"
+            }
+          },
+          {
+            "name": "children",
+            "required": false,
+            "schema": {
+              "fullComment": "all content until the next title. it's either a content array if there's any titles found, or a string[] if it's paragraphs",
+              "items": [
+                {
+                  "schema": {
+                    "circularRefName": "MarkdownChunk",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "MarkdownChunk"
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "config",
+      "schema": {
+        "$ref": "#/definitions/MarkdownParseRenderConfig"
+      },
+      "required": true
+    }
+  ],
+  "description": "renders a MarkdownChunk interface",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 398,
+    "lines": 15,
+    "bytes": 398,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "njnzsoulpggmfzbuvayqdzwz"
+}

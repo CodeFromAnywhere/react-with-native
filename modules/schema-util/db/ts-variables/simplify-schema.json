@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666264378923,
+  "updatedAt": 1666264378923,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264378923,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "simplifySchema",
+  "slug": "simplify-schema",
+  "operationRelativeTypescriptFilePath": "src/simplifySchema.ts",
+  "type": {
+    "rawType": "(name: string | null, schema: import(\"/Users/king/King/operations/node_modules/@types/json-schema/index\").JSONSchema7, possibleRefs: { name: string; schema: import(\"/Users/king/King/operations/node_modules/@types/json-schema/index\").JSONSchema7; }[], rootStack: string[]) => import(\"/Users/king/King/operations/tools/types/code-types/build/SimplifiedSchema\").SimplifiedSchema | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  /** The name of the type interface, (this could be used as $ref). */\n  name: string | null,\n\n  /** The schema that needs to be simplified */\n  schema: JSONSchema7,\n\n  /** The array of other schemas found when crawling file this schema was found in. this also includes all refs to other type interfaces in all schemas in that file */\n  possibleRefs: {\n    /** the name of the schema, (without /definitions/ prefix like $ref) */\n    name: string;\n    schema: JSONSchema7;\n  }[],\n  /**\n   * This function is recursive. If we find any reference to another schema, we will add the name of the current schema to the rootStack and explore that schema.\n   */\n  rootStack: string[]\n): SimplifiedSchema | undefined => {\n  if (Array.isArray(schema.type)) {\n    // let's do this one later\n    log(\n      `I don't support this usecase (type is an array of multiple types)... ${schema.type.join(\n        \",\"\n      )}`,\n      {\n        type: \"debug\",\n      }\n    );\n  }\n  const type = Array.isArray(schema.type) ? schema.type[0] : schema.type;\n  const newRootStack = name ? rootStack.concat(name) : rootStack;\n  const refName = getRefLink(schema.$ref);\n\n  // NB: we already encountered this ref before, let's avoid infinite recursion here.\n\n  const isCircularRef = !!refName && rootStack.includes(refName);\n\n  if (refName && !isCircularRef) {\n    const refSchema = possibleRefs.find((r) => r.name === refName);\n    if (!refSchema) {\n      log(\n        \"Strange, ref was not present in the possible refs\",\n        {\n          type: \"debug\",\n        },\n        { possibleRefNames: possibleRefs.map((x) => x.name), refName }\n      );\n    }\n\n    const thisDescription = schema.description\n      ? `${schema.description}\\n\\n`\n      : \"\";\n    const mergedSchema = refSchema?.schema\n      ? {\n          ...refSchema.schema,\n          description: `${thisDescription}${\n            refSchema.schema.description || \"\"\n          }`,\n        }\n      : undefined;\n\n    return mergedSchema\n      ? simplifySchema(refName, mergedSchema, possibleRefs, newRootStack)\n      : undefined;\n  }\n\n  const fullComment = schema.description;\n\n  const commentTypeObject = findFirstCommentTypes(fullComment);\n  // TODO: Add all other `CommentType`s as properties\n  const simplifiedPrimitive = {\n    enum: schema.enum,\n    circularRefName: refName,\n    fullComment,\n    ...commentTypeObject,\n  };\n\n  if (type === \"boolean\") {\n    return { ...simplifiedPrimitive, type: \"boolean\" };\n  }\n\n  if (type === \"integer\" || type === \"number\") {\n    // NB: integers are also numbers\n    return { ...simplifiedPrimitive, type: \"number\" };\n  }\n\n  if (type === \"null\") {\n    return { ...simplifiedPrimitive, type: \"null\" };\n  }\n\n  if (type === \"string\") {\n    return { ...simplifiedPrimitive, type: \"string\" };\n  }\n\n  if (type === \"array\") {\n    const items = getSchemaItems(schema);\n\n    const simplifiedItems: SimplifiedSchemaItem[] = items\n      .map((item) => {\n        const itemName = getRefLink(item.$ref) || null;\n        const schema = simplifySchema(\n          itemName,\n          item,\n          possibleRefs,\n          name ? rootStack.concat(name) : rootStack\n        );\n        if (!schema) return;\n        return {\n          schema,\n          name: itemName,\n        };\n      })\n      .filter(notEmpty);\n\n    return {\n      ...simplifiedPrimitive,\n      items: simplifiedItems,\n      type: \"array\",\n    };\n  }\n\n  // NB: type must be an object here, it's the only possibility left...\n  // in case of objects\n\n  const properties = getProperties(schema);\n\n  const simplifiedProperties: SimplifiedSchemaProperty[] = properties\n    .map((property) => {\n      const schema = simplifySchema(\n        property.name,\n        property.schema,\n        possibleRefs,\n        newRootStack\n      );\n\n      if (!schema) return;\n\n      const possibleReferenceParameterNames =\n        getPossibleReferenceParameterNames(property.name);\n\n      const hasReferenceParameter = !!properties.find((x) =>\n        possibleReferenceParameterNames.includes(x.name)\n      );\n\n      // NB: if the property has a model reference, we just need the model reference, not the whole model. This is only for retreiving, it's not present in the database.\n      if (hasReferenceParameter) return;\n\n      return {\n        name: property.name,\n        required: property.required,\n        schema,\n      };\n    })\n    .filter(notEmpty);\n\n  return {\n    ...simplifiedPrimitive,\n    properties: simplifiedProperties,\n    type: \"object\",\n  };\n}",
+  "description": "Return a SimplifiedSchema by giving the JSONSchema7 schema, its name and a list of possible references in the JSONSchema.\n\nA SimplifiedSchema is a data structure that allows you to easily define type interfaces that need to build out forms.\n\n# Todo\n\nDual types aren't done right yet. I probably don't look at `anyOf` yet, which makes it result in an empty object.\n\nFor example, this one is problematic:\n\nINPUT:\n\n```json\n{\n\"schema\": {\n\"anyOf\": [\n{\"type\": \"string\"},\n{\"type\": \"array\",\"items\": {\"type\": \"string\"}}\n]\n},\n```\n\nOutput:\n```json\n{\n\"simplifiedSchema\": {\n\"properties\": [],\n\"type\": \"object\"\n},\n}\n```\n\nTo test this one, test `npx rebuildOperation filename-conventions`",
+  "id": "wifrcxfflruanhkdotobbhze"
+}

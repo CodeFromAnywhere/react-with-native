@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259125212,
+  "updatedAt": 1666259125212,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259125212,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "benchmark",
+  "slug": "benchmark",
+  "operationRelativeTypescriptFilePath": "src/test.ts",
+  "type": {
+    "rawType": "(amount?: number) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (amount: number = 100) => {\n  const key = `find src folders x${amount}`;\n  console.time(key);\n  let docs = await exploreOperationFolders({\n    basePath: getPathsWithOperations(),\n  });\n\n  console.timeEnd(key);\n  console.log(docs.length, \"folders found\", docs);\n}",
+  "description": "",
+  "id": "vkieuofbgoplimvscrsakyhn"
+}

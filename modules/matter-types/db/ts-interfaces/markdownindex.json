@@ -1,0 +1,75 @@
+{
+  "createdAt": 1666263622495,
+  "updatedAt": 1666263622495,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263622495,
+  "id": "markdownindex",
+  "name": "MarkdownIndex",
+  "slug": "markdownindex",
+  "operationRelativeTypescriptFilePath": "src/MarkdownIndex.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "/**\n * This could hold anything that we can index about a markdown-file\n *\n * It should probably also be posted in the markdown file itself as \"downmatter\", if that's a good idea\n */\nexport interface MarkdownIndex {\n  detectedLanguage: string;\n  labels: string[];\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "This could hold anything that we can index about a markdown-file\n\nIt should probably also be posted in the markdown file itself as \"downmatter\", if that's a good idea",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "detectedLanguage": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "detectedLanguage",
+        "labels"
+      ],
+      "additionalProperties": false,
+      "description": "This could hold anything that we can index about a markdown-file\n\nIt should probably also be posted in the markdown file itself as \"downmatter\", if that's a good idea"
+    },
+    "simplifiedSchema": {
+      "fullComment": "This could hold anything that we can index about a markdown-file\n\nIt should probably also be posted in the markdown file itself as \"downmatter\", if that's a good idea",
+      "properties": [
+        {
+          "name": "detectedLanguage",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "labels",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MarkdownIndex",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "createdAt": 1666512747460,
+  "updatedAt": 1666512747460,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512747460,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/convention/getWildcardDbFileLocations.ts",
+  "commentsInside": [],
+  "rawText": " async (options: {\n  modelName: string;\n  parsedPath: ParsedPath;\n  operationName: string | null;\n  projectRoot: string;\n  rootFolder: RootDbFolder;\n}): Promise<DbFileLocation[]> => {\n  const { modelName, operationName, parsedPath, projectRoot, rootFolder } =\n    options;\n  if (fs.existsSync(parsedPath.dir)) {\n    // if parsedPath ends with *, read everything in the folder\n    const fileNames: DbFileLocation[] = (await fs.readdir(parsedPath.dir))\n      .filter((fileName) => fileName.endsWith(parsedPath.ext))\n      .map((fileName) => {\n        const absolutePath = path.join(parsedPath.dir, fileName);\n        const projectRelativePath = absolutePath.substring(projectRoot.length);\n        const operationRelativePath = absolutePath.substring(\n          rootFolder.basePath.length\n        );\n        const dbFileLocation: DbFileLocation = {\n          modelName,\n          absolutePath,\n          operationName: rootFolder.operationName,\n          projectRelativePath,\n          operationRelativePath,\n        };\n\n        return dbFileLocation;\n      });\n\n    return fileNames;\n  }\n\n  return [];\n}",
+  "name": "getWildcardDbFileLocations__OLD",
+  "slug": "get-wildcard-db-file-locations-old",
+  "parameters": [
+    {
+      "name": "options",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "modelName": {
+            "type": "string"
+          },
+          "parsedPath": {
+            "$ref": "#/definitions/path.ParsedPath"
+          },
+          "operationName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "projectRoot": {
+            "type": "string"
+          },
+          "rootFolder": {
+            "$ref": "#/definitions/RootDbFolder"
+          }
+        },
+        "required": [
+          "modelName",
+          "parsedPath",
+          "operationName",
+          "projectRoot",
+          "rootFolder"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "modelName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectRoot",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "If it all seems good, I can delete this. This is the old method of looking just in the folder itself, it's replaced by looking in all subfolders as well, recursively.",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").DbFileLocation[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 1267,
+    "lines": 35,
+    "bytes": 1267,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 36,
+    "linesPerFile": 35,
+    "numberOfFiles": 1
+  },
+  "id": "czzxnwqtwlstarwlbaohxhxk"
+}

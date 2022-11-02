@@ -1,0 +1,102 @@
+{
+  "createdAt": 1667379860552,
+  "updatedAt": 1667379860552,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379860552,
+  "id": "sensibleconfig",
+  "name": "SensibleConfig",
+  "slug": "sensibleconfig",
+  "operationRelativeTypescriptFilePath": "src/PackageJson.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * Sensible-global configurations\n *\n * TODO: rename to `typerepo`\n */\nexport type SensibleConfig = {\n  /**\n   * put on to true if minify doesn't work, so it will be skipped by `rebuildOperation`\n   */\n  skipMinify?: boolean;\n  /**\n   * If true, this is the root of a typerepo\n   *\n   * TODO: check if we can deprecate this\n   */\n  isSensibleProject?: boolean;\n  /**\n   * If true, it means that this operation has dependency on one or more operations that have been generated. We need to know this because it can easily cause circular imports if we don't filter them out sometimes\n   */\n  hasGeneratedDependencies?: boolean;\n  /**\n   * If the operation exposes an app on a port (can be both a server or frontend), we can specify the port it should run on.\n   *\n   * This is especially useful to connect the port to something that's running.\n   *\n   * By convention, for King OS, these ports should be unique and on the 42xx range\n   */\n  appPort?: number;\n  /**\n   * If set to true, this operation will not be included into the SDKs\n   */\n  isNotSdkable?: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Sensible-global configurations\n\nTODO: rename to `typerepo`",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "skipMinify": {
+          "type": "boolean",
+          "description": "put on to true if minify doesn't work, so it will be skipped by `rebuildOperation`"
+        },
+        "isSensibleProject": {
+          "type": "boolean",
+          "description": "If true, this is the root of a typerepo\n\nTODO: check if we can deprecate this"
+        },
+        "hasGeneratedDependencies": {
+          "type": "boolean",
+          "description": "If true, it means that this operation has dependency on one or more operations that have been generated. We need to know this because it can easily cause circular imports if we don't filter them out sometimes"
+        },
+        "appPort": {
+          "type": "number",
+          "description": "If the operation exposes an app on a port (can be both a server or frontend), we can specify the port it should run on.\n\nThis is especially useful to connect the port to something that's running.\n\nBy convention, for King OS, these ports should be unique and on the 42xx range"
+        },
+        "isNotSdkable": {
+          "type": "boolean",
+          "description": "If set to true, this operation will not be included into the SDKs"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Sensible-global configurations\n\nTODO: rename to `typerepo`"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Sensible-global configurations\n\nTODO: rename to `typerepo`",
+      "todo": "rename to `typerepo`",
+      "properties": [
+        {
+          "name": "skipMinify",
+          "required": false,
+          "schema": {
+            "fullComment": "put on to true if minify doesn't work, so it will be skipped by `rebuildOperation`",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isSensibleProject",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, this is the root of a typerepo\n\nTODO: check if we can deprecate this",
+            "todo": "check if we can deprecate this",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "hasGeneratedDependencies",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, it means that this operation has dependency on one or more operations that have been generated. We need to know this because it can easily cause circular imports if we don't filter them out sometimes",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "appPort",
+          "required": false,
+          "schema": {
+            "fullComment": "If the operation exposes an app on a port (can be both a server or frontend), we can specify the port it should run on.\n\nThis is especially useful to connect the port to something that's running.\n\nBy convention, for King OS, these ports should be unique and on the 42xx range",
+            "type": "number"
+          }
+        },
+        {
+          "name": "isNotSdkable",
+          "required": false,
+          "schema": {
+            "fullComment": "If set to true, this operation will not be included into the SDKs",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "SensibleConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

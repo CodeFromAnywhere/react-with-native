@@ -1,0 +1,76 @@
+{
+  "createdAt": 1666259068632,
+  "updatedAt": 1666259068632,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259068632,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getRelativeLinkPath.ts",
+  "commentsInside": [],
+  "rawText": " (\n  absoluteFromFilePath: string,\n  absoluteToFilePath: string,\n  debug?: boolean\n): string => {\n  const commonAncestorPath = getCommonAncestor(\n    absoluteFromFilePath,\n    absoluteToFilePath\n  );\n\n  //1 - go from `absoluteFromPath` to `commonAncestorPath`\n  const commonAncestorRelativeFromPath = makeRelative(\n    absoluteFromFilePath,\n    commonAncestorPath\n  );\n  const commonAncestorRelativeToPath = makeRelative(\n    absoluteToFilePath,\n    commonAncestorPath\n  );\n\n  const foldersToGoBackAmount =\n    commonAncestorRelativeFromPath.split(\"/\").length - 1;\n\n  const backOrStart =\n    foldersToGoBackAmount === 0 ? \"./\" : \"../\".repeat(foldersToGoBackAmount);\n\n  //2 - go from `commonAncestorPath` to `absoluteToPath`\n  const relativeLinkPath = `${backOrStart}${commonAncestorRelativeToPath}`;\n\n  if (debug) {\n    console.log({\n      commonAncestorPath,\n      commonAncestorRelativeFromPath,\n      commonAncestorRelativeToPath,\n    });\n  }\n\n  return relativeLinkPath;\n}",
+  "name": "getRelativeLinkPath",
+  "slug": "get-relative-link-path",
+  "parameters": [
+    {
+      "name": "absoluteFromFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "absoluteToFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "debug",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "returns a relative link between two files",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1016,
+    "lines": 39,
+    "bytes": 1016,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 39,
+    "numberOfFiles": 1
+  },
+  "id": "llujcspqthjthgacwqxgmxyy"
+}

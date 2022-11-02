@@ -1,0 +1,81 @@
+{
+  "createdAt": 1666512420246,
+  "updatedAt": 1666512420246,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512420246,
+  "id": "uploadassetresult",
+  "name": "UploadAssetResult",
+  "slug": "uploadassetresult",
+  "operationRelativeTypescriptFilePath": "src/frontend-types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type UploadAssetResult = {\n  isSuccessful: boolean;\n  isUnauthorized?: boolean;\n  message?: string;\n  temporaryDestination?: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "isSuccessful": {
+          "type": "boolean"
+        },
+        "isUnauthorized": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "temporaryDestination": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "isSuccessful"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "isSuccessful",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isUnauthorized",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "message",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "temporaryDestination",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "UploadAssetResult",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

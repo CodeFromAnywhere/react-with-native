@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666263144078,
+  "updatedAt": 1666263144078,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263144078,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/rest-util.ts",
+  "commentsInside": [],
+  "rawText": " (\n  /**\n   * NB: everything AFTER The \"?\", so this should be the format: x=x&y=y&z=z&z=z2\n   */\n  query?: string\n): QueryableObject | undefined => {\n  if (!query) return;\n\n  const keyValueObjectArray = query.split(\"&\")?.map((x) => {\n    const [key, value] = x.split(\"=\");\n    return { key, value };\n  });\n\n  const all = keyValueObjectArray?.reduce((object, keyValue) => {\n    // NB: if that key already exists, let's make it an array and add this new value\n    if (object[keyValue.key]) {\n      object[keyValue.key] = [\n        ...makeArray(object[keyValue.key]),\n        keyValue.value,\n      ];\n      return object;\n    }\n    // Otherwise, just add the new key/value to the object.\n    return { ...object, [keyValue.key]: keyValue.value };\n  }, {} as QueryableObject);\n\n  return all;\n}",
+  "name": "bodyFromQueryString",
+  "slug": "body-from-query-string",
+  "parameters": [],
+  "description": "converts a query string into an object that can be used as a body",
+  "returnType": {
+    "rawType": "QueryableObject | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": true
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 853,
+    "lines": 28,
+    "bytes": 853,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "hhctrndsywxioonxfvlnodbk"
+}

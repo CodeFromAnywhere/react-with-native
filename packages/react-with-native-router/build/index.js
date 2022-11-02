@@ -1,5 +1,2 @@
-"use strict";
-// THIS FILE HAS BEEN GENERATED
-Object.defineProperty(exports,"__esModule",{value:!0}),exports.useRouter=exports.useNavigation=void 0;var useNavigation_1=require("./useNavigation");Object.defineProperty(exports,"useNavigation",{enumerable:!0,get:function(){return useNavigation_1.useNavigation}});var useRouter_1=require("./useRouter");Object.defineProperty(exports,"useRouter",{enumerable:!0,get:function(){return useRouter_1.useRouter}});
-// THANK YOU
+"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,i){void 0===i&&(i=r);var o=Object.getOwnPropertyDescriptor(t,r);o&&!("get"in o?!t.__esModule:o.writable||o.configurable)||(o={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,i,o)}:function(e,t,r,i){void 0===i&&(i=r),e[i]=t[r]}),__exportStar=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||__createBinding(t,e,r)};Object.defineProperty(exports,"__esModule",{value:!0}),__exportStar(require("./useNavigation"),exports),__exportStar(require("./useRouter"),exports);
 //# sourceMappingURL=index.js.map

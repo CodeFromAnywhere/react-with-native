@@ -1,5 +1,3 @@
-/// <reference types="node" />
-/// <reference types="react" />
 import { LinkProps } from "next/link";
 import { AType } from "react-with-native";
 /**

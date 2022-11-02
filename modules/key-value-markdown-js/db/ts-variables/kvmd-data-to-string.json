@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262779378,
+  "updatedAt": 1666262779378,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262779378,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "kvmdDataToString",
+  "slug": "kvmd-data-to-string",
+  "operationRelativeTypescriptFilePath": "src/kvmdDataToString.ts",
+  "type": {
+    "rawType": "(kvmdData: import(\"/Users/king/King/operations/tools/types/model-types/build/keyValueMarkdown\").KeyValueMarkdownModelType, previous: import(\"/Users/king/King/operations/tools/types/model-types/build/keyValueMarkdown\").KeyValueMarkdownModelType | undefined) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  kvmdData: KeyValueMarkdownModelType,\n  previous: KeyValueMarkdownModelType | undefined\n) => {\n  // headers only need a newline before it if it's not the first item (so there is a previous)\n  const newlineIfHeader = kvmdData.isHeaderCalculated && !!previous ? \"\\n\" : \"\";\n\n  const level = kvmdData.isHeaderCalculated\n    ? kvmdData.categoryStackCalculated.length + 1\n    : 0;\n\n  const headerPrefix = kvmdData.isHeaderCalculated\n    ? \"#\".repeat(level).concat(\" \")\n    : \"\";\n\n  const isFirstItem =\n    !kvmdData.isHeaderCalculated && previous?.isHeaderCalculated;\n  const itemPrefix = isFirstItem ? \"\\n\" : \"\";\n\n  const line = `${newlineIfHeader}${headerPrefix}${itemPrefix}${\n    kvmdData.name ? `${kvmdData.name}: ` : \"\"\n  }${kvmdData.value || \"\"}${\n    kvmdData.comment ? ` <!-- ${kvmdData.comment} -->` : \"\"\n  }\\n`;\n\n  return line;\n}",
+  "description": "parses KeyValueMarkdownModelType into a string which can be part of a new markdown file\n\nNB: we need to know the previous line as well because the header we need to print depends on it",
+  "id": "aocllrsqvhcsjougksczexbo"
+}

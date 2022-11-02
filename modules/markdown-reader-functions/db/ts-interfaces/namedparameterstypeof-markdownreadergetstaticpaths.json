@@ -1,0 +1,74 @@
+{
+  "createdAt": 1666262316869,
+  "updatedAt": 1666262316869,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262316869,
+  "id": "namedparameterstypeof-markdownreadergetstaticpaths",
+  "name": "NamedParameters<typeof markdownReaderGetStaticPaths>",
+  "slug": "namedparameterstypeof-markdownreadergetstaticpaths",
+  "operationRelativeTypescriptFilePath": "src/markdownReaderGetStaticPaths.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "$ref": "#/definitions/GetStaticPathsContext"
+        }
+      },
+      "required": [
+        "context"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "context",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "locales",
+                "required": false,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "defaultLocale",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof markdownReaderGetStaticPaths>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

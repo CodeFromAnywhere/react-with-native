@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666264528255,
+  "updatedAt": 1666264528255,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264528255,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "splitCasingDelimiters",
+  "slug": "split-casing-delimiters",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "(word: string) => string[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(word: string): string[] => {\n  const letters = word.split(\"\");\n  const allWords = letters.reduce(\n    (words, letter) => {\n      //get the last word, we know it's always defined because of the initial value of the reduce\n      const lastWord: string = words.pop()!;\n      //let's also get the last letter\n      const lastLetter = lastWord.substring(-1);\n      const lastLetterIsLowercase = lastLetter.toUpperCase() !== lastLetter;\n      const letterIsUppercase = letter.toUpperCase() === letter;\n      const createNewWord = lastLetterIsLowercase && letterIsUppercase;\n      const newSequence = createNewWord\n        ? [lastWord, letter]\n        : [`${lastWord}${letter}`];\n      const newWords = words.concat(newSequence);\n      return newWords;\n    },\n    [\"\"]\n  );\n\n  return allWords;\n  // if it was lowercase but it became upper, it's a new word\n}",
+  "description": "",
+  "id": "nswydjcozdbomziptcbhiulx"
+}

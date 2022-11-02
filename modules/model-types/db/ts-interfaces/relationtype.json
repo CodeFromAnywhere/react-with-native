@@ -1,0 +1,47 @@
+{
+  "createdAt": 1667379915212,
+  "updatedAt": 1667379915212,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379915212,
+  "id": "relationtype",
+  "name": "RelationType",
+  "slug": "relationtype",
+  "operationRelativeTypescriptFilePath": "src/RelationType.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * This probably doesn't work, but it would be great if it would. This way I'd like to say that any model can have keys that end with \"Id\". These keys should always refer to Ids from other models.\n * Also, if a model has a key like this, it is inferred that there is also a key without the Id suffix which does or doesn't cointain the actual model specified by the id.\n *\n * If this cannot be done in typescript, it can be convention, and we can create a linter for this.\n *\n * Wooh!\n *\n * ```\nconst relations: RelationType = {\n  helloId: \"hoi\",\n  byeId: \"bye\",\n};\n```\n\nThe above seems to be working fine, so it IS possible!\n\nTODO: think about it... should the name of the parameter be dependent on the strategy of how the model is stored? Maybe just call it all id, right? We can also make the index a string by just prepending a string to it.\n */\nexport type RelationType = {\n  [key: `${string}Id`]: Id | undefined;\n  [key: `${string}Slug`]: Slug | undefined;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "This probably doesn't work, but it would be great if it would. This way I'd like to say that any model can have keys that end with \"Id\". These keys should always refer to Ids from other models.\nAlso, if a model has a key like this, it is inferred that there is also a key without the Id suffix which does or doesn't cointain the actual model specified by the id.\n\nIf this cannot be done in typescript, it can be convention, and we can create a linter for this.\n\nWooh!\n\n```\nconst relations: RelationType = {\nhelloId: \"hoi\",\nbyeId: \"bye\",\n};\n```\n\nThe above seems to be working fine, so it IS possible!\n\nTODO: think about it... should the name of the parameter be dependent on the strategy of how the model is stored? Maybe just call it all id, right? We can also make the index a string by just prepending a string to it.",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Id"
+          },
+          {
+            "not": {}
+          }
+        ]
+      },
+      "description": "This probably doesn't work, but it would be great if it would. This way I'd like to say that any model can have keys that end with \"Id\". These keys should always refer to Ids from other models. Also, if a model has a key like this, it is inferred that there is also a key without the Id suffix which does or doesn't cointain the actual model specified by the id.\n\nIf this cannot be done in typescript, it can be convention, and we can create a linter for this.\n\nWooh!\n\n``` const relations: RelationType = { helloId: \"hoi\", byeId: \"bye\", }; ```\n\nThe above seems to be working fine, so it IS possible!\n\nTODO: think about it... should the name of the parameter be dependent on the strategy of how the model is stored? Maybe just call it all id, right? We can also make the index a string by just prepending a string to it."
+    },
+    "simplifiedSchema": {
+      "fullComment": "This probably doesn't work, but it would be great if it would. This way I'd like to say that any model can have keys that end with \"Id\". These keys should always refer to Ids from other models. Also, if a model has a key like this, it is inferred that there is also a key without the Id suffix which does or doesn't cointain the actual model specified by the id.\n\nIf this cannot be done in typescript, it can be convention, and we can create a linter for this.\n\nWooh!\n\n``` const relations: RelationType = { helloId: \"hoi\", byeId: \"bye\", }; ```\n\nThe above seems to be working fine, so it IS possible!\n\nTODO: think about it... should the name of the parameter be dependent on the strategy of how the model is stored? Maybe just call it all id, right? We can also make the index a string by just prepending a string to it.",
+      "todo": "think about it... should the name of the parameter be dependent on the strategy of how the model is stored? Maybe just call it all id, right? We can also make the index a string by just prepending a string to it.",
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "RelationType",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

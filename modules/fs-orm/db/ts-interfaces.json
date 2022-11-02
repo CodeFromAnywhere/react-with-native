@@ -1,0 +1,81 @@
+[
+  {
+    "createdAt": 1662927183061,
+    "updatedAt": 1662927183061,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927183061,
+    "id": "named-parameters-<typeof-upsert->",
+    "name": "NamedParameters<typeof upsert>",
+    "slug": "named-parameters-<typeof-upsert->",
+    "operationRelativeTypescriptFilePath": "src/alter/upsert.ts",
+    "hasGeneric": false,
+    "isExported": false,
+    "isOperationIndex": false,
+    "description": "",
+    "isDbModel": false,
+    "commentsInside": [],
+    "type": {
+      "typeDefinition": {
+        "type": "object",
+        "properties": {
+          "storedData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Storing%3CAugmentedAnyModelType%3E"
+            },
+            "description": "The items that were already there"
+          },
+          "storingItems": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Storing%3CAugmentedAnyModelType%3E"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Storing%3CAugmentedAnyModelType%3E"
+                }
+              }
+            ],
+            "description": "The items that need to be overwritten or inserted"
+          }
+        },
+        "required": [
+          "storedData",
+          "storingItems"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "storedData",
+            "required": true,
+            "schema": {
+              "description": "The items that were already there",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "storingItems",
+            "required": true,
+            "schema": {
+              "description": "The items that need to be overwritten or inserted",
+              "properties": [],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "typeCoverage": 0,
+      "rawType": "NamedParameters<typeof upsert>",
+      "isArray": false,
+      "isEnum": false,
+      "isEnumLiteral": false,
+      "isObject": false,
+      "isPrimitive": false
+    }
+  }
+]

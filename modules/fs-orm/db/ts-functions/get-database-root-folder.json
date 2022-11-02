@@ -1,0 +1,65 @@
+{
+  "createdAt": 1666512741200,
+  "updatedAt": 1666512741200,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512741200,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/convention/getDatabaseRootFolder.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  operationName: string | null | undefined,\n  manualProjectRoot?: string\n): Promise<string | undefined> => {\n  const projectRoot = manualProjectRoot || getProjectRoot();\n  if (!projectRoot) {\n    log(\"getDatabaseRootFolder: No project root found\");\n    process.exit(1);\n  }\n\n  if (!operationName) {\n    return projectRoot;\n  }\n\n  const operationBasePath = await getOperationPath(operationName, {\n    manualProjectRoot: projectRoot,\n  });\n\n  if (!operationBasePath) {\n    log(`Couldn't find operation base path for ${operationName}`, {\n      type: \"error\",\n    });\n  }\n\n  return operationBasePath;\n}",
+  "name": "getDatabaseRootFolder",
+  "slug": "get-database-root-folder",
+  "parameters": [
+    {
+      "name": "operationName",
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    },
+    {
+      "name": "manualProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Tries to get the root folder where the database folder can be found.\n\nIf an operationName is specified, this will be the operation base path\nIf not, this will be the project root.",
+  "returnType": {
+    "rawType": "Promise<string | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 786,
+    "lines": 29,
+    "bytes": 786,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 29,
+    "numberOfFiles": 1
+  },
+  "id": "vbtcrvakoyairwcobjzzmafc"
+}

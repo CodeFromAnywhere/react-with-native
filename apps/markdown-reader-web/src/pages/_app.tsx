@@ -1,12 +1,14 @@
 import { AppProps } from "next/app";
 
+import { StoreProvider } from "nested-menu";
 import Head from "next/head";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { pagesObject, pages, getPageTitle, Layout } from "markdown-reader-ui";
-import { useRouter } from "react-with-native-router";
-
+import {
+  publicEnvironmentVariables,
+  publicLocalEnvironmentVariables,
+} from "sdk-env-public";
 import "../globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-datetime/css/react-datetime.css";
@@ -18,6 +20,7 @@ import "markdown-parse-transpile-ui/css.css";
 
 import "react-with-native/css.css";
 import "react-with-native-router/css.css";
+import { MarkdownReaderPageProps } from "markdown-reader-types";
 
 const progress = new ProgressBar();
 
@@ -29,14 +32,17 @@ Router.events.on("routeChangeError", progress.finish);
 const queryClient = new QueryClient();
 
 // Only holds serverRuntimeConfig and publicRuntimeConfig
+export type RealAppProps = Omit<AppProps, "pageProps"> & {
+  pageProps: MarkdownReaderPageProps;
+};
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-  const path = router.route.slice(1);
-  const pageKey = (path === "" ? "index" : path) as keyof typeof pagesObject;
-  const page = pages.find((x) => x.key === pageKey);
-  const siteName = "Docs";
-  const title = page ? `${getPageTitle(page)} - ${siteName}` : siteName;
+function MyApp({ Component, pageProps }: RealAppProps) {
+  const siteName =
+    publicLocalEnvironmentVariables.markdownReaderTitle ||
+    publicEnvironmentVariables.markdownReaderTitle ||
+    "Docs";
+
+  const title = pageProps.title ? `${pageProps.title} - ${siteName}` : siteName;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -48,8 +54,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/default.min.css"
         />
       </Head>
-      {/* @ts-ignore */}
-      <Component {...pageProps} />
+      <StoreProvider>
+        <Component {...pageProps} />
+      </StoreProvider>
     </QueryClientProvider>
   );
 }

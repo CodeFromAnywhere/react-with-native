@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512745194,
+  "updatedAt": 1666512745194,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512745194,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getLocationPattern",
+  "slug": "get-location-pattern",
+  "operationRelativeTypescriptFilePath": "src/convention/getLocationPattern.ts",
+  "type": {
+    "rawType": "(dbStorageMethod: any, modelName: string, mergedConfig: import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").MergedQueryConfig) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  dbStorageMethod: DbStorageMethod,\n  modelName: string,\n  mergedConfig: MergedQueryConfig\n): string | undefined => {\n  const { operationRelativePath, projectRelativePath } = mergedConfig;\n\n  if (operationRelativePath) return operationRelativePath;\n  if (projectRelativePath) return projectRelativePath;\n\n  const fileOrFolderName = pluralize(kebabCase(modelName));\n  if (dbStorageMethod === \"jsonMultiple\") return `db/${fileOrFolderName}.json`;\n  if (dbStorageMethod === \"keyValueMarkdown\")\n    return `db/${fileOrFolderName}.md`;\n  if (dbStorageMethod === \"csv\") return `db/${fileOrFolderName}.csv`;\n\n  if (dbStorageMethod === \"jsonSingle\") return `db/${fileOrFolderName}/*.json`;\n  if (dbStorageMethod === \"markdown\") return `db/${fileOrFolderName}/*.md`;\n}",
+  "description": "Returns the pattern or an exact relative path that the file(s) should be stored at.\n\nIf a pattern contains a star at the place of the filename, it will search the folder recursively for all files with the extension in the pattern.\n\nReturning relative path has no preceding slash",
+  "id": "pvyojrvknrsypefhedozxkox"
+}

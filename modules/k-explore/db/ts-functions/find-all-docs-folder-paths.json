@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666259122538,
+  "updatedAt": 1666259122538,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259122538,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/find-folders.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  ignoreOperations?: boolean\n): Promise<string[]> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return [];\n  const isSensible = isSensibleProject(projectRoot);\n\n  const docsBasePath = isSensible ? projectRoot : getRootPath(\"operations\");\n  if (!docsBasePath) return [];\n\n  const docsFolderPaths = await findAllFoldersWithName({\n    basePath: docsBasePath,\n    folderName: \"docs\",\n    ignoreOperations,\n  });\n  return docsFolderPaths;\n}",
+  "name": "findAllDocsFolderPaths",
+  "slug": "find-all-docs-folder-paths",
+  "parameters": [
+    {
+      "name": "ignoreOperations",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<string[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 463,
+    "lines": 17,
+    "bytes": 463,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "jlmxkeytpsteydojglbqrkto"
+}

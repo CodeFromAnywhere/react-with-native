@@ -1,0 +1,41 @@
+{
+  "createdAt": 1667379404035,
+  "updatedAt": 1667379404035,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379404035,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util/getKeysAtPathFromNestedObject.ts",
+  "commentsInside": [],
+  "rawText": " <T extends { [key: string]: any }>( //NestedObject<null>\n  nestedObject: T,\n  objectPath: string\n) => {\n  const pathParts = objectPath.split(\"/\");\n  const objectAtLocation = pathParts.reduce((objectSubset, part) => {\n    // basecase should never happen\n    if (!objectSubset) return;\n    const subset = objectSubset[part];\n    return subset;\n  }, nestedObject as T);\n\n  const children = objectAtLocation ? Object.keys(objectAtLocation) : [];\n\n  return children;\n}",
+  "name": "getKeysAtPathFromNestedObject",
+  "slug": "get-keys-at-path-from-nested-object",
+  "parameters": [],
+  "description": "Gets all children keys of a nested object at a certain (nested) location in the nested object\n\n`nestedObject` should extend the NestedObject.\n\nThe reduce is a bit vague, I need to  test this function further to make sure it does exactly what I want.",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 713,
+    "lines": 20,
+    "bytes": 713,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 36,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "koyhfcpxenexrskdattyaeif"
+}

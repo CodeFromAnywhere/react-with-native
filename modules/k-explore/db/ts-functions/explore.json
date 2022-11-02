@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666259117417,
+  "updatedAt": 1666259117417,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259117417,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/explore.ts",
+  "commentsInside": [],
+  "rawText": " async ({\n  basePath,\n  searchLevel = \"fileName\",\n  debug,\n  ...other\n}: SearchConfig): Promise<TextJson[]> => {\n  /** accessability depends on whether we need to be able to read the file, or just see it */\n  const canAccess = async (p: string) =>\n    await (searchLevel === \"outline\" || searchLevel === \"full\"\n      ? canRead\n      : canSee)(p);\n\n  /** basepaths becomes an array of only the basepaths that we can access */\n  const accessibleBasePaths = makeArray(basePath || getProjectRoot())\n    .filter(fs.existsSync)\n    .filter(canAccess);\n\n  if (debug) console.log(`finding files in ${accessibleBasePaths.join(\",\")}`);\n\n  const textJsonPromises = accessibleBasePaths.map(async (p) =>\n    findFilesRecursively({ basePath: p, searchLevel, debug, ...other })\n  );\n\n  const textJsons = (await Promise.all(textJsonPromises)).flat();\n\n  return textJsons;\n}",
+  "name": "explore",
+  "slug": "explore",
+  "parameters": [],
+  "description": "this is the safe and friendly version of findFilesRecursively: it",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TextJson\").TextJson[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 922,
+    "lines": 27,
+    "bytes": 922,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 27,
+    "numberOfFiles": 1
+  },
+  "id": "ylhsjwsbqijojuystmeieozx"
+}

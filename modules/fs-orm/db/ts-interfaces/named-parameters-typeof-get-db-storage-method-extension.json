@@ -1,0 +1,57 @@
+{
+  "createdAt": 1664524630084,
+  "updatedAt": 1664524630084,
+  "deletedAt": 0,
+  "createdFirstAt": 1664524630084,
+  "id": "named-parameters-<typeof-get-db-storage-method-extension->",
+  "name": "NamedParameters<typeof getDbStorageMethodExtension>",
+  "slug": "named-parameters-typeof-get-db-storage-method-extension",
+  "operationRelativeTypescriptFilePath": "src/convention/getDbStorageMethodExtension.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "dbStorageMethod": {
+          "$ref": "#/definitions/DbStorageMethod"
+        }
+      },
+      "required": [
+        "dbStorageMethod"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "dbStorageMethod",
+          "required": true,
+          "schema": {
+            "description": "The following strategies are available to store the data.\n\n- **jsonMultiple *(default)***: stores the data in a json file which is an array of this data structure. This file will be located in `db/[pluralized-kebab-case-model-name].json`\n\n- **jsonSingle**: stores the data in a json file which is of this data structure (single object) These files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].json`\n\n- **markdown**: stores the data in a markdown file. Takes \"markdown\" parameter as the main markdown. The other parameters are stored as front-matter. This these files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].md`\n\n- **keyValueMarkdown**: stores the data in key value markdown format. This file will be located in `db/[pluralized-kebab-case-model-name].md`\n\n- **csv**: stores the data in a csv file (only possible for flat object datastructures). This file will be located in `db/[pluralized-kebab-case-model-name].csv`\n\n## Definitions:\n\n- [pluralized-kebab-case-model-name]: e.g. `StudentUser` becomes `student-users`\n- [instance-slug-or-id]: For all models with a slug parameter, the filename will be that slug of that instance. Otherwise, `id` will be used",
+            "enum": [
+              "jsonMultiple",
+              "jsonSingle",
+              "markdown",
+              "keyValueMarkdown",
+              "csv"
+            ],
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getDbStorageMethodExtension>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

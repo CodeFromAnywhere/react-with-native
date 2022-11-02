@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513252702,
+  "updatedAt": 1666513252702,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513252702,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "onlyUnique2",
+  "slug": "only-unique-2",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "<U>(isEqualFn?: ((a: U, b: U) => boolean) | undefined) => <T extends U>(value: T, index: number, self: T[]) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<U>(isEqualFn?: (a: U, b: U) => boolean) =>\n  <T extends U>(value: T, index: number, self: T[]) => {\n    return (\n      self.findIndex((v) => (isEqualFn ? isEqualFn(v, value) : v === value)) ===\n      index\n    );\n  }",
+  "description": "function that returns a filter function that can be used as a filter for any array. removes duplicates.\n\noptionally takes a compare function that should return a \"true\" if two instances are equal. if you use this function, make sure to pass a generic of the type the items will have, in order to make this equality function type safe as well",
+  "id": "ackhuwvxghjuwzscanyrqakv"
+}

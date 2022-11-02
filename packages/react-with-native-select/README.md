@@ -2,35 +2,58 @@
 
 react-with-native-select (ui-es5 operation)
 
-Size: 226 LOC, 3128 data characters, 
- 
-Imported dependencies:
 
-- From Core Libraries: Alert, ActionSheetIOS, ChangeEvent, ChangeEventHandler, useState, MouseEvent, ActionSheetIOSOptions
-- From Packages: none
-- From Operations: Button, Div, Text, Button, Div, Text
 
 # Outline
+
+## Docs
+
+- [README](#readme)
 
 ## Functions
 
 - [getRealValue](#getRealValue)
+- [Select](#Select)
 
+## Interfaces
+
+- [ID](#id)
+
+## Variables
+
+- [getRealValue](#getrealvalue)
+- [Select](#select)
+
+
+
+# Docs
+
+## README
+
+### Select input
+
+#### `NB: Experimental package!`
+
+`react-with-native-select` renders a native ActionSheet on iOS, a custom actionsheet on Android, and a `<select>` html element on web.
+
+
+#### Installation
+
+```bash
+yarn add react-with-native-select
+```
+
+
+#### Usage
+
+Coming soon
 
 
 # Functions
 
 ## getRealValue
 
-Max. indexation depth: 2, 
-
-
-
 ### Returns: object
-
-
-
-
 
 Properties: 
 
@@ -39,4 +62,23 @@ Properties:
 | value  | object |  |
 | label  | string |  |
 
+
+
+## Select
+
+renders either a SelectDropdown or SelectDrawer, based on screensize
+
+
+
+# Interfaces
+
+## ID
+
+# Variables
+
+## getRealValue (exported const)
+
+## Select (exported const)
+
+renders either a SelectDropdown or SelectDrawer, based on screensize
 

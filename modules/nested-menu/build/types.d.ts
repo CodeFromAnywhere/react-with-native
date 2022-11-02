@@ -8,6 +8,11 @@ export declare type MenuItemType = {
     onClick?: () => void;
     onDoubleClick?: () => void;
     onContextMenu?: () => void;
+    /**
+     * Whether or not the children should be visible.
+     *
+     * Should be used for collapsability
+     */
     showChildren?: boolean;
     children?: MenuItemType[];
 };

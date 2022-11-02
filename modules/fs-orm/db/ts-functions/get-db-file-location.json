@@ -1,0 +1,82 @@
+{
+  "createdAt": 1666512742441,
+  "updatedAt": 1666512742441,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512742441,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/convention/getDbFileLocation.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  /**\n   * The ModelLocation properties in the item are completely ignored.\n   *\n   * Only the ID, slug and categoryStackCalculated are used to determine the exact file the item should be stored in.\n   *\n   * NB: storedItem MUST have a slug or ID, but this should probably be generated before this funciton\n   */\n  storedItem: Storing<AugmentedAnyModelType>,\n  /**\n   * Should be the operationName from the modellocation of the actual item.\n   *\n   * If it is given, this will take priority over the merged query config.\n   */\n  operationName: null | string,\n  mergedConfig: MergedQueryConfig,\n  modelName: string\n): Promise<DbFileLocation | undefined> => {\n  if (!mergedConfig.manualProjectRoot) {\n    log(\"No project root\", { type: \"error\" });\n    return;\n  }\n  const realOperationName = operationName || mergedConfig.operationName;\n\n  const rootFolder = await getDatabaseRootFolder(\n    realOperationName,\n    mergedConfig.manualProjectRoot\n  );\n\n  if (!rootFolder) return;\n\n  const isSingleItemStorageMethod =\n    mergedConfig.dbStorageMethod === \"jsonSingle\" ||\n    mergedConfig.dbStorageMethod === \"markdown\";\n\n  const filename = storedItem.slug || storedItem.id;\n\n  const relativeFolder: string | undefined =\n    storedItem.categoryStackCalculated?.join?.(\"/\");\n  const dbModelFolderRelativeLocation: string =\n    isSingleItemStorageMethod && relativeFolder\n      ? path.join(relativeFolder, filename)\n      : filename;\n\n  const pattern = getLocationPattern(\n    mergedConfig.dbStorageMethod,\n    modelName,\n    mergedConfig\n  );\n  if (!pattern) return;\n\n  const absolutePath = path.join(\n    rootFolder,\n    pattern.replace(\"*\", dbModelFolderRelativeLocation)\n  );\n  if (!absolutePath) return;\n\n  const operationRelativePath = makeRelative(absolutePath, rootFolder);\n  const projectRelativePath = makeRelative(\n    absolutePath,\n    mergedConfig.manualProjectRoot\n  );\n\n  const dbFileLocation: DbFileLocation = {\n    modelName,\n    absolutePath,\n    operationName: realOperationName || null,\n    projectRelativePath,\n    operationRelativePath,\n  };\n\n  return dbFileLocation;\n}",
+  "name": "getDbFileLocation",
+  "slug": "get-db-file-location",
+  "parameters": [
+    {
+      "name": "storedItem",
+      "schema": {
+        "$ref": "#/definitions/Storing%3CAugmentedAnyModelType%3E",
+        "description": "The ModelLocation properties in the item are completely ignored.\n\nOnly the ID, slug and categoryStackCalculated are used to determine the exact file the item should be stored in.\n\nNB: storedItem MUST have a slug or ID, but this should probably be generated before this funciton"
+      },
+      "required": true
+    },
+    {
+      "name": "operationName",
+      "schema": {
+        "type": [
+          "null",
+          "string"
+        ],
+        "description": "Should be the operationName from the modellocation of the actual item.\n\nIf it is given, this will take priority over the merged query config."
+      },
+      "simplifiedSchema": {
+        "fullComment": "Should be the operationName from the modellocation of the actual item.\n\nIf it is given, this will take priority over the merged query config.",
+        "type": "null"
+      },
+      "required": true
+    },
+    {
+      "name": "mergedConfig",
+      "schema": {
+        "$ref": "#/definitions/MergedQueryConfig"
+      },
+      "required": true
+    },
+    {
+      "name": "modelName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Used by `groupByFile`, which is used for `set` (and thus, also `update`) and `upsert`: determines the new file location.\n\nApplies the convention to get the db-file-location of an item\n\nBased on the merged config:\n\n- if `operationRelativePath` is specified, gets a filePath in the operation\n- if `projectRelativePath` is specified, gets a filepath in the project\n- otherwise gets the pattern and replaces \"*\" with the slug (or id if slug is not available)\n\nBesides the absolute path, the operationName, projectRelativePath and operationRelativePath are also supplied.\n\nNB: currently, the item's `operationName`, `operationRelativePath` or `projectRelativePath` is not taken into account. It will simply look at the convention to see where it should be saved, and apply the MergedQueryConfig...",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").DbFileLocation | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 2885,
+    "lines": 85,
+    "bytes": 2885,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 85,
+    "numberOfFiles": 1
+  },
+  "id": "nkadkwzehmvaddkdnlibwkso"
+}

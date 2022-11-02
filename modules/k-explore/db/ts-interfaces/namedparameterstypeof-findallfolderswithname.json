@@ -1,0 +1,88 @@
+{
+  "createdAt": 1666259122268,
+  "updatedAt": 1666259122268,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259122268,
+  "id": "namedparameterstypeof-findallfolderswithname",
+  "name": "NamedParameters<typeof findAllFoldersWithName>",
+  "slug": "namedparameterstypeof-findallfolderswithname",
+  "operationRelativeTypescriptFilePath": "src/find-folders.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "basePath": {
+              "type": "string"
+            },
+            "folderName": {
+              "type": "string"
+            },
+            "ignoreOperations": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "basePath",
+            "folderName"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "basePath",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "folderName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "ignoreOperations",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof findAllFoldersWithName>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

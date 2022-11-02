@@ -1,0 +1,16 @@
+"use strict";var __awaiter=this&&this.__awaiter||function(e,t,o,a){return new(o||(o=Promise))((function(r,n){function i(e){try{u(a.next(e))}catch(e){n(e)}}function l(e){try{u(a.throw(e))}catch(e){n(e)}}function u(e){var t;e.done?r(e.value):(t=e.value,t instanceof o?t:new o((function(e){e(t)}))).then(i,l)}u((a=a.apply(e,t||[])).next())}))},__generator=this&&this.__generator||function(e,t){var o,a,r,n,i={label:0,sent:function(){if(1&r[0])throw r[1];return r[1]},trys:[],ops:[]};return n={next:l(0),throw:l(1),return:l(2)},"function"==typeof Symbol&&(n[Symbol.iterator]=function(){return this}),n;function l(n){return function(l){return function(n){if(o)throw new TypeError("Generator is already executing.");for(;i;)try{if(o=1,a&&(r=2&n[0]?a.return:n[0]?a.throw||((r=a.return)&&r.call(a),0):a.next)&&!(r=r.call(a,n[1])).done)return r;switch(a=0,r&&(n=[2&n[0],r.value]),n[0]){case 0:case 1:r=n;break;case 4:return i.label++,{value:n[1],done:!1};case 5:i.label++,a=n[1],n=[0];continue;case 7:n=i.ops.pop(),i.trys.pop();continue;default:if(!(r=i.trys,(r=r.length>0&&r[r.length-1])||6!==n[0]&&2!==n[0])){i=0;continue}if(3===n[0]&&(!r||n[1]>r[0]&&n[1]<r[3])){i.label=n[1];break}if(6===n[0]&&i.label<r[1]){i.label=r[1],r=n;break}if(r&&i.label<r[2]){i.label=r[2],i.ops.push(n);break}r[2]&&i.ops.pop(),i.trys.pop();continue}n=t.call(e,i)}catch(e){n=[6,e],a=0}finally{o=r=0}if(5&n[0])throw n[1];return{value:n[0]?n[1]:void 0,done:!0}}([n,l])}}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.getDbFileLocation=void 0;var get_path_1=require("get-path"),fs_util_1=require("fs-util"),getLocationPattern_1=require("./getLocationPattern"),log_1=require("log"),getDatabaseRootFolder_1=require("./getDatabaseRootFolder"),getDbFileLocation=function(
+/**
+ * The ModelLocation properties in the item are completely ignored.
+ *
+ * Only the ID, slug and categoryStackCalculated are used to determine the exact file the item should be stored in.
+ *
+ * NB: storedItem MUST have a slug or ID, but this should probably be generated before this funciton
+ */
+e,
+/**
+ * Should be the operationName from the modellocation of the actual item.
+ *
+ * If it is given, this will take priority over the merged query config.
+ */
+t,o,a){return __awaiter(void 0,void 0,void 0,(function(){var r,n,i,l,u,c,s,f,p,h,g,_;return __generator(this,(function(d){switch(d.label){case 0:return o.manualProjectRoot?(r=t||o.operationName,[4/*yield*/,(0,getDatabaseRootFolder_1.getDatabaseRootFolder)(r,o.manualProjectRoot)]):((0,log_1.log)("No project root",{type:"error"}),[2/*return*/]);case 1:return(n=d.sent())?(i="jsonSingle"===o.dbStorageMethod||"markdown"===o.dbStorageMethod,l=e.slug||e.id,u=null===(_=null===(g=e.categoryStackCalculated)||void 0===g?void 0:g.join)||void 0===_?void 0:_.call(g,"/"),c=i&&u?fs_util_1.path.join(u,l):l,(s=(0,getLocationPattern_1.getLocationPattern)(o.dbStorageMethod,a,o))&&(f=fs_util_1.path.join(n,s.replace("*",c)))?(p=(0,get_path_1.makeRelative)(f,n),h=(0,get_path_1.makeRelative)(f,o.manualProjectRoot),[2/*return*/,{modelName:a,absolutePath:f,operationName:r||null,projectRelativePath:h,operationRelativePath:p}]):[2/*return*/]):[2/*return*/]}}))}))};exports.getDbFileLocation=getDbFileLocation;
+//# sourceMappingURL=getDbFileLocation.js.map

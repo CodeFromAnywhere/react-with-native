@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666263144079,
+  "updatedAt": 1666263144079,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263144079,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/rest-util.ts",
+  "commentsInside": [],
+  "rawText": " (query: QueryableObject) => {\n  const queryStrings = Object.keys(query).map((key) => {\n    const value = query[key];\n    return Array.isArray(value) ? value[0] : value;\n  });\n\n  return queryStrings;\n}",
+  "name": "getFirstQueryStrings",
+  "slug": "get-first-query-strings",
+  "parameters": [],
+  "description": "NB: doesn't work in node.\n\nQuery keys can be string or string[] or undefined.\n\nThis function takes only the first string if it's an array...",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 341,
+    "lines": 12,
+    "bytes": 341,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "rhajujdimkfovgopuglzyaan"
+}

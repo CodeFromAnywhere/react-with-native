@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666512731178,
+  "updatedAt": 1666512731178,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512731178,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n  const storedJson = await readJsonFile<Storing<AugmentedAnyModelType>>(\n    dbFileLocation.absolutePath\n  );\n  const isNewFile = !storedJson;\n  const storedData = storedJson ? [storedJson] : [];\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n  const isSuccesful = await writeJsonToFile(absolutePath, newStoredData[0]);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
+  "name": "alterJsonSingle",
+  "slug": "alter-json-single",
+  "parameters": [],
+  "description": "Alters a json single file",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 600,
+    "lines": 20,
+    "bytes": 600,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "lqvwnykrlxzljaxfvimvlejv"
+}

@@ -1,0 +1,53 @@
+{
+  "createdAt": 1666262997396,
+  "updatedAt": 1666262997396,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262997396,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/readCsvFile.ts",
+  "commentsInside": [],
+  "rawText": " async <T extends CsvItemType>(\n  filePath: Path | undefined\n): Promise<T[] | null> => {\n  if (!filePath) return null;\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const parsed = tryParseCsv<T>(fileString);\n  return parsed;\n}",
+  "name": "readCsvFile",
+  "slug": "read-csv-file",
+  "parameters": [
+    {
+      "name": "filePath",
+      "schema": {
+        "$ref": "#/definitions/Path"
+      },
+      "simplifiedSchema": {
+        "fullComment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Reads and parses CSV file\n\nspecify a generic of what type of item the file contains an array of",
+  "returnType": {
+    "rawType": "Promise<T[] | null>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 515,
+    "lines": 17,
+    "bytes": 515,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "zxbgyayjgwayjenwrqxnsdee"
+}

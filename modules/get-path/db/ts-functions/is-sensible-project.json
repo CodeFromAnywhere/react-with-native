@@ -1,0 +1,61 @@
+{
+  "createdAt": 1666259075514,
+  "updatedAt": 1666259075514,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259075514,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/isSensibleProject.ts",
+  "commentsInside": [],
+  "rawText": " (folderPath?: string): boolean => {\n  const realFolderPath = folderPath || getProjectRoot();\n  if (!realFolderPath) return false;\n\n  // get package-json and check sensible config\n  const packageJson = readJsonFileSync<PackageJson>(\n    path.join(realFolderPath, \"package.json\")\n  );\n\n  const sensibleConfig: SensibleConfig | undefined = packageJson?.sensible;\n  const isSensibleProject = sensibleConfig?.isSensibleProject || false;\n\n  return isSensibleProject;\n}",
+  "name": "isSensibleProject",
+  "slug": "is-sensible-project",
+  "parameters": [
+    {
+      "name": "folderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 463,
+    "lines": 14,
+    "bytes": 463,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "kzuvpveggrseciulnarabilb"
+}

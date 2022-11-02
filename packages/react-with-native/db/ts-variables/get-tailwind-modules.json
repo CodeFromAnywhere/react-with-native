@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379212890,
+  "updatedAt": 1667379212890,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379212890,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getTailwindModules",
+  "slug": "get-tailwind-modules",
+  "operationRelativeTypescriptFilePath": "src/util/getTailwindModules.ts",
+  "type": {
+    "rawType": "(options: { packages?: string[] | undefined; modules?: string[] | undefined; isWorkspace?: boolean | undefined; }) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(options: {\n  /**\n   * if you are using a sensible monorepo, put the packages with tailwind-based ui here\n   */\n  packages?: string[] /**\n  if you are using any tailwind-based node-modules, put them here.\n */;\n  modules?: string[];\n  /**\n *  if this is a yarn workspace, put true here\n\n */\n  isWorkspace?: boolean;\n}) => {\n  const packages =\n    options.packages?.map((module) => {\n      return `../../packages/${module}/src/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  const modules =\n    options.modules?.map((module) => {\n      return options.isWorkspace\n        ? `../../node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`\n        : `./node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  return packages?.concat(modules);\n}",
+  "description": "",
+  "id": "gkwqxcpopsebhrnjtabkzrlm"
+}

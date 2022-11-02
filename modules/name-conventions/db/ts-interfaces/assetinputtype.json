@@ -1,0 +1,76 @@
+{
+  "createdAt": 1666259789210,
+  "updatedAt": 1666259789210,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259789210,
+  "id": "assetinputtype",
+  "name": "AssetInputType",
+  "slug": "assetinputtype",
+  "operationRelativeTypescriptFilePath": "src/getAssetInputType.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type AssetInputType = {\n  type: \"image\" | \"video\" | \"audio\" | \"file\" | \"asset\";\n  isMultiple: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "image",
+            "video",
+            "audio",
+            "file",
+            "asset"
+          ]
+        },
+        "isMultiple": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "isMultiple"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "image",
+              "video",
+              "audio",
+              "file",
+              "asset"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "isMultiple",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "AssetInputType",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

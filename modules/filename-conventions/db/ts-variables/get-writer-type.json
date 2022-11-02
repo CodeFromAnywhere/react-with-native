@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259756061,
+  "updatedAt": 1666259756061,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259756061,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getWriterType",
+  "slug": "get-writer-type",
+  "operationRelativeTypescriptFilePath": "src/extensions.ts",
+  "type": {
+    "rawType": "(extension: string | undefined) => import(\"/Users/king/King/operations/tools/conventions/filename-conventions/src/extensions\").WriterType",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(extension: string | undefined): WriterType => {\n  if (!extension) return \"other\";\n  if (typescriptExtensions.includes(extension)) return \"typescript\";\n  if (markdownExtensions.includes(extension)) return \"markdown\";\n  return \"other\";\n}",
+  "description": "Gets the writer type based on the extension",
+  "id": "ytbuvkoqwcoxtibbgibkjazs"
+}

@@ -1,4 +1,8 @@
 {
+  "createdAt": 1662709577330,
+  "updatedAt": 1662709577330,
+  "deletedAt": 0,
+  "createdFirstAt": 1662709577330,
   "name": "react-with-native-store",
   "version": "2.0.40",
   "description": "Simple localStorage/asyncStorage-based and fully typed redux replacement with global persisted storage by default for react and react-native apps.",
@@ -8,9 +12,7 @@
     "pub": "npm version patch --force && npm publish",
     "build": "tsc",
     "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
-    "dev:tw": "tailwindcss -o css.css",
-    "minify": "echo build/**/*.js | xargs -n1 sh -c 'terser --output build/${1#build/} --compress --mangle -- $1' argv0",
-    "minify2": "bash -c \"for f in build/*.js; do terser $f --output $f --compress --mangle; done\""
+    "dev:tw": "tailwindcss -o css.css"
   },
   "repository": {
     "type": "git",
@@ -34,5 +36,13 @@
     "react": "^17.0.2",
     "tailwindcss": "^3.0.24"
   },
-  "peerDependencies": {}
+  "peerDependencies": {},
+  "slug": "react-with-native-store",
+  "id": "eXOcmzdxLiHCsOky",
+  "dependencies": {
+    "react": "*"
+  },
+  "sensible": {
+    "hasGeneratedDependencies": false
+  }
 }

@@ -1,0 +1,67 @@
+{
+  "createdAt": 1666259855014,
+  "updatedAt": 1666259855014,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259855014,
+  "id": "customqueryconfig",
+  "name": "CustomQueryConfig",
+  "slug": "customqueryconfig",
+  "operationRelativeTypescriptFilePath": "src/db.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "NB: the dbStorageMethod cannot be specified here because this is a static configuration per db-model and cannot be specified on a per-query basis.\n\nAlso you can't specify projectRelativePath and operationRelativePath. It should not be needed, you should specify the db storage locations in the createDb config.",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "manualProjectRoot": {
+          "type": "string",
+          "description": "if specified, this will be used as the root path to find your data in\n\nif not specified, uses the db folder in your project root and in any operation\n\nNB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries."
+        },
+        "operationName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        }
+      },
+      "additionalProperties": false,
+      "description": "NB: the dbStorageMethod cannot be specified here because this is a static configuration per db-model and cannot be specified on a per-query basis.\n\nAlso you can't specify projectRelativePath and operationRelativePath. It should not be needed, you should specify the db storage locations in the createDb config."
+    },
+    "simplifiedSchema": {
+      "fullComment": "NB: the dbStorageMethod cannot be specified here because this is a static configuration per db-model and cannot be specified on a per-query basis.\n\nAlso you can't specify projectRelativePath and operationRelativePath. It should not be needed, you should specify the db storage locations in the createDb config.",
+      "nb": "the dbStorageMethod cannot be specified here because this is a static configuration per db-model and cannot be specified on a per-query basis.",
+      "properties": [
+        {
+          "name": "manualProjectRoot",
+          "required": false,
+          "schema": {
+            "fullComment": "if specified, this will be used as the root path to find your data in\n\nif not specified, uses the db folder in your project root and in any operation\n\nNB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+            "nb": "If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationName",
+          "required": false,
+          "schema": {
+            "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CustomQueryConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

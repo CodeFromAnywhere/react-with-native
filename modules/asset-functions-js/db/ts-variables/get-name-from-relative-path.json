@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667111117825,
+  "updatedAt": 1667111117825,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111117825,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getNameFromRelativePath",
+  "slug": "get-name-from-relative-path",
+  "operationRelativeTypescriptFilePath": "src/getNameFromRelativePath.ts",
+  "type": {
+    "rawType": "(relativePath: string) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(relativePath: string) => {\n  const filename = relativePath.split(\"/\").pop()!;\n  const filenameWithoutExtension = withoutExtension(filename);\n  return filenameWithoutExtension;\n}",
+  "description": "",
+  "id": "bnazwqtjazknyionravtnlyv"
+}

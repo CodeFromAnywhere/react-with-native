@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1666259126559,
+    "updatedAt": 1666259126559,
+    "deletedAt": 0,
+    "createdFirstAt": 1666259126559,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/util.ts",
+    "comment": "Checks if pathArray contains a package.json and a tsconfig.json and thus should be an operation\n\nHandy for `cancelRecursionOn` in `explore`",
+    "rawStatement": "export const pathArrayIsOperation = (pathArray: string[]) => {\n  const hasPackageJson = !!pathArray.find(\n    (x) => path.parse(x).base === \"package.json\"\n  );\n  const hasTsConfig = !!pathArray.find(\n    (x) => path.parse(x).base === \"tsconfig.json\"\n  );\n\n  const isOperation = hasPackageJson && hasTsConfig;\n  return isOperation;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 3,
+    "lastLine": 7,
+    "id": "rhhffsbjvzrtgzgmndezszax"
+  }
+]

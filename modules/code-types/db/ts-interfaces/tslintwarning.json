@@ -1,0 +1,169 @@
+{
+  "createdAt": 1667379877521,
+  "updatedAt": 1667379877521,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379877521,
+  "id": "tslintwarning",
+  "name": "TsLintWarning",
+  "slug": "tslintwarning",
+  "operationRelativeTypescriptFilePath": "src/TypescriptIndex.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface TsLintWarning extends TsIndexModelType {\n  line: number;\n  character: number;\n  message: string;\n}",
+  "extensions": [
+    "TsIndexModelType"
+  ],
+  "isOperationIndex": true,
+  "description": "",
+  "dbStorageMethod": "jsonMultiple",
+  "isDbModel": true,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "operationName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "projectRelativePath": {
+          "type": "string",
+          "description": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "operationRelativePath": {
+          "type": "string",
+          "description": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "id": {
+          "type": "string",
+          "description": "unique id of the model"
+        },
+        "name": {
+          "type": "string",
+          "description": "name (identifier) of the model"
+        },
+        "slug": {
+          "type": "string",
+          "description": "kebab-case variant of the name"
+        },
+        "operationRelativeTypescriptFilePath": {
+          "type": "string",
+          "description": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)"
+        },
+        "line": {
+          "type": "number"
+        },
+        "character": {
+          "type": "number"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "character",
+        "id",
+        "line",
+        "message",
+        "name",
+        "operationName",
+        "operationRelativeTypescriptFilePath",
+        "projectRelativePath",
+        "slug"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "operationName",
+          "required": true,
+          "schema": {
+            "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "null"
+          }
+        },
+        {
+          "name": "projectRelativePath",
+          "required": true,
+          "schema": {
+            "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativePath",
+          "required": false,
+          "schema": {
+            "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "fullComment": "unique id of the model",
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "fullComment": "name (identifier) of the model",
+            "type": "string"
+          }
+        },
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "fullComment": "kebab-case variant of the name",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativeTypescriptFilePath",
+          "required": true,
+          "schema": {
+            "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "line",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "character",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "message",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "TsLintWarning",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

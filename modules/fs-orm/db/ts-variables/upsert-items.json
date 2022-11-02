@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512731880,
+  "updatedAt": 1666512731880,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512731880,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "upsertItems",
+  "slug": "upsert-items",
+  "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+  "type": {
+    "rawType": "<TModels extends import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").AnyModelObject = any, TModelName extends string = any>(dbStorageMethod: any, dbFileLocation: import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").DbFileLocation, storingItems: any, onlyInsert?: boolean | undefined) => Promise<import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").DbQueryResult>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async <\n  TModels extends AnyModelObject = any,\n  TModelName extends string = any\n>(\n  dbStorageMethod: DbStorageMethod,\n  dbFileLocation: DbFileLocation,\n  storingItems: Storing<TModels[TModelName]> | Storing<TModels[TModelName]>[],\n  onlyInsert?: boolean\n): Promise<DbQueryResult> => {\n  const storingItemsArray = makeArray(storingItems);\n\n  // Special case!\n  // TODO: we don't support multiple items for this case\n  if (dbStorageMethod === \"keyValueMarkdown\") {\n    const storingItem = storingItemsArray[0];\n\n    const parentKey = Object.keys(storingItem).find(\n      (x) => x.startsWith(\"parent_\") && x.endsWith(\"Slug\")\n    );\n    const parentSlug = parentKey ? storingItem[parentKey] : undefined;\n\n    return alterKeyValueMarkdown(dbFileLocation, (storedData) => {\n      // NB: CategoryStack is overwritten! We are first making sure that categoryStackCalculated is a real existing categoryStackCalculated based on the parent_xxxSlug.\n      const realStoredData = storedData as Storing<KeyValueMarkdownModelType>[];\n      const parent = parentSlug\n        ? realStoredData.find((x) => x.slug === parentSlug)\n        : undefined;\n\n      // NB: we overwrite categoryStackCalculated, unless the parentKey wasn't found in the storingItem.\n      const categoryStackCalculated: string[] = !parentKey\n        ? storingItem.categoryStackCalculated || []\n        : parent\n        ? parent.categoryStackCalculated.concat(parent.slug)\n        : [];\n\n      // console.log({ parentKey, parentSlug, parent, categoryStackCalculated });\n\n      const realStoringItem = {\n        ...storingItem,\n        categoryStackCalculated,\n        isHeaderCalculated:\n          storingItem.isHeaderCalculated !== undefined\n            ? storingItem.isHeaderCalculated\n            : false,\n        comment: storingItem.comment === undefined ? null : storingItem.comment,\n        // convert to unknown first because not every TModels[TModelName] is of type KeyValueMarkdownModelType\n      } as unknown as Storing<KeyValueMarkdownModelType>;\n\n      return upsertKeyValueMarkdown(realStoredData, realStoringItem);\n    });\n  }\n\n  return alterAny(dbStorageMethod, dbFileLocation, (storedData) =>\n    upsert(storedData, storingItemsArray, onlyInsert)\n  );\n}",
+  "description": "upsert an item into storage in any storage method",
+  "id": "xlcjbacpdxywwtlmeghhsysv"
+}

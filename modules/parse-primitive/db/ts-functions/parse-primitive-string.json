@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666262974891,
+  "updatedAt": 1666262974891,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262974891,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/parsePrimitive.ts",
+  "commentsInside": [],
+  "rawText": " (string: string) => {\n  if (string.startsWith('\"') && string.endsWith('\"')) {\n    return string.substring(1, string.length - 1);\n  }\n  if (string.charAt(0) === \" \") return string.slice(1);\n  return string;\n}",
+  "name": "parsePrimitiveString",
+  "slug": "parse-primitive-string",
+  "parameters": [
+    {
+      "name": "string",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 208,
+    "lines": 7,
+    "bytes": 208,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "peqonobfbhjegipixswkdzcv"
+}

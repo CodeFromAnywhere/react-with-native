@@ -1,0 +1,8 @@
+"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(e){for(var r,t=1,a=arguments.length;t<a;t++)for(var n in r=arguments[t])Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n]);return e},__assign.apply(this,arguments)};Object.defineProperty(exports,"__esModule",{value:!0}),exports.augmentItemWithReferencedDataRecursively=void 0;var schema_util_1=require("schema-util"),js_util_1=require("js-util"),augmentItemWithReferencedDataRecursively=function(e,r,
+/**
+ * Final includeData object to take items from
+ */
+t){
+// basecase
+return 0===r.length?e:r.reduce((function(e,r){var a;if(!r.referenceKey)return e;var n=(0,schema_util_1.getReferenceParameterInfo)(r.referenceKey);if(!n.interfaceName)return e;var i=t[n.interfaceName];if(!i)return e;if(!n.dataParameterName)return e;if(!n.keyInModel)return e;var u=i.filter((function(r){var t;if(!n.keyInModel)return!1;var a=e[n.parameterName],i=r[n.keyInModel];return n.isReferenceSingleParameter?a===i:n.isReferenceMultipleParameter&&(null===(t=null==a?void 0:a.includes)||void 0===t?void 0:t.call(a,i))||!1})),s=n.isReferenceSingleParameter?(0,exports.augmentItemWithReferencedDataRecursively)(u[0],(0,js_util_1.makeArray)(r.include),t):n.isReferenceMultipleParameter?u.map((function(e){return(0,exports.augmentItemWithReferencedDataRecursively)(e,(0,js_util_1.makeArray)(r.include),t)})):void 0;return __assign(__assign({},e),((a={})[n.dataParameterName]=s,a))}),e)};exports.augmentItemWithReferencedDataRecursively=augmentItemWithReferencedDataRecursively;
+//# sourceMappingURL=augmentItemWithReferencedDataRecursively.js.map

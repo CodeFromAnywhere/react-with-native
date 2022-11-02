@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512731880,
+  "updatedAt": 1666512731880,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512731880,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "alterJsonMultiple",
+  "slug": "alter-json-multiple",
+  "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+  "type": {
+    "rawType": "AlterFunction",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n  const storedJson = await readJsonFile<Storing<AugmentedAnyModelType>[]>(\n    dbFileLocation.absolutePath\n  );\n\n  const storedData = storedJson || [];\n\n  const isNewFile = !storedJson;\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n\n  if (newStoredData.length === 0 && !!storedJson) {\n    // NB: if new stored data is an empty array, just remove the file\n    await fs.rm(absolutePath);\n    return { isNewFile: false, ...queryResult };\n  }\n\n  const isSuccesful = await writeJsonToFile(absolutePath, newStoredData);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
+  "description": "Alters a json single file",
+  "id": "dkoigfzjpjjebyknxkqsgite"
+}

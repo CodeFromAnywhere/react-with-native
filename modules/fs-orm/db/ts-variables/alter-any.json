@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512731881,
+  "updatedAt": 1666512731881,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512731881,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "alterAny",
+  "slug": "alter-any",
+  "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+  "type": {
+    "rawType": "(dbStorageMethod: any, dbFileLocation: import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").DbFileLocation, alterFn: (storedData: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>[]) => { newStoredData: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>[]; } & import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").DbQueryResult) => Promise<import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").DbQueryResult>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  dbStorageMethod: DbStorageMethod,\n  ...alterParameters: AlterParameters\n): Promise<DbQueryResult> => {\n  if (dbStorageMethod === \"csv\") return alterCsv(...alterParameters);\n  if (dbStorageMethod === \"jsonSingle\")\n    return alterJsonSingle(...alterParameters);\n  if (dbStorageMethod === \"keyValueMarkdown\") {\n    // this case never happens, this is never the case\n    log(\"Wut??? this case should be prevented by its parent function\", {\n      type: \"warning\",\n    });\n    return alterKeyValueMarkdown(...alterParameters);\n  }\n  if (dbStorageMethod === \"markdown\") return alterMarkdown(...alterParameters);\n  return alterJsonMultiple(...alterParameters);\n}",
+  "description": "low level function that alters data from any storage method at a certain location\n\ncomprises all dbStorageMethods",
+  "id": "qdaldduonbwtyeyanumviieq"
+}

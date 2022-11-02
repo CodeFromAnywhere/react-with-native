@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666263073797,
+  "updatedAt": 1666263073797,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263073797,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/readMarkdownFileToModel.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  absoluteFilePath: string\n): Promise<null | MarkdownFile> => {\n  const projectRoot = getProjectRoot(absoluteFilePath);\n\n  if (!projectRoot) return null;\n  const mdParse = await readMarkdownFile(absoluteFilePath);\n  if (!mdParse) return null;\n\n  const {\n    privacy,\n    detectedLanguage,\n    labels,\n    createdAt,\n    createdFirstAt,\n    deletedAt,\n    updatedAt,\n    id,\n    name,\n    slug,\n    cta,\n    headerImage,\n    headerSubtitle,\n    headerTitle,\n    isDraft,\n    itemId,\n    ...frontmatter\n  } = mdParse.parameters;\n\n  // NB: this markdown file is not always located in an operation. Yet we are trying to find it.\n  const operationBasePath = findOperationBasePath(absoluteFilePath);\n  const modelLocation: ModelLocation = {\n    operationName: operationBasePath ? getLastFolder(operationBasePath) : null,\n    projectRelativePath: makeRelative(absoluteFilePath, projectRoot),\n    operationRelativePath: operationBasePath\n      ? makeRelative(absoluteFilePath, operationBasePath)\n      : undefined,\n  };\n\n  const markdownFile: MarkdownFile = {\n    ...modelLocation,\n    ...frontmatter,\n    markdown: mdParse.raw,\n    categoryStackCalculated: [],\n    privacy: privacy as MarkdownFile[\"privacy\"],\n    detectedLanguage: detectedLanguage as MarkdownFile[\"detectedLanguage\"],\n    labels: labels as MarkdownFile[\"labels\"],\n    createdAt: createdAt as MarkdownFile[\"createdAt\"],\n    createdFirstAt: createdFirstAt as MarkdownFile[\"createdFirstAt\"],\n    deletedAt: deletedAt as MarkdownFile[\"deletedAt\"],\n    updatedAt: updatedAt as MarkdownFile[\"updatedAt\"],\n    cta: cta as MarkdownFile[\"cta\"],\n    headerImage: headerImage as MarkdownFile[\"headerImage\"],\n    headerSubTitle: headerSubtitle as MarkdownFile[\"headerSubTitle\"],\n    headerTitle: headerTitle as MarkdownFile[\"headerTitle\"],\n    isDraft: isDraft as MarkdownFile[\"isDraft\"],\n    itemId: itemId as MarkdownFile[\"itemId\"],\n    name: name as MarkdownFile[\"name\"],\n    slug: slug as MarkdownFile[\"slug\"],\n    id: id as MarkdownFile[\"id\"],\n    // NB: have to convert to unknown here first because of the specified markdown prop\n  };\n\n  return omitUndefinedValues(markdownFile);\n}",
+  "name": "readMarkdownFileToModel",
+  "slug": "read-markdown-file-to-model",
+  "parameters": [
+    {
+      "name": "absoluteFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Reads a markdown absolute path to a `MarkdownFile` model",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownFile\").MarkdownFile | null>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 2202,
+    "lines": 65,
+    "bytes": 2202,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 65,
+    "numberOfFiles": 1
+  },
+  "id": "cjajuhsqzipkgjyucvebookb"
+}

@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666259860418,
+  "updatedAt": 1666259860418,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259860418,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/test-db.ts",
+  "commentsInside": [],
+  "rawText": " (): Creation<KvmdTestModel> => {\n  const id = generateId();\n  return {\n    slug: id,\n    // Needed for deletion later\n    id: id,\n    isHeaderCalculated: true,\n    categoryStackCalculated: [],\n    comment: \"comment\",\n    value: \"value\",\n    name: id,\n  };\n}",
+  "name": "generateKvmdInstance",
+  "slug": "generate-kvmd-instance",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 258,
+    "lines": 13,
+    "bytes": 258,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 20,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "wttnffctpkfjfykojkvmbwxa"
+}

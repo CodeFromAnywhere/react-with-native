@@ -12,6 +12,8 @@ export declare class SelectMultipleInputType implements PluginInputType {
         autoSuggest?: boolean;
         title?: string;
         options: Item<string>[];
+        placeholder?: string;
+        noPlaceholder?: boolean;
     };
 }
 //# sourceMappingURL=selectMultiple.d.ts.map

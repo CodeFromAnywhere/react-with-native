@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512739648,
+  "updatedAt": 1666512739648,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512739648,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getRootFolders",
+  "slug": "get-root-folders",
+  "operationRelativeTypescriptFilePath": "src/convention/getDatabaseFiles.ts",
+  "type": {
+    "rawType": "(config: { manualProjectRoot?: string | undefined; projectRoot: string; mergedConfig: import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").MergedQueryConfig; operationPath: string | false; }) => Promise<import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").RootDbFolder[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config: {\n  manualProjectRoot?: string;\n  projectRoot: string;\n  mergedConfig: MergedQueryConfig;\n  operationPath: string | false;\n}): Promise<RootDbFolder[]> => {\n  const { mergedConfig, operationPath, projectRoot, manualProjectRoot } =\n    config;\n\n  const shouldSearchOperations = mergedConfig.operationName !== null;\n  const shouldSearchProject = !mergedConfig.operationName;\n\n  // NB: for this we need to be sure that sdk-operations is up-to-date!\n  const realProjectRelativeOperationPathsObject: {\n    [operationName: string]: string;\n  } = manualProjectRoot\n    ? await calculateOperationsObject(manualProjectRoot)\n    : operations;\n\n  const operationFolders: RootDbFolder[] = shouldSearchOperations\n    ? mergedConfig.operationName && operationPath // NB: specific operation\n      ? [\n          {\n            basePath: operationPath,\n            operationName: mergedConfig.operationName,\n          },\n        ]\n      : Object.keys(realProjectRelativeOperationPathsObject).map(\n          (operationName) => {\n            const operationBasePath = path.join(\n              projectRoot,\n              realProjectRelativeOperationPathsObject[operationName]\n            );\n\n            return {\n              basePath: operationBasePath,\n              operationName,\n            };\n          }\n        )\n    : [];\n\n  const projectFolder: RootDbFolder | undefined = shouldSearchProject\n    ? { operationName: null, basePath: projectRoot }\n    : undefined;\n\n  const rootFolders: RootDbFolder[] = [\n    projectFolder,\n    ...operationFolders,\n  ].filter(notEmpty);\n\n  return rootFolders;\n}",
+  "description": "",
+  "id": "gbgsyfuhvdmzwauxreyrrmoc"
+}

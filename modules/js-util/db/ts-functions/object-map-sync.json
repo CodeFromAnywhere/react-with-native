@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666513261583,
+  "updatedAt": 1666513261583,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513261583,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/object-maps.ts",
+  "commentsInside": [],
+  "rawText": " <\n  TObject extends { [key: string]: any },\n  TMapResult,\n  TResultObject extends { [key in keyof TObject]: TMapResult }\n>(\n  object: TObject,\n  mapFn: (key: keyof TObject, value: TObject[keyof TObject]) => TMapResult\n): TResultObject => {\n  const valueObjectParts = getObjectKeysArray(object).map((key) => {\n    return { [key]: mapFn(key, object[key]) };\n  });\n\n  const merged = mergeObjectsArray(\n    valueObjectParts\n  ) as unknown as TResultObject;\n\n  return merged;\n}",
+  "name": "objectMapSync",
+  "slug": "object-map-sync",
+  "parameters": [],
+  "description": "maps over all values in an object and replaces them using a mapfn\n\nExample usage:\n\n```ts\n\nconst result = objectMapSync({ hello: \"world\", isTrue: true }, (key,value) => {\nreturn `${value}123`;\n});\n```",
+  "returnType": {
+    "rawType": "{ [key in keyof TObject]: TMapResult; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 672,
+    "lines": 27,
+    "bytes": 672,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 27,
+    "numberOfFiles": 1
+  },
+  "id": "zpkabbrvbyjeuyxxigqjhjvr"
+}

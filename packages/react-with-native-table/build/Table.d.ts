@@ -8,6 +8,7 @@ export declare type TableType<TModel extends {
 }> = {
     data: TModel[] | undefined;
     columns: ColumnType<TModel>[];
+    onEndReached?: () => void;
     /** NB: we can provide extra things to render behind all model data */
     renderExtraColumns?: (item: TModel | undefined) => JSX.Element;
     extraColumnsAtStart?: boolean;
@@ -55,9 +56,10 @@ export declare type ColumnType<TModel extends {
  * This contains all possible presenation types of the data in the table
  */
 export declare type PresentationTypeEnum = "text" | "referenceSingle" | "referenceMultiple";
+export declare function useIsInViewport(ref: React.MutableRefObject<Element | null>): boolean;
 export declare const Table: <TModel extends {
     [key: string]: any;
-}>({ data, columns, renderExtraColumns, extraColumnsAtStart, shouldHighlightItem, }: TableType<TModel>) => JSX.Element;
+}>({ data, columns, renderExtraColumns, extraColumnsAtStart, onEndReached, shouldHighlightItem, }: TableType<TModel>) => JSX.Element;
 export declare const TableHeadItem: (column: ColumnType<any>) => JSX.Element;
 export declare const TableRow: <T extends {
     [key: string]: any;

@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666513261583,
+  "updatedAt": 1666513261583,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513261583,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/object-maps.ts",
+  "commentsInside": [],
+  "rawText": " <\n  T extends { [key: string]: T[string] },\n  U extends unknown\n>(\n  object: T,\n  mapFn: (key: string, value: T[string]) => U\n): { [key: string]: U } => {\n  return Object.keys(object).reduce(function (result, key) {\n    result[key] = mapFn(key, object[key]);\n    return result;\n  }, {} as any);\n}",
+  "name": "objectValuesMap",
+  "slug": "object-values-map",
+  "parameters": [],
+  "description": "not sure if this is the best way, but it does save some lines of code!\n\nmaps over an object's values with a map function\n\nDEPRECATED in favour of objectMapSync and objectMapAsync",
+  "returnType": {
+    "rawType": "{ [key: string]: U; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 475,
+    "lines": 16,
+    "bytes": 475,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "ijieaamvboqutlejigkjduas"
+}

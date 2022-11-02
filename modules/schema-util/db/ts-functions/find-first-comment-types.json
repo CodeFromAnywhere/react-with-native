@@ -1,0 +1,61 @@
+{
+  "createdAt": 1666264369879,
+  "updatedAt": 1666264369879,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264369879,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/findFirstCommentTypes.ts",
+  "commentsInside": [],
+  "rawText": " (\n  strippedFullComment?: string\n): CommentTypeObject => {\n  if (strippedFullComment === undefined) return {};\n  const lines = strippedFullComment.split(\"\\n\");\n\n  const specialCommentTypesObject = commentTypes\n    .map((commentType) => {\n      const matchingPart = `${commentType.toUpperCase()}:`;\n      const matchingLine = lines.find((line) => {\n        const trimmedLine = line.trimStart();\n        const isMatch = trimmedLine.startsWith(matchingPart);\n        return isMatch;\n      });\n\n      if (!matchingLine) return;\n\n      const strippedMatchingLine = matchingLine.trimStart();\n      const specialCommentWithoutPrefix = strippedMatchingLine\n        .slice(matchingPart.length)\n        .trim();\n\n      return {\n        [commentType]: specialCommentWithoutPrefix,\n      };\n    })\n    .filter(notEmpty);\n\n  const fullObject = mergeObjectsArray(\n    specialCommentTypesObject\n  ) as CommentTypeObject;\n\n  return fullObject;\n}",
+  "name": "findFirstCommentTypes",
+  "slug": "find-first-comment-types",
+  "parameters": [
+    {
+      "name": "strippedFullComment",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Tries to find tie first appearing special comment line and parses it and returns it as part of the `CommentTypeObject`",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/code-types/build/TsComment\").CommentTypeObject",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1048,
+    "lines": 34,
+    "bytes": 1048,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 34,
+    "numberOfFiles": 1
+  },
+  "id": "cfufbrbrwplnpddtjxyqnwcb"
+}

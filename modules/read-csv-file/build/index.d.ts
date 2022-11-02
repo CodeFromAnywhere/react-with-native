@@ -1,5 +1,2 @@
-import { readCsvFile } from "./readCsvFile";
-import { readCsvFileSync } from "./readCsvFile";
-export declare const test: (() => Promise<boolean>)[];
-export { readCsvFile, readCsvFileSync };
+export * from "./readCsvFile";
 //# sourceMappingURL=index.d.ts.map

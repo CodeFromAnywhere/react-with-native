@@ -1,5 +1,2 @@
-"use strict";
-// THIS FILE HAS BEEN GENERATED
-Object.defineProperty(exports,"__esModule",{value:!0}),exports.TableRow=exports.TableHeadItem=exports.Table=exports.getColumns=void 0;var Table_1=require("./Table");Object.defineProperty(exports,"getColumns",{enumerable:!0,get:function(){return Table_1.getColumns}});var Table_2=require("./Table");Object.defineProperty(exports,"Table",{enumerable:!0,get:function(){return Table_2.Table}});var Table_3=require("./Table");Object.defineProperty(exports,"TableHeadItem",{enumerable:!0,get:function(){return Table_3.TableHeadItem}});var Table_4=require("./Table");Object.defineProperty(exports,"TableRow",{enumerable:!0,get:function(){return Table_4.TableRow}});
-// THANK YOU
+"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,i){void 0===i&&(i=r);var n=Object.getOwnPropertyDescriptor(t,r);n&&!("get"in n?!t.__esModule:n.writable||n.configurable)||(n={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,i,n)}:function(e,t,r,i){void 0===i&&(i=r),e[i]=t[r]}),__exportStar=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||__createBinding(t,e,r)};Object.defineProperty(exports,"__esModule",{value:!0}),__exportStar(require("./Table"),exports);
 //# sourceMappingURL=index.js.map

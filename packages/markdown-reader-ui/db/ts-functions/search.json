@@ -1,0 +1,125 @@
+{
+  "createdAt": 1666262427382,
+  "updatedAt": 1666262427382,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262427382,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/components/Layout.tsx",
+  "commentsInside": [],
+  "rawText": " (props: { results: AugmentedWord[] }) => {\n  const { results } = props;\n  const router = useRouter();\n  const options: Item<string>[] = results.map((result) => ({\n    label: result.spoiler || result.word,\n    value: result.word,\n  }));\n\n  return (\n    <Div>\n      <SelectInput\n        config={{}}\n        extra={{ autoSuggest: true, options }}\n        fieldName=\"search\"\n        onChange={(select) => {\n          const path = results.find((x) => x.word === select?.value)?.queryPath;\n          if (path) {\n            router.push(`/${path}`);\n          }\n        }}\n        uniqueFieldId=\"search\"\n        value={null}\n      />\n    </Div>\n  );\n}",
+  "name": "Search",
+  "slug": "search",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/AugmentedWord"
+            }
+          }
+        },
+        "required": [
+          "results"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "results",
+            "required": true,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..",
+                    "properties": [
+                      {
+                        "name": "word",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "Word without affixes. The affixes will be decided in the frontend parser based on the type",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "queryPath",
+                        "required": false,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "projectRelativeMarkdownSourcePath",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "spoiler",
+                        "required": false,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "isCaseInsensitive",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "If true, will match on lowercase variant of the word",
+                          "type": "boolean"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "AugmentedWord"
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 645,
+    "lines": 26,
+    "bytes": 645,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 26,
+    "numberOfFiles": 1
+  },
+  "id": "mkjmliklmsgptfjcxcfxsyhb"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259067696,
+  "updatedAt": 1666259067696,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259067696,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "test",
+  "slug": "test",
+  "operationRelativeTypescriptFilePath": "src/getRelativeLinkPath.test.ts",
+  "type": {
+    "rawType": "() => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  const from = __filename;\n\n  const root = getProjectRoot();\n\n  if (!root) return;\n\n  const to = `${root}/README.md`;\n  console.log(getRelativeLinkPath(from, to));\n}",
+  "description": "",
+  "id": "uisqckptqzhbkrsnilyfakto"
+}

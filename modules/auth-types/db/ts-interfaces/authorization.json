@@ -1,0 +1,115 @@
+{
+  "createdAt": 1667379482437,
+  "updatedAt": 1667379482437,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379482437,
+  "id": "authorization",
+  "name": "Authorization",
+  "slug": "authorization",
+  "operationRelativeTypescriptFilePath": "src/Authorization.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type Authorization = {\n  /**\n   * What should be authorized?\n   */\n  type:\n    | \"TsFunction\"\n    | \"TsVarialbe\"\n    | \"TsInterface\"\n    | \"Dataset\"\n    | \"operationName\"\n    | \"fileOrFolderPath\";\n  /**\n   * fileOrFolderPath: project relative path string\n   *\n   * operationName: name of the operation (grants access to all models, )\n   *\n   * otherwise: id of the model\n   */\n  value: string;\n  /**\n   * which things are authorized\n   */\n  authorizations: AuthorizationLevel[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "TsFunction",
+            "TsVarialbe",
+            "TsInterface",
+            "Dataset",
+            "operationName",
+            "fileOrFolderPath"
+          ],
+          "description": "What should be authorized?"
+        },
+        "value": {
+          "type": "string",
+          "description": "fileOrFolderPath: project relative path string\n\noperationName: name of the operation (grants access to all models, )\n\notherwise: id of the model"
+        },
+        "authorizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AuthorizationLevel"
+          },
+          "description": "which things are authorized"
+        }
+      },
+      "required": [
+        "type",
+        "value",
+        "authorizations"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "TsFunction",
+              "TsVarialbe",
+              "TsInterface",
+              "Dataset",
+              "operationName",
+              "fileOrFolderPath"
+            ],
+            "fullComment": "What should be authorized?",
+            "type": "string"
+          }
+        },
+        {
+          "name": "value",
+          "required": true,
+          "schema": {
+            "fullComment": "fileOrFolderPath: project relative path string\n\noperationName: name of the operation (grants access to all models, )\n\notherwise: id of the model",
+            "type": "string"
+          }
+        },
+        {
+          "name": "authorizations",
+          "required": true,
+          "schema": {
+            "fullComment": "which things are authorized",
+            "items": [
+              {
+                "schema": {
+                  "enum": [
+                    "execute",
+                    "write-create",
+                    "write-update",
+                    "write-delete",
+                    "read",
+                    "search"
+                  ],
+                  "fullComment": "`AuthorizationLevel` is a single Enum that can apply to privacy and authorization of text, functions, and data.\n\nFor files (ts, md, json, etc...):\n\n- write-create\n- write-update\n- write-delete\n- read\n- search (only search index)\n\nFor db model data subsets:\n\n- write-update\n- write-create\n- write-delete\n- read\n- search (only search index)\n\nFor functions:\n- execute\n\nFor functions, interfaces, variables:\n\n- read (reading docs only. for source, you need to provide the file auth)\n- search (only search index)",
+                  "type": "string"
+                },
+                "name": "AuthorizationLevel"
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "Authorization",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

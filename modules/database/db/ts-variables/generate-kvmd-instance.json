@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259860912,
+  "updatedAt": 1666259860912,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259860912,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "generateKvmdInstance",
+  "slug": "generate-kvmd-instance",
+  "operationRelativeTypescriptFilePath": "src/test-db.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(): Creation<KvmdTestModel> => {\n  const id = generateId();\n  return {\n    slug: id,\n    // Needed for deletion later\n    id: id,\n    isHeaderCalculated: true,\n    categoryStackCalculated: [],\n    comment: \"comment\",\n    value: \"value\",\n    name: id,\n  };\n}",
+  "description": "",
+  "id": "ovwfdodxvqrzdusuoqfyynjf"
+}

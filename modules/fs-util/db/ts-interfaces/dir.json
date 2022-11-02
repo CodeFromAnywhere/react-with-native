@@ -1,0 +1,53 @@
+{
+  "createdAt": 1667378796352,
+  "updatedAt": 1667378796352,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378796352,
+  "id": "dir",
+  "name": "Dir",
+  "slug": "dir",
+  "operationRelativeTypescriptFilePath": "src/fs.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "A class representing a directory stream.\n\nCreated by  {@link  opendir } ,  {@link  opendirSync } , or `fsPromises.opendir()`.\n\n```js import { opendir } from 'fs/promises';\n\ntry {   const dir = await opendir('./');   for await (const dirent of dir)     console.log(dirent.name); } catch (err) {   console.error(err); } ```\n\nWhen using the async iterator, the `fs.Dir` object will be automatically closed after the iterator exits.",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "The read-only path of this directory as was provided to  {@link  opendir } , {@link  opendirSync } , or `fsPromises.opendir()`."
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "description": "A class representing a directory stream.\n\nCreated by  {@link  opendir } ,  {@link  opendirSync } , or `fsPromises.opendir()`.\n\n```js import { opendir } from 'fs/promises';\n\ntry {   const dir = await opendir('./');   for await (const dirent of dir)     console.log(dirent.name); } catch (err) {   console.error(err); } ```\n\nWhen using the async iterator, the `fs.Dir` object will be automatically closed after the iterator exits."
+    },
+    "simplifiedSchema": {
+      "fullComment": "A class representing a directory stream.\n\nCreated by  {@link  opendir } ,  {@link  opendirSync } , or `fsPromises.opendir()`.\n\n```js import { opendir } from 'fs/promises';\n\ntry {   const dir = await opendir('./');   for await (const dirent of dir)     console.log(dirent.name); } catch (err) {   console.error(err); } ```\n\nWhen using the async iterator, the `fs.Dir` object will be automatically closed after the iterator exits.",
+      "properties": [
+        {
+          "name": "path",
+          "required": true,
+          "schema": {
+            "fullComment": "The read-only path of this directory as was provided to  {@link  opendir } , {@link  opendirSync } , or `fsPromises.opendir()`.",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "Dir",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

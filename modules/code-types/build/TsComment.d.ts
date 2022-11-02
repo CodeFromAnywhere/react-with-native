@@ -1,17 +1,35 @@
-import { Markdown, FrontMatter } from "common-types";
-import { IndexId } from "./IndexId";
-export declare const commentTypesConst: readonly ["todo", "discussion", "idea", "later", "nb"];
-export declare const commentTypes: ("todo" | "discussion" | "idea" | "later" | "nb")[];
+import { Markdown, TsIndexModelType } from "model-types";
+import { Frontmatter } from "matter-types";
+export declare const commentTypesConst: readonly ["todo", "discussion", "idea", "later", "nb", "title", "section", "description"];
+export declare const commentTypes: ("todo" | "discussion" | "idea" | "later" | "nb" | "title" | "section" | "description")[];
+/**
+ * special line prefixes:
+ *
+ * **Developer related comments**
+ *
+ * - TODO: for developer to know what to do
+ * - DISCUSSION: for developer to state that discussion is needed
+ * - IDEA: for developer to state ideas
+ * - LATER: for developer to mark as thing that needs to be done later
+ * - NB: for developer to add a note
+ *
+ * **Form related comments**
+ *
+ * - TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)
+ * - SECTION: start a new section in the form from this point, the value behind here can be the title
+ * - DESCRIPTION: if available, will be used as description of the form input
+ *
+ */
 export declare type CommentType = typeof commentTypesConst[number];
+/**
+ * Every `CommentType` can be a key in the `SimplifiedSchema`, if available.
+ */
+export declare type CommentTypeObject = {
+    [commentType in CommentType]?: string;
+};
 /**
  * comments are basically one-or-multi-line human content inside of typescript files, so it's a very important to do something useful with them.
  *
- * special line prefixes:
- * - TODO:
- * - DISCUSSION:
- * - IDEA:
- * - LATER:
- * - NB:
  *
  * The convention should be that single-line comments should start with that. This then becomes the type of the comment.
  * You can also put multiple prefixes at the start.
@@ -33,7 +51,7 @@ export declare type CommentType = typeof commentTypesConst[number];
  *
  * NB: comments are part of the code, so they should always be in English!
  */
-export interface TsComment extends IndexId {
+export interface TsComment extends TsIndexModelType {
     /**
      * the content of the comment in markdown, without frontmatter
      */
@@ -41,7 +59,7 @@ export interface TsComment extends IndexId {
     /**
      * parameters destructured from the frontmatter of the parsed markdown (if comment is not a oneliner, otherwise it'll be empty)
      */
-    parameters: FrontMatter;
+    parameters: Frontmatter;
     /**
      * These are the type indicators that were found in this single or multiline comment. Can be multiple.
      */

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513258355,
+  "updatedAt": 1666513258355,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513258355,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "main",
+  "slug": "main",
+  "operationRelativeTypescriptFilePath": "src/mapMany.test.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const urls = [\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n  ];\n  console.log(\"Normal map with unlimited concurrency\");\n  console.time(\"normalmap\");\n  const results1 = await Promise.all(urls.map(concatenate));\n  console.timeEnd(\"normalmap\");\n\n  console.log(\"Map many with 10 concurrency\");\n  console.time(\"mapMany\");\n  const results2 = await mapMany(urls, concatenate, 10);\n  console.timeEnd(\"mapMany\");\n}",
+  "description": "",
+  "id": "anthuaqjlmnuagmdnbarpbmg"
+}

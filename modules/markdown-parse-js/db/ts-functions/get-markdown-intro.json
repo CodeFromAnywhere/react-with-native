@@ -1,0 +1,93 @@
+{
+  "createdAt": 1667379657287,
+  "updatedAt": 1667379657287,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379657287,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getMarkdownIntro.ts",
+  "commentsInside": [],
+  "rawText": " (markdownParse: MarkdownParse | null) => {\n  const firstChunk = markdownParse?.content?.[0];\n  const title = firstChunk?.title;\n  const firstParagraph = firstChunk?.title\n    ? firstChunk?.children?.[0]?.content || null\n    : firstChunk?.content || null;\n\n  return { title, firstParagraph };\n}",
+  "name": "getMarkdownIntro",
+  "slug": "get-markdown-intro",
+  "parameters": [
+    {
+      "name": "markdownParse",
+      "schema": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/MarkdownParse"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "This function takes a markdown parse and gets the first paragraph and a title from it, if available.\n\nCurrently assumes that the first paragraph starts directly after the title or there is no title and the content is at the beginning.\n\nTODO: It would be better to find the first paragraph based on the level.",
+  "returnType": {
+    "rawType": "{ title: any; firstParagraph: any; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "title": {},
+        "firstParagraph": {}
+      },
+      "required": [
+        "title",
+        "firstParagraph"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "title",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "firstParagraph",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 602,
+    "lines": 13,
+    "bytes": 602,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 46,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "wqgdbbakrgsfjucfltwriszt"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666261374616,
+  "updatedAt": 1666261374616,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261374616,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "getPlugin",
+  "slug": "get-plugin",
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "type": {
+    "rawType": "<TInputs extends import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").AllPluginInputTypes>(type: string | undefined, plugins: Plugins<TInputs>) => import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").Plugin<any>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<TInputs extends AllPluginInputTypes>(\n  type: string | undefined,\n  plugins: Plugins<TInputs>\n) => {\n  return type\n    ? plugins[type]\n    : plugins[Object.keys(plugins)[0] as keyof Plugins<TInputs>];\n}",
+  "description": "",
+  "id": "nkdvftpwiwspkvffnodsbgge"
+}

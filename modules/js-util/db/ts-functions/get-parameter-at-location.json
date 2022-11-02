@@ -1,0 +1,74 @@
+{
+  "createdAt": 1666513256016,
+  "updatedAt": 1666513256016,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513256016,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getParameterAtLocation.ts",
+  "commentsInside": [],
+  "rawText": " <T = any>(\n  object: { [key: string]: any },\n  location: string[]\n): T => {\n  const firstParameter = object[location[0]];\n\n  if (location.length === 1) return firstParameter;\n\n  return getParameterAtLocation(firstParameter, location.slice(1));\n}",
+  "name": "getParameterAtLocation",
+  "slug": "get-parameter-at-location",
+  "parameters": [
+    {
+      "name": "object",
+      "schema": {
+        "type": "object"
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "location",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "utility function to get a parameter inside of a nested object",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 307,
+    "lines": 10,
+    "bytes": 307,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "gpyoyxyublroherpjhpmazlb"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259057002,
+  "updatedAt": 1666259057002,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259057002,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getCommonAncestor",
+  "slug": "get-common-ancestor",
+  "operationRelativeTypescriptFilePath": "src/getCommonAncestor.ts",
+  "type": {
+    "rawType": "(path1: string, path2: string) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(path1: string, path2: string): string => {\n  const chunks = path1.split(\"/\");\n  const chunks2 = path2.split(\"/\");\n\n  const firstFolderMismatchIndex = chunks.findIndex((chunk, index, array) => {\n    const isMismatch = chunks2[index] !== chunk;\n\n    return isMismatch;\n  });\n\n  const commonAncestor = chunks.slice(0, firstFolderMismatchIndex).join(\"/\");\n\n  return commonAncestor;\n}",
+  "description": "Finds the common ancestor for two absolute pahts",
+  "id": "usylfycxdmblodxkhpupqjtu"
+}

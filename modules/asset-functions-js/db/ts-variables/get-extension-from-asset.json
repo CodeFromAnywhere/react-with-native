@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667111116735,
+  "updatedAt": 1667111116735,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111116735,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getExtensionFromAsset",
+  "slug": "get-extension-from-asset",
+  "operationRelativeTypescriptFilePath": "src/getExtensionFromAsset.ts",
+  "type": {
+    "rawType": "(asset: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").Asset) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(asset: Asset) => {\n  const extensionFromType =\n    asset.type === \"audio\"\n      ? `mp3`\n      : asset.type === \"image\"\n      ? `jpeg`\n      : asset.type === \"video\"\n      ? `mp4`\n      : undefined;\n\n  const extension = extensionFromType\n    ? extensionFromType\n    : asset.originalFilename\n    ? getExtension(asset.originalFilename)\n    : undefined;\n\n  return extension;\n}",
+  "description": "Returns a preliminary filename, based on the `Asset`",
+  "id": "pacndvzllabvxgrxqjvnpchp"
+}

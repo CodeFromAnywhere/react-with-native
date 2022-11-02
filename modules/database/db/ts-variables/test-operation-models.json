@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259863909,
+  "updatedAt": 1666259863909,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259863909,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "testOperationModels",
+  "slug": "test-operation-models",
+  "operationRelativeTypescriptFilePath": "src/test-operation-models.ts",
+  "type": {
+    "rawType": "() => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const operationIndexs = await testDb.get(\"OperationIndex\");\n  const operationConfigs = await testDb.get(\"OperationConfig\");\n  const packageJsons = await testDb.get(\"PackageJson\");\n  const tsConfigs = await testDb.get(\"TsConfig\");\n\n  console.dir({ operationConfigs, operationIndexs, packageJsons, tsConfigs });\n\n  return true;\n}",
+  "description": "Test if it can find all `OperationIndex`, `OperationConfig`, `PackageJson`, `TsConfig`",
+  "id": "sgykpoxfqlontsokkbpkkxln"
+}

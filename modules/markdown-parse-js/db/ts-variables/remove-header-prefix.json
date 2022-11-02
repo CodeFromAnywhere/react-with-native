@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379671898,
+  "updatedAt": 1667379671898,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379671898,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "removeHeaderPrefix",
+  "slug": "remove-header-prefix",
+  "operationRelativeTypescriptFilePath": "src/removeHeaderPrefix.ts",
+  "type": {
+    "rawType": "(string: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(string: string) => {\n  const trimmed = string.split(\"\").reduce(\n    (cum, letter) => {\n      const isHeaderPrefix = cum.isHeaderPrefix && letter === \"#\";\n      return {\n        string: isHeaderPrefix ? \"\" : cum.string.concat(letter),\n        isHeaderPrefix,\n      };\n    },\n    { string: \"\", isHeaderPrefix: true }\n  );\n\n  return trimmed.string.trim();\n}",
+  "description": "removes header prefix (##### etc) and trims whats behind that",
+  "id": "fwousgggpafkgwqkwjtltifv"
+}

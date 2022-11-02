@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666513259329,
+  "updatedAt": 1666513259329,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513259329,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "name": "arrayGenerator",
+  "slug": "array-generator",
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/mapMany.ts",
+  "commentsInside": [],
+  "description": "/**\n * NB: Do I really need this? Would be nice not to use generators.\n */",
+  "parameters": [],
+  "returnType": {
+    "rawType": "Generator<[any, number, any[]], void, unknown>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "size": {
+    "characters": 412,
+    "lines": 14,
+    "bytes": 412,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\n/**\n * NB: Do I really need this? Would be nice not to use generators.\n */\nfunction* arrayGenerator(array: any[]): ArrayGenerator {\n  for (let index = 0; index < array.length; index++) {\n    const currentValue = array[index];\n    const generatorTuple: [any, number, any[]] = [currentValue, index, array];\n    yield generatorTuple;\n  }\n}",
+  "maxIndentationDepth": 2,
+  "id": "hvlanpuqcktmkymbyyvgmmak"
+}

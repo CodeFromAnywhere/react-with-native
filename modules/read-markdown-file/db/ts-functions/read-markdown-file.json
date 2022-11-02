@@ -1,0 +1,53 @@
+{
+  "createdAt": 1666263072583,
+  "updatedAt": 1666263072583,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263072583,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/readMarkdownFile.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  filePath: Path\n): Promise<MarkdownParse | null> => {\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isMarkdownFile = [\"md\", \"mdx\"].includes(pathParse.ext.slice(1));\n  if (!isMarkdownFile) return null;\n  if (!fs.existsSync(filePath)) return null;\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const fileName = path.parse(filePath).name;\n\n  const markdownParse = mdToJsonParse(fileString, fileName);\n  return markdownParse;\n}",
+  "name": "readMarkdownFile",
+  "slug": "read-markdown-file",
+  "parameters": [
+    {
+      "name": "filePath",
+      "schema": {
+        "$ref": "#/definitions/Path"
+      },
+      "simplifiedSchema": {
+        "fullComment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Reads and parses a markdown file",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse | null>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 617,
+    "lines": 18,
+    "bytes": 617,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "id": "axpkbalhnufyrltfaznovftu"
+}

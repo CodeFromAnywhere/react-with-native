@@ -1,0 +1,94 @@
+{
+  "createdAt": 1667379363384,
+  "updatedAt": 1667379363384,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379363384,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getUrlFromRelativeUrl.ts",
+  "commentsInside": [],
+  "rawText": " (\n  relativeUrl: string,\n  relativeUrlStrategy: \"api\" | \"static\",\n  projectRelativeBaseFolderPath: string,\n  projectRelativeMarkdownFilePath: string\n) => {\n  if (relativeUrlStrategy === \"static\")\n    return path.join(projectRelativeBaseFolderPath, relativeUrl);\n\n  const relativeUrlWithoutStart = relativeUrl.slice(2);\n\n  return getReferencedAssetApiUrl(\n    apiUrl,\n    projectRelativeMarkdownFilePath,\n    relativeUrlWithoutStart\n  );\n}",
+  "name": "getUrlFromRelativeUrl",
+  "slug": "get-url-from-relative-url",
+  "parameters": [
+    {
+      "name": "relativeUrl",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "relativeUrlStrategy",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "api",
+          "static"
+        ]
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "api",
+          "static"
+        ],
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "projectRelativeBaseFolderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "projectRelativeMarkdownFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "gets the renderable asset url from the relative url",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 490,
+    "lines": 17,
+    "bytes": 490,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "gdahvigpiauficulcouvupgz"
+}

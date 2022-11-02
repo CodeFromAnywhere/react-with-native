@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1666263048142,
+    "updatedAt": 1666263048142,
+    "deletedAt": 0,
+    "createdFirstAt": 1666263048142,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/readKvmdFile.ts",
+    "comment": "Reads and parses a markdown file",
+    "rawStatement": "export const readKvmdFile = async (\n  filePath: Path,\n  /**\n   * TODO: make this optional. if not provided, calculate it ourselves here.\n   */\n  dbFileLocation: DbFileLocation\n): Promise<KeyValueMarkdownParse | null> => {\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isMarkdownFile = [\"md\", \"mdx\"].includes(pathParse.ext.slice(1));\n  if (!isMarkdownFile) return null;\n\n  if (!fs.existsSync(filePath)) return null;\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const keyValueMarkdownParse = markdownStringToKvmdParse(\n    fileString,\n    dbFileLocation\n  );\n\n  console.log({ keyValueMarkdownParse });\n  return keyValueMarkdownParse;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 9,
+    "lastLine": 11,
+    "id": "wqiqnztfuytecdbwkawtnldb"
+  }
+]

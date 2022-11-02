@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667378840498,
+  "updatedAt": 1667378840498,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378840498,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getExtension",
+  "slug": "get-extension",
+  "operationRelativeTypescriptFilePath": "src/js.ts",
+  "type": {
+    "rawType": "(fileNameOrPath: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(fileNameOrPath: string) => {\n  const pieces = fileNameOrPath.split(\".\");\n  return pieces.pop()!;\n}",
+  "description": "returns the extension of the filename or path WITHOUT dot\n\nNB: not sure, but could be nice to replace this with path.extname(pathString)",
+  "id": "dyrgfrqygbupkwkhihctlkxi"
+}

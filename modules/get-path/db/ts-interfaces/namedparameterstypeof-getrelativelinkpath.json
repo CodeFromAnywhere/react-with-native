@@ -1,0 +1,70 @@
+{
+  "createdAt": 1666259068463,
+  "updatedAt": 1666259068463,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259068463,
+  "id": "namedparameterstypeof-getrelativelinkpath",
+  "name": "NamedParameters<typeof getRelativeLinkPath>",
+  "slug": "namedparameterstypeof-getrelativelinkpath",
+  "operationRelativeTypescriptFilePath": "src/getRelativeLinkPath.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "absoluteFromFilePath": {
+          "type": "string"
+        },
+        "absoluteToFilePath": {
+          "type": "string"
+        },
+        "debug": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "absoluteFromFilePath",
+        "absoluteToFilePath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "absoluteFromFilePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "absoluteToFilePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "debug",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getRelativeLinkPath>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

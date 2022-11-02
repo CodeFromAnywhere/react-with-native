@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513252701,
+  "updatedAt": 1666513252701,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513252701,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "sum",
+  "slug": "sum",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "(items: number[]) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(items: number[]) => {\n  const total = items.reduce((total, num) => {\n    if (typeof num !== \"number\") {\n      console.log(\"WTF\", num);\n    }\n    return total + num;\n  }, 0);\n\n  return total;\n}",
+  "description": "",
+  "id": "trkhqiyenklndwnwxxfzpboz"
+}

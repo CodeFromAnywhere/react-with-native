@@ -1,0 +1,67 @@
+{
+  "createdAt": 1666262295797,
+  "updatedAt": 1666262295797,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262295797,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getAllMarkdownReaderPages.ts",
+  "commentsInside": [],
+  "rawText": " async (config?: {\n  manualProjectRoot?: string;\n}): Promise<undefined | MarkdownReaderPage[]> => {\n  const projectRoot = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n\n  // the docs folder with all its files\n  const docsPaths = await findAllDocsFolderPaths(true);\n  const relativeDocsPages = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths: docsPaths,\n  });\n  // operations\n  const operationPages = await getOperationPages(projectRoot);\n\n  // markdown model type pages\n  const markdownModelTypePages = await getMarkdownModelPages(projectRoot);\n  // todo pages\n  const todoPages = await getTodoPages(projectRoot);\n\n  const allPages: MarkdownReaderPage[] = [\n    { queryPath: \"\", filePath: \"README.md\", isMenuItem: true },\n    ...relativeDocsPages,\n    ...operationPages,\n    // `/dictionary` page with all words/definitions, categorised\n    { queryPath: \"dictionary\", isMenuItem: true },\n    // all markdown model types, optionally (with config)\n    ...markdownModelTypePages,\n    // all todo markdown folders, both in operations and outside (with config)\n    ...todoPages,\n  ].filter(\n    onlyUnique2<MarkdownReaderPage>((a, b) => a.queryPath === b.queryPath)\n  );\n\n  return allPages;\n}",
+  "name": "getAllMarkdownReaderPages",
+  "slug": "get-all-markdown-reader-pages",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "manualProjectRoot": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "manualProjectRoot",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "....? I should've commented this\n\nconst hasDocs = !!relativeDocsPages.find(\n\n(x) => x.queryPath.toLowerCase() === \"docs/readme\"\n\n);\n\nif (!hasDocs) {\n\nconst hasRootReadme = fs.existsSync(path.join(projectRoot, \"README.md\"));\n\nif (hasRootReadme) {\n\nrelativeDocsPages.unshift({\n\nqueryPath: \"docs/readme\",\n\nfilePath: \"README.md\",\n\nisMenuItem: true,\n\n});\n\n}\n\n}\n\nGets all pages of a bundle based on the fs and database\n\nPages it finds:\n\n- operation-readmes\n- multiple docs basePaths with all folders and markdown pages there in (`/[project-relative-path]`)\n- `/dictionary`\n- all markdown model types we have in the db-sdk, optionally, depending on config\n\nRequirements:\n\n- README should always be on top in a folder.\n- numbers and extensions are omitted from paths, but still connected to the right file\n- If the docs doesn't have a readme, the /docs/readme path shows the root readme.\n\nDoes not include AugmentedWord. Just the main pages, not with queries and hashes\n\nUsed to generate the menu",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage[] | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 2218,
+    "lines": 81,
+    "bytes": 2218,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 81,
+    "numberOfFiles": 1
+  },
+  "id": "kvlglpemwdeyuetidsxggogj"
+}

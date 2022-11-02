@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667379200427,
+  "updatedAt": 1667379200427,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379200427,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/react-native/ActivityIndicator/ActivityIndicator.tsx",
+  "commentsInside": [],
+  "rawText": " (props: ActivityIndicatorType) => {\n  const sizeClass =\n    typeof props.size === \"number\"\n      ? \"\"\n      : props.size === \"large\"\n      ? \"w-16 h-16\"\n      : \"w-6 h-6\";\n  const sizeStyle =\n    typeof props.size === \"number\"\n      ? { width: props.size, height: props.size }\n      : undefined;\n\n  const borderClass =\n    props.color === \"white\"\n      ? \"border-white dark:border-gray-900\"\n      : \"border-gray-900 dark:border-white\";\n\n  const className = `${sizeClass} border-b-2 ${borderClass} rounded-full animate-spin ${\n    props.className || \"\"\n  }`;\n\n  return <div style={sizeStyle} className={className} />;\n}",
+  "name": "ActivityIndicator",
+  "slug": "activity-indicator",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 619,
+    "lines": 23,
+    "bytes": 619,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 23,
+    "numberOfFiles": 1
+  },
+  "id": "pfqwgcsunxbgiwjqzdibobvb"
+}

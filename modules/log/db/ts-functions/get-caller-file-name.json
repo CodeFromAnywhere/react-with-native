@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666264721892,
+  "updatedAt": 1666264721892,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264721892,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " () => {\n  const stack = new Error().stack;\n  if (!stack) return;\n\n  // console.log(\"Complete stack\", stack);\n  const firstRelevantLine = stack.split(\"\\n\")[3];\n  if (!firstRelevantLine) return;\n\n  const jsFilePath = firstRelevantLine.split(\"at \")[1].split(\":\")[0];\n\n  if (!jsFilePath) return;\n\n  const srcPath = jsFilePath.replace(\"/build/\", \"/src/\").replace(\".js\", \".ts\");\n\n  return srcPath;\n}",
+  "name": "getCallerFileName",
+  "slug": "get-caller-file-name",
+  "parameters": [],
+  "description": "TODO: this is great. now also get the operationName. If the operationName appears in the config, for debug, show the log, otherwise don't show",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 536,
+    "lines": 16,
+    "bytes": 536,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "wacawhrokjcgnkaruxvlcqms"
+}

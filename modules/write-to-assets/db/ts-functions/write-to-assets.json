@@ -1,0 +1,76 @@
+{
+  "createdAt": 1666258869998,
+  "updatedAt": 1666258869998,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258869998,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/writeToAssets.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  /**\n   * Insert `__filename` here or the typescript file path\n   */\n  filePath: string,\n  /**\n   * The data you want to write to a file, can also be a promise\n   */\n  data: any,\n  assetsFileName?: string\n) => {\n  // NB: it may be a promise, so first await it\n  const realData = await data;\n\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) return;\n\n  const extension = typeof realData === \"string\" ? \".md\" : \".json\";\n\n  const realAssetsFileName =\n    assetsFileName || `${path.parse(filePath).name}${extension}`;\n  const assetsFilePath = path.join(\n    operationBasePath,\n    \"assets\",\n    realAssetsFileName\n  );\n\n  console.log({ assetsFilePath });\n\n  if (typeof data === \"string\") {\n    return writeStringToFile(assetsFilePath, realData);\n  }\n\n  return writeJsonToFile(assetsFilePath, realData);\n}",
+  "name": "writeToAssets",
+  "slug": "write-to-assets",
+  "parameters": [
+    {
+      "name": "filePath",
+      "schema": {
+        "type": "string",
+        "description": "Insert `__filename` here or the typescript file path"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Insert `__filename` here or the typescript file path",
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "data",
+      "schema": {
+        "description": "The data you want to write to a file, can also be a promise"
+      },
+      "simplifiedSchema": {
+        "fullComment": "The data you want to write to a file, can also be a promise",
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "assetsFileName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Writes anything (string or json) the assets folder of the operation of the caller function of this function\n\nUseful for testing",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 975,
+    "lines": 37,
+    "bytes": 975,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 37,
+    "numberOfFiles": 1
+  },
+  "id": "vvoecafyetryobtkezyxrkqc"
+}

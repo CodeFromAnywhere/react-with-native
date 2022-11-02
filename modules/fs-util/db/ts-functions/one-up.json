@@ -1,0 +1,56 @@
+{
+  "createdAt": 1667378801227,
+  "updatedAt": 1667378801227,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378801227,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getFirstAvailableFilename.ts",
+  "commentsInside": [],
+  "rawText": " (filename: string): string => {\n  const lastNumber = filename.match(/\\d+$/)?.[0];\n  const newNumber = lastNumber ? String(Number(lastNumber) + 1) : \"1\";\n  return `${filename}${newNumber}`;\n}",
+  "name": "oneUp",
+  "slug": "one-up",
+  "parameters": [
+    {
+      "name": "filename",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Finds the number at the end of a filename and increases it\nIf there is no number yet, concatenates '1' to a string\n\nE.g.\n\n- `hello-world` becomes `hello-world1`\n- `hello36` becomes `hello37`",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 381,
+    "lines": 11,
+    "bytes": 381,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 35,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "dxhrrccwanqsjpzqztihdwgv"
+}

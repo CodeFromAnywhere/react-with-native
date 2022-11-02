@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666259117417,
+  "updatedAt": 1666259117417,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259117417,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/explore.ts",
+  "commentsInside": [],
+  "rawText": " (config: BaseConfig) => {\n  return explore({\n    basePath: config?.basePath,\n    search: \".git\",\n    exact: true,\n    searchLevel: \"folder\",\n    doNotExploreMatch: true,\n    // I guess we can assume there will never be git folders inside an operation on a deeper level, that would be strange... Therefore, these can be ignored\n    ignore: [\"node_modules\", \"build\", \".next\", \"src\", \"assets\", \"data\"],\n  });\n}",
+  "name": "findAllDotGitFolders",
+  "slug": "find-all-dot-git-folders",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TextJson\").TextJson[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 408,
+    "lines": 11,
+    "bytes": 408,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 37,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "daupfmcuaxcckysldaoaibqe"
+}

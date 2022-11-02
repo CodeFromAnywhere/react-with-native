@@ -1,0 +1,69 @@
+{
+  "createdAt": 1667379665364,
+  "updatedAt": 1667379665364,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379665364,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/mdToJsonParse.ts",
+  "commentsInside": [],
+  "rawText": " (\n  markdownString: string,\n  fileName?: string,\n  config?: MarkdownParseConfig\n): MarkdownParse => {\n  const { parameters, raw } = parseFrontmatterMarkdownString(\n    markdownString,\n    config\n  );\n  return {\n    fileName,\n    raw,\n    parameters,\n    content: mdContentParseRecursively(raw, 1),\n  };\n}",
+  "name": "mdToJsonParse",
+  "slug": "md-to-json-parse",
+  "parameters": [
+    {
+      "name": "markdownString",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "fileName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    },
+    {
+      "name": "config",
+      "schema": {
+        "$ref": "#/definitions/MarkdownParseConfig"
+      },
+      "required": false
+    }
+  ],
+  "description": "makes a markdown parse from a markdown string\n\nTODO: `markdownStringToMarkdownParse` is a better name. First make a refactor script for this, because it is too hard to rename stuff that is used a lot.\n\nTODO: BUG: it doesn't take into account triple backticks! if there is markdown inside of the triple backticks, it can still be seen as main markdown. Triple backticks are stronger!",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 687,
+    "lines": 20,
+    "bytes": 687,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "mascseygbakpmljlnqjqanll"
+}

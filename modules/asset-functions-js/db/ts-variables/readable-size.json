@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667111122235,
+  "updatedAt": 1667111122235,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111122235,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "readableSize",
+  "slug": "readable-size",
+  "operationRelativeTypescriptFilePath": "src/readableSize.ts",
+  "type": {
+    "rawType": "(sizeBytes: number) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(sizeBytes: number): string => {\n  if (sizeBytes < 1024) return `${sizeBytes} bytes`;\n  if (sizeBytes < 1024 * 1024) return `${Math.round(sizeBytes / 1024)} kb`;\n  if (sizeBytes < 1024 * 1024 * 1024)\n    return `${Math.round(sizeBytes / (1024 * 1024))} mb`;\n  if (sizeBytes < 1024 * 1024 * 1024 * 1024)\n    return `${Math.round(sizeBytes / (1024 * 1024 * 1024))} gb`;\n  if (sizeBytes < 1024 * 1024 * 1024 * 1024 * 1024)\n    return `${Math.round(sizeBytes / (1024 * 1024 * 1024 * 1024))} tb`;\n\n  return \"waaaay to big\";\n}",
+  "description": "",
+  "id": "zrrrvlxlupxghancbbowonar"
+}

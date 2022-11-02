@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262678190,
+  "updatedAt": 1666262678190,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262678190,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "csvItemArrayToCsvString",
+  "slug": "csv-item-array-to-csv-string",
+  "operationRelativeTypescriptFilePath": "src/csvItemArrayToCsvString.ts",
+  "type": {
+    "rawType": "<T extends import(\"/Users/king/King/operations/tools/parsing/file-conversion/csv/csv-util/src/tryParseCsv\").CsvItemType>(csvModelData: T[]) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends CsvItemType>(\n  csvModelData: T[]\n): string => {\n  if (csvModelData.length === 0) return \"\";\n\n  // let propertyNames = simplifiedSchema?.properties?.map((x) => x.name);\n\n  const longestItem = csvModelData.reduce(\n    (previous, current) => {\n      const keysAmount = Object.keys(current).length;\n      if (keysAmount > previous.keysAmount) {\n        return { keysAmount, item: current };\n      }\n      return previous;\n    },\n    { keysAmount: 0, item: undefined } as {\n      keysAmount: number;\n      item: T | undefined;\n    }\n  ).item!;\n\n  const propertyNames = Object.keys(longestItem);\n\n  const headerString = propertyNames.join(\",\");\n\n  const rowStrings = csvModelData.map((row) => {\n    return propertyNames!\n      .map((propertyName) => String(row[propertyName]))\n      .join(\",\");\n  });\n\n  return `${headerString}\\n${rowStrings.join(\"\\n\")}`;\n}",
+  "description": "make csv string from a csv model type",
+  "id": "xujbfvxjclcqfuituvpovwoo"
+}

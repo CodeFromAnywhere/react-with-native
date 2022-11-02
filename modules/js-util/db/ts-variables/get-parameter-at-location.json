@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513256162,
+  "updatedAt": 1666513256162,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513256162,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getParameterAtLocation",
+  "slug": "get-parameter-at-location",
+  "operationRelativeTypescriptFilePath": "src/getParameterAtLocation.ts",
+  "type": {
+    "rawType": "<T = any>(object: { [key: string]: any; }, location: string[]) => T",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T = any>(\n  object: { [key: string]: any },\n  location: string[]\n): T => {\n  const firstParameter = object[location[0]];\n\n  if (location.length === 1) return firstParameter;\n\n  return getParameterAtLocation(firstParameter, location.slice(1));\n}",
+  "description": "utility function to get a parameter inside of a nested object",
+  "id": "pdxfddenqaubnvczcqjttagu"
+}

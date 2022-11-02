@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getAssetInputType=void 0;var convert_case_1=require("convert-case"),pluralize_1=require("pluralize"),getAssetInputType=function(e,r){var t=(0,convert_case_1.lowerCaseArray)(e).pop();if(t&&(!r||"array"===r||"object"===r))return["image","video","audio","file","asset"].includes((0,pluralize_1.singularize)(t))?{type:(0,pluralize_1.singularize)(t),isMultiple:(0,pluralize_1.isPlural)(t)}:void 0};exports.getAssetInputType=getAssetInputType;
+//# sourceMappingURL=getAssetInputType.js.map

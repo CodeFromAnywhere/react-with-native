@@ -1,0 +1,40 @@
+{
+  "createdAt": 1664524636976,
+  "updatedAt": 1664524636976,
+  "deletedAt": 0,
+  "createdFirstAt": 1664524636976,
+  "id": "include-data-object",
+  "name": "IncludeDataObject",
+  "slug": "include-data-object",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type IncludeDataObject = {\n  [modelName: string]: AugmentedAnyModelType[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/AugmentedAnyModelType"
+        }
+      }
+    },
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "IncludeDataObject",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

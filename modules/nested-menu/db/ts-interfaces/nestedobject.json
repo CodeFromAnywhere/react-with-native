@@ -1,0 +1,44 @@
+{
+  "createdAt": 1667379406465,
+  "updatedAt": 1667379406465,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379406465,
+  "id": "nestedobject",
+  "name": "NestedObject",
+  "slug": "nestedobject",
+  "operationRelativeTypescriptFilePath": "src/util/queryPathsArrayToNestedPathObject.ts",
+  "hasGeneric": true,
+  "isExported": true,
+  "rawText": "export type NestedObject<T = null> = {\n  [key: string]: NestedObject | T;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/NestedObject"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NestedObject",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { MenuItemType } from "./types";
 /**
  * General purpose NestedMenuItem

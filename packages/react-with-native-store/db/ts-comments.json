@@ -1,0 +1,34 @@
+[
+  {
+    "createdAt": 1667379432807,
+    "updatedAt": 1667379432807,
+    "deletedAt": 0,
+    "createdFirstAt": 1667379432807,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/storage.ts",
+    "comment": "If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function",
+    "rawStatement": "export const getItem = async (key: string) => {\n  if (typeof window === \"undefined\") {\n    return undefined;\n  }\n  const item = localStorage.getItem(key);\n  return item ? JSON.parse(item) : undefined;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 1,
+    "lastLine": 3,
+    "id": "xkpkyzfhyvyqsvxifndshpgm"
+  },
+  {
+    "createdAt": 1667379432807,
+    "updatedAt": 1667379432807,
+    "deletedAt": 0,
+    "createdFirstAt": 1667379432807,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/storage.ts",
+    "comment": "If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function\n\nBEWARE! Updating this won't update your react components!",
+    "rawStatement": "export const setItem = async (key: string, value: any) => {\n  if (typeof window === \"undefined\") {\n    return;\n  }\n  localStorage.setItem(key, JSON.stringify(value));\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 12,
+    "lastLine": 16,
+    "id": "wrjbcrwjjinxtedexgmajrtu"
+  }
+]

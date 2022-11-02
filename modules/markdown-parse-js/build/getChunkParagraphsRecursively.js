@@ -1,0 +1,5 @@
+"use strict";var __spreadArray=this&&this.__spreadArray||function(r,e,t){if(t||2===arguments.length)for(var a,s=0,i=e.length;s<i;s++)!a&&s in e||(a||(a=Array.prototype.slice.call(e,0,s)),a[s]=e[s]);return r.concat(a||Array.prototype.slice.call(e))};Object.defineProperty(exports,"__esModule",{value:!0}),exports.getChunkParagraphsRecursively=void 0;var js_util_1=require("js-util"),getChunkParagraphsRecursively=function(r){var e,t=(null===(e=r.children)||void 0===e?void 0:e.map(exports.getChunkParagraphsRecursively).flat())||[],a=r.content;return __spreadArray([a],t,!0).filter(js_util_1.notEmpty)};
+/**
+ * Get all paragraphs (`content` values) recursively from a `MarkdownChunk`
+ */exports.getChunkParagraphsRecursively=getChunkParagraphsRecursively;
+//# sourceMappingURL=getChunkParagraphsRecursively.js.map

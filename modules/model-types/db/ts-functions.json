@@ -1,0 +1,63 @@
+[
+  {
+    "createdAt": 1662927304526,
+    "updatedAt": 1662927304526,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927304526,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/markdown-model-type.ts",
+    "commentsInside": [],
+    "rawText": " (\n  markdownModelType: Storing<MarkdownModelType>\n): string => {\n  const { markdown, ...parameters } = markdownModelType;\n  const frontmatterString = frontmatterParseToString(parameters);\n  return `${frontmatterString}\\n${markdown}`;\n}",
+    "name": "markdownModelTypeToMarkdownString",
+    "slug": "markdown-model-type-to-markdown-string",
+    "parameters": [
+      {
+        "name": "markdownModelType",
+        "schema": {
+          "$ref": "#/definitions/Storing%3CMarkdownModelType%3E"
+        },
+        "required": true
+      }
+    ],
+    "description": "",
+    "returnType": {
+      "rawType": "String",
+      "typeDefinition": {
+        "optional": false,
+        "type": "string",
+        "allOf": [
+          {
+            "transform": [
+              "trim"
+            ]
+          },
+          {
+            "minLength": 1
+          }
+        ]
+      },
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": true,
+      "isEnumLiteral": false,
+      "simplifiedSchema": {
+        "type": "string"
+      }
+    },
+    "maxIndentationDepth": 1,
+    "size": {
+      "characters": 236,
+      "lines": 7,
+      "bytes": 236,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 34,
+      "linesPerFile": 7,
+      "numberOfFiles": 1
+    },
+    "id": "yXBsaQLGGDBdZgKG"
+  }
+]

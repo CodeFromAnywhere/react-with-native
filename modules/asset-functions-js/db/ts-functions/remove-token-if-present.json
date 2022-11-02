@@ -1,0 +1,105 @@
+{
+  "createdAt": 1667111126347,
+  "updatedAt": 1667111126347,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111126347,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/token/removeTokenIfPresent.ts",
+  "commentsInside": [],
+  "rawText": " (\n  name: string,\n  attachTokenToFilename?: boolean\n) => {\n  if (!attachTokenToFilename) {\n    return { nameWithoutToken: name, token: undefined };\n  }\n  const [nameWithoutToken, token] = name.split(tokenPrefix);\n  return { nameWithoutToken, token: token as string | undefined };\n}",
+  "name": "removeTokenIfPresent",
+  "slug": "remove-token-if-present",
+  "parameters": [
+    {
+      "name": "name",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "attachTokenToFilename",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{ nameWithoutToken: any; token: string | undefined; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "nameWithoutToken": {},
+        "token": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "nameWithoutToken"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "nameWithoutToken",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "token",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 282,
+    "lines": 10,
+    "bytes": 282,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "whsfumjckrezxywjezflruom"
+}

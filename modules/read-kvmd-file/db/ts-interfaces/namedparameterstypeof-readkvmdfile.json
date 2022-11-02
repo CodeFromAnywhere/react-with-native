@@ -1,0 +1,104 @@
+{
+  "createdAt": 1666263047550,
+  "updatedAt": 1666263047550,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263047550,
+  "id": "namedparameterstypeof-readkvmdfile",
+  "name": "NamedParameters<typeof readKvmdFile>",
+  "slug": "namedparameterstypeof-readkvmdfile",
+  "operationRelativeTypescriptFilePath": "src/readKvmdFile.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "filePath": {
+          "$ref": "#/definitions/Path"
+        },
+        "dbFileLocation": {
+          "$ref": "#/definitions/DbFileLocation",
+          "description": "TODO: make this optional. if not provided, calculate it ourselves here."
+        }
+      },
+      "required": [
+        "filePath",
+        "dbFileLocation"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "filePath",
+          "required": true,
+          "schema": {
+            "fullComment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "dbFileLocation",
+          "required": true,
+          "schema": {
+            "fullComment": "TODO: make this optional. if not provided, calculate it ourselves here.\n\nObject used to hand over all information about the location of a db-file in a structured way",
+            "todo": "make this optional. if not provided, calculate it ourselves here.",
+            "properties": [
+              {
+                "name": "absolutePath",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "modelName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationName",
+                "required": true,
+                "schema": {
+                  "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "type": "null"
+                }
+              },
+              {
+                "name": "projectRelativePath",
+                "required": true,
+                "schema": {
+                  "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationRelativePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof readKvmdFile>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

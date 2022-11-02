@@ -1,0 +1,53 @@
+{
+  "createdAt": 1667378796352,
+  "updatedAt": 1667378796352,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378796352,
+  "id": "dirent",
+  "name": "Dirent",
+  "slug": "dirent",
+  "operationRelativeTypescriptFilePath": "src/fs.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "A representation of a directory entry, which can be a file or a subdirectory within the directory, as returned by reading from an `fs.Dir`. The directory entry is a combination of the file name and file type pairs.\n\nAdditionally, when  {@link  readdir }  or  {@link  readdirSync }  is called with the `withFileTypes` option set to `true`, the resulting array is filled with `fs.Dirent` objects, rather than strings or `Buffer` s.",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The file name that this `fs.Dirent` object refers to. The type of this value is determined by the `options.encoding` passed to  {@link  readdir }  or  {@link  readdirSync } ."
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "description": "A representation of a directory entry, which can be a file or a subdirectory within the directory, as returned by reading from an `fs.Dir`. The directory entry is a combination of the file name and file type pairs.\n\nAdditionally, when  {@link  readdir }  or  {@link  readdirSync }  is called with the `withFileTypes` option set to `true`, the resulting array is filled with `fs.Dirent` objects, rather than strings or `Buffer` s."
+    },
+    "simplifiedSchema": {
+      "fullComment": "A representation of a directory entry, which can be a file or a subdirectory within the directory, as returned by reading from an `fs.Dir`. The directory entry is a combination of the file name and file type pairs.\n\nAdditionally, when  {@link  readdir }  or  {@link  readdirSync }  is called with the `withFileTypes` option set to `true`, the resulting array is filled with `fs.Dirent` objects, rather than strings or `Buffer` s.",
+      "properties": [
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "fullComment": "The file name that this `fs.Dirent` object refers to. The type of this value is determined by the `options.encoding` passed to  {@link  readdir }  or  {@link  readdirSync } .",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "Dirent",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

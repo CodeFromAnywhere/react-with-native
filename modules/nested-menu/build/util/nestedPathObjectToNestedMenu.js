@@ -1,34 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.nestedPathObjectToNestedMenuRecursive = void 0;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.nestedPathObjectToNestedMenuRecursive=void 0;
 /**
  * Transform a nested path object into a nested menu (MenuType), recursively
  */
-var nestedPathObjectToNestedMenuRecursive = function (
+var nestedPathObjectToNestedMenuRecursive=function(
 /**
  * your nested path object that you want to create a menu for
  */
-nestedPathObject, 
+e,
 /**
  * used for recursion to get the final url (defaults to empty array)
  */
-pathStack) {
-    if (pathStack === void 0) { pathStack = []; }
-    if (!nestedPathObject)
-        return;
-    var menu = Object.keys(nestedPathObject).map(function (path) {
-        var newPathStack = pathStack.concat(path);
-        var fullPath = newPathStack.join("/");
-        var children = (0, exports.nestedPathObjectToNestedMenuRecursive)(nestedPathObject[path], newPathStack);
-        var menuItem = {
-            title: path,
-            href: fullPath,
-            children: children,
-            showChildren: true,
-        };
-        return menuItem;
-    });
-    return menu;
-};
-exports.nestedPathObjectToNestedMenuRecursive = nestedPathObjectToNestedMenuRecursive;
+t,r){void 0===t&&(t=[]);var n=null==r?void 0:r.target,s=null==r?void 0:r.getHref;
+// base case
+if(e)return Object.keys(e).map((function(o){var u=t.concat(o),c=u.join("/"),d=(0,exports.nestedPathObjectToNestedMenuRecursive)(e[o],u,r),i=s?s(c):c;return{
+// NB: if there is no path, the title  of the page should be "home"
+title:0===o.length?"Home":o,href:i,target:n,children:d,showChildren:!0}}))};exports.nestedPathObjectToNestedMenuRecursive=nestedPathObjectToNestedMenuRecursive;
 //# sourceMappingURL=nestedPathObjectToNestedMenu.js.map

@@ -1,9 +1,8 @@
-/// <reference types="react" />
 import { MenuType } from "./types";
 /**
  * General purpose nested menu component
  *
- * TODO: support for expanded items
+ * Please make sure that you also wrap your app with `MenuStoreProvider`, or this will crash...!
  */
 export declare const NestedMenu: (props: {
     menu: MenuType;

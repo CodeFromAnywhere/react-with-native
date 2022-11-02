@@ -1,0 +1,438 @@
+[
+  {
+    "createdAt": 1662927140582,
+    "updatedAt": 1662927140582,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927140582,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+    "commentsInside": [],
+    "rawText": " async <\n  TModels extends AnyModelObject = any,\n  TModelName extends string = any\n>(\n  dbStorageMethod: DbStorageMethod,\n  dbFileLocation: DbFileLocation,\n  storingItems: Storing<TModels[TModelName]> | Storing<TModels[TModelName]>[]\n): Promise<DbQueryResult> => {\n  const storingItemsArray = makeArray(storingItems);\n\n  // Special case!\n  // TODO: we don't support multiple items for this case\n  if (dbStorageMethod === \"keyValueMarkdown\") {\n    const storingItem = storingItemsArray[0];\n\n    const parentKey = Object.keys(storingItem).find(\n      (x) => x.startsWith(\"parent_\") && x.endsWith(\"Slug\")\n    );\n    const parentSlug = parentKey ? storingItem[parentKey] : undefined;\n\n    return alterKeyValueMarkdown(dbFileLocation, (storedData) => {\n      // NB: CategoryStack is overwritten! We are first making sure that categoryStackCalculated is a real existing categoryStackCalculated based on the parent_xxxSlug.\n      const realStoredData = storedData as Storing<KeyValueMarkdownModelType>[];\n      const parent = parentSlug\n        ? realStoredData.find((x) => x.slug === parentSlug)\n        : undefined;\n\n      // NB: we overwrite categoryStackCalculated, unless the parentKey wasn't found in the storingItem.\n      const categoryStackCalculated: string[] = !parentKey\n        ? storingItem.categoryStackCalculated || []\n        : parent\n        ? parent.categoryStackCalculated.concat(parent.slug)\n        : [];\n\n      // console.log({ parentKey, parentSlug, parent, categoryStackCalculated });\n\n      const realStoringItem = {\n        ...storingItem,\n        categoryStackCalculated,\n        isHeaderCalculated:\n          storingItem.isHeaderCalculated !== undefined\n            ? storingItem.isHeaderCalculated\n            : false,\n        comment: storingItem.comment === undefined ? null : storingItem.comment,\n        // convert to unknown first because not every TModels[TModelName] is of type KeyValueMarkdownModelType\n      } as unknown as Storing<KeyValueMarkdownModelType>;\n\n      return upsertKeyValueMarkdown(realStoredData, realStoringItem);\n    });\n  }\n\n  return alterAny(dbStorageMethod, dbFileLocation, (storedData) =>\n    upsert(storedData, storingItemsArray)\n  );\n}",
+    "name": "upsertItems",
+    "slug": "upsert-items",
+    "parameters": [],
+    "description": "upsert an item into storage in any storage method",
+    "returnType": {
+      "rawType": "Promise<import(\"/Users/king/King/operations/tools/control-fs/fs-orm/src/types\").DbQueryResult>",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 6,
+    "size": {
+      "characters": 2240,
+      "lines": 55,
+      "bytes": 2240,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 41,
+      "linesPerFile": 55,
+      "numberOfFiles": 1
+    },
+    "id": "vRqujclmcyBdjChJ"
+  },
+  {
+    "createdAt": 1662927140583,
+    "updatedAt": 1662927140583,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927140583,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+    "commentsInside": [],
+    "rawText": " async (\n  dbStorageMethod: DbStorageMethod,\n  dbFileLocation: DbFileLocation,\n  removeWhere: (content: AugmentedAnyModelType) => boolean\n): Promise<DbQueryResult> => {\n  const { absolutePath, modelName, ...modelLocation } = dbFileLocation;\n  const isSingleItemStorageMethod =\n    dbStorageMethod === \"jsonSingle\" || dbStorageMethod === \"markdown\";\n\n  // NB: for single item storage methods, we can simply remove the file\n  if (isSingleItemStorageMethod) {\n    const content = await getAugmentedData<AugmentedAnyModelType>(\n      dbFileLocation,\n      dbStorageMethod\n    );\n    const item = content ? content[0] : null;\n    if (\n      fs.existsSync(dbFileLocation.absolutePath) &&\n      canWriteSync(dbFileLocation.absolutePath) &&\n      item &&\n      removeWhere(item)\n    ) {\n      const res = await fs.rm(dbFileLocation.absolutePath);\n      return { amountRemoved: 1 };\n    }\n\n    return { amountRemoved: 0 };\n  }\n\n  if (dbStorageMethod === \"keyValueMarkdown\") {\n    return alterKeyValueMarkdown(dbFileLocation, (storedData) => {\n      const realStoredData = storedData as Storing<KeyValueMarkdownModelType>[];\n\n      const finalStoredData = realStoredData.reduce((storedDataNow, item) => {\n        const completeItem: KeyValueMarkdownModelType = {\n          ...item,\n          ...modelLocation,\n        };\n\n        if (removeWhere(completeItem)) {\n          // If remove, remove it with all its children\n          const { newStoredData } = removeKeyValueMarkdown(\n            storedDataNow,\n            completeItem.slug\n          );\n          return newStoredData;\n        }\n\n        // Otherwise it stays the same\n        return storedDataNow;\n      }, [] as Storing<KeyValueMarkdownModelType>[]);\n\n      return {\n        newStoredData: finalStoredData,\n        isSuccesful: true,\n        amountRemoved: getLength(finalStoredData) - getLength(storedData),\n      };\n    });\n  }\n\n  // otherwise, we'll remove the item from the array\n  return alterAny(dbStorageMethod, dbFileLocation, (storedData) => {\n    const fullData = storedData.map((item) => ({\n      ...item,\n      ...modelLocation,\n    })) as AugmentedAnyModelType[];\n\n    const newFullData = fullData.filter((item) => {\n      return !removeWhere(item);\n    });\n    const newStoredData = newFullData.map((item) => makeStoringItem(item));\n    const amountRemoved = getLength(newFullData) - getLength(storedData);\n    return { amountRemoved, newStoredData, isSuccesful: true };\n  });\n}",
+    "name": "removeMultiple",
+    "slug": "remove-multiple",
+    "parameters": [],
+    "description": "Function that lets you remove items from one specific file, for any storage method",
+    "returnType": {
+      "rawType": "Promise<import(\"/Users/king/King/operations/tools/control-fs/fs-orm/src/types\").DbQueryResult>",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 6,
+    "size": {
+      "characters": 2528,
+      "lines": 75,
+      "bytes": 2528,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 34,
+      "linesPerFile": 75,
+      "numberOfFiles": 1
+    },
+    "id": "FjfYQtUfniPoXLGO"
+  },
+  {
+    "createdAt": 1662927140583,
+    "updatedAt": 1662927140583,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927140583,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+    "commentsInside": [],
+    "rawText": " async (dbFileLocation, alterFn) => {\n  const { absolutePath } = dbFileLocation;\n  const bareData =\n    (await readCsvFile<Storing<CsvItemType>>(absolutePath)) || [];\n  const isNewFile = !bareData;\n  const { newStoredData, ...queryResult } = alterFn(bareData);\n  const newDataString = csvItemArrayToCsvString(newStoredData);\n  const isSuccesful = await writeStringToFile(absolutePath, newDataString);\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
+    "name": "alterCsv",
+    "slug": "alter-csv",
+    "parameters": [],
+    "description": "Alters a csv",
+    "returnType": {
+      "rawType": "unknown",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 2,
+    "size": {
+      "characters": 562,
+      "lines": 15,
+      "bytes": 562,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 37,
+      "linesPerFile": 15,
+      "numberOfFiles": 1
+    },
+    "id": "KnTWpeRGjBHbvtwv"
+  },
+  {
+    "createdAt": 1662927140583,
+    "updatedAt": 1662927140583,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927140583,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+    "commentsInside": [],
+    "rawText": " async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n  const storedJson = await readJsonFile<Storing<AugmentedAnyModelType>>(\n    dbFileLocation.absolutePath\n  );\n  const isNewFile = !storedJson;\n  const storedData = storedJson ? [storedJson] : [];\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n  const isSuccesful = await writeJsonToFile(absolutePath, newStoredData[0]);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
+    "name": "alterJsonSingle",
+    "slug": "alter-json-single",
+    "parameters": [],
+    "description": "Alters a json single file",
+    "returnType": {
+      "rawType": "unknown",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 2,
+    "size": {
+      "characters": 600,
+      "lines": 20,
+      "bytes": 600,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 30,
+      "linesPerFile": 20,
+      "numberOfFiles": 1
+    },
+    "id": "hjFUKesZnkTlZsvh"
+  },
+  {
+    "createdAt": 1662927140583,
+    "updatedAt": 1662927140583,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927140583,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+    "commentsInside": [],
+    "rawText": " (array: any[]) => {\n  if (!Array.isArray(array)) {\n    log(`Array is not array`, { type: \"error\" }, { array });\n    return 0;\n  }\n  return array.length;\n}",
+    "name": "getLength",
+    "slug": "get-length",
+    "parameters": [],
+    "description": "Safely gets the length of something",
+    "returnType": {
+      "rawType": "any",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 2,
+    "size": {
+      "characters": 190,
+      "lines": 7,
+      "bytes": 190,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 27,
+      "linesPerFile": 7,
+      "numberOfFiles": 1
+    },
+    "id": "CNBVGULzTLHFwfqy"
+  },
+  {
+    "createdAt": 1662927140583,
+    "updatedAt": 1662927140583,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927140583,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+    "commentsInside": [],
+    "rawText": " async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n  const storedJson = await readJsonFile<Storing<AugmentedAnyModelType>[]>(\n    dbFileLocation.absolutePath\n  );\n\n  const storedData = storedJson || [];\n\n  const isNewFile = !storedJson;\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n\n  const isSuccesful = await writeJsonToFile(absolutePath, newStoredData);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
+    "name": "alterJsonMultiple",
+    "slug": "alter-json-multiple",
+    "parameters": [],
+    "description": "Alters a json single file",
+    "returnType": {
+      "rawType": "unknown",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 2,
+    "size": {
+      "characters": 588,
+      "lines": 23,
+      "bytes": 588,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 26,
+      "linesPerFile": 23,
+      "numberOfFiles": 1
+    },
+    "id": "VHFuUeLiCyfRLhih"
+  },
+  {
+    "createdAt": 1662927140583,
+    "updatedAt": 1662927140583,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927140583,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+    "commentsInside": [],
+    "rawText": " async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n\n  const kvmdParse: KeyValueMarkdownParse | null = await readKvmdFile(\n    absolutePath,\n    dbFileLocation\n  );\n\n  const isNewFile = !kvmdParse;\n\n  const storedData = kvmdParse?.data || [];\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n\n  const newKvmdParse: KeyValueMarkdownParse = {\n    parameters: kvmdParse?.parameters || {},\n    data: newStoredData as KeyValueMarkdownModelType[],\n  };\n\n  const newDataString = kvmdParseToMarkdownString(newKvmdParse);\n  const isSuccesful = await writeStringToFile(absolutePath, newDataString);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
+    "name": "alterKeyValueMarkdown",
+    "slug": "alter-key-value-markdown",
+    "parameters": [],
+    "description": "",
+    "returnType": {
+      "rawType": "unknown",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 2,
+    "size": {
+      "characters": 790,
+      "lines": 31,
+      "bytes": 790,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 25,
+      "linesPerFile": 31,
+      "numberOfFiles": 1
+    },
+    "id": "AUIVcqZSXLugclRf"
+  },
+  {
+    "createdAt": 1662927140583,
+    "updatedAt": 1662927140583,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927140583,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+    "commentsInside": [],
+    "rawText": " async (dbFileLocation, alterFn) => {\n  const { absolutePath } = dbFileLocation;\n  const markdownParse = await readMarkdownFile(absolutePath);\n  const isNewFile = !markdownParse;\n  const markdownModelItem = markdownParseToMarkdownModelType(markdownParse);\n\n  const storedData = markdownModelItem ? [markdownModelItem] : [];\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n\n  const finalItem: Storing<MarkdownModelType> = newStoredData[0];\n  const markdownString = markdownModelTypeToMarkdownString(finalItem);\n  const isSuccesful = await writeStringToFile(absolutePath, markdownString);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
+    "name": "alterMarkdown",
+    "slug": "alter-markdown",
+    "parameters": [],
+    "description": "Alters a markdown file",
+    "returnType": {
+      "rawType": "unknown",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 2,
+    "size": {
+      "characters": 776,
+      "lines": 20,
+      "bytes": 776,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 39,
+      "linesPerFile": 20,
+      "numberOfFiles": 1
+    },
+    "id": "qQXnReKmbTHkJdky"
+  },
+  {
+    "createdAt": 1662927140583,
+    "updatedAt": 1662927140583,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927140583,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+    "commentsInside": [],
+    "rawText": " async (\n  dbStorageMethod: DbStorageMethod,\n  ...alterParameters: AlterParameters\n): Promise<DbQueryResult> => {\n  if (dbStorageMethod === \"csv\") return alterCsv(...alterParameters);\n  if (dbStorageMethod === \"jsonSingle\")\n    return alterJsonSingle(...alterParameters);\n  if (dbStorageMethod === \"keyValueMarkdown\") {\n    // this case never happens, this is never the case\n    log(\"Wut??? this case should be prevented by its parent function\", {\n      type: \"warning\",\n    });\n    return alterKeyValueMarkdown(...alterParameters);\n  }\n  if (dbStorageMethod === \"markdown\") return alterMarkdown(...alterParameters);\n  return alterJsonMultiple(...alterParameters);\n}",
+    "name": "alterAny",
+    "slug": "alter-any",
+    "parameters": [],
+    "description": "low level function that alters data from any storage method at a certain location\n\ncomprises all dbStorageMethods",
+    "returnType": {
+      "rawType": "Promise<import(\"/Users/king/King/operations/tools/control-fs/fs-orm/src/types\").DbQueryResult>",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 3,
+    "size": {
+      "characters": 779,
+      "lines": 19,
+      "bytes": 779,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 41,
+      "linesPerFile": 19,
+      "numberOfFiles": 1
+    },
+    "id": "UfAXSdusEeaeqWSS"
+  },
+  {
+    "createdAt": 1662927183365,
+    "updatedAt": 1662927183365,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927183365,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/alter/upsert.ts",
+    "commentsInside": [],
+    "rawText": " (\n  /**\n   * The items that were already there\n   */\n  storedData: Storing<AugmentedAnyModelType>[],\n  /**\n   * The items that need to be overwritten or inserted\n   */\n  storingItems:\n    | Storing<AugmentedAnyModelType>\n    | Storing<AugmentedAnyModelType>[]\n): DbQueryResult & {\n  newStoredData: Storing<AugmentedAnyModelType>[];\n} => {\n  const storingItemsArray = makeArray(storingItems);\n  let amountUpdated = 0;\n\n  const newStoredData = storedData\n    .map((i) => {\n      if (!i) return;\n      // NB: for every item in the stored data, try to find one that matches\n      const storingIndex = storingItemsArray.findIndex((x) => {\n        if (!x) {\n          log(\"weird item found in your data, replacing\", { type: \"debug\" });\n          return true;\n        }\n\n        const matchId = x.id === i.id;\n        const matchSlug = x.slug === i.slug;\n\n        return matchId || matchSlug;\n      });\n\n      if (storingIndex !== -1) {\n        // NB: it needs to be updated, so simply remove it because the new item is going to be concatenated\n        amountUpdated++;\n        return;\n      }\n\n      return i;\n    })\n    .filter(notEmpty)\n    .concat(storingItems);\n\n  return {\n    amountUpdated,\n    amountInserted: amountUpdated === 0 ? 1 : 0,\n    newStoredData,\n  };\n}",
+    "name": "upsert",
+    "slug": "upsert",
+    "parameters": [
+      {
+        "name": "storedData",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Storing%3CAugmentedAnyModelType%3E"
+          },
+          "description": "The items that were already there"
+        },
+        "simplifiedSchema": {
+          "description": "The items that were already there",
+          "items": [],
+          "type": "array"
+        },
+        "required": true
+      },
+      {
+        "name": "storingItems",
+        "schema": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Storing%3CAugmentedAnyModelType%3E"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Storing%3CAugmentedAnyModelType%3E"
+              }
+            }
+          ],
+          "description": "The items that need to be overwritten or inserted"
+        },
+        "simplifiedSchema": {
+          "description": "The items that need to be overwritten or inserted",
+          "properties": [],
+          "type": "object"
+        },
+        "required": true
+      }
+    ],
+    "description": "Takes stored data and an item\n\n- updates the data and sets some rows to \"item\" if the item is found (through the id or slug)\n- otherwise inserts\n\nNB: this function works for any storage method except for key value markdown",
+    "returnType": {
+      "rawType": "import(\"/Users/king/King/operations/tools/control-fs/fs-orm/src/types\").DbQueryResult & { newStoredData: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>[]; }",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 5,
+    "size": {
+      "characters": 1488,
+      "lines": 55,
+      "bytes": 1488,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 27,
+      "linesPerFile": 55,
+      "numberOfFiles": 1
+    },
+    "id": "nRfjitmVvtwCXuiF"
+  },
+  {
+    "createdAt": 1662927193137,
+    "updatedAt": 1662927193137,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927193137,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/convention/addDefaultValues.ts",
+    "commentsInside": [],
+    "rawText": " (\n  bareItem: Creation<AugmentedAnyModelType>,\n  isKvmdStorage?: boolean\n): AugmentedAnyModelType => {\n  const now = Date.now();\n\n  const defaultValues = {\n    createdAt: now,\n    updatedAt: now,\n    deletedAt: 0,\n    createdFirstAt: now,\n  };\n\n  const slug: string | undefined =\n    bareItem.name && bareItem.slug === undefined\n      ? kebabCase(bareItem.name)\n      : bareItem.slug;\n\n  const id =\n    bareItem.id === undefined\n      ? isKvmdStorage\n        ? kebabCase(bareItem.name)\n        : generateId()\n      : bareItem.id;\n\n  const item = {\n    ...defaultValues,\n    ...bareItem,\n    slug,\n    id,\n  } as AugmentedAnyModelType;\n\n  return item;\n}",
+    "name": "addDefaultValues",
+    "slug": "add-default-values",
+    "parameters": [],
+    "description": "Adds timestamps, id, and a slug IF these things are not already present\n\nNB: for kvmd storage, id will be set to a kebab-case of the name\n\nNB: does not add the ModelLocation parameters",
+    "returnType": {
+      "rawType": "import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").AugmentedAnyModelType",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 4,
+    "size": {
+      "characters": 837,
+      "lines": 38,
+      "bytes": 837,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 22,
+      "linesPerFile": 38,
+      "numberOfFiles": 1
+    },
+    "id": "cSqvvpUjZbmvWWEI"
+  }
+]

@@ -3,7 +3,19 @@ import { useEffect, useState } from "react";
 import { setItem, getItem } from "./storage";
 
 export type StoreConfig<T extends object> = {
+  /**
+   * If given, this will be the initial value
+   */
   initialValues: T;
+  /**
+   If given, this will be the base-key for your storage item.  If not provided, there will be no base-key. 
+   
+   Please make sure your keys are not used by anything else to prevent unintended behavior!
+
+   The storage key will become {baseKey}.{yourKey}
+
+   DEPRECATED: I think it's better to just manually put a dot in your name. This only hides away the actual implementation, a baseKey isn't needed!
+   */
   baseKey?: string;
   debug?: boolean;
 };
@@ -14,12 +26,19 @@ let contexts: { [key: string]: React.Context<any> } = {};
 
 type Keys<T> = Extract<keyof T, string>;
 
-const getKey = (key: string, baseKey: string) => `${baseKey}.${key}`;
+const getKey = (key: string, baseKey?: string) =>
+  baseKey ? `${baseKey}.${key}` : key;
 const contextKey = (key: string) => `${key}Context`;
 
 export type UseStoreType<TStore> = <K extends Keys<TStore>>(
   key: K
-) => [TStore[K], (value: TStore[K]) => Promise<void>, { hydrated: boolean }];
+) => UseStoreResult<TStore[K]>;
+
+export type UseStoreResult<T> = [
+  T,
+  (value: T) => Promise<void>,
+  { hydrated: boolean }
+];
 
 const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
   DynamicContext,
@@ -36,7 +55,7 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
   const [store, setStore] = useState<TStore[K]>(
     config?.initialValues[storeKey]
   ); //null or some object or string or whatever
-  const baseKey = config?.baseKey || "useStore";
+  const baseKey = config?.baseKey;
 
   // On mount, get the current value from storage
   useEffect(() => {
@@ -83,6 +102,11 @@ const StoreContextProvider = <TStore extends object, K extends Keys<TStore>>({
   );
 };
 
+/**
+ * Function to create the StoreProvider
+ *
+ * NB: this function uses a local variable on the main scope of javascript in order to create the Context components dynamically. Beware!
+ */
 export const createStoreProvider = <TStore extends object>(
   config: StoreConfig<TStore>
 ) => {
@@ -95,7 +119,7 @@ export const createStoreProvider = <TStore extends object>(
 
   const keys = Object.keys(config.initialValues) as Keys<TStore>[];
 
-  contexts = keys.reduce((acc, key) => {
+  const newContext = keys.reduce((acc, key) => {
     const Context = React.createContext(null);
     return {
       ...acc,
@@ -103,9 +127,15 @@ export const createStoreProvider = <TStore extends object>(
     };
   }, {});
 
+  contexts = { ...contexts, ...newContext };
+
+  // console.log({ keys, contexts });
+
   const MainProvider = ({ children }: { children: any }) =>
     keys.reduce((acc, key) => {
       const context = contexts[contextKey(key)];
+
+      // console.log({ context });
       return (
         <StoreContextProvider
           config={config}
@@ -124,13 +154,16 @@ export const createStoreProvider = <TStore extends object>(
 
 const getContext = (key: string) => contexts[contextKey(key)];
 
-export const createUseStore = <TState extends object>(
-  initialValues: TState
+/**
+ * Function to create a hook for accessing the store
+ */
+export const createUseStore = <TStore extends object>(
+  initialValues: TStore
 ) => {
   if (debug) {
     console.log("Create useStore");
   }
-  const useStore = <K extends Keys<TState>>(key: K) => {
+  const useStore = <K extends Keys<TStore>>(key: K) => {
     if (!Object.keys(initialValues).includes(key)) {
       throw new Error(`Using undefined key in useStore: ${key}`);
     }
@@ -140,7 +173,7 @@ export const createUseStore = <TState extends object>(
         `Failed loading the context with key: ${key}. Did you wrap your component/app with a StoreProvider?`
       );
     }
-    const useStoreHook = React.useContext<UseStoreType<TState>>(context);
+    const useStoreHook = React.useContext<UseStoreType<TStore>>(context);
 
     const useStoreHookType = typeof useStoreHook;
 
@@ -150,18 +183,39 @@ export const createUseStore = <TState extends object>(
       );
     }
 
-    return useStoreHook(key);
+    return useStoreHook?.(key);
   };
   return useStore;
 };
 
-// const getStore = (key:string,{baseKey="useStore"}:{baseKey?:string})=>{
+/**
 
-//   const xxx = `${baseKey}.${key}`
-//   const value = getItem(xxxx);
-//   const setValue => setItem(xxx)
-//   return [value, setValue];
+One function is all you need to make a new store!
 
-// }
+Example:
 
-// const [getName, setName]= getStore("name",{key:"test"})
+
+```ts
+
+import { createStore } from "react-with-native-store";
+import { TypeA, TypeB } from "your-types";
+
+export const writerInitialValues: {
+  itemA: TypeA;
+  itemB: TypeB;
+} = {
+  itemA: "",
+  itemB: {},
+};
+export const { useStore, StoreProvider } = createStore(writerInitialValues);
+
+
+```
+
+Simple as pie 🍰
+
+ */
+export const createStore = <K extends object>(initialValues: K) => ({
+  StoreProvider: createStoreProvider({ initialValues }),
+  useStore: createUseStore(initialValues),
+});

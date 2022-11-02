@@ -1,14 +1,11 @@
 # String to json
 
-string-to-json (node operation)
+string-to-json (js operation)
 
-Size: 120 LOC, 2125 data characters, 
- 
-Imported dependencies:
+Parser functions to parse strings (that can be inputted in the command-line) into objects (that can be read in functions)
 
-- From Core Libraries: none
-- From Packages: none
-- From Operations: mergeObjectsArray
+
+
 
 # Outline
 
@@ -19,13 +16,23 @@ Imported dependencies:
 - [parsePrimitiveJson](#parsePrimitiveJson)
 - [stringToJson](#stringToJson)
 
+## Interfaces
+
+- [JSONValue](#jsonvalue)
+
+## Variables
+
+- [objectStringToJson](#objectstringtojson)
+- [parseIfJson](#parseifjson)
+- [parsePrimitiveJson](#parseprimitivejson)
+- [stringToJson](#stringtojson)
+- [test](#test)
+
 
 
 # Functions
 
 ## objectStringToJson
-
-Max. indexation depth: 2, 
 
 takes an object string and parses it to JSON
 
@@ -35,50 +42,25 @@ key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subk
 
 NB: you can have objects in parameters of objects by surrounding the same syntax with `{` and `}`
 
+
 ### Returns: object
 
+### Parameters (1)
 
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-
-
-
-### Arguments
-
-#### string: string
-
-
-
-
-
-
+#### Parameter 1: string: string
 
 ## parseIfJson
 
-Max. indexation depth: 2, 
-
 if it's a string with a parsable JSON inside, parse it and return the object/array
 
-## Returns: unknown
-
-### Arguments
-
-#### string: string
 
 
 
+### Parameters (1)
 
-
-
+#### Parameter 1: string: string
 
 ## parsePrimitiveJson
-
-Max. indexation depth: 2, 
 
 parses a string to a string, number, boolean, null or undefined.
 
@@ -86,21 +68,14 @@ optionally you can chooose to force a type...
 
 TODO: figure out how I can do this without ts-ignores
 
-## Returns: unknown
 
-### Arguments
+### Returns: string(Enum: ul | trin | umbe | als | ru)
 
-#### value: string
+### Parameters (1)
 
-
-
-
-
-
+#### Parameter 1: value: string
 
 ## stringToJson
-
-Max. indexation depth: 2, 
 
 takes any string, and parses it to JSON
 
@@ -108,23 +83,54 @@ if you provide (nested) objects, make sure to use the following format:
 
 key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }
 
-## Returns: unknown
-
-### Arguments
-
-#### value: string
 
 
 
+### Parameters (2)
+
+#### Parameter 1: value: string
+
+#### Parameter 2: isObject (optional): boolean
+
+# Interfaces
+
+## JSONValue
+
+# Variables
+
+## objectStringToJson (exported const)
+
+takes an object string and parses it to JSON
+
+Instead of requiring objects to be in JSON format, they can be in the following format:
+
+key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }
+
+NB: you can have objects in parameters of objects by surrounding the same syntax with `{` and `}`
 
 
+## parseIfJson (exported const)
+
+if it's a string with a parsable JSON inside, parse it and return the object/array
 
 
-#### isObject (optional): boolean
+## parsePrimitiveJson (exported const)
+
+parses a string to a string, number, boolean, null or undefined.
+
+optionally you can chooose to force a type...
+
+TODO: figure out how I can do this without ts-ignores
 
 
+## stringToJson (exported const)
+
+takes any string, and parses it to JSON
+
+if you provide (nested) objects, make sure to use the following format:
+
+key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }
 
 
-
-
+## test (unexported const)
 

@@ -1,0 +1,50 @@
+{
+  "createdAt": 1667379428940,
+  "updatedAt": 1667379428940,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379428940,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "commentsInside": [],
+  "rawText": " <TStore extends object>(\n  initialValues: TStore\n) => {\n  if (debug) {\n    console.log(\"Create useStore\");\n  }\n  const useStore = <K extends Keys<TStore>>(key: K) => {\n    if (!Object.keys(initialValues).includes(key)) {\n      throw new Error(`Using undefined key in useStore: ${key}`);\n    }\n    const context = getContext(key);\n    if (!context) {\n      throw new Error(\n        `Failed loading the context with key: ${key}. Did you wrap your component/app with a StoreProvider?`\n      );\n    }\n    const useStoreHook = React.useContext<UseStoreType<TStore>>(context);\n\n    const useStoreHookType = typeof useStoreHook;\n\n    if (useStoreHookType !== \"function\") {\n      console.error(\n        `useStoreHookType for ${key} is ${useStoreHookType}... wtf?`\n      );\n    }\n\n    return useStoreHook?.(key);\n  };\n  return useStore;\n}",
+  "name": "createUseStore",
+  "slug": "create-use-store",
+  "parameters": [],
+  "description": "Function to create a hook for accessing the store",
+  "returnType": {
+    "rawType": "<K extends Extract<keyof T, string>>(key: K) => import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/react-with-native-store/src/general\").UseStoreResult<TStore[K]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 879,
+    "lines": 30,
+    "bytes": 879,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 30,
+    "numberOfFiles": 1
+  },
+  "id": "imrhcqpamavnnatetcgdppgo"
+}

@@ -1,0 +1,127 @@
+{
+  "createdAt": 1666259789713,
+  "updatedAt": 1666259789713,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259789713,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getAssetInputType.ts",
+  "commentsInside": [],
+  "rawText": " (\n  parameterName: string,\n  valueType?: SimplifiedSchemaType\n): AssetInputType | undefined => {\n  const lastWord = lowerCaseArray(parameterName).pop();\n  if (!lastWord) return;\n\n  const isObjectOrArray =\n    !valueType || valueType === \"array\" || valueType === \"object\";\n\n  if (!isObjectOrArray) return;\n\n  if (\n    [\"image\", \"video\", \"audio\", \"file\", \"asset\"].includes(singularize(lastWord))\n  ) {\n    return {\n      type: singularize(lastWord) as AssetInputType[\"type\"],\n      isMultiple: isPlural(lastWord),\n    };\n  }\n\n  return;\n}",
+  "name": "getAssetInputType",
+  "slug": "get-asset-input-type",
+  "parameters": [
+    {
+      "name": "parameterName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "valueType",
+      "schema": {
+        "$ref": "#/definitions/SimplifiedSchemaType"
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "string",
+          "number",
+          "boolean",
+          "object",
+          "array",
+          "null"
+        ],
+        "fullComment": "",
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Convention parameters for assets: [name], [name]s, xyz[Name], xyz[Name]s\n\nDifferent ways to name assets: `image`, `video`, `audio`, `file` or just `asset`, which is everything together",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/conventions/name-conventions/src/getAssetInputType\").AssetInputType | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "image",
+            "video",
+            "audio",
+            "file",
+            "asset"
+          ],
+          "x-enumNames": [
+            "image",
+            "video",
+            "audio",
+            "file",
+            "asset"
+          ],
+          "type": "string"
+        },
+        "isMultiple": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "isMultiple"
+      ],
+      "optional": true
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "image",
+              "video",
+              "audio",
+              "file",
+              "asset"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "isMultiple",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 720,
+    "lines": 25,
+    "bytes": 720,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 25,
+    "numberOfFiles": 1
+  },
+  "id": "xasvguiqcspkxhxvjoazyyjv"
+}

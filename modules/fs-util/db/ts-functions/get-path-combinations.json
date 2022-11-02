@@ -1,0 +1,102 @@
+{
+  "createdAt": 1667378803634,
+  "updatedAt": 1667378803634,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378803634,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/js.ts",
+  "commentsInside": [],
+  "rawText": " (\n  ...chunksSegments: (string[] | string)[]\n): string[] => {\n  return (\n    chunksSegments\n      .map((x) => makeArray(x))\n      // small check to prevent crashes in case there is an invalid type given (not a string)\n      .map((chunks) => chunks.filter(notEmpty))\n      .reduce((cumSegments, chunks) => {\n        // first chunk is the combination of itself\n        if (cumSegments.length === 0) return chunks;\n        // all next chunks use the accummualted segments and reduce them\n        const nextCumSegments = cumSegments.reduce((all, segment) => {\n          // for every segment add all the chunks to that segment\n          const newChunks = chunks.map((chunk) => path.join(segment, chunk));\n          //add them to all new cumSegments\n          return all.concat(newChunks);\n        }, [] as string[]);\n        return nextCumSegments;\n      }, [] as string[])\n  );\n}",
+  "name": "getPathCombinations",
+  "slug": "get-path-combinations",
+  "parameters": [
+    {
+      "name": "chunksSegments",
+      "schema": {
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "properties": [],
+              "type": "object"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "gets combinations for paths\n\ninput: [[\"operation1\",\"operation2\"], \"db/value-export\", [\"index.ts\",\"test.ts\",\"cli.ts\"]]\noutput: [\"operation1/db/value-export/index.ts\",\"operation2/db/value-export/index.ts\",\"operation1/db/value-export/test.ts\",\"operation2/db/value-export/test.ts\",\"operation1/db/value-export/cli.ts\",\"operation2/db/value-export/cli.ts\"]",
+  "returnType": {
+    "rawType": "string[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "allOf": [
+          {
+            "transform": [
+              "trim"
+            ]
+          },
+          {
+            "minLength": 1
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 1225,
+    "lines": 25,
+    "bytes": 1225,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 49,
+    "linesPerFile": 25,
+    "numberOfFiles": 1
+  },
+  "id": "mmvtwbeprfszladhyvutizmq"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262774406,
+  "updatedAt": 1666262774406,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262774406,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "flattenMarkdownChunks",
+  "slug": "flatten-markdown-chunks",
+  "operationRelativeTypescriptFilePath": "src/flattenMarkdownChunks.ts",
+  "type": {
+    "rawType": "(markdownChunks: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownChunk[]) => import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParagraph[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  markdownChunks: MarkdownChunk[]\n): MarkdownParagraph[] => {\n  const flatMarkdownChunks = markdownChunks\n    .map((chunk) => getParagraphsRecursively(chunk))\n    .flat();\n  return flatMarkdownChunks;\n}",
+  "description": "",
+  "id": "aeiutvpntiadfvpbttozzjin"
+}

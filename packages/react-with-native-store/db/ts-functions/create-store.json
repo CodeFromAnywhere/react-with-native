@@ -1,0 +1,80 @@
+{
+  "createdAt": 1667379428940,
+  "updatedAt": 1667379428940,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379428940,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "commentsInside": [],
+  "rawText": " <K extends object>(initialValues: K) => ({\n  StoreProvider: createStoreProvider({ initialValues }),\n  useStore: createUseStore(initialValues),\n})",
+  "name": "createStore",
+  "slug": "create-store",
+  "parameters": [],
+  "description": "One function is all you need to make a new store!\n\nExample:\n\n\n```ts\n\nimport { createStore } from \"react-with-native-store\";\nimport { TypeA, TypeB } from \"your-types\";\n\nexport const writerInitialValues: {\nitemA: TypeA;\nitemB: TypeB;\n} = {\nitemA: \"\",\nitemB: {},\n};\nexport const { useStore, StoreProvider } = createStore(writerInitialValues);\n\n\n```\n\nSimple as pie 🍰",
+  "returnType": {
+    "rawType": "{ StoreProvider: ({ children }: { children: any; }) => JSX.Element; useStore: <K>(key: K) => import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/react-with-native-store/src/general\").UseStoreResult<K[K]>; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "StoreProvider": {
+          "type": "object",
+          "properties": {}
+        },
+        "useStore": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      "required": [
+        "StoreProvider",
+        "useStore"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "StoreProvider",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "useStore",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 509,
+    "lines": 26,
+    "bytes": 511,
+    "bytesPerCharacter": 1.0039292730844793,
+    "charactersPerLine": 20,
+    "linesPerFile": 26,
+    "numberOfFiles": 1
+  },
+  "id": "aknzvkdnliflgprxfhgkkybf"
+}

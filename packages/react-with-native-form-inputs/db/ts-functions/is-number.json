@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666261458643,
+  "updatedAt": 1666261458643,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261458643,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/number/number.tsx",
+  "commentsInside": [],
+  "rawText": " (numberString: string | null | undefined) => {\n  if (\n    numberString === null ||\n    numberString === undefined ||\n    numberString === \"\"\n  )\n    return false;\n\n  if (isNaN(Number(numberString))) return false;\n\n  return true;\n}",
+  "name": "isNumber",
+  "slug": "is-number",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 231,
+    "lines": 12,
+    "bytes": 231,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 19,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "tqmyajgizrsxldoaeazmzuyz"
+}

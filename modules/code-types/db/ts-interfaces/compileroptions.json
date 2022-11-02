@@ -1,0 +1,1123 @@
+{
+  "createdAt": 1667379868929,
+  "updatedAt": 1667379868929,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379868929,
+  "id": "compileroptions",
+  "name": "CompilerOptions",
+  "slug": "compileroptions",
+  "operationRelativeTypescriptFilePath": "src/TsConfig.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface CompilerOptions {\n  allowJs?: boolean;\n  allowSyntheticDefaultImports?: boolean;\n  allowUmdGlobalAccess?: boolean;\n  allowUnreachableCode?: boolean;\n  allowUnusedLabels?: boolean;\n  alwaysStrict?: boolean;\n  baseUrl?: string;\n  charset?: string;\n  checkJs?: boolean;\n  declaration?: boolean;\n  declarationMap?: boolean;\n  emitDeclarationOnly?: boolean;\n  declarationDir?: string;\n  disableSizeLimit?: boolean;\n  disableSourceOfProjectReferenceRedirect?: boolean;\n  disableSolutionSearching?: boolean;\n  disableReferencedProjectLoad?: boolean;\n  downlevelIteration?: boolean;\n  emitBOM?: boolean;\n  emitDecoratorMetadata?: boolean;\n  exactOptionalPropertyTypes?: boolean;\n  experimentalDecorators?: boolean;\n  forceConsistentCasingInFileNames?: boolean;\n  importHelpers?: boolean;\n  importsNotUsedAsValues?: ImportsNotUsedAsValues;\n  inlineSourceMap?: boolean;\n  inlineSources?: boolean;\n  isolatedModules?: boolean;\n  jsx?: JsxEmit;\n  keyofStringsOnly?: boolean;\n  lib?: string[];\n  locale?: string;\n  mapRoot?: string;\n  maxNodeModuleJsDepth?: number;\n  module?: ModuleKind;\n  moduleResolution?: ModuleResolutionKind;\n  moduleSuffixes?: string[];\n  moduleDetection?: ModuleDetectionKind;\n  newLine?: NewLineKind;\n  noEmit?: boolean;\n  noEmitHelpers?: boolean;\n  noEmitOnError?: boolean;\n  noErrorTruncation?: boolean;\n  noFallthroughCasesInSwitch?: boolean;\n  noImplicitAny?: boolean;\n  noImplicitReturns?: boolean;\n  noImplicitThis?: boolean;\n  noStrictGenericChecks?: boolean;\n  noUnusedLocals?: boolean;\n  noUnusedParameters?: boolean;\n  noImplicitUseStrict?: boolean;\n  noPropertyAccessFromIndexSignature?: boolean;\n  assumeChangesOnlyAffectDirectDependencies?: boolean;\n  noLib?: boolean;\n  noResolve?: boolean;\n  noUncheckedIndexedAccess?: boolean;\n  out?: string;\n  outDir?: string;\n  outFile?: string;\n  paths?: MapLike<string[]>;\n  preserveConstEnums?: boolean;\n  noImplicitOverride?: boolean;\n  preserveSymlinks?: boolean;\n  preserveValueImports?: boolean;\n  project?: string;\n  reactNamespace?: string;\n  jsxFactory?: string;\n  jsxFragmentFactory?: string;\n  jsxImportSource?: string;\n  composite?: boolean;\n  incremental?: boolean;\n  tsBuildInfoFile?: string;\n  removeComments?: boolean;\n  rootDir?: string;\n  rootDirs?: string[];\n  skipLibCheck?: boolean;\n  skipDefaultLibCheck?: boolean;\n  sourceMap?: boolean;\n  sourceRoot?: string;\n  strict?: boolean;\n  strictFunctionTypes?: boolean;\n  strictBindCallApply?: boolean;\n  strictNullChecks?: boolean;\n  strictPropertyInitialization?: boolean;\n  stripInternal?: boolean;\n  suppressExcessPropertyErrors?: boolean;\n  suppressImplicitAnyIndexErrors?: boolean;\n  target?: ScriptTarget;\n  traceResolution?: boolean;\n  useUnknownInCatchVariables?: boolean;\n  resolveJsonModule?: boolean;\n  types?: string[];\n  /** Paths used to compute primary types search locations */\n  typeRoots?: string[];\n  esModuleInterop?: boolean;\n  useDefineForClassFields?: boolean;\n  [option: string]: any | undefined;\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "allowJs": {
+          "type": "boolean"
+        },
+        "allowSyntheticDefaultImports": {
+          "type": "boolean"
+        },
+        "allowUmdGlobalAccess": {
+          "type": "boolean"
+        },
+        "allowUnreachableCode": {
+          "type": "boolean"
+        },
+        "allowUnusedLabels": {
+          "type": "boolean"
+        },
+        "alwaysStrict": {
+          "type": "boolean"
+        },
+        "baseUrl": {
+          "type": "string"
+        },
+        "charset": {
+          "type": "string"
+        },
+        "checkJs": {
+          "type": "boolean"
+        },
+        "declaration": {
+          "type": "boolean"
+        },
+        "declarationMap": {
+          "type": "boolean"
+        },
+        "emitDeclarationOnly": {
+          "type": "boolean"
+        },
+        "declarationDir": {
+          "type": "string"
+        },
+        "disableSizeLimit": {
+          "type": "boolean"
+        },
+        "disableSourceOfProjectReferenceRedirect": {
+          "type": "boolean"
+        },
+        "disableSolutionSearching": {
+          "type": "boolean"
+        },
+        "disableReferencedProjectLoad": {
+          "type": "boolean"
+        },
+        "downlevelIteration": {
+          "type": "boolean"
+        },
+        "emitBOM": {
+          "type": "boolean"
+        },
+        "emitDecoratorMetadata": {
+          "type": "boolean"
+        },
+        "exactOptionalPropertyTypes": {
+          "type": "boolean"
+        },
+        "experimentalDecorators": {
+          "type": "boolean"
+        },
+        "forceConsistentCasingInFileNames": {
+          "type": "boolean"
+        },
+        "importHelpers": {
+          "type": "boolean"
+        },
+        "importsNotUsedAsValues": {
+          "$ref": "#/definitions/ImportsNotUsedAsValues"
+        },
+        "inlineSourceMap": {
+          "type": "boolean"
+        },
+        "inlineSources": {
+          "type": "boolean"
+        },
+        "isolatedModules": {
+          "type": "boolean"
+        },
+        "jsx": {
+          "$ref": "#/definitions/JsxEmit"
+        },
+        "keyofStringsOnly": {
+          "type": "boolean"
+        },
+        "lib": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "locale": {
+          "type": "string"
+        },
+        "mapRoot": {
+          "type": "string"
+        },
+        "maxNodeModuleJsDepth": {
+          "type": "number"
+        },
+        "module": {
+          "$ref": "#/definitions/ModuleKind"
+        },
+        "moduleResolution": {
+          "$ref": "#/definitions/ModuleResolutionKind"
+        },
+        "moduleSuffixes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "moduleDetection": {
+          "$ref": "#/definitions/ModuleDetectionKind"
+        },
+        "newLine": {
+          "$ref": "#/definitions/NewLineKind"
+        },
+        "noEmit": {
+          "type": "boolean"
+        },
+        "noEmitHelpers": {
+          "type": "boolean"
+        },
+        "noEmitOnError": {
+          "type": "boolean"
+        },
+        "noErrorTruncation": {
+          "type": "boolean"
+        },
+        "noFallthroughCasesInSwitch": {
+          "type": "boolean"
+        },
+        "noImplicitAny": {
+          "type": "boolean"
+        },
+        "noImplicitReturns": {
+          "type": "boolean"
+        },
+        "noImplicitThis": {
+          "type": "boolean"
+        },
+        "noStrictGenericChecks": {
+          "type": "boolean"
+        },
+        "noUnusedLocals": {
+          "type": "boolean"
+        },
+        "noUnusedParameters": {
+          "type": "boolean"
+        },
+        "noImplicitUseStrict": {
+          "type": "boolean"
+        },
+        "noPropertyAccessFromIndexSignature": {
+          "type": "boolean"
+        },
+        "assumeChangesOnlyAffectDirectDependencies": {
+          "type": "boolean"
+        },
+        "noLib": {
+          "type": "boolean"
+        },
+        "noResolve": {
+          "type": "boolean"
+        },
+        "noUncheckedIndexedAccess": {
+          "type": "boolean"
+        },
+        "out": {
+          "type": "string"
+        },
+        "outDir": {
+          "type": "string"
+        },
+        "outFile": {
+          "type": "string"
+        },
+        "paths": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": "Type of objects whose values are all of the same type. The `in` and `for-in` operators can *not* be safely used, since `Object.prototype` may be modified by outside code."
+        },
+        "preserveConstEnums": {
+          "type": "boolean"
+        },
+        "noImplicitOverride": {
+          "type": "boolean"
+        },
+        "preserveSymlinks": {
+          "type": "boolean"
+        },
+        "preserveValueImports": {
+          "type": "boolean"
+        },
+        "project": {
+          "type": "string"
+        },
+        "reactNamespace": {
+          "type": "string"
+        },
+        "jsxFactory": {
+          "type": "string"
+        },
+        "jsxFragmentFactory": {
+          "type": "string"
+        },
+        "jsxImportSource": {
+          "type": "string"
+        },
+        "composite": {
+          "type": "boolean"
+        },
+        "incremental": {
+          "type": "boolean"
+        },
+        "tsBuildInfoFile": {
+          "type": "string"
+        },
+        "removeComments": {
+          "type": "boolean"
+        },
+        "rootDir": {
+          "type": "string"
+        },
+        "rootDirs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "skipLibCheck": {
+          "type": "boolean"
+        },
+        "skipDefaultLibCheck": {
+          "type": "boolean"
+        },
+        "sourceMap": {
+          "type": "boolean"
+        },
+        "sourceRoot": {
+          "type": "string"
+        },
+        "strict": {
+          "type": "boolean"
+        },
+        "strictFunctionTypes": {
+          "type": "boolean"
+        },
+        "strictBindCallApply": {
+          "type": "boolean"
+        },
+        "strictNullChecks": {
+          "type": "boolean"
+        },
+        "strictPropertyInitialization": {
+          "type": "boolean"
+        },
+        "stripInternal": {
+          "type": "boolean"
+        },
+        "suppressExcessPropertyErrors": {
+          "type": "boolean"
+        },
+        "suppressImplicitAnyIndexErrors": {
+          "type": "boolean"
+        },
+        "target": {
+          "$ref": "#/definitions/ScriptTarget"
+        },
+        "traceResolution": {
+          "type": "boolean"
+        },
+        "useUnknownInCatchVariables": {
+          "type": "boolean"
+        },
+        "resolveJsonModule": {
+          "type": "boolean"
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "typeRoots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Paths used to compute primary types search locations"
+        },
+        "esModuleInterop": {
+          "type": "boolean"
+        },
+        "useDefineForClassFields": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {},
+          {
+            "not": {}
+          }
+        ]
+      }
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "allowJs",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "allowSyntheticDefaultImports",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "allowUmdGlobalAccess",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "allowUnreachableCode",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "allowUnusedLabels",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "alwaysStrict",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "baseUrl",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "charset",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "checkJs",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "declaration",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "declarationMap",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "emitDeclarationOnly",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "declarationDir",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "disableSizeLimit",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "disableSourceOfProjectReferenceRedirect",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "disableSolutionSearching",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "disableReferencedProjectLoad",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "downlevelIteration",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "emitBOM",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "emitDecoratorMetadata",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "exactOptionalPropertyTypes",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "experimentalDecorators",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "forceConsistentCasingInFileNames",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "importHelpers",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "importsNotUsedAsValues",
+          "required": false,
+          "schema": {
+            "enum": [
+              0,
+              1,
+              2
+            ],
+            "fullComment": "",
+            "type": "number"
+          }
+        },
+        {
+          "name": "inlineSourceMap",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "inlineSources",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isolatedModules",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "jsx",
+          "required": false,
+          "schema": {
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "fullComment": "",
+            "type": "number"
+          }
+        },
+        {
+          "name": "keyofStringsOnly",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "lib",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "locale",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "mapRoot",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "maxNodeModuleJsDepth",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "module",
+          "required": false,
+          "schema": {
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              99,
+              100,
+              199
+            ],
+            "fullComment": "",
+            "type": "number"
+          }
+        },
+        {
+          "name": "moduleResolution",
+          "required": false,
+          "schema": {
+            "enum": [
+              1,
+              2,
+              3,
+              99
+            ],
+            "fullComment": "",
+            "type": "number"
+          }
+        },
+        {
+          "name": "moduleSuffixes",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "moduleDetection",
+          "required": false,
+          "schema": {
+            "enum": [
+              1,
+              2,
+              3
+            ],
+            "fullComment": "",
+            "type": "number"
+          }
+        },
+        {
+          "name": "newLine",
+          "required": false,
+          "schema": {
+            "enum": [
+              0,
+              1
+            ],
+            "fullComment": "",
+            "type": "number"
+          }
+        },
+        {
+          "name": "noEmit",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noEmitHelpers",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noEmitOnError",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noErrorTruncation",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noFallthroughCasesInSwitch",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noImplicitAny",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noImplicitReturns",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noImplicitThis",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noStrictGenericChecks",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noUnusedLocals",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noUnusedParameters",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noImplicitUseStrict",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noPropertyAccessFromIndexSignature",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "assumeChangesOnlyAffectDirectDependencies",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noLib",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noResolve",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noUncheckedIndexedAccess",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "out",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "outDir",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "outFile",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "paths",
+          "required": false,
+          "schema": {
+            "fullComment": "Type of objects whose values are all of the same type. The `in` and `for-in` operators can *not* be safely used, since `Object.prototype` may be modified by outside code.",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "preserveConstEnums",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "noImplicitOverride",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "preserveSymlinks",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "preserveValueImports",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "project",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "reactNamespace",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "jsxFactory",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "jsxFragmentFactory",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "jsxImportSource",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "composite",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "incremental",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "tsBuildInfoFile",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "removeComments",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "rootDir",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "rootDirs",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "skipLibCheck",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "skipDefaultLibCheck",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "sourceMap",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "sourceRoot",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "strict",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "strictFunctionTypes",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "strictBindCallApply",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "strictNullChecks",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "strictPropertyInitialization",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "stripInternal",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "suppressExcessPropertyErrors",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "suppressImplicitAnyIndexErrors",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "target",
+          "required": false,
+          "schema": {
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              99,
+              100
+            ],
+            "fullComment": "",
+            "type": "number"
+          }
+        },
+        {
+          "name": "traceResolution",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "useUnknownInCatchVariables",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "resolveJsonModule",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "types",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "typeRoots",
+          "required": false,
+          "schema": {
+            "fullComment": "Paths used to compute primary types search locations",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "esModuleInterop",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "useDefineForClassFields",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CompilerOptions",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

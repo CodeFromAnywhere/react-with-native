@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666513251921,
+  "updatedAt": 1666513251921,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513251921,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " <T>(\n  object: { [key: string]: T },\n  keys: string[]\n) => {\n  const subsetObject = keys.reduce((obj, key) => {\n    return { ...obj, [key]: object[key] };\n  }, {} as { [key: string]: T });\n  return subsetObject;\n}",
+  "name": "getSubsetFromObject",
+  "slug": "get-subset-from-object",
+  "parameters": [],
+  "description": "takes an object and a subset of its keys and returns a subset of that object\n\ninput: { x: \"a\", y: \"b\", z: \"c\" } and [\"x\"]\n\noutput: { x: \"a\" }",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 355,
+    "lines": 13,
+    "bytes": 355,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "uhnfveeuthpgajevnjleiktl"
+}

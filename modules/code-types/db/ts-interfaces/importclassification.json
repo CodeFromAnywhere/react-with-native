@@ -1,0 +1,50 @@
+{
+  "createdAt": 1667379877522,
+  "updatedAt": 1667379877522,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379877522,
+  "id": "importclassification",
+  "name": "ImportClassification",
+  "slug": "importclassification",
+  "operationRelativeTypescriptFilePath": "src/TypescriptIndex.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * node: node core packages like fs and path\n *\n * react: react standard packages like react, react-native, expo, react-dom, etc.\n *\n * package: packages from npm that are not classified as operations\n *\n * operation: operations from our monorepo\n *\n * internal: imports from other places in the same operation\n *\n * NB: don't confuse this with OperationClassification\n */\nexport type ImportClassification =\n  | \"node\"\n  | \"react\"\n  | \"package\"\n  | \"operation\"\n  | \"internal\";",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "node: node core packages like fs and path\n\nreact: react standard packages like react, react-native, expo, react-dom, etc.\n\npackage: packages from npm that are not classified as operations\n\noperation: operations from our monorepo\n\ninternal: imports from other places in the same operation\n\nNB: don't confuse this with OperationClassification",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "string",
+      "enum": [
+        "node",
+        "react",
+        "package",
+        "operation",
+        "internal"
+      ],
+      "description": "node: node core packages like fs and path\n\nreact: react standard packages like react, react-native, expo, react-dom, etc.\n\npackage: packages from npm that are not classified as operations\n\noperation: operations from our monorepo\n\ninternal: imports from other places in the same operation\n\nNB: don't confuse this with OperationClassification"
+    },
+    "simplifiedSchema": {
+      "enum": [
+        "node",
+        "react",
+        "package",
+        "operation",
+        "internal"
+      ],
+      "fullComment": "node: node core packages like fs and path\n\nreact: react standard packages like react, react-native, expo, react-dom, etc.\n\npackage: packages from npm that are not classified as operations\n\noperation: operations from our monorepo\n\ninternal: imports from other places in the same operation\n\nNB: don't confuse this with OperationClassification",
+      "nb": "don't confuse this with OperationClassification",
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "rawType": "ImportClassification",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

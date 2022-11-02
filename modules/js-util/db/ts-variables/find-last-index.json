@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513249687,
+  "updatedAt": 1666513249687,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513249687,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findLastIndex",
+  "slug": "find-last-index",
+  "operationRelativeTypescriptFilePath": "src/array-modifications.ts",
+  "type": {
+    "rawType": "<T>(array: T[], findFn: (item: T) => boolean) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T>(array: T[], findFn: (item: T) => boolean) => {\n  const lastIndex = array\n    .map((item, index) => ({ item, index }))\n    .filter(({ item }) => findFn(item))\n    .pop()?.index;\n\n  return lastIndex;\n}",
+  "description": "finds the last index of an array where a certain filter holds true",
+  "id": "lygylscnkjkjzmyvzpcrcvmp"
+}

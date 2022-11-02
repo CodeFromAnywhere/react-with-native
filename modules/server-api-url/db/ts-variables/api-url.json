@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666260759769,
+  "updatedAt": 1666260759769,
+  "deletedAt": 0,
+  "createdFirstAt": 1666260759769,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "apiUrl",
+  "slug": "api-url",
+  "operationRelativeTypescriptFilePath": "src/apiUrl.ts",
+  "type": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": true,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "value": "!isDev || runRemoteServer\n    ? publicEnvironmentVariables.remoteServer\n    : localhostServer",
+  "description": "",
+  "id": "lqlqgjiovqniyplmsurssjxc"
+}

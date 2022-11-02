@@ -1,0 +1,106 @@
+{
+  "createdAt": 1666263047828,
+  "updatedAt": 1666263047828,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263047828,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/readKvmdFile.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  filePath: Path,\n  /**\n   * TODO: make this optional. if not provided, calculate it ourselves here.\n   */\n  dbFileLocation: DbFileLocation\n): Promise<KeyValueMarkdownParse | null> => {\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isMarkdownFile = [\"md\", \"mdx\"].includes(pathParse.ext.slice(1));\n  if (!isMarkdownFile) return null;\n\n  if (!fs.existsSync(filePath)) return null;\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const keyValueMarkdownParse = markdownStringToKvmdParse(\n    fileString,\n    dbFileLocation\n  );\n\n  console.log({ keyValueMarkdownParse });\n  return keyValueMarkdownParse;\n}",
+  "name": "readKvmdFile",
+  "slug": "read-kvmd-file",
+  "parameters": [
+    {
+      "name": "filePath",
+      "schema": {
+        "$ref": "#/definitions/Path"
+      },
+      "simplifiedSchema": {
+        "fullComment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "dbFileLocation",
+      "schema": {
+        "$ref": "#/definitions/DbFileLocation",
+        "description": "TODO: make this optional. if not provided, calculate it ourselves here."
+      },
+      "simplifiedSchema": {
+        "fullComment": "TODO: make this optional. if not provided, calculate it ourselves here.\n\nObject used to hand over all information about the location of a db-file in a structured way",
+        "todo": "make this optional. if not provided, calculate it ourselves here.",
+        "properties": [
+          {
+            "name": "absolutePath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "modelName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationName",
+            "required": true,
+            "schema": {
+              "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "null"
+            }
+          },
+          {
+            "name": "projectRelativePath",
+            "required": true,
+            "schema": {
+              "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationRelativePath",
+            "required": false,
+            "schema": {
+              "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Reads and parses a markdown file",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/model-types/build/keyValueMarkdown\").KeyValueMarkdownParse | null>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 791,
+    "lines": 26,
+    "bytes": 791,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 26,
+    "numberOfFiles": 1
+  },
+  "id": "kadmtxhywewpcgydhbtpkyri"
+}

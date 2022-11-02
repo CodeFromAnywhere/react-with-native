@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666260925915,
+  "updatedAt": 1666260925915,
+  "deletedAt": 0,
+  "createdFirstAt": 1666260925915,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "stringToJson",
+  "slug": "string-to-json",
+  "operationRelativeTypescriptFilePath": "src/stringToJson.ts",
+  "type": {
+    "rawType": "(value: string, isObject?: boolean | undefined) => import(\"/Users/king/King/operations/tools/interfaces/cli/string-to-json/src/types\").JSONValue",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(value: string, isObject?: boolean): JSONValue => {\n  const seemsObject = value.startsWith(\"{\") && value.endsWith(\"}\");\n  if (seemsObject || isObject) {\n    // Objects\n    // NB: remove first and last character\n    const objectString = seemsObject ? value.slice(1, value.length - 2) : value;\n    return objectStringToJson(objectString);\n  } else if (value.startsWith(\"[\") && value.endsWith(\"]\")) {\n    // Arrays\n    // NB: remove first and last character\n    const arrayString = value.slice(1, value.length - 2);\n    const chunkStrings = arrayString.split(\",\");\n    const chunks = chunkStrings.map((string) => stringToJson(string));\n    return chunks;\n  } else {\n    return parsePrimitiveJson(value);\n  }\n}",
+  "description": "takes any string, and parses it to JSON\n\nif you provide (nested) objects, make sure to use the following format:\n\nkey1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }",
+  "id": "wwnwqxblnxbmeveswrldrpkx"
+}

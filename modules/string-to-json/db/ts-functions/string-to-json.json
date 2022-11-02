@@ -1,0 +1,62 @@
+{
+  "createdAt": 1666260925701,
+  "updatedAt": 1666260925701,
+  "deletedAt": 0,
+  "createdFirstAt": 1666260925701,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/stringToJson.ts",
+  "commentsInside": [],
+  "rawText": " (value: string, isObject?: boolean): JSONValue => {\n  const seemsObject = value.startsWith(\"{\") && value.endsWith(\"}\");\n  if (seemsObject || isObject) {\n    // Objects\n    // NB: remove first and last character\n    const objectString = seemsObject ? value.slice(1, value.length - 2) : value;\n    return objectStringToJson(objectString);\n  } else if (value.startsWith(\"[\") && value.endsWith(\"]\")) {\n    // Arrays\n    // NB: remove first and last character\n    const arrayString = value.slice(1, value.length - 2);\n    const chunkStrings = arrayString.split(\",\");\n    const chunks = chunkStrings.map((string) => stringToJson(string));\n    return chunks;\n  } else {\n    return parsePrimitiveJson(value);\n  }\n}",
+  "name": "stringToJson",
+  "slug": "string-to-json",
+  "parameters": [
+    {
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "isObject",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "takes any string, and parses it to JSON\n\nif you provide (nested) objects, make sure to use the following format:\n\nkey1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/cli/string-to-json/src/types\").JSONValue",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 923,
+    "lines": 22,
+    "bytes": 923,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 42,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "lhadvlbvxnasiwbhsdeqwwsh"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666264376017,
+  "updatedAt": 1666264376017,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264376017,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getRefLink",
+  "slug": "get-ref-link",
+  "operationRelativeTypescriptFilePath": "src/schema-util.ts",
+  "type": {
+    "rawType": "(ref?: string | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(ref?: string) => {\n  return ref?.split(\"/\").pop();\n}",
+  "description": "gets the $ref from a schema and parses the interface name from it",
+  "id": "bxowjbtrtvqnuuvoortwnkdh"
+}

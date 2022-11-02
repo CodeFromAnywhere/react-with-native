@@ -1,0 +1,114 @@
+{
+  "createdAt": 1667379923261,
+  "updatedAt": 1667379923261,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379923261,
+  "id": "kvmdline",
+  "name": "KvmdLine",
+  "slug": "kvmdline",
+  "operationRelativeTypescriptFilePath": "src/keyValueMarkdown.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * all things that can be parsed from a single line\n */\nexport type KvmdLine = {\n  /**\n   * same as slug, used for model compatibility\n   */\n  id: string;\n  /**\n   * key\n   *\n   * should be english because it's kind of part of the codebase!\n   */\n  name: string;\n  /**\n   * calculated: slug for this key (kebab case form of the name)\n   */\n  slug: string;\n\n  /**\n   * value behind the semicolom (:). If not given, will be undefined.\n   *\n   * If possible, will be parsed to a number, boolean, null or undefined... otherwise it's a string\n   *\n   * can be any language that we can detect\n   */\n  value: string | number | boolean | null | undefined;\n\n  /** comment in html syntax. if not given, will be null */\n  comment: string | null;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "all things that can be parsed from a single line",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "same as slug, used for model compatibility"
+        },
+        "name": {
+          "type": "string",
+          "description": "key\n\nshould be english because it's kind of part of the codebase!"
+        },
+        "slug": {
+          "type": "string",
+          "description": "calculated: slug for this key (kebab case form of the name)"
+        },
+        "value": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ],
+          "description": "value behind the semicolom (:). If not given, will be undefined.\n\nIf possible, will be parsed to a number, boolean, null or undefined... otherwise it's a string\n\ncan be any language that we can detect"
+        },
+        "comment": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "comment in html syntax. if not given, will be null"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "slug",
+        "comment"
+      ],
+      "additionalProperties": false,
+      "description": "all things that can be parsed from a single line"
+    },
+    "simplifiedSchema": {
+      "fullComment": "all things that can be parsed from a single line",
+      "properties": [
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "fullComment": "same as slug, used for model compatibility",
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "fullComment": "key\n\nshould be english because it's kind of part of the codebase!",
+            "type": "string"
+          }
+        },
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "fullComment": "calculated: slug for this key (kebab case form of the name)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "value",
+          "required": false,
+          "schema": {
+            "fullComment": "value behind the semicolom (:). If not given, will be undefined.\n\nIf possible, will be parsed to a number, boolean, null or undefined... otherwise it's a string\n\ncan be any language that we can detect",
+            "type": "string"
+          }
+        },
+        {
+          "name": "comment",
+          "required": true,
+          "schema": {
+            "fullComment": "comment in html syntax. if not given, will be null",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "KvmdLine",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

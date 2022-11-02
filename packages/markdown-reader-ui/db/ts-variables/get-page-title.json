@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262429591,
+  "updatedAt": 1666262429591,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262429591,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getPageTitle",
+  "slug": "get-page-title",
+  "operationRelativeTypescriptFilePath": "src/pages.ts",
+  "type": {
+    "rawType": "(page: import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-ui/src/types\").PageType) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(page: PageType) =>\n  page.title || page.key.charAt(0).toUpperCase().concat(page.key.slice(1))",
+  "description": "utility function to get a title from a page",
+  "id": "slbniqdnqpebycnjlyuvrzwn"
+}

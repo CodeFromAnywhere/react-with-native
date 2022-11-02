@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512739648,
+  "updatedAt": 1666512739648,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512739648,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getMergedConfigOperationPath",
+  "slug": "get-merged-config-operation-path",
+  "operationRelativeTypescriptFilePath": "src/convention/getDatabaseFiles.ts",
+  "type": {
+    "rawType": "(mergedConfig: import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").MergedQueryConfig, manualProjectRoot?: string | undefined) => Promise<string | false | undefined>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  mergedConfig: MergedQueryConfig,\n  manualProjectRoot?: string\n): Promise<false | string | undefined> => {\n  if (mergedConfig.operationName) {\n    const operationPath = await getOperationPath(mergedConfig.operationName, {\n      manualProjectRoot,\n      notUseSdk: !!manualProjectRoot,\n    });\n    //\n    if (operationPath === undefined) {\n      log(`Operation wasn't found ${mergedConfig.operationName}`, {\n        type: \"warning\",\n      });\n    }\n\n    return operationPath;\n  }\n\n  return false;\n}",
+  "description": "",
+  "id": "zshadakztxdqnqryxouuwbft"
+}

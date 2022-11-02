@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259063842,
+  "updatedAt": 1666259063842,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259063842,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getPathParse",
+  "slug": "get-path-parse",
+  "operationRelativeTypescriptFilePath": "src/getPathParse.ts",
+  "type": {
+    "rawType": "(absolutePath: string) => import(\"/Users/king/King/operations/tools/types/code-types/build/PathMetaData\").PathParse | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(absolutePath: string): PathParse | undefined => {\n  const projectRoot = getProjectRoot(absolutePath);\n  if (!projectRoot) return;\n  const relativePathFromProjectRoot = absolutePath.slice(projectRoot.length);\n  return { relativePathFromProjectRoot };\n}",
+  "description": "gets all kinds of information that can be inferred from any path (file or folder).",
+  "id": "apidjmecmbwtxrpziannfpcg"
+}

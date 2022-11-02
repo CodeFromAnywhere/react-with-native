@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513249687,
+  "updatedAt": 1666513249687,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513249687,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "insertAt",
+  "slug": "insert-at",
+  "operationRelativeTypescriptFilePath": "src/array-modifications.ts",
+  "type": {
+    "rawType": "<T>(array: T[], items: T | T[], beforeIndex: number) => T[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T>(\n  array: T[],\n  items: T | T[],\n  /**\n   *\n   */\n  beforeIndex: number\n): T[] => {\n  const itemsArray = Array.isArray(items) ? items : [items];\n\n  // NB: slice makes copies\n  const before = array.slice(0, beforeIndex);\n  const after = array.slice(beforeIndex);\n  return [...before, ...itemsArray, ...after];\n}",
+  "description": "Insert an array or item inside of an array before a certain index\n\nExample:\n\n```ts\n\nconst testArray = [1, 2, 3, 4, 5];\nconst result = insertAt(testArray, [99, 100], 2);\nconsole.log({ testArray, result });\n\n```",
+  "id": "vdxspjuwkyidbghnzsijboxo"
+}

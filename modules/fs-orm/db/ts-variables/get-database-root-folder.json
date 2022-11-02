@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512741368,
+  "updatedAt": 1666512741368,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512741368,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDatabaseRootFolder",
+  "slug": "get-database-root-folder",
+  "operationRelativeTypescriptFilePath": "src/convention/getDatabaseRootFolder.ts",
+  "type": {
+    "rawType": "(operationName: string | null | undefined, manualProjectRoot?: string | undefined) => Promise<string | undefined>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  operationName: string | null | undefined,\n  manualProjectRoot?: string\n): Promise<string | undefined> => {\n  const projectRoot = manualProjectRoot || getProjectRoot();\n  if (!projectRoot) {\n    log(\"getDatabaseRootFolder: No project root found\");\n    process.exit(1);\n  }\n\n  if (!operationName) {\n    return projectRoot;\n  }\n\n  const operationBasePath = await getOperationPath(operationName, {\n    manualProjectRoot: projectRoot,\n  });\n\n  if (!operationBasePath) {\n    log(`Couldn't find operation base path for ${operationName}`, {\n      type: \"error\",\n    });\n  }\n\n  return operationBasePath;\n}",
+  "description": "Tries to get the root folder where the database folder can be found.\n\nIf an operationName is specified, this will be the operation base path\nIf not, this will be the project root.",
+  "id": "kesamzhpptpplyvzbplismvk"
+}

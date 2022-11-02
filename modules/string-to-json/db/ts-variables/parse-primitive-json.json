@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666260925915,
+  "updatedAt": 1666260925915,
+  "deletedAt": 0,
+  "createdFirstAt": 1666260925915,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "parsePrimitiveJson",
+  "slug": "parse-primitive-json",
+  "operationRelativeTypescriptFilePath": "src/stringToJson.ts",
+  "type": {
+    "rawType": "<TForceType extends \"string\" | \"number\" | \"boolean\">(value: string, forceType?: TForceType | undefined) => TForceType extends \"string\" ? string | null | undefined : TForceType extends \"number\" ? number | null | undefined : TForceType extends \"boolean\" ? boolean | null | undefined : string | number | boolean | null | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<\n  TForceType extends \"string\" | \"number\" | \"boolean\"\n>(\n  value: string,\n  forceType?: TForceType\n): TForceType extends \"string\"\n  ? string | null | undefined\n  : TForceType extends \"number\"\n  ? number | null | undefined\n  : TForceType extends \"boolean\"\n  ? boolean | null | undefined\n  : string | number | boolean | null | undefined => {\n  if (value === \"null\" && !forceType) {\n    // @ts-ignore\n    return null;\n  } else if (value === \"undefined\" && !forceType) {\n    // @ts-ignore\n    return undefined;\n  } else if (value === \"true\" && (!forceType || forceType === \"boolean\")) {\n    // @ts-ignore\n    return true;\n  } else if (value === \"false\" && (!forceType || forceType === \"boolean\")) {\n    // @ts-ignore\n    return false;\n  } else if (!isNaN(Number(value)) && (!forceType || forceType === \"number\")) {\n    // NB: do this after true and false, because they also cast to numbers\n    // @ts-ignore\n    return Number(value);\n  } else {\n    // all that's left is a string\n    // @ts-ignore\n    return value;\n  }\n}",
+  "description": "parses a string to a string, number, boolean, null or undefined.\n\noptionally you can chooose to force a type...\n\nTODO: figure out how I can do this without ts-ignores",
+  "id": "mihxktaxacxjfnyzsjrvjnel"
+}

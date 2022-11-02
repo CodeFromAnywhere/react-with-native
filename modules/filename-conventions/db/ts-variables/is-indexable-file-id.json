@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259757885,
+  "updatedAt": 1666259757885,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259757885,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "isIndexableFileId",
+  "slug": "is-indexable-file-id",
+  "operationRelativeTypescriptFilePath": "src/filename-conventions.ts",
+  "type": {
+    "rawType": "(fileId: string) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(fileId: string): boolean => {\n  const isOperationName = hasSubExtension(\n    fileId,\n    operationUnindexableNamesOrSubExtensions,\n    true\n  );\n\n  const isFrontendOptionalName = hasSubExtension(\n    fileId,\n    frontendOptionalFileSubExtensions,\n    false\n  );\n\n  const isIndex = fileId === \"index\";\n\n  const isIndexable = !isIndex && !isFrontendOptionalName && !isOperationName;\n\n  return isIndexable;\n}",
+  "description": "",
+  "id": "adzmihflfkgmzkwibxkhjbyh"
+}

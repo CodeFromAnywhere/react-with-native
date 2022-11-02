@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259851246,
+  "updatedAt": 1666259851246,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259851246,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "updateCli",
+  "slug": "update-cli",
+  "operationRelativeTypescriptFilePath": "src/cli/test-update.cli.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const [model, filterKv, updateKv] = process.argv.slice(2);\n\n  if (!filterKv || !model || !updateKv) {\n    console.log(\n      \"please provide 3 arguments: the model name, the key:value of the instance(s) to update, and the key:value of the key to change the value of\"\n    );\n  }\n\n  const [filterKey, filterValue] = filterKv.split(\":\");\n  const [updateKey, updateValue] = updateKv.split(\":\");\n\n  const result = await testDb.update(\n    model as any,\n    (content) => content[filterKey] == filterValue,\n    (content) => ({ ...content, [updateKey]: updateValue })\n  );\n\n  console.table(result);\n}",
+  "description": "",
+  "id": "hgkfwymtmbfytkxahxyzngvg"
+}

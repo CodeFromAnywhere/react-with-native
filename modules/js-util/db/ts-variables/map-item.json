@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513259651,
+  "updatedAt": 1666513259651,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513259651,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "mapItem",
+  "slug": "map-item",
+  "operationRelativeTypescriptFilePath": "src/mapMany.ts",
+  "type": {
+    "rawType": "<T, U>(mapFn: import(\"/Users/king/King/operations/tools/util/js-util/src/mapMany\").MapFn<T, U>, currentValue: T, index: number, array: T[]) => Promise<{ status: \"fulfilled\" | \"rejected\"; value?: U | undefined; reason?: unknown; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async <T, U>(\n  mapFn: MapFn<T, U>,\n  currentValue: T,\n  index: number,\n  array: T[]\n): Promise<{\n  status: \"fulfilled\" | \"rejected\";\n  value?: U;\n  reason?: unknown;\n}> => {\n  try {\n    return {\n      status: \"fulfilled\",\n      value: await mapFn(currentValue, index, array),\n    };\n  } catch (reason) {\n    return {\n      status: \"rejected\",\n      reason,\n    };\n  }\n}",
+  "description": "",
+  "id": "ifnnrzqieofxghdhtikhgooa"
+}

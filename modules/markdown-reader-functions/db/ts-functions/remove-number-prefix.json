@@ -1,0 +1,56 @@
+{
+  "createdAt": 1666262322213,
+  "updatedAt": 1666262322213,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262322213,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/removeNumberPrefix.ts",
+  "commentsInside": [],
+  "rawText": " (fileOrFolderName: string): string => {\n  const parts = fileOrFolderName.split(\".\");\n\n  const newName = parts.reduce((restName, part, currentIndex, array) => {\n    if (restName) return restName;\n    const isTextPart = isNaN(Number(part));\n\n    if (isTextPart) {\n      // NB: everything after here is supposed to be part of the text\n      const restName = array.slice(currentIndex).join(\".\");\n      return restName;\n    }\n  }, undefined as string | undefined);\n\n  return newName || \"untitled\";\n}",
+  "name": "removeNumberPrefix",
+  "slug": "remove-number-prefix",
+  "parameters": [
+    {
+      "name": "fileOrFolderName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "removes number prefixes from a file or folder name. Does not remove extension\n\ndefaults to untitled if the file or folder has no name after removing numbers.",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 652,
+    "lines": 18,
+    "bytes": 652,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 36,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "id": "mmmjnevfqyxnfbphukbfakku"
+}

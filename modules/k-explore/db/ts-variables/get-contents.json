@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259118132,
+  "updatedAt": 1666259118132,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259118132,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "getContents",
+  "slug": "get-contents",
+  "operationRelativeTypescriptFilePath": "src/explore.ts",
+  "type": {
+    "rawType": "(filePath: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (filePath: string) => {\n  // console.log(\"Get contents\", filePath);\n  const extension = getExtension(filePath);\n  if (!isSearchContentExtension(extension)) {\n    return;\n  }\n\n  if (extension === \"json\") {\n    return readJsonFile<any>(filePath);\n  } else if (markdownExtensions.includes(extension)) {\n    const contents = await fs.readFile(filePath, \"utf8\");\n    const markdownParse = mdToJsonParse(contents);\n    return markdownParse;\n  } else {\n    const fileString = fs.readFile(filePath, \"utf8\");\n    return fileString;\n  }\n}",
+  "description": "gets needed contents of file path, based on the extension\n\nreturns a markdownparse if it's markdown, a json parse for json, or a file content string for anything else",
+  "id": "bwhivxmpwkazorulvwnpcqkl"
+}

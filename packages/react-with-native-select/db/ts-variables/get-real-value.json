@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666261590417,
+  "updatedAt": 1666261590417,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261590417,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getRealValue",
+  "slug": "get-real-value",
+  "operationRelativeTypescriptFilePath": "src/util.tsx",
+  "type": {
+    "rawType": "<T extends unknown>({ value, selectFirstOption, options, title, }: { title: string; options: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-select/src/types\").Item<T>[]; value?: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-select/src/types\").Item<T> | null | undefined; selectFirstOption?: boolean | undefined; }) => import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-select/src/types\").Item<T>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends unknown>({\n  value,\n  selectFirstOption,\n  options,\n  title,\n}: {\n  title: string;\n  options: Item<T>[];\n  value?: Item<T> | null;\n  selectFirstOption?: boolean;\n}): Item<T> => {\n  return value\n    ? value\n    : selectFirstOption\n    ? options[0]\n    : { label: title, value: undefined as T };\n}",
+  "description": "",
+  "id": "xftdfyguccdzbabzagfiftbv"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379403193,
+  "updatedAt": 1667379403193,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379403193,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useExpanded",
+  "slug": "use-expanded",
+  "operationRelativeTypescriptFilePath": "src/useExpanded.ts",
+  "type": {
+    "rawType": "(queryPath?: string) => [boolean, () => Promise<void>, () => Promise<void>, () => Promise<void>, { hydrated: boolean; }]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(queryPath: string = \"\") => {\n  const [expanded, setExpanded, { hydrated }] = useStore(\"menu.expanded\");\n\n  const isExpanded =\n    expanded[queryPath] !== undefined ? expanded[queryPath] : false;\n\n  // console.log({ queryPath, isExpanded });\n  const setIsExpanded = () => {\n    return setExpanded({ ...expanded, [queryPath]: true });\n  };\n\n  const setNotExpanded = () => {\n    return setExpanded({ ...expanded, [queryPath]: false });\n  };\n\n  const toggleExpanded = () => {\n    return setExpanded({\n      ...expanded,\n      [queryPath]: !isExpanded,\n    });\n  };\n\n  const tuple: [\n    boolean,\n    () => Promise<void>,\n    () => Promise<void>,\n    () => Promise<void>,\n    { hydrated: boolean }\n  ] = [isExpanded, toggleExpanded, setIsExpanded, setNotExpanded, { hydrated }];\n\n  return tuple;\n}",
+  "description": "",
+  "id": "qrwmcfezerblbjmxbekbjtho"
+}

@@ -1,0 +1,94 @@
+{
+  "createdAt": 1667378788698,
+  "updatedAt": 1667378788698,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378788698,
+  "id": "namedparameterstypeof-copyallrelativefiles",
+  "name": "NamedParameters<typeof copyAllRelativeFiles>",
+  "slug": "namedparameterstypeof-copyallrelativefiles",
+  "operationRelativeTypescriptFilePath": "src/copyAllRelativeFiles.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "relativeFilePaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "absoluteSourceRoot": {
+          "type": "string"
+        },
+        "absoluteDestinationRoot": {
+          "type": "string"
+        },
+        "force": {
+          "type": "boolean",
+          "description": "Overwrite existing file or directory"
+        }
+      },
+      "required": [
+        "relativeFilePaths",
+        "absoluteSourceRoot",
+        "absoluteDestinationRoot"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "relativeFilePaths",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "absoluteSourceRoot",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "absoluteDestinationRoot",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "force",
+          "required": false,
+          "schema": {
+            "fullComment": "Overwrite existing file or directory",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof copyAllRelativeFiles>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

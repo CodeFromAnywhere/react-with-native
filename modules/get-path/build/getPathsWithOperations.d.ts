@@ -1,9 +1,9 @@
 /**
- * returns an array of all paths containing operations
+ * returns an array of all (absolute) paths containing operations
  *
  * for a sensible project, that means /apps and /packages
  *
- * for the OS project, that means /tools and /bundles
+ * for the OS project, that means /operations/tools and /operations/niches
  */
 export declare const getPathsWithOperations: (config?: {
     /**

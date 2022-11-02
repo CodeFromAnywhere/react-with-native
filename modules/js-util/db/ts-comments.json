@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1666513267861,
+    "updatedAt": 1666513267861,
+    "deletedAt": 0,
+    "createdFirstAt": 1666513267861,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/trimSlashes.ts",
+    "comment": "Trims a slash on both sides in any path",
+    "rawStatement": "export const trimSlashes = (absoluteOrRelativePath: string) => {\n  const isFirstCharacterSlash = absoluteOrRelativePath.charAt(0) === \"/\";\n  const isLastCharacterSlash =\n    absoluteOrRelativePath.charAt(absoluteOrRelativePath.length - 1) === \"/\";\n\n  const withoutSlashPrefix = isFirstCharacterSlash\n    ? absoluteOrRelativePath.slice(1)\n    : absoluteOrRelativePath;\n  const withoutSlashSuffix = isLastCharacterSlash\n    ? withoutSlashPrefix.slice(0, withoutSlashPrefix.length - 1)\n    : withoutSlashPrefix;\n\n  return withoutSlashSuffix;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 1,
+    "lastLine": 3,
+    "id": "kknajfikyderyapoeenbmdzq"
+  }
+]

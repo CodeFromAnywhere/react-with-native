@@ -1,0 +1,82 @@
+{
+  "createdAt": 1666264721079,
+  "updatedAt": 1666264721079,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264721079,
+  "id": "globallogconfig",
+  "name": "GlobalLogConfig",
+  "slug": "globallogconfig",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n/**\n * a logging configuration object that you can set using a file in the root of your operation or project.\n */\nexport type GlobalLogConfig = {\n  showDebug?: boolean;\n  showDefault?: boolean;\n  sayTitles?: boolean;\n  /**\n   * Folder where logs can be stored. If i can access the caller location this can be the operation db.\n   */\n  logFolder?: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "a logging configuration object that you can set using a file in the root of your operation or project.",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "showDebug": {
+          "type": "boolean"
+        },
+        "showDefault": {
+          "type": "boolean"
+        },
+        "sayTitles": {
+          "type": "boolean"
+        },
+        "logFolder": {
+          "type": "string",
+          "description": "Folder where logs can be stored. If i can access the caller location this can be the operation db."
+        }
+      },
+      "additionalProperties": false,
+      "description": "a logging configuration object that you can set using a file in the root of your operation or project."
+    },
+    "simplifiedSchema": {
+      "fullComment": "a logging configuration object that you can set using a file in the root of your operation or project.",
+      "properties": [
+        {
+          "name": "showDebug",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "showDefault",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "sayTitles",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "logFolder",
+          "required": false,
+          "schema": {
+            "fullComment": "Folder where logs can be stored. If i can access the caller location this can be the operation db.",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "GlobalLogConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

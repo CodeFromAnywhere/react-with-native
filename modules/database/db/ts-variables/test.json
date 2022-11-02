@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259868609,
+  "updatedAt": 1666259868609,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259868609,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "test",
+  "slug": "test",
+  "operationRelativeTypescriptFilePath": "src/updateSingleItem.test.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const upatedResult = await testDb.update(\n    \"MarkdownTestModel\",\n    (xyz) => true,\n    (item) => {\n      return { ...item, name: `${item.name}123` };\n    }\n  );\n}",
+  "description": "",
+  "id": "xkgqmxxogcghcjadjwrsebxz"
+}

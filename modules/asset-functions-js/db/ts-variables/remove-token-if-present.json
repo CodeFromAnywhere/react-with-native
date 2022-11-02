@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667111126497,
+  "updatedAt": 1667111126497,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111126497,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "removeTokenIfPresent",
+  "slug": "remove-token-if-present",
+  "operationRelativeTypescriptFilePath": "src/token/removeTokenIfPresent.ts",
+  "type": {
+    "rawType": "(name: string, attachTokenToFilename?: boolean | undefined) => { nameWithoutToken: any; token: string | undefined; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  name: string,\n  attachTokenToFilename?: boolean\n) => {\n  if (!attachTokenToFilename) {\n    return { nameWithoutToken: name, token: undefined };\n  }\n  const [nameWithoutToken, token] = name.split(tokenPrefix);\n  return { nameWithoutToken, token: token as string | undefined };\n}",
+  "description": "",
+  "id": "xdtbestnwdzfliptxbbdpynq"
+}

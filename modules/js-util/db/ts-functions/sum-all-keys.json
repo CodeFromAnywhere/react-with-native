@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666513251921,
+  "updatedAt": 1666513251921,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513251921,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " <T extends { [key: string]: number | undefined }>(\n  objectArray: T[],\n  keys: (keyof T)[]\n): T => {\n  const sumObject = objectArray.reduce((total, item) => {\n    // NB: not needed normally, but there seems to be some corrupt data here and there\n    if (!item) return total;\n    const newTotal = mergeObjectsArray(\n      keys.map((key) => {\n        const value1: number = total ? total[key] || 0 : 0;\n        const value2: number = item?.[key] || 0;\n\n        const sum =\n          (!total || total[key] === undefined) && item[key] === undefined\n            ? undefined\n            : value1 + value2;\n\n        return { [key]: sum };\n      })\n    ) as T;\n\n    return newTotal;\n  }, null as null | T) as T;\n\n  return sumObject;\n}",
+  "name": "sumAllKeys",
+  "slug": "sum-all-keys",
+  "parameters": [],
+  "description": "sums all keys of an array of objects, assuming the objects have the same datastructure and assuming the values contain either numbers or undefined",
+  "returnType": {
+    "rawType": "{ [key: string]: number | undefined; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 873,
+    "lines": 26,
+    "bytes": 873,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 26,
+    "numberOfFiles": 1
+  },
+  "id": "zssdebqfpvlbysoiksjpscyh"
+}

@@ -1,16 +1,22 @@
 "use strict";
-// THIS FILE HAS BEEN GENERATED
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPageTitle = exports.pages = exports.pagesObject = exports.Layout = exports.getQueryPath = void 0;
-var Layout_1 = require("./components/Layout");
-Object.defineProperty(exports, "Layout", { enumerable: true, get: function () { return Layout_1.Layout; } });
-var getQueryPath_1 = require("./util/getQueryPath");
-Object.defineProperty(exports, "getQueryPath", { enumerable: true, get: function () { return getQueryPath_1.getQueryPath; } });
-var pages_1 = require("./pages");
-Object.defineProperty(exports, "pagesObject", { enumerable: true, get: function () { return pages_1.pagesObject; } });
-var pages_2 = require("./pages");
-Object.defineProperty(exports, "pages", { enumerable: true, get: function () { return pages_2.pages; } });
-var pages_3 = require("./pages");
-Object.defineProperty(exports, "getPageTitle", { enumerable: true, get: function () { return pages_3.getPageTitle; } });
-// THANK YOU
+__exportStar(require("./components/Layout"), exports);
+__exportStar(require("./pages/index"), exports);
+__exportStar(require("./pages"), exports);
+__exportStar(require("./types"), exports);
+__exportStar(require("./util/getQueryPath"), exports);
 //# sourceMappingURL=index.js.map

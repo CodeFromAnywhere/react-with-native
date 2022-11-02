@@ -2,115 +2,170 @@
 
 k-explore (node operation)
 
-Size: 657 LOC, 2430 data characters, 
- 
-Imported dependencies:
+exploration functions for exploring files within King OS
 
-- From Core Libraries: none
-- From Packages: none
-- From Operations: fs, readJsonFile, MarkdownParse, TextJson, path, getFolder, getExtension, getSubExtension, makeArray, notEmpty, canRead, canSee, mdToJsonParse, getPathsWithOperations, getProjectRoot, getPathsWithOperations, makeTest
+Currently has a thin dependency on `get-path`, but this can probably be removed to make this operation more general purpose (and work outside of King OS too)
+
+
+
 
 # Outline
 
 ## Functions
 
-- [getArgument](#getArgument)
-- [isSearchContentExtension](#isSearchContentExtension)
+- [benchmark](#benchmark)
 - [determineFileType](#determineFileType)
-- [getOutline](#getOutline)
-- [isMatch](#isMatch)
-- [getContents](#getContents)
-- [explore](#explore)
-- [findFilesRecursively](#findFilesRecursively)
-- [findAllPackages](#findAllPackages)
-- [findAllDotGitFolders](#findAllDotGitFolders)
 - [exploreGitRepoFolders](#exploreGitRepoFolders)
+- [exploreMultiple](#exploreMultiple)
 - [exploreOperationFolders](#exploreOperationFolders)
 - [explorePreset](#explorePreset)
-- [exploreMultiple](#exploreMultiple)
+- [explore](#explore)
+- [findAllDocsFolderPaths](#findAllDocsFolderPaths)
+- [findAllDotGitFolders](#findAllDotGitFolders)
+- [findAllFoldersWithName](#findAllFoldersWithName)
+- [findAllPackages](#findAllPackages)
+- [findAllTodoFolderPaths](#findAllTodoFolderPaths)
+- [findFilesRecursively](#findFilesRecursively)
+- [getArgument](#getArgument)
+- [getContents](#getContents)
+- [getOutline](#getOutline)
+- [isMatch](#isMatch)
+- [isSearchContentExtension](#isSearchContentExtension)
+- [pathArrayIsOperation](#pathArrayIsOperation)
+
+## Variables
+
+- [arg1](#arg1)
+- [arg2](#arg2)
 - [benchmark](#benchmark)
+- [determineFileType](#determinefiletype)
+- [exploreGitRepoFolders](#exploregitrepofolders)
+- [exploreMultiple](#exploremultiple)
+- [exploreOperationFolders](#exploreoperationfolders)
+- [explorePreset](#explorepreset)
+- [explore](#explore)
+- [findAllDocsFolderPaths](#findalldocsfolderpaths)
+- [findAllDotGitFolders](#findalldotgitfolders)
+- [findAllFoldersWithName](#findallfolderswithname)
+- [findAllPackages](#findallpackages)
+- [findAllTodoFolderPaths](#findalltodofolderpaths)
+- [findFilesRecursively](#findfilesrecursively)
+- [getArgument](#getargument)
+- [getContents](#getcontents)
+- [getOutline](#getoutline)
+- [isMatch](#ismatch)
+- [isSearchContentExtension](#issearchcontentextension)
+- [pathArrayIsOperation](#patharrayisoperation)
+- [test](#test)
 
 
 
 # Functions
 
-## getArgument
+## benchmark
 
-Max. indexation depth: 1, 
+### Parameters (1)
 
-
-
-## Returns: unknown
-
-### Arguments
-
-#### number: number
-
-
-
-
-
-
-
-## isSearchContentExtension
-
-Max. indexation depth: 2, 
-
-type checker for a string to be an extension that can be searched for
-
-### Returns: boolean
-
-
-
-
-
-
+#### Parameter 1: amount (optional): number
 
 ## determineFileType
 
-Max. indexation depth: 2, 
-
 returns the file type or null if it's unknown
 
-## Returns: unknown
-
-## getOutline
-
-Max. indexation depth: 1, 
 
 
 
-## Returns: unknown
+## exploreGitRepoFolders
 
-## isMatch
-
-Max. indexation depth: 2, 
+find all active git folders (folders having `.git`)
 
 
 
-## Returns: unknown
 
-## getContents
+## exploreMultiple
 
-Max. indexation depth: 2, 
+DEPRECATED: not sure if we still need it, look up usecases, can prob be replaced now
 
-gets needed contents of file path, based on the extension
 
-returns a markdownparse if it's markdown, a json parse for json, or a file content string for anything else
 
-## Returns: unknown
+
+## exploreOperationFolders
+
+find all active operations (folders having `package.json` but also `tsconfig.json`)
+
+returns folder path array
+
+
+
+
+### Parameters (1)
+
+#### Parameter 1: config (optional): object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| basePath (optional) | object |  |
+
+
+
+## explorePreset
 
 ## explore
 
-Max. indexation depth: 3, 
-
 this is the safe and friendly version of findFilesRecursively: it
 
-## Returns: unknown
+
+
+
+## findAllDocsFolderPaths
+
+### Parameters (1)
+
+#### Parameter 1: ignoreOperations (optional): boolean
+
+## findAllDotGitFolders
+
+## findAllFoldersWithName
+
+### Parameters (1)
+
+#### Parameter 1: config: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| basePath  | string |  |
+| folderName  | string |  |
+| ignoreOperations (optional) | boolean |  |
+
+
+
+## findAllPackages
+
+### Parameters (1)
+
+#### Parameter 1: config (optional): object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| basePath (optional) | object |  |
+
+
+
+## findAllTodoFolderPaths
+
+### Parameters (2)
+
+#### Parameter 1: basePath: string
+
+#### Parameter 2: ignoreOperations (optional): boolean
 
 ## findFilesRecursively
-
-Max. indexation depth: 8, 
 
 Explores your files with many possibilities.
 
@@ -120,75 +175,136 @@ TODO: since this not only finds files but also explores them, naming should be e
 
 TODO: TextJson[] is a bit weird name for the resulting type interface...
 
-## Returns: unknown
-
-## findAllPackages
-
-Max. indexation depth: 2, 
-
-Finds all package.json's everywhere. also in /tools, but this is to be expected.
-
-TODO: `stopRecursionAfterMatch` never worked, so I just removed it... the behavior now is that it also explores folders that are in a folder with a `package.json`, unless that foldername is ignored. For now it's fine, but this could easily create an ineficiency if there's a lot of data in an operation or something...
-
-TODO: We should be careful with ignoring all these folders... what if we use those folders outside of operations? This could have unexpected behavior. We either need to lint for these foldernames not to be used, or we need to make sure to only ignore it if we encounter a package.json
-
-## Returns: unknown
-
-## findAllDotGitFolders
-
-Max. indexation depth: 2, 
 
 
 
-## Returns: unknown
+## getArgument
 
-## exploreGitRepoFolders
+### Parameters (1)
 
-Max. indexation depth: 2, 
+#### Parameter 1: number: number
+
+## getContents
+
+gets needed contents of file path, based on the extension
+
+returns a markdownparse if it's markdown, a json parse for json, or a file content string for anything else
+
+
+
+
+## getOutline
+
+## isMatch
+
+## isSearchContentExtension
+
+type checker for a string to be an extension that can be searched for
+
+
+### Returns: object
+
+## pathArrayIsOperation
+
+Checks if pathArray contains a package.json and a tsconfig.json and thus should be an operation
+
+Handy for `cancelRecursionOn` in `explore`
+
+
+### Returns: object
+
+### Parameters (1)
+
+#### Parameter 1: pathArray: array
+
+- null: string
+
+
+
+
+
+# Variables
+
+## arg1 (unexported const)
+
+## arg2 (unexported const)
+
+## benchmark (unexported const)
+
+## determineFileType (exported const)
+
+returns the file type or null if it's unknown
+
+
+## exploreGitRepoFolders (exported const)
 
 find all active git folders (folders having `.git`)
 
-## Returns: unknown
 
-## exploreOperationFolders
-
-Max. indexation depth: 2, 
-
-find all active operations (folders having `package.json` but also `tsconfig.json`)
-
-## Returns: unknown
-
-## explorePreset
-
-Max. indexation depth: 6, 
-
-
-
-## Returns: unknown
-
-## exploreMultiple
-
-Max. indexation depth: 2, 
+## exploreMultiple (exported const)
 
 DEPRECATED: not sure if we still need it, look up usecases, can prob be replaced now
 
-## Returns: unknown
 
-## benchmark
+## exploreOperationFolders (exported const)
 
-Max. indexation depth: 2, 
+find all active operations (folders having `package.json` but also `tsconfig.json`)
 
-
-
-## Returns: unknown
-
-### Arguments
-
-#### amount (optional): number
+returns folder path array
 
 
+## explorePreset (exported const)
+
+## explore (exported const)
+
+this is the safe and friendly version of findFilesRecursively: it
 
 
+## findAllDocsFolderPaths (exported const)
+
+## findAllDotGitFolders (exported const)
+
+## findAllFoldersWithName (exported const)
+
+## findAllPackages (exported const)
+
+## findAllTodoFolderPaths (exported const)
+
+## findFilesRecursively (exported const)
+
+Explores your files with many possibilities.
+
+NB: this function only searches one basePath, while explore can do multiple
+
+TODO: since this not only finds files but also explores them, naming should be exploreFilesRecursively, probably.
+
+TODO: TextJson[] is a bit weird name for the resulting type interface...
 
 
+## getArgument (unexported const)
+
+## getContents (unexported const)
+
+gets needed contents of file path, based on the extension
+
+returns a markdownparse if it's markdown, a json parse for json, or a file content string for anything else
+
+
+## getOutline (unexported const)
+
+## isMatch (unexported const)
+
+## isSearchContentExtension (unexported const)
+
+type checker for a string to be an extension that can be searched for
+
+
+## pathArrayIsOperation (exported const)
+
+Checks if pathArray contains a package.json and a tsconfig.json and thus should be an operation
+
+Handy for `cancelRecursionOn` in `explore`
+
+
+## test (exported const)
 

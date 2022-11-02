@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263018595,
+  "updatedAt": 1666263018595,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263018595,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "readJsonFileSync",
+  "slug": "read-json-file-sync",
+  "operationRelativeTypescriptFilePath": "src/readJsonFile.ts",
+  "type": {
+    "rawType": "<T>(filePath: string) => T | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T>(filePath: Path): T | null => {\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = canReadSync(filePath);\n  if (!readable) return null;\n  const fileString = fs.readFileSync(filePath, \"utf8\");\n  if (!fileString) return null;\n  const parsed = tryParseJson<T>(fileString);\n  return parsed;\n}",
+  "description": "Reads and parses JSON file\n\nmake sure to specify what type the file contains as a generic!",
+  "id": "enxzebrcxepdyjlnopoxytst"
+}

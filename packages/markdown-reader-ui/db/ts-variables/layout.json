@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262427619,
+  "updatedAt": 1666262427619,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262427619,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "Layout",
+  "slug": "layout",
+  "operationRelativeTypescriptFilePath": "src/components/Layout.tsx",
+  "type": {
+    "rawType": "(props: { pages: import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage[]; children: any; augmentedWordObject?: import(\"/Users/king/King/operations/tools/util/js-util/build/createMappedObject\").MappedObject<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/AugmentedWord\").AugmentedWord> | undefined; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  pages: MarkdownReaderPage[];\n  children: any;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n}) => {\n  const { pages, children, augmentedWordObject } = props;\n\n  const queryPaths = pages.filter((x) => x.isMenuItem).map((x) => x.queryPath);\n  const nestedPathObject = queryPathsArrayToNestedPathObject(queryPaths);\n  const menu = nestedPathObjectToNestedMenuRecursive(nestedPathObject);\n\n  const results: AugmentedWord[] = augmentedWordObject\n    ? Object.keys(augmentedWordObject).map(\n        (key) => augmentedWordObject[key] as AugmentedWord\n      )\n    : [];\n\n  return (\n    <Div className=\"h-screen grid grid-rows-6\">\n      <Div className=\"row-span-6 grid grid-cols-5\">\n        <Div\n          className={`\n        col-span-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white`}\n          textClassName=\"dark:text-white\"\n        >\n          {children}\n        </Div>\n        <Span className=\"border-l col-span-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white border-l-gray-400\">\n          <Search results={results} />\n          {menu ? (\n            <NestedMenu menu={menu} headersClickable={true} />\n          ) : (\n            \"Menu couldn't be found\"\n          )}\n        </Span>\n      </Div>\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "tqofvisamykukzaredonafxs"
+}

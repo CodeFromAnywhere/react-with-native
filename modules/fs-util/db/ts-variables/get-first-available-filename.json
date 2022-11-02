@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667378801484,
+  "updatedAt": 1667378801484,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378801484,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getFirstAvailableFilename",
+  "slug": "get-first-available-filename",
+  "operationRelativeTypescriptFilePath": "src/getFirstAvailableFilename.ts",
+  "type": {
+    "rawType": "(absoluteFilePath: string) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(absoluteFilePath: string): string => {\n  // If that doesn't exist, use that\n  if (!fs.existsSync(absoluteFilePath)) return absoluteFilePath;\n\n  const parsedPath = path.parse(absoluteFilePath);\n\n  const newFilename = `${oneUp(parsedPath.name)}${parsedPath.ext}`;\n  const newProposedPath = path.join(parsedPath.dir, newFilename);\n  return getFirstAvailableFilename(newProposedPath);\n}",
+  "description": "",
+  "id": "sggjhlwuvixwpgkedzdvlfzn"
+}

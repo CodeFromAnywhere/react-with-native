@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666261462323,
+  "updatedAt": 1666261462323,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261462323,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/select/select.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  value,\n  extra,\n  onChange,\n}) => {\n  //console.log({ value, extraOptions: extra.options });\n  return (\n    <Select\n      autoSuggest={extra.autoSuggest}\n      // containerClassName={UI.input}\n      className={UI.selectInput}\n      title={extra.title || \"\"}\n      options={extra.options}\n      value={value}\n      onChange={(value) => {\n        if (value) {\n          onChange(value);\n        }\n      }}\n    />\n  );\n}",
+  "name": "SelectInput",
+  "slug": "select-input",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 423,
+    "lines": 22,
+    "bytes": 423,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 19,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "qqazeoaifwwebjdwkvynebjv"
+}

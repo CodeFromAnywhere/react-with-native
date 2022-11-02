@@ -1,0 +1,155 @@
+{
+  "createdAt": 1666264377518,
+  "updatedAt": 1666264377518,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264377518,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/simplifiedSchemaToTypeDefinitionString.ts",
+  "commentsInside": [],
+  "rawText": " (\n  simplifiedSchema?: SimplifiedSchema\n) => {\n  if (!simplifiedSchema) return \"\";\n\n  if (simplifiedSchema.enum && simplifiedSchema.enum.length > 0) {\n    // NB: TODO: This is probably not satisfactory for all enums! Needs testing\n    const enumString = simplifiedSchema.enum.map((x) => String(x)).join(\" | \");\n\n    return enumString;\n  }\n\n  if (simplifiedSchema.type === \"boolean\") return \"boolean\";\n  if (simplifiedSchema.type === \"null\") return \"null\";\n  if (simplifiedSchema.type === \"number\") return \"number\";\n  if (simplifiedSchema.type === \"string\") return \"string\";\n  if (\n    simplifiedSchema.type === \"array\" &&\n    simplifiedSchema.items &&\n    simplifiedSchema.items.length >= 1\n  ) {\n    const parts: string = simplifiedSchema.items\n      .map((x) => simplifiedSchemaToTypeDefinitionString(x.schema))\n      .join(\" | \");\n\n    const partsString: string =\n      simplifiedSchema.items && simplifiedSchema.items.length >= 2\n        ? `(${parts})[]`\n        : `${parts}[]`;\n\n    return partsString;\n  }\n\n  if (simplifiedSchema.type === \"object\" && simplifiedSchema.properties) {\n    const objectParts = simplifiedSchema.properties.map((prop) => {\n      const descriptionString = prop.schema.description\n        ? `/** ${prop.schema.description} */\\n`\n        : \"\";\n      const punctuationString = `${prop.required ? \"\" : \"?\"}: `;\n      const propertyString: string = `${descriptionString}${\n        prop.name\n      }${punctuationString}${simplifiedSchemaToTypeDefinitionString(\n        prop.schema\n      )};`;\n\n      return propertyString;\n    });\n\n    const objectString = `{\\n${objectParts.join(\"\\n\")}\\n};\\n`;\n\n    return objectString;\n  }\n\n  // NB: Should never be the case, we have handled all types\n  return \"\";\n}",
+  "name": "simplifiedSchemaToTypeDefinitionString",
+  "slug": "simplified-schema-to-type-definition-string",
+  "parameters": [
+    {
+      "name": "simplifiedSchema",
+      "schema": {
+        "$ref": "#/definitions/SimplifiedSchema"
+      },
+      "simplifiedSchema": {
+        "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+        "properties": [
+          {
+            "name": "todo",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "discussion",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idea",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "later",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nb",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "title",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "section",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "circularRefName",
+            "required": false,
+            "schema": {
+              "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+              "type": "string"
+            }
+          },
+          {
+            "name": "enum",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "properties",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of object, this will always appear",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "items",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of arrays, this will always appear",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "fullComment",
+            "required": false,
+            "schema": {
+              "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+              "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "Converts a simplifiedSchema definition back into a type interface string\n\nWith this, types can be generated in different ways",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1853,
+    "lines": 58,
+    "bytes": 1853,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 58,
+    "numberOfFiles": 1
+  },
+  "id": "fbyturbpojtzchailadnegze"
+}

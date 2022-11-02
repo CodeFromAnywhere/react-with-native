@@ -1,0 +1,62 @@
+{
+  "createdAt": 1667378808388,
+  "updatedAt": 1667378808388,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378808388,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/renameAndCreate.ts",
+  "commentsInside": [],
+  "rawText": " async (oldPath: string, newPath: string) => {\n  const newPathFolderPath = path.parse(newPath).dir;\n\n  if (!fs.existsSync(newPathFolderPath)) {\n    await fs.mkdir(newPathFolderPath, { recursive: true });\n  }\n\n  await fs.rename(oldPath, newPath);\n}",
+  "name": "renameAndCreate",
+  "slug": "rename-and-create",
+  "parameters": [
+    {
+      "name": "oldPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "newPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 247,
+    "lines": 9,
+    "bytes": 247,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "ihbsvaucsjujjxkaxdnvehmg"
+}

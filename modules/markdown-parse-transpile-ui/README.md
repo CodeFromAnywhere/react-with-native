@@ -1,169 +1,112 @@
 # Markdown parse transpile ui
 
-markdown-parse-transpile-ui (undefined operation)
+markdown-parse-transpile-ui (ui-es6 operation)
 
-Size: undefined LOC, 
- 
-Imported dependencies:
 
-- From Core Libraries: none
-- From Packages: none
-- From Operations: none
 
 # Outline
 
 ## Functions
 
-- [renderMarkdownContent](#renderMarkdownContent)
-- [renderMarkdownTitle](#renderMarkdownTitle)
+- [getRealSrc](#getRealSrc)
+- [getUrlFromRelativeUrl](#getUrlFromRelativeUrl)
+- [MarkdownCodeblock](#MarkdownCodeblock)
+- [renderFrontmatter](#renderFrontmatter)
 - [renderMarkdownChunk](#renderMarkdownChunk)
+- [renderMarkdownContent](#renderMarkdownContent)
 - [renderMarkdownParse](#renderMarkdownParse)
-- [renderFrontMatter](#renderFrontMatter)
+- [renderMarkdownTitle](#renderMarkdownTitle)
+
+## Interfaces
+
+- [AugmentedWord](#augmentedword)
+- [CodeblockMode](#codeblockmode)
+- [Frontmatter](#frontmatter)
+- [MarkdownChunk](#markdownchunk)
+- [MarkdownParse](#markdownparse)
+- [MarkdownParseRenderConfig](#markdownparserenderconfig)
+
+## Variables
+
+- [defaultExpandedMode](#defaultexpandedmode)
+- [defaultMinimalMode](#defaultminimalmode)
+- [getRealSrc](#getrealsrc)
+- [getUrlFromRelativeUrl](#geturlfromrelativeurl)
+- [MarkdownCodeblock](#markdowncodeblock)
+- [renderFrontmatter](#renderfrontmatter)
+- [renderMarkdownChunk](#rendermarkdownchunk)
+- [renderMarkdownContent](#rendermarkdowncontent)
+- [renderMarkdownParse](#rendermarkdownparse)
+- [renderMarkdownTitle](#rendermarkdowntitle)
 
 
 
 # Functions
 
-## renderMarkdownContent
+## getRealSrc
 
-Max. indexation depth: 6, 
-
-renders a markdown striing (without frontmatter)
-
-## Returns: unknown
-
-### Arguments
-
-#### content: string
+Based on markdown info, gest the real source for an image
 
 
+### Returns: string
 
+### Parameters (2)
 
+#### Parameter 1: src (optional): string
 
+## getUrlFromRelativeUrl
 
-
-#### config (optional): object
+gets the renderable asset url from the relative url
 
 
 
 
+### Parameters (4)
 
-Properties: 
+#### Parameter 1: relativeUrl: string
 
- | Name | Type | Description |
-|---|---|---|
-| big (optional) | boolean |  |
+#### Parameter 2: relativeUrlStrategy: string(Enum: api | static)
 
+#### Parameter 3: projectRelativeBaseFolderPath: string
 
-## renderMarkdownTitle
+#### Parameter 4: projectRelativeMarkdownFilePath: string
 
-Max. indexation depth: 3, 
+## MarkdownCodeblock
 
-renders a markdown title (level should be 1 for h1 and 6 for h6)
-
-## Returns: unknown
-
-### Arguments
-
-#### title: string
+Renders a markdown codeblock with a text as content and an optional extension
 
 
 
 
+### Parameters (1)
 
-
-
-#### level: number
-
-
-
-
-
-
-
-## renderMarkdownChunk
-
-Max. indexation depth: 3, 
-
-renders a MarkdownChunk interface
-
-## Returns: unknown
-
-### Arguments
-
-#### chunk: object
-
-
-
-
+#### Parameter 1: props: object
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| level  | number | 0 is a paragraph 1-6 is h1 until h6 |
-| content (optional) | string |  |
-| title (optional) | string | NB: title can also be an empty string ("") |
-| children (optional) | array | all content until the next title. it's either a content array if there's any titles found, or a string[] if it's paragraphs |
-
-
-## renderMarkdownParse
-
-Max. indexation depth: 3, 
-
-renders the MardkownParse interface (including frontmatter)
-
-## Returns: unknown
-
-### Arguments
-
-#### markdownParse: object
+| text  | string |  |
+| extension (optional) | string |  |
+| minimalMode (optional) | string |  |
+| expandedMode (optional) | string |  |
+| isInitiallyExpanded (optional) | boolean |  |
+| isModeStatic (optional) | boolean |  |
 
 
 
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| fileName (optional) | string | if available, this can be the filename of the markdown in this markdownparse. Can be used for things like merging |
-| parameters  | object | TODO: either make a special category crud for the category model would be nice maybe (especially a backend that makes sure all references stay updated would be epic) |
-| content (optional) | array | structured content based on h1, h2, h3, etc (paragraphs, recursive) |
-| raw  | string | raw markdown without frontmatter |
-
-
-## renderFrontMatter
-
-Max. indexation depth: 6, 
+## renderFrontmatter
 
 Renders markdown frontmatter parameters (and optionally a spacer)
 
-## Returns: unknown
-
-### Arguments
-
-#### parameters: object
 
 
 
-```md
-TODO: either make a special category crud for the category model would be nice maybe (especially a backend that makes sure all references stay updated would be epic)
-```
+### Parameters (2)
 
+#### Parameter 1: parameters: object
 
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-
-
-
-#### config (optional): object
-
-
-
-
+#### Parameter 2: config (optional): object
 
 Properties: 
 
@@ -171,4 +114,220 @@ Properties:
 |---|---|---|
 | renderSpacer (optional) | boolean |  |
 
+
+
+## renderMarkdownChunk
+
+renders a MarkdownChunk interface
+
+
+
+
+### Parameters (2)
+
+#### Parameter 1: chunk: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| content (optional) | string |  |
+| title (optional) | string |  |
+| children (optional) | array |  |
+
+
+
+
+
+## renderMarkdownContent
+
+renders a markdown striing (without frontmatter)
+
+
+
+
+### Parameters (2)
+
+#### Parameter 1: content: string
+
+## renderMarkdownParse
+
+renders the MardkownParse interface (including frontmatter)
+
+
+
+
+### Parameters (2)
+
+#### Parameter 1: markdownParse: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| fileName (optional) | string |  |
+| createdAt (optional) | number |  |
+| openedAt (optional) | number |  |
+| updatedAt (optional) | number |  |
+| deletedAt (optional) | number |  |
+| createdFirstAt (optional) | number |  |
+| content (optional) | array |  |
+| raw  | string |  |
+
+
+
+
+
+## renderMarkdownTitle
+
+renders a markdown title (level should be 1 for h1 and 6 for h6)
+
+
+
+
+### Parameters (2)
+
+#### Parameter 1: title: string
+
+#### Parameter 2: level: number
+
+# Interfaces
+
+## AugmentedWord
+
+AugmentedWords should have a small footprint since there can be many of them
+
+Words with a specific affix (backticks, bolded, italic) will match against these.
+
+Used to link automatically to functionNames, InterfaceNames, operation-names, words, and more..
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| type  | string |  |
+| word  | string |  |
+| queryPath (optional) | string |  |
+| projectRelativeMarkdownSourcePath  | string |  |
+| spoiler (optional) | string |  |
+| isCaseInsensitive (optional) | boolean |  |
+
+
+
+## CodeblockMode
+
+## Frontmatter
+
+Our version of frontmatter is a bit simpler than regular frontmatter
+
+Not sure if this is a good idea, but it keeps it simple for our OS
+
+all values parse in a similar way to csv
+
+make sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array
+
+NB: string arrays are comma separated values, where you can put values with special characters in between quotes
+
+
+
+
+
+
+
+
+## MarkdownChunk
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| level  | number |  |
+| content (optional) | string |  |
+| markdownEmbed (optional) | object |  |
+| markdownLink (optional) | object |  |
+| title (optional) | string |  |
+| children (optional) | array |  |
+
+
+
+## MarkdownParse
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| fileName (optional) | string |  |
+| createdAt (optional) | number |  |
+| openedAt (optional) | number |  |
+| updatedAt (optional) | number |  |
+| deletedAt (optional) | number |  |
+| createdFirstAt (optional) | number |  |
+| parameters  | object |  |
+| downmatterParameters (optional) | object |  |
+| content (optional) | array |  |
+| raw  | string |  |
+
+
+
+## MarkdownParseRenderConfig
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| projectRelativeBaseFolderPath  | string |  |
+| projectRelativeMarkdownFilePath  | string |  |
+| isStatic (optional) | boolean |  |
+| isDev (optional) | boolean |  |
+| big (optional) | boolean |  |
+
+
+# Variables
+
+## defaultExpandedMode (exported const)
+
+## defaultMinimalMode (exported const)
+
+## getRealSrc (exported const)
+
+Based on markdown info, gest the real source for an image
+
+
+## getUrlFromRelativeUrl (exported const)
+
+gets the renderable asset url from the relative url
+
+
+## MarkdownCodeblock (exported const)
+
+Renders a markdown codeblock with a text as content and an optional extension
+
+
+## renderFrontmatter (exported const)
+
+Renders markdown frontmatter parameters (and optionally a spacer)
+
+
+## renderMarkdownChunk (exported const)
+
+renders a MarkdownChunk interface
+
+
+## renderMarkdownContent (exported const)
+
+renders a markdown striing (without frontmatter)
+
+
+## renderMarkdownParse (exported const)
+
+renders the MardkownParse interface (including frontmatter)
+
+
+## renderMarkdownTitle (exported const)
+
+renders a markdown title (level should be 1 for h1 and 6 for h6)
 

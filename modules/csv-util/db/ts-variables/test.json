@@ -1,0 +1,44 @@
+{
+  "createdAt": 1666262680606,
+  "updatedAt": 1666262680606,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262680606,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "test",
+  "slug": "test",
+  "operationRelativeTypescriptFilePath": "src/tryParseCsv.ts",
+  "type": {
+    "rawType": "(() => Promise<boolean>)[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "value": "[\n  makeTest(\n    () => {\n      const csvItems = tryParseCsv(exampleCsvString);\n\n      return csvItems;\n    },\n    (result) => {\n      return JSON.stringify(result) === JSON.stringify(exampleCsvItems);\n    }\n  ),\n]",
+  "description": "",
+  "id": "uqxxfuuxtaahicaxjetsxceq"
+}

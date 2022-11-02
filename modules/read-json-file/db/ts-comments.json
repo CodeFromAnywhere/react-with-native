@@ -1,0 +1,34 @@
+[
+  {
+    "createdAt": 1666263018845,
+    "updatedAt": 1666263018845,
+    "deletedAt": 0,
+    "createdFirstAt": 1666263018845,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/readJsonFile.ts",
+    "comment": "Reads and parses JSON file\n\nmake sure to specify what type the file contains as a generic!",
+    "rawStatement": "export const readJsonFile = async <T>(\n  filePath: Path | undefined\n): Promise<T | null> => {\n  if (!filePath) return null;\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n  const parsed = tryParseJson<T>(fileString);\n  return parsed;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 4,
+    "lastLine": 8,
+    "id": "lzbwkdxuoalpvcoetlqbkqkp"
+  },
+  {
+    "createdAt": 1666263018845,
+    "updatedAt": 1666263018845,
+    "deletedAt": 0,
+    "createdFirstAt": 1666263018845,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/readJsonFile.ts",
+    "comment": "Reads and parses JSON file\n\nmake sure to specify what type the file contains as a generic!",
+    "rawStatement": "export const readJsonFileSync = <T>(filePath: Path): T | null => {\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = canReadSync(filePath);\n  if (!readable) return null;\n  const fileString = fs.readFileSync(filePath, \"utf8\");\n  if (!fileString) return null;\n  const parsed = tryParseJson<T>(fileString);\n  return parsed;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 24,
+    "lastLine": 28,
+    "id": "hjbmnudovujwtvrhoojeebvi"
+  }
+]

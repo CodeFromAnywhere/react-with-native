@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259860912,
+  "updatedAt": 1666259860912,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259860912,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "generateSlugTestModel",
+  "slug": "generate-slug-test-model",
+  "operationRelativeTypescriptFilePath": "src/test-db.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(): Creation<SlugTestModel> => {\n  return {\n    // Needed for deletion later\n    id: generateId(),\n    name: randomName(),\n    language: \"en\",\n    markdown: \"wut?\",\n    special: true,\n    description: \"test\",\n  };\n}",
+  "description": "",
+  "id": "hmrqrmjxlloyalwereegcjej"
+}

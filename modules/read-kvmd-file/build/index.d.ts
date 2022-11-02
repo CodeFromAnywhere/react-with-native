@@ -1,3 +1,2 @@
-import { readKvmdFile } from "./readKvmdFile";
-export { readKvmdFile };
+export * from "./readKvmdFile";
 //# sourceMappingURL=index.d.ts.map

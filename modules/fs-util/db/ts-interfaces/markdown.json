@@ -1,0 +1,149 @@
+{
+  "createdAt": 1667378809243,
+  "updatedAt": 1667378809243,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378809243,
+  "id": "markdown",
+  "name": "Markdown",
+  "slug": "markdown",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface Markdown {\n  fileName: string;\n  params: {\n    title?: string;\n    author?: string;\n  } & {\n    [key: string]: string;\n  };\n  createdAt: UnixTimestamp;\n  updatedAt: UnixTimestamp;\n  modifiedAt: UnixTimestamp;\n  openedAt: UnixTimestamp;\n  content: MarkdownContent;\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "fileName": {
+          "type": "string"
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "author": {
+              "type": "string"
+            }
+          }
+        },
+        "createdAt": {
+          "$ref": "#/definitions/UnixTimestamp"
+        },
+        "updatedAt": {
+          "$ref": "#/definitions/UnixTimestamp"
+        },
+        "modifiedAt": {
+          "$ref": "#/definitions/UnixTimestamp"
+        },
+        "openedAt": {
+          "$ref": "#/definitions/UnixTimestamp"
+        },
+        "content": {
+          "$ref": "#/definitions/MarkdownContent"
+        }
+      },
+      "required": [
+        "fileName",
+        "params",
+        "createdAt",
+        "updatedAt",
+        "modifiedAt",
+        "openedAt",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "fileName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "params",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "title",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "author",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "createdAt",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "type": "number"
+          }
+        },
+        {
+          "name": "updatedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "type": "number"
+          }
+        },
+        {
+          "name": "modifiedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "type": "number"
+          }
+        },
+        {
+          "name": "openedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "type": "number"
+          }
+        },
+        {
+          "name": "content",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "Markdown",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "createdAt": 1664524636977,
+  "updatedAt": 1664524636977,
+  "deletedAt": 0,
+  "createdFirstAt": 1664524636977,
+  "id": "root-db-folder",
+  "name": "RootDbFolder",
+  "slug": "root-db-folder",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type RootDbFolder = {\n  /** is an operation Base path in case of operationName is not null */\n  basePath: string;\n  operationName: string | null;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "basePath": {
+          "type": "string",
+          "description": "is an operation Base path in case of operationName is not null"
+        },
+        "operationName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "basePath",
+        "operationName"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "basePath",
+          "required": true,
+          "schema": {
+            "description": "is an operation Base path in case of operationName is not null",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "RootDbFolder",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "createdAt": 1666259789210,
+  "updatedAt": 1666259789210,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259789210,
+  "id": "namedparameterstypeof-getassetinputtype",
+  "name": "NamedParameters<typeof getAssetInputType>",
+  "slug": "namedparameterstypeof-getassetinputtype",
+  "operationRelativeTypescriptFilePath": "src/getAssetInputType.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "parameterName": {
+          "type": "string"
+        },
+        "valueType": {
+          "$ref": "#/definitions/SimplifiedSchemaType"
+        }
+      },
+      "required": [
+        "parameterName"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "parameterName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "valueType",
+          "required": false,
+          "schema": {
+            "enum": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "null"
+            ],
+            "fullComment": "",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getAssetInputType>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

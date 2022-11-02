@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379658590,
+  "updatedAt": 1667379658590,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379658590,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getMarkdownParseParagraphs",
+  "slug": "get-markdown-parse-paragraphs",
+  "operationRelativeTypescriptFilePath": "src/getMarkdownParseParagraphs.ts",
+  "type": {
+    "rawType": "(markdownParse: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse) => string[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  markdownParse: MarkdownParse\n): string[] => {\n  const paragraphs =\n    markdownParse.content?.map(getChunkParagraphsRecursively).flat() || [];\n\n  return paragraphs;\n}",
+  "description": "Gets all paragraphs (recursively) from a `MarkdownParse`",
+  "id": "xywbrsrkaegodjlfwngjncgk"
+}

@@ -1,4 +1,5 @@
 import { JSONSchema7Type } from "json-schema";
+import { CommentTypeObject } from "./TsComment";
 export declare type SimplifiedSchemaType = "string" | "number" | "boolean" | "object" | "array" | "null";
 /**
 JSONSchema7 derivative that has the following capabilities and and characteristics...
@@ -10,7 +11,7 @@ JSONSchema7 derivative that has the following capabilities and and characteristi
 - is able to generate an object with values in the exact format the function needs it
 - is able to easily generate a form
  */
-export declare type SimplifiedSchema = {
+export interface SimplifiedSchema extends CommentTypeObject {
     /**
      * - string
      * - number
@@ -22,7 +23,6 @@ export declare type SimplifiedSchema = {
      * NB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, "integer">;
      */
     type: SimplifiedSchemaType;
-    description?: string;
     /** sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here */
     circularRefName?: string;
     /** in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think */
@@ -31,7 +31,13 @@ export declare type SimplifiedSchema = {
     properties?: SimplifiedSchemaProperty[];
     /** in case of arrays, this will always appear */
     items?: SimplifiedSchemaItem[];
-};
+    /**
+     * Full doccomment, parsed without all stars syntax.
+     *
+     * NB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`
+     */
+    fullComment?: string;
+}
 export declare type SimplifiedSchemaProperty = {
     name: string;
     schema: SimplifiedSchema;

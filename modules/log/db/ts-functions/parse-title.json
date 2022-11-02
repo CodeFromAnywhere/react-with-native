@@ -1,0 +1,85 @@
+{
+  "createdAt": 1666264721893,
+  "updatedAt": 1666264721893,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264721893,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (markdown: string) => {\n  const sentences = markdown\n    .split(\"\\n\")\n    .map((x) => x.split(\".\"))\n    .flat();\n\n  const [title, ...rest] = sentences;\n\n  return { title, rest: rest.filter((x) => x.length > 0).join(\"\\n\") };\n}",
+  "name": "parseTitle",
+  "slug": "parse-title",
+  "parameters": [
+    {
+      "name": "markdown",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "TODO: Should parse a title from markdown",
+  "returnType": {
+    "rawType": "{ title: any; rest: any; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "title": {},
+        "rest": {}
+      },
+      "required": [
+        "title",
+        "rest"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "title",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "rest",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 266,
+    "lines": 10,
+    "bytes": 266,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "syricoxwngcrjxkiuaituwud"
+}

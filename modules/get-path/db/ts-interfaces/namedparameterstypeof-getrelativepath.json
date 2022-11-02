@@ -1,0 +1,61 @@
+{
+  "createdAt": 1666259069696,
+  "updatedAt": 1666259069696,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259069696,
+  "id": "namedparameterstypeof-getrelativepath",
+  "name": "NamedParameters<typeof getRelativePath>",
+  "slug": "namedparameterstypeof-getrelativepath",
+  "operationRelativeTypescriptFilePath": "src/getRelativePath.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "absolutePath": {
+          "type": "string"
+        },
+        "relativeFrom": {
+          "type": "string",
+          "const": "project-root"
+        }
+      },
+      "required": [
+        "absolutePath",
+        "relativeFrom"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "absolutePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "relativeFrom",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getRelativePath>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

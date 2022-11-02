@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666512731177,
+  "updatedAt": 1666512731177,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512731177,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
+  "commentsInside": [],
+  "rawText": " async (dbFileLocation, alterFn) => {\n  const { absolutePath } = dbFileLocation;\n  const bareData =\n    (await readCsvFile<Storing<CsvItemType>>(absolutePath)) || [];\n  const isNewFile = !bareData;\n  const { newStoredData, ...queryResult } = alterFn(bareData);\n  if (newStoredData.length === 0 && !!bareData) {\n    // NB: if new array is empty, just remove the file\n    await fs.rm(absolutePath);\n    return queryResult;\n  }\n\n  const newDataString = csvItemArrayToCsvString(newStoredData);\n  const isSuccesful = await writeStringToFile(absolutePath, newDataString);\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
+  "name": "alterCsv",
+  "slug": "alter-csv",
+  "parameters": [],
+  "description": "Alters a csv",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 727,
+    "lines": 21,
+    "bytes": 727,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 35,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "tfxnttltaoaqvzkqxfrhshhy"
+}

@@ -1,8 +1,10 @@
 import index from "./pages/index";
+import dictionary from "./pages/index";
 import { PageType } from "./types";
 
 export const pagesObject = {
   index,
+  dictionary,
 };
 // based on this, a type is created for all page keys
 type PageKey = keyof typeof pagesObject;

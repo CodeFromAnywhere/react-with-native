@@ -3,6 +3,7 @@ import { TsInterface } from "code-types";
 import { humanCase } from "convert-case";
 import { makeArray, notEmpty } from "js-util";
 import { getReferenceParameterInfo } from "schema-util";
+import { useEffect, useMemo, useRef, useState } from "react";
 const tdClassName =
   "whitespace-nowrap py-4 pr-3 text-sm first-of-type:font-medium text-gray-500 dark:text-gray-200 first-of-type:text-gray-900 first-of-type:dark:text-gray-100 first-of-type:sm:pl-6 first-of-type:md:pl-0";
 
@@ -12,6 +13,7 @@ const tdClassName =
 export type TableType<TModel extends { [key: string]: any }> = {
   data: TModel[] | undefined;
   columns: ColumnType<TModel>[];
+  onEndReached?: () => void;
   /** NB: we can provide extra things to render behind all model data */
 
   renderExtraColumns?: (item: TModel | undefined) => JSX.Element;
@@ -34,7 +36,7 @@ export const getColumns = (
    * needed in case something goes wrong with the index
    */
   const getDumbColumns = (): ColumnType<any>[] => {
-    return data[0]
+    return data[0] && typeof data[0] === "object"
       ? Object.keys(data[0])
           .map((objectParameterKey) => {
             const value = data[0][objectParameterKey];
@@ -124,13 +126,44 @@ export type PresentationTypeEnum =
   | "referenceSingle"
   | "referenceMultiple";
 
+export function useIsInViewport(ref: React.MutableRefObject<Element | null>) {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+
+  const observer = useMemo(
+    () =>
+      new IntersectionObserver(([entry]) =>
+        setIsIntersecting(entry.isIntersecting)
+      ),
+    []
+  );
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    observer.observe(ref.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [ref, observer]);
+
+  return isIntersecting;
+}
+
 export const Table = <TModel extends { [key: string]: any }>({
   data,
   columns,
   renderExtraColumns,
   extraColumnsAtStart,
+  onEndReached,
   shouldHighlightItem,
 }: TableType<TModel>) => {
+  const endOfTableDiv = useRef<HTMLDivElement>(null);
+  const isEndReached = useIsInViewport(endOfTableDiv);
+  useEffect(() => {
+    console.log("END REACHED");
+    onEndReached?.();
+  }, [isEndReached]);
   return (
     <Div className="px-4 sm:px-6 lg:px-8">
       <Div className="mt-8 flex flex-col">
@@ -138,16 +171,18 @@ export const Table = <TModel extends { [key: string]: any }>({
           <Div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <table className="min-w-full divide-y divide-gray-300">
               <thead>
-                {extraColumnsAtStart ? (
-                  <TableHeadItem name="" objectParameterKey={""} />
-                ) : null}
-                {columns.map((column, index) => (
-                  // NB: here we are destructuring column to provide all the props to a component
-                  <TableHeadItem {...column} />
-                ))}
-                {renderExtraColumns && !extraColumnsAtStart ? (
-                  <TableHeadItem objectParameterKey={""} name="" />
-                ) : null}
+                <tr>
+                  {extraColumnsAtStart ? (
+                    <TableHeadItem name="" objectParameterKey={""} />
+                  ) : null}
+                  {columns.map((column, index) => (
+                    // NB: here we are destructuring column to provide all the props to a component
+                    <TableHeadItem {...column} />
+                  ))}
+                  {renderExtraColumns && !extraColumnsAtStart ? (
+                    <TableHeadItem objectParameterKey={""} name="" />
+                  ) : null}
+                </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data
@@ -175,6 +210,7 @@ export const Table = <TModel extends { [key: string]: any }>({
                     ))}
               </tbody>
             </table>
+            <div ref={endOfTableDiv}>&nbsp;</div>
           </Div>
         </Div>
       </Div>
@@ -203,14 +239,17 @@ const renderColumn = <TModel extends { [key: string]: any }>(
   index: number
 ) => {
   if (column.presentationType === "text") {
-    const value: string = String(row[column.objectParameterKey]);
+    const rawValue = row[column.objectParameterKey];
+
+    const value: string =
+      rawValue === undefined ? "" : rawValue === "" ? "''" : String(rawValue);
     /**
      * This is a text item that presents just one string
      */
     return <td className={tdClassName}>{value}</td>;
   } else if (column.presentationType === "referenceSingle") {
     // Any parameter with pattern xxxSlug or xxxId should link to that instance in the referred model (link to `db?model={model}#{id}`)
-    const referenceId: string = row[column.objectParameterKey];
+    const referenceId: string | undefined = row[column.objectParameterKey];
 
     const referenceParameterInfo = getReferenceParameterInfo(
       column.objectParameterKey
@@ -227,7 +266,12 @@ const renderColumn = <TModel extends { [key: string]: any }>(
     );
   } else if (column.presentationType === "referenceMultiple") {
     // Any parameter with pattern xxxSlugs or xxxIds should link to those instance in the referred model (link to `db?model={model}&xxx={id}`) for every instance
-    const referenceIds: string[] = row[column.objectParameterKey];
+    // NB: it can also be a string in case markdown storage format is used, if there is just one...
+    const referenceIds: undefined | string[] | string =
+      row[column.objectParameterKey];
+    const referenceIdsArray = referenceIds
+      ? makeArray(referenceIds)
+      : undefined;
 
     const referenceParameterInfo = getReferenceParameterInfo(
       column.objectParameterKey
@@ -235,7 +279,7 @@ const renderColumn = <TModel extends { [key: string]: any }>(
 
     return (
       <td className={tdClassName}>
-        {referenceIds.map((referenceId) => {
+        {referenceIdsArray?.map((referenceId) => {
           return (
             <a
               href={`db?model=${referenceParameterInfo.interfaceName}&${referenceParameterInfo.keyInModel}=${referenceId}`}

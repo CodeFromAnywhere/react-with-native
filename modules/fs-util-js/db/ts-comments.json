@@ -1,0 +1,36 @@
+[
+  {
+    "createdAt": 1667378840896,
+    "updatedAt": 1667378840896,
+    "deletedAt": 0,
+    "createdFirstAt": 1667378840896,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/js.ts",
+    "comment": "removes extension from the filename",
+    "rawStatement": "export const withoutExtension = (fileName: string) => {\n  const pieces = fileName.split(\".\");\n  pieces.pop();\n  return pieces.join(\".\");\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 26,
+    "lastLine": 29,
+    "id": "pabtubpxrqqhkvksjyknprlc"
+  },
+  {
+    "createdAt": 1667378840896,
+    "updatedAt": 1667378840896,
+    "deletedAt": 0,
+    "createdFirstAt": 1667378840896,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/js.ts",
+    "comment": "returns the extension of the filename or path WITHOUT dot\n\nNB: not sure, but could be nice to replace this with path.extname(pathString)",
+    "rawStatement": "export const getExtension = (fileNameOrPath: string) => {\n  const pieces = fileNameOrPath.split(\".\");\n  return pieces.pop()!;\n};",
+    "parameters": {},
+    "types": [
+      "nb"
+    ],
+    "firstLine": 36,
+    "lastLine": 40,
+    "id": "vlsnhuqndonezmwntxsgzcfr"
+  }
+]

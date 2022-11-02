@@ -1,0 +1,75 @@
+{
+  "createdAt": 1667379406757,
+  "updatedAt": 1667379406757,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379406757,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util/queryPathsArrayToNestedPathObject.ts",
+  "commentsInside": [],
+  "rawText": " (\n  queryPaths: string[],\n  initialValue: NestedPathObject\n): NestedPathObject => {\n  const nestedPathObject = queryPaths.reduce((nestedPathObject, queryPath) => {\n    const parts: string[] = queryPath.split(\"/\");\n    const firstPart = parts[0];\n\n    // Base case 1: if we already have it, skip it\n    if (Object.keys(nestedPathObject).includes(firstPart))\n      return nestedPathObject;\n\n    // Base case 2: if it's a leave (last item), return it with value null\n    if (parts.length === 1) {\n      return { ...nestedPathObject, [firstPart]: null };\n    }\n\n    // Recursion case: find all queryPaths starting with the same branch\n    const queryPathsHere = queryPaths\n      .filter((p) => p.startsWith(`${firstPart}/`))\n      .map((p) => p.substring(firstPart.length + 1));\n\n    const newNestedPathObject: NestedPathObject = {\n      ...nestedPathObject,\n      [firstPart]: reduceQueryPathsRecursively(queryPathsHere, {}),\n    };\n\n    return newNestedPathObject;\n  }, initialValue);\n\n  return nestedPathObject;\n}",
+  "name": "reduceQueryPathsRecursively",
+  "slug": "reduce-query-paths-recursively",
+  "parameters": [
+    {
+      "name": "queryPaths",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    },
+    {
+      "name": "initialValue",
+      "schema": {
+        "$ref": "#/definitions/NestedPathObject"
+      },
+      "simplifiedSchema": {
+        "fullComment": "A different way to represent a path array in a nested object of folders\n\n{  \"folderName\": {    \"file1\": null,    \"file2\": null  },  \"folderName2\": {    \"file1\": null,    \"file2\": null  } }",
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/nested-menu/src/util/queryPathsArrayToNestedPathObject\").NestedPathObject",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1013,
+    "lines": 32,
+    "bytes": 1013,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 32,
+    "numberOfFiles": 1
+  },
+  "id": "vqklotmltcxidnehntonxskz"
+}

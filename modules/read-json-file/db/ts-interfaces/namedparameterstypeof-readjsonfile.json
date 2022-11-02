@@ -1,0 +1,47 @@
+{
+  "createdAt": 1666263017908,
+  "updatedAt": 1666263017908,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263017908,
+  "id": "namedparameterstypeof-readjsonfile",
+  "name": "NamedParameters<typeof readJsonFile>",
+  "slug": "namedparameterstypeof-readjsonfile",
+  "operationRelativeTypescriptFilePath": "src/readJsonFile.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "filePath": {
+          "$ref": "#/definitions/Path"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "filePath",
+          "required": false,
+          "schema": {
+            "fullComment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof readJsonFile>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

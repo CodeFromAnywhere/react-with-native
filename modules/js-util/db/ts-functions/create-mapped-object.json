@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666513250807,
+  "updatedAt": 1666513250807,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513250807,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/createMappedObject.ts",
+  "commentsInside": [],
+  "rawText": " <T extends { [key: string]: any }>(\n  array: T[],\n  /**\n   * key to make the map from. Must be unique or it could be overwritten. must be a string\n   */\n  mapKey: keyof T\n): MappedObject<T> => {\n  const mappedObject = mergeObjectsArray(\n    array.map((item) => {\n      const key: string = item[mapKey];\n      return {\n        [key]: item,\n      };\n    })\n  );\n\n  return mappedObject;\n}",
+  "name": "createMappedObject",
+  "slug": "create-mapped-object",
+  "parameters": [],
+  "description": "Creates a `MappedObject` of an array of any type. `MappedObject`s are great for increasing efficiency to get an item from an array. Especially useful when finds are needed on a specific key match for huge arrays. Instead of finding on the array you can simply get the right property from this object.\n\nNB: Don't use this inside of render functions, it's a very slow function, the whole idea is that this makes it faster, so just do it once!",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/util/js-util/src/createMappedObject\").MappedObject<T>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 826,
+    "lines": 20,
+    "bytes": 826,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 41,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "kzupwoofahmnaeenatmqrrzw"
+}

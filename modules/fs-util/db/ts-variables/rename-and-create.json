@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667378808542,
+  "updatedAt": 1667378808542,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378808542,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "renameAndCreate",
+  "slug": "rename-and-create",
+  "operationRelativeTypescriptFilePath": "src/renameAndCreate.ts",
+  "type": {
+    "rawType": "(oldPath: string, newPath: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (oldPath: string, newPath: string) => {\n  const newPathFolderPath = path.parse(newPath).dir;\n\n  if (!fs.existsSync(newPathFolderPath)) {\n    await fs.mkdir(newPathFolderPath, { recursive: true });\n  }\n\n  await fs.rename(oldPath, newPath);\n}",
+  "description": "",
+  "id": "ocyebovvkqdllxhxsgqlfhki"
+}

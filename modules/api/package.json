@@ -1,0 +1,31 @@
+{
+  "createdAt": 1662709577330,
+  "updatedAt": 1662709577330,
+  "deletedAt": 0,
+  "createdFirstAt": 1662709577330,
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "source": "src/index.ts",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "name": "api",
+  "slug": "api",
+  "id": "LKkLDGQFSIHMUXTg",
+  "dependencies": {
+    "js-util": "0.0.1",
+    "server-api-url": "0.0.1",
+    "react-with-native-store": "2.0.40"
+  },
+  "sensible": {
+    "hasGeneratedDependencies": false
+  }
+}

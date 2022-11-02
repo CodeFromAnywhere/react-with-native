@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666264376017,
+  "updatedAt": 1666264376017,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264376017,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getSchema",
+  "slug": "get-schema",
+  "operationRelativeTypescriptFilePath": "src/schema-util.ts",
+  "type": {
+    "rawType": "(maybeSchema: import(\"/Users/king/King/operations/node_modules/@types/json-schema/index\").JSONSchema7Definition | undefined) => import(\"/Users/king/King/operations/node_modules/@types/json-schema/index\").JSONSchema7 | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  maybeSchema: JSONSchema7Definition | undefined\n): Schema | undefined =>\n  typeof maybeSchema !== \"object\" ? undefined : maybeSchema",
+  "description": "parses a JSONSchema7Definition to JSONSchema7|undefined so we can use it",
+  "id": "prkciaovgxadninrllkmsqjr"
+}

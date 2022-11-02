@@ -1,0 +1,36 @@
+[
+  {
+    "createdAt": 1666260926187,
+    "updatedAt": 1666260926187,
+    "deletedAt": 0,
+    "createdFirstAt": 1666260926187,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/stringToJson.ts",
+    "comment": "parses a string to a string, number, boolean, null or undefined.\n\noptionally you can chooose to force a type...\n\nTODO: figure out how I can do this without ts-ignores",
+    "rawStatement": "export const parsePrimitiveJson = <\n  TForceType extends \"string\" | \"number\" | \"boolean\"\n>(\n  value: string,\n  forceType?: TForceType\n): TForceType extends \"string\"\n  ? string | null | undefined\n  : TForceType extends \"number\"\n  ? number | null | undefined\n  : TForceType extends \"boolean\"\n  ? boolean | null | undefined\n  : string | number | boolean | null | undefined => {\n  if (value === \"null\" && !forceType) {\n    // @ts-ignore\n    return null;\n  } else if (value === \"undefined\" && !forceType) {\n    // @ts-ignore\n    return undefined;\n  } else if (value === \"true\" && (!forceType || forceType === \"boolean\")) {\n    // @ts-ignore\n    return true;\n  } else if (value === \"false\" && (!forceType || forceType === \"boolean\")) {\n    // @ts-ignore\n    return false;\n  } else if (!isNaN(Number(value)) && (!forceType || forceType === \"number\")) {\n    // NB: do this after true and false, because they also cast to numbers\n    // @ts-ignore\n    return Number(value);\n  } else {\n    // all that's left is a string\n    // @ts-ignore\n    return value;\n  }\n};",
+    "parameters": {},
+    "types": [
+      "todo"
+    ],
+    "firstLine": 5,
+    "lastLine": 11,
+    "id": "kzaqxfskdmajcmfptgwegrcx"
+  },
+  {
+    "createdAt": 1666260926187,
+    "updatedAt": 1666260926187,
+    "deletedAt": 0,
+    "createdFirstAt": 1666260926187,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/stringToJson.ts",
+    "comment": "takes any string, and parses it to JSON\n\nif you provide (nested) objects, make sure to use the following format:\n\nkey1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }",
+    "rawStatement": "export const stringToJson = (value: string, isObject?: boolean): JSONValue => {\n  const seemsObject = value.startsWith(\"{\") && value.endsWith(\"}\");\n  if (seemsObject || isObject) {\n    // Objects\n    // NB: remove first and last character\n    const objectString = seemsObject ? value.slice(1, value.length - 2) : value;\n    return objectStringToJson(objectString);\n  } else if (value.startsWith(\"[\") && value.endsWith(\"]\")) {\n    // Arrays\n    // NB: remove first and last character\n    const arrayString = value.slice(1, value.length - 2);\n    const chunkStrings = arrayString.split(\",\");\n    const chunks = chunkStrings.map((string) => stringToJson(string));\n    return chunks;\n  } else {\n    return parsePrimitiveJson(value);\n  }\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 47,
+    "lastLine": 53,
+    "id": "pqzmalzkpovhymhrrbsolmjj"
+  }
+]

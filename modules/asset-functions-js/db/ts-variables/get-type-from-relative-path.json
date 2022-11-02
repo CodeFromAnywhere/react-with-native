@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667111121162,
+  "updatedAt": 1667111121162,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111121162,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getTypeFromRelativePath",
+  "slug": "get-type-from-relative-path",
+  "operationRelativeTypescriptFilePath": "src/getTypeFromRelativePath.ts",
+  "type": {
+    "rawType": "(relativePath: string) => import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").AssetType",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(relativePath: string): AssetType => {\n  const extension = getExtension(relativePath);\n\n  if (extension === \"mp3\") return \"audio\";\n  if (extension === \"mp4\") return \"video\";\n  if (extension === \"jpeg\") return \"image\";\n  return \"other\";\n}",
+  "description": "",
+  "id": "eirgutytjnhnvgxmzznfyhdj"
+}

@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getNameWithTokenFromRelativePath=void 0;var getNameFromRelativePath_1=require("../getNameFromRelativePath"),ensureToken_1=require("./ensureToken"),getNameWithTokenFromRelativePath=function(e,t,a){var r=(0,getNameFromRelativePath_1.getNameFromRelativePath)(e);return t?(0,ensureToken_1.ensureToken)(r,a,t):r};exports.getNameWithTokenFromRelativePath=getNameWithTokenFromRelativePath;
+//# sourceMappingURL=getNameWithTokenFromRelativePath.js.map

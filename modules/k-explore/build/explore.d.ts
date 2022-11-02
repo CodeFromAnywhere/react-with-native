@@ -1,32 +1,12 @@
 import { TextJson } from "code-types";
+import { SearchableExtension, SearchLevel } from "filename-conventions";
 export declare type BaseConfig = undefined | {
     basePath?: string | string[];
 };
-export declare const typescriptExtensionsConst: readonly ["ts", "tsx"];
-export declare const markdownExtensionsConst: readonly ["md", "mdx"];
-export declare const jsonExtensionsConst: readonly ["json"];
-export declare const typescriptExtensions: string[];
-export declare const markdownExtensions: string[];
-export declare const jsonExtensions: string[];
-export declare type TypescriptExtension = typeof typescriptExtensions[number];
-export declare type MarkdownExtension = typeof markdownExtensions[number];
-export declare type JsonExtension = typeof jsonExtensions[number];
-export declare type SearchableExtension = TypescriptExtension | MarkdownExtension | JsonExtension;
-/**
- * these filetypes should never be opened with explore. They should be processed and either indexed or converted. This creates a md or json with the proper metadata, which, in turn, can be explored.
- */
-export declare type DropboxExtension = "doc" | "docx" | "csv" | "xls" | "xlsx" | "epub" | "pdf";
-export declare type SearchLevel = "folder" | "fileName" | "filePath" | "outline" | "full";
-export declare type FileType = "code" | "data" | "text";
-export declare const extensions: {
-    [key in FileType]: readonly SearchableExtension[];
-};
-export declare const allowedSearchContentExtensions: string[];
-export declare const fileTypes: FileType[];
 /**
  * returns the file type or null if it's unknown
  */
-export declare const determineFileType: (filePath: string) => FileType | null;
+export declare const determineFileType: (filePath: string) => import("filename-conventions").FileType | null;
 export declare type SearchConfig = {
     /**
      * if true, the folder paths that contain matches will also be returned
@@ -34,6 +14,10 @@ export declare type SearchConfig = {
      * e.g. if there's a match in `/x/y/z/a.ts`, the result will include `/x`, `/x/y`, and `/x/y/z` as well, on top of just `/x/y/z/a.ts`
      */
     includeFoldersWithResults?: boolean;
+    /**
+     * if true, readme files will return the first in every folder
+     */
+    readmeOnTop?: boolean;
     /**
      * defaults to fileName
      */
@@ -44,7 +28,7 @@ export declare type SearchConfig = {
      */
     basePath?: string | string[];
     /**
-     * if given, files are filtered on their extension
+     * if given, files are filtered on their extension. must be an extension without dot (.) so md, ts, or html.
      */
     extension?: SearchableExtension | SearchableExtension[];
     /**
@@ -107,26 +91,11 @@ TODO: TextJson[] is a bit weird name for the resulting type interface...
 export declare const findFilesRecursively: (config: Omit<SearchConfig, "basePath"> & {
     basePath: string;
 }) => Promise<TextJson[]>;
-export declare const generatedFolders: string[];
-/**
- * Finds all package.json's everywhere. also in /tools, but this is to be expected.
- *
- * TODO: `stopRecursionAfterMatch` never worked, so I just removed it... the behavior now is that it also explores folders that are in a folder with a `package.json`, unless that foldername is ignored. For now it's fine, but this could easily create an ineficiency if there's a lot of data in an operation or something...
- *
- * TODO: We should be careful with ignoring all these folders... what if we use those folders outside of operations? This could have unexpected behavior. We either need to lint for these foldernames not to be used, or we need to make sure to only ignore it if we encounter a package.json
- */
-export declare const findAllPackages: (config?: {
-    basePath: string | string[] | undefined;
-}) => Promise<TextJson[]>;
 export declare const findAllDotGitFolders: (config: BaseConfig) => Promise<TextJson[]>;
 /**
  find all active git folders (folders having `.git`)
  */
 export declare const exploreGitRepoFolders: (config: BaseConfig) => Promise<string[]>;
-/**
- find all active operations (folders having `package.json` but also `tsconfig.json`)
- */
-export declare const exploreOperationFolders: (config: BaseConfig) => Promise<string[]>;
 export declare const explorePreset: (preset: "packages" | "markdown" | "todo" | "docs" | "src" | "git", config?: BaseConfig) => Promise<TextJson[]>;
 /**
  * DEPRECATED: not sure if we still need it, look up usecases, can prob be replaced now

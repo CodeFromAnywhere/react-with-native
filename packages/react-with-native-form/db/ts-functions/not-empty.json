@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666261373856,
+  "updatedAt": 1666261373856,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261373856,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "name": "notEmpty",
+  "slug": "not-empty",
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "commentsInside": [],
+  "description": "",
+  "parameters": [],
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "size": {
+    "characters": 141,
+    "lines": 7,
+    "bytes": 141,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 20,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\nexport function notEmpty<TValue>(\n  value: TValue | null | undefined\n): value is TValue {\n  return value !== null && value !== undefined;\n}",
+  "maxIndentationDepth": 1,
+  "id": "eilekqgyrmxozcaplhdttdpp"
+}

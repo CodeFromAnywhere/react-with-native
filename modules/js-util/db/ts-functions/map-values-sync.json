@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666513261583,
+  "updatedAt": 1666513261583,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513261583,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/object-maps.ts",
+  "commentsInside": [],
+  "rawText": " <T, U>(\n  object: { [key: string]: T },\n  mapFn: (value: T) => U\n) => {\n  const valueObjectParts = Object.keys(object).map((key) => {\n    return { [key]: mapFn(object[key]) };\n  });\n\n  return mergeObjectsArray(valueObjectParts);\n}",
+  "name": "mapValuesSync",
+  "slug": "map-values-sync",
+  "parameters": [],
+  "description": "maps over all values in an object and replaces them using a mapfn\n\nsync",
+  "returnType": {
+    "rawType": "{ [key: string]: any; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 302,
+    "lines": 12,
+    "bytes": 302,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "lpevhropyonewwaqxefgjril"
+}

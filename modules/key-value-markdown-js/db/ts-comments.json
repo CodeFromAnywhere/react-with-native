@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1666262783271,
+    "updatedAt": 1666262783271,
+    "deletedAt": 0,
+    "createdFirstAt": 1666262783271,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/parseKvmdLine.ts",
+    "comment": "parses a kv md line with data into a key, value, and comment (if available)\n\nif the key is an empty string, the line will return undefined",
+    "rawStatement": "export const parseKvmdLine = (string: string): KvmdLine | undefined => {\n  const htmlCommentRegex = /<!--[\\s\\S]*?-->/g;\n  const lineWithoutComment = string.replace(htmlCommentRegex, \"\");\n\n  const commentMatch = string.match(htmlCommentRegex)?.[0];\n  const comment = commentMatch\n    ? commentMatch.replace(\"<!--\", \"\").replace(\"-->\", \"\").trim()\n    : null;\n\n  const [keyString, valueString] = lineWithoutComment\n    .split(\":\")\n    .map((x) => x.trim());\n\n  const value = valueString?.length ? valueString : undefined;\n  const slug = kebabCase(keyString);\n\n  if (keyString.length === 0) return;\n\n  return {\n    id: slug,\n    name: keyString,\n    value,\n    comment,\n    slug,\n  };\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 5,
+    "lastLine": 9,
+    "id": "qltpfmiweyziksswlzqsdvyp"
+  }
+]

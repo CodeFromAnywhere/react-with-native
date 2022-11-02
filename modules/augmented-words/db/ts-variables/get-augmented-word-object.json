@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262252073,
+  "updatedAt": 1666262252073,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262252073,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getAugmentedWordObject",
+  "slug": "get-augmented-word-object",
+  "operationRelativeTypescriptFilePath": "src/getAugmentedWordsObject.ts",
+  "type": {
+    "rawType": "(manualProjectRoot?: string | undefined) => Promise<import(\"/Users/king/King/operations/tools/util/js-util/build/createMappedObject\").MappedObject<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/AugmentedWord\").AugmentedWord> | undefined>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  manualProjectRoot?: string\n): Promise<MappedObject<AugmentedWord> | undefined> => {\n  const projectRoot = manualProjectRoot || getProjectRoot();\n\n  if (!projectRoot) return;\n\n  if (cache) return cache;\n\n  const augmentedWordsSerializable = (await getAugmentedWords(projectRoot)).map(\n    (item) => omitUndefinedValues(item)\n  );\n\n  const mappedObject = createMappedObject(augmentedWordsSerializable, \"word\");\n\n  cache = mappedObject;\n  return mappedObject;\n}",
+  "description": "",
+  "id": "mdntgtvcmdfjryrfkwclxanm"
+}

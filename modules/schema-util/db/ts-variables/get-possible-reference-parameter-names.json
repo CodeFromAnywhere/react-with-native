@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666264373842,
+  "updatedAt": 1666264373842,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264373842,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getPossibleReferenceParameterNames",
+  "slug": "get-possible-reference-parameter-names",
+  "operationRelativeTypescriptFilePath": "src/getReferenceParameterInfo.ts",
+  "type": {
+    "rawType": "(parameterName: string) => string[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  parameterName: string\n): string[] => {\n  const possibleReferenceParameterNames = isPlural(parameterName)\n    ? referencePluralParameterNames\n        .map(capitaliseFirstLetter)\n        .map((ref) => `${singularize(parameterName)}${ref}`)\n    : referenceParameterNames\n        .map(capitaliseFirstLetter)\n        .map((ref) => `${parameterName}${ref}`);\n\n  return possibleReferenceParameterNames;\n}",
+  "description": "returns the reference parameterNames...\n\n\ne.g.:\n```\ntodos -> todoSlugs + todoIds\ntodo -> todoSlug + todoId\n```",
+  "id": "guasgymdmnnyqczgfqvfptcv"
+}

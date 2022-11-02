@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666261453256,
+  "updatedAt": 1666261453256,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261453256,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/file/FileInput.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  extra,\n  onChange,\n}) => {\n  const { getRootProps, getInputProps, acceptedFiles } = useDropzone({});\n\n  useEffect(() => {\n    onChange(acceptedFiles);\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [acceptedFiles]);\n\n  const files = acceptedFiles.map((file: FileWithPath) => (\n    <Li key={file.path} className=\"text-sm\">\n      {file.path}\n    </Li>\n  ));\n\n  return (\n    <Div\n      className=\"flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md\"\n      {...getRootProps()}\n    >\n      <Div className=\"space-y-1 text-center\">\n        {/* <Icon /> */}\n        <Div className=\"flex text-sm text-center text-gray-600\">\n          <Label\n            htmlFor=\"file-upload\"\n            className=\"relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500\"\n          />\n          <Input id=\"file-upload\" type=\"file\" {...getInputProps()} />\n        </Div>\n        <P className=\"text-xs text-gray-500\">PNG, JPG, GIF en PDF tot 15MB</P>\n        {acceptedFiles.length > 0 ? (\n          <Aside>\n            <Ul>{files}</Ul>\n          </Aside>\n        ) : null}\n      </Div>\n    </Div>\n  );\n}",
+  "name": "FileInput",
+  "slug": "file-input",
+  "parameters": [],
+  "description": "import Icon from \"./icon.svg\";",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 1307,
+    "lines": 41,
+    "bytes": 1307,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 41,
+    "numberOfFiles": 1
+  },
+  "id": "rohekajjkgafvhnpkysyrtdo"
+}

@@ -1,0 +1,101 @@
+{
+  "createdAt": 1666512755059,
+  "updatedAt": 1666512755059,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512755059,
+  "id": "dbqueryresult",
+  "name": "DbQueryResult",
+  "slug": "dbqueryresult",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * TODO: return the inserted id or other reference\n *\n * Result of any query except `get`. Will not always provide all parameters (depends on the type of query you do)\n */\nexport type DbQueryResult = {\n  isSuccesful?: boolean;\n  message?: string;\n  isNewFile?: boolean;\n  amountInserted?: number;\n  amountUpdated?: number;\n  amountRemoved?: number;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "TODO: return the inserted id or other reference\n\nResult of any query except `get`. Will not always provide all parameters (depends on the type of query you do)",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "isSuccesful": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "isNewFile": {
+          "type": "boolean"
+        },
+        "amountInserted": {
+          "type": "number"
+        },
+        "amountUpdated": {
+          "type": "number"
+        },
+        "amountRemoved": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false,
+      "description": "TODO: return the inserted id or other reference\n\nResult of any query except `get`. Will not always provide all parameters (depends on the type of query you do)"
+    },
+    "simplifiedSchema": {
+      "fullComment": "TODO: return the inserted id or other reference\n\nResult of any query except `get`. Will not always provide all parameters (depends on the type of query you do)",
+      "todo": "return the inserted id or other reference",
+      "properties": [
+        {
+          "name": "isSuccesful",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "message",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isNewFile",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "amountInserted",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "amountUpdated",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "amountRemoved",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "DbQueryResult",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

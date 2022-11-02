@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666259849962,
+  "updatedAt": 1666259849962,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259849962,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/cli/test-remove.cli.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const [model, key, value] = process.argv.slice(2);\n\n  if (!value || !model || !key) {\n    console.log(\"please provide a modelName and a key + value to remove\");\n    return;\n  }\n\n  const result = await testDb.remove(\n    model as any,\n    (content) => content[key] == value\n  );\n\n  console.table(result);\n}",
+  "name": "removeCli",
+  "slug": "remove-cli",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 322,
+    "lines": 15,
+    "bytes": 322,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "byndqtzvtdxfbtcjjwulpyfk"
+}

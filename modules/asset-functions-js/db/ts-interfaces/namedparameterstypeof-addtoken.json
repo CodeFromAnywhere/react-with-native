@@ -1,0 +1,71 @@
+{
+  "createdAt": 1667111123020,
+  "updatedAt": 1667111123020,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111123020,
+  "id": "namedparameterstypeof-addtoken",
+  "name": "NamedParameters<typeof addToken>",
+  "slug": "namedparameterstypeof-addtoken",
+  "operationRelativeTypescriptFilePath": "src/token/addToken.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "previousToken": {
+          "type": "string",
+          "description": "if given, uses this token, otherwise generates a new random token"
+        },
+        "attachTokenToFilename": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "previousToken",
+          "required": false,
+          "schema": {
+            "fullComment": "if given, uses this token, otherwise generates a new random token",
+            "type": "string"
+          }
+        },
+        {
+          "name": "attachTokenToFilename",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof addToken>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

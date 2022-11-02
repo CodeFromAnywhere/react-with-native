@@ -1,0 +1,97 @@
+{
+  "createdAt": 1666260568700,
+  "updatedAt": 1666260568700,
+  "deletedAt": 0,
+  "createdFirstAt": 1666260568700,
+  "id": "namedparameterstypeof-untypedapifunction",
+  "name": "NamedParameters<typeof untypedApiFunction>",
+  "slug": "namedparameterstypeof-untypedapifunction",
+  "operationRelativeTypescriptFilePath": "src/api.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "fnName": {
+          "type": "string"
+        },
+        "config": {
+          "$ref": "#/definitions/ApiConfig"
+        },
+        "parameters": {}
+      },
+      "required": [
+        "fnName",
+        "config",
+        "parameters"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "fnName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "apiUrl",
+                "required": false,
+                "schema": {
+                  "fullComment": "optionally provide an api URL (uses sdk-env-public key if not provded)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "authToken",
+                "required": false,
+                "schema": {
+                  "fullComment": "optionally provide an authtoken (uses storage key if not provided)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "timeout",
+                "required": false,
+                "schema": {
+                  "fullComment": "optionally provide a max ms to execute the api fetch",
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "parameters",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof untypedApiFunction>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

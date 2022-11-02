@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667379432604,
+  "updatedAt": 1667379432604,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379432604,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getItem",
+  "slug": "get-item",
+  "operationRelativeTypescriptFilePath": "src/storage.ts",
+  "type": {
+    "rawType": "(key: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (key: string) => {\n  if (typeof window === \"undefined\") {\n    return undefined;\n  }\n  const item = localStorage.getItem(key);\n  return item ? JSON.parse(item) : undefined;\n}",
+  "description": "If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function",
+  "id": "klxsffgmegyggbdrzyilbpjm"
+}

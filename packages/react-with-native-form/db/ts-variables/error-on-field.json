@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666261374616,
+  "updatedAt": 1666261374616,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261374616,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "errorOnField",
+  "slug": "error-on-field",
+  "operationRelativeTypescriptFilePath": "src/general.tsx",
+  "type": {
+    "rawType": "(fieldName: string) => (error: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").Error) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(fieldName: string) => (error: Error) =>\n  error.propertyPath === fieldName ||\n  error.propertyPath.startsWith(fieldName + \".\")",
+  "description": "",
+  "id": "piswsneyyxurwyznydtriyon"
+}

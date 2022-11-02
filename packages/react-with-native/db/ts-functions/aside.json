@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667379140285,
+  "updatedAt": 1667379140285,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379140285,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/html/Aside/Aside.native.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  native,\n  textClassName,\n  className,\n  children,\n}: AsideType) => {\n  const tailwind = useTailwind();\n  const { style, ...nativeWithoutStyle } = native || {};\n  const tailwindStyle = className ? tailwind(trimClassName(className)) : {};\n  return (\n    <View style={[tailwindStyle, style]} {...nativeWithoutStyle}>\n      {wrapInTextIfNeeded(children, textClassName)}\n    </View>\n  );\n}",
+  "name": "Aside",
+  "slug": "aside",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 390,
+    "lines": 15,
+    "bytes": 390,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "kclthtuznlrgsciqtbnvozel"
+}

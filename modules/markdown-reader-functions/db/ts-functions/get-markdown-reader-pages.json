@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666262308664,
+  "updatedAt": 1666262308664,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262308664,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getMarkdownReaderPages.ts",
+  "commentsInside": [],
+  "rawText": " async (config: {\n  projectRoot: string;\n  /**\n   * basePaths to search for public markdown for\n   */\n  basePaths: string[];\n  /**\n   * if set, maps query path further\n   */\n  mapQueryPath?: (\n    /**\n     * already mapped the relative path to remove extension and numbers from folders\n     */\n    queryPath: string\n  ) => string;\n}): Promise<MarkdownReaderPage[]> => {\n  const { basePaths, projectRoot, mapQueryPath } = config;\n  const markdownReaderPages: MarkdownReaderPage[] = (\n    await Promise.all(\n      basePaths.map(async (basePath) => {\n        const publicMarkdownFilePaths = await getPublicMarkdownFilePaths(\n          basePath,\n          false\n        );\n\n        const markdownReaderPages = publicMarkdownFilePaths.map((x) => {\n          const filePath = makeRelative(x.path, projectRoot);\n          const pathWithoutExtensions = removeExtensionsFromPath(filePath);\n\n          const queryPath = mapQueryPath\n            ? mapQueryPath(pathWithoutExtensions)\n            : pathWithoutExtensions;\n\n          // NB: folders are no menu items because menu is built from paths recursively\n          const markdownReaderPage: MarkdownReaderPage = {\n            queryPath,\n            filePath,\n            isMenuItem: !x.isFolder,\n          };\n\n          return markdownReaderPage;\n        });\n\n        return markdownReaderPages;\n      })\n    )\n  ).flat();\n\n  return markdownReaderPages;\n}",
+  "name": "getMarkdownReaderPages",
+  "slug": "get-markdown-reader-pages",
+  "parameters": [],
+  "description": "Gets all markdownreader pages for multiple basePaths. Can add a prefix, can also remove the last folder of basePath from the suffix.",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 1531,
+    "lines": 50,
+    "bytes": 1531,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 50,
+    "numberOfFiles": 1
+  },
+  "id": "offszxrrwfvtovifeaoerjmv"
+}

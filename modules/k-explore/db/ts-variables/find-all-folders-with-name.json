@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259122810,
+  "updatedAt": 1666259122810,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259122810,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findAllFoldersWithName",
+  "slug": "find-all-folders-with-name",
+  "operationRelativeTypescriptFilePath": "src/find-folders.ts",
+  "type": {
+    "rawType": "(config: { basePath: string; folderName: string; ignoreOperations?: boolean | undefined; }) => Promise<string[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config: {\n  basePath: string;\n  folderName: string;\n  ignoreOperations?: boolean;\n}): Promise<string[]> => {\n  const { basePath, folderName, ignoreOperations } = config;\n\n  const result = (\n    await explore({\n      basePath,\n      searchLevel: \"folder\",\n      search: folderName,\n      ignore: generatedFolders,\n      exact: true,\n      cancelRecursionOn: ignoreOperations ? pathArrayIsOperation : undefined,\n    })\n  ).map((x) => x.path);\n\n  return result;\n}",
+  "description": "",
+  "id": "obsoqprnkdlqcbrqgshlfoij"
+}

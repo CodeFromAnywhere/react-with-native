@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666259066452,
+  "updatedAt": 1666259066452,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259066452,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "hasProjectRootFile",
+  "slug": "has-project-root-file",
+  "operationRelativeTypescriptFilePath": "src/getProjectRoot.ts",
+  "type": {
+    "rawType": "(absolutePath: string) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(absolutePath: string) => {\n  const osRootFilePath = path.join(absolutePath, \".project-root\");\n  const osRootFileExists = fs.existsSync(osRootFilePath);\n  return osRootFileExists;\n}",
+  "description": "",
+  "id": "gcmyuccwaahmfihsdemlbgsk"
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "createdAt": 1666264799579,
+    "updatedAt": 1666264799579,
+    "deletedAt": 0,
+    "createdFirstAt": 1666264799579,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/pluralize.ts",
+    "comment": "KISS; fuck grammar\n\nIf we are going to apply grammar here, it becomes impossible to create typescript rules that can detect and convert plural/singular parameter names.\n\nTo pluralize any word we simply attach an \"s\" at the end",
+    "rawStatement": "export const pluralize = (parameterName: string) => {\n  return parameterName.concat(\"s\");\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 1,
+    "lastLine": 7,
+    "id": "fsxzovqpeyktslzdygsfrxlp"
+  },
+  {
+    "createdAt": 1666264799579,
+    "updatedAt": 1666264799579,
+    "deletedAt": 0,
+    "createdFirstAt": 1666264799579,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/pluralize.ts",
+    "comment": "Removes the 's' if it is found at the end of the parameter name",
+    "rawStatement": "export const singularize = (parameterName: string) => {\n  return parameterName.endsWith(\"s\")\n    ? parameterName.substring(0, parameterName.length - 1)\n    : parameterName;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 13,
+    "lastLine": 15,
+    "id": "tjbjalhgoegihiouwasiatnl"
+  }
+]

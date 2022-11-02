@@ -1,5 +1,2 @@
-"use strict";
-// THIS FILE HAS BEEN GENERATED
-Object.defineProperty(exports,"__esModule",{value:!0}),exports.AlertProvider=exports.useAlert=exports.AlertContext=void 0;var Alert_1=require("./Alert");Object.defineProperty(exports,"AlertContext",{enumerable:!0,get:function(){return Alert_1.AlertContext}});var Alert_2=require("./Alert");Object.defineProperty(exports,"useAlert",{enumerable:!0,get:function(){return Alert_2.useAlert}});var AlertProvider_1=require("./AlertProvider");Object.defineProperty(exports,"AlertProvider",{enumerable:!0,get:function(){return AlertProvider_1.AlertProvider}});
-// THANK YOU
+"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,r,t,i){void 0===i&&(i=t);var o=Object.getOwnPropertyDescriptor(r,t);o&&!("get"in o?!r.__esModule:o.writable||o.configurable)||(o={enumerable:!0,get:function(){return r[t]}}),Object.defineProperty(e,i,o)}:function(e,r,t,i){void 0===i&&(i=t),e[i]=r[t]}),__exportStar=this&&this.__exportStar||function(e,r){for(var t in e)"default"===t||Object.prototype.hasOwnProperty.call(r,t)||__createBinding(r,e,t)};Object.defineProperty(exports,"__esModule",{value:!0}),__exportStar(require("./Alert"),exports),__exportStar(require("./AlertProvider"),exports),__exportStar(require("./types"),exports);
 //# sourceMappingURL=index.js.map

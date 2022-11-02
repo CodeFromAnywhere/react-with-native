@@ -1,0 +1,34 @@
+{
+  "createdAt": 1667379928235,
+  "updatedAt": 1667379928235,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379928235,
+  "id": "createdat",
+  "name": "CreatedAt",
+  "slug": "createdat",
+  "operationRelativeTypescriptFilePath": "src/time.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\nexport type CreatedAt = Time;",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "$ref": "#/definitions/Time"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+      "type": "number"
+    },
+    "typeCoverage": 0,
+    "rawType": "CreatedAt",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

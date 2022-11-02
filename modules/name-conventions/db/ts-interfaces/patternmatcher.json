@@ -1,0 +1,74 @@
+{
+  "createdAt": 1666259790791,
+  "updatedAt": 1666259790791,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259790791,
+  "id": "patternmatcher",
+  "name": "PatternMatcher",
+  "slug": "patternmatcher",
+  "operationRelativeTypescriptFilePath": "src/name-conventions.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type PatternMatcher = {\n  pattern: string;\n  matches: string;\n  /**\n   * if true, this indicates that all instances of the matched are single words. This makes it possible to use this patternmatcher directly after another patternmatcher without loosing information.\n   */\n  isSingleWord?: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "type": "string"
+        },
+        "matches": {
+          "type": "string"
+        },
+        "isSingleWord": {
+          "type": "boolean",
+          "description": "if true, this indicates that all instances of the matched are single words. This makes it possible to use this patternmatcher directly after another patternmatcher without loosing information."
+        }
+      },
+      "required": [
+        "pattern",
+        "matches"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "pattern",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "matches",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isSingleWord",
+          "required": false,
+          "schema": {
+            "fullComment": "if true, this indicates that all instances of the matched are single words. This makes it possible to use this patternmatcher directly after another patternmatcher without loosing information.",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "PatternMatcher",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "createdAt": 1666513102387,
+  "updatedAt": 1666513102387,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513102387,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/createCodeblockMarkdown.ts",
+  "commentsInside": [],
+  "rawText": " (\n  text: string,\n  /**\n   * Extension that should be used for color highlighting the text\n   *\n   * Set to `null` if you don't want to specify a language\n   *\n   * defaults to \"ts\"\n   */\n  language: string | null = \"ts\"\n) => {\n  return `\n  \\`\\`\\`${language === null ? \"\" : language || \"ts\"}\n  ${text}\n  \\`\\`\\`\n  `;\n}",
+  "name": "createCodeblockMarkdown",
+  "slug": "create-codeblock-markdown",
+  "parameters": [
+    {
+      "name": "text",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "language",
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Extension that should be used for color highlighting the text\n\nSet to `null` if you don't want to specify a language\n\ndefaults to \"ts\""
+      },
+      "simplifiedSchema": {
+        "fullComment": "Extension that should be used for color highlighting the text\n\nSet to `null` if you don't want to specify a language\n\ndefaults to \"ts\"",
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "small util function to create a markdown for a string.",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 372,
+    "lines": 17,
+    "bytes": 372,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "carvdtergumyulbtdzcqahzq"
+}

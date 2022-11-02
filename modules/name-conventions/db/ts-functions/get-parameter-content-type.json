@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666259791208,
+  "updatedAt": 1666259791208,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259791208,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/name-conventions.ts",
+  "commentsInside": [],
+  "rawText": " (parameterName: string) => {\n  // todo: Match parameterName against all patterns in the ParameterName array until it finds one that matches\n  // 1) replace all patternmatch words with the %x\n  // 2) whatever's left, make sure to distinguish the descriptor from the type indicator (e.g. authorName indicates a nametype which is a string, while the descriptor is an author)\n  // 3) return some object that describes all the different parts individually and with that the whole name together. It can then be used in the admin UI to explain any type interface\n}",
+  "name": "getParameterContentType",
+  "slug": "get-parameter-content-type",
+  "parameters": [
+    {
+      "name": "parameterName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 558,
+    "lines": 6,
+    "bytes": 558,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 93,
+    "linesPerFile": 6,
+    "numberOfFiles": 1
+  },
+  "id": "deteichjcthpzaoitsolxnyi"
+}

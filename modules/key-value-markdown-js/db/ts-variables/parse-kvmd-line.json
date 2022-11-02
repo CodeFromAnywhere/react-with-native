@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262783066,
+  "updatedAt": 1666262783066,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262783066,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "parseKvmdLine",
+  "slug": "parse-kvmd-line",
+  "operationRelativeTypescriptFilePath": "src/parseKvmdLine.ts",
+  "type": {
+    "rawType": "(string: string) => import(\"/Users/king/King/operations/tools/types/model-types/build/keyValueMarkdown\").KvmdLine | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(string: string): KvmdLine | undefined => {\n  const htmlCommentRegex = /<!--[\\s\\S]*?-->/g;\n  const lineWithoutComment = string.replace(htmlCommentRegex, \"\");\n\n  const commentMatch = string.match(htmlCommentRegex)?.[0];\n  const comment = commentMatch\n    ? commentMatch.replace(\"<!--\", \"\").replace(\"-->\", \"\").trim()\n    : null;\n\n  const [keyString, valueString] = lineWithoutComment\n    .split(\":\")\n    .map((x) => x.trim());\n\n  const value = valueString?.length ? valueString : undefined;\n  const slug = kebabCase(keyString);\n\n  if (keyString.length === 0) return;\n\n  return {\n    id: slug,\n    name: keyString,\n    value,\n    comment,\n    slug,\n  };\n}",
+  "description": "parses a kv md line with data into a key, value, and comment (if available)\n\nif the key is an empty string, the line will return undefined",
+  "id": "dcwqzvntldrdwsaumcbrfqfn"
+}

@@ -1,0 +1,59 @@
+{
+  "createdAt": 1667379918587,
+  "updatedAt": 1667379918587,
+  "deletedAt": 0,
+  "createdFirstAt": 1667379918587,
+  "id": "json",
+  "name": "Json",
+  "slug": "json",
+  "operationRelativeTypescriptFilePath": "src/common.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type Json =\n  | string\n  | number\n  | boolean\n  | null\n  | { [key: string]: Json }\n  | Json[];",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Json"
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Json"
+          }
+        }
+      ]
+    },
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "Json",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263045525,
+  "updatedAt": 1666263045525,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263045525,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "test2",
+  "slug": "test-2",
+  "operationRelativeTypescriptFilePath": "src/kvmdParseToMarkdownString.test.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const absolutePath = path.join(__dirname, \"..\", \"assets\", \"test.json\");\n\n  const kvmdParse = await readJsonFile<KeyValueMarkdownParse>(absolutePath);\n\n  if (!kvmdParse) {\n    console.log(\"reading json file failed\");\n    return;\n  }\n\n  const string = kvmdParseToMarkdownString(kvmdParse);\n\n  await writeStringToFile(\n    absolutePath.replace(\"test.json\", \"stringifiedTest.md\"),\n    string\n  );\n}",
+  "description": "",
+  "id": "pswunxwkjrjbkqavqvqlxbyi"
+}

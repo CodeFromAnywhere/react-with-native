@@ -1,0 +1,41 @@
+{
+  "createdAt": 1667378790178,
+  "updatedAt": 1667378790178,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378790178,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/deprecated.ts",
+  "commentsInside": [],
+  "rawText": " (\n  folderPath: Path,\n  onlyInCurrentFolder?: boolean\n): Markdown[] => {\n  //1. find all md file paths recursively in this folder, but don't look in node_modules\n\n  const fileFolderPaths = findFilesRecursively({\n    basePath: folderPath,\n    match: (_, extension) => extension === \"md\",\n    onlyInCurrentFolder,\n  });\n\n  const filePaths = fileFolderPaths.map((x) => x.path);\n  const mdArray = filePaths.map(parseMd);\n  return mdArray;\n}",
+  "name": "findAllMd",
+  "slug": "find-all-md",
+  "parameters": [],
+  "description": "DEPRECATED: `k-explore` can be used",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/control-fs/fs-util/src/types\").Markdown[]",
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 472,
+    "lines": 16,
+    "bytes": 472,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "uuvqqwhmxaiiedwwinpknyqs"
+}

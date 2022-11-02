@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666259058404,
+  "updatedAt": 1666259058404,
+  "deletedAt": 0,
+  "createdFirstAt": 1666259058404,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getOperationClassification.ts",
+  "commentsInside": [],
+  "rawText": " (\n  folderPath: string\n): OperationClassification | undefined => {\n  if (folderPath === undefined) {\n    console.log(\n      \"Incorrect type at getOperationClassification\"\n      // getOperationClassification.caller\n    );\n    process.exit(1);\n  }\n\n  if (!isOperation(folderPath)) {\n    return;\n  }\n\n  const packageJsonPath = path.join(folderPath, \"package.json\");\n  const packageJson = tryParseJson<PackageJson>(\n    fs.readFileSync(packageJsonPath, \"utf8\")\n  );\n\n  if (!packageJson || packageJson.workspaces) {\n    return;\n  }\n\n  const nextConfigPath = path.join(folderPath, \"next.config.js\");\n  const existsNextConfig = fs.existsSync(nextConfigPath);\n  const isNextApp = existsNextConfig;\n  if (isNextApp) return \"web\";\n\n  const appJsonPath = path.join(folderPath, \"app.json\");\n  const existsAppJson = fs.existsSync(appJsonPath);\n  const isReactNativeApp = existsAppJson;\n  if (isReactNativeApp) return \"app\";\n\n  const mainEntryTypescriptSource =\n    !!packageJson?.main &&\n    packageJson.main.startsWith(\"src/\") &&\n    (packageJson.main.endsWith(\".ts\") || packageJson.main.endsWith(\".tsx\"));\n\n  const isReactPackage =\n    !!packageJson &&\n    (hasDependency(packageJson, \"react\") ||\n      hasDependency(packageJson, \"react-native\") ||\n      hasDependency(packageJson, \"next\") ||\n      hasDependency(packageJson, \"expo\"));\n\n  if (isReactPackage) {\n    if (mainEntryTypescriptSource) {\n      return \"ui-es6\";\n    }\n    return \"ui-es5\";\n  }\n\n  const hasExpress = !!packageJson && hasDependency(packageJson, \"express\");\n  const hasServer = !!packageJson && hasDependency(packageJson, \"server\");\n  if (hasExpress || hasServer) {\n    return \"server\";\n  }\n\n  if (mainEntryTypescriptSource) {\n    return \"ts\";\n  }\n\n  const hasTypesNode = hasDependency(packageJson, \"@types/node\");\n\n  if (hasTypesNode) {\n    return \"node\";\n  }\n\n  return \"js\";\n}",
+  "name": "getOperationClassification",
+  "slug": "get-operation-classification",
+  "parameters": [
+    {
+      "name": "folderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Returns OperationClassification if it's an operation, or undefined if it's not\n\nNB: don't confuse this with ProjectType or ImportClassification",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1983,
+    "lines": 73,
+    "bytes": 1983,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 73,
+    "numberOfFiles": 1
+  },
+  "id": "hzoiwmiexmrxrbhgoymivxzu"
+}

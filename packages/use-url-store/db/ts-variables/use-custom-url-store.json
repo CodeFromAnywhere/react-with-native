@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666262064910,
+  "updatedAt": 1666262064910,
+  "deletedAt": 0,
+  "createdFirstAt": 1666262064910,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useCustomUrlStore",
+  "slug": "use-custom-url-store",
+  "operationRelativeTypescriptFilePath": "src/use-url-store.ts",
+  "type": {
+    "rawType": "<T extends string | number | boolean | string[] | boolean[] | number[] | undefined>(queryKey: string, config: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/use-url-store/src/use-url-store\").CustomUrlStoreConfig) => [T, (newValue: T | undefined) => Promise<boolean>]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<\n  T extends\n    | string\n    | number\n    | boolean\n    | string[]\n    | boolean[]\n    | number[]\n    | undefined\n>(\n  queryKey: string,\n  config: CustomUrlStoreConfig\n): [T, (newValue: T | undefined) => Promise<boolean>] => {\n  const router = useRouter();\n  const queryValue = makeArray(router.query[queryKey]);\n  const parsed = queryValue.map((v) => parsePrimitiveJson(v, config.type));\n\n  const defaultValue =\n    config.type === \"boolean\"\n      ? false\n      : config.type === \"number\"\n      ? 0\n      : config.type === \"string\"\n      ? \"\"\n      : undefined;\n\n  const value = (\n    queryValue.length === 0\n      ? config.isArray\n        ? []\n        : undefined\n      : config.isArray\n      ? parsed\n      : parsed[0]\n      ? parsed[0]\n      : config.allowUndefined\n      ? undefined\n      : defaultValue\n  ) as T;\n\n  const setter = async (newValue: T | undefined) => {\n    const stringified =\n      newValue === undefined\n        ? undefined\n        : Array.isArray(newValue)\n        ? newValue.map((v) => String(v))\n        : [String(newValue)];\n    const queryPart =\n      stringified === undefined ? \"\" : getQueryPart(stringified, queryKey);\n\n    const previousQueryFiltered = { ...router.query };\n    delete previousQueryFiltered[queryKey];\n\n    const keysNow = Object.keys(router.query);\n    const allKeys = keysNow.includes(queryKey)\n      ? keysNow\n      : keysNow.concat(queryKey);\n\n    const newQueryString = allKeys.reduce((queryString, key) => {\n      const prefix = queryString === \"\" ? \"?\" : \"&\";\n\n      if (key === queryKey) {\n        return queryString.concat(prefix + queryPart);\n      }\n\n      if (router.query[key]) {\n        const queryPart = getQueryPart(makeArray(router.query[key]), key);\n        return queryString.concat(prefix + queryPart);\n      }\n\n      return queryString;\n    }, \"\");\n\n    const pushed = await router.push(\n      `${router.pathname}${newQueryString}`,\n      undefined,\n      {\n        shallow: true,\n      }\n    );\n    return pushed;\n  };\n\n  return [value, setter];\n}",
+  "description": "---\nisStory: true\n---\n\nHook to store simple data in the URL\n\nI spent the last 4 hours on this: I think it's pretty useful. It's a hook that makes it possible to use your URL as a state store. It works with arrays and single values of strings, booleans and numbers. It's a drop in replacement of useStore or useState. The advantage is that the user can share the URL which will also share their state. Usage in a component looks like this:\n\n```ts\nconst [name, setName] = useUrl(\"name\");\n```\n\nI was looking for ways to make the api more straightforward, especially the stuff in useUrl seems a bit messy. However, I couldn't find any way to make it better. Any tips are welcome!\n\nTODO: make it work in react-native as well, either via a wrapper around useStore or via using the react-navigation param-store\n\n## Example usage\n\n```ts\nimport {useCustomUrlStore}from \"use-url-store\";\n\nexport const useUrl = <T extends keyof typeof queryStore>(queryKey: T) => {\n\nconst queryStore = {\n\"type-index-type\": useCustomUrlStore<string | undefined>(\"type-index-type\", {\ntype: \"string\",\n}),\n\n\"has-comment-types\": useCustomUrlStore<string[]>(\"has-comment-types\", {\ntype: \"string\",\nisArray: true,\n}),\n\"interface-is-db-model\": useCustomUrlStore<boolean>(\"interface-is-db-model\", {\ntype: \"boolean\",\n}),\npath: useCustomUrlStore<string | undefined>(\"path\", { type: \"string\" }),\nname: useCustomUrlStore<string | undefined>(\"name\", { type: \"string\" }),\ntype: useCustomUrlStore<string | undefined>(\"type\", { type: \"string\" }),\n};\n\nreturn queryStore[queryKey];\n};\n```",
+  "id": "zpckjylinsozrllnfwcivymu"
+}

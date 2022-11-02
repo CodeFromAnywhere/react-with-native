@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263047986,
+  "updatedAt": 1666263047986,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263047986,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "readKvmdFile",
+  "slug": "read-kvmd-file",
+  "operationRelativeTypescriptFilePath": "src/readKvmdFile.ts",
+  "type": {
+    "rawType": "(filePath: string, dbFileLocation: import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").DbFileLocation) => Promise<import(\"/Users/king/King/operations/tools/types/model-types/build/keyValueMarkdown\").KeyValueMarkdownParse | null>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  filePath: Path,\n  /**\n   * TODO: make this optional. if not provided, calculate it ourselves here.\n   */\n  dbFileLocation: DbFileLocation\n): Promise<KeyValueMarkdownParse | null> => {\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isMarkdownFile = [\"md\", \"mdx\"].includes(pathParse.ext.slice(1));\n  if (!isMarkdownFile) return null;\n\n  if (!fs.existsSync(filePath)) return null;\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const keyValueMarkdownParse = markdownStringToKvmdParse(\n    fileString,\n    dbFileLocation\n  );\n\n  console.log({ keyValueMarkdownParse });\n  return keyValueMarkdownParse;\n}",
+  "description": "Reads and parses a markdown file",
+  "id": "zvrtsxpowfuudrkowwswhlum"
+}

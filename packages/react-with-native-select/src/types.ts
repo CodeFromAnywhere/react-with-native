@@ -32,4 +32,12 @@ export type SelectProps<T> = {
   children?: ChildrenType<T>;
   ios?: ActionSheetIOSOptions;
   selectFirstOption?: boolean;
+  /**
+   * don't use a placeholder that you give or the default one
+   */
+  noPlaceholder?: boolean;
+  /**
+   * works for autosuggest
+   */
+  placeholder?: string;
 };

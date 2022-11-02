@@ -1,0 +1,50 @@
+{
+  "createdAt": 1666513264592,
+  "updatedAt": 1666513264592,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513264592,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/omitUndefinedValues.ts",
+  "commentsInside": [],
+  "rawText": " <T extends { [key: string]: any }>(\n  object: T\n) => {\n  Object.keys(object).map((key) => {\n    const value = object[key];\n    if (value === undefined) {\n      delete object[key];\n    }\n  });\n\n  return object;\n}",
+  "name": "omitUndefinedValues",
+  "slug": "omit-undefined-values",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "{ [key: string]: any; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 212,
+    "lines": 12,
+    "bytes": 212,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 18,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "cgfjhezfxfdqsframckjyytb"
+}

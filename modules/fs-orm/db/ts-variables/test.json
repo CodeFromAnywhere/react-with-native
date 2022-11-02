@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666512754123,
+  "updatedAt": 1666512754123,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512754123,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "test",
+  "slug": "test",
+  "operationRelativeTypescriptFilePath": "src/tests/upsertKeyValueMarkdown.test.ts",
+  "type": {
+    "rawType": "() => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  const absolutePath = path.join(__dirname, \"../..\", \"assets\", \"test.md\");\n  const dbFileLocation: DbFileLocation = {\n    absolutePath,\n    modelName: \"Test\",\n    operationName: \"fs-orm\",\n    projectRelativePath: absolutePath,\n    operationRelativePath: absolutePath,\n  };\n\n  alterKeyValueMarkdown(dbFileLocation, (storedData) => {\n    const realStoredData = storedData as Storing<KeyValueMarkdownModelType>[];\n\n    const slug = \"upserted-item\";\n\n    const ids = {\n      id: slug,\n      name: humanCase(slug),\n      slug,\n    };\n\n    const storingItem: Storing<KeyValueMarkdownModelType> = {\n      ...ids,\n      comment: \"yoyoyo\",\n      isHeaderCalculated: false,\n      value: \"you are amazing\",\n      categoryStackCalculated,\n    };\n\n    const result = upsertKeyValueMarkdown(realStoredData, storingItem);\n    const { newStoredData, ...rest } = result;\n    console.log({ rest });\n    return result;\n  });\n}",
+  "description": "",
+  "id": "tgshxgunnsbygaqthetkqxow"
+}

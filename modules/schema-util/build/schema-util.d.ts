@@ -7,16 +7,6 @@ import { JSONSchema7 } from "json-schema";
  * NB: don't export because this would make this type exist twice.
  */
 declare type Schema = TsInterface["type"]["typeDefinition"];
-/**
- * makes a word singular (only english)
- *
- * e.g.:
- * - indexes becomes index
- * - words becomes word
- *
- * NB: not well tested
- */
-export declare const makeSingular: (word: string) => string;
 export declare type SchemaProperty = {
     name: string;
     schema: JSONSchema7;

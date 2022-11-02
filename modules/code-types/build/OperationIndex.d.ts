@@ -1,17 +1,21 @@
+import { SlugModelType } from "model-types";
 import { FolderSummary } from "./FolderSummary";
 /**
  * ---
- * defaultDbStorageMethod: jsonSingle
+ * dbStorageMethod: jsonSingle
+ * operationRelativePath: db/operation-index.json
  * ---
  *
  * contains all calculated info about an operation that needs to be retreived often:
  * some package-only things, but also a collection of all indexes of all files
+ *
+ * should be able to be found in operaiton folder in /db/operation-index.json
  */
-export declare type OperationIndex = {
+export interface OperationIndex extends GeneralOperationIndex, SlugModelType {
     /**
      * here for compatibility, should implement...
      */
-    id?: string;
+    id: string;
     createdAt: number;
     buildSucceeded: boolean;
     dependenciesBuildsFailed: boolean;
@@ -20,21 +24,24 @@ export declare type OperationIndex = {
     indexInteracesErrors: string[];
     indexErrors: string[];
     size: FolderSummary;
-} & GeneralOperationIndex;
+}
+export declare const operationClassificationConst: readonly ["js", "ts", "node", "server", "web", "app", "ui-es6", "ui-es5"];
 /**
  * # Classification
  *
  * TODO: think about what the differences are and how we need to change processes to make it all work good
  *
- * ### Possible values
+ * ## Possible values
  *
- * js: only js (no node) (well, ts of course)
+ * js: only js (no node) (well, ts of course, but it gets built into js)
+ *
+ * ts: non-built ts code
  *
  * node: includes other node packages, operations, core-imports, or globals.
  *
  * server: exposes something on some port when it is ran and uses node code
  *
- * web: uses react and exposes something on some port when it is ran
+ * web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...
  *
  * app: uses react-native and exposes something on some port when it is ran
  *
@@ -42,9 +49,11 @@ export declare type OperationIndex = {
  *
  * ui-es5: ui which main entry points to javascript es5 files (this ui package can be built)
  */
-export declare type OperationClassification = "js" | "node" | "server" | "web" | "app" | "ui-es6" | "ui-es5";
+export declare type OperationClassification = typeof operationClassificationConst[number];
 export declare type GeneralOperationIndex = {
     updatedAt: number;
+    name: string;
+    slug: string;
     /**
      * name of the package in package.json
      */

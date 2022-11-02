@@ -1,0 +1,56 @@
+{
+  "createdAt": 1667111122076,
+  "updatedAt": 1667111122076,
+  "deletedAt": 0,
+  "createdFirstAt": 1667111122076,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/readableSize.ts",
+  "commentsInside": [],
+  "rawText": " (sizeBytes: number): string => {\n  if (sizeBytes < 1024) return `${sizeBytes} bytes`;\n  if (sizeBytes < 1024 * 1024) return `${Math.round(sizeBytes / 1024)} kb`;\n  if (sizeBytes < 1024 * 1024 * 1024)\n    return `${Math.round(sizeBytes / (1024 * 1024))} mb`;\n  if (sizeBytes < 1024 * 1024 * 1024 * 1024)\n    return `${Math.round(sizeBytes / (1024 * 1024 * 1024))} gb`;\n  if (sizeBytes < 1024 * 1024 * 1024 * 1024 * 1024)\n    return `${Math.round(sizeBytes / (1024 * 1024 * 1024 * 1024))} tb`;\n\n  return \"waaaay to big\";\n}",
+  "name": "readableSize",
+  "slug": "readable-size",
+  "parameters": [
+    {
+      "name": "sizeBytes",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 521,
+    "lines": 12,
+    "bytes": 521,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 43,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "simfvjontigtiffugpoiinxo"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666513102532,
+  "updatedAt": 1666513102532,
+  "deletedAt": 0,
+  "createdFirstAt": 1666513102532,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "createCodeblockMarkdown",
+  "slug": "create-codeblock-markdown",
+  "operationRelativeTypescriptFilePath": "src/createCodeblockMarkdown.ts",
+  "type": {
+    "rawType": "(text: string, language?: string | null) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  text: string,\n  /**\n   * Extension that should be used for color highlighting the text\n   *\n   * Set to `null` if you don't want to specify a language\n   *\n   * defaults to \"ts\"\n   */\n  language: string | null = \"ts\"\n) => {\n  return `\n  \\`\\`\\`${language === null ? \"\" : language || \"ts\"}\n  ${text}\n  \\`\\`\\`\n  `;\n}",
+  "description": "small util function to create a markdown for a string.",
+  "id": "ucugrnynajjoykvhidhezmds"
+}
