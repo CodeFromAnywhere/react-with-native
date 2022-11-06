@@ -13,7 +13,6 @@ import * as React from "react";
 import { notEmpty } from "js-util";
 import { useEffect, useRef } from "react";
 import { Div } from "react-with-native";
-import ReactTooltip from "react-tooltip";
 import { metaClickableClassName } from "../editors/MarkedToken";
 /**
  * Iterates over all child-nodes in the editor, replaces text with a segment, and replaces nodes with a flat list of segments
@@ -142,8 +141,6 @@ export var ContentEditableDivInput = function (props) {
         // console.log({ value, newInnerHTML });
         // 3) Recalculate the inner HTML of the editor based on the raw text string
         editor.current.innerHTML = newInnerHTML;
-        // NB: not sure if this is really needed...? I guess so
-        ReactTooltip.rebuild();
         if (anchorIndex === null || focusIndex === null)
             return;
         // 4) restore selection as index of the new string

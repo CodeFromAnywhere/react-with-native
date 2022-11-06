@@ -77,16 +77,16 @@ var getOperationPages = function (projectRoot, bundleMarkdownReaderConfig) { ret
                                         /**
                                          * Sometimes the bundle states the menu items should not be shown. The pages still remain available though, otherwise it would cause lots of dead links!
                                          */
-                                        var isMenuItem = folderName === "apps" && (bundleMarkdownReaderConfig === null || bundleMarkdownReaderConfig === void 0 ? void 0 : bundleMarkdownReaderConfig.omitAppsMenu)
+                                        var isMenuItem = basePath === "apps" && (bundleMarkdownReaderConfig === null || bundleMarkdownReaderConfig === void 0 ? void 0 : bundleMarkdownReaderConfig.omitAppsMenu)
                                             ? false
-                                            : folderName === "packages" &&
+                                            : basePath === "packages" &&
                                                 (bundleMarkdownReaderConfig === null || bundleMarkdownReaderConfig === void 0 ? void 0 : bundleMarkdownReaderConfig.omitPackagesMenu)
                                                 ? false
-                                                : folderName === "modules" &&
+                                                : basePath === "modules" &&
                                                     (bundleMarkdownReaderConfig === null || bundleMarkdownReaderConfig === void 0 ? void 0 : bundleMarkdownReaderConfig.omitModulesMenu)
                                                     ? false
                                                     : true;
-                                        console.log({ isMenuItem: isMenuItem, folderName: folderName });
+                                        // console.log({ isMenuItem, folderName });
                                         return {
                                             queryPath: folder.projectRelativePath,
                                             // operation filePath is README.md
