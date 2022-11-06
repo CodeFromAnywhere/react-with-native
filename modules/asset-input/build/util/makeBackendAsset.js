@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.makeBackendAsset=void 0;var makeBackendAsset=function(e){return{alt:e.alt,name:e.name,relativePath:e.relativePath,temporaryDestination:e.temporaryDestination}};exports.makeBackendAsset=makeBackendAsset;
+//# sourceMappingURL=makeBackendAsset.js.map

@@ -9,14 +9,15 @@ code-types (js operation)
 ## Functions
 
 - [getExamples](#getExamples)
+- [getFunctionExersize](#getFunctionExersize)
 - [markdownParseToMarkdownModelType](#markdownParseToMarkdownModelType)
 - [parseMarkdownModelTimestamp](#parseMarkdownModelTimestamp)
 - [tryParseDate](#tryParseDate)
 
 ## Models
 
+- [Dataset](#dataset)
 - [FunctionExecution](#functionexecution)
-- [MarkdownFileConfig](#markdownfileconfig)
 - [OperationConfig](#operationconfig)
 - [OperationIndex](#operationindex)
 - [PackageJson](#packagejson)
@@ -30,17 +31,21 @@ code-types (js operation)
 - [TsInterface](#tsinterface)
 - [TsLintWarning](#tslintwarning)
 - [TsVariable](#tsvariable)
+- [WebMarkdownFile](#webmarkdownfile)
 - [WebsiteCallToAction](#websitecalltoaction)
 
 ## Interfaces
 
 - [AnyModelType](#anymodeltype)
 - [AuthorizationLevel](#authorizationlevel)
+- [BackendAsset](#backendasset)
 - [CategorizedFilePaths](#categorizedfilepaths)
 - [CategoryStack](#categorystack)
 - [CommentType](#commenttype)
 - [CommentTypeObject](#commenttypeobject)
 - [CompilerOptions](#compileroptions)
+- [DatasetFilter](#datasetfilter)
+- [DatasetSort](#datasetsort)
 - [DbStorageMethod](#dbstoragemethod)
 - [DefaultModelType](#defaultmodeltype)
 - [Downmatter](#downmatter)
@@ -54,14 +59,13 @@ code-types (js operation)
 - [ImportClassification](#importclassification)
 - [IndexModels](#indexmodels)
 - [JSONSchema7Type](#jsonschema7type)
+- [Language](#language)
 - [Markdown](#markdown)
 - [MarkdownAssetType](#markdownassettype)
 - [MarkdownChunk](#markdownchunk)
 - [MarkdownContentLevel](#markdowncontentlevel)
 - [MarkdownEmbed](#markdownembed)
-- [MarkdownFile](#markdownfile)
 - [MarkdownHeader](#markdownheader)
-- [MarkdownIndex](#markdownindex)
 - [MarkdownLink](#markdownlink)
 - [MarkdownModelType](#markdownmodeltype)
 - [MarkdownParagraph](#markdownparagraph)
@@ -92,6 +96,7 @@ code-types (js operation)
 - [TypeCoverage](#typecoverage)
 - [TypeInfo](#typeinfo)
 - [TypescriptIndex](#typescriptindex)
+- [WebsiteHeader](#websiteheader)
 
 ## Variables
 
@@ -101,6 +106,7 @@ code-types (js operation)
 - [dbStorageMethodsConst](#dbstoragemethodsconst)
 - [dbStorageMethods](#dbstoragemethods)
 - [getExamples](#getexamples)
+- [getFunctionExersize](#getfunctionexersize)
 - [indexDbModelFolders](#indexdbmodelfolders)
 - [indexDbModels](#indexdbmodels)
 - [markdownParseToMarkdownModelType](#markdownparsetomarkdownmodeltype)
@@ -120,6 +126,12 @@ code-types (js operation)
 ### Parameters (1)
 
 #### Parameter 1: functionName: string
+
+## getFunctionExersize
+
+### Parameters (1)
+
+#### Parameter 1: functionId: string
 
 ## markdownParseToMarkdownModelType
 
@@ -165,6 +177,44 @@ TODO: put in a better location... date-util?
 #### Parameter 1: dateString: string
 
 # Models
+
+## Dataset
+
+jsonMultiple model
+
+
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| slug  | string |  |
+| name  | string |  |
+| language  | string |  |
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| categoryStackCalculated (optional) | array |  |
+| modelName  | string |  |
+| filter (optional) | object |  |
+| sort (optional) | object |  |
+| maxRows (optional) | number |  |
+| startFromIndex (optional) | number |  |
+| objectParameterKeys (optional) | array |  |
+| ignoreObjectParameterKeys (optional) | array |  |
+
+
 
 ## FunctionExecution
 
@@ -220,48 +270,10 @@ Properties:
 | output  | object |  |
 | isTest  | boolean |  |
 | isExample  | boolean |  |
+| description  | string |  |
 | isResultFromCache  | boolean |  |
+| hasApiChanged (optional) | boolean |  |
 | performance  | array |  |
-
-
-
-## MarkdownFileConfig
-
-markdown model
-
-
-
-every markdown file should have these optional parameters that can be declared as its frontmatter
-
-NB: can't this just be part of MarkdownModelType? no, I think it's better if MarkdownModelType is very barebones, this would make it too connected
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| createdAt  | number |  |
-| updatedAt  | number |  |
-| deletedAt  | number |  |
-| createdFirstAt  | number |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| name  | string |  |
-| slug  | string |  |
-| markdown  | string |  |
-| categoryStackCalculated  | array |  |
-| isDraft (optional) | boolean |  |
-| privacy  | string |  |
-| itemId (optional) | string |  |
-| cta (optional) | string |  |
-| headerImage (optional) | string |  |
-| headerTitle (optional) | string |  |
-| headerSubTitle (optional) | string |  |
 
 
 
@@ -384,7 +396,7 @@ Properties:
 | version (optional) | string |  |
 | private (optional) | boolean |  |
 | author (optional) | object |  |
-| repository  | object |  |
+| repository (optional) | object |  |
 | homepage (optional) | string |  |
 | dependencies (optional) | object |  |
 | devDependencies (optional) | object |  |
@@ -751,6 +763,51 @@ Properties:
 
 
 
+## WebMarkdownFile
+
+markdown model
+
+
+
+Every markdown file meant for the web, should have these optional parameters that can be declared as its frontmatter
+
+NB: This is not part of MarkdownModelType, because MarkdownModelType is very barebones general purpose, not only for the web!
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| headerImage  | object |  |
+| headerTitle  | string |  |
+| headerSubTitle  | string |  |
+| headerCta  | object |  |
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| markdown  | string |  |
+| categoryStackCalculated  | array |  |
+| isDraft (optional) | boolean |  |
+| privacy  | string |  |
+| language  | string |  |
+| isLanguageCustom (optional) | boolean |  |
+| websiteCallToActionSlugs (optional) | array |  |
+| shop_itemIds (optional) | array |  |
+| author_personSlugs  | array |  |
+| interestSlugs  | array |  |
+
+
+
 ## WebsiteCallToAction
 
 jsonMultiple model
@@ -842,6 +899,27 @@ For functions, interfaces, variables:
 
 
 
+
+
+
+## BackendAsset
+
+Part of the asset that should be sent to the backend. The rest should frontend-only
+
+Some values are stored, some are not
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| alt (optional) | string |  |
+| relativePath (optional) | string |  |
+| name (optional) | string |  |
+| temporaryDestination (optional) | string |  |
 
 
 
@@ -1025,6 +1103,43 @@ Properties:
 | typeRoots (optional) | array |  |
 | esModuleInterop (optional) | boolean |  |
 | useDefineForClassFields (optional) | boolean |  |
+
+
+
+## DatasetFilter
+
+Can be better, see https://www.w3schools.com/js/js_comparisons.asp
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| objectParameterKey  | string |  |
+| value (optional) | string |  |
+| operator  | string |  |
+| filterFunctionName (optional) | string |  |
+
+
+
+## DatasetSort
+
+Sort by comparing the two values using the `Array.sort` method and Greater than and Less than operators.
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| objectParameterKey  | string |  |
+| sortDirection (optional) | string |  |
+| sortFunctionName (optional) | string |  |
 
 
 
@@ -1289,6 +1404,17 @@ Primitive type
 
 
 
+## Language
+
+all currently supported languages
+
+
+
+
+
+
+
+
 ## Markdown
 
 a string that is known to contain markdown.
@@ -1358,36 +1484,6 @@ Properties:
 
 
 
-## MarkdownFile
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| createdAt  | number |  |
-| updatedAt  | number |  |
-| deletedAt  | number |  |
-| createdFirstAt  | number |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| name  | string |  |
-| slug  | string |  |
-| markdown  | string |  |
-| categoryStackCalculated  | array |  |
-| isDraft (optional) | boolean |  |
-| privacy  | string |  |
-| itemId (optional) | string |  |
-| cta (optional) | string |  |
-| headerImage (optional) | string |  |
-| headerTitle (optional) | string |  |
-| headerSubTitle (optional) | string |  |
-| detectedLanguage  | string |  |
-| labels  | array |  |
-
-
-
 ## MarkdownHeader
 
 Properties: 
@@ -1396,25 +1492,6 @@ Properties:
 |---|---|---|
 | level  | number |  |
 | title  | string |  |
-
-
-
-## MarkdownIndex
-
-This could hold anything that we can index about a markdown-file
-
-It should probably also be posted in the markdown file itself as "downmatter", if that's a good idea
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| detectedLanguage  | string |  |
-| labels  | array |  |
 
 
 
@@ -1574,9 +1651,11 @@ web: has next.config.js and thus exposes something on some port when it is ran. 
 
 app: uses react-native and exposes something on some port when it is ran
 
-ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)
+DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)
 
 ui-es5: ui which main entry points to javascript es5 files (this ui package can be built)
+
+ui-esm: ui which builds to ESM module resolved Javascript
 
 
 
@@ -2039,6 +2118,19 @@ Properties:
 | tsExports  | array |  |
 
 
+
+## WebsiteHeader
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| headerImage  | object |  |
+| headerTitle  | string |  |
+| headerSubTitle  | string |  |
+| headerCta  | object |  |
+
+
 # Variables
 
 ## commentTypesConst (exported const)
@@ -2057,6 +2149,8 @@ TODO: reduce all TsInterfaces and functions into their parameters :D
 ## dbStorageMethods (exported const)
 
 ## getExamples (unexported const)
+
+## getFunctionExersize (exported const)
 
 ## indexDbModelFolders (exported const)
 

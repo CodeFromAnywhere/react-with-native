@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259057987,
-  "updatedAt": 1666259057987,
+  "createdAt": 1667634401076,
+  "updatedAt": 1667634401076,
   "deletedAt": 0,
-  "createdFirstAt": 1666259057987,
+  "createdFirstAt": 1667634401076,
   "id": "packagejson",
   "name": "PackageJson",
   "slug": "packagejson",
@@ -76,9 +76,21 @@
             },
             {
               "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              }
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "directory": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "url"
+              ],
+              "additionalProperties": false
             }
           ]
         },
@@ -122,13 +134,12 @@
           "$ref": "#/definitions/OperationConfig"
         }
       },
+      "additionalProperties": false,
       "required": [
         "id",
         "operationName",
-        "projectRelativePath",
-        "repository"
+        "projectRelativePath"
       ],
-      "additionalProperties": false,
       "description": "--- dbStorageMethod: jsonSingle operationRelativePath: package.json\n---"
     },
     "simplifiedSchema": {
@@ -225,7 +236,7 @@
         },
         {
           "name": "repository",
-          "required": true,
+          "required": false,
           "schema": {
             "properties": [],
             "type": "object"
@@ -308,9 +319,10 @@
               "web",
               "app",
               "ui-es6",
-              "ui-es5"
+              "ui-es5",
+              "ui-esm"
             ],
-            "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)",
+            "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nDEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)\n\nui-esm: ui which builds to ESM module resolved Javascript",
             "todo": "think about what the differences are and how we need to change processes to make it all work good",
             "type": "string"
           }
@@ -353,6 +365,14 @@
                 "schema": {
                   "fullComment": "If the operation exposes an app on a port (can be both a server or frontend), we can specify the port it should run on.\n\nThis is especially useful to connect the port to something that's running.\n\nBy convention, for King OS, these ports should be unique and on the 42xx range",
                   "type": "number"
+                }
+              },
+              {
+                "name": "isNotSdkable",
+                "required": false,
+                "schema": {
+                  "fullComment": "If set to true, this operation will not be included into the SDKs",
+                  "type": "boolean"
                 }
               }
             ],

@@ -1,10 +1,9 @@
+const withTM = require("next-transpile-modules")(["markdown-reader-ui"]);
+
 /** @type {import('next').NextConfig} */
-const withTM = require("next-transpile-modules")([
-  "markdown-reader-ui",
-  "markdown-parse-transpile-ui",
-]);
 
 module.exports = withTM({
+  compiler: { removeConsole: true },
   reactStrictMode: true,
   publicRuntimeConfig: {
     NEXT_PUBLIC_SITE: process.env.NEXT_PUBLIC_SITE,

@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667588109927,
+  "updatedAt": 1667588109927,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588109927,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/TitleContainer.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  title,\n  children,\n  buttons,\n}: {\n  title?: string;\n  children: any;\n  buttons: LabeledButtonType[];\n}) => {\n  return (\n    <Div className=\"p-2 m-2 border rounded-xl border-gray-500\">\n      <Div className=\"flex flex-row justify-between items-center\">\n        {title ? <P className=\"text-3xl\">{title}</P> : <Div />}\n\n        <Div className=\"flex flex-row gap-3\">\n          {buttons.filter((x) => x.isEnabled !== false).map(LabeledButton)}\n        </Div>\n      </Div>\n\n      {children}\n    </Div>\n  );\n}",
+  "name": "TitleContainer",
+  "slug": "title-container",
+  "parameters": [],
+  "description": "container for any index instance that needs to be rendered in the explore page",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 586,
+    "lines": 23,
+    "bytes": 586,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 23,
+    "numberOfFiles": 1
+  },
+  "id": "dmeemqhqttbeuakikqrpczyw"
+}

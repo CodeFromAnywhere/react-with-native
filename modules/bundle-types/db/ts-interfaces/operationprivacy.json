@@ -1,0 +1,72 @@
+{
+  "createdAt": 1667684637074,
+  "updatedAt": 1667684637074,
+  "deletedAt": 0,
+  "createdFirstAt": 1667684637074,
+  "id": "operationprivacy",
+  "name": "OperationPrivacy",
+  "slug": "operationprivacy",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface OperationPrivacy {\n  operationName: string;\n  /**\n   * if public, everything will be kept\n   *\n   * if private, src and todo will be removed from bundle, unless it's a ui-es6 operation, because src is needed then. In that case, only \"todo\" will be deleted.\n   */\n  privacy: \"public\" | \"private\";\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "operationName": {
+          "type": "string"
+        },
+        "privacy": {
+          "type": "string",
+          "enum": [
+            "public",
+            "private"
+          ],
+          "description": "if public, everything will be kept\n\nif private, src and todo will be removed from bundle, unless it's a ui-es6 operation, because src is needed then. In that case, only \"todo\" will be deleted."
+        }
+      },
+      "required": [
+        "operationName",
+        "privacy"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "operationName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "privacy",
+          "required": true,
+          "schema": {
+            "enum": [
+              "public",
+              "private"
+            ],
+            "fullComment": "if public, everything will be kept\n\nif private, src and todo will be removed from bundle, unless it's a ui-es6 operation, because src is needed then. In that case, only \"todo\" will be deleted.",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "OperationPrivacy",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

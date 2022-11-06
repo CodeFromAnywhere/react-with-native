@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667588129678,
+  "updatedAt": 1667588129678,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588129678,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getSubtext",
+  "slug": "get-subtext",
+  "operationRelativeTypescriptFilePath": "src/editors/getSubtext.tsx",
+  "type": {
+    "rawType": "(markdownString: string, subtextConfig: import(\"/Users/king/King/operations/tools/writer/writer-types/build/types\").SubtextConfig) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  /**\n   * Raw markdown string\n   */\n  markdownString: string,\n  subtextConfig: SubtextConfig\n): string | undefined => {\n  if (!subtextConfig.isEnabled) return;\n\n  const allSubtext = `${subtextConfig.translations?.join(\n    \",\"\n  )} and the text is '${markdownString}'. Let's hook it into translate, and hook up all stuff!`;\n\n  return allSubtext;\n}",
+  "description": "make a subtext text based on the text of a complete paragraph (may contain single newlines and other markdown stuff, but never double newlines)\n\nReturns either the subtext string or a HTML string with a container around the subtext, depending on if you provide `withContainer`",
+  "id": "likzmpmtjcgznehiwombxeta"
+}

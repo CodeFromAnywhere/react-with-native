@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667634902168,
+  "updatedAt": 1667634902168,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634902168,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getReferencedModelDataItem",
+  "slug": "get-referenced-model-data-item",
+  "operationRelativeTypescriptFilePath": "src/getReferencedModelDataItem.tsx",
+  "type": {
+    "rawType": "(parameterName: string, referencedModelData?: import(\"/Users/king/King/operations/tools/interfaces/vui/simplified-schema-form/src/types\").ReferencableModelData | undefined) => import(\"/Users/king/King/operations/tools/interfaces/vui/simplified-schema-form/src/getReferencedModelDataItem\").ReferencedModelDataItem | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  parameterName: string,\n  referencedModelData?: ReferencableModelData\n): ReferencedModelDataItem | undefined => {\n  const interfaceInfo = getReferenceParameterInfo(parameterName);\n  const referencedData: ReferenceItemsObject | undefined =\n    interfaceInfo &&\n    interfaceInfo.interfaceName &&\n    referencedModelData &&\n    referencedModelData[interfaceInfo.interfaceName]\n      ? referencedModelData[interfaceInfo.interfaceName]\n      : undefined;\n\n  return interfaceInfo\n    ? {\n        ...referencedData,\n        ...interfaceInfo,\n      }\n    : undefined;\n}",
+  "description": "",
+  "id": "dornbljrgfssvapqgqreclcs"
+}

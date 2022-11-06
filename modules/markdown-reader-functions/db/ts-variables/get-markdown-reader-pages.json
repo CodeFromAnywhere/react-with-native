@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262308838,
-  "updatedAt": 1666262308838,
+  "createdAt": 1667635154530,
+  "updatedAt": 1667635154530,
   "deletedAt": 0,
-  "createdFirstAt": 1666262308838,
+  "createdFirstAt": 1667635154530,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (config: {\n  projectRoot: string;\n  /**\n   * basePaths to search for public markdown for\n   */\n  basePaths: string[];\n  /**\n   * if set, maps query path further\n   */\n  mapQueryPath?: (\n    /**\n     * already mapped the relative path to remove extension and numbers from folders\n     */\n    queryPath: string\n  ) => string;\n}): Promise<MarkdownReaderPage[]> => {\n  const { basePaths, projectRoot, mapQueryPath } = config;\n  const markdownReaderPages: MarkdownReaderPage[] = (\n    await Promise.all(\n      basePaths.map(async (basePath) => {\n        const publicMarkdownFilePaths = await getPublicMarkdownFilePaths(\n          basePath,\n          false\n        );\n\n        const markdownReaderPages = publicMarkdownFilePaths.map((x) => {\n          const filePath = makeRelative(x.path, projectRoot);\n          const pathWithoutExtensions = removeExtensionsFromPath(filePath);\n\n          const queryPath = mapQueryPath\n            ? mapQueryPath(pathWithoutExtensions)\n            : pathWithoutExtensions;\n\n          // NB: folders are no menu items because menu is built from paths recursively\n          const markdownReaderPage: MarkdownReaderPage = {\n            queryPath,\n            filePath,\n            isMenuItem: !x.isFolder,\n          };\n\n          return markdownReaderPage;\n        });\n\n        return markdownReaderPages;\n      })\n    )\n  ).flat();\n\n  return markdownReaderPages;\n}",
   "description": "Gets all markdownreader pages for multiple basePaths. Can add a prefix, can also remove the last folder of basePath from the suffix.",
-  "id": "yyetblfkkuibmalkbgqimuwu"
+  "id": "ksuqefjvolgzmxsvqoxrygsb"
 }

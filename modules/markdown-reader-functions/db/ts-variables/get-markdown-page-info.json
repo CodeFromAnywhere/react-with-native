@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262307634,
-  "updatedAt": 1666262307634,
+  "createdAt": 1667635153409,
+  "updatedAt": 1667635153409,
   "deletedAt": 0,
-  "createdFirstAt": 1666262307634,
+  "createdFirstAt": 1667635153409,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "get-markdown-page-info",
   "operationRelativeTypescriptFilePath": "src/getMarkdownPageInfo.ts",
   "type": {
-    "rawType": "(projectRoot: string, nestedPathObject: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/nested-menu/build/util/queryPathsArrayToNestedPathObject\").NestedPathObject, queryPath: string, contentPage: import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage) => Promise<{ markdownFile: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownFile\").MarkdownFile | null; nextQueryPath: string | null; previousQueryPath: string | null; projectRelativeMarkdownPath: string | null; }>",
+    "rawType": "(projectRoot: string, nestedPathObject: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/nested-menu/build/util/queryPathsArrayToNestedPathObject\").NestedPathObject, queryPath: string, contentPage: import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage) => Promise<{ markdownFile: import(\"/Users/king/King/operations/tools/types/code-types/build/WebMarkdownFile\").WebMarkdownFile | null; nextQueryPath: string | null; previousQueryPath: string | null; projectRelativeMarkdownPath: string | null; }>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (\n  projectRoot: string,\n  nestedPathObject: NestedPathObject,\n  queryPath: string,\n  contentPage: MarkdownReaderPage\n): Promise<{\n  markdownFile: MarkdownFile | null;\n  nextQueryPath: string | null;\n  previousQueryPath: string | null;\n  projectRelativeMarkdownPath: string | null;\n}> => {\n  const parentQuery = getOneFolderUpPath(queryPath);\n  const siblings = getKeysAtPathFromNestedObject(nestedPathObject, parentQuery);\n  const meIndex = siblings.findIndex(\n    (sibling) => queryPath.split(\"/\").pop() === sibling\n  );\n\n  const previousFolder = siblings[meIndex - 1];\n  const previousQueryPath = previousFolder\n    ? `${parentQuery}/${previousFolder}`\n    : null;\n  const nextFolder = siblings[meIndex + 1];\n  const nextQueryPath = nextFolder ? `${parentQuery}/${nextFolder}` : null;\n\n  const absoluteMarkdownPath = contentPage.filePath\n    ? path.join(projectRoot, contentPage.filePath)\n    : undefined;\n\n  const markdownFile = absoluteMarkdownPath\n    ? await readMarkdownFileToModel(absoluteMarkdownPath)\n    : null;\n\n  const projectRelativeMarkdownPath = absoluteMarkdownPath\n    ? makeRelative(absoluteMarkdownPath, projectRoot)\n    : null;\n\n  return {\n    markdownFile,\n    nextQueryPath,\n    previousQueryPath,\n    projectRelativeMarkdownPath,\n  };\n}",
+  "value": "async (\n  projectRoot: string,\n  nestedPathObject: NestedPathObject,\n  queryPath: string,\n  contentPage: MarkdownReaderPage\n): Promise<{\n  markdownFile: WebMarkdownFile | null;\n  nextQueryPath: string | null;\n  previousQueryPath: string | null;\n  projectRelativeMarkdownPath: string | null;\n}> => {\n  const parentQuery = getOneFolderUpPath(queryPath);\n  const siblings = getKeysAtPathFromNestedObject(nestedPathObject, parentQuery);\n  const meIndex = siblings.findIndex(\n    (sibling) => queryPath.split(\"/\").pop() === sibling\n  );\n\n  const previousFolder = siblings[meIndex - 1];\n  const previousQueryPath = previousFolder\n    ? `${parentQuery}/${previousFolder}`\n    : null;\n  const nextFolder = siblings[meIndex + 1];\n  const nextQueryPath = nextFolder ? `${parentQuery}/${nextFolder}` : null;\n\n  const absoluteMarkdownPath = contentPage.filePath\n    ? path.join(projectRoot, contentPage.filePath)\n    : undefined;\n\n  const markdownFile = absoluteMarkdownPath\n    ? await readMarkdownFileToModel(absoluteMarkdownPath)\n    : null;\n\n  const projectRelativeMarkdownPath = absoluteMarkdownPath\n    ? makeRelative(absoluteMarkdownPath, projectRoot)\n    : null;\n\n  return {\n    markdownFile,\n    nextQueryPath,\n    previousQueryPath,\n    projectRelativeMarkdownPath,\n  };\n}",
   "description": "If a markdown page is found, this function fetches all metadata needed to render that markdown page",
-  "id": "sjqxjvutktlsvgjjyjtxdngl"
+  "id": "kdaazljmiwihueuyhsmogryk"
 }

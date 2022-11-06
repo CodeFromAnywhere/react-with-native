@@ -1,0 +1,111 @@
+{
+  "createdAt": 1666423007798,
+  "updatedAt": 1666423007798,
+  "deletedAt": 0,
+  "createdFirstAt": 1666423007798,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "name": "getEncoding",
+  "slug": "get-encoding",
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "description": "/**\n * Get the encoding of a buffer.\n * Checks the start, middle, and end of the buffer for characters that are unrecognized within UTF8 encoding.\n * History has shown that inspection at all three locations is necessary.\n * @returns Will be `null` if `buffer` was not provided. Otherwise will be either `'utf8'` or `'binary'`\n */",
+  "parameters": [
+    {
+      "name": "buffer",
+      "schema": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/global.Buffer"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "opts",
+      "schema": {
+        "$ref": "#/definitions/EncodingOpts"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "chunkLength",
+            "required": false,
+            "schema": {
+              "fullComment": "Defaults to 24",
+              "type": "number"
+            }
+          },
+          {
+            "name": "chunkBegin",
+            "required": false,
+            "schema": {
+              "fullComment": "If not provided, will check the start, beginning, and end",
+              "type": "number"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "returnType": {
+    "rawType": "\"utf8\" | \"binary\" | null",
+    "typeDefinition": {
+      "optional": true,
+      "enum": [
+        "ul",
+        "utf8",
+        "binary"
+      ],
+      "x-enumNames": [
+        "ul",
+        "utf8",
+        "binary"
+      ],
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "enum": [
+        "ul",
+        "utf8",
+        "binary"
+      ],
+      "type": "string"
+    }
+  },
+  "size": {
+    "characters": 2474,
+    "lines": 86,
+    "bytes": 2474,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 86,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\n/**\n * Get the encoding of a buffer.\n * Checks the start, middle, and end of the buffer for characters that are unrecognized within UTF8 encoding.\n * History has shown that inspection at all three locations is necessary.\n * @returns Will be `null` if `buffer` was not provided. Otherwise will be either `'utf8'` or `'binary'`\n */\nexport function getEncoding(\n  buffer: Buffer | null,\n  opts?: EncodingOpts\n): \"utf8\" | \"binary\" | null {\n  // Check\n  if (!buffer) return null;\n\n  // Prepare\n  const textEncoding = \"utf8\";\n  const binaryEncoding = \"binary\";\n  const chunkLength = opts?.chunkLength ?? 24;\n  let chunkBegin = opts?.chunkBegin ?? 0;\n\n  // Discover\n  if (opts?.chunkBegin == null) {\n    // Start\n    let encoding = getEncoding(buffer, { chunkLength, chunkBegin });\n    if (encoding === textEncoding) {\n      // Middle\n      chunkBegin = Math.max(0, Math.floor(buffer.length / 2) - chunkLength);\n      encoding = getEncoding(buffer, {\n        chunkLength,\n        chunkBegin,\n      });\n      if (encoding === textEncoding) {\n        // End\n        chunkBegin = Math.max(0, buffer.length - chunkLength);\n        encoding = getEncoding(buffer, {\n          chunkLength,\n          chunkBegin,\n        });\n      }\n    }\n\n    // Return\n    return encoding;\n  } else {\n    // Extract\n    chunkBegin = getChunkBegin(buffer, chunkBegin);\n    if (chunkBegin === -1) {\n      return binaryEncoding;\n    }\n\n    const chunkEnd = getChunkEnd(\n      buffer,\n      Math.min(buffer.length, chunkBegin + chunkLength)\n    );\n\n    if (chunkEnd > buffer.length) {\n      return binaryEncoding;\n    }\n\n    const contentChunkUTF8 = buffer.toString(\n      textEncoding,\n      chunkBegin,\n      chunkEnd\n    );\n\n    // Detect encoding\n    for (let i = 0; i < contentChunkUTF8.length; ++i) {\n      const charCode = contentChunkUTF8.charCodeAt(i);\n      if (charCode === 65533 || charCode <= 8) {\n        // 8 and below are control characters (e.g. backspace, null, eof, etc.)\n        // 65533 is the unknown character\n        // console.log(charCode, contentChunkUTF8[i])\n        return binaryEncoding;\n      }\n    }\n\n    // Return\n    return textEncoding;\n  }\n}",
+  "maxIndentationDepth": 5,
+  "id": "ojksrovakleerqekpvxdszpw"
+}

@@ -1,0 +1,168 @@
+{
+  "createdAt": 1667684633361,
+  "updatedAt": 1667684633361,
+  "deletedAt": 0,
+  "createdFirstAt": 1667684633361,
+  "id": "frontbackbundle",
+  "name": "FrontBackBundle",
+  "slug": "frontbackbundle",
+  "operationRelativeTypescriptFilePath": "src/FrontBackBundle.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * This type can specify a frontend and backend that belong to each other. it doesn't include all operations that the ui or server are dependent on, they are calculated separately\n */\nexport interface FrontBackBundle {\n  /**\n   * any operation names that are not necesarily dependencies of the named front-back bundle but still need to be available.\n   */\n  operations?: OperationPrivacy[];\n  /**\n   * (optional) main shared ui package of the frontend\n   */\n  uiOperationName?: string;\n  /**\n   * which app shell(s) or app operations are there for the frontend?\n   */\n  appShellOperationNames?: string[];\n\n  /** operation name for server, if this UI is connected to one */\n  serverOperationName?: string;\n\n  /**\n   * if there is a ui and it has a web-shell, and it is deployed somewhere into production, add the deployed domain here.\n   */\n  productionWebUrl?: string;\n\n  /**\n   * if there is one, it should be specified here (without trailing slash)\n   */\n  productionApiUrl?: string;\n\n  /**\n   * if this is provided, all endpoints require this auth token to be provided, or the endpoints do not work\n   *\n   * if you wish to have a more extensive authentication method for your endpoints, make sure to create your own auth layer\n   */\n  endpointsAuthToken?: string;\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "This type can specify a frontend and backend that belong to each other. it doesn't include all operations that the ui or server are dependent on, they are calculated separately",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "operations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OperationPrivacy"
+          },
+          "description": "any operation names that are not necesarily dependencies of the named front-back bundle but still need to be available."
+        },
+        "uiOperationName": {
+          "type": "string",
+          "description": "(optional) main shared ui package of the frontend"
+        },
+        "appShellOperationNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "which app shell(s) or app operations are there for the frontend?"
+        },
+        "serverOperationName": {
+          "type": "string",
+          "description": "operation name for server, if this UI is connected to one"
+        },
+        "productionWebUrl": {
+          "type": "string",
+          "description": "if there is a ui and it has a web-shell, and it is deployed somewhere into production, add the deployed domain here."
+        },
+        "productionApiUrl": {
+          "type": "string",
+          "description": "if there is one, it should be specified here (without trailing slash)"
+        },
+        "endpointsAuthToken": {
+          "type": "string",
+          "description": "if this is provided, all endpoints require this auth token to be provided, or the endpoints do not work\n\nif you wish to have a more extensive authentication method for your endpoints, make sure to create your own auth layer"
+        }
+      },
+      "additionalProperties": false,
+      "description": "This type can specify a frontend and backend that belong to each other. it doesn't include all operations that the ui or server are dependent on, they are calculated separately"
+    },
+    "simplifiedSchema": {
+      "fullComment": "This type can specify a frontend and backend that belong to each other. it doesn't include all operations that the ui or server are dependent on, they are calculated separately",
+      "properties": [
+        {
+          "name": "operations",
+          "required": false,
+          "schema": {
+            "fullComment": "any operation names that are not necesarily dependencies of the named front-back bundle but still need to be available.",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "operationName",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "privacy",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "public",
+                          "private"
+                        ],
+                        "fullComment": "if public, everything will be kept\n\nif private, src and todo will be removed from bundle, unless it's a ui-es6 operation, because src is needed then. In that case, only \"todo\" will be deleted.",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "OperationPrivacy"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "uiOperationName",
+          "required": false,
+          "schema": {
+            "fullComment": "(optional) main shared ui package of the frontend",
+            "type": "string"
+          }
+        },
+        {
+          "name": "appShellOperationNames",
+          "required": false,
+          "schema": {
+            "fullComment": "which app shell(s) or app operations are there for the frontend?",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "serverOperationName",
+          "required": false,
+          "schema": {
+            "fullComment": "operation name for server, if this UI is connected to one",
+            "type": "string"
+          }
+        },
+        {
+          "name": "productionWebUrl",
+          "required": false,
+          "schema": {
+            "fullComment": "if there is a ui and it has a web-shell, and it is deployed somewhere into production, add the deployed domain here.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "productionApiUrl",
+          "required": false,
+          "schema": {
+            "fullComment": "if there is one, it should be specified here (without trailing slash)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "endpointsAuthToken",
+          "required": false,
+          "schema": {
+            "fullComment": "if this is provided, all endpoints require this auth token to be provided, or the endpoints do not work\n\nif you wish to have a more extensive authentication method for your endpoints, make sure to create your own auth layer",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "FrontBackBundle",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

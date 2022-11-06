@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667588113938,
+  "updatedAt": 1667588113938,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588113938,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "WriterConfigForm",
+  "slug": "writer-config-form",
+  "operationRelativeTypescriptFilePath": "src/config/WriterConfigForm.tsx",
+  "type": {
+    "rawType": "() => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  const [subtextConfig, setSubtextConfig] = useStore(\"subtextConfig\");\n  const [subwordConfig, setSubwordConfig] = useStore(\"subwordConfig\");\n\n  const values: WriterConfigFormValue = [subtextConfig, subwordConfig];\n\n  return (\n    <Div>\n      <SimplifiedSchemaForm\n        id=\"writerConfig\"\n        onChange={(values) => {\n          const [newSubtextConfig, newSubwordConfig] =\n            values as WriterConfigFormValue;\n          setSubtextConfig(newSubtextConfig);\n          setSubwordConfig(newSubwordConfig);\n        }}\n        parameters={[\n          {\n            name: \"SubtextConfig\",\n            required: true,\n            isDbModel: false,\n            simplifiedSchema: SubtextConfigIndex.type\n              .simplifiedSchema as SimplifiedSchema,\n          },\n          {\n            name: \"SubwordConfig\",\n            required: true,\n            isDbModel: false,\n            simplifiedSchema: SubwordConfigIndex.type\n              .simplifiedSchema as SimplifiedSchema,\n          },\n        ]}\n        values={values}\n      />\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "cjfwxdrnjcuogaibeswfylny"
+}

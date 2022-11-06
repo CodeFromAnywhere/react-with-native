@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1667634356076,
+    "updatedAt": 1667634356076,
+    "deletedAt": 0,
+    "createdFirstAt": 1667634356076,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/InteractiveAsset.tsx",
+    "comment": "shows an `Asset` with interactivity\n\n- Any file shows the name of the file, the size, and a link to open it in a new tab in the browser\n- Images show thumbnail\n- Audio show duration and amplitude\n- Video/screen show thumbnail and duration",
+    "rawStatement": "export const InteractiveAsset = (props: {\n  asset: Asset;\n  /**\n   * See `AssetInput` for more info\n   */\n  attachTokenToFilename?: boolean;\n  projectRelativeReferencingFilePath: string;\n  remove: () => void;\n  onChange: (newAsset: Asset) => void;\n}) => {\n  const {\n    asset,\n    remove,\n    projectRelativeReferencingFilePath,\n    onChange,\n    attachTokenToFilename,\n  } = props;\n\n  /**\n   *\n   * Name that includes token\n   */\n  const nameWithToken =\n    asset.name && asset.name.length > 0\n      ? // You've edited the name, and this it's stored on the frontend `Asset`\n        asset.name\n      : asset.relativePath\n      ? // The asset comes from the backend, the name can be deducted from the `relativePath` by removing the token first, then adding it\n        getNameWithTokenFromRelativePath(\n          asset.relativePath,\n          attachTokenToFilename\n        )\n      : // There is no backend name nor there's a name set by the user. NB: this should not really happen as it must be present on Asset after recording/selecting an asset...\n        \"\";\n\n  const { nameWithoutToken, token: previousToken } = removeTokenIfPresent(\n    nameWithToken,\n    attachTokenToFilename\n  );\n\n  const uploadProgressText =\n    asset.uploadProgress === undefined || asset.uploadProgress === 0\n      ? \"\"\n      : asset.uploadProgress === 1\n      ? \"✅\"\n      : `${Math.round(asset.uploadProgress * 100)}%`;\n\n  console.log({ nameWithToken, nameWithoutToken });\n  return (\n    <Div className=\"relative border border-black rounded-xl p-2 m-2\">\n      <Span className=\"absolute right-1 top-[-7px]\">\n        <ClickableIcon emoji=\"⨯\" onClick={() => remove()} />\n      </Span>\n      <AssetView\n        projectRelativeReferencingFilePath={projectRelativeReferencingFilePath}\n        asset={asset}\n      />\n\n      <Div className=\"flex flex-row\">\n        <Input\n          placeholder=\"Name\"\n          value={nameWithoutToken}\n          style={{ backgroundColor: \"transparent\", border: \"1px solid black\" }}\n          onChange={(e) => {\n            const newName = addToken(\n              e.target.value,\n              previousToken,\n              attachTokenToFilename\n            );\n\n            console.log({ newName });\n\n            const newAsset = { ...asset, name: newName };\n            onChange(newAsset);\n          }}\n        />\n        <Input\n          placeholder=\"Alternate text\"\n          style={{ backgroundColor: \"transparent\", border: \"1px solid black\" }}\n          value={asset.alt || \"\"}\n          onChange={(e) => {\n            const newAsset = { ...asset, alt: e.target.value };\n            onChange(newAsset);\n          }}\n        />\n        {uploadProgressText}\n      </Div>\n    </Div>\n  );\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 11,
+    "lastLine": 20,
+    "id": "ixxohaaszvrpgepklmtemcrl"
+  }
+]

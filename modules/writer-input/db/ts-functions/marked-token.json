@@ -1,0 +1,327 @@
+{
+  "createdAt": 1667588120577,
+  "updatedAt": 1667588120577,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588120577,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/editors/MarkedToken.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  item: marked.Token;\n  subtextConfig: SubtextConfig;\n  subwordConfig: SubwordConfig;\n  markdownFileConfig: MarkdownParseRenderConfig;\n  /**\n   * If enabled, all content will be tested in realtime\n   */\n  testModeEnabled?: boolean;\n}): JSX.Element => {\n  const {\n    item,\n    markdownFileConfig,\n    subtextConfig,\n    subwordConfig,\n    testModeEnabled,\n  } = props;\n\n  if (item.type === \"heading\") {\n    const fontSize = depthFontSizes[item.depth as 1 | 2 | 3 | 4 | 5 | 6 | 7];\n\n    const headingContent =\n      item.tokens && item.tokens.length > 1 ? (\n        `${`#`.repeat(item.depth)} ${item.tokens.map((token) => (\n          <MarkedToken\n            item={token}\n            subtextConfig={subtextConfig}\n            subwordConfig={subwordConfig}\n            markdownFileConfig={markdownFileConfig}\n            testModeEnabled={testModeEnabled}\n          />\n        ))}`\n      ) : (\n        <SpannedSentence\n          sentence={item.raw}\n          subwordConfig={subwordConfig}\n          markdownFileConfig={markdownFileConfig}\n          subtextConfig={subtextConfig}\n        />\n      );\n\n    return (\n      <>\n        <p>\n          <strong style={{ color: \"blue\", fontSize }}>{headingContent}</strong>\n        </p>\n        {getSubtext(item.text, subtextConfig)}\n        <br />\n      </>\n    );\n  }\n\n  if (item.type === \"space\") {\n    // 1 newline splits into two parts here, 5 newlines are 6 parts, so if we omit the first one, we get an array with the length of the amount of newlines\n    const newlines = item.raw.split(\"\\n\").slice(1);\n\n    return (\n      <>\n        {newlines.map(() => (\n          <br />\n        ))}\n      </>\n    );\n  }\n\n  if (item.type === \"blockquote\") {\n    // > ....\n    return (\n      <p>\n        <strong style={{ color: \"blue\" }}>&gt;</strong>\n        <SpannedSentence\n          sentence={item.text}\n          subwordConfig={subwordConfig}\n          markdownFileConfig={markdownFileConfig}\n          subtextConfig={subtextConfig}\n        />\n      </p>\n    );\n  }\n\n  if (item.type === \"paragraph\") {\n    // Paragraph always has tokens?\n    if (testModeEnabled) {\n      testContentEditableRenderComponent(MarkedParagraph, item);\n    }\n\n    return (\n      <MarkedParagraph\n        markedToken={item}\n        subwordConfig={subwordConfig}\n        markdownFileConfig={markdownFileConfig}\n        subtextConfig={subtextConfig}\n      />\n    );\n  }\n\n  if (item.type === \"text\") {\n    if (testModeEnabled) {\n      testContentEditableRenderComponent(MarkedText, item);\n    }\n    return (\n      <MarkedText\n        markedToken={item}\n        subwordConfig={subwordConfig}\n        markdownFileConfig={markdownFileConfig}\n        subtextConfig={subtextConfig}\n      />\n    );\n  }\n\n  if (item.type === \"list\") {\n    return (\n      <>\n        {item.items.map((token) => (\n          <MarkedToken\n            item={token}\n            subtextConfig={subtextConfig}\n            subwordConfig={subwordConfig}\n            markdownFileConfig={markdownFileConfig}\n            testModeEnabled={testModeEnabled}\n          />\n        ))}\n      </>\n    );\n  }\n\n  if (item.type === \"list_item\") {\n    const beforeText = item.raw.split(item.text)[0];\n\n    const text = (\n      <MarkedText\n        markedToken={item}\n        subwordConfig={subwordConfig}\n        subtextConfig={subtextConfig}\n        markdownFileConfig={markdownFileConfig}\n      />\n    );\n\n    return (\n      <>\n        <b style={{ color: \"blue\" }}>{beforeText}</b> {text}\n        <br />\n      </>\n    );\n  }\n\n  if (item.type === \"escape\") {\n    return (\n      <b style={{ color: \"red\" }}>\n        <MarkedText\n          markedToken={item}\n          subwordConfig={subwordConfig}\n          markdownFileConfig={markdownFileConfig}\n          subtextConfig={subtextConfig}\n        />\n      </b>\n    );\n  }\n\n  if (item.type === \"strong\") {\n    return (\n      <b style={{ color: \"blue\" }}>\n        <MarkedText\n          markedToken={item}\n          subwordConfig={subwordConfig}\n          markdownFileConfig={markdownFileConfig}\n          subtextConfig={subtextConfig}\n        />\n      </b>\n    );\n  }\n\n  if (item.type === \"em\") {\n    return (\n      <i style={{ color: \"blue\" }}>\n        <MarkedText\n          markedToken={item}\n          subwordConfig={subwordConfig}\n          markdownFileConfig={markdownFileConfig}\n          subtextConfig={subtextConfig}\n        />\n      </i>\n    );\n  }\n\n  if (item.type === \"image\") {\n    const realSrc = getRealSrc(item.href, markdownFileConfig);\n    return (\n      <div\n        data-href={realSrc}\n        className={metaClickableClassName}\n        data-html=\"true\"\n        data-tip=\"<img src='${realSrc}' width=200 /><br>'Cmd+Click' to open\"\n      >\n        {item.raw}\n      </div>\n    );\n  }\n\n  if (item.type === \"link\") {\n    return (\n      <div\n        data-href={item.href}\n        className={metaClickableClassName}\n        data-html=\"true\"\n        data-tip=\"'Cmd+Click' to open\"\n      >\n        {item.raw}\n      </div>\n    );\n  }\n\n  if (item.type === \"html\") {\n    return (\n      <span style={{ color: \"green\" }}>\n        {item.raw\n          .replaceAll(\"<\", \"&lt;\")\n          .replaceAll(\">\", \"&gt;\")\n          .replaceAll(\"\\n\", \"<br />\")}\n      </span>\n    );\n  }\n\n  if (item.type === \"codespan\") {\n    // Need to add tooltip here for augmented words\n\n    const trimmedWord = trimAround(item.raw, 1);\n\n    return (\n      <span style={{ color: \"orange\" }}>\n        \\`\n        {trimmedWord.split(\" \").map((word) => {\n          const augmentedWord = markdownFileConfig.augmentedWordObject?.[word];\n\n          return (\n            <span\n              data-tip={\n                augmentedWord && augmentedWord.spoiler\n                  ? augmentedWord.spoiler\n                  : undefined\n              }\n            >\n              {word}\n            </span>\n          );\n        })}\n        \\`\n      </span>\n    );\n  }\n\n  if (item.type === \"code\") {\n    return (\n      <span style={{ color: \"orange\" }}>\n        <MarkedText\n          markedToken={item}\n          subwordConfig={subwordConfig}\n          markdownFileConfig={markdownFileConfig}\n          subtextConfig={subtextConfig}\n        />\n      </span>\n    );\n  }\n\n  if (item.type === \"table\") {\n    return (\n      <span style={{ color: \"pink\" }}>\n        <MarkedText\n          markedToken={item}\n          markdownFileConfig={markdownFileConfig}\n          subtextConfig={subtextConfig}\n          subwordConfig={subwordConfig}\n        />\n      </span>\n    );\n  }\n\n  console.log(`unhandled: ${item.type}`, item);\n  return <></>;\n}",
+  "name": "MarkedToken",
+  "slug": "marked-token",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "$ref": "#/definitions/marked.Token"
+          },
+          "subtextConfig": {
+            "$ref": "#/definitions/SubtextConfig"
+          },
+          "subwordConfig": {
+            "$ref": "#/definitions/SubwordConfig"
+          },
+          "markdownFileConfig": {
+            "$ref": "#/definitions/MarkdownParseRenderConfig"
+          },
+          "testModeEnabled": {
+            "type": "boolean",
+            "description": "If enabled, all content will be tested in realtime"
+          }
+        },
+        "required": [
+          "item",
+          "subtextConfig",
+          "subwordConfig",
+          "markdownFileConfig"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "subtextConfig",
+            "required": true,
+            "schema": {
+              "fullComment": "Configuration of what should be shown in the subtext",
+              "properties": [
+                {
+                  "name": "isEnabled",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "TITLE: Enable",
+                    "title": "Enable",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "translations",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "You can show multiple translations in the subtext",
+                    "items": [
+                      {
+                        "schema": {
+                          "properties": [
+                            {
+                              "name": "showAlternative",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showPhonetic",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showLatin",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showTokiPona",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showCommon",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "showEmojiTranslation",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "showDefinitionsWithPriority",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "show definitions of words occuring in this paragraph",
+                    "items": [],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "showRelated",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Related stuff related to this paragraph, e.g. other articles/markdown",
+                    "items": [],
+                    "type": "array"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "subwordConfig",
+            "required": true,
+            "schema": {
+              "fullComment": "Configurate what should be shown about words",
+              "properties": [
+                {
+                  "name": "isEnabled",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "TITLE: Enable",
+                    "title": "Enable",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "subwordSize",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "normal",
+                      "mini",
+                      "micro"
+                    ],
+                    "fullComment": "Optionally, make the subwords smaller for a better overview",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "translations",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "show subwords for one or multiple languages",
+                    "items": [],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "showDefinition",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Show definition (always in tooltip)",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "blurMode",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "disabled",
+                      "special"
+                    ],
+                    "fullComment": "Blur the word unless it's special for one reason or another. Might be useful for skimming (or maybe more)",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "replaceWordMode",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "disabled",
+                      "translate",
+                      "alternative",
+                      "phonetic",
+                      "tokiPona",
+                      "emoji"
+                    ],
+                    "fullComment": "if \"translate\" is selected, first language from `translations` will be used\n\n`alternative` picks the alternative writing using the `WordMatrix` if available\n\n`phonetic` picks the phonetic writing using the `WordMatrix` if available",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "heatmapMode",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "disabled",
+                      "projectFrequency",
+                      "englishFrequency"
+                    ],
+                    "fullComment": "colour words with heat having different meanings",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "markdownFileConfig",
+            "required": true,
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "projectRelativeBaseFolderPath",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "Folder path where the markdown is supposed to be located.\n\nThis is used for knowing where relative links or assets can be found",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "projectRelativeMarkdownFilePath",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "project relative path of the markdown file.\n\nThis is used for knowing where relative links or assets can be found",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "isStatic",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If true, the files should come from a static folder. This means the relative references should now become projectRelative. Also see `copyAllRelativeFiles`.\n\nIf not true, we will use the api.",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "isDev",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If true, we assume not all files are present in the static folder yet. This means we need to use the api.",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "big",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "testModeEnabled",
+            "required": false,
+            "schema": {
+              "fullComment": "If enabled, all content will be tested in realtime",
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Function that can be used to iterate over the marked parse and style every token, recursively\n\nNB: this returns a regular react component, and should, for setting it as InnerHTML, be parsed with the `ReactDOMServer`",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 9,
+  "size": {
+    "characters": 6726,
+    "lines": 282,
+    "bytes": 6726,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 282,
+    "numberOfFiles": 1
+  },
+  "id": "hfncpahnjmgeytwsdnscanua"
+}

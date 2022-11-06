@@ -1,7 +1,7 @@
 "use strict";
 /**
  * exuivalent to exampleCsvItems
- */Object.defineProperty(exports,"__esModule",{value:!0}),exports.exampleCsvItems=exports.exampleCsvString=void 0,exports.exampleCsvString="a,b,c\n1,2,3\ntrue,true,true\na,b,c\nx,x,x\n,,\n,x,x",
+ */Object.defineProperty(exports,"__esModule",{value:!0}),exports.exampleCsvItems=exports.exampleCsvString__OLD=exports.exampleCsvString=void 0,exports.exampleCsvString="a,b,c\n1,2,3\n1,1,1\na,b,c\nx,x,x\n,,\n,x,x\n",exports.exampleCsvString__OLD="a,b,c\n1,2,3\n1,1,1\na,b,c\nx,x,x\n,,\n,x,x",
 /**
  * the same as exampleCsvString
  */

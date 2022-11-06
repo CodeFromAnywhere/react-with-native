@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666512917000,
+  "updatedAt": 1666512917000,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512917000,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/AssetInput.tsx",
+  "commentsInside": [],
+  "rawText": " (props) => {\n  const { onChange, value, extra, errors } = props;\n\n  const config = props.config || {};\n\n  const hasError = errors && errors.length > 0;\n  const inputClassWithError = `\n  w-full\n  ${InputTheme[extra?.theme]} \n  ${InputSize[extra?.size]}\n    ${\n      hasError\n        ? config.errorClassName\n          ? config.errorClassName\n          : \" border border-red-400\"\n        : \"\"\n    }`;\n\n  return (\n    <OriginalAssetInput\n      attachTokenToFilename={extra.attachTokenToFilename}\n      defaultAssetName={extra.defaultAssetName}\n      projectRelativeReferencingFilePath={\n        extra.projectRelativeReferencingFilePath\n      }\n      allowMultiple={extra.allowMultiple}\n      inputTypes={extra.inputTypes}\n      value={value}\n      onChange={(newAssets) => onChange(newAssets)}\n    />\n  );\n}",
+  "name": "AssetInput",
+  "slug": "asset-input",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 804,
+    "lines": 32,
+    "bytes": 804,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 32,
+    "numberOfFiles": 1
+  },
+  "id": "ztfqahefngesfjkhqyyfulxr"
+}

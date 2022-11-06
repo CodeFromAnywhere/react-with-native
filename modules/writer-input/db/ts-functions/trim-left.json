@@ -1,0 +1,66 @@
+{
+  "createdAt": 1667588145248,
+  "updatedAt": 1667588145248,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588145248,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util/word-trimming.ts",
+  "commentsInside": [],
+  "rawText": " (word: string, character: string): string => {\n  if (word.startsWith(character))\n    return trimLeft(word.slice(character.length), character);\n  return word;\n}",
+  "name": "trimLeft",
+  "slug": "trim-left",
+  "parameters": [
+    {
+      "name": "word",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "character",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Trims a character from a word at the left until that character is not found anymore (recursive)",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 255,
+    "lines": 5,
+    "bytes": 255,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 51,
+    "linesPerFile": 5,
+    "numberOfFiles": 1
+  },
+  "id": "utfmcbvzxxhgvnppflkdvejx"
+}

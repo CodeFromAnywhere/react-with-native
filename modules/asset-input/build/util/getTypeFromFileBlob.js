@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getTypeFromFileBlob=void 0;var getTypeFromFileBlob=function(e){var o=e.type.split("/")[0];return["image","video","audio"].includes(o)?o:"other"};exports.getTypeFromFileBlob=getTypeFromFileBlob;
+//# sourceMappingURL=getTypeFromFileBlob.js.map

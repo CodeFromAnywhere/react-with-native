@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667378718454,
+  "updatedAt": 1667378718454,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378718454,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "base64UrltoBlob",
+  "slug": "base-64urlto-blob",
+  "operationRelativeTypescriptFilePath": "src/Webcam.tsx",
+  "type": {
+    "rawType": "(dataurl: string | null) => Blob | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(dataurl: string | null) => {\n  if (!dataurl) return;\n  const arr = dataurl.split(\",\");\n  const mime = arr[0].match(/:(.*?);/)?.[1];\n  const bstr = atob(arr[1]);\n\n  let n = bstr.length;\n  const u8arr = new Uint8Array(n);\n\n  while (n--) {\n    u8arr[n] = bstr.charCodeAt(n);\n  }\n\n  return new Blob([u8arr], { type: mime });\n}",
+  "description": "Taken from https://github.com/mozmorris/react-webcam/issues/65#issuecomment-385126201\n\nThere are probably much better solutions",
+  "id": "iucsdcejjtafimoblwpecdhh"
+}

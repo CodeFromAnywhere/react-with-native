@@ -1,0 +1,107 @@
+{
+  "createdAt": 1666423007167,
+  "updatedAt": 1666423007167,
+  "deletedAt": 0,
+  "createdFirstAt": 1666423007167,
+  "id": "namedparameterstypeof-getchunkbegin",
+  "name": "NamedParameters<typeof getChunkBegin>",
+  "slug": "namedparameterstypeof-getchunkbegin",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "buf": {
+          "$ref": "#/definitions/global.Buffer"
+        },
+        "chunkBegin": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "buf",
+        "chunkBegin"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "buf",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "BYTES_PER_ELEMENT",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "buffer",
+                "required": true,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "byteLength",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "byteLength",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "byteOffset",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "length",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "chunkBegin",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getChunkBegin>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259075714,
-  "updatedAt": 1666259075714,
+  "createdAt": 1667634416583,
+  "updatedAt": 1667634416583,
   "deletedAt": 0,
-  "createdFirstAt": 1666259075714,
+  "createdFirstAt": 1667634416583,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(folderPath?: string): boolean => {\n  const realFolderPath = folderPath || getProjectRoot();\n  if (!realFolderPath) return false;\n\n  // get package-json and check sensible config\n  const packageJson = readJsonFileSync<PackageJson>(\n    path.join(realFolderPath, \"package.json\")\n  );\n\n  const sensibleConfig: SensibleConfig | undefined = packageJson?.sensible;\n  const isSensibleProject = sensibleConfig?.isSensibleProject || false;\n\n  return isSensibleProject;\n}",
   "description": "",
-  "id": "wfuwjztdbtcizrgnzgwgkiuw"
+  "id": "zcxiuvgyjhxebepkolwtknfk"
 }

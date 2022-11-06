@@ -152,7 +152,7 @@ Properties:
 | version (optional) | string |  |
 | private (optional) | boolean |  |
 | author (optional) | object |  |
-| repository  | object |  |
+| repository (optional) | object |  |
 | homepage (optional) | string |  |
 | bin (optional) | object |  |
 | workspaces (optional) | array |  |
@@ -376,7 +376,7 @@ Properties:
 | version (optional) | string |  |
 | private (optional) | boolean |  |
 | author (optional) | object |  |
-| repository  | object |  |
+| repository (optional) | object |  |
 | homepage (optional) | string |  |
 | bin (optional) | object |  |
 | workspaces (optional) | array |  |
@@ -476,9 +476,11 @@ web: has next.config.js and thus exposes something on some port when it is ran. 
 
 app: uses react-native and exposes something on some port when it is ran
 
-ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)
+DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)
 
 ui-es5: ui which main entry points to javascript es5 files (this ui package can be built)
+
+ui-esm: ui which builds to ESM module resolved Javascript
 
 
 
@@ -505,7 +507,7 @@ Properties:
 | version (optional) | string |  |
 | private (optional) | boolean |  |
 | author (optional) | object |  |
-| repository  | object |  |
+| repository (optional) | object |  |
 | homepage (optional) | string |  |
 | dependencies (optional) | object |  |
 | devDependencies (optional) | object |  |

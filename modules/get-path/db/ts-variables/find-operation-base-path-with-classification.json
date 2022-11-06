@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259054602,
-  "updatedAt": 1666259054602,
+  "createdAt": 1667634398192,
+  "updatedAt": 1667634398192,
   "deletedAt": 0,
-  "createdFirstAt": 1666259054602,
+  "createdFirstAt": 1667634398192,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  startPath: string\n):\n  | { folderPath: string; classification: OperationClassification }\n  | undefined => {\n  // returns if `getOperationClassification` does not return `undefined`\n  const result = findFolderWhereMatch(startPath, getOperationClassification);\n\n  return result\n    ? { folderPath: result.folderPath, classification: result.matchResult! }\n    : undefined;\n}",
   "description": "recursive. goes up until it finds a folder that's an operation\n\nbecause it had to read the package.json anyway, it's returning the operation classification as well",
-  "id": "pugckaomrixsuzepaxtsdpdg"
+  "id": "ydqelvlzwowjqinnyyanfvgz"
 }

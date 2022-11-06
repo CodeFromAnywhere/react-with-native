@@ -1,0 +1,51 @@
+{
+  "createdAt": 1667378720645,
+  "updatedAt": 1667378720645,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378720645,
+  "id": "mediasourceenum",
+  "name": "MediaSourceEnum",
+  "slug": "mediasourceenum",
+  "operationRelativeTypescriptFilePath": "src/select-media/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "/**\n\nproject: api urls\np2p: api urls with other ip\n---\ngoogle: remote image urls\ngiphy: remote image urls\nunsplashed: remote image urls\nyoutube: remote video urls (selectable as mp3, mp4, or url)\n\n */\nexport type MediaSourceEnum =\n  | \"project\"\n  | \"p2p\"\n  | \"google\"\n  | \"giphy\"\n  | \"unsplashed\"\n  | \"youtube\";",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "google: remote image urls\ngiphy: remote image urls\nunsplashed: remote image urls\nyoutube: remote video urls (selectable as mp3, mp4, or url)",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "string",
+      "enum": [
+        "project",
+        "p2p",
+        "google",
+        "giphy",
+        "unsplashed",
+        "youtube"
+      ],
+      "description": "project: api urls p2p: api urls with other ip\n--- google: remote image urls giphy: remote image urls unsplashed: remote image urls youtube: remote video urls (selectable as mp3, mp4, or url)"
+    },
+    "simplifiedSchema": {
+      "enum": [
+        "project",
+        "p2p",
+        "google",
+        "giphy",
+        "unsplashed",
+        "youtube"
+      ],
+      "fullComment": "project: api urls p2p: api urls with other ip\n--- google: remote image urls giphy: remote image urls unsplashed: remote image urls youtube: remote video urls (selectable as mp3, mp4, or url)",
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "rawType": "MediaSourceEnum",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

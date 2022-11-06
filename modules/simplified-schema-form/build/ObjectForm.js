@@ -1,0 +1,15 @@
+"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(e){for(var r,i=1,a=arguments.length;i<a;i++)for(var t in r=arguments[i])Object.prototype.hasOwnProperty.call(r,t)&&(e[t]=r[t]);return e},__assign.apply(this,arguments)},__spreadArray=this&&this.__spreadArray||function(e,r,i){if(i||2===arguments.length)for(var a,t=0,n=r.length;t<n;t++)!a&&t in r||(a||(a=Array.prototype.slice.call(r,0,t)),a[t]=r[t]);return e.concat(a||Array.prototype.slice.call(r))};Object.defineProperty(exports,"__esModule",{value:!0}),exports.ObjectForm=void 0;var jsx_runtime_1=require("react/jsx-runtime"),react_with_native_1=require("react-with-native"),js_util_1=require("js-util"),SimplifiedSchemaForm_1=require("./SimplifiedSchemaForm"),react_1=require("react"),renderParameterTitle_1=require("./renderParameterTitle"),clickable_icon_1=require("clickable-icon"),ObjectForm=function(e){var r=e.itemNameOrId,i=e.parameterNameStack,a=e.projectRelativeStorageFilePath,t=e.parameter,n=e.onChangeParameter,l=e.parameterValue,s=e.isDebug,m=e.id,c=e.referencableModelData,o=(e.referencedModelDataIsLoading,!!t.required||!!l),u=(0,react_1.useState)(o),_=u[0],p=u[1];
+/**
+     * By default, the thing is expanded if the parameter is required, or if there is already a parameter value. If it is "true" by default, you can also not minimise
+     */if(!t.simplifiedSchema)return null;
+// we can only render the object if it has properties...
+if(!t.simplifiedSchema.properties||0===t.simplifiedSchema.properties.length)
+// console.log("Object without properties", { parameter });
+return s?(0,jsx_runtime_1.jsxs)(react_with_native_1.P,__assign({className:"text-red-500"},{children:["Object without properties ",t.name," ",JSON.stringify(t.simplifiedSchema)]})):null;
+// for each parameter, recurse this form builder
+var d=t.simplifiedSchema.properties.map((function(e){return null==l?void 0:l[e.name]})),h=t.simplifiedSchema.properties.map((function(e){return{name:e.name,required:e.required,simplifiedSchema:e.schema,isDbModel:t.isDbModel}})),f=!!t.name&&t.name.length>0;return(0,jsx_runtime_1.jsxs)(react_with_native_1.Div,__assign({className:"ml-2 pl-2 my-4 border-l border-gray-900 dark:border-gray-100"},{children:[(0,renderParameterTitle_1.renderParameterTitle)(t,s,!0,(function(){return o?null:(0,jsx_runtime_1.jsx)(clickable_icon_1.ClickableIcon,{onClick:function(){return p(!_)},emoji:_?"-":"+"})})),_?(0,jsx_runtime_1.jsx)(SimplifiedSchemaForm_1.SimplifiedSchemaForm,{itemNameOrId:r,parameterNameStack:f?i?__spreadArray(__spreadArray([],i,!0),[t.name],!1):[t.name]:i,projectRelativeStorageFilePath:a,isDebug:s,parameters:h,onChange:function(e){var r,i,a=null===(i=null===(r=t.simplifiedSchema)||void 0===r?void 0:r.properties)||void 0===i?void 0:i.map((function(r,i){var a;return(a={})[r.name]=e[i],a})),l=a?(0,js_util_1.mergeObjectsArray)(a):void 0;
+// NB: every item in the array is linked with a parameter in the object
+n(l)},values:d,
+// just passing this
+referencableModelData:c,id:m}):null]}))};exports.ObjectForm=ObjectForm;
+//# sourceMappingURL=ObjectForm.js.map

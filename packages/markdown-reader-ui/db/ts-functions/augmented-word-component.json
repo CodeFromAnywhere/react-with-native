@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262425692,
-  "updatedAt": 1666262425692,
+  "createdAt": 1667635252973,
+  "updatedAt": 1667635252973,
   "deletedAt": 0,
-  "createdFirstAt": 1666262425692,
+  "createdFirstAt": 1667635252973,
   "publicAuthorization": [
     "read-docs",
     "search"
@@ -16,7 +16,80 @@
   "rawText": " (props: {\n  augmentedWord: AugmentedWord;\n  augmentedWordObject: MappedObject<AugmentedWord>;\n}) => {\n  const { augmentedWord, augmentedWordObject } = props;\n\n  const projectRelativeBaseFolderPath = getFolderJs(\n    augmentedWord.projectRelativeMarkdownSourcePath\n  )!;\n\n  const projectRelativeMarkdownFilePath =\n    augmentedWord.projectRelativeMarkdownSourcePath;\n  return (\n    <Div className=\"border border-gray-500 rounded-md m-2 p-2\">\n      <P className=\"font-bold\">{augmentedWord.word}</P>\n      {augmentedWord.spoiler ? (\n        <P>\n          {renderMarkdownContent(augmentedWord.spoiler, {\n            isDev,\n            isStatic: false,\n            projectRelativeMarkdownFilePath,\n            projectRelativeBaseFolderPath,\n            augmentedWordObject,\n          })}\n        </P>\n      ) : null}\n    </Div>\n  );\n}",
   "name": "AugmentedWordComponent",
   "slug": "augmented-word-component",
-  "parameters": [],
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "augmentedWord": {
+            "$ref": "#/definitions/AugmentedWord"
+          },
+          "augmentedWordObject": {
+            "$ref": "#/definitions/MappedObject%3CAugmentedWord%3E"
+          }
+        },
+        "required": [
+          "augmentedWord",
+          "augmentedWordObject"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "augmentedWord",
+            "required": true,
+            "schema": {
+              "fullComment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..",
+              "properties": [
+                {
+                  "name": "word",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "Word without affixes. The affixes will be decided in the frontend parser based on the type",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "queryPath",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "projectRelativeMarkdownSourcePath",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "spoiler",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "isCaseInsensitive",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If true, will match on lowercase variant of the word",
+                    "type": "boolean"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
   "description": "",
   "returnType": {
     "rawType": "JSX.Element",
@@ -41,5 +114,5 @@
     "linesPerFile": 29,
     "numberOfFiles": 1
   },
-  "id": "sqwggdwbkzraslqfuznyvuxa"
+  "id": "tbhaatvkyuwjcssjkdmkeqbw"
 }

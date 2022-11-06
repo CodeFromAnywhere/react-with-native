@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1667634966020,
+    "updatedAt": 1667634966020,
+    "deletedAt": 0,
+    "createdFirstAt": 1667634966020,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/util/getRealSrc.ts",
+    "comment": "Based on markdown info, gest the real source for an image",
+    "rawStatement": "export const getRealSrc = (\n  src: string | undefined,\n  config: MarkdownParseRenderConfig\n) => {\n  // src from static folder of next.js\n  const relativeUrlStrategy =\n    config.isDev || !config.isStatic ? \"api\" : \"static\";\n\n  const realSrc = src\n    ? isPathRelative(src)\n      ? getUrlFromRelativeUrl(\n          src,\n          relativeUrlStrategy,\n          config.projectRelativeBaseFolderPath,\n          config.projectRelativeMarkdownFilePath\n        )\n      : src\n    : undefined;\n\n  return realSrc;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 5,
+    "lastLine": 7,
+    "id": "evsyxkwkalynvnfxuunbjepz"
+  }
+]

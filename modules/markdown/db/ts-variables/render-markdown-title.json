@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667634963670,
+  "updatedAt": 1667634963670,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634963670,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "renderMarkdownTitle",
+  "slug": "render-markdown-title",
+  "operationRelativeTypescriptFilePath": "src/renderMarkdownTitle.tsx",
+  "type": {
+    "rawType": "(title: string, level: number) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(title: string, level: number) => {\n  const levelSize =\n    level === 1\n      ? \"text-3xl\"\n      : level === 2\n      ? \"text-2xl\"\n      : level === 3\n      ? \"text-xl\"\n      : level === 4\n      ? \"text-lg\"\n      : level === 5\n      ? \"text-md\"\n      : level === 6\n      ? \"text-sm\"\n      : \"text-xs\";\n\n  return (\n    <P id={getImplicitId(title)} className={levelSize}>\n      {title}\n    </P>\n  );\n}",
+  "description": "renders a markdown title (level should be 1 for h1 and 6 for h6)",
+  "id": "vqctncwiylmsmeloqhczpkgv"
+}

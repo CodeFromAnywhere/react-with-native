@@ -1,0 +1,67 @@
+{
+  "createdAt": 1667378719725,
+  "updatedAt": 1667378719725,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378719725,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/select-media/SelectMedia.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  /**\n   * NB: please don't change the source after initialisation!\n   */\n  source: MediaSourceEnum;\n}) => {\n  // make an api for all different sources\n  const { source } = props;\n\n  // get the right media from api\n\n  // show the results using\n  return <Div>A picker for media from {props.source} should come here</Div>;\n}",
+  "name": "SelectMedia",
+  "slug": "select-media",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "$ref": "#/definitions/MediaSourceEnum",
+            "description": "NB: please don't change the source after initialisation!"
+          }
+        },
+        "required": [
+          "source"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 333,
+    "lines": 14,
+    "bytes": 333,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "jtsvnueexcgfhtoskonwiqym"
+}

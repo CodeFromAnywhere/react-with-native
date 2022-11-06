@@ -1,0 +1,34 @@
+[
+  {
+    "createdAt": 1667588145694,
+    "updatedAt": 1667588145694,
+    "deletedAt": 0,
+    "createdFirstAt": 1667588145694,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/util/word-trimming.ts",
+    "comment": "Trims a character from a word at the left until that character is not found anymore (recursive)",
+    "rawStatement": "export const trimLeft = (word: string, character: string): string => {\n  if (word.startsWith(character))\n    return trimLeft(word.slice(character.length), character);\n  return word;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 1,
+    "lastLine": 3,
+    "id": "pdhzgwncoenmxmfuxamabfku"
+  },
+  {
+    "createdAt": 1667588145694,
+    "updatedAt": 1667588145694,
+    "deletedAt": 0,
+    "createdFirstAt": 1667588145694,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/util/word-trimming.ts",
+    "comment": "Removes x amount of characters from both sides of a word",
+    "rawStatement": "export const trimAround = (word: string, trimLength: number): string => {\n  return word.slice(trimLength, word.length - trimLength);\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 10,
+    "lastLine": 12,
+    "id": "fhjhmogitdxlzltwjlnyilbg"
+  }
+]

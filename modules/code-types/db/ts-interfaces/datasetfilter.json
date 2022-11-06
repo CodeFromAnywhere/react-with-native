@@ -1,0 +1,110 @@
+{
+  "createdAt": 1667684657755,
+  "updatedAt": 1667684657755,
+  "deletedAt": 0,
+  "createdFirstAt": 1667684657755,
+  "id": "datasetfilter",
+  "name": "DatasetFilter",
+  "slug": "datasetfilter",
+  "operationRelativeTypescriptFilePath": "src/Dataset.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * Can be better, see https://www.w3schools.com/js/js_comparisons.asp\n */\nexport type DatasetFilter = {\n  objectParameterKey: string;\n  value: string | number | boolean | null | undefined;\n  /**\n   * Uses type equality\n   */\n  operator: \"equal\" | \"notEqual\" | \"gt\" | \"gte\" | \"lt\" | \"lte\";\n  /**\n   * TODO: Maybe add possibility to use a sort function from the SDK\n   */\n  filterFunctionName?: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Can be better, see https://www.w3schools.com/js/js_comparisons.asp",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "objectParameterKey": {
+          "type": "string"
+        },
+        "value": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "operator": {
+          "type": "string",
+          "enum": [
+            "equal",
+            "notEqual",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ],
+          "description": "Uses type equality"
+        },
+        "filterFunctionName": {
+          "type": "string",
+          "description": "TODO: Maybe add possibility to use a sort function from the SDK"
+        }
+      },
+      "required": [
+        "objectParameterKey",
+        "operator"
+      ],
+      "additionalProperties": false,
+      "description": "Can be better, see https://www.w3schools.com/js/js_comparisons.asp"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Can be better, see https://www.w3schools.com/js/js_comparisons.asp",
+      "properties": [
+        {
+          "name": "objectParameterKey",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "value",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "operator",
+          "required": true,
+          "schema": {
+            "enum": [
+              "equal",
+              "notEqual",
+              "gt",
+              "gte",
+              "lt",
+              "lte"
+            ],
+            "fullComment": "Uses type equality",
+            "type": "string"
+          }
+        },
+        {
+          "name": "filterFunctionName",
+          "required": false,
+          "schema": {
+            "fullComment": "TODO: Maybe add possibility to use a sort function from the SDK",
+            "todo": "Maybe add possibility to use a sort function from the SDK",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "DatasetFilter",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

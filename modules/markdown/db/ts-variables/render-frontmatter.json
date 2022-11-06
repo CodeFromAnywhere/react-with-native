@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667634958135,
+  "updatedAt": 1667634958135,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634958135,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "renderFrontmatter",
+  "slug": "render-frontmatter",
+  "operationRelativeTypescriptFilePath": "src/renderFrontMatter.tsx",
+  "type": {
+    "rawType": "(parameters: import(\"/Users/king/King/operations/tools/types/matter-types/build/Frontmatter\").Frontmatter, config?: { renderSpacer?: boolean | undefined; } | undefined) => JSX.Element | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  parameters: Frontmatter,\n  config?: { renderSpacer?: boolean }\n) => {\n  const frontMatterKeys = Object.keys(parameters);\n\n  return frontMatterKeys.length > 0 ? (\n    <Div>\n      <Div>\n        {frontMatterKeys.map((key) => (\n          <P>\n            {key}: {parameters[key]}\n          </P>\n        ))}\n      </Div>\n\n      {config?.renderSpacer ? <P>------------</P> : null}\n    </Div>\n  ) : null;\n}",
+  "description": "Renders markdown frontmatter parameters (and optionally a spacer)",
+  "id": "gkfbseugakebfiqxjjoeopbz"
+}

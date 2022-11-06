@@ -1,6 +1,7 @@
 import { PageType } from "./types";
 export declare const pagesObject: {
     index: import("./types").RWNPage;
+    dictionary: import("./types").RWNPage;
 };
 export declare const pages: PageType[];
 /**

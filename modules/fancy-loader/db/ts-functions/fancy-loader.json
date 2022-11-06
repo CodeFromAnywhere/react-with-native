@@ -1,0 +1,81 @@
+{
+  "createdAt": 1666261799488,
+  "updatedAt": 1666261799488,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261799488,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/FancyLoader.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  big,\n  medium,\n}: {\n  big?: boolean;\n  medium?: boolean;\n}) => (\n  <Div\n    className={`rounded-full ${\n      big ? \"w-12 h-12\" : medium ? \"w-7 h-7\" : \"w-4 h-4\"\n    } border-b-orange-400 border-l-blue-400 border-t-red-400 border-r-green-400 ${\n      big ? \"border-4\" : medium ? \"border-2\" : \"border\"\n    } animate-spin`}\n  />\n)",
+  "name": "FancyLoader",
+  "slug": "fancy-loader",
+  "parameters": [
+    {
+      "name": "{\n  big,\n  medium,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "big": {
+            "type": "boolean"
+          },
+          "medium": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "big",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "medium",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 333,
+    "lines": 15,
+    "bytes": 333,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "nqpvthvfthqvtehucolfntfq"
+}

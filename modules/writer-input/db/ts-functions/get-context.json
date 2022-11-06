@@ -1,0 +1,115 @@
+{
+  "createdAt": 1667588137413,
+  "updatedAt": 1667588137413,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588137413,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/old/getContext.ts",
+  "commentsInside": [],
+  "rawText": " (editorDetails: {\n  text: string;\n  positionIndex: number;\n}): TextEditingContext => {\n  const { positionIndex, text } = editorDetails;\n  const wordSeparators = [\" \", \"\\n\", \"\\t\"];\n\n  // NB: find the first separator after the word that we are typing at the position of the cursor.\n  const firstIndexWithSeparatorAfterPosition = Math.min(\n    ...wordSeparators.map((separator) => {\n      const separatorAfterPositionIndex = text.indexOf(\n        separator,\n        positionIndex\n      );\n      if (separatorAfterPositionIndex === -1) return Infinity;\n      return separatorAfterPositionIndex;\n    })\n  );\n\n  const endOfWordIndex =\n    firstIndexWithSeparatorAfterPosition === Infinity\n      ? text.length\n      : firstIndexWithSeparatorAfterPosition;\n\n  const lastIndexWithSeparatorBeforePosition = Math.max(\n    ...wordSeparators.map((separator) => {\n      const spaceBeforePositionIndex =\n        text.slice(0, positionIndex).lastIndexOf(separator) + 1;\n\n      return spaceBeforePositionIndex;\n    })\n  );\n\n  const beginningOfWordIndex =\n    lastIndexWithSeparatorBeforePosition === -1\n      ? 0\n      : lastIndexWithSeparatorBeforePosition;\n\n  const wordAtPosition = text.slice(beginningOfWordIndex, endOfWordIndex);\n\n  /*\n    console.log({\n      beginningOfWordIndex,\n      endOfWordIndex,\n      wordAtPosition,\n    });\n    */\n\n  return {\n    wordAtPosition,\n  };\n}",
+  "name": "getContext",
+  "slug": "get-context",
+  "parameters": [
+    {
+      "name": "editorDetails",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "positionIndex": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "text",
+          "positionIndex"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "text",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "positionIndex",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Gets the current word you are typing from a text and the cursor position.\n\nTakes into account multiple word separators: tabs, newlines, and spaces.",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/writer/writer-input/src/old/getContext\").TextEditingContext",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "wordAtPosition": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "wordAtPosition"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "wordAtPosition",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1515,
+    "lines": 54,
+    "bytes": 1515,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 54,
+    "numberOfFiles": 1
+  },
+  "id": "hzertgquguvgpalgyhnmhuwm"
+}

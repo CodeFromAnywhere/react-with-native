@@ -1,0 +1,180 @@
+{
+  "createdAt": 1667684635681,
+  "updatedAt": 1667684635681,
+  "deletedAt": 0,
+  "createdFirstAt": 1667684635681,
+  "id": "publicbundleconfig",
+  "name": "PublicBundleConfig",
+  "slug": "publicbundleconfig",
+  "operationRelativeTypescriptFilePath": "src/PublicBundleConfig.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type PublicBundleConfig = {\n  /**\n   * Human readable name of the monorepo (A kebab-case version of this will be used as root foldername)\n   */\n  name: string;\n  /**\n   * a description about this bundle\n   */\n  description?: string;\n  emoji?: string;\n  primaryColor?: string;\n  /**NB: later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation*/\n  gitRepoUrl?: string;\n\n  /**\n   * if true, your gitrepo is marked as pubilc and thus users will be linked to it sometimes\n   */\n  isGitRepoPublic?: boolean;\n\n  /**\n   * configurate your markdown reader\n   */\n  bundleMarkdownReaderConfig?: BundleMarkdownReaderConfig;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human readable name of the monorepo (A kebab-case version of this will be used as root foldername)"
+        },
+        "description": {
+          "type": "string",
+          "description": "a description about this bundle"
+        },
+        "emoji": {
+          "type": "string"
+        },
+        "primaryColor": {
+          "type": "string"
+        },
+        "gitRepoUrl": {
+          "type": "string",
+          "description": "NB: later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation"
+        },
+        "isGitRepoPublic": {
+          "type": "boolean",
+          "description": "if true, your gitrepo is marked as pubilc and thus users will be linked to it sometimes"
+        },
+        "bundleMarkdownReaderConfig": {
+          "$ref": "#/definitions/BundleMarkdownReaderConfig",
+          "description": "configurate your markdown reader"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "fullComment": "Human readable name of the monorepo (A kebab-case version of this will be used as root foldername)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "description",
+          "required": false,
+          "schema": {
+            "fullComment": "a description about this bundle",
+            "type": "string"
+          }
+        },
+        {
+          "name": "emoji",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "primaryColor",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "gitRepoUrl",
+          "required": false,
+          "schema": {
+            "fullComment": "NB: later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation",
+            "nb": "later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation",
+            "type": "string"
+          }
+        },
+        {
+          "name": "isGitRepoPublic",
+          "required": false,
+          "schema": {
+            "fullComment": "if true, your gitrepo is marked as pubilc and thus users will be linked to it sometimes",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "bundleMarkdownReaderConfig",
+          "required": false,
+          "schema": {
+            "fullComment": "configurate your markdown reader\n\n",
+            "properties": [
+              {
+                "name": "showTodos",
+                "required": false,
+                "schema": {
+                  "fullComment": "Show todo menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitModulesMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "`modules` will be hidden from markdown reader menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitAppsMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "`apps` will be hidden from markdown reader menui",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitDictionaryMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, dictionary is omitted from menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitPackagesMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "`packages` will be hidden from markdown reader menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "customOperationNames",
+                "required": false,
+                "schema": {
+                  "fullComment": "if given, the operations menu will show with these operations",
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "PublicBundleConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

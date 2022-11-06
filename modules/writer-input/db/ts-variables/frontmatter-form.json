@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667588105394,
+  "updatedAt": 1667588105394,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588105394,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "FrontmatterForm",
+  "slug": "frontmatter-form",
+  "operationRelativeTypescriptFilePath": "src/FrontmatterForm.tsx",
+  "type": {
+    "rawType": "(props: { projectRelativeMarkdownFilePath: string; frontmatterSchema: import(\"/Users/king/King/operations/tools/types/code-types/build/SimplifiedSchema\").SimplifiedSchema; markdownParse: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse; onChange: (value: string) => void; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  projectRelativeMarkdownFilePath: string;\n  frontmatterSchema: SimplifiedSchema;\n  markdownParse: MarkdownParse;\n  onChange: (value: string) => void;\n}) => {\n  const { onChange, projectRelativeMarkdownFilePath, markdownParse } = props;\n  const [immutableFrontmatterSchema] = useState<SimplifiedSchema>(\n    props.frontmatterSchema\n  );\n\n  console.log({\n    parameters: markdownParse.parameters,\n  });\n  const referencableModelData = useReferencableModelData(\n    immutableFrontmatterSchema\n  );\n\n  return (\n    <SimplifiedSchemaForm\n      id={projectRelativeMarkdownFilePath}\n      parameters={[\n        {\n          name: \"Frontmatter\",\n          required: true,\n          isDbModel: true,\n          simplifiedSchema: immutableFrontmatterSchema,\n        },\n      ]}\n      onChange={([frontmatter]) => {\n        const newMarkdownParse: MarkdownParse = {\n          ...markdownParse,\n          parameters: frontmatter,\n        };\n\n        const newMarkdownString =\n          markdownParseToMarkdownString(newMarkdownParse);\n\n        onChange(newMarkdownString);\n      }}\n      values={[markdownParse.parameters]}\n      projectRelativeStorageFilePath={projectRelativeMarkdownFilePath}\n      referencableModelData={referencableModelData}\n    />\n  );\n}",
+  "description": "Renders a form for frontmatter without save button",
+  "id": "gboedkofeeqziqzchwuzyucn"
+}

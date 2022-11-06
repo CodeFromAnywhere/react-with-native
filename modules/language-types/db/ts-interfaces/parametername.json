@@ -1,0 +1,157 @@
+{
+  "createdAt": 1666331229431,
+  "updatedAt": 1666331229431,
+  "deletedAt": 0,
+  "createdFirstAt": 1666331229431,
+  "id": "parametername",
+  "name": "ParameterName",
+  "slug": "parametername",
+  "operationRelativeTypescriptFilePath": "src/Word.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "type": "string"
+        },
+        "example": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/SimplifiedSchemaType"
+        },
+        "secondaryType": {
+          "$ref": "#/definitions/SimplifiedSchemaType",
+          "description": "in case of array, what's in the array?"
+        },
+        "contentType": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "generated",
+              "markdown",
+              "text",
+              "number",
+              "date",
+              "time",
+              "datetime",
+              "toggle",
+              "select",
+              "selectMultiple"
+            ]
+          }
+        }
+      },
+      "required": [
+        "pattern",
+        "example",
+        "description",
+        "type",
+        "contentType"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "pattern",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "example",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "description",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "null"
+            ],
+            "fullComment": "",
+            "type": "string"
+          }
+        },
+        {
+          "name": "secondaryType",
+          "required": false,
+          "schema": {
+            "enum": [
+              "string",
+              "number",
+              "boolean",
+              "object",
+              "array",
+              "null"
+            ],
+            "fullComment": "in case of array, what's in the array?\n\n",
+            "type": "string"
+          }
+        },
+        {
+          "name": "contentType",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "enum": [
+                    "generated",
+                    "markdown",
+                    "text",
+                    "number",
+                    "date",
+                    "time",
+                    "datetime",
+                    "toggle",
+                    "select",
+                    "selectMultiple"
+                  ],
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ParameterName",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

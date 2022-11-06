@@ -1,0 +1,76 @@
+{
+  "createdAt": 1667634965726,
+  "updatedAt": 1667634965726,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634965726,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util/getRealSrc.ts",
+  "commentsInside": [],
+  "rawText": " (\n  src: string | undefined,\n  config: MarkdownParseRenderConfig\n) => {\n  // src from static folder of next.js\n  const relativeUrlStrategy =\n    config.isDev || !config.isStatic ? \"api\" : \"static\";\n\n  const realSrc = src\n    ? isPathRelative(src)\n      ? getUrlFromRelativeUrl(\n          src,\n          relativeUrlStrategy,\n          config.projectRelativeBaseFolderPath,\n          config.projectRelativeMarkdownFilePath\n        )\n      : src\n    : undefined;\n\n  return realSrc;\n}",
+  "name": "getRealSrc",
+  "slug": "get-real-src",
+  "parameters": [
+    {
+      "name": "src",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    },
+    {
+      "name": "config",
+      "schema": {
+        "$ref": "#/definitions/MarkdownParseRenderConfig"
+      },
+      "required": true
+    }
+  ],
+  "description": "Based on markdown info, gest the real source for an image",
+  "returnType": {
+    "rawType": "string | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 538,
+    "lines": 21,
+    "bytes": 538,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "htcualileyhbcsveurjeqyzm"
+}

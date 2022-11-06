@@ -1,0 +1,86 @@
+{
+  "createdAt": 1667684657755,
+  "updatedAt": 1667684657755,
+  "deletedAt": 0,
+  "createdFirstAt": 1667684657755,
+  "id": "datasetsort",
+  "name": "DatasetSort",
+  "slug": "datasetsort",
+  "operationRelativeTypescriptFilePath": "src/Dataset.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * Sort by comparing the two values using the `Array.sort` method and Greater than and Less than operators.\n */\nexport type DatasetSort = {\n  objectParameterKey: string;\n  /**\n   * sort normally or in reverse order\n   */\n  sortDirection?: \"ascending\" | \"descending\";\n  /**\n   * TODO:\n   */\n  sortFunctionName?: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Sort by comparing the two values using the `Array.sort` method and Greater than and Less than operators.",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "objectParameterKey": {
+          "type": "string"
+        },
+        "sortDirection": {
+          "type": "string",
+          "enum": [
+            "ascending",
+            "descending"
+          ],
+          "description": "sort normally or in reverse order"
+        },
+        "sortFunctionName": {
+          "type": "string",
+          "description": "TODO:"
+        }
+      },
+      "required": [
+        "objectParameterKey"
+      ],
+      "additionalProperties": false,
+      "description": "Sort by comparing the two values using the `Array.sort` method and Greater than and Less than operators."
+    },
+    "simplifiedSchema": {
+      "fullComment": "Sort by comparing the two values using the `Array.sort` method and Greater than and Less than operators.",
+      "properties": [
+        {
+          "name": "objectParameterKey",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "sortDirection",
+          "required": false,
+          "schema": {
+            "enum": [
+              "ascending",
+              "descending"
+            ],
+            "fullComment": "sort normally or in reverse order",
+            "type": "string"
+          }
+        },
+        {
+          "name": "sortFunctionName",
+          "required": false,
+          "schema": {
+            "fullComment": "TODO:",
+            "todo": "",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "DatasetSort",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667634354483,
+  "updatedAt": 1667634354483,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634354483,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "AssetView",
+  "slug": "asset-view",
+  "operationRelativeTypescriptFilePath": "src/AssetView.tsx",
+  "type": {
+    "rawType": "(props: { asset: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").Asset; className?: string | undefined; projectRelativeReferencingFilePath: string; hideDownloadLink?: boolean | undefined; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  asset: Asset;\n  className?: string;\n  projectRelativeReferencingFilePath: string;\n  hideDownloadLink?: boolean;\n}) => {\n  const {\n    asset,\n    className,\n    projectRelativeReferencingFilePath,\n    hideDownloadLink,\n  } = props;\n\n  const isRemote = !asset.blobPath;\n\n  /**\n   * NB: `relativePath` is required\n   */\n  const getRemoteUrl = (isDownload: boolean) =>\n    getReferencedAssetApiUrl(\n      apiUrl,\n      projectRelativeReferencingFilePath,\n      asset.relativePath!,\n      isDownload\n    );\n  /**\n   * NB: `asset.temporaryDestination` is not a URL that can be used to retreive the image as \"src\"\n   */\n  const src = isRemote\n    ? asset.relativePath\n      ? getRemoteUrl(false)\n      : undefined\n    : asset.blobPath;\n\n  const downloadRemotely = isRemote && !!asset.relativePath;\n\n  const downloadHref = downloadRemotely\n    ? getRemoteUrl(true)\n    : // NB: other type is ugly when downloading. Also doesn't make sense much to want to download an asset after uploading\n    asset.type !== \"other\"\n    ? asset.blobPath\n    : undefined;\n\n  const sizeText =\n    asset.sizeBytes !== undefined\n      ? `(${readableSize(asset.sizeBytes)})`\n      : undefined;\n\n  const downloadText = \" ⬇️ Download\";\n\n  const extension = getExtensionFromAsset(asset);\n\n  const filename =\n    isRemote && asset.relativePath\n      ? asset.relativePath.split(\"/\").pop()!\n      : extension\n      ? `untitled.${extension}`\n      : undefined;\n\n  const isTextFile = filename && isText(filename) === true ? true : false;\n\n  const type =\n    isRemote && asset.relativePath\n      ? getTypeFromRelativePath(asset.relativePath)\n      : asset.type;\n\n  const [rawText, setRawText] = useState(\"\");\n  useEffect(() => {\n    if (!!src && isTextFile) {\n      fetch(src).then((result) => {\n        result.text().then((text) => setRawText(text));\n      });\n    }\n  }, [src, isTextFile]);\n\n  return (\n    <Span style={{ position: \"relative\" }}>\n      {downloadHref && !hideDownloadLink ? (\n        <Div\n          style={{\n            padding: \"5px\",\n          }}\n        >\n          <A target=\"_blank\" href={downloadHref}>\n            {downloadText} {sizeText}\n          </A>\n        </Div>\n      ) : null}\n\n      {type === \"image\" && src && (\n        <img src={src} style={{ aspectRatio: \"auto\", width: 150 }} />\n      )}\n      {type === \"audio\" && src && <audio controls src={src} />}\n      {type === \"video\" && src && (\n        <video style={{ aspectRatio: \"auto\", width: 150 }} controls src={src} />\n      )}\n\n      {type === \"other\" && isTextFile ? (\n        <MarkdownCodeblock text={rawText} extension={extension} />\n      ) : null}\n\n      {/* LATER: render PDF renderer here */}\n      {type === \"other\" && extension === \"pdf\" ? null : null}\n\n      {src === undefined ? <P>Asset src not found</P> : null}\n    </Span>\n  );\n}",
+  "description": "",
+  "id": "clrjpekqwvblaawhtzmmcfdu"
+}

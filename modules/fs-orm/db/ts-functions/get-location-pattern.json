@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666512745028,
-  "updatedAt": 1666512745028,
+  "createdAt": 1667634652946,
+  "updatedAt": 1667634652946,
   "deletedAt": 0,
-  "createdFirstAt": 1666512745028,
+  "createdFirstAt": 1667634652946,
   "publicAuthorization": [
     "read-docs",
     "search"
@@ -13,7 +13,7 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/convention/getLocationPattern.ts",
   "commentsInside": [],
-  "rawText": " (\n  dbStorageMethod: DbStorageMethod,\n  modelName: string,\n  mergedConfig: MergedQueryConfig\n): string | undefined => {\n  const { operationRelativePath, projectRelativePath } = mergedConfig;\n\n  if (operationRelativePath) return operationRelativePath;\n  if (projectRelativePath) return projectRelativePath;\n\n  const fileOrFolderName = pluralize(kebabCase(modelName));\n  if (dbStorageMethod === \"jsonMultiple\") return `db/${fileOrFolderName}.json`;\n  if (dbStorageMethod === \"keyValueMarkdown\")\n    return `db/${fileOrFolderName}.md`;\n  if (dbStorageMethod === \"csv\") return `db/${fileOrFolderName}.csv`;\n\n  if (dbStorageMethod === \"jsonSingle\") return `db/${fileOrFolderName}/*.json`;\n  if (dbStorageMethod === \"markdown\") return `db/${fileOrFolderName}/*.md`;\n}",
+  "rawText": " (\n  dbStorageMethod: DbStorageMethod,\n  modelName: string,\n  mergedConfig: MergedQueryConfig\n): string | undefined => {\n  const { operationRelativePath, projectRelativePath } = mergedConfig;\n\n  if (operationRelativePath) return operationRelativePath;\n  if (projectRelativePath) return projectRelativePath;\n\n  return getDefaultLocationPattern(dbStorageMethod, modelName);\n}",
   "name": "getLocationPattern",
   "slug": "get-location-pattern",
   "parameters": [
@@ -80,15 +80,15 @@
       "type": "string"
     }
   },
-  "maxIndentationDepth": 2,
+  "maxIndentationDepth": 1,
   "size": {
-    "characters": 1040,
-    "lines": 23,
-    "bytes": 1040,
+    "characters": 651,
+    "lines": 16,
+    "bytes": 651,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 45,
-    "linesPerFile": 23,
+    "charactersPerLine": 41,
+    "linesPerFile": 16,
     "numberOfFiles": 1
   },
-  "id": "sldibbhuwdvsiawgmacugdcz"
+  "id": "femqqizzbxzxoqtegbegoqlr"
 }

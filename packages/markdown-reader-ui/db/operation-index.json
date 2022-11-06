@@ -1,9 +1,9 @@
 {
   "createdAt": 1664527144457,
-  "updatedAt": 1666262433113,
+  "updatedAt": 1667635260679,
   "deletedAt": 0,
   "createdFirstAt": 1664527144457,
-  "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/markdown-reader/markdown-reader-ui/src/types.tsx. Error: Error: Unknown node \\\"new (props: P) => Component<P, any>\"]",
+  "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/markdown-reader/markdown-reader-ui/src/types.tsx. Error: Error: Unknown node \\\"new (props: P) => Component<P, any>\\\" of kind \\\"ConstructorType\\\"\"]",
   "buildSucceeded": true,
   "id": "dgteszhcfwunftwujxallaus",
   "indexImportExportError": "",
@@ -14,8 +14,14 @@
   "classification": "ui-es6",
   "name": "markdown-reader-ui",
   "slug": "markdown-reader-ui",
-  "coreDependencies": [],
+  "coreDependencies": [
+    "useState",
+    "useEffect"
+  ],
   "operationDependencies": [
+    "nestedMenuStoreInitialValues",
+    "createStore",
+    "ClickableIcon",
     "getFolderJs",
     "MappedObject",
     "renderMarkdownContent",
@@ -24,6 +30,7 @@
     "P",
     "isDev",
     "Div",
+    "P",
     "Span",
     "NestedMenu",
     "queryPathsArrayToNestedPathObject",
@@ -31,13 +38,19 @@
     "SelectInput",
     "AugmentedWord",
     "MarkdownReaderPage",
+    "MarkdownReaderPageProps",
     "MappedObject",
     "Item",
     "useRouter",
+    "ClickableIcon",
+    "ALink",
     "Div",
     "P",
     "mdToJsonParse",
+    "humanCase",
+    "renderMarkdownContent",
     "renderMarkdownParse",
+    "MarkdownView",
     "ALink",
     "ClickableIcon",
     "useRouter",
@@ -51,28 +64,28 @@
   ],
   "size": {
     "codeSize": {
-      "numberOfFiles": 4,
+      "numberOfFiles": 5,
       "lines": 0,
-      "characters": 6329,
-      "bytes": 6329
+      "characters": 8958,
+      "bytes": 8958
     },
     "dataSize": {
       "numberOfFiles": 2,
       "lines": 0,
-      "characters": 1981,
-      "bytes": 1981
+      "characters": 2308,
+      "bytes": 2308
     },
     "textSize": {
       "numberOfFiles": 1,
       "lines": 0,
-      "characters": 2194,
-      "bytes": 2194
+      "characters": 2639,
+      "bytes": 2639
     },
     "size": {
-      "bytes": 10504,
-      "characters": 10504,
+      "bytes": 13905,
+      "characters": 13905,
       "lines": 0,
-      "numberOfFiles": 7
+      "numberOfFiles": 8
     }
   }
 }

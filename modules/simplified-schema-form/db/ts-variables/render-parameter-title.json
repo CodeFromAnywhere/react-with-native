@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667634903457,
+  "updatedAt": 1667634903457,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634903457,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "renderParameterTitle",
+  "slug": "render-parameter-title",
+  "operationRelativeTypescriptFilePath": "src/renderParameterTitle.tsx",
+  "type": {
+    "rawType": "(parameter: import(\"/Users/king/King/operations/tools/interfaces/vui/simplified-schema-form/src/types\").RenderableFunctionParameter, isDebug: boolean | undefined, isBolded?: boolean | undefined, renderAdditionalButtons?: (() => JSX.Element | null) | undefined) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  parameter: RenderableFunctionParameter,\n  isDebug: boolean | undefined,\n  isBolded?: boolean,\n  renderAdditionalButtons?: () => JSX.Element | null\n) => {\n  const info = getReferenceParameterInfo(parameter.name);\n\n  const title =\n    parameter.simplifiedSchema?.title ||\n    (info.isReferenceParameter\n      ? humanCase(`${info.descriptor || \"\"} ${info.interfaceName}`)\n      : humanCase(parameter.name));\n\n  const descriptionIndicator = parameter.simplifiedSchema?.description\n    ? \" ℹ️\"\n    : \"\";\n  return (\n    <Div>\n      {/* Start of a section */}\n      {parameter.simplifiedSchema?.section ? (\n        <P className=\"font-bold underline\">\n          {parameter.simplifiedSchema?.section}\n        </P>\n      ) : null}\n\n      <Div className=\"w-full flex flex-row justify-between\">\n        <P\n          data-tip={parameter.simplifiedSchema?.description}\n          className={`${\n            parameter.simplifiedSchema?.description\n              ? \"cursor-context-menu\"\n              : \"cursor-default\"\n          }${isBolded ? \" font-bold\" : \"\"}`}\n        >\n          {title}\n          {descriptionIndicator}\n          {/* {parameter.required ? \"(Required)\" : \"(Optional)\"}{\" \"} */}\n        </P>\n\n        {parameter.renderButtons?.(parameter)}\n        {renderAdditionalButtons?.()}\n      </Div>\n      {isDebug ? (\n        <P className=\"italic text-gray-400\">\n          [{parameter.simplifiedSchema?.type}]:{\" \"}\n          <Span className=\"text-gray-600\">\n            {parameter.simplifiedSchema?.fullComment}\n          </Span>\n        </P>\n      ) : null}\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "ktahcdchwlleonvpvwctvfgd"
+}

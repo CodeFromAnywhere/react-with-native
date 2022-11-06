@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262678029,
-  "updatedAt": 1666262678029,
+  "createdAt": 1667640014338,
+  "updatedAt": 1667640014338,
   "deletedAt": 0,
-  "createdFirstAt": 1666262678029,
+  "createdFirstAt": 1667640014338,
   "publicAuthorization": [
     "read-docs",
     "search"
@@ -13,7 +13,7 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/csvItemArrayToCsvString.ts",
   "commentsInside": [],
-  "rawText": " <T extends CsvItemType>(\n  csvModelData: T[]\n): string => {\n  if (csvModelData.length === 0) return \"\";\n\n  // let propertyNames = simplifiedSchema?.properties?.map((x) => x.name);\n\n  const longestItem = csvModelData.reduce(\n    (previous, current) => {\n      const keysAmount = Object.keys(current).length;\n      if (keysAmount > previous.keysAmount) {\n        return { keysAmount, item: current };\n      }\n      return previous;\n    },\n    { keysAmount: 0, item: undefined } as {\n      keysAmount: number;\n      item: T | undefined;\n    }\n  ).item!;\n\n  const propertyNames = Object.keys(longestItem);\n\n  const headerString = propertyNames.join(\",\");\n\n  const rowStrings = csvModelData.map((row) => {\n    return propertyNames!\n      .map((propertyName) => String(row[propertyName]))\n      .join(\",\");\n  });\n\n  return `${headerString}\\n${rowStrings.join(\"\\n\")}`;\n}",
+  "rawText": " <T extends CsvItemType>(\n  csvModelData: T[]\n): string => {\n  if (csvModelData.length === 0) return \"\";\n\n  const result = stringify(csvModelData, { header: true });\n\n  return result;\n\n  /**\n\nNB: first I did my own native raw implementation, but this doesn't have good newline support, so I fell back to csv modules (https://csv.js.org/stringify/api/)\n \n  // let propertyNames = simplifiedSchema?.properties?.map((x) => x.name);\n\n  const longestItem = csvModelData.reduce(\n    (previous, current) => {\n      const keysAmount = Object.keys(current).length;\n      if (keysAmount > previous.keysAmount) {\n        return { keysAmount, item: current };\n      }\n      return previous;\n    },\n    { keysAmount: 0, item: undefined } as {\n      keysAmount: number;\n      item: T | undefined;\n    }\n  ).item!;\n\n  const propertyNames = Object.keys(longestItem);\n\n  const headerString = propertyNames.join(\",\");\n\n  const rowStrings = csvModelData.map((row) => {\n    return propertyNames!\n      .map((propertyName) => String(row[propertyName]))\n      .join(\",\");\n  });\n\n  return `${headerString}\\n${rowStrings.join(\"\\n\")}`;\n  */\n}",
   "name": "csvItemArrayToCsvString",
   "slug": "csv-item-array-to-csv-string",
   "parameters": [],
@@ -33,13 +33,13 @@
   },
   "maxIndentationDepth": 4,
   "size": {
-    "characters": 901,
-    "lines": 33,
-    "bytes": 901,
+    "characters": 1154,
+    "lines": 42,
+    "bytes": 1154,
     "bytesPerCharacter": 1,
     "charactersPerLine": 27,
-    "linesPerFile": 33,
+    "linesPerFile": 42,
     "numberOfFiles": 1
   },
-  "id": "bzefsageoyzcmsjmmikhwxpd"
+  "id": "tpepfinklewpyiemfpxbhoks"
 }

@@ -1,0 +1,61 @@
+{
+  "createdAt": 1667634901559,
+  "updatedAt": 1667634901559,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634901559,
+  "id": "namedparameterstypeof-getreferencedmodeldataitem",
+  "name": "NamedParameters<typeof getReferencedModelDataItem>",
+  "slug": "namedparameterstypeof-getreferencedmodeldataitem",
+  "operationRelativeTypescriptFilePath": "src/getReferencedModelDataItem.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "parameterName": {
+          "type": "string"
+        },
+        "referencedModelData": {
+          "$ref": "#/definitions/ReferencableModelData"
+        }
+      },
+      "required": [
+        "parameterName"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "parameterName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "referencedModelData",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getReferencedModelDataItem>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

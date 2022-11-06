@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262315832,
-  "updatedAt": 1666262315832,
+  "createdAt": 1667635160679,
+  "updatedAt": 1667635160679,
   "deletedAt": 0,
-  "createdFirstAt": 1666262315832,
+  "createdFirstAt": 1667635160679,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  projectRoot: string\n): Promise<MarkdownReaderPage[]> => {\n  const operationsPath = getRootPath(\"operations\");\n  if (!operationsPath) return [];\n\n  const todoFolderPaths = await findAllTodoFolderPaths(operationsPath, false);\n  const markdownReaderPages: MarkdownReaderPage[] =\n    await getMarkdownReaderPages({\n      projectRoot,\n      basePaths: todoFolderPaths,\n      mapQueryPath: (queryPath) => {\n        return queryPath\n          .replaceAll(\"todo/\", \"\")\n          .replace(\"operations/\", \"todo/\");\n      },\n    });\n\n  return markdownReaderPages;\n}",
   "description": "gets all todo pages as markdownreader pages",
-  "id": "tjmbgoygigmqihkygiybuypq"
+  "id": "gexuptttljuiddcynjcjhxlv"
 }

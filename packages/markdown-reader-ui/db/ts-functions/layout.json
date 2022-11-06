@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262427382,
-  "updatedAt": 1666262427382,
+  "createdAt": 1667635254680,
+  "updatedAt": 1667635254680,
   "deletedAt": 0,
-  "createdFirstAt": 1666262427382,
+  "createdFirstAt": 1667635254680,
   "publicAuthorization": [
     "read-docs",
     "search"
@@ -13,7 +13,7 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/components/Layout.tsx",
   "commentsInside": [],
-  "rawText": " (props: {\n  pages: MarkdownReaderPage[];\n  children: any;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n}) => {\n  const { pages, children, augmentedWordObject } = props;\n\n  const queryPaths = pages.filter((x) => x.isMenuItem).map((x) => x.queryPath);\n  const nestedPathObject = queryPathsArrayToNestedPathObject(queryPaths);\n  const menu = nestedPathObjectToNestedMenuRecursive(nestedPathObject);\n\n  const results: AugmentedWord[] = augmentedWordObject\n    ? Object.keys(augmentedWordObject).map(\n        (key) => augmentedWordObject[key] as AugmentedWord\n      )\n    : [];\n\n  return (\n    <Div className=\"h-screen grid grid-rows-6\">\n      <Div className=\"row-span-6 grid grid-cols-5\">\n        <Div\n          className={`\n        col-span-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white`}\n          textClassName=\"dark:text-white\"\n        >\n          {children}\n        </Div>\n        <Span className=\"border-l col-span-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white border-l-gray-400\">\n          <Search results={results} />\n          {menu ? (\n            <NestedMenu menu={menu} headersClickable={true} />\n          ) : (\n            \"Menu couldn't be found\"\n          )}\n        </Span>\n      </Div>\n    </Div>\n  );\n}",
+  "rawText": " (props: {\n  publicBundleConfig: MarkdownReaderPageProps[\"publicBundleConfig\"];\n  pages: MarkdownReaderPage[];\n  children: any;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n}) => {\n  const { pages, children, augmentedWordObject } = props;\n  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(\n    \"menu.isMobileMenuEnabled\"\n  );\n  const queryPaths = pages.filter((x) => x.isMenuItem).map((x) => x.queryPath);\n  const nestedPathObject = queryPathsArrayToNestedPathObject(queryPaths);\n  const menu = nestedPathObjectToNestedMenuRecursive(nestedPathObject);\n\n  const results: AugmentedWord[] = augmentedWordObject\n    ? Object.keys(augmentedWordObject).map(\n        (key) => augmentedWordObject[key] as AugmentedWord\n      )\n    : [];\n\n  const renderMenu = () => {\n    return (\n      <>\n        <Div className=\"flex flex-row flex-1\">\n          <Div className=\"w-full\">\n            <Search results={results} />\n          </Div>\n\n          <Div className=\"lg:hidden\">\n            <ClickableIcon\n              emoji=\"╳\"\n              onClick={() => {\n                setIsMobileMenuEnabled(false);\n              }}\n            />\n          </Div>\n        </Div>\n        {menu ? (\n          <NestedMenu menu={menu} headersClickable={true} />\n        ) : (\n          \"Menu couldn't be found\"\n        )}\n      </>\n    );\n  };\n\n  const renderHeader = () => {\n    return (\n      <Div\n        style={{\n          backgroundColor: props.publicBundleConfig?.primaryColor,\n          justifyContent: \"space-between\",\n          flex: 1,\n          display: \"flex\",\n          flexDirection: \"row\",\n          alignItems: \"center\",\n        }}\n      >\n        {/* \n            typeof window !== \"undefined\"\n              ? location.protocol + \"//\" + location.host\n              : \"#\"\n           */}\n        <ALink href={\"#\"} style={{ fontSize: 32 }}>\n          {props.publicBundleConfig?.emoji}\n        </ALink>\n\n        <P className=\"font-bold\">{props.publicBundleConfig?.name}</P>\n\n        {props.publicBundleConfig?.isGitRepoPublic &&\n        props.publicBundleConfig.gitRepoUrl ? (\n          <ALink target=\"_blank\" href={props.publicBundleConfig.gitRepoUrl}>\n            🐱\n          </ALink>\n        ) : null}\n      </Div>\n    );\n  };\n\n  return (\n    <Div>\n      {renderHeader()}\n\n      {isMobileMenuEnabled ? (\n        <Div className=\"lg:hidden\">{renderMenu()}</Div>\n      ) : (\n        <Div className=\"lg:h-screen lg:grid lg:grid-rows-6\">\n          <Div className=\"lg:row-span-6 lg:grid lg:grid-cols-5\">\n            <Div\n              className={`lg:col-span-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white`}\n              textClassName=\"dark:text-white\"\n            >\n              {children}\n            </Div>\n            <Span className=\"invisible lg:visible border-l lg:col-span-1 lg:overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white border-l-gray-400\">\n              {renderMenu()}\n            </Span>\n          </Div>\n        </Div>\n      )}\n    </Div>\n  );\n}",
   "name": "Layout",
   "slug": "layout",
   "parameters": [
@@ -22,6 +22,89 @@
       "schema": {
         "type": "object",
         "properties": {
+          "publicBundleConfig": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "categoryStackCalculated": {
+                    "$ref": "#/definitions/CategoryStack",
+                    "description": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!"
+                  },
+                  "id": {
+                    "$ref": "#/definitions/Id"
+                  },
+                  "operationName": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
+                  },
+                  "projectRelativePath": {
+                    "type": "string",
+                    "description": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you"
+                  },
+                  "operationRelativePath": {
+                    "type": "string",
+                    "description": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you"
+                  },
+                  "createdAt": {
+                    "$ref": "#/definitions/CreatedAt"
+                  },
+                  "updatedAt": {
+                    "$ref": "#/definitions/UpdatedAt"
+                  },
+                  "deletedAt": {
+                    "$ref": "#/definitions/DeletedAt"
+                  },
+                  "createdFirstAt": {
+                    "$ref": "#/definitions/CreatedFirstAt"
+                  },
+                  "slug": {
+                    "$ref": "#/definitions/Id"
+                  },
+                  "name": {
+                    "$ref": "#/definitions/Id"
+                  },
+                  "language": {
+                    "$ref": "#/definitions/Id"
+                  },
+                  "description": {
+                    "$ref": "#/definitions/Id"
+                  },
+                  "emoji": {
+                    "$ref": "#/definitions/Id"
+                  },
+                  "primaryColor": {
+                    "$ref": "#/definitions/Id"
+                  },
+                  "gitRepoUrl": {
+                    "$ref": "#/definitions/Id"
+                  },
+                  "isGitRepoPublic": {
+                    "$ref": "#/definitions/Id"
+                  },
+                  "bundleMarkdownReaderConfig": {
+                    "$ref": "#/definitions/Id"
+                  }
+                },
+                "required": [
+                  "id",
+                  "operationName",
+                  "projectRelativePath",
+                  "createdAt",
+                  "updatedAt",
+                  "deletedAt",
+                  "createdFirstAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "pages": {
             "type": "array",
             "items": {
@@ -41,6 +124,14 @@
       },
       "simplifiedSchema": {
         "properties": [
+          {
+            "name": "publicBundleConfig",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
           {
             "name": "pages",
             "required": true,
@@ -111,15 +202,15 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "maxIndentationDepth": 6,
+  "maxIndentationDepth": 8,
   "size": {
-    "characters": 1258,
-    "lines": 39,
-    "bytes": 1258,
-    "bytesPerCharacter": 1,
-    "charactersPerLine": 32,
-    "linesPerFile": 39,
+    "characters": 2994,
+    "lines": 103,
+    "bytes": 2998,
+    "bytesPerCharacter": 1.0013360053440215,
+    "charactersPerLine": 29,
+    "linesPerFile": 103,
     "numberOfFiles": 1
   },
-  "id": "bzzmctmzyfusqscjbjbiwith"
+  "id": "nosuvaybianwbgbcosvrbyzb"
 }

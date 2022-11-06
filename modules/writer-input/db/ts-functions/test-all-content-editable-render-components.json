@@ -1,0 +1,41 @@
+{
+  "createdAt": 1667588130904,
+  "updatedAt": 1667588130904,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588130904,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/editors/testAllContentEditableRenderComponents.tsx",
+  "commentsInside": [],
+  "rawText": " () => {\n  const allComponents: ContentEditableRenderComponentType<any>[] = [\n    MarkedText,\n    MarkedParagraph,\n  ];\n\n  const results = allComponents.map((component) => {\n    return {\n      name: component.name,\n      isValid: testContentEditableRenderComponent(component),\n    };\n  });\n\n  console.log(results);\n}",
+  "name": "testAllContentEditableRenderComponents",
+  "slug": "test-all-content-editable-render-components",
+  "parameters": [],
+  "description": "Can be used to test all `ContentEditableRenderComponent`s with example inputs\n\nInstead you can also enable devmode and just check it on the live examples",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 469,
+    "lines": 17,
+    "bytes": 469,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "nshtwhswqvuibzdtexxjsakd"
+}

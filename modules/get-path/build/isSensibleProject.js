@@ -1,4 +1,18 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.isSensibleProject=void 0;var fs_util_1=require("fs-util"),read_json_file_1=require("read-json-file"),getProjectRoot_1=require("./getProjectRoot"),isSensibleProject=function(e){var o=e||(0,getProjectRoot_1.getProjectRoot)();if(!o)return!1;
-// get package-json and check sensible config
-var r=(0,read_json_file_1.readJsonFileSync)(fs_util_1.path.join(o,"package.json")),t=null==r?void 0:r.sensible;return(null==t?void 0:t.isSensibleProject)||!1};exports.isSensibleProject=isSensibleProject;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isSensibleProject = void 0;
+var fs_util_1 = require("fs-util");
+var read_json_file_1 = require("read-json-file");
+var getProjectRoot_1 = require("./getProjectRoot");
+var isSensibleProject = function (folderPath) {
+    var realFolderPath = folderPath || (0, getProjectRoot_1.getProjectRoot)();
+    if (!realFolderPath)
+        return false;
+    // get package-json and check sensible config
+    var packageJson = (0, read_json_file_1.readJsonFileSync)(fs_util_1.path.join(realFolderPath, "package.json"));
+    var sensibleConfig = packageJson === null || packageJson === void 0 ? void 0 : packageJson.sensible;
+    var isSensibleProject = (sensibleConfig === null || sensibleConfig === void 0 ? void 0 : sensibleConfig.isSensibleProject) || false;
+    return isSensibleProject;
+};
+exports.isSensibleProject = isSensibleProject;
 //# sourceMappingURL=isSensibleProject.js.map

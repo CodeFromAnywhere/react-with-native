@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666265021096,
+  "updatedAt": 1666265021096,
+  "deletedAt": 0,
+  "createdFirstAt": 1666265021096,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useHotkeys",
+  "slug": "use-hotkeys",
+  "operationRelativeTypescriptFilePath": "src/useHotkeys.ts",
+  "type": {
+    "rawType": "(dependencies: any[], callback: (keyboardEvent: KeyboardEvent) => void) => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  /**\n   * when the callback needs to be reloaded\n   */\n  dependencies: any[],\n  /**\n   * callback that needs to launch on any keyboard event\n   */\n  callback: (keyboardEvent: KeyboardEvent) => void\n) => {\n  return useEffect(() => {\n    if (typeof window === \"undefined\") return;\n    window.addEventListener(\"keydown\", callback);\n    return () => window.removeEventListener(\"keydown\", callback);\n  }, dependencies);\n}",
+  "description": "hook that creates an eventlistener for keydown and cleans it up when needed",
+  "id": "rwpzrtieftovciyishrsipih"
+}

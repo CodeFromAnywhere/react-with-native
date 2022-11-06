@@ -1,2 +1,22 @@
-"use strict";var __rest=this&&this.__rest||function(r,e){var t={};for(var o in r)Object.prototype.hasOwnProperty.call(r,o)&&e.indexOf(o)<0&&(t[o]=r[o]);if(null!=r&&"function"==typeof Object.getOwnPropertySymbols){var n=0;for(o=Object.getOwnPropertySymbols(r);n<o.length;n++)e.indexOf(o[n])<0&&Object.prototype.propertyIsEnumerable.call(r,o[n])&&(t[o[n]]=r[o[n]])}return t};Object.defineProperty(exports,"__esModule",{value:!0}),exports.markdownModelTypeToMarkdownString=void 0;const matter_types_1=require("matter-types"),markdownModelTypeToMarkdownString=r=>{const{markdown:e}=r,t=__rest(r,["markdown"]);return`${(0,matter_types_1.frontmatterParseToString)(t)}\n${e}`};exports.markdownModelTypeToMarkdownString=markdownModelTypeToMarkdownString;
+"use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.markdownModelTypeToMarkdownString = void 0;
+const matter_types_1 = require("matter-types");
+const markdownModelTypeToMarkdownString = (markdownModelType) => {
+    const { markdown } = markdownModelType, parameters = __rest(markdownModelType, ["markdown"]);
+    const frontmatterString = (0, matter_types_1.frontmatterParseToString)(parameters);
+    return `${frontmatterString}\n${markdown}`;
+};
+exports.markdownModelTypeToMarkdownString = markdownModelTypeToMarkdownString;
 //# sourceMappingURL=markdown-model-type.js.map

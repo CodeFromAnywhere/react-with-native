@@ -1,0 +1,102 @@
+{
+  "createdAt": 1667588120271,
+  "updatedAt": 1667588120271,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588120271,
+  "id": "markdownparserenderconfig",
+  "name": "MarkdownParseRenderConfig",
+  "slug": "markdownparserenderconfig",
+  "operationRelativeTypescriptFilePath": "src/editors/MarkedToken.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "projectRelativeBaseFolderPath": {
+          "type": "string",
+          "description": "Folder path where the markdown is supposed to be located.\n\nThis is used for knowing where relative links or assets can be found"
+        },
+        "projectRelativeMarkdownFilePath": {
+          "type": "string",
+          "description": "project relative path of the markdown file.\n\nThis is used for knowing where relative links or assets can be found"
+        },
+        "augmentedWordObject": {
+          "$ref": "#/definitions/MappedObject%3CAugmentedWord%3E",
+          "description": "Mapped object of `AugmentedWord`s. Used to augment the rendered markdown with tooltips and links showing more information about the augmented words."
+        },
+        "isStatic": {
+          "type": "boolean",
+          "description": "If true, the files should come from a static folder. This means the relative references should now become projectRelative. Also see `copyAllRelativeFiles`.\n\nIf not true, we will use the api."
+        },
+        "isDev": {
+          "type": "boolean",
+          "description": "If true, we assume not all files are present in the static folder yet. This means we need to use the api."
+        },
+        "big": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "projectRelativeBaseFolderPath",
+        "projectRelativeMarkdownFilePath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "projectRelativeBaseFolderPath",
+          "required": true,
+          "schema": {
+            "fullComment": "Folder path where the markdown is supposed to be located.\n\nThis is used for knowing where relative links or assets can be found",
+            "type": "string"
+          }
+        },
+        {
+          "name": "projectRelativeMarkdownFilePath",
+          "required": true,
+          "schema": {
+            "fullComment": "project relative path of the markdown file.\n\nThis is used for knowing where relative links or assets can be found",
+            "type": "string"
+          }
+        },
+        {
+          "name": "isStatic",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, the files should come from a static folder. This means the relative references should now become projectRelative. Also see `copyAllRelativeFiles`.\n\nIf not true, we will use the api.",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isDev",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, we assume not all files are present in the static folder yet. This means we need to use the api.",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "big",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MarkdownParseRenderConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

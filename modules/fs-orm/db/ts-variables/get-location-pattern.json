@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666512745194,
-  "updatedAt": 1666512745194,
+  "createdAt": 1667634653153,
+  "updatedAt": 1667634653153,
   "deletedAt": 0,
-  "createdFirstAt": 1666512745194,
+  "createdFirstAt": 1667634653153,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(\n  dbStorageMethod: DbStorageMethod,\n  modelName: string,\n  mergedConfig: MergedQueryConfig\n): string | undefined => {\n  const { operationRelativePath, projectRelativePath } = mergedConfig;\n\n  if (operationRelativePath) return operationRelativePath;\n  if (projectRelativePath) return projectRelativePath;\n\n  const fileOrFolderName = pluralize(kebabCase(modelName));\n  if (dbStorageMethod === \"jsonMultiple\") return `db/${fileOrFolderName}.json`;\n  if (dbStorageMethod === \"keyValueMarkdown\")\n    return `db/${fileOrFolderName}.md`;\n  if (dbStorageMethod === \"csv\") return `db/${fileOrFolderName}.csv`;\n\n  if (dbStorageMethod === \"jsonSingle\") return `db/${fileOrFolderName}/*.json`;\n  if (dbStorageMethod === \"markdown\") return `db/${fileOrFolderName}/*.md`;\n}",
+  "value": "(\n  dbStorageMethod: DbStorageMethod,\n  modelName: string,\n  mergedConfig: MergedQueryConfig\n): string | undefined => {\n  const { operationRelativePath, projectRelativePath } = mergedConfig;\n\n  if (operationRelativePath) return operationRelativePath;\n  if (projectRelativePath) return projectRelativePath;\n\n  return getDefaultLocationPattern(dbStorageMethod, modelName);\n}",
   "description": "Returns the pattern or an exact relative path that the file(s) should be stored at.\n\nIf a pattern contains a star at the place of the filename, it will search the folder recursively for all files with the extension in the pattern.\n\nReturning relative path has no preceding slash",
-  "id": "pvyojrvknrsypefhedozxkox"
+  "id": "erappkawuiyfscodywtnonft"
 }

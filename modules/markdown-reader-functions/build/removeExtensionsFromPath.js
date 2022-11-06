@@ -1,4 +1,9 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.removeExtensionsFromPath=exports.availableExtensions=void 0;var js_util_1=require("js-util"),removeNumberPrefix_1=require("./removeNumberPrefix");exports.availableExtensions=["md"];
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.removeExtensionsFromPath = exports.availableExtensions = void 0;
+var js_util_1 = require("js-util");
+var removeNumberPrefix_1 = require("./removeNumberPrefix");
+exports.availableExtensions = ["md"];
 /**
  * - Removes numbers from file or foldernames in a path.
  * - Removes extension of files
@@ -6,7 +11,21 @@
  *
  * Works for files and folders
  */
-var removeExtensionsFromPath=function(e){var r=(0,js_util_1.trimSlashes)(e).split("/").map(removeNumberPrefix_1.removeNumberPrefix),o=r.length-1,s=r[o].split("."),t=s[s.length-1];return exports.availableExtensions.includes(t)&&(
-// remove extension
-s.pop(),r[o]=s.join(".")),r.join("/")};exports.removeExtensionsFromPath=removeExtensionsFromPath;
+var removeExtensionsFromPath = function (relativePath) {
+    var chunks = (0, js_util_1.trimSlashes)(relativePath).split("/");
+    var chunksWithoutNumbers = chunks.map(removeNumberPrefix_1.removeNumberPrefix);
+    // could be file
+    var lastChunkIndex = chunksWithoutNumbers.length - 1;
+    var lastChunk = chunksWithoutNumbers[lastChunkIndex];
+    var parts = lastChunk.split(".");
+    var lastPart = parts[parts.length - 1];
+    if (exports.availableExtensions.includes(lastPart)) {
+        // remove extension
+        parts.pop();
+        chunksWithoutNumbers[lastChunkIndex] = parts.join(".");
+    }
+    var simplifiedPath = chunksWithoutNumbers.join("/");
+    return simplifiedPath;
+};
+exports.removeExtensionsFromPath = removeExtensionsFromPath;
 //# sourceMappingURL=removeExtensionsFromPath.js.map

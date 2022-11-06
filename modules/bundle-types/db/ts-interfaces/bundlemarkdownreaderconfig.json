@@ -1,0 +1,121 @@
+{
+  "createdAt": 1667684628476,
+  "updatedAt": 1667684628476,
+  "deletedAt": 0,
+  "createdFirstAt": 1667684628476,
+  "id": "bundlemarkdownreaderconfig",
+  "name": "BundleMarkdownReaderConfig",
+  "slug": "bundlemarkdownreaderconfig",
+  "operationRelativeTypescriptFilePath": "src/BundleMarkdownReaderConfig.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type BundleMarkdownReaderConfig = {\n  /**\n   * Show todo menu\n   */\n  showTodos?: boolean;\n  /**\n   * `modules` will be hidden from markdown reader menu\n   */\n  omitModulesMenu?: boolean;\n  /**\n   * `apps` will be hidden from markdown reader menui\n   */\n  omitAppsMenu?: boolean;\n  /**\n   * if true, dictionary is omitted from menu\n   */\n  omitDictionaryMenu?: boolean;\n\n  /**\n   * `packages` will be hidden from markdown reader menu\n   */\n  omitPackagesMenu?: boolean;\n\n  /**\n   * if given, the operations menu will show with these operations\n   */\n  customOperationNames?: string[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "showTodos": {
+          "type": "boolean",
+          "description": "Show todo menu"
+        },
+        "omitModulesMenu": {
+          "type": "boolean",
+          "description": "`modules` will be hidden from markdown reader menu"
+        },
+        "omitAppsMenu": {
+          "type": "boolean",
+          "description": "`apps` will be hidden from markdown reader menui"
+        },
+        "omitDictionaryMenu": {
+          "type": "boolean",
+          "description": "if true, dictionary is omitted from menu"
+        },
+        "omitPackagesMenu": {
+          "type": "boolean",
+          "description": "`packages` will be hidden from markdown reader menu"
+        },
+        "customOperationNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "if given, the operations menu will show with these operations"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "showTodos",
+          "required": false,
+          "schema": {
+            "fullComment": "Show todo menu",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "omitModulesMenu",
+          "required": false,
+          "schema": {
+            "fullComment": "`modules` will be hidden from markdown reader menu",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "omitAppsMenu",
+          "required": false,
+          "schema": {
+            "fullComment": "`apps` will be hidden from markdown reader menui",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "omitDictionaryMenu",
+          "required": false,
+          "schema": {
+            "fullComment": "if true, dictionary is omitted from menu",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "omitPackagesMenu",
+          "required": false,
+          "schema": {
+            "fullComment": "`packages` will be hidden from markdown reader menu",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "customOperationNames",
+          "required": false,
+          "schema": {
+            "fullComment": "if given, the operations menu will show with these operations",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "BundleMarkdownReaderConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

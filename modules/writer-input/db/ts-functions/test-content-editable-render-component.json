@@ -1,0 +1,50 @@
+{
+  "createdAt": 1667588132108,
+  "updatedAt": 1667588132108,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588132108,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/editors/testContentEditableRenderComponent.tsx",
+  "commentsInside": [],
+  "rawText": " <TToken extends marked.Token>(\n  ContentEditableRenderComponent: ContentEditableRenderComponentType<TToken>,\n  /**\n   * For doing a realtime test on real data, provide the markdown string to input into the test\n   */\n  markedToken?: TToken | undefined\n) => {\n  const subwordConfig: SubwordConfig = { isEnabled: false };\n  const subtextConfig: SubtextConfig = { isEnabled: false };\n  const markdownFileConfig: MarkdownParseRenderConfig = {\n    projectRelativeBaseFolderPath: \"\",\n    projectRelativeMarkdownFilePath: \"\",\n  };\n\n  const inputs = markedToken\n    ? [markedToken]\n    : ContentEditableRenderComponent.exampleInputs;\n\n  const invalidArray = inputs\n    .map((input) => {\n      const rendered = (\n        <ContentEditableRenderComponent\n          markedToken={input}\n          subwordConfig={subwordConfig}\n          subtextConfig={subtextConfig}\n          markdownFileConfig={markdownFileConfig}\n          // NB: lol, this would cause an infinite loop if enabled, no?\n          testModeEnabled={false}\n        />\n      );\n\n      const htmlString = ReactDOMServer.renderToString(rendered);\n      const span = document.createElement(\"span\");\n      span.innerHTML = htmlString.trim();\n\n      const output = ContentEditableRenderComponent.toMarkdownString(span);\n\n      const isValid = input.raw === output;\n\n      return { isValid, input, output, span };\n    })\n    .filter((result) => !result.isValid);\n\n  if (invalidArray.length === 0) return true;\n\n  // Log the result if there is something invalid\n  console.log({ name: ContentEditableRenderComponent.name, invalidArray });\n\n  return false;\n}",
+  "name": "testContentEditableRenderComponent",
+  "slug": "test-content-editable-render-component",
+  "parameters": [],
+  "description": "Creates an element from the markdown input, and then uses the `toMarkdownString` function to make it markdown again.\n\nTODO: use <template>, might be more accurate. See https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro/35385518#35385518",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 1911,
+    "lines": 52,
+    "bytes": 1911,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 37,
+    "linesPerFile": 52,
+    "numberOfFiles": 1
+  },
+  "id": "hfjvbatiawmxpddtjwdxdlij"
+}

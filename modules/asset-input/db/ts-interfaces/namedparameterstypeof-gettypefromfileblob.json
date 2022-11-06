@@ -1,0 +1,111 @@
+{
+  "createdAt": 1667378721729,
+  "updatedAt": 1667378721729,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378721729,
+  "id": "namedparameterstypeof-gettypefromfileblob",
+  "name": "NamedParameters<typeof getTypeFromFileBlob>",
+  "slug": "namedparameterstypeof-gettypefromfileblob",
+  "operationRelativeTypescriptFilePath": "src/util/getTypeFromFileBlob.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "number"
+            },
+            "type": {
+              "type": "string"
+            },
+            "lastModified": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            },
+            "webkitRelativePath": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "lastModified",
+            "name",
+            "size",
+            "type",
+            "webkitRelativePath"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "file"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "file",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "size",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "type",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "lastModified",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "name",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "webkitRelativePath",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getTypeFromFileBlob>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

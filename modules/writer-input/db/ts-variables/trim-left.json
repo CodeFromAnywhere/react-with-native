@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667588145482,
+  "updatedAt": 1667588145482,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588145482,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "trimLeft",
+  "slug": "trim-left",
+  "operationRelativeTypescriptFilePath": "src/util/word-trimming.ts",
+  "type": {
+    "rawType": "(word: string, character: string) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(word: string, character: string): string => {\n  if (word.startsWith(character))\n    return trimLeft(word.slice(character.length), character);\n  return word;\n}",
+  "description": "Trims a character from a word at the left until that character is not found anymore (recursive)",
+  "id": "znhsuhprplyormwtkxxuanpf"
+}

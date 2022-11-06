@@ -1,0 +1,47 @@
+{
+  "createdAt": 1667684634501,
+  "updatedAt": 1667684634501,
+  "deletedAt": 0,
+  "createdFirstAt": 1667684634501,
+  "id": "informationstrategy",
+  "name": "InformationStrategy",
+  "slug": "informationstrategy",
+  "operationRelativeTypescriptFilePath": "src/InformationStrategy.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "/**\n * push (default): take needed information from project and push to bundle (removing the existing info)\n *\n * pullReplace: pull bundle and keep its information intact, not taking anything new from the OS, replacing all the information we had from these models in the OS\n *\n * pullMerge: pull bundle and use its information in conjunction with the information we had in the OS. This option will merge both information sources, removing duplicate IDs\n *\n * ignore: don't put any data in the bundle!\n *\n */\nexport type InformationStrategy =\n  | \"ignore\"\n  | \"push\"\n  | \"pullReplace\"\n  | \"pullMerge\";",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "push (default): take needed information from project and push to bundle (removing the existing info)\n\npullReplace: pull bundle and keep its information intact, not taking anything new from the OS, replacing all the information we had from these models in the OS\n\npullMerge: pull bundle and use its information in conjunction with the information we had in the OS. This option will merge both information sources, removing duplicate IDs\n\nignore: don't put any data in the bundle!",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "string",
+      "enum": [
+        "ignore",
+        "push",
+        "pullReplace",
+        "pullMerge"
+      ],
+      "description": "push (default): take needed information from project and push to bundle (removing the existing info)\n\npullReplace: pull bundle and keep its information intact, not taking anything new from the OS, replacing all the information we had from these models in the OS\n\npullMerge: pull bundle and use its information in conjunction with the information we had in the OS. This option will merge both information sources, removing duplicate IDs\n\nignore: don't put any data in the bundle!"
+    },
+    "simplifiedSchema": {
+      "enum": [
+        "ignore",
+        "push",
+        "pullReplace",
+        "pullMerge"
+      ],
+      "fullComment": "push (default): take needed information from project and push to bundle (removing the existing info)\n\npullReplace: pull bundle and keep its information intact, not taking anything new from the OS, replacing all the information we had from these models in the OS\n\npullMerge: pull bundle and use its information in conjunction with the information we had in the OS. This option will merge both information sources, removing duplicate IDs\n\nignore: don't put any data in the bundle!",
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "rawType": "InformationStrategy",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

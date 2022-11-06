@@ -1,14 +1,21 @@
-import { Div, Span } from "react-with-native";
+import { Div, P, Span } from "react-with-native";
 import {
   NestedMenu,
   queryPathsArrayToNestedPathObject,
   nestedPathObjectToNestedMenuRecursive,
 } from "nested-menu";
 import { SelectInput } from "react-with-native-form-inputs";
-import { AugmentedWord, MarkdownReaderPage } from "markdown-reader-types";
+import {
+  AugmentedWord,
+  MarkdownReaderPage,
+  MarkdownReaderPageProps,
+} from "markdown-reader-types";
 import { MappedObject } from "js-util";
 import { Item } from "react-with-native-select";
 import { useRouter } from "react-with-native-router";
+import { useStore } from "../store";
+import { ClickableIcon } from "clickable-icon";
+import { ALink } from "next-a-link";
 
 export const Search = (props: { results: AugmentedWord[] }) => {
   const { results } = props;
@@ -37,12 +44,15 @@ export const Search = (props: { results: AugmentedWord[] }) => {
   );
 };
 export const Layout = (props: {
+  publicBundleConfig: MarkdownReaderPageProps["publicBundleConfig"];
   pages: MarkdownReaderPage[];
   children: any;
   augmentedWordObject?: MappedObject<AugmentedWord>;
 }) => {
   const { pages, children, augmentedWordObject } = props;
-
+  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(
+    "menu.isMobileMenuEnabled"
+  );
   const queryPaths = pages.filter((x) => x.isMenuItem).map((x) => x.queryPath);
   const nestedPathObject = queryPathsArrayToNestedPathObject(queryPaths);
   const menu = nestedPathObjectToNestedMenuRecursive(nestedPathObject);
@@ -53,25 +63,86 @@ export const Layout = (props: {
       )
     : [];
 
-  return (
-    <Div className="h-screen grid grid-rows-6">
-      <Div className="row-span-6 grid grid-cols-5">
-        <Div
-          className={`
-        col-span-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white`}
-          textClassName="dark:text-white"
-        >
-          {children}
+  const renderMenu = () => {
+    return (
+      <>
+        <Div className="flex flex-row flex-1">
+          <Div className="w-full">
+            <Search results={results} />
+          </Div>
+
+          <Div className="lg:hidden">
+            <ClickableIcon
+              emoji="╳"
+              onClick={() => {
+                setIsMobileMenuEnabled(false);
+              }}
+            />
+          </Div>
         </Div>
-        <Span className="border-l col-span-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white border-l-gray-400">
-          <Search results={results} />
-          {menu ? (
-            <NestedMenu menu={menu} headersClickable={true} />
-          ) : (
-            "Menu couldn't be found"
-          )}
-        </Span>
+        {menu ? (
+          <NestedMenu menu={menu} headersClickable={true} />
+        ) : (
+          "Menu couldn't be found"
+        )}
+      </>
+    );
+  };
+
+  const renderHeader = () => {
+    return (
+      <Div
+        style={{
+          backgroundColor: props.publicBundleConfig?.primaryColor,
+          justifyContent: "space-between",
+          flex: 1,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        {/* 
+            typeof window !== "undefined"
+              ? location.protocol + "//" + location.host
+              : "#"
+           */}
+        <ALink href={"#"} style={{ fontSize: 32 }}>
+          {props.publicBundleConfig?.emoji}
+        </ALink>
+
+        <P className="font-bold">{props.publicBundleConfig?.name}</P>
+
+        {props.publicBundleConfig?.isGitRepoPublic &&
+        props.publicBundleConfig.gitRepoUrl ? (
+          <ALink target="_blank" href={props.publicBundleConfig.gitRepoUrl}>
+            🐱
+          </ALink>
+        ) : null}
       </Div>
+    );
+  };
+
+  return (
+    <Div>
+      {renderHeader()}
+
+      {isMobileMenuEnabled ? (
+        <Div className="lg:hidden">{renderMenu()}</Div>
+      ) : (
+        <Div className="lg:h-screen lg:grid lg:grid-rows-6">
+          <Div className="lg:row-span-6 lg:grid lg:grid-cols-5">
+            <Div
+              className={`lg:col-span-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white`}
+              textClassName="dark:text-white"
+            >
+              {children}
+            </Div>
+            <Span className="invisible lg:visible border-l lg:col-span-1 lg:overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white border-l-gray-400">
+              {renderMenu()}
+            </Span>
+          </Div>
+        </Div>
+      )}
     </Div>
   );
 };

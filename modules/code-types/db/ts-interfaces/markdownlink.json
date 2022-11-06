@@ -1,15 +1,15 @@
 {
-  "createdAt": 1667379855279,
-  "updatedAt": 1667379855279,
+  "createdAt": 1667684664331,
+  "updatedAt": 1667684664331,
   "deletedAt": 0,
-  "createdFirstAt": 1667379855279,
+  "createdFirstAt": 1667684664331,
   "id": "markdownlink",
   "name": "MarkdownLink",
   "slug": "markdownlink",
   "operationRelativeTypescriptFilePath": "src/MarkdownParse.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n/**\n * Anything in the format `[alt](href)`\n *\n * It needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here\n */\nexport type MarkdownLink = {\n  alt: string;\n  href: string;\n  type: MarkdownAssetType;\n};",
+  "rawText": "\n/**\n * Anything in the format `[alt](href)`\n *\n * It needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here\n */\nexport type MarkdownLink = {\n  alt: string;\n  href: string;\n  /**\n   * Can be inferred from href\n   */\n  type: MarkdownAssetType;\n};",
   "extensions": [],
   "isOperationIndex": false,
   "description": "Anything in the format `[alt](href)`\n\nIt needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here",
@@ -26,7 +26,8 @@
           "type": "string"
         },
         "type": {
-          "$ref": "#/definitions/MarkdownAssetType"
+          "$ref": "#/definitions/MarkdownAssetType",
+          "description": "Can be inferred from href"
         }
       },
       "required": [
@@ -68,7 +69,7 @@
               "typescript",
               "file"
             ],
-            "fullComment": "type of asset that is being embedded",
+            "fullComment": "Can be inferred from href\n\ntype of asset that is being embedded",
             "type": "string"
           }
         }

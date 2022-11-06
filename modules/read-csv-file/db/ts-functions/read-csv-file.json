@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262997396,
-  "updatedAt": 1666262997396,
+  "createdAt": 1667635456811,
+  "updatedAt": 1667635456811,
   "deletedAt": 0,
-  "createdFirstAt": 1666262997396,
+  "createdFirstAt": 1667635456811,
   "publicAuthorization": [
     "read-docs",
     "search"
@@ -13,7 +13,7 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/readCsvFile.ts",
   "commentsInside": [],
-  "rawText": " async <T extends CsvItemType>(\n  filePath: Path | undefined\n): Promise<T[] | null> => {\n  if (!filePath) return null;\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const parsed = tryParseCsv<T>(fileString);\n  return parsed;\n}",
+  "rawText": " async <T extends CsvItemType>(\n  filePath: Path | undefined\n): Promise<T[] | null> => {\n  if (!filePath) return null;\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n\n  const fileBuffer = await fs.readFile(filePath);\n  const parsed = parse(fileBuffer, { columns: true }) as T[];\n\n  return parsed;\n}",
   "name": "readCsvFile",
   "slug": "read-csv-file",
   "parameters": [
@@ -41,13 +41,13 @@
   },
   "maxIndentationDepth": 1,
   "size": {
-    "characters": 515,
+    "characters": 493,
     "lines": 17,
-    "bytes": 515,
+    "bytes": 493,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 30,
+    "charactersPerLine": 29,
     "linesPerFile": 17,
     "numberOfFiles": 1
   },
-  "id": "zxbgyayjgwayjenwrqxnsdee"
+  "id": "tijogrgguwrtfkpnvbuofddq"
 }

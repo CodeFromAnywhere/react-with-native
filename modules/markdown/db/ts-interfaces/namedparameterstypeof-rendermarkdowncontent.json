@@ -1,0 +1,102 @@
+{
+  "createdAt": 1667634960558,
+  "updatedAt": 1667634960558,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634960558,
+  "id": "namedparameterstypeof-rendermarkdowncontent",
+  "name": "NamedParameters<typeof renderMarkdownContent>",
+  "slug": "namedparameterstypeof-rendermarkdowncontent",
+  "operationRelativeTypescriptFilePath": "src/renderMarkdownContent.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "config": {
+          "$ref": "#/definitions/MarkdownParseRenderConfig"
+        }
+      },
+      "required": [
+        "content",
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "content",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "projectRelativeBaseFolderPath",
+                "required": true,
+                "schema": {
+                  "fullComment": "Folder path where the markdown is supposed to be located.\n\nThis is used for knowing where relative links or assets can be found",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "projectRelativeMarkdownFilePath",
+                "required": true,
+                "schema": {
+                  "fullComment": "project relative path of the markdown file.\n\nThis is used for knowing where relative links or assets can be found",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "isStatic",
+                "required": false,
+                "schema": {
+                  "fullComment": "If true, the files should come from a static folder. This means the relative references should now become projectRelative. Also see `copyAllRelativeFiles`.\n\nIf not true, we will use the api.",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "isDev",
+                "required": false,
+                "schema": {
+                  "fullComment": "If true, we assume not all files are present in the static folder yet. This means we need to use the api.",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "big",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof renderMarkdownContent>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

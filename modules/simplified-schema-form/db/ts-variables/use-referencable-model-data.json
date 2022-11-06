@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667634906477,
+  "updatedAt": 1667634906477,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634906477,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useReferencableModelData",
+  "slug": "use-referencable-model-data",
+  "operationRelativeTypescriptFilePath": "src/useReferencableModelData.ts",
+  "type": {
+    "rawType": "(simplifiedSchema: import(\"/Users/king/King/operations/tools/types/code-types/build/SimplifiedSchema\").SimplifiedSchema) => import(\"/Users/king/King/operations/tools/interfaces/vui/simplified-schema-form/src/types\").ReferencableModelData | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  simplifiedSchema: SimplifiedSchema\n): ReferencableModelData | undefined => {\n  const referencableModelNames = getReferencableModels(simplifiedSchema)\n    ?.map((x) => x.interfaceName)\n    .filter(notEmpty);\n\n  if (!referencableModelNames) return;\n\n  /**\n   * NB: here we just get the referencable model data for the referencable model names in this form. But since they are decoupled, useQuery is caching them, across forms!\n   */\n  const referencableModelDataArray = referencableModelNames\n    .map((dbModelName) => {\n      const realDbModelName = dbModelName as keyof DbModels;\n      const { data: apiResult, isLoading } =\n        queries.useGetReferencableModelData(realDbModelName);\n\n      const data = apiResult?.result;\n\n      return { [dbModelName]: { data, isLoading } };\n    })\n    .filter(notEmpty);\n\n  const referencableModelData: ReferencableModelData | undefined =\n    referencableModelDataArray\n      ? mergeObjectsArray(referencableModelDataArray)\n      : undefined;\n\n  return referencableModelData;\n}",
+  "description": "Hook to retreive `ReferencableModelData` to supply to `SimplifiedSchemaForm`.\n\nUnderwater, this calculates all referencableModelNames for a schema, and then it fetches the `ReferencableItem`[] for every one of those models, using `react-query` `useQuery` hooks\n\nNB: be careful, not to change the simplifiedSchema after using this hook for the first time. This will change the amount of hooks and this can break react!\n\n(it will give `Error: Rendered more hooks than during the previous render`)",
+  "id": "ltptjhbbwxxngrtcsurlkqeq"
+}

@@ -1,0 +1,109 @@
+{
+  "createdAt": 1667634901559,
+  "updatedAt": 1667634901559,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634901559,
+  "id": "referenceitemsobject",
+  "name": "ReferenceItemsObject",
+  "slug": "referenceitemsobject",
+  "operationRelativeTypescriptFilePath": "src/getReferencedModelDataItem.tsx",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type ReferenceItemsObject = {\n  data?: ReferenceItem[];\n  isLoading?: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceItem"
+          }
+        },
+        "isLoading": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "data",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "slug",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "name",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "categoryStackCalculated",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "",
+                        "items": [
+                          {
+                            "schema": {
+                              "type": "string"
+                            },
+                            "name": null
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "ReferenceItem"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "isLoading",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ReferenceItemsObject",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

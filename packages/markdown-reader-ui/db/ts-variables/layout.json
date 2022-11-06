@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262427619,
-  "updatedAt": 1666262427619,
+  "createdAt": 1667635254885,
+  "updatedAt": 1667635254885,
   "deletedAt": 0,
-  "createdFirstAt": 1666262427619,
+  "createdFirstAt": 1667635254885,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "layout",
   "operationRelativeTypescriptFilePath": "src/components/Layout.tsx",
   "type": {
-    "rawType": "(props: { pages: import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage[]; children: any; augmentedWordObject?: import(\"/Users/king/King/operations/tools/util/js-util/build/createMappedObject\").MappedObject<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/AugmentedWord\").AugmentedWord> | undefined; }) => JSX.Element",
+    "rawType": "(props: { publicBundleConfig: any; pages: import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage[]; children: any; augmentedWordObject?: import(\"/Users/king/King/operations/tools/util/js-util/build/createMappedObject\").MappedObject<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/AugmentedWord\").AugmentedWord> | undefined; }) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(props: {\n  pages: MarkdownReaderPage[];\n  children: any;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n}) => {\n  const { pages, children, augmentedWordObject } = props;\n\n  const queryPaths = pages.filter((x) => x.isMenuItem).map((x) => x.queryPath);\n  const nestedPathObject = queryPathsArrayToNestedPathObject(queryPaths);\n  const menu = nestedPathObjectToNestedMenuRecursive(nestedPathObject);\n\n  const results: AugmentedWord[] = augmentedWordObject\n    ? Object.keys(augmentedWordObject).map(\n        (key) => augmentedWordObject[key] as AugmentedWord\n      )\n    : [];\n\n  return (\n    <Div className=\"h-screen grid grid-rows-6\">\n      <Div className=\"row-span-6 grid grid-cols-5\">\n        <Div\n          className={`\n        col-span-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white`}\n          textClassName=\"dark:text-white\"\n        >\n          {children}\n        </Div>\n        <Span className=\"border-l col-span-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white border-l-gray-400\">\n          <Search results={results} />\n          {menu ? (\n            <NestedMenu menu={menu} headersClickable={true} />\n          ) : (\n            \"Menu couldn't be found\"\n          )}\n        </Span>\n      </Div>\n    </Div>\n  );\n}",
+  "value": "(props: {\n  publicBundleConfig: MarkdownReaderPageProps[\"publicBundleConfig\"];\n  pages: MarkdownReaderPage[];\n  children: any;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n}) => {\n  const { pages, children, augmentedWordObject } = props;\n  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(\n    \"menu.isMobileMenuEnabled\"\n  );\n  const queryPaths = pages.filter((x) => x.isMenuItem).map((x) => x.queryPath);\n  const nestedPathObject = queryPathsArrayToNestedPathObject(queryPaths);\n  const menu = nestedPathObjectToNestedMenuRecursive(nestedPathObject);\n\n  const results: AugmentedWord[] = augmentedWordObject\n    ? Object.keys(augmentedWordObject).map(\n        (key) => augmentedWordObject[key] as AugmentedWord\n      )\n    : [];\n\n  const renderMenu = () => {\n    return (\n      <>\n        <Div className=\"flex flex-row flex-1\">\n          <Div className=\"w-full\">\n            <Search results={results} />\n          </Div>\n\n          <Div className=\"lg:hidden\">\n            <ClickableIcon\n              emoji=\"╳\"\n              onClick={() => {\n                setIsMobileMenuEnabled(false);\n              }}\n            />\n          </Div>\n        </Div>\n        {menu ? (\n          <NestedMenu menu={menu} headersClickable={true} />\n        ) : (\n          \"Menu couldn't be found\"\n        )}\n      </>\n    );\n  };\n\n  const renderHeader = () => {\n    return (\n      <Div\n        style={{\n          backgroundColor: props.publicBundleConfig?.primaryColor,\n          justifyContent: \"space-between\",\n          flex: 1,\n          display: \"flex\",\n          flexDirection: \"row\",\n          alignItems: \"center\",\n        }}\n      >\n        {/* \n            typeof window !== \"undefined\"\n              ? location.protocol + \"//\" + location.host\n              : \"#\"\n           */}\n        <ALink href={\"#\"} style={{ fontSize: 32 }}>\n          {props.publicBundleConfig?.emoji}\n        </ALink>\n\n        <P className=\"font-bold\">{props.publicBundleConfig?.name}</P>\n\n        {props.publicBundleConfig?.isGitRepoPublic &&\n        props.publicBundleConfig.gitRepoUrl ? (\n          <ALink target=\"_blank\" href={props.publicBundleConfig.gitRepoUrl}>\n            🐱\n          </ALink>\n        ) : null}\n      </Div>\n    );\n  };\n\n  return (\n    <Div>\n      {renderHeader()}\n\n      {isMobileMenuEnabled ? (\n        <Div className=\"lg:hidden\">{renderMenu()}</Div>\n      ) : (\n        <Div className=\"lg:h-screen lg:grid lg:grid-rows-6\">\n          <Div className=\"lg:row-span-6 lg:grid lg:grid-cols-5\">\n            <Div\n              className={`lg:col-span-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white`}\n              textClassName=\"dark:text-white\"\n            >\n              {children}\n            </Div>\n            <Span className=\"invisible lg:visible border-l lg:col-span-1 lg:overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white border-l-gray-400\">\n              {renderMenu()}\n            </Span>\n          </Div>\n        </Div>\n      )}\n    </Div>\n  );\n}",
   "description": "",
-  "id": "tqofvisamykukzaredonafxs"
+  "id": "dmvzrwmkxxchfvgczhyiujlw"
 }

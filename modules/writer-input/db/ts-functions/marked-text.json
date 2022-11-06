@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667588119065,
+  "updatedAt": 1667588119065,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588119065,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/editors/MarkedText.tsx",
+  "commentsInside": [],
+  "rawText": " (props) => {\n  const {\n    subwordConfig,\n    markdownFileConfig,\n    subtextConfig,\n    markedToken,\n    testModeEnabled,\n  } = props;\n\n  const sentences = markedToken.raw.split(\"\\n\");\n  return (\n    <div>\n      {sentences.map((sentence) => (\n        <div>\n          <SpannedSentence\n            sentence={sentence}\n            subwordConfig={subwordConfig}\n            markdownFileConfig={markdownFileConfig}\n            subtextConfig={subtextConfig}\n            testModeEnabled={testModeEnabled}\n          />\n        </div>\n      ))}\n    </div>\n  );\n}",
+  "name": "MarkedText",
+  "slug": "marked-text",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 555,
+    "lines": 26,
+    "bytes": 555,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 26,
+    "numberOfFiles": 1
+  },
+  "id": "scozkjzybkitiybyiyczcxkv"
+}

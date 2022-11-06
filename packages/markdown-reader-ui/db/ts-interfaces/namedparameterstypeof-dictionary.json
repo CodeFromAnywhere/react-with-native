@@ -1,0 +1,70 @@
+{
+  "createdAt": 1667635252495,
+  "updatedAt": 1667635252495,
+  "deletedAt": 0,
+  "createdFirstAt": 1667635252495,
+  "id": "namedparameterstypeof-dictionary",
+  "name": "NamedParameters<typeof Dictionary>",
+  "slug": "namedparameterstypeof-dictionary",
+  "operationRelativeTypescriptFilePath": "src/components/Dictionary.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "props": {
+          "type": "object",
+          "properties": {
+            "augmentedWordObject": {
+              "$ref": "#/definitions/MappedObject%3CAugmentedWord%3E"
+            },
+            "word": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "augmentedWordObject"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "props"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "props",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "word",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof Dictionary>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

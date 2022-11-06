@@ -1,0 +1,62 @@
+{
+  "createdAt": 1666423007166,
+  "updatedAt": 1666423007166,
+  "deletedAt": 0,
+  "createdFirstAt": 1666423007166,
+  "id": "encodingopts",
+  "name": "EncodingOpts",
+  "slug": "encodingopts",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface EncodingOpts {\n  /** Defaults to 24 */\n  chunkLength?: number;\n\n  /** If not provided, will check the start, beginning, and end */\n  chunkBegin?: number;\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "chunkLength": {
+          "type": "number",
+          "description": "Defaults to 24"
+        },
+        "chunkBegin": {
+          "type": "number",
+          "description": "If not provided, will check the start, beginning, and end"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "chunkLength",
+          "required": false,
+          "schema": {
+            "fullComment": "Defaults to 24",
+            "type": "number"
+          }
+        },
+        {
+          "name": "chunkBegin",
+          "required": false,
+          "schema": {
+            "fullComment": "If not provided, will check the start, beginning, and end",
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "EncodingOpts",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

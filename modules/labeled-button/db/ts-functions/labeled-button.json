@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666261825906,
+  "updatedAt": 1666261825906,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261825906,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/LabeledButton.tsx",
+  "commentsInside": [],
+  "rawText": " (button: LabeledButtonType, index: number) => {\n  const size = button.size === \"small\" ? 12 : 24;\n  const heightClass = button.size === \"small\" ? \"h-4\" : \"h-7\";\n  const textSizeClass = button.size === \"small\" ? \"text-xs\" : \"text-xl\";\n  return (\n    <Button\n      key={`labeledbutton${index}`}\n      className={`flex flex-col items-center`}\n      onClick={button.onClick}\n    >\n      <Div\n        className={`w-10 ${\n          button.isActive ? \"bg-blue-900 dark:bg-blue-600 rounded-full\" : \"\"\n        }`}\n      >\n        {button.icon ? (\n          <Svg src={button.icon} width={size} height={size} />\n        ) : button.emoji ? (\n          <P className={`${textSizeClass} hover:scale-110`}>{button.emoji}</P>\n        ) : button.component ? (\n          <Div className={heightClass}>{button.component()}</Div>\n        ) : null}\n      </Div>\n      {button.size === \"small\" ? null : (\n        <P className=\"text-xs\">{button.title}</P>\n      )}\n    </Button>\n  );\n}",
+  "name": "LabeledButton",
+  "slug": "labeled-button",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 961,
+    "lines": 29,
+    "bytes": 961,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 29,
+    "numberOfFiles": 1
+  },
+  "id": "jkshyipulilupqmyemkdgtvz"
+}

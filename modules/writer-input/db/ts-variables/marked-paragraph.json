@@ -1,0 +1,71 @@
+{
+  "createdAt": 1667588118032,
+  "updatedAt": 1667588118032,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588118032,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "MarkedParagraph",
+  "slug": "marked-paragraph",
+  "operationRelativeTypescriptFilePath": "src/editors/MarkedParagraph.tsx",
+  "type": {
+    "rawType": "import(\"/Users/king/King/operations/tools/writer/writer-input/src/editors/types\").ContentEditableRenderComponentType<import(\"/Users/king/King/operations/node_modules/@types/marked/index\").marked.Tokens.Paragraph>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "toMarkdownString": {
+          "type": "object",
+          "properties": {}
+        },
+        "exampleInputs": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [
+        "toMarkdownString",
+        "exampleInputs"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "toMarkdownString",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "exampleInputs",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "value": "(props) => {\n  const {\n    markdownFileConfig,\n    markedToken,\n    subtextConfig,\n    subwordConfig,\n    testModeEnabled,\n  } = props;\n\n  const endsWithNewline = markedToken.raw.endsWith(\"\\n\");\n\n  const paragraphText = markedToken.tokens.map((token) => (\n    <MarkedToken\n      item={token}\n      subtextConfig={subtextConfig}\n      subwordConfig={subwordConfig}\n      markdownFileConfig={markdownFileConfig}\n      testModeEnabled={testModeEnabled}\n    />\n  ));\n\n  const paragraphSubtextHtmlString = getSubtext(markedToken.raw, subtextConfig);\n\n  return (\n    <div>\n      {paragraphText}\n      {paragraphSubtextHtmlString}\n      {endsWithNewline ? <br /> : null}\n    </div>\n  );\n}",
+  "description": "",
+  "id": "jlthpduuifhowcgxtxtwpzou"
+}

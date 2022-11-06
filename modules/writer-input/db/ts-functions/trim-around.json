@@ -1,0 +1,66 @@
+{
+  "createdAt": 1667588145248,
+  "updatedAt": 1667588145248,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588145248,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util/word-trimming.ts",
+  "commentsInside": [],
+  "rawText": " (word: string, trimLength: number): string => {\n  return word.slice(trimLength, word.length - trimLength);\n}",
+  "name": "trimAround",
+  "slug": "trim-around",
+  "parameters": [
+    {
+      "name": "word",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "trimLength",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    }
+  ],
+  "description": "Removes x amount of characters from both sides of a word",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 165,
+    "lines": 3,
+    "bytes": 165,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 55,
+    "linesPerFile": 3,
+    "numberOfFiles": 1
+  },
+  "id": "wvaewmnvqsuvyoqarnzwhnlg"
+}

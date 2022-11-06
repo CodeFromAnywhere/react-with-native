@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667634897453,
+  "updatedAt": 1667634897453,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634897453,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/ObjectForm.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  itemNameOrId?: string;\n  parameterNameStack?: string[];\n  projectRelativeStorageFilePath?: string;\n  parameter: RenderableFunctionParameter;\n  /**\n   * In this case this must be an object or undefined\n   */\n  parameterValue: { [key: string]: any } | undefined;\n  onChangeParameter: (newValue: any) => void;\n\n  isDebug?: boolean;\n  referencableModelData?: ReferencableModelData;\n  referencedModelDataIsLoading?: boolean;\n\n  /**\n   * Unique id for this ObjectForm\n   */\n  id: string;\n}) => {\n  const {\n    itemNameOrId,\n    parameterNameStack,\n    projectRelativeStorageFilePath,\n    parameter,\n    onChangeParameter,\n    parameterValue,\n    isDebug,\n    id,\n    referencableModelData,\n    referencedModelDataIsLoading,\n  } = props;\n\n  /**\n   * By default, the thing is expanded if the parameter is required, or if there is already a parameter value. If it is \"true\" by default, you can also not minimise\n   */\n  const defaultExpandedState = parameter.required ? true : !!parameterValue;\n\n  const [isExpanded, setIsExpanded] = useState(defaultExpandedState);\n\n  if (!parameter.simplifiedSchema) {\n    return null;\n  }\n\n  // we can only render the object if it has properties...\n  if (\n    !parameter.simplifiedSchema.properties ||\n    parameter.simplifiedSchema.properties.length === 0\n  ) {\n    // console.log(\"Object without properties\", { parameter });\n    return isDebug ? (\n      <P className=\"text-red-500\">\n        Object without properties {parameter.name}{\" \"}\n        {JSON.stringify(parameter.simplifiedSchema)}\n      </P>\n    ) : null;\n  }\n\n  // for each parameter, recurse this form builder\n\n  const onChangeSubset = (objectParameterValues: any[]) => {\n    // NB: every item in the array is linked with a parameter in the object\n    const objectParts = parameter.simplifiedSchema?.properties?.map((x, i) => ({\n      [x.name]: objectParameterValues[i],\n    }));\n    const objectOrNot = objectParts\n      ? mergeObjectsArray(objectParts)\n      : undefined;\n\n    onChangeParameter(objectOrNot);\n  };\n\n  const valuesSubset: any[] = parameter.simplifiedSchema.properties.map(\n    (x) => parameterValue?.[x.name]\n  );\n\n  const parameters: RenderableFunctionParameter[] =\n    parameter.simplifiedSchema.properties.map((x) => ({\n      name: x.name,\n      required: x.required,\n      simplifiedSchema: x.schema,\n      isDbModel: parameter.isDbModel,\n    }));\n\n  // console.log({ parameters, parameter, isExpanded });\n\n  const renderExpandButton = () => {\n    if (defaultExpandedState) return null;\n\n    return (\n      <ClickableIcon\n        onClick={() => setIsExpanded(!isExpanded)}\n        emoji={isExpanded ? \"-\" : \"+\"}\n      />\n    );\n  };\n\n  const hasName = parameter.name ? parameter.name.length > 0 : false;\n\n  return (\n    <Div\n      className={\"ml-2 pl-2 my-4 border-l border-gray-900 dark:border-gray-100\"}\n    >\n      {renderParameterTitle(parameter, isDebug, true, () =>\n        renderExpandButton()\n      )}\n\n      {isExpanded ? (\n        <SimplifiedSchemaForm\n          itemNameOrId={itemNameOrId}\n          parameterNameStack={\n            hasName\n              ? parameterNameStack\n                ? [...parameterNameStack, parameter.name]\n                : [parameter.name]\n              : parameterNameStack\n          }\n          projectRelativeStorageFilePath={projectRelativeStorageFilePath}\n          isDebug={isDebug}\n          parameters={parameters}\n          onChange={onChangeSubset}\n          values={valuesSubset}\n          // just passing this\n          referencableModelData={referencableModelData}\n          id={id}\n        />\n      ) : null}\n    </Div>\n  );\n}",
+  "name": "ObjectForm",
+  "slug": "object-form",
+  "parameters": [],
+  "description": "Component to render a parameter that holds an object\n\nThis is simply a wrapper around another SimplifiedSchemaForm where the onChange and values are slightly different",
+  "returnType": {
+    "rawType": "JSX.Element | null",
+    "typeDefinition": {
+      "optional": true,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 8,
+  "size": {
+    "characters": 3773,
+    "lines": 132,
+    "bytes": 3773,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 132,
+    "numberOfFiles": 1
+  },
+  "id": "aqpqizhxjrfrxvcdphgcqpyz"
+}

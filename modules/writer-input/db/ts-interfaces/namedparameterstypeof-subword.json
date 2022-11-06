@@ -1,0 +1,236 @@
+{
+  "createdAt": 1667588125888,
+  "updatedAt": 1667588125888,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588125888,
+  "id": "namedparameterstypeof-subword",
+  "name": "NamedParameters<typeof Subword>",
+  "slug": "namedparameterstypeof-subword",
+  "operationRelativeTypescriptFilePath": "src/editors/Subword.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "props": {
+          "type": "object",
+          "properties": {
+            "word": {
+              "type": "string"
+            },
+            "subwordConfig": {
+              "$ref": "#/definitions/SubwordConfig"
+            }
+          },
+          "required": [
+            "word",
+            "subwordConfig"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "props"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "props",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "word",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "subwordConfig",
+                "required": true,
+                "schema": {
+                  "fullComment": "Configurate what should be shown about words",
+                  "properties": [
+                    {
+                      "name": "isEnabled",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "TITLE: Enable",
+                        "title": "Enable",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "subwordSize",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "normal",
+                          "mini",
+                          "micro"
+                        ],
+                        "fullComment": "Optionally, make the subwords smaller for a better overview",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "translations",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "show subwords for one or multiple languages",
+                        "items": [
+                          {
+                            "schema": {
+                              "enum": [
+                                "english",
+                                "dutch",
+                                "nepali",
+                                "portuguese",
+                                "brazilian",
+                                "german",
+                                "french",
+                                "spanish",
+                                "italian",
+                                "norwegian",
+                                "swedish",
+                                "danish",
+                                "vietnamese",
+                                "indonesian",
+                                "southAfrican",
+                                "tokiPona",
+                                "hindi",
+                                "mandarin",
+                                "arabic",
+                                "bengali",
+                                "urdu",
+                                "japanese",
+                                "swahili"
+                              ],
+                              "fullComment": "all currently supported languages",
+                              "type": "string"
+                            },
+                            "name": "Language"
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "translationsViewMode",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "disabled",
+                          "tooltip",
+                          "context",
+                          "subword"
+                        ],
+                        "fullComment": "",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "showDefinition",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Show definition (always in tooltip)",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "occurenceAmountViewMode",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "disabled",
+                          "tooltip",
+                          "context",
+                          "subword"
+                        ],
+                        "fullComment": "Show occurrence amount\n\n",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "blurMode",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "disabled",
+                          "special"
+                        ],
+                        "fullComment": "Blur the word unless it's special for one reason or another. Might be useful for skimming (or maybe more)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "audioMode",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "disabled",
+                          "tooltip",
+                          "context",
+                          "subword"
+                        ],
+                        "fullComment": "Audio for `WordMatrix` word can be played\n\n",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "replaceWordMode",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "disabled",
+                          "translate",
+                          "alternative",
+                          "phonetic",
+                          "tokiPona",
+                          "emoji"
+                        ],
+                        "fullComment": "if \"translate\" is selected, first language from `translations` will be used\n\n`alternative` picks the alternative writing using the `WordMatrix` if available\n\n`phonetic` picks the phonetic writing using the `WordMatrix` if available",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "heatmapMode",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "disabled",
+                          "projectFrequency",
+                          "englishFrequency"
+                        ],
+                        "fullComment": "colour words with heat having different meanings",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof Subword>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666264855122,
+  "updatedAt": 1666264855122,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264855122,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "BreadCrumbs",
+  "slug": "bread-crumbs",
+  "operationRelativeTypescriptFilePath": "src/BreadCrumbs.tsx",
+  "type": {
+    "rawType": "(props: { path: string; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: { path: string }) => {\n  const { path } = props;\n  const chunks = (path || \"\").split(\"/\");\n\n  return (\n    <Div className=\"border-b border-b-gray-300 mb-4 bg-[#FFFFFF] dark:bg-gray-900\">\n      <Div className=\"flex flex-row items-center ml-2\">\n        {renderBreadCrumbs(chunks)}\n      </Div>\n    </Div>\n  );\n}",
+  "description": "Shows where we are in the filesystem",
+  "id": "tgxhqyypnsajvjfkucttzsvg"
+}

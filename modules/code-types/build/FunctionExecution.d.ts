@@ -1,4 +1,4 @@
-import { DefaultModelType, Id } from "model-types";
+import { DefaultModelType, Id, Markdown } from "model-types";
 import { PerformanceItem } from "./PerformanceItem";
 import { TsFunction } from "./TsFunction";
 /**
@@ -36,7 +36,16 @@ export interface FunctionExecution extends DefaultModelType {
     output: any;
     isTest: boolean;
     isExample: boolean;
+    /**
+     * test description or example description or anything
+     */
+    description: Markdown;
     isResultFromCache: boolean;
+    /**
+     * if true, the api of the function (input/output interface) has changed in bewteen, so the re-execution would probably fail or return a different result
+     */
+    hasApiChanged?: boolean;
     performance: PerformanceItem[];
 }
+export declare const getFunctionExersize: (functionId: string) => Promise<string>;
 //# sourceMappingURL=FunctionExecution.d.ts.map

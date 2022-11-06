@@ -1,0 +1,162 @@
+{
+  "createdAt": 1667588106803,
+  "updatedAt": 1667588106803,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588106803,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/MarkdownParsePresentation.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  markdownParse: MarkdownParse;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n  projectRelativeBaseFolderPath: string;\n  projectRelativeMarkdownFilePath: string;\n}) => {\n  const {\n    markdownParse,\n    augmentedWordObject,\n    projectRelativeBaseFolderPath,\n    projectRelativeMarkdownFilePath,\n  } = props;\n  const [slide, setSlide] = useState(0);\n\n  if (!markdownParse.content) return null;\n\n  const markdownParagraphs = flattenMarkdownChunks(\n    markdownParse.content\n  ).filter((x) => x.paragraph !== \"\");\n\n  const paragraph = markdownParagraphs[slide];\n\n  if (!paragraph) return <P>No slides</P>;\n\n  const navigationIcons: ClickableIconType[] = [\n    {\n      onClick: () => setSlide(0),\n      emoji: \"⏮\",\n      disabled: slide === 0,\n    },\n\n    {\n      onClick: () => setSlide(slide - 1),\n      emoji: \"⬅\",\n      disabled: slide === 0,\n    },\n\n    {\n      onClick: () => setSlide(slide + 1),\n      emoji: \"➡\",\n      disabled: slide === markdownParagraphs.length - 1,\n    },\n\n    {\n      onClick: () => setSlide(markdownParagraphs.length - 1),\n      emoji: \"⏭\",\n      disabled: slide === markdownParagraphs.length - 1,\n    },\n  ];\n  const navigation = (\n    <Div className=\"flex flex-row gap-3\">\n      {navigationIcons.map((item, index) => (\n        <ClickableIcon {...item} key={`icon${index}`} />\n      ))}\n    </Div>\n  );\n\n  return (\n    <Div className=\"flex flex-col flex-1\">\n      <Div className=\"flex flex-1 flex-col\">\n        <Div className=\"flex flex-col justify-center items-center\">\n          <P className=\"text-4xl\">\n            {\n              paragraph.categoryStackCalculated[\n                paragraph.categoryStackCalculated.length - 1\n              ]\n            }\n          </P>\n\n          <Div className=\"flex flex-row flex-wrap\">\n            {renderBreadCrumbs(paragraph.categoryStackCalculated)}\n          </Div>\n        </Div>\n\n        <Div className=\"flex flex-1 flex-col items-center justify-center overflow-y-auto\">\n          {renderMarkdownContent(paragraph.paragraph, {\n            big: true,\n            projectRelativeBaseFolderPath,\n            projectRelativeMarkdownFilePath,\n            augmentedWordObject,\n            isDev,\n            isStatic: false,\n          })}\n        </Div>\n      </Div>\n\n      {navigation}\n    </Div>\n  );\n}",
+  "name": "MarkdownParsePresentation",
+  "slug": "markdown-parse-presentation",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "markdownParse": {
+            "$ref": "#/definitions/MarkdownParse"
+          },
+          "augmentedWordObject": {
+            "$ref": "#/definitions/MappedObject%3CAugmentedWord%3E"
+          },
+          "projectRelativeBaseFolderPath": {
+            "type": "string"
+          },
+          "projectRelativeMarkdownFilePath": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "markdownParse",
+          "projectRelativeBaseFolderPath",
+          "projectRelativeMarkdownFilePath"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "markdownParse",
+            "required": true,
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "fileName",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "if available, this can be the filename of the markdown in this markdown-parse. Can be used for things like merging",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "createdAt",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "openedAt",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "updatedAt",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "deletedAt",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "createdFirstAt",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "content",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "structured content based on h1, h2, h3, etc (paragraphs, recursive)",
+                    "items": [],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "raw",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "raw markdown without frontmatter",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "projectRelativeBaseFolderPath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectRelativeMarkdownFilePath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element | null",
+    "typeDefinition": {
+      "optional": true,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 8,
+  "size": {
+    "characters": 2293,
+    "lines": 90,
+    "bytes": 2301,
+    "bytesPerCharacter": 1.0034888791975578,
+    "charactersPerLine": 25,
+    "linesPerFile": 90,
+    "numberOfFiles": 1
+  },
+  "id": "gyovosouurzqqwddowpyucls"
+}

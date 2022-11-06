@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667378715380,
+  "updatedAt": 1667378715380,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378715380,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/MediaRecorder.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  type: MediaRecorderType;\n  withBlob: (blobUrl: string, blob: Blob) => void;\n}) => {\n  const { type, withBlob } = props;\n\n  return (\n    <div>\n      <ReactMediaRecorder\n        screen={type === \"screen\"}\n        audio\n        blobPropertyBag={{}}\n        // audio={type === \"audio\"}\n        video={type === \"video\"}\n        stopStreamsOnStop\n        onStop={(blobUrl, blob) => {\n          withBlob(blobUrl, blob);\n        }}\n        render={(props) => <MediaRecorderComponent {...props} type={type} />}\n      />\n    </div>\n  );\n}",
+  "name": "MediaRecorder",
+  "slug": "media-recorder",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 541,
+    "lines": 23,
+    "bytes": 541,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 23,
+    "numberOfFiles": 1
+  },
+  "id": "ooaruxjusihwepgaqfvjueur"
+}

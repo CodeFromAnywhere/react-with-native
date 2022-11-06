@@ -1,0 +1,171 @@
+{
+  "createdAt": 1667588129524,
+  "updatedAt": 1667588129524,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588129524,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/editors/getSubtext.tsx",
+  "commentsInside": [],
+  "rawText": " (\n  /**\n   * Raw markdown string\n   */\n  markdownString: string,\n  subtextConfig: SubtextConfig\n): string | undefined => {\n  if (!subtextConfig.isEnabled) return;\n\n  const allSubtext = `${subtextConfig.translations?.join(\n    \",\"\n  )} and the text is '${markdownString}'. Let's hook it into translate, and hook up all stuff!`;\n\n  return allSubtext;\n}",
+  "name": "getSubtext",
+  "slug": "get-subtext",
+  "parameters": [
+    {
+      "name": "markdownString",
+      "schema": {
+        "type": "string",
+        "description": "Raw markdown string"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Raw markdown string",
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "subtextConfig",
+      "schema": {
+        "$ref": "#/definitions/SubtextConfig"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Configuration of what should be shown in the subtext",
+        "properties": [
+          {
+            "name": "isEnabled",
+            "required": false,
+            "schema": {
+              "fullComment": "TITLE: Enable",
+              "title": "Enable",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "translations",
+            "required": false,
+            "schema": {
+              "fullComment": "You can show multiple translations in the subtext",
+              "items": [
+                {
+                  "schema": {
+                    "properties": [
+                      {
+                        "name": "showAlternative",
+                        "required": false,
+                        "schema": {
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "showPhonetic",
+                        "required": false,
+                        "schema": {
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "showLatin",
+                        "required": false,
+                        "schema": {
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "showTokiPona",
+                        "required": false,
+                        "schema": {
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "showCommon",
+                        "required": false,
+                        "schema": {
+                          "type": "boolean"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "showEmojiTranslation",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "showDefinitionsWithPriority",
+            "required": false,
+            "schema": {
+              "fullComment": "show definitions of words occuring in this paragraph",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "showRelated",
+            "required": false,
+            "schema": {
+              "fullComment": "Related stuff related to this paragraph, e.g. other articles/markdown",
+              "items": [],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "make a subtext text based on the text of a complete paragraph (may contain single newlines and other markdown stuff, but never double newlines)\n\nReturns either the subtext string or a HTML string with a container around the subtext, depending on if you provide `withContainer`",
+  "returnType": {
+    "rawType": "string | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 627,
+    "lines": 17,
+    "bytes": 627,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 37,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "dguejingofajczbhgfhdnnha"
+}

@@ -56,8 +56,10 @@ export interface PackageJson extends AnyModelType {
     author?: string | {
         [key: string]: string;
     };
-    repository: string | {
-        [key: string]: string;
+    repository?: string | {
+        type?: string;
+        url: string;
+        directory?: string;
     };
     homepage?: string;
     dependencies?: PackageInfoObject;

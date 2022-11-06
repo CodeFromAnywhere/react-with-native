@@ -25,7 +25,7 @@ export interface OperationIndex extends GeneralOperationIndex, SlugModelType {
     indexErrors: string[];
     size: FolderSummary;
 }
-export declare const operationClassificationConst: readonly ["js", "ts", "node", "server", "web", "app", "ui-es6", "ui-es5"];
+export declare const operationClassificationConst: readonly ["js", "ts", "node", "server", "web", "app", "ui-es6", "ui-es5", "ui-esm"];
 /**
  * # Classification
  *
@@ -45,9 +45,11 @@ export declare const operationClassificationConst: readonly ["js", "ts", "node",
  *
  * app: uses react-native and exposes something on some port when it is ran
  *
- * ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)
+ * DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)
  *
  * ui-es5: ui which main entry points to javascript es5 files (this ui package can be built)
+ *
+ * ui-esm: ui which builds to ESM module resolved Javascript
  */
 export declare type OperationClassification = typeof operationClassificationConst[number];
 export declare type GeneralOperationIndex = {

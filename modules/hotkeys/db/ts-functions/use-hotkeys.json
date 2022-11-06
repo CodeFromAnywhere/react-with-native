@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666265020935,
+  "updatedAt": 1666265020935,
+  "deletedAt": 0,
+  "createdFirstAt": 1666265020935,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/useHotkeys.ts",
+  "commentsInside": [],
+  "rawText": " (\n  /**\n   * when the callback needs to be reloaded\n   */\n  dependencies: any[],\n  /**\n   * callback that needs to launch on any keyboard event\n   */\n  callback: (keyboardEvent: KeyboardEvent) => void\n) => {\n  return useEffect(() => {\n    if (typeof window === \"undefined\") return;\n    window.addEventListener(\"keydown\", callback);\n    return () => window.removeEventListener(\"keydown\", callback);\n  }, dependencies);\n}",
+  "name": "useHotkeys",
+  "slug": "use-hotkeys",
+  "parameters": [],
+  "description": "hook that creates an eventlistener for keydown and cleans it up when needed",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 495,
+    "lines": 16,
+    "bytes": 495,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "rhyvkqnntnefdgvxsrbfpfsv"
+}

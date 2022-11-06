@@ -1,0 +1,276 @@
+{
+  "createdAt": 1667378716935,
+  "updatedAt": 1667378716935,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378716935,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "name": "useReactMediaRecorder",
+  "slug": "use-react-media-recorder",
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/ReactMediaRecorder.tsx",
+  "commentsInside": [],
+  "description": "",
+  "parameters": [],
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/asset/asset-input/src/ReactMediaRecorder\").ReactMediaRecorderRenderProps",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "muteAudio": {
+          "type": "object",
+          "properties": {}
+        },
+        "unMuteAudio": {
+          "type": "object",
+          "properties": {}
+        },
+        "startRecording": {
+          "type": "object",
+          "properties": {}
+        },
+        "pauseRecording": {
+          "type": "object",
+          "properties": {}
+        },
+        "resumeRecording": {
+          "type": "object",
+          "properties": {}
+        },
+        "stopRecording": {
+          "type": "object",
+          "properties": {}
+        },
+        "mediaBlobUrl": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "media_aborted",
+            "permission_denied",
+            "no_specified_media_found",
+            "media_in_use",
+            "invalid_media_constraints",
+            "no_constraints",
+            "recorder_error",
+            "idle",
+            "acquiring_media",
+            "delayed_start",
+            "recording",
+            "stopping",
+            "stopped",
+            "paused"
+          ],
+          "x-enumNames": [
+            "media_aborted",
+            "permission_denied",
+            "no_specified_media_found",
+            "media_in_use",
+            "invalid_media_constraints",
+            "no_constraints",
+            "recorder_error",
+            "idle",
+            "acquiring_media",
+            "delayed_start",
+            "recording",
+            "stopping",
+            "stopped",
+            "paused"
+          ],
+          "type": "string"
+        },
+        "isAudioMuted": {
+          "type": "boolean"
+        },
+        "previewStream": {},
+        "previewAudioStream": {},
+        "clearBlobUrl": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      "required": [
+        "error",
+        "muteAudio",
+        "unMuteAudio",
+        "startRecording",
+        "pauseRecording",
+        "resumeRecording",
+        "stopRecording",
+        "status",
+        "isAudioMuted",
+        "previewStream",
+        "previewAudioStream",
+        "clearBlobUrl"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "error",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "muteAudio",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "unMuteAudio",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "startRecording",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "pauseRecording",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "resumeRecording",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "stopRecording",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "mediaBlobUrl",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "status",
+          "required": true,
+          "schema": {
+            "enum": [
+              "media_aborted",
+              "permission_denied",
+              "no_specified_media_found",
+              "media_in_use",
+              "invalid_media_constraints",
+              "no_constraints",
+              "recorder_error",
+              "idle",
+              "acquiring_media",
+              "delayed_start",
+              "recording",
+              "stopping",
+              "stopped",
+              "paused"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "isAudioMuted",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "previewStream",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "previewAudioStream",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "clearBlobUrl",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "size": {
+    "characters": 7532,
+    "lines": 264,
+    "bytes": 7532,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 264,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\nexport function useReactMediaRecorder({\n  audio = true,\n  video = false,\n  onStop = () => null,\n  onStart = () => null,\n  blobPropertyBag,\n  screen = false,\n  mediaRecorderOptions = undefined,\n  customMediaStream = null,\n  stopStreamsOnStop = true,\n  askPermissionOnMount = false,\n}: ReactMediaRecorderHookProps): ReactMediaRecorderRenderProps {\n  const mediaRecorder = useRef<IMediaRecorder | null>(null);\n  const mediaChunks = useRef<Blob[]>([]);\n  const mediaStream = useRef<MediaStream | null>(null);\n  const [status, setStatus] = useState<StatusMessages>(\"idle\");\n  const [isAudioMuted, setIsAudioMuted] = useState<boolean>(false);\n  const [mediaBlobUrl, setMediaBlobUrl] = useState<string | undefined>(\n    undefined\n  );\n  const [error, setError] = useState<keyof typeof RecorderErrors>(\"NONE\");\n\n  useEffect(() => {\n    let messagePort: MessagePort | undefined = undefined;\n    const setup = async () => {\n      try {\n        // NB: try to connect, if it fails, don't crash, just assume it already is there\n        messagePort = await connect();\n        await register(messagePort);\n      } catch (e) {\n        console.log(\"errrie\", e);\n      }\n    };\n    setup();\n\n    // NB: need to clean it up!\n    return () => {\n      if (messagePort) {\n        disconnect(messagePort);\n      }\n    };\n  }, []);\n\n  const getMediaStream = useCallback(async () => {\n    setStatus(\"acquiring_media\");\n    const requiredMedia: MediaStreamConstraints = {\n      audio: typeof audio === \"boolean\" ? !!audio : audio,\n      video: typeof video === \"boolean\" ? !!video : video,\n    };\n    try {\n      if (customMediaStream) {\n        mediaStream.current = customMediaStream;\n      } else if (screen) {\n        const stream = (await window.navigator.mediaDevices.getDisplayMedia({\n          video: video || true,\n        })) as MediaStream;\n        stream.getVideoTracks()[0].addEventListener(\"ended\", () => {\n          stopRecording();\n        });\n        if (audio) {\n          const audioStream = await window.navigator.mediaDevices.getUserMedia({\n            audio,\n          });\n\n          audioStream\n            .getAudioTracks()\n            .forEach((audioTrack) => stream.addTrack(audioTrack));\n        }\n        mediaStream.current = stream;\n      } else {\n        const stream = await window.navigator.mediaDevices.getUserMedia(\n          requiredMedia\n        );\n        mediaStream.current = stream;\n      }\n      setStatus(\"idle\");\n    } catch (error: any) {\n      setError(error.name);\n      setStatus(\"idle\");\n    }\n  }, [audio, video, screen]);\n\n  useEffect(() => {\n    if (!window.MediaRecorder) {\n      throw new Error(\"Unsupported Browser\");\n    }\n\n    if (screen) {\n      if (!window.navigator.mediaDevices.getDisplayMedia) {\n        throw new Error(\"This browser doesn't support screen capturing\");\n      }\n    }\n\n    const checkConstraints = (mediaType: MediaTrackConstraints) => {\n      const supportedMediaConstraints =\n        navigator.mediaDevices.getSupportedConstraints();\n      const unSupportedConstraints = Object.keys(mediaType).filter(\n        (constraint) =>\n          !(supportedMediaConstraints as { [key: string]: any })[constraint]\n      );\n\n      if (unSupportedConstraints.length > 0) {\n        console.error(\n          `The constraints ${unSupportedConstraints.join(\n            \",\"\n          )} doesn't support on this browser. Please check your ReactMediaRecorder component.`\n        );\n      }\n    };\n\n    if (typeof audio === \"object\") {\n      checkConstraints(audio);\n    }\n    if (typeof video === \"object\") {\n      checkConstraints(video);\n    }\n\n    if (mediaRecorderOptions && mediaRecorderOptions.mimeType) {\n      if (!MediaRecorder.isTypeSupported(mediaRecorderOptions.mimeType)) {\n        console.error(\n          `The specified MIME type you supplied for MediaRecorder doesn't support this browser`\n        );\n      }\n    }\n\n    if (!mediaStream.current && askPermissionOnMount) {\n      getMediaStream();\n    }\n\n    return () => {\n      if (mediaStream.current) {\n        const tracks = mediaStream.current.getTracks();\n        tracks.forEach((track) => track.clone().stop());\n      }\n    };\n  }, [\n    audio,\n    screen,\n    video,\n    getMediaStream,\n    mediaRecorderOptions,\n    askPermissionOnMount,\n  ]);\n\n  // Media Recorder Handlers\n\n  const startRecording = async () => {\n    setError(\"NONE\");\n    if (!mediaStream.current) {\n      await getMediaStream();\n    }\n    if (mediaStream.current) {\n      const isStreamEnded = mediaStream.current\n        .getTracks()\n        .some((track) => track.readyState === \"ended\");\n      if (isStreamEnded) {\n        await getMediaStream();\n      }\n\n      // User blocked the permissions (getMediaStream errored out)\n      if (!mediaStream.current.active) {\n        return;\n      }\n      mediaRecorder.current = new ExtendableMediaRecorder(\n        mediaStream.current,\n        mediaRecorderOptions || undefined\n      );\n      mediaRecorder.current.ondataavailable = onRecordingActive;\n      mediaRecorder.current.onstop = onRecordingStop;\n      mediaRecorder.current.onstart = onRecordingStart;\n      mediaRecorder.current.onerror = () => {\n        setError(\"NO_RECORDER\");\n        setStatus(\"idle\");\n      };\n      mediaRecorder.current.start();\n      setStatus(\"recording\");\n    }\n  };\n\n  const onRecordingActive = ({ data }: BlobEvent) => {\n    mediaChunks.current.push(data);\n  };\n\n  const onRecordingStart = () => {\n    onStart();\n  };\n\n  const onRecordingStop = () => {\n    const [chunk] = mediaChunks.current;\n    const blobProperty: BlobPropertyBag = Object.assign(\n      { type: chunk.type },\n      blobPropertyBag || (video ? { type: \"video/mp4\" } : { type: \"audio/wav\" })\n    );\n    const blob = new Blob(mediaChunks.current, blobProperty);\n    const url = URL.createObjectURL(blob);\n    setStatus(\"stopped\");\n    setMediaBlobUrl(url);\n    onStop(url, blob);\n  };\n\n  const muteAudio = (mute: boolean) => {\n    setIsAudioMuted(mute);\n    if (mediaStream.current) {\n      mediaStream.current\n        .getAudioTracks()\n        .forEach((audioTrack) => (audioTrack.enabled = !mute));\n    }\n  };\n\n  const pauseRecording = () => {\n    if (mediaRecorder.current && mediaRecorder.current.state === \"recording\") {\n      setStatus(\"paused\");\n      mediaRecorder.current.pause();\n    }\n  };\n  const resumeRecording = () => {\n    if (mediaRecorder.current && mediaRecorder.current.state === \"paused\") {\n      setStatus(\"recording\");\n      mediaRecorder.current.resume();\n    }\n  };\n\n  const stopRecording = () => {\n    if (mediaRecorder.current) {\n      if (mediaRecorder.current.state !== \"inactive\") {\n        setStatus(\"stopping\");\n        mediaRecorder.current.stop();\n        if (stopStreamsOnStop) {\n          mediaStream.current &&\n            mediaStream.current.getTracks().forEach((track) => track.stop());\n        }\n        mediaChunks.current = [];\n      }\n    }\n  };\n\n  return {\n    error: RecorderErrors[error],\n    muteAudio: () => muteAudio(true),\n    unMuteAudio: () => muteAudio(false),\n    startRecording,\n    pauseRecording,\n    resumeRecording,\n    stopRecording,\n    mediaBlobUrl,\n    status,\n    isAudioMuted,\n    previewStream: mediaStream.current\n      ? new MediaStream(mediaStream.current.getVideoTracks())\n      : null,\n    previewAudioStream: mediaStream.current\n      ? new MediaStream(mediaStream.current.getAudioTracks())\n      : null,\n    clearBlobUrl: () => {\n      if (mediaBlobUrl) {\n        URL.revokeObjectURL(mediaBlobUrl);\n      }\n      setMediaBlobUrl(undefined);\n      setStatus(\"idle\");\n    },\n  };\n}",
+  "maxIndentationDepth": 6,
+  "id": "wldjkaexgcmlmexthkmfhqle"
+}

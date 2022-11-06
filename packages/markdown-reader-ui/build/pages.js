@@ -16,8 +16,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPageTitle = exports.pages = exports.pagesObject = void 0;
 var index_1 = __importDefault(require("./pages/index"));
+var index_2 = __importDefault(require("./pages/index"));
 exports.pagesObject = {
     index: index_1.default,
+    dictionary: index_2.default,
 };
 // these keys are put in an array
 var pageKeys = Object.keys(exports.pagesObject);

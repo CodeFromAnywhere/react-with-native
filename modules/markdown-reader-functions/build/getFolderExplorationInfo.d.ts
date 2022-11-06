@@ -11,7 +11,9 @@ import { NestedPathObject } from "nested-menu";
 export declare const getFolderExplorationInfo: (nestedPathObject: NestedPathObject, queryPath: string, projectRoot: string) => Promise<{
     title: string | undefined;
     description: string | null;
+    descriptionProjectRelativeMarkdownPath: string | null;
     children: {
+        projectRelativeMarkdownPath: string | null;
         title: string;
         firstParagraph: string | null;
         folderName: string;

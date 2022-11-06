@@ -12,6 +12,9 @@ export declare type MarkdownAssetType = "youtube" | "video" | "image" | "audio" 
 export declare type MarkdownLink = {
     alt: string;
     href: string;
+    /**
+     * Can be inferred from href
+     */
     type: MarkdownAssetType;
 };
 /**

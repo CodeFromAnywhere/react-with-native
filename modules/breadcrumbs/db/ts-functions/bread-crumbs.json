@@ -1,0 +1,74 @@
+{
+  "createdAt": 1666264854895,
+  "updatedAt": 1666264854895,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264854895,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/BreadCrumbs.tsx",
+  "commentsInside": [],
+  "rawText": " (props: { path: string }) => {\n  const { path } = props;\n  const chunks = (path || \"\").split(\"/\");\n\n  return (\n    <Div className=\"border-b border-b-gray-300 mb-4 bg-[#FFFFFF] dark:bg-gray-900\">\n      <Div className=\"flex flex-row items-center ml-2\">\n        {renderBreadCrumbs(chunks)}\n      </Div>\n    </Div>\n  );\n}",
+  "name": "BreadCrumbs",
+  "slug": "bread-crumbs",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Shows where we are in the filesystem",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 354,
+    "lines": 12,
+    "bytes": 354,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "cxyabktsvheqgjytpyjhkdof"
+}

@@ -1,0 +1,79 @@
+{
+  "createdAt": 1666512919172,
+  "updatedAt": 1666512919172,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512919172,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "InputTheme",
+  "slug": "input-theme",
+  "operationRelativeTypescriptFilePath": "src/AssetTheme.tsx",
+  "type": {
+    "rawType": "{ Outlined: string; Plain: string; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "Outlined": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "Plain": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "Outlined",
+        "Plain"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "Outlined",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "Plain",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "value": "{\n  Outlined:\n    \"border text-sm border-gray-300 leading-4 hover:border-gray-400 focus:outline-none h-10 focus:text-gray-800 ring-gray-200 text-gray-700 \",\n  Plain:\n    \"leading-4 text-base text-gray-700 hover:ring hover:ring-gray-300 hover:ring-1 focus:ring-gray-400 focus:outline-none h-10 focus:text-gray-800 ring-gray-200 text-gray-600 \",\n}",
+  "description": "Inheritance of different button themes",
+  "id": "xahmljlwzolsjenxdydbmiml"
+}

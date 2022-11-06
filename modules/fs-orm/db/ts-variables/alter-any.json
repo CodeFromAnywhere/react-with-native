@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666512731881,
-  "updatedAt": 1666512731881,
+  "createdAt": 1667634640789,
+  "updatedAt": 1667634640789,
   "deletedAt": 0,
-  "createdFirstAt": 1666512731881,
+  "createdFirstAt": 1667634640789,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  dbStorageMethod: DbStorageMethod,\n  ...alterParameters: AlterParameters\n): Promise<DbQueryResult> => {\n  if (dbStorageMethod === \"csv\") return alterCsv(...alterParameters);\n  if (dbStorageMethod === \"jsonSingle\")\n    return alterJsonSingle(...alterParameters);\n  if (dbStorageMethod === \"keyValueMarkdown\") {\n    // this case never happens, this is never the case\n    log(\"Wut??? this case should be prevented by its parent function\", {\n      type: \"warning\",\n    });\n    return alterKeyValueMarkdown(...alterParameters);\n  }\n  if (dbStorageMethod === \"markdown\") return alterMarkdown(...alterParameters);\n  return alterJsonMultiple(...alterParameters);\n}",
   "description": "low level function that alters data from any storage method at a certain location\n\ncomprises all dbStorageMethods",
-  "id": "qdaldduonbwtyeyanumviieq"
+  "id": "hrmlfhldgaxhycvsoiodygct"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379429433,
-  "updatedAt": 1667379429433,
+  "createdAt": 1667635036772,
+  "updatedAt": 1667635036772,
   "deletedAt": 0,
-  "createdFirstAt": 1667379429433,
+  "createdFirstAt": 1667635036772,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<TStore extends object>(\n  initialValues: TStore\n) => {\n  if (debug) {\n    console.log(\"Create useStore\");\n  }\n  const useStore = <K extends Keys<TStore>>(key: K) => {\n    if (!Object.keys(initialValues).includes(key)) {\n      throw new Error(`Using undefined key in useStore: ${key}`);\n    }\n    const context = getContext(key);\n    if (!context) {\n      throw new Error(\n        `Failed loading the context with key: ${key}. Did you wrap your component/app with a StoreProvider?`\n      );\n    }\n    const useStoreHook = React.useContext<UseStoreType<TStore>>(context);\n\n    const useStoreHookType = typeof useStoreHook;\n\n    if (useStoreHookType !== \"function\") {\n      console.error(\n        `useStoreHookType for ${key} is ${useStoreHookType}... wtf?`\n      );\n    }\n\n    return useStoreHook?.(key);\n  };\n  return useStore;\n}",
   "description": "Function to create a hook for accessing the store",
-  "id": "tpsziybbeqietwivkyxrzdtm"
+  "id": "fcxvbfqnwpbndtmqxvxfdsad"
 }

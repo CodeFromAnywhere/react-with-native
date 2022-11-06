@@ -1,10 +1,10 @@
 {
   "createdAt": 1664527545799,
-  "updatedAt": 1666263077713,
+  "updatedAt": 1667635488055,
   "deletedAt": 0,
   "createdFirstAt": 1664527545799,
-  "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/parsing/read-files/read-markdown-file/src/readMarkdownFileToModel.ts. Error: Error: Property 'categoryStackCalculated' is missing in type '{ markdown: string; privacy: \\\"private\\\" | \\\"request\\\" | \\\"public\\\"; detectedLanguage: string; labels: string[]; createdAt: number; createdFirstAt: number; deletedAt: number; updatedAt: number; cta: string | undefined; ... 10 more ...; operationRelativePath?: string | undefined; }' but required in type 'MarkdownFile'.\"]",
-  "buildSucceeded": true,
+  "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/parsing/read-files/read-markdown-file/src/readMarkdownFileToModel.ts. Error: Error: Type '{ markdown: string; categoryStackCalculated: never[]; language: \\\"english\\\"; privacy: \\\"private\\\" | \\\"request\\\" | \\\"public\\\"; detectedLanguage: any; labels: any; createdAt: number; createdFirstAt: number; ... 13 more ...; operationRelativePath?: string | undefined; }' is missing the following properties from type 'WebMarkdownFile': author_personSlugs, interestSlugs, headerCta\"]",
+  "buildSucceeded": false,
   "id": "ttxayfasdokercskhfuepfdn",
   "indexImportExportError": "",
   "lintProblems": [],
@@ -22,8 +22,9 @@
     "Path",
     "MarkdownParse",
     "mdToJsonParse",
-    "MarkdownFile",
+    "WebMarkdownFile",
     "getLastFolder",
+    "path",
     "omitUndefinedValues",
     "findOperationBasePath",
     "getProjectRoot",
@@ -35,24 +36,24 @@
     "codeSize": {
       "numberOfFiles": 2,
       "lines": 0,
-      "characters": 3375,
-      "bytes": 3375
+      "characters": 3512,
+      "bytes": 3512
     },
     "dataSize": {
       "numberOfFiles": 2,
       "lines": 0,
-      "characters": 1541,
-      "bytes": 1541
+      "characters": 1565,
+      "bytes": 1565
     },
     "textSize": {
       "numberOfFiles": 1,
       "lines": 0,
-      "characters": 964,
-      "bytes": 964
+      "characters": 900,
+      "bytes": 900
     },
     "size": {
-      "bytes": 5880,
-      "characters": 5880,
+      "bytes": 5977,
+      "characters": 5977,
       "lines": 0,
       "numberOfFiles": 5
     }

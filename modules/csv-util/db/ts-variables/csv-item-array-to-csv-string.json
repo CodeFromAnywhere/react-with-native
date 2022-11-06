@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262678190,
-  "updatedAt": 1666262678190,
+  "createdAt": 1667640014486,
+  "updatedAt": 1667640014486,
   "deletedAt": 0,
-  "createdFirstAt": 1666262678190,
+  "createdFirstAt": 1667640014486,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "<T extends CsvItemType>(\n  csvModelData: T[]\n): string => {\n  if (csvModelData.length === 0) return \"\";\n\n  // let propertyNames = simplifiedSchema?.properties?.map((x) => x.name);\n\n  const longestItem = csvModelData.reduce(\n    (previous, current) => {\n      const keysAmount = Object.keys(current).length;\n      if (keysAmount > previous.keysAmount) {\n        return { keysAmount, item: current };\n      }\n      return previous;\n    },\n    { keysAmount: 0, item: undefined } as {\n      keysAmount: number;\n      item: T | undefined;\n    }\n  ).item!;\n\n  const propertyNames = Object.keys(longestItem);\n\n  const headerString = propertyNames.join(\",\");\n\n  const rowStrings = csvModelData.map((row) => {\n    return propertyNames!\n      .map((propertyName) => String(row[propertyName]))\n      .join(\",\");\n  });\n\n  return `${headerString}\\n${rowStrings.join(\"\\n\")}`;\n}",
+  "value": "<T extends CsvItemType>(\n  csvModelData: T[]\n): string => {\n  if (csvModelData.length === 0) return \"\";\n\n  const result = stringify(csvModelData, { header: true });\n\n  return result;\n\n  /**\n\nNB: first I did my own native raw implementation, but this doesn't have good newline support, so I fell back to csv modules (https://csv.js.org/stringify/api/)\n \n  // let propertyNames = simplifiedSchema?.properties?.map((x) => x.name);\n\n  const longestItem = csvModelData.reduce(\n    (previous, current) => {\n      const keysAmount = Object.keys(current).length;\n      if (keysAmount > previous.keysAmount) {\n        return { keysAmount, item: current };\n      }\n      return previous;\n    },\n    { keysAmount: 0, item: undefined } as {\n      keysAmount: number;\n      item: T | undefined;\n    }\n  ).item!;\n\n  const propertyNames = Object.keys(longestItem);\n\n  const headerString = propertyNames.join(\",\");\n\n  const rowStrings = csvModelData.map((row) => {\n    return propertyNames!\n      .map((propertyName) => String(row[propertyName]))\n      .join(\",\");\n  });\n\n  return `${headerString}\\n${rowStrings.join(\"\\n\")}`;\n  */\n}",
   "description": "make csv string from a csv model type",
-  "id": "xujbfvxjclcqfuituvpovwoo"
+  "id": "zfgjqcmeboaehqxdcaqwvrgm"
 }

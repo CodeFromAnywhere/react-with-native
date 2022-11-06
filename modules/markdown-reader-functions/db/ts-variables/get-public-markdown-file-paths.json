@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262314504,
-  "updatedAt": 1666262314504,
+  "createdAt": 1667635159554,
+  "updatedAt": 1667635159554,
   "deletedAt": 0,
-  "createdFirstAt": 1666262314504,
+  "createdFirstAt": 1667635159554,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  baseFolderPath: string,\n  includeFoldersWithResults?: boolean\n) => {\n  const publicMarkdownFilePaths: { path: string; isFolder: boolean }[] = (\n    await explore({\n      basePath: baseFolderPath,\n      extension: \"md\",\n      readmeOnTop: true,\n      includeFoldersWithResults,\n    })\n  )\n    .filter((x) => {\n      if (x.isFolder) return true;\n\n      // NB: we have a file\n      const markdownString = fs.readFileSync(x.path, \"utf8\");\n      const { parameters } = parseFrontmatterMarkdownString(markdownString);\n      if (!shouldExposeMarkdownFile(parameters)) {\n        return false;\n      }\n      return true;\n    })\n    .map(({ path, isFolder }) => ({ path, isFolder }));\n\n  return publicMarkdownFilePaths;\n}",
   "description": "Returns all absolute markdown file paths within a basePath which are not drafts and which are not marked private (through frontmatter)",
-  "id": "nigdlfwocxwqmpyrdmaffuza"
+  "id": "tudoxqvsydsgcbpomtjewdum"
 }

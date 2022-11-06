@@ -1,0 +1,121 @@
+{
+  "createdAt": 1666512919172,
+  "updatedAt": 1666512919172,
+  "deletedAt": 0,
+  "createdFirstAt": 1666512919172,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "InputSize",
+  "slug": "input-size",
+  "operationRelativeTypescriptFilePath": "src/AssetTheme.tsx",
+  "type": {
+    "rawType": "{ sm: string; md: string; lg: string; inherit: string; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "sm": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "md": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "lg": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "inherit": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "sm",
+        "md",
+        "lg",
+        "inherit"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "sm",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "md",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "lg",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "inherit",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "value": "{\n  sm: \"flex flex-row gap-x-1 rounded-md pl-2 pr-2  h-7 items-center\",\n  md: \"flex flex-row gap-x-1 rounded-md pl-2 pr-2 h-9 items-center\",\n  lg: \"flex flex-row gap-x-2 rounded-md pl-2 pr-4 h-11 items-center\",\n  inherit:\n    \"flex flex-row gap-x-1 rounded-inherit p-inherit m-inherit text-inherit font-inherit \",\n}",
+  "description": "Inheritance of different button themes",
+  "id": "ruolhttsnzuqixpwxhhcjgkt"
+}

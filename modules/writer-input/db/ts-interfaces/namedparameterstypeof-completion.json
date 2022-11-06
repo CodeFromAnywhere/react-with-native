@@ -1,0 +1,118 @@
+{
+  "createdAt": 1667588127328,
+  "updatedAt": 1667588127328,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588127328,
+  "id": "namedparameterstypeof-completion",
+  "name": "NamedParameters<typeof Completion>",
+  "slug": "namedparameterstypeof-completion",
+  "operationRelativeTypescriptFilePath": "src/editors/autocomplete-components.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "props": {
+          "type": "object",
+          "properties": {
+            "augmentedWord": {
+              "$ref": "#/definitions/AugmentedWord"
+            },
+            "augmentedWordObject": {
+              "$ref": "#/definitions/MappedObject%3CAugmentedWord%3E"
+            }
+          },
+          "required": [
+            "augmentedWord"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "props"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "props",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "augmentedWord",
+                "required": true,
+                "schema": {
+                  "fullComment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..",
+                  "properties": [
+                    {
+                      "name": "type",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "word",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Word without affixes. The affixes will be decided in the frontend parser based on the type",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "queryPath",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeMarkdownSourcePath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "spoiler",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isCaseInsensitive",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "If true, will match on lowercase variant of the word",
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof Completion>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

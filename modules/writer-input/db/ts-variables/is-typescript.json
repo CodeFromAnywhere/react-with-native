@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667588144084,
+  "updatedAt": 1667588144084,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588144084,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "isTypescript",
+  "slug": "is-typescript",
+  "operationRelativeTypescriptFilePath": "src/util/isTypescript.ts",
+  "type": {
+    "rawType": "(text: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(text: string) => {\n  return text.startsWith(\"import\");\n}",
+  "description": "only detect typescript if the string starts with `import`. must be improved later on. It would be great to be able to detect that it's a typescript file even if it contains syntax errors.",
+  "id": "orkxqrwpvrmimonozobdwonw"
+}

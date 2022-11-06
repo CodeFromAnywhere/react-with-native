@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666265019729,
+  "updatedAt": 1666265019729,
+  "deletedAt": 0,
+  "createdFirstAt": 1666265019729,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/useHotkey.ts",
+  "commentsInside": [],
+  "rawText": " (\n  /**\n   * callback that needs to launch on any keyboard event\n   */\n  isRightKey: (keyboardEvent: KeyboardEvent) => boolean,\n  /**\n   * function to be executed when hotkey occurs\n   */\n  callback: () => void,\n  /**\n   * when the callback needs to be reloaded\n   */\n  dependencies: any[]\n) => {\n  const fullCallback = (keyboardEvent: KeyboardEvent) => {\n    if (isRightKey(keyboardEvent)) {\n      callback();\n    }\n  };\n  return useHotkeys(dependencies, fullCallback);\n}",
+  "name": "useHotkey",
+  "slug": "use-hotkey",
+  "parameters": [],
+  "description": "hook that creates an eventlistener for keydown and cleans it up when needed",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 548,
+    "lines": 21,
+    "bytes": 548,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "sbtrvzynnlrjvayvoyvsyfwz"
+}

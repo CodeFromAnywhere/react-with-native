@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259061379,
-  "updatedAt": 1666259061379,
+  "createdAt": 1667634404073,
+  "updatedAt": 1667634404073,
   "deletedAt": 0,
-  "createdFirstAt": 1666259061379,
+  "createdFirstAt": 1667634404073,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  absolutePath: string\n): OperationPathParse | undefined => {\n  if (!absolutePath) return;\n  const pathParse = getPathParse(absolutePath);\n  if (!pathParse) return;\n  const projectRoot = getProjectRoot(absolutePath);\n  if (!projectRoot) return;\n  const operationBasePath = findOperationBasePath(absolutePath);\n  if (!operationBasePath) return;\n  const operationSrcPath = path.join(operationBasePath, \"src\");\n\n  const operationFolderName = getLastFolder(operationBasePath);\n  const operationName = readJsonFileSync<PackageJson>(\n    path.join(operationBasePath, \"package.json\")\n  )?.name;\n\n  const operationRelativeTypescriptFilePath = getOperationRelativePath(\n    absolutePath,\n    operationBasePath\n  );\n\n  const parsedPath = path.parse(absolutePath);\n  const srcFileId = makeRelative(\n    path.join(parsedPath.dir, parsedPath.name),\n    operationSrcPath\n  );\n\n  const relativeOperationBasePathFromProjectRoot = operationBasePath.slice(\n    projectRoot.length\n  );\n\n  return {\n    relativePathFromProjectRoot: pathParse.relativePathFromProjectRoot,\n    srcFileId,\n    operationFolderName,\n    operationRelativeTypescriptFilePath,\n    relativeOperationBasePathFromProjectRoot,\n    operationName,\n  };\n}",
   "description": "get all operation-related path information that can be inferred from the path\n\nNB: currently it also looks up the operation name from its packagejson",
-  "id": "legwtrcklodnjhsmloyhuvlj"
+  "id": "baedgtevzfxcpuhhmwdwqpyo"
 }

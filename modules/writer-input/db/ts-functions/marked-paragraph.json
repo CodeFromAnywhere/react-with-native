@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667588117867,
+  "updatedAt": 1667588117867,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588117867,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/editors/MarkedParagraph.tsx",
+  "commentsInside": [],
+  "rawText": " (props) => {\n  const {\n    markdownFileConfig,\n    markedToken,\n    subtextConfig,\n    subwordConfig,\n    testModeEnabled,\n  } = props;\n\n  const endsWithNewline = markedToken.raw.endsWith(\"\\n\");\n\n  const paragraphText = markedToken.tokens.map((token) => (\n    <MarkedToken\n      item={token}\n      subtextConfig={subtextConfig}\n      subwordConfig={subwordConfig}\n      markdownFileConfig={markdownFileConfig}\n      testModeEnabled={testModeEnabled}\n    />\n  ));\n\n  const paragraphSubtextHtmlString = getSubtext(markedToken.raw, subtextConfig);\n\n  return (\n    <div>\n      {paragraphText}\n      {paragraphSubtextHtmlString}\n      {endsWithNewline ? <br /> : null}\n    </div>\n  );\n}",
+  "name": "MarkedParagraph",
+  "slug": "marked-paragraph",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 682,
+    "lines": 31,
+    "bytes": 682,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "id": "fbnltwtqgvlugiinluvqwwck"
+}

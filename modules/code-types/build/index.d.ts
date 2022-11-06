@@ -1,8 +1,8 @@
+export * from "./Dataset";
 export * from "./DbStorageMethod";
 export * from "./FolderExploration";
 export * from "./FolderSummary";
 export * from "./FunctionExecution";
-export * from "./MarkdownFile";
 export * from "./MarkdownParse";
 export * from "./Menu";
 export * from "./OperationConfig";
@@ -22,5 +22,8 @@ export * from "./TsInterface";
 export * from "./TsVariable";
 export * from "./TypeInfo";
 export * from "./TypescriptIndex";
+export * from "./WebMarkdownFile";
+export * from "./WebsiteCallToAction";
+export * from "./WebsiteHeader";
 export * from "./markdownParseToMarkdownModelType";
 //# sourceMappingURL=index.d.ts.map

@@ -8,7 +8,8 @@
   "description": "All frontend components can go here",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
+    "dev": "npx tsc-watch --onSuccess 'yarn css'",
+    "wcss": "tailwindcss -w -o css.css",
     "css": "tailwindcss -o css.css",
     "build": "tsc"
   },
@@ -21,8 +22,17 @@
     "react-with-native": "1.4.9",
     "nested-menu": "0.0.1",
     "markdown-parse-js": "0.0.1",
-    "markdown-parse-transpile-ui": "0.0.1",
-    "react-with-native-router": "1.0.14"
+    "react-with-native-router": "1.0.14",
+    "react-with-native-store": "2.0.40",
+    "clickable-icon": "0.0.1",
+    "fs-util-js": "0.0.1",
+    "markdown": "1.0.0",
+    "server-api-url": "0.0.1",
+    "react-with-native-form-inputs": "1.0.15",
+    "next-a-link": "0.0.1",
+    "convert-case": "0.0.1",
+    "writer-input": "1.0.0",
+    "markdown-reader-functions-js": "0.0.1"
   },
   "devDependencies": {
     "@headlessui/react": "^1.6.2",

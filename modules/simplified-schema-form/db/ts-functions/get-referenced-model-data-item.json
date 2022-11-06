@@ -1,0 +1,59 @@
+{
+  "createdAt": 1667634902016,
+  "updatedAt": 1667634902016,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634902016,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getReferencedModelDataItem.tsx",
+  "commentsInside": [],
+  "rawText": " (\n  parameterName: string,\n  referencedModelData?: ReferencableModelData\n): ReferencedModelDataItem | undefined => {\n  const interfaceInfo = getReferenceParameterInfo(parameterName);\n  const referencedData: ReferenceItemsObject | undefined =\n    interfaceInfo &&\n    interfaceInfo.interfaceName &&\n    referencedModelData &&\n    referencedModelData[interfaceInfo.interfaceName]\n      ? referencedModelData[interfaceInfo.interfaceName]\n      : undefined;\n\n  return interfaceInfo\n    ? {\n        ...referencedData,\n        ...interfaceInfo,\n      }\n    : undefined;\n}",
+  "name": "getReferencedModelDataItem",
+  "slug": "get-referenced-model-data-item",
+  "parameters": [
+    {
+      "name": "parameterName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "referencedModelData",
+      "schema": {
+        "$ref": "#/definitions/ReferencableModelData"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/simplified-schema-form/src/getReferencedModelDataItem\").ReferencedModelDataItem | undefined",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 566,
+    "lines": 20,
+    "bytes": 566,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "jwebkpdjokhfbtvpjewvoggc"
+}

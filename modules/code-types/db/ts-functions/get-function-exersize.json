@@ -1,0 +1,52 @@
+{
+  "createdAt": 1667684663263,
+  "updatedAt": 1667684663263,
+  "deletedAt": 0,
+  "createdFirstAt": 1667684663263,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/FunctionExecution.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  functionId: string\n): Promise<string> => {\n  //1) get the function, make the description, input, and output string\n  const descriptionString = \"\";\n  const inputString = \"\";\n  const outputString = \"\";\n  //2) get all it's examples from `FunctionExecution`, make the example string\n  const examplesString = 'Input `x, y, z`. Output should be \"a\"';\n\n  return `\nWrite a function that can do this:\n\n${descriptionString}\n\nIt should take this as its inputs:\n\n${inputString}\n\nIt should return this:\n\n${outputString}\n\nSome examples:\n\n${examplesString}\n`;\n}",
+  "name": "getFunctionExersize",
+  "slug": "get-function-exersize",
+  "parameters": [
+    {
+      "name": "functionId",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<string>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 557,
+    "lines": 28,
+    "bytes": 557,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 20,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "sasfptxqayfpnaadcrddzlox"
+}

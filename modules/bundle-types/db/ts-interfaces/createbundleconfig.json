@@ -1,0 +1,382 @@
+{
+  "createdAt": 1667684629600,
+  "updatedAt": 1667684629600,
+  "deletedAt": 0,
+  "createdFirstAt": 1667684629600,
+  "id": "createbundleconfig",
+  "name": "CreateBundleConfig",
+  "slug": "createbundleconfig",
+  "operationRelativeTypescriptFilePath": "src/CreateBundleConfig.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type CreateBundleConfig = {\n  /**\n   * If true, the structure of operation locations is kept the same but still inside packages/apps/modules.\n   */\n  keepStructure?: boolean;\n\n  /**\n   * Default information strategy\n   */\n  informationStrategy?: InformationStrategy;\n\n  /**\n   * Information strategy per model\n   *\n   * For example, this would ensure your diaries are not copied over to the bundle:\n   *\n   * ```json\n   * { \"Diary\": \"ignore\" }\n   * ```\n   *\n   * If you want to be certain something isn't included, instead of putting it into the model specific information strategy, you can also just put it in an operation that isn't required in the bundle.\n   *\n   * This parameter is especially useful if you want to change a information stategy for one model in specific.\n   */\n  modelInformationStrategy?: {\n    [modelName: string]: InformationStrategy;\n  };\n\n  /**\n   * After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be added or overwriting the data\n   */\n  additional_datasetSlugs?: Slug[];\n\n  /**\n   * After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be found in the then available data in the bundle, and will be filtered out.\n   */\n  filter_datasetSlugs?: Slug[];\n\n  /**\n   * If true, this bundleconfig will be skipped when using `generateAllBundles`\n   */\n  isDraft?: boolean;\n\n  /**\n   * if true, todos are also copied into their original location, which is in `packages` if it's not in an operation, or in the operation in any of the folders if it's an operation.\n   *\n   * The markdown-reader will then add them to a todo menu.\n   *\n   * NB: Only works in conjunction with `keepStructure`\n   */\n  keepTodos?: boolean;\n\n  bundles: FrontBackBundle[];\n  /**\n   * Generated, private by default. If they're already here, uses private/public setting as given.\n   *\n   * When generating, removes the ones that are not dependencies (of dependencies) of your standalone apps\n   */\n  dependencies: OperationPrivacy[];\n\n  /**\n   * optional. Could also find the main file from here and use that as README.md\n   *\n   * Must be a relative path from project root. Can be multiple!\n   */\n  docsRelativeFolderPath?:\n    | ProjectRelativeFolderPath\n    | ProjectRelativeFolderPath[];\n\n  /**\n   * Optional. path to a readme file for the monorepo root.\n   *\n   * If not given, and if you did provide a path for docs, the main docs intro file will be taken\n   *\n   * Must be a relative path from project  root\n   */\n  readmeRelativeFilePath?: ProjectRelativeFilePath;\n\n  /**\n   * if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated\n   *\n   * can be handy if you're working with someone else...\n   */\n  foldersFromRepo?: string[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "keepStructure": {
+          "type": "boolean",
+          "description": "If true, the structure of operation locations is kept the same but still inside packages/apps/modules."
+        },
+        "informationStrategy": {
+          "$ref": "#/definitions/InformationStrategy",
+          "description": "Default information strategy"
+        },
+        "modelInformationStrategy": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/InformationStrategy"
+          },
+          "description": "Information strategy per model\n\nFor example, this would ensure your diaries are not copied over to the bundle:\n\n```json { \"Diary\": \"ignore\" } ```\n\nIf you want to be certain something isn't included, instead of putting it into the model specific information strategy, you can also just put it in an operation that isn't required in the bundle.\n\nThis parameter is especially useful if you want to change a information stategy for one model in specific."
+        },
+        "additional_datasetSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          },
+          "description": "After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be added or overwriting the data"
+        },
+        "filter_datasetSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          },
+          "description": "After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be found in the then available data in the bundle, and will be filtered out."
+        },
+        "isDraft": {
+          "type": "boolean",
+          "description": "If true, this bundleconfig will be skipped when using `generateAllBundles`"
+        },
+        "keepTodos": {
+          "type": "boolean",
+          "description": "if true, todos are also copied into their original location, which is in `packages` if it's not in an operation, or in the operation in any of the folders if it's an operation.\n\nThe markdown-reader will then add them to a todo menu.\n\nNB: Only works in conjunction with `keepStructure`"
+        },
+        "bundles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FrontBackBundle"
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OperationPrivacy"
+          },
+          "description": "Generated, private by default. If they're already here, uses private/public setting as given.\n\nWhen generating, removes the ones that are not dependencies (of dependencies) of your standalone apps"
+        },
+        "docsRelativeFolderPath": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ProjectRelativeFolderPath"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProjectRelativeFolderPath"
+              }
+            }
+          ],
+          "description": "optional. Could also find the main file from here and use that as README.md\n\nMust be a relative path from project root. Can be multiple!"
+        },
+        "readmeRelativeFilePath": {
+          "$ref": "#/definitions/ProjectRelativeFilePath",
+          "description": "Optional. path to a readme file for the monorepo root.\n\nIf not given, and if you did provide a path for docs, the main docs intro file will be taken\n\nMust be a relative path from project  root"
+        },
+        "foldersFromRepo": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated\n\ncan be handy if you're working with someone else..."
+        }
+      },
+      "required": [
+        "bundles",
+        "dependencies"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "keepStructure",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, the structure of operation locations is kept the same but still inside packages/apps/modules.",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "informationStrategy",
+          "required": false,
+          "schema": {
+            "enum": [
+              "ignore",
+              "push",
+              "pullReplace",
+              "pullMerge"
+            ],
+            "fullComment": "Default information strategy\n\npush (default): take needed information from project and push to bundle (removing the existing info)\n\npullReplace: pull bundle and keep its information intact, not taking anything new from the OS, replacing all the information we had from these models in the OS\n\npullMerge: pull bundle and use its information in conjunction with the information we had in the OS. This option will merge both information sources, removing duplicate IDs\n\nignore: don't put any data in the bundle!",
+            "type": "string"
+          }
+        },
+        {
+          "name": "modelInformationStrategy",
+          "required": false,
+          "schema": {
+            "fullComment": "Information strategy per model\n\nFor example, this would ensure your diaries are not copied over to the bundle:\n\n```json { \"Diary\": \"ignore\" } ```\n\nIf you want to be certain something isn't included, instead of putting it into the model specific information strategy, you can also just put it in an operation that isn't required in the bundle.\n\nThis parameter is especially useful if you want to change a information stategy for one model in specific.",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "additional_datasetSlugs",
+          "required": false,
+          "schema": {
+            "fullComment": "After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be added or overwriting the data",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "filter_datasetSlugs",
+          "required": false,
+          "schema": {
+            "fullComment": "After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be found in the then available data in the bundle, and will be filtered out.",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "isDraft",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, this bundleconfig will be skipped when using `generateAllBundles`",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "keepTodos",
+          "required": false,
+          "schema": {
+            "fullComment": "if true, todos are also copied into their original location, which is in `packages` if it's not in an operation, or in the operation in any of the folders if it's an operation.\n\nThe markdown-reader will then add them to a todo menu.\n\nNB: Only works in conjunction with `keepStructure`",
+            "nb": "Only works in conjunction with `keepStructure`",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "bundles",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "This type can specify a frontend and backend that belong to each other. it doesn't include all operations that the ui or server are dependent on, they are calculated separately",
+                  "properties": [
+                    {
+                      "name": "operations",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "any operation names that are not necesarily dependencies of the named front-back bundle but still need to be available.",
+                        "items": [
+                          {
+                            "schema": {
+                              "fullComment": "",
+                              "properties": [
+                                {
+                                  "name": "operationName",
+                                  "required": true,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "privacy",
+                                  "required": true,
+                                  "schema": {
+                                    "enum": [
+                                      "public",
+                                      "private"
+                                    ],
+                                    "fullComment": "if public, everything will be kept\n\nif private, src and todo will be removed from bundle, unless it's a ui-es6 operation, because src is needed then. In that case, only \"todo\" will be deleted.",
+                                    "type": "string"
+                                  }
+                                }
+                              ],
+                              "type": "object"
+                            },
+                            "name": "OperationPrivacy"
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "uiOperationName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "(optional) main shared ui package of the frontend",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "appShellOperationNames",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "which app shell(s) or app operations are there for the frontend?",
+                        "items": [
+                          {
+                            "schema": {
+                              "type": "string"
+                            },
+                            "name": null
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "serverOperationName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "operation name for server, if this UI is connected to one",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "productionWebUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if there is a ui and it has a web-shell, and it is deployed somewhere into production, add the deployed domain here.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "productionApiUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if there is one, it should be specified here (without trailing slash)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "endpointsAuthToken",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if this is provided, all endpoints require this auth token to be provided, or the endpoints do not work\n\nif you wish to have a more extensive authentication method for your endpoints, make sure to create your own auth layer",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "FrontBackBundle"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "dependencies",
+          "required": true,
+          "schema": {
+            "fullComment": "Generated, private by default. If they're already here, uses private/public setting as given.\n\nWhen generating, removes the ones that are not dependencies (of dependencies) of your standalone apps",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "operationName",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "privacy",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "public",
+                          "private"
+                        ],
+                        "fullComment": "if public, everything will be kept\n\nif private, src and todo will be removed from bundle, unless it's a ui-es6 operation, because src is needed then. In that case, only \"todo\" will be deleted.",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "OperationPrivacy"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "docsRelativeFolderPath",
+          "required": false,
+          "schema": {
+            "fullComment": "optional. Could also find the main file from here and use that as README.md\n\nMust be a relative path from project root. Can be multiple!",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "readmeRelativeFilePath",
+          "required": false,
+          "schema": {
+            "fullComment": "Optional. path to a readme file for the monorepo root.\n\nIf not given, and if you did provide a path for docs, the main docs intro file will be taken\n\nMust be a relative path from project  root\n\n",
+            "type": "string"
+          }
+        },
+        {
+          "name": "foldersFromRepo",
+          "required": false,
+          "schema": {
+            "fullComment": "if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated\n\ncan be handy if you're working with someone else...",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CreateBundleConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

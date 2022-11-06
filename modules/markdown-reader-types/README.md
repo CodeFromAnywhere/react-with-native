@@ -11,9 +11,9 @@ markdown-reader-types (node operation)
 - [AugmentedWord](#augmentedword)
 - [AugmentedWordObject](#augmentedwordobject)
 - [AugmentedWordTypeEnum](#augmentedwordtypeenum)
-- [MarkdownFile](#markdownfile)
 - [MarkdownReaderPage](#markdownreaderpage)
 - [MarkdownReaderPageProps](#markdownreaderpageprops)
+- [WebMarkdownFile](#webmarkdownfile)
 
 
 
@@ -68,36 +68,6 @@ NB: can later be replaced with a string enum type: person, definition, variable,
 
 
 
-## MarkdownFile
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| createdAt  | number |  |
-| updatedAt  | number |  |
-| deletedAt  | number |  |
-| createdFirstAt  | number |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| name  | string |  |
-| slug  | string |  |
-| markdown  | string |  |
-| categoryStackCalculated  | array |  |
-| isDraft (optional) | boolean |  |
-| privacy  | string |  |
-| itemId (optional) | string |  |
-| cta (optional) | string |  |
-| headerImage (optional) | string |  |
-| headerTitle (optional) | string |  |
-| headerSubTitle (optional) | string |  |
-| detectedLanguage  | string |  |
-| labels  | array |  |
-
-
-
 ## MarkdownReaderPage
 
 for markdown-reader-ui, the pages can be markdown files, but they can also be connected to models
@@ -122,6 +92,7 @@ Properties:
 
  | Name | Type | Description |
 |---|---|---|
+| publicBundleConfig (optional) | object |  |
 | projectRelativeMarkdownPath (optional) | string |  |
 | markdownFile (optional) | object |  |
 | pages  | array |  |
@@ -130,5 +101,46 @@ Properties:
 | previousQueryPath (optional) | string |  |
 | nextQueryPath (optional) | string |  |
 | description (optional) | string |  |
+
+
+
+## WebMarkdownFile
+
+Every markdown file meant for the web, should have these optional parameters that can be declared as its frontmatter
+
+NB: This is not part of MarkdownModelType, because MarkdownModelType is very barebones general purpose, not only for the web!
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| headerImage  | object |  |
+| headerTitle  | string |  |
+| headerSubTitle  | string |  |
+| headerCta  | object |  |
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| markdown  | string |  |
+| categoryStackCalculated  | array |  |
+| isDraft (optional) | boolean |  |
+| privacy  | string |  |
+| language  | string |  |
+| isLanguageCustom (optional) | boolean |  |
+| websiteCallToActionSlugs (optional) | array |  |
+| shop_itemIds (optional) | array |  |
+| author_personSlugs  | array |  |
+| interestSlugs  | array |  |
 
 

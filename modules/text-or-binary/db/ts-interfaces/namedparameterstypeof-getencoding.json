@@ -1,0 +1,86 @@
+{
+  "createdAt": 1666423007167,
+  "updatedAt": 1666423007167,
+  "deletedAt": 0,
+  "createdFirstAt": 1666423007167,
+  "id": "namedparameterstypeof-getencoding",
+  "name": "NamedParameters<typeof getEncoding>",
+  "slug": "namedparameterstypeof-getencoding",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "buffer": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/global.Buffer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "opts": {
+          "$ref": "#/definitions/EncodingOpts"
+        }
+      },
+      "required": [
+        "buffer"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "buffer",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "opts",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "chunkLength",
+                "required": false,
+                "schema": {
+                  "fullComment": "Defaults to 24",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "chunkBegin",
+                "required": false,
+                "schema": {
+                  "fullComment": "If not provided, will check the start, beginning, and end",
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getEncoding>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

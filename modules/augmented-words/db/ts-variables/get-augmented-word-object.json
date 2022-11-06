@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262252073,
-  "updatedAt": 1666262252073,
+  "createdAt": 1667635092253,
+  "updatedAt": 1667635092253,
   "deletedAt": 0,
-  "createdFirstAt": 1666262252073,
+  "createdFirstAt": 1667635092253,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  manualProjectRoot?: string\n): Promise<MappedObject<AugmentedWord> | undefined> => {\n  const projectRoot = manualProjectRoot || getProjectRoot();\n\n  if (!projectRoot) return;\n\n  if (cache) return cache;\n\n  const augmentedWordsSerializable = (await getAugmentedWords(projectRoot)).map(\n    (item) => omitUndefinedValues(item)\n  );\n\n  const mappedObject = createMappedObject(augmentedWordsSerializable, \"word\");\n\n  cache = mappedObject;\n  return mappedObject;\n}",
   "description": "",
-  "id": "mdntgtvcmdfjryrfkwclxanm"
+  "id": "avcgczufsulyuqtmjhvyutom"
 }

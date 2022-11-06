@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259078154,
-  "updatedAt": 1666259078154,
+  "createdAt": 1667634418784,
+  "updatedAt": 1667634418784,
   "deletedAt": 0,
-  "createdFirstAt": 1666259078154,
+  "createdFirstAt": 1667634418784,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  /**\n   * absolute path of a file or folder without a slash at the end\n   */\n  absolutePath: string,\n  /**\n   * folder path without a slash at the end\n   */\n  baseFolderPath: string\n): string => {\n  // basecase should be handled, we don't want to get some weird slice edgecase\n  if (absolutePath.length < baseFolderPath.length) return \"\";\n\n  return absolutePath.slice(baseFolderPath.length + 1);\n}",
   "description": "Makes a path relative using proper parsing\n\nResulting path will apply the paths conventions\n- no slash at the end\n- no slash at the beginning",
-  "id": "escjpqjvmuvrejzmlorsyhtn"
+  "id": "yubtgcvimrturploienhdahb"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667588131053,
+  "updatedAt": 1667588131053,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588131053,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "testAllContentEditableRenderComponents",
+  "slug": "test-all-content-editable-render-components",
+  "operationRelativeTypescriptFilePath": "src/editors/testAllContentEditableRenderComponents.tsx",
+  "type": {
+    "rawType": "() => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  const allComponents: ContentEditableRenderComponentType<any>[] = [\n    MarkedText,\n    MarkedParagraph,\n  ];\n\n  const results = allComponents.map((component) => {\n    return {\n      name: component.name,\n      isValid: testContentEditableRenderComponent(component),\n    };\n  });\n\n  console.log(results);\n}",
+  "description": "Can be used to test all `ContentEditableRenderComponent`s with example inputs\n\nInstead you can also enable devmode and just check it on the live examples",
+  "id": "exrutmqspogrfutniyjxtzdk"
+}

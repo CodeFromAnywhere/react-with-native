@@ -1,0 +1,86 @@
+{
+  "createdAt": 1666691107453,
+  "updatedAt": 1666691107453,
+  "deletedAt": 0,
+  "createdFirstAt": 1666691107453,
+  "id": "subtextrelatedthing",
+  "name": "SubtextRelatedThing",
+  "slug": "subtextrelatedthing",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type SubtextRelatedThing = {\n  type: \"image\" | \"asset\" | \"pages\" | \"data\" | \"code\";\n  quantity: \"single\" | \"short\" | \"all\";\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "image",
+            "asset",
+            "pages",
+            "data",
+            "code"
+          ]
+        },
+        "quantity": {
+          "type": "string",
+          "enum": [
+            "single",
+            "short",
+            "all"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "quantity"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "image",
+              "asset",
+              "pages",
+              "data",
+              "code"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "quantity",
+          "required": true,
+          "schema": {
+            "enum": [
+              "single",
+              "short",
+              "all"
+            ],
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "SubtextRelatedThing",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

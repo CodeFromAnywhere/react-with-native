@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667634961048,
+  "updatedAt": 1667634961048,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634961048,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getYoutubeId",
+  "slug": "get-youtube-id",
+  "operationRelativeTypescriptFilePath": "src/renderMarkdownContent.tsx",
+  "type": {
+    "rawType": "(url: string | undefined) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(url: string | undefined): string | undefined => {\n  if (!url) return;\n\n  const regExp =\n    /^.*(youtu.be\\/|v\\/|u\\/\\w\\/|embed\\/|watch\\?v=|\\&v=|\\?v=)([^#\\&\\?]*).*/;\n  const match = url.match(regExp);\n\n  if (match && match[2].length == 11) {\n    return match[2];\n  }\n  return;\n}",
+  "description": "",
+  "id": "flbxzdmauuplbadqfdcwiiho"
+}

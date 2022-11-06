@@ -1,15 +1,15 @@
 {
-  "createdAt": 1667379852464,
-  "updatedAt": 1667379852464,
+  "createdAt": 1667684662848,
+  "updatedAt": 1667684662848,
   "deletedAt": 0,
-  "createdFirstAt": 1667379852464,
+  "createdFirstAt": 1667684662848,
   "id": "functionexecution",
   "name": "FunctionExecution",
   "slug": "functionexecution",
   "operationRelativeTypescriptFilePath": "src/FunctionExecution.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * Model for tests, examples, cache, and recent executions of any function\n *\n * Requirement for **tifo-stitching**\n\nExample: \n\nconst someFunction = (inputA: string, inputB:string):string => {\n\n  return `${inputA} != ${inputB}`\n}\n\n\n// find this in the database after executing the function\n\nconst functionExecution1 = {\n  ....\n  functionName: \"someFunction\",\n  inputParameters: [\"hello\", \"world\"],\n  output: \"hello != world\",\n  isTest: false,\n  isExample: false,\n  isResultFromCache: false,\n  performance: [....],\n}\n\n*/\n\nexport interface FunctionExecution extends DefaultModelType {\n  functionName: string;\n  tsFunctionId: Id;\n  tsFunction?: TsFunction;\n  inputParameters: any[] | undefined;\n  output: any;\n  isTest: boolean;\n  isExample: boolean;\n  isResultFromCache: boolean;\n  performance: PerformanceItem[];\n}",
+  "rawText": "\n\n/**\n * Model for tests, examples, cache, and recent executions of any function\n *\n * Requirement for **tifo-stitching**\n\nExample: \n\nconst someFunction = (inputA: string, inputB:string):string => {\n\n  return `${inputA} != ${inputB}`\n}\n\n\n// find this in the database after executing the function\n\nconst functionExecution1 = {\n  ....\n  functionName: \"someFunction\",\n  inputParameters: [\"hello\", \"world\"],\n  output: \"hello != world\",\n  isTest: false,\n  isExample: false,\n  isResultFromCache: false,\n  performance: [....],\n}\n\n*/\n\nexport interface FunctionExecution extends DefaultModelType {\n  functionName: string;\n  tsFunctionId: Id;\n  tsFunction?: TsFunction;\n  inputParameters: any[] | undefined;\n  output: any;\n  isTest: boolean;\n  isExample: boolean;\n  /**\n   * test description or example description or anything\n   */\n  description: Markdown;\n  isResultFromCache: boolean;\n  /**\n   * if true, the api of the function (input/output interface) has changed in bewteen, so the re-execution would probably fail or return a different result\n   */\n  hasApiChanged?: boolean;\n  performance: PerformanceItem[];\n}",
   "extensions": [
     "DefaultModelType"
   ],
@@ -76,8 +76,16 @@
         "isExample": {
           "type": "boolean"
         },
+        "description": {
+          "$ref": "#/definitions/Markdown",
+          "description": "test description or example description or anything"
+        },
         "isResultFromCache": {
           "type": "boolean"
+        },
+        "hasApiChanged": {
+          "type": "boolean",
+          "description": "if true, the api of the function (input/output interface) has changed in bewteen, so the re-execution would probably fail or return a different result"
         },
         "performance": {
           "type": "array",
@@ -90,6 +98,7 @@
         "createdAt",
         "createdFirstAt",
         "deletedAt",
+        "description",
         "functionName",
         "id",
         "isExample",
@@ -252,9 +261,25 @@
           }
         },
         {
+          "name": "description",
+          "required": true,
+          "schema": {
+            "fullComment": "test description or example description or anything\n\na string that is known to contain markdown.",
+            "type": "string"
+          }
+        },
+        {
           "name": "isResultFromCache",
           "required": true,
           "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "hasApiChanged",
+          "required": false,
+          "schema": {
+            "fullComment": "if true, the api of the function (input/output interface) has changed in bewteen, so the re-execution would probably fail or return a different result",
             "type": "boolean"
           }
         },

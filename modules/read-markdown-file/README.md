@@ -31,10 +31,6 @@ Reads a markdown absolute path to a `MarkdownFile` model
 
 
 
-### Parameters (1)
-
-#### Parameter 1: absoluteFilePath: string
-
 ## readMarkdownFile
 
 Reads and parses a markdown file

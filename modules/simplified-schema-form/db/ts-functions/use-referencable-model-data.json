@@ -1,0 +1,164 @@
+{
+  "createdAt": 1667634906327,
+  "updatedAt": 1667634906327,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634906327,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/useReferencableModelData.ts",
+  "commentsInside": [],
+  "rawText": " (\n  simplifiedSchema: SimplifiedSchema\n): ReferencableModelData | undefined => {\n  const referencableModelNames = getReferencableModels(simplifiedSchema)\n    ?.map((x) => x.interfaceName)\n    .filter(notEmpty);\n\n  if (!referencableModelNames) return;\n\n  /**\n   * NB: here we just get the referencable model data for the referencable model names in this form. But since they are decoupled, useQuery is caching them, across forms!\n   */\n  const referencableModelDataArray = referencableModelNames\n    .map((dbModelName) => {\n      const realDbModelName = dbModelName as keyof DbModels;\n      const { data: apiResult, isLoading } =\n        queries.useGetReferencableModelData(realDbModelName);\n\n      const data = apiResult?.result;\n\n      return { [dbModelName]: { data, isLoading } };\n    })\n    .filter(notEmpty);\n\n  const referencableModelData: ReferencableModelData | undefined =\n    referencableModelDataArray\n      ? mergeObjectsArray(referencableModelDataArray)\n      : undefined;\n\n  return referencableModelData;\n}",
+  "name": "useReferencableModelData",
+  "slug": "use-referencable-model-data",
+  "parameters": [
+    {
+      "name": "simplifiedSchema",
+      "schema": {
+        "$ref": "#/definitions/SimplifiedSchema"
+      },
+      "simplifiedSchema": {
+        "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+        "properties": [
+          {
+            "name": "todo",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "discussion",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idea",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "later",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nb",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "title",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "section",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "circularRefName",
+            "required": false,
+            "schema": {
+              "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+              "type": "string"
+            }
+          },
+          {
+            "name": "enum",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "properties",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of object, this will always appear",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "items",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of arrays, this will always appear",
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "fullComment",
+            "required": false,
+            "schema": {
+              "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+              "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Hook to retreive `ReferencableModelData` to supply to `SimplifiedSchemaForm`.\n\nUnderwater, this calculates all referencableModelNames for a schema, and then it fetches the `ReferencableItem`[] for every one of those models, using `react-query` `useQuery` hooks\n\nNB: be careful, not to change the simplifiedSchema after using this hook for the first time. This will change the amount of hooks and this can break react!\n\n(it will give `Error: Rendered more hooks than during the previous render`)",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/simplified-schema-form/src/types\").ReferencableModelData | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": true
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1515,
+    "lines": 37,
+    "bytes": 1515,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 41,
+    "linesPerFile": 37,
+    "numberOfFiles": 1
+  },
+  "id": "qeltfebwuyekclzznvjfrtwa"
+}

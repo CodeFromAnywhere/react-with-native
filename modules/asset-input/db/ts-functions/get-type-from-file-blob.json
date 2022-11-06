@@ -1,0 +1,139 @@
+{
+  "createdAt": 1667378721887,
+  "updatedAt": 1667378721887,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378721887,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util/getTypeFromFileBlob.ts",
+  "commentsInside": [],
+  "rawText": " (file: File) => {\n  const typeFirstPart = file.type.split(\"/\")[0];\n\n  const firstPartAssetTypes = [\"image\", \"video\", \"audio\"];\n\n  const type: AssetType = firstPartAssetTypes.includes(typeFirstPart)\n    ? (typeFirstPart as AssetType)\n    : \"other\";\n\n  return type;\n}",
+  "name": "getTypeFromFileBlob",
+  "slug": "get-type-from-file-blob",
+  "parameters": [
+    {
+      "name": "file",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "lastModified": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "webkitRelativePath": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "lastModified",
+          "name",
+          "size",
+          "type",
+          "webkitRelativePath"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "size",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastModified",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "webkitRelativePath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").AssetType",
+    "typeDefinition": {
+      "optional": false,
+      "enum": [
+        "audio",
+        "video",
+        "image",
+        "other"
+      ],
+      "x-enumNames": [
+        "audio",
+        "video",
+        "image",
+        "other"
+      ],
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "enum": [
+        "audio",
+        "video",
+        "image",
+        "other"
+      ],
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 266,
+    "lines": 11,
+    "bytes": 266,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "njhyoknbpnoklhfhtvramayx"
+}

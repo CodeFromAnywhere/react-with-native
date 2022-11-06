@@ -45,6 +45,7 @@ export declare const sdk: {
     getDatabaseRootFolder: (operationName: string | null | undefined, manualProjectRoot?: string | undefined) => Promise<string | undefined>;
     getDbFileLocation: (storedItem: import("model-types").Storing<import("model-types").AugmentedAnyModelType>, operationName: string | null, mergedConfig: import("fs-orm").MergedQueryConfig, modelName: string) => Promise<import("model-types").DbFileLocation | undefined>;
     getDbStorageMethodExtension: (dbStorageMethod: "markdown" | "jsonMultiple" | "jsonSingle" | "keyValueMarkdown" | "csv") => string;
+    getDefaultLocationPattern: (dbStorageMethod: "markdown" | "jsonMultiple" | "jsonSingle" | "keyValueMarkdown" | "csv", modelName: string) => string | undefined;
     getItemModelLocation: <T_3 extends {
         [key: string]: any;
     }>(item: T_3) => import("model-types").ModelLocation;
@@ -123,7 +124,9 @@ export declare const sdk: {
     getFolderExplorationInfo: (nestedPathObject: import("nested-menu").NestedPathObject, queryPath: string, projectRoot: string) => Promise<{
         title: string | undefined;
         description: string | null;
+        descriptionProjectRelativeMarkdownPath: string | null;
         children: {
+            projectRelativeMarkdownPath: string | null;
             title: string;
             firstParagraph: string | null;
             folderName: string;
@@ -131,7 +134,7 @@ export declare const sdk: {
     }>;
     getMarkdownModelPages: (projectRoot: string) => Promise<import("markdown-reader-types").MarkdownReaderPage[]>;
     getMarkdownPageInfo: (projectRoot: string, nestedPathObject: import("nested-menu").NestedPathObject, queryPath: string, contentPage: import("markdown-reader-types").MarkdownReaderPage) => Promise<{
-        markdownFile: import("code-types").MarkdownFile | null;
+        markdownFile: import("code-types").WebMarkdownFile | null;
         nextQueryPath: string | null;
         previousQueryPath: string | null;
         projectRelativeMarkdownPath: string | null;
@@ -144,7 +147,7 @@ export declare const sdk: {
     getMarkdownReaderQueryPaths: (config?: {
         manualProjectRoot?: string | undefined;
     } | undefined) => Promise<string[] | undefined>;
-    getOperationPages: (projectRoot: string) => Promise<import("markdown-reader-types").MarkdownReaderPage[]>;
+    getOperationPages: (projectRoot: string, bundleMarkdownReaderConfig?: import("bundle-types").BundleMarkdownReaderConfig | undefined) => Promise<import("markdown-reader-types").MarkdownReaderPage[]>;
     getPublicMarkdownFilePaths: (baseFolderPath: string, includeFoldersWithResults?: boolean | undefined) => Promise<{
         path: string;
         isFolder: boolean;
@@ -163,7 +166,7 @@ export declare const sdk: {
     readJsonFileSync: <T_9>(filePath: string) => T_9 | null;
     readJsonFile: <T_10>(filePath: string | undefined) => Promise<T_10 | null>;
     readKvmdFile: (filePath: string, dbFileLocation: import("model-types").DbFileLocation) => Promise<import("model-types").KeyValueMarkdownParse | null>;
-    readMarkdownFileToModel: (absoluteFilePath: string) => Promise<import("code-types").MarkdownFile | null>;
+    readMarkdownFileToModel: (absoluteFilePath: string) => Promise<import("code-types").WebMarkdownFile | null>;
     readMarkdownFile: (filePath: string) => Promise<import("code-types").MarkdownParse | null>;
     writeToAssets: (filePath: string, data: any, assetsFileName?: string | undefined) => Promise<boolean | undefined>;
 };

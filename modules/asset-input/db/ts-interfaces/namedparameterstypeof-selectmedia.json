@@ -1,0 +1,78 @@
+{
+  "createdAt": 1667378719572,
+  "updatedAt": 1667378719572,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378719572,
+  "id": "namedparameterstypeof-selectmedia",
+  "name": "NamedParameters<typeof SelectMedia>",
+  "slug": "namedparameterstypeof-selectmedia",
+  "operationRelativeTypescriptFilePath": "src/select-media/SelectMedia.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "props": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "$ref": "#/definitions/MediaSourceEnum",
+              "description": "NB: please don't change the source after initialisation!"
+            }
+          },
+          "required": [
+            "source"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "props"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "props",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "source",
+                "required": true,
+                "schema": {
+                  "enum": [
+                    "project",
+                    "p2p",
+                    "google",
+                    "giphy",
+                    "unsplashed",
+                    "youtube"
+                  ],
+                  "fullComment": "NB: please don't change the source after initialisation!\n\nproject: api urls p2p: api urls with other ip\n--- google: remote image urls giphy: remote image urls unsplashed: remote image urls youtube: remote video urls (selectable as mp3, mp4, or url)",
+                  "nb": "please don't change the source after initialisation!",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof SelectMedia>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

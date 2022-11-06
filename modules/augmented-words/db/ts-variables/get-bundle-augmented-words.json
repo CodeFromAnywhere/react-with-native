@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262253646,
-  "updatedAt": 1666262253646,
+  "createdAt": 1667635093436,
+  "updatedAt": 1667635093436,
   "deletedAt": 0,
-  "createdFirstAt": 1666262253646,
+  "createdFirstAt": 1667635093436,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (): Promise<AugmentedWord[]> => {\n  // NB: we need to cast the string because in non-sensible-projects this might otherwise fail\n  const bundles: AugmentedAnyModelType[] = await db.get(\n    \"BundleConfig\" as keyof DbModels\n  );\n\n  const bundleAugmentedWords: AugmentedWord[] = bundles.map((bundle) => {\n    const augmentedWord: AugmentedWord = {\n      queryPath: bundle.docsRelativeFolderPath,\n      spoiler: bundle.description,\n      type: \"bundle\",\n      word: bundle.slug,\n      projectRelativeMarkdownSourcePath: bundle.projectRelativePath,\n    };\n\n    return augmentedWord;\n  });\n\n  return bundleAugmentedWords;\n}",
   "description": "NB: should only be executed if this is not a sensible-project, as it might not have `BundleConfig` otherwise",
-  "id": "fhwaqgkgycnjftmegzvradhe"
+  "id": "nfvhuzexeigpmgpnmdsmspwu"
 }

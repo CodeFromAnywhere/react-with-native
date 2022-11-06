@@ -1,0 +1,63 @@
+{
+  "createdAt": 1666264854895,
+  "updatedAt": 1666264854895,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264854895,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/BreadCrumbs.tsx",
+  "commentsInside": [],
+  "rawText": " (chunks: string[]) => {\n  return chunks?.map((chunk, index) => {\n    const isLast = chunks.length - 1 === index;\n\n    return (\n      <Div\n        key={`breadcrumb${index}`}\n        className=\"flex flex-row items-center text-xs\"\n      >\n        {chunk}\n        {isLast ? null : (\n          <Div className=\"px-2 text-gray-900 dark:text-gray-200\">▸</Div>\n        )}\n      </Div>\n    );\n  });\n}",
+  "name": "renderBreadCrumbs",
+  "slug": "render-bread-crumbs",
+  "parameters": [
+    {
+      "name": "chunks",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 391,
+    "lines": 17,
+    "bytes": 393,
+    "bytesPerCharacter": 1.0051150895140666,
+    "charactersPerLine": 23,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "plvbwnzlhimvfxsdwyjhavav"
+}

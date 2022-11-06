@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666265019904,
+  "updatedAt": 1666265019904,
+  "deletedAt": 0,
+  "createdFirstAt": 1666265019904,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useHotkey",
+  "slug": "use-hotkey",
+  "operationRelativeTypescriptFilePath": "src/useHotkey.ts",
+  "type": {
+    "rawType": "(isRightKey: (keyboardEvent: KeyboardEvent) => boolean, callback: () => void, dependencies: any[]) => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  /**\n   * callback that needs to launch on any keyboard event\n   */\n  isRightKey: (keyboardEvent: KeyboardEvent) => boolean,\n  /**\n   * function to be executed when hotkey occurs\n   */\n  callback: () => void,\n  /**\n   * when the callback needs to be reloaded\n   */\n  dependencies: any[]\n) => {\n  const fullCallback = (keyboardEvent: KeyboardEvent) => {\n    if (isRightKey(keyboardEvent)) {\n      callback();\n    }\n  };\n  return useHotkeys(dependencies, fullCallback);\n}",
+  "description": "hook that creates an eventlistener for keydown and cleans it up when needed",
+  "id": "tdfynwnsxdgehngiiuqewcrr"
+}

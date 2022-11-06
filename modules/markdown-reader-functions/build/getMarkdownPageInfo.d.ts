@@ -1,11 +1,11 @@
 import { NestedPathObject } from "nested-menu";
 import { MarkdownReaderPage } from "markdown-reader-types";
-import { MarkdownFile } from "code-types";
+import { WebMarkdownFile } from "code-types";
 /**
  * If a markdown page is found, this function fetches all metadata needed to render that markdown page
  */
 export declare const getMarkdownPageInfo: (projectRoot: string, nestedPathObject: NestedPathObject, queryPath: string, contentPage: MarkdownReaderPage) => Promise<{
-    markdownFile: MarkdownFile | null;
+    markdownFile: WebMarkdownFile | null;
     nextQueryPath: string | null;
     previousQueryPath: string | null;
     projectRelativeMarkdownPath: string | null;

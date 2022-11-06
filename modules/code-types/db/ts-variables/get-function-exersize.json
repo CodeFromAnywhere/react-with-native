@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667684663466,
+  "updatedAt": 1667684663466,
+  "deletedAt": 0,
+  "createdFirstAt": 1667684663466,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getFunctionExersize",
+  "slug": "get-function-exersize",
+  "operationRelativeTypescriptFilePath": "src/FunctionExecution.ts",
+  "type": {
+    "rawType": "(functionId: string) => Promise<string>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  functionId: string\n): Promise<string> => {\n  //1) get the function, make the description, input, and output string\n  const descriptionString = \"\";\n  const inputString = \"\";\n  const outputString = \"\";\n  //2) get all it's examples from `FunctionExecution`, make the example string\n  const examplesString = 'Input `x, y, z`. Output should be \"a\"';\n\n  return `\nWrite a function that can do this:\n\n${descriptionString}\n\nIt should take this as its inputs:\n\n${inputString}\n\nIt should return this:\n\n${outputString}\n\nSome examples:\n\n${examplesString}\n`;\n}",
+  "description": "",
+  "id": "xnsnvunqgvzyxblzgxpueozp"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259076988,
-  "updatedAt": 1666259076988,
+  "createdAt": 1667634417688,
+  "updatedAt": 1667634417688,
   "deletedAt": 0,
-  "createdFirstAt": 1666259076988,
+  "createdFirstAt": 1667634417688,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  folderPath: string\n): undefined | { isSensibleProject: boolean; isWorkspaceRoot: boolean } => {\n  const packageJsonPath = path.join(folderPath, \"package.json\");\n  const existsPackageJson = fs.existsSync(packageJsonPath);\n  if (!existsPackageJson) return;\n\n  const packageJson = tryParseJson<PackageJson>(\n    fs.readFileSync(packageJsonPath, \"utf8\")\n  );\n\n  const sensibleConfig: SensibleConfig | undefined = packageJson?.sensible;\n  const isSensibleProject = sensibleConfig?.isSensibleProject || false;\n\n  if (!packageJson || !packageJson.workspaces) {\n    return;\n  }\n\n  return { isSensibleProject, isWorkspaceRoot: true };\n}",
   "description": "simple sync function to check if a folder is the root of a workspace (not operation but a workspace)",
-  "id": "alujncpeprdcikxmqjetzfph"
+  "id": "riorhjwyrquijlcujgnwqesq"
 }

@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667588105239,
+  "updatedAt": 1667588105239,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588105239,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/FrontmatterForm.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  projectRelativeMarkdownFilePath: string;\n  frontmatterSchema: SimplifiedSchema;\n  markdownParse: MarkdownParse;\n  onChange: (value: string) => void;\n}) => {\n  const { onChange, projectRelativeMarkdownFilePath, markdownParse } = props;\n  const [immutableFrontmatterSchema] = useState<SimplifiedSchema>(\n    props.frontmatterSchema\n  );\n\n  console.log({\n    parameters: markdownParse.parameters,\n  });\n  const referencableModelData = useReferencableModelData(\n    immutableFrontmatterSchema\n  );\n\n  return (\n    <SimplifiedSchemaForm\n      id={projectRelativeMarkdownFilePath}\n      parameters={[\n        {\n          name: \"Frontmatter\",\n          required: true,\n          isDbModel: true,\n          simplifiedSchema: immutableFrontmatterSchema,\n        },\n      ]}\n      onChange={([frontmatter]) => {\n        const newMarkdownParse: MarkdownParse = {\n          ...markdownParse,\n          parameters: frontmatter,\n        };\n\n        const newMarkdownString =\n          markdownParseToMarkdownString(newMarkdownParse);\n\n        onChange(newMarkdownString);\n      }}\n      values={[markdownParse.parameters]}\n      projectRelativeStorageFilePath={projectRelativeMarkdownFilePath}\n      referencableModelData={referencableModelData}\n    />\n  );\n}",
+  "name": "FrontmatterForm",
+  "slug": "frontmatter-form",
+  "parameters": [],
+  "description": "Renders a form for frontmatter without save button",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 1308,
+    "lines": 46,
+    "bytes": 1308,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 46,
+    "numberOfFiles": 1
+  },
+  "id": "lnbdayenzuhmtabhbfnvpeiy"
+}

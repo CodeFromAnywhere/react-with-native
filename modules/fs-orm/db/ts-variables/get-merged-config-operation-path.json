@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666512739648,
-  "updatedAt": 1666512739648,
+  "createdAt": 1667634648083,
+  "updatedAt": 1667634648083,
   "deletedAt": 0,
-  "createdFirstAt": 1666512739648,
+  "createdFirstAt": 1667634648083,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  mergedConfig: MergedQueryConfig,\n  manualProjectRoot?: string\n): Promise<false | string | undefined> => {\n  if (mergedConfig.operationName) {\n    const operationPath = await getOperationPath(mergedConfig.operationName, {\n      manualProjectRoot,\n      notUseSdk: !!manualProjectRoot,\n    });\n    //\n    if (operationPath === undefined) {\n      log(`Operation wasn't found ${mergedConfig.operationName}`, {\n        type: \"warning\",\n      });\n    }\n\n    return operationPath;\n  }\n\n  return false;\n}",
   "description": "",
-  "id": "zshadakztxdqnqryxouuwbft"
+  "id": "yxccuzamirpbjiyicpyahibh"
 }

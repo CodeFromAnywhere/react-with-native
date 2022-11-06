@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667634653153,
+  "updatedAt": 1667634653153,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634653153,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDefaultLocationPattern",
+  "slug": "get-default-location-pattern",
+  "operationRelativeTypescriptFilePath": "src/convention/getLocationPattern.ts",
+  "type": {
+    "rawType": "(dbStorageMethod: any, modelName: string) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  dbStorageMethod: DbStorageMethod,\n  modelName: string\n): string | undefined => {\n  const fileOrFolderName = pluralize(kebabCase(modelName));\n  if (dbStorageMethod === \"jsonMultiple\") return `db/${fileOrFolderName}.json`;\n  if (dbStorageMethod === \"keyValueMarkdown\")\n    return `db/${fileOrFolderName}.md`;\n  if (dbStorageMethod === \"csv\") return `db/${fileOrFolderName}.csv`;\n\n  if (dbStorageMethod === \"jsonSingle\") return `db/${fileOrFolderName}/*.json`;\n  if (dbStorageMethod === \"markdown\") return `db/${fileOrFolderName}/*.md`;\n}",
+  "description": "DB main storage convention",
+  "id": "wyqukowsoesgjdllbfbjwzvn"
+}

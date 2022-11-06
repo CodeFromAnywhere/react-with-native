@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667588106991,
+  "updatedAt": 1667588106991,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588106991,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "MarkdownParsePresentation",
+  "slug": "markdown-parse-presentation",
+  "operationRelativeTypescriptFilePath": "src/MarkdownParsePresentation.tsx",
+  "type": {
+    "rawType": "(props: { markdownParse: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse; augmentedWordObject?: import(\"/Users/king/King/operations/tools/util/js-util/build/createMappedObject\").MappedObject<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/AugmentedWord\").AugmentedWord> | undefined; projectRelativeBaseFolderPath: string; projectRelativeMarkdownFilePath: string; }) => JSX.Element | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  markdownParse: MarkdownParse;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n  projectRelativeBaseFolderPath: string;\n  projectRelativeMarkdownFilePath: string;\n}) => {\n  const {\n    markdownParse,\n    augmentedWordObject,\n    projectRelativeBaseFolderPath,\n    projectRelativeMarkdownFilePath,\n  } = props;\n  const [slide, setSlide] = useState(0);\n\n  if (!markdownParse.content) return null;\n\n  const markdownParagraphs = flattenMarkdownChunks(\n    markdownParse.content\n  ).filter((x) => x.paragraph !== \"\");\n\n  const paragraph = markdownParagraphs[slide];\n\n  if (!paragraph) return <P>No slides</P>;\n\n  const navigationIcons: ClickableIconType[] = [\n    {\n      onClick: () => setSlide(0),\n      emoji: \"⏮\",\n      disabled: slide === 0,\n    },\n\n    {\n      onClick: () => setSlide(slide - 1),\n      emoji: \"⬅\",\n      disabled: slide === 0,\n    },\n\n    {\n      onClick: () => setSlide(slide + 1),\n      emoji: \"➡\",\n      disabled: slide === markdownParagraphs.length - 1,\n    },\n\n    {\n      onClick: () => setSlide(markdownParagraphs.length - 1),\n      emoji: \"⏭\",\n      disabled: slide === markdownParagraphs.length - 1,\n    },\n  ];\n  const navigation = (\n    <Div className=\"flex flex-row gap-3\">\n      {navigationIcons.map((item, index) => (\n        <ClickableIcon {...item} key={`icon${index}`} />\n      ))}\n    </Div>\n  );\n\n  return (\n    <Div className=\"flex flex-col flex-1\">\n      <Div className=\"flex flex-1 flex-col\">\n        <Div className=\"flex flex-col justify-center items-center\">\n          <P className=\"text-4xl\">\n            {\n              paragraph.categoryStackCalculated[\n                paragraph.categoryStackCalculated.length - 1\n              ]\n            }\n          </P>\n\n          <Div className=\"flex flex-row flex-wrap\">\n            {renderBreadCrumbs(paragraph.categoryStackCalculated)}\n          </Div>\n        </Div>\n\n        <Div className=\"flex flex-1 flex-col items-center justify-center overflow-y-auto\">\n          {renderMarkdownContent(paragraph.paragraph, {\n            big: true,\n            projectRelativeBaseFolderPath,\n            projectRelativeMarkdownFilePath,\n            augmentedWordObject,\n            isDev,\n            isStatic: false,\n          })}\n        </Div>\n      </Div>\n\n      {navigation}\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "mzltsdzcqamfnvdnhrwsvpqm"
+}

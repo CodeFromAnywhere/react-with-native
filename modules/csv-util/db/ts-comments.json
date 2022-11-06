@@ -1,9 +1,9 @@
 [
   {
-    "createdAt": 1666262680817,
-    "updatedAt": 1666262680817,
+    "createdAt": 1667640017082,
+    "updatedAt": 1667640017082,
     "deletedAt": 0,
-    "createdFirstAt": 1666262680817,
+    "createdFirstAt": 1667640017082,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/tryParseCsv.ts",
@@ -11,8 +11,8 @@
     "rawStatement": "export const tryParseCsv = <T extends CsvItemType>(\n  csvString: string\n): T[] | null => {\n  const [columnsString, ...rowStrings] = csvString.split(\"\\n\");\n\n  const columns = columnsString.split(\",\").map((x) => x.trim());\n\n  const rows = rowStrings.map((rowString) => {\n    const values = rowString.split(\",\");\n\n    const rowObject = mergeObjectsArray(\n      columns.map((columnName, index) => {\n        return { [columnName]: parsePrimitive(values[index]) };\n      })\n    ) as T;\n\n    return rowObject;\n  });\n\n  return rows;\n};",
     "parameters": {},
     "types": [],
-    "firstLine": 9,
-    "lastLine": 11,
-    "id": "cprfqjhdivzfahfbwiyycukh"
+    "firstLine": 10,
+    "lastLine": 12,
+    "id": "ymsibgxbhoannefwmnlohryj"
   }
 ]

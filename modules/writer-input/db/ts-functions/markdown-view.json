@@ -1,0 +1,209 @@
+{
+  "createdAt": 1667588108690,
+  "updatedAt": 1667588108690,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588108690,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/MarkdownView.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  view: \"view\" | \"presentation\";\n  markdownParse: MarkdownParse;\n  markdownParseRenderConfig: MarkdownParseRenderConfig;\n}) => {\n  const { markdownParse, markdownParseRenderConfig, view } = props;\n\n  const {\n    projectRelativeBaseFolderPath,\n    projectRelativeMarkdownFilePath,\n    augmentedWordObject,\n  } = markdownParseRenderConfig;\n  return (\n    <>\n      {view === \"view\" ? (\n        <Div className=\"mx-2\">\n          {renderMarkdownParse(markdownParse, markdownParseRenderConfig)}\n        </Div>\n      ) : null}\n\n      {view === \"presentation\" ? (\n        <Div className=\"mx-2 flex flex-1 min-h-[80vh]\">\n          {markdownParse.content ? (\n            <MarkdownParsePresentation\n              markdownParse={markdownParse}\n              augmentedWordObject={augmentedWordObject}\n              projectRelativeBaseFolderPath={projectRelativeBaseFolderPath}\n              projectRelativeMarkdownFilePath={projectRelativeMarkdownFilePath}\n            />\n          ) : (\n            \"Couldn't find any content\"\n          )}\n        </Div>\n      ) : null}\n    </>\n  );\n}",
+  "name": "MarkdownView",
+  "slug": "markdown-view",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "view": {
+            "type": "string",
+            "enum": [
+              "view",
+              "presentation"
+            ]
+          },
+          "markdownParse": {
+            "$ref": "#/definitions/MarkdownParse"
+          },
+          "markdownParseRenderConfig": {
+            "$ref": "#/definitions/MarkdownParseRenderConfig"
+          }
+        },
+        "required": [
+          "view",
+          "markdownParse",
+          "markdownParseRenderConfig"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "view",
+            "required": true,
+            "schema": {
+              "enum": [
+                "view",
+                "presentation"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "markdownParse",
+            "required": true,
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "fileName",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "if available, this can be the filename of the markdown in this markdown-parse. Can be used for things like merging",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "createdAt",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "openedAt",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "updatedAt",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "deletedAt",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "createdFirstAt",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "content",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "structured content based on h1, h2, h3, etc (paragraphs, recursive)",
+                    "items": [],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "raw",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "raw markdown without frontmatter",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "markdownParseRenderConfig",
+            "required": true,
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "projectRelativeBaseFolderPath",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "Folder path where the markdown is supposed to be located.\n\nThis is used for knowing where relative links or assets can be found",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "projectRelativeMarkdownFilePath",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "project relative path of the markdown file.\n\nThis is used for knowing where relative links or assets can be found",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "isStatic",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If true, the files should come from a static folder. This means the relative references should now become projectRelative. Also see `copyAllRelativeFiles`.\n\nIf not true, we will use the api.",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "isDev",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If true, we assume not all files are present in the static folder yet. This means we need to use the api.",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "big",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 1083,
+    "lines": 37,
+    "bytes": 1083,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 37,
+    "numberOfFiles": 1
+  },
+  "id": "maqnnuobqabqyobbkxzfemyy"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667588128118,
+  "updatedAt": 1667588128118,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588128118,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "omitSpecialCharactersFromStart",
+  "slug": "omit-special-characters-from-start",
+  "operationRelativeTypescriptFilePath": "src/editors/autocomplete-components.tsx",
+  "type": {
+    "rawType": "(word?: string | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(word?: string) => {\n  if (word === undefined) return;\n\n  const finalWord = specialCharacters.reduce(\n    (word, character) => {\n      // NB: if a word was already trimmed from a special character, the other special characters don't need to be trimmed\n      if (word.hasChanged) return word;\n      const newWord = trimLeft(word.word, character);\n      return { word: newWord, hasChanged: word.word !== newWord };\n    },\n    { word, hasChanged: false }\n  );\n\n  return finalWord.word;\n}",
+  "description": "Omits all special characters from the start of a word for the first special character it finds. The other special characters found after that won't be trimmed.",
+  "id": "whhsmyoluichhpbtodpsuvet"
+}

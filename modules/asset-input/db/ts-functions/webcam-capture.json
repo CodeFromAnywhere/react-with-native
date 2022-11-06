@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667378718255,
+  "updatedAt": 1667378718255,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378718255,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/Webcam.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  withBlob: (blobUrl: string, blob: Blob) => void;\n}) => {\n  const [snapshot, setSnapshot] = useState<string | null>(null);\n  const { withBlob } = props;\n  return (\n    <Webcam\n      audio={false}\n      height={HEIGHT}\n      width={WIDTH}\n      screenshotFormat=\"image/jpeg\"\n      videoConstraints={videoConstraints}\n      className=\"w-full h-full flex\"\n    >\n      {({ getScreenshot }) => {\n        return (\n          <Div className=\"relative\">\n            {snapshot ? (\n              <Image\n                src={snapshot}\n                className=\"absolute bottom-6 left-10 w-1/5 aspect-auto\"\n              />\n            ) : null}\n\n            <Button\n              className=\"hover:bg-gray-200 absolute bottom-6 left-1/2 p-4 border border-black bg-white rounded-full\"\n              onClick={() => {\n                const base64Url = getScreenshot();\n                const blob = base64UrltoBlob(base64Url);\n                const blobUrl = blob ? URL.createObjectURL(blob) : undefined;\n                setSnapshot(base64Url);\n                if (!blob || !blobUrl) return;\n\n                withBlob(blobUrl, blob);\n              }}\n            >\n              📸\n            </Button>\n          </Div>\n        );\n      }}\n    </Webcam>\n  );\n}",
+  "name": "WebcamCapture",
+  "slug": "webcam-capture",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 8,
+  "size": {
+    "characters": 1257,
+    "lines": 44,
+    "bytes": 1259,
+    "bytesPerCharacter": 1.0015910898965792,
+    "charactersPerLine": 29,
+    "linesPerFile": 44,
+    "numberOfFiles": 1
+  },
+  "id": "fbvlfflswxcjnvnpiavmenma"
+}

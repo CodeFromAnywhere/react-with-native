@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667588136055,
+  "updatedAt": 1667588136055,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588136055,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/old/DivContentEditable.tsx",
+  "commentsInside": [],
+  "rawText": " (props: EditorProps) => {\n  const { value, onChange, withContext, className } = props;\n  const contentRef = useRef<HTMLDivElement>(null);\n\n  useEffect(() => {\n    if (!contentRef.current) return;\n    contentRef.current.innerText = value;\n  }, [value]);\n\n  return (\n    <Div\n      contentEditable\n      ref={contentRef}\n      className={className}\n      onPaste={() => {\n        // parse all new words into a span per word\n      }}\n      onKeyPress={() => {\n        const innerText = contentRef.current?.innerText || \"\"; //also innerHTML may be useful\n\n        // IDK how to get this, research it\n        const positionIndex = 0;\n\n        const textEditingContext = getContext({\n          text: innerText,\n          positionIndex,\n        });\n\n        withContext?.(textEditingContext);\n\n        onChange(innerText);\n      }}\n    />\n  );\n}",
+  "name": "DivContentEditable",
+  "slug": "div-content-editable",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 839,
+    "lines": 35,
+    "bytes": 839,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 35,
+    "numberOfFiles": 1
+  },
+  "id": "zknwwinflmamrewliabdpyrh"
+}

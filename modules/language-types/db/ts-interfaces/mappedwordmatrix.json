@@ -1,0 +1,49 @@
+{
+  "createdAt": 1666331231003,
+  "updatedAt": 1666331231003,
+  "deletedAt": 0,
+  "createdFirstAt": 1666331231003,
+  "id": "mappedwordmatrix",
+  "name": "MappedWordMatrix",
+  "slug": "mappedwordmatrix",
+  "operationRelativeTypescriptFilePath": "src/WordMatrix.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/** Mapped Object for performance reasons */\nexport interface MappedWordMatrix extends MappedObject<WordMatrix> {\n  [baseLanguageWord: string]: WordMatrix;\n}",
+  "extensions": [
+    "MappedObject<WordMatrix>"
+  ],
+  "isOperationIndex": false,
+  "description": "Mapped Object for performance reasons",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/WordMatrix"
+          },
+          {
+            "$ref": "#/definitions/WordMatrix"
+          }
+        ]
+      },
+      "properties": {},
+      "description": "Mapped Object for performance reasons"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Mapped Object for performance reasons",
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MappedWordMatrix",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

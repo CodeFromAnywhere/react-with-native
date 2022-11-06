@@ -1,0 +1,124 @@
+{
+  "createdAt": 1667634901559,
+  "updatedAt": 1667634901559,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634901559,
+  "id": "referenceparameterinfo",
+  "name": "ReferenceParameterInfo",
+  "slug": "referenceparameterinfo",
+  "operationRelativeTypescriptFilePath": "src/getReferencedModelDataItem.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "parameterName": {
+          "type": "string"
+        },
+        "dataParameterName": {
+          "type": "string",
+          "description": "If the parameterName is a reference parameter, this will contain the parameterName that should contain the referenced data, should there be one."
+        },
+        "descriptor": {
+          "type": "string"
+        },
+        "keyInModel": {
+          "type": "string"
+        },
+        "interfaceName": {
+          "type": "string"
+        },
+        "isReferenceMultipleParameter": {
+          "type": "boolean"
+        },
+        "isReferenceSingleParameter": {
+          "type": "boolean"
+        },
+        "isReferenceParameter": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "parameterName",
+        "isReferenceMultipleParameter",
+        "isReferenceSingleParameter",
+        "isReferenceParameter"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "parameterName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "dataParameterName",
+          "required": false,
+          "schema": {
+            "fullComment": "If the parameterName is a reference parameter, this will contain the parameterName that should contain the referenced data, should there be one.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "descriptor",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "keyInModel",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "interfaceName",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isReferenceMultipleParameter",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isReferenceSingleParameter",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isReferenceParameter",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ReferenceParameterInfo",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

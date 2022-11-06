@@ -1,12 +1,17 @@
 /// <reference types="node" />
 /// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
 /// <reference types="react" />
+/// <reference types="node" />
+/// <reference types="node" />
+import { useReactMediaRecorder } from "asset-input";
+import { BigButton } from "big-button";
 import { slugify } from "convert-case";
 import { onlyUnique } from "js-util";
 import { generatePassword } from "model-types";
 import { isEmail } from "model-types";
+import { getEncoding } from "text-or-binary";
+import { isBinary } from "text-or-binary";
+import { isText } from "text-or-binary";
 export declare const sdk: {
     getAugmentedWordObject: (manualProjectRoot?: string | undefined) => Promise<import("js-util").MappedObject<import("markdown-reader-types").AugmentedWord> | undefined>;
     getAugmentedWords: (manualProjectRoot?: string | undefined) => Promise<import("markdown-reader-types").AugmentedWord[]>;
@@ -52,6 +57,7 @@ export declare const sdk: {
     getDatabaseRootFolder: (operationName: string | null | undefined, manualProjectRoot?: string | undefined) => Promise<string | undefined>;
     getDbFileLocation: (storedItem: import("model-types").Storing<import("model-types").AugmentedAnyModelType>, operationName: string | null, mergedConfig: import("fs-orm").MergedQueryConfig, modelName: string) => Promise<import("model-types").DbFileLocation | undefined>;
     getDbStorageMethodExtension: (dbStorageMethod: "markdown" | "jsonMultiple" | "jsonSingle" | "keyValueMarkdown" | "csv") => string;
+    getDefaultLocationPattern: (dbStorageMethod: "markdown" | "jsonMultiple" | "jsonSingle" | "keyValueMarkdown" | "csv", modelName: string) => string | undefined;
     getItemModelLocation: <T_3 extends {
         [key: string]: any;
     }>(item: T_3) => import("model-types").ModelLocation;
@@ -130,7 +136,9 @@ export declare const sdk: {
     getFolderExplorationInfo: (nestedPathObject: import("nested-menu").NestedPathObject, queryPath: string, projectRoot: string) => Promise<{
         title: string | undefined;
         description: string | null;
+        descriptionProjectRelativeMarkdownPath: string | null;
         children: {
+            projectRelativeMarkdownPath: string | null;
             title: string;
             firstParagraph: string | null;
             folderName: string;
@@ -138,7 +146,7 @@ export declare const sdk: {
     }>;
     getMarkdownModelPages: (projectRoot: string) => Promise<import("markdown-reader-types").MarkdownReaderPage[]>;
     getMarkdownPageInfo: (projectRoot: string, nestedPathObject: import("nested-menu").NestedPathObject, queryPath: string, contentPage: import("markdown-reader-types").MarkdownReaderPage) => Promise<{
-        markdownFile: import("code-types").MarkdownFile | null;
+        markdownFile: import("code-types").WebMarkdownFile | null;
         nextQueryPath: string | null;
         previousQueryPath: string | null;
         projectRelativeMarkdownPath: string | null;
@@ -151,7 +159,7 @@ export declare const sdk: {
     getMarkdownReaderQueryPaths: (config?: {
         manualProjectRoot?: string | undefined;
     } | undefined) => Promise<string[] | undefined>;
-    getOperationPages: (projectRoot: string) => Promise<import("markdown-reader-types").MarkdownReaderPage[]>;
+    getOperationPages: (projectRoot: string, bundleMarkdownReaderConfig?: import("bundle-types").BundleMarkdownReaderConfig | undefined) => Promise<import("markdown-reader-types").MarkdownReaderPage[]>;
     getPublicMarkdownFilePaths: (baseFolderPath: string, includeFoldersWithResults?: boolean | undefined) => Promise<{
         path: string;
         isFolder: boolean;
@@ -170,7 +178,7 @@ export declare const sdk: {
     readJsonFileSync: <T_9>(filePath: string) => T_9 | null;
     readJsonFile: <T_10>(filePath: string | undefined) => Promise<T_10 | null>;
     readKvmdFile: (filePath: string, dbFileLocation: import("model-types").DbFileLocation) => Promise<import("model-types").KeyValueMarkdownParse | null>;
-    readMarkdownFileToModel: (absoluteFilePath: string) => Promise<import("code-types").MarkdownFile | null>;
+    readMarkdownFileToModel: (absoluteFilePath: string) => Promise<import("code-types").WebMarkdownFile | null>;
     readMarkdownFile: (filePath: string) => Promise<import("code-types").MarkdownParse | null>;
     writeToAssets: (filePath: string, data: any, assetsFileName?: string | undefined) => Promise<boolean | undefined>;
     useCustomUrlStore: <T_11 extends string | number | boolean | string[] | boolean[] | number[] | undefined>(queryKey: string, config: import("use-url-store").CustomUrlStoreConfig) => [T_11, (newValue: T_11 | undefined) => Promise<boolean>];
@@ -192,7 +200,52 @@ export declare const sdk: {
         nameWithoutToken: string;
         token: string | undefined;
     };
+    AssetInput: (props: {
+        attachTokenToFilename?: boolean | undefined;
+        defaultAssetName: string;
+        allowMultiple?: boolean | undefined;
+        inputTypes?: import("asset-type").NewAssetType[] | undefined;
+        value?: import("asset-type").BackendAsset[] | undefined;
+        onChange: (value: import("asset-type").BackendAsset[]) => void;
+        projectRelativeReferencingFilePath: string;
+    }) => JSX.Element;
+    getTypeFromFileBlob: (file: File) => import("asset-type").AssetType;
+    makeBackendAsset: (asset: import("asset-type").Asset) => import("asset-type").BackendAsset;
+    MediaRecorderComponent: (props: import("asset-input").ReactMediaRecorderRenderProps & {
+        type: import("asset-input").MediaRecorderType;
+    }) => JSX.Element;
+    MediaRecorder: (props: {
+        type: import("asset-input").MediaRecorderType;
+        withBlob: (blobUrl: string, blob: Blob) => void;
+    }) => JSX.Element;
+    ReactMediaRecorder: (props: import("asset-input").ReactMediaRecorderProps) => import("react").ReactElement<any, string | import("react").JSXElementConstructor<any>>;
+    SelectMedia: (props: {
+        source: import("asset-input").MediaSourceEnum;
+    }) => JSX.Element;
+    useReactMediaRecorder: typeof useReactMediaRecorder;
+    WebcamCapture: (props: {
+        withBlob: (blobUrl: string, blob: Blob) => void;
+    }) => JSX.Element;
+    AssetView: (props: {
+        asset: import("asset-type").Asset;
+        className?: string | undefined;
+        projectRelativeReferencingFilePath: string;
+        hideDownloadLink?: boolean | undefined;
+    }) => JSX.Element;
+    InteractiveAsset: (props: {
+        asset: import("asset-type").Asset;
+        attachTokenToFilename?: boolean | undefined;
+        projectRelativeReferencingFilePath: string;
+        remove: () => void;
+        onChange: (newAsset: import("asset-type").Asset) => void;
+    }) => JSX.Element;
+    BigButton: (button: BigButton) => JSX.Element;
+    BreadCrumbs: (props: {
+        path: string;
+    }) => JSX.Element;
+    renderBreadCrumbs: (chunks: string[]) => JSX.Element[];
     ClickableIcon: (button: import("clickable-icon").ClickableIconType) => JSX.Element;
+    getFunctionExersize: (functionId: string) => Promise<string>;
     markdownParseToMarkdownModelType: (markdownParse: import("code-types").MarkdownParse | null) => import("model-types").Storing<import("model-types").MarkdownModelType> | null;
     parseMarkdownModelTimestamp: (parameters: import("matter-types").Frontmatter, markdownParse: import("code-types").MarkdownParse, parameterName: "createdAt" | "updatedAt" | "deletedAt" | "createdFirstAt" | "openedAt") => number;
     tryParseDate: (dateString: string) => number | undefined;
@@ -207,6 +260,10 @@ export declare const sdk: {
     pascalCase: (text: string) => string;
     slugify: typeof slugify;
     snakeCase: (text: string) => string;
+    FancyLoader: ({ big, medium, }: {
+        big?: boolean | undefined;
+        medium?: boolean | undefined;
+    }) => JSX.Element;
     getWriterType: (extension: string | undefined) => import("filename-conventions").WriterType;
     hasSubExtension: (srcRelativeFileId: string, subExtensions: string | string[], includeRootName?: boolean | undefined) => boolean;
     isGeneratedOperationName: (operationName: string) => boolean;
@@ -268,12 +325,12 @@ export declare const sdk: {
     } | undefined;
     findOperationBasePathWithClassification: (startPath: string) => {
         folderPath: string;
-        classification: "js" | "ts" | "node" | "server" | "web" | "app" | "ui-es6" | "ui-es5";
+        classification: "js" | "ts" | "node" | "server" | "web" | "app" | "ui-es6" | "ui-es5" | "ui-esm";
     } | undefined;
     findOperationBasePath: (startPath: string) => string | undefined;
     getAllPackageJsonDependencies: (p: import("code-types").PackageJson) => string[];
     getCommonAncestor: (path1: string, path2: string) => string;
-    getOperationClassification: (folderPath: string) => "js" | "ts" | "node" | "server" | "web" | "app" | "ui-es6" | "ui-es5" | undefined;
+    getOperationClassification: (folderPath: string) => "js" | "ts" | "node" | "server" | "web" | "app" | "ui-es6" | "ui-es5" | "ui-esm" | undefined;
     getOperationPathParse: (absolutePath: string) => import("code-types").OperationPathParse | undefined;
     getOperationPath: (operationName: string, config?: {
         manualProjectRoot?: string | undefined;
@@ -299,6 +356,16 @@ export declare const sdk: {
         isWorkspaceRoot: boolean;
     } | undefined;
     makeRelative: (absolutePath: string, baseFolderPath: string) => string;
+    isAltB: (keyboardEvent: KeyboardEvent) => boolean;
+    isAltN: (keyboardEvent: KeyboardEvent) => boolean;
+    isAltO: (keyboardEvent: KeyboardEvent) => boolean;
+    isAltW: (keyboardEvent: KeyboardEvent) => boolean;
+    isCtrlBacktick: (keyboardEvent: KeyboardEvent) => boolean;
+    isCtrlP: (keyboardEvent: KeyboardEvent) => boolean;
+    isCtrlS: (keyboardEvent: KeyboardEvent) => boolean;
+    isCtrlSpace: (keyboardEvent: KeyboardEvent) => boolean;
+    useHotkey: (isRightKey: (keyboardEvent: KeyboardEvent) => boolean, callback: () => void, dependencies: any[]) => void;
+    useHotkeys: (dependencies: any[], callback: (keyboardEvent: KeyboardEvent) => void) => void;
     apply: <T_15>(functions: ((input: T_15) => T_15)[], value: T_15) => T_15;
     createEnum: <T_16 extends readonly string[]>(array: T_16) => { [K in T_16[number]]: K; };
     createMappedObject: <T_17 extends {
@@ -389,6 +456,7 @@ export declare const sdk: {
     kvmdParseToMarkdownString: (keyValueMarkdownParse: import("model-types").KeyValueMarkdownParse) => string;
     markdownStringToKvmdParse: (kvMdString: string, dbFileLocation: import("model-types").DbFileLocation) => import("model-types").KeyValueMarkdownParse;
     parseKvmdLine: (string: string) => import("model-types").KvmdLine | undefined;
+    LabeledButton: (button: import("labeled-button").LabeledButtonType, index: number) => JSX.Element;
     getCallerFileName: () => string | undefined;
     log: (message: string, config?: import("log").LogConfig | undefined, data?: any) => void;
     parseTitle: (markdown: string) => {
@@ -480,6 +548,9 @@ export declare const sdk: {
     parseIfJson: (string: string) => any;
     parsePrimitiveJson: <TForceType extends "string" | "number" | "boolean">(value: string, forceType?: TForceType | undefined) => TForceType extends "string" ? string | null | undefined : TForceType extends "number" ? number | null | undefined : TForceType extends "boolean" ? boolean | null | undefined : string | number | boolean | null | undefined;
     stringToJson: (value: string, isObject?: boolean | undefined) => import("string-to-json").JSONValue;
+    getEncoding: typeof getEncoding;
+    isBinary: typeof isBinary;
+    isText: typeof isText;
     tryParseJson: <T_37>(text: string, logParseError?: boolean | undefined) => T_37 | null;
     createCodeblockMarkdown: (text: string, language?: string | null | undefined) => string;
 };

@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1666264855347,
+    "updatedAt": 1666264855347,
+    "deletedAt": 0,
+    "createdFirstAt": 1666264855347,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/BreadCrumbs.tsx",
+    "comment": "Shows where we are in the filesystem",
+    "rawStatement": "export const BreadCrumbs = (props: { path: string }) => {\n  const { path } = props;\n  const chunks = (path || \"\").split(\"/\");\n\n  return (\n    <Div className=\"border-b border-b-gray-300 mb-4 bg-[#FFFFFF] dark:bg-gray-900\">\n      <Div className=\"flex flex-row items-center ml-2\">\n        {renderBreadCrumbs(chunks)}\n      </Div>\n    </Div>\n  );\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 21,
+    "lastLine": 23,
+    "id": "scgvkmxvqyghavxyagpzmaxt"
+  }
+]

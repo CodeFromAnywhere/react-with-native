@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 
-import { StoreProvider } from "nested-menu";
+import { StoreProvider } from "markdown-reader-ui";
 import Head from "next/head";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
@@ -9,6 +9,7 @@ import {
   publicEnvironmentVariables,
   publicLocalEnvironmentVariables,
 } from "sdk-env-public";
+
 import "../globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-datetime/css/react-datetime.css";
@@ -16,7 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 ///rwn
 import "markdown-reader-ui/css.css";
 import "nested-menu/css.css";
-import "markdown-parse-transpile-ui/css.css";
+import "markdown/css.css";
 
 import "react-with-native/css.css";
 import "react-with-native-router/css.css";
@@ -55,6 +56,7 @@ function MyApp({ Component, pageProps }: RealAppProps) {
         />
       </Head>
       <StoreProvider>
+        {/* @ts-ignore */}
         <Component {...pageProps} />
       </StoreProvider>
     </QueryClientProvider>

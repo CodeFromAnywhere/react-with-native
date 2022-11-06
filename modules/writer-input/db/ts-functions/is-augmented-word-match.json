@@ -1,0 +1,102 @@
+{
+  "createdAt": 1667588127740,
+  "updatedAt": 1667588127740,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588127740,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/editors/autocomplete-components.tsx",
+  "commentsInside": [],
+  "rawText": " (\n  augmentedWord: AugmentedWord,\n  completableWord: string\n) => {\n  if (augmentedWord.isCaseInsensitive) {\n    const isMatch = augmentedWord.word\n      ? augmentedWord.word.toLowerCase().includes(completableWord.toLowerCase())\n      : false;\n    return isMatch;\n  }\n\n  const isMatch = augmentedWord.word\n    ? augmentedWord.word.includes(completableWord)\n    : false;\n  return isMatch;\n}",
+  "name": "isAugmentedWordMatch",
+  "slug": "is-augmented-word-match",
+  "parameters": [
+    {
+      "name": "augmentedWord",
+      "schema": {
+        "$ref": "#/definitions/AugmentedWord"
+      },
+      "simplifiedSchema": {
+        "fullComment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..",
+        "properties": [
+          {
+            "name": "word",
+            "required": true,
+            "schema": {
+              "fullComment": "Word without affixes. The affixes will be decided in the frontend parser based on the type",
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryPath",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectRelativeMarkdownSourcePath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "spoiler",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isCaseInsensitive",
+            "required": false,
+            "schema": {
+              "fullComment": "If true, will match on lowercase variant of the word",
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "completableWord",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 389,
+    "lines": 16,
+    "bytes": 389,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "yjqxqlicepgsjkmdrvuimnty"
+}

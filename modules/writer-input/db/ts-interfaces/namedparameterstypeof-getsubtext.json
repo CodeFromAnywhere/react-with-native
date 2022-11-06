@@ -1,0 +1,235 @@
+{
+  "createdAt": 1667588129299,
+  "updatedAt": 1667588129299,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588129299,
+  "id": "namedparameterstypeof-getsubtext",
+  "name": "NamedParameters<typeof getSubtext>",
+  "slug": "namedparameterstypeof-getsubtext",
+  "operationRelativeTypescriptFilePath": "src/editors/getSubtext.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "markdownString": {
+          "type": "string",
+          "description": "Raw markdown string"
+        },
+        "subtextConfig": {
+          "$ref": "#/definitions/SubtextConfig"
+        }
+      },
+      "required": [
+        "markdownString",
+        "subtextConfig"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "markdownString",
+          "required": true,
+          "schema": {
+            "fullComment": "Raw markdown string",
+            "type": "string"
+          }
+        },
+        {
+          "name": "subtextConfig",
+          "required": true,
+          "schema": {
+            "fullComment": "Configuration of what should be shown in the subtext",
+            "properties": [
+              {
+                "name": "isEnabled",
+                "required": false,
+                "schema": {
+                  "fullComment": "TITLE: Enable",
+                  "title": "Enable",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "translations",
+                "required": false,
+                "schema": {
+                  "fullComment": "You can show multiple translations in the subtext",
+                  "items": [
+                    {
+                      "schema": {
+                        "properties": [
+                          {
+                            "name": "language",
+                            "required": true,
+                            "schema": {
+                              "enum": [
+                                "english",
+                                "dutch",
+                                "nepali",
+                                "portuguese",
+                                "brazilian",
+                                "german",
+                                "french",
+                                "spanish",
+                                "italian",
+                                "norwegian",
+                                "swedish",
+                                "danish",
+                                "vietnamese",
+                                "indonesian",
+                                "southAfrican",
+                                "tokiPona",
+                                "hindi",
+                                "mandarin",
+                                "arabic",
+                                "bengali",
+                                "urdu",
+                                "japanese",
+                                "swahili"
+                              ],
+                              "fullComment": "all currently supported languages",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "showAlternative",
+                            "required": false,
+                            "schema": {
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "showPhonetic",
+                            "required": false,
+                            "schema": {
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "showLatin",
+                            "required": false,
+                            "schema": {
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "showTokiPona",
+                            "required": false,
+                            "schema": {
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "showCommon",
+                            "required": false,
+                            "schema": {
+                              "type": "boolean"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "showEmojiTranslation",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "showDefinitionsWithPriority",
+                "required": false,
+                "schema": {
+                  "fullComment": "show definitions of words occuring in this paragraph",
+                  "items": [
+                    {
+                      "schema": {
+                        "enum": [
+                          "critical",
+                          "high",
+                          "medium",
+                          "low"
+                        ],
+                        "fullComment": "",
+                        "type": "string"
+                      },
+                      "name": "WordPriority"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "showRelated",
+                "required": false,
+                "schema": {
+                  "fullComment": "Related stuff related to this paragraph, e.g. other articles/markdown",
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "",
+                        "properties": [
+                          {
+                            "name": "type",
+                            "required": true,
+                            "schema": {
+                              "enum": [
+                                "image",
+                                "asset",
+                                "pages",
+                                "data",
+                                "code"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "quantity",
+                            "required": true,
+                            "schema": {
+                              "enum": [
+                                "single",
+                                "short",
+                                "all"
+                              ],
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": "SubtextRelatedThing"
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getSubtext>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667588122209,
+  "updatedAt": 1667588122209,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588122209,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "SmartContentEditableDivInput",
+  "slug": "smart-content-editable-div-input",
+  "operationRelativeTypescriptFilePath": "src/editors/SmartContentEditableDivInput.tsx",
+  "type": {
+    "rawType": "(props: { writerType: import(\"/Users/king/King/operations/tools/conventions/filename-conventions/build/extensions\").WriterType; value: string; onChange: (value: string) => void; markdownParseRenderConfig?: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/markdown/build/esm/types\").MarkdownParseRenderConfig | undefined; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  writerType: WriterType;\n  value: string;\n  onChange: (value: string) => void;\n  markdownParseRenderConfig?: MarkdownParseRenderConfig;\n}) => {\n  const { value, onChange, markdownParseRenderConfig } = props;\n\n  const [subtextConfig] = useStore(\"subtextConfig\");\n  const [subwordConfig] = useStore(\"subwordConfig\");\n\n  useEffect(() => {\n    if (typeof window === \"undefined\") return;\n\n    const getContextMenuInfo = (ev: MouseEvent) => {\n      //ev.preventDefault();\n\n      console.log(\n        \"right click at:\",\n        ev.clientY,\n        ev.clientX,\n        ev.x,\n        ev.y,\n        \"how do we get the word at this position now?\",\n        ev.target\n      );\n\n      // should find a way to get the current word. not sure if this is even feasible if we don't change every word into an element... it may be heavier to change every word into an element, but it certainly makes things easier.\n    };\n\n    // Add eventListner, with it's cleanup...\n    window.addEventListener(\"contextmenu\", getContextMenuInfo);\n    return () => window.removeEventListener(\"contextmenu\", getContextMenuInfo);\n  }, []);\n\n  // const augmentedWordObjectQuery = useGetAugmentedWordObject();\n  // const { data } = useGetAugmentedWords();\n  // const augmentedWords = data?.result;\n  // const augmentedWordObject = augmentedWordObjectQuery.data?.result;\n\n  return (\n    <Div className=\"flex flex-col flex-1\">\n      <ContentEditableDivInput\n        subtextConfig={subtextConfig}\n        subwordConfig={subwordConfig}\n        value={value}\n        onChange={onChange}\n        markdownParseRenderConfig={markdownParseRenderConfig}\n        parseTextContentToHtmlString={parseTextContentToHtmlString}\n        divProps={{\n          style: {\n            padding: 4,\n            margin: 4,\n            width: 400,\n            border: \"1px solid black\",\n          },\n        }}\n      />\n      {/* {writerType === \"typescript\" ? (\n        <TypescriptCompletions\n          context={context}\n          augmentedWords={augmentedWords}\n          augmentedWordObject={augmentedWordObject}\n        />\n      ) : (\n        <MarkdownCompletions\n          context={context}\n          augmentedWords={augmentedWords}\n          augmentedWordObject={augmentedWordObject}\n        />\n      )} */}\n    </Div>\n  );\n}",
+  "description": "Uses ContentEditableDivInput, and attaches the Completions to it based on the content type. Also all other data required...\n\n\nNB: TODO: once the autocomplete inside the contentEditable is done, these things should move inside of there. I need a component that has lots of UI/UX but isn't very smart. This will be able to be re-used in many usecases...",
+  "id": "tlfkzsxxotjgnuqumouicluc"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379398915,
-  "updatedAt": 1667379398915,
+  "createdAt": 1667634998838,
+  "updatedAt": 1667634998838,
   "deletedAt": 0,
-  "createdFirstAt": 1667379398915,
+  "createdFirstAt": 1667634998838,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  menu: MenuType;\n  headersClickable?: boolean;\n}) => {\n  const router = useRouter();\n  const [expanded, setExpanded, { hydrated }] = useStore(\"menu.expanded\");\n\n  const expandCompleteUrlInMenu = () => {\n    const parts = trimSlashes(router.asPath).split(\"/\");\n    const cummulativeParts = parts\n      .map((part, index, array) => {\n        if (part === \"\") return;\n        return array.slice(0, index + 1).join(\"/\");\n      })\n      .filter(notEmpty);\n    const cumulativePartsExpandedObject = mergeObjectsArray(\n      cummulativeParts.map((url) => ({ [url]: true }))\n    );\n    setExpanded({ ...expanded, ...cumulativePartsExpandedObject });\n  };\n  useEffect(() => {\n    expandCompleteUrlInMenu();\n  }, [router.asPath]);\n\n  const { menu, headersClickable } = props;\n  const menuItems = menu?.map((menuItem, index) => {\n    return (\n      <NestedMenuItem\n        {...menuItem}\n        headersClickable={headersClickable}\n        key={`menu${index}`}\n      />\n    );\n  });\n  return <Div className=\"w-full\">{menuItems}</Div>;\n}",
   "description": "General purpose nested menu component\n\nPlease make sure that you also wrap your app with `MenuStoreProvider`, or this will crash...!",
-  "id": "zcwfxmagitkjydxpcjiratzb"
+  "id": "lziitmtdmucikttgkyvbgtxt"
 }

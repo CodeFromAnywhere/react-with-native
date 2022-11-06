@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.FancyLoader=void 0;var jsx_runtime_1=require("react/jsx-runtime"),react_with_native_1=require("react-with-native"),FancyLoader=function(e){var r=e.big,t=e.medium;return(0,jsx_runtime_1.jsx)(react_with_native_1.Div,{className:"rounded-full ".concat(r?"w-12 h-12":t?"w-7 h-7":"w-4 h-4"," border-b-orange-400 border-l-blue-400 border-t-red-400 border-r-green-400 ").concat(r?"border-4":t?"border-2":"border"," animate-spin")})};exports.FancyLoader=FancyLoader;
+//# sourceMappingURL=FancyLoader.js.map

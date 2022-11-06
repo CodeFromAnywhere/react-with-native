@@ -1,14 +1,19 @@
 import { MarkdownReaderPage } from "./MarkdownReaderPage";
-import { MarkdownFile } from "code-types";
+import { WebMarkdownFile } from "code-types";
+import { BundleConfig } from "bundle-types";
 import { MappedObject } from "js-util";
 import { AugmentedWord } from "./AugmentedWord";
 export declare type MarkdownReaderPageProps = {
+    /**
+     *
+     */
+    publicBundleConfig?: Omit<BundleConfig, "customisableBundleConfig" | "createBundleConfig"> | null;
     projectRelativeMarkdownPath?: string | null;
     augmentedWordObject?: MappedObject<AugmentedWord>;
     /**
      * If markdownfile is null, the page should exist, but the reading of the file failed
      */
-    markdownFile?: MarkdownFile | null;
+    markdownFile?: WebMarkdownFile | null;
     pages: MarkdownReaderPage[];
     /**
      * Title of the page
@@ -21,6 +26,7 @@ export declare type MarkdownReaderPageProps = {
         title: string;
         firstParagraph: string | null;
         folderName: string;
+        projectRelativeMarkdownPath: string | null;
     }[];
     previousQueryPath?: string | null;
     nextQueryPath?: string | null;

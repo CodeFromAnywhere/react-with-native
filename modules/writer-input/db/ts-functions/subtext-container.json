@@ -1,0 +1,177 @@
+{
+  "createdAt": 1667588124842,
+  "updatedAt": 1667588124842,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588124842,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/editors/SubtextContainer.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  /**\n   * raw markdown that should be converted into a subtext\n   */\n  rawMarkdown: string;\n  subtextConfig: SubtextConfig;\n}) => {\n  const { rawMarkdown, subtextConfig } = props;\n\n  if (!subtextConfig.isEnabled) return null;\n  const subtext = getSubtext(rawMarkdown, subtextConfig);\n  return (\n    <div\n      contentEditable={false}\n      spellCheck={false}\n      autoCorrect=\"false\"\n      data-is-augmentation=\"true\"\n      style={{ fontSize: 8, backgroundColor: \"#CCC\", padding: 5 }}\n    >\n      {subtext}\n    </div>\n  );\n}",
+  "name": "SubtextContainer",
+  "slug": "subtext-container",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "rawMarkdown": {
+            "type": "string",
+            "description": "raw markdown that should be converted into a subtext"
+          },
+          "subtextConfig": {
+            "$ref": "#/definitions/SubtextConfig"
+          }
+        },
+        "required": [
+          "rawMarkdown",
+          "subtextConfig"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "rawMarkdown",
+            "required": true,
+            "schema": {
+              "fullComment": "raw markdown that should be converted into a subtext",
+              "type": "string"
+            }
+          },
+          {
+            "name": "subtextConfig",
+            "required": true,
+            "schema": {
+              "fullComment": "Configuration of what should be shown in the subtext",
+              "properties": [
+                {
+                  "name": "isEnabled",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "TITLE: Enable",
+                    "title": "Enable",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "translations",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "You can show multiple translations in the subtext",
+                    "items": [
+                      {
+                        "schema": {
+                          "properties": [
+                            {
+                              "name": "showAlternative",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showPhonetic",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showLatin",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showTokiPona",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showCommon",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "showEmojiTranslation",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "showDefinitionsWithPriority",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "show definitions of words occuring in this paragraph",
+                    "items": [],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "showRelated",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Related stuff related to this paragraph, e.g. other articles/markdown",
+                    "items": [],
+                    "type": "array"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Returns a string with HTML for the subtext container, given you already have",
+  "returnType": {
+    "rawType": "JSX.Element | null",
+    "typeDefinition": {
+      "optional": true,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 613,
+    "lines": 23,
+    "bytes": 613,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 23,
+    "numberOfFiles": 1
+  },
+  "id": "wotpuydtixohfavudkpyqnpv"
+}

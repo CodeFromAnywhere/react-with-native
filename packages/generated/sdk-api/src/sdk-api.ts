@@ -28,6 +28,7 @@ import { getDatabaseFiles } from "fs-orm";
 import { getDatabaseRootFolder } from "fs-orm";
 import { getDbFileLocation } from "fs-orm";
 import { getDbStorageMethodExtension } from "fs-orm";
+import { getDefaultLocationPattern } from "fs-orm";
 import { getItemModelLocation } from "fs-orm";
 import { getLength } from "fs-orm";
 import { getLocationPattern } from "fs-orm";
@@ -117,6 +118,7 @@ getDatabaseFiles,
 getDatabaseRootFolder,
 getDbFileLocation,
 getDbStorageMethodExtension,
+getDefaultLocationPattern,
 getItemModelLocation,
 getLength,
 getLocationPattern,

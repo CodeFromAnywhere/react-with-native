@@ -42,6 +42,7 @@ ORM that lets you create a database with models that are stored on the file syst
 - [getDatabaseRootFolder](#getDatabaseRootFolder)
 - [getDbFileLocation](#getDbFileLocation)
 - [getDbStorageMethodExtension](#getDbStorageMethodExtension)
+- [getDefaultLocationPattern](#getDefaultLocationPattern)
 - [getItemModelLocation](#getItemModelLocation)
 - [getLength](#getLength)
 - [getLocationPattern](#getLocationPattern)
@@ -118,6 +119,7 @@ ORM that lets you create a database with models that are stored on the file syst
 - [getDatabaseRootFolder](#getdatabaserootfolder)
 - [getDbFileLocation](#getdbfilelocation)
 - [getDbStorageMethodExtension](#getdbstoragemethodextension)
+- [getDefaultLocationPattern](#getdefaultlocationpattern)
 - [getItemModelLocation](#getitemmodellocation)
 - [getLength](#getlength)
 - [getLocationPattern](#getlocationpattern)
@@ -669,6 +671,19 @@ NB: currently, the item's `operationName`, `operationRelativePath` or `projectRe
 ### Parameters (1)
 
 #### Parameter 1: dbStorageMethod: string(Enum: jsonMultiple | jsonSingle | markdown | keyValueMarkdown | csv)
+
+## getDefaultLocationPattern
+
+DB main storage convention
+
+
+### Returns: string
+
+### Parameters (2)
+
+#### Parameter 1: dbStorageMethod: string(Enum: jsonMultiple | jsonSingle | markdown | keyValueMarkdown | csv)
+
+#### Parameter 2: modelName: string
 
 ## getItemModelLocation
 
@@ -1539,6 +1554,11 @@ NB: currently, the item's `operationName`, `operationRelativePath` or `projectRe
 
 
 ## getDbStorageMethodExtension (exported const)
+
+## getDefaultLocationPattern (exported const)
+
+DB main storage convention
+
 
 ## getItemModelLocation (exported const)
 

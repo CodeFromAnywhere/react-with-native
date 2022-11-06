@@ -1,0 +1,90 @@
+{
+  "createdAt": 1667634956589,
+  "updatedAt": 1667634956589,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634956589,
+  "id": "namedparameterstypeof-geturlfromrelativeurl",
+  "name": "NamedParameters<typeof getUrlFromRelativeUrl>",
+  "slug": "namedparameterstypeof-geturlfromrelativeurl",
+  "operationRelativeTypescriptFilePath": "src/getUrlFromRelativeUrl.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "relativeUrl": {
+          "type": "string"
+        },
+        "relativeUrlStrategy": {
+          "type": "string",
+          "enum": [
+            "api",
+            "static"
+          ]
+        },
+        "projectRelativeBaseFolderPath": {
+          "type": "string"
+        },
+        "projectRelativeMarkdownFilePath": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "relativeUrl",
+        "relativeUrlStrategy",
+        "projectRelativeBaseFolderPath",
+        "projectRelativeMarkdownFilePath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "relativeUrl",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "relativeUrlStrategy",
+          "required": true,
+          "schema": {
+            "enum": [
+              "api",
+              "static"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "projectRelativeBaseFolderPath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "projectRelativeMarkdownFilePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getUrlFromRelativeUrl>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

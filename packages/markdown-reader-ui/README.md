@@ -29,6 +29,7 @@ markdown-reader-ui (ui-es6 operation)
 - [pagesObject](#pagesobject)
 - [pages](#pages)
 - [Search](#search)
+- [{ useStore, StoreProvider }](#usestore-storeprovider)
 
 
 
@@ -36,7 +37,31 @@ markdown-reader-ui (ui-es6 operation)
 
 ## AugmentedWordComponent
 
+### Parameters (1)
+
+#### Parameter 1: props: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| augmentedWord  | object |  |
+
+
+
 ## Dictionary
+
+### Parameters (1)
+
+#### Parameter 1: props: object
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| word (optional) | string |  |
+
+
 
 ## getPageTitle
 
@@ -55,6 +80,7 @@ Properties:
 
  | Name | Type | Description |
 |---|---|---|
+| publicBundleConfig (optional) | object |  |
 | pages  | array |  |
 | children  | object |  |
 
@@ -137,4 +163,6 @@ utility function to get a title from a page
 ## pages (exported const)
 
 ## Search (exported const)
+
+## { useStore, StoreProvider } (exported const)
 

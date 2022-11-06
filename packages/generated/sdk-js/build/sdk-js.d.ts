@@ -1,10 +1,15 @@
-/// <reference types="node" />
-/// <reference types="node" />
 /// <reference types="react" />
+/// <reference types="node" />
+/// <reference types="node" />
+import { useReactMediaRecorder } from "asset-input";
+import { BigButton } from "big-button";
 import { slugify } from "convert-case";
 import { onlyUnique } from "js-util";
 import { generatePassword } from "model-types";
 import { isEmail } from "model-types";
+import { getEncoding } from "text-or-binary";
+import { isBinary } from "text-or-binary";
+import { isText } from "text-or-binary";
 export declare const sdk: {
     useCustomUrlStore: <T extends string | number | boolean | string[] | boolean[] | number[] | undefined>(queryKey: string, config: import("use-url-store").CustomUrlStoreConfig) => [T, (newValue: T | undefined) => Promise<boolean>];
     getGetApiUrl: (apiUrl: string, apiFunctionName: string, query: {
@@ -25,7 +30,52 @@ export declare const sdk: {
         nameWithoutToken: string;
         token: string | undefined;
     };
+    AssetInput: (props: {
+        attachTokenToFilename?: boolean | undefined;
+        defaultAssetName: string;
+        allowMultiple?: boolean | undefined;
+        inputTypes?: import("asset-type").NewAssetType[] | undefined;
+        value?: import("asset-type").BackendAsset[] | undefined;
+        onChange: (value: import("asset-type").BackendAsset[]) => void;
+        projectRelativeReferencingFilePath: string;
+    }) => JSX.Element;
+    getTypeFromFileBlob: (file: File) => import("asset-type").AssetType;
+    makeBackendAsset: (asset: import("asset-type").Asset) => import("asset-type").BackendAsset;
+    MediaRecorderComponent: (props: import("asset-input").ReactMediaRecorderRenderProps & {
+        type: import("asset-input").MediaRecorderType;
+    }) => JSX.Element;
+    MediaRecorder: (props: {
+        type: import("asset-input").MediaRecorderType;
+        withBlob: (blobUrl: string, blob: Blob) => void;
+    }) => JSX.Element;
+    ReactMediaRecorder: (props: import("asset-input").ReactMediaRecorderProps) => import("react").ReactElement<any, string | import("react").JSXElementConstructor<any>>;
+    SelectMedia: (props: {
+        source: import("asset-input").MediaSourceEnum;
+    }) => JSX.Element;
+    useReactMediaRecorder: typeof useReactMediaRecorder;
+    WebcamCapture: (props: {
+        withBlob: (blobUrl: string, blob: Blob) => void;
+    }) => JSX.Element;
+    AssetView: (props: {
+        asset: import("asset-type").Asset;
+        className?: string | undefined;
+        projectRelativeReferencingFilePath: string;
+        hideDownloadLink?: boolean | undefined;
+    }) => JSX.Element;
+    InteractiveAsset: (props: {
+        asset: import("asset-type").Asset;
+        attachTokenToFilename?: boolean | undefined;
+        projectRelativeReferencingFilePath: string;
+        remove: () => void;
+        onChange: (newAsset: import("asset-type").Asset) => void;
+    }) => JSX.Element;
+    BigButton: (button: BigButton) => JSX.Element;
+    BreadCrumbs: (props: {
+        path: string;
+    }) => JSX.Element;
+    renderBreadCrumbs: (chunks: string[]) => JSX.Element[];
     ClickableIcon: (button: import("clickable-icon").ClickableIconType) => JSX.Element;
+    getFunctionExersize: (functionId: string) => Promise<string>;
     markdownParseToMarkdownModelType: (markdownParse: import("code-types").MarkdownParse | null) => import("model-types").Storing<import("model-types").MarkdownModelType> | null;
     parseMarkdownModelTimestamp: (parameters: import("matter-types").Frontmatter, markdownParse: import("code-types").MarkdownParse, parameterName: "createdAt" | "updatedAt" | "deletedAt" | "createdFirstAt" | "openedAt") => number;
     tryParseDate: (dateString: string) => number | undefined;
@@ -40,6 +90,10 @@ export declare const sdk: {
     pascalCase: (text: string) => string;
     slugify: typeof slugify;
     snakeCase: (text: string) => string;
+    FancyLoader: ({ big, medium, }: {
+        big?: boolean | undefined;
+        medium?: boolean | undefined;
+    }) => JSX.Element;
     getWriterType: (extension: string | undefined) => import("filename-conventions").WriterType;
     hasSubExtension: (srcRelativeFileId: string, subExtensions: string | string[], includeRootName?: boolean | undefined) => boolean;
     isGeneratedOperationName: (operationName: string) => boolean;
@@ -101,12 +155,12 @@ export declare const sdk: {
     } | undefined;
     findOperationBasePathWithClassification: (startPath: string) => {
         folderPath: string;
-        classification: "js" | "ts" | "node" | "server" | "web" | "app" | "ui-es6" | "ui-es5";
+        classification: "js" | "ts" | "node" | "server" | "web" | "app" | "ui-es6" | "ui-es5" | "ui-esm";
     } | undefined;
     findOperationBasePath: (startPath: string) => string | undefined;
     getAllPackageJsonDependencies: (p: import("code-types").PackageJson) => string[];
     getCommonAncestor: (path1: string, path2: string) => string;
-    getOperationClassification: (folderPath: string) => "js" | "ts" | "node" | "server" | "web" | "app" | "ui-es6" | "ui-es5" | undefined;
+    getOperationClassification: (folderPath: string) => "js" | "ts" | "node" | "server" | "web" | "app" | "ui-es6" | "ui-es5" | "ui-esm" | undefined;
     getOperationPathParse: (absolutePath: string) => import("code-types").OperationPathParse | undefined;
     getOperationPath: (operationName: string, config?: {
         manualProjectRoot?: string | undefined;
@@ -132,6 +186,16 @@ export declare const sdk: {
         isWorkspaceRoot: boolean;
     } | undefined;
     makeRelative: (absolutePath: string, baseFolderPath: string) => string;
+    isAltB: (keyboardEvent: KeyboardEvent) => boolean;
+    isAltN: (keyboardEvent: KeyboardEvent) => boolean;
+    isAltO: (keyboardEvent: KeyboardEvent) => boolean;
+    isAltW: (keyboardEvent: KeyboardEvent) => boolean;
+    isCtrlBacktick: (keyboardEvent: KeyboardEvent) => boolean;
+    isCtrlP: (keyboardEvent: KeyboardEvent) => boolean;
+    isCtrlS: (keyboardEvent: KeyboardEvent) => boolean;
+    isCtrlSpace: (keyboardEvent: KeyboardEvent) => boolean;
+    useHotkey: (isRightKey: (keyboardEvent: KeyboardEvent) => boolean, callback: () => void, dependencies: any[]) => void;
+    useHotkeys: (dependencies: any[], callback: (keyboardEvent: KeyboardEvent) => void) => void;
     apply: <T_4>(functions: ((input: T_4) => T_4)[], value: T_4) => T_4;
     createEnum: <T_5 extends readonly string[]>(array: T_5) => { [K in T_5[number]]: K; };
     createMappedObject: <T_6 extends {
@@ -222,6 +286,7 @@ export declare const sdk: {
     kvmdParseToMarkdownString: (keyValueMarkdownParse: import("model-types").KeyValueMarkdownParse) => string;
     markdownStringToKvmdParse: (kvMdString: string, dbFileLocation: import("model-types").DbFileLocation) => import("model-types").KeyValueMarkdownParse;
     parseKvmdLine: (string: string) => import("model-types").KvmdLine | undefined;
+    LabeledButton: (button: import("labeled-button").LabeledButtonType, index: number) => JSX.Element;
     getCallerFileName: () => string | undefined;
     log: (message: string, config?: import("log").LogConfig | undefined, data?: any) => void;
     parseTitle: (markdown: string) => {
@@ -313,6 +378,9 @@ export declare const sdk: {
     parseIfJson: (string: string) => any;
     parsePrimitiveJson: <TForceType extends "string" | "number" | "boolean">(value: string, forceType?: TForceType | undefined) => TForceType extends "string" ? string | null | undefined : TForceType extends "number" ? number | null | undefined : TForceType extends "boolean" ? boolean | null | undefined : string | number | boolean | null | undefined;
     stringToJson: (value: string, isObject?: boolean | undefined) => import("string-to-json").JSONValue;
+    getEncoding: typeof getEncoding;
+    isBinary: typeof isBinary;
+    isText: typeof isText;
     tryParseJson: <T_26>(text: string, logParseError?: boolean | undefined) => T_26 | null;
     createCodeblockMarkdown: (text: string, language?: string | null | undefined) => string;
 };

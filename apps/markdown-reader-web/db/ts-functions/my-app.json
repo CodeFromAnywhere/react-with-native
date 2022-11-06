@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379464889,
-  "updatedAt": 1667379464889,
+  "createdAt": 1667635296010,
+  "updatedAt": 1667635296010,
   "deletedAt": 0,
-  "createdFirstAt": 1667379464889,
+  "createdFirstAt": 1667635296010,
   "publicAuthorization": [
     "read-docs",
     "search"
@@ -41,5 +41,5 @@
   },
   "rawText": "\n\nfunction MyApp({ Component, pageProps }: RealAppProps) {\n  const siteName =\n    publicLocalEnvironmentVariables.markdownReaderTitle ||\n    publicEnvironmentVariables.markdownReaderTitle ||\n    \"Docs\";\n\n  const title = pageProps.title ? `${pageProps.title} - ${siteName}` : siteName;\n\n  return (\n    <QueryClientProvider client={queryClient}>\n      <Head>\n        <title>{title}</title>\n\n        <link\n          rel=\"stylesheet\"\n          href=\"https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/default.min.css\"\n        />\n      </Head>\n      <StoreProvider>\n        <Component {...pageProps} />\n      </StoreProvider>\n    </QueryClientProvider>\n  );\n}",
   "maxIndentationDepth": 5,
-  "id": "yawpbsuvetemfcpvqwgkcyuv"
+  "id": "grqmkqtwikybueusjpbnnquk"
 }

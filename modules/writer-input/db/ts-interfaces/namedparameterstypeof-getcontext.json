@@ -1,0 +1,78 @@
+{
+  "createdAt": 1667588137146,
+  "updatedAt": 1667588137146,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588137146,
+  "id": "namedparameterstypeof-getcontext",
+  "name": "NamedParameters<typeof getContext>",
+  "slug": "namedparameterstypeof-getcontext",
+  "operationRelativeTypescriptFilePath": "src/old/getContext.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "editorDetails": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "positionIndex": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "text",
+            "positionIndex"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "editorDetails"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "editorDetails",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "text",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "positionIndex",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getContext>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

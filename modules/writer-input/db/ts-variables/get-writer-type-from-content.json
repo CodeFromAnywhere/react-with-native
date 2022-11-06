@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667588142890,
+  "updatedAt": 1667588142890,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588142890,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getWriterTypeFromContent",
+  "slug": "get-writer-type-from-content",
+  "operationRelativeTypescriptFilePath": "src/util/getWriterTypeFromContent.ts",
+  "type": {
+    "rawType": "(text: string) => import(\"/Users/king/King/operations/tools/conventions/filename-conventions/build/extensions\").WriterType",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(text: string): WriterType => {\n  if (isTypescript(text)) return \"typescript\";\n  // NB: json is something else\n  if (tryParseJson(text)) return \"other\";\n  // by default, assume markdown\n  return \"markdown\";\n}",
+  "description": "",
+  "id": "krvjhcimfardvzelcbfonulf"
+}

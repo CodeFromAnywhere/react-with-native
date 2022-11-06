@@ -1,0 +1,146 @@
+{
+  "createdAt": 1667588127740,
+  "updatedAt": 1667588127740,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588127740,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/editors/autocomplete-components.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  context: TextEditingContext | null;\n  augmentedWords?: AugmentedWord[];\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n}) => {\n  const { augmentedWords, context, augmentedWordObject } = props;\n\n  const filteredAugmentedWords =\n    augmentedWords?.filter((x) =>\n      [\"operation\", \"bundle\", \"type\", \"function\", \"variable\"].includes(x.type)\n    ) || [];\n\n  const completableWord = context?.wordAtPosition;\n\n  const completions = completableWord\n    ? filteredAugmentedWords\n        .filter((augmentedWord) => {\n          const isMatch = isAugmentedWordMatch(augmentedWord, completableWord);\n\n          return isMatch;\n        })\n        .slice(0, MAX_COMPLETIONS_AMOUNT)\n    : [];\n\n  return (\n    <Div>\n      {completions.map((completion, index) => {\n        return (\n          <Completion\n            augmentedWordObject={augmentedWordObject}\n            augmentedWord={completion}\n            key={`completion${index}`}\n          />\n        );\n      })}\n    </Div>\n  );\n}",
+  "name": "TypescriptCompletions",
+  "slug": "typescript-completions",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/TextEditingContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "augmentedWords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/AugmentedWord"
+            }
+          },
+          "augmentedWordObject": {
+            "$ref": "#/definitions/MappedObject%3CAugmentedWord%3E"
+          }
+        },
+        "required": [
+          "context"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "context",
+            "required": true,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "augmentedWords",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..",
+                    "properties": [
+                      {
+                        "name": "word",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "Word without affixes. The affixes will be decided in the frontend parser based on the type",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "queryPath",
+                        "required": false,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "projectRelativeMarkdownSourcePath",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "spoiler",
+                        "required": false,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "isCaseInsensitive",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "If true, will match on lowercase variant of the word",
+                          "type": "boolean"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "AugmentedWord"
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "In `typescript`, every word should be autocompletable with the typescript stuff, without backticks.",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 1090,
+    "lines": 38,
+    "bytes": 1090,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 38,
+    "numberOfFiles": 1
+  },
+  "id": "hkawgkzhiiitmugaolxkcoiq"
+}

@@ -1,0 +1,45 @@
+{
+  "createdAt": 1667378718254,
+  "updatedAt": 1667378718254,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378718254,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/Webcam.tsx",
+  "commentsInside": [],
+  "rawText": " (dataurl: string | null) => {\n  if (!dataurl) return;\n  const arr = dataurl.split(\",\");\n  const mime = arr[0].match(/:(.*?);/)?.[1];\n  const bstr = atob(arr[1]);\n\n  let n = bstr.length;\n  const u8arr = new Uint8Array(n);\n\n  while (n--) {\n    u8arr[n] = bstr.charCodeAt(n);\n  }\n\n  return new Blob([u8arr], { type: mime });\n}",
+  "name": "base64UrltoBlob",
+  "slug": "base-64urlto-blob",
+  "parameters": [],
+  "description": "Taken from https://github.com/mozmorris/react-webcam/issues/65#issuecomment-385126201\n\nThere are probably much better solutions",
+  "returnType": {
+    "rawType": "Blob | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "$ref": "#/definitions/Blob"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 451,
+    "lines": 17,
+    "bytes": 451,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "jpoglfbfdojzhexozydcajbw"
+}

@@ -1,0 +1,45 @@
+{
+  "createdAt": 1666261747251,
+  "updatedAt": 1666261747251,
+  "deletedAt": 0,
+  "createdFirstAt": 1666261747251,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/BigButton.tsx",
+  "commentsInside": [],
+  "rawText": " (button: BigButton) => {\n  const colors =\n    button.stylePreset === \"cancel\"\n      ? \"bg-red-800 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-400\"\n      : \"bg-blue-800 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-400\";\n  return (\n    <Div\n      className={`cursor-pointer ${colors} p-3 rounded-md border-2 border-black`}\n      onClick={button.onClick}\n    >\n      <Div className={`flex flex-row gap-6`}>\n        {button.isLoading ? (\n          <FancyLoader />\n        ) : button.icon ? (\n          <Svg src={button.icon} width={24} height={24} />\n        ) : button.emoji ? (\n          <P className={`text-xl hover:scale-110`}>{button.emoji}</P>\n        ) : button.component ? (\n          <Div className=\"h-7\">{button.component()}</Div>\n        ) : null}\n        <P className=\"text-xs text-white\">{button.title}</P>\n      </Div>\n    </Div>\n  );\n}",
+  "name": "BigButton",
+  "slug": "big-button",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 863,
+    "lines": 25,
+    "bytes": 863,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 35,
+    "linesPerFile": 25,
+    "numberOfFiles": 1
+  },
+  "id": "bozjvtbftdcuwynssrsliytv"
+}

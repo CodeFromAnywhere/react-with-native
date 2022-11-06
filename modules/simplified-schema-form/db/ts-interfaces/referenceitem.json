@@ -1,0 +1,90 @@
+{
+  "createdAt": 1667634901558,
+  "updatedAt": 1667634901558,
+  "deletedAt": 0,
+  "createdFirstAt": 1667634901558,
+  "id": "referenceitem",
+  "name": "ReferenceItem",
+  "slug": "referenceitem",
+  "operationRelativeTypescriptFilePath": "src/getReferencedModelDataItem.tsx",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type ReferenceItem = {\n  id: string;\n  slug?: string;\n  name?: string;\n  categoryStackCalculated?: CategoryStack;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "categoryStackCalculated": {
+          "$ref": "#/definitions/CategoryStack"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "slug",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "categoryStackCalculated",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ReferenceItem",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

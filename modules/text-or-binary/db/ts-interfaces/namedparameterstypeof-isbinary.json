@@ -1,0 +1,71 @@
+{
+  "createdAt": 1666423007167,
+  "updatedAt": 1666423007167,
+  "deletedAt": 0,
+  "createdFirstAt": 1666423007167,
+  "id": "namedparameterstypeof-isbinary",
+  "name": "NamedParameters<typeof isBinary>",
+  "slug": "namedparameterstypeof-isbinary",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The filename for the file/buffer if available"
+        },
+        "buffer": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/global.Buffer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The buffer for the file if available"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "filename",
+          "required": false,
+          "schema": {
+            "fullComment": "The filename for the file/buffer if available",
+            "type": "string"
+          }
+        },
+        {
+          "name": "buffer",
+          "required": false,
+          "schema": {
+            "fullComment": "The buffer for the file if available",
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof isBinary>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

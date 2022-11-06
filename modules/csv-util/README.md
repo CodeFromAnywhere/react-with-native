@@ -19,6 +19,7 @@ csv-util (node operation)
 
 - [csvItemArrayToCsvString](#csvitemarraytocsvstring)
 - [exampleCsvItems](#examplecsvitems)
+- [exampleCsvString__OLD](#examplecsvstring-old)
 - [exampleCsvString](#examplecsvstring)
 - [test](#test)
 - [tryParseCsv](#tryparsecsv)
@@ -67,6 +68,8 @@ make csv string from a csv model type
 
 the same as exampleCsvString
 
+
+## exampleCsvString__OLD (exported const)
 
 ## exampleCsvString (exported const)
 

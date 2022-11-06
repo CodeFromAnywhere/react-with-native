@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262295967,
-  "updatedAt": 1666262295967,
+  "createdAt": 1667635142348,
+  "updatedAt": 1667635142348,
   "deletedAt": 0,
-  "createdFirstAt": 1666262295967,
+  "createdFirstAt": 1667635142348,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (config?: {\n  manualProjectRoot?: string;\n}): Promise<undefined | MarkdownReaderPage[]> => {\n  const projectRoot = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n\n  // the docs folder with all its files\n  const docsPaths = await findAllDocsFolderPaths(true);\n  const relativeDocsPages = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths: docsPaths,\n  });\n  // operations\n  const operationPages = await getOperationPages(projectRoot);\n\n  // markdown model type pages\n  const markdownModelTypePages = await getMarkdownModelPages(projectRoot);\n  // todo pages\n  const todoPages = await getTodoPages(projectRoot);\n\n  const allPages: MarkdownReaderPage[] = [\n    { queryPath: \"\", filePath: \"README.md\", isMenuItem: true },\n    ...relativeDocsPages,\n    ...operationPages,\n    // `/dictionary` page with all words/definitions, categorised\n    { queryPath: \"dictionary\", isMenuItem: true },\n    // all markdown model types, optionally (with config)\n    ...markdownModelTypePages,\n    // all todo markdown folders, both in operations and outside (with config)\n    ...todoPages,\n  ].filter(\n    onlyUnique2<MarkdownReaderPage>((a, b) => a.queryPath === b.queryPath)\n  );\n\n  return allPages;\n}",
   "description": "Gets all pages of a bundle based on the fs and database\n\nPages it finds:\n\n- operation-readmes\n- multiple docs basePaths with all folders and markdown pages there in (`/[project-relative-path]`)\n- `/dictionary`\n- all markdown model types we have in the db-sdk, optionally, depending on config\n\nRequirements:\n\n- README should always be on top in a folder.\n- numbers and extensions are omitted from paths, but still connected to the right file\n- If the docs doesn't have a readme, the /docs/readme path shows the root readme.\n\nDoes not include AugmentedWord. Just the main pages, not with queries and hashes\n\nUsed to generate the menu",
-  "id": "qmmxemcxrqtsgkfbohymidcl"
+  "id": "ivmjdhhewimizlpjejbflmuh"
 }

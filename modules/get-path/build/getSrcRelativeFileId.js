@@ -1,4 +1,6 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getSrcRelativeFileId=void 0;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getSrcRelativeFileId = void 0;
 /**
  * returns a file id (path without extension) relative to the src folder of an operation
  *
@@ -8,7 +10,16 @@
  *
  * NB: removes "/" in the beginning, if found
  */
-var getSrcRelativeFileId=function(e){var t=e.replace("src/","").split(".");
-// remove the last one
-t.pop();var r=t.join(".");return r.startsWith("/")?r.substring(1):r};exports.getSrcRelativeFileId=getSrcRelativeFileId;
+var getSrcRelativeFileId = function (operationRelativePath) {
+    var srcRelativePath = operationRelativePath.replace("src/", "");
+    var parts = srcRelativePath.split(".");
+    // remove the last one
+    parts.pop();
+    var srcRelativeFileId = parts.join(".");
+    var finalId = srcRelativeFileId.startsWith("/")
+        ? srcRelativeFileId.substring(1)
+        : srcRelativeFileId;
+    return finalId;
+};
+exports.getSrcRelativeFileId = getSrcRelativeFileId;
 //# sourceMappingURL=getSrcRelativeFileId.js.map

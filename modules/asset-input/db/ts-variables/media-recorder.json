@@ -1,0 +1,33 @@
+{
+  "createdAt": 1667378715732,
+  "updatedAt": 1667378715732,
+  "deletedAt": 0,
+  "createdFirstAt": 1667378715732,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "MediaRecorder",
+  "slug": "media-recorder",
+  "operationRelativeTypescriptFilePath": "src/MediaRecorder.tsx",
+  "type": {
+    "rawType": "(props: { type: import(\"/Users/king/King/operations/tools/asset/asset-input/src/MediaRecorder\").MediaRecorderType; withBlob: (blobUrl: string, blob: Blob) => void; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  type: MediaRecorderType;\n  withBlob: (blobUrl: string, blob: Blob) => void;\n}) => {\n  const { type, withBlob } = props;\n\n  return (\n    <div>\n      <ReactMediaRecorder\n        screen={type === \"screen\"}\n        audio\n        blobPropertyBag={{}}\n        // audio={type === \"audio\"}\n        video={type === \"video\"}\n        stopStreamsOnStop\n        onStop={(blobUrl, blob) => {\n          withBlob(blobUrl, blob);\n        }}\n        render={(props) => <MediaRecorderComponent {...props} type={type} />}\n      />\n    </div>\n  );\n}",
+  "description": "",
+  "id": "vuurdclxdpabklazmtktnxsp"
+}

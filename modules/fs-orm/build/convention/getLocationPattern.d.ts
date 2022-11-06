@@ -8,4 +8,8 @@ import { MergedQueryConfig } from "../types";
  * Returning relative path has no preceding slash
  */
 export declare const getLocationPattern: (dbStorageMethod: DbStorageMethod, modelName: string, mergedConfig: MergedQueryConfig) => string | undefined;
+/**
+ * DB main storage convention
+ */
+export declare const getDefaultLocationPattern: (dbStorageMethod: DbStorageMethod, modelName: string) => string | undefined;
 //# sourceMappingURL=getLocationPattern.d.ts.map

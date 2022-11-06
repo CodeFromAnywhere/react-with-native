@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259057987,
-  "updatedAt": 1666259057987,
+  "createdAt": 1667634401076,
+  "updatedAt": 1667634401076,
   "deletedAt": 0,
-  "createdFirstAt": 1666259057987,
+  "createdFirstAt": 1667634401076,
   "id": "operationclassification",
   "name": "OperationClassification",
   "slug": "operationclassification",
@@ -10,7 +10,7 @@
   "hasGeneric": false,
   "isExported": false,
   "isOperationIndex": false,
-  "description": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)",
+  "description": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nDEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)\n\nui-esm: ui which builds to ESM module resolved Javascript",
   "isDbModel": false,
   "commentsInside": [],
   "type": {
@@ -24,9 +24,10 @@
         "web",
         "app",
         "ui-es6",
-        "ui-es5"
+        "ui-es5",
+        "ui-esm"
       ],
-      "description": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)"
+      "description": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nDEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)\n\nui-esm: ui which builds to ESM module resolved Javascript"
     },
     "simplifiedSchema": {
       "enum": [
@@ -37,9 +38,10 @@
         "web",
         "app",
         "ui-es6",
-        "ui-es5"
+        "ui-es5",
+        "ui-esm"
       ],
-      "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)",
+      "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nDEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)\n\nui-esm: ui which builds to ESM module resolved Javascript",
       "todo": "think about what the differences are and how we need to change processes to make it all work good",
       "type": "string"
     },

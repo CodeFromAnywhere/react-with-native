@@ -1,0 +1,61 @@
+{
+  "createdAt": 1666423007799,
+  "updatedAt": 1666423007799,
+  "deletedAt": 0,
+  "createdFirstAt": 1666423007799,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "name": "isFirstByteOf4ByteChar",
+  "slug": "is-first-byte-of-4byte-char",
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "description": "",
+  "parameters": [
+    {
+      "name": "byte",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    }
+  ],
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "size": {
+    "characters": 132,
+    "lines": 6,
+    "bytes": 132,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 6,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\nfunction isFirstByteOf4ByteChar(byte: number) {\n  // eslint-disable-next-line no-bitwise\n  return byte >> 3 === 30; // 11110xxx?\n}",
+  "maxIndentationDepth": 1,
+  "id": "vkpywicgdyfsvhxjoicencuf"
+}

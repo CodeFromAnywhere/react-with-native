@@ -1,0 +1,32 @@
+{
+  "createdAt": 1664097555555,
+  "updatedAt": 1664097555555,
+  "deletedAt": 0,
+  "createdFirstAt": 1664097555555,
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "source": "src/index.ts",
+  "scripts": {
+    "dev": "npx tsc-watch --onSuccess 'yarn css'",
+    "css": "tailwindcss -o css.css",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "name": "asset-input",
+  "sensible": {
+    "hasGeneratedDependencies": false
+  },
+  "dependencies": {
+    "audio-react-recorder": "^1.0.4",
+    "react-media-recorder": "^1.6.6",
+    "react-webcam": "^7.0.1"
+  },
+  "slug": "asset-input",
+  "id": "oMLGSgwZucEahFtW"
+}

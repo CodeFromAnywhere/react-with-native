@@ -1,0 +1,96 @@
+{
+  "createdAt": 1667588123606,
+  "updatedAt": 1667588123606,
+  "deletedAt": 0,
+  "createdFirstAt": 1667588123606,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/editors/SpannedSentence.tsx",
+  "commentsInside": [],
+  "rawText": " (\n  props: Omit<ContentEditableRenderProps<any>, \"markedToken\"> & {\n    sentence: string;\n  }\n) => {\n  const { sentence, subwordConfig } = props;\n  if (!subwordConfig.isEnabled) {\n    // NB: if subwords are disabled, we can just return the sentence using a span (not word by word)\n    return <span>{sentence}</span>;\n  }\n\n  const wordSpans = sentence.split(\" \").map((word) => {\n    return <Subword subwordConfig={subwordConfig} word={word} />;\n  });\n\n  return <>{wordSpans}</>;\n}",
+  "name": "SpannedSentence",
+  "slug": "spanned-sentence",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sentence": {
+            "type": "string"
+          },
+          "subtextConfig": {
+            "$ref": "#/definitions/SubtextConfig"
+          },
+          "subwordConfig": {
+            "$ref": "#/definitions/SubwordConfig"
+          },
+          "markdownFileConfig": {
+            "$ref": "#/definitions/MarkdownParseRenderConfig"
+          },
+          "testModeEnabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "markdownFileConfig",
+          "sentence",
+          "subtextConfig",
+          "subwordConfig"
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "sentence",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "testModeEnabled",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Needs to be done for every text that can have potential interactions",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 548,
+    "lines": 17,
+    "bytes": 548,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "jgewfzxufjweyllrvjndhfmf"
+}

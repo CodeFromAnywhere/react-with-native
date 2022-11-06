@@ -1,0 +1,68 @@
+{
+  "createdAt": 1666423007799,
+  "updatedAt": 1666423007799,
+  "deletedAt": 0,
+  "createdFirstAt": 1666423007799,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "name": "getChunkBegin",
+  "slug": "get-chunk-begin",
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "description": "",
+  "parameters": [
+    {
+      "name": "buf",
+      "schema": {
+        "$ref": "#/definitions/global.Buffer"
+      },
+      "required": true
+    },
+    {
+      "name": "chunkBegin",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    }
+  ],
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "size": {
+    "characters": 1067,
+    "lines": 51,
+    "bytes": 1067,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 51,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\n// ====================================\n// The functions below are created to handle multibyte utf8 characters.\n// To understand how the encoding works, check this article: https://en.wikipedia.org/wiki/UTF-8#Encoding\n// @todo add documentation for these\n\nfunction getChunkBegin(buf: Buffer, chunkBegin: number) {\n  // If it's the beginning, just return.\n  if (chunkBegin === 0) {\n    return 0;\n  }\n\n  if (!isLaterByteOfUtf8(buf[chunkBegin])) {\n    return chunkBegin;\n  }\n\n  let begin = chunkBegin - 3;\n\n  if (begin >= 0) {\n    if (isFirstByteOf4ByteChar(buf[begin])) {\n      return begin;\n    }\n  }\n\n  begin = chunkBegin - 2;\n\n  if (begin >= 0) {\n    if (\n      isFirstByteOf4ByteChar(buf[begin]) ||\n      isFirstByteOf3ByteChar(buf[begin])\n    ) {\n      return begin;\n    }\n  }\n\n  begin = chunkBegin - 1;\n\n  if (begin >= 0) {\n    // Is it a 4-byte, 3-byte utf8 character?\n    if (\n      isFirstByteOf4ByteChar(buf[begin]) ||\n      isFirstByteOf3ByteChar(buf[begin]) ||\n      isFirstByteOf2ByteChar(buf[begin])\n    ) {\n      return begin;\n    }\n  }\n\n  return -1;\n}",
+  "maxIndentationDepth": 3,
+  "id": "nzhafevgguycqlysepzzjcih"
+}
