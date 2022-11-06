@@ -62,31 +62,33 @@ var getOperationPages = function (projectRoot, bundleMarkdownReaderConfig) { ret
                     manualProjectRoot: projectRoot,
                 });
                 _a = js_util_1.mergeObjectsArray;
-                return [4 /*yield*/, Promise.all(operationBasePaths.map(function (basePath) { return __awaiter(void 0, void 0, void 0, function () {
-                        var folders, pages, projectRelativeBasePath;
+                return [4 /*yield*/, Promise.all(operationBasePaths.map(function (absoluteBasePath) { return __awaiter(void 0, void 0, void 0, function () {
+                        var folders, projectRelativeBasePath, pages;
                         var _a;
                         return __generator(this, function (_b) {
                             switch (_b.label) {
-                                case 0: return [4 /*yield*/, (0, k_explore_1.exploreOperationFolders)({ basePath: basePath })];
+                                case 0: return [4 /*yield*/, (0, k_explore_1.exploreOperationFolders)({ basePath: absoluteBasePath })];
                                 case 1:
                                     folders = (_b.sent()).map(function (result) { return ({
                                         projectRelativePath: (0, get_path_1.makeRelative)(result, projectRoot),
                                     }); });
+                                    projectRelativeBasePath = (0, get_path_1.makeRelative)(absoluteBasePath, projectRoot);
                                     pages = folders.map(function (folder) {
                                         var folderName = (0, fs_util_1.getLastFolder)(folder.projectRelativePath);
                                         /**
                                          * Sometimes the bundle states the menu items should not be shown. The pages still remain available though, otherwise it would cause lots of dead links!
                                          */
-                                        var isMenuItem = basePath === "apps" && (bundleMarkdownReaderConfig === null || bundleMarkdownReaderConfig === void 0 ? void 0 : bundleMarkdownReaderConfig.omitAppsMenu)
+                                        var isMenuItem = projectRelativeBasePath === "apps" &&
+                                            (bundleMarkdownReaderConfig === null || bundleMarkdownReaderConfig === void 0 ? void 0 : bundleMarkdownReaderConfig.omitAppsMenu)
                                             ? false
-                                            : basePath === "packages" &&
+                                            : projectRelativeBasePath === "packages" &&
                                                 (bundleMarkdownReaderConfig === null || bundleMarkdownReaderConfig === void 0 ? void 0 : bundleMarkdownReaderConfig.omitPackagesMenu)
                                                 ? false
-                                                : basePath === "modules" &&
+                                                : projectRelativeBasePath === "modules" &&
                                                     (bundleMarkdownReaderConfig === null || bundleMarkdownReaderConfig === void 0 ? void 0 : bundleMarkdownReaderConfig.omitModulesMenu)
                                                     ? false
                                                     : true;
-                                        console.log({ isMenuItem: isMenuItem, basePath: basePath, folderName: folderName });
+                                        console.log({ isMenuItem: isMenuItem, projectRelativeBasePath: projectRelativeBasePath, folderName: folderName });
                                         return {
                                             queryPath: folder.projectRelativePath,
                                             // operation filePath is README.md
@@ -95,7 +97,6 @@ var getOperationPages = function (projectRoot, bundleMarkdownReaderConfig) { ret
                                             isMenuItem: isMenuItem,
                                         };
                                     });
-                                    projectRelativeBasePath = (0, get_path_1.makeRelative)(basePath, projectRoot);
                                     return [2 /*return*/, (_a = {}, _a[projectRelativeBasePath] = pages, _a)];
                             }
                         });
