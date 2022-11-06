@@ -86,7 +86,7 @@ var getOperationPages = function (projectRoot, bundleMarkdownReaderConfig) { ret
                                                     (bundleMarkdownReaderConfig === null || bundleMarkdownReaderConfig === void 0 ? void 0 : bundleMarkdownReaderConfig.omitModulesMenu)
                                                     ? false
                                                     : true;
-                                        console.log({ isMenuItem: isMenuItem, folderName: folderName });
+                                        console.log({ isMenuItem: isMenuItem, basePath: basePath, folderName: folderName });
                                         return {
                                             queryPath: folder.projectRelativePath,
                                             // operation filePath is README.md
