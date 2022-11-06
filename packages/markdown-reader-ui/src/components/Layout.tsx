@@ -10,6 +10,11 @@ import {
   MarkdownReaderPage,
   MarkdownReaderPageProps,
 } from "markdown-reader-types";
+import {
+  publicEnvironmentVariables,
+  publicLocalEnvironmentVariables,
+} from "sdk-env-public";
+
 import { MappedObject } from "js-util";
 import { Item } from "react-with-native-select";
 import { useRouter } from "react-with-native-router";
@@ -90,6 +95,11 @@ export const Layout = (props: {
   };
 
   const renderHeader = () => {
+    const title =
+      publicLocalEnvironmentVariables.markdownReaderTitle ||
+      publicEnvironmentVariables.markdownReaderTitle ||
+      props.publicBundleConfig?.name;
+
     return (
       <Div
         style={{
@@ -110,7 +120,12 @@ export const Layout = (props: {
           {props.publicBundleConfig?.emoji}
         </ALink>
 
-        <P className="font-bold">{props.publicBundleConfig?.name}</P>
+        <Div>
+          <P className="font-bold text-white ">{title}</P>
+          <P className="text-xs text-white italic">
+            {props.publicBundleConfig?.description}
+          </P>
+        </Div>
 
         {props.publicBundleConfig?.isGitRepoPublic &&
         props.publicBundleConfig.gitRepoUrl ? (
