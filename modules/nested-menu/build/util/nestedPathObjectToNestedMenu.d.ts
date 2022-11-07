@@ -1,5 +1,5 @@
 import { MenuType } from "../types";
-import { NestedPathObject } from "./queryPathsArrayToNestedPathObject";
+import { NestedPathObject } from "../NestedPathObject";
 /**
  * Transform a nested path object into a nested menu (MenuType), recursively
  */

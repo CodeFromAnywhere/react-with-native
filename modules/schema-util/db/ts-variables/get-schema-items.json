@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666264376017,
-  "updatedAt": 1666264376017,
+  "createdAt": 1667852859552,
+  "updatedAt": 1667852859552,
   "deletedAt": 0,
-  "createdFirstAt": 1666264376017,
+  "createdFirstAt": 1667852859552,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -28,6 +28,6 @@
     }
   },
   "value": "(schema: Schema | undefined) => {\n  const schemas = makeArray(schema?.items).map(getSchema).filter(notEmpty);\n  return schemas;\n}",
-  "description": "",
-  "id": "mklmxhdhybpbhszhkzacavei"
+  "description": "Since `JSONSchema7`'s property `items` is fairly hard to use, this function gets that property in an easier to use way.",
+  "id": "djteqmbimtwmnqoadeukfrwx"
 }

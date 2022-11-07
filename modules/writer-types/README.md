@@ -8,30 +8,17 @@ writer-types (node operation)
 
 ## Interfaces
 
-- [Language](#language)
 - [SubtextConfig](#subtextconfig)
 - [SubtextRelatedThing](#subtextrelatedthing)
 - [SubwordConfig](#subwordconfig)
 - [SubwordViewMode](#subwordviewmode)
-- [WordPriority](#wordpriority)
 - [WriterViewEnum](#writerviewenum)
 
 
 
 # Interfaces
 
-## Language
-
-all currently supported languages
-
-
-
-
-
-
-
-
-## SubtextConfig
+## 🔷 SubtextConfig
 
 Configuration of what should be shown in the subtext
 
@@ -51,7 +38,7 @@ Properties:
 
 
 
-## SubtextRelatedThing
+## 🔷 SubtextRelatedThing
 
 Properties: 
 
@@ -62,7 +49,7 @@ Properties:
 
 
 
-## SubwordConfig
+## 🔷 SubwordConfig
 
 Configurate what should be shown about words
 
@@ -87,9 +74,7 @@ Properties:
 
 
 
-## SubwordViewMode
+## 🔷 SubwordViewMode
 
-## WordPriority
-
-## WriterViewEnum
+## 🔷 WriterViewEnum
 

@@ -15,22 +15,22 @@ markdown-reader-web (web operation)
 
 - [getStaticPaths](#getstaticpaths)
 - [getStaticProps](#getstaticprops)
-- [progress](#progress)
-- [queryClient](#queryclient)
 
 
 
 # Functions
 
-## MyApp
+## <MyApp />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
 
 # Variables
 
-## getStaticPaths (exported const)
+## 📄 getStaticPaths (exported const)
 
-## getStaticProps (exported const)
-
-## progress (unexported const)
-
-## queryClient (unexported const)
+## 📄 getStaticProps (exported const)
 

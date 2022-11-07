@@ -26,43 +26,32 @@ frontend component to show a file location in a nice way (breadcrumbs)
 
 # Functions
 
-## BreadCrumbs
+## <BreadCrumbs />
 
 Shows where we are in the filesystem
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| path  | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { path: string, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## renderBreadCrumbs
+## renderBreadCrumbs()
 
-### Parameters (1)
-
-#### Parameter 1: chunks: array
-
-- null: string
-
-
-
+| Input      |    |    |
+| ---------- | -- | -- |
+| chunks | string[] |  |
+| **Output** |    |    |
 
 
 # Variables
 
-## BreadCrumbs (exported const)
+## 📄 BreadCrumbs (exported const)
 
 Shows where we are in the filesystem
 
 
-## renderBreadCrumbs (exported const)
+## 📄 renderBreadCrumbs (exported const)
 

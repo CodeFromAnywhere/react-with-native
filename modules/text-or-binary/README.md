@@ -1,11 +1,11 @@
 # Text or binary
 
-text-or-binary (undefined operation)
+text-or-binary (js operation)
 
 
-## ❌ No description set yet
+## 🗳 text or binary?
 
-Please set a description for this operation in OPERATION.md
+This operation provides handy functions to check whether the contents of a file are of a text or binary format...
 
 This is a js operation. This means you cannot use any react or node, it's pure typescript, compiled to javascript, and can be used anywhere.
 
@@ -16,14 +16,8 @@ This is a js operation. This means you cannot use any react or node, it's pure t
 
 ## Functions
 
-- [getChunkBegin](#getChunkBegin)
-- [getChunkEnd](#getChunkEnd)
 - [getEncoding](#getEncoding)
 - [isBinary](#isBinary)
-- [isFirstByteOf2ByteChar](#isFirstByteOf2ByteChar)
-- [isFirstByteOf3ByteChar](#isFirstByteOf3ByteChar)
-- [isFirstByteOf4ByteChar](#isFirstByteOf4ByteChar)
-- [isLaterByteOfUtf8](#isLaterByteOfUtf8)
 - [isText](#isText)
 
 ## Interfaces
@@ -39,23 +33,7 @@ This is a js operation. This means you cannot use any react or node, it's pure t
 
 # Functions
 
-## getChunkBegin
-
-### Returns: object
-
-### Parameters (2)
-
-#### Parameter 2: chunkBegin: number
-
-## getChunkEnd
-
-### Returns: object
-
-### Parameters (2)
-
-#### Parameter 2: chunkEnd: number
-
-## getEncoding
+## getEncoding()
 
 /**
  * Get the encoding of a buffer.
@@ -65,24 +43,14 @@ This is a js operation. This means you cannot use any react or node, it's pure t
  */
 
 
-### Returns: string(Enum: ul | utf8 | binary)
-
-### Parameters (2)
-
-#### Parameter 1: buffer: object
-
-#### Parameter 2: opts (optional): object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| chunkLength (optional) | number |  |
-| chunkBegin (optional) | number |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| buffer | {  } |  |,| opts (optional) | `EncodingOpts` |  |
+| **Output** | ul / utf8 / binary   |    |
 
 
 
-## isBinary
+## isBinary()
 
 /**
  * Determine if the filename and/or buffer is binary.
@@ -95,47 +63,14 @@ Properties:
  */
 
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| filename (optional) | string | The filename for the file/buffer if available |,| buffer (optional) | {  } | The buffer for the file if available |
+| **Output** | {  }   |    |
 
-### Parameters (2)
 
-#### Parameter 1: filename (optional): string
 
-#### Parameter 2: buffer (optional): object
-
-## isFirstByteOf2ByteChar
-
-### Returns: object
-
-### Parameters (1)
-
-#### Parameter 1: byte: number
-
-## isFirstByteOf3ByteChar
-
-### Returns: object
-
-### Parameters (1)
-
-#### Parameter 1: byte: number
-
-## isFirstByteOf4ByteChar
-
-### Returns: object
-
-### Parameters (1)
-
-#### Parameter 1: byte: number
-
-## isLaterByteOfUtf8
-
-### Returns: object
-
-### Parameters (1)
-
-#### Parameter 1: byte: number
-
-## isText
+## isText()
 
 /**
  * Determine if the filename and/or buffer is text.
@@ -148,17 +83,15 @@ Properties:
  */
 
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| filename (optional) | string | The filename for the file/buffer if available |,| buffer (optional) | {  } | The buffer for the file if available |
+| **Output** | {  }   |    |
 
-### Parameters (2)
-
-#### Parameter 1: filename (optional): string
-
-#### Parameter 2: buffer (optional): object
 
 # Interfaces
 
-## EncodingOpts
+## 🔷 EncodingOpts
 
 Properties: 
 
@@ -170,12 +103,12 @@ Properties:
 
 # Variables
 
-## binaryExtensions (exported const)
+## 📄 binaryExtensions (exported const)
 
 List of binary file extensions
 
 
-## textExtensions (exported const)
+## 📄 textExtensions (exported const)
 
 List of text file extensions
 

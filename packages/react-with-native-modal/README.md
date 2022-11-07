@@ -14,15 +14,12 @@ react-with-native-modal (ui-es5 operation)
 
 - [ModalProvider](#ModalProvider)
 - [Modal](#Modal)
-- [useModalState](#useModalState)
 - [useModal](#useModal)
 
 ## Variables
 
 - [ModalContext](#modalcontext)
 - [ModalProvider](#modalprovider)
-- [{ Provider }](#provider)
-- [useModalState](#usemodalstate)
 - [useModal](#usemodal)
 
 
@@ -75,60 +72,37 @@ const { handleModal } = useModal();
 
 # Functions
 
-## ModalProvider
+## <ModalProvider />
 
-### Parameters (1)
-
-#### Parameter 1: { children }: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| children  | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| { children } | { children: {  }, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## Modal
+## <Modal />
 
-## useModalState
-
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| showModal  | boolean |  |
-| handleModal  | object |  |
-| modalContent (optional) | string |  |
-| title  | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## useModal
+## useModal()
 
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| modalContent (optional) | string |  |
-| handleModal  | object |  |
-| showModal  | boolean |  |
-| title (optional) | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { modalContent?: ul / trin / SX.Elemen, <br />handleModal: {  }, <br />showModal: boolean, <br />title?: string, <br /> }   |    |
 
 
 # Variables
 
-## ModalContext (exported const)
+## 📄 ModalContext (exported const)
 
-## ModalProvider (exported const)
+## 📄 ModalProvider (exported const)
 
-## { Provider } (unexported const)
-
-## useModalState (unexported const)
-
-## useModal (exported const)
+## 📄 useModal (exported const)
 

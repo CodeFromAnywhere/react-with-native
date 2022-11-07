@@ -14,29 +14,20 @@ react-with-native-form (ui-es5 operation)
 
 - [DataForm](#DataForm)
 - [DefaultInputContainer](#DefaultInputContainer)
-- [DefaultTitle](#DefaultTitle)
 - [errorOnField](#errorOnField)
-- [getPlugin](#getPlugin)
 - [Input](#Input)
 - [isObject](#isObject)
 - [makeInputField](#makeInputField)
 - [notEmpty](#notEmpty)
-- [sameFieldArray](#sameFieldArray)
 - [setConfig](#setConfig)
 
 ## Variables
 
 - [DataForm](#dataform)
 - [DefaultInputContainer](#defaultinputcontainer)
-- [DefaultTitle](#defaulttitle)
 - [errorOnField](#erroronfield)
-- [getPlugin](#getplugin)
-- [GLOBAL_PROPERTY_PATH](#global-property-path)
-- [inputClassWithoutWidth](#inputclasswithoutwidth)
 - [Input](#input)
-- [isWeb](#isweb)
 - [makeInputField](#makeinputfield)
-- [sameFieldArray](#samefieldarray)
 - [setConfig](#setconfig)
 
 
@@ -264,74 +255,88 @@ export default FormPage;
 
 # Functions
 
-## DataForm
+## <DataForm />
 
-## DefaultInputContainer
-
-## DefaultTitle
-
-## errorOnField
-
-### Returns: object
-
-## getPlugin
-
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| component  | object |  |
-| config  | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## Input
+## <DefaultInputContainer />
 
-## isObject
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
-### Returns: object
 
-## makeInputField
 
-### Returns: object
+## errorOnField()
 
-## notEmpty
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
 
-### Returns: object
 
-## sameFieldArray
 
-### Returns: object
+## <Input />
 
-## setConfig
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
-### Returns: object
+
+
+## isObject()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## makeInputField()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## notEmpty()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## setConfig()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
 
 # Variables
 
-## DataForm (exported const)
+## 📄 DataForm (exported const)
 
-## DefaultInputContainer (exported const)
+## 📄 DefaultInputContainer (exported const)
 
-## DefaultTitle (unexported const)
+## 📄 errorOnField (exported const)
 
-## errorOnField (exported const)
+## 📄 Input (exported const)
 
-## getPlugin (unexported const)
+## 📄 makeInputField (exported const)
 
-## GLOBAL_PROPERTY_PATH (unexported const)
-
-## inputClassWithoutWidth (unexported const)
-
-## Input (exported const)
-
-## isWeb (unexported const)
-
-## makeInputField (exported const)
-
-## sameFieldArray (unexported const)
-
-## setConfig (exported const)
+## 📄 setConfig (exported const)
 

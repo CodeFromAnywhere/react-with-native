@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { MarkdownParseRenderConfig } from "./types.js";
 /**
  * renders a markdown striing (without frontmatter)

@@ -32,7 +32,7 @@ matter-types (js operation)
 
 # Functions
 
-## frontmatterParseToString
+## frontmatterParseToString()
 
 Parses frontmatter object into a frontmatter string
 - includes a newline at the end
@@ -40,40 +40,47 @@ Parses frontmatter object into a frontmatter string
 TODO: maybe parse xxxAt values into human readable dates
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| frontmatter | `Frontmatter` |  |
+| **Output** | `String`   |    |
 
 
-### Parameters (1)
 
-## getFrontmatterValueString
+## getFrontmatterValueString()
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| value (optional) | {  } |  |
+| **Output** | {  }   |    |
 
-### Parameters (1)
 
-#### Parameter 1: value (optional): object
 
-## quotedOrNot
+## quotedOrNot()
 
 For now, simply quote a string if it contains commas
 
 There are probably more edgecases that need to be fixed here
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| string | string |  |
+| **Output** | `String`   |    |
 
 
-### Parameters (1)
 
-#### Parameter 1: string: string
+## stringifyNewlines()
 
-## stringifyNewlines
+| Input      |    |    |
+| ---------- | -- | -- |
+| string | string |  |
+| **Output** |    |    |
 
-### Parameters (1)
-
-#### Parameter 1: string: string
 
 # Interfaces
 
-## Downmatter
+## 🔷 Downmatter
 
 Properties: 
 
@@ -84,7 +91,7 @@ Properties:
 
 
 
-## Frontmatter
+## 🔷 Frontmatter
 
 Our version of frontmatter is a bit simpler than regular frontmatter
 
@@ -103,9 +110,9 @@ NB: string arrays are comma separated values, where you can put values with spec
 
 
 
-## FrontmatterValue
+## 🔷 FrontmatterValue
 
-## MarkdownIndex
+## 🔷 MarkdownIndex
 
 This could hold anything that we can index about a markdown-file
 
@@ -125,7 +132,7 @@ Properties:
 
 # Variables
 
-## frontmatterParseToString (exported const)
+## 📄 frontmatterParseToString (exported const)
 
 Parses frontmatter object into a frontmatter string
 - includes a newline at the end
@@ -133,16 +140,16 @@ Parses frontmatter object into a frontmatter string
 TODO: maybe parse xxxAt values into human readable dates
 
 
-## getFrontmatterValueString (exported const)
+## 📄 getFrontmatterValueString (exported const)
 
-## quotedOrNot (exported const)
+## 📄 quotedOrNot (exported const)
 
 For now, simply quote a string if it contains commas
 
 There are probably more edgecases that need to be fixed here
 
 
-## stringifyNewlines (exported const)
+## 📄 stringifyNewlines (exported const)
 
-## test (exported const)
+## 📄 test (exported const)
 

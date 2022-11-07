@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635142197,
-  "updatedAt": 1667635142197,
+  "createdAt": 1667818194778,
+  "updatedAt": 1667818194778,
   "deletedAt": 0,
-  "createdFirstAt": 1667635142197,
+  "createdFirstAt": 1667818194778,
   "publicAuthorization": [
     "read-docs",
     "search"
@@ -13,7 +13,7 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/getAllMarkdownReaderPages.ts",
   "commentsInside": [],
-  "rawText": " async (config?: {\n  manualProjectRoot?: string;\n}): Promise<undefined | MarkdownReaderPage[]> => {\n  const projectRoot = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n\n  // the docs folder with all its files\n  const docsPaths = await findAllDocsFolderPaths(true);\n  const relativeDocsPages = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths: docsPaths,\n  });\n  // operations\n  const operationPages = await getOperationPages(projectRoot);\n\n  // markdown model type pages\n  const markdownModelTypePages = await getMarkdownModelPages(projectRoot);\n  // todo pages\n  const todoPages = await getTodoPages(projectRoot);\n\n  const allPages: MarkdownReaderPage[] = [\n    { queryPath: \"\", filePath: \"README.md\", isMenuItem: true },\n    ...relativeDocsPages,\n    ...operationPages,\n    // `/dictionary` page with all words/definitions, categorised\n    { queryPath: \"dictionary\", isMenuItem: true },\n    // all markdown model types, optionally (with config)\n    ...markdownModelTypePages,\n    // all todo markdown folders, both in operations and outside (with config)\n    ...todoPages,\n  ].filter(\n    onlyUnique2<MarkdownReaderPage>((a, b) => a.queryPath === b.queryPath)\n  );\n\n  return allPages;\n}",
+  "rawText": " async (config?: {\n  manualProjectRoot?: string;\n}): Promise<undefined | MarkdownReaderPage[]> => {\n  const projectRoot = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n\n  const publicBundleConfig = await readJsonFile<\n    Omit<BundleConfig, \"customisableBundleConfig\" | \"createBundleConfig\">\n  >(path.join(projectRoot, \"public-bundle-config.json\"));\n\n  const bundleMarkdownReaderConfig =\n    publicBundleConfig?.bundleMarkdownReaderConfig;\n\n  // the docs folder with all its files\n  const docsPaths = await findAllDocsFolderPaths(true);\n  const relativeDocsPages = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths: docsPaths,\n    // remove docs prefix if docs should be shown as in root\n    mapQueryPath: bundleMarkdownReaderConfig?.docsInRoot\n      ? (old) => (old.startsWith(\"docs/\") ? old.slice(\"docs/\".length) : old)\n      : undefined,\n  });\n  // operations\n  const operationPages = await getOperationPages(\n    projectRoot,\n    bundleMarkdownReaderConfig\n  );\n\n  // markdown model type pages\n  const markdownModelTypePages = await getMarkdownModelPages(projectRoot);\n  // todo pages\n  const todoPages = await getTodoPages(projectRoot);\n\n  const mainReadme = bundleMarkdownReaderConfig?.docsInRoot\n    ? undefined\n    : { queryPath: \"\", filePath: \"README.md\", isMenuItem: true };\n\n  const allPages: MarkdownReaderPage[] = [\n    mainReadme,\n    ...relativeDocsPages,\n    ...operationPages,\n    // `/dictionary` page with all words/definitions, categorised\n    { queryPath: \"dictionary\", isMenuItem: true },\n    // all markdown model types, optionally (with config)\n    ...markdownModelTypePages,\n    // all todo markdown folders, both in operations and outside (with config)\n    ...todoPages,\n  ]\n    .filter(notEmpty)\n    .filter(\n      onlyUnique2<MarkdownReaderPage>((a, b) => a.queryPath === b.queryPath)\n    );\n\n  return allPages;\n}",
   "name": "getAllMarkdownReaderPages",
   "slug": "get-all-markdown-reader-pages",
   "parameters": [
@@ -53,15 +53,15 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "maxIndentationDepth": 2,
+  "maxIndentationDepth": 3,
   "size": {
-    "characters": 2218,
-    "lines": 81,
-    "bytes": 2218,
+    "characters": 2870,
+    "lines": 101,
+    "bytes": 2870,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 27,
-    "linesPerFile": 81,
+    "charactersPerLine": 28,
+    "linesPerFile": 101,
     "numberOfFiles": 1
   },
-  "id": "oypmewzgvylfbcnckocoyjbt"
+  "id": "uzwvpcoaiiqbxjhebppsdxee"
 }

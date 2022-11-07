@@ -21,64 +21,59 @@ csv-util (node operation)
 - [exampleCsvItems](#examplecsvitems)
 - [exampleCsvString__OLD](#examplecsvstring-old)
 - [exampleCsvString](#examplecsvstring)
-- [test](#test)
 - [tryParseCsv](#tryparsecsv)
 
 
 
 # Functions
 
-## csvItemArrayToCsvString
+## csvItemArrayToCsvString()
 
 make csv string from a csv model type
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `String`   |    |
 
 
-## tryParseCsv
+
+## tryParseCsv()
 
 This function parses a CSV into the object it says it has in the header
 
 
-### Returns: array
+| Input      |    |    |
+| ---------- | -- | -- |
+| csvString | string |  |
+| **Output** | {  }[]   |    |
 
-- null: object
-
-
-
-
-
-
-### Parameters (1)
-
-#### Parameter 1: csvString: string
 
 # Interfaces
 
-## CsvItemType
+## 🔷 CsvItemType
 
 # Variables
 
-## csvItemArrayToCsvString (exported const)
+## 📄 csvItemArrayToCsvString (exported const)
 
 make csv string from a csv model type
 
 
-## exampleCsvItems (exported const)
+## 📄 exampleCsvItems (exported const)
 
 the same as exampleCsvString
 
 
-## exampleCsvString__OLD (exported const)
+## 📄 exampleCsvString__OLD (exported const)
 
-## exampleCsvString (exported const)
+## 📄 exampleCsvString (exported const)
 
 exuivalent to exampleCsvItems
 
 
-## test (unexported const)
-
-## tryParseCsv (exported const)
+## 📄 tryParseCsv (exported const)
 
 This function parses a CSV into the object it says it has in the header
 

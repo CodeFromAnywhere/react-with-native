@@ -12,7 +12,6 @@ convert-case (js operation)
 - [capitalCase](#capitalCase)
 - [capitaliseFirstLetter](#capitaliseFirstLetter)
 - [convertCase](#convertCase)
-- [convertToTargetCasing](#convertToTargetCasing)
 - [getDelimiter](#getDelimiter)
 - [humanCase](#humanCase)
 - [kebabCase](#kebabCase)
@@ -20,7 +19,6 @@ convert-case (js operation)
 - [pascalCase](#pascalCase)
 - [slugify](#slugify)
 - [snakeCase](#snakeCase)
-- [splitCasingDelimiters](#splitCasingDelimiters)
 
 ## Interfaces
 
@@ -32,97 +30,105 @@ convert-case (js operation)
 - [capitalCase](#capitalcase)
 - [capitaliseFirstLetter](#capitalisefirstletter)
 - [convertCase](#convertcase)
-- [convertToTargetCasing](#converttotargetcasing)
 - [getDelimiter](#getdelimiter)
 - [humanCase](#humancase)
 - [kebabCase](#kebabcase)
 - [lowerCaseArray](#lowercasearray)
-- [nonCasingDelimiters](#noncasingdelimiters)
 - [pascalCase](#pascalcase)
 - [snakeCase](#snakecase)
-- [splitCasingDelimiters](#splitcasingdelimiters)
 - [test](#test)
 
 
 
 # Functions
 
-## camelCase
+## camelCase()
 
-### Parameters (1)
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** |    |    |
 
-#### Parameter 1: text: string
 
-## capitalCase
 
-### Parameters (1)
+## capitalCase()
 
-#### Parameter 1: text: string
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** |    |    |
 
-## capitaliseFirstLetter
 
-### Parameters (1)
 
-#### Parameter 1: word: string
+## capitaliseFirstLetter()
 
-## convertCase
+| Input      |    |    |
+| ---------- | -- | -- |
+| word | string |  |
+| **Output** |    |    |
 
-### Parameters (2)
 
-#### Parameter 1: text: string
 
-#### Parameter 2: target: string(Enum: camel | pascal | snake | kebab | capital | human)
+## convertCase()
 
-## convertToTargetCasing
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string | NB: texts of more than a sentence are not supported |,| target | `Casing` |  |
+| **Output** |    |    |
 
-### Parameters (3)
 
-#### Parameter 1: word: string
 
-#### Parameter 2: index: number
+## getDelimiter()
 
-#### Parameter 3: target: string(Enum: camel | pascal | snake | kebab | capital | human)
+| Input      |    |    |
+| ---------- | -- | -- |
+| target | `Casing` |  |
+| **Output** | _ /   / - /    |    |
 
-## getDelimiter
 
-### Returns: string(Enum: _ |   | - | )
 
-### Parameters (1)
+## humanCase()
 
-#### Parameter 1: target: string(Enum: camel | pascal | snake | kebab | capital | human)
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** |    |    |
 
-## humanCase
 
-### Parameters (1)
 
-#### Parameter 1: text: string
+## kebabCase()
 
-## kebabCase
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** |    |    |
 
-### Parameters (1)
 
-#### Parameter 1: text: string
 
-## lowerCaseArray
+## lowerCaseArray()
 
 converts any string to an array of lowercase words
 
 format ["word1","word2","word3"] from a string of any casing.
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** |    |    |
 
 
-### Parameters (1)
 
-#### Parameter 1: text: string
+## pascalCase()
 
-## pascalCase
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** |    |    |
 
-### Parameters (1)
 
-#### Parameter 1: text: string
 
-## slugify
+## slugify()
 
 /**
  * this function does the same as kebabCase but it also does some more transformation on top
@@ -135,69 +141,51 @@ format ["word1","word2","word3"] from a string of any casing.
  */
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: string: string
-
-## snakeCase
-
-### Parameters (1)
-
-#### Parameter 1: text: string
-
-## splitCasingDelimiters
-
-### Returns: array
-
-- null: string
+| Input      |    |    |
+| ---------- | -- | -- |
+| string | string |  |
+| **Output** |    |    |
 
 
 
+## snakeCase()
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** |    |    |
 
-
-### Parameters (1)
-
-#### Parameter 1: word: string
 
 # Interfaces
 
-## Casing
+## 🔷 Casing
 
 # Variables
 
-## camelCase (exported const)
+## 📄 camelCase (exported const)
 
-## capitalCase (exported const)
+## 📄 capitalCase (exported const)
 
-## capitaliseFirstLetter (exported const)
+## 📄 capitaliseFirstLetter (exported const)
 
-## convertCase (exported const)
+## 📄 convertCase (exported const)
 
-## convertToTargetCasing (unexported const)
+## 📄 getDelimiter (exported const)
 
-## getDelimiter (exported const)
+## 📄 humanCase (exported const)
 
-## humanCase (exported const)
+## 📄 kebabCase (exported const)
 
-## kebabCase (exported const)
-
-## lowerCaseArray (exported const)
+## 📄 lowerCaseArray (exported const)
 
 converts any string to an array of lowercase words
 
 format ["word1","word2","word3"] from a string of any casing.
 
 
-## nonCasingDelimiters (unexported const)
+## 📄 pascalCase (exported const)
 
-## pascalCase (exported const)
+## 📄 snakeCase (exported const)
 
-## snakeCase (exported const)
-
-## splitCasingDelimiters (unexported const)
-
-## test (exported const)
+## 📄 test (exported const)
 

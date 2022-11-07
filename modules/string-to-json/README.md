@@ -26,13 +26,12 @@ Parser functions to parse strings (that can be inputted in the command-line) int
 - [parseIfJson](#parseifjson)
 - [parsePrimitiveJson](#parseprimitivejson)
 - [stringToJson](#stringtojson)
-- [test](#test)
 
 
 
 # Functions
 
-## objectStringToJson
+## objectStringToJson()
 
 takes an object string and parses it to JSON
 
@@ -43,24 +42,26 @@ key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subk
 NB: you can have objects in parameters of objects by surrounding the same syntax with `{` and `}`
 
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| string | string |  |
+| **Output** | {  }   |    |
 
-### Parameters (1)
 
-#### Parameter 1: string: string
 
-## parseIfJson
+## parseIfJson()
 
 if it's a string with a parsable JSON inside, parse it and return the object/array
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| string | string |  |
+| **Output** |    |    |
 
 
-### Parameters (1)
 
-#### Parameter 1: string: string
-
-## parsePrimitiveJson
+## parsePrimitiveJson()
 
 parses a string to a string, number, boolean, null or undefined.
 
@@ -69,13 +70,14 @@ optionally you can chooose to force a type...
 TODO: figure out how I can do this without ts-ignores
 
 
-### Returns: string(Enum: ul | trin | umbe | als | ru)
+| Input      |    |    |
+| ---------- | -- | -- |
+| value | string |  |
+| **Output** | ul / trin / umbe / als / ru   |    |
 
-### Parameters (1)
 
-#### Parameter 1: value: string
 
-## stringToJson
+## stringToJson()
 
 takes any string, and parses it to JSON
 
@@ -84,21 +86,19 @@ if you provide (nested) objects, make sure to use the following format:
 key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| value | string |  |,| isObject (optional) | boolean |  |
+| **Output** |    |    |
 
-
-### Parameters (2)
-
-#### Parameter 1: value: string
-
-#### Parameter 2: isObject (optional): boolean
 
 # Interfaces
 
-## JSONValue
+## 🔷 JSONValue
 
 # Variables
 
-## objectStringToJson (exported const)
+## 📄 objectStringToJson (exported const)
 
 takes an object string and parses it to JSON
 
@@ -109,12 +109,12 @@ key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subk
 NB: you can have objects in parameters of objects by surrounding the same syntax with `{` and `}`
 
 
-## parseIfJson (exported const)
+## 📄 parseIfJson (exported const)
 
 if it's a string with a parsable JSON inside, parse it and return the object/array
 
 
-## parsePrimitiveJson (exported const)
+## 📄 parsePrimitiveJson (exported const)
 
 parses a string to a string, number, boolean, null or undefined.
 
@@ -123,14 +123,11 @@ optionally you can chooose to force a type...
 TODO: figure out how I can do this without ts-ignores
 
 
-## stringToJson (exported const)
+## 📄 stringToJson (exported const)
 
 takes any string, and parses it to JSON
 
 if you provide (nested) objects, make sure to use the following format:
 
 key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }
-
-
-## test (unexported const)
 

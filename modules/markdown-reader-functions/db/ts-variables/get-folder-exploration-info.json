@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635150870,
-  "updatedAt": 1667635150870,
+  "createdAt": 1667818206081,
+  "updatedAt": 1667818206081,
   "deletedAt": 0,
-  "createdFirstAt": 1667635150870,
+  "createdFirstAt": 1667818206081,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  nestedPathObject: NestedPathObject,\n  queryPath: string,\n  projectRoot: string\n): Promise<{\n  title: string | undefined;\n  description: string | null;\n  descriptionProjectRelativeMarkdownPath: string | null;\n  children: {\n    projectRelativeMarkdownPath: string | null;\n    title: string;\n    firstParagraph: string | null;\n    folderName: string;\n  }[];\n}> => {\n  const childrenKeys = getKeysAtPathFromNestedObject(\n    nestedPathObject,\n    queryPath\n  );\n\n  const potentialReadmePath = path.join(projectRoot, queryPath, \"README.md\");\n\n  const readmeMarkdownParse = fs.existsSync(potentialReadmePath)\n    ? await readMarkdownFile(potentialReadmePath)\n    : null;\n\n  const queryPathTitle = queryPath.split(\"/\").pop();\n  const readmeInfo = getMarkdownIntro(readmeMarkdownParse);\n  const title = readmeInfo.title || queryPathTitle;\n  const description = readmeInfo.firstParagraph;\n\n  const children = await Promise.all(\n    childrenKeys.map(async (folderName) => {\n      const potentialReadmePath = path.join(\n        projectRoot,\n        queryPath,\n        folderName,\n        \"README.md\"\n      );\n      const potentialOperationPath = path.join(\n        projectRoot,\n        queryPath,\n        folderName,\n        \"OPERATION.md\"\n      );\n\n      const pathToRead = fs.existsSync(potentialOperationPath)\n        ? potentialOperationPath\n        : fs.existsSync(potentialReadmePath)\n        ? potentialReadmePath\n        : undefined;\n\n      const markdownParse = pathToRead\n        ? await readMarkdownFile(pathToRead)\n        : null;\n\n      const { title, firstParagraph } = getMarkdownIntro(markdownParse);\n      return {\n        title: title || folderName,\n        firstParagraph,\n        folderName,\n        projectRelativeMarkdownPath: pathToRead || null,\n      };\n    })\n  );\n\n  return {\n    title,\n    description,\n    children,\n    descriptionProjectRelativeMarkdownPath: readmeMarkdownParse\n      ? potentialReadmePath\n      : null,\n  };\n}",
   "description": "Gets exploration information about a folder\n\n- reads README.md in current folder\n- reads OPERATION.md in child folders, or README.md if that doesn't exist\n- gets an intro from those markdown files and returns that (uses `getMarkdownIntro`)",
-  "id": "nuozgdpzwfuvwhjbfedsggov"
+  "id": "ailgaznwhwgyrfxteuxxgyrc"
 }

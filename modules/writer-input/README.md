@@ -51,11 +51,6 @@ This is a ui-esm operation. This means it's a ui operation that builds to javasc
 
 ## Interfaces
 
-- [AugmentedWord](#augmentedword)
-- [MarkdownParse](#markdownparse)
-- [MarkdownParseRenderConfig](#markdownparserenderconfig)
-- [SubtextConfig](#subtextconfig)
-- [SubwordConfig](#subwordconfig)
 - [TextEditingContext](#texteditingcontext)
 - [WriterConfigFormValue](#writerconfigformvalue)
 
@@ -96,7 +91,6 @@ This is a ui-esm operation. This means it's a ui operation that builds to javasc
 - [trimLeft](#trimleft)
 - [TypescriptCompletions](#typescriptcompletions)
 - [{ useStore }](#usestore)
-- [{ vscodeOpen }](#vscodeopen)
 - [WriterConfigForm](#writerconfigform)
 - [writerInitialValues](#writerinitialvalues)
 - [WriterInput](#writerinput)
@@ -105,287 +99,215 @@ This is a ui-esm operation. This means it's a ui operation that builds to javasc
 
 # Functions
 
-## Completion
+## <Completion />
 
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| augmentedWord  | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { augmentedWord: `AugmentedWord`, <br />augmentedWordObject?: `MappedObject<AugmentedWord>`, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## ContentEditableDivInput
+## <ContentEditableDivInput />
 
 Div that is `contentEditable` by default and has possibilities for color/style highlighting, autocomplete, subtexts and tooltips
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
-## ContextTextArea
 
-## DivContentEditable
+## <ContextTextArea />
 
-## editSubtextSubwordConfig
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <DivContentEditable />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## editSubtextSubwordConfig()
 
 Interesting... In order to auto-generate a form for this, we need to combine the two into a simple function that does NOTHING. Why? Because we can't store it in the database, it is better to keep this in the frontend...
 
 NB: DEPRECATED: TODO: function isn't used. Since the indexation didn't go right, the solution with a `SimplifiedSchemaForm` ended up being easier. Keeping it here because I need to fix the indexation nonetheless.
 
 
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| subtextConfig  | object |  |
-| subwordConfig  | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| subtextConfig | `SubtextConfig` |  |,| subwordConfig | `SubwordConfig` |  |
+| **Output** | { subtextConfig: { isEnabled?: boolean, <br />translations?: { language: english / dutch / nepali / portuguese / brazilian / german / french / spanish / italian / norwegian / swedish / danish / vietnamese / indonesian / southAfrican / tokiPona / hindi / mandarin / arabic / bengali / urdu / japanese / swahili, <br />showAlternative?: boolean, <br />showPhonetic?: boolean, <br />showLatin?: boolean, <br />showTokiPona?: boolean, <br />showCommon?: boolean, <br /> }[], <br />showEmojiTranslation?: boolean, <br />showDefinitionsWithPriority?: critical / high / medium / low[], <br />showRelated?: { type: image / asset / pages / data / code, <br />quantity: single / short / all, <br /> }[], <br /> }, <br />subwordConfig: { isEnabled?: boolean, <br />subwordSize?: normal / mini / micro, <br />translations?: english / dutch / nepali / portuguese / brazilian / german / french / spanish / italian / norwegian / swedish / danish / vietnamese / indonesian / southAfrican / tokiPona / hindi / mandarin / arabic / bengali / urdu / japanese / swahili[], <br />translationsViewMode?: disabled / tooltip / context / subword, <br />showDefinition?: boolean, <br />occurenceAmountViewMode?: disabled / tooltip / context / subword, <br />blurMode?: disabled / special, <br />audioMode?: disabled / tooltip / context / subword, <br />replaceWordMode?: tokiPona / disabled / translate / alternative / phonetic / emoji, <br />heatmapMode?: disabled / projectFrequency / englishFrequency, <br /> }, <br /> }   |    |
 
 
 
-### Parameters (2)
-
-#### Parameter 1: subtextConfig: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isEnabled (optional) | boolean |  |
-| translations (optional) | array |  |
-| showEmojiTranslation (optional) | boolean |  |
-| showDefinitionsWithPriority (optional) | array |  |
-| showRelated (optional) | array |  |
-
-
-
-#### Parameter 2: subwordConfig: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isEnabled (optional) | boolean |  |
-| subwordSize (optional) | string |  |
-| translations (optional) | array |  |
-| showDefinition (optional) | boolean |  |
-| blurMode (optional) | string |  |
-| replaceWordMode (optional) | string |  |
-| heatmapMode (optional) | string |  |
-
-
-
-## FrontmatterForm
+## <FrontmatterForm />
 
 Renders a form for frontmatter without save button
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
-## getContext
+
+## getContext()
 
 Gets the current word you are typing from a text and the cursor position.
 
 Takes into account multiple word separators: tabs, newlines, and spaces.
 
 
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| wordAtPosition  | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| editorDetails | { text: string, <br />positionIndex: number, <br /> } |  |
+| **Output** | { wordAtPosition: string, <br /> }   |    |
 
 
 
-### Parameters (1)
-
-#### Parameter 1: editorDetails: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| text  | string |  |
-| positionIndex  | number |  |
-
-
-
-## getSubtext
+## getSubtext()
 
 make a subtext text based on the text of a complete paragraph (may contain single newlines and other markdown stuff, but never double newlines)
 
 Returns either the subtext string or a HTML string with a container around the subtext, depending on if you provide `withContainer`
 
 
-### Returns: string
-
-### Parameters (2)
-
-#### Parameter 1: markdownString: string
-
-#### Parameter 2: subtextConfig: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isEnabled (optional) | boolean |  |
-| translations (optional) | array |  |
-| showEmojiTranslation (optional) | boolean |  |
-| showDefinitionsWithPriority (optional) | array |  |
-| showRelated (optional) | array |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| markdownString | string | Raw markdown string |,| subtextConfig | `SubtextConfig` |  |
+| **Output** | string   |    |
 
 
 
-## getTextSegments
+## getTextSegments()
 
 Iterates over all child-nodes in the editor, replaces text with a segment, and replaces nodes with a flat list of segments
 
 Returns all textSegments in an array
 
 
-### Returns: array
-
-- null: object
-
-
-
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { text: string, <br />node: {  }, <br /> }[]   |    |
 
 
 
-## getWriterTypeFromContent
+## getWriterTypeFromContent()
 
-### Returns: string(Enum: typescript | markdown | other)
-
-### Parameters (1)
-
-#### Parameter 1: text: string
-
-## isAugmentedWordMatch
-
-### Parameters (2)
-
-#### Parameter 1: augmentedWord: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| word  | string |  |
-| queryPath (optional) | string |  |
-| projectRelativeMarkdownSourcePath  | string |  |
-| spoiler (optional) | string |  |
-| isCaseInsensitive (optional) | boolean |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** | typescript / markdown / other   |    |
 
 
 
-#### Parameter 2: completableWord: string
+## isAugmentedWordMatch()
 
-## isTypescript
+| Input      |    |    |
+| ---------- | -- | -- |
+| augmentedWord | `AugmentedWord` |  |,| completableWord | string |  |
+| **Output** |    |    |
+
+
+
+## isTypescript()
 
 only detect typescript if the string starts with `import`. must be improved later on. It would be great to be able to detect that it's a typescript file even if it contains syntax errors.
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: text: string
-
-## MarkdownCompletions
-
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| context  | object |  |
-| augmentedWords (optional) | array |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** |    |    |
 
 
 
-## MarkdownParsePresentation
+## <MarkdownCompletions />
 
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| markdownParse  | object |  |
-| projectRelativeBaseFolderPath  | string |  |
-| projectRelativeMarkdownFilePath  | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { context: {  }, <br />augmentedWords?: `AugmentedWord`[], <br />augmentedWordObject?: `MappedObject<AugmentedWord>`, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## MarkdownView
+## <MarkdownParsePresentation />
 
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| view  | string |  |
-| markdownParse  | object |  |
-| markdownParseRenderConfig  | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { markdownParse: `MarkdownParse`, <br />augmentedWordObject?: `MappedObject<AugmentedWord>`, <br />projectRelativeBaseFolderPath: string, <br />projectRelativeMarkdownFilePath: string, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## MarkedParagraph
+## <MarkdownView />
 
-## MarkedText
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { view: view / presentation, <br />markdownParse: `MarkdownParse`, <br />markdownParseRenderConfig: `MarkdownParseRenderConfig`, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
-## MarkedToken
+
+
+## <MarkedParagraph />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <MarkedText />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <MarkedToken />
 
 Function that can be used to iterate over the marked parse and style every token, recursively
 
 NB: this returns a regular react component, and should, for setting it as InnerHTML, be parsed with the `ReactDOMServer`
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| subtextConfig  | object |  |
-| subwordConfig  | object |  |
-| markdownFileConfig  | object |  |
-| testModeEnabled (optional) | boolean |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { item: `marked.Token`, <br />subtextConfig: `SubtextConfig`, <br />subwordConfig: `SubwordConfig`, <br />markdownFileConfig: `MarkdownParseRenderConfig`, <br />testModeEnabled?: boolean, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## omitSpecialCharactersFromStart
+## omitSpecialCharactersFromStart()
 
 Omits all special characters from the start of a word for the first special character it finds. The other special characters found after that won't be trimmed.
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| word (optional) | string |  |
+| **Output** |    |    |
 
 
-### Parameters (1)
 
-#### Parameter 1: word (optional): string
-
-## parseTextContentToHtmlString
+## parseTextContentToHtmlString()
 
 Returns a html string from a text string that can be rendered in the dom
 
@@ -394,9 +316,14 @@ NB: because we're parsing text from div.innerText, sometimes there are two newli
 Three newlines means there should be two breaks...
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `String`   |    |
 
 
-## SmartContentEditableDivInput
+
+## <SmartContentEditableDivInput />
 
 Uses ContentEditableDivInput, and attaches the Completions to it based on the content type. Also all other data required...
 
@@ -404,248 +331,145 @@ Uses ContentEditableDivInput, and attaches the Completions to it based on the co
 NB: TODO: once the autocomplete inside the contentEditable is done, these things should move inside of there. I need a component that has lots of UI/UX but isn't very smart. This will be able to be re-used in many usecases...
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
-## SpannedSentence
+
+## <SpannedSentence />
 
 Needs to be done for every text that can have potential interactions
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| sentence  | string |  |
-| testModeEnabled (optional) | boolean |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { sentence: string, <br />subtextConfig: `SubtextConfig`, <br />subwordConfig: `SubwordConfig`, <br />markdownFileConfig: `MarkdownParseRenderConfig`, <br />testModeEnabled?: boolean, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## SubtextContainer
+## <SubtextContainer />
 
 Returns a string with HTML for the subtext container, given you already have
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| rawMarkdown  | string |  |
-| subtextConfig  | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { rawMarkdown: string, <br />subtextConfig: `SubtextConfig`, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## Subword
+## <Subword />
 
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| word  | string |  |
-| subwordConfig  | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { word: string, <br />subwordConfig: `SubwordConfig`, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## testAllContentEditableRenderComponents
+## testAllContentEditableRenderComponents()
 
 Can be used to test all `ContentEditableRenderComponent`s with example inputs
 
 Instead you can also enable devmode and just check it on the live examples
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
-## testContentEditableRenderComponent
+
+## testContentEditableRenderComponent()
 
 Creates an element from the markdown input, and then uses the `toMarkdownString` function to make it markdown again.
 
 TODO: use <template>, might be more accurate. See https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro/35385518#35385518
 
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
 
-## TitleContainer
+
+
+## <TitleContainer />
 
 container for any index instance that needs to be rendered in the explore page
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
-## trimAround
+
+## trimAround()
 
 Removes x amount of characters from both sides of a word
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| word | string |  |,| trimLength | number |  |
+| **Output** | `String`   |    |
 
 
-### Parameters (2)
 
-#### Parameter 1: word: string
-
-#### Parameter 2: trimLength: number
-
-## trimLeft
+## trimLeft()
 
 Trims a character from a word at the left until that character is not found anymore (recursive)
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| word | string |  |,| character | string |  |
+| **Output** | `String`   |    |
 
 
-### Parameters (2)
 
-#### Parameter 1: word: string
-
-#### Parameter 2: character: string
-
-## TypescriptCompletions
+## <TypescriptCompletions />
 
 In `typescript`, every word should be autocompletable with the typescript stuff, without backticks.
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| context  | object |  |
-| augmentedWords (optional) | array |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { context: {  }, <br />augmentedWords?: `AugmentedWord`[], <br />augmentedWordObject?: `MappedObject<AugmentedWord>`, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## WriterConfigForm
+## <WriterConfigForm />
 
-## WriterInput
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <WriterInput />
 
 Writer input for any utf8 based text, file or no file
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
 
 # Interfaces
 
-## AugmentedWord
-
-AugmentedWords should have a small footprint since there can be many of them
-
-Words with a specific affix (backticks, bolded, italic) will match against these.
-
-Used to link automatically to functionNames, InterfaceNames, operation-names, words, and more..
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| type  | string |  |
-| word  | string |  |
-| queryPath (optional) | string |  |
-| projectRelativeMarkdownSourcePath  | string |  |
-| spoiler (optional) | string |  |
-| isCaseInsensitive (optional) | boolean |  |
-
-
-
-## MarkdownParse
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| fileName (optional) | string |  |
-| createdAt (optional) | number |  |
-| openedAt (optional) | number |  |
-| updatedAt (optional) | number |  |
-| deletedAt (optional) | number |  |
-| createdFirstAt (optional) | number |  |
-| parameters  | object |  |
-| downmatterParameters (optional) | object |  |
-| content (optional) | array |  |
-| raw  | string |  |
-
-
-
-## MarkdownParseRenderConfig
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| projectRelativeBaseFolderPath  | string |  |
-| projectRelativeMarkdownFilePath  | string |  |
-| isStatic (optional) | boolean |  |
-| isDev (optional) | boolean |  |
-| big (optional) | boolean |  |
-
-
-
-## SubtextConfig
-
-Configuration of what should be shown in the subtext
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isEnabled (optional) | boolean |  |
-| translations (optional) | array |  |
-| showEmojiTranslation (optional) | boolean |  |
-| showDefinitionsWithPriority (optional) | array |  |
-| showRelated (optional) | array |  |
-
-
-
-## SubwordConfig
-
-Configurate what should be shown about words
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isEnabled (optional) | boolean |  |
-| subwordSize (optional) | string |  |
-| translations (optional) | array |  |
-| translationsViewMode (optional) | string |  |
-| showDefinition (optional) | boolean |  |
-| occurenceAmountViewMode (optional) | string |  |
-| blurMode (optional) | string |  |
-| audioMode (optional) | string |  |
-| replaceWordMode (optional) | string |  |
-| heatmapMode (optional) | string |  |
-
-
-
-## TextEditingContext
+## 🔷 TextEditingContext
 
 Properties: 
 
@@ -655,7 +479,7 @@ Properties:
 
 
 
-## WriterConfigFormValue
+## 🔷 WriterConfigFormValue
 
 - SubtextConfig: object
 - SubwordConfig: object
@@ -666,88 +490,88 @@ Properties:
 
 # Variables
 
-## Completion (exported const)
+## 📄 Completion (exported const)
 
-## ContentEditableDivInput (exported const)
+## 📄 ContentEditableDivInput (exported const)
 
 Div that is `contentEditable` by default and has possibilities for color/style highlighting, autocomplete, subtexts and tooltips
 
 
-## ContextTextArea (exported const)
+## 📄 ContextTextArea (exported const)
 
-## depthFontSizes (exported const)
+## 📄 depthFontSizes (exported const)
 
-## DivContentEditable (exported const)
+## 📄 DivContentEditable (exported const)
 
-## editSubtextSubwordConfig (exported const)
+## 📄 editSubtextSubwordConfig (exported const)
 
 Interesting... In order to auto-generate a form for this, we need to combine the two into a simple function that does NOTHING. Why? Because we can't store it in the database, it is better to keep this in the frontend...
 
 NB: DEPRECATED: TODO: function isn't used. Since the indexation didn't go right, the solution with a `SimplifiedSchemaForm` ended up being easier. Keeping it here because I need to fix the indexation nonetheless.
 
 
-## FrontmatterForm (exported const)
+## 📄 FrontmatterForm (exported const)
 
 Renders a form for frontmatter without save button
 
 
-## getContext (exported const)
+## 📄 getContext (exported const)
 
 Gets the current word you are typing from a text and the cursor position.
 
 Takes into account multiple word separators: tabs, newlines, and spaces.
 
 
-## getSubtext (exported const)
+## 📄 getSubtext (exported const)
 
 make a subtext text based on the text of a complete paragraph (may contain single newlines and other markdown stuff, but never double newlines)
 
 Returns either the subtext string or a HTML string with a container around the subtext, depending on if you provide `withContainer`
 
 
-## getTextSegments (exported const)
+## 📄 getTextSegments (exported const)
 
 Iterates over all child-nodes in the editor, replaces text with a segment, and replaces nodes with a flat list of segments
 
 Returns all textSegments in an array
 
 
-## getWriterTypeFromContent (exported const)
+## 📄 getWriterTypeFromContent (exported const)
 
-## isAugmentedWordMatch (exported const)
+## 📄 isAugmentedWordMatch (exported const)
 
-## isTypescript (exported const)
+## 📄 isTypescript (exported const)
 
 only detect typescript if the string starts with `import`. must be improved later on. It would be great to be able to detect that it's a typescript file even if it contains syntax errors.
 
 
-## MarkdownCompletions (exported const)
+## 📄 MarkdownCompletions (exported const)
 
-## MarkdownParsePresentation (exported const)
+## 📄 MarkdownParsePresentation (exported const)
 
-## MarkdownView (exported const)
+## 📄 MarkdownView (exported const)
 
-## MarkedParagraph (exported const)
+## 📄 MarkedParagraph (exported const)
 
-## MarkedText (exported const)
+## 📄 MarkedText (exported const)
 
-## MarkedToken (exported const)
+## 📄 MarkedToken (exported const)
 
 Function that can be used to iterate over the marked parse and style every token, recursively
 
 NB: this returns a regular react component, and should, for setting it as InnerHTML, be parsed with the `ReactDOMServer`
 
 
-## MAX_COMPLETIONS_AMOUNT (exported const)
+## 📄 MAX_COMPLETIONS_AMOUNT (exported const)
 
-## metaClickableClassName (exported const)
+## 📄 metaClickableClassName (exported const)
 
-## omitSpecialCharactersFromStart (exported const)
+## 📄 omitSpecialCharactersFromStart (exported const)
 
 Omits all special characters from the start of a word for the first special character it finds. The other special characters found after that won't be trimmed.
 
 
-## parseTextContentToHtmlString (exported const)
+## 📄 parseTextContentToHtmlString (exported const)
 
 Returns a html string from a text string that can be rendered in the dom
 
@@ -756,7 +580,7 @@ NB: because we're parsing text from div.innerText, sometimes there are two newli
 Three newlines means there should be two breaks...
 
 
-## SmartContentEditableDivInput (exported const)
+## 📄 SmartContentEditableDivInput (exported const)
 
 Uses ContentEditableDivInput, and attaches the Completions to it based on the content type. Also all other data required...
 
@@ -764,63 +588,61 @@ Uses ContentEditableDivInput, and attaches the Completions to it based on the co
 NB: TODO: once the autocomplete inside the contentEditable is done, these things should move inside of there. I need a component that has lots of UI/UX but isn't very smart. This will be able to be re-used in many usecases...
 
 
-## SpannedSentence (exported const)
+## 📄 SpannedSentence (exported const)
 
 Needs to be done for every text that can have potential interactions
 
 
-## specialCharacters (exported const)
+## 📄 specialCharacters (exported const)
 
-## SubtextContainer (exported const)
+## 📄 SubtextContainer (exported const)
 
 Returns a string with HTML for the subtext container, given you already have
 
 
-## Subword (exported const)
+## 📄 Subword (exported const)
 
-## testAllContentEditableRenderComponents (exported const)
+## 📄 testAllContentEditableRenderComponents (exported const)
 
 Can be used to test all `ContentEditableRenderComponent`s with example inputs
 
 Instead you can also enable devmode and just check it on the live examples
 
 
-## testContentEditableRenderComponent (exported const)
+## 📄 testContentEditableRenderComponent (exported const)
 
 Creates an element from the markdown input, and then uses the `toMarkdownString` function to make it markdown again.
 
 TODO: use <template>, might be more accurate. See https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro/35385518#35385518
 
 
-## TitleContainer (exported const)
+## 📄 TitleContainer (exported const)
 
 container for any index instance that needs to be rendered in the explore page
 
 
-## trimAround (exported const)
+## 📄 trimAround (exported const)
 
 Removes x amount of characters from both sides of a word
 
 
-## trimLeft (exported const)
+## 📄 trimLeft (exported const)
 
 Trims a character from a word at the left until that character is not found anymore (recursive)
 
 
-## TypescriptCompletions (exported const)
+## 📄 TypescriptCompletions (exported const)
 
 In `typescript`, every word should be autocompletable with the typescript stuff, without backticks.
 
 
-## { useStore } (exported const)
+## 📄 { useStore } (exported const)
 
-## { vscodeOpen } (unexported const)
+## 📄 WriterConfigForm (exported const)
 
-## WriterConfigForm (exported const)
+## 📄 writerInitialValues (exported const)
 
-## writerInitialValues (exported const)
-
-## WriterInput (exported const)
+## 📄 WriterInput (exported const)
 
 Writer input for any utf8 based text, file or no file
 

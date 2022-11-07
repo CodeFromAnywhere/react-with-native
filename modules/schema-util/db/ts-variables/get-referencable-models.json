@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666264371522,
-  "updatedAt": 1666264371522,
+  "createdAt": 1667852854020,
+  "updatedAt": 1667852854020,
   "deletedAt": 0,
-  "createdFirstAt": 1666264371522,
+  "createdFirstAt": 1667852854020,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  simplifiedSchema?: SimplifiedSchema\n): ReferenceParameterInfo[] | undefined => {\n  if (simplifiedSchema?.type !== \"object\") return undefined;\n  const parameterNames = simplifiedSchema.properties?.map((x) => x.name);\n\n  const referenceParameterInfo = parameterNames\n    ?.map((parameterName) => {\n      const referenceParameterInfo = getReferenceParameterInfo(parameterName);\n\n      return referenceParameterInfo;\n    })\n    .filter((x) => x.isReferenceParameter);\n\n  return referenceParameterInfo;\n}",
   "description": "based on the object properties in SimplifiedSchema, returns the model names that can be referenced",
-  "id": "slobeyprdytszlbjjeblmceh"
+  "id": "crxmyjrjmrtxhhkmliaecjdp"
 }

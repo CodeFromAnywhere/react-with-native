@@ -28,11 +28,7 @@ This is a ui-esm operation. This means it's a ui operation that builds to javasc
 
 ## Interfaces
 
-- [AugmentedWord](#augmentedword)
 - [CodeblockMode](#codeblockmode)
-- [Frontmatter](#frontmatter)
-- [MarkdownChunk](#markdownchunk)
-- [MarkdownParse](#markdownparse)
 - [MarkdownParseRenderConfig](#markdownparserenderconfig)
 
 ## Variables
@@ -53,245 +49,115 @@ This is a ui-esm operation. This means it's a ui operation that builds to javasc
 
 # Functions
 
-## getRealSrc
+## getRealSrc()
 
 Based on markdown info, gest the real source for an image
 
 
-### Returns: string
+| Input      |    |    |
+| ---------- | -- | -- |
+| src (optional) | string |  |,| config | `MarkdownParseRenderConfig` |  |
+| **Output** | string   |    |
 
-### Parameters (2)
 
-#### Parameter 1: src (optional): string
 
-## getUrlFromRelativeUrl
+## getUrlFromRelativeUrl()
 
 gets the renderable asset url from the relative url
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| relativeUrl | string |  |,| relativeUrlStrategy | api / static |  |,| projectRelativeBaseFolderPath | string |  |,| projectRelativeMarkdownFilePath | string |  |
+| **Output** | `String`   |    |
 
 
-### Parameters (4)
 
-#### Parameter 1: relativeUrl: string
+## getYoutubeId()
 
-#### Parameter 2: relativeUrlStrategy: string(Enum: api | static)
+| Input      |    |    |
+| ---------- | -- | -- |
+| url (optional) | string |  |
+| **Output** | string   |    |
 
-#### Parameter 3: projectRelativeBaseFolderPath: string
 
-#### Parameter 4: projectRelativeMarkdownFilePath: string
 
-## getYoutubeId
-
-### Returns: string
-
-### Parameters (1)
-
-#### Parameter 1: url (optional): string
-
-## MarkdownCodeblock
+## <MarkdownCodeblock />
 
 Renders a markdown codeblock with a text as content and an optional extension
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| text  | string |  |
-| extension (optional) | string |  |
-| minimalMode (optional) | string |  |
-| expandedMode (optional) | string |  |
-| isInitiallyExpanded (optional) | boolean |  |
-| isModeStatic (optional) | boolean |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { text: string, <br />extension?: string, <br />minimalMode?: `CodeblockMode`, <br />expandedMode?: `CodeblockMode`, <br />isInitiallyExpanded?: boolean, <br />isModeStatic?: boolean, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## renderFrontmatter
+## renderFrontmatter()
 
 Renders markdown frontmatter parameters (and optionally a spacer)
 
 
-
-
-### Parameters (2)
-
-#### Parameter 1: parameters: object
-
-#### Parameter 2: config (optional): object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| renderSpacer (optional) | boolean |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameters | `Frontmatter` |  |,| config (optional) | { renderSpacer?: boolean, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## renderMarkdownChunk
+## renderMarkdownChunk()
 
 renders a MarkdownChunk interface
 
 
-
-
-### Parameters (2)
-
-#### Parameter 1: chunk: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| content (optional) | string |  |
-| title (optional) | string |  |
-| children (optional) | array |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| chunk | `MarkdownChunk` |  |,| config | `MarkdownParseRenderConfig` |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-
-
-## renderMarkdownContent
+## renderMarkdownContent()
 
 renders a markdown striing (without frontmatter)
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| content | string |  |,| config | `MarkdownParseRenderConfig` |  |
+| **Output** | `JSX.Element`   |    |
 
 
-### Parameters (2)
 
-#### Parameter 1: content: string
-
-## renderMarkdownParse
+## renderMarkdownParse()
 
 renders the MardkownParse interface (including frontmatter)
 
 
-
-
-### Parameters (2)
-
-#### Parameter 1: markdownParse: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| fileName (optional) | string |  |
-| createdAt (optional) | number |  |
-| openedAt (optional) | number |  |
-| updatedAt (optional) | number |  |
-| deletedAt (optional) | number |  |
-| createdFirstAt (optional) | number |  |
-| content (optional) | array |  |
-| raw  | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| markdownParse | `MarkdownParse` |  |,| config | `MarkdownParseRenderConfig` |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-
-
-## renderMarkdownTitle
+## renderMarkdownTitle()
 
 renders a markdown title (level should be 1 for h1 and 6 for h6)
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| title | string |  |,| level | number |  |
+| **Output** | `JSX.Element`   |    |
 
-
-### Parameters (2)
-
-#### Parameter 1: title: string
-
-#### Parameter 2: level: number
 
 # Interfaces
 
-## AugmentedWord
+## 🔷 CodeblockMode
 
-AugmentedWords should have a small footprint since there can be many of them
-
-Words with a specific affix (backticks, bolded, italic) will match against these.
-
-Used to link automatically to functionNames, InterfaceNames, operation-names, words, and more..
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| type  | string |  |
-| word  | string |  |
-| queryPath (optional) | string |  |
-| projectRelativeMarkdownSourcePath  | string |  |
-| spoiler (optional) | string |  |
-| isCaseInsensitive (optional) | boolean |  |
-
-
-
-## CodeblockMode
-
-## Frontmatter
-
-Our version of frontmatter is a bit simpler than regular frontmatter
-
-Not sure if this is a good idea, but it keeps it simple for our OS
-
-all values parse in a similar way to csv
-
-make sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array
-
-NB: string arrays are comma separated values, where you can put values with special characters in between quotes
-
-
-
-
-
-
-
-
-## MarkdownChunk
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| level  | number |  |
-| content (optional) | string |  |
-| markdownEmbed (optional) | object |  |
-| markdownLink (optional) | object |  |
-| title (optional) | string |  |
-| children (optional) | array |  |
-
-
-
-## MarkdownParse
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| fileName (optional) | string |  |
-| createdAt (optional) | number |  |
-| openedAt (optional) | number |  |
-| updatedAt (optional) | number |  |
-| deletedAt (optional) | number |  |
-| createdFirstAt (optional) | number |  |
-| parameters  | object |  |
-| downmatterParameters (optional) | object |  |
-| content (optional) | array |  |
-| raw  | string |  |
-
-
-
-## MarkdownParseRenderConfig
+## 🔷 MarkdownParseRenderConfig
 
 Properties: 
 
@@ -306,48 +172,48 @@ Properties:
 
 # Variables
 
-## defaultExpandedMode (exported const)
+## 📄 defaultExpandedMode (exported const)
 
-## defaultMinimalMode (exported const)
+## 📄 defaultMinimalMode (exported const)
 
-## getRealSrc (exported const)
+## 📄 getRealSrc (exported const)
 
 Based on markdown info, gest the real source for an image
 
 
-## getUrlFromRelativeUrl (exported const)
+## 📄 getUrlFromRelativeUrl (exported const)
 
 gets the renderable asset url from the relative url
 
 
-## getYoutubeId (exported const)
+## 📄 getYoutubeId (exported const)
 
-## MarkdownCodeblock (exported const)
+## 📄 MarkdownCodeblock (exported const)
 
 Renders a markdown codeblock with a text as content and an optional extension
 
 
-## renderFrontmatter (exported const)
+## 📄 renderFrontmatter (exported const)
 
 Renders markdown frontmatter parameters (and optionally a spacer)
 
 
-## renderMarkdownChunk (exported const)
+## 📄 renderMarkdownChunk (exported const)
 
 renders a MarkdownChunk interface
 
 
-## renderMarkdownContent (exported const)
+## 📄 renderMarkdownContent (exported const)
 
 renders a markdown striing (without frontmatter)
 
 
-## renderMarkdownParse (exported const)
+## 📄 renderMarkdownParse (exported const)
 
 renders the MardkownParse interface (including frontmatter)
 
 
-## renderMarkdownTitle (exported const)
+## 📄 renderMarkdownTitle (exported const)
 
 renders a markdown title (level should be 1 for h1 and 6 for h6)
 

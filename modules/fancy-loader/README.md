@@ -18,21 +18,18 @@ fancy-loader (js operation)
 
 # Functions
 
-## FancyLoader
+## <FancyLoader />
 
-### Parameters (1)
-
-#### Parameter 1: {  big,  medium,}: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| big (optional) | boolean |  |
-| medium (optional) | boolean |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| {
+  big,
+  medium,
+} | { big?: boolean, <br />medium?: boolean, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 # Variables
 
-## FancyLoader (exported const)
+## 📄 FancyLoader (exported const)
 

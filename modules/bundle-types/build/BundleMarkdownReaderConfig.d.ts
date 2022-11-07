@@ -1,5 +1,9 @@
 export declare type BundleMarkdownReaderConfig = {
     /**
+     * When set to `true`, docs are not shown in docs folder but in the root menu of the site
+     */
+    docsInRoot?: boolean;
+    /**
      * Show todo menu
      */
     showTodos?: boolean;

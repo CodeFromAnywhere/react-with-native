@@ -18,22 +18,24 @@ ui-util (js operation)
 
 # Functions
 
-## createCodeblockMarkdown
+## createCodeblockMarkdown()
 
 small util function to create a markdown for a string.
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |,| language (optional) | string | Extension that should be used for color highlighting the text
 
+Set to `null` if you don't want to specify a language
 
-### Parameters (2)
+defaults to "ts" |
+| **Output** | `String`   |    |
 
-#### Parameter 1: text: string
-
-#### Parameter 2: language (optional): string
 
 # Variables
 
-## createCodeblockMarkdown (exported const)
+## 📄 createCodeblockMarkdown (exported const)
 
 small util function to create a markdown for a string.
 

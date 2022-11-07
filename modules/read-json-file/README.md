@@ -11,10 +11,6 @@ read-json-file (node operation)
 - [readJsonFileSync](#readJsonFileSync)
 - [readJsonFile](#readJsonFile)
 
-## Interfaces
-
-- [Path](#path)
-
 ## Variables
 
 - [readJsonFileSync](#readjsonfilesync)
@@ -24,56 +20,43 @@ read-json-file (node operation)
 
 # Functions
 
-## readJsonFileSync
+## readJsonFileSync()
 
 Reads and parses JSON file
 
 make sure to specify what type the file contains as a generic!
 
 
-### Returns: string(Enum: ul | )
+| Input      |    |    |
+| ---------- | -- | -- |
+| filePath | `Path` |  |
+| **Output** | ul /    |    |
 
-### Parameters (1)
 
-#### Parameter 1: filePath: string
 
-## readJsonFile
+## readJsonFile()
 
 Reads and parses JSON file
 
 make sure to specify what type the file contains as a generic!
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: filePath (optional): string
-
-# Interfaces
-
-## Path
-
-unlike PathLike, this is only a string
-
-For now, we don't have a clear convention whether or not this string should be absolute or anything.
-
-
-
-
-
+| Input      |    |    |
+| ---------- | -- | -- |
+| filePath (optional) | `Path` |  |
+| **Output** |    |    |
 
 
 # Variables
 
-## readJsonFileSync (exported const)
+## 📄 readJsonFileSync (exported const)
 
 Reads and parses JSON file
 
 make sure to specify what type the file contains as a generic!
 
 
-## readJsonFile (exported const)
+## 📄 readJsonFile (exported const)
 
 Reads and parses JSON file
 

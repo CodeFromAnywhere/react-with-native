@@ -1,5 +1,6 @@
 export * from "./findFirstCommentTypes";
 export * from "./getRecerencableModels";
+export * from "./getRefLink";
 export * from "./getReferenceParameterInfo";
 export * from "./schema-util";
 export * from "./simplifiedSchemaToTypeDefinitionString";

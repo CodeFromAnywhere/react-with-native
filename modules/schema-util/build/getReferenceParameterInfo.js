@@ -1,4 +1,61 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getPossibleReferenceParameterNames=exports.getReferenceParameterInfo=void 0;var name_conventions_1=require("name-conventions"),convert_case_1=require("convert-case"),pluralize_1=require("pluralize"),js_util_1=require("js-util"),getReferenceParameterInfo=function(e){var r=e.split("_"),a=e.includes("_")?r[0]:void 0,t=e.includes("_")?r[1]:e,n=(0,convert_case_1.lowerCaseArray)(t),c=1===n.length,s=n.pop(),i=!c&&name_conventions_1.referenceParameterNames.includes(s),o=!c&&name_conventions_1.referencePluralParameterNames.includes(s),l=i||o,m=l?(0,convert_case_1.pascalCase)(n.join("-")):void 0,_=l?(0,pluralize_1.singularize)(s):void 0;return{descriptor:a,keyInModel:_,interfaceName:m,isReferenceMultipleParameter:o,isReferenceSingleParameter:i,isReferenceParameter:l,dataParameterName:l&&_?(0,js_util_1.replaceLastOccurence)(e,(0,convert_case_1.capitaliseFirstLetter)(_),""):void 0,parameterName:e}};exports.getReferenceParameterInfo=getReferenceParameterInfo;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getPossibleReferenceParameterNames = exports.getReferenceParameterInfo = void 0;
+var name_conventions_1 = require("name-conventions");
+var convert_case_1 = require("convert-case");
+var pluralize_1 = require("pluralize");
+var js_util_1 = require("js-util");
+/**
+ Takes a parameterName and returns information about it according to the convention `{descriptorName}_{modelName}{referenceKey}` where:
+ 
+ - descriptorName with the suffixing underscore is optional
+ - referenceKey can be slug, index, or id (or there plural variants)
+ - modelName should refer to a database model
+
+ */
+var getReferenceParameterInfo = function (parameterName) {
+    var descriptorModelSplit = parameterName.split("_");
+    var descriptor = parameterName.includes("_")
+        ? descriptorModelSplit[0]
+        : undefined;
+    var rest = parameterName.includes("_")
+        ? descriptorModelSplit[1]
+        : parameterName;
+    var wordArray = (0, convert_case_1.lowerCaseArray)(rest);
+    var singleWord = wordArray.length === 1;
+    var parameterLastWord = wordArray.pop();
+    var isReferenceSingleParameter = !singleWord && name_conventions_1.referenceParameterNames.includes(parameterLastWord);
+    var isReferenceMultipleParameter = !singleWord && name_conventions_1.referencePluralParameterNames.includes(parameterLastWord);
+    var isReferenceParameter = isReferenceSingleParameter || isReferenceMultipleParameter;
+    // NB: the last item has been removed now
+    var interfaceName = isReferenceParameter
+        ? (0, convert_case_1.pascalCase)(wordArray.join("-"))
+        : undefined;
+    // slug or id
+    var keyInModel = isReferenceParameter
+        ? (0, pluralize_1.singularize)(parameterLastWord)
+        : undefined;
+    /**
+     * the reference keyword should be removed from the parameterName to receive the dataParameterName
+     *
+     * e.g. `weirdSluggyModelSlugs` becomes `weirdSluggyModels`
+     */
+    var dataParameterName = isReferenceParameter && keyInModel
+        ? (0, js_util_1.replaceLastOccurence)(parameterName, (0, convert_case_1.capitaliseFirstLetter)(keyInModel), "")
+        : undefined;
+    var referenceParameterInfo = {
+        descriptor: descriptor,
+        keyInModel: keyInModel,
+        interfaceName: interfaceName,
+        isReferenceMultipleParameter: isReferenceMultipleParameter,
+        isReferenceSingleParameter: isReferenceSingleParameter,
+        isReferenceParameter: isReferenceParameter,
+        dataParameterName: dataParameterName,
+        parameterName: parameterName,
+    };
+    return referenceParameterInfo;
+};
+exports.getReferenceParameterInfo = getReferenceParameterInfo;
 /**
 returns the reference parameterNames...
  
@@ -10,5 +67,15 @@ todo -> todoSlug + todoId
 ```
 
  */
-var getPossibleReferenceParameterNames=function(e){return(0,pluralize_1.isPlural)(e)?name_conventions_1.referencePluralParameterNames.map(convert_case_1.capitaliseFirstLetter).map((function(r){return"".concat((0,pluralize_1.singularize)(e)).concat(r)})):name_conventions_1.referenceParameterNames.map(convert_case_1.capitaliseFirstLetter).map((function(r){return"".concat(e).concat(r)}))};exports.getPossibleReferenceParameterNames=getPossibleReferenceParameterNames;
+var getPossibleReferenceParameterNames = function (parameterName) {
+    var possibleReferenceParameterNames = (0, pluralize_1.isPlural)(parameterName)
+        ? name_conventions_1.referencePluralParameterNames
+            .map(convert_case_1.capitaliseFirstLetter)
+            .map(function (ref) { return "".concat((0, pluralize_1.singularize)(parameterName)).concat(ref); })
+        : name_conventions_1.referenceParameterNames
+            .map(convert_case_1.capitaliseFirstLetter)
+            .map(function (ref) { return "".concat(parameterName).concat(ref); });
+    return possibleReferenceParameterNames;
+};
+exports.getPossibleReferenceParameterNames = getPossibleReferenceParameterNames;
 //# sourceMappingURL=getReferenceParameterInfo.js.map

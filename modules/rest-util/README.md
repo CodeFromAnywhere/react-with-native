@@ -11,7 +11,6 @@ rest-util (js operation)
 - [bodyFromQueryString](#bodyFromQueryString)
 - [getFirstQueryStrings](#getFirstQueryStrings)
 - [getQueryPart](#getQueryPart)
-- [isValidEntry](#isValidEntry)
 - [toQueryString](#toQueryString)
 
 ## Variables
@@ -19,21 +18,25 @@ rest-util (js operation)
 - [bodyFromQueryString](#bodyfromquerystring)
 - [getFirstQueryStrings](#getfirstquerystrings)
 - [getQueryPart](#getquerypart)
-- [isValidEntry](#isvalidentry)
 - [toQueryString](#toquerystring)
 
 
 
 # Functions
 
-## bodyFromQueryString
+## bodyFromQueryString()
 
 converts a query string into an object that can be used as a body
 
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
 
-## getFirstQueryStrings
+
+
+## getFirstQueryStrings()
 
 NB: doesn't work in node.
 
@@ -42,60 +45,56 @@ Query keys can be string or string[] or undefined.
 This function takes only the first string if it's an array...
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
-## getQueryPart
+
+## getQueryPart()
 
 creates a query-string with one key for all strings in an array
 
 
-
-
-### Parameters (2)
-
-#### Parameter 1: strings: array
-
-- null: string
+| Input      |    |    |
+| ---------- | -- | -- |
+| strings | string[] |  |,| queryKey | string |  |
+| **Output** |    |    |
 
 
 
-
-
-
-#### Parameter 2: queryKey: string
-
-## isValidEntry
-
-### Returns: object
-
-## toQueryString
+## toQueryString()
 
 returns something like `?x=a&y=b&z=c`
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `String`   |    |
+
 
 # Variables
 
-## bodyFromQueryString (exported const)
+## 📄 bodyFromQueryString (exported const)
 
 converts a query string into an object that can be used as a body
 
 
-## getFirstQueryStrings (exported const)
+## 📄 getFirstQueryStrings (exported const)
 
 Query keys can be string or string[] or undefined.
 
 This function takes only the first string if it's an array...
 
 
-## getQueryPart (exported const)
+## 📄 getQueryPart (exported const)
 
 creates a query-string with one key for all strings in an array
 
 
-## isValidEntry (unexported const)
-
-## toQueryString (exported const)
+## 📄 toQueryString (exported const)
 
 returns something like `?x=a&y=b&z=c`
 

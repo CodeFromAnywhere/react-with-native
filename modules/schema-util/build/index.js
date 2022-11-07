@@ -1,2 +1,24 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,r,t,i){void 0===i&&(i=t);var o=Object.getOwnPropertyDescriptor(r,t);o&&!("get"in o?!r.__esModule:o.writable||o.configurable)||(o={enumerable:!0,get:function(){return r[t]}}),Object.defineProperty(e,i,o)}:function(e,r,t,i){void 0===i&&(i=t),e[i]=r[t]}),__exportStar=this&&this.__exportStar||function(e,r){for(var t in e)"default"===t||Object.prototype.hasOwnProperty.call(r,t)||__createBinding(r,e,t)};Object.defineProperty(exports,"__esModule",{value:!0}),__exportStar(require("./findFirstCommentTypes"),exports),__exportStar(require("./getRecerencableModels"),exports),__exportStar(require("./getReferenceParameterInfo"),exports),__exportStar(require("./schema-util"),exports),__exportStar(require("./simplifiedSchemaToTypeDefinitionString"),exports),__exportStar(require("./simplifySchema"),exports);
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(require("./findFirstCommentTypes"), exports);
+__exportStar(require("./getRecerencableModels"), exports);
+__exportStar(require("./getRefLink"), exports);
+__exportStar(require("./getReferenceParameterInfo"), exports);
+__exportStar(require("./schema-util"), exports);
+__exportStar(require("./simplifiedSchemaToTypeDefinitionString"), exports);
+__exportStar(require("./simplifySchema"), exports);
 //# sourceMappingURL=index.js.map

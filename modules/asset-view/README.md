@@ -17,10 +17,6 @@ asset-view (js operation)
 - [AssetView](#AssetView)
 - [InteractiveAsset](#InteractiveAsset)
 
-## Interfaces
-
-- [Asset](#asset)
-
 ## Variables
 
 - [AssetView](#assetview)
@@ -31,24 +27,16 @@ asset-view (js operation)
 
 # Functions
 
-## AssetView
+## <AssetView />
 
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| asset  | object |  |
-| className (optional) | string |  |
-| projectRelativeReferencingFilePath  | string |  |
-| hideDownloadLink (optional) | boolean |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { asset: `Asset`, <br />className?: string, <br />projectRelativeReferencingFilePath: string, <br />hideDownloadLink?: boolean, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## InteractiveAsset
+## <InteractiveAsset />
 
 shows an `Asset` with interactivity
 
@@ -58,46 +46,19 @@ shows an `Asset` with interactivity
 - Video/screen show thumbnail and duration
 
 
-
-# Interfaces
-
-## Asset
-
-Asset you can upload
-
-This is not a database model, it can exist in properties of any db model or type interface.
-
-Only `alt` and `relativePath` are stored, the other parameters are optionally required for uploading and user interfaces, and are not always there
-
-NB: don't use this in your model, use `StoredAsset` instead.
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| alt (optional) | string |  |
-| relativePath (optional) | string |  |
-| name (optional) | string |  |
-| temporaryDestination (optional) | string |  |
-| blobPath (optional) | string |  |
-| type (optional) | string |  |
-| originalFilename (optional) | string |  |
-| sizeBytes (optional) | number |  |
-| blob (optional) | object |  |
-| uploadProgress (optional) | number |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
 # Variables
 
-## AssetView (exported const)
+## 📄 AssetView (exported const)
 
-## defaultClassName (exported const)
+## 📄 defaultClassName (exported const)
 
-## InteractiveAsset (exported const)
+## 📄 InteractiveAsset (exported const)
 
 shows an `Asset` with interactivity
 

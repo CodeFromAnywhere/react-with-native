@@ -76,7 +76,7 @@ export declare type SearchConfig = {
     includeMetaData?: boolean;
 };
 /**
- * this is the safe and friendly version of findFilesRecursively: it
+ * This is the safe and friendly version of `findFilesRecursively`
  */
 export declare const explore: ({ basePath, searchLevel, debug, ...other }: SearchConfig) => Promise<TextJson[]>;
 /**

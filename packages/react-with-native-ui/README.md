@@ -16,9 +16,9 @@ react-with-native-ui (js operation)
 
 # Variables
 
-## bareInputClass (exported const)
+## 📄 bareInputClass (exported const)
 
-## inputClass (exported const)
+## 📄 inputClass (exported const)
 
-## UI (exported const)
+## 📄 UI (exported const)
 

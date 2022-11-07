@@ -14,7 +14,6 @@ augmented-words (node operation)
 
 ## Variables
 
-- [cache](#cache)
 - [getAugmentedWordObject](#getaugmentedwordobject)
 - [getAugmentedWords](#getaugmentedwords)
 - [getBundleAugmentedWords](#getbundleaugmentedwords)
@@ -23,13 +22,16 @@ augmented-words (node operation)
 
 # Functions
 
-## getAugmentedWordObject
+## getAugmentedWordObject()
 
-### Parameters (1)
+| Input      |    |    |
+| ---------- | -- | -- |
+| manualProjectRoot (optional) | string |  |
+| **Output** |    |    |
 
-#### Parameter 1: manualProjectRoot (optional): string
 
-## getAugmentedWords
+
+## getAugmentedWords()
 
 Gets all augmented words of the entire project
 
@@ -38,25 +40,29 @@ Gets all augmented words of the entire project
 - if this is a non-sensible-project, also bundles (`/[docs-path]`)
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| manualProjectRoot (optional) | string |  |
+| **Output** |    |    |
 
 
-### Parameters (1)
 
-#### Parameter 1: manualProjectRoot (optional): string
-
-## getBundleAugmentedWords
+## getBundleAugmentedWords()
 
 NB: should only be executed if this is not a sensible-project, as it might not have `BundleConfig` otherwise
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
 
 # Variables
 
-## cache (unexported let)
+## 📄 getAugmentedWordObject (exported const)
 
-## getAugmentedWordObject (exported const)
-
-## getAugmentedWords (exported const)
+## 📄 getAugmentedWords (exported const)
 
 Gets all augmented words of the entire project
 
@@ -65,7 +71,7 @@ Gets all augmented words of the entire project
 - if this is a non-sensible-project, also bundles (`/[docs-path]`)
 
 
-## getBundleAugmentedWords (exported const)
+## 📄 getBundleAugmentedWords (exported const)
 
 NB: should only be executed if this is not a sensible-project, as it might not have `BundleConfig` otherwise
 

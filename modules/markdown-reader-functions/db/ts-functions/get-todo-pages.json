@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635160533,
-  "updatedAt": 1667635160533,
+  "createdAt": 1667818217759,
+  "updatedAt": 1667818217759,
   "deletedAt": 0,
-  "createdFirstAt": 1667635160533,
+  "createdFirstAt": 1667818217759,
   "publicAuthorization": [
     "read-docs",
     "search"
@@ -13,7 +13,7 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/getTodoPages.ts",
   "commentsInside": [],
-  "rawText": " async (\n  projectRoot: string\n): Promise<MarkdownReaderPage[]> => {\n  const operationsPath = getRootPath(\"operations\");\n  if (!operationsPath) return [];\n\n  const todoFolderPaths = await findAllTodoFolderPaths(operationsPath, false);\n  const markdownReaderPages: MarkdownReaderPage[] =\n    await getMarkdownReaderPages({\n      projectRoot,\n      basePaths: todoFolderPaths,\n      mapQueryPath: (queryPath) => {\n        return queryPath\n          .replaceAll(\"todo/\", \"\")\n          .replace(\"operations/\", \"todo/\");\n      },\n    });\n\n  return markdownReaderPages;\n}",
+  "rawText": " async (\n  projectRoot: string\n): Promise<MarkdownReaderPage[]> => {\n  const operationsPath = getRootPath(\"operations\");\n  if (!operationsPath) return [];\n\n  const todoFolderPaths = await findAllTodoFolderPaths(operationsPath, false);\n  const markdownReaderPages: MarkdownReaderPage[] =\n    await getMarkdownReaderPages({\n      projectRoot,\n      basePaths: todoFolderPaths,\n      mapQueryPath: (queryPath) => {\n        const almostPath = queryPath\n          .replaceAll(\"todo/\", \"\")\n          .replace(\"operations/\", \"todo/\");\n\n        return almostPath.startsWith(\"todo/\")\n          ? almostPath\n          : \"todo/\" + almostPath;\n      },\n    });\n\n  return markdownReaderPages;\n}",
   "name": "getTodoPages",
   "slug": "get-todo-pages",
   "parameters": [
@@ -40,13 +40,13 @@
   },
   "maxIndentationDepth": 5,
   "size": {
-    "characters": 608,
-    "lines": 20,
-    "bytes": 608,
+    "characters": 724,
+    "lines": 24,
+    "bytes": 724,
     "bytesPerCharacter": 1,
     "charactersPerLine": 30,
-    "linesPerFile": 20,
+    "linesPerFile": 24,
     "numberOfFiles": 1
   },
-  "id": "weggiahvrclgrgbwqfcogujo"
+  "id": "dwelkffqsuxgeteumkwoauug"
 }

@@ -71,32 +71,24 @@ const YourPage = () => {
 
 # Functions
 
-## useNavigation
+## useNavigation()
 
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| addListener  | object |  |
-| canGoBack  | object |  |
-| dispatch  | object |  |
-| getParent  | object |  |
-| getState  | object |  |
-| goBack  | object |  |
-| isFocused  | object |  |
-| removeListener  | object |  |
-| reset  | object |  |
-| setOptions  | object |  |
-| setParams  | object |  |
-| navigate  | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { addListener: {  }, <br />canGoBack: {  }, <br />dispatch: {  }, <br />getParent: {  }, <br />getState: {  }, <br />goBack: {  }, <br />isFocused: {  }, <br />removeListener: {  }, <br />reset: {  }, <br />setOptions: {  }, <br />setParams: {  }, <br />navigate: {  }, <br /> }   |    |
 
 
 
-## useRouter
+## useRouter()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
 
 # Variables
 
-## useRouter (exported const)
+## 📄 useRouter (exported const)
 

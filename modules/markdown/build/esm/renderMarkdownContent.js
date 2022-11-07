@@ -23,6 +23,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 import * as React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
+import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { getRealSrc } from "./util/getRealSrc.js";
 import { Span } from "react-with-native";
@@ -34,7 +35,7 @@ import { getFolderJs } from "fs-util-js";
 export var renderMarkdownContent = function (content, config) {
     // console.log("Need to render:", content);
     return (React.createElement(Span, null,
-        React.createElement(ReactMarkdown, { className: (config === null || config === void 0 ? void 0 : config.big) ? "max-w-lg" : undefined, rehypePlugins: [rehypeHighlight, remarkGfm], components: {
+        React.createElement(ReactMarkdown, { className: (config === null || config === void 0 ? void 0 : config.big) ? "max-w-lg" : undefined, rehypePlugins: [rehypeHighlight, remarkGfm, rehypeRaw], components: {
                 img: function (_a) {
                     var node = _a.node, src = _a.src, props = __rest(_a, ["node", "src"]);
                     var realSrc = getRealSrc(src, config);
@@ -47,18 +48,20 @@ export var renderMarkdownContent = function (content, config) {
                     // @ts-ignore
                     React.createElement("br", __assign({}, props)));
                 },
-                details: function (_a) {
-                    var node = _a.node, props = __rest(_a, ["node"]);
-                    return (
-                    // @ts-ignore
-                    React.createElement("details", __assign({}, props)));
-                },
-                summary: function (_a) {
-                    var node = _a.node, props = __rest(_a, ["node"]);
-                    return (
-                    // @ts-ignore
-                    React.createElement("summary", __assign({}, props)));
-                },
+                // details: ({ node, ...props }: any) => {
+                //   console.log("DETAILS DETECTED");
+                //   return (
+                //     // @ts-ignore
+                //     <details {...props} />
+                //   );
+                // },
+                // summary: ({ node, ...props }: any) => {
+                //   console.log("SUMMARY DETECTED");
+                //   return (
+                //     // @ts-ignore
+                //     <summary {...props} />
+                //   );
+                // },
                 td: function (_a) {
                     var node = _a.node, children = _a.children, props = __rest(_a, ["node", "children"]);
                     return (
@@ -115,10 +118,10 @@ export var renderMarkdownContent = function (content, config) {
                         foundWord.spoiler.length > 0 ? (React.createElement("span", null,
                         React.createElement("a", __assign({ href: "/".concat(foundWord === null || foundWord === void 0 ? void 0 : foundWord.queryPath), style: { color: "darkred" }, onMouseEnter: openTooltip, onMouseLeave: closeTooltip, ref: btnRef }, props), children),
                         React.createElement("span", { className: (popoverShow ? "" : "hidden ") +
-                                "bg-black border-0 mr-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg", ref: popoverRef },
+                                "bg-gray-200 border-0 mr-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg", ref: popoverRef },
                             React.createElement("div", null,
-                                React.createElement("div", { className: "bg-black text-white opacity-75 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg" }, foundWord.word),
-                                React.createElement("div", { className: "p-3 text-white" }, renderMarkdownContent(foundWord.spoiler, {
+                                React.createElement("div", { className: "bg-gray-200 text-black opacity-75 font-semibold px-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg" }, foundWord.word),
+                                React.createElement("div", { className: "px-3 text-gray-800" }, renderMarkdownContent(foundWord.spoiler, {
                                     projectRelativeBaseFolderPath: getFolderJs(foundWord.projectRelativeMarkdownSourcePath),
                                     projectRelativeMarkdownFilePath: foundWord.projectRelativeMarkdownSourcePath,
                                 })))))) : (React.createElement("code", __assign({ className: "dark:bg-gray-700", style: { color: "darkcyan" } }, props), children));

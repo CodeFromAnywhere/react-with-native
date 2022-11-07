@@ -13,29 +13,19 @@ react-with-native-store (ui-es5 operation)
 
 ## Functions
 
-- [contextKey](#contextKey)
 - [createStoreProvider](#createStoreProvider)
 - [createStore](#createStore)
 - [createUseStore](#createUseStore)
-- [getContext](#getContext)
 - [getItem](#getItem)
-- [getKey](#getKey)
 - [setItem](#setItem)
-- [StoreContextProvider](#StoreContextProvider)
 
 ## Variables
 
-- [contextKey](#contextkey)
-- [contexts](#contexts)
 - [createStoreProvider](#createstoreprovider)
 - [createStore](#createstore)
 - [createUseStore](#createusestore)
-- [debug](#debug)
-- [getContext](#getcontext)
 - [getItem](#getitem)
-- [getKey](#getkey)
 - [setItem](#setitem)
-- [StoreContextProvider](#storecontextprovider)
 
 
 
@@ -141,18 +131,21 @@ It can be a hassle having to use 17 different providers and hooks if you have sm
 
 # Functions
 
-## contextKey
-
-## createStoreProvider
+## createStoreProvider()
 
 Function to create the StoreProvider
 
 NB: this function uses a local variable on the main scope of javascript in order to create the Context components dynamically. Beware!
 
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
 
-## createStore
+
+
+## createStore()
 
 One function is all you need to make a new store!
 
@@ -179,82 +172,60 @@ export const { useStore, StoreProvider } = createStore(writerInitialValues);
 Simple as pie 🍰
 
 
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| StoreProvider  | object |  |
-| useStore  | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { StoreProvider: {  }, <br />useStore: {  }, <br /> }   |    |
 
 
 
-## createUseStore
+## createUseStore()
 
 Function to create a hook for accessing the store
 
 
-### Returns: object
-
-## getContext
-
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| Provider  | object |  |
-| Consumer  | object |  |
-| displayName (optional) | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
 
 
 
-## getItem
+## getItem()
 
 If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| key | string |  |
+| **Output** |    |    |
 
 
-### Parameters (1)
 
-#### Parameter 1: key: string
-
-## getKey
-
-## setItem
+## setItem()
 
 If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
 
 BEWARE! Updating this won't update your react components!
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| key | string |  |,| value | {  } |  |
+| **Output** |    |    |
 
-
-### Parameters (2)
-
-#### Parameter 1: key: string
-
-#### Parameter 2: value: object
-
-## StoreContextProvider
 
 # Variables
 
-## contextKey (unexported const)
-
-## contexts (unexported let)
-
-## createStoreProvider (exported const)
+## 📄 createStoreProvider (exported const)
 
 Function to create the StoreProvider
 
 NB: this function uses a local variable on the main scope of javascript in order to create the Context components dynamically. Beware!
 
 
-## createStore (exported const)
+## 📄 createStore (exported const)
 
 One function is all you need to make a new store!
 
@@ -281,28 +252,19 @@ export const { useStore, StoreProvider } = createStore(writerInitialValues);
 Simple as pie 🍰
 
 
-## createUseStore (exported const)
+## 📄 createUseStore (exported const)
 
 Function to create a hook for accessing the store
 
 
-## debug (unexported let)
-
-## getContext (unexported const)
-
-## getItem (exported const)
+## 📄 getItem (exported const)
 
 If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
 
 
-## getKey (unexported const)
-
-## setItem (exported const)
+## 📄 setItem (exported const)
 
 If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
 
 BEWARE! Updating this won't update your react components!
-
-
-## StoreContextProvider (unexported const)
 

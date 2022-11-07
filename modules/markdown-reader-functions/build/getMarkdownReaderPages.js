@@ -36,10 +36,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMarkdownReaderPages = void 0;
+exports.getMarkdownReaderPages = exports.stripReadmeFromFolder = void 0;
 var get_path_1 = require("get-path");
 var getPublicMarkdownFilePaths_1 = require("./getPublicMarkdownFilePaths");
 var removeExtensionsFromPath_1 = require("./removeExtensionsFromPath");
+/**
+ * To get the queryPath, we need to strip the README.md so we get the folder as URL instead of the attached README.md
+ */
+var stripReadmeFromFolder = function (filePath) {
+    var suffix = "/readme.md";
+    if (filePath.toLowerCase().endsWith(suffix)) {
+        var strippedPath = filePath.slice(0, filePath.length - suffix.length);
+        return strippedPath;
+    }
+    return filePath;
+};
+exports.stripReadmeFromFolder = stripReadmeFromFolder;
 /**
  * Gets all markdownreader pages for multiple basePaths. Can add a prefix, can also remove the last folder of basePath from the suffix.
  */
@@ -50,19 +62,20 @@ var getMarkdownReaderPages = function (config) { return __awaiter(void 0, void 0
             case 0:
                 basePaths = config.basePaths, projectRoot = config.projectRoot, mapQueryPath = config.mapQueryPath;
                 return [4 /*yield*/, Promise.all(basePaths.map(function (basePath) { return __awaiter(void 0, void 0, void 0, function () {
-                        var publicMarkdownFilePaths, markdownReaderPages;
+                        var publicMarkdownFileAbsolutePaths, markdownReaderPages;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, (0, getPublicMarkdownFilePaths_1.getPublicMarkdownFilePaths)(basePath, false)];
                                 case 1:
-                                    publicMarkdownFilePaths = _a.sent();
-                                    markdownReaderPages = publicMarkdownFilePaths.map(function (x) {
+                                    publicMarkdownFileAbsolutePaths = _a.sent();
+                                    markdownReaderPages = publicMarkdownFileAbsolutePaths.map(function (x) {
                                         var filePath = (0, get_path_1.makeRelative)(x.path, projectRoot);
-                                        var pathWithoutExtensions = (0, removeExtensionsFromPath_1.removeExtensionsFromPath)(filePath);
+                                        var pathWithoutReadme = (0, exports.stripReadmeFromFolder)(filePath);
+                                        var pathWithoutExtensions = (0, removeExtensionsFromPath_1.removeExtensionsFromPath)(pathWithoutReadme);
                                         var queryPath = mapQueryPath
                                             ? mapQueryPath(pathWithoutExtensions)
                                             : pathWithoutExtensions;
-                                        // NB: folders are no menu items because menu is built from paths recursively
+                                        // NB: folders are no menu items because menu is built from queryPaths recursively
                                         var markdownReaderPage = {
                                             queryPath: queryPath,
                                             filePath: filePath,

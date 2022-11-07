@@ -12,31 +12,26 @@ try-parse-json (js operation)
 
 ## Variables
 
-- [removeCommentsRegex](#removecommentsregex)
 - [tryParseJson](#tryparsejson)
 
 
 
 # Functions
 
-## tryParseJson
+## tryParseJson()
 
 if text isn't json, returns null
 
 
-### Returns: string(Enum: ul | )
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |,| logParseError (optional) | boolean |  |
+| **Output** | ul /    |    |
 
-### Parameters (2)
-
-#### Parameter 1: text: string
-
-#### Parameter 2: logParseError (optional): boolean
 
 # Variables
 
-## removeCommentsRegex (unexported const)
-
-## tryParseJson (exported const)
+## 📄 tryParseJson (exported const)
 
 if text isn't json, returns null
 

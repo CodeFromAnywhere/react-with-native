@@ -19,15 +19,14 @@ export declare type SchemaItem = {
     name: string | null;
     schema: Schema;
 };
+/**
+ * Since `JSONSchema7`'s property `items` is fairly hard to use, this function gets that property in an easier to use way.
+ */
 export declare const getSchemaItems: (schema: Schema | undefined) => JSONSchema7[];
 /**
  * parses a JSONSchema7Definition to JSONSchema7|undefined so we can use it
  */
 export declare const getSchema: (maybeSchema: JSONSchema7Definition | undefined) => Schema | undefined;
-/**
- * gets the $ref from a schema and parses the interface name from it
- */
-export declare const getRefLink: (ref?: string) => string | undefined;
 /**
  * Gets all the properties of a schema
  */

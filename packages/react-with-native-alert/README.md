@@ -3,6 +3,12 @@
 react-with-native-alert (ui-es5 operation)
 
 
+## Alert
+
+TODO: NB: seems not to work right now in a new template! Fix it
+
+
+
 
 # Outline
 
@@ -67,29 +73,28 @@ const YourPage = () => {
 
 # Functions
 
-## AlertProvider
+## <AlertProvider />
 
-### Parameters (1)
-
-#### Parameter 1: { children }: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| children  | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| { children } | { children: {  }, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## useAlert
+## useAlert()
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
 
 # Variables
 
-## AlertContext (exported const)
+## 📄 AlertContext (exported const)
 
-## AlertProvider (exported const)
+## 📄 AlertProvider (exported const)
 
-## useAlert (exported const)
+## 📄 useAlert (exported const)
 

@@ -56,55 +56,59 @@ Any functions and variables related to filename conventions
 
 # Functions
 
-## getWriterType
+## getWriterType()
 
 Gets the writer type based on the extension
 
 
-### Returns: string(Enum: typescript | markdown | other)
+| Input      |    |    |
+| ---------- | -- | -- |
+| extension (optional) | string |  |
+| **Output** | typescript / markdown / other   |    |
 
-### Parameters (1)
 
-#### Parameter 1: extension (optional): string
 
-## hasSubExtension
+## hasSubExtension()
 
 Returns true if a fileid includes one of the specified subextensions.
 
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| srcRelativeFileId | string |  |,| subExtensions | {  } |  |,| includeRootName (optional) | boolean | if true, also returns true if the extension is the complete name of the file |
+| **Output** | {  }   |    |
 
-### Parameters (3)
 
-#### Parameter 1: srcRelativeFileId: string
 
-#### Parameter 2: subExtensions: object
+## isGeneratedOperationName()
 
-#### Parameter 3: includeRootName (optional): boolean
+| Input      |    |    |
+| ---------- | -- | -- |
+| operationName | string |  |
+| **Output** |    |    |
 
-## isGeneratedOperationName
 
-### Parameters (1)
 
-#### Parameter 1: operationName: string
+## isGeneratedOperation()
 
-## isGeneratedOperation
+| Input      |    |    |
+| ---------- | -- | -- |
+| operationBasePath | string |  |
+| **Output** |    |    |
 
-### Parameters (1)
 
-#### Parameter 1: operationBasePath: string
 
-## isIndexableFileId
+## isIndexableFileId()
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| fileId | string |  |
+| **Output** | {  }   |    |
 
-### Parameters (1)
-
-#### Parameter 1: fileId: string
 
 # Interfaces
 
-## DropboxExtension
+## 🔷 DropboxExtension
 
 these filetypes should never be opened with explore. They should be processed and either indexed or converted. This creates a md or json with the proper metadata, which, in turn, can be explored.
 
@@ -115,19 +119,19 @@ these filetypes should never be opened with explore. They should be processed an
 
 
 
-## FileType
+## 🔷 FileType
 
-## JsonExtension
+## 🔷 JsonExtension
 
-## MarkdownExtension
+## 🔷 MarkdownExtension
 
-## SearchableExtension
+## 🔷 SearchableExtension
 
-## SearchLevel
+## 🔷 SearchLevel
 
-## TypescriptExtension
+## 🔷 TypescriptExtension
 
-## WriterType
+## 🔷 WriterType
 
 Type of content that can be interpreted by the `writer-input`
 
@@ -139,54 +143,54 @@ Type of content that can be interpreted by the `writer-input`
 
 # Variables
 
-## allowedSearchContentExtensions (exported const)
+## 📄 allowedSearchContentExtensions (exported const)
 
-## buildFolderName (exported const)
+## 📄 buildFolderName (exported const)
 
-## databaseFolderName (exported const)
+## 📄 databaseFolderName (exported const)
 
-## extensions (exported const)
+## 📄 extensions (exported const)
 
-## fileTypes (exported const)
+## 📄 fileTypes (exported const)
 
-## frontendOptionalFileSubExtensions (exported const)
+## 📄 frontendOptionalFileSubExtensions (exported const)
 
 these special operations are generated, so should not be copied, but should be generated in the bundle after everything is copied
 
 
-## generatedFolders (exported const)
+## 📄 generatedFolders (exported const)
 
-## getWriterType (exported const)
+## 📄 getWriterType (exported const)
 
 Gets the writer type based on the extension
 
 
-## hasSubExtension (exported const)
+## 📄 hasSubExtension (exported const)
 
 Returns true if a fileid includes one of the specified subextensions.
 
 
-## isGeneratedOperationName (exported const)
+## 📄 isGeneratedOperationName (exported const)
 
-## isGeneratedOperation (exported const)
+## 📄 isGeneratedOperation (exported const)
 
-## isIndexableFileId (exported const)
+## 📄 isIndexableFileId (exported const)
 
-## jsonExtensionsConst (exported const)
+## 📄 jsonExtensionsConst (exported const)
 
-## jsonExtensions (exported const)
+## 📄 jsonExtensions (exported const)
 
-## markdownExtensionsConst (exported const)
+## 📄 markdownExtensionsConst (exported const)
 
-## markdownExtensions (exported const)
+## 📄 markdownExtensions (exported const)
 
-## operationUnindexableNamesOrSubExtensions (exported const)
+## 📄 operationUnindexableNamesOrSubExtensions (exported const)
 
-## projectRelativeGeneratedOperationsFolder (exported const)
+## 📄 projectRelativeGeneratedOperationsFolder (exported const)
 
-## sourceFolderName (exported const)
+## 📄 sourceFolderName (exported const)
 
-## typescriptExtensionsConst (exported const)
+## 📄 typescriptExtensionsConst (exported const)
 
-## typescriptExtensions (exported const)
+## 📄 typescriptExtensions (exported const)
 

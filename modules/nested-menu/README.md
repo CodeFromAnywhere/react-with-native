@@ -38,7 +38,7 @@ nested-menu (ui-es5 operation)
 
 # Functions
 
-## getKeysAtPathFromNestedObject
+## getKeysAtPathFromNestedObject()
 
 Gets all children keys of a nested object at a certain (nested) location in the nested object
 
@@ -47,34 +47,54 @@ Gets all children keys of a nested object at a certain (nested) location in the 
 The reduce is a bit vague, I need to  test this function further to make sure it does exactly what I want.
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
-## NestedMenuItem
+
+## <NestedMenuItem />
 
 General purpose NestedMenuItem
 
 TODO: make style customizable
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
-## NestedMenu
+
+## <NestedMenu />
 
 General purpose nested menu component
 
 Please make sure that you also wrap your app with `MenuStoreProvider`, or this will crash...!
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
-## nestedPathObjectToNestedMenuRecursive
+
+## nestedPathObjectToNestedMenuRecursive()
 
 Transform a nested path object into a nested menu (MenuType), recursively
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
-## queryPathsArrayToNestedPathObject
+
+## queryPathsArrayToNestedPathObject()
 
 Handy function to transform an array of `querypaths` into a nested menu, assuming you want to create a new sub-menu for every path
 
@@ -95,47 +115,37 @@ Output:
 }
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: queryPaths: array
-
-- null: string
+| Input      |    |    |
+| ---------- | -- | -- |
+| queryPaths | string[] |  |
+| **Output** |    |    |
 
 
 
+## reduceQueryPathsRecursively()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| queryPaths | string[] |  |,| initialValue | `NestedPathObject` |  |
+| **Output** |    |    |
 
 
 
-## reduceQueryPathsRecursively
+## useExpanded()
 
-### Parameters (2)
+| Input      |    |    |
+| ---------- | -- | -- |
+| queryPath (optional) | string |  |
+| **Output** |    |    |
 
-#### Parameter 1: queryPaths: array
-
-- null: string
-
-
-
-
-
-
-#### Parameter 2: initialValue: object
-
-## useExpanded
-
-### Parameters (1)
-
-#### Parameter 1: queryPath (optional): string
 
 # Interfaces
 
-## ExpandedObject
+## 🔷 ExpandedObject
 
-## NestedObject
+## 🔷 NestedObject
 
-## NestedPathObject
+## 🔷 NestedPathObject
 
 A different way to represent a path array in a nested object of folders
 
@@ -158,7 +168,7 @@ A different way to represent a path array in a nested object of folders
 
 # Variables
 
-## getKeysAtPathFromNestedObject (exported const)
+## 📄 getKeysAtPathFromNestedObject (exported const)
 
 Gets all children keys of a nested object at a certain (nested) location in the nested object
 
@@ -167,28 +177,28 @@ Gets all children keys of a nested object at a certain (nested) location in the 
 The reduce is a bit vague, I need to  test this function further to make sure it does exactly what I want.
 
 
-## NestedMenuItem (exported const)
+## 📄 NestedMenuItem (exported const)
 
 General purpose NestedMenuItem
 
 TODO: make style customizable
 
 
-## nestedMenuStoreInitialValues (exported const)
+## 📄 nestedMenuStoreInitialValues (exported const)
 
-## NestedMenu (exported const)
+## 📄 NestedMenu (exported const)
 
 General purpose nested menu component
 
 Please make sure that you also wrap your app with `MenuStoreProvider`, or this will crash...!
 
 
-## nestedPathObjectToNestedMenuRecursive (exported const)
+## 📄 nestedPathObjectToNestedMenuRecursive (exported const)
 
 Transform a nested path object into a nested menu (MenuType), recursively
 
 
-## queryPathsArrayToNestedPathObject (exported const)
+## 📄 queryPathsArrayToNestedPathObject (exported const)
 
 Handy function to transform an array of `querypaths` into a nested menu, assuming you want to create a new sub-menu for every path
 
@@ -209,9 +219,9 @@ Output:
 }
 
 
-## reduceQueryPathsRecursively (exported const)
+## 📄 reduceQueryPathsRecursively (exported const)
 
-## { StoreProvider, useStore } (exported const)
+## 📄 { StoreProvider, useStore } (exported const)
 
-## useExpanded (exported const)
+## 📄 useExpanded (exported const)
 

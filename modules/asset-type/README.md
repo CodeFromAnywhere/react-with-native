@@ -96,7 +96,7 @@ There are other ways though to show progress. It can be done with `axios`, but t
 
 # Interfaces
 
-## Asset
+## 🔷 Asset
 
 Asset you can upload
 
@@ -127,7 +127,7 @@ Properties:
 
 
 
-## AssetType
+## 🔷 AssetType
 
 Possible Asset Types
 
@@ -138,7 +138,7 @@ Possible Asset Types
 
 
 
-## BackendAsset
+## 🔷 BackendAsset
 
 Part of the asset that should be sent to the backend. The rest should frontend-only
 
@@ -159,7 +159,7 @@ Properties:
 
 
 
-## CompressionConfig
+## 🔷 CompressionConfig
 
 Properties: 
 
@@ -172,7 +172,7 @@ Properties:
 
 
 
-## CompressionOption
+## 🔷 CompressionOption
 
 CompressionOption should be able to be applied on the model parameter through frontmatter
 
@@ -188,7 +188,7 @@ CompressionOption should be able to be applied on the model parameter through fr
 
 
 
-## CompressionConfig
+## 🔷 CompressionConfig
 
 Properties: 
 
@@ -201,7 +201,7 @@ Properties:
 
 
 
-## CompressionOption
+## 🔷 CompressionOption
 
 CompressionOption should be able to be applied on the model parameter through frontmatter
 
@@ -217,7 +217,7 @@ CompressionOption should be able to be applied on the model parameter through fr
 
 
 
-## Image
+## 🔷 Image
 
 Properties: 
 
@@ -231,7 +231,7 @@ Properties:
 
 
 
-## NewAssetType
+## 🔷 NewAssetType
 
 Possible types for new asset upload in the frontend
 
@@ -242,7 +242,7 @@ Possible types for new asset upload in the frontend
 
 
 
-## NewAssetType
+## 🔷 NewAssetType
 
 Possible types for new asset upload in the frontend
 
@@ -253,7 +253,7 @@ Possible types for new asset upload in the frontend
 
 
 
-## UploadAssetBody
+## 🔷 UploadAssetBody
 
 NB: other things like alt, final destination etc, should not be sent with the upload, but instead with the function
 
@@ -269,7 +269,7 @@ Properties:
 
 
 
-## UploadAssetResult
+## 🔷 UploadAssetResult
 
 Properties: 
 
@@ -282,7 +282,7 @@ Properties:
 
 
 
-## UploadAssetBody
+## 🔷 UploadAssetBody
 
 NB: other things like alt, final destination etc, should not be sent with the upload, but instead with the function
 
@@ -298,7 +298,7 @@ Properties:
 
 
 
-## UploadAssetResult
+## 🔷 UploadAssetResult
 
 Properties: 
 

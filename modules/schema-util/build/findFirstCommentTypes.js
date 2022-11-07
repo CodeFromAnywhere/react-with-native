@@ -1,2 +1,37 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.findFirstCommentTypes=void 0;var code_types_1=require("code-types"),js_util_1=require("js-util"),findFirstCommentTypes=function(t){if(void 0===t)return{};var e=t.split("\n"),r=code_types_1.commentTypes.map((function(t){var r,i="".concat(t.toUpperCase(),":"),s=e.find((function(t){return t.trimStart().startsWith(i)}));if(s){var n=s.trimStart().slice(i.length).trim();return(r={})[t]=n,r}})).filter(js_util_1.notEmpty);return(0,js_util_1.mergeObjectsArray)(r)};exports.findFirstCommentTypes=findFirstCommentTypes;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findFirstCommentTypes = void 0;
+var code_types_1 = require("code-types");
+var js_util_1 = require("js-util");
+/**
+ * Tries to find tie first appearing special comment line and parses it and returns it as part of the `CommentTypeObject`
+ */
+var findFirstCommentTypes = function (strippedFullComment) {
+    if (strippedFullComment === undefined)
+        return {};
+    var lines = strippedFullComment.split("\n");
+    var specialCommentTypesObject = code_types_1.commentTypes
+        .map(function (commentType) {
+        var _a;
+        var matchingPart = "".concat(commentType.toUpperCase(), ":");
+        var matchingLine = lines.find(function (line) {
+            var trimmedLine = line.trimStart();
+            var isMatch = trimmedLine.startsWith(matchingPart);
+            return isMatch;
+        });
+        if (!matchingLine)
+            return;
+        var strippedMatchingLine = matchingLine.trimStart();
+        var specialCommentWithoutPrefix = strippedMatchingLine
+            .slice(matchingPart.length)
+            .trim();
+        return _a = {},
+            _a[commentType] = specialCommentWithoutPrefix,
+            _a;
+    })
+        .filter(js_util_1.notEmpty);
+    var fullObject = (0, js_util_1.mergeObjectsArray)(specialCommentTypesObject);
+    return fullObject;
+};
+exports.findFirstCommentTypes = findFirstCommentTypes;
 //# sourceMappingURL=findFirstCommentTypes.js.map

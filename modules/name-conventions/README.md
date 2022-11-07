@@ -20,7 +20,6 @@ Any functions and variables related to variable declaration naming conventions
 
 - [AssetInputType](#assetinputtype)
 - [PatternMatcher](#patternmatcher)
-- [SimplifiedSchemaType](#simplifiedschematype)
 
 ## Variables
 
@@ -40,56 +39,52 @@ Any functions and variables related to variable declaration naming conventions
 
 # Functions
 
-## getAssetInputType
+## getAssetInputType()
 
 Convention parameters for assets: [name], [name]s, xyz[Name], xyz[Name]s
 
 Different ways to name assets: `image`, `video`, `audio`, `file` or just `asset`, which is everything together
 
 
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| type  | string |  |
-| isMultiple  | boolean |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |,| valueType (optional) | `SimplifiedSchemaType` |  |
+| **Output** | { type: image / video / audio / file / asset, <br />isMultiple: boolean, <br /> }   |    |
 
 
 
-### Parameters (2)
+## getParameterContentType()
 
-#### Parameter 1: parameterName: string
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** |    |    |
 
-#### Parameter 2: valueType (optional): string(Enum: string | number | boolean | object | array | null)
 
-## getParameterContentType
 
-### Parameters (1)
-
-#### Parameter 1: parameterName: string
-
-## isCalculatedParameter
+## isCalculatedParameter()
 
 this is part of the database convention
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** |    |    |
 
 
-### Parameters (1)
 
-#### Parameter 1: parameterName: string
+## isGeneratedParameterName()
 
-## isGeneratedParameterName
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** |    |    |
 
-### Parameters (1)
-
-#### Parameter 1: parameterName: string
 
 # Interfaces
 
-## AssetInputType
+## 🔷 AssetInputType
 
 Properties: 
 
@@ -100,7 +95,7 @@ Properties:
 
 
 
-## PatternMatcher
+## 🔷 PatternMatcher
 
 Properties: 
 
@@ -111,30 +106,27 @@ Properties:
 | isSingleWord (optional) | boolean |  |
 
 
-
-## SimplifiedSchemaType
-
 # Variables
 
-## generatedParameterNames (exported const)
+## 📄 generatedParameterNames (exported const)
 
-## getAssetInputType (exported const)
+## 📄 getAssetInputType (exported const)
 
-## getParameterContentType (exported const)
+## 📄 getParameterContentType (exported const)
 
-## isCalculatedParameter (exported const)
+## 📄 isCalculatedParameter (exported const)
 
 this is part of the database convention
 
 
-## isGeneratedParameterName (exported const)
+## 📄 isGeneratedParameterName (exported const)
 
-## markdownTextParameterNames (exported const)
+## 📄 markdownTextParameterNames (exported const)
 
 Any parameter names that should render a textArea
 
 
-## parameterNames (exported const)
+## 📄 parameterNames (exported const)
 
 ### Form input types
 
@@ -147,11 +139,11 @@ How do we show different UI's based on certain things we know about some paramet
 - All "path" or "xxxPath" should be an input where you can select a relative path from project root or operation src root, depending on what we need. It needs to be clear what kind of paths are allowed, so we need to think about all the options and if we can all put that in the parameter name (would be best) or if we need to use the description...
 
 
-## passwordTextParameterNames (exported const)
+## 📄 passwordTextParameterNames (exported const)
 
-## patternMatchers (exported const)
+## 📄 patternMatchers (exported const)
 
-## referenceParameterNames (exported const)
+## 📄 referenceParameterNames (exported const)
 
-## referencePluralParameterNames (exported const)
+## 📄 referencePluralParameterNames (exported const)
 

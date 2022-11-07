@@ -22,21 +22,18 @@ bundle-types (js operation)
 - [FinalCustomisableBundleConfig](#finalcustomisablebundleconfig)
 - [FrontBackBundle](#frontbackbundle)
 - [InformationStrategy](#informationstrategy)
-- [Json](#json)
 - [OperationName](#operationname)
 - [OperationPrivacy](#operationprivacy)
 - [ProjectRelativeFilePath](#projectrelativefilepath)
 - [ProjectRelativeFolderPath](#projectrelativefolderpath)
 - [PublicBundleConfig](#publicbundleconfig)
 - [ServerOperationName](#serveroperationname)
-- [Slug](#slug)
-- [SlugModelType](#slugmodeltype)
 
 
 
 # Models
 
-## BundleConfig
+## 🔷 BundleConfig
 
 jsonSingle model
 
@@ -79,9 +76,9 @@ Properties:
 
 # Interfaces
 
-## AppShell
+## 🔷 AppShell
 
-## BundleMarkdownReaderConfig
+## 🔷 BundleMarkdownReaderConfig
 
 Properties: 
 
@@ -96,7 +93,7 @@ Properties:
 
 
 
-## CreateBundleConfig
+## 🔷 CreateBundleConfig
 
 Properties: 
 
@@ -117,7 +114,7 @@ Properties:
 
 
 
-## CustomisableBundleConfig
+## 🔷 CustomisableBundleConfig
 
 configuration that can be applied when generating a new bundle
 
@@ -145,9 +142,9 @@ Properties:
 
 
 
-## EnvironmentVariableObject
+## 🔷 EnvironmentVariableObject
 
-## FinalBundleConfig
+## 🔷 FinalBundleConfig
 
 Properties: 
 
@@ -176,7 +173,7 @@ Properties:
 
 
 
-## FinalCreateBundleConfig
+## 🔷 FinalCreateBundleConfig
 
 CreateBundleConfig after applying the defaults
 
@@ -203,7 +200,7 @@ Properties:
 
 
 
-## FinalCustomisableBundleConfig
+## 🔷 FinalCustomisableBundleConfig
 
 Properties: 
 
@@ -223,7 +220,7 @@ Properties:
 
 
 
-## FrontBackBundle
+## 🔷 FrontBackBundle
 
 This type can specify a frontend and backend that belong to each other. it doesn't include all operations that the ui or server are dependent on, they are calculated separately
 
@@ -245,7 +242,7 @@ Properties:
 
 
 
-## InformationStrategy
+## 🔷 InformationStrategy
 
 push (default): take needed information from project and push to bundle (removing the existing info)
 
@@ -262,9 +259,7 @@ ignore: don't put any data in the bundle!
 
 
 
-## Json
-
-## OperationName
+## 🔷 OperationName
 
 later we can make this an enum! it can be auto-generated along with enums for the operation paths, and more things alike.
 
@@ -285,7 +280,7 @@ besides simply having OperationName, we can have specific operation classificati
 
 
 
-## OperationPrivacy
+## 🔷 OperationPrivacy
 
 Properties: 
 
@@ -296,9 +291,9 @@ Properties:
 
 
 
-## ProjectRelativeFilePath
+## 🔷 ProjectRelativeFilePath
 
-## ProjectRelativeFolderPath
+## 🔷 ProjectRelativeFolderPath
 
 later this could be known by the frontend so it will render a ui to select a folder
 
@@ -311,7 +306,7 @@ We need to figure out how we can know all type types in between when getting the
 
 
 
-## PublicBundleConfig
+## 🔷 PublicBundleConfig
 
 Properties: 
 
@@ -327,42 +322,5 @@ Properties:
 
 
 
-## ServerOperationName
-
-## Slug
-
-use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.
-
-
-
-
-
-
-
-
-## SlugModelType
-
-use this model for things with a name that have an unique slug that can be used to identify the model
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| slug  | string |  |
-| name  | string |  |
-| language  | string |  |
-| createdAt  | number |  |
-| updatedAt  | number |  |
-| deletedAt  | number |  |
-| createdFirstAt  | number |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| categoryStackCalculated (optional) | array |  |
-
+## 🔷 ServerOperationName
 

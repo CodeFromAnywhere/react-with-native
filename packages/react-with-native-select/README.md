@@ -51,34 +51,35 @@ Coming soon
 
 # Functions
 
-## getRealValue
+## getRealValue()
 
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| value  | object |  |
-| label  | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { value: {  }, <br />label: string, <br /> }   |    |
 
 
 
-## Select
+## <Select />
 
 renders either a SelectDropdown or SelectDrawer, based on screensize
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
 
 # Interfaces
 
-## ID
+## 🔷 ID
 
 # Variables
 
-## getRealValue (exported const)
+## 📄 getRealValue (exported const)
 
-## Select (exported const)
+## 📄 Select (exported const)
 
 renders either a SelectDropdown or SelectDrawer, based on screensize
 

@@ -133,7 +133,7 @@ export declare const sdk: {
     getAllMarkdownReaderPages: (config?: {
         manualProjectRoot?: string | undefined;
     } | undefined) => Promise<import("markdown-reader-types").MarkdownReaderPage[] | undefined>;
-    getFolderExplorationInfo: (nestedPathObject: import("nested-menu").NestedPathObject, queryPath: string, projectRoot: string) => Promise<{
+    getFolderExplorationInfo: (nestedPathObject: NestedPathObject, queryPath: string, projectRoot: string) => Promise<{
         title: string | undefined;
         description: string | null;
         descriptionProjectRelativeMarkdownPath: string | null;
@@ -145,7 +145,7 @@ export declare const sdk: {
         }[];
     }>;
     getMarkdownModelPages: (projectRoot: string) => Promise<import("markdown-reader-types").MarkdownReaderPage[]>;
-    getMarkdownPageInfo: (projectRoot: string, nestedPathObject: import("nested-menu").NestedPathObject, queryPath: string, contentPage: import("markdown-reader-types").MarkdownReaderPage) => Promise<{
+    getMarkdownPageInfo: (projectRoot: string, nestedPathObject: NestedPathObject, queryPath: string, contentPage: import("markdown-reader-types").MarkdownReaderPage) => Promise<{
         markdownFile: import("code-types").WebMarkdownFile | null;
         nextQueryPath: string | null;
         previousQueryPath: string | null;

@@ -83,19 +83,31 @@ import { toast } from "react-with-native-notification";
 
 # Functions
 
-## ToastContainer
+## <ToastContainer />
 
-## toast
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## toast()
 
 title is only shown on native
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
 
 # Variables
 
-## ToastContainer (exported const)
+## 📄 ToastContainer (exported const)
 
-## toast (exported const)
+## 📄 toast (exported const)
 
 title is only shown on native
 

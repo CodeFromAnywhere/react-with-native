@@ -51,12 +51,14 @@ var fs_util_1 = require("fs-util");
  Fix `operationBasePath not working` error when building: log `getStaticProps`/`getStaticPaths`
  */
 var markdownReaderGetStaticProps = function (context) { return __awaiter(void 0, void 0, void 0, function () {
-    var pages, projectRoot, publicBundleConfig, queryPath, queryPathsArray, nestedPathObject, contentPage, _a, children, title, description, descriptionProjectRelativeMarkdownPath, _b, markdownFile, nextQueryPath, previousQueryPath, projectRelativeMarkdownPath, augmentedWordObject;
+    var pages, queryPaths, nestedPathObject, projectRoot, publicBundleConfig, queryPath, contentPage, _a, children, title, description, descriptionProjectRelativeMarkdownPath, _b, markdownFile, nextQueryPath, previousQueryPath, projectRelativeMarkdownPath, augmentedWordObject;
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0: return [4 /*yield*/, (0, getAllMarkdownReaderPages_1.getAllMarkdownReaderPages)()];
             case 1:
                 pages = (_c.sent()) || [];
+                queryPaths = pages.filter(function (x) { return x.isMenuItem; }).map(function (x) { return x.queryPath; });
+                nestedPathObject = (0, nested_menu_1.queryPathsArrayToNestedPathObject)(queryPaths);
                 projectRoot = (0, get_path_1.getProjectRoot)();
                 if (!projectRoot) {
                     return [2 /*return*/, { props: { pages: pages } }];
@@ -65,10 +67,6 @@ var markdownReaderGetStaticProps = function (context) { return __awaiter(void 0,
             case 2:
                 publicBundleConfig = _c.sent();
                 queryPath = (0, markdown_reader_functions_js_1.getQueryPath)(context.params);
-                queryPathsArray = pages
-                    .filter(function (x) { return x.isMenuItem; })
-                    .map(function (x) { return x.queryPath; });
-                nestedPathObject = (0, nested_menu_1.queryPathsArrayToNestedPathObject)(queryPathsArray);
                 contentPage = pages.find(function (x) { return x.queryPath === queryPath; });
                 if (!!contentPage) return [3 /*break*/, 4];
                 return [4 /*yield*/, (0, getFolderExplorationInfo_1.getFolderExplorationInfo)(nestedPathObject, queryPath, projectRoot)];

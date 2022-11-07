@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666264373842,
-  "updatedAt": 1666264373842,
+  "createdAt": 1667852857702,
+  "updatedAt": 1667852857702,
   "deletedAt": 0,
-  "createdFirstAt": 1666264373842,
+  "createdFirstAt": 1667852857702,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  parameterName: string\n): ReferenceParameterInfo => {\n  const descriptorModelSplit = parameterName.split(\"_\");\n  const descriptor = parameterName.includes(\"_\")\n    ? descriptorModelSplit[0]\n    : undefined;\n  const rest = parameterName.includes(\"_\")\n    ? descriptorModelSplit[1]\n    : parameterName;\n\n  const wordArray = lowerCaseArray(rest);\n\n  const singleWord = wordArray.length === 1;\n\n  const parameterLastWord = wordArray.pop()!;\n\n  const isReferenceSingleParameter =\n    !singleWord && referenceParameterNames.includes(parameterLastWord);\n  const isReferenceMultipleParameter =\n    !singleWord && referencePluralParameterNames.includes(parameterLastWord);\n\n  const isReferenceParameter =\n    isReferenceSingleParameter || isReferenceMultipleParameter;\n\n  // NB: the last item has been removed now\n  const interfaceName = isReferenceParameter\n    ? pascalCase(wordArray.join(\"-\"))\n    : undefined;\n\n  // slug or id\n  const keyInModel = isReferenceParameter\n    ? singularize(parameterLastWord)\n    : undefined;\n\n  /**\n   * the reference keyword should be removed from the parameterName to receive the dataParameterName\n   *\n   * e.g. `weirdSluggyModelSlugs` becomes `weirdSluggyModels`\n   */\n  const dataParameterName =\n    isReferenceParameter && keyInModel\n      ? replaceLastOccurence(\n          parameterName,\n          capitaliseFirstLetter(keyInModel),\n          \"\"\n        )\n      : undefined;\n\n  const referenceParameterInfo: ReferenceParameterInfo = {\n    descriptor,\n    keyInModel,\n    interfaceName,\n    isReferenceMultipleParameter,\n    isReferenceSingleParameter,\n    isReferenceParameter,\n    dataParameterName,\n    parameterName,\n  };\n\n  return referenceParameterInfo;\n}",
   "description": "Takes a parameterName and returns information about it according to the convention `{descriptorName}_{modelName}{referenceKey}` where:\n\n- descriptorName with the suffixing underscore is optional\n- referenceKey can be slug, index, or id (or there plural variants)\n- modelName should refer to a database model",
-  "id": "bhwjhdsxbhgyiwjvgfnlypds"
+  "id": "ibwgfheyhpcveqkyfxvyoxwv"
 }

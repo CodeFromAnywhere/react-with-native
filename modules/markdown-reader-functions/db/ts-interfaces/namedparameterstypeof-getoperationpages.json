@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635157664,
-  "updatedAt": 1667635157664,
+  "createdAt": 1667818214619,
+  "updatedAt": 1667818214619,
   "deletedAt": 0,
-  "createdFirstAt": 1667635157664,
+  "createdFirstAt": 1667818214619,
   "id": "namedparameterstypeof-getoperationpages",
   "name": "NamedParameters<typeof getOperationPages>",
   "slug": "namedparameterstypeof-getoperationpages",
@@ -19,6 +19,9 @@
       "properties": {
         "projectRoot": {
           "type": "string"
+        },
+        "bundleMarkdownReaderConfig": {
+          "$ref": "#/definitions/BundleMarkdownReaderConfig"
         }
       },
       "required": [
@@ -33,6 +36,80 @@
           "required": true,
           "schema": {
             "type": "string"
+          }
+        },
+        {
+          "name": "bundleMarkdownReaderConfig",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "docsInRoot",
+                "required": false,
+                "schema": {
+                  "fullComment": "When set to `true`, docs are not shown in docs folder but in the root menu of the site",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "showTodos",
+                "required": false,
+                "schema": {
+                  "fullComment": "Show todo menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitModulesMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "`modules` will be hidden from markdown reader menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitAppsMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "`apps` will be hidden from markdown reader menui",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitDictionaryMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, dictionary is omitted from menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitPackagesMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "`packages` will be hidden from markdown reader menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "customOperationNames",
+                "required": false,
+                "schema": {
+                  "fullComment": "if given, the operations menu will show with these operations",
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
           }
         }
       ],

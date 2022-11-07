@@ -12,7 +12,6 @@ fs-util-js (node operation)
 - [getFolderJs](#getFolderJs)
 - [getSubExtension](#getSubExtension)
 - [isPathRelative](#isPathRelative)
-- [join](#join)
 - [removeTrailingSlash](#removeTrailingSlash)
 - [withoutExtension](#withoutExtension)
 
@@ -22,7 +21,6 @@ fs-util-js (node operation)
 - [getFolderJs](#getfolderjs)
 - [getSubExtension](#getsubextension)
 - [isPathRelative](#ispathrelative)
-- [join](#join)
 - [path](#path)
 - [removeTrailingSlash](#removetrailingslash)
 - [withoutExtension](#withoutextension)
@@ -31,68 +29,87 @@ fs-util-js (node operation)
 
 # Functions
 
-## getExtension
+## getExtension()
 
 returns the extension of the filename or path WITHOUT dot
 
 NB: not sure, but could be nice to replace this with path.extname(pathString)
 
 
-
-
-## getFolderJs
-
-### Returns: string
-
-## getSubExtension
-
-### Returns: string
-
-## isPathRelative
-
-## join
-
-### Parameters (1)
-
-#### Parameter 1: chunks: array
-
-- null: string
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
 
+## getFolderJs()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | string   |    |
 
 
 
-## removeTrailingSlash
+## getSubExtension()
 
-## withoutExtension
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | string   |    |
+
+
+
+## isPathRelative()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## removeTrailingSlash()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## withoutExtension()
 
 removes extension from the filename
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
 
 # Variables
 
-## getExtension (exported const)
+## 📄 getExtension (exported const)
 
 returns the extension of the filename or path WITHOUT dot
 
 NB: not sure, but could be nice to replace this with path.extname(pathString)
 
 
-## getFolderJs (exported const)
+## 📄 getFolderJs (exported const)
 
-## getSubExtension (exported const)
+## 📄 getSubExtension (exported const)
 
-## isPathRelative (exported const)
+## 📄 isPathRelative (exported const)
 
-## join (unexported const)
+## 📄 path (exported const)
 
-## path (exported const)
+## 📄 removeTrailingSlash (exported const)
 
-## removeTrailingSlash (exported const)
-
-## withoutExtension (exported const)
+## 📄 withoutExtension (exported const)
 
 removes extension from the filename
 

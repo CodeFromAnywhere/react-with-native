@@ -13,7 +13,6 @@ Currently has a thin dependency on `get-path`, but this can probably be removed 
 
 ## Functions
 
-- [benchmark](#benchmark)
 - [determineFileType](#determineFileType)
 - [exploreGitRepoFolders](#exploreGitRepoFolders)
 - [exploreMultiple](#exploreMultiple)
@@ -26,18 +25,10 @@ Currently has a thin dependency on `get-path`, but this can probably be removed 
 - [findAllPackages](#findAllPackages)
 - [findAllTodoFolderPaths](#findAllTodoFolderPaths)
 - [findFilesRecursively](#findFilesRecursively)
-- [getArgument](#getArgument)
-- [getContents](#getContents)
-- [getOutline](#getOutline)
-- [isMatch](#isMatch)
-- [isSearchContentExtension](#isSearchContentExtension)
 - [pathArrayIsOperation](#pathArrayIsOperation)
 
 ## Variables
 
-- [arg1](#arg1)
-- [arg2](#arg2)
-- [benchmark](#benchmark)
 - [determineFileType](#determinefiletype)
 - [exploreGitRepoFolders](#exploregitrepofolders)
 - [exploreMultiple](#exploremultiple)
@@ -50,11 +41,6 @@ Currently has a thin dependency on `get-path`, but this can probably be removed 
 - [findAllPackages](#findallpackages)
 - [findAllTodoFolderPaths](#findalltodofolderpaths)
 - [findFilesRecursively](#findfilesrecursively)
-- [getArgument](#getargument)
-- [getContents](#getcontents)
-- [getOutline](#getoutline)
-- [isMatch](#ismatch)
-- [isSearchContentExtension](#issearchcontentextension)
 - [pathArrayIsOperation](#patharrayisoperation)
 - [test](#test)
 
@@ -62,110 +48,123 @@ Currently has a thin dependency on `get-path`, but this can probably be removed 
 
 # Functions
 
-## benchmark
-
-### Parameters (1)
-
-#### Parameter 1: amount (optional): number
-
-## determineFileType
+## determineFileType()
 
 returns the file type or null if it's unknown
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
-## exploreGitRepoFolders
+
+## exploreGitRepoFolders()
 
 find all active git folders (folders having `.git`)
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
-## exploreMultiple
+
+## exploreMultiple()
 
 DEPRECATED: not sure if we still need it, look up usecases, can prob be replaced now
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
-## exploreOperationFolders
+
+## exploreOperationFolders()
 
 find all active operations (folders having `package.json` but also `tsconfig.json`)
 
 returns folder path array
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: config (optional): object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| basePath (optional) | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| config (optional) | { basePath?: {  }, <br /> } |  |
+| **Output** |    |    |
 
 
 
-## explorePreset
+## explorePreset()
 
-## explore
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## explore()
 
 this is the safe and friendly version of findFilesRecursively: it
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
-## findAllDocsFolderPaths
 
-### Parameters (1)
+## findAllDocsFolderPaths()
 
-#### Parameter 1: ignoreOperations (optional): boolean
-
-## findAllDotGitFolders
-
-## findAllFoldersWithName
-
-### Parameters (1)
-
-#### Parameter 1: config: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| basePath  | string |  |
-| folderName  | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
 | ignoreOperations (optional) | boolean |  |
+| **Output** |    |    |
 
 
 
-## findAllPackages
+## findAllDotGitFolders()
 
-### Parameters (1)
-
-#### Parameter 1: config (optional): object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| basePath (optional) | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
 
-## findAllTodoFolderPaths
+## findAllFoldersWithName()
 
-### Parameters (2)
+| Input      |    |    |
+| ---------- | -- | -- |
+| config | { basePath: string, <br />folderName: string, <br />ignoreOperations?: boolean, <br /> } |  |
+| **Output** |    |    |
 
-#### Parameter 1: basePath: string
 
-#### Parameter 2: ignoreOperations (optional): boolean
 
-## findFilesRecursively
+## findAllPackages()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| config (optional) | { basePath?: {  }, <br /> } |  |
+| **Output** |    |    |
+
+
+
+## findAllTodoFolderPaths()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| basePath | string |  |,| ignoreOperations (optional) | boolean |  |
+| **Output** |    |    |
+
+
+
+## findFilesRecursively()
 
 Explores your files with many possibilities.
 
@@ -176,101 +175,68 @@ TODO: since this not only finds files but also explores them, naming should be e
 TODO: TextJson[] is a bit weird name for the resulting type interface...
 
 
-
-
-## getArgument
-
-### Parameters (1)
-
-#### Parameter 1: number: number
-
-## getContents
-
-gets needed contents of file path, based on the extension
-
-returns a markdownparse if it's markdown, a json parse for json, or a file content string for anything else
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
 
-
-## getOutline
-
-## isMatch
-
-## isSearchContentExtension
-
-type checker for a string to be an extension that can be searched for
-
-
-### Returns: object
-
-## pathArrayIsOperation
+## pathArrayIsOperation()
 
 Checks if pathArray contains a package.json and a tsconfig.json and thus should be an operation
 
 Handy for `cancelRecursionOn` in `explore`
 
 
-### Returns: object
-
-### Parameters (1)
-
-#### Parameter 1: pathArray: array
-
-- null: string
-
-
-
+| Input      |    |    |
+| ---------- | -- | -- |
+| pathArray | string[] |  |
+| **Output** | {  }   |    |
 
 
 # Variables
 
-## arg1 (unexported const)
-
-## arg2 (unexported const)
-
-## benchmark (unexported const)
-
-## determineFileType (exported const)
+## 📄 determineFileType (exported const)
 
 returns the file type or null if it's unknown
 
 
-## exploreGitRepoFolders (exported const)
+## 📄 exploreGitRepoFolders (exported const)
 
 find all active git folders (folders having `.git`)
 
 
-## exploreMultiple (exported const)
+## 📄 exploreMultiple (exported const)
 
 DEPRECATED: not sure if we still need it, look up usecases, can prob be replaced now
 
 
-## exploreOperationFolders (exported const)
+## 📄 exploreOperationFolders (exported const)
 
 find all active operations (folders having `package.json` but also `tsconfig.json`)
 
 returns folder path array
 
 
-## explorePreset (exported const)
+## 📄 explorePreset (exported const)
 
-## explore (exported const)
+## 📄 explore (exported const)
 
 this is the safe and friendly version of findFilesRecursively: it
 
 
-## findAllDocsFolderPaths (exported const)
+## 📄 findAllDocsFolderPaths (exported const)
 
-## findAllDotGitFolders (exported const)
+## 📄 findAllDotGitFolders (exported const)
 
-## findAllFoldersWithName (exported const)
+## 📄 findAllFoldersWithName (exported const)
 
-## findAllPackages (exported const)
+## 📄 findAllPackages (exported const)
 
-## findAllTodoFolderPaths (exported const)
+## 📄 findAllTodoFolderPaths (exported const)
 
-## findFilesRecursively (exported const)
+## 📄 findFilesRecursively (exported const)
 
 Explores your files with many possibilities.
 
@@ -281,30 +247,12 @@ TODO: since this not only finds files but also explores them, naming should be e
 TODO: TextJson[] is a bit weird name for the resulting type interface...
 
 
-## getArgument (unexported const)
-
-## getContents (unexported const)
-
-gets needed contents of file path, based on the extension
-
-returns a markdownparse if it's markdown, a json parse for json, or a file content string for anything else
-
-
-## getOutline (unexported const)
-
-## isMatch (unexported const)
-
-## isSearchContentExtension (unexported const)
-
-type checker for a string to be an extension that can be searched for
-
-
-## pathArrayIsOperation (exported const)
+## 📄 pathArrayIsOperation (exported const)
 
 Checks if pathArray contains a package.json and a tsconfig.json and thus should be an operation
 
 Handy for `cancelRecursionOn` in `explore`
 
 
-## test (exported const)
+## 📄 test (exported const)
 

@@ -21,13 +21,9 @@ schema-util (js operation)
 
 ## Interfaces
 
-- [JSONSchema7](#jsonschema7)
-- [JSONSchema7Definition](#jsonschema7definition)
 - [ReferenceParameterInfo](#referenceparameterinfo)
-- [Schema](#schema)
 - [SchemaItem](#schemaitem)
 - [SchemaProperty](#schemaproperty)
-- [SimplifiedSchema](#simplifiedschema)
 
 ## Variables
 
@@ -46,18 +42,19 @@ schema-util (js operation)
 
 # Functions
 
-## findFirstCommentTypes
+## findFirstCommentTypes()
 
 Tries to find tie first appearing special comment line and parses it and returns it as part of the `CommentTypeObject`
 
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| strippedFullComment (optional) | string |  |
+| **Output** | {  }   |    |
 
-### Parameters (1)
 
-#### Parameter 1: strippedFullComment (optional): string
 
-## getPossibleReferenceParameterNames
+## getPossibleReferenceParameterNames()
 
 returns the reference parameterNames...
 
@@ -69,137 +66,52 @@ todo -> todoSlug + todoId
 ```
 
 
-### Returns: array
-
-- null: string
-
-
-
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** | string[]   |    |
 
 
 
-### Parameters (1)
-
-#### Parameter 1: parameterName: string
-
-## getProperties
+## getProperties()
 
 Gets all the properties of a schema
 
 
-### Returns: array
+| Input      |    |    |
+| ---------- | -- | -- |
+| schema (optional) | `Schema` | schema type interface we use in TsInterface
 
-- null: object
-
-
-
-
-
-
-### Parameters (1)
-
-#### Parameter 1: schema (optional): object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| $id (optional) | string |  |
-| $ref (optional) | string |  |
-| $comment (optional) | string |  |
-| $defs (optional) | object |  |
-| type (optional) | object |  |
-| enum (optional) | array |  |
-| multipleOf (optional) | number |  |
-| maximum (optional) | number |  |
-| exclusiveMaximum (optional) | number |  |
-| minimum (optional) | number |  |
-| exclusiveMinimum (optional) | number |  |
-| maxLength (optional) | number |  |
-| minLength (optional) | number |  |
-| pattern (optional) | string |  |
-| items (optional) | object |  |
-| additionalItems (optional) | object |  |
-| maxItems (optional) | number |  |
-| minItems (optional) | number |  |
-| uniqueItems (optional) | boolean |  |
-| contains (optional) | object |  |
-| maxProperties (optional) | number |  |
-| minProperties (optional) | number |  |
-| required (optional) | array |  |
-| properties (optional) | object |  |
-| patternProperties (optional) | object |  |
-| additionalProperties (optional) | object |  |
-| dependencies (optional) | object |  |
-| propertyNames (optional) | object |  |
-| if (optional) | object |  |
-| then (optional) | object |  |
-| else (optional) | object |  |
-| allOf (optional) | array |  |
-| anyOf (optional) | array |  |
-| oneOf (optional) | array |  |
-| not (optional) | object |  |
-| format (optional) | string |  |
-| contentMediaType (optional) | string |  |
-| contentEncoding (optional) | string |  |
-| definitions (optional) | object |  |
-| title (optional) | string |  |
-| description (optional) | string |  |
-| readOnly (optional) | boolean |  |
-| writeOnly (optional) | boolean |  |
+NB: don't export because this would make this type exist twice. |
+| **Output** | { name: string, <br />schema: {  }, <br />required: boolean, <br /> }[]   |    |
 
 
 
-## getRefLink
+## getRefLink()
 
 gets the $ref from a schema and parses the interface name from it
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| ref (optional) | string |  |
+| **Output** |    |    |
 
 
-### Parameters (1)
 
-#### Parameter 1: ref (optional): string
-
-## getReferencableModels
+## getReferencableModels()
 
 based on the object properties in SimplifiedSchema, returns the model names that can be referenced
 
 
-### Returns: array
-
-- null: object
-
-
-
+| Input      |    |    |
+| ---------- | -- | -- |
+| simplifiedSchema (optional) | `SimplifiedSchema` |  |
+| **Output** | { parameterName: string, <br />dataParameterName?: string, <br />descriptor?: string, <br />keyInModel?: string, <br />interfaceName?: string, <br />isReferenceMultipleParameter: boolean, <br />isReferenceSingleParameter: boolean, <br />isReferenceParameter: boolean, <br /> }[]   |    |
 
 
 
-### Parameters (1)
-
-#### Parameter 1: simplifiedSchema (optional): object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| todo (optional) | string |  |
-| discussion (optional) | string |  |
-| idea (optional) | string |  |
-| later (optional) | string |  |
-| nb (optional) | string |  |
-| title (optional) | string |  |
-| section (optional) | string |  |
-| description (optional) | string |  |
-| circularRefName (optional) | string |  |
-| enum (optional) | array |  |
-| properties (optional) | array |  |
-| items (optional) | array |  |
-| fullComment (optional) | string |  |
-
-
-
-## getReferenceParameterInfo
+## getReferenceParameterInfo()
 
 Takes a parameterName and returns information about it according to the convention `{descriptorName}_{modelName}{referenceKey}` where:
 
@@ -208,133 +120,56 @@ Takes a parameterName and returns information about it according to the conventi
 - modelName should refer to a database model
 
 
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| parameterName  | string |  |
-| dataParameterName (optional) | string |  |
-| descriptor (optional) | string |  |
-| keyInModel (optional) | string |  |
-| interfaceName (optional) | string |  |
-| isReferenceMultipleParameter  | boolean |  |
-| isReferenceSingleParameter  | boolean |  |
-| isReferenceParameter  | boolean |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** | { parameterName: string, <br />dataParameterName?: string, <br />descriptor?: string, <br />keyInModel?: string, <br />interfaceName?: string, <br />isReferenceMultipleParameter: boolean, <br />isReferenceSingleParameter: boolean, <br />isReferenceParameter: boolean, <br /> }   |    |
 
 
 
-### Parameters (1)
-
-#### Parameter 1: parameterName: string
-
-## getSchemaItems
+## getSchemaItems()
 
 ==========
 
+Since `JSONSchema7`'s property `items` is fairly hard to use, this function gets that property in an easier to use way.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| schema (optional) | `Schema` | schema type interface we use in TsInterface
+
+NB: don't export because this would make this type exist twice. |
+| **Output** |    |    |
 
 
 
-### Parameters (1)
-
-#### Parameter 1: schema (optional): object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| $id (optional) | string |  |
-| $ref (optional) | string |  |
-| $comment (optional) | string |  |
-| $defs (optional) | object |  |
-| type (optional) | object |  |
-| enum (optional) | array |  |
-| multipleOf (optional) | number |  |
-| maximum (optional) | number |  |
-| exclusiveMaximum (optional) | number |  |
-| minimum (optional) | number |  |
-| exclusiveMinimum (optional) | number |  |
-| maxLength (optional) | number |  |
-| minLength (optional) | number |  |
-| pattern (optional) | string |  |
-| items (optional) | object |  |
-| additionalItems (optional) | object |  |
-| maxItems (optional) | number |  |
-| minItems (optional) | number |  |
-| uniqueItems (optional) | boolean |  |
-| contains (optional) | object |  |
-| maxProperties (optional) | number |  |
-| minProperties (optional) | number |  |
-| required (optional) | array |  |
-| properties (optional) | object |  |
-| patternProperties (optional) | object |  |
-| additionalProperties (optional) | object |  |
-| dependencies (optional) | object |  |
-| propertyNames (optional) | object |  |
-| if (optional) | object |  |
-| then (optional) | object |  |
-| else (optional) | object |  |
-| allOf (optional) | array |  |
-| anyOf (optional) | array |  |
-| oneOf (optional) | array |  |
-| not (optional) | object |  |
-| format (optional) | string |  |
-| contentMediaType (optional) | string |  |
-| contentEncoding (optional) | string |  |
-| definitions (optional) | object |  |
-| title (optional) | string |  |
-| description (optional) | string |  |
-| readOnly (optional) | boolean |  |
-| writeOnly (optional) | boolean |  |
-
-
-
-## getSchema
+## getSchema()
 
 parses a JSONSchema7Definition to JSONSchema7|undefined so we can use it
 
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| maybeSchema (optional) | `JSONSchema7Definition` |  |
+| **Output** | {  }   |    |
 
-### Parameters (1)
 
-#### Parameter 1: maybeSchema (optional): object
 
-## simplifiedSchemaToTypeDefinitionString
+## simplifiedSchemaToTypeDefinitionString()
 
 Converts a simplifiedSchema definition back into a type interface string
 
 With this, types can be generated in different ways
 
 
-
-
-### Parameters (1)
-
-#### Parameter 1: simplifiedSchema (optional): object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| todo (optional) | string |  |
-| discussion (optional) | string |  |
-| idea (optional) | string |  |
-| later (optional) | string |  |
-| nb (optional) | string |  |
-| title (optional) | string |  |
-| section (optional) | string |  |
-| description (optional) | string |  |
-| circularRefName (optional) | string |  |
-| enum (optional) | array |  |
-| properties (optional) | array |  |
-| items (optional) | array |  |
-| fullComment (optional) | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| simplifiedSchema (optional) | `SimplifiedSchema` |  |
+| **Output** |    |    |
 
 
 
-## simplifySchema
+## simplifySchema()
 
 Return a SimplifiedSchema by giving the JSONSchema7 schema, its name and a list of possible references in the JSONSchema.
 
@@ -372,144 +207,15 @@ Output:
 To test this one, test `npx rebuildOperation filename-conventions`
 
 
-### Returns: object
-
-### Parameters (4)
-
-#### Parameter 1: name: string
-
-#### Parameter 2: schema: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| $id (optional) | string |  |
-| $ref (optional) | string |  |
-| $comment (optional) | string |  |
-| $defs (optional) | object |  |
-| type (optional) | object |  |
-| enum (optional) | array |  |
-| multipleOf (optional) | number |  |
-| maximum (optional) | number |  |
-| exclusiveMaximum (optional) | number |  |
-| minimum (optional) | number |  |
-| exclusiveMinimum (optional) | number |  |
-| maxLength (optional) | number |  |
-| minLength (optional) | number |  |
-| pattern (optional) | string |  |
-| items (optional) | object |  |
-| maxItems (optional) | number |  |
-| minItems (optional) | number |  |
-| uniqueItems (optional) | boolean |  |
-| contains (optional) | object |  |
-| maxProperties (optional) | number |  |
-| minProperties (optional) | number |  |
-| required (optional) | array |  |
-| properties (optional) | object |  |
-| patternProperties (optional) | object |  |
-| dependencies (optional) | object |  |
-| allOf (optional) | array |  |
-| anyOf (optional) | array |  |
-| oneOf (optional) | array |  |
-| format (optional) | string |  |
-| contentMediaType (optional) | string |  |
-| contentEncoding (optional) | string |  |
-| definitions (optional) | object |  |
-| title (optional) | string |  |
-| description (optional) | string |  |
-| readOnly (optional) | boolean |  |
-| writeOnly (optional) | boolean |  |
-
-
-
-#### Parameter 3: possibleRefs: array
-
-- null: object
-
-
-
-
-
-
-#### Parameter 4: rootStack: array
-
-- null: string
-
-
-
+| Input      |    |    |
+| ---------- | -- | -- |
+| name | string | The name of the type interface, (this could be used as $ref). |,| schema | `JSONSchema7` | The schema that needs to be simplified |,| possibleRefs | { name: string, <br />schema: `JSONSchema7`, <br /> }[] | The array of other schemas found when crawling file this schema was found in. this also includes all refs to other type interfaces in all schemas in that file |,| rootStack | string[] | This function is recursive. If we find any reference to another schema, we will add the name of the current schema to the rootStack and explore that schema. |
+| **Output** | {  }   |    |
 
 
 # Interfaces
 
-## JSONSchema7
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| $id (optional) | string |  |
-| $ref (optional) | string |  |
-| $schema (optional) | string |  |
-| $comment (optional) | string |  |
-| $defs (optional) | object |  |
-| type (optional) | object |  |
-| enum (optional) | array |  |
-| const (optional) | object |  |
-| multipleOf (optional) | number |  |
-| maximum (optional) | number |  |
-| exclusiveMaximum (optional) | number |  |
-| minimum (optional) | number |  |
-| exclusiveMinimum (optional) | number |  |
-| maxLength (optional) | number |  |
-| minLength (optional) | number |  |
-| pattern (optional) | string |  |
-| items (optional) | object |  |
-| additionalItems (optional) | object |  |
-| maxItems (optional) | number |  |
-| minItems (optional) | number |  |
-| uniqueItems (optional) | boolean |  |
-| contains (optional) | object |  |
-| maxProperties (optional) | number |  |
-| minProperties (optional) | number |  |
-| required (optional) | array |  |
-| properties (optional) | object |  |
-| patternProperties (optional) | object |  |
-| additionalProperties (optional) | object |  |
-| dependencies (optional) | object |  |
-| propertyNames (optional) | object |  |
-| if (optional) | object |  |
-| then (optional) | object |  |
-| else (optional) | object |  |
-| allOf (optional) | array |  |
-| anyOf (optional) | array |  |
-| oneOf (optional) | array |  |
-| not (optional) | object |  |
-| format (optional) | string |  |
-| contentMediaType (optional) | string |  |
-| contentEncoding (optional) | string |  |
-| definitions (optional) | object |  |
-| title (optional) | string |  |
-| description (optional) | string |  |
-| default (optional) | object |  |
-| readOnly (optional) | boolean |  |
-| writeOnly (optional) | boolean |  |
-| examples (optional) | object |  |
-
-
-
-## JSONSchema7Definition
-
-JSON Schema v7
-
-
-
-
-
-
-
-
-## ReferenceParameterInfo
+## 🔷 ReferenceParameterInfo
 
 Properties: 
 
@@ -526,71 +232,7 @@ Properties:
 
 
 
-## Schema
-
-schema type interface we use in TsInterface
-
-NB: don't export because this would make this type exist twice.
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| $id (optional) | string |  |
-| $ref (optional) | string |  |
-| $schema (optional) | string |  |
-| $comment (optional) | string |  |
-| $defs (optional) | object |  |
-| type (optional) | object |  |
-| enum (optional) | array |  |
-| const (optional) | object |  |
-| multipleOf (optional) | number |  |
-| maximum (optional) | number |  |
-| exclusiveMaximum (optional) | number |  |
-| minimum (optional) | number |  |
-| exclusiveMinimum (optional) | number |  |
-| maxLength (optional) | number |  |
-| minLength (optional) | number |  |
-| pattern (optional) | string |  |
-| items (optional) | object |  |
-| additionalItems (optional) | object |  |
-| maxItems (optional) | number |  |
-| minItems (optional) | number |  |
-| uniqueItems (optional) | boolean |  |
-| contains (optional) | object |  |
-| maxProperties (optional) | number |  |
-| minProperties (optional) | number |  |
-| required (optional) | array |  |
-| properties (optional) | object |  |
-| patternProperties (optional) | object |  |
-| additionalProperties (optional) | object |  |
-| dependencies (optional) | object |  |
-| propertyNames (optional) | object |  |
-| if (optional) | object |  |
-| then (optional) | object |  |
-| else (optional) | object |  |
-| allOf (optional) | array |  |
-| anyOf (optional) | array |  |
-| oneOf (optional) | array |  |
-| not (optional) | object |  |
-| format (optional) | string |  |
-| contentMediaType (optional) | string |  |
-| contentEncoding (optional) | string |  |
-| definitions (optional) | object |  |
-| title (optional) | string |  |
-| description (optional) | string |  |
-| default (optional) | object |  |
-| readOnly (optional) | boolean |  |
-| writeOnly (optional) | boolean |  |
-| examples (optional) | object |  |
-
-
-
-## SchemaItem
+## 🔷 SchemaItem
 
 Properties: 
 
@@ -601,7 +243,7 @@ Properties:
 
 
 
-## SchemaProperty
+## 🔷 SchemaProperty
 
 Properties: 
 
@@ -612,50 +254,14 @@ Properties:
 | required  | boolean |  |
 
 
-
-## SimplifiedSchema
-
-JSONSchema7 derivative that has the following capabilities and and characteristics...
-
-- does not include objects in objects that are also referenced to using xxxSlug or xxxId
-- recursively finds the references and expands them, unless the references are circular
-- easier to read
-- has all the information we need
-- is able to generate an object with values in the exact format the function needs it
-- is able to easily generate a form
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| todo (optional) | string |  |
-| discussion (optional) | string |  |
-| idea (optional) | string |  |
-| later (optional) | string |  |
-| nb (optional) | string |  |
-| title (optional) | string |  |
-| section (optional) | string |  |
-| description (optional) | string |  |
-| type  | string |  |
-| circularRefName (optional) | string |  |
-| enum (optional) | array |  |
-| properties (optional) | array |  |
-| items (optional) | array |  |
-| fullComment (optional) | string |  |
-
-
 # Variables
 
-## findFirstCommentTypes (exported const)
+## 📄 findFirstCommentTypes (exported const)
 
 Tries to find tie first appearing special comment line and parses it and returns it as part of the `CommentTypeObject`
 
 
-## getPossibleReferenceParameterNames (exported const)
+## 📄 getPossibleReferenceParameterNames (exported const)
 
 returns the reference parameterNames...
 
@@ -667,22 +273,22 @@ todo -> todoSlug + todoId
 ```
 
 
-## getProperties (exported const)
+## 📄 getProperties (exported const)
 
 Gets all the properties of a schema
 
 
-## getRefLink (exported const)
+## 📄 getRefLink (exported const)
 
 gets the $ref from a schema and parses the interface name from it
 
 
-## getReferencableModels (exported const)
+## 📄 getReferencableModels (exported const)
 
 based on the object properties in SimplifiedSchema, returns the model names that can be referenced
 
 
-## getReferenceParameterInfo (exported const)
+## 📄 getReferenceParameterInfo (exported const)
 
 Takes a parameterName and returns information about it according to the convention `{descriptorName}_{modelName}{referenceKey}` where:
 
@@ -691,21 +297,24 @@ Takes a parameterName and returns information about it according to the conventi
 - modelName should refer to a database model
 
 
-## getSchemaItems (exported const)
+## 📄 getSchemaItems (exported const)
 
-## getSchema (exported const)
+Since `JSONSchema7`'s property `items` is fairly hard to use, this function gets that property in an easier to use way.
+
+
+## 📄 getSchema (exported const)
 
 parses a JSONSchema7Definition to JSONSchema7|undefined so we can use it
 
 
-## simplifiedSchemaToTypeDefinitionString (exported const)
+## 📄 simplifiedSchemaToTypeDefinitionString (exported const)
 
 Converts a simplifiedSchema definition back into a type interface string
 
 With this, types can be generated in different ways
 
 
-## simplifySchema (exported const)
+## 📄 simplifySchema (exported const)
 
 Return a SimplifiedSchema by giving the JSONSchema7 schema, its name and a list of possible references in the JSONSchema.
 

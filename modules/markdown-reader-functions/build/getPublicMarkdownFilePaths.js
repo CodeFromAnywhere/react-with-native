@@ -40,6 +40,9 @@ exports.getPublicMarkdownFilePaths = exports.shouldExposeMarkdownFile = void 0;
 var fs_util_1 = require("fs-util");
 var k_explore_1 = require("k-explore");
 var markdown_parse_js_1 = require("markdown-parse-js");
+/**
+ * markdown file should only be exposed if it doesn't say `privacy: private` or `isDraft: true` in your frontmatter.
+ */
 var shouldExposeMarkdownFile = function (parameters) {
     return !Boolean(parameters.isDraft) && parameters.privacy !== "private";
 };

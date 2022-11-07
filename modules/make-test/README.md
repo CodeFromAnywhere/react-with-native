@@ -20,32 +20,41 @@ make-test (js operation)
 
 # Functions
 
-## isResultOfInterface
+## isResultOfInterface()
 
 TODO: need validate-json-schema. also this can be its own little package, as it can be used in many other places
 
 not sure if this should be part of make-test at all, because we want operations to be able to operate independently without the os, right? so then it won't work because you don't always have indexes...
 
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
 
-## makeTest
+
+
+## makeTest()
 
 create a test that is testable with `runAllTests`...
 
 
-### Returns: object
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
 
 # Variables
 
-## isResultOfInterface (exported const)
+## 📄 isResultOfInterface (exported const)
 
 TODO: need validate-json-schema. also this can be its own little package, as it can be used in many other places
 
 not sure if this should be part of make-test at all, because we want operations to be able to operate independently without the os, right? so then it won't work because you don't always have indexes...
 
 
-## makeTest (exported const)
+## 📄 makeTest (exported const)
 
 create a test that is testable with `runAllTests`...
 

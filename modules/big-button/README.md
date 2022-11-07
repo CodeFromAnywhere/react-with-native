@@ -18,9 +18,15 @@ big-button (js operation)
 
 # Functions
 
-## BigButton
+## <BigButton />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
 
 # Variables
 
-## BigButton (exported const)
+## 📄 BigButton (exported const)
 

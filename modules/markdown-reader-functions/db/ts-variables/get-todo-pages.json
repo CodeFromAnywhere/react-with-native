@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635160679,
-  "updatedAt": 1667635160679,
+  "createdAt": 1667818217958,
+  "updatedAt": 1667818217958,
   "deletedAt": 0,
-  "createdFirstAt": 1667635160679,
+  "createdFirstAt": 1667818217958,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (\n  projectRoot: string\n): Promise<MarkdownReaderPage[]> => {\n  const operationsPath = getRootPath(\"operations\");\n  if (!operationsPath) return [];\n\n  const todoFolderPaths = await findAllTodoFolderPaths(operationsPath, false);\n  const markdownReaderPages: MarkdownReaderPage[] =\n    await getMarkdownReaderPages({\n      projectRoot,\n      basePaths: todoFolderPaths,\n      mapQueryPath: (queryPath) => {\n        return queryPath\n          .replaceAll(\"todo/\", \"\")\n          .replace(\"operations/\", \"todo/\");\n      },\n    });\n\n  return markdownReaderPages;\n}",
+  "value": "async (\n  projectRoot: string\n): Promise<MarkdownReaderPage[]> => {\n  const operationsPath = getRootPath(\"operations\");\n  if (!operationsPath) return [];\n\n  const todoFolderPaths = await findAllTodoFolderPaths(operationsPath, false);\n  const markdownReaderPages: MarkdownReaderPage[] =\n    await getMarkdownReaderPages({\n      projectRoot,\n      basePaths: todoFolderPaths,\n      mapQueryPath: (queryPath) => {\n        const almostPath = queryPath\n          .replaceAll(\"todo/\", \"\")\n          .replace(\"operations/\", \"todo/\");\n\n        return almostPath.startsWith(\"todo/\")\n          ? almostPath\n          : \"todo/\" + almostPath;\n      },\n    });\n\n  return markdownReaderPages;\n}",
   "description": "gets all todo pages as markdownreader pages",
-  "id": "gexuptttljuiddcynjcjhxlv"
+  "id": "wifojqgjhrthhsmpwgjrbqlf"
 }

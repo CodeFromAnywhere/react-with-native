@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635161899,
-  "updatedAt": 1667635161899,
+  "createdAt": 1667818219494,
+  "updatedAt": 1667818219494,
   "deletedAt": 0,
-  "createdFirstAt": 1667635161899,
+  "createdFirstAt": 1667818219494,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  context: GetStaticPathsContext\n) => {\n  const paths: string[] | undefined = await getMarkdownReaderQueryPaths();\n\n  // console.log({ paths });\n  if (!paths) {\n    return { paths: [], fallback: \"blocking\" };\n  }\n\n  const staticPaths = paths\n    .filter((x) => x !== \"\")\n    .map((p) => ({ params: { paths: p.split(\"/\") } }));\n\n  return {\n    paths: staticPaths,\n    fallback: \"blocking\",\n  };\n}",
   "description": "Function that tells Next.js what the pages are that need to be statically generated",
-  "id": "fnzmraqgjloitjvikquuhmvt"
+  "id": "frbiyyykihysfyaznfeqcotu"
 }

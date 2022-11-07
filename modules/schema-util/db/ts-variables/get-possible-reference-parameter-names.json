@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666264373842,
-  "updatedAt": 1666264373842,
+  "createdAt": 1667852857702,
+  "updatedAt": 1667852857702,
   "deletedAt": 0,
-  "createdFirstAt": 1666264373842,
+  "createdFirstAt": 1667852857702,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  parameterName: string\n): string[] => {\n  const possibleReferenceParameterNames = isPlural(parameterName)\n    ? referencePluralParameterNames\n        .map(capitaliseFirstLetter)\n        .map((ref) => `${singularize(parameterName)}${ref}`)\n    : referenceParameterNames\n        .map(capitaliseFirstLetter)\n        .map((ref) => `${parameterName}${ref}`);\n\n  return possibleReferenceParameterNames;\n}",
   "description": "returns the reference parameterNames...\n\n\ne.g.:\n```\ntodos -> todoSlugs + todoIds\ntodo -> todoSlug + todoId\n```",
-  "id": "guasgymdmnnyqczgfqvfptcv"
+  "id": "mubtpsqetazvxapyqbzzjxfl"
 }

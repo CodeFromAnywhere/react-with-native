@@ -9,8 +9,6 @@ react-with-native-table (ui-es5 operation)
 ## Functions
 
 - [getColumns](#getColumns)
-- [renderColumn](#renderColumn)
-- [Skeleton](#Skeleton)
 - [TableHeadItem](#TableHeadItem)
 - [TableRow](#TableRow)
 - [Table](#Table)
@@ -19,61 +17,71 @@ react-with-native-table (ui-es5 operation)
 ## Variables
 
 - [getColumns](#getcolumns)
-- [renderColumn](#rendercolumn)
-- [Skeleton](#skeleton)
 - [TableHeadItem](#tableheaditem)
 - [TableRow](#tablerow)
 - [Table](#table)
-- [tdClassName](#tdclassname)
 
 
 
 # Functions
 
-## getColumns
+## getColumns()
 
 gets all columns you can present based on a modelname, the interfaces of that model, and the data
 
 
-### Returns: array
-
-- null: object
-
-
-
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { name: string, <br />presentationType?: text / referenceSingle / referenceMultiple, <br />customPresentation?: {  }, <br />objectParameterKey: {  }, <br /> }[]   |    |
 
 
 
-## renderColumn
+## <TableHeadItem />
 
-## Skeleton
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
-## TableHeadItem
 
-## TableRow
 
-## Table
+## <TableRow />
 
-## useIsInViewport
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
-### Returns: object
+
+
+## <Table />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## useIsInViewport()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
 
 # Variables
 
-## getColumns (exported const)
+## 📄 getColumns (exported const)
 
 gets all columns you can present based on a modelname, the interfaces of that model, and the data
 
 
-## renderColumn (unexported const)
+## 📄 TableHeadItem (exported const)
 
-## Skeleton (unexported const)
+## 📄 TableRow (exported const)
 
-## TableHeadItem (exported const)
-
-## TableRow (exported const)
-
-## Table (exported const)
-
-## tdClassName (unexported const)
+## 📄 Table (exported const)
 

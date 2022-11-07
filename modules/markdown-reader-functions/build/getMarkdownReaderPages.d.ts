@@ -1,5 +1,9 @@
 import { MarkdownReaderPage } from "markdown-reader-types";
 /**
+ * To get the queryPath, we need to strip the README.md so we get the folder as URL instead of the attached README.md
+ */
+export declare const stripReadmeFromFolder: (filePath: string) => string;
+/**
  * Gets all markdownreader pages for multiple basePaths. Can add a prefix, can also remove the last folder of basePath from the suffix.
  */
 export declare const getMarkdownReaderPages: (config: {

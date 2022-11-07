@@ -66,35 +66,15 @@ return queryStore[queryKey];
 ```
 
 
-
-## Parameters (2)
-
-### Parameter 1: queryKey: string
-
-
-
-
-
-
-
-### Parameter 2: config: object
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| type  | string |  |
-| isArray (optional) | boolean |  |
-| allowUndefined (optional) | boolean |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| queryKey | string |  |,| config | `CustomUrlStoreConfig` |  |
+| **Output** |    |    |
 
 
 # Interfaces
 
-## CustomUrlStoreConfig
+## 🔷 CustomUrlStoreConfig
 
 Properties: 
 

@@ -18,9 +18,15 @@ labeled-button (js operation)
 
 # Functions
 
-## LabeledButton
+## <LabeledButton />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
 
 # Variables
 
-## LabeledButton (exported const)
+## 📄 LabeledButton (exported const)
 

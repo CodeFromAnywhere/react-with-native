@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666264370054,
-  "updatedAt": 1666264370054,
+  "createdAt": 1667852852703,
+  "updatedAt": 1667852852703,
   "deletedAt": 0,
-  "createdFirstAt": 1666264370054,
+  "createdFirstAt": 1667852852703,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  strippedFullComment?: string\n): CommentTypeObject => {\n  if (strippedFullComment === undefined) return {};\n  const lines = strippedFullComment.split(\"\\n\");\n\n  const specialCommentTypesObject = commentTypes\n    .map((commentType) => {\n      const matchingPart = `${commentType.toUpperCase()}:`;\n      const matchingLine = lines.find((line) => {\n        const trimmedLine = line.trimStart();\n        const isMatch = trimmedLine.startsWith(matchingPart);\n        return isMatch;\n      });\n\n      if (!matchingLine) return;\n\n      const strippedMatchingLine = matchingLine.trimStart();\n      const specialCommentWithoutPrefix = strippedMatchingLine\n        .slice(matchingPart.length)\n        .trim();\n\n      return {\n        [commentType]: specialCommentWithoutPrefix,\n      };\n    })\n    .filter(notEmpty);\n\n  const fullObject = mergeObjectsArray(\n    specialCommentTypesObject\n  ) as CommentTypeObject;\n\n  return fullObject;\n}",
   "description": "Tries to find tie first appearing special comment line and parses it and returns it as part of the `CommentTypeObject`",
-  "id": "onwerglylrnjojpnmoxixdeq"
+  "id": "mbogwelkwwfptkhfnolupkhk"
 }

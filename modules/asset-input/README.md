@@ -24,8 +24,6 @@ Add the css to your web project: `import "asset-input/css.css";`
 ## Functions
 
 - [AssetInput](#AssetInput)
-- [Audio](#Audio)
-- [base64UrltoBlob](#base64UrltoBlob)
 - [FileInput](#FileInput)
 - [getTypeFromFileBlob](#getTypeFromFileBlob)
 - [makeBackendAsset](#makeBackendAsset)
@@ -34,34 +32,23 @@ Add the css to your web project: `import "asset-input/css.css";`
 - [ReactMediaRecorder](#ReactMediaRecorder)
 - [SelectMedia](#SelectMedia)
 - [useReactMediaRecorder](#useReactMediaRecorder)
-- [VideoPreview](#VideoPreview)
-- [Video](#Video)
 - [WebcamCapture](#WebcamCapture)
 
 ## Interfaces
 
-- [Asset](#asset)
 - [MediaSourceEnum](#mediasourceenum)
 
 ## Variables
 
-- [ASPECT_RATIO](#aspect-ratio)
 - [AssetInput](#assetinput)
-- [Audio](#audio)
-- [base64UrltoBlob](#base64urltoblob)
 - [FileInput](#fileinput)
 - [getTypeFromFileBlob](#gettypefromfileblob)
-- [HEIGHT](#height)
 - [makeBackendAsset](#makebackendasset)
 - [MediaRecorderComponent](#mediarecordercomponent)
 - [MediaRecorder](#mediarecorder)
 - [ReactMediaRecorder](#reactmediarecorder)
 - [SelectMedia](#selectmedia)
-- [videoConstraints](#videoconstraints)
-- [VideoPreview](#videopreview)
-- [Video](#video)
 - [WebcamCapture](#webcamcapture)
-- [WIDTH](#width)
 
 
 
@@ -99,7 +86,7 @@ it is imported here: `/Users/king/King/operations/node_modules/extendable-media-
 
 # Functions
 
-## AssetInput
+## <AssetInput />
 
 Usage possible in: form, writer-ui, anywhere else (custom)
 
@@ -111,153 +98,96 @@ Supports
 - video camera (taking a video)
 
 
-
-
-## Audio
-
-## base64UrltoBlob
-
-Taken from https://github.com/mozmorris/react-webcam/issues/65#issuecomment-385126201
-
-There are probably much better solutions
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
 
+## <FileInput />
 
-## FileInput
-
-## getTypeFromFileBlob
-
-### Returns: string(Enum: audio | video | image | other)
-
-### Parameters (1)
-
-#### Parameter 1: file: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| size  | number |  |
-| type  | string |  |
-| lastModified  | number |  |
-| name  | string |  |
-| webkitRelativePath  | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## makeBackendAsset
+## getTypeFromFileBlob()
 
-### Returns: object
-
-### Parameters (1)
-
-#### Parameter 1: asset: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| alt (optional) | string |  |
-| relativePath (optional) | string |  |
-| name (optional) | string |  |
-| temporaryDestination (optional) | string |  |
-| blobPath (optional) | string |  |
-| originalFilename (optional) | string |  |
-| sizeBytes (optional) | number |  |
-| blob (optional) | object |  |
-| uploadProgress (optional) | number |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| file | { size: number, <br />type: string, <br />lastModified: number, <br />name: string, <br />webkitRelativePath: string, <br /> } |  |
+| **Output** | audio / video / image / other   |    |
 
 
 
-## MediaRecorderComponent
+## makeBackendAsset()
 
-## MediaRecorder
-
-## ReactMediaRecorder
-
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| type  | object |  |
-| props  | object |  |
-| key (optional) | string |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| asset | `Asset` |  |
+| **Output** | {  }   |    |
 
 
 
-## SelectMedia
+## <MediaRecorderComponent />
 
-### Parameters (1)
-
-#### Parameter 1: props: object
-
-## useReactMediaRecorder
-
-### Returns: object
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| error  | string |  |
-| muteAudio  | object |  |
-| unMuteAudio  | object |  |
-| startRecording  | object |  |
-| pauseRecording  | object |  |
-| resumeRecording  | object |  |
-| stopRecording  | object |  |
-| mediaBlobUrl (optional) | string |  |
-| status  | string |  |
-| isAudioMuted  | boolean |  |
-| previewStream  | object |  |
-| previewAudioStream  | object |  |
-| clearBlobUrl  | object |  |
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
 
-## VideoPreview
+## <MediaRecorder />
 
-## Video
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
-## WebcamCapture
+
+
+## <ReactMediaRecorder />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { type: {  }, <br />props: {  }, <br />key?: ul / trin / umbe, <br /> }   |    |
+
+
+
+## <SelectMedia />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { source: `MediaSourceEnum`, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## useReactMediaRecorder()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { error: string, <br />muteAudio: {  }, <br />unMuteAudio: {  }, <br />startRecording: {  }, <br />pauseRecording: {  }, <br />resumeRecording: {  }, <br />stopRecording: {  }, <br />mediaBlobUrl?: string, <br />status: media_aborted / permission_denied / no_specified_media_found / media_in_use / invalid_media_constraints / no_constraints / recorder_error / idle / acquiring_media / delayed_start / recording / stopping / stopped / paused, <br />isAudioMuted: boolean, <br />previewStream: {  }, <br />previewAudioStream: {  }, <br />clearBlobUrl: {  }, <br /> }   |    |
+
+
+
+## <WebcamCapture />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
 
 # Interfaces
 
-## Asset
-
-Asset you can upload
-
-This is not a database model, it can exist in properties of any db model or type interface.
-
-Only `alt` and `relativePath` are stored, the other parameters are optionally required for uploading and user interfaces, and are not always there
-
-NB: don't use this in your model, use `StoredAsset` instead.
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| alt (optional) | string |  |
-| relativePath (optional) | string |  |
-| name (optional) | string |  |
-| temporaryDestination (optional) | string |  |
-| blobPath (optional) | string |  |
-| type (optional) | string |  |
-| originalFilename (optional) | string |  |
-| sizeBytes (optional) | number |  |
-| blob (optional) | object |  |
-| uploadProgress (optional) | number |  |
-
-
-
-## MediaSourceEnum
+## 🔷 MediaSourceEnum
 
 google: remote image urls
 giphy: remote image urls
@@ -272,9 +202,7 @@ youtube: remote video urls (selectable as mp3, mp4, or url)
 
 # Variables
 
-## ASPECT_RATIO (unexported const)
-
-## AssetInput (exported const)
+## 📄 AssetInput (exported const)
 
 Usage possible in: form, writer-ui, anywhere else (custom)
 
@@ -286,38 +214,19 @@ Supports
 - video camera (taking a video)
 
 
-## Audio (unexported const)
+## 📄 FileInput (exported const)
 
-## base64UrltoBlob (unexported const)
+## 📄 getTypeFromFileBlob (exported const)
 
-Taken from https://github.com/mozmorris/react-webcam/issues/65#issuecomment-385126201
+## 📄 makeBackendAsset (exported const)
 
-There are probably much better solutions
+## 📄 MediaRecorderComponent (exported const)
 
+## 📄 MediaRecorder (exported const)
 
-## FileInput (exported const)
+## 📄 ReactMediaRecorder (exported const)
 
-## getTypeFromFileBlob (exported const)
+## 📄 SelectMedia (exported const)
 
-## HEIGHT (unexported const)
-
-## makeBackendAsset (exported const)
-
-## MediaRecorderComponent (exported const)
-
-## MediaRecorder (exported const)
-
-## ReactMediaRecorder (exported const)
-
-## SelectMedia (exported const)
-
-## videoConstraints (unexported const)
-
-## VideoPreview (unexported const)
-
-## Video (unexported const)
-
-## WebcamCapture (exported const)
-
-## WIDTH (unexported const)
+## 📄 WebcamCapture (exported const)
 

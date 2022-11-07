@@ -93,7 +93,7 @@ Does not include AugmentedWord. Just the main pages, not with queries and hashes
 Used to generate the menu
  */
 var getAllMarkdownReaderPages = function (config) { return __awaiter(void 0, void 0, void 0, function () {
-    var projectRoot, publicBundleConfig, bundleMarkdownReaderConfig, docsPaths, relativeDocsPages, operationPages, markdownModelTypePages, todoPages, allPages;
+    var projectRoot, publicBundleConfig, bundleMarkdownReaderConfig, docsPaths, relativeDocsPages, operationPages, markdownModelTypePages, todoPages, mainReadme, allPages;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -110,6 +110,17 @@ var getAllMarkdownReaderPages = function (config) { return __awaiter(void 0, voi
                 return [4 /*yield*/, (0, getMarkdownReaderPages_1.getMarkdownReaderPages)({
                         projectRoot: projectRoot,
                         basePaths: docsPaths,
+                        // remove docs prefix if docs should be shown as in root
+                        mapQueryPath: (bundleMarkdownReaderConfig === null || bundleMarkdownReaderConfig === void 0 ? void 0 : bundleMarkdownReaderConfig.docsInRoot)
+                            ? function (old) {
+                                return old.startsWith("docs/")
+                                    ? old.slice("docs/".length)
+                                    : // NB: "docs/README.md" becomes "docs", which should, in turn, become "" in this case...
+                                        old === "docs"
+                                            ? ""
+                                            : old;
+                            }
+                            : undefined,
                     })];
             case 3:
                 relativeDocsPages = _a.sent();
@@ -122,12 +133,20 @@ var getAllMarkdownReaderPages = function (config) { return __awaiter(void 0, voi
                 return [4 /*yield*/, (0, getTodoPages_1.getTodoPages)(projectRoot)];
             case 6:
                 todoPages = _a.sent();
+                mainReadme = (bundleMarkdownReaderConfig === null || bundleMarkdownReaderConfig === void 0 ? void 0 : bundleMarkdownReaderConfig.docsInRoot)
+                    ? undefined
+                    : {
+                        queryPath: "",
+                        filePath: "README.md",
+                        isMenuItem: true,
+                    };
                 allPages = __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray([
-                    { queryPath: "", filePath: "README.md", isMenuItem: true }
+                    mainReadme
                 ], relativeDocsPages, true), operationPages, true), [
                     // `/dictionary` page with all words/definitions, categorised
                     { queryPath: "dictionary", isMenuItem: true }
-                ], false), markdownModelTypePages, true), todoPages, true).filter((0, js_util_1.onlyUnique2)(function (a, b) { return a.queryPath === b.queryPath; }));
+                ], false), markdownModelTypePages, true), todoPages, true).filter(js_util_1.notEmpty)
+                    .filter((0, js_util_1.onlyUnique2)(function (a, b) { return a.queryPath === b.queryPath; }));
                 return [2 /*return*/, allPages];
         }
     });

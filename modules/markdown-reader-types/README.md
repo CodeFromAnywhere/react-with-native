@@ -13,13 +13,12 @@ markdown-reader-types (node operation)
 - [AugmentedWordTypeEnum](#augmentedwordtypeenum)
 - [MarkdownReaderPage](#markdownreaderpage)
 - [MarkdownReaderPageProps](#markdownreaderpageprops)
-- [WebMarkdownFile](#webmarkdownfile)
 
 
 
 # Interfaces
 
-## AugmentedWord
+## 🔷 AugmentedWord
 
 AugmentedWords should have a small footprint since there can be many of them
 
@@ -44,7 +43,7 @@ Properties:
 
 
 
-## AugmentedWordObject
+## 🔷 AugmentedWordObject
 
 This datastructure is probably needed to make it more efficient.
 
@@ -57,7 +56,7 @@ Should be a lookup table for the querypath for every word
 
 
 
-## AugmentedWordTypeEnum
+## 🔷 AugmentedWordTypeEnum
 
 NB: can later be replaced with a string enum type: person, definition, variable, function, type interface, operation, bundle (but there may be much more)
 
@@ -68,7 +67,7 @@ NB: can later be replaced with a string enum type: person, definition, variable,
 
 
 
-## MarkdownReaderPage
+## 🔷 MarkdownReaderPage
 
 for markdown-reader-ui, the pages can be markdown files, but they can also be connected to models
 
@@ -86,7 +85,7 @@ Properties:
 
 
 
-## MarkdownReaderPageProps
+## 🔷 MarkdownReaderPageProps
 
 Properties: 
 
@@ -101,46 +100,5 @@ Properties:
 | previousQueryPath (optional) | string |  |
 | nextQueryPath (optional) | string |  |
 | description (optional) | string |  |
-
-
-
-## WebMarkdownFile
-
-Every markdown file meant for the web, should have these optional parameters that can be declared as its frontmatter
-
-NB: This is not part of MarkdownModelType, because MarkdownModelType is very barebones general purpose, not only for the web!
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| headerImage  | object |  |
-| headerTitle  | string |  |
-| headerSubTitle  | string |  |
-| headerCta  | object |  |
-| createdAt  | number |  |
-| updatedAt  | number |  |
-| deletedAt  | number |  |
-| createdFirstAt  | number |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| name  | string |  |
-| slug  | string |  |
-| markdown  | string |  |
-| categoryStackCalculated  | array |  |
-| isDraft (optional) | boolean |  |
-| privacy  | string |  |
-| language  | string |  |
-| isLanguageCustom (optional) | boolean |  |
-| websiteCallToActionSlugs (optional) | array |  |
-| shop_itemIds (optional) | array |  |
-| author_personSlugs  | array |  |
-| interestSlugs  | array |  |
 
 

@@ -24,21 +24,25 @@ pluralize (js operation)
 
 # Functions
 
-## isPlural
+## isPlural()
 
-### Parameters (1)
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** |    |    |
 
-#### Parameter 1: parameterName: string
 
-## isSingular
 
-### Returns: object
+## isSingular()
 
-### Parameters (1)
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** | {  }   |    |
 
-#### Parameter 1: parameterName: string
 
-## pluralize
+
+## pluralize()
 
 KISS; fuck grammar
 
@@ -47,30 +51,31 @@ If we are going to apply grammar here, it becomes impossible to create typescrip
 To pluralize any word we simply attach an "s" at the end
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** |    |    |
 
 
-### Parameters (1)
 
-#### Parameter 1: parameterName: string
-
-## singularize
+## singularize()
 
 Removes the 's' if it is found at the end of the parameter name
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** |    |    |
 
-
-### Parameters (1)
-
-#### Parameter 1: parameterName: string
 
 # Variables
 
-## isPlural (exported const)
+## 📄 isPlural (exported const)
 
-## isSingular (exported const)
+## 📄 isSingular (exported const)
 
-## pluralize (exported const)
+## 📄 pluralize (exported const)
 
 KISS; fuck grammar
 
@@ -79,7 +84,7 @@ If we are going to apply grammar here, it becomes impossible to create typescrip
 To pluralize any word we simply attach an "s" at the end
 
 
-## singularize (exported const)
+## 📄 singularize (exported const)
 
 Removes the 's' if it is found at the end of the parameter name
 
