@@ -4,19 +4,7 @@ big-button (js operation)
 
 
 
-# Outline
-
-## Functions
-
-- [BigButton](#BigButton)
-
-## Variables
-
-- [BigButton](#bigbutton)
-
-
-
-# Functions
+# Api reference
 
 ## <BigButton />
 
@@ -26,7 +14,6 @@ big-button (js operation)
 | **Output** | `JSX.Element`   |    |
 
 
-# Variables
 
 ## 📄 BigButton (exported const)
 

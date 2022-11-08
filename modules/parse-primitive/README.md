@@ -4,56 +4,7 @@ parse-primitive (js operation)
 
 
 
-# Outline
-
-## Functions
-
-- [parsePrimitiveArray](#parsePrimitiveArray)
-- [parsePrimitiveBoolean](#parsePrimitiveBoolean)
-- [parsePrimitiveString](#parsePrimitiveString)
-- [parsePrimitive](#parsePrimitive)
-
-## Interfaces
-
-- [PrimitiveResult](#primitiveresult)
-
-## Variables
-
-- [parsePrimitiveArray](#parseprimitivearray)
-- [parsePrimitiveBoolean](#parseprimitiveboolean)
-- [parsePrimitiveString](#parseprimitivestring)
-- [parsePrimitive](#parseprimitive)
-
-
-
-# Functions
-
-## parsePrimitiveArray()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| string | string |  |
-| **Output** |    |    |
-
-
-
-## parsePrimitiveBoolean()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| string | string |  |
-| **Output** | boolean   |    |
-
-
-
-## parsePrimitiveString()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| string | string |  |
-| **Output** |    |    |
-
-
+# Api reference
 
 ## parsePrimitive()
 
@@ -68,17 +19,6 @@ if you provide a `simplifiedSchema`, that will be used to parse according to the
 | **Output** | ul / trin / umbe / als / ru / tring[   |    |
 
 
-# Interfaces
-
-## 🔷 PrimitiveResult
-
-# Variables
-
-## 📄 parsePrimitiveArray (exported const)
-
-## 📄 parsePrimitiveBoolean (exported const)
-
-## 📄 parsePrimitiveString (exported const)
 
 ## 📄 parsePrimitive (exported const)
 

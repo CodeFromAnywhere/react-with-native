@@ -4,19 +4,7 @@ next-a-link (js operation)
 
 
 
-# Outline
-
-## Functions
-
-- [ALink](#ALink)
-
-## Variables
-
-- [ALink](#alink)
-
-
-
-# Functions
+# Api reference
 
 ## <ALink />
 
@@ -31,7 +19,6 @@ All links you make with this component are SEO-ready
 | **Output** | `JSX.Element`   |    |
 
 
-# Variables
 
 ## 📄 ALink (exported const)
 

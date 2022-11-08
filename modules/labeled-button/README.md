@@ -4,19 +4,7 @@ labeled-button (js operation)
 
 
 
-# Outline
-
-## Functions
-
-- [LabeledButton](#LabeledButton)
-
-## Variables
-
-- [LabeledButton](#labeledbutton)
-
-
-
-# Functions
+# Api reference
 
 ## <LabeledButton />
 
@@ -26,7 +14,6 @@ labeled-button (js operation)
 | **Output** | `JSX.Element`   |    |
 
 
-# Variables
 
 ## 📄 LabeledButton (exported const)
 

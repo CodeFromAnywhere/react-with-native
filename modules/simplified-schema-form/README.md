@@ -7,47 +7,11 @@ component that generates a form using react-with-native and a `SimplifiedSchema`
 
 
 
-# Outline
+# Api reference
 
-## Functions
+## <SimplifiedSchemaForm />
 
-- [ArrayForm](#ArrayForm)
-- [FormContainer](#FormContainer)
-- [getReferencedModelDataItem](#getReferencedModelDataItem)
-- [ObjectForm](#ObjectForm)
-- [ReferenceInput](#ReferenceInput)
-- [renderParameterTitle](#renderParameterTitle)
-- [SimplifiedSchemaForm](#SimplifiedSchemaForm)
-- [useReferencableModelData](#useReferencableModelData)
-
-## Interfaces
-
-- [ReferencedModelDataItem](#referencedmodeldataitem)
-- [ReferenceItem](#referenceitem)
-- [ReferenceItemsObject](#referenceitemsobject)
-
-## Variables
-
-- [ArrayForm](#arrayform)
-- [FormContainer](#formcontainer)
-- [getReferencedModelDataItem](#getreferencedmodeldataitem)
-- [ObjectForm](#objectform)
-- [ReferenceInput](#referenceinput)
-- [renderParameterTitle](#renderparametertitle)
-- [SimplifiedSchemaForm](#simplifiedschemaform)
-- [useReferencableModelData](#usereferencablemodeldata)
-
-
-
-# Functions
-
-## <ArrayForm />
-
-Component to render a parameter that holds an array
-
-This is simply a wrapper around another `SimplifiedSchemaForm` where the `onChange` and `values` are slightly different
-
-This component renders a `SimplifiedSchemaForm` for every item in the array, and adds buttons to insert/remove new items.
+Recursive component that renders a form for a SimplifiedSchema
 
 
 | Input      |    |    |
@@ -55,6 +19,11 @@ This component renders a `SimplifiedSchemaForm` for every item in the array, and
 | - | | |
 | **Output** | `JSX.Element`   |    |
 
+
+
+## 📄 SimplifiedSchemaForm (exported const)
+
+Recursive component that renders a form for a SimplifiedSchema
 
 
 ## <FormContainer />
@@ -64,62 +33,6 @@ A `FormContainer` is a simple container that can wrap your `SimplifiedSchemaForm
 Besides this, you can also add some texts, but styling is not possible to change for this component at this point (except for the form className). If you want a completely different style, it's probably better to build it yourself.
 
 NB: TODO: There is a bug now where onSubmit gets called too often. Not sure how to fix this. Because of this, I'll simply remove the onSubmit action in the onsubmit for now, and prevent the default.
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## getReferencedModelDataItem()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| parameterName | string |  |,| referencedModelData (optional) | `ReferencableModelData` |  |
-| **Output** |    |    |
-
-
-
-## <ObjectForm />
-
-Component to render a parameter that holds an object
-
-This is simply a wrapper around another SimplifiedSchemaForm where the onChange and values are slightly different
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <ReferenceInput />
-
-This component renders an input to select an item to reference from another model (or multiple)
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## renderParameterTitle()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <SimplifiedSchemaForm />
-
-Recursive component that renders a form for a SimplifiedSchema
 
 
 | Input      |    |    |
@@ -146,60 +59,6 @@ NB: be careful, not to change the simplifiedSchema after using this hook for the
 | **Output** | {  }   |    |
 
 
-# Interfaces
-
-## 🔷 ReferencedModelDataItem
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| data (optional) | array |  |
-| isLoading (optional) | boolean |  |
-| parameterName  | string |  |
-| dataParameterName (optional) | string |  |
-| descriptor (optional) | string |  |
-| keyInModel (optional) | string |  |
-| interfaceName (optional) | string |  |
-| isReferenceMultipleParameter  | boolean |  |
-| isReferenceSingleParameter  | boolean |  |
-| isReferenceParameter  | boolean |  |
-
-
-
-## 🔷 ReferenceItem
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| id  | string |  |
-| slug (optional) | string |  |
-| name (optional) | string |  |
-| categoryStackCalculated (optional) | array |  |
-
-
-
-## 🔷 ReferenceItemsObject
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| data (optional) | array |  |
-| isLoading (optional) | boolean |  |
-
-
-# Variables
-
-## 📄 ArrayForm (exported const)
-
-Component to render a parameter that holds an array
-
-This is simply a wrapper around another `SimplifiedSchemaForm` where the `onChange` and `values` are slightly different
-
-This component renders a `SimplifiedSchemaForm` for every item in the array, and adds buttons to insert/remove new items.
-
 
 ## 📄 FormContainer (exported const)
 
@@ -208,27 +67,6 @@ A `FormContainer` is a simple container that can wrap your `SimplifiedSchemaForm
 Besides this, you can also add some texts, but styling is not possible to change for this component at this point (except for the form className). If you want a completely different style, it's probably better to build it yourself.
 
 NB: TODO: There is a bug now where onSubmit gets called too often. Not sure how to fix this. Because of this, I'll simply remove the onSubmit action in the onsubmit for now, and prevent the default.
-
-
-## 📄 getReferencedModelDataItem (exported const)
-
-## 📄 ObjectForm (exported const)
-
-Component to render a parameter that holds an object
-
-This is simply a wrapper around another SimplifiedSchemaForm where the onChange and values are slightly different
-
-
-## 📄 ReferenceInput (exported const)
-
-This component renders an input to select an item to reference from another model (or multiple)
-
-
-## 📄 renderParameterTitle (exported const)
-
-## 📄 SimplifiedSchemaForm (exported const)
-
-Recursive component that renders a form for a SimplifiedSchema
 
 
 ## 📄 useReferencableModelData (exported const)

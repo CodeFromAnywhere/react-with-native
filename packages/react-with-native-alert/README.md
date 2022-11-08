@@ -10,22 +10,9 @@ TODO: NB: seems not to work right now in a new template! Fix it
 
 
 
-# Outline
-
 ## Docs
 
 - [README](#readme)
-
-## Functions
-
-- [AlertProvider](#AlertProvider)
-- [useAlert](#useAlert)
-
-## Variables
-
-- [AlertContext](#alertcontext)
-- [AlertProvider](#alertprovider)
-- [useAlert](#usealert)
 
 
 
@@ -71,7 +58,7 @@ const YourPage = () => {
 ```
 
 
-# Functions
+# Api reference
 
 ## <AlertProvider />
 
@@ -82,6 +69,8 @@ const YourPage = () => {
 
 
 
+## 📄 AlertProvider (exported const)
+
 ## useAlert()
 
 | Input      |    |    |
@@ -90,11 +79,6 @@ const YourPage = () => {
 | **Output** | {  }   |    |
 
 
-# Variables
-
-## 📄 AlertContext (exported const)
-
-## 📄 AlertProvider (exported const)
 
 ## 📄 useAlert (exported const)
 

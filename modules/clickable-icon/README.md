@@ -4,19 +4,7 @@ clickable-icon (js operation)
 
 
 
-# Outline
-
-## Functions
-
-- [ClickableIcon](#ClickableIcon)
-
-## Variables
-
-- [ClickableIcon](#clickableicon)
-
-
-
-# Functions
+# Api reference
 
 ## <ClickableIcon />
 
@@ -31,7 +19,6 @@ Icon can be either an icon (Svg src) or emoji (string)
 | **Output** | `JSX.Element`   |    |
 
 
-# Variables
 
 ## 📄 ClickableIcon (exported const)
 

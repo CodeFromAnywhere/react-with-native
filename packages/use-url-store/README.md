@@ -7,23 +7,7 @@ use-url-store (js operation)
 
 
 
-# Outline
-
-## Functions
-
-- [useCustomUrlStore](#useCustomUrlStore)
-
-## Interfaces
-
-- [CustomUrlStoreConfig](#customurlstoreconfig)
-
-## Variables
-
-- [useCustomUrlStore](#usecustomurlstore)
-
-
-
-# Functions
+# Api reference
 
 Hook to store simple data in the URL
 
@@ -72,20 +56,12 @@ return queryStore[queryKey];
 | **Output** |    |    |
 
 
-# Interfaces
 
-## 🔷 CustomUrlStoreConfig
+## 📄 useCustomUrlStore (exported const)
 
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| type  | string |  |
-| isArray (optional) | boolean |  |
-| allowUndefined (optional) | boolean |  |
-
-
-# Variables
+---
+isStory: true
+---
 
 Hook to store simple data in the URL
 
@@ -99,7 +75,8 @@ I was looking for ways to make the api more straightforward, especially the stuf
 
 TODO: make it work in react-native as well, either via a wrapper around useStore or via using the react-navigation param-store
 
-## Example usage
+
+### Example usage
 
 ```ts
 import {useCustomUrlStore}from "use-url-store";

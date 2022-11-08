@@ -10,21 +10,7 @@ frontend component to show a file location in a nice way (breadcrumbs)
 
 
 
-# Outline
-
-## Functions
-
-- [BreadCrumbs](#BreadCrumbs)
-- [renderBreadCrumbs](#renderBreadCrumbs)
-
-## Variables
-
-- [BreadCrumbs](#breadcrumbs)
-- [renderBreadCrumbs](#renderbreadcrumbs)
-
-
-
-# Functions
+# Api reference
 
 ## <BreadCrumbs />
 
@@ -38,6 +24,11 @@ Shows where we are in the filesystem
 
 
 
+## 📄 BreadCrumbs (exported const)
+
+Shows where we are in the filesystem
+
+
 ## renderBreadCrumbs()
 
 | Input      |    |    |
@@ -45,12 +36,6 @@ Shows where we are in the filesystem
 | chunks | string[] |  |
 | **Output** |    |    |
 
-
-# Variables
-
-## 📄 BreadCrumbs (exported const)
-
-Shows where we are in the filesystem
 
 
 ## 📄 renderBreadCrumbs (exported const)

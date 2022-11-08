@@ -4,21 +4,11 @@ react-with-native-ui (js operation)
 
 
 
-# Outline
+# Api reference
 
-## Variables
-
-- [bareInputClass](#bareinputclass)
-- [inputClass](#inputclass)
-- [UI](#ui)
-
-
-
-# Variables
+## 📄 UI (exported const)
 
 ## 📄 bareInputClass (exported const)
 
 ## 📄 inputClass (exported const)
-
-## 📄 UI (exported const)
 

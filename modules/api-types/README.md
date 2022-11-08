@@ -7,5 +7,5 @@ api-related types needed for the `api` operation
 
 
 
-# Outline
+# Api reference
 

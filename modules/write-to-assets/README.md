@@ -7,19 +7,7 @@ Function to write anything to assets.
 
 
 
-# Outline
-
-## Functions
-
-- [writeToAssets](#writeToAssets)
-
-## Variables
-
-- [writeToAssets](#writetoassets)
-
-
-
-# Functions
+# Api reference
 
 ## writeToAssets()
 
@@ -34,7 +22,6 @@ Useful for testing
 | **Output** |    |    |
 
 
-# Variables
 
 ## 📄 writeToAssets (exported const)
 

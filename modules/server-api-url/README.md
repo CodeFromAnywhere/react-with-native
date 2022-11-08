@@ -7,16 +7,7 @@ Operation that exports the api url that the api should be able to be found at, a
 
 
 
-# Outline
-
-## Variables
-
-- [apiUrl](#apiurl)
-- [isDev](#isdev)
-
-
-
-# Variables
+# Api reference
 
 ## 📄 apiUrl (exported const)
 

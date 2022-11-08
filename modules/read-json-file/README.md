@@ -4,21 +4,28 @@ read-json-file (node operation)
 
 
 
-# Outline
+# Api reference
 
-## Functions
+## readJsonFile()
 
-- [readJsonFileSync](#readJsonFileSync)
-- [readJsonFile](#readJsonFile)
+Reads and parses JSON file
 
-## Variables
-
-- [readJsonFileSync](#readjsonfilesync)
-- [readJsonFile](#readjsonfile)
+make sure to specify what type the file contains as a generic!
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| filePath (optional) | `Path` |  |
+| **Output** |    |    |
 
-# Functions
+
+
+## 📄 readJsonFile (exported const)
+
+Reads and parses JSON file
+
+make sure to specify what type the file contains as a generic!
+
 
 ## readJsonFileSync()
 
@@ -34,29 +41,7 @@ make sure to specify what type the file contains as a generic!
 
 
 
-## readJsonFile()
-
-Reads and parses JSON file
-
-make sure to specify what type the file contains as a generic!
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| filePath (optional) | `Path` |  |
-| **Output** |    |    |
-
-
-# Variables
-
 ## 📄 readJsonFileSync (exported const)
-
-Reads and parses JSON file
-
-make sure to specify what type the file contains as a generic!
-
-
-## 📄 readJsonFile (exported const)
 
 Reads and parses JSON file
 

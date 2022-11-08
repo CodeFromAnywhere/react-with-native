@@ -4,19 +4,7 @@ fancy-loader (js operation)
 
 
 
-# Outline
-
-## Functions
-
-- [FancyLoader](#FancyLoader)
-
-## Variables
-
-- [FancyLoader](#fancyloader)
-
-
-
-# Functions
+# Api reference
 
 ## <FancyLoader />
 
@@ -29,7 +17,6 @@ fancy-loader (js operation)
 | **Output** | `JSX.Element`   |    |
 
 
-# Variables
 
 ## 📄 FancyLoader (exported const)
 

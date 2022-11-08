@@ -4,19 +4,7 @@ ui-util (js operation)
 
 
 
-# Outline
-
-## Functions
-
-- [createCodeblockMarkdown](#createCodeblockMarkdown)
-
-## Variables
-
-- [createCodeblockMarkdown](#createcodeblockmarkdown)
-
-
-
-# Functions
+# Api reference
 
 ## createCodeblockMarkdown()
 
@@ -33,7 +21,6 @@ defaults to "ts" |
 | **Output** | `String`   |    |
 
 
-# Variables
 
 ## 📄 createCodeblockMarkdown (exported const)
 

@@ -12,40 +12,18 @@ This is a js operation. This means you cannot use any react or node, it's pure t
 
 
 
-# Outline
+# Api reference
 
-## Functions
+## getReferencedAssetApiUrl()
 
-- [addToken](#addToken)
-- [ensureToken](#ensureToken)
-- [getAssetDirectlyApiUrl](#getAssetDirectlyApiUrl)
-- [getExtensionFromAsset](#getExtensionFromAsset)
-- [getNameFromRelativePath](#getNameFromRelativePath)
-- [getNameWithTokenFromRelativePath](#getNameWithTokenFromRelativePath)
-- [getPreferredExtensionFromType](#getPreferredExtensionFromType)
-- [getReferencedAssetApiUrl](#getReferencedAssetApiUrl)
-- [getTypeFromRelativePath](#getTypeFromRelativePath)
-- [readableSize](#readableSize)
-- [removeTokenIfPresent](#removeTokenIfPresent)
-
-## Variables
-
-- [addToken](#addtoken)
-- [ensureToken](#ensuretoken)
-- [getAssetDirectlyApiUrl](#getassetdirectlyapiurl)
-- [getExtensionFromAsset](#getextensionfromasset)
-- [getNameFromRelativePath](#getnamefromrelativepath)
-- [getNameWithTokenFromRelativePath](#getnamewithtokenfromrelativepath)
-- [getPreferredExtensionFromType](#getpreferredextensionfromtype)
-- [getReferencedAssetApiUrl](#getreferencedassetapiurl)
-- [getTypeFromRelativePath](#gettypefromrelativepath)
-- [readableSize](#readablesize)
-- [removeTokenIfPresent](#removetokenifpresent)
-- [tokenPrefix](#tokenprefix)
+| Input      |    |    |
+| ---------- | -- | -- |
+| apiUrl | string |  |,| projectRelativeReferencingFilePath | string |  |,| referencingFileRelativeAssetPath | string |  |,| isDownload (optional) | boolean | If true, asset will be returned as download |
+| **Output** | `String`   |    |
 
 
 
-# Functions
+## 📄 getReferencedAssetApiUrl (exported const)
 
 ## addToken()
 
@@ -73,15 +51,6 @@ if already present, token is used from the name instead of this one |,| attachTo
 
 
 
-## getAssetDirectlyApiUrl()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| apiUrl | string |  |,| projectRelativeAssetPath | string |  |
-| **Output** | `String`   |    |
-
-
-
 ## getExtensionFromAsset()
 
 Returns a preliminary filename, based on the `Asset`
@@ -91,15 +60,6 @@ Returns a preliminary filename, based on the `Asset`
 | ---------- | -- | -- |
 | asset | `Asset` |  |
 | **Output** | string   |    |
-
-
-
-## getNameFromRelativePath()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| relativePath | string |  |
-| **Output** | `String`   |    |
 
 
 
@@ -133,15 +93,6 @@ NB: we also need to convert the file itself in case of mp3
 
 
 
-## getReferencedAssetApiUrl()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| apiUrl | string |  |,| projectRelativeReferencingFilePath | string |  |,| referencingFileRelativeAssetPath | string |  |,| isDownload (optional) | boolean | If true, asset will be returned as download |
-| **Output** | `String`   |    |
-
-
-
 ## getTypeFromRelativePath()
 
 | Input      |    |    |
@@ -168,7 +119,6 @@ NB: we also need to convert the file itself in case of mp3
 | **Output** | { nameWithoutToken: {  }, <br />token?: string, <br /> }   |    |
 
 
-# Variables
 
 ## 📄 addToken (exported const)
 
@@ -180,14 +130,10 @@ If previousToken is not present, will be generated randomly
 Remove the token (if present), then add it again
 
 
-## 📄 getAssetDirectlyApiUrl (exported const)
-
 ## 📄 getExtensionFromAsset (exported const)
 
 Returns a preliminary filename, based on the `Asset`
 
-
-## 📄 getNameFromRelativePath (exported const)
 
 ## 📄 getNameWithTokenFromRelativePath (exported const)
 
@@ -205,17 +151,9 @@ Here the extension is decided.
 NB: we also need to convert the file itself in case of mp3
 
 
-## 📄 getReferencedAssetApiUrl (exported const)
-
 ## 📄 getTypeFromRelativePath (exported const)
 
 ## 📄 readableSize (exported const)
 
 ## 📄 removeTokenIfPresent (exported const)
-
-## 📄 tokenPrefix (exported const)
-
-NB: any filename should not be expected to enter this as part of its name. Otherwise it breaks the code and the filename will be changed to the thing before this string.
-
-NB: don't put any things inhere that are different, slugified, as the name will be slugified!
 

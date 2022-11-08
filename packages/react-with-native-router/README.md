@@ -4,20 +4,9 @@ react-with-native-router (ui-es5 operation)
 
 
 
-# Outline
-
 ## Docs
 
 - [README](#readme)
-
-## Functions
-
-- [useNavigation](#useNavigation)
-- [useRouter](#useRouter)
-
-## Variables
-
-- [useRouter](#userouter)
 
 
 
@@ -69,16 +58,7 @@ const YourPage = () => {
 ```
 
 
-# Functions
-
-## useNavigation()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | { addListener: {  }, <br />canGoBack: {  }, <br />dispatch: {  }, <br />getParent: {  }, <br />getState: {  }, <br />goBack: {  }, <br />isFocused: {  }, <br />removeListener: {  }, <br />reset: {  }, <br />setOptions: {  }, <br />setParams: {  }, <br />navigate: {  }, <br /> }   |    |
-
-
+# Api reference
 
 ## useRouter()
 
@@ -88,7 +68,6 @@ const YourPage = () => {
 | **Output** |    |    |
 
 
-# Variables
 
 ## 📄 useRouter (exported const)
 

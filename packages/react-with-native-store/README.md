@@ -4,28 +4,10 @@ react-with-native-store (ui-es5 operation)
 
 
 
-# Outline
-
 ## Docs
 
 - [README](#readme)
 - [Usage in monorepo](#usage-in-monorepo)
-
-## Functions
-
-- [createStoreProvider](#createStoreProvider)
-- [createStore](#createStore)
-- [createUseStore](#createUseStore)
-- [getItem](#getItem)
-- [setItem](#setItem)
-
-## Variables
-
-- [createStoreProvider](#createstoreprovider)
-- [createStore](#createstore)
-- [createUseStore](#createusestore)
-- [getItem](#getitem)
-- [setItem](#setitem)
 
 
 
@@ -129,21 +111,7 @@ It can be a hassle having to use 17 different providers and hooks if you have sm
 - In the different packages you don't need to provide the provider there, as long as you have the combined provider all the way up your app. In the different packages, you can create another `useStore` which is simply a subset of the complete store, and is only used in this package
 
 
-# Functions
-
-## createStoreProvider()
-
-Function to create the StoreProvider
-
-NB: this function uses a local variable on the main scope of javascript in order to create the Context components dynamically. Beware!
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
-
+# Api reference
 
 ## createStore()
 
@@ -179,52 +147,6 @@ Simple as pie 🍰
 
 
 
-## createUseStore()
-
-Function to create a hook for accessing the store
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
-
-
-## getItem()
-
-If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| key | string |  |
-| **Output** |    |    |
-
-
-
-## setItem()
-
-If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
-
-BEWARE! Updating this won't update your react components!
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| key | string |  |,| value | {  } |  |
-| **Output** |    |    |
-
-
-# Variables
-
-## 📄 createStoreProvider (exported const)
-
-Function to create the StoreProvider
-
-NB: this function uses a local variable on the main scope of javascript in order to create the Context components dynamically. Beware!
-
-
 ## 📄 createStore (exported const)
 
 One function is all you need to make a new store!
@@ -252,19 +174,57 @@ export const { useStore, StoreProvider } = createStore(writerInitialValues);
 Simple as pie 🍰
 
 
+## createUseStore()
+
+Function to create a hook for accessing the store
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
 ## 📄 createUseStore (exported const)
 
 Function to create a hook for accessing the store
 
 
+## createStoreProvider()
+
+Function to create the StoreProvider
+
+NB: this function uses a local variable on the main scope of javascript in order to create the Context components dynamically. Beware!
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## 📄 createStoreProvider (exported const)
+
+Function to create the StoreProvider
+
+NB: this function uses a local variable on the main scope of javascript in order to create the Context components dynamically. Beware!
+
+
+## getItem()
+
+If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| key | string |  |
+| **Output** |    |    |
+
+
+
 ## 📄 getItem (exported const)
 
 If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
-
-
-## 📄 setItem (exported const)
-
-If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
-
-BEWARE! Updating this won't update your react components!
 

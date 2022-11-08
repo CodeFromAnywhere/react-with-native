@@ -4,23 +4,9 @@ react-with-native-modal (ui-es5 operation)
 
 
 
-# Outline
-
 ## Docs
 
 - [README](#readme)
-
-## Functions
-
-- [ModalProvider](#ModalProvider)
-- [Modal](#Modal)
-- [useModal](#useModal)
-
-## Variables
-
-- [ModalContext](#modalcontext)
-- [ModalProvider](#modalprovider)
-- [useModal](#usemodal)
 
 
 
@@ -70,7 +56,7 @@ const { handleModal } = useModal();
 ```
 
 
-# Functions
+# Api reference
 
 ## <ModalProvider />
 
@@ -81,14 +67,7 @@ const { handleModal } = useModal();
 
 
 
-## <Modal />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
+## 📄 ModalProvider (exported const)
 
 ## useModal()
 
@@ -98,11 +77,6 @@ const { handleModal } = useModal();
 | **Output** | { modalContent?: ul / trin / SX.Elemen, <br />handleModal: {  }, <br />showModal: boolean, <br />title?: string, <br /> }   |    |
 
 
-# Variables
-
-## 📄 ModalContext (exported const)
-
-## 📄 ModalProvider (exported const)
 
 ## 📄 useModal (exported const)
 

@@ -1,5 +1,5 @@
 import { AppProps } from "next/app";
-
+import { MarkdownReaderPageProps } from "markdown-reader-types";
 import { StoreProvider } from "markdown-reader-ui";
 import Head from "next/head";
 import ProgressBar from "@badrap/bar-of-progress";
@@ -10,18 +10,16 @@ import {
   publicLocalEnvironmentVariables,
 } from "sdk-env-public";
 
+// CSS
 import "../globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-datetime/css/react-datetime.css";
 import "react-datepicker/dist/react-datepicker.css";
-///rwn
 import "markdown-reader-ui/css.css";
 import "nested-menu/css.css";
 import "markdown/css.css";
-
 import "react-with-native/css.css";
 import "react-with-native-router/css.css";
-import { MarkdownReaderPageProps } from "markdown-reader-types";
 
 const progress = new ProgressBar();
 
@@ -50,6 +48,7 @@ function MyApp({ Component, pageProps }: RealAppProps) {
       <Head>
         <title>{title}</title>
 
+        {/* NB: for CODE syntax highlighting of "markdown" markdown-parser */}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/default.min.css"

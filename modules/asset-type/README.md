@@ -7,29 +7,10 @@ All types related to asset upload
 
 
 
-# Outline
-
 ## Docs
 
 - [README](#readme)
 - [Implementation choices](#implementation-choices)
-
-## Interfaces
-
-- [Asset](#asset)
-- [AssetType](#assettype)
-- [BackendAsset](#backendasset)
-- [CompressionConfig](#compressionconfig)
-- [CompressionOption](#compressionoption)
-- [CompressionConfig](#compressionconfig)
-- [CompressionOption](#compressionoption)
-- [Image](#image)
-- [NewAssetType](#newassettype)
-- [NewAssetType](#newassettype)
-- [UploadAssetBody](#uploadassetbody)
-- [UploadAssetResult](#uploadassetresult)
-- [UploadAssetBody](#uploadassetbody)
-- [UploadAssetResult](#uploadassetresult)
 
 
 
@@ -94,9 +75,30 @@ Fetch has been trying to support ReadableStream, but it seems that it's not comp
 There are other ways though to show progress. It can be done with `axios`, but that would create a new dependency. As you can see here: https://stackoverflow.com/a/69400632, it seems that maybe the old fashioned and broadly supported `XMLHttpRequest` can easily do this. So why try to use any libraries or new stuff? Not needed....
 
 
-# Interfaces
+# Api reference
 
-## 🔷 Asset
+## 🔹 BackendAsset
+
+Part of the asset that should be sent to the backend. The rest should frontend-only
+
+Some values are stored, some are not
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| alt (optional) | string |  |
+| relativePath (optional) | string |  |
+| name (optional) | string |  |
+| temporaryDestination (optional) | string |  |
+
+
+
+## 🔹 Asset
 
 Asset you can upload
 
@@ -127,7 +129,7 @@ Properties:
 
 
 
-## 🔷 AssetType
+## 🔹 AssetType
 
 Possible Asset Types
 
@@ -138,28 +140,55 @@ Possible Asset Types
 
 
 
-## 🔷 BackendAsset
+## 🔹 NewAssetType
 
-Part of the asset that should be sent to the backend. The rest should frontend-only
-
-Some values are stored, some are not
+Possible types for new asset upload in the frontend
 
 
 
+> Possible types for new asset upload in the frontend
 
+
+
+
+## 🔹 NewAssetType
+
+Possible types for new asset upload in the frontend
+
+
+
+
+
+
+
+
+## 🔹 UploadAssetResult
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| alt (optional) | string |  |
-| relativePath (optional) | string |  |
-| name (optional) | string |  |
+| isSuccessful  | boolean |  |
+| isUnauthorized (optional) | boolean |  |
+| message (optional) | string |  |
 | temporaryDestination (optional) | string |  |
 
 
 
-## 🔷 CompressionConfig
+## 🔹 UploadAssetResult
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| isSuccessful  | boolean |  |
+| isUnauthorized (optional) | boolean |  |
+| message (optional) | string |  |
+| temporaryDestination (optional) | string |  |
+
+
+
+## 🔹 CompressionConfig
 
 Properties: 
 
@@ -172,23 +201,7 @@ Properties:
 
 
 
-## 🔷 CompressionOption
-
-CompressionOption should be able to be applied on the model parameter through frontmatter
-
-- default (default option): Default King OS wide compression. User can make customize it within a sensible limit
-- none: no compression applied by default (user can optionally compress it)
-- high: compressed bigtime by default (user cannot make it be compressed less)
-- low: compressed just a little (user cannot make it be compressed less, but can optionally compress it more)
-
-
-
-> CompressionOption should be able to be applied on the model parameter through frontmatter<br /><br />- default (default option): Default King OS wide compression. User can make customize it within a sensible limit<br />- none: no compression applied by default (user can optionally compress it)<br />- high: compressed bigtime by default (user cannot make it be compressed less)<br />- low: compressed just a little (user cannot make it be compressed less, but can optionally compress it more)
-
-
-
-
-## 🔷 CompressionConfig
+## 🔹 CompressionConfig
 
 Properties: 
 
@@ -201,23 +214,7 @@ Properties:
 
 
 
-## 🔷 CompressionOption
-
-CompressionOption should be able to be applied on the model parameter through frontmatter
-
-- default (default option): Default King OS wide compression. User can make customize it within a sensible limit
-- none: no compression applied by default (user can optionally compress it)
-- high: compressed bigtime by default (user cannot make it be compressed less)
-- low: compressed just a little (user cannot make it be compressed less, but can optionally compress it more)
-
-
-
-
-
-
-
-
-## 🔷 Image
+## 🔹 Image
 
 Properties: 
 
@@ -228,85 +225,5 @@ Properties:
 | height  | number |  |
 | base64  | string |  |
 | caption  | string |  |
-
-
-
-## 🔷 NewAssetType
-
-Possible types for new asset upload in the frontend
-
-
-
-> Possible types for new asset upload in the frontend
-
-
-
-
-## 🔷 NewAssetType
-
-Possible types for new asset upload in the frontend
-
-
-
-
-
-
-
-
-## 🔷 UploadAssetBody
-
-NB: other things like alt, final destination etc, should not be sent with the upload, but instead with the function
-
-
-
-> NB: other things like alt, final destination etc, should not be sent with the upload, but instead with the function
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| authToken (optional) | string |  |
-
-
-
-## 🔷 UploadAssetResult
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isSuccessful  | boolean |  |
-| isUnauthorized (optional) | boolean |  |
-| message (optional) | string |  |
-| temporaryDestination (optional) | string |  |
-
-
-
-## 🔷 UploadAssetBody
-
-NB: other things like alt, final destination etc, should not be sent with the upload, but instead with the function
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| authToken (optional) | string |  |
-
-
-
-## 🔷 UploadAssetResult
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isSuccessful  | boolean |  |
-| isUnauthorized (optional) | boolean |  |
-| message (optional) | string |  |
-| temporaryDestination (optional) | string |  |
 
 

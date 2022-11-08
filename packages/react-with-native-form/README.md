@@ -4,31 +4,9 @@ react-with-native-form (ui-es5 operation)
 
 
 
-# Outline
-
 ## Docs
 
 - [README](#readme)
-
-## Functions
-
-- [DataForm](#DataForm)
-- [DefaultInputContainer](#DefaultInputContainer)
-- [errorOnField](#errorOnField)
-- [Input](#Input)
-- [isObject](#isObject)
-- [makeInputField](#makeInputField)
-- [notEmpty](#notEmpty)
-- [setConfig](#setConfig)
-
-## Variables
-
-- [DataForm](#dataform)
-- [DefaultInputContainer](#defaultinputcontainer)
-- [errorOnField](#erroronfield)
-- [Input](#input)
-- [makeInputField](#makeinputfield)
-- [setConfig](#setconfig)
 
 
 
@@ -253,7 +231,7 @@ export default FormPage;
 ```
 
 
-# Functions
+# Api reference
 
 ## <DataForm />
 
@@ -264,52 +242,7 @@ export default FormPage;
 
 
 
-## <DefaultInputContainer />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## errorOnField()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
-
-
-## <Input />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## isObject()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
-
-
 ## makeInputField()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
-
-
-## notEmpty()
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -326,15 +259,8 @@ export default FormPage;
 | **Output** | {  }   |    |
 
 
-# Variables
 
 ## 📄 DataForm (exported const)
-
-## 📄 DefaultInputContainer (exported const)
-
-## 📄 errorOnField (exported const)
-
-## 📄 Input (exported const)
 
 ## 📄 makeInputField (exported const)
 

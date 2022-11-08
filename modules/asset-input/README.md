@@ -15,40 +15,9 @@ Add the css to your web project: `import "asset-input/css.css";`
 
 
 
-# Outline
-
 ## Docs
 
 - [Usage in nextjs](#usage-in-nextjs)
-
-## Functions
-
-- [AssetInput](#AssetInput)
-- [FileInput](#FileInput)
-- [getTypeFromFileBlob](#getTypeFromFileBlob)
-- [makeBackendAsset](#makeBackendAsset)
-- [MediaRecorderComponent](#MediaRecorderComponent)
-- [MediaRecorder](#MediaRecorder)
-- [ReactMediaRecorder](#ReactMediaRecorder)
-- [SelectMedia](#SelectMedia)
-- [useReactMediaRecorder](#useReactMediaRecorder)
-- [WebcamCapture](#WebcamCapture)
-
-## Interfaces
-
-- [MediaSourceEnum](#mediasourceenum)
-
-## Variables
-
-- [AssetInput](#assetinput)
-- [FileInput](#fileinput)
-- [getTypeFromFileBlob](#gettypefromfileblob)
-- [makeBackendAsset](#makebackendasset)
-- [MediaRecorderComponent](#mediarecordercomponent)
-- [MediaRecorder](#mediarecorder)
-- [ReactMediaRecorder](#reactmediarecorder)
-- [SelectMedia](#selectmedia)
-- [WebcamCapture](#webcamcapture)
 
 
 
@@ -84,7 +53,7 @@ It gets executed by this file: `/node_modules/extendable-media-recorder-wav-enco
 it is imported here: `/Users/king/King/operations/node_modules/extendable-media-recorder-wav-encoder/src/module.ts`
 
 
-# Functions
+# Api reference
 
 ## <AssetInput />
 
@@ -105,103 +74,6 @@ Supports
 
 
 
-## <FileInput />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## getTypeFromFileBlob()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| file | { size: number, <br />type: string, <br />lastModified: number, <br />name: string, <br />webkitRelativePath: string, <br /> } |  |
-| **Output** | audio / video / image / other   |    |
-
-
-
-## makeBackendAsset()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| asset | `Asset` |  |
-| **Output** | {  }   |    |
-
-
-
-## <MediaRecorderComponent />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <MediaRecorder />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <ReactMediaRecorder />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | { type: {  }, <br />props: {  }, <br />key?: ul / trin / umbe, <br /> }   |    |
-
-
-
-## <SelectMedia />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| props | { source: `MediaSourceEnum`, <br /> } |  |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## useReactMediaRecorder()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | { error: string, <br />muteAudio: {  }, <br />unMuteAudio: {  }, <br />startRecording: {  }, <br />pauseRecording: {  }, <br />resumeRecording: {  }, <br />stopRecording: {  }, <br />mediaBlobUrl?: string, <br />status: media_aborted / permission_denied / no_specified_media_found / media_in_use / invalid_media_constraints / no_constraints / recorder_error / idle / acquiring_media / delayed_start / recording / stopping / stopped / paused, <br />isAudioMuted: boolean, <br />previewStream: {  }, <br />previewAudioStream: {  }, <br />clearBlobUrl: {  }, <br /> }   |    |
-
-
-
-## <WebcamCapture />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-# Interfaces
-
-## 🔷 MediaSourceEnum
-
-google: remote image urls
-giphy: remote image urls
-unsplashed: remote image urls
-youtube: remote video urls (selectable as mp3, mp4, or url)
-
-
-
-
-
-
-
-# Variables
-
 ## 📄 AssetInput (exported const)
 
 Usage possible in: form, writer-ui, anywhere else (custom)
@@ -212,21 +84,4 @@ Supports
 - file upload (multiple possible)
 - camera (taking a picture)
 - video camera (taking a video)
-
-
-## 📄 FileInput (exported const)
-
-## 📄 getTypeFromFileBlob (exported const)
-
-## 📄 makeBackendAsset (exported const)
-
-## 📄 MediaRecorderComponent (exported const)
-
-## 📄 MediaRecorder (exported const)
-
-## 📄 ReactMediaRecorder (exported const)
-
-## 📄 SelectMedia (exported const)
-
-## 📄 WebcamCapture (exported const)
 

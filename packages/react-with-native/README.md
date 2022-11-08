@@ -4,78 +4,9 @@ react-with-native (ui-es5 operation)
 
 
 
-# Outline
-
 ## Docs
 
 - [React with native](#react-with-native)
-
-## Functions
-
-- [A](#A)
-- [ActivityIndicator](#ActivityIndicator)
-- [Aside](#Aside)
-- [Button](#Button)
-- [Form](#Form)
-- [getTailwindModules](#getTailwindModules)
-- [H2](#H2)
-- [I](#I)
-- [Image](#Image)
-- [Input](#Input)
-- [joinClassNames](#joinClassNames)
-- [Label](#Label)
-- [Li](#Li)
-- [Nav](#Nav)
-- [Ol](#Ol)
-- [P](#P)
-- [Pressable](#Pressable)
-- [Select](#Select)
-- [Span](#Span)
-- [Strong](#Strong)
-- [Svg](#Svg)
-- [TextArea](#TextArea)
-- [Text](#Text)
-- [Toggle](#Toggle)
-- [TouchableOpacity](#TouchableOpacity)
-- [trimClassName](#trimClassName)
-- [Ul](#Ul)
-- [wrapInTextIfNeeded](#wrapInTextIfNeeded)
-
-## Interfaces
-
-- [SvgType](#svgtype)
-
-## Variables
-
-- [A](#a)
-- [ActivityIndicator](#activityindicator)
-- [Aside](#aside)
-- [Button](#button)
-- [Div](#div)
-- [Form](#form)
-- [getTailwindModules](#gettailwindmodules)
-- [H2](#h2)
-- [I](#i)
-- [Image](#image)
-- [Input](#input)
-- [joinClassNames](#joinclassnames)
-- [Label](#label)
-- [Li](#li)
-- [Nav](#nav)
-- [Ol](#ol)
-- [P](#p)
-- [Pressable](#pressable)
-- [Select](#select)
-- [Span](#span)
-- [Strong](#strong)
-- [Svg](#svg)
-- [TextArea](#textarea)
-- [Text](#text)
-- [Toggle](#toggle)
-- [TouchableOpacity](#touchableopacity)
-- [trimClassName](#trimclassname)
-- [Ul](#ul)
-- [wrapInTextIfNeeded](#wrapintextifneeded)
 
 
 
@@ -224,7 +155,75 @@ To add the SVG Transformer, follow [these instructions](https://github.com/krist
 - you need to apply your text-related classNames to the text itself directly or if your children are a string you can add textClassName as a prop.
 
 
-# Functions
+# Api reference
+
+## 📄 Div (exported const)
+
+## <P />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 P (exported const)
+
+## <Span />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 Span (exported const)
+
+## <Button />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 Button (exported const)
+
+## <Input />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 Input (exported const)
+
+## <Svg />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| { src, width, height, className, style } | `SvgType` |  |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 Svg (exported const)
+
+## <Ul />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 Ul (exported const)
 
 ## <A />
 
@@ -235,32 +234,7 @@ To add the SVG Transformer, follow [these instructions](https://github.com/krist
 
 
 
-## <ActivityIndicator />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <Aside />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <Button />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
+## 📄 A (exported const)
 
 ## <Form />
 
@@ -274,57 +248,12 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## getTailwindModules()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| options | { packages?: string[], <br />modules?: string[], <br />isWorkspace?: boolean, <br /> } |  |
-| **Output** |    |    |
-
-
-
 ## <H2 />
 
 | Input      |    |    |
 | ---------- | -- | -- |
 | - | | |
 | **Output** | `JSX.Element`   |    |
-
-
-
-## <I />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <Image />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <Input />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## joinClassNames()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| args | {  }[] |  |
-| **Output** |    |    |
 
 
 
@@ -346,7 +275,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Nav />
+## <TextArea />
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -355,7 +284,20 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Ol />
+## 📄 Form (exported const)
+
+Form is just a html form on web. On react-native, it's a View
+
+
+## 📄 H2 (exported const)
+
+## 📄 Label (exported const)
+
+## 📄 Li (exported const)
+
+## 📄 TextArea (exported const)
+
+## <ActivityIndicator />
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -364,7 +306,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <P />
+## <Aside />
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -373,28 +315,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Pressable />
-
-button on web, pressable on react-native
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <Select />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <Span />
+## <Image />
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -404,24 +325,6 @@ button on web, pressable on react-native
 
 
 ## <Strong />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <Svg />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| { src, width, height, className, style } | `SvgType` |  |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <TextArea />
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -448,134 +351,15 @@ button on web, pressable on react-native
 
 
 
-## <TouchableOpacity />
-
-button on web, pressable on react-native
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## trimClassName()
-
-in react-native not all classNames are supported
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| className | string |  |
-| **Output** | `String`   |    |
-
-
-
-## <Ul />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## wrapInTextIfNeeded()
-
-NB: figure out a way to do the styles of the text right.
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| children | {  } |  |,| textClassName (optional) | string |  |
-| **Output** |    |    |
-
-
-# Interfaces
-
-## 🔷 SvgType
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| src  | object |  |
-| width (optional) | number |  |
-| height (optional) | number |  |
-| className (optional) | string |  |
-| style (optional) | object |  |
-
-
-# Variables
-
-## 📄 A (exported const)
-
 ## 📄 ActivityIndicator (exported const)
 
 ## 📄 Aside (exported const)
 
-## 📄 Button (exported const)
-
-## 📄 Div (exported const)
-
-## 📄 Form (exported const)
-
-Form is just a html form on web. On react-native, it's a View
-
-
-## 📄 getTailwindModules (exported const)
-
-## 📄 H2 (exported const)
-
-## 📄 I (exported const)
-
 ## 📄 Image (exported const)
 
-## 📄 Input (exported const)
-
-## 📄 joinClassNames (exported const)
-
-## 📄 Label (exported const)
-
-## 📄 Li (exported const)
-
-## 📄 Nav (exported const)
-
-## 📄 Ol (exported const)
-
-## 📄 P (exported const)
-
-## 📄 Pressable (exported const)
-
-button on web, pressable on react-native
-
-
-## 📄 Select (exported const)
-
-## 📄 Span (exported const)
-
 ## 📄 Strong (exported const)
-
-## 📄 Svg (exported const)
-
-## 📄 TextArea (exported const)
 
 ## 📄 Text (exported const)
 
 ## 📄 Toggle (exported const)
-
-## 📄 TouchableOpacity (exported const)
-
-button on web, pressable on react-native
-
-
-## 📄 trimClassName (exported const)
-
-in react-native not all classNames are supported
-
-
-## 📄 Ul (exported const)
-
-## 📄 wrapInTextIfNeeded (exported const)
 

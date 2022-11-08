@@ -4,21 +4,24 @@ read-markdown-file (node operation)
 
 
 
-# Outline
+# Api reference
 
-## Functions
+## readMarkdownFile()
 
-- [readMarkdownFileToModel](#readMarkdownFileToModel)
-- [readMarkdownFile](#readMarkdownFile)
-
-## Variables
-
-- [readMarkdownFileToModel](#readmarkdownfiletomodel)
-- [readMarkdownFile](#readmarkdownfile)
+Reads and parses a markdown file
 
 
+| Input      |    |    |
+| ---------- | -- | -- |
+| filePath | `Path` |  |
+| **Output** |    |    |
 
-# Functions
+
+
+## 📄 readMarkdownFile (exported const)
+
+Reads and parses a markdown file
+
 
 ## readMarkdownFileToModel()
 
@@ -32,25 +35,7 @@ Reads a markdown absolute path to a `MarkdownFile` model
 
 
 
-## readMarkdownFile()
-
-Reads and parses a markdown file
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| filePath | `Path` |  |
-| **Output** |    |    |
-
-
-# Variables
-
 ## 📄 readMarkdownFileToModel (exported const)
 
 Reads a markdown absolute path to a `MarkdownFile` model
-
-
-## 📄 readMarkdownFile (exported const)
-
-Reads and parses a markdown file
 

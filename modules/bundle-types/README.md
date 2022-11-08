@@ -4,36 +4,9 @@ bundle-types (js operation)
 
 
 
-# Outline
+# Api reference
 
-## Models
-
-- [BundleConfig](#bundleconfig)
-
-## Interfaces
-
-- [AppShell](#appshell)
-- [BundleMarkdownReaderConfig](#bundlemarkdownreaderconfig)
-- [CreateBundleConfig](#createbundleconfig)
-- [CustomisableBundleConfig](#customisablebundleconfig)
-- [EnvironmentVariableObject](#environmentvariableobject)
-- [FinalBundleConfig](#finalbundleconfig)
-- [FinalCreateBundleConfig](#finalcreatebundleconfig)
-- [FinalCustomisableBundleConfig](#finalcustomisablebundleconfig)
-- [FrontBackBundle](#frontbackbundle)
-- [InformationStrategy](#informationstrategy)
-- [OperationName](#operationname)
-- [OperationPrivacy](#operationprivacy)
-- [ProjectRelativeFilePath](#projectrelativefilepath)
-- [ProjectRelativeFolderPath](#projectrelativefolderpath)
-- [PublicBundleConfig](#publicbundleconfig)
-- [ServerOperationName](#serveroperationname)
-
-
-
-# Models
-
-## 🔷 BundleConfig
+## 🔸 BundleConfig
 
 jsonSingle model
 
@@ -74,11 +47,8 @@ Properties:
 | createBundleConfig  | object |  |
 
 
-# Interfaces
 
-## 🔷 AppShell
-
-## 🔷 BundleMarkdownReaderConfig
+## 🔹 BundleMarkdownReaderConfig
 
 Properties: 
 
@@ -93,28 +63,7 @@ Properties:
 
 
 
-## 🔷 CreateBundleConfig
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| keepStructure (optional) | boolean |  |
-| informationStrategy (optional) | string |  |
-| modelInformationStrategy (optional) | object |  |
-| additional_datasetSlugs (optional) | array |  |
-| filter_datasetSlugs (optional) | array |  |
-| isDraft (optional) | boolean |  |
-| keepTodos (optional) | boolean |  |
-| bundles  | array |  |
-| dependencies  | array |  |
-| docsRelativeFolderPath (optional) | object |  |
-| readmeRelativeFilePath (optional) | string |  |
-| foldersFromRepo (optional) | array |  |
-
-
-
-## 🔷 CustomisableBundleConfig
+## 🔹 CustomisableBundleConfig
 
 configuration that can be applied when generating a new bundle
 
@@ -142,9 +91,7 @@ Properties:
 
 
 
-## 🔷 EnvironmentVariableObject
-
-## 🔷 FinalBundleConfig
+## 🔹 FinalBundleConfig
 
 Properties: 
 
@@ -173,7 +120,7 @@ Properties:
 
 
 
-## 🔷 FinalCreateBundleConfig
+## 🔹 FinalCreateBundleConfig
 
 CreateBundleConfig after applying the defaults
 
@@ -200,7 +147,7 @@ Properties:
 
 
 
-## 🔷 FinalCustomisableBundleConfig
+## 🔹 FinalCustomisableBundleConfig
 
 Properties: 
 
@@ -220,29 +167,7 @@ Properties:
 
 
 
-## 🔷 FrontBackBundle
-
-This type can specify a frontend and backend that belong to each other. it doesn't include all operations that the ui or server are dependent on, they are calculated separately
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| operations (optional) | array |  |
-| uiOperationName (optional) | string |  |
-| appShellOperationNames (optional) | array |  |
-| serverOperationName (optional) | string |  |
-| productionWebUrl (optional) | string |  |
-| productionApiUrl (optional) | string |  |
-| endpointsAuthToken (optional) | string |  |
-
-
-
-## 🔷 InformationStrategy
+## 🔹 InformationStrategy
 
 push (default): take needed information from project and push to bundle (removing the existing info)
 
@@ -259,28 +184,7 @@ ignore: don't put any data in the bundle!
 
 
 
-## 🔷 OperationName
-
-later we can make this an enum! it can be auto-generated along with enums for the operation paths, and more things alike.
-
-if it's an enum it will automatically be possible to select a value from it in the simplified schema form :D
-
-besides simply having OperationName, we can have specific operation classification operation names:
-
-- JsOperationName (js)
-- NodeOperationName (node)
-- ServerOperationName (server)
-- AppShellOperationName (web, app, etc.)
-- UiOperationName (ui-es6 and ui-es5)
-
-
-
-
-
-
-
-
-## 🔷 OperationPrivacy
+## 🔹 OperationPrivacy
 
 Properties: 
 
@@ -289,38 +193,4 @@ Properties:
 | operationName  | string |  |
 | privacy  | string |  |
 
-
-
-## 🔷 ProjectRelativeFilePath
-
-## 🔷 ProjectRelativeFolderPath
-
-later this could be known by the frontend so it will render a ui to select a folder
-
-We need to figure out how we can know all type types in between when getting the type definition schema, not only the final type. If I'm lucky there is a way to find it as a #ref in a consistent way.
-
-
-
-
-
-
-
-
-## 🔷 PublicBundleConfig
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| name  | string |  |
-| description (optional) | string |  |
-| emoji (optional) | string |  |
-| primaryColor (optional) | string |  |
-| gitRepoUrl (optional) | string |  |
-| isGitRepoPublic (optional) | boolean |  |
-| bundleMarkdownReaderConfig (optional) | object |  |
-
-
-
-## 🔷 ServerOperationName
 

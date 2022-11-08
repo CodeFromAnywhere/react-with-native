@@ -4,19 +4,7 @@ try-parse-json (js operation)
 
 
 
-# Outline
-
-## Functions
-
-- [tryParseJson](#tryParseJson)
-
-## Variables
-
-- [tryParseJson](#tryparsejson)
-
-
-
-# Functions
+# Api reference
 
 ## tryParseJson()
 
@@ -29,7 +17,6 @@ if text isn't json, returns null
 | **Output** | ul /    |    |
 
 
-# Variables
 
 ## 📄 tryParseJson (exported const)
 

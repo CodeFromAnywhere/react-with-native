@@ -4,23 +4,9 @@ auth-types (node operation)
 
 
 
-# Outline
+# Api reference
 
-## Interfaces
-
-- [Authorization](#authorization)
-- [AuthorizationLevel](#authorizationlevel)
-
-## Variables
-
-- [authorizationLevelReadonlyArray](#authorizationlevelreadonlyarray)
-- [authorizationLevelStringArray](#authorizationlevelstringarray)
-
-
-
-# Interfaces
-
-## 🔷 Authorization
+## 🔹 Authorization
 
 Properties: 
 
@@ -32,7 +18,7 @@ Properties:
 
 
 
-## 🔷 AuthorizationLevel
+## 🔹 AuthorizationLevel
 
 `AuthorizationLevel` is a single Enum that can apply to privacy and authorization of text, functions, and data.
 
@@ -65,10 +51,4 @@ For functions, interfaces, variables:
 
 
 
-
-# Variables
-
-## 📄 authorizationLevelReadonlyArray (exported const)
-
-## 📄 authorizationLevelStringArray (exported const)
 

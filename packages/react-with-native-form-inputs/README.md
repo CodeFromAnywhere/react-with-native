@@ -4,57 +4,9 @@ react-with-native-form-inputs (ui-es5 operation)
 
 
 
-# Outline
-
 ## Docs
 
 - [README](#readme)
-
-## Functions
-
-- [castToNumber](#castToNumber)
-- [DateInput](#DateInput)
-- [DatetimeInput](#DatetimeInput)
-- [FileInput](#FileInput)
-- [isNumber](#isNumber)
-- [LabelsInput](#LabelsInput)
-- [MapInput](#MapInput)
-- [NumberInput](#NumberInput)
-- [PasswordInput](#PasswordInput)
-- [PhoneInput](#PhoneInput)
-- [SelectInput](#SelectInput)
-- [SelectMultipleInput](#SelectMultipleInput)
-- [StarsInput](#StarsInput)
-- [TextAreaInput](#TextAreaInput)
-- [TextInput](#TextInput)
-- [TimeInput](#TimeInput)
-- [ToggleInput](#ToggleInput)
-
-## Interfaces
-
-- [MapLocation](#maplocation)
-- [Suggestion](#suggestion)
-- [ViewPort](#viewport)
-
-## Variables
-
-- [castToNumber](#casttonumber)
-- [DateInput](#dateinput)
-- [DatetimeInput](#datetimeinput)
-- [FileInput](#fileinput)
-- [isNumber](#isnumber)
-- [LabelsInput](#labelsinput)
-- [MapInput](#mapinput)
-- [NumberInput](#numberinput)
-- [PasswordInput](#passwordinput)
-- [PhoneInput](#phoneinput)
-- [SelectInput](#selectinput)
-- [SelectMultipleInput](#selectmultipleinput)
-- [StarsInput](#starsinput)
-- [TextAreaInput](#textareainput)
-- [TextInput](#textinput)
-- [TimeInput](#timeinput)
-- [ToggleInput](#toggleinput)
 
 
 
@@ -197,16 +149,73 @@ These are the inputs that are currently exposed. The type interface is also expo
 If you want to know the exact type interface of the input (which differs per input type), please look inside of [the package](https://github.com/Code-From-Anywhere/react-with-native/tree/main/packages/react-with-native-form-inputs/src) and find the line `export xxxInputType` to see the type definition.
 
 
-# Functions
+# Api reference
 
-## castToNumber()
+## <SelectInput />
 
 | Input      |    |    |
 | ---------- | -- | -- |
 | - | | |
-| **Output** | {  }   |    |
+| **Output** | `JSX.Element`   |    |
 
 
+
+## 📄 SelectInput (exported const)
+
+## <SelectMultipleInput />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 SelectMultipleInput (exported const)
+
+## <NumberInput />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <PasswordInput />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <TextInput />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <ToggleInput />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 NumberInput (exported const)
+
+## 📄 PasswordInput (exported const)
+
+## 📄 TextInput (exported const)
+
+## 📄 ToggleInput (exported const)
 
 ## <DateInput />
 
@@ -229,27 +238,6 @@ CSS Modules, react-datepicker-cssmodules.css
 
 
 
-## <FileInput />
-
-import Icon from "./icon.svg";
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## isNumber()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
-
-
 ## <LabelsInput />
 
 | Input      |    |    |
@@ -259,52 +247,7 @@ import Icon from "./icon.svg";
 
 
 
-## <MapInput />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <NumberInput />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <PasswordInput />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
 ## <PhoneInput />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <SelectInput />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <SelectMultipleInput />
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -331,15 +274,6 @@ import Icon from "./icon.svg";
 
 
 
-## <TextInput />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
 ## <TimeInput />
 
 CSS Modules, react-datepicker-cssmodules.css
@@ -352,89 +286,17 @@ CSS Modules, react-datepicker-cssmodules.css
 
 
 
-## <ToggleInput />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-# Interfaces
-
-## 🔷 MapLocation
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| latitude  | number |  |
-| longitude  | number |  |
-| zoom  | number |  |
-
-
-
-## 🔷 Suggestion
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| bbox  | array |  |
-| center  | array |  |
-| id  | string |  |
-| place_name  | string |  |
-| place_type  | array |  |
-| text  | string |  |
-
-
-
-## 🔷 ViewPort
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| width  | string |  |
-| height  | string |  |
-| latitude  | number |  |
-| longitude  | number |  |
-| zoom  | number |  |
-
-
-# Variables
-
-## 📄 castToNumber (exported const)
-
 ## 📄 DateInput (exported const)
 
 ## 📄 DatetimeInput (exported const)
 
-## 📄 FileInput (exported const)
-
-## 📄 isNumber (exported const)
-
 ## 📄 LabelsInput (exported const)
 
-## 📄 MapInput (exported const)
-
-## 📄 NumberInput (exported const)
-
-## 📄 PasswordInput (exported const)
-
 ## 📄 PhoneInput (exported const)
-
-## 📄 SelectInput (exported const)
-
-## 📄 SelectMultipleInput (exported const)
 
 ## 📄 StarsInput (exported const)
 
 ## 📄 TextAreaInput (exported const)
 
-## 📄 TextInput (exported const)
-
 ## 📄 TimeInput (exported const)
-
-## 📄 ToggleInput (exported const)
 

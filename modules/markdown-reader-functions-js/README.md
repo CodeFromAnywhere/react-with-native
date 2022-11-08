@@ -4,19 +4,7 @@ markdown-reader-functions-js (node operation)
 
 
 
-# Outline
-
-## Functions
-
-- [getQueryPath](#getQueryPath)
-
-## Variables
-
-- [getQueryPath](#getquerypath)
-
-
-
-# Functions
+# Api reference
 
 ## getQueryPath()
 
@@ -26,7 +14,6 @@ markdown-reader-functions-js (node operation)
 | **Output** |    |    |
 
 
-# Variables
 
 ## 📄 getQueryPath (exported const)
 

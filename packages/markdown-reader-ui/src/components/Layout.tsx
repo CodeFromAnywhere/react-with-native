@@ -3,6 +3,7 @@ import {
   NestedMenu,
   queryPathsArrayToNestedPathObject,
   nestedPathObjectToNestedMenuRecursive,
+  MenuType,
 } from "nested-menu";
 import { SelectInput } from "react-with-native-form-inputs";
 import {
@@ -22,6 +23,9 @@ import { useStore } from "../store";
 import { ClickableIcon } from "clickable-icon";
 import { ALink } from "next-a-link";
 
+/**
+ * This is shit....
+ */
 export const Search = (props: { results: AugmentedWord[] }) => {
   const { results } = props;
   const router = useRouter();
@@ -48,19 +52,93 @@ export const Search = (props: { results: AugmentedWord[] }) => {
     </Div>
   );
 };
+
+export const Header = (props: {
+  publicBundleConfig?: MarkdownReaderPageProps["publicBundleConfig"];
+}) => {
+  const { publicBundleConfig } = props;
+  const title =
+    publicLocalEnvironmentVariables.markdownReaderTitle ||
+    publicEnvironmentVariables.markdownReaderTitle ||
+    publicBundleConfig?.name;
+
+  return (
+    <Div
+      style={{
+        backgroundColor: props.publicBundleConfig?.primaryColor,
+        justifyContent: "space-between",
+        flex: 1,
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+      }}
+    >
+      <ALink
+        href={
+          typeof window !== "undefined"
+            ? location.protocol + "//" + location.host
+            : "#"
+        }
+        style={{ fontSize: 32 }}
+      >
+        {props.publicBundleConfig?.emoji}
+      </ALink>
+
+      <Div>
+        <P className="font-bold text-white ">{title}</P>
+        <P className="text-xs text-white italic">
+          {props.publicBundleConfig?.description}
+        </P>
+      </Div>
+
+      {props.publicBundleConfig?.isGitRepoPublic &&
+      props.publicBundleConfig.gitRepoUrl ? (
+        <ALink target="_blank" href={props.publicBundleConfig.gitRepoUrl}>
+          🐱
+        </ALink>
+      ) : null}
+    </Div>
+  );
+};
+
 export const Layout = (props: {
   publicBundleConfig: MarkdownReaderPageProps["publicBundleConfig"];
   pages: MarkdownReaderPage[];
   children: any;
   augmentedWordObject?: MappedObject<AugmentedWord>;
 }) => {
-  const { pages, children, augmentedWordObject } = props;
-  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(
-    "menu.isMobileMenuEnabled"
-  );
+  const { pages, children, augmentedWordObject, publicBundleConfig } = props;
+
   const queryPaths = pages.filter((x) => x.isMenuItem).map((x) => x.queryPath);
   const nestedPathObject = queryPathsArrayToNestedPathObject(queryPaths);
   const menu = nestedPathObjectToNestedMenuRecursive(nestedPathObject);
+
+  return (
+    <Div>
+      <Header publicBundleConfig={publicBundleConfig} />
+
+      <MenuWrapper augmentedWordObject={augmentedWordObject} menu={menu}>
+        {children}
+      </MenuWrapper>
+    </Div>
+  );
+};
+
+/**
+
+TODO: This is a good start, but it can be generalised more. 
+
+ */
+export const MenuWrapper = (props: {
+  menu: MenuType | undefined;
+  children: React.ReactNode;
+  augmentedWordObject: MappedObject<AugmentedWord> | undefined;
+}) => {
+  const { children, menu, augmentedWordObject } = props;
+
+  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(
+    "menu.isMobileMenuEnabled"
+  );
 
   const results: AugmentedWord[] = augmentedWordObject
     ? Object.keys(augmentedWordObject).map(
@@ -94,53 +172,8 @@ export const Layout = (props: {
     );
   };
 
-  const renderHeader = () => {
-    const title =
-      publicLocalEnvironmentVariables.markdownReaderTitle ||
-      publicEnvironmentVariables.markdownReaderTitle ||
-      props.publicBundleConfig?.name;
-
-    return (
-      <Div
-        style={{
-          backgroundColor: props.publicBundleConfig?.primaryColor,
-          justifyContent: "space-between",
-          flex: 1,
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        {/* 
-            typeof window !== "undefined"
-              ? location.protocol + "//" + location.host
-              : "#"
-           */}
-        <ALink href={"#"} style={{ fontSize: 32 }}>
-          {props.publicBundleConfig?.emoji}
-        </ALink>
-
-        <Div>
-          <P className="font-bold text-white ">{title}</P>
-          <P className="text-xs text-white italic">
-            {props.publicBundleConfig?.description}
-          </P>
-        </Div>
-
-        {props.publicBundleConfig?.isGitRepoPublic &&
-        props.publicBundleConfig.gitRepoUrl ? (
-          <ALink target="_blank" href={props.publicBundleConfig.gitRepoUrl}>
-            🐱
-          </ALink>
-        ) : null}
-      </Div>
-    );
-  };
-
   return (
-    <Div>
-      {renderHeader()}
-
+    <>
       {isMobileMenuEnabled ? (
         <Div className="lg:hidden">{renderMenu()}</Div>
       ) : (
@@ -158,6 +191,6 @@ export const Layout = (props: {
           </Div>
         </Div>
       )}
-    </Div>
+    </>
   );
 };

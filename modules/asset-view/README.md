@@ -10,31 +10,7 @@ asset-view (js operation)
 
 
 
-# Outline
-
-## Functions
-
-- [AssetView](#AssetView)
-- [InteractiveAsset](#InteractiveAsset)
-
-## Variables
-
-- [AssetView](#assetview)
-- [defaultClassName](#defaultclassname)
-- [InteractiveAsset](#interactiveasset)
-
-
-
-# Functions
-
-## <AssetView />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| props | { asset: `Asset`, <br />className?: string, <br />projectRelativeReferencingFilePath: string, <br />hideDownloadLink?: boolean, <br /> } |  |
-| **Output** | `JSX.Element`   |    |
-
-
+# Api reference
 
 ## <InteractiveAsset />
 
@@ -52,11 +28,6 @@ shows an `Asset` with interactivity
 | **Output** | `JSX.Element`   |    |
 
 
-# Variables
-
-## 📄 AssetView (exported const)
-
-## 📄 defaultClassName (exported const)
 
 ## 📄 InteractiveAsset (exported const)
 

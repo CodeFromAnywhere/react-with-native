@@ -4,21 +4,9 @@ markdown-reader-types (node operation)
 
 
 
-# Outline
+# Api reference
 
-## Interfaces
-
-- [AugmentedWord](#augmentedword)
-- [AugmentedWordObject](#augmentedwordobject)
-- [AugmentedWordTypeEnum](#augmentedwordtypeenum)
-- [MarkdownReaderPage](#markdownreaderpage)
-- [MarkdownReaderPageProps](#markdownreaderpageprops)
-
-
-
-# Interfaces
-
-## 🔷 AugmentedWord
+## 🔹 AugmentedWord
 
 AugmentedWords should have a small footprint since there can be many of them
 
@@ -43,31 +31,7 @@ Properties:
 
 
 
-## 🔷 AugmentedWordObject
-
-This datastructure is probably needed to make it more efficient.
-
-Should be a lookup table for the querypath for every word
-
-
-
-
-
-
-
-
-## 🔷 AugmentedWordTypeEnum
-
-NB: can later be replaced with a string enum type: person, definition, variable, function, type interface, operation, bundle (but there may be much more)
-
-
-
-
-
-
-
-
-## 🔷 MarkdownReaderPage
+## 🔹 MarkdownReaderPage
 
 for markdown-reader-ui, the pages can be markdown files, but they can also be connected to models
 
@@ -85,7 +49,7 @@ Properties:
 
 
 
-## 🔷 MarkdownReaderPageProps
+## 🔹 MarkdownReaderPageProps
 
 Properties: 
 

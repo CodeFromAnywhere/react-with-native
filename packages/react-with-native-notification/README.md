@@ -10,21 +10,9 @@ Makes it possible to receive notifications in both react and react-native.
 
 
 
-# Outline
-
 ## Docs
 
 - [README](#readme)
-
-## Functions
-
-- [ToastContainer](#ToastContainer)
-- [toast](#toast)
-
-## Variables
-
-- [ToastContainer](#toastcontainer)
-- [toast](#toast)
 
 
 
@@ -81,7 +69,7 @@ import { toast } from "react-with-native-notification";
 ```
 
 
-# Functions
+# Api reference
 
 ## <ToastContainer />
 
@@ -91,6 +79,8 @@ import { toast } from "react-with-native-notification";
 | **Output** |    |    |
 
 
+
+## 📄 ToastContainer (exported const)
 
 ## toast()
 
@@ -103,9 +93,6 @@ title is only shown on native
 | **Output** |    |    |
 
 
-# Variables
-
-## 📄 ToastContainer (exported const)
 
 ## 📄 toast (exported const)
 

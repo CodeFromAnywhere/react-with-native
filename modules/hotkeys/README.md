@@ -10,37 +10,41 @@ Operation exposing any utility function related to hotkeys in the browser
 
 
 
-# Outline
+# Api reference
 
-## Functions
+## useHotkey()
 
-- [isAltB](#isAltB)
-- [isAltN](#isAltN)
-- [isAltO](#isAltO)
-- [isAltW](#isAltW)
-- [isCtrlBacktick](#isCtrlBacktick)
-- [isCtrlP](#isCtrlP)
-- [isCtrlS](#isCtrlS)
-- [isCtrlSpace](#isCtrlSpace)
-- [useHotkey](#useHotkey)
-- [useHotkeys](#useHotkeys)
+hook that creates an eventlistener for keydown and cleans it up when needed
 
-## Variables
 
-- [isAltB](#isaltb)
-- [isAltN](#isaltn)
-- [isAltO](#isalto)
-- [isAltW](#isaltw)
-- [isCtrlBacktick](#isctrlbacktick)
-- [isCtrlP](#isctrlp)
-- [isCtrlS](#isctrls)
-- [isCtrlSpace](#isctrlspace)
-- [useHotkey](#usehotkey)
-- [useHotkeys](#usehotkeys)
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
 
-# Functions
+## useHotkeys()
+
+hook that creates an eventlistener for keydown and cleans it up when needed
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 useHotkey (exported const)
+
+hook that creates an eventlistener for keydown and cleans it up when needed
+
+
+## 📄 useHotkeys (exported const)
+
+hook that creates an eventlistener for keydown and cleans it up when needed
+
 
 ## isAltB()
 
@@ -52,6 +56,28 @@ Operation exposing any utility function related to hotkeys in the browser
 | - | | |
 | **Output** |    |    |
 
+
+
+## isCtrlP()
+
+^ P
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 isAltB (exported const)
+
+⎇ B
+
+
+## 📄 isCtrlP (exported const)
+
+^ P
 
 
 ## isAltN()
@@ -81,30 +107,6 @@ Operation exposing any utility function related to hotkeys in the browser
 
 
 
-## isCtrlBacktick()
-
-^ `
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-
-## isCtrlP()
-
-^ P
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-
 ## isCtrlS()
 
 ^ S
@@ -117,80 +119,13 @@ Operation exposing any utility function related to hotkeys in the browser
 
 
 
-## isCtrlSpace()
-
-^ `
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-
-## useHotkey()
-
-hook that creates an eventlistener for keydown and cleans it up when needed
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-
-## useHotkeys()
-
-hook that creates an eventlistener for keydown and cleans it up when needed
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-# Variables
-
-## 📄 isAltB (exported const)
-
-⎇ B
-
-
 ## 📄 isAltN (exported const)
 
 ## 📄 isAltO (exported const)
 
 ## 📄 isAltW (exported const)
 
-## 📄 isCtrlBacktick (exported const)
-
-^ `
-
-
-## 📄 isCtrlP (exported const)
-
-^ P
-
-
 ## 📄 isCtrlS (exported const)
 
 ^ S
-
-
-## 📄 isCtrlSpace (exported const)
-
-^ `
-
-
-## 📄 useHotkey (exported const)
-
-hook that creates an eventlistener for keydown and cleans it up when needed
-
-
-## 📄 useHotkeys (exported const)
-
-hook that creates an eventlistener for keydown and cleans it up when needed
 

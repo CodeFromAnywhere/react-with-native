@@ -4,19 +4,7 @@ read-kvmd-file (node operation)
 
 
 
-# Outline
-
-## Functions
-
-- [readKvmdFile](#readKvmdFile)
-
-## Variables
-
-- [readKvmdFile](#readkvmdfile)
-
-
-
-# Functions
+# Api reference
 
 ## readKvmdFile()
 
@@ -29,7 +17,6 @@ Reads and parses a markdown file
 | **Output** |    |    |
 
 
-# Variables
 
 ## 📄 readKvmdFile (exported const)
 

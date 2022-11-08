@@ -4,30 +4,7 @@ fs-util-js (node operation)
 
 
 
-# Outline
-
-## Functions
-
-- [getExtension](#getExtension)
-- [getFolderJs](#getFolderJs)
-- [getSubExtension](#getSubExtension)
-- [isPathRelative](#isPathRelative)
-- [removeTrailingSlash](#removeTrailingSlash)
-- [withoutExtension](#withoutExtension)
-
-## Variables
-
-- [getExtension](#getextension)
-- [getFolderJs](#getfolderjs)
-- [getSubExtension](#getsubextension)
-- [isPathRelative](#ispathrelative)
-- [path](#path)
-- [removeTrailingSlash](#removetrailingslash)
-- [withoutExtension](#withoutextension)
-
-
-
-# Functions
+# Api reference
 
 ## getExtension()
 
@@ -43,6 +20,30 @@ NB: not sure, but could be nice to replace this with path.extname(pathString)
 
 
 
+## 📄 getExtension (exported const)
+
+returns the extension of the filename or path WITHOUT dot
+
+NB: not sure, but could be nice to replace this with path.extname(pathString)
+
+
+## withoutExtension()
+
+removes extension from the filename
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 withoutExtension (exported const)
+
+removes extension from the filename
+
+
 ## getFolderJs()
 
 | Input      |    |    |
@@ -51,6 +52,8 @@ NB: not sure, but could be nice to replace this with path.extname(pathString)
 | **Output** | string   |    |
 
 
+
+## 📄 getFolderJs (exported const)
 
 ## getSubExtension()
 
@@ -70,46 +73,9 @@ NB: not sure, but could be nice to replace this with path.extname(pathString)
 
 
 
-## removeTrailingSlash()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-
-## withoutExtension()
-
-removes extension from the filename
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-# Variables
-
-## 📄 getExtension (exported const)
-
-returns the extension of the filename or path WITHOUT dot
-
-NB: not sure, but could be nice to replace this with path.extname(pathString)
-
-
-## 📄 getFolderJs (exported const)
-
 ## 📄 getSubExtension (exported const)
 
 ## 📄 isPathRelative (exported const)
 
 ## 📄 path (exported const)
-
-## 📄 removeTrailingSlash (exported const)
-
-## 📄 withoutExtension (exported const)
-
-removes extension from the filename
 

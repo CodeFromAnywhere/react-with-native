@@ -4,25 +4,9 @@ react-with-native-select (ui-es5 operation)
 
 
 
-# Outline
-
 ## Docs
 
 - [README](#readme)
-
-## Functions
-
-- [getRealValue](#getRealValue)
-- [Select](#Select)
-
-## Interfaces
-
-- [ID](#id)
-
-## Variables
-
-- [getRealValue](#getrealvalue)
-- [Select](#select)
 
 
 
@@ -49,16 +33,7 @@ yarn add react-with-native-select
 Coming soon
 
 
-# Functions
-
-## getRealValue()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | { value: {  }, <br />label: string, <br /> }   |    |
-
-
+# Api reference
 
 ## <Select />
 
@@ -71,13 +46,6 @@ renders either a SelectDropdown or SelectDrawer, based on screensize
 | **Output** | `JSX.Element`   |    |
 
 
-# Interfaces
-
-## 🔷 ID
-
-# Variables
-
-## 📄 getRealValue (exported const)
 
 ## 📄 Select (exported const)
 

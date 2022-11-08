@@ -4,21 +4,9 @@ writer-types (node operation)
 
 
 
-# Outline
+# Api reference
 
-## Interfaces
-
-- [SubtextConfig](#subtextconfig)
-- [SubtextRelatedThing](#subtextrelatedthing)
-- [SubwordConfig](#subwordconfig)
-- [SubwordViewMode](#subwordviewmode)
-- [WriterViewEnum](#writerviewenum)
-
-
-
-# Interfaces
-
-## 🔷 SubtextConfig
+## 🔹 SubtextConfig
 
 Configuration of what should be shown in the subtext
 
@@ -38,18 +26,7 @@ Properties:
 
 
 
-## 🔷 SubtextRelatedThing
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| type  | string |  |
-| quantity  | string |  |
-
-
-
-## 🔷 SubwordConfig
+## 🔹 SubwordConfig
 
 Configurate what should be shown about words
 
@@ -74,7 +51,5 @@ Properties:
 
 
 
-## 🔷 SubwordViewMode
-
-## 🔷 WriterViewEnum
+## 🔹 WriterViewEnum
 
