@@ -12,3 +12,10 @@ react-with-native-ui (js operation)
 
 ## 📄 inputClass (exported const)
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

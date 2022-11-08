@@ -95,3 +95,92 @@ Renders a markdown codeblock with a text as content and an optional extension
 
 renders the MardkownParse interface (including frontmatter)
 
+# Internal
+
+<details><summary>Show internal (13)</summary>
+  
+  # getUrlFromRelativeUrl()
+
+gets the renderable asset url from the relative url
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| relativeUrl | string |  |,| relativeUrlStrategy | api / static |  |,| projectRelativeBaseFolderPath | string |  |,| projectRelativeMarkdownFilePath | string |  |
+| **Output** | `String`   |    |
+
+
+
+## getYoutubeId()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| url (optional) | string |  |
+| **Output** | string   |    |
+
+
+
+## renderFrontmatter()
+
+Renders markdown frontmatter parameters (and optionally a spacer)
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameters | `Frontmatter` |  |,| config (optional) | { renderSpacer?: boolean, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## renderMarkdownChunk()
+
+renders a MarkdownChunk interface
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| chunk | `MarkdownChunk` |  |,| config | `MarkdownParseRenderConfig` |  |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## renderMarkdownTitle()
+
+renders a markdown title (level should be 1 for h1 and 6 for h6)
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| title | string |  |,| level | number |  |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 🔹 CodeblockMode
+
+## 📄 defaultExpandedMode (exported const)
+
+## 📄 defaultMinimalMode (exported const)
+
+## 📄 getUrlFromRelativeUrl (exported const)
+
+gets the renderable asset url from the relative url
+
+
+## 📄 getYoutubeId (exported const)
+
+## 📄 renderFrontmatter (exported const)
+
+Renders markdown frontmatter parameters (and optionally a spacer)
+
+
+## 📄 renderMarkdownChunk (exported const)
+
+renders a MarkdownChunk interface
+
+
+## 📄 renderMarkdownTitle (exported const)
+
+renders a markdown title (level should be 1 for h1 and 6 for h6)
+  </details>
+

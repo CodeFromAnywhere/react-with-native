@@ -52,3 +52,16 @@ For functions, interfaces, variables:
 
 
 
+# Internal
+
+<details><summary>Show internal (2)</summary>
+  
+  # 📄 authorizationLevelReadonlyArray (exported const)
+
+
+
+
+## 📄 authorizationLevelStringArray (exported const)
+
+  </details>
+

@@ -58,3 +58,78 @@ Properties:
 | labels (optional) | array |  |
 
 
+# Internal
+
+<details><summary>Show internal (9)</summary>
+  
+  # getFrontmatterValueString()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| value (optional) | {  } |  |
+| **Output** | {  }   |    |
+
+
+
+## quotedOrNot()
+
+For now, simply quote a string if it contains commas
+
+There are probably more edgecases that need to be fixed here
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| string | string |  |
+| **Output** | `String`   |    |
+
+
+
+## stringifyNewlines()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| string | string |  |
+| **Output** |    |    |
+
+
+
+## 🔹 FrontmatterValue
+
+## 🔹 MarkdownIndex
+
+This could hold anything that we can index about a markdown-file
+
+It should probably also be posted in the markdown file itself as "downmatter", if that's a good idea
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| detectedLanguage  | string |  |
+| labels  | array |  |
+
+
+
+## 📄 getFrontmatterValueString (exported const)
+
+## 📄 quotedOrNot (exported const)
+
+For now, simply quote a string if it contains commas
+
+There are probably more edgecases that need to be fixed here
+
+
+## 📄 stringifyNewlines (exported const)
+
+## 📄 test (exported const)
+
+  </details>
+

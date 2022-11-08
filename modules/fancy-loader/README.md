@@ -20,3 +20,10 @@ fancy-loader (js operation)
 
 ## 📄 FancyLoader (exported const)
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

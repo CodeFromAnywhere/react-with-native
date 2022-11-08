@@ -80,3 +80,23 @@ const { handleModal } = useModal();
 
 ## 📄 useModal (exported const)
 
+# Internal
+
+<details><summary>Show internal (2)</summary>
+  
+  # <Modal />
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 ModalContext (exported const)
+
+  </details>
+

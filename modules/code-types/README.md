@@ -1244,3 +1244,429 @@ makes a markdownModelType from a markdownParse.
 
 ## 📄 runEveryPeriodStringArray (exported const)
 
+# Internal
+
+<details><summary>Show internal (24)</summary>
+  
+  # getFunctionExersize()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| functionId | string |  |
+| **Output** |    |    |
+
+
+
+## parseMarkdownModelTimestamp()
+
+First tries to look at the frontmatter value, this is leading because it is what the user sees and the file system of the os could be inconsistent
+
+If this frontmatter doesn't exist, the markdownParse is checked for a date. This should be information collected from the file system
+
+If that doesn't succeed, sometimes we'll set it to  the current timestamp
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameters | `Frontmatter` |  |,| markdownParse | `MarkdownParse` |  |,| parameterName | createdAt / createdFirstAt / updatedAt / deletedAt / openedAt |  |
+| **Output** | {  }   |    |
+
+
+
+## tryParseDate()
+
+Tries to parse a date from a string
+- implements default behavior of `new Date` with a try catch
+- returns a unix timestamp (ms since 1970 AD)
+
+TODO: put in a better location... date-util?
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| dateString | string |  |
+| **Output** | number   |    |
+
+
+
+## 🔹 CompilerOptions
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| allowJs (optional) | boolean |  |
+| allowSyntheticDefaultImports (optional) | boolean |  |
+| allowUmdGlobalAccess (optional) | boolean |  |
+| allowUnreachableCode (optional) | boolean |  |
+| allowUnusedLabels (optional) | boolean |  |
+| alwaysStrict (optional) | boolean |  |
+| baseUrl (optional) | string |  |
+| charset (optional) | string |  |
+| checkJs (optional) | boolean |  |
+| declaration (optional) | boolean |  |
+| declarationMap (optional) | boolean |  |
+| emitDeclarationOnly (optional) | boolean |  |
+| declarationDir (optional) | string |  |
+| disableSizeLimit (optional) | boolean |  |
+| disableSourceOfProjectReferenceRedirect (optional) | boolean |  |
+| disableSolutionSearching (optional) | boolean |  |
+| disableReferencedProjectLoad (optional) | boolean |  |
+| downlevelIteration (optional) | boolean |  |
+| emitBOM (optional) | boolean |  |
+| emitDecoratorMetadata (optional) | boolean |  |
+| exactOptionalPropertyTypes (optional) | boolean |  |
+| experimentalDecorators (optional) | boolean |  |
+| forceConsistentCasingInFileNames (optional) | boolean |  |
+| importHelpers (optional) | boolean |  |
+| importsNotUsedAsValues (optional) | number |  |
+| inlineSourceMap (optional) | boolean |  |
+| inlineSources (optional) | boolean |  |
+| isolatedModules (optional) | boolean |  |
+| jsx (optional) | number |  |
+| keyofStringsOnly (optional) | boolean |  |
+| lib (optional) | array |  |
+| locale (optional) | string |  |
+| mapRoot (optional) | string |  |
+| maxNodeModuleJsDepth (optional) | number |  |
+| module (optional) | number |  |
+| moduleResolution (optional) | number |  |
+| moduleSuffixes (optional) | array |  |
+| moduleDetection (optional) | number |  |
+| newLine (optional) | number |  |
+| noEmit (optional) | boolean |  |
+| noEmitHelpers (optional) | boolean |  |
+| noEmitOnError (optional) | boolean |  |
+| noErrorTruncation (optional) | boolean |  |
+| noFallthroughCasesInSwitch (optional) | boolean |  |
+| noImplicitAny (optional) | boolean |  |
+| noImplicitReturns (optional) | boolean |  |
+| noImplicitThis (optional) | boolean |  |
+| noStrictGenericChecks (optional) | boolean |  |
+| noUnusedLocals (optional) | boolean |  |
+| noUnusedParameters (optional) | boolean |  |
+| noImplicitUseStrict (optional) | boolean |  |
+| noPropertyAccessFromIndexSignature (optional) | boolean |  |
+| assumeChangesOnlyAffectDirectDependencies (optional) | boolean |  |
+| noLib (optional) | boolean |  |
+| noResolve (optional) | boolean |  |
+| noUncheckedIndexedAccess (optional) | boolean |  |
+| out (optional) | string |  |
+| outDir (optional) | string |  |
+| outFile (optional) | string |  |
+| paths (optional) | object |  |
+| preserveConstEnums (optional) | boolean |  |
+| noImplicitOverride (optional) | boolean |  |
+| preserveSymlinks (optional) | boolean |  |
+| preserveValueImports (optional) | boolean |  |
+| project (optional) | string |  |
+| reactNamespace (optional) | string |  |
+| jsxFactory (optional) | string |  |
+| jsxFragmentFactory (optional) | string |  |
+| jsxImportSource (optional) | string |  |
+| composite (optional) | boolean |  |
+| incremental (optional) | boolean |  |
+| tsBuildInfoFile (optional) | string |  |
+| removeComments (optional) | boolean |  |
+| rootDir (optional) | string |  |
+| rootDirs (optional) | array |  |
+| skipLibCheck (optional) | boolean |  |
+| skipDefaultLibCheck (optional) | boolean |  |
+| sourceMap (optional) | boolean |  |
+| sourceRoot (optional) | string |  |
+| strict (optional) | boolean |  |
+| strictFunctionTypes (optional) | boolean |  |
+| strictBindCallApply (optional) | boolean |  |
+| strictNullChecks (optional) | boolean |  |
+| strictPropertyInitialization (optional) | boolean |  |
+| stripInternal (optional) | boolean |  |
+| suppressExcessPropertyErrors (optional) | boolean |  |
+| suppressImplicitAnyIndexErrors (optional) | boolean |  |
+| target (optional) | number |  |
+| traceResolution (optional) | boolean |  |
+| useUnknownInCatchVariables (optional) | boolean |  |
+| resolveJsonModule (optional) | boolean |  |
+| types (optional) | array |  |
+| typeRoots (optional) | array |  |
+| esModuleInterop (optional) | boolean |  |
+| useDefineForClassFields (optional) | boolean |  |
+
+
+
+## 🔸 Dataset
+
+jsonMultiple model
+
+
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| slug  | string |  |
+| name  | string |  |
+| language  | string |  |
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| categoryStackCalculated (optional) | array |  |
+| modelName  | string |  |
+| filter (optional) | object |  |
+| sort (optional) | object |  |
+| maxRows (optional) | number |  |
+| startFromIndex (optional) | number |  |
+| objectParameterKeys (optional) | array |  |
+| ignoreObjectParameterKeys (optional) | array |  |
+
+
+
+## 🔹 DatasetFilter
+
+Can be better, see https://www.w3schools.com/js/js_comparisons.asp
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| objectParameterKey  | string |  |
+| value (optional) | string |  |
+| operator  | string |  |
+| filterFunctionName (optional) | string |  |
+
+
+
+## 🔹 DatasetSort
+
+Sort by comparing the two values using the `Array.sort` method and Greater than and Less than operators.
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| objectParameterKey  | string |  |
+| sortDirection (optional) | string |  |
+| sortFunctionName (optional) | string |  |
+
+
+
+## 🔹 MarkdownAssetType
+
+type of asset that is being embedded
+
+
+
+
+
+
+
+
+## 🔹 MarkdownContentLevel
+
+0 is a paragraph
+1-6 is h1 until h6
+
+
+
+
+
+
+
+
+## 🔹 MarkdownEmbed
+
+Anything in the format `![alt](src)`
+
+NB: I need to be very clear how this one works
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| alt  | string |  |
+| src  | string |  |
+| type  | string |  |
+
+
+
+## 🔹 MarkdownLink
+
+Anything in the format `[alt](href)`
+
+It needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| alt  | string |  |
+| href  | string |  |
+| type  | string |  |
+
+
+
+## 🔹 ProjectType
+
+DEPRECATED: TODO: should use OperationClassification
+
+
+
+
+
+
+
+
+## 🔸 SocialMediaCallToAction
+
+markdown model
+
+
+
+A call to action suffix is a handy model that can be used to place under a postable. this way we are getting much more conversions from the traffic received on media
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| markdown  | string |  |
+| categoryStackCalculated  | array |  |
+
+
+
+## 🔹 TypeCoverage
+
+quantification of coverage of the specified type or subtypes in our database.
+
+
+
+
+
+
+
+
+## 🔸 WebsiteCallToAction
+
+jsonMultiple model
+
+
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| slug  | string |  |
+| name  | string |  |
+| language  | string |  |
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| categoryStackCalculated (optional) | array |  |
+| url  | string |  |
+| title  | string |  |
+| description  | string |  |
+| banner (optional) | string |  |
+
+
+
+## 🔹 WebsiteHeader
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| headerImage  | object |  |
+| headerTitle  | string |  |
+| headerSubTitle  | string |  |
+| headerCta  | object |  |
+
+
+
+## 📄 commentTypesConst (exported const)
+
+## 📄 dbStorageMethodsConst (exported const)
+
+## 📄 getFunctionExersize (exported const)
+
+## 📄 indexDbModelFolders (exported const)
+
+## 📄 indexDbModels (exported const)
+
+All type interfaces that are used to index stuff, which are added to the database
+
+NB: It's not handy to get this from the database because this is used to generate the database xD
+
+
+## 📄 parseMarkdownModelTimestamp (exported const)
+
+First tries to look at the frontmatter value, this is leading because it is what the user sees and the file system of the os could be inconsistent
+
+If this frontmatter doesn't exist, the markdownParse is checked for a date. This should be information collected from the file system
+
+If that doesn't succeed, sometimes we'll set it to  the current timestamp
+
+
+## 📄 runEveryPeriodReadonlyArray (exported const)
+
+## 📄 tryParseDate (exported const)
+
+Tries to parse a date from a string
+- implements default behavior of `new Date` with a try catch
+- returns a unix timestamp (ms since 1970 AD)
+
+TODO: put in a better location... date-util?
+  </details>
+

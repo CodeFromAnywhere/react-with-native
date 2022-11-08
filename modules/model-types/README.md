@@ -471,3 +471,167 @@ country code without +
 
 ## 📄 markdownModelTypeToMarkdownString (exported const)
 
+# Internal
+
+<details><summary>Show internal (16)</summary>
+  
+  # generatePassword()
+
+/**
+ * generates a password. By default, uses a length of 14
+ */
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| passwordLength (optional) | number |  |
+| **Output** | `String`   |    |
+
+
+
+## generateTime()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## 🔹 CreatedAt
+
+## 🔹 CreatedFirstAt
+
+in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.
+
+
+
+
+
+
+
+
+## 🔹 DeletedAt
+
+## 🔹 Email
+
+## 🔹 Index
+
+used for md files. index is the line
+
+
+
+
+
+
+
+
+## 🔹 RelationType
+
+This probably doesn't work, but it would be great if it would. This way I'd like to say that any model can have keys that end with "Id". These keys should always refer to Ids from other models.
+Also, if a model has a key like this, it is inferred that there is also a key without the Id suffix which does or doesn't cointain the actual model specified by the id.
+
+If this cannot be done in typescript, it can be convention, and we can create a linter for this.
+
+Wooh!
+
+```
+const relations: RelationType = {
+helloId: "hoi",
+byeId: "bye",
+};
+```
+
+The above seems to be working fine, so it IS possible!
+
+TODO: think about it... should the name of the parameter be dependent on the strategy of how the model is stored? Maybe just call it all id, right? We can also make the index a string by just prepending a string to it.
+
+
+
+
+
+
+
+
+## 🔹 ShouldNotBeStored
+
+Parameters that should not be stored into the database
+
+
+
+
+
+
+
+
+## 🔹 SlugModelProperties
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| slug  | string |  |
+| name  | string |  |
+| language  | string |  |
+
+
+
+## 🔹 Time
+
+Time
+
+Time can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time.
+I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.
+
+It is the amount of ms since 1970.
+
+I could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.
+
+Therefore, let's store all time values in the format Date.now()
+
+
+
+
+
+
+
+
+## 🔹 TimeTypes
+
+TimeTypes is often extended with modelTypes.
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+
+
+
+## 🔹 UpdatedAt
+
+## 🔹 Url
+
+valid url, can be validated
+
+
+
+
+
+
+
+
+## 📄 generateTime (exported const)
+
+## 📄 languages (exported const)
+
+keys are the iso codes which will be saved in the db, the values are values which can be shown to the user in any UI
+  </details>
+

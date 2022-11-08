@@ -22,3 +22,10 @@ Reads and parses a markdown file
 
 Reads and parses a markdown file
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

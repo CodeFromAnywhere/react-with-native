@@ -40,3 +40,10 @@ Shows where we are in the filesystem
 
 ## 📄 renderBreadCrumbs (exported const)
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

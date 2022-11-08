@@ -300,3 +300,100 @@ CSS Modules, react-datepicker-cssmodules.css
 
 ## 📄 TimeInput (exported const)
 
+# Internal
+
+<details><summary>Show internal (11)</summary>
+  
+  # castToNumber()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## <FileInput />
+
+import Icon from "./icon.svg";
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## isNumber()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## <MapInput />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 🔹 MapLocation
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| latitude  | number |  |
+| longitude  | number |  |
+| zoom  | number |  |
+
+
+
+## 🔹 Suggestion
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| bbox  | array |  |
+| center  | array |  |
+| id  | string |  |
+| place_name  | string |  |
+| place_type  | array |  |
+| text  | string |  |
+
+
+
+## 🔹 ViewPort
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| width  | string |  |
+| height  | string |  |
+| latitude  | number |  |
+| longitude  | number |  |
+| zoom  | number |  |
+
+
+
+## 📄 castToNumber (exported const)
+
+## 📄 FileInput (exported const)
+
+## 📄 isNumber (exported const)
+
+## 📄 MapInput (exported const)
+
+  </details>
+

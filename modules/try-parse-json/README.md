@@ -22,3 +22,10 @@ if text isn't json, returns null
 
 if text isn't json, returns null
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

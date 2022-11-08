@@ -79,3 +79,137 @@ NB: be careful, not to change the simplifiedSchema after using this hook for the
 
 (it will give `Error: Rendered more hooks than during the previous render`)
 
+# Internal
+
+<details><summary>Show internal (13)</summary>
+  
+  # <ArrayForm />
+
+Component to render a parameter that holds an array
+
+This is simply a wrapper around another `SimplifiedSchemaForm` where the `onChange` and `values` are slightly different
+
+This component renders a `SimplifiedSchemaForm` for every item in the array, and adds buttons to insert/remove new items.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## getReferencedModelDataItem()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |,| referencedModelData (optional) | `ReferencableModelData` |  |
+| **Output** |    |    |
+
+
+
+## <ObjectForm />
+
+Component to render a parameter that holds an object
+
+This is simply a wrapper around another SimplifiedSchemaForm where the onChange and values are slightly different
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <ReferenceInput />
+
+This component renders an input to select an item to reference from another model (or multiple)
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## renderParameterTitle()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 🔹 ReferencedModelDataItem
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| data (optional) | array |  |
+| isLoading (optional) | boolean |  |
+| parameterName  | string |  |
+| dataParameterName (optional) | string |  |
+| descriptor (optional) | string |  |
+| keyInModel (optional) | string |  |
+| interfaceName (optional) | string |  |
+| isReferenceMultipleParameter  | boolean |  |
+| isReferenceSingleParameter  | boolean |  |
+| isReferenceParameter  | boolean |  |
+
+
+
+## 🔹 ReferenceItem
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| id  | string |  |
+| slug (optional) | string |  |
+| name (optional) | string |  |
+| categoryStackCalculated (optional) | array |  |
+
+
+
+## 🔹 ReferenceItemsObject
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| data (optional) | array |  |
+| isLoading (optional) | boolean |  |
+
+
+
+## 📄 ArrayForm (exported const)
+
+Component to render a parameter that holds an array
+
+This is simply a wrapper around another `SimplifiedSchemaForm` where the `onChange` and `values` are slightly different
+
+This component renders a `SimplifiedSchemaForm` for every item in the array, and adds buttons to insert/remove new items.
+
+
+## 📄 getReferencedModelDataItem (exported const)
+
+## 📄 ObjectForm (exported const)
+
+Component to render a parameter that holds an object
+
+This is simply a wrapper around another SimplifiedSchemaForm where the onChange and values are slightly different
+
+
+## 📄 ReferenceInput (exported const)
+
+This component renders an input to select an item to reference from another model (or multiple)
+
+
+## 📄 renderParameterTitle (exported const)
+
+  </details>
+

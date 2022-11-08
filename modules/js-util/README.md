@@ -646,3 +646,180 @@ DEPRECATED in favour of objectMapSync and objectMapAsync
 
 sums all keys of an array of objects, assuming the objects have the same datastructure and assuming the values contain either numbers or undefined
 
+# Internal
+
+<details><summary>Show internal (14)</summary>
+  
+  # createEnum()
+
+creates an enum object from a readonly const array so you don't have to
+------
+const taskNames = ["a","b","c"] as const;
+type TaskNames = typeof taskNames[number];
+const enummm = createEnum(taskNames);
+(value of enummm: { a: "a", b: "b", c: "c" })
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## groupByKey()
+
+key should be of type string!
+
+input = [{path:"xyz"},{path:"xyz"},{path:"abc"}]
+groupByKey(input, "path")
+ouput: { xyz: [{path:"xyz"},{path:"xyz"}], abc: [{path:"abc"}]}
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## mapAsync()
+
+mapAsync makes it possible to map over an array async without having to do the promise.all afterwards
+
+It saves a lot of lines of code, and makes it more readable
+Example usage:
+
+
+```ts
+
+const myNumbers = [1, 2, 3, 4, 5];
+
+const doubleAsync = (num) => Promise.resolve(num + num);
+const sqrtAsync = (sum) => Promise.resolve(sum * sum);
+const halfAsync = (time) => Promise.resolve(time / 2);
+
+const doubleSqrtHalfs = await mapAsync(myNumbers, doubleAsync)
+.then((sums) => mapAsync(sums, sqrtAsync))
+.then((times) => mapAsync(times, halfAsync));
+```
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## mapKeys()
+
+maps over all keys in an object and replaces them using a mapfn
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## mergeObjectParameters()
+
+merges two objects: a config object and a defaults object. If the config object has something missing, a default will be used from the defaults object.
+
+In short: merges two objects, for every parameter, use the default as a fallback
+
+DEPRECATED: in favor of mergeObjects
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## reverseString()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| string | string |  |
+| **Output** | `String`   |    |
+
+
+
+## sumObjectParameters()
+
+sums all parameters in two objects together
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## 📄 createEnum (exported const)
+
+creates an enum object from a readonly const array so you don't have to
+------
+const taskNames = ["a","b","c"] as const;
+type TaskNames = typeof taskNames[number];
+const enummm = createEnum(taskNames);
+(value of enummm: { a: "a", b: "b", c: "c" })
+
+
+## 📄 groupByKey (exported const)
+
+key should be of type string!
+
+input = [{path:"xyz"},{path:"xyz"},{path:"abc"}]
+groupByKey(input, "path")
+ouput: { xyz: [{path:"xyz"},{path:"xyz"}], abc: [{path:"abc"}]}
+
+
+## 📄 mapAsync (exported const)
+
+mapAsync makes it possible to map over an array async without having to do the promise.all afterwards
+
+It saves a lot of lines of code, and makes it more readable
+Example usage:
+
+
+```ts
+
+const myNumbers = [1, 2, 3, 4, 5];
+
+const doubleAsync = (num) => Promise.resolve(num + num);
+const sqrtAsync = (sum) => Promise.resolve(sum * sum);
+const halfAsync = (time) => Promise.resolve(time / 2);
+
+const doubleSqrtHalfs = await mapAsync(myNumbers, doubleAsync)
+.then((sums) => mapAsync(sums, sqrtAsync))
+.then((times) => mapAsync(times, halfAsync));
+```
+
+
+## 📄 mapKeys (exported const)
+
+maps over all keys in an object and replaces them using a mapfn
+
+
+## 📄 mergeObjectParameters (exported const)
+
+merges two objects: a config object and a defaults object. If the config object has something missing, a default will be used from the defaults object.
+
+In short: merges two objects, for every parameter, use the default as a fallback
+
+DEPRECATED: in favor of mergeObjects
+
+
+## 📄 reverseString (exported const)
+
+## 📄 sumObjectParameters (exported const)
+
+sums all parameters in two objects together
+  </details>
+

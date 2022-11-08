@@ -51,3 +51,25 @@ renders either a SelectDropdown or SelectDrawer, based on screensize
 
 renders either a SelectDropdown or SelectDrawer, based on screensize
 
+# Internal
+
+<details><summary>Show internal (3)</summary>
+  
+  # getRealValue()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { value: {  }, <br />label: string, <br /> }   |    |
+
+
+
+## 🔹 ID
+
+## 📄 getRealValue (exported const)
+
+  </details>
+

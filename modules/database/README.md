@@ -22,3 +22,161 @@ Operation that can be used within any typerepo to interact with the `fs-orm` (ty
 
 ## 📄 getMergedQueryConfig (exported const)
 
+# Internal
+
+<details><summary>Show internal (25)</summary>
+  
+  # generateCsvInstance()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## generateJsonSingleInstance()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## generateKvmdInstance()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## generateMarkdownInstance()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## generateSlugTestModel()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## getCli()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## randomName()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `String`   |    |
+
+
+
+## removeCli()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## runModelEndToEndTest()
+
+NB: we can't do a maketest because this thing relies on logging and we don't want to auto-run it
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## testOperationModels()
+
+Test if it can find all `OperationIndex`, `OperationConfig`, `PackageJson`, `TsConfig`
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## updateCli()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## upsertCli()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 generateCsvInstance (exported const)
+
+## 📄 generateJsonSingleInstance (exported const)
+
+## 📄 generateKvmdInstance (exported const)
+
+## 📄 generateMarkdownInstance (exported const)
+
+## 📄 generateSlugTestModel (exported const)
+
+## 📄 getCli (exported const)
+
+## 📄 randomName (exported const)
+
+## 📄 removeCli (exported const)
+
+## 📄 runModelEndToEndTest (exported const)
+
+NB: we can't do a maketest because this thing relies on logging and we don't want to auto-run it
+
+
+## 📄 testDb (exported const)
+
+a db is created with models from all different db storage methods
+
+
+## 📄 testOperationModels (exported const)
+
+Test if it can find all `OperationIndex`, `OperationConfig`, `PackageJson`, `TsConfig`
+
+
+## 📄 updateCli (exported const)
+
+## 📄 upsertCli (exported const)
+
+  </details>
+

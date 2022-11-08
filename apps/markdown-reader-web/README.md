@@ -7,3 +7,25 @@ markdown-reader-web (web operation)
 
 # Api reference
 
+# Internal
+
+<details><summary>Show internal (3)</summary>
+  
+  # <MyApp />
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 getStaticPaths (exported const)
+
+## 📄 getStaticProps (exported const)
+
+  </details>
+

@@ -64,3 +64,63 @@ Any parameter names that should render a textArea
 
 ## 📄 referencePluralParameterNames (exported const)
 
+# Internal
+
+<details><summary>Show internal (8)</summary>
+  
+  # getParameterContentType()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** |    |    |
+
+
+
+## isGeneratedParameterName()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** |    |    |
+
+
+
+## 🔹 PatternMatcher
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| pattern  | string |  |
+| matches  | string |  |
+| isSingleWord (optional) | boolean |  |
+
+
+
+## 📄 generatedParameterNames (exported const)
+
+## 📄 getParameterContentType (exported const)
+
+## 📄 isGeneratedParameterName (exported const)
+
+## 📄 parameterNames (exported const)
+
+### Form input types
+
+How do we show different UI's based on certain things we know about some parameter (name + type)? There are many things
+
+- All "image" or "xxxImage" should be Image + camera inputs
+- All "asset" or "xxxAsset" should be File inputs
+- All "recording" or "xxxAudio" should be mic inputs
+- All "position" or "xxxPosition" should be coordinates which should be pickable on the map
+- All "path" or "xxxPath" should be an input where you can select a relative path from project root or operation src root, depending on what we need. It needs to be clear what kind of paths are allowed, so we need to think about all the options and if we can all put that in the parameter name (would be best) or if we need to use the description...
+
+
+## 📄 patternMatchers (exported const)
+
+  </details>
+

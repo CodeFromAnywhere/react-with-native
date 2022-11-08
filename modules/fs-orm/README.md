@@ -596,3 +596,628 @@ DB main storage convention
 
 ## 📄 mergeConfigs (exported const)
 
+# Internal
+
+<details><summary>Show internal (68)</summary>
+  
+  # addDefaultValues()
+
+Adds timestamps, id, and a slug IF these things are not already present
+
+NB: slugs will be slugified here!
+NB: if there is a name present, slug will be added here!
+
+NB: for kvmd storage, id will be set to a kebab-case of the name
+
+NB: does not add the ModelLocation parameters
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| bareItem | `Creation<AugmentedAnyModelType>` |  |,| isKvmdStorage (optional) | boolean |  |
+| **Output** |    |    |
+
+
+
+## alterAny()
+
+low level function that alters data from any storage method at a certain location
+
+comprises all dbStorageMethods
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## alterCsv()
+
+Alters a csv
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## alterJsonMultiple()
+
+Alters a json single file
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## alterJsonSingle()
+
+Alters a json single file
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## alterKeyValueMarkdown()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## alterMarkdown()
+
+Alters a markdown file
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## augmentItemWithReferencedDataRecursively()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| item | `AugmentedAnyModelType` |  |,| includeArray | `Include`[] |  |,| includeData | `IncludeDataObject` | Final includeData object to take items from |
+| **Output** |    |    |
+
+
+
+## calculateOperationsObject()
+
+Needed in case of manual project root, otherwise use SDK!
+
+Returns project relative operation base paths
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| manualProjectRoot | string |  |
+| **Output** |    |    |
+
+
+
+## findParent()
+
+this location matches any category that equals the categorystack
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| arrayItem | `Storing<KeyValueMarkdownModelType>` |  |,| newCategoryStack | `CategoryStack` |  |
+| **Output** | {  }   |    |
+
+
+
+## getAugmentedData()
+
+Gets the stored data from any file with any storage method, and augments the modelLocation onto it...
+
+Also augments the `name`, `slug` and `categoryStackCalculated` onto this if the `dbStorageMethod` is `markdown` or `jsonSingle` and if `operationRelativePath` is not set
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| dbFileLocation | `DbFileLocation` |  |,| dbStorageMethod | `DbStorageMethod` |  |
+| **Output** |    |    |
+
+
+
+## getDatabaseRootFolder()
+
+Tries to get the root folder where the database folder can be found.
+
+If an operationName is specified, this will be the operation base path
+If not, this will be the project root.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| operationName (optional) | string |  |,| manualProjectRoot (optional) | string |  |
+| **Output** |    |    |
+
+
+
+## getDbFileLocation()
+
+Used by `groupByFile`, which is used for `set` (and thus, also `update`) and `upsert`: determines the new file location.
+
+Applies the convention to get the db-file-location of an item
+
+Based on the merged config:
+
+- if `operationRelativePath` is specified, gets a filePath in the operation
+- if `projectRelativePath` is specified, gets a filepath in the project
+- otherwise gets the pattern and replaces "*" with the slug (or id if slug is not available)
+
+Besides the absolute path, the operationName, projectRelativePath and operationRelativePath are also supplied.
+
+NB: currently, the item's `operationName`, `operationRelativePath` or `projectRelativePath` is not taken into account. It will simply look at the convention to see where it should be saved, and apply the MergedQueryConfig...
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| storedItem | `Storing<AugmentedAnyModelType>` | The ModelLocation properties in the item are completely ignored.
+
+Only the ID, slug and categoryStackCalculated are used to determine the exact file the item should be stored in.
+
+NB: storedItem MUST have a slug or ID, but this should probably be generated before this funciton |,| operationName | null | Should be the operationName from the modellocation of the actual item.
+
+If it is given, this will take priority over the merged query config. |,| mergedConfig | `MergedQueryConfig` |  |,| modelName | string |  |
+| **Output** |    |    |
+
+
+
+## getDbStorageMethodExtension()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| dbStorageMethod | `DbStorageMethod` |  |
+| **Output** | `String`   |    |
+
+
+
+## getItemModelLocation()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## getLength()
+
+Safely gets the length of something
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## getLocationPattern()
+
+Returns the pattern or an exact relative path that the file(s) should be stored at.
+
+If a pattern contains a star at the place of the filename, it will search the folder recursively for all files with the extension in the pattern.
+
+Returning relative path has no preceding slash
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| dbStorageMethod | `DbStorageMethod` |  |,| modelName | string |  |,| mergedConfig | `MergedQueryConfig` |  |
+| **Output** | string   |    |
+
+
+
+## getMergedConfigOperationPath()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| mergedConfig | `MergedQueryConfig` |  |,| manualProjectRoot (optional) | string |  |
+| **Output** |    |    |
+
+
+
+## getParentSlug()
+
+get a parent slug without the parent_xxxSlug reference (uses the categoryStackCalculated)
+
+can be undefined if the item has no parent
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| item | `Storing<KeyValueMarkdownModelType>` |  |
+| **Output** | string   |    |
+
+
+
+## getRootFolders()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| config | { manualProjectRoot?: string, <br />projectRoot: string, <br />mergedConfig: `MergedQueryConfig`, <br />operationPath: {  }, <br /> } |  |
+| **Output** |    |    |
+
+
+
+## getWildcardDbFileLocations__OLD()
+
+If it all seems good, I can delete this. This is the old method of looking just in the folder itself, it's replaced by looking in all subfolders as well, recursively.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| options | { modelName: string, <br />parsedPath: `path.ParsedPath`, <br />operationName: string, <br />projectRoot: string, <br />rootFolder: `RootDbFolder`, <br /> } |  |
+| **Output** |    |    |
+
+
+
+## getWildcardDbFileLocations()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| options | { modelName: string, <br />parsedPath: `path.ParsedPath`, <br />operationName: string, <br />projectRoot: string, <br />rootFolder: `RootDbFolder`, <br /> } |  |
+| **Output** |    |    |
+
+
+
+## groupByFile()
+
+Used for `set` and `upsert`. Groups creation items into an object where keys are file paths and values are items that need to be stored
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## makeStoringItem()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## removeKeyValueMarkdown()
+
+Takes stored data and a slug to remove
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| storedData | `Storing<KeyValueMarkdownModelType>`[] |  |,| slug | string | slug to remove |
+| **Output** |    |    |
+
+
+
+## removeMultiple()
+
+Function that lets you remove items from one specific file, for any storage method
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## upsertItems()
+
+upsert an item into storage in any storage method
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## upsertKeyValueMarkdown()
+
+Takes stored data and an item
+
+- updates the data and sets some rows to "item" if the item is found (through the slug). this works almost the same as the regular upsert function
+
+- otherwise inserts, at the right category, in the right place in the array
+
+BEWARE:
+
+- the categoryStackCalculated must be existing in the markdownfile.
+- you cannot insert a header, always insert an item with `isHeaderCalculated:false`
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| storedData | `Storing<KeyValueMarkdownModelType>`[] |  |,| storingItem | `Storing<KeyValueMarkdownModelType>` |  |
+| **Output** |    |    |
+
+
+
+## upsert()
+
+Takes stored data and an item
+
+- updates the data and sets some rows to "item" if the item is found (through the id or slug)
+- otherwise inserts
+
+NB: this function works for any storage method except for key value markdown
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| storedData | `Storing<AugmentedAnyModelType>`[] | The items that were already there |,| storingItems | {  } | The items that need to be overwritten or inserted |,| onlyInsert (optional) | boolean | If true, the upserting will fail if there are occuring items with equal slugs/ids |
+| **Output** |    |    |
+
+
+
+## 🔹 AnyModelObject
+
+## 🔹 AnyModelObject
+
+## 🔹 IncludeConfig
+
+All possible ways to include items from references into a get query
+
+
+
+> All possible ways to include items from references into a get query
+
+
+
+
+## 🔹 IncludeDataObject
+
+## 🔹 IncludeConfig
+
+All possible ways to include items from references into a get query
+
+
+
+
+
+
+
+
+## 🔹 IncludeDataObject
+
+## 🔹 RootDbFolder
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| basePath  | string | is an operation Base path in case of operationName is not null |
+| operationName  | string |  |
+
+
+
+## 🔹 RootDbFolder
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| basePath  | string |  |
+| operationName  | string |  |
+
+
+
+## 🔹 UpsertKeyValueMarkdownItem
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| parameters  | object |  |
+| item  | object | handy model type for storing stuff in a KeyValue Markdown file. empty lines are omitted<br /><br />all you need to specify in the kvmd is the key and the value, separated by ":"<br /><br />NB: there can be a `parent_modelNameSlug` key exposed that should refer to the parent slug |
+
+
+
+## 🔹 UpsertKeyValueMarkdownItem
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| parameters  | object |  |
+| item  | object |  |
+
+
+
+## 📄 addDefaultValues (exported const)
+
+Adds timestamps, id, and a slug IF these things are not already present
+
+NB: slugs will be slugified here!
+NB: if there is a name present, slug will be added here!
+
+NB: for kvmd storage, id will be set to a kebab-case of the name
+
+NB: does not add the ModelLocation parameters
+
+
+## 📄 alterAny (exported const)
+
+low level function that alters data from any storage method at a certain location
+
+comprises all dbStorageMethods
+
+
+## 📄 alterCsv (exported const)
+
+Alters a csv
+
+
+## 📄 alterJsonMultiple (exported const)
+
+Alters a json single file
+
+
+## 📄 alterJsonSingle (exported const)
+
+Alters a json single file
+
+
+## 📄 alterKeyValueMarkdown (exported const)
+
+## 📄 alterMarkdown (exported const)
+
+Alters a markdown file
+
+
+## 📄 augmentItemWithReferencedDataRecursively (exported const)
+
+## 📄 calculateOperationsObject (exported const)
+
+Needed in case of manual project root, otherwise use SDK!
+
+Returns project relative operation base paths
+
+
+## 📄 findParent (exported const)
+
+this location matches any category that equals the categorystack
+
+
+## 📄 getAugmentedData (exported const)
+
+Gets the stored data from any file with any storage method, and augments the modelLocation onto it...
+
+Also augments the `name`, `slug` and `categoryStackCalculated` onto this if the `dbStorageMethod` is `markdown` or `jsonSingle` and if `operationRelativePath` is not set
+
+
+## 📄 getDatabaseRootFolder (exported const)
+
+Tries to get the root folder where the database folder can be found.
+
+If an operationName is specified, this will be the operation base path
+If not, this will be the project root.
+
+
+## 📄 getDbFileLocation (exported const)
+
+Used by `groupByFile`, which is used for `set` (and thus, also `update`) and `upsert`: determines the new file location.
+
+Applies the convention to get the db-file-location of an item
+
+Based on the merged config:
+
+- if `operationRelativePath` is specified, gets a filePath in the operation
+- if `projectRelativePath` is specified, gets a filepath in the project
+- otherwise gets the pattern and replaces "*" with the slug (or id if slug is not available)
+
+Besides the absolute path, the operationName, projectRelativePath and operationRelativePath are also supplied.
+
+NB: currently, the item's `operationName`, `operationRelativePath` or `projectRelativePath` is not taken into account. It will simply look at the convention to see where it should be saved, and apply the MergedQueryConfig...
+
+
+## 📄 getDbStorageMethodExtension (exported const)
+
+## 📄 getItemModelLocation (exported const)
+
+## 📄 getLength (exported const)
+
+Safely gets the length of something
+
+
+## 📄 getLocationPattern (exported const)
+
+Returns the pattern or an exact relative path that the file(s) should be stored at.
+
+If a pattern contains a star at the place of the filename, it will search the folder recursively for all files with the extension in the pattern.
+
+Returning relative path has no preceding slash
+
+
+## 📄 getMergedConfigOperationPath (exported const)
+
+## 📄 getParentSlug (exported const)
+
+get a parent slug without the parent_xxxSlug reference (uses the categoryStackCalculated)
+
+can be undefined if the item has no parent
+
+
+## 📄 getRootFolders (exported const)
+
+## 📄 getWildcardDbFileLocations__OLD (exported const)
+
+If it all seems good, I can delete this. This is the old method of looking just in the folder itself, it's replaced by looking in all subfolders as well, recursively.
+
+
+## 📄 getWildcardDbFileLocations (exported const)
+
+## 📄 groupByFile (exported const)
+
+Used for `set` and `upsert`. Groups creation items into an object where keys are file paths and values are items that need to be stored
+
+
+## 📄 makeStoringItem (exported const)
+
+## 📄 removeKeyValueMarkdown (exported const)
+
+Takes stored data and a slug to remove
+
+
+## 📄 removeMultiple (exported const)
+
+Function that lets you remove items from one specific file, for any storage method
+
+
+## 📄 upsertItems (exported const)
+
+upsert an item into storage in any storage method
+
+
+## 📄 upsertKeyValueMarkdown (exported const)
+
+Takes stored data and an item
+
+- updates the data and sets some rows to "item" if the item is found (through the slug). this works almost the same as the regular upsert function
+
+- otherwise inserts, at the right category, in the right place in the array
+
+BEWARE:
+
+- the categoryStackCalculated must be existing in the markdownfile.
+- you cannot insert a header, always insert an item with `isHeaderCalculated:false`
+
+
+## 📄 upsert (exported const)
+
+Takes stored data and an item
+
+- updates the data and sets some rows to "item" if the item is found (through the id or slug)
+- otherwise inserts
+
+NB: this function works for any storage method except for key value markdown
+  </details>
+

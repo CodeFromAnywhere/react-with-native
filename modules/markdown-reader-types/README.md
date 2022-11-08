@@ -66,3 +66,31 @@ Properties:
 | description (optional) | string |  |
 
 
+# Internal
+
+<details><summary>Show internal (2)</summary>
+  
+  # 🔹 AugmentedWordObject
+
+This datastructure is probably needed to make it more efficient.
+
+Should be a lookup table for the querypath for every word
+
+
+
+
+
+
+
+
+## 🔹 AugmentedWordTypeEnum
+
+NB: can later be replaced with a string enum type: person, definition, variable, function, type interface, operation, bundle (but there may be much more)
+
+
+
+
+
+
+  </details>
+

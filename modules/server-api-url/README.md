@@ -13,3 +13,10 @@ Operation that exports the api url that the api should be able to be found at, a
 
 ## 📄 isDev (exported const)
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

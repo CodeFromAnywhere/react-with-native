@@ -104,3 +104,25 @@ return queryStore[queryKey];
 };
 ```
 
+# Internal
+
+<details><summary>Show internal (1)</summary>
+  
+  # 🔹 CustomUrlStoreConfig
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| type  | string |  |
+| isArray (optional) | boolean |  |
+| allowUndefined (optional) | boolean |  |
+
+  </details>
+

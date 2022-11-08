@@ -47,3 +47,10 @@ Reads and parses JSON file
 
 make sure to specify what type the file contains as a generic!
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

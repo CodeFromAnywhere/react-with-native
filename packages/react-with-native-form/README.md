@@ -266,3 +266,63 @@ export default FormPage;
 
 ## 📄 setConfig (exported const)
 
+# Internal
+
+<details><summary>Show internal (8)</summary>
+  
+  # <DefaultInputContainer />
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## errorOnField()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## <Input />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## isObject()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## notEmpty()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## 📄 DefaultInputContainer (exported const)
+
+## 📄 errorOnField (exported const)
+
+## 📄 Input (exported const)
+
+  </details>
+

@@ -228,3 +228,28 @@ If you don't have access to the `useStore` hook, maybe because you're doing some
 
 If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
 
+# Internal
+
+<details><summary>Show internal (2)</summary>
+  
+  # setItem()
+
+If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
+
+BEWARE! Updating this won't update your react components!
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| key | string |  |,| value | {  } |  |
+| **Output** |    |    |
+
+
+
+## 📄 setItem (exported const)
+
+If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function
+
+BEWARE! Updating this won't update your react components!
+  </details>
+

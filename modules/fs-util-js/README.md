@@ -79,3 +79,23 @@ removes extension from the filename
 
 ## 📄 path (exported const)
 
+# Internal
+
+<details><summary>Show internal (2)</summary>
+  
+  # removeTrailingSlash()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 removeTrailingSlash (exported const)
+
+  </details>
+

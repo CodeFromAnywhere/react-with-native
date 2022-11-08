@@ -26,3 +26,10 @@ defaults to "ts" |
 
 small util function to create a markdown for a string.
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

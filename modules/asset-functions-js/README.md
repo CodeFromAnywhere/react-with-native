@@ -157,3 +157,39 @@ NB: we also need to convert the file itself in case of mp3
 
 ## 📄 removeTokenIfPresent (exported const)
 
+# Internal
+
+<details><summary>Show internal (5)</summary>
+  
+  # getAssetDirectlyApiUrl()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| apiUrl | string |  |,| projectRelativeAssetPath | string |  |
+| **Output** | `String`   |    |
+
+
+
+## getNameFromRelativePath()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| relativePath | string |  |
+| **Output** | `String`   |    |
+
+
+
+## 📄 getAssetDirectlyApiUrl (exported const)
+
+## 📄 getNameFromRelativePath (exported const)
+
+## 📄 tokenPrefix (exported const)
+
+NB: any filename should not be expected to enter this as part of its name. Otherwise it breaks the code and the filename will be changed to the thing before this string.
+
+NB: don't put any things inhere that are different, slugified, as the name will be slugified!
+  </details>
+

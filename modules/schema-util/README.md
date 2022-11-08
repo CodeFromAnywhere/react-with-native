@@ -226,3 +226,94 @@ Output:
 
 To test this one, test `npx rebuildOperation filename-conventions`
 
+# Internal
+
+<details><summary>Show internal (9)</summary>
+  
+  # findFirstCommentTypes()
+
+Tries to find tie first appearing special comment line and parses it and returns it as part of the `CommentTypeObject`
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| strippedFullComment (optional) | string |  |
+| **Output** | {  }   |    |
+
+
+
+## getRefLink()
+
+gets the $ref from a schema and parses the interface name from it
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| ref (optional) | string |  |
+| **Output** |    |    |
+
+
+
+## getSchemaItems()
+
+==========
+
+Since `JSONSchema7`'s property `items` is fairly hard to use, this function gets that property in an easier to use way.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| schema (optional) | `Schema` | schema type interface we use in TsInterface
+
+NB: don't export because this would make this type exist twice. |
+| **Output** |    |    |
+
+
+
+## simplifiedSchemaToTypeDefinitionString()
+
+Converts a simplifiedSchema definition back into a type interface string
+
+With this, types can be generated in different ways
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| simplifiedSchema (optional) | `SimplifiedSchema` |  |
+| **Output** |    |    |
+
+
+
+## 🔹 SchemaItem
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| name  | string |  |
+| schema (optional) | object |  |
+
+
+
+## 📄 findFirstCommentTypes (exported const)
+
+Tries to find tie first appearing special comment line and parses it and returns it as part of the `CommentTypeObject`
+
+
+## 📄 getRefLink (exported const)
+
+gets the $ref from a schema and parses the interface name from it
+
+
+## 📄 getSchemaItems (exported const)
+
+Since `JSONSchema7`'s property `items` is fairly hard to use, this function gets that property in an easier to use way.
+
+
+## 📄 simplifiedSchemaToTypeDefinitionString (exported const)
+
+Converts a simplifiedSchema definition back into a type interface string
+
+With this, types can be generated in different ways
+  </details>
+

@@ -17,3 +17,10 @@ labeled-button (js operation)
 
 ## 📄 LabeledButton (exported const)
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

@@ -53,3 +53,28 @@ Properties:
 
 ## 🔹 WriterViewEnum
 
+# Internal
+
+<details><summary>Show internal (2)</summary>
+  
+  # 🔹 SubtextRelatedThing
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| type  | string |  |
+| quantity  | string |  |
+
+
+
+## 🔹 SubwordViewMode
+
+  </details>
+

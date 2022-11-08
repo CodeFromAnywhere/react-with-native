@@ -39,3 +39,10 @@ Reads a markdown absolute path to a `MarkdownFile` model
 
 Reads a markdown absolute path to a `MarkdownFile` model
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

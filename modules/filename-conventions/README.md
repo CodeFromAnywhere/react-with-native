@@ -118,3 +118,36 @@ Returns true if a fileid includes one of the specified subextensions.
 
 ## 📄 typescriptExtensions (exported const)
 
+# Internal
+
+<details><summary>Show internal (9)</summary>
+  
+  # 🔹 DropboxExtension
+
+these filetypes should never be opened with explore. They should be processed and either indexed or converted. This creates a md or json with the proper metadata, which, in turn, can be explored.
+
+
+
+
+
+
+
+
+## 🔹 FileType
+
+## 🔹 JsonExtension
+
+## 🔹 MarkdownExtension
+
+## 🔹 TypescriptExtension
+
+## 📄 jsonExtensionsConst (exported const)
+
+## 📄 markdownExtensionsConst (exported const)
+
+## 📄 operationUnindexableNamesOrSubExtensions (exported const)
+
+## 📄 typescriptExtensionsConst (exported const)
+
+  </details>
+

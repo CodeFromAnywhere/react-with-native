@@ -429,3 +429,311 @@ parse a md file to all the needed info
 
 ## 📄 renameAndCreate (exported const)
 
+# Internal
+
+<details><summary>Show internal (32)</summary>
+  
+  # canAccessSync()
+
+uses fs.access to determine if something can be accessed
+
+Check File access constants for possible values of mode. It is possible to create a mask consisting of the bitwise OR of two or more values (e.g. fs.constants.W_OK | fs.constants.R_OK).
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## canAccess()
+
+uses fs.access to determine if something can be accessed
+
+Check File access constants for possible values of mode. It is possible to create a mask consisting of the bitwise OR of two or more values (e.g. fs.constants.W_OK | fs.constants.R_OK).
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## canExecuteSync()
+
+File is executable to the calling process
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## canExecute()
+
+File is executable to the calling process
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## canSeeSync()
+
+File is visible to the calling process
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## canWrite()
+
+File is writable to the calling process
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## findFileNameCaseInsensitive()
+
+returns a path of a fileName
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| folderPath | string |  |,| fileName | string | fileName with extension |
+| **Output** |    |    |
+
+
+
+## findFilesRecursively()
+
+DEPRECATED: in favour of `explore` from "k-explore"
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { relativeFolder?: string, <br />path: string, <br /> }[]   |    |
+
+
+
+## findSensibleFiles()
+
+DEPRECATED:
+
+this is sensible-specific
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { relativeFolder?: string, <br />path: string, <br /> }[]   |    |
+
+
+
+## getPathCombinations()
+
+gets combinations for paths
+
+input: [["operation1","operation2"], "db/value-export", ["index.ts","test.ts","cli.ts"]]
+output: ["operation1/db/value-export/index.ts","operation2/db/value-export/index.ts","operation1/db/value-export/test.ts","operation2/db/value-export/test.ts","operation1/db/value-export/cli.ts","operation2/db/value-export/cli.ts"]
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| chunksSegments | {  }[] |  |
+| **Output** | string[]   |    |
+
+
+
+## oneUp()
+
+Finds the number at the end of a filename and increases it
+If there is no number yet, concatenates '1' to a string
+
+E.g.
+
+- `hello-world` becomes `hello-world1`
+- `hello36` becomes `hello37`
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| filename | string |  |
+| **Output** | `String`   |    |
+
+
+
+## writeToFiles()
+
+writes all values in an object to the file that should be specified as key of that value
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 🔹 FolderPath
+
+DEPRECATED: just use ParsedPath
+
+
+
+> DEPRECATED: just use ParsedPath
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| relativeFolder (optional) | string |  |
+| path  | string | unlike PathLike, this is only a string<br /><br />For now, we don't have a clear convention whether or not this string should be absolute or anything. |
+
+
+
+## 🔹 FolderPath
+
+DEPRECATED: just use ParsedPath
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| relativeFolder (optional) | string |  |
+| path  | string |  |
+
+
+
+## 🔹 Fs
+
+all handy Fs types
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| PathLike  | object |  |
+| Stats  | object |  |
+| Dir  | object |  |
+| Dirent  | object |  |
+
+
+
+## 🔹 MarkdownContent
+
+## 🔹 MarkdownContent
+
+## 🔹 UnixTimestamp
+
+## 🔹 UnixTimestamp
+
+## 📄 canAccessSync (exported const)
+
+uses fs.access to determine if something can be accessed
+
+Check File access constants for possible values of mode. It is possible to create a mask consisting of the bitwise OR of two or more values (e.g. fs.constants.W_OK | fs.constants.R_OK).
+
+
+## 📄 canAccess (exported const)
+
+uses fs.access to determine if something can be accessed
+
+Check File access constants for possible values of mode. It is possible to create a mask consisting of the bitwise OR of two or more values (e.g. fs.constants.W_OK | fs.constants.R_OK).
+
+
+## 📄 canExecuteSync (exported const)
+
+File is executable to the calling process
+
+
+## 📄 canExecute (exported const)
+
+File is executable to the calling process
+
+
+## 📄 canSeeSync (exported const)
+
+File is visible to the calling process
+
+
+## 📄 canWrite (exported const)
+
+File is writable to the calling process
+
+
+## 📄 findFileNameCaseInsensitive (exported const)
+
+returns a path of a fileName
+
+
+## 📄 findFilesRecursively (exported const)
+
+DEPRECATED: in favour of `explore` from "k-explore"
+
+
+## 📄 findFiles (exported const)
+
+DEPRECATED:
+
+SHOULD BE REPLACED
+
+this is sensible-specific
+
+
+## 📄 findSensibleFiles (exported const)
+
+DEPRECATED:
+
+this is sensible-specific
+
+
+## 📄 getPathCombinations (exported const)
+
+gets combinations for paths
+
+input: [["operation1","operation2"], "db/value-export", ["index.ts","test.ts","cli.ts"]]
+output: ["operation1/db/value-export/index.ts","operation2/db/value-export/index.ts","operation1/db/value-export/test.ts","operation2/db/value-export/test.ts","operation1/db/value-export/cli.ts","operation2/db/value-export/cli.ts"]
+
+
+## 📄 oneUp (exported const)
+
+Finds the number at the end of a filename and increases it
+If there is no number yet, concatenates '1' to a string
+
+E.g.
+
+- `hello-world` becomes `hello-world1`
+- `hello36` becomes `hello37`
+
+
+## 📄 writeToFiles (exported const)
+
+writes all values in an object to the file that should be specified as key of that value
+  </details>
+

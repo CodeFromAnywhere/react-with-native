@@ -17,3 +17,10 @@ markdown-reader-functions-js (node operation)
 
 ## 📄 getQueryPath (exported const)
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

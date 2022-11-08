@@ -59,3 +59,23 @@ Removes the 's' if it is found at the end of the parameter name
 
 ## 📄 isPlural (exported const)
 
+# Internal
+
+<details><summary>Show internal (2)</summary>
+  
+  # isSingular()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameterName | string |  |
+| **Output** | {  }   |    |
+
+
+
+## 📄 isSingular (exported const)
+
+  </details>
+

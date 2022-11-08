@@ -66,3 +66,30 @@ gets an api url for a context get api
 
 returns something like `[apiUrl]/[apiFunctionName][queryString]`
 
+# Internal
+
+<details><summary>Show internal (3)</summary>
+  
+  # untypedApiFunction()
+
+Used for calling the actual api for a function with some config
+
+NB: this is not a typed function as we are just overwriting it so we don't need any inference on this
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| fnName | string |  |,| config | `ApiConfig` |  |,| parameters | {  } |  |
+| **Output** |    |    |
+
+
+
+## 📄 sdkExample (exported const)
+
+## 📄 untypedApiFunction (exported const)
+
+Used for calling the actual api for a function with some config
+
+NB: this is not a typed function as we are just overwriting it so we don't need any inference on this
+  </details>
+

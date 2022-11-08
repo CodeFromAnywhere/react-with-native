@@ -141,3 +141,58 @@ Gets all children keys of a nested object at a certain (nested) location in the 
 
 The reduce is a bit vague, I need to  test this function further to make sure it does exactly what I want.
 
+# Internal
+
+<details><summary>Show internal (9)</summary>
+  
+  # <NestedMenuItem />
+
+General purpose NestedMenuItem
+
+TODO: make style customizable
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## reduceQueryPathsRecursively()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| queryPaths | string[] |  |,| initialValue | `NestedPathObject` |  |
+| **Output** |    |    |
+
+
+
+## useExpanded()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| queryPath (optional) | string |  |
+| **Output** |    |    |
+
+
+
+## 🔹 ExpandedObject
+
+## 🔹 NestedObject
+
+## 📄 NestedMenuItem (exported const)
+
+General purpose NestedMenuItem
+
+TODO: make style customizable
+
+
+## 📄 reduceQueryPathsRecursively (exported const)
+
+## 📄 { StoreProvider, useStore } (exported const)
+
+## 📄 useExpanded (exported const)
+
+  </details>
+

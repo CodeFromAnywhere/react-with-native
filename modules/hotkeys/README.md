@@ -129,3 +129,41 @@ hook that creates an eventlistener for keydown and cleans it up when needed
 
 ^ S
 
+# Internal
+
+<details><summary>Show internal (4)</summary>
+  
+  # isCtrlBacktick()
+
+^ `
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## isCtrlSpace()
+
+^ `
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 isCtrlBacktick (exported const)
+
+^ `
+
+
+## 📄 isCtrlSpace (exported const)
+
+^ `
+  </details>
+

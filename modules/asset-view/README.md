@@ -38,3 +38,25 @@ shows an `Asset` with interactivity
 - Audio show duration and amplitude
 - Video/screen show thumbnail and duration
 
+# Internal
+
+<details><summary>Show internal (3)</summary>
+  
+  # <AssetView />
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { asset: `Asset`, <br />className?: string, <br />projectRelativeReferencingFilePath: string, <br />hideDownloadLink?: boolean, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 AssetView (exported const)
+
+## 📄 defaultClassName (exported const)
+
+  </details>
+

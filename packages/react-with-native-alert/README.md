@@ -82,3 +82,12 @@ const YourPage = () => {
 
 ## 📄 useAlert (exported const)
 
+# Internal
+
+<details><summary>Show internal (1)</summary>
+  
+  # 📄 AlertContext (exported const)
+
+
+  </details>
+

@@ -29,3 +29,10 @@ Writes anything (string or json) the assets folder of the operation of the calle
 
 Useful for testing
 
+# Internal
+
+<details><summary>Show internal (0)</summary>
+  
+  
+  </details>
+

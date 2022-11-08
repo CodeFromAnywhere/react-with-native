@@ -102,3 +102,60 @@ format ["word1","word2","word3"] from a string of any casing.
 
 ## 📄 pascalCase (exported const)
 
+# Internal
+
+<details><summary>Show internal (10)</summary>
+  
+  # capitalCase()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** |    |    |
+
+
+
+## convertCase()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string | NB: texts of more than a sentence are not supported |,| target | `Casing` |  |
+| **Output** |    |    |
+
+
+
+## getDelimiter()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| target | `Casing` |  |
+| **Output** | _ /   / - /    |    |
+
+
+
+## snakeCase()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** |    |    |
+
+
+
+## 🔹 Casing
+
+## 📄 capitalCase (exported const)
+
+## 📄 convertCase (exported const)
+
+## 📄 getDelimiter (exported const)
+
+## 📄 snakeCase (exported const)
+
+## 📄 test (exported const)
+
+  </details>
+

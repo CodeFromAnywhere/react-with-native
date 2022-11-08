@@ -297,3 +297,117 @@ will start with "/"
 
 Checks whether or not an absolute path contains an operation. The only check it's doing is that the folder must contain both a package.json as well as a tsconfig.json
 
+# Internal
+
+<details><summary>Show internal (16)</summary>
+  
+  # findFolderWhereMatch()
+
+recursive. goes up a folder until it finds a package.json
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { folderPath: string, <br />matchResult: {  }, <br /> }   |    |
+
+
+
+## findOperationBasePathWithClassification()
+
+recursive. goes up until it finds a folder that's an operation
+
+because it had to read the package.json anyway, it's returning the operation classification as well
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| startPath | string |  |
+| **Output** | { folderPath: string, <br />classification: {  }, <br /> }   |    |
+
+
+
+## getAllPackageJsonDependencies()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| p | `PackageJson` |  |
+| **Output** | string[]   |    |
+
+
+
+## getCommonAncestor()
+
+Finds the common ancestor for two absolute pahts
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| path1 | string |  |,| path2 | string |  |
+| **Output** | `String`   |    |
+
+
+
+## hasDependency()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| packageJson | `PackageJson` |  |,| dependency | string |  |
+| **Output** |    |    |
+
+
+
+## isWorkspaceRoot()
+
+simple sync function to check if a folder is the root of a workspace (not operation but a workspace)
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| folderPath | string |  |
+| **Output** | { isSensibleProject: boolean, <br />isWorkspaceRoot: boolean, <br /> }   |    |
+
+
+
+## 📄 findFolderWhereMatch (exported const)
+
+recursive. goes up a folder until it finds a package.json
+
+
+## 📄 findOperationBasePathWithClassification (exported const)
+
+recursive. goes up until it finds a folder that's an operation
+
+because it had to read the package.json anyway, it's returning the operation classification as well
+
+
+## 📄 getAllPackageJsonDependencies (exported const)
+
+## 📄 getCommonAncestor (exported const)
+
+Finds the common ancestor for two absolute pahts
+
+
+## 📄 hasDependency (exported const)
+
+## 📄 isWorkspaceRoot (exported const)
+
+simple sync function to check if a folder is the root of a workspace (not operation but a workspace)
+
+
+## 📄 osRootFoldersConst (exported const)
+
+can only be accessed in the OS
+
+
+## 📄 osRootFolders (exported const)
+
+## 📄 projectRootFoldersConst (exported const)
+
+can be accessed in projects as well as in the OS
+
+
+## 📄 projectRootFolders (exported const)
+
+  </details>
+

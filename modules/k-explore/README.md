@@ -137,3 +137,90 @@ find all active git folders (folders having `.git`)
 
 ## 📄 findAllPackages (exported const)
 
+# Internal
+
+<details><summary>Show internal (11)</summary>
+  
+  # exploreMultiple()
+
+DEPRECATED: not sure if we still need it, look up usecases, can prob be replaced now
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## explorePreset()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## findAllDotGitFolders()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## findAllFoldersWithName()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| config | { basePath: string, <br />folderName: string, <br />ignoreOperations?: boolean, <br /> } |  |
+| **Output** |    |    |
+
+
+
+## findFilesRecursively()
+
+Explores your files with many possibilities.
+
+NB: this function only searches one basePath, while explore can do multiple
+
+TODO: since this not only finds files but also explores them, naming should be exploreFilesRecursively, probably.
+
+TODO: TextJson[] is a bit weird name for the resulting type interface...
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 exploreMultiple (exported const)
+
+DEPRECATED: not sure if we still need it, look up usecases, can prob be replaced now
+
+
+## 📄 explorePreset (exported const)
+
+## 📄 findAllDotGitFolders (exported const)
+
+## 📄 findAllFoldersWithName (exported const)
+
+## 📄 findFilesRecursively (exported const)
+
+Explores your files with many possibilities.
+
+NB: this function only searches one basePath, while explore can do multiple
+
+TODO: since this not only finds files but also explores them, naming should be exploreFilesRecursively, probably.
+
+TODO: TextJson[] is a bit weird name for the resulting type interface...
+
+
+## 📄 test (exported const)
+
+  </details>
+

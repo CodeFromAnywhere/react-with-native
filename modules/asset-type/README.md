@@ -227,3 +227,71 @@ Properties:
 | caption  | string |  |
 
 
+# Internal
+
+<details><summary>Show internal (4)</summary>
+  
+  # 🔹 CompressionOption
+
+CompressionOption should be able to be applied on the model parameter through frontmatter
+
+- default (default option): Default King OS wide compression. User can make customize it within a sensible limit
+- none: no compression applied by default (user can optionally compress it)
+- high: compressed bigtime by default (user cannot make it be compressed less)
+- low: compressed just a little (user cannot make it be compressed less, but can optionally compress it more)
+
+
+
+> CompressionOption should be able to be applied on the model parameter through frontmatter<br /><br />- default (default option): Default King OS wide compression. User can make customize it within a sensible limit<br />- none: no compression applied by default (user can optionally compress it)<br />- high: compressed bigtime by default (user cannot make it be compressed less)<br />- low: compressed just a little (user cannot make it be compressed less, but can optionally compress it more)
+
+
+
+
+## 🔹 CompressionOption
+
+CompressionOption should be able to be applied on the model parameter through frontmatter
+
+- default (default option): Default King OS wide compression. User can make customize it within a sensible limit
+- none: no compression applied by default (user can optionally compress it)
+- high: compressed bigtime by default (user cannot make it be compressed less)
+- low: compressed just a little (user cannot make it be compressed less, but can optionally compress it more)
+
+
+
+
+
+
+
+
+## 🔹 UploadAssetBody
+
+NB: other things like alt, final destination etc, should not be sent with the upload, but instead with the function
+
+
+
+> NB: other things like alt, final destination etc, should not be sent with the upload, but instead with the function
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| authToken (optional) | string |  |
+
+
+
+## 🔹 UploadAssetBody
+
+NB: other things like alt, final destination etc, should not be sent with the upload, but instead with the function
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| authToken (optional) | string |  |
+
+  </details>
+

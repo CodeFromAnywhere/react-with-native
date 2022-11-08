@@ -363,3 +363,157 @@ Form is just a html form on web. On react-native, it's a View
 
 ## 📄 Toggle (exported const)
 
+# Internal
+
+<details><summary>Show internal (21)</summary>
+  
+  # getTailwindModules()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| options | { packages?: string[], <br />modules?: string[], <br />isWorkspace?: boolean, <br /> } |  |
+| **Output** |    |    |
+
+
+
+## <I />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## joinClassNames()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| args | {  }[] |  |
+| **Output** |    |    |
+
+
+
+## <Nav />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <Ol />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <Pressable />
+
+button on web, pressable on react-native
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <Select />
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## <TouchableOpacity />
+
+button on web, pressable on react-native
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## trimClassName()
+
+in react-native not all classNames are supported
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| className | string |  |
+| **Output** | `String`   |    |
+
+
+
+## wrapInTextIfNeeded()
+
+NB: figure out a way to do the styles of the text right.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| children | {  } |  |,| textClassName (optional) | string |  |
+| **Output** |    |    |
+
+
+
+## 🔹 SvgType
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| src  | object |  |
+| width (optional) | number |  |
+| height (optional) | number |  |
+| className (optional) | string |  |
+| style (optional) | object |  |
+
+
+
+## 📄 getTailwindModules (exported const)
+
+## 📄 I (exported const)
+
+## 📄 joinClassNames (exported const)
+
+## 📄 Nav (exported const)
+
+## 📄 Ol (exported const)
+
+## 📄 Pressable (exported const)
+
+button on web, pressable on react-native
+
+
+## 📄 Select (exported const)
+
+## 📄 TouchableOpacity (exported const)
+
+button on web, pressable on react-native
+
+
+## 📄 trimClassName (exported const)
+
+in react-native not all classNames are supported
+
+
+## 📄 wrapInTextIfNeeded (exported const)
+
+  </details>
+
