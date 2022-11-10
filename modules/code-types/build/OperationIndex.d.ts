@@ -33,27 +33,28 @@ export declare const operationClassificationConst: readonly ["js", "ts", "node",
  *
  * ## Possible values
  *
- * js: only js (no node) (well, ts of course, but it gets built into js)
+ * - js: only js (no node) (well, ts of course, but it gets built into js)
  *
- * ts: non-built ts code
+ * - ts: non-built ts code
  *
- * node: includes other node packages, operations, core-imports, or globals.
+ * - node: includes other node packages, operations, core-imports, or globals.
  *
- * server: exposes something on some port when it is ran and uses node code
+ * - server: exposes something on some port when it is ran and uses node code
  *
- * web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...
+ * - web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...
  *
- * app: uses react-native and exposes something on some port when it is ran
+ * - app: uses react-native and exposes something on some port when it is ran
  *
- * DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)
+ * - DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)
  *
- * ui-es5: ui which main entry points to javascript es5 files (this ui package can be built)
+ * - ui-es5: ui which main entry points to javascript es5 files (this ui package can be built)
  *
- * ui-esm: ui which builds to ESM module resolved Javascript
+ * - ui-esm: ui which builds to ESM module resolved Javascript
  */
 export declare type OperationClassification = typeof operationClassificationConst[number];
 export declare type GeneralOperationIndex = {
     updatedAt: number;
+    lastPullTimeAt?: number;
     name: string;
     slug: string;
     /**

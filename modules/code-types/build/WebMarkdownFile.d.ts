@@ -1,4 +1,4 @@
-import { Id, Language, MarkdownModelType, Slug } from "model-types";
+import { Id, Language, MarkdownModelType, Price, Slug } from "model-types";
 import { WebsiteCallToAction } from "./WebsiteCallToAction";
 import { WebsiteHeader } from "./WebsiteHeader";
 /**
@@ -49,6 +49,12 @@ WebsiteHeader {
      * Labels referring to interests
      */
     interestSlugs: Slug[];
+    /**
+     * Price for this file
+     *
+     * NB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.
+     */
+    price: Price;
 }
 /**
  * A call to action suffix is a handy model that can be used to place under a postable. this way we are getting much more conversions from the traffic received on media

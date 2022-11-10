@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+export declare const noEmptyString: (input: string | undefined) => string | undefined;
 export declare const sum: (items: number[]) => number;
 /**
  * function that takes an array of functions and applies them one by one, on the value or the result of the previous function. Only possible if the type of the value stays the same.

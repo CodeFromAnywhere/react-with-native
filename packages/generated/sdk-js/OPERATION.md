@@ -1,14 +1,13 @@
 ---
-createdAt: 1667821320500
-updatedAt: 1667821320500
+createdAt: 1668065067321
+updatedAt: 1668065067321
 deletedAt: 0
-createdFirstAt: 1667821320500
+createdFirstAt: 1668065067321
 categoryStackCalculated: 
-id: uhjgpsivnxgxfxxudkjrkcwp
+id: owoechimwpifzpiefweqrpbs
 slug: sdk-js
 name: sdk-js
 ---
-
 
 operation that imports all `js` functions and variables in the entire project (OS or bundle) and exports an object that has all of them.
 

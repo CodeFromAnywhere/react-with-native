@@ -22,4 +22,6 @@ __exportStar(require("./useExpanded"), exports);
 __exportStar(require("./util/getKeysAtPathFromNestedObject"), exports);
 __exportStar(require("./util/nestedPathObjectToNestedMenu"), exports);
 __exportStar(require("./util/queryPathsArrayToNestedPathObject"), exports);
+__exportStar(require("./NestedPathObject"), exports);
+__exportStar(require("./NestedObject"), exports);
 //# sourceMappingURL=index.js.map

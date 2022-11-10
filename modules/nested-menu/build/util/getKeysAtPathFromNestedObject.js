@@ -4,7 +4,7 @@ exports.getKeysAtPathFromNestedObject = void 0;
 /**
  * Gets all children keys of a nested object at a certain (nested) location in the nested object
  *
- * `nestedObject` should extend the NestedObject.
+ * `nestedObject` should extend the `NestedObject`.
  *
  * The reduce is a bit vague, I need to  test this function further to make sure it does exactly what I want.
  */

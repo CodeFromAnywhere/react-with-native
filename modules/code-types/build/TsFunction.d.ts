@@ -1,4 +1,4 @@
-import { Markdown, TsIndexModelType } from "model-types";
+import { Markdown, Price, TsIndexModelType } from "model-types";
 import { SizeSummary } from "./FolderSummary";
 import { TypeInfo } from "./TypeInfo";
 import { TsComment } from "./TsComment";
@@ -130,5 +130,9 @@ export interface TsFunction extends TsIndexModelType {
      * NB: this is not indexed because this information has nothing to do with the operation itself, but the exposure to the broader monorepo. This is calculated on the fly.
      */
     dependantFiles?: string[];
+    /**
+     * Indexed from frontmatter `price`
+     */
+    price?: Price;
 }
 //# sourceMappingURL=TsFunction.d.ts.map

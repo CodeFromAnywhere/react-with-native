@@ -27,4 +27,8 @@ export declare const removeIndexFromArray: <T>(array: T[], index: number) => T[]
  * finds the last index of an array where a certain filter holds true
  */
 export declare const findLastIndex: <T>(array: T[], findFn: (item: T) => boolean) => number | undefined;
+/**
+ * Takes an item from an index of an array and put it somewhere at another index
+ */
+export declare const putIndexAtIndex: <T>(array: T[], index: number, toIndex: number) => T[];
 //# sourceMappingURL=array-modifications.d.ts.map

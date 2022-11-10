@@ -1,4 +1,4 @@
-export declare const getFolderJs: <T extends string | undefined>(filePath: T) => string | undefined;
+export declare const getFolderJs: <T extends string | undefined>(filePath: T) => T;
 export declare const isPathRelative: (path: string) => boolean;
 export declare const removeTrailingSlash: (p: string) => string;
 export declare const getSubExtension: (fileName: string) => string | undefined;

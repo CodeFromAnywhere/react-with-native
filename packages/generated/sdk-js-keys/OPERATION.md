@@ -1,13 +1,12 @@
 ---
-createdAt: 1667821320416
-updatedAt: 1667821320416
+createdAt: 1668065067301
+updatedAt: 1668065067301
 deletedAt: 0
-createdFirstAt: 1667821320416
+createdFirstAt: 1668065067301
 categoryStackCalculated: 
-id: grnfviciljeiqshcnqvhbafg
+id: oqzjldulwrssbqswsyuaopfh
 slug: sdk-js-keys
 name: sdk-js-keys
 ---
-
 
 Default description

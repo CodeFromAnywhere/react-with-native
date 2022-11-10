@@ -26,9 +26,28 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { getRealSrc } from "./util/getRealSrc.js";
-import { Span } from "react-with-native";
+import { Div, Span } from "react-with-native";
 import { createPopper } from "@popperjs/core";
 import { getFolderJs } from "fs-util-js";
+import { getImplicitId } from "markdown-parse-js";
+export var header = function (_a) {
+    var level = _a.level, children = _a.children;
+    var levelSize = level === 1
+        ? "text-3xl"
+        : level === 2
+            ? "text-2xl"
+            : level === 3
+                ? "text-xl"
+                : level === 4
+                    ? "text-lg"
+                    : level === 5
+                        ? "text-md"
+                        : level === 6
+                            ? "text-sm"
+                            : "text-xs";
+    // {...props
+    return (React.createElement(Div, { id: getImplicitId(String(children)), className: levelSize }, children));
+};
 /**
  * renders a markdown striing (without frontmatter)
  */
@@ -36,6 +55,12 @@ export var renderMarkdownContent = function (content, config) {
     // console.log("Need to render:", content);
     return (React.createElement(Span, null,
         React.createElement(ReactMarkdown, { className: (config === null || config === void 0 ? void 0 : config.big) ? "max-w-lg" : undefined, rehypePlugins: [rehypeHighlight, remarkGfm, rehypeRaw], components: {
+                h1: header,
+                h2: header,
+                h3: header,
+                h4: header,
+                h5: header,
+                h6: header,
                 img: function (_a) {
                     var node = _a.node, src = _a.src, props = __rest(_a, ["node", "src"]);
                     var realSrc = getRealSrc(src, config);

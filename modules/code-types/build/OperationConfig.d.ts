@@ -51,5 +51,6 @@ export interface OperationConfig extends MarkdownModelType {
      * This is the main content of the markdown file
      */
     markdown: string;
+    paymentPlanId?: string;
 }
 //# sourceMappingURL=OperationConfig.d.ts.map
