@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667634654104,
-  "updatedAt": 1667634654104,
+  "createdAt": 1668148853100,
+  "updatedAt": 1668148853100,
   "deletedAt": 0,
-  "createdFirstAt": 1667634654104,
+  "createdFirstAt": 1668148853100,
   "id": "namedparameterstypeof-getparentslug",
   "name": "NamedParameters<typeof getParentSlug>",
   "slug": "namedparameterstypeof-getparentslug",
@@ -27,7 +27,83 @@
       "additionalProperties": false
     },
     "simplifiedSchema": {
-      "properties": [],
+      "properties": [
+        {
+          "name": "item",
+          "required": true,
+          "schema": {
+            "fullComment": "Use this generic if you want to store models in a typesafe way\n\nRemoves the parameters that should not be stored",
+            "properties": [
+              {
+                "name": "id",
+                "required": true,
+                "schema": {
+                  "fullComment": "same as slug\n\nused for compatibility with some general purpose functions\n\nNB: uniqueness is hard to enforce!",
+                  "nb": "uniqueness is hard to enforce!",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "categoryStackCalculated",
+                "required": true,
+                "schema": {
+                  "fullComment": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`\n\n",
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "isHeaderCalculated",
+                "required": true,
+                "schema": {
+                  "fullComment": "Calculated value indicating whether or not the item has children",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "name",
+                "required": true,
+                "schema": {
+                  "fullComment": "key\n\nshould be english because it's kind of part of the codebase!",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "slug",
+                "required": true,
+                "schema": {
+                  "fullComment": "calculated: slug for this key (kebab case form of the name)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "value",
+                "required": false,
+                "schema": {
+                  "fullComment": "value behind the semicolom (:). If not given, will be undefined.\n\nIf possible, will be parsed to a number, boolean, null or undefined... otherwise it's a string\n\ncan be any language that we can detect",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "comment",
+                "required": true,
+                "schema": {
+                  "fullComment": "comment in html syntax. if not given, will be null",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
       "type": "object"
     },
     "typeCoverage": 0,

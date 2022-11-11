@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588128118,
-  "updatedAt": 1667588128118,
+  "createdAt": 1668152090346,
+  "updatedAt": 1668152090346,
   "deletedAt": 0,
-  "createdFirstAt": 1667588128118,
+  "createdFirstAt": 1668152090346,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  context: TextEditingContext | null;\n  augmentedWords?: AugmentedWord[];\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n}) => {\n  const { augmentedWords, context, augmentedWordObject } = props;\n\n  /*\n    For `markdown` + `other`:\n  \n    - `@` = people select tooltip\n    - backtick = AugmentedWord from Ts Statements\n    - `![` = AssetInput tooltip\n    - `_`, `*` or `**` is `AugmentedWord` from Word db\n    - `#` should get a list of `Interest`s\n  */\n\n  // const isAsset = context?.wordAtPosition.startsWith(\"![\");\n  const isTypescriptWord = context?.wordAtPosition.startsWith(\"`\");\n  const isPersonWord = context?.wordAtPosition.startsWith(\"@\");\n  const isSpecialWord = specialCharacters.find((startSignal) =>\n    context?.wordAtPosition.startsWith(startSignal)\n  );\n\n  const filteredAugmentedWords = augmentedWords\n    ? isTypescriptWord\n      ? augmentedWords.filter((x) =>\n          [\"operation\", \"bundle\", \"type\", \"function\", \"variable\"].includes(\n            x.type\n          )\n        )\n      : isPersonWord\n      ? augmentedWords.filter((x) => [\"person\"].includes(x.type))\n      : isSpecialWord\n      ? augmentedWords.filter((x) => [\"word\"].includes(x.type))\n      : []\n    : [];\n\n  const completableWord =\n    isTypescriptWord || isPersonWord\n      ? context?.wordAtPosition.slice(1)\n      : isSpecialWord\n      ? omitSpecialCharactersFromStart(context?.wordAtPosition)\n      : undefined;\n\n  const completions = completableWord\n    ? filteredAugmentedWords\n        .filter((augmentedWord) => {\n          const isMatch = isAugmentedWordMatch(augmentedWord, completableWord);\n\n          return isMatch;\n        })\n        .slice(0, MAX_COMPLETIONS_AMOUNT)\n    : [];\n\n  return (\n    <Div>\n      {completions.map((completion, index) => {\n        return (\n          <Completion\n            augmentedWordObject={augmentedWordObject}\n            augmentedWord={completion}\n            key={`completion${index}`}\n          />\n        );\n      })}\n    </Div>\n  );\n}",
   "description": "",
-  "id": "yldppalrirtoqzezdwbnaugj"
+  "id": "htpjaenxzdwfggvnvpucqrey"
 }

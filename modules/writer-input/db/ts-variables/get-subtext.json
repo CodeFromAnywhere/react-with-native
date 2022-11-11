@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588129678,
-  "updatedAt": 1667588129678,
+  "createdAt": 1668152092195,
+  "updatedAt": 1668152092195,
   "deletedAt": 0,
-  "createdFirstAt": 1667588129678,
+  "createdFirstAt": 1668152092195,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  /**\n   * Raw markdown string\n   */\n  markdownString: string,\n  subtextConfig: SubtextConfig\n): string | undefined => {\n  if (!subtextConfig.isEnabled) return;\n\n  const allSubtext = `${subtextConfig.translations?.join(\n    \",\"\n  )} and the text is '${markdownString}'. Let's hook it into translate, and hook up all stuff!`;\n\n  return allSubtext;\n}",
   "description": "make a subtext text based on the text of a complete paragraph (may contain single newlines and other markdown stuff, but never double newlines)\n\nReturns either the subtext string or a HTML string with a container around the subtext, depending on if you provide `withContainer`",
-  "id": "likzmpmtjcgznehiwombxeta"
+  "id": "jfsojnokthhedabhwfowsupp"
 }

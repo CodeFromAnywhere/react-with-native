@@ -1,18 +1,18 @@
 [
   {
-    "createdAt": 1667818225151,
-    "updatedAt": 1667818225151,
+    "createdAt": 1668149519891,
+    "updatedAt": 1668149519891,
     "deletedAt": 0,
-    "createdFirstAt": 1667818225151,
+    "createdFirstAt": 1668149519891,
     "name": "Comment",
     "slug": "comment",
-    "operationRelativeTypescriptFilePath": "src/removeNumberPrefix.ts",
-    "comment": "removes number prefixes from a file or folder name. Does not remove extension\n\ndefaults to untitled if the file or folder has no name after removing numbers.",
-    "rawStatement": "export const removeNumberPrefix = (fileOrFolderName: string): string => {\n  const parts = fileOrFolderName.split(\".\");\n\n  const newName = parts.reduce((restName, part, currentIndex, array) => {\n    if (restName) return restName;\n    const isTextPart = isNaN(Number(part));\n\n    if (isTextPart) {\n      // NB: everything after here is supposed to be part of the text\n      const restName = array.slice(currentIndex).join(\".\");\n      return restName;\n    }\n  }, undefined as string | undefined);\n\n  return newName || \"untitled\";\n};",
+    "operationRelativeTypescriptFilePath": "src/shouldExposeMarkdownFile.ts",
+    "comment": "markdown file should only be exposed if it doesn't say `privacy: private` or `isDraft: true` in your frontmatter.",
+    "rawStatement": "export const shouldExposeMarkdownFile = (parameters: Frontmatter) => {\n  return !Boolean(parameters.isDraft) && parameters.privacy !== \"private\";\n};",
     "parameters": {},
     "types": [],
-    "firstLine": 1,
+    "firstLine": 3,
     "lastLine": 5,
-    "id": "jmylmsmmmusmekzinreksdjh"
+    "id": "efrhakpvragbonegtpywltsm"
   }
 ]

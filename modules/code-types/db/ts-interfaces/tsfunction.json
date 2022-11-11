@@ -1,15 +1,15 @@
 {
-  "createdAt": 1667684680125,
-  "updatedAt": 1667684680125,
+  "createdAt": 1668150105384,
+  "updatedAt": 1668150105384,
   "deletedAt": 0,
-  "createdFirstAt": 1667684680125,
+  "createdFirstAt": 1668150105384,
   "id": "tsfunction",
   "name": "TsFunction",
   "slug": "tsfunction",
   "operationRelativeTypescriptFilePath": "src/TsFunction.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * ---\n * dbStorageMethod: jsonSingle\n * ---\n *\n * Interface for arrow functions and normal functions\n */\nexport interface TsFunction extends TsIndexModelType {\n  /**\n   * whether or not the function is can be cached (relies on cache invalidation)\n   */\n  canCache?: boolean;\n  /**\n   * if true, the function will get the `server`.js context as its only argument, and it's directly exposed as GET api. Endpoint path will be inferred from the function name\n   *\n   * For this to be indexed to `true`, you need to call the function `abcXyzGetApi` whhere `abcXyz` can be anything.\n   */\n  isGetApi?: boolean;\n  /**\n   * If true, the function will get the `server`.js context as its only argument, and it's directly exposed as POST api. Endpoint path will be inferred from the function name\n   *\n   * For this to be indexed to `true`, you need to call the function `abcXyzPostApi` where `abcXyz` can be anything.\n   */\n  isPostApi?: boolean;\n  /**\n   * The function is immediately exported upon creation. If the os dev tools are being used, this means it is also exported from the operation\n   */\n  isExported: boolean;\n  /**\n   * for all exported functions in node operations, true by default\n   * false for others\n   *\n   * can be overwritten using frontmatter\n   */\n  isApiExposed: boolean;\n\n  /**\n   * The default authorization that is set level applies to users without any specific authorization (granted to everyone).\n   *\n   * should be indexed based on doccomment containing `AUTH-PUBLIC: [execute], [read], [search]`\n   *\n   *\n   */\n  publicAuthorization: AuthorizationLevel[];\n\n  /**\n   You can specify `runEveryPeriod` in your frontmatter of a function. This will set `runEveryPeriod` for the TsFunction. This is used by `function-server`: it will execute CRON-jobs that run these things on those periods.\n\n   Will only work if the function takes no arguments.\n   */\n  runEveryPeriod?: RunEveryPeriodEnum;\n  /**\n   * parsed comment from doc-comment\n   */\n  description?: Markdown;\n\n  /**\n   * raw text of the function\n   */\n  rawText?: string;\n\n  /**\n   * all comments found in a function and the node that they belong to\n   */\n  commentsInside: TsComment[];\n\n  /**\n   * return type JSON Schema definition\n   */\n  returnType: TypeInfo;\n\n  /**\n   * parameters the function takes as its arguments, if any\n   */\n  parameters?: FunctionParameter[];\n\n  /**\n   * size of this function (comments + code)\n   */\n  size: SizeSummary;\n  /**\n   * size of the comments of this function (including surrounding comments)\n   */\n  commentSize?: SizeSummary;\n  /**\n   * size of the code inside the function (without comments)\n   */\n  codeSize?: SizeSummary;\n\n  /**\n   * tells you the size of itself and all its dependencies that are used that are also part of an operation, recursively\n   */\n  cumulativeSize?: SizeSummary;\n  cumulativeCommentSize?: SizeSummary;\n  cumulativeCodeSize?: SizeSummary;\n\n  // Code quality indexes\n\n  /**\n   * maximum amount of times indedented in this function\n   *\n   * good for determining the complexity and finding code that can be simplified/destructured into smaller pieces\n   */\n  maxIndentationDepth: number;\n\n  /**\n   * finds all files that import this function\n   *\n   * NB: this is not indexed because this information has nothing to do with the operation itself, but the exposure to the broader monorepo. This is calculated on the fly.\n   */\n  dependantFiles?: string[];\n}",
+  "rawText": "\n\n/**\n * ---\n * dbStorageMethod: jsonSingle\n * ---\n *\n * Interface for arrow functions and normal functions\n */\nexport interface TsFunction extends TsIndexModelType {\n  /**\n   * whether or not the function is can be cached (relies on cache invalidation)\n   */\n  canCache?: boolean;\n  /**\n   * if true, the function will get the `server`.js context as its only argument, and it's directly exposed as GET api. Endpoint path will be inferred from the function name\n   *\n   * For this to be indexed to `true`, you need to call the function `abcXyzGetApi` whhere `abcXyz` can be anything.\n   */\n  isGetApi?: boolean;\n  /**\n   * If true, the function will get the `server`.js context as its only argument, and it's directly exposed as POST api. Endpoint path will be inferred from the function name\n   *\n   * For this to be indexed to `true`, you need to call the function `abcXyzPostApi` where `abcXyz` can be anything.\n   */\n  isPostApi?: boolean;\n  /**\n   * The function is immediately exported upon creation. If the os dev tools are being used, this means it is also exported from the operation\n   */\n  isExported: boolean;\n  /**\n   * for all exported functions in node operations, true by default\n   * false for others\n   *\n   * can be overwritten using frontmatter\n   */\n  isApiExposed: boolean;\n\n  /**\n   * The default authorization that is set level applies to users without any specific authorization (granted to everyone).\n   *\n   * should be indexed based on doccomment containing `AUTH-PUBLIC: [execute], [read], [search]`\n   *\n   *\n   */\n  publicAuthorization: AuthorizationLevel[];\n\n  /**\n   You can specify `runEveryPeriod` in your frontmatter of a function. This will set `runEveryPeriod` for the TsFunction. This is used by `function-server`: it will execute CRON-jobs that run these things on those periods.\n\n   Will only work if the function takes no arguments.\n   */\n  runEveryPeriod?: RunEveryPeriodEnum;\n  /**\n   * parsed comment from doc-comment\n   */\n  description?: Markdown;\n\n  /**\n   * raw text of the function\n   */\n  rawText?: string;\n\n  /**\n   * all comments found in a function and the node that they belong to\n   */\n  commentsInside: TsComment[];\n\n  /**\n   * return type JSON Schema definition\n   */\n  returnType: TypeInfo;\n\n  /**\n   * parameters the function takes as its arguments, if any\n   */\n  parameters?: FunctionParameter[];\n\n  /**\n   * size of this function (comments + code)\n   */\n  size: SizeSummary;\n  /**\n   * size of the comments of this function (including surrounding comments)\n   */\n  commentSize?: SizeSummary;\n  /**\n   * size of the code inside the function (without comments)\n   */\n  codeSize?: SizeSummary;\n\n  /**\n   * tells you the size of itself and all its dependencies that are used that are also part of an operation, recursively\n   */\n  cumulativeSize?: SizeSummary;\n  cumulativeCommentSize?: SizeSummary;\n  cumulativeCodeSize?: SizeSummary;\n\n  // Code quality indexes\n\n  /**\n   * maximum amount of times indedented in this function\n   *\n   * good for determining the complexity and finding code that can be simplified/destructured into smaller pieces\n   */\n  maxIndentationDepth: number;\n\n  /**\n   * finds all files that import this function\n   *\n   * NB: this is not indexed because this information has nothing to do with the operation itself, but the exposure to the broader monorepo. This is calculated on the fly.\n   */\n  dependantFiles?: string[];\n\n  /**\n   * Indexed from frontmatter `price`\n   */\n  price?: Price;\n}",
   "extensions": [
     "TsIndexModelType"
   ],
@@ -142,6 +142,10 @@
             "type": "string"
           },
           "description": "finds all files that import this function\n\nNB: this is not indexed because this information has nothing to do with the operation itself, but the exposure to the broader monorepo. This is calculated on the fly."
+        },
+        "price": {
+          "$ref": "#/definitions/Price",
+          "description": "Indexed from frontmatter `price`"
         }
       },
       "required": [
@@ -2223,6 +2227,14 @@
               }
             ],
             "type": "array"
+          }
+        },
+        {
+          "name": "price",
+          "required": false,
+          "schema": {
+            "fullComment": "Indexed from frontmatter `price`\n\nTLDR;EUROS\n\nA price is a number indicating the relative cost. Absolute cost is calculated by many other factors\n\nFor now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.\n\nLater we can add all kinds of extra conversion:\n\n- currency support\n- king os currency\n- lower cost for poorer people\n\netc...\n\nFirst we need to start making sales before we can add such complexity.\n\n",
+            "type": "number"
           }
         }
       ],

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { WriterType } from "filename-conventions";
 import { MappedObject } from "js-util";
 import { AugmentedWord } from "markdown-reader-types";

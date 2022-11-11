@@ -1,6 +1,6 @@
 # React with native notification
 
-react-with-native-notification (ui-es5 operation)
+react-with-native-notification (`OperationClassification` ui-es5)
 
 
 ## 🔔 react-with-native-notification
@@ -10,22 +10,15 @@ Makes it possible to receive notifications in both react and react-native.
 
 
 
-## Docs
-
-- [README](#readme)
-
-
-
 # Docs
 
-## README
-
-### Notifications
+<details><summary>README.md</summary>
+    
+  # Notifications
 
 `react-with-native-notification` is a wrapper of react-toastify for web and expo-notifications on iOS and Android
 
-
-#### Installation
+## Installation
 
 For a react project:
 
@@ -47,8 +40,7 @@ expo install react-with-native-notification expo-notifications
 
 Also, make sure to follow the [installation instructions](https://docs.expo.dev/versions/latest/sdk/notifications/) from the expo docs. You may have to request for permission first. It may not work within expo itself due to permission problems.
 
-
-#### Usage
+## Usage
 
 In your apps root:
 
@@ -68,10 +60,11 @@ import { toast } from "react-with-native-notification";
 <Button onClick={() => toast("Hello world")}>Click me!</Button>;
 ```
 
+  </details>
 
 # Api reference
 
-## <ToastContainer />
+## `<ToastContainer />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -97,11 +90,4 @@ title is only shown on native
 ## 📄 toast (exported const)
 
 title is only shown on native
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

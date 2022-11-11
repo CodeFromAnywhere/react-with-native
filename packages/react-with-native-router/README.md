@@ -1,29 +1,22 @@
 # React with native router
 
-react-with-native-router (ui-es5 operation)
-
-
-
-## Docs
-
-- [README](#readme)
+react-with-native-router (`OperationClassification` ui-es5)
 
 
 
 # Docs
 
-## README
+<details><summary>README.md</summary>
+    
+  # Router
 
-### Router
-
-#### `NB: Experimental package!`
+## `NB: Experimental package!`
 
 `react-with-native-router` exposes `useNavigation` and `useRouter` which are 1:1 wrappers around `useNavigation` from `react-navigation` and `useRouter` from `next/router` respectively, and provide the most suitable result on web and native.
 
 Creating screens and pages should still be done with `react-navigation` on `react-native` and using the `/pages` folder in `next.js`.
 
-
-#### Installation
+## Installation
 
 ```bash
 yarn add react-with-native-router
@@ -31,8 +24,7 @@ yarn add react-with-native-router
 
 In react-native-apps, you also need to be using [react-navigation](https://reactnavigation.org/) in order to use this.
 
-
-#### Usage
+## Usage
 
 ```tsx
 import { useRouter, useNavigation } from "react-with-native-router";
@@ -57,6 +49,7 @@ const YourPage = () => {
 };
 ```
 
+  </details>
 
 # Api reference
 
@@ -74,7 +67,7 @@ const YourPage = () => {
 # Internal
 
 <details><summary>Show internal (1)</summary>
-  
+    
   # useNavigation()
 
 

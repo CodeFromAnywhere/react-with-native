@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { MarkdownParse } from "code-types";
 import { MappedObject } from "js-util";
 import { AugmentedWord } from "markdown-reader-types";

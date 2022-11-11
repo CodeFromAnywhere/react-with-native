@@ -1,10 +1,24 @@
 # Markdown reader functions
 
-markdown-reader-functions (node operation)
+markdown-reader-functions (`OperationClassification` node)
 
 
 
 # Api reference
+
+## getPublicMarkdownFilePaths()
+
+Returns all absolute markdown file paths within a basePath which are not drafts and which are not marked private (through frontmatter)
+
+Readme is put on top!
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| baseFolderPath | string |  |,| includeFoldersWithResults (optional) | boolean |  |
+| **Output** |    |    |
+
+
 
 ## markdownReaderGetStaticProps()
 
@@ -18,14 +32,97 @@ Fix `operationBasePath not working` error when building: log `getStaticProps`/`g
 
 
 
+## removeExtensionsFromPath()
+
+- Removes numbers from file or foldernames in a path.
+- Removes extension of files
+- Returns the new path without numbers and without extension
+
+Works for files and folders
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| relativePath | string | should also work for filenames |
+| **Output** | `String`   |    |
+
+
+
+## 📄 getPublicMarkdownFilePaths (exported const)
+
+Returns all absolute markdown file paths within a basePath which are not drafts and which are not marked private (through frontmatter)
+
+Readme is put on top!
+
+
 ## 📄 markdownReaderGetStaticProps (exported const)
 
 Fix `operationBasePath not working` error when building: log `getStaticProps`/`getStaticPaths`
 
+
+## 📄 removeExtensionsFromPath (exported const)
+
+- Removes numbers from file or foldernames in a path.
+- Removes extension of files
+- Returns the new path without numbers and without extension
+
+Works for files and folders
+
+# CLI
+
+<details><summary>Show CLI information (2)</summary>
+    
+  # copyStaticAssetsCli()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 copyStaticAssetsCli (unexported const)
+
+  </details>
+
+# Tests
+
+<details><summary>Show test information(4)</summary>
+    
+  # main()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## test()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 main (unexported const)
+
+## 📄 test (unexported const)
+
+  </details>
+
 # Internal
 
 <details><summary>Show internal (29)</summary>
-  
+    
   # copyStaticAssets()
 
 uses `getMarkdownReferencePaths` for all markdown files in the `markdown-reader-ui` and copies them into the `markdown-reader-web/public` folder, keeping the original folder structure.
@@ -176,18 +273,6 @@ Gets all markdownreader pages for multiple basePaths. Can add a prefix, can also
 
 
 
-## getPublicMarkdownFilePaths()
-
-Returns all absolute markdown file paths within a basePath which are not drafts and which are not marked private (through frontmatter)
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| baseFolderPath | string |  |,| includeFoldersWithResults (optional) | boolean |  |
-| **Output** |    |    |
-
-
-
 ## getTodoPages()
 
 gets all todo pages as markdownreader pages
@@ -212,19 +297,17 @@ Function that tells Next.js what the pages are that need to be statically genera
 
 
 
-## removeExtensionsFromPath()
+## putReadmeOnTop()
 
-- Removes numbers from file or foldernames in a path.
-- Removes extension of files
-- Returns the new path without numbers and without extension
+Takes an array of items (`explore` results) and checks them to put readme at the start
 
-Works for files and folders
+DEPRECATED: After writing this, I found that `explore` also has `readmeOnTop` possibility, so this whole thing is not needed
 
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| relativePath | string |  |
-| **Output** | `String`   |    |
+| - | | |
+| **Output** |    |    |
 
 
 
@@ -244,10 +327,25 @@ defaults to untitled if the file or folder has no name after removing numbers.
 
 ## shouldExposeMarkdownFile()
 
+markdown file should only be exposed if it doesn't say `privacy: private` or `isDraft: true` in your frontmatter.
+
+
 | Input      |    |    |
 | ---------- | -- | -- |
 | parameters | `Frontmatter` |  |
 | **Output** | {  }   |    |
+
+
+
+## stripReadmeFromFolder()
+
+To get the queryPath, we need to strip the README.md so we get the folder as URL instead of the attached README.md
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `String`   |    |
 
 
 
@@ -319,11 +417,6 @@ Gets all markdownreader pages for multiple basePaths. Can add a prefix, can also
 
 ## 📄 getOperationPages (exported const)
 
-## 📄 getPublicMarkdownFilePaths (exported const)
-
-Returns all absolute markdown file paths within a basePath which are not drafts and which are not marked private (through frontmatter)
-
-
 ## 📄 getTodoPages (exported const)
 
 gets all todo pages as markdownreader pages
@@ -334,13 +427,11 @@ gets all todo pages as markdownreader pages
 Function that tells Next.js what the pages are that need to be statically generated
 
 
-## 📄 removeExtensionsFromPath (exported const)
+## 📄 putReadmeOnTop (exported const)
 
-- Removes numbers from file or foldernames in a path.
-- Removes extension of files
-- Returns the new path without numbers and without extension
+Takes an array of items (`explore` results) and checks them to put readme at the start
 
-Works for files and folders
+DEPRECATED: After writing this, I found that `explore` also has `readmeOnTop` possibility, so this whole thing is not needed
 
 
 ## 📄 removeNumberPrefix (exported const)
@@ -352,5 +443,11 @@ defaults to untitled if the file or folder has no name after removing numbers.
 
 ## 📄 shouldExposeMarkdownFile (exported const)
 
+markdown file should only be exposed if it doesn't say `privacy: private` or `isDraft: true` in your frontmatter.
+
+
+## 📄 stripReadmeFromFolder (exported const)
+
+To get the queryPath, we need to strip the README.md so we get the folder as URL instead of the attached README.md
   </details>
 

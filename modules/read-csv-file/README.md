@@ -1,6 +1,6 @@
 # Read csv file
 
-read-csv-file (node operation)
+read-csv-file (`OperationClassification` node)
 
 
 
@@ -29,7 +29,7 @@ specify a generic of what type of item the file contains an array of
 # Internal
 
 <details><summary>Show internal (3)</summary>
-  
+    
   # readCsvFileSync()
 
 Reads and parses CSV file

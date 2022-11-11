@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635253174,
-  "updatedAt": 1667635253174,
+  "createdAt": 1668149578479,
+  "updatedAt": 1668149578479,
   "deletedAt": 0,
-  "createdFirstAt": 1667635253174,
+  "createdFirstAt": 1668149578479,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  augmentedWord: AugmentedWord;\n  augmentedWordObject: MappedObject<AugmentedWord>;\n}) => {\n  const { augmentedWord, augmentedWordObject } = props;\n\n  const projectRelativeBaseFolderPath = getFolderJs(\n    augmentedWord.projectRelativeMarkdownSourcePath\n  )!;\n\n  const projectRelativeMarkdownFilePath =\n    augmentedWord.projectRelativeMarkdownSourcePath;\n  return (\n    <Div className=\"border border-gray-500 rounded-md m-2 p-2\">\n      <P className=\"font-bold\">{augmentedWord.word}</P>\n      {augmentedWord.spoiler ? (\n        <P>\n          {renderMarkdownContent(augmentedWord.spoiler, {\n            isDev,\n            isStatic: false,\n            projectRelativeMarkdownFilePath,\n            projectRelativeBaseFolderPath,\n            augmentedWordObject,\n          })}\n        </P>\n      ) : null}\n    </Div>\n  );\n}",
   "description": "",
-  "id": "gctzedagtyjiuehuznigtmca"
+  "id": "gccwcjfloeajkgudymgqoggh"
 }

@@ -1,10 +1,10 @@
 {
-  "createdAt": 1667634960814,
-  "updatedAt": 1667634960814,
+  "createdAt": 1668149314063,
+  "updatedAt": 1668149314063,
   "deletedAt": 0,
-  "createdFirstAt": 1667634960814,
+  "createdFirstAt": 1668149314063,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -16,18 +16,7 @@
   "rawText": " (url: string | undefined): string | undefined => {\n  if (!url) return;\n\n  const regExp =\n    /^.*(youtu.be\\/|v\\/|u\\/\\w\\/|embed\\/|watch\\?v=|\\&v=|\\?v=)([^#\\&\\?]*).*/;\n  const match = url.match(regExp);\n\n  if (match && match[2].length == 11) {\n    return match[2];\n  }\n  return;\n}",
   "name": "getYoutubeId",
   "slug": "get-youtube-id",
-  "parameters": [
-    {
-      "name": "url",
-      "schema": {
-        "type": "string"
-      },
-      "simplifiedSchema": {
-        "type": "string"
-      },
-      "required": false
-    }
-  ],
+  "parameters": [],
   "description": "",
   "returnType": {
     "rawType": "string | undefined",
@@ -65,5 +54,5 @@
     "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "wqevadpadnuybwuvogzeloxl"
+  "id": "kfbatgfsskrxspetmfdkeqbx"
 }

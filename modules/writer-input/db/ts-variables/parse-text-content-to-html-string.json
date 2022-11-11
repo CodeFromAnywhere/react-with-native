@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588122208,
-  "updatedAt": 1667588122208,
+  "createdAt": 1668152083648,
+  "updatedAt": 1668152083648,
   "deletedAt": 0,
-  "createdFirstAt": 1667588122208,
+  "createdFirstAt": 1668152083648,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  text,\n  type,\n  subtextConfig,\n  subwordConfig,\n  markdownParseRenderConfig\n) => {\n  if (type === \"markdown\" && markdownParseRenderConfig) {\n    const lexed = marked.lexer(text);\n\n    const html = lexed.map((token) => (\n      <MarkedToken\n        item={token}\n        subtextConfig={subtextConfig}\n        subwordConfig={subwordConfig}\n        markdownFileConfig={markdownParseRenderConfig}\n        testModeEnabled={true}\n      />\n    ));\n\n    const result = <>{html}</>;\n\n    const string = ReactDOMServer.renderToString(result);\n\n    return string;\n  }\n\n  return text;\n}",
   "description": "Returns a html string from a text string that can be rendered in the dom\n\nNB: because we're parsing text from div.innerText, sometimes there are two newlines when there should be one break.\n\nThree newlines means there should be two breaks...",
-  "id": "aarhqnpneqdynvyisfyafkfr"
+  "id": "bnlgqifadogmbjicwalcuupv"
 }

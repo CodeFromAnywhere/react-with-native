@@ -1,6 +1,6 @@
 # Bundle types
 
-bundle-types (js operation)
+bundle-types (`OperationClassification` js)
 
 
 
@@ -45,6 +45,7 @@ Properties:
 | categoryStackCalculated (optional) | array |  |
 | customisableBundleConfig  | object |  |
 | createBundleConfig  | object |  |
+| paymentPlanId (optional) | string |  |
 
 
 
@@ -54,6 +55,7 @@ Properties:
 
  | Name | Type | Description |
 |---|---|---|
+| docsInRoot (optional) | boolean |  |
 | showTodos (optional) | boolean |  |
 | omitModulesMenu (optional) | boolean |  |
 | omitAppsMenu (optional) | boolean |  |
@@ -99,6 +101,7 @@ Properties:
 |---|---|---|
 | customisableBundleConfig  | object |  |
 | createBundleConfig  | object |  |
+| paymentPlanId (optional) | string |  |
 | categoryStackCalculated (optional) | array |  |
 | id  | string |  |
 | operationName  | null |  |
@@ -141,7 +144,7 @@ Properties:
 | isDraft (optional) | boolean |  |
 | keepTodos (optional) | boolean |  |
 | bundles  | array |  |
-| dependencies  | array |  |
+| dependencies (optional) | array |  |
 | docsRelativeFolderPath (optional) | object |  |
 | readmeRelativeFilePath (optional) | string |  |
 
@@ -167,23 +170,6 @@ Properties:
 
 
 
-## 🔹 InformationStrategy
-
-push (default): take needed information from project and push to bundle (removing the existing info)
-
-pullReplace: pull bundle and keep its information intact, not taking anything new from the OS, replacing all the information we had from these models in the OS
-
-pullMerge: pull bundle and use its information in conjunction with the information we had in the OS. This option will merge both information sources, removing duplicate IDs
-
-ignore: don't put any data in the bundle!
-
-
-
-
-
-
-
-
 ## 🔹 OperationPrivacy
 
 Properties: 
@@ -196,8 +182,8 @@ Properties:
 
 # Internal
 
-<details><summary>Show internal (9)</summary>
-  
+<details><summary>Show internal (10)</summary>
+    
   # 🔹 AppShell
 
 
@@ -223,7 +209,7 @@ Properties:
 | isDraft (optional) | boolean |  |
 | keepTodos (optional) | boolean |  |
 | bundles  | array |  |
-| dependencies  | array |  |
+| dependencies (optional) | array |  |
 | docsRelativeFolderPath (optional) | object |  |
 | readmeRelativeFilePath (optional) | string |  |
 | foldersFromRepo (optional) | array |  |
@@ -251,6 +237,23 @@ Properties:
 | productionWebUrl (optional) | string |  |
 | productionApiUrl (optional) | string |  |
 | endpointsAuthToken (optional) | string |  |
+
+
+
+## 🔹 InformationStrategy
+
+push (default): take needed information from project and push to bundle (removing the existing info)
+
+pullReplace: pull bundle and keep its information intact, not taking anything new from the OS, replacing all the information we had from these models in the OS
+
+pullMerge: pull bundle and use its information in conjunction with the information we had in the OS. This option will merge both information sources, removing duplicate IDs
+
+ignore: don't put any data in the bundle!
+
+
+
+
+
 
 
 

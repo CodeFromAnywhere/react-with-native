@@ -1,6 +1,6 @@
 # Get path
 
-get-path (js operation)
+get-path (`OperationClassification` js)
 
 Useful functions to get paths within King OS.
 
@@ -92,7 +92,7 @@ Resulting path will apply the paths conventions
 
 returns an array of all (absolute) paths containing operations
 
-for a sensible project, that means /apps and /packages
+for a sensible project, that means /apps, /packages, /modules
 
 for the OS project, that means /operations/tools and /operations/niches
 
@@ -108,7 +108,7 @@ for the OS project, that means /operations/tools and /operations/niches
 
 returns an array of all (absolute) paths containing operations
 
-for a sensible project, that means /apps and /packages
+for a sensible project, that means /apps, /packages, /modules
 
 for the OS project, that means /operations/tools and /operations/niches
 
@@ -141,13 +141,6 @@ NB: don't confuse this with ProjectType or ImportClassification
 
 
 
-## 📄 getOperationClassification (exported const)
-
-Returns OperationClassification if it's an operation, or undefined if it's not
-
-NB: don't confuse this with ProjectType or ImportClassification
-
-
 ## getSrcRelativeFileId()
 
 returns a file id (path without extension) relative to the src folder of an operation
@@ -166,13 +159,11 @@ NB: removes "/" in the beginning, if found
 
 
 
-## isSensibleProject()
+## 📄 getOperationClassification (exported const)
 
-| Input      |    |    |
-| ---------- | -- | -- |
-| folderPath (optional) | string |  |
-| **Output** | {  }   |    |
+Returns OperationClassification if it's an operation, or undefined if it's not
 
+NB: don't confuse this with ProjectType or ImportClassification
 
 
 ## 📄 getSrcRelativeFileId (exported const)
@@ -184,6 +175,15 @@ e.g. "general" for src/general.ts
 NB: assumes all src is in the src folder
 
 NB: removes "/" in the beginning, if found
+
+
+## isSensibleProject()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| folderPath (optional) | string |  |
+| **Output** | {  }   |    |
+
 
 
 ## 📄 isSensibleProject (exported const)
@@ -297,10 +297,30 @@ will start with "/"
 
 Checks whether or not an absolute path contains an operation. The only check it's doing is that the folder must contain both a package.json as well as a tsconfig.json
 
+# Tests
+
+<details><summary>Show test information(2)</summary>
+    
+  # test()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 test (unexported const)
+
+  </details>
+
 # Internal
 
 <details><summary>Show internal (16)</summary>
-  
+    
   # findFolderWhereMatch()
 
 recursive. goes up a folder until it finds a package.json

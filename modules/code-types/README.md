@@ -1,48 +1,10 @@
 # Code types
 
-code-types (js operation)
+code-types (`OperationClassification` js)
 
 
 
 # Api reference
-
-## 🔸 TsInterface
-
-jsonSingle model
-
-
-
-
-TODO: Just like parameters, this should be linted for. If you define an interface that's not declared here, that should ring a bell.
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| name  | string |  |
-| slug  | string |  |
-| operationRelativeTypescriptFilePath  | string |  |
-| type  | object |  |
-| description (optional) | string |  |
-| commentsInside  | array |  |
-| isExported  | boolean |  |
-| hasGeneric  | boolean |  |
-| rawText (optional) | string |  |
-| extensions (optional) | array |  |
-| isDbModel  | boolean |  |
-| isOperationIndex  | boolean |  |
-| operationStorageLocationRelativeFilePath (optional) | string |  |
-| dbStorageMethod (optional) | string |  |
-
-
 
 ## 🔸 TsFunction
 
@@ -88,6 +50,45 @@ Properties:
 | cumulativeCodeSize (optional) | object |  |
 | maxIndentationDepth  | number |  |
 | dependantFiles (optional) | array |  |
+| price (optional) | number |  |
+
+
+
+## 🔸 TsInterface
+
+jsonSingle model
+
+
+
+
+TODO: Just like parameters, this should be linted for. If you define an interface that's not declared here, that should ring a bell.
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| operationRelativeTypescriptFilePath  | string |  |
+| type  | object |  |
+| description (optional) | string |  |
+| commentsInside  | array |  |
+| isExported  | boolean |  |
+| hasGeneric  | boolean |  |
+| rawText (optional) | string |  |
+| extensions (optional) | array |  |
+| isDbModel  | boolean |  |
+| isOperationIndex  | boolean |  |
+| operationStorageLocationRelativeFilePath (optional) | string |  |
+| dbStorageMethod (optional) | string |  |
 
 
 
@@ -188,6 +189,40 @@ Properties:
 
 
 
+## 🔹 OperationClassification
+
+## Classification
+
+TODO: think about what the differences are and how we need to change processes to make it all work good
+
+
+### Possible values
+
+- js: only js (no node) (well, ts of course, but it gets built into js)
+
+- ts: non-built ts code
+
+- node: includes other node packages, operations, core-imports, or globals.
+
+- server: exposes something on some port when it is ran and uses node code
+
+- web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...
+
+- app: uses react-native and exposes something on some port when it is ran
+
+- DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)
+
+- ui-es5: ui which main entry points to javascript es5 files (this ui package can be built). don't import ESM packages in here, this won't work.
+
+- ui-esm: ui which builds to ESM module resolved Javascript. All packages that use ui-esm packages, need to be `ui-esm`, `ui-es6`, or `web` in order to work properly.
+
+
+
+
+
+
+
+
 ## 🔸 OperationIndex
 
 jsonSingle model
@@ -220,6 +255,7 @@ Properties:
 | operationRelativePath (optional) | string |  |
 | id  | string |  |
 | categoryStackCalculated (optional) | array |  |
+| lastPullTimeAt (optional) | number |  |
 | packageName  | string |  |
 | folderName  | string |  |
 | relativeOperationLocationPath  | string |  |
@@ -262,68 +298,6 @@ Properties:
 | include (optional) | array |  |
 | exclude (optional) | array |  |
 | compilerOptions  | object |  |
-
-
-
-## 🔹 FunctionParameter
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| name  | string |  |
-| schema (optional) | object |  |
-| simplifiedSchema (optional) | object |  |
-| required  | boolean |  |
-
-
-
-## 🔹 MarkdownChunk
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| level  | number |  |
-| content (optional) | string |  |
-| markdownEmbed (optional) | object |  |
-| markdownLink (optional) | object |  |
-| title (optional) | string |  |
-| children (optional) | array |  |
-
-
-
-## 🔹 OperationClassification
-
-## Classification
-
-TODO: think about what the differences are and how we need to change processes to make it all work good
-
-
-### Possible values
-
-js: only js (no node) (well, ts of course, but it gets built into js)
-
-ts: non-built ts code
-
-node: includes other node packages, operations, core-imports, or globals.
-
-server: exposes something on some port when it is ran and uses node code
-
-web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...
-
-app: uses react-native and exposes something on some port when it is ran
-
-DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)
-
-ui-es5: ui which main entry points to javascript es5 files (this ui package can be built)
-
-ui-esm: ui which builds to ESM module resolved Javascript
-
-
-
-
-
 
 
 
@@ -391,6 +365,58 @@ Properties:
 | type  | object |  |
 | isExported  | boolean |  |
 | comments  | array |  |
+
+
+
+## 🔹 FunctionParameter
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| name  | string |  |
+| schema (optional) | object |  |
+| simplifiedSchema (optional) | object |  |
+| required  | boolean |  |
+
+
+
+## 🔹 MarkdownChunk
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| level  | number |  |
+| content (optional) | string |  |
+| markdownEmbed (optional) | object |  |
+| markdownLink (optional) | object |  |
+| title (optional) | string |  |
+| children (optional) | array |  |
+
+
+
+## 🔹 RunEveryPeriodEnum
+
+Used to specify functions that need to run every time with a specific interval
+
+All times are at at the server timezone time
+
+- `minute`: every minute at 0 seconds
+- `5-mintues`: every 5 minutes, starting at the first minute of the hour
+- `quarter-hour`: every 15 minutes, starting at the first minute of the hour
+- `hour`: every hour, starting at the first minute of the hour
+- `6-hours`: every 6 hours, starting at midnight
+- `midnight`: every midnight (00:00:00)
+- `week`: every week at sundaynight (sunday, 1 second after 23:59:59 PM)
+- `month`: at the first second of the first day of the month (0:00:00)
+- `3-months`: every start of the quarter: january 1st (0:00:00), april 1st, july 1st, october 1st
+- `year`: every new year at january 1st at 0:00:00
+
+
+
+
+
 
 
 
@@ -520,6 +546,7 @@ Properties:
 | shop_itemIds (optional) | array |  |
 | author_personSlugs  | array |  |
 | interestSlugs  | array |  |
+| price  | number |  |
 
 
 
@@ -593,6 +620,27 @@ Properties:
 | name  | string |  |
 | relativeProjectPath  | string |  |
 | children (optional) | array |  |
+
+
+
+## 🔹 FolderSummary
+
+objective size measurements of all files in a folder
+
+summary for a folder should contain file-summaries for different filetypes and an overal file summary
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| size  | object |  |
+| textSize  | object |  |
+| dataSize  | object |  |
+| codeSize  | object |  |
 
 
 
@@ -670,6 +718,7 @@ Properties:
 | authors (optional) | array |  |
 | contributors (optional) | array |  |
 | shortDescriptionText (optional) | string |  |
+| paymentPlanId (optional) | string |  |
 
 
 
@@ -703,30 +752,6 @@ Properties:
 
 
 
-## 🔹 RunEveryPeriodEnum
-
-Used to specify functions that need to run every time with a specific interval
-
-All times are at at the server timezone time
-
-- `minute`: every minute at 0 seconds
-- `5-mintues`: every 5 minutes, starting at the first minute of the hour
-- `quarter-hour`: every 15 minutes, starting at the first minute of the hour
-- `hour`: every hour, starting at the first minute of the hour
-- `6-hours`: every 6 hours, starting at midnight
-- `midnight`: every midnight (00:00:00)
-- `week`: every week at sundaynight (sunday, 1 second after 23:59:59 PM)
-- `month`: at the first second of the first day of the month (0:00:00)
-- `3-months`: every start of the quarter: january 1st (0:00:00), april 1st, july 1st, october 1st
-- `year`: every new year at january 1st at 0:00:00
-
-
-
-
-
-
-
-
 ## 🔹 SensibleConfig
 
 Sensible-global configurations
@@ -744,7 +769,6 @@ Properties:
 | skipMinify (optional) | boolean |  |
 | isSensibleProject (optional) | boolean |  |
 | hasGeneratedDependencies (optional) | boolean |  |
-| appPort (optional) | number |  |
 | isNotSdkable (optional) | boolean |  |
 
 
@@ -904,6 +928,66 @@ Properties:
 
 
 
+## 🔸 Dataset
+
+jsonMultiple model
+
+
+
+Model
+
+Make subsets of models that can be used for authorising someone for a subset of data, or transfering (or filtering out) subsets of data to a bundle.
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| filter (optional) | object |  |
+| sort (optional) | object |  |
+| maxRows (optional) | number |  |
+| startFromIndex (optional) | number |  |
+| objectParameterKeys (optional) | array |  |
+| ignoreObjectParameterKeys (optional) | array |  |
+| slug  | string |  |
+| name  | string |  |
+| language  | string |  |
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| categoryStackCalculated (optional) | array |  |
+| modelName  | string |  |
+| price (optional) | number |  |
+
+
+
+## 🔹 DatasetFilter
+
+Can be better, see https://www.w3schools.com/js/js_comparisons.asp
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| objectParameterKey  | string |  |
+| value (optional) | string |  |
+| operator  | string |  |
+| filterFunctionName (optional) | string |  |
+
+
+
 ## 🔹 ExplorationDetails
 
 Properties: 
@@ -924,27 +1008,6 @@ Properties:
 | pathMetaData (optional) | object |  |
 | operationIndexes (optional) | array |  |
 | index  | array |  |
-
-
-
-## 🔹 FolderSummary
-
-objective size measurements of all files in a folder
-
-summary for a folder should contain file-summaries for different filetypes and an overal file summary
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| size  | object |  |
-| textSize  | object |  |
-| dataSize  | object |  |
-| codeSize  | object |  |
 
 
 
@@ -1016,6 +1079,7 @@ Properties:
  | Name | Type | Description |
 |---|---|---|
 | updatedAt  | number |  |
+| lastPullTimeAt (optional) | number |  |
 | name  | string |  |
 | slug  | string |  |
 | packageName  | string |  |
@@ -1246,8 +1310,8 @@ makes a markdownModelType from a markdownParse.
 
 # Internal
 
-<details><summary>Show internal (24)</summary>
-  
+<details><summary>Show internal (23)</summary>
+    
   # getFunctionExersize()
 
 
@@ -1396,13 +1460,9 @@ Properties:
 
 
 
-## 🔸 Dataset
+## 🔹 DatasetConfig
 
-jsonMultiple model
-
-
-
-
+The part of dataset that can be used in certain functions
 
 
 
@@ -1412,44 +1472,12 @@ Properties:
 
  | Name | Type | Description |
 |---|---|---|
-| slug  | string |  |
-| name  | string |  |
-| language  | string |  |
-| createdAt  | number |  |
-| updatedAt  | number |  |
-| deletedAt  | number |  |
-| createdFirstAt  | number |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| categoryStackCalculated (optional) | array |  |
-| modelName  | string |  |
 | filter (optional) | object |  |
 | sort (optional) | object |  |
 | maxRows (optional) | number |  |
 | startFromIndex (optional) | number |  |
 | objectParameterKeys (optional) | array |  |
 | ignoreObjectParameterKeys (optional) | array |  |
-
-
-
-## 🔹 DatasetFilter
-
-Can be better, see https://www.w3schools.com/js/js_comparisons.asp
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| objectParameterKey  | string |  |
-| value (optional) | string |  |
-| operator  | string |  |
-| filterFunctionName (optional) | string |  |
 
 
 

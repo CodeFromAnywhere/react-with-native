@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667818223065,
-  "updatedAt": 1667818223065,
+  "createdAt": 1668149516763,
+  "updatedAt": 1668149516763,
   "deletedAt": 0,
-  "createdFirstAt": 1667818223065,
+  "createdFirstAt": 1668149516763,
   "id": "namedparameterstypeof-removeextensionsfrompath",
   "name": "NamedParameters<typeof removeExtensionsFromPath>",
   "slug": "namedparameterstypeof-removeextensionsfrompath",
@@ -18,7 +18,8 @@
       "type": "object",
       "properties": {
         "relativePath": {
-          "type": "string"
+          "type": "string",
+          "description": "should also work for filenames"
         }
       },
       "required": [
@@ -32,6 +33,7 @@
           "name": "relativePath",
           "required": true,
           "schema": {
+            "fullComment": "should also work for filenames",
             "type": "string"
           }
         }

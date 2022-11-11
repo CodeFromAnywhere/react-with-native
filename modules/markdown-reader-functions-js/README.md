@@ -1,6 +1,6 @@
 # Markdown reader functions js
 
-markdown-reader-functions-js (node operation)
+markdown-reader-functions-js (`OperationClassification` node)
 
 
 
@@ -16,11 +16,4 @@ markdown-reader-functions-js (node operation)
 
 
 ## 📄 getQueryPath (exported const)
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

@@ -1,10 +1,10 @@
 {
-  "createdAt": 1667818210799,
-  "updatedAt": 1667818210799,
+  "createdAt": 1668149503851,
+  "updatedAt": 1668149503851,
   "deletedAt": 0,
-  "createdFirstAt": 1667818210799,
+  "createdFirstAt": 1668149503851,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -13,7 +13,7 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/getMarkdownReaderPages.ts",
   "commentsInside": [],
-  "rawText": " async (config: {\n  projectRoot: string;\n  /**\n   * basePaths to search for public markdown for\n   */\n  basePaths: string[];\n  /**\n   * if set, maps query path further\n   */\n  mapQueryPath?: (\n    /**\n     * already mapped the relative path to remove extension and numbers from folders\n     */\n    queryPath: string\n  ) => string;\n}): Promise<MarkdownReaderPage[]> => {\n  const { basePaths, projectRoot, mapQueryPath } = config;\n  const markdownReaderPages: MarkdownReaderPage[] = (\n    await Promise.all(\n      basePaths.map(async (basePath) => {\n        const publicMarkdownFilePaths = await getPublicMarkdownFilePaths(\n          basePath,\n          false\n        );\n\n        const markdownReaderPages = publicMarkdownFilePaths.map((x) => {\n          const filePath = makeRelative(x.path, projectRoot);\n          const pathWithoutExtensions = removeExtensionsFromPath(filePath);\n\n          const queryPath = mapQueryPath\n            ? mapQueryPath(pathWithoutExtensions)\n            : pathWithoutExtensions;\n\n          // NB: folders are no menu items because menu is built from paths recursively\n          const markdownReaderPage: MarkdownReaderPage = {\n            queryPath,\n            filePath,\n            isMenuItem: !x.isFolder,\n          };\n\n          return markdownReaderPage;\n        });\n\n        return markdownReaderPages;\n      })\n    )\n  ).flat();\n\n  return markdownReaderPages;\n}",
+  "rawText": " async (config: {\n  projectRoot: string;\n  /**\n   * basePaths to search for public markdown for\n   */\n  basePaths: string[];\n  /**\n   * if set, maps query path further\n   */\n  mapQueryPath?: (\n    /**\n     * already mapped the relative path to remove extension and numbers from folders\n     */\n    queryPath: string\n  ) => string;\n}): Promise<MarkdownReaderPage[]> => {\n  const { basePaths, projectRoot, mapQueryPath } = config;\n  const markdownReaderPages: MarkdownReaderPage[] = (\n    await Promise.all(\n      basePaths.map(async (basePath) => {\n        const publicMarkdownFileAbsolutePaths =\n          await getPublicMarkdownFilePaths(basePath, false);\n\n        const markdownReaderPages = publicMarkdownFileAbsolutePaths.map((x) => {\n          const filePath = makeRelative(x.path, projectRoot);\n          const pathWithoutReadme = stripReadmeFromFolder(filePath);\n          const pathWithoutExtensions =\n            removeExtensionsFromPath(pathWithoutReadme);\n\n          const queryPath = mapQueryPath\n            ? mapQueryPath(pathWithoutExtensions)\n            : pathWithoutExtensions;\n\n          // NB: folders are no menu items because menu is built from queryPaths recursively\n          const markdownReaderPage: MarkdownReaderPage = {\n            queryPath,\n            filePath,\n            isMenuItem: !x.isFolder,\n          };\n\n          return markdownReaderPage;\n        });\n\n        return markdownReaderPages;\n      })\n    )\n  ).flat();\n\n  return markdownReaderPages;\n}",
   "name": "getMarkdownReaderPages",
   "slug": "get-markdown-reader-pages",
   "parameters": [],
@@ -29,13 +29,13 @@
   },
   "maxIndentationDepth": 6,
   "size": {
-    "characters": 1531,
+    "characters": 1622,
     "lines": 50,
-    "bytes": 1531,
+    "bytes": 1622,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 31,
+    "charactersPerLine": 32,
     "linesPerFile": 50,
     "numberOfFiles": 1
   },
-  "id": "wqhvfoosrwqifdarfujpiysl"
+  "id": "xowmqvnvkbvmonsaxmuimidd"
 }

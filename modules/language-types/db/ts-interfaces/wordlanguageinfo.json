@@ -1,0 +1,219 @@
+{
+  "createdAt": 1668150234991,
+  "updatedAt": 1668150234991,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150234991,
+  "id": "wordlanguageinfo",
+  "name": "WordLanguageInfo",
+  "slug": "wordlanguageinfo",
+  "operationRelativeTypescriptFilePath": "src/WordMatrix.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * Language specific word information\n */\nexport type WordLanguageInfo = {\n  /**\n   * TITLE: Latin writing (if common)\n   * DESCRIPTION: the latin standard written representation for this word\n   */\n  latin?: LanguageLatin;\n  /**\n   * TITLE: Alternative writing (if common)\n   *\n   * DESCRIPTION: the alternative written representation for this word, if any (if the language commonly uses a different script, this can be noted here)\n   */\n  alternative?: LanguageAlternative;\n  /**\n   * TITLE: Phonetic writing\n   *\n   * DESCRIPTION: Phonetic writing is used to describe how the word is pronounced\n   */\n  phonetic?: LanguagePhonetic;\n  /**\n   * TITLE: Spoken word\n   *\n   * DESCRIPTION: Audio fragment containing the spoken word.\n   */\n  audio?: LanguageAudio;\n  /**\n   * DESCRIPTION: A list of examples of usage of this word (can contain both a text and audio)\n   */\n  examples?: LanguageExample[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Language specific word information",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "latin": {
+          "type": "string",
+          "description": "TITLE: Latin writing (if common) DESCRIPTION: the latin standard written representation for this word"
+        },
+        "alternative": {
+          "type": "string",
+          "description": "TITLE: Alternative writing (if common)\n\nDESCRIPTION: the alternative written representation for this word, if any (if the language commonly uses a different script, this can be noted here)"
+        },
+        "phonetic": {
+          "type": "string",
+          "description": "TITLE: Phonetic writing\n\nDESCRIPTION: Phonetic writing is used to describe how the word is pronounced"
+        },
+        "audio": {
+          "$ref": "#/definitions/BackendAsset",
+          "description": "TITLE: Spoken word\n\nDESCRIPTION: Audio fragment containing the spoken word."
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "audio": {
+                "$ref": "#/definitions/BackendAsset"
+              }
+            },
+            "required": [
+              "text",
+              "audio"
+            ],
+            "additionalProperties": false
+          },
+          "description": "DESCRIPTION: A list of examples of usage of this word (can contain both a text and audio)"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Language specific word information"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Language specific word information",
+      "properties": [
+        {
+          "name": "latin",
+          "required": false,
+          "schema": {
+            "fullComment": "TITLE: Latin writing (if common) DESCRIPTION: the latin standard written representation for this word",
+            "title": "Latin writing (if common) DESCRIPTION: the latin standard written representation for this word",
+            "type": "string"
+          }
+        },
+        {
+          "name": "alternative",
+          "required": false,
+          "schema": {
+            "fullComment": "TITLE: Alternative writing (if common)\n\nDESCRIPTION: the alternative written representation for this word, if any (if the language commonly uses a different script, this can be noted here)",
+            "title": "Alternative writing (if common)",
+            "description": "the alternative written representation for this word, if any (if the language commonly uses a different script, this can be noted here)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "phonetic",
+          "required": false,
+          "schema": {
+            "fullComment": "TITLE: Phonetic writing\n\nDESCRIPTION: Phonetic writing is used to describe how the word is pronounced",
+            "title": "Phonetic writing",
+            "description": "Phonetic writing is used to describe how the word is pronounced",
+            "type": "string"
+          }
+        },
+        {
+          "name": "audio",
+          "required": false,
+          "schema": {
+            "fullComment": "TITLE: Spoken word\n\nDESCRIPTION: Audio fragment containing the spoken word.\n\nPart of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+            "title": "Spoken word",
+            "description": "Audio fragment containing the spoken word.",
+            "properties": [
+              {
+                "name": "alt",
+                "required": false,
+                "schema": {
+                  "fullComment": "Stored value\n\nAlt text for the asset",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "relativePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "name",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                  "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "temporaryDestination",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "examples",
+          "required": false,
+          "schema": {
+            "fullComment": "DESCRIPTION: A list of examples of usage of this word (can contain both a text and audio)",
+            "description": "A list of examples of usage of this word (can contain both a text and audio)",
+            "items": [
+              {
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "text",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "audio",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Part of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+                        "properties": [
+                          {
+                            "name": "alt",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Stored value\n\nAlt text for the asset",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "relativePath",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "name",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                              "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "temporaryDestination",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "WordLanguageInfo",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

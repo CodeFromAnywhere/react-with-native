@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667684635681,
-  "updatedAt": 1667684635681,
+  "createdAt": 1668150025528,
+  "updatedAt": 1668150025528,
   "deletedAt": 0,
-  "createdFirstAt": 1667684635681,
+  "createdFirstAt": 1668150025528,
   "id": "publicbundleconfig",
   "name": "PublicBundleConfig",
   "slug": "publicbundleconfig",
@@ -106,6 +106,14 @@
           "schema": {
             "fullComment": "configurate your markdown reader\n\n",
             "properties": [
+              {
+                "name": "docsInRoot",
+                "required": false,
+                "schema": {
+                  "fullComment": "When set to `true`, docs are not shown in docs folder but in the root menu of the site",
+                  "type": "boolean"
+                }
+              },
               {
                 "name": "showTodos",
                 "required": false,

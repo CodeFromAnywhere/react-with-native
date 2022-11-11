@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667818213766,
-  "updatedAt": 1667818213766,
+  "createdAt": 1668149506835,
+  "updatedAt": 1668149506835,
   "deletedAt": 0,
-  "createdFirstAt": 1667818213766,
+  "createdFirstAt": 1668149506835,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (config?: {\n  manualProjectRoot?: string;\n}) => {\n  const pages = await getAllMarkdownReaderPages(config);\n  // NB: this is kind of a hack, but it's way harder to add it into the pages I guess, so it's easier like this.\n  const queryPaths = pages?.map((x) => x.queryPath);\n\n  const queryPaths2 = pages\n    ?.map((x) => x.queryPath)\n    .map((queryPath) => getAllFoldersUntilFolder(queryPath))\n    .flat()\n    .filter(onlyUnique2())\n    .filter((x) => x !== \"/\")\n    .map((x) => trimSlashes(x));\n\n  // console.log({ queryPaths2 });\n  return queryPaths2;\n}",
   "description": "",
-  "id": "rwruibaljzxalqseprwpozxf"
+  "id": "nqcmwjnaaykpophwrkofettk"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667684629600,
-  "updatedAt": 1667684629600,
+  "createdAt": 1668150020116,
+  "updatedAt": 1668150020116,
   "deletedAt": 0,
-  "createdFirstAt": 1667684629600,
+  "createdFirstAt": 1668150020116,
   "id": "finalcreatebundleconfig",
   "name": "FinalCreateBundleConfig",
   "slug": "finalcreatebundleconfig",
@@ -97,8 +97,7 @@
         }
       },
       "required": [
-        "bundles",
-        "dependencies"
+        "bundles"
       ],
       "description": "CreateBundleConfig after applying the defaults"
     },
@@ -317,7 +316,7 @@
         },
         {
           "name": "dependencies",
-          "required": true,
+          "required": false,
           "schema": {
             "fullComment": "Generated, private by default. If they're already here, uses private/public setting as given.\n\nWhen generating, removes the ones that are not dependencies (of dependencies) of your standalone apps",
             "items": [

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667684692646,
-  "updatedAt": 1667684692646,
+  "createdAt": 1668150119238,
+  "updatedAt": 1668150119238,
   "deletedAt": 0,
-  "createdFirstAt": 1667684692646,
+  "createdFirstAt": 1668150119238,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  markdownParse: MarkdownParse | null\n): Storing<MarkdownModelType> | null => {\n  if (!markdownParse) return null;\n\n  const { parameters, raw, fileName } = markdownParse;\n\n  const name = parameters.name ? String(parameters.name) : fileName!;\n  const slug = kebabCase(name);\n  const id = parameters.id ? String(parameters.id) : generateId();\n  const createdAt = parseMarkdownModelTimestamp(\n    parameters,\n    markdownParse,\n    \"createdAt\"\n  );\n  const createdFirstAt = parseMarkdownModelTimestamp(\n    parameters,\n    markdownParse,\n    \"createdFirstAt\"\n  );\n  const updatedAt = parseMarkdownModelTimestamp(\n    parameters,\n    markdownParse,\n    \"updatedAt\"\n  );\n  const deletedAt = parseMarkdownModelTimestamp(\n    parameters,\n    markdownParse,\n    \"deletedAt\"\n  );\n\n  const openedAt = parseMarkdownModelTimestamp(\n    parameters,\n    markdownParse,\n    \"openedAt\"\n  );\n\n  const markdownModelType: Storing<MarkdownModelType> = {\n    ...parameters,\n    id,\n    createdAt,\n    createdFirstAt,\n    deletedAt,\n    updatedAt,\n    openedAt,\n    markdown: raw,\n    name,\n    slug,\n  };\n\n  return markdownModelType;\n}",
   "description": "makes a markdownModelType from a markdownParse.",
-  "id": "qujwfygtysaphmtvmgjdodcn"
+  "id": "gjukilzmssxuvcfalvdsklfh"
 }

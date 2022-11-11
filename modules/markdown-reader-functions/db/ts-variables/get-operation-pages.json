@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667818215051,
-  "updatedAt": 1667818215051,
+  "createdAt": 1668149508061,
+  "updatedAt": 1668149508061,
   "deletedAt": 0,
-  "createdFirstAt": 1667818215051,
+  "createdFirstAt": 1668149508061,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  projectRoot: string,\n  bundleMarkdownReaderConfig?: BundleMarkdownReaderConfig\n) => {\n  const isSensible = isSensibleProject(projectRoot);\n\n  const operationBasePaths = getPathsWithOperations({\n    manualProjectRoot: projectRoot,\n  });\n\n  const operationPagesPerType: { [key: string]: MarkdownReaderPage[] } =\n    mergeObjectsArray(\n      await Promise.all(\n        operationBasePaths.map(async (absoluteBasePath) => {\n          const folders = (\n            await exploreOperationFolders({ basePath: absoluteBasePath })\n          ).map((result) => ({\n            projectRelativePath: makeRelative(result, projectRoot),\n          }));\n\n          const projectRelativeBasePath = makeRelative(\n            absoluteBasePath,\n            projectRoot\n          );\n\n          // console.log({ folders });\n\n          const pages: MarkdownReaderPage[] = folders.map((folder) => {\n            const folderName = getLastFolder(folder.projectRelativePath);\n\n            /**\n             * Sometimes the bundle states the menu items should not be shown. The pages still remain available though, otherwise it would cause lots of dead links!\n             */\n            const isMenuItem =\n              projectRelativeBasePath === \"apps\" &&\n              bundleMarkdownReaderConfig?.omitAppsMenu\n                ? false\n                : projectRelativeBasePath === \"packages\" &&\n                  bundleMarkdownReaderConfig?.omitPackagesMenu\n                ? false\n                : projectRelativeBasePath === \"modules\" &&\n                  bundleMarkdownReaderConfig?.omitModulesMenu\n                ? false\n                : true;\n\n            // console.log({ isMenuItem, projectRelativeBasePath, folderName });\n\n            return {\n              queryPath: folder.projectRelativePath,\n              // operation filePath is README.md\n              filePath: path.join(folder.projectRelativePath, \"README.md\"),\n              internalLinkWord: folderName,\n              isMenuItem,\n            };\n          });\n\n          return { [projectRelativeBasePath]: pages };\n        })\n      )\n    );\n\n  const operationsPages =\n    bundleMarkdownReaderConfig?.customOperationNames\n      ?.map((operationName) => {\n        const projectRelativeOperationPath =\n          operations[operationName as keyof typeof operations];\n\n        if (!projectRelativeOperationPath) return;\n\n        const markdownReaderPage: MarkdownReaderPage = {\n          filePath: path.join(projectRelativeOperationPath, \"README.md\"),\n          queryPath: projectRelativeOperationPath,\n          isMenuItem: true,\n        };\n\n        return markdownReaderPage;\n      })\n      .filter(notEmpty) || [];\n\n  // NB: we need to get the right order, so it needs to be done separately\n  const operationPages: MarkdownReaderPage[] = isSensible\n    ? [\n        ...operationsPages,\n        ...operationPagesPerType.packages,\n        ...operationPagesPerType.apps,\n        ...operationPagesPerType.modules,\n      ]\n    : [\n        ...operationsPages,\n        ...operationPagesPerType[\"operations/tools\"],\n        ...operationPagesPerType[\"operations/niches\"],\n      ];\n\n  return operationPages;\n}",
   "description": "",
-  "id": "maszizaschrdxvcpstdpjlka"
+  "id": "jxwelnfzydvzdoxnlfehyefb"
 }

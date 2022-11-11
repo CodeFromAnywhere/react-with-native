@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588123756,
-  "updatedAt": 1667588123756,
+  "createdAt": 1668152085342,
+  "updatedAt": 1668152085342,
   "deletedAt": 0,
-  "createdFirstAt": 1667588123756,
+  "createdFirstAt": 1668152085342,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  props: Omit<ContentEditableRenderProps<any>, \"markedToken\"> & {\n    sentence: string;\n  }\n) => {\n  const { sentence, subwordConfig } = props;\n  if (!subwordConfig.isEnabled) {\n    // NB: if subwords are disabled, we can just return the sentence using a span (not word by word)\n    return <span>{sentence}</span>;\n  }\n\n  const wordSpans = sentence.split(\" \").map((word) => {\n    return <Subword subwordConfig={subwordConfig} word={word} />;\n  });\n\n  return <>{wordSpans}</>;\n}",
   "description": "Needs to be done for every text that can have potential interactions",
-  "id": "eskwgmxykkjzczzajlgbfdik"
+  "id": "tymyedebtpdkidbaqftmkbue"
 }

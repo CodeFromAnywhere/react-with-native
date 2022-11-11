@@ -75,9 +75,11 @@ import { getPublicMarkdownFilePaths } from "markdown-reader-functions";
 import { getTodoPages } from "markdown-reader-functions";
 import { markdownReaderGetStaticPaths } from "markdown-reader-functions";
 import { markdownReaderGetStaticProps } from "markdown-reader-functions";
+import { putReadmeOnTop } from "markdown-reader-functions";
 import { removeExtensionsFromPath } from "markdown-reader-functions";
 import { removeNumberPrefix } from "markdown-reader-functions";
 import { shouldExposeMarkdownFile } from "markdown-reader-functions";
+import { stripReadmeFromFolder } from "markdown-reader-functions";
 import { getQueryPath } from "markdown-reader-functions-js";
 import { readCsvFileSync } from "read-csv-file";
 import { readCsvFile } from "read-csv-file";
@@ -165,9 +167,11 @@ getPublicMarkdownFilePaths,
 getTodoPages,
 markdownReaderGetStaticPaths,
 markdownReaderGetStaticProps,
+putReadmeOnTop,
 removeExtensionsFromPath,
 removeNumberPrefix,
 shouldExposeMarkdownFile,
+stripReadmeFromFolder,
 getQueryPath,
 readCsvFileSync,
 readCsvFile,

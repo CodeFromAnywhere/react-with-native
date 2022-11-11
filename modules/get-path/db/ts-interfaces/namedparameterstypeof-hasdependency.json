@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667634401076,
-  "updatedAt": 1667634401076,
+  "createdAt": 1668148331177,
+  "updatedAt": 1668148331177,
   "deletedAt": 0,
-  "createdFirstAt": 1667634401076,
+  "createdFirstAt": 1668148331177,
   "id": "namedparameterstypeof-hasdependency",
   "name": "NamedParameters<typeof hasDependency>",
   "slug": "namedparameterstypeof-hasdependency",
@@ -215,7 +215,7 @@
                     "ui-es5",
                     "ui-esm"
                   ],
-                  "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nDEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)\n\nui-esm: ui which builds to ESM module resolved Javascript",
+                  "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\n- js: only js (no node) (well, ts of course, but it gets built into js)\n\n- ts: non-built ts code\n\n- node: includes other node packages, operations, core-imports, or globals.\n\n- server: exposes something on some port when it is ran and uses node code\n\n- web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\n- app: uses react-native and exposes something on some port when it is ran\n\n- DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\n- ui-es5: ui which main entry points to javascript es5 files (this ui package can be built). don't import ESM packages in here, this won't work.\n\n- ui-esm: ui which builds to ESM module resolved Javascript. All packages that use ui-esm packages, need to be `ui-esm`, `ui-es6`, or `web` in order to work properly.",
                   "todo": "think about what the differences are and how we need to change processes to make it all work good",
                   "type": "string"
                 }
@@ -250,14 +250,6 @@
                       "schema": {
                         "fullComment": "If true, it means that this operation has dependency on one or more operations that have been generated. We need to know this because it can easily cause circular imports if we don't filter them out sometimes",
                         "type": "boolean"
-                      }
-                    },
-                    {
-                      "name": "appPort",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "If the operation exposes an app on a port (can be both a server or frontend), we can specify the port it should run on.\n\nThis is especially useful to connect the port to something that's running.\n\nBy convention, for King OS, these ports should be unique and on the 42xx range",
-                        "type": "number"
                       }
                     },
                     {
@@ -438,6 +430,13 @@
                       "required": false,
                       "schema": {
                         "fullComment": "one-line explanation of what the operation does (no markdown)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "paymentPlanId",
+                      "required": false,
+                      "schema": {
                         "type": "string"
                       }
                     }

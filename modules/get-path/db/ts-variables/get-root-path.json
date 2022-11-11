@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667634413034,
-  "updatedAt": 1667634413034,
+  "createdAt": 1668148345279,
+  "updatedAt": 1668148345279,
   "deletedAt": 0,
-  "createdFirstAt": 1667634413034,
+  "createdFirstAt": 1668148345279,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  /**\n   * if not specified, will return project root path\n   */\n  name?: OSRootFolder | ProjectRootFolder,\n  config?: { manualProjectRoot?: string }\n): string | undefined => {\n  const projectRootDir = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRootDir) return;\n\n  if (!name) {\n    return projectRootDir;\n  }\n\n  if (isSensibleProject(projectRootDir)) {\n    if (projectRootFolders.concat(osRootFolders).includes(name)) {\n      const projectFolder =\n        name === \"text\"\n          ? \"docs\"\n          : name === \"operations\"\n          ? \"packages\"\n          : name === databaseFolderName\n          ? databaseFolderName\n          : null;\n      if (!projectFolder) {\n        console.log(\"get root path: This should never happen\", name);\n        return;\n      }\n\n      const folderPath = path.resolve(projectRootDir, projectFolder);\n      return folderPath;\n    }\n  }\n\n  // non-sensible projects\n\n  if (projectRootFolders.concat(osRootFolders).includes(name)) {\n    const folderPath = path.resolve(projectRootDir, name);\n    return folderPath;\n  }\n\n  console.log(\n    \"getRootPath: Should never happen, probably a wrong input was provided:\",\n    { name }\n  );\n\n  return;\n}",
   "description": "",
-  "id": "uofcpjddulgwtldodjwyoxck"
+  "id": "hyjakylfvjebbebgrrduflcz"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259122810,
-  "updatedAt": 1666259122810,
+  "createdAt": 1668148408695,
+  "updatedAt": 1668148408695,
   "deletedAt": 0,
-  "createdFirstAt": 1666259122810,
+  "createdFirstAt": 1668148408695,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (\n  ignoreOperations?: boolean\n): Promise<string[]> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return [];\n  const isSensible = isSensibleProject(projectRoot);\n\n  const docsBasePath = isSensible ? projectRoot : getRootPath(\"operations\");\n  if (!docsBasePath) return [];\n\n  const docsFolderPaths = await findAllFoldersWithName({\n    basePath: docsBasePath,\n    folderName: \"docs\",\n    ignoreOperations,\n  });\n  return docsFolderPaths;\n}",
-  "description": "",
-  "id": "xpyqtubpsalyhagugdrnqvav"
+  "value": "async (\n  /**\n   * Don't look for docs folders inside of operation folders\n   */\n  ignoreOperations?: boolean\n): Promise<string[]> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return [];\n  const isSensible = isSensibleProject(projectRoot);\n\n  const docsBasePath = isSensible ? projectRoot : getRootPath(\"operations\");\n  if (!docsBasePath) return [];\n\n  const docsFolderPaths = await findAllFoldersWithName({\n    basePath: docsBasePath,\n    folderName: \"docs\",\n    ignoreOperations,\n  });\n  return docsFolderPaths;\n}",
+  "description": "Returns absolute paths for all docs folders (not the files inside)",
+  "id": "rtlximtpocjmugpwkjobsygk"
 }

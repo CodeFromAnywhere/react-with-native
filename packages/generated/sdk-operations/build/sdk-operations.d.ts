@@ -55,6 +55,7 @@ export declare const operations: {
     "next-a-link": string;
     "parse-primitive": string;
     pluralize: string;
+    "port-conventions": string;
     "react-with-native-form-asset-input": string;
     "read-csv-file": string;
     "read-json-file": string;

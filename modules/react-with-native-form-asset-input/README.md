@@ -1,6 +1,6 @@
 # React with native form asset input
 
-react-with-native-form-asset-input (js operation)
+react-with-native-form-asset-input (`OperationClassification` js)
 
 
 ## ❌ No description set yet
@@ -15,8 +15,8 @@ Please set a description for this operation in OPERATION.md
 # Internal
 
 <details><summary>Show internal (4)</summary>
-  
-  # <AssetInput />
+    
+  # `<AssetInput />`
 
 
 

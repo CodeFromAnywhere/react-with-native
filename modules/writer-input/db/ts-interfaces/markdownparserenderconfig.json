@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588120271,
-  "updatedAt": 1667588120271,
+  "createdAt": 1668152081253,
+  "updatedAt": 1668152081253,
   "deletedAt": 0,
-  "createdFirstAt": 1667588120271,
+  "createdFirstAt": 1668152081253,
   "id": "markdownparserenderconfig",
   "name": "MarkdownParseRenderConfig",
   "slug": "markdownparserenderconfig",
@@ -63,6 +63,15 @@
           "schema": {
             "fullComment": "project relative path of the markdown file.\n\nThis is used for knowing where relative links or assets can be found",
             "type": "string"
+          }
+        },
+        {
+          "name": "augmentedWordObject",
+          "required": false,
+          "schema": {
+            "fullComment": "Mapped object of `AugmentedWord`s. Used to augment the rendered markdown with tooltips and links showing more information about the augmented words.\n\n",
+            "properties": [],
+            "type": "object"
           }
         },
         {

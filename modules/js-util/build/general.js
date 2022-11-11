@@ -1,45 +1,10 @@
 #!/usr/bin/env node
-"use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.notEmpty = exports.sumAllKeys = exports.sumObjectParameters = exports.getObjectFromParamsString = exports.getSubsetFromObject = exports.takeFirst = exports.makeArray = exports.onlyUnique2 = exports.onlyUnique = exports.isAllTrue = exports.groupByKey = exports.createEnum = exports.apply = exports.sum = exports.noEmptyString = void 0;
-var mergeObjectsArray_1 = require("./mergeObjectsArray");
-var noEmptyString = function (input) {
-    if (input === "")
-        return undefined;
-    return input;
-};
-exports.noEmptyString = noEmptyString;
-var sum = function (items) {
-    var total = items.reduce(function (total, num) {
-        if (typeof num !== "number") {
-            console.log("WTF", num);
-        }
-        return total + num;
-    }, 0);
-    return total;
-};
-exports.sum = sum;
+"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(r){for(var e,t=1,n=arguments.length;t<n;t++)for(var u in e=arguments[t])Object.prototype.hasOwnProperty.call(e,u)&&(r[u]=e[u]);return r},__assign.apply(this,arguments)};Object.defineProperty(exports,"__esModule",{value:!0}),exports.notEmpty=exports.sumAllKeys=exports.sumObjectParameters=exports.getObjectFromParamsString=exports.getSubsetFromObject=exports.takeFirst=exports.makeArray=exports.onlyUnique2=exports.onlyUnique=exports.isAllTrue=exports.groupByKey=exports.createEnum=exports.apply=exports.sum=exports.noEmptyString=void 0;var mergeObjectsArray_1=require("./mergeObjectsArray"),noEmptyString=function(r){if(""!==r)return r};exports.noEmptyString=noEmptyString;var sum=function(r){return r.reduce((function(r,e){return"number"!=typeof e&&console.log("WTF",e),r+e}),0)};exports.sum=sum;
 // sum([1, 2, 3]);
 /**
  * function that takes an array of functions and applies them one by one, on the value or the result of the previous function. Only possible if the type of the value stays the same.
  */
-var apply = function (functions, value) {
-    return functions.reduce(function (val, fn) {
-        return fn(val);
-    }, value);
-};
-exports.apply = apply;
+var apply=function(r,e){return r.reduce((function(r,e){return e(r)}),e)};exports.apply=apply;
 /**
  * creates an enum object from a readonly const array so you don't have to
  * ------
@@ -48,13 +13,7 @@ exports.apply = apply;
  * const enummm = createEnum(taskNames);
  * (value of enummm: { a: "a", b: "b", c: "c" })
  */
-var createEnum = function (array) {
-    return array.reduce(function (previous, current) {
-        var _a;
-        return __assign(__assign({}, previous), (_a = {}, _a[current] = current, _a));
-    }, {});
-};
-exports.createEnum = createEnum;
+var createEnum=function(r){return r.reduce((function(r,e){var t;return __assign(__assign({},r),((t={})[e]=e,t))}),{})};exports.createEnum=createEnum;
 /**
  * key should be of type string!
  *
@@ -62,39 +21,21 @@ exports.createEnum = createEnum;
  * groupByKey(input, "path")
  * ouput: { xyz: [{path:"xyz"},{path:"xyz"}], abc: [{path:"abc"}]}
  */
-var groupByKey = function (array, key) {
-    return array.reduce(function (all, item) {
-        var newAll = all;
-        var keyToUse = item[key];
-        var already = newAll[keyToUse];
-        if (!already) {
-            // create a new parameter in the group-object
-            newAll[item[key]] = [item];
-        }
-        else {
-            // push to existing group-object parameter
-            newAll[item[key]].push(item);
-        }
-        return newAll;
-    }, {});
-};
-exports.groupByKey = groupByKey;
+var groupByKey=function(r,e){return r.reduce((function(r,t){var n=r;return n[t[e]]?
+// push to existing group-object parameter
+n[t[e]].push(t):
+// create a new parameter in the group-object
+n[t[e]]=[t],n}),{})};exports.groupByKey=groupByKey;
 /**
  * checks if all items in an array are true
  */
-var isAllTrue = function (array) {
-    return !array.find(function (x) { return !x; });
-};
-exports.isAllTrue = isAllTrue;
+var isAllTrue=function(r){return!r.find((function(r){return!r}))};
 /**
  * DEPRECATED: should refactor everything to use onlyUnique2 and call it onlyUnique again
  *
  * to be used as a filter. removes duplicates
  */
-function onlyUnique(value, index, self) {
-    return self.findIndex(function (v) { return v === value; }) === index;
-}
-exports.onlyUnique = onlyUnique;
+function onlyUnique(r,e,t){return t.findIndex((function(e){return e===r}))===e}exports.isAllTrue=isAllTrue,exports.onlyUnique=onlyUnique;
 /**
  * function that returns a filter function that can be used as a filter for any array. removes duplicates.
  *
@@ -102,13 +43,7 @@ exports.onlyUnique = onlyUnique;
  *
  *
  */
-var onlyUnique2 = function (isEqualFn) {
-    return function (value, index, self) {
-        return (self.findIndex(function (v) { return (isEqualFn ? isEqualFn(v, value) : v === value); }) ===
-            index);
-    };
-};
-exports.onlyUnique2 = onlyUnique2;
+var onlyUnique2=function(r){return function(e,t,n){return n.findIndex((function(t){return r?r(t,e):t===e}))===t}};exports.onlyUnique2=onlyUnique2;
 /**
  * if something is not an array, returns it as the first element of an array
  *
@@ -116,30 +51,11 @@ exports.onlyUnique2 = onlyUnique2;
  *
  * NB: TODO: find out the workings of the array constructor (`Array("any value")`), because maybe it does something very similar. No need to have a dependency then if it's similar.
  */
-var makeArray = function () {
-    var arrayOrNotArray = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        arrayOrNotArray[_i] = arguments[_i];
-    }
-    return arrayOrNotArray
-        .map(function (arrayOrNot) {
-        var array = arrayOrNot
-            ? Array.isArray(arrayOrNot)
-                ? arrayOrNot
-                : [arrayOrNot]
-            : [];
-        return array;
-    })
-        .flat();
-};
-exports.makeArray = makeArray;
+var makeArray=function(){for(var r=[],e=0;e<arguments.length;e++)r[e]=arguments[e];return r.map((function(r){return r?Array.isArray(r)?r:[r]:[]})).flat()};exports.makeArray=makeArray;
 /**
  * takes any type T or an array of T and returns T or the first of the array (which is T)
  */
-var takeFirst = function (arrayOrNot) {
-    return (0, exports.makeArray)(arrayOrNot)[0];
-};
-exports.takeFirst = takeFirst;
+var takeFirst=function(r){return(0,exports.makeArray)(r)[0]};exports.takeFirst=takeFirst;
 /**
  * takes an object and a subset of its keys and returns a subset of that object
  *
@@ -147,14 +63,7 @@ exports.takeFirst = takeFirst;
  *
  * output: { x: "a" }
  */
-var getSubsetFromObject = function (object, keys) {
-    var subsetObject = keys.reduce(function (obj, key) {
-        var _a;
-        return __assign(__assign({}, obj), (_a = {}, _a[key] = object[key], _a));
-    }, {});
-    return subsetObject;
-};
-exports.getSubsetFromObject = getSubsetFromObject;
+var getSubsetFromObject=function(r,e){return e.reduce((function(e,t){var n;return __assign(__assign({},e),((n={})[t]=r[t],n))}),{})};exports.getSubsetFromObject=getSubsetFromObject;
 /**
  * useful for cli's that only take strings. This creates an object from a string
  *
@@ -163,56 +72,19 @@ exports.getSubsetFromObject = getSubsetFromObject;
  *
  * TODO: would be nice if we can validate this string immediately using a JSON SCHEMA
  */
-var getObjectFromParamsString = function (paramsString) {
-    return (0, mergeObjectsArray_1.mergeObjectsArray)(paramsString
-        .split(",")
-        .map(function (x) { return x.trim().split(":"); })
-        .map(function (pair) {
-        var _a;
-        return pair[0] && pair[1] ? (_a = {}, _a[pair[0].trim()] = pair[1], _a) : null;
-    })
-        .filter(notEmpty));
-};
-exports.getObjectFromParamsString = getObjectFromParamsString;
+var getObjectFromParamsString=function(r){return(0,mergeObjectsArray_1.mergeObjectsArray)(r.split(",").map((function(r){return r.trim().split(":")})).map((function(r){var e;return r[0]&&r[1]?((e={})[r[0].trim()]=r[1],e):null})).filter(notEmpty))};exports.getObjectFromParamsString=getObjectFromParamsString;
 /** sums all parameters in two objects together */
-var sumObjectParameters = function (object1, object2) {
-    var objectKeys = Object.keys(object1);
-    var summedObject = (0, mergeObjectsArray_1.mergeObjectsArray)(objectKeys.map(function (key) {
-        var _a;
-        var summedObjectPart = (_a = {}, _a[key] = object1[key] + object2[key], _a);
-        return summedObjectPart;
-    }));
-    // NB: too bad we still need `as TObject` here. I would love to learn how to prevent that
-    return summedObject;
-};
-exports.sumObjectParameters = sumObjectParameters;
+var sumObjectParameters=function(r,e){var t=Object.keys(r);
+// NB: too bad we still need `as TObject` here. I would love to learn how to prevent that
+return(0,mergeObjectsArray_1.mergeObjectsArray)(t.map((function(t){var n;return(n={})[t]=r[t]+e[t],n})))};exports.sumObjectParameters=sumObjectParameters;
 /**
  * sums all keys of an array of objects, assuming the objects have the same datastructure and assuming the values contain either numbers or undefined
  */
-var sumAllKeys = function (objectArray, keys) {
-    var sumObject = objectArray.reduce(function (total, item) {
-        // NB: not needed normally, but there seems to be some corrupt data here and there
-        if (!item)
-            return total;
-        var newTotal = (0, mergeObjectsArray_1.mergeObjectsArray)(keys.map(function (key) {
-            var _a;
-            var value1 = total ? total[key] || 0 : 0;
-            var value2 = (item === null || item === void 0 ? void 0 : item[key]) || 0;
-            var sum = (!total || total[key] === undefined) && item[key] === undefined
-                ? undefined
-                : value1 + value2;
-            return _a = {}, _a[key] = sum, _a;
-        }));
-        return newTotal;
-    }, null);
-    return sumObject;
-};
-exports.sumAllKeys = sumAllKeys;
+var sumAllKeys=function(r,e){var t=r.reduce((function(r,t){
+// NB: not needed normally, but there seems to be some corrupt data here and there
+if(!t)return r;var n=(0,mergeObjectsArray_1.mergeObjectsArray)(e.map((function(e){var n,u=r&&r[e]||0,o=(null==t?void 0:t[e])||0,s=r&&void 0!==r[e]||void 0!==t[e]?u+o:void 0;return(n={})[e]=s,n})));return n}),null);return t};
 /**
  * Removes empty values (null or undefined) from your arrays in a type-safe way
  */
-function notEmpty(value) {
-    return value !== null && value !== undefined;
-}
-exports.notEmpty = notEmpty;
+function notEmpty(r){return null!=r}exports.sumAllKeys=sumAllKeys,exports.notEmpty=notEmpty;
 //# sourceMappingURL=general.js.map

@@ -1,6 +1,6 @@
 # Csv util
 
-csv-util (node operation)
+csv-util (`OperationClassification` node)
 
 
 
@@ -27,7 +27,7 @@ make csv string from a csv model type
 # Internal
 
 <details><summary>Show internal (5)</summary>
-  
+    
   # tryParseCsv()
 
 This function parses a CSV into the object it says it has in the header

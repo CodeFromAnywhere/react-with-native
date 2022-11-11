@@ -1,20 +1,14 @@
 # React with native
 
-react-with-native (ui-es5 operation)
-
-
-
-## Docs
-
-- [React with native](#react-with-native)
+react-with-native (`OperationClassification` ui-es5)
 
 
 
 # Docs
 
-## React with native
-
-### react-with-native
+<details><summary>react-with-native.md</summary>
+    
+  # react-with-native
 
 react-with-native exposes:
 
@@ -24,8 +18,7 @@ react-with-native exposes:
 
 `react-with-native` is integrated into [sensible stack](https://sensiblestack.com) by default, but you can install it into any project.
 
-
-#### Installation
+## Installation
 
 <details><summary>Tip for new projects!</summary>
 Maybe it's better to use [Sensible](https://sensiblestack.com)! Sensible is a boilerplate that gets you up to speed quickly for full stack apps and it uses react-with-native out of the box! This will save you a lot of time.</details>
@@ -34,8 +27,7 @@ Maybe it's better to use [Sensible](https://sensiblestack.com)! Sensible is a bo
 yarn add react-with-native
 ```
 
-
-##### Tailwind
+### Tailwind
 
 [Tailwind](https://tailwindcss.com) must be installed on both the web and on your react-native project.
 
@@ -79,8 +71,7 @@ module.exports = {
 
 In react project it's also possible to generate the css using the tailwind cli and import it into your code. With react-native this is not possible as far as I know.
 
-
-##### For Next.js
+### For Next.js
 
 Add the following to your webpack config in `next.config.js`:
 
@@ -95,15 +86,13 @@ config.module.rules.push({
 yarn add -D @svgr/webpack
 ```
 
-
-##### Expo
+### Expo
 
 To add the SVG Transformer, follow [these instructions](https://github.com/kristerkari/react-native-svg-transformer#installation-and-configuration).
 
+## API
 
-#### API
-
-##### HTML
+### HTML
 
 - `<A>`
 - `<Aside>`
@@ -126,8 +115,7 @@ To add the SVG Transformer, follow [these instructions](https://github.com/krist
 - `<Svg>` (experimental)
 - `<TextArea>`
 
-
-##### react-native
+### react-native
 
 - `<ActivityIndicator>`
 - `<Pressable>`
@@ -135,31 +123,29 @@ To add the SVG Transformer, follow [these instructions](https://github.com/krist
 - `<TouchableOpacity>`
 - `<View>`
 
-
-##### Components
+### Components
 
 - `<ScrollableDiv scroll={boolean}>`
 - `<Toggle {...HTMLInputProps} native={...SwitchProps} onChange={(value: boolean) => void} />`
 
-
-##### Utilities
+### Utilities
 
 - `trimClassName` removes classNames that aren't supported by react-native
 - `joinClassNames` merges an array of className strings
 - `wrapInTextIfNeeded` wraps a Text coponent around a string if you're react-native so the app can render.
 - `getTailwindModules` provides the needed `node_modules` paths to include in your `tailwind.config.js`
 
-
-#### Differences from react-native and react
+## Differences from react-native and react
 
 - you need to apply your text-related classNames to the text itself directly or if your children are a string you can add textClassName as a prop.
 
+  </details>
 
 # Api reference
 
 ## 📄 Div (exported const)
 
-## <P />
+## `<P />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -170,7 +156,7 @@ To add the SVG Transformer, follow [these instructions](https://github.com/krist
 
 ## 📄 P (exported const)
 
-## <Span />
+## `<Span />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -181,7 +167,7 @@ To add the SVG Transformer, follow [these instructions](https://github.com/krist
 
 ## 📄 Span (exported const)
 
-## <Button />
+## `<Button />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -192,7 +178,7 @@ To add the SVG Transformer, follow [these instructions](https://github.com/krist
 
 ## 📄 Button (exported const)
 
-## <Input />
+## `<Input />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -203,7 +189,7 @@ To add the SVG Transformer, follow [these instructions](https://github.com/krist
 
 ## 📄 Input (exported const)
 
-## <Svg />
+## `<Svg />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -214,7 +200,7 @@ To add the SVG Transformer, follow [these instructions](https://github.com/krist
 
 ## 📄 Svg (exported const)
 
-## <Ul />
+## `<Ul />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -225,7 +211,7 @@ To add the SVG Transformer, follow [these instructions](https://github.com/krist
 
 ## 📄 Ul (exported const)
 
-## <A />
+## `<A />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -236,7 +222,7 @@ To add the SVG Transformer, follow [these instructions](https://github.com/krist
 
 ## 📄 A (exported const)
 
-## <Form />
+## `<Form />`
 
 Form is just a html form on web. On react-native, it's a View
 
@@ -248,7 +234,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <H2 />
+## `<H2 />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -257,7 +243,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Label />
+## `<Label />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -266,7 +252,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Li />
+## `<Li />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -275,7 +261,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <TextArea />
+## `<TextArea />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -297,7 +283,7 @@ Form is just a html form on web. On react-native, it's a View
 
 ## 📄 TextArea (exported const)
 
-## <ActivityIndicator />
+## `<ActivityIndicator />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -306,7 +292,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Aside />
+## `<Aside />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -315,7 +301,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Image />
+## `<Image />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -324,7 +310,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Strong />
+## `<Strong />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -333,7 +319,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Text />
+## `<Text />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -342,7 +328,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Toggle />
+## `<Toggle />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -366,7 +352,7 @@ Form is just a html form on web. On react-native, it's a View
 # Internal
 
 <details><summary>Show internal (21)</summary>
-  
+    
   # getTailwindModules()
 
 
@@ -379,7 +365,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <I />
+## `<I />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -397,7 +383,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Nav />
+## `<Nav />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -406,7 +392,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Ol />
+## `<Ol />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -415,7 +401,7 @@ Form is just a html form on web. On react-native, it's a View
 
 
 
-## <Pressable />
+## `<Pressable />`
 
 button on web, pressable on react-native
 
@@ -427,7 +413,7 @@ button on web, pressable on react-native
 
 
 
-## <Select />
+## `<Select />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -436,7 +422,7 @@ button on web, pressable on react-native
 
 
 
-## <TouchableOpacity />
+## `<TouchableOpacity />`
 
 button on web, pressable on react-native
 

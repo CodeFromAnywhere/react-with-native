@@ -1,33 +1,29 @@
 # Fs orm
 
-fs-orm (node operation)
+fs-orm (`OperationClassification` node)
 
 ORM that lets you create a database with models that are stored on the file system in multiple formats that are easy to understand and well structured.
 
 
 
 
-## Docs
-
-- [1 making a model](#1-making-a-model)
-- [README](#readme)
-- [Clear](#clear)
-- [Get](#get)
-- [Getting started](#getting-started)
-- [Limitations](#limitations)
-- [Model types and storage methods](#model-types-and-storage-methods)
-- [Remove](#remove)
-- [Set](#set)
-- [Update](#update)
-- [Upsert](#upsert)
-
-
-
 # Docs
 
-## Making a model
+<details><summary>README.md</summary>
+    
+  Welcome to Typebase. Typebase is an ORM (Object Relational Mapping) that lets you create a database with models that are stored on the file system in multiple formats, that are easy to understand and well structured.
 
-In order to add a new model to your typebase, you need to add it to your `sdk-db`.
+> Object Relational Mapping: A mapping from stored data to set of functions that can access that stored data in a specific programming language.
+
+Typebase is very well integrated with Typescript, which makes it very easy to create new models that are typesafe.
+
+> typesafe: the types of requested data are given without accessing the information itself. This makes it much harder to make mistakes in your code, because you know the shape of your data that you are going to request.
+
+  </details>
+
+<details><summary>1.making-a-model.md</summary>
+    
+  In order to add a new model to your typebase, you need to add it to your `sdk-db`.
 
 `sdk-db` collects all your models. In turn, the `database` operation will collect all models from `sdk-db` to create your database access functions.
 
@@ -64,21 +60,11 @@ After you rebuilt `sdk-db`, please `Restart TS Server` in your VSCode and after 
 
 > Restart TS Server: Restart ts server is a command in VSCode that will restart your Typescript server. This will reload all typescript definitions and ensure that you have the newest version of all types and interfaces across your monorepo.
 
+  </details>
 
-## README
-
-Welcome to Typebase. Typebase is an ORM (Object Relational Mapping) that lets you create a database with models that are stored on the file system in multiple formats, that are easy to understand and well structured.
-
-> Object Relational Mapping: A mapping from stored data to set of functions that can access that stored data in a specific programming language.
-
-Typebase is very well integrated with Typescript, which makes it very easy to create new models that are typesafe.
-
-> typesafe: the types of requested data are given without accessing the information itself. This makes it much harder to make mistakes in your code, because you know the shape of your data that you are going to request.
-
-
-## Clear
-
-With clear, you can clear the whole model. All items in the model will be removed.
+<details><summary>clear.md</summary>
+    
+  With clear, you can clear the whole model. All items in the model will be removed.
 
 
 ### Example
@@ -87,10 +73,11 @@ With clear, you can clear the whole model. All items in the model will be remove
 const clearResult = await db.clear("Todos");
 ```
 
+  </details>
 
-## Get
-
-In order to get your data from a model, you should use the `db.get` function.
+<details><summary>get.md</summary>
+    
+  In order to get your data from a model, you should use the `db.get` function.
 
 
 ### Example
@@ -160,10 +147,11 @@ const todos = await db.get("Todo", { include: { referenceKey: "userId" } });
 
 There are much more options for getting, but for that, simply intorspect the function itself with IntelliSense (or read the code).
 
+  </details>
 
-## Getting started
-
-To get started with `fs-orm`, please have a look at the `db` package. This package shows you how to initiate a database object.
+<details><summary>getting-started.md</summary>
+    
+  To get started with `fs-orm`, please have a look at the `db` package. This package shows you how to initiate a database object.
 
 It is using a package `sdk-db` which you can create yourself (or generate, based on the models found in your monorepo)
 
@@ -175,10 +163,11 @@ const todos = await db.get("Todo");
 
 Check the `createDb` function to see the exact type definition of all the function on the db-object. Otherwise you can just use Intellisense for it, you can easily understand everything that way.
 
+  </details>
 
-## Limitations
-
-Typebase has some limitations, compared to other databases like MySQL or PostGres.
+<details><summary>limitations.md</summary>
+    
+  Typebase has some limitations, compared to other databases like MySQL or PostGres.
 
 
 ### performance and scalability
@@ -190,10 +179,11 @@ The performance and scalability is not great. It is not the main usecase of type
 
 Currently, Typebase doesn't support concurrency, but it is easy to add so we'll do that in the future.
 
+  </details>
 
-## Model types and storage methods
-
-Typebase makes it possible to create different model-types which can have different storage methods.
+<details><summary>model-types-and-storage-methods.md</summary>
+    
+  Typebase makes it possible to create different model-types which can have different storage methods.
 
 More information about the different model-types can be found here:
 
@@ -208,10 +198,11 @@ More information about the different storage methods can be found here: `DbStora
 
 Every model type has a default `DbStorageMethod` but can be overwritten using the `modelQueryConfig`.
 
+  </details>
 
-## Remove
-
-Remove helps you to remove items from a model. The difference from `clear` is that you can specify a filter on what to remove. This is the second argument of the `remove` function.
+<details><summary>remove.md</summary>
+    
+  Remove helps you to remove items from a model. The difference from `clear` is that you can specify a filter on what to remove. This is the second argument of the `remove` function.
 
 
 ### Example
@@ -221,10 +212,11 @@ Remove helps you to remove items from a model. The difference from `clear` is th
 const removeResult = await db.remove("Todo", (todo) => todo.status === "done");
 ```
 
+  </details>
 
-## Set
-
-Set helps you to completely remove all items and replace them with a new set of values.
+<details><summary>set.md</summary>
+    
+  Set helps you to completely remove all items and replace them with a new set of values.
 
 
 ### Example
@@ -255,10 +247,11 @@ const replaceAllTodos = async () => {
 
 Please note that you don't need to specify the full `Todo` here, because when creation some items, the `set` function will augment your items with other items like `id` and `createdAt`. That's why we need the `Creation` interface, and wrap it around your type.
 
+  </details>
 
-## Update
-
-`db.update` lets you update items in your database, given a filter and map.
+<details><summary>update.md</summary>
+    
+  `db.update` lets you update items in your database, given a filter and map.
 
 
 ### Example
@@ -274,10 +267,11 @@ const mapFn = (todo: Todo): Todo => {
 const updatedResult = await db.get("Todo", filterFunction, mapFunction);
 ```
 
+  </details>
 
-## Upsert
-
-Upsert is a special one.
+<details><summary>upsert.md</summary>
+    
+  Upsert is a special one.
 
 It can either insert or update items in your database.
 
@@ -301,6 +295,7 @@ const upsertTodos = async () => {
 };
 ```
 
+  </details>
 
 # Api reference
 
@@ -596,10 +591,32 @@ DB main storage convention
 
 ## 📄 mergeConfigs (exported const)
 
+# Tests
+
+<details><summary>Show test information(3)</summary>
+    
+  # test()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 categoryStackCalculated (unexported const)
+
+## 📄 test (unexported const)
+
+  </details>
+
 # Internal
 
 <details><summary>Show internal (68)</summary>
-  
+    
   # addDefaultValues()
 
 Adds timestamps, id, and a slug IF these things are not already present

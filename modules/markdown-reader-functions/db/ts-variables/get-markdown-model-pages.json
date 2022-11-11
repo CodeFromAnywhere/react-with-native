@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667818208383,
-  "updatedAt": 1667818208383,
+  "createdAt": 1668149501384,
+  "updatedAt": 1668149501384,
   "deletedAt": 0,
-  "createdFirstAt": 1667818208383,
+  "createdFirstAt": 1668149501384,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  projectRoot: string\n): Promise<MarkdownReaderPage[]> => {\n  const markdownModelNames = getObjectKeysArray(modelQueryConfig).filter(\n    (modelName) => {\n      const config = modelQueryConfig[modelName] as QueryConfig;\n\n      const isMarkdownModelType = config.dbStorageMethod === \"markdown\";\n      const noSpecificPath = !config.operationRelativePath;\n      return isMarkdownModelType && noSpecificPath;\n    }\n  );\n\n  const basePaths = markdownModelNames\n    .map((modelName) =>\n      path.join(projectRoot, \"db\", pluralize(kebabCase(modelName)))\n    )\n    .filter((potentialBasePath) => fs.existsSync(potentialBasePath));\n\n  const markdownReaderPages = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths,\n  });\n\n  return markdownReaderPages;\n}",
   "description": "Transforms all your markdown models into  markdown reader pages\n\nSteps:\n- Finds all markdown model types from the database config\n- Gets their basepaths according to `fs-orm` convention\n- Checks if they actually exist\n- Finds all markdown therein\n- Makess markdown reader pages out of them",
-  "id": "ixqxirdiwqygjxtrknqnlxrq"
+  "id": "mutcajuabtwtgzbvqxegzsvx"
 }

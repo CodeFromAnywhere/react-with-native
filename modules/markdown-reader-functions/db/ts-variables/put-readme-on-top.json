@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668149514823,
+  "updatedAt": 1668149514823,
+  "deletedAt": 0,
+  "createdFirstAt": 1668149514823,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "putReadmeOnTop",
+  "slug": "put-readme-on-top",
+  "operationRelativeTypescriptFilePath": "src/putReadmeOnTop.ts",
+  "type": {
+    "rawType": "<T extends { path: string; isFolder: boolean; }>(items: T[]) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<\n  T extends {\n    path: string;\n    isFolder: boolean;\n  }\n>(\n  items: T[]\n) => {\n  const itemsReadmesFirst = items.reduce((previous, item, index, array) => {\n    if (!item.path.toLowerCase().endsWith(\"readme.md\")) {\n      return previous;\n    }\n\n    const folderIndex = array.findIndex(\n      (x) => x.isFolder && x.path === getFolder(item.path)\n    );\n\n    if (folderIndex === -1) {\n      return previous;\n    }\n\n    return putIndexAtIndex(previous, index, folderIndex + 1);\n  }, items);\n\n  return itemsReadmesFirst;\n}",
+  "description": "Takes an array of items (`explore` results) and checks them to put readme at the start\n\nDEPRECATED: After writing this, I found that `explore` also has `readmeOnTop` possibility, so this whole thing is not needed",
+  "id": "iexxckxnfrsmwmneatpmzqgm"
+}

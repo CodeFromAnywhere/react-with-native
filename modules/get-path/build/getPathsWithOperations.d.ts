@@ -1,7 +1,7 @@
 /**
  * returns an array of all (absolute) paths containing operations
  *
- * for a sensible project, that means /apps and /packages
+ * for a sensible project, that means /apps, /packages, /modules
  *
  * for the OS project, that means /operations/tools and /operations/niches
  */

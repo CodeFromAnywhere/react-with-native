@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668149319716,
+  "updatedAt": 1668149319716,
+  "deletedAt": 0,
+  "createdFirstAt": 1668149319716,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/useOpenHashDetails.ts",
+  "commentsInside": [],
+  "rawText": " () => {\n  React.useEffect(() => {\n    const openHashDetailsEventHandler = () => {\n      //  console.log(\"openHashEventHander\");\n      if (typeof window === \"undefined\") return;\n\n      const hash = location.hash.substring(1);\n\n      if (!hash) return;\n\n      //  console.log(`hash: ${hash}`);\n\n      const idElement = document.getElementById(hash);\n      const maybeDetails = idElement?.closest(\"details\");\n\n      // console.log({ idElement, maybeDetails });\n\n      if (!idElement || !maybeDetails) return;\n      maybeDetails.open = true;\n\n      //console.log(\"OPENED\");\n\n      scrollToId(idElement);\n    };\n\n    const scrollToId = (idElement: HTMLElement) => {\n      //console.log(\"Scroll To ID\");\n      history.scrollRestoration = \"manual\";\n      idElement.scrollIntoView({ behavior: \"smooth\" });\n      history.scrollRestoration = \"auto\";\n    };\n\n    if (document.readyState === \"complete\") {\n      openHashDetailsEventHandler();\n    }\n    addEventListener(\"load\", openHashDetailsEventHandler);\n    addEventListener(\"hashchange\", openHashDetailsEventHandler);\n\n    return () => {\n      removeEventListener(\"hashchange\", openHashDetailsEventHandler);\n      removeEventListener(\"load\", openHashDetailsEventHandler);\n    };\n  }, []);\n}",
+  "name": "useOpenHashDetails",
+  "slug": "use-open-hash-details",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1234,
+    "lines": 44,
+    "bytes": 1234,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 44,
+    "numberOfFiles": 1
+  },
+  "id": "ezjwkkahdlkwfcwnwoyptoju"
+}

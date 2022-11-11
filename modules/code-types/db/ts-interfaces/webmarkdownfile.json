@@ -1,15 +1,15 @@
 {
-  "createdAt": 1667684688317,
-  "updatedAt": 1667684688317,
+  "createdAt": 1668150114430,
+  "updatedAt": 1668150114430,
   "deletedAt": 0,
-  "createdFirstAt": 1667684688317,
+  "createdFirstAt": 1668150114430,
   "id": "webmarkdownfile",
   "name": "WebMarkdownFile",
   "slug": "webmarkdownfile",
   "operationRelativeTypescriptFilePath": "src/WebMarkdownFile.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * Every markdown file meant for the web, should have these optional parameters that can be declared as its frontmatter\n *\n * NB: This is not part of MarkdownModelType, because MarkdownModelType is very barebones general purpose, not only for the web!\n */\nexport interface WebMarkdownFile\n  extends MarkdownModelType,\n    /**\n     * NB: it extends WebsiteHeader here because the MarkdownModelType needs to be flat, and cannot have objects\n     */\n    WebsiteHeader {\n  /**\n   * If true, will not show up in markdownReader ui's\n   */\n  isDraft?: boolean;\n  /**\n   * Should be stored as textual date like `YYYY-MM-DD`\n   */\n  updatedAt: number;\n  /**\n   * Should be stored as textual date like `YYYY-MM-DD`\n   */\n  createdAt: number;\n\n  /**\n   * TODO: implement auth layers, then look at this again\n   */\n  privacy: \"private\" | \"request\" | \"public\";\n\n  /**\n   * Either filled in or detected\n   */\n  language: Language;\n  /**\n   * If true, will not auto-detect the language\n   */\n  isLanguageCustom?: boolean;\n\n  websiteCallToActionSlugs?: Slug[];\n  websiteCallToActions?: WebsiteCallToAction[];\n  /**\n   * Refers to an `Item` from the shop\n   */\n  shop_itemIds?: Id[];\n  //shop_items:Item[];\n\n  /**\n   * Author, reference to persons\n   */\n  author_personSlugs: Slug[];\n  //author_persons: Person[];\n\n  /**\n   * Labels referring to interests\n   */\n  interestSlugs: Slug[];\n  //interests: Interest[];\n}",
+  "rawText": "\n\n/**\n * Every markdown file meant for the web, should have these optional parameters that can be declared as its frontmatter\n *\n * NB: This is not part of MarkdownModelType, because MarkdownModelType is very barebones general purpose, not only for the web!\n */\nexport interface WebMarkdownFile\n  extends MarkdownModelType,\n    /**\n     * NB: it extends WebsiteHeader here because the MarkdownModelType needs to be flat, and cannot have objects\n     */\n    WebsiteHeader {\n  /**\n   * If true, will not show up in markdownReader ui's\n   */\n  isDraft?: boolean;\n  /**\n   * Should be stored as textual date like `YYYY-MM-DD`\n   */\n  updatedAt: number;\n  /**\n   * Should be stored as textual date like `YYYY-MM-DD`\n   */\n  createdAt: number;\n\n  /**\n   * TODO: implement auth layers, then look at this again\n   */\n  privacy: \"private\" | \"request\" | \"public\";\n\n  /**\n   * Either filled in or detected\n   */\n  language: Language;\n  /**\n   * If true, will not auto-detect the language\n   */\n  isLanguageCustom?: boolean;\n\n  websiteCallToActionSlugs?: Slug[];\n  websiteCallToActions?: WebsiteCallToAction[];\n  /**\n   * Refers to an `Item` from the shop\n   */\n  shop_itemIds?: Id[];\n  //shop_items:Item[];\n\n  /**\n   * Author, reference to persons\n   */\n  author_personSlugs: Slug[];\n  //author_persons: Person[];\n\n  /**\n   * Labels referring to interests\n   */\n  interestSlugs: Slug[];\n  //interests: Interest[];\n\n  /**\n   * Price for this file\n   *\n   * NB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.\n   */\n  price: Price;\n}",
   "extensions": [
     "MarkdownModelType",
     "WebsiteHeader"
@@ -136,6 +136,10 @@
             "$ref": "#/definitions/Slug"
           },
           "description": "Labels referring to interests"
+        },
+        "price": {
+          "$ref": "#/definitions/Price",
+          "description": "Price for this file\n\nNB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE."
         }
       },
       "required": [
@@ -154,6 +158,7 @@
         "markdown",
         "name",
         "operationName",
+        "price",
         "privacy",
         "projectRelativePath",
         "slug",
@@ -522,6 +527,15 @@
               }
             ],
             "type": "array"
+          }
+        },
+        {
+          "name": "price",
+          "required": true,
+          "schema": {
+            "fullComment": "Price for this file\n\nNB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.\n\nTLDR;EUROS\n\nA price is a number indicating the relative cost. Absolute cost is calculated by many other factors\n\nFor now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.\n\nLater we can add all kinds of extra conversion:\n\n- currency support\n- king os currency\n- lower cost for poorer people\n\netc...\n\nFirst we need to start making sales before we can add such complexity.\n\n",
+            "nb": "in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.",
+            "type": "number"
           }
         }
       ],

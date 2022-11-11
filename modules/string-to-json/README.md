@@ -1,6 +1,6 @@
 # String to json
 
-string-to-json (js operation)
+string-to-json (`OperationClassification` js)
 
 Parser functions to parse strings (that can be inputted in the command-line) into objects (that can be read in functions)
 
@@ -36,7 +36,7 @@ TODO: figure out how I can do this without ts-ignores
 # Internal
 
 <details><summary>Show internal (7)</summary>
-  
+    
   # objectStringToJson()
 
 takes an object string and parses it to JSON

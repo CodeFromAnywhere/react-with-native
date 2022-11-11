@@ -1,4 +1,3 @@
-/// <reference types="react" />
 /**
  * renders a markdown title (level should be 1 for h1 and 6 for h6)
  */

@@ -1,6 +1,6 @@
 # Asset functions js
 
-asset-functions-js (js operation)
+asset-functions-js (`OperationClassification` js)
 
 
 ## ❌ No description set yet
@@ -160,7 +160,7 @@ NB: we also need to convert the file itself in case of mp3
 # Internal
 
 <details><summary>Show internal (5)</summary>
-  
+    
   # getAssetDirectlyApiUrl()
 
 

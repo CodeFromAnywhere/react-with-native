@@ -1,6 +1,6 @@
 # K explore
 
-k-explore (node operation)
+k-explore (`OperationClassification` node)
 
 exploration functions for exploring files within King OS
 
@@ -13,7 +13,7 @@ Currently has a thin dependency on `get-path`, but this can probably be removed 
 
 ## explore()
 
-this is the safe and friendly version of findFilesRecursively: it
+This is the safe and friendly version of `findFilesRecursively`
 
 
 | Input      |    |    |
@@ -25,7 +25,7 @@ this is the safe and friendly version of findFilesRecursively: it
 
 ## 📄 explore (exported const)
 
-this is the safe and friendly version of findFilesRecursively: it
+This is the safe and friendly version of `findFilesRecursively`
 
 
 ## exploreOperationFolders()
@@ -107,9 +107,12 @@ find all active git folders (folders having `.git`)
 
 ## findAllDocsFolderPaths()
 
+Returns absolute paths for all docs folders (not the files inside)
+
+
 | Input      |    |    |
 | ---------- | -- | -- |
-| ignoreOperations (optional) | boolean |  |
+| ignoreOperations (optional) | boolean | Don't look for docs folders inside of operation folders |
 | **Output** |    |    |
 
 
@@ -135,12 +138,61 @@ find all active git folders (folders having `.git`)
 
 ## 📄 findAllDocsFolderPaths (exported const)
 
+Returns absolute paths for all docs folders (not the files inside)
+
+
 ## 📄 findAllPackages (exported const)
+
+# CLI
+
+<details><summary>Show CLI information (4)</summary>
+    
+  # getArgument()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| number | number |  |
+| **Output** |    |    |
+
+
+
+## 📄 arg1 (unexported const)
+
+## 📄 arg2 (unexported const)
+
+## 📄 getArgument (unexported const)
+
+  </details>
+
+# Tests
+
+<details><summary>Show test information(3)</summary>
+    
+  # benchmark()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| amount (optional) | number |  |
+| **Output** |    |    |
+
+
+
+## 📄 benchmark (unexported const)
+
+## 📄 test (exported const)
+
+  </details>
 
 # Internal
 
 <details><summary>Show internal (11)</summary>
-  
+    
   # exploreMultiple()
 
 DEPRECATED: not sure if we still need it, look up usecases, can prob be replaced now

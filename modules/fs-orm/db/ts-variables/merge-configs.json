@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667634656811,
-  "updatedAt": 1667634656811,
+  "createdAt": 1668148856168,
+  "updatedAt": 1668148856168,
   "deletedAt": 0,
-  "createdFirstAt": 1667634656811,
+  "createdFirstAt": 1668148856168,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<TModels extends AnyModelObject>(\n  modelName: Keys<TModels>,\n  dbConfig?: DbConfig<TModels>,\n  config?: CustomQueryConfig | GetQueryConfig<TModels[keyof TModels]>\n) => {\n  const hardcodedDefaultQueryConfig: QueryConfig = {\n    dbStorageMethod: \"jsonMultiple\",\n    manualProjectRoot: getProjectRoot(),\n  };\n\n  const modelConfig = dbConfig?.modelQueryConfig?.[modelName];\n\n  const mergedQueryConfig = mergeObjects<QueryConfig>(\n    hardcodedDefaultQueryConfig,\n    dbConfig?.defaultQueryConfig,\n    modelConfig,\n    config\n  )!;\n\n  // NB: dbStorageMethod is now always set\n  const merged = mergedQueryConfig as MergedQueryConfig;\n  return merged;\n}",
   "description": "",
-  "id": "oqzelyqvcrjduphyqymgfyqu"
+  "id": "cqmpyhtimesxejaijzrjvotr"
 }

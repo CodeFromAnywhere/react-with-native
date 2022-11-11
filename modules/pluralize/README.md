@@ -1,6 +1,6 @@
 # Pluralize
 
-pluralize (js operation)
+pluralize (`OperationClassification` js)
 
 
 
@@ -62,7 +62,7 @@ Removes the 's' if it is found at the end of the parameter name
 # Internal
 
 <details><summary>Show internal (2)</summary>
-  
+    
   # isSingular()
 
 

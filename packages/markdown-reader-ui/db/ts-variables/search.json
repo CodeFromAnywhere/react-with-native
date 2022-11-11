@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635254885,
-  "updatedAt": 1667635254885,
+  "createdAt": 1668149580355,
+  "updatedAt": 1668149580355,
   "deletedAt": 0,
-  "createdFirstAt": 1667635254885,
+  "createdFirstAt": 1668149580355,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -28,6 +28,6 @@
     }
   },
   "value": "(props: { results: AugmentedWord[] }) => {\n  const { results } = props;\n  const router = useRouter();\n  const options: Item<string>[] = results.map((result) => ({\n    label: result.spoiler || result.word,\n    value: result.word,\n  }));\n\n  return (\n    <Div>\n      <SelectInput\n        config={{}}\n        extra={{ autoSuggest: true, options }}\n        fieldName=\"search\"\n        onChange={(select) => {\n          const path = results.find((x) => x.word === select?.value)?.queryPath;\n          if (path) {\n            router.push(`/${path}`);\n          }\n        }}\n        uniqueFieldId=\"search\"\n        value={null}\n      />\n    </Div>\n  );\n}",
-  "description": "",
-  "id": "fqabysmasgfwcdgchikqfcpt"
+  "description": "This is shit....",
+  "id": "oenujxauqoboxylgxbmbqfwe"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259122268,
-  "updatedAt": 1666259122268,
+  "createdAt": 1668148408120,
+  "updatedAt": 1668148408120,
   "deletedAt": 0,
-  "createdFirstAt": 1666259122268,
+  "createdFirstAt": 1668148408120,
   "id": "namedparameterstypeof-findalldocsfolderpaths",
   "name": "NamedParameters<typeof findAllDocsFolderPaths>",
   "slug": "namedparameterstypeof-findalldocsfolderpaths",
@@ -18,7 +18,8 @@
       "type": "object",
       "properties": {
         "ignoreOperations": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Don't look for docs folders inside of operation folders"
         }
       },
       "additionalProperties": false
@@ -29,6 +30,7 @@
           "name": "ignoreOperations",
           "required": false,
           "schema": {
+            "fullComment": "Don't look for docs folders inside of operation folders",
             "type": "boolean"
           }
         }

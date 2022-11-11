@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667634650365,
-  "updatedAt": 1667634650365,
+  "createdAt": 1668148848919,
+  "updatedAt": 1668148848919,
   "deletedAt": 0,
-  "createdFirstAt": 1667634650365,
+  "createdFirstAt": 1668148848919,
   "id": "namedparameterstypeof-getdbfilelocation",
   "name": "NamedParameters<typeof getDbFileLocation>",
   "slug": "namedparameterstypeof-getdbfilelocation",
@@ -45,6 +45,25 @@
     },
     "simplifiedSchema": {
       "properties": [
+        {
+          "name": "storedItem",
+          "required": true,
+          "schema": {
+            "fullComment": "The ModelLocation properties in the item are completely ignored.\n\nOnly the ID, slug and categoryStackCalculated are used to determine the exact file the item should be stored in.\n\nNB: storedItem MUST have a slug or ID, but this should probably be generated before this funciton\n\nUse this generic if you want to store models in a typesafe way\n\nRemoves the parameters that should not be stored",
+            "nb": "storedItem MUST have a slug or ID, but this should probably be generated before this funciton",
+            "properties": [
+              {
+                "name": "id",
+                "required": true,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
         {
           "name": "operationName",
           "required": true,

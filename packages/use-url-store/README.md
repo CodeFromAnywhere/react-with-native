@@ -3,7 +3,7 @@ isStory: true
 ---
 # Use url store
 
-use-url-store (js operation)
+use-url-store (`OperationClassification` js)
 
 
 
@@ -107,7 +107,7 @@ return queryStore[queryKey];
 # Internal
 
 <details><summary>Show internal (1)</summary>
-  
+    
   # 🔹 CustomUrlStoreConfig
 
 

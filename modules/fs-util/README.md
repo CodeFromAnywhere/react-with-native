@@ -1,6 +1,6 @@
 # Fs util
 
-fs-util (js operation)
+fs-util (`OperationClassification` js)
 
 General purpose wrapper around `node:fs` and `node:path` that should be used instead of those, because it removes some of its painpoints, removes unneeded stuff, and adds some other useful functions.
 
@@ -61,9 +61,30 @@ makes the dir and file if they don't exist
 
 
 
+## writeStringToFile()
+
+write string to a file
+
+makes the dir and file if they don't exist
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
 ## 📄 writeJsonToFile (exported const)
 
 write json to a file
+
+makes the dir and file if they don't exist
+
+
+## 📄 writeStringToFile (exported const)
+
+write string to a file
 
 makes the dir and file if they don't exist
 
@@ -80,16 +101,18 @@ File is readable to the calling process
 
 
 
-## writeStringToFile()
+## getFolder()
 
-write string to a file
+if the path exists:
+- if the pathString is a folder, that is returned.
+- if the pathstring is not a folder, returns the pathstring without the file suffix
 
-makes the dir and file if they don't exist
+if the path doesn't exist: returns pathString witout last chunk (this would only work for file paths)
 
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| - | | |
+| pathString | string |  |
 | **Output** |    |    |
 
 
@@ -110,29 +133,6 @@ For now, we don't have a clear convention whether or not this string should be a
 ## 📄 canRead (exported const)
 
 File is readable to the calling process
-
-
-## 📄 writeStringToFile (exported const)
-
-write string to a file
-
-makes the dir and file if they don't exist
-
-
-## getFolder()
-
-if the path exists:
-- if the pathString is a folder, that is returned.
-- if the pathstring is not a folder, returns the pathstring without the file suffix
-
-if the path doesn't exist: returns pathString witout last chunk (this would only work for file paths)
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| pathString | string |  |
-| **Output** |    |    |
-
 
 
 ## 📄 getFolder (exported const)
@@ -432,7 +432,7 @@ parse a md file to all the needed info
 # Internal
 
 <details><summary>Show internal (32)</summary>
-  
+    
   # canAccessSync()
 
 uses fs.access to determine if something can be accessed

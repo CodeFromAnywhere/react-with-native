@@ -1,6 +1,6 @@
 # Markdown reader types
 
-markdown-reader-types (node operation)
+markdown-reader-types (`OperationClassification` node)
 
 
 
@@ -69,7 +69,7 @@ Properties:
 # Internal
 
 <details><summary>Show internal (2)</summary>
-  
+    
   # 🔹 AugmentedWordObject
 
 This datastructure is probably needed to make it more efficient.

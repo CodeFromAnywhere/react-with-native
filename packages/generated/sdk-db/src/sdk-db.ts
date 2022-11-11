@@ -26,12 +26,13 @@ import type { TokiPonaMatrix } from "language-types";
 import type { Translation } from "language-types";
 import type { Word } from "language-types";
 import type { WordCategory } from "language-types";
+import type { WordCombination } from "language-types";
 import type { WordMatrix } from "language-types";
 import type { SlugModelType } from "model-types";
 
 
-export type DbModels = { BundleConfig: BundleConfig,Dataset: Dataset,FunctionExecution: FunctionExecution,OperationConfig: OperationConfig,OperationIndex: OperationIndex,PackageJson: PackageJson,SocialMediaCallToAction: SocialMediaCallToAction,TsBuildError: TsBuildError,TsComment: TsComment,TsConfig: TsConfig,TsExport: TsExport,TsFunction: TsFunction,TsImport: TsImport,TsInterface: TsInterface,TsLintWarning: TsLintWarning,TsVariable: TsVariable,WebMarkdownFile: WebMarkdownFile,WebsiteCallToAction: WebsiteCallToAction,KvmdWord: KvmdWord,MarkdownWord: MarkdownWord,NepaliEnglishTranslationMatrix: NepaliEnglishTranslationMatrix,Statement: Statement,TokiPonaMatrix: TokiPonaMatrix,Translation: Translation,Word: Word,WordCategory: WordCategory,WordMatrix: WordMatrix,SlugModelType: SlugModelType };
-export const dbModelKeys = [ "BundleConfig","Dataset","FunctionExecution","OperationConfig","OperationIndex","PackageJson","SocialMediaCallToAction","TsBuildError","TsComment","TsConfig","TsExport","TsFunction","TsImport","TsInterface","TsLintWarning","TsVariable","WebMarkdownFile","WebsiteCallToAction","KvmdWord","MarkdownWord","NepaliEnglishTranslationMatrix","Statement","TokiPonaMatrix","Translation","Word","WordCategory","WordMatrix","SlugModelType" ] as const;
+export type DbModels = { BundleConfig: BundleConfig,Dataset: Dataset,FunctionExecution: FunctionExecution,OperationConfig: OperationConfig,OperationIndex: OperationIndex,PackageJson: PackageJson,SocialMediaCallToAction: SocialMediaCallToAction,TsBuildError: TsBuildError,TsComment: TsComment,TsConfig: TsConfig,TsExport: TsExport,TsFunction: TsFunction,TsImport: TsImport,TsInterface: TsInterface,TsLintWarning: TsLintWarning,TsVariable: TsVariable,WebMarkdownFile: WebMarkdownFile,WebsiteCallToAction: WebsiteCallToAction,KvmdWord: KvmdWord,MarkdownWord: MarkdownWord,NepaliEnglishTranslationMatrix: NepaliEnglishTranslationMatrix,Statement: Statement,TokiPonaMatrix: TokiPonaMatrix,Translation: Translation,Word: Word,WordCategory: WordCategory,WordCombination: WordCombination,WordMatrix: WordMatrix,SlugModelType: SlugModelType };
+export const dbModelKeys = [ "BundleConfig","Dataset","FunctionExecution","OperationConfig","OperationIndex","PackageJson","SocialMediaCallToAction","TsBuildError","TsComment","TsConfig","TsExport","TsFunction","TsImport","TsInterface","TsLintWarning","TsVariable","WebMarkdownFile","WebsiteCallToAction","KvmdWord","MarkdownWord","NepaliEnglishTranslationMatrix","Statement","TokiPonaMatrix","Translation","Word","WordCategory","WordCombination","WordMatrix","SlugModelType" ] as const;
 export type DbModelEnum = typeof dbModelKeys[number];
 export const modelQueryConfig = {
     BundleConfig: {
@@ -135,6 +136,10 @@ Word: {
           
         },
 WordCategory: {
+          dbStorageMethod: "jsonMultiple",
+          
+        },
+WordCombination: {
           dbStorageMethod: "jsonMultiple",
           
         },

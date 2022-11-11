@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259789882,
-  "updatedAt": 1666259789882,
+  "createdAt": 1668148496310,
+  "updatedAt": 1668148496310,
   "deletedAt": 0,
-  "createdFirstAt": 1666259789882,
+  "createdFirstAt": 1668148496310,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  parameterName: string,\n  valueType?: SimplifiedSchemaType\n): AssetInputType | undefined => {\n  const lastWord = lowerCaseArray(parameterName).pop();\n  if (!lastWord) return;\n\n  const isObjectOrArray =\n    !valueType || valueType === \"array\" || valueType === \"object\";\n\n  if (!isObjectOrArray) return;\n\n  if (\n    [\"image\", \"video\", \"audio\", \"file\", \"asset\"].includes(singularize(lastWord))\n  ) {\n    return {\n      type: singularize(lastWord) as AssetInputType[\"type\"],\n      isMultiple: isPlural(lastWord),\n    };\n  }\n\n  return;\n}",
   "description": "",
-  "id": "qqselhvwygzfkfjwtvhaxays"
+  "id": "oxudvidzxcgfvepsfxypinct"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667684632150,
-  "updatedAt": 1667684632150,
+  "createdAt": 1668150022449,
+  "updatedAt": 1668150022449,
   "deletedAt": 0,
-  "createdFirstAt": 1667684632150,
+  "createdFirstAt": 1668150022449,
   "id": "finalbundleconfig",
   "name": "FinalBundleConfig",
   "slug": "finalbundleconfig",
@@ -25,6 +25,9 @@
         },
         "createBundleConfig": {
           "$ref": "#/definitions/FinalCreateBundleConfig"
+        },
+        "paymentPlanId": {
+          "type": "string"
         },
         "categoryStackCalculated": {
           "$ref": "#/definitions/CategoryStack",
@@ -419,7 +422,7 @@
               },
               {
                 "name": "dependencies",
-                "required": true,
+                "required": false,
                 "schema": {
                   "fullComment": "Generated, private by default. If they're already here, uses private/public setting as given.\n\nWhen generating, removes the ones that are not dependencies (of dependencies) of your standalone apps",
                   "items": [
@@ -474,6 +477,13 @@
               }
             ],
             "type": "object"
+          }
+        },
+        {
+          "name": "paymentPlanId",
+          "required": false,
+          "schema": {
+            "type": "string"
           }
         },
         {

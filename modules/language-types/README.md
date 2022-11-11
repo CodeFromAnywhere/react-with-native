@@ -1,6 +1,6 @@
 # Language types
 
-language-types (js operation)
+language-types (`OperationClassification` js)
 
 
 
@@ -46,9 +46,35 @@ Properties:
 
 # Internal
 
-<details><summary>Show internal (13)</summary>
-  
-  # 🔸 KvmdWord
+<details><summary>Show internal (16)</summary>
+    
+  # 🔹 CoreWordMatrixWord
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| priorityLevel (optional) | string |  |
+| rank (optional) | number |  |
+| usageCountCalculated (optional) | number |  |
+| conjucations (optional) | array |  |
+| root_wordMatrixSlug (optional) | string | If the word is a certain conjugation of a root word, this should be a reference to the root word |
+| root_word (optional) | object |  |
+| opposite_wordMatrixSlug (optional) | string | If there's another word that's the complete opposite of this one, you can declare it here |
+| common_wordMatrixSlug (optional) | string | f the word is a synonym to a more common word, this should be a reference to the more common synonym. This is a 1:1 synonym only |
+| tokiPona_wordMatrixSlugs (optional) | array | The closest way to express this word in toki pona terms. |
+| emoji_wordMatrixSlugs (optional) | array |  |
+| emoji (optional) | string | Single emoji describing this word 1:1 (if it are more emojis of multiple words, please use the reference instead) |
+
+
+
+## 🔸 KvmdWord
 
 keyValueMarkdown model
 
@@ -295,6 +321,43 @@ Properties:
 
 
 
+## 🔸 WordCombination
+
+jsonMultiple model
+
+
+
+Best way to combine words if you don't want to specify all language specific info for a new word. You can refer to words from the WordMatrix instead!
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| name  | string |  |
+| slug  | string |  |
+| description  | string |  |
+| descriptionAudio  | object |  |
+| image (optional) | object |  |
+| wordCategorySlugs  | array |  |
+| type (optional) | string |  |
+| language  | string |  |
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| categoryStackCalculated (optional) | array |  |
+| wordMatrixSlugs (optional) | array |  |
+
+
+
 ## 🔹 WordConjucation
 
 In linguistics, conjugation is the creation of derived forms of a verb from its principal parts by inflection
@@ -314,15 +377,37 @@ Properties:
 
  | Name | Type | Description |
 |---|---|---|
+| name  | string |  |
+| slug  | string |  |
+| description  | string |  |
+| descriptionAudio  | object |  |
+| image (optional) | object |  |
+| wordCategorySlugs  | array |  |
+| type (optional) | string |  |
+
+
+
+## 🔹 WordLanguageInfo
+
+Language specific word information
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
 | latin (optional) | string |  |
-| alternative (optional) | string |  |
+| alternative (optional) | string | the alternative written representation for this word, if any (if the language commonly uses a different script, this can be noted here) |
 | phonetic (optional) | string | Phonetic writing is used to describe how the word is pronounced |
-| audio (optional) | object | Audio fragment containing the spoken word |
-| examples (optional) | array | Sentences containing this word |
+| audio (optional) | object | Audio fragment containing the spoken word. |
+| examples (optional) | array | A list of examples of usage of this word (can contain both a text and audio) |
 
 
 
-## 🔹 WordInfoObject
+## 🔹 WordLanguageInfoObject
 
 Properties: 
 
@@ -363,14 +448,6 @@ jsonMultiple model
 
 WordMatrix is a matrix that contains as much information about a word as possible in as many languages as possible. Easy to use for 1:1 translation
 
-Besides the keys that are language-agnostic, for every language `key` (See `Language`), there are multiple keys that are connected to that specific language
-
-- [key]: the latin standard written representation for this word
-- [key]Alternative: the alternative written representation for this word, if any (if the language commonly uses a different script, this can be noted here)
-- [key]Audio: a short audio recording for pronunciation of this word
-- [key]Phonetic: a phonetic representation of pronunciation of this word in this language
-- [key]Examples: An array of examples of usage of this word (can contain both a text and audio)
-
 @see Language
 
 
@@ -393,22 +470,22 @@ Properties:
 | operationRelativePath (optional) | string |  |
 | id  | string |  |
 | categoryStackCalculated (optional) | array |  |
-| description  | string |  |
-| descriptionAudio  | object |  |
-| image (optional) | object |  |
-| wordCategorySlugs  | array |  |
-| type (optional) | string |  |
 | priorityLevel (optional) | string |  |
 | rank (optional) | number |  |
 | usageCountCalculated (optional) | number |  |
 | conjucations (optional) | array |  |
 | root_wordMatrixSlug (optional) | string | If the word is a certain conjugation of a root word, this should be a reference to the root word |
 | root_word (optional) | object |  |
-| common_wordMatrixSlug (optional) | string | f the word is a synonym to a more common word, this should be a reference to the more common synonym. This is a 1:1 synonym only |
 | opposite_wordMatrixSlug (optional) | string | If there's another word that's the complete opposite of this one, you can declare it here |
+| common_wordMatrixSlug (optional) | string | f the word is a synonym to a more common word, this should be a reference to the more common synonym. This is a 1:1 synonym only |
 | tokiPona_wordMatrixSlugs (optional) | array | The closest way to express this word in toki pona terms. |
 | emoji_wordMatrixSlugs (optional) | array |  |
 | emoji (optional) | string | Single emoji describing this word 1:1 (if it are more emojis of multiple words, please use the reference instead) |
+| description  | string |  |
+| descriptionAudio  | object |  |
+| image (optional) | object |  |
+| wordCategorySlugs  | array |  |
+| type (optional) | string |  |
 | english (optional) | object |  |
 | dutch (optional) | object |  |
 | nepali (optional) | object |  |

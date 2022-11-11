@@ -1,6 +1,6 @@
 # Breadcrumbs
 
-breadcrumbs (js operation)
+breadcrumbs (`OperationClassification` js)
 
 
 ## 🥐 breadcrumbs
@@ -12,7 +12,7 @@ frontend component to show a file location in a nice way (breadcrumbs)
 
 # Api reference
 
-## <BreadCrumbs />
+## `<BreadCrumbs />`
 
 Shows where we are in the filesystem
 
@@ -39,11 +39,4 @@ Shows where we are in the filesystem
 
 
 ## 📄 renderBreadCrumbs (exported const)
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

@@ -1,6 +1,6 @@
 # Schema util
 
-schema-util (js operation)
+schema-util (`OperationClassification` js)
 
 
 
@@ -31,18 +31,6 @@ Takes a parameterName and returns information about it according to the conventi
 - modelName should refer to a database model
 
 
-## getReferencableModels()
-
-based on the object properties in SimplifiedSchema, returns the model names that can be referenced
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| simplifiedSchema (optional) | `SimplifiedSchema` |  |
-| **Output** | { parameterName: string, <br />dataParameterName?: string, <br />descriptor?: string, <br />keyInModel?: string, <br />interfaceName?: string, <br />isReferenceMultipleParameter: boolean, <br />isReferenceSingleParameter: boolean, <br />isReferenceParameter: boolean, <br /> }[]   |    |
-
-
-
 ## getSchema()
 
 parses a JSONSchema7Definition to JSONSchema7|undefined so we can use it
@@ -55,14 +43,45 @@ parses a JSONSchema7Definition to JSONSchema7|undefined so we can use it
 
 
 
-## 📄 getReferencableModels (exported const)
+## 📄 getSchema (exported const)
+
+parses a JSONSchema7Definition to JSONSchema7|undefined so we can use it
+
+
+## getProperties()
+
+Gets all the properties of a schema
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| schema (optional) | `Schema` | schema type interface we use in TsInterface
+
+NB: don't export because this would make this type exist twice. |
+| **Output** | { name: string, <br />schema: {  }, <br />required: boolean, <br /> }[]   |    |
+
+
+
+## getReferencableModels()
 
 based on the object properties in SimplifiedSchema, returns the model names that can be referenced
 
 
-## 📄 getSchema (exported const)
+| Input      |    |    |
+| ---------- | -- | -- |
+| simplifiedSchema (optional) | `SimplifiedSchema` |  |
+| **Output** | { parameterName: string, <br />dataParameterName?: string, <br />descriptor?: string, <br />keyInModel?: string, <br />interfaceName?: string, <br />isReferenceMultipleParameter: boolean, <br />isReferenceSingleParameter: boolean, <br />isReferenceParameter: boolean, <br /> }[]   |    |
 
-parses a JSONSchema7Definition to JSONSchema7|undefined so we can use it
+
+
+## 📄 getProperties (exported const)
+
+Gets all the properties of a schema
+
+
+## 📄 getReferencableModels (exported const)
+
+based on the object properties in SimplifiedSchema, returns the model names that can be referenced
 
 
 ## getPossibleReferenceParameterNames()
@@ -84,9 +103,23 @@ todo -> todoSlug + todoId
 
 
 
-## getProperties()
+## getRefLink()
 
-Gets all the properties of a schema
+gets the $ref from a schema and parses the interface name from it
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| ref (optional) | string |  |
+| **Output** |    |    |
+
+
+
+## getSchemaItems()
+
+==========
+
+Since `JSONSchema7`'s property `items` is fairly hard to use, this function gets that property in an easier to use way.
 
 
 | Input      |    |    |
@@ -94,7 +127,7 @@ Gets all the properties of a schema
 | schema (optional) | `Schema` | schema type interface we use in TsInterface
 
 NB: don't export because this would make this type exist twice. |
-| **Output** | { name: string, <br />schema: {  }, <br />required: boolean, <br /> }[]   |    |
+| **Output** |    |    |
 
 
 
@@ -184,9 +217,14 @@ todo -> todoSlug + todoId
 ```
 
 
-## 📄 getProperties (exported const)
+## 📄 getRefLink (exported const)
 
-Gets all the properties of a schema
+gets the $ref from a schema and parses the interface name from it
+
+
+## 📄 getSchemaItems (exported const)
+
+Since `JSONSchema7`'s property `items` is fairly hard to use, this function gets that property in an easier to use way.
 
 
 ## 📄 simplifySchema (exported const)
@@ -228,8 +266,8 @@ To test this one, test `npx rebuildOperation filename-conventions`
 
 # Internal
 
-<details><summary>Show internal (9)</summary>
-  
+<details><summary>Show internal (5)</summary>
+    
   # findFirstCommentTypes()
 
 Tries to find tie first appearing special comment line and parses it and returns it as part of the `CommentTypeObject`
@@ -239,34 +277,6 @@ Tries to find tie first appearing special comment line and parses it and returns
 | ---------- | -- | -- |
 | strippedFullComment (optional) | string |  |
 | **Output** | {  }   |    |
-
-
-
-## getRefLink()
-
-gets the $ref from a schema and parses the interface name from it
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| ref (optional) | string |  |
-| **Output** |    |    |
-
-
-
-## getSchemaItems()
-
-==========
-
-Since `JSONSchema7`'s property `items` is fairly hard to use, this function gets that property in an easier to use way.
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| schema (optional) | `Schema` | schema type interface we use in TsInterface
-
-NB: don't export because this would make this type exist twice. |
-| **Output** |    |    |
 
 
 
@@ -298,16 +308,6 @@ Properties:
 ## 📄 findFirstCommentTypes (exported const)
 
 Tries to find tie first appearing special comment line and parses it and returns it as part of the `CommentTypeObject`
-
-
-## 📄 getRefLink (exported const)
-
-gets the $ref from a schema and parses the interface name from it
-
-
-## 📄 getSchemaItems (exported const)
-
-Since `JSONSchema7`'s property `items` is fairly hard to use, this function gets that property in an easier to use way.
 
 
 ## 📄 simplifiedSchemaToTypeDefinitionString (exported const)

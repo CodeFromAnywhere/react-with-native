@@ -1,6 +1,6 @@
 import { AnyModelType } from "model-types";
 import { OperationConfig } from "./OperationConfig";
-import { OperationClassification } from "./OperationIndex";
+import { OperationClassification } from "./OperationClassification";
 export declare type PackageInfoObject = {
     [key: string]: string;
 };
@@ -26,14 +26,6 @@ export declare type SensibleConfig = {
      * If true, it means that this operation has dependency on one or more operations that have been generated. We need to know this because it can easily cause circular imports if we don't filter them out sometimes
      */
     hasGeneratedDependencies?: boolean;
-    /**
-     * If the operation exposes an app on a port (can be both a server or frontend), we can specify the port it should run on.
-     *
-     * This is especially useful to connect the port to something that's running.
-     *
-     * By convention, for King OS, these ports should be unique and on the 42xx range
-     */
-    appPort?: number;
     /**
      * If set to true, this operation will not be included into the SDKs
      */

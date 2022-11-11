@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588105394,
-  "updatedAt": 1667588105394,
+  "createdAt": 1668152065432,
+  "updatedAt": 1668152065432,
   "deletedAt": 0,
-  "createdFirstAt": 1667588105394,
+  "createdFirstAt": 1668152065432,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  projectRelativeMarkdownFilePath: string;\n  frontmatterSchema: SimplifiedSchema;\n  markdownParse: MarkdownParse;\n  onChange: (value: string) => void;\n}) => {\n  const { onChange, projectRelativeMarkdownFilePath, markdownParse } = props;\n  const [immutableFrontmatterSchema] = useState<SimplifiedSchema>(\n    props.frontmatterSchema\n  );\n\n  console.log({\n    parameters: markdownParse.parameters,\n  });\n  const referencableModelData = useReferencableModelData(\n    immutableFrontmatterSchema\n  );\n\n  return (\n    <SimplifiedSchemaForm\n      id={projectRelativeMarkdownFilePath}\n      parameters={[\n        {\n          name: \"Frontmatter\",\n          required: true,\n          isDbModel: true,\n          simplifiedSchema: immutableFrontmatterSchema,\n        },\n      ]}\n      onChange={([frontmatter]) => {\n        const newMarkdownParse: MarkdownParse = {\n          ...markdownParse,\n          parameters: frontmatter,\n        };\n\n        const newMarkdownString =\n          markdownParseToMarkdownString(newMarkdownParse);\n\n        onChange(newMarkdownString);\n      }}\n      values={[markdownParse.parameters]}\n      projectRelativeStorageFilePath={projectRelativeMarkdownFilePath}\n      referencableModelData={referencableModelData}\n    />\n  );\n}",
   "description": "Renders a form for frontmatter without save button",
-  "id": "gboedkofeeqziqzchwuzyucn"
+  "id": "umaujvdjsrzgifzdelrppmrh"
 }

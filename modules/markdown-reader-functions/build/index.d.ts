@@ -10,6 +10,8 @@ export * from "./getPublicMarkdownFilePaths";
 export * from "./getTodoPages";
 export * from "./markdownReaderGetStaticPaths";
 export * from "./markdownReaderGetStaticProps";
+export * from "./putReadmeOnTop";
 export * from "./removeExtensionsFromPath";
 export * from "./removeNumberPrefix";
+export * from "./shouldExposeMarkdownFile";
 //# sourceMappingURL=index.d.ts.map

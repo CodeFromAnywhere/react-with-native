@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { Components } from "react-markdown";
 import { MarkdownParseRenderConfig } from "./types.js";
 export declare const header: Components["h1"];

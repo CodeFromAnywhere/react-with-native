@@ -1,6 +1,6 @@
 # Try parse json
 
-try-parse-json (js operation)
+try-parse-json (`OperationClassification` js)
 
 
 
@@ -21,11 +21,4 @@ if text isn't json, returns null
 ## 📄 tryParseJson (exported const)
 
 if text isn't json, returns null
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

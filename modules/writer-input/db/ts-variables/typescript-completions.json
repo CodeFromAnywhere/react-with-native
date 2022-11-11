@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588128118,
-  "updatedAt": 1667588128118,
+  "createdAt": 1668152090346,
+  "updatedAt": 1668152090346,
   "deletedAt": 0,
-  "createdFirstAt": 1667588128118,
+  "createdFirstAt": 1668152090346,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  context: TextEditingContext | null;\n  augmentedWords?: AugmentedWord[];\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n}) => {\n  const { augmentedWords, context, augmentedWordObject } = props;\n\n  const filteredAugmentedWords =\n    augmentedWords?.filter((x) =>\n      [\"operation\", \"bundle\", \"type\", \"function\", \"variable\"].includes(x.type)\n    ) || [];\n\n  const completableWord = context?.wordAtPosition;\n\n  const completions = completableWord\n    ? filteredAugmentedWords\n        .filter((augmentedWord) => {\n          const isMatch = isAugmentedWordMatch(augmentedWord, completableWord);\n\n          return isMatch;\n        })\n        .slice(0, MAX_COMPLETIONS_AMOUNT)\n    : [];\n\n  return (\n    <Div>\n      {completions.map((completion, index) => {\n        return (\n          <Completion\n            augmentedWordObject={augmentedWordObject}\n            augmentedWord={completion}\n            key={`completion${index}`}\n          />\n        );\n      })}\n    </Div>\n  );\n}",
   "description": "In `typescript`, every word should be autocompletable with the typescript stuff, without backticks.",
-  "id": "ifmkwoohoqzvkarzynavisub"
+  "id": "zahnjlbkdysininygfyvzrdh"
 }

@@ -1,12 +1,12 @@
 # Next a link
 
-next-a-link (js operation)
+next-a-link (`OperationClassification` js)
 
 
 
 # Api reference
 
-## <ALink />
+## `<ALink />`
 
 A simple wrapper around react-with-native A and next-link
 
@@ -25,11 +25,4 @@ All links you make with this component are SEO-ready
 A simple wrapper around react-with-native A and next-link
 
 All links you make with this component are SEO-ready
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

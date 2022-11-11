@@ -1,6 +1,6 @@
 # Database
 
-database (node operation)
+database (`OperationClassification` node)
 
 Operation that can be used within any typerepo to interact with the `fs-orm` (typebase) database. Relies on `sdk-db` (where your models should be summarized)
 
@@ -22,10 +22,144 @@ Operation that can be used within any typerepo to interact with the `fs-orm` (ty
 
 ## 📄 getMergedQueryConfig (exported const)
 
+# CLI
+
+<details><summary>Show CLI information (8)</summary>
+    
+  # getCli()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## removeCli()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## updateCli()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## upsertCli()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 getCli (exported const)
+
+## 📄 removeCli (exported const)
+
+## 📄 updateCli (exported const)
+
+## 📄 upsertCli (exported const)
+
+  </details>
+
+# Tests
+
+<details><summary>Show test information(12)</summary>
+    
+  # get()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## main()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## migration()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## set()
+
+Can set a markdown item into a subfolder in the db model folder
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## test()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## upsert()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 get (unexported const)
+
+## 📄 main (unexported const)
+
+## 📄 migration (unexported const)
+
+## 📄 set (unexported const)
+
+Can set a markdown item into a subfolder in the db model folder
+
+
+## 📄 test (unexported const)
+
+## 📄 upsert (unexported const)
+
+  </details>
+
 # Internal
 
 <details><summary>Show internal (25)</summary>
-  
+    
   # generateCsvInstance()
 
 

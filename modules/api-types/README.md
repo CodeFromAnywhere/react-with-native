@@ -1,6 +1,6 @@
 # Api types
 
-api-types (node operation)
+api-types (`OperationClassification` node)
 
 api-related types needed for the `api` operation
 
@@ -8,11 +8,4 @@ api-related types needed for the `api` operation
 
 
 # Api reference
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

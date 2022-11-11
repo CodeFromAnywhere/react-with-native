@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668149580355,
+  "updatedAt": 1668149580355,
+  "deletedAt": 0,
+  "createdFirstAt": 1668149580355,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "MenuWrapper",
+  "slug": "menu-wrapper",
+  "operationRelativeTypescriptFilePath": "src/components/Layout.tsx",
+  "type": {
+    "rawType": "(props: { menu: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/nested-menu/build/types\").MenuType | undefined; children: React.ReactNode; augmentedWordObject: import(\"/Users/king/King/operations/tools/util/js-util/build/createMappedObject\").MappedObject<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/AugmentedWord\").AugmentedWord> | undefined; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  menu: MenuType | undefined;\n  children: React.ReactNode;\n  augmentedWordObject: MappedObject<AugmentedWord> | undefined;\n}) => {\n  const { children, menu, augmentedWordObject } = props;\n\n  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(\n    \"menu.isMobileMenuEnabled\"\n  );\n\n  const results: AugmentedWord[] = augmentedWordObject\n    ? Object.keys(augmentedWordObject).map(\n        (key) => augmentedWordObject[key] as AugmentedWord\n      )\n    : [];\n\n  const renderMenu = () => {\n    return (\n      <>\n        <Div className=\"flex flex-row flex-1\">\n          <Div className=\"w-full\">\n            <Search results={results} />\n          </Div>\n\n          <Div className=\"lg:hidden\">\n            <ClickableIcon\n              emoji=\"╳\"\n              onClick={() => {\n                setIsMobileMenuEnabled(false);\n              }}\n            />\n          </Div>\n        </Div>\n        {menu ? (\n          <NestedMenu menu={menu} headersClickable={true} />\n        ) : (\n          \"Menu couldn't be found\"\n        )}\n      </>\n    );\n  };\n\n  return (\n    <>\n      {isMobileMenuEnabled ? (\n        <Div className=\"lg:hidden\">{renderMenu()}</Div>\n      ) : (\n        <Div className=\"lg:h-screen lg:grid lg:grid-rows-6\">\n          <Div className=\"lg:row-span-6 lg:grid lg:grid-cols-5\">\n            <Div\n              className={`lg:col-span-4 overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white`}\n              textClassName=\"dark:text-white\"\n            >\n              {children}\n            </Div>\n            <Span className=\"invisible lg:visible border-l lg:col-span-1 lg:overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-white border-l-gray-400\">\n              {renderMenu()}\n            </Span>\n          </Div>\n        </Div>\n      )}\n    </>\n  );\n}",
+  "description": "TODO: This is a good start, but it can be generalised more.",
+  "id": "cxftttubiapptwfooxwoqvxy"
+}

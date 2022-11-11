@@ -1,6 +1,6 @@
 # Markdown
 
-markdown (ui-esm operation)
+markdown (`OperationClassification` ui-esm)
 
 
 ## markdown
@@ -21,7 +21,7 @@ renders a markdown striing (without frontmatter)
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| content | string |  |,| config | `MarkdownParseRenderConfig` |  |
+| - | | |
 | **Output** | `JSX.Element`   |    |
 
 
@@ -43,7 +43,7 @@ Based on markdown info, gest the real source for an image
 
 
 
-## <MarkdownCodeblock />
+## `<MarkdownCodeblock />`
 
 Renders a markdown codeblock with a text as content and an optional extension
 
@@ -75,6 +75,7 @@ Properties:
 |---|---|---|
 | projectRelativeBaseFolderPath  | string |  |
 | projectRelativeMarkdownFilePath  | string |  |
+| augmentedWordObject (optional) | object |  |
 | isStatic (optional) | boolean |  |
 | isDev (optional) | boolean |  |
 | big (optional) | boolean |  |
@@ -97,8 +98,8 @@ renders the MardkownParse interface (including frontmatter)
 
 # Internal
 
-<details><summary>Show internal (13)</summary>
-  
+<details><summary>Show internal (17)</summary>
+    
   # getUrlFromRelativeUrl()
 
 gets the renderable asset url from the relative url
@@ -115,8 +116,17 @@ gets the renderable asset url from the relative url
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| url (optional) | string |  |
+| - | | |
 | **Output** | string   |    |
+
+
+
+## header()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
 
@@ -156,6 +166,15 @@ renders a markdown title (level should be 1 for h1 and 6 for h6)
 
 
 
+## useOpenHashDetails()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
 ## 🔹 CodeblockMode
 
 ## 📄 defaultExpandedMode (exported const)
@@ -168,6 +187,8 @@ gets the renderable asset url from the relative url
 
 
 ## 📄 getYoutubeId (exported const)
+
+## 📄 header (exported const)
 
 ## 📄 renderFrontmatter (exported const)
 
@@ -182,5 +203,9 @@ renders a MarkdownChunk interface
 ## 📄 renderMarkdownTitle (exported const)
 
 renders a markdown title (level should be 1 for h1 and 6 for h6)
+
+
+## 📄 useOpenHashDetails (exported const)
+
   </details>
 

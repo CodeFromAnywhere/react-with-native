@@ -1,10 +1,10 @@
 {
-  "createdAt": 1667378840103,
-  "updatedAt": 1667378840103,
+  "createdAt": 1668148280933,
+  "updatedAt": 1668148280933,
   "deletedAt": 0,
-  "createdFirstAt": 1667378840103,
+  "createdFirstAt": 1668148280933,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -13,7 +13,7 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/js.ts",
   "commentsInside": [],
-  "rawText": " <T extends string | undefined>(\n  filePath: T\n): string | undefined => {\n  if (filePath === undefined) return;\n  const chunks = filePath.split(\"/\");\n  chunks.pop();\n  const allWithoutFile = chunks.join(\"/\");\n  return allWithoutFile;\n}",
+  "rawText": " <T extends string | undefined>(filePath: T): T => {\n  if (filePath === undefined) return undefined as T;\n  const chunks = filePath.split(\"/\");\n  chunks.pop();\n  const allWithoutFile = chunks.join(\"/\") as T;\n  return allWithoutFile;\n}",
   "name": "getFolderJs",
   "slug": "get-folder-js",
   "parameters": [],
@@ -46,13 +46,13 @@
   },
   "maxIndentationDepth": 1,
   "size": {
-    "characters": 235,
-    "lines": 9,
-    "bytes": 235,
+    "characters": 234,
+    "lines": 7,
+    "bytes": 234,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 26,
-    "linesPerFile": 9,
+    "charactersPerLine": 33,
+    "linesPerFile": 7,
     "numberOfFiles": 1
   },
-  "id": "msnadkprhbtokoombvitoosw"
+  "id": "zntygsngupocmiykqgbjgoeu"
 }

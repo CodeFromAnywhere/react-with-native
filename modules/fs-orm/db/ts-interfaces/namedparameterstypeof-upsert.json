@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667634643721,
-  "updatedAt": 1667634643721,
+  "createdAt": 1668148841289,
+  "updatedAt": 1668148841289,
   "deletedAt": 0,
-  "createdFirstAt": 1667634643721,
+  "createdFirstAt": 1668148841289,
   "id": "namedparameterstypeof-upsert",
   "name": "NamedParameters<typeof upsert>",
   "slug": "namedparameterstypeof-upsert",
@@ -56,7 +56,25 @@
           "required": true,
           "schema": {
             "fullComment": "The items that were already there",
-            "items": [],
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Use this generic if you want to store models in a typesafe way\n\nRemoves the parameters that should not be stored",
+                  "properties": [
+                    {
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "Storing<AugmentedAnyModelType>"
+              }
+            ],
             "type": "array"
           }
         },

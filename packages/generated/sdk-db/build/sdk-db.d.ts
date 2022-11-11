@@ -24,6 +24,7 @@ import type { TokiPonaMatrix } from "language-types";
 import type { Translation } from "language-types";
 import type { Word } from "language-types";
 import type { WordCategory } from "language-types";
+import type { WordCombination } from "language-types";
 import type { WordMatrix } from "language-types";
 import type { SlugModelType } from "model-types";
 export declare type DbModels = {
@@ -53,10 +54,11 @@ export declare type DbModels = {
     Translation: Translation;
     Word: Word;
     WordCategory: WordCategory;
+    WordCombination: WordCombination;
     WordMatrix: WordMatrix;
     SlugModelType: SlugModelType;
 };
-export declare const dbModelKeys: readonly ["BundleConfig", "Dataset", "FunctionExecution", "OperationConfig", "OperationIndex", "PackageJson", "SocialMediaCallToAction", "TsBuildError", "TsComment", "TsConfig", "TsExport", "TsFunction", "TsImport", "TsInterface", "TsLintWarning", "TsVariable", "WebMarkdownFile", "WebsiteCallToAction", "KvmdWord", "MarkdownWord", "NepaliEnglishTranslationMatrix", "Statement", "TokiPonaMatrix", "Translation", "Word", "WordCategory", "WordMatrix", "SlugModelType"];
+export declare const dbModelKeys: readonly ["BundleConfig", "Dataset", "FunctionExecution", "OperationConfig", "OperationIndex", "PackageJson", "SocialMediaCallToAction", "TsBuildError", "TsComment", "TsConfig", "TsExport", "TsFunction", "TsImport", "TsInterface", "TsLintWarning", "TsVariable", "WebMarkdownFile", "WebsiteCallToAction", "KvmdWord", "MarkdownWord", "NepaliEnglishTranslationMatrix", "Statement", "TokiPonaMatrix", "Translation", "Word", "WordCategory", "WordCombination", "WordMatrix", "SlugModelType"];
 export declare type DbModelEnum = typeof dbModelKeys[number];
 export declare const modelQueryConfig: {
     BundleConfig: {
@@ -139,6 +141,9 @@ export declare const modelQueryConfig: {
         dbStorageMethod: string;
     };
     WordCategory: {
+        dbStorageMethod: string;
+    };
+    WordCombination: {
         dbStorageMethod: string;
     };
     WordMatrix: {

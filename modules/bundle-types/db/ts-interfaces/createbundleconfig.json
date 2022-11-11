@@ -1,15 +1,15 @@
 {
-  "createdAt": 1667684629600,
-  "updatedAt": 1667684629600,
+  "createdAt": 1668150020116,
+  "updatedAt": 1668150020116,
   "deletedAt": 0,
-  "createdFirstAt": 1667684629600,
+  "createdFirstAt": 1668150020116,
   "id": "createbundleconfig",
   "name": "CreateBundleConfig",
   "slug": "createbundleconfig",
   "operationRelativeTypescriptFilePath": "src/CreateBundleConfig.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\nexport type CreateBundleConfig = {\n  /**\n   * If true, the structure of operation locations is kept the same but still inside packages/apps/modules.\n   */\n  keepStructure?: boolean;\n\n  /**\n   * Default information strategy\n   */\n  informationStrategy?: InformationStrategy;\n\n  /**\n   * Information strategy per model\n   *\n   * For example, this would ensure your diaries are not copied over to the bundle:\n   *\n   * ```json\n   * { \"Diary\": \"ignore\" }\n   * ```\n   *\n   * If you want to be certain something isn't included, instead of putting it into the model specific information strategy, you can also just put it in an operation that isn't required in the bundle.\n   *\n   * This parameter is especially useful if you want to change a information stategy for one model in specific.\n   */\n  modelInformationStrategy?: {\n    [modelName: string]: InformationStrategy;\n  };\n\n  /**\n   * After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be added or overwriting the data\n   */\n  additional_datasetSlugs?: Slug[];\n\n  /**\n   * After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be found in the then available data in the bundle, and will be filtered out.\n   */\n  filter_datasetSlugs?: Slug[];\n\n  /**\n   * If true, this bundleconfig will be skipped when using `generateAllBundles`\n   */\n  isDraft?: boolean;\n\n  /**\n   * if true, todos are also copied into their original location, which is in `packages` if it's not in an operation, or in the operation in any of the folders if it's an operation.\n   *\n   * The markdown-reader will then add them to a todo menu.\n   *\n   * NB: Only works in conjunction with `keepStructure`\n   */\n  keepTodos?: boolean;\n\n  bundles: FrontBackBundle[];\n  /**\n   * Generated, private by default. If they're already here, uses private/public setting as given.\n   *\n   * When generating, removes the ones that are not dependencies (of dependencies) of your standalone apps\n   */\n  dependencies: OperationPrivacy[];\n\n  /**\n   * optional. Could also find the main file from here and use that as README.md\n   *\n   * Must be a relative path from project root. Can be multiple!\n   */\n  docsRelativeFolderPath?:\n    | ProjectRelativeFolderPath\n    | ProjectRelativeFolderPath[];\n\n  /**\n   * Optional. path to a readme file for the monorepo root.\n   *\n   * If not given, and if you did provide a path for docs, the main docs intro file will be taken\n   *\n   * Must be a relative path from project  root\n   */\n  readmeRelativeFilePath?: ProjectRelativeFilePath;\n\n  /**\n   * if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated\n   *\n   * can be handy if you're working with someone else...\n   */\n  foldersFromRepo?: string[];\n};",
+  "rawText": "\n\nexport type CreateBundleConfig = {\n  /**\n   * If true, the structure of operation locations is kept the same but still inside packages/apps/modules.\n   */\n  keepStructure?: boolean;\n\n  /**\n   * Default information strategy\n   */\n  informationStrategy?: InformationStrategy;\n\n  /**\n   * Information strategy per model\n   *\n   * For example, this would ensure your diaries are not copied over to the bundle:\n   *\n   * ```json\n   * { \"Diary\": \"ignore\" }\n   * ```\n   *\n   * If you want to be certain something isn't included, instead of putting it into the model specific information strategy, you can also just put it in an operation that isn't required in the bundle.\n   *\n   * This parameter is especially useful if you want to change a information stategy for one model in specific.\n   */\n  modelInformationStrategy?: {\n    [modelName: string]: InformationStrategy;\n  };\n\n  /**\n   * After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be added or overwriting the data\n   */\n  additional_datasetSlugs?: Slug[];\n\n  /**\n   * After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be found in the then available data in the bundle, and will be filtered out.\n   */\n  filter_datasetSlugs?: Slug[];\n\n  /**\n   * If true, this bundleconfig will be skipped when using `generateAllBundles`\n   */\n  isDraft?: boolean;\n\n  /**\n   * if true, todos are also copied into their original location, which is in `packages` if it's not in an operation, or in the operation in any of the folders if it's an operation.\n   *\n   * The markdown-reader will then add them to a todo menu.\n   *\n   * NB: Only works in conjunction with `keepStructure`\n   */\n  keepTodos?: boolean;\n\n  bundles: FrontBackBundle[];\n  /**\n   * Generated, private by default. If they're already here, uses private/public setting as given.\n   *\n   * When generating, removes the ones that are not dependencies (of dependencies) of your standalone apps\n   */\n  dependencies?: OperationPrivacy[];\n\n  /**\n   * optional. Could also find the main file from here and use that as README.md\n   *\n   * Must be a relative path from project root. Can be multiple!\n   */\n  docsRelativeFolderPath?:\n    | ProjectRelativeFolderPath\n    | ProjectRelativeFolderPath[];\n\n  /**\n   * Optional. path to a readme file for the monorepo root.\n   *\n   * If not given, and if you did provide a path for docs, the main docs intro file will be taken\n   *\n   * Must be a relative path from project  root\n   */\n  readmeRelativeFilePath?: ProjectRelativeFilePath;\n\n  /**\n   * if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated\n   *\n   * can be handy if you're working with someone else...\n   */\n  foldersFromRepo?: string[];\n};",
   "extensions": [],
   "isOperationIndex": false,
   "description": "",
@@ -96,8 +96,7 @@
         }
       },
       "required": [
-        "bundles",
-        "dependencies"
+        "bundles"
       ],
       "additionalProperties": false
     },
@@ -299,7 +298,7 @@
         },
         {
           "name": "dependencies",
-          "required": true,
+          "required": false,
           "schema": {
             "fullComment": "Generated, private by default. If they're already here, uses private/public setting as given.\n\nWhen generating, removes the ones that are not dependencies (of dependencies) of your standalone apps",
             "items": [

@@ -1,4 +1,5 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /*
 const test = async () => {
   const { askOk } = api;

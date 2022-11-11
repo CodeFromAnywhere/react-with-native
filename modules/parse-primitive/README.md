@@ -1,6 +1,6 @@
 # Parse primitive
 
-parse-primitive (js operation)
+parse-primitive (`OperationClassification` js)
 
 
 
@@ -29,7 +29,7 @@ if you provide a `simplifiedSchema`, that will be used to parse according to the
 # Internal
 
 <details><summary>Show internal (7)</summary>
-  
+    
   # parsePrimitiveArray()
 
 

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667852859552,
-  "updatedAt": 1667852859552,
+  "createdAt": 1668150797133,
+  "updatedAt": 1668150797133,
   "deletedAt": 0,
-  "createdFirstAt": 1667852859552,
+  "createdFirstAt": 1668150797133,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(schema: Schema | undefined): SchemaProperty[] => {\n  if (!schema) return [];\n  const propertyKeys = schema.properties ? Object.keys(schema.properties) : [];\n  const properties = propertyKeys\n    .map((key) => {\n      const propertySchema = getSchema(schema.properties?.[key]);\n      return propertySchema\n        ? {\n            name: key,\n            schema: propertySchema,\n            required: schema.required?.includes(key) || false,\n          }\n        : null;\n    })\n    .filter(notEmpty);\n\n  return properties;\n}",
   "description": "Gets all the properties of a schema",
-  "id": "slncwbroohvtrpbwgohhtfvk"
+  "id": "bvqrcxybnjyuitzbmzaiiezf"
 }

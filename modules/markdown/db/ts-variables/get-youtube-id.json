@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667634961048,
-  "updatedAt": 1667634961048,
+  "createdAt": 1668149314346,
+  "updatedAt": 1668149314346,
   "deletedAt": 0,
-  "createdFirstAt": 1667634961048,
+  "createdFirstAt": 1668149314346,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(url: string | undefined): string | undefined => {\n  if (!url) return;\n\n  const regExp =\n    /^.*(youtu.be\\/|v\\/|u\\/\\w\\/|embed\\/|watch\\?v=|\\&v=|\\?v=)([^#\\&\\?]*).*/;\n  const match = url.match(regExp);\n\n  if (match && match[2].length == 11) {\n    return match[2];\n  }\n  return;\n}",
   "description": "",
-  "id": "flbxzdmauuplbadqfdcwiiho"
+  "id": "whhlyeqxbzpvyhjmwnpystku"
 }

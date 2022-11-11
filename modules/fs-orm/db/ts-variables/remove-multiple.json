@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667634640789,
-  "updatedAt": 1667634640789,
+  "createdAt": 1668148838197,
+  "updatedAt": 1668148838197,
   "deletedAt": 0,
-  "createdFirstAt": 1667634640789,
+  "createdFirstAt": 1668148838197,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  dbStorageMethod: DbStorageMethod,\n  dbFileLocation: DbFileLocation,\n  removeWhere: (content: AugmentedAnyModelType) => boolean\n): Promise<DbQueryResult> => {\n  const { absolutePath, modelName, ...modelLocation } = dbFileLocation;\n  const isSingleItemStorageMethod =\n    dbStorageMethod === \"jsonSingle\" || dbStorageMethod === \"markdown\";\n\n  // NB: for single item storage methods, we can simply remove the file\n  if (isSingleItemStorageMethod) {\n    const content = await getAugmentedData<AugmentedAnyModelType>(\n      dbFileLocation,\n      dbStorageMethod\n    );\n    const item = content ? content[0] : null;\n    if (\n      fs.existsSync(dbFileLocation.absolutePath) &&\n      canWriteSync(dbFileLocation.absolutePath) &&\n      item &&\n      removeWhere(item)\n    ) {\n      const res = await fs.rm(dbFileLocation.absolutePath);\n      return { amountRemoved: 1 };\n    }\n\n    return { amountRemoved: 0 };\n  }\n\n  if (dbStorageMethod === \"keyValueMarkdown\") {\n    return alterKeyValueMarkdown(dbFileLocation, (storedData) => {\n      const realStoredData = storedData as Storing<KeyValueMarkdownModelType>[];\n\n      const finalStoredData = realStoredData.reduce((storedDataNow, item) => {\n        const completeItem: KeyValueMarkdownModelType = {\n          ...item,\n          ...modelLocation,\n        };\n\n        if (removeWhere(completeItem)) {\n          // If remove, remove it with all its children\n          const { newStoredData } = removeKeyValueMarkdown(\n            storedDataNow,\n            completeItem.slug\n          );\n          return newStoredData;\n        }\n\n        // Otherwise it stays the same\n        return storedDataNow;\n      }, [] as Storing<KeyValueMarkdownModelType>[]);\n\n      return {\n        newStoredData: finalStoredData,\n        isSuccesful: true,\n        amountRemoved: getLength(finalStoredData) - getLength(storedData),\n      };\n    });\n  }\n\n  // otherwise, we'll remove the item from the array\n  return alterAny(dbStorageMethod, dbFileLocation, (storedData) => {\n    const fullData = storedData.map((item) => ({\n      ...item,\n      ...modelLocation,\n    })) as AugmentedAnyModelType[];\n\n    const newFullData = fullData.filter((item) => {\n      return !removeWhere(item);\n    });\n    const newStoredData = newFullData.map((item) => makeStoringItem(item));\n    const amountRemoved = getLength(newFullData) - getLength(storedData);\n    return { amountRemoved, newStoredData, isSuccesful: true };\n  });\n}",
   "description": "Function that lets you remove items from one specific file, for any storage method",
-  "id": "pkvletidjwdixpkyuitxghgj"
+  "id": "ldxnafrnrhxsegoduxduaoaw"
 }

@@ -1,6 +1,6 @@
 # Markdown reader web
 
-markdown-reader-web (web operation)
+markdown-reader-web (`OperationClassification` web)
 
 
 ## 📚 markdown-reader-web
@@ -10,8 +10,8 @@ markdown-reader-web (web operation)
 # Internal
 
 <details><summary>Show internal (3)</summary>
-  
-  # <MyApp />
+    
+  # `<MyApp />`
 
 
 

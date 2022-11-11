@@ -1,6 +1,6 @@
 # Asset view
 
-asset-view (js operation)
+asset-view (`OperationClassification` js)
 
 
 ## 📁 AssetView
@@ -12,7 +12,7 @@ asset-view (js operation)
 
 # Api reference
 
-## <InteractiveAsset />
+## `<InteractiveAsset />`
 
 shows an `Asset` with interactivity
 
@@ -41,8 +41,8 @@ shows an `Asset` with interactivity
 # Internal
 
 <details><summary>Show internal (3)</summary>
-  
-  # <AssetView />
+    
+  # `<AssetView />`
 
 
 

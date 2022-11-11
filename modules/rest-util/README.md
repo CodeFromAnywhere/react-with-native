@@ -1,6 +1,6 @@
 # Rest util
 
-rest-util (js operation)
+rest-util (`OperationClassification` js)
 
 
 
@@ -42,7 +42,7 @@ creates a query-string with one key for all strings in an array
 # Internal
 
 <details><summary>Show internal (4)</summary>
-  
+    
   # bodyFromQueryString()
 
 converts a query string into an object that can be used as a body

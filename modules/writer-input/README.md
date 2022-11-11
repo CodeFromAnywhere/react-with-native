@@ -1,6 +1,6 @@
 # Writer input
 
-writer-input (ui-esm operation)
+writer-input (`OperationClassification` ui-esm)
 
 
 ## Writer Input
@@ -16,7 +16,7 @@ This is a ui-esm operation. This means it's a ui operation that builds to javasc
 
 ## 📄 writerInitialValues (exported const)
 
-## <WriterInput />
+## `<WriterInput />`
 
 Writer input for any utf8 based text, file or no file
 
@@ -33,7 +33,16 @@ Writer input for any utf8 based text, file or no file
 Writer input for any utf8 based text, file or no file
 
 
-## <MarkdownView />
+## `<DivContentEditable />`
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## `<MarkdownView />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -42,13 +51,15 @@ Writer input for any utf8 based text, file or no file
 
 
 
+## 📄 DivContentEditable (exported const)
+
 ## 📄 MarkdownView (exported const)
 
 # Internal
 
-<details><summary>Show internal (67)</summary>
-  
-  # <Completion />
+<details><summary>Show internal (65)</summary>
+    
+  # `<Completion />`
 
 
 
@@ -60,7 +71,7 @@ Writer input for any utf8 based text, file or no file
 
 
 
-## <ContentEditableDivInput />
+## `<ContentEditableDivInput />`
 
 Div that is `contentEditable` by default and has possibilities for color/style highlighting, autocomplete, subtexts and tooltips
 
@@ -72,16 +83,7 @@ Div that is `contentEditable` by default and has possibilities for color/style h
 
 
 
-## <ContextTextArea />
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## <DivContentEditable />
+## `<ContextTextArea />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -104,7 +106,7 @@ NB: DEPRECATED: TODO: function isn't used. Since the indexation didn't go right,
 
 
 
-## <FrontmatterForm />
+## `<FrontmatterForm />`
 
 Renders a form for frontmatter without save button
 
@@ -188,7 +190,7 @@ only detect typescript if the string starts with `import`. must be improved late
 
 
 
-## <MarkdownCompletions />
+## `<MarkdownCompletions />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -197,7 +199,7 @@ only detect typescript if the string starts with `import`. must be improved late
 
 
 
-## <MarkdownParsePresentation />
+## `<MarkdownParsePresentation />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -206,7 +208,7 @@ only detect typescript if the string starts with `import`. must be improved late
 
 
 
-## <MarkedParagraph />
+## `<MarkedParagraph />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -215,7 +217,7 @@ only detect typescript if the string starts with `import`. must be improved late
 
 
 
-## <MarkedText />
+## `<MarkedText />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -224,7 +226,7 @@ only detect typescript if the string starts with `import`. must be improved late
 
 
 
-## <MarkedToken />
+## `<MarkedToken />`
 
 Function that can be used to iterate over the marked parse and style every token, recursively
 
@@ -266,7 +268,7 @@ Three newlines means there should be two breaks...
 
 
 
-## <SmartContentEditableDivInput />
+## `<SmartContentEditableDivInput />`
 
 Uses ContentEditableDivInput, and attaches the Completions to it based on the content type. Also all other data required...
 
@@ -281,7 +283,7 @@ NB: TODO: once the autocomplete inside the contentEditable is done, these things
 
 
 
-## <SpannedSentence />
+## `<SpannedSentence />`
 
 Needs to be done for every text that can have potential interactions
 
@@ -293,7 +295,7 @@ Needs to be done for every text that can have potential interactions
 
 
 
-## <SubtextContainer />
+## `<SubtextContainer />`
 
 Returns a string with HTML for the subtext container, given you already have
 
@@ -305,7 +307,7 @@ Returns a string with HTML for the subtext container, given you already have
 
 
 
-## <Subword />
+## `<Subword />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -342,7 +344,7 @@ TODO: use <template>, might be more accurate. See https://stackoverflow.com/ques
 
 
 
-## <TitleContainer />
+## `<TitleContainer />`
 
 container for any index instance that needs to be rendered in the explore page
 
@@ -378,7 +380,7 @@ Trims a character from a word at the left until that character is not found anym
 
 
 
-## <TypescriptCompletions />
+## `<TypescriptCompletions />`
 
 In `typescript`, every word should be autocompletable with the typescript stuff, without backticks.
 
@@ -390,7 +392,7 @@ In `typescript`, every word should be autocompletable with the typescript stuff,
 
 
 
-## <WriterConfigForm />
+## `<WriterConfigForm />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -429,8 +431,6 @@ Div that is `contentEditable` by default and has possibilities for color/style h
 ## 📄 ContextTextArea (exported const)
 
 ## 📄 depthFontSizes (exported const)
-
-## 📄 DivContentEditable (exported const)
 
 ## 📄 editSubtextSubwordConfig (exported const)
 
@@ -563,7 +563,7 @@ Trims a character from a word at the left until that character is not found anym
 In `typescript`, every word should be autocompletable with the typescript stuff, without backticks.
 
 
-## 📄 { useStore } (exported const)
+## 📄 { useStore, StoreProvider } (exported const)
 
 ## 📄 WriterConfigForm (exported const)
 

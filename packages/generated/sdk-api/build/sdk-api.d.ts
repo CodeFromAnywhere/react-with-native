@@ -157,14 +157,19 @@ export declare const sdk: {
     markdownReaderGetStaticProps: (context: import("next").GetStaticPropsContext<import("querystring").ParsedUrlQuery, import("next").PreviewData>) => Promise<{
         props: import("markdown-reader-types").MarkdownReaderPageProps;
     }>;
+    putReadmeOnTop: <T_7 extends {
+        path: string;
+        isFolder: boolean;
+    }>(items: T_7[]) => T_7[];
     removeExtensionsFromPath: (relativePath: string) => string;
     removeNumberPrefix: (fileOrFolderName: string) => string;
     shouldExposeMarkdownFile: (parameters: import("matter-types").Frontmatter) => boolean;
+    stripReadmeFromFolder: (filePath: string) => string;
     getQueryPath: (parsedUrlQuery: import("next/dist/server/request-meta").NextParsedUrlQuery | undefined) => string;
-    readCsvFileSync: <T_7 extends import("csv-util").CsvItemType>(filePath: string) => T_7[] | null;
-    readCsvFile: <T_8 extends import("csv-util").CsvItemType>(filePath: string | undefined) => Promise<T_8[] | null>;
-    readJsonFileSync: <T_9>(filePath: string) => T_9 | null;
-    readJsonFile: <T_10>(filePath: string | undefined) => Promise<T_10 | null>;
+    readCsvFileSync: <T_8 extends import("csv-util").CsvItemType>(filePath: string) => T_8[] | null;
+    readCsvFile: <T_9 extends import("csv-util").CsvItemType>(filePath: string | undefined) => Promise<T_9[] | null>;
+    readJsonFileSync: <T_10>(filePath: string) => T_10 | null;
+    readJsonFile: <T_11>(filePath: string | undefined) => Promise<T_11 | null>;
     readKvmdFile: (filePath: string, dbFileLocation: import("model-types").DbFileLocation) => Promise<import("model-types").KeyValueMarkdownParse | null>;
     readMarkdownFileToModel: (absoluteFilePath: string) => Promise<import("code-types").WebMarkdownFile | null>;
     readMarkdownFile: (filePath: string) => Promise<import("code-types").MarkdownParse | null>;

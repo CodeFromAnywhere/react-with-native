@@ -1,15 +1,15 @@
 {
-  "createdAt": 1667684668125,
-  "updatedAt": 1667684668125,
+  "createdAt": 1668150092167,
+  "updatedAt": 1668150092167,
   "deletedAt": 0,
-  "createdFirstAt": 1667684668125,
+  "createdFirstAt": 1668150092167,
   "id": "generaloperationindex",
   "name": "GeneralOperationIndex",
   "slug": "generaloperationindex",
   "operationRelativeTypescriptFilePath": "src/OperationIndex.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\nexport type GeneralOperationIndex = {\n  updatedAt: number;\n  name: string;\n  slug: string;\n  /**\n   * name of the package in package.json\n   */\n  packageName: string;\n  /**\n   * name of the operation folder\n   */\n  folderName: string;\n  /**\n   * relative path to the operation (does not include operation folder itself)\n   *\n   * relative from project root\n   */\n  relativeOperationLocationPath: string;\n\n  classification: OperationClassification;\n\n  /**\n   * package dependency names (non-operation)\n   */\n  packageDependencies: string[];\n  /**\n   * operation dependency names\n   */\n  operationDependencies: string[];\n  /**\n   * core dependencies (e.g. `path` and `fs`)\n   */\n  coreDependencies: string[];\n};",
+  "rawText": "\n\nexport type GeneralOperationIndex = {\n  updatedAt: number;\n\n  lastPullTimeAt?: number;\n\n  name: string;\n  slug: string;\n  /**\n   * name of the package in package.json\n   */\n  packageName: string;\n  /**\n   * name of the operation folder\n   */\n  folderName: string;\n  /**\n   * relative path to the operation (does not include operation folder itself)\n   *\n   * relative from project root\n   */\n  relativeOperationLocationPath: string;\n\n  classification: OperationClassification;\n\n  /**\n   * package dependency names (non-operation)\n   */\n  packageDependencies: string[];\n  /**\n   * operation dependency names\n   */\n  operationDependencies: string[];\n  /**\n   * core dependencies (e.g. `path` and `fs`)\n   */\n  coreDependencies: string[];\n};",
   "extensions": [],
   "isOperationIndex": false,
   "description": "",
@@ -20,6 +20,9 @@
       "type": "object",
       "properties": {
         "updatedAt": {
+          "type": "number"
+        },
+        "lastPullTimeAt": {
           "type": "number"
         },
         "name": {
@@ -89,6 +92,13 @@
           }
         },
         {
+          "name": "lastPullTimeAt",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
           "name": "name",
           "required": true,
           "schema": {
@@ -141,7 +151,7 @@
               "ui-es5",
               "ui-esm"
             ],
-            "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nDEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)\n\nui-esm: ui which builds to ESM module resolved Javascript",
+            "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\n- js: only js (no node) (well, ts of course, but it gets built into js)\n\n- ts: non-built ts code\n\n- node: includes other node packages, operations, core-imports, or globals.\n\n- server: exposes something on some port when it is ran and uses node code\n\n- web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\n- app: uses react-native and exposes something on some port when it is ran\n\n- DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\n- ui-es5: ui which main entry points to javascript es5 files (this ui package can be built). don't import ESM packages in here, this won't work.\n\n- ui-esm: ui which builds to ESM module resolved Javascript. All packages that use ui-esm packages, need to be `ui-esm`, `ui-es6`, or `web` in order to work properly.",
             "todo": "think about what the differences are and how we need to change processes to make it all work good",
             "type": "string"
           }

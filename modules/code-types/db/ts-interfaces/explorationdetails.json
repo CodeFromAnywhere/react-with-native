@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667684660519,
-  "updatedAt": 1667684660519,
+  "createdAt": 1668150082466,
+  "updatedAt": 1668150082466,
   "deletedAt": 0,
-  "createdFirstAt": 1667684660519,
+  "createdFirstAt": 1668150082466,
   "id": "explorationdetails",
   "name": "ExplorationDetails",
   "slug": "explorationdetails",
@@ -2356,6 +2356,14 @@
                           }
                         ],
                         "type": "array"
+                      }
+                    },
+                    {
+                      "name": "price",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Indexed from frontmatter `price`\n\nTLDR;EUROS\n\nA price is a number indicating the relative cost. Absolute cost is calculated by many other factors\n\nFor now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.\n\nLater we can add all kinds of extra conversion:\n\n- currency support\n- king os currency\n- lower cost for poorer people\n\netc...\n\nFirst we need to start making sales before we can add such complexity.\n\n",
+                        "type": "number"
                       }
                     }
                   ],
@@ -5591,6 +5599,13 @@
                       }
                     },
                     {
+                      "name": "lastPullTimeAt",
+                      "required": false,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
                       "name": "packageName",
                       "required": true,
                       "schema": {
@@ -5629,7 +5644,7 @@
                           "ui-es5",
                           "ui-esm"
                         ],
-                        "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\njs: only js (no node) (well, ts of course, but it gets built into js)\n\nts: non-built ts code\n\nnode: includes other node packages, operations, core-imports, or globals.\n\nserver: exposes something on some port when it is ran and uses node code\n\nweb: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\napp: uses react-native and exposes something on some port when it is ran\n\nDEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\nui-es5: ui which main entry points to javascript es5 files (this ui package can be built)\n\nui-esm: ui which builds to ESM module resolved Javascript",
+                        "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\n- js: only js (no node) (well, ts of course, but it gets built into js)\n\n- ts: non-built ts code\n\n- node: includes other node packages, operations, core-imports, or globals.\n\n- server: exposes something on some port when it is ran and uses node code\n\n- web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\n- app: uses react-native and exposes something on some port when it is ran\n\n- DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\n- ui-es5: ui which main entry points to javascript es5 files (this ui package can be built). don't import ESM packages in here, this won't work.\n\n- ui-esm: ui which builds to ESM module resolved Javascript. All packages that use ui-esm packages, need to be `ui-esm`, `ui-es6`, or `web` in order to work properly.",
                         "todo": "think about what the differences are and how we need to change processes to make it all work good",
                         "type": "string"
                       }

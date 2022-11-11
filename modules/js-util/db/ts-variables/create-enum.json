@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666513252702,
-  "updatedAt": 1666513252702,
+  "createdAt": 1668150836737,
+  "updatedAt": 1668150836737,
   "deletedAt": 0,
-  "createdFirstAt": 1666513252702,
+  "createdFirstAt": 1668150836737,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<T extends readonly string[]>(\n  array: T\n): { [K in typeof array[number]]: K } =>\n  array.reduce((previous, current) => {\n    return { ...previous, [current]: current };\n  }, {} as any)",
   "description": "creates an enum object from a readonly const array so you don't have to\n------\nconst taskNames = [\"a\",\"b\",\"c\"] as const;\ntype TaskNames = typeof taskNames[number];\nconst enummm = createEnum(taskNames);\n(value of enummm: { a: \"a\", b: \"b\", c: \"c\" })",
-  "id": "vsraifgcwcsiqzlpejozphdd"
+  "id": "ywliacbpcaqydqvyzdgrumdx"
 }

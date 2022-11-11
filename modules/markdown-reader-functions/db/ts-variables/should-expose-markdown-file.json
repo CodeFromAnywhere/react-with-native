@@ -1,14 +1,14 @@
 {
-  "createdAt": 1667818216590,
-  "updatedAt": 1667818216590,
+  "createdAt": 1668149519681,
+  "updatedAt": 1668149519681,
   "deletedAt": 0,
-  "createdFirstAt": 1667818216590,
+  "createdFirstAt": 1668149519681,
   "classification": "const",
   "comments": [],
   "isExported": true,
   "name": "shouldExposeMarkdownFile",
   "slug": "should-expose-markdown-file",
-  "operationRelativeTypescriptFilePath": "src/getPublicMarkdownFilePaths.ts",
+  "operationRelativeTypescriptFilePath": "src/shouldExposeMarkdownFile.ts",
   "type": {
     "rawType": "(parameters: import(\"/Users/king/King/operations/tools/types/matter-types/build/Frontmatter\").Frontmatter) => boolean",
     "typeDefinition": {
@@ -28,6 +28,6 @@
     }
   },
   "value": "(parameters: Frontmatter) => {\n  return !Boolean(parameters.isDraft) && parameters.privacy !== \"private\";\n}",
-  "description": "",
-  "id": "tqotomzvqlvoeydpgmbghnzf"
+  "description": "markdown file should only be exposed if it doesn't say `privacy: private` or `isDraft: true` in your frontmatter.",
+  "id": "gtqbnzqwtouluskaugzrhtyj"
 }

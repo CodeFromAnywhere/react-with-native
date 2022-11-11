@@ -1,4 +1,3 @@
-/// <reference types="react" />
 export declare type CodeblockMode = "preview" | "scroll" | "full";
 export declare const defaultExpandedMode: CodeblockMode;
 export declare const defaultMinimalMode: CodeblockMode;

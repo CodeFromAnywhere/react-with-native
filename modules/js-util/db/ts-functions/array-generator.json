@@ -1,10 +1,10 @@
 {
-  "createdAt": 1666513259329,
-  "updatedAt": 1666513259329,
+  "createdAt": 1668150844846,
+  "updatedAt": 1668150844846,
   "deletedAt": 0,
-  "createdFirstAt": 1666513259329,
+  "createdFirstAt": 1668150844846,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -37,5 +37,5 @@
   },
   "rawText": "\n\n/**\n * NB: Do I really need this? Would be nice not to use generators.\n */\nfunction* arrayGenerator(array: any[]): ArrayGenerator {\n  for (let index = 0; index < array.length; index++) {\n    const currentValue = array[index];\n    const generatorTuple: [any, number, any[]] = [currentValue, index, array];\n    yield generatorTuple;\n  }\n}",
   "maxIndentationDepth": 2,
-  "id": "hvlanpuqcktmkymbyyvgmmak"
+  "id": "spgkezsmajkqjecqyrifdyqv"
 }

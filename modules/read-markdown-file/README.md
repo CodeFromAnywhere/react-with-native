@@ -1,6 +1,6 @@
 # Read markdown file
 
-read-markdown-file (node operation)
+read-markdown-file (`OperationClassification` node)
 
 
 
@@ -38,11 +38,4 @@ Reads a markdown absolute path to a `MarkdownFile` model
 ## 📄 readMarkdownFileToModel (exported const)
 
 Reads a markdown absolute path to a `MarkdownFile` model
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

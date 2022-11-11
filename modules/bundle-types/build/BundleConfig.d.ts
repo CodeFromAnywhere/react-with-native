@@ -27,5 +27,6 @@ export interface BundleConfig extends SlugModelType, PublicBundleConfig {
      * NB: NOT Copied to the bundle itself
      */
     createBundleConfig: CreateBundleConfig;
+    paymentPlanId?: string;
 }
 //# sourceMappingURL=BundleConfig.d.ts.map

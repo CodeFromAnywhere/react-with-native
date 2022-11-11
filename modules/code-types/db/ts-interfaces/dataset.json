@@ -1,20 +1,21 @@
 {
-  "createdAt": 1667684657755,
-  "updatedAt": 1667684657755,
+  "createdAt": 1668150079224,
+  "updatedAt": 1668150079224,
   "deletedAt": 0,
-  "createdFirstAt": 1667684657755,
+  "createdFirstAt": 1668150079224,
   "id": "dataset",
   "name": "Dataset",
   "slug": "dataset",
   "operationRelativeTypescriptFilePath": "src/Dataset.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\nexport interface Dataset extends SlugModelType {\n  /**\n   * The model you want to make a dataset from\n   */\n  modelName: string;\n\n  /**\n   * Filters are applied after each other\n   */\n  filter?: DatasetFilter | DatasetFilter[];\n\n  /**\n   *\n   */\n  sort?: DatasetSort | DatasetSort[];\n\n  /**\n   * Specify a max amount of items n\n   */\n  maxRows?: number;\n\n  /**\n   * If specified, slices the sorted array to omit the first n items;\n   */\n  startFromIndex?: number;\n\n  /**\n   * If specified, will only include these parameter keys of the model object. Otherwise all keys will be taken\n   */\n  objectParameterKeys?: string[];\n\n  /**\n   * If specified, will omit these keys when creating the dataset\n   */\n  ignoreObjectParameterKeys?: string[];\n}",
+  "rawText": "\n\n/**\n * Model\n *\n * Make subsets of models that can be used for authorising someone for a subset of data, or transfering (or filtering out) subsets of data to a bundle.\n */\nexport interface Dataset extends SlugModelType, DatasetConfig {\n  /**\n   * The model you want to make a dataset from\n   */\n  modelName: string;\n\n  /**\n   * How much does this dataset cost?\n   */\n  price?: Price;\n}",
   "extensions": [
-    "SlugModelType"
+    "SlugModelType",
+    "DatasetConfig"
   ],
   "isOperationIndex": false,
-  "description": "",
+  "description": "Model\n\nMake subsets of models that can be used for authorising someone for a subset of data, or transfering (or filtering out) subsets of data to a bundle.",
   "dbStorageMethod": "jsonMultiple",
   "isDbModel": true,
   "commentsInside": [],
@@ -22,6 +23,55 @@
     "typeDefinition": {
       "type": "object",
       "properties": {
+        "filter": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DatasetFilter"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DatasetFilter"
+              }
+            }
+          ],
+          "description": "Filters are applied after each other"
+        },
+        "sort": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DatasetSort"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DatasetSort"
+              }
+            }
+          ]
+        },
+        "maxRows": {
+          "type": "number",
+          "description": "Specify a max amount of items n"
+        },
+        "startFromIndex": {
+          "type": "number",
+          "description": "If specified, slices the sorted array to omit the first n items;"
+        },
+        "objectParameterKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "If specified, will only include these parameter keys of the model object. Otherwise all keys will be taken"
+        },
+        "ignoreObjectParameterKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "If specified, will omit these keys when creating the dataset"
+        },
         "slug": {
           "$ref": "#/definitions/Slug",
           "description": "kebab-case of the name, should be unique"
@@ -71,54 +121,9 @@
           "type": "string",
           "description": "The model you want to make a dataset from"
         },
-        "filter": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/DatasetFilter"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DatasetFilter"
-              }
-            }
-          ],
-          "description": "Filters are applied after each other"
-        },
-        "sort": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/DatasetSort"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DatasetSort"
-              }
-            }
-          ]
-        },
-        "maxRows": {
-          "type": "number",
-          "description": "Specify a max amount of items n"
-        },
-        "startFromIndex": {
-          "type": "number",
-          "description": "If specified, slices the sorted array to omit the first n items;"
-        },
-        "objectParameterKeys": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "If specified, will only include these parameter keys of the model object. Otherwise all keys will be taken"
-        },
-        "ignoreObjectParameterKeys": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "If specified, will omit these keys when creating the dataset"
+        "price": {
+          "$ref": "#/definitions/Price",
+          "description": "How much does this dataset cost?"
         }
       },
       "required": [
@@ -143,10 +148,77 @@
             "not": {}
           }
         ]
-      }
+      },
+      "description": "Model\n\nMake subsets of models that can be used for authorising someone for a subset of data, or transfering (or filtering out) subsets of data to a bundle."
     },
     "simplifiedSchema": {
+      "fullComment": "Model\n\nMake subsets of models that can be used for authorising someone for a subset of data, or transfering (or filtering out) subsets of data to a bundle.",
       "properties": [
+        {
+          "name": "filter",
+          "required": false,
+          "schema": {
+            "fullComment": "Filters are applied after each other",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "sort",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "maxRows",
+          "required": false,
+          "schema": {
+            "fullComment": "Specify a max amount of items n",
+            "type": "number"
+          }
+        },
+        {
+          "name": "startFromIndex",
+          "required": false,
+          "schema": {
+            "fullComment": "If specified, slices the sorted array to omit the first n items;",
+            "type": "number"
+          }
+        },
+        {
+          "name": "objectParameterKeys",
+          "required": false,
+          "schema": {
+            "fullComment": "If specified, will only include these parameter keys of the model object. Otherwise all keys will be taken",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "ignoreObjectParameterKeys",
+          "required": false,
+          "schema": {
+            "fullComment": "If specified, will omit these keys when creating the dataset",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
         {
           "name": "slug",
           "required": true,
@@ -285,68 +357,11 @@
           }
         },
         {
-          "name": "filter",
+          "name": "price",
           "required": false,
           "schema": {
-            "fullComment": "Filters are applied after each other",
-            "properties": [],
-            "type": "object"
-          }
-        },
-        {
-          "name": "sort",
-          "required": false,
-          "schema": {
-            "properties": [],
-            "type": "object"
-          }
-        },
-        {
-          "name": "maxRows",
-          "required": false,
-          "schema": {
-            "fullComment": "Specify a max amount of items n",
+            "fullComment": "How much does this dataset cost?\n\nTLDR;EUROS\n\nA price is a number indicating the relative cost. Absolute cost is calculated by many other factors\n\nFor now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.\n\nLater we can add all kinds of extra conversion:\n\n- currency support\n- king os currency\n- lower cost for poorer people\n\netc...\n\nFirst we need to start making sales before we can add such complexity.\n\n",
             "type": "number"
-          }
-        },
-        {
-          "name": "startFromIndex",
-          "required": false,
-          "schema": {
-            "fullComment": "If specified, slices the sorted array to omit the first n items;",
-            "type": "number"
-          }
-        },
-        {
-          "name": "objectParameterKeys",
-          "required": false,
-          "schema": {
-            "fullComment": "If specified, will only include these parameter keys of the model object. Otherwise all keys will be taken",
-            "items": [
-              {
-                "schema": {
-                  "type": "string"
-                },
-                "name": null
-              }
-            ],
-            "type": "array"
-          }
-        },
-        {
-          "name": "ignoreObjectParameterKeys",
-          "required": false,
-          "schema": {
-            "fullComment": "If specified, will omit these keys when creating the dataset",
-            "items": [
-              {
-                "schema": {
-                  "type": "string"
-                },
-                "name": null
-              }
-            ],
-            "type": "array"
           }
         }
       ],

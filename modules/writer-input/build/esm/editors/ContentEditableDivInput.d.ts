@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { FinalDivType } from "react-with-native";
 import { MarkdownParseRenderConfig } from "markdown";
 import { ParseTextContentToHtmlString } from "./SmartContentEditableDivInput";

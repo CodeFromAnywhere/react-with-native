@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668149319888,
+  "updatedAt": 1668149319888,
+  "deletedAt": 0,
+  "createdFirstAt": 1668149319888,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useOpenHashDetails",
+  "slug": "use-open-hash-details",
+  "operationRelativeTypescriptFilePath": "src/useOpenHashDetails.ts",
+  "type": {
+    "rawType": "() => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  React.useEffect(() => {\n    const openHashDetailsEventHandler = () => {\n      //  console.log(\"openHashEventHander\");\n      if (typeof window === \"undefined\") return;\n\n      const hash = location.hash.substring(1);\n\n      if (!hash) return;\n\n      //  console.log(`hash: ${hash}`);\n\n      const idElement = document.getElementById(hash);\n      const maybeDetails = idElement?.closest(\"details\");\n\n      // console.log({ idElement, maybeDetails });\n\n      if (!idElement || !maybeDetails) return;\n      maybeDetails.open = true;\n\n      //console.log(\"OPENED\");\n\n      scrollToId(idElement);\n    };\n\n    const scrollToId = (idElement: HTMLElement) => {\n      //console.log(\"Scroll To ID\");\n      history.scrollRestoration = \"manual\";\n      idElement.scrollIntoView({ behavior: \"smooth\" });\n      history.scrollRestoration = \"auto\";\n    };\n\n    if (document.readyState === \"complete\") {\n      openHashDetailsEventHandler();\n    }\n    addEventListener(\"load\", openHashDetailsEventHandler);\n    addEventListener(\"hashchange\", openHashDetailsEventHandler);\n\n    return () => {\n      removeEventListener(\"hashchange\", openHashDetailsEventHandler);\n      removeEventListener(\"load\", openHashDetailsEventHandler);\n    };\n  }, []);\n}",
+  "description": "",
+  "id": "ngdfshsbyqghqnhdfnmhpvxw"
+}

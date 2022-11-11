@@ -1,22 +1,16 @@
 # React with native form
 
-react-with-native-form (ui-es5 operation)
-
-
-
-## Docs
-
-- [README](#readme)
+react-with-native-form (`OperationClassification` ui-es5)
 
 
 
 # Docs
 
-## README
+<details><summary>README.md</summary>
+    
+  # Forms
 
-### Forms
-
-#### `NB: Experimental package!`
+## `NB: Experimental package!`
 
 Plug-and-play yet unopinionated and extensible forms constructor for React and React Native apps with high-class typescript support!
 
@@ -230,10 +224,11 @@ const FormPage = () => {
 export default FormPage;
 ```
 
+  </details>
 
 # Api reference
 
-## <DataForm />
+## `<DataForm />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -269,8 +264,8 @@ export default FormPage;
 # Internal
 
 <details><summary>Show internal (8)</summary>
-  
-  # <DefaultInputContainer />
+    
+  # `<DefaultInputContainer />`
 
 
 
@@ -291,7 +286,7 @@ export default FormPage;
 
 
 
-## <Input />
+## `<Input />`
 
 | Input      |    |    |
 | ---------- | -- | -- |

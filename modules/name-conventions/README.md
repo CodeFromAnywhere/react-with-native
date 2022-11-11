@@ -1,6 +1,6 @@
 # Name conventions
 
-name-conventions (js operation)
+name-conventions (`OperationClassification` js)
 
 Any functions and variables related to variable declaration naming conventions
 
@@ -66,8 +66,8 @@ Any parameter names that should render a textArea
 
 # Internal
 
-<details><summary>Show internal (8)</summary>
-  
+<details><summary>Show internal (9)</summary>
+    
   # getParameterContentType()
 
 
@@ -100,6 +100,8 @@ Properties:
 | isSingleWord (optional) | boolean |  |
 
 
+
+## 📄 assetsFolders (exported const)
 
 ## 📄 generatedParameterNames (exported const)
 

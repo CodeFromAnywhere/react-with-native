@@ -9,13 +9,19 @@ declare type LanguageExample = {
 declare type LanguageLatin = string;
 declare type LanguageAlternative = string;
 declare type LanguagePhonetic = string;
-export declare type WordInfo = {
+/**
+ * Language specific word information
+ */
+export declare type WordLanguageInfo = {
     /**
      * TITLE: Latin writing (if common)
+     * DESCRIPTION: the latin standard written representation for this word
      */
     latin?: LanguageLatin;
     /**
      * TITLE: Alternative writing (if common)
+     *
+     * DESCRIPTION: the alternative written representation for this word, if any (if the language commonly uses a different script, this can be noted here)
      */
     alternative?: LanguageAlternative;
     /**
@@ -27,11 +33,11 @@ export declare type WordInfo = {
     /**
      * TITLE: Spoken word
      *
-     * DESCRIPTION: Audio fragment containing the spoken word
+     * DESCRIPTION: Audio fragment containing the spoken word.
      */
     audio?: LanguageAudio;
     /**
-     * DESCRIPTION: Sentences containing this word
+     * DESCRIPTION: A list of examples of usage of this word (can contain both a text and audio)
      */
     examples?: LanguageExample[];
 };
@@ -56,29 +62,12 @@ export declare type WordType = "noun" | "adjective" | "verb";
  * Besides this, there are also other ways to alter a word to add/change meaning, this should be summed up using this enum.
  */
 export declare type WordConjucation = "plural" | "female" | "male" | "past" | "future";
-export declare type WordInfoObject = {
-    [languageKey in Language]?: WordInfo;
+export declare type WordLanguageInfoObject = {
+    [languageKey in Language]?: WordLanguageInfo;
 };
-/**
- * ---
- * dbStorageMethod: jsonMultiple
- * ---
- *
- * WordMatrix is a matrix that contains as much information about a word as possible in as many languages as possible. Easy to use for 1:1 translation
- *
- * Besides the keys that are language-agnostic, for every language `key` (See `Language`), there are multiple keys that are connected to that specific language
- *
- * - [key]: the latin standard written representation for this word
- * - [key]Alternative: the alternative written representation for this word, if any (if the language commonly uses a different script, this can be noted here)
- * - [key]Audio: a short audio recording for pronunciation of this word
- * - [key]Phonetic: a phonetic representation of pronunciation of this word in this language
- * - [key]Examples: An array of examples of usage of this word (can contain both a text and audio)
- *
- * @see Language
- */
-export declare type WordMatrix = WordInfoObject & {
+export declare type WordInfo = {
     /**
-     * unique name of the word in english (or another one if `language` is specified). Can usually be the word itself...
+     * Unique name of the word in English. Can usually be the word itself...
      */
     name: string;
     slug: Slug;
@@ -91,6 +80,8 @@ export declare type WordMatrix = WordInfoObject & {
     wordCategorySlugs: Slug[];
     wordCategorys: WordCategory[];
     type?: WordType;
+};
+export declare type CoreWordMatrixWord = {
     /**
      * Priority level is how important this word is to communicate...
      *
@@ -125,19 +116,19 @@ export declare type WordMatrix = WordInfoObject & {
     root_wordMatrixSlug?: Slug;
     root_word?: WordMatrix;
     /**
-     * TITLE: Common Synonym
-     *
-     * DESCRIPTION: f the word is a synonym to a more common word, this should be a reference to the more common synonym. This is a 1:1 synonym only
-     */
-    common_wordMatrixSlug?: Slug;
-    common_wordMatrix?: WordMatrix;
-    /**
      * TITLE: Opposite word
      *
      * DESCRIPTION: If there's another word that's the complete opposite of this one, you can declare it here
      */
     opposite_wordMatrixSlug?: Slug;
     opposite_wordMatrix?: WordMatrix;
+    /**
+     * TITLE: Common Synonym
+     *
+     * DESCRIPTION: f the word is a synonym to a more common word, this should be a reference to the more common synonym. This is a 1:1 synonym only
+     */
+    common_wordMatrixSlug?: Slug;
+    common_wordMatrix?: WordMatrix;
     /**
      * TITLE: Toki-Pona words
      *
@@ -162,7 +153,17 @@ export declare type WordMatrix = WordInfoObject & {
      * DESCRIPTION: Single emoji describing this word 1:1 (if it are more emojis of multiple words, please use the reference instead)
      */
     emoji?: string;
-} & SlugModelType;
+};
+/**
+ * ---
+ * dbStorageMethod: jsonMultiple
+ * ---
+ *
+ * WordMatrix is a matrix that contains as much information about a word as possible in as many languages as possible. Easy to use for 1:1 translation
+ *
+ * @see Language
+ */
+export declare type WordMatrix = WordLanguageInfoObject & WordInfo & CoreWordMatrixWord & SlugModelType;
 /**
  * DEPRECATED: to be migrated to `WordMatrix`
  */
@@ -175,6 +176,23 @@ export interface TokiPonaMatrix extends DefaultModelType {
     np?: string;
     "pt-br"?: string;
     em: string;
+}
+/**
+ * Best way to combine words if you don't want to specify all language specific info for a new word. You can refer to words from the WordMatrix instead!
+ */
+export interface WordCombination extends SlugModelType, WordInfo {
+    /**
+     * Should be autofilled based on the combination of the base words
+     */
+    name: string;
+    /**
+     * Should be auto filled in based on the combination of the base words
+     */
+    slug: string;
+    /**
+     * Which words is this a combination of?
+     */
+    wordMatrixSlugs?: Slug[];
 }
 export {};
 //# sourceMappingURL=WordMatrix.d.ts.map

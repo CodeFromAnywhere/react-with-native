@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { SubtextConfig } from "writer-types";
 /**
  * Returns a string with HTML for the subtext container, given you already have

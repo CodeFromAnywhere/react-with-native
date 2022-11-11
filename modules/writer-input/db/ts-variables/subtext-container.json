@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588124994,
-  "updatedAt": 1667588124994,
+  "createdAt": 1668152086747,
+  "updatedAt": 1668152086747,
   "deletedAt": 0,
-  "createdFirstAt": 1667588124994,
+  "createdFirstAt": 1668152086747,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  /**\n   * raw markdown that should be converted into a subtext\n   */\n  rawMarkdown: string;\n  subtextConfig: SubtextConfig;\n}) => {\n  const { rawMarkdown, subtextConfig } = props;\n\n  if (!subtextConfig.isEnabled) return null;\n  const subtext = getSubtext(rawMarkdown, subtextConfig);\n  return (\n    <div\n      contentEditable={false}\n      spellCheck={false}\n      autoCorrect=\"false\"\n      data-is-augmentation=\"true\"\n      style={{ fontSize: 8, backgroundColor: \"#CCC\", padding: 5 }}\n    >\n      {subtext}\n    </div>\n  );\n}",
   "description": "Returns a string with HTML for the subtext container, given you already have",
-  "id": "mfqpmfrydtcbydxrswkoiets"
+  "id": "gngfxacaoahmyosggwmeupzn"
 }

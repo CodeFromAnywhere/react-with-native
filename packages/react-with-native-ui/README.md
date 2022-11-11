@@ -1,6 +1,6 @@
 # React with native ui
 
-react-with-native-ui (js operation)
+react-with-native-ui (`OperationClassification` js)
 
 
 
@@ -11,11 +11,4 @@ react-with-native-ui (js operation)
 ## 📄 bareInputClass (exported const)
 
 ## 📄 inputClass (exported const)
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

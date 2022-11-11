@@ -1,6 +1,6 @@
 # Read json file
 
-read-json-file (node operation)
+read-json-file (`OperationClassification` node)
 
 
 
@@ -46,11 +46,4 @@ make sure to specify what type the file contains as a generic!
 Reads and parses JSON file
 
 make sure to specify what type the file contains as a generic!
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

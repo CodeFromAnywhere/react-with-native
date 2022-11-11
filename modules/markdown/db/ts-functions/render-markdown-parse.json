@@ -1,10 +1,10 @@
 {
-  "createdAt": 1667634962336,
-  "updatedAt": 1667634962336,
+  "createdAt": 1668149315858,
+  "updatedAt": 1668149315858,
   "deletedAt": 0,
-  "createdFirstAt": 1667634962336,
+  "createdFirstAt": 1668149315858,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -13,7 +13,7 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/renderMarkdownParse.tsx",
   "commentsInside": [],
-  "rawText": " (\n  markdownParse: MarkdownParse,\n  config: MarkdownParseRenderConfig\n) => {\n  return (\n    <Div>\n      {renderFrontmatter(markdownParse.parameters, { renderSpacer: true })}\n      {markdownParse.content?.map((chunk) =>\n        renderMarkdownChunk(chunk, config)\n      )}\n    </Div>\n  );\n}",
+  "rawText": " (\n  markdownParse: MarkdownParse,\n  config: MarkdownParseRenderConfig\n) => {\n  // NB: not sure if this is the best way, there may be mulitiple markdown parses....\n  useOpenHashDetails();\n\n  return (\n    <Div>\n      {renderFrontmatter(markdownParse.parameters, { renderSpacer: true })}\n      {/* NB: Previously we needed renderMarkdownTtile, renderMarkdownChunk etc... but this was not rightly parsed, so we are going to use the regular raw parser now from `react-markdown` instead... */}\n      {renderMarkdownContent(markdownParse.raw, config)}\n    </Div>\n  );\n}",
   "name": "renderMarkdownParse",
   "slug": "render-markdown-parse",
   "parameters": [
@@ -112,15 +112,15 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "maxIndentationDepth": 4,
+  "maxIndentationDepth": 3,
   "size": {
-    "characters": 348,
-    "lines": 13,
-    "bytes": 348,
+    "characters": 622,
+    "lines": 15,
+    "bytes": 622,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 27,
-    "linesPerFile": 13,
+    "charactersPerLine": 41,
+    "linesPerFile": 15,
     "numberOfFiles": 1
   },
-  "id": "yekoivvkbunlawoqmnftcfnn"
+  "id": "jhjdyztrtkojyvdycuepvble"
 }

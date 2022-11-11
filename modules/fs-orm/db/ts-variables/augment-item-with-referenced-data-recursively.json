@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667634665084,
-  "updatedAt": 1667634665084,
+  "createdAt": 1668148865333,
+  "updatedAt": 1668148865333,
   "deletedAt": 0,
-  "createdFirstAt": 1667634665084,
+  "createdFirstAt": 1668148865333,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  item: AugmentedAnyModelType,\n\n  includeArray: Include[],\n  /**\n   * Final includeData object to take items from\n   */\n  includeData: IncludeDataObject\n): AugmentedAnyModelType => {\n  // basecase\n  if (includeArray.length === 0) {\n    return item;\n  }\n\n  const newItem = includeArray.reduce((itemNow, include) => {\n    if (!include.referenceKey) return itemNow;\n\n    const parameterInfo = getReferenceParameterInfo(include.referenceKey);\n\n    if (!parameterInfo.interfaceName) return itemNow;\n\n    const referencedItems = includeData[parameterInfo.interfaceName];\n\n    if (!referencedItems) return itemNow;\n    if (!parameterInfo.dataParameterName) return itemNow;\n    if (!parameterInfo.keyInModel) return itemNow;\n\n    const referenceItems = referencedItems.filter((x) => {\n      if (!parameterInfo.keyInModel) return false;\n      const itemReference: string | string[] | undefined =\n        itemNow[parameterInfo.parameterName];\n      const referenceItemReference = (x as any)[parameterInfo.keyInModel];\n\n      const isMatchingReference = parameterInfo.isReferenceSingleParameter\n        ? itemReference === referenceItemReference\n        : parameterInfo.isReferenceMultipleParameter\n        ? itemReference?.includes?.(referenceItemReference) || false\n        : false;\n\n      return isMatchingReference;\n    });\n\n    const augmentedReferenceData:\n      | AugmentedAnyModelType\n      | AugmentedAnyModelType[]\n      | undefined = parameterInfo.isReferenceSingleParameter\n      ? augmentItemWithReferencedDataRecursively(\n          referenceItems[0],\n          makeArray(include.include),\n          includeData\n        )\n      : parameterInfo.isReferenceMultipleParameter\n      ? referenceItems.map((i) =>\n          augmentItemWithReferencedDataRecursively(\n            i,\n            makeArray(include.include),\n            includeData\n          )\n        )\n      : undefined;\n\n    const newItemNow: AugmentedAnyModelType = {\n      ...itemNow,\n      [parameterInfo.dataParameterName]: augmentedReferenceData,\n    };\n\n    return newItemNow;\n  }, item);\n\n  return newItem;\n}",
   "description": "",
-  "id": "wyplwawqwtaxmivzyqyivppk"
+  "id": "bwdpnalmharomdoxmvblvsgk"
 }

@@ -1,6 +1,6 @@
 # Convert case
 
-convert-case (js operation)
+convert-case (`OperationClassification` js)
 
 
 
@@ -105,7 +105,7 @@ format ["word1","word2","word3"] from a string of any casing.
 # Internal
 
 <details><summary>Show internal (10)</summary>
-  
+    
   # capitalCase()
 
 

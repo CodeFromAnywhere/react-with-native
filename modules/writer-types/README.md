@@ -1,6 +1,6 @@
 # Writer types
 
-writer-types (node operation)
+writer-types (`OperationClassification` node)
 
 
 
@@ -56,7 +56,7 @@ Properties:
 # Internal
 
 <details><summary>Show internal (2)</summary>
-  
+    
   # 🔹 SubtextRelatedThing
 
 

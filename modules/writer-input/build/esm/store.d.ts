@@ -8,4 +8,6 @@ export declare const useStore: <K_1 extends "subtextConfig" | "writerView" | "su
     writerView: WriterViewEnum;
     subtextConfig: SubtextConfig;
     subwordConfig: SubwordConfig;
-}[K_1]>;
+}[K_1]>, StoreProvider: ({ children }: {
+    children: any;
+}) => JSX.Element;

@@ -1,10 +1,10 @@
 {
-  "createdAt": 1666259122538,
-  "updatedAt": 1666259122538,
+  "createdAt": 1668148408409,
+  "updatedAt": 1668148408409,
   "deletedAt": 0,
-  "createdFirstAt": 1666259122538,
+  "createdFirstAt": 1668148408409,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -13,22 +13,24 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/find-folders.ts",
   "commentsInside": [],
-  "rawText": " async (\n  ignoreOperations?: boolean\n): Promise<string[]> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return [];\n  const isSensible = isSensibleProject(projectRoot);\n\n  const docsBasePath = isSensible ? projectRoot : getRootPath(\"operations\");\n  if (!docsBasePath) return [];\n\n  const docsFolderPaths = await findAllFoldersWithName({\n    basePath: docsBasePath,\n    folderName: \"docs\",\n    ignoreOperations,\n  });\n  return docsFolderPaths;\n}",
+  "rawText": " async (\n  /**\n   * Don't look for docs folders inside of operation folders\n   */\n  ignoreOperations?: boolean\n): Promise<string[]> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return [];\n  const isSensible = isSensibleProject(projectRoot);\n\n  const docsBasePath = isSensible ? projectRoot : getRootPath(\"operations\");\n  if (!docsBasePath) return [];\n\n  const docsFolderPaths = await findAllFoldersWithName({\n    basePath: docsBasePath,\n    folderName: \"docs\",\n    ignoreOperations,\n  });\n  return docsFolderPaths;\n}",
   "name": "findAllDocsFolderPaths",
   "slug": "find-all-docs-folder-paths",
   "parameters": [
     {
       "name": "ignoreOperations",
       "schema": {
-        "type": "boolean"
+        "type": "boolean",
+        "description": "Don't look for docs folders inside of operation folders"
       },
       "simplifiedSchema": {
+        "fullComment": "Don't look for docs folders inside of operation folders",
         "type": "boolean"
       },
       "required": false
     }
   ],
-  "description": "",
+  "description": "Returns absolute paths for all docs folders (not the files inside)",
   "returnType": {
     "rawType": "Promise<string[]>",
     "typeCoverage": 0,
@@ -40,13 +42,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 463,
-    "lines": 17,
-    "bytes": 463,
+    "characters": 602,
+    "lines": 20,
+    "bytes": 602,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 27,
-    "linesPerFile": 17,
+    "charactersPerLine": 30,
+    "linesPerFile": 20,
     "numberOfFiles": 1
   },
-  "id": "jlmxkeytpsteydojglbqrkto"
+  "id": "ifnbfzddiiameokzzvyfniyu"
 }

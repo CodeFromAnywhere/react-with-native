@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635003071,
-  "updatedAt": 1667635003071,
+  "createdAt": 1668151929705,
+  "updatedAt": 1668151929705,
   "deletedAt": 0,
-  "createdFirstAt": 1667635003071,
+  "createdFirstAt": 1668151929705,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(queryPath: string = \"\") => {\n  const [expanded, setExpanded, { hydrated }] = useStore(\"menu.expanded\");\n\n  const isExpanded =\n    expanded[queryPath] !== undefined ? expanded[queryPath] : false;\n\n  // console.log({ queryPath, isExpanded });\n  const setIsExpanded = () => {\n    return setExpanded({ ...expanded, [queryPath]: true });\n  };\n\n  const setNotExpanded = () => {\n    return setExpanded({ ...expanded, [queryPath]: false });\n  };\n\n  const toggleExpanded = () => {\n    return setExpanded({\n      ...expanded,\n      [queryPath]: !isExpanded,\n    });\n  };\n\n  const tuple: [\n    boolean,\n    () => Promise<void>,\n    () => Promise<void>,\n    () => Promise<void>,\n    { hydrated: boolean }\n  ] = [isExpanded, toggleExpanded, setIsExpanded, setNotExpanded, { hydrated }];\n\n  return tuple;\n}",
   "description": "",
-  "id": "cqvwggeazhdrtlthnkuqohsc"
+  "id": "usayozlzwkzgigdvyttsxcqa"
 }

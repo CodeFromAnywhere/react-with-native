@@ -1,15 +1,15 @@
 {
-  "createdAt": 1667684626983,
-  "updatedAt": 1667684626983,
+  "createdAt": 1668150017847,
+  "updatedAt": 1668150017847,
   "deletedAt": 0,
-  "createdFirstAt": 1667684626983,
+  "createdFirstAt": 1668150017847,
   "id": "bundleconfig",
   "name": "BundleConfig",
   "slug": "bundleconfig",
   "operationRelativeTypescriptFilePath": "src/BundleConfig.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * ---\n * dbStorageMethod: jsonSingle\n * ---\n *\n * Configuration options for bundles. Used with `generateBundle`\n *\n * Everything in this model will be copied over to the created bundle, except for `createBundleConfig` and `customisableBundleConfig`.\n */\nexport interface BundleConfig extends SlugModelType, PublicBundleConfig {\n  /**\n   * CustomisableBundleConfig is customisable for individual bundle creations\n   *\n   * NB: This is NOT copied into the bundle itself\n   */\n  customisableBundleConfig: CustomisableBundleConfig;\n\n  /**\n   * Config needed for creating the bundle, not for the bundle itself\n   *\n   * NB: NOT Copied to the bundle itself\n   */\n  createBundleConfig: CreateBundleConfig;\n}",
+  "rawText": "\n\n/**\n * ---\n * dbStorageMethod: jsonSingle\n * ---\n *\n * Configuration options for bundles. Used with `generateBundle`\n *\n * Everything in this model will be copied over to the created bundle, except for `createBundleConfig` and `customisableBundleConfig`.\n */\nexport interface BundleConfig extends SlugModelType, PublicBundleConfig {\n  /**\n   * CustomisableBundleConfig is customisable for individual bundle creations\n   *\n   * NB: This is NOT copied into the bundle itself\n   */\n  customisableBundleConfig: CustomisableBundleConfig;\n\n  /**\n   * Config needed for creating the bundle, not for the bundle itself\n   *\n   * NB: NOT Copied to the bundle itself\n   */\n  createBundleConfig: CreateBundleConfig;\n\n  paymentPlanId?: string;\n}",
   "extensions": [
     "SlugModelType",
     "PublicBundleConfig"
@@ -97,6 +97,9 @@
         "createBundleConfig": {
           "$ref": "#/definitions/CreateBundleConfig",
           "description": "Config needed for creating the bundle, not for the bundle itself\n\nNB: NOT Copied to the bundle itself"
+        },
+        "paymentPlanId": {
+          "type": "string"
         }
       },
       "required": [
@@ -180,6 +183,14 @@
           "schema": {
             "fullComment": "configurate your markdown reader\n\n",
             "properties": [
+              {
+                "name": "docsInRoot",
+                "required": false,
+                "schema": {
+                  "fullComment": "When set to `true`, docs are not shown in docs folder but in the root menu of the site",
+                  "type": "boolean"
+                }
+              },
               {
                 "name": "showTodos",
                 "required": false,
@@ -665,7 +676,7 @@
               },
               {
                 "name": "dependencies",
-                "required": true,
+                "required": false,
                 "schema": {
                   "fullComment": "Generated, private by default. If they're already here, uses private/public setting as given.\n\nWhen generating, removes the ones that are not dependencies (of dependencies) of your standalone apps",
                   "items": [
@@ -736,6 +747,13 @@
               }
             ],
             "type": "object"
+          }
+        },
+        {
+          "name": "paymentPlanId",
+          "required": false,
+          "schema": {
+            "type": "string"
           }
         }
       ],

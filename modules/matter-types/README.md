@@ -1,6 +1,6 @@
 # Matter types
 
-matter-types (js operation)
+matter-types (`OperationClassification` js)
 
 
 
@@ -61,7 +61,7 @@ Properties:
 # Internal
 
 <details><summary>Show internal (9)</summary>
-  
+    
   # getFrontmatterValueString()
 
 

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { MarkdownParseRenderConfig } from "markdown";
 import { marked } from "marked";
 import { SubtextConfig, SubwordConfig } from "writer-types";

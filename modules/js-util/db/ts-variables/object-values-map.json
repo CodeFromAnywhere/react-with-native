@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666513261958,
-  "updatedAt": 1666513261958,
+  "createdAt": 1668150848198,
+  "updatedAt": 1668150848198,
   "deletedAt": 0,
-  "createdFirstAt": 1666513261958,
+  "createdFirstAt": 1668150848198,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<\n  T extends { [key: string]: T[string] },\n  U extends unknown\n>(\n  object: T,\n  mapFn: (key: string, value: T[string]) => U\n): { [key: string]: U } => {\n  return Object.keys(object).reduce(function (result, key) {\n    result[key] = mapFn(key, object[key]);\n    return result;\n  }, {} as any);\n}",
   "description": "not sure if this is the best way, but it does save some lines of code!\n\nmaps over an object's values with a map function\n\nDEPRECATED in favour of objectMapSync and objectMapAsync",
-  "id": "aavwqwfacsbnxiswfamqlmlj"
+  "id": "dkynjwsrfzaialhmczafsypg"
 }

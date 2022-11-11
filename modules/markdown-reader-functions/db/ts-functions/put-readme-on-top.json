@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668149514659,
+  "updatedAt": 1668149514659,
+  "deletedAt": 0,
+  "createdFirstAt": 1668149514659,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/putReadmeOnTop.ts",
+  "commentsInside": [],
+  "rawText": " <\n  T extends {\n    path: string;\n    isFolder: boolean;\n  }\n>(\n  items: T[]\n) => {\n  const itemsReadmesFirst = items.reduce((previous, item, index, array) => {\n    if (!item.path.toLowerCase().endsWith(\"readme.md\")) {\n      return previous;\n    }\n\n    const folderIndex = array.findIndex(\n      (x) => x.isFolder && x.path === getFolder(item.path)\n    );\n\n    if (folderIndex === -1) {\n      return previous;\n    }\n\n    return putIndexAtIndex(previous, index, folderIndex + 1);\n  }, items);\n\n  return itemsReadmesFirst;\n}",
+  "name": "putReadmeOnTop",
+  "slug": "put-readme-on-top",
+  "parameters": [],
+  "description": "Takes an array of items (`explore` results) and checks them to put readme at the start\n\nDEPRECATED: After writing this, I found that `explore` also has `readmeOnTop` possibility, so this whole thing is not needed",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 735,
+    "lines": 28,
+    "bytes": 735,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "bolzmucifqhitmhtvnlvzwdr"
+}

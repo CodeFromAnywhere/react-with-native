@@ -1,22 +1,16 @@
 # React with native form inputs
 
-react-with-native-form-inputs (ui-es5 operation)
-
-
-
-## Docs
-
-- [README](#readme)
+react-with-native-form-inputs (`OperationClassification` ui-es5)
 
 
 
 # Docs
 
-## README
+<details><summary>README.md</summary>
+    
+  # Form inputs
 
-### Form inputs
-
-#### `NB: Experimental package!`
+## `NB: Experimental package!`
 
 Form inputs provide a set of default form input types that can be used together with rwn form or without it. Please note that we have quite some peer dependencies for these inputs, and the inputs can't be installed separately. We are still looking for ways to reduce the amount of dependencies. If you don't want this, you can just create your own inputs. You could use our inputs as examples and go from there.
 
@@ -148,10 +142,11 @@ These are the inputs that are currently exposed. The type interface is also expo
 
 If you want to know the exact type interface of the input (which differs per input type), please look inside of [the package](https://github.com/Code-From-Anywhere/react-with-native/tree/main/packages/react-with-native-form-inputs/src) and find the line `export xxxInputType` to see the type definition.
 
+  </details>
 
 # Api reference
 
-## <SelectInput />
+## `<SelectInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -162,7 +157,7 @@ If you want to know the exact type interface of the input (which differs per inp
 
 ## 📄 SelectInput (exported const)
 
-## <SelectMultipleInput />
+## `<SelectMultipleInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -173,7 +168,7 @@ If you want to know the exact type interface of the input (which differs per inp
 
 ## 📄 SelectMultipleInput (exported const)
 
-## <NumberInput />
+## `<NumberInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -182,7 +177,7 @@ If you want to know the exact type interface of the input (which differs per inp
 
 
 
-## <PasswordInput />
+## `<PasswordInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -191,7 +186,7 @@ If you want to know the exact type interface of the input (which differs per inp
 
 
 
-## <TextInput />
+## `<TextInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -200,7 +195,7 @@ If you want to know the exact type interface of the input (which differs per inp
 
 
 
-## <ToggleInput />
+## `<ToggleInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -217,7 +212,7 @@ If you want to know the exact type interface of the input (which differs per inp
 
 ## 📄 ToggleInput (exported const)
 
-## <DateInput />
+## `<DateInput />`
 
 CSS Modules, react-datepicker-cssmodules.css
 
@@ -229,7 +224,7 @@ CSS Modules, react-datepicker-cssmodules.css
 
 
 
-## <DatetimeInput />
+## `<DatetimeInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -238,7 +233,7 @@ CSS Modules, react-datepicker-cssmodules.css
 
 
 
-## <LabelsInput />
+## `<LabelsInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -247,7 +242,7 @@ CSS Modules, react-datepicker-cssmodules.css
 
 
 
-## <PhoneInput />
+## `<PhoneInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -256,7 +251,7 @@ CSS Modules, react-datepicker-cssmodules.css
 
 
 
-## <StarsInput />
+## `<StarsInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -265,7 +260,7 @@ CSS Modules, react-datepicker-cssmodules.css
 
 
 
-## <TextAreaInput />
+## `<TextAreaInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -274,7 +269,7 @@ CSS Modules, react-datepicker-cssmodules.css
 
 
 
-## <TimeInput />
+## `<TimeInput />`
 
 CSS Modules, react-datepicker-cssmodules.css
 
@@ -303,7 +298,7 @@ CSS Modules, react-datepicker-cssmodules.css
 # Internal
 
 <details><summary>Show internal (11)</summary>
-  
+    
   # castToNumber()
 
 
@@ -316,7 +311,7 @@ CSS Modules, react-datepicker-cssmodules.css
 
 
 
-## <FileInput />
+## `<FileInput />`
 
 import Icon from "./icon.svg";
 
@@ -337,7 +332,7 @@ import Icon from "./icon.svg";
 
 
 
-## <MapInput />
+## `<MapInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |

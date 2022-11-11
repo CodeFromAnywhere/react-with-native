@@ -1,6 +1,6 @@
 # Model types
 
-model-types (js operation)
+model-types (`OperationClassification` js)
 
 
 
@@ -77,6 +77,19 @@ Properties:
 
 
 
+## 🔹 AugmentedAnyModelType
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+
+
+
 ## 🔹 Slug
 
 use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.
@@ -119,25 +132,45 @@ Properties:
 
 
 
+## 🔹 MarkdownModelType
+
+Handy model type for storing stuff in a Markdown file.
+
+1 markdown file will represent 1 MarkdownModelType extended instance
+
+another option could be to parse the markdown file, but to KISS we are going to just return markdown with the full markdown content
+
+TODO: see how this relates to MarkdownFile. Make this very clear!
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| markdown  | string |  |
+| categoryStackCalculated  | array |  |
+
+
+
 ## generateRandomString()
 
 | Input      |    |    |
 | ---------- | -- | -- |
 | length | number |  |
 | **Output** | `String`   |    |
-
-
-
-## 🔹 AugmentedAnyModelType
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
 
 
 
@@ -208,39 +241,6 @@ a string that is known to contain markdown.
 
 
 
-## 🔹 MarkdownModelType
-
-Handy model type for storing stuff in a Markdown file.
-
-1 markdown file will represent 1 MarkdownModelType extended instance
-
-another option could be to parse the markdown file, but to KISS we are going to just return markdown with the full markdown content
-
-TODO: see how this relates to MarkdownFile. Make this very clear!
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| createdAt  | number |  |
-| updatedAt  | number |  |
-| deletedAt  | number |  |
-| createdFirstAt  | number |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| name  | string |  |
-| slug  | string |  |
-| markdown  | string |  |
-| categoryStackCalculated  | array |  |
-
-
-
 ## 📄 generateRandomString (exported const)
 
 ## 🔹 CategoryStack
@@ -265,26 +265,6 @@ Properties:
 
  | Name | Type | Description |
 |---|---|---|
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-
-
-
-## 🔹 DbFileLocation
-
-Object used to hand over all information about the location of a db-file in a structured way
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| absolutePath  | string |  |
-| modelName  | string |  |
 | operationName  | null |  |
 | projectRelativePath  | string |  |
 | operationRelativePath (optional) | string |  |
@@ -347,6 +327,26 @@ Properties:
 | projectRelativePath  | string |  |
 | operationRelativePath (optional) | string |  |
 | id  | string |  |
+
+
+
+## 🔹 DbFileLocation
+
+Object used to hand over all information about the location of a db-file in a structured way
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| absolutePath  | string |  |
+| modelName  | string |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
 
 
 
@@ -414,6 +414,31 @@ Properties:
 
 
 
+## 🔹 Price
+
+TLDR;EUROS
+
+A price is a number indicating the relative cost. Absolute cost is calculated by many other factors
+
+For now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.
+
+Later we can add all kinds of extra conversion:
+
+- currency support
+- king os currency
+- lower cost for poorer people
+
+etc...
+
+First we need to start making sales before we can add such complexity.
+
+
+
+
+
+
+
+
 ## 🔹 Text
 
 text can be in multiple formats.
@@ -437,6 +462,8 @@ if there is a data model with just a single text and it is clear from the name o
 | **Output** | `String`   |    |
 
 
+
+## 🔹 Credit
 
 ## 🔹 KvmdLine
 
@@ -473,8 +500,8 @@ country code without +
 
 # Internal
 
-<details><summary>Show internal (16)</summary>
-  
+<details><summary>Show internal (17)</summary>
+    
   # generatePassword()
 
 /**
@@ -514,6 +541,8 @@ in some cases, data can be created before it was created in our system. In this 
 ## 🔹 DeletedAt
 
 ## 🔹 Email
+
+## 🔹 Euro
 
 ## 🔹 Index
 

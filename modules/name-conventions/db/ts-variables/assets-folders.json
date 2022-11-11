@@ -1,0 +1,79 @@
+{
+  "createdAt": 1668148494946,
+  "updatedAt": 1668148494946,
+  "deletedAt": 0,
+  "createdFirstAt": 1668148494946,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "assetsFolders",
+  "slug": "assets-folders",
+  "operationRelativeTypescriptFilePath": "src/assetsFolders.ts",
+  "type": {
+    "rawType": "{ downloads: string; screen: string; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "downloads": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "screen": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "downloads",
+        "screen"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "downloads",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "screen",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "value": "{\n  downloads: \"Downloads location of the default browser\",\n  screen: \"Screen recordings and screenshots\",\n}",
+  "description": "",
+  "id": "ckpcunwpveujjsktsolyfwfm"
+}

@@ -1,0 +1,154 @@
+{
+  "createdAt": 1668150079225,
+  "updatedAt": 1668150079225,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150079225,
+  "id": "datasetconfig",
+  "name": "DatasetConfig",
+  "slug": "datasetconfig",
+  "operationRelativeTypescriptFilePath": "src/Dataset.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * The part of dataset that can be used in certain functions\n */\nexport interface DatasetConfig {\n  /**\n   * Filters are applied after each other\n   */\n  filter?: DatasetFilter | DatasetFilter[];\n\n  /**\n   *\n   */\n  sort?: DatasetSort | DatasetSort[];\n\n  /**\n   * Specify a max amount of items n\n   */\n  maxRows?: number;\n\n  /**\n   * If specified, slices the sorted array to omit the first n items;\n   */\n  startFromIndex?: number;\n\n  /**\n   * If specified, will only include these parameter keys of the model object. Otherwise all keys will be taken\n   */\n  objectParameterKeys?: string[];\n\n  /**\n   * If specified, will omit these keys when creating the dataset\n   */\n  ignoreObjectParameterKeys?: string[];\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "The part of dataset that can be used in certain functions",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DatasetFilter"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DatasetFilter"
+              }
+            }
+          ],
+          "description": "Filters are applied after each other"
+        },
+        "sort": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DatasetSort"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DatasetSort"
+              }
+            }
+          ]
+        },
+        "maxRows": {
+          "type": "number",
+          "description": "Specify a max amount of items n"
+        },
+        "startFromIndex": {
+          "type": "number",
+          "description": "If specified, slices the sorted array to omit the first n items;"
+        },
+        "objectParameterKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "If specified, will only include these parameter keys of the model object. Otherwise all keys will be taken"
+        },
+        "ignoreObjectParameterKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "If specified, will omit these keys when creating the dataset"
+        }
+      },
+      "additionalProperties": false,
+      "description": "The part of dataset that can be used in certain functions"
+    },
+    "simplifiedSchema": {
+      "fullComment": "The part of dataset that can be used in certain functions",
+      "properties": [
+        {
+          "name": "filter",
+          "required": false,
+          "schema": {
+            "fullComment": "Filters are applied after each other",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "sort",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "maxRows",
+          "required": false,
+          "schema": {
+            "fullComment": "Specify a max amount of items n",
+            "type": "number"
+          }
+        },
+        {
+          "name": "startFromIndex",
+          "required": false,
+          "schema": {
+            "fullComment": "If specified, slices the sorted array to omit the first n items;",
+            "type": "number"
+          }
+        },
+        {
+          "name": "objectParameterKeys",
+          "required": false,
+          "schema": {
+            "fullComment": "If specified, will only include these parameter keys of the model object. Otherwise all keys will be taken",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "ignoreObjectParameterKeys",
+          "required": false,
+          "schema": {
+            "fullComment": "If specified, will omit these keys when creating the dataset",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "DatasetConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

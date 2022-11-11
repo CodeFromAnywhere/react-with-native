@@ -1,6 +1,6 @@
 # Make test
 
-make-test (js operation)
+make-test (`OperationClassification` js)
 
 
 
@@ -25,7 +25,7 @@ create a test that is testable with `runAllTests`...
 # Internal
 
 <details><summary>Show internal (2)</summary>
-  
+    
   # isResultOfInterface()
 
 TODO: need validate-json-schema. also this can be its own little package, as it can be used in many other places

@@ -1,6 +1,6 @@
 # Fs util js
 
-fs-util-js (node operation)
+fs-util-js (`OperationClassification` node)
 
 
 
@@ -82,7 +82,7 @@ removes extension from the filename
 # Internal
 
 <details><summary>Show internal (2)</summary>
-  
+    
   # removeTrailingSlash()
 
 

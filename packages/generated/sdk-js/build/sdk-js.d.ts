@@ -243,6 +243,7 @@ export declare const sdk: {
     mergeObjects: <T_18 extends {
         [key: string]: any;
     }>(...objects: (Partial<T_18> | undefined)[]) => T_18 | undefined;
+    noEmptyString: (input: string | undefined) => string | undefined;
     objectMapAsync: <TObject_1 extends {
         [key: string]: any;
     }, TResultValue, TResultObject extends { [key in keyof TObject_1]: TResultValue; }>(object: TObject_1, mapFn: (key: Extract<keyof TObject_1, string>, value: TObject_1[keyof TObject_1]) => Promise<TResultValue>) => Promise<TResultObject>;
@@ -259,29 +260,30 @@ export declare const sdk: {
     }>(object: T_20) => T_20;
     onlyUnique2: <U_4>(isEqualFn?: ((a: U_4, b: U_4) => boolean) | undefined) => <T_21 extends U_4>(value: T_21, index: number, self: T_21[]) => boolean;
     onlyUnique: typeof onlyUnique;
-    removeIndexFromArray: <T_22>(array: T_22[], index: number) => T_22[];
+    putIndexAtIndex: <T_22>(array: T_22[], index: number, toIndex: number) => T_22[];
+    removeIndexFromArray: <T_23>(array: T_23[], index: number) => T_23[];
     replaceLastOccurence: (string: string, searchValue: string, replaceValue: string) => string;
     reverseString: (string: string) => string;
-    sumAllKeys: <T_23 extends {
+    sumAllKeys: <T_24 extends {
         [key: string]: number | undefined;
-    }>(objectArray: T_23[], keys: (keyof T_23)[]) => T_23;
+    }>(objectArray: T_24[], keys: (keyof T_24)[]) => T_24;
     sumObjectParameters: <TObject_3 extends {
         [key: string]: number;
     }>(object1: TObject_3, object2: TObject_3) => TObject_3;
     sum: (items: number[]) => number;
-    takeFirst: <T_24>(arrayOrNot: T_24 | T_24[]) => T_24;
+    takeFirst: <T_25>(arrayOrNot: T_25 | T_25[]) => T_25;
     trimSlashes: (absoluteOrRelativePath: string) => string;
     flattenMarkdownChunks: (markdownChunks: import("code-types").MarkdownChunk[]) => import("code-types").MarkdownParagraph[];
     getKvmdItemsRecursively: (chunk: import("code-types").MarkdownChunk, categoryStackCalculatedUntilNow?: import("model-types").CategoryStack | undefined) => import("model-types").Storing<import("model-types").KeyValueMarkdownModelType>[];
     getParagraphsRecursively: (chunk: import("code-types").MarkdownChunk, categoryStackCalculatedUntilNow?: import("model-types").CategoryStack | undefined) => import("code-types").MarkdownParagraph[];
-    kvmdDataMap: <T_25 extends {
+    kvmdDataMap: <T_26 extends {
         [key: string]: string | string[] | undefined;
     }>(data: import("model-types").KeyValueMarkdownModelType[], { keyName, valueName, categoryStackCalculatedName, commentName, }: {
         keyName?: string | undefined;
         valueName?: string | undefined;
         commentName?: string | undefined;
         categoryStackCalculatedName?: string | undefined;
-    }) => T_25[];
+    }) => T_26[];
     kvmdDataToString: (kvmdData: import("model-types").KeyValueMarkdownModelType, previous: import("model-types").KeyValueMarkdownModelType | undefined) => string;
     kvmdParseToMarkdownString: (keyValueMarkdownParse: import("model-types").KeyValueMarkdownParse) => string;
     markdownStringToKvmdParse: (kvMdString: string, dbFileLocation: import("model-types").DbFileLocation) => import("model-types").KeyValueMarkdownParse;
@@ -381,7 +383,7 @@ export declare const sdk: {
     getEncoding: typeof getEncoding;
     isBinary: typeof isBinary;
     isText: typeof isText;
-    tryParseJson: <T_26>(text: string, logParseError?: boolean | undefined) => T_26 | null;
+    tryParseJson: <T_27>(text: string, logParseError?: boolean | undefined) => T_27 | null;
     createCodeblockMarkdown: (text: string, language?: string | null | undefined) => string;
 };
 export declare type SdkType = typeof sdk;

@@ -1,10 +1,10 @@
 {
-  "createdAt": 1667852855023,
-  "updatedAt": 1667852855023,
+  "createdAt": 1668150792048,
+  "updatedAt": 1668150792048,
   "deletedAt": 0,
-  "createdFirstAt": 1667852855023,
+  "createdFirstAt": 1668150792048,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -13,7 +13,7 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/getRefLink.ts",
   "commentsInside": [],
-  "rawText": " (ref?: string) => {\n  return ref?.split(\"/\").pop();\n}",
+  "rawText": " (ref?: string) => {\n  const refLink = ref\n    ?.split(\"/\")\n    .pop()\n    ?.replaceAll(\"%3C\", \"<\")\n    .replaceAll(\"%3E\", \">\");\n\n  return refLink;\n}",
   "name": "getRefLink",
   "slug": "get-ref-link",
   "parameters": [
@@ -38,15 +38,15 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "maxIndentationDepth": 1,
+  "maxIndentationDepth": 2,
   "size": {
-    "characters": 119,
-    "lines": 3,
-    "bytes": 119,
+    "characters": 214,
+    "lines": 9,
+    "bytes": 214,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 40,
-    "linesPerFile": 3,
+    "charactersPerLine": 24,
+    "linesPerFile": 9,
     "numberOfFiles": 1
   },
-  "id": "wmzjctxmkrluurkkermafyiy"
+  "id": "pymhlktsbophqipxkvjfqetv"
 }

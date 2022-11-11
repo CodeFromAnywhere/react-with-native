@@ -5,6 +5,7 @@ export * from "./FolderSummary";
 export * from "./FunctionExecution";
 export * from "./MarkdownParse";
 export * from "./Menu";
+export * from "./OperationClassification";
 export * from "./OperationConfig";
 export * from "./OperationIndex";
 export * from "./PackageJson";

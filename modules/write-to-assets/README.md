@@ -1,6 +1,6 @@
 # Write to assets
 
-write-to-assets (node operation)
+write-to-assets (`OperationClassification` node)
 
 Function to write anything to assets.
 
@@ -28,11 +28,4 @@ Useful for testing
 Writes anything (string or json) the assets folder of the operation of the caller function of this function
 
 Useful for testing
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

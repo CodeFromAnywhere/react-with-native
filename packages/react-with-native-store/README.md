@@ -1,21 +1,14 @@
 # React with native store
 
-react-with-native-store (ui-es5 operation)
-
-
-
-## Docs
-
-- [README](#readme)
-- [Usage in monorepo](#usage-in-monorepo)
+react-with-native-store (`OperationClassification` ui-es5)
 
 
 
 # Docs
 
-## README
-
-### Store
+<details><summary>README.md</summary>
+    
+  # Store
 
 These 164 lines of code without dependencies make it possible to get a simple localStorage/asyncStorage-based and fully typed redux replacement with global persisted storage by default for react and react-native apps.
 
@@ -25,8 +18,7 @@ This is not as powerful as redux itself (you can't define custom selectors, so r
 
 I think that especially for apps with little state this could be a very good choice, and because we have tools like React Query now, most apps won't need a lot of global persisted state anymore.
 
-
-#### Installation
+## Installation
 
 ```bash
 yarn add react-with-native-store
@@ -40,8 +32,7 @@ yarn add @react-native-async-storage/async-storage
 
 For bare react-native, also follow [these instructions](https://react-native-async-storage.github.io/async-storage/docs/install/)
 
-
-#### Usage
+## Usage
 
 First create a wrapper and save it somewhere
 
@@ -90,10 +81,11 @@ const YourComponent = () => {
 
 Enjoy!
 
+  </details>
 
-## Usage in monorepo
-
-If you are working with a monorepo, here are some tips for you. I had to learn it the hard way and after a lot of trial and error I came to this conclusion.
+<details><summary>usage-in-monorepo.md</summary>
+    
+  If you are working with a monorepo, here are some tips for you. I had to learn it the hard way and after a lot of trial and error I came to this conclusion.
 
 
 ### Don't always use the hook/Provider directly
@@ -110,6 +102,7 @@ It can be a hassle having to use 17 different providers and hooks if you have sm
 
 - In the different packages you don't need to provide the provider there, as long as you have the combined provider all the way up your app. In the different packages, you can create another `useStore` which is simply a subset of the complete store, and is only used in this package
 
+  </details>
 
 # Api reference
 
@@ -147,6 +140,18 @@ Simple as pie 🍰
 
 
 
+## createUseStore()
+
+Function to create a hook for accessing the store
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
 ## 📄 createStore (exported const)
 
 One function is all you need to make a new store!
@@ -172,18 +177,6 @@ export const { useStore, StoreProvider } = createStore(writerInitialValues);
 ```
 
 Simple as pie 🍰
-
-
-## createUseStore()
-
-Function to create a hook for accessing the store
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
 
 
 ## 📄 createUseStore (exported const)
@@ -231,7 +224,7 @@ If you don't have access to the `useStore` hook, maybe because you're doing some
 # Internal
 
 <details><summary>Show internal (2)</summary>
-  
+    
   # setItem()
 
 If you don't have access to the `useStore` hook, maybe because you're doing something outside of react... you can directly use the storage with javascript using this function

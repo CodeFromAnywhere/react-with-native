@@ -1,12 +1,12 @@
 # Labeled button
 
-labeled-button (js operation)
+labeled-button (`OperationClassification` js)
 
 
 
 # Api reference
 
-## <LabeledButton />
+## `<LabeledButton />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -16,11 +16,4 @@ labeled-button (js operation)
 
 
 ## 📄 LabeledButton (exported const)
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

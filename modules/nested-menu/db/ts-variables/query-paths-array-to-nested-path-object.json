@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635006783,
-  "updatedAt": 1667635006783,
+  "createdAt": 1668151933878,
+  "updatedAt": 1668151933878,
   "deletedAt": 0,
-  "createdFirstAt": 1667635006783,
+  "createdFirstAt": 1668151933878,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "query-paths-array-to-nested-path-object",
   "operationRelativeTypescriptFilePath": "src/util/queryPathsArrayToNestedPathObject.ts",
   "type": {
-    "rawType": "(queryPaths: string[]) => import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/nested-menu/src/util/queryPathsArrayToNestedPathObject\").NestedPathObject",
+    "rawType": "(queryPaths: string[]) => import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/nested-menu/src/NestedPathObject\").NestedPathObject",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(\n  queryPaths: string[]\n): NestedPathObject => {\n  const nestedPathObject: NestedPathObject = reduceQueryPathsRecursively(\n    queryPaths,\n    {}\n  );\n  return nestedPathObject;\n}",
   "description": "Handy function to transform an array of `querypaths` into a nested menu, assuming you want to create a new sub-menu for every path\n\nMay also work for relative filePaths\n\nInput:\n\n[\"hello/world\",\"hello/moon\",\"hello/sun\"]\n\nOutput:\n\n{\n\"hello\":{\n\"moon\":null,\n\"world\":null,\n\"sun\":null\n}\n}",
-  "id": "fqnttlsiryzhwhjlddmbrjiu"
+  "id": "rrlsehtwqjmnpmplyqkylnew"
 }

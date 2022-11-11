@@ -1,17 +1,17 @@
 {
-  "createdAt": 1667818216349,
-  "updatedAt": 1667818216349,
+  "createdAt": 1668149519504,
+  "updatedAt": 1668149519504,
   "deletedAt": 0,
-  "createdFirstAt": 1667818216349,
+  "createdFirstAt": 1668149519504,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
   "isPostApi": false,
   "isGetApi": false,
   "isExported": true,
-  "operationRelativeTypescriptFilePath": "src/getPublicMarkdownFilePaths.ts",
+  "operationRelativeTypescriptFilePath": "src/shouldExposeMarkdownFile.ts",
   "commentsInside": [],
   "rawText": " (parameters: Frontmatter) => {\n  return !Boolean(parameters.isDraft) && parameters.privacy !== \"private\";\n}",
   "name": "shouldExposeMarkdownFile",
@@ -31,7 +31,7 @@
       "required": true
     }
   ],
-  "description": "",
+  "description": "markdown file should only be exposed if it doesn't say `privacy: private` or `isDraft: true` in your frontmatter.",
   "returnType": {
     "rawType": "{}",
     "typeDefinition": {
@@ -52,13 +52,13 @@
   },
   "maxIndentationDepth": 1,
   "size": {
-    "characters": 108,
+    "characters": 221,
     "lines": 3,
-    "bytes": 108,
+    "bytes": 221,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 36,
+    "charactersPerLine": 74,
     "linesPerFile": 3,
     "numberOfFiles": 1
   },
-  "id": "jwkiwehhbzdxycbpbpivoosi"
+  "id": "udixschvehlkejfjpvnemogl"
 }

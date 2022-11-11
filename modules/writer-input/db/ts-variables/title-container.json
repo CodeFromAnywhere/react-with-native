@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588110079,
-  "updatedAt": 1667588110079,
+  "createdAt": 1668152069977,
+  "updatedAt": 1668152069977,
   "deletedAt": 0,
-  "createdFirstAt": 1667588110079,
+  "createdFirstAt": 1668152069977,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "({\n  title,\n  children,\n  buttons,\n}: {\n  title?: string;\n  children: any;\n  buttons: LabeledButtonType[];\n}) => {\n  return (\n    <Div className=\"p-2 m-2 border rounded-xl border-gray-500\">\n      <Div className=\"flex flex-row justify-between items-center\">\n        {title ? <P className=\"text-3xl\">{title}</P> : <Div />}\n\n        <Div className=\"flex flex-row gap-3\">\n          {buttons.filter((x) => x.isEnabled !== false).map(LabeledButton)}\n        </Div>\n      </Div>\n\n      {children}\n    </Div>\n  );\n}",
   "description": "container for any index instance that needs to be rendered in the explore page",
-  "id": "rsngkazbotihcoludxypjmrz"
+  "id": "giuxytpjubnfwerlevuqnrca"
 }

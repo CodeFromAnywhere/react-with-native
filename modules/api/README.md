@@ -1,26 +1,21 @@
 # Api
 
-api (js operation)
+api (`OperationClassification` js)
 
 Operation that makes the typerepo API exposable on the frontend in a completely typesafe way.
 
 
 
 
-## Docs
-
-- [Demo](#demo)
-
-
-
 # Docs
 
-## Demo
-
-Please check this video for an explanation about the queries
+<details><summary>demo.md</summary>
+    
+  Please check this video for an explanation about the queries
 
 https://youtu.be/gGfGVvRn5xw
 
+  </details>
 
 # Api reference
 
@@ -69,7 +64,7 @@ returns something like `[apiUrl]/[apiFunctionName][queryString]`
 # Internal
 
 <details><summary>Show internal (3)</summary>
-  
+    
   # untypedApiFunction()
 
 Used for calling the actual api for a function with some config

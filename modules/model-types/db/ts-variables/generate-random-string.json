@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379922238,
-  "updatedAt": 1667379922238,
+  "createdAt": 1668150282563,
+  "updatedAt": 1668150282563,
   "deletedAt": 0,
-  "createdFirstAt": 1667379922238,
+  "createdFirstAt": 1668150282563,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(length: number) => {\n  const characters = \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n  const characterArray = \"x\".repeat(length).split(\"\");\n\n  const string: Id = characterArray\n    .map(() => {\n      const randomIndex = Math.floor(Math.random() * characters.length); //0-63 --> index for above\n      const character = characters.charAt(randomIndex);\n      return character;\n    })\n    .join(\"\");\n\n  return string;\n}",
   "description": "",
-  "id": "zxcfvlxxpnuvmgqtfuklxotz"
+  "id": "lzhnrrnrfurpgaxvobkfsnpp"
 }

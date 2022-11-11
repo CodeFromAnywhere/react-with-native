@@ -1,6 +1,6 @@
 # Ui util
 
-ui-util (js operation)
+ui-util (`OperationClassification` js)
 
 
 
@@ -25,11 +25,4 @@ defaults to "ts" |
 ## 📄 createCodeblockMarkdown (exported const)
 
 small util function to create a markdown for a string.
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

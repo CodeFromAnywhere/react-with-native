@@ -1,15 +1,15 @@
 {
-  "createdAt": 1667684667123,
-  "updatedAt": 1667684667123,
+  "createdAt": 1668150091047,
+  "updatedAt": 1668150091047,
   "deletedAt": 0,
-  "createdFirstAt": 1667684667123,
+  "createdFirstAt": 1668150091047,
   "id": "operationconfig",
   "name": "OperationConfig",
   "slug": "operationconfig",
   "operationRelativeTypescriptFilePath": "src/OperationConfig.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * ---\n * operationRelativePath: OPERATION.md\n * isOperationIndex: true\n * ---\n *\n * anything configurable about the operation.\n *\n * Of course we could make this live in operation.json or as a prop in package.json, but it would be better to make it work with a markdown file.\n *\n * Let's try to use OPERATION.md\n *\n * TODO: Make this work and make sure the operationconfig is parsed from this file using `db.get(\"OperationConfig\")` as per convention.\n *\n */\nexport interface OperationConfig extends MarkdownModelType {\n  /**\n   *\n   * Sometimes you are using function in a UI, which cannot be inferred with imports because they are used indirectly via an api. Here you can specify which operations on the backend are needed for an operation (ui mostly)\n   *\n   * This array is simply a list of operation names needed for this operation that are not imported.\n   *\n   * NB: no need to specify things here that you also import in this operation, because these are already automatically detected.\n   *\n   */\n  indirectDependencies?: string[];\n\n  /**\n   * A list of authors\n   *\n   * Should be used to create bundle AUTHORS.md\n   */\n  authors?: string[];\n\n  /**\n   * A list of contributors\n   *\n   * Can be used to create bundle CONTRIBUTORS.md\n   */\n  contributors?: string[];\n\n  /**\n   * one-line explanation of what the operation does (no markdown)\n   */\n  shortDescriptionText?: string;\n\n  /**\n   * Any descriptions in markdown format\n   *\n   * - Markdown description of what the operation does.\n   * - Installation instructions, if it is possible\n   * - Usage instructions (with example), if available\n   *\n   * This is the main content of the markdown file\n   */\n  markdown: string;\n}",
+  "rawText": "\n\n/**\n * ---\n * operationRelativePath: OPERATION.md\n * isOperationIndex: true\n * ---\n *\n * anything configurable about the operation.\n *\n * Of course we could make this live in operation.json or as a prop in package.json, but it would be better to make it work with a markdown file.\n *\n * Let's try to use OPERATION.md\n *\n * TODO: Make this work and make sure the operationconfig is parsed from this file using `db.get(\"OperationConfig\")` as per convention.\n *\n */\nexport interface OperationConfig extends MarkdownModelType {\n  /**\n   *\n   * Sometimes you are using function in a UI, which cannot be inferred with imports because they are used indirectly via an api. Here you can specify which operations on the backend are needed for an operation (ui mostly)\n   *\n   * This array is simply a list of operation names needed for this operation that are not imported.\n   *\n   * NB: no need to specify things here that you also import in this operation, because these are already automatically detected.\n   *\n   */\n  indirectDependencies?: string[];\n\n  /**\n   * A list of authors\n   *\n   * Should be used to create bundle AUTHORS.md\n   */\n  authors?: string[];\n\n  /**\n   * A list of contributors\n   *\n   * Can be used to create bundle CONTRIBUTORS.md\n   */\n  contributors?: string[];\n\n  /**\n   * one-line explanation of what the operation does (no markdown)\n   */\n  shortDescriptionText?: string;\n\n  /**\n   * Any descriptions in markdown format\n   *\n   * - Markdown description of what the operation does.\n   * - Installation instructions, if it is possible\n   * - Usage instructions (with example), if available\n   *\n   * This is the main content of the markdown file\n   */\n  markdown: string;\n\n  paymentPlanId?: string;\n}",
   "extensions": [
     "MarkdownModelType"
   ],
@@ -93,6 +93,9 @@
         "shortDescriptionText": {
           "type": "string",
           "description": "one-line explanation of what the operation does (no markdown)"
+        },
+        "paymentPlanId": {
+          "type": "string"
         }
       },
       "required": [
@@ -298,6 +301,13 @@
           "required": false,
           "schema": {
             "fullComment": "one-line explanation of what the operation does (no markdown)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "paymentPlanId",
+          "required": false,
+          "schema": {
             "type": "string"
           }
         }

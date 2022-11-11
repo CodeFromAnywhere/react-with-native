@@ -1,10 +1,10 @@
 {
-  "createdAt": 1667818223271,
-  "updatedAt": 1667818223271,
+  "createdAt": 1668149516942,
+  "updatedAt": 1668149516942,
   "deletedAt": 0,
-  "createdFirstAt": 1667818223271,
+  "createdFirstAt": 1668149516942,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -13,16 +13,18 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/removeExtensionsFromPath.ts",
   "commentsInside": [],
-  "rawText": " (relativePath: string): string => {\n  const chunks = trimSlashes(relativePath).split(\"/\");\n\n  const chunksWithoutNumbers = chunks.map(removeNumberPrefix);\n\n  // could be file\n  const lastChunkIndex = chunksWithoutNumbers.length - 1;\n\n  const lastChunk = chunksWithoutNumbers[lastChunkIndex];\n  const parts = lastChunk.split(\".\");\n  const lastPart = parts[parts.length - 1];\n\n  if (availableExtensions.includes(lastPart)) {\n    // remove extension\n    parts.pop();\n    chunksWithoutNumbers[lastChunkIndex] = parts.join(\".\");\n  }\n\n  const simplifiedPath = chunksWithoutNumbers.join(\"/\");\n\n  return simplifiedPath;\n}",
+  "rawText": " (\n  /**\n   * should also work for filenames\n   */\n  relativePath: string\n): string => {\n  const chunks = trimSlashes(relativePath).split(\"/\");\n\n  const chunksWithoutNumbers = chunks.map(removeNumberPrefix);\n\n  // could be file\n  const lastChunkIndex = chunksWithoutNumbers.length - 1;\n\n  const lastChunk = chunksWithoutNumbers[lastChunkIndex];\n  const parts = lastChunk.split(\".\");\n  const lastPart = parts[parts.length - 1];\n\n  if (availableExtensions.includes(lastPart)) {\n    // remove extension\n    parts.pop();\n    chunksWithoutNumbers[lastChunkIndex] = parts.join(\".\");\n  }\n\n  const simplifiedPath = chunksWithoutNumbers.join(\"/\");\n\n  return simplifiedPath;\n}",
   "name": "removeExtensionsFromPath",
   "slug": "remove-extensions-from-path",
   "parameters": [
     {
       "name": "relativePath",
       "schema": {
-        "type": "string"
+        "type": "string",
+        "description": "should also work for filenames"
       },
       "simplifiedSchema": {
+        "fullComment": "should also work for filenames",
         "type": "string"
       },
       "required": true
@@ -44,13 +46,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 786,
-    "lines": 26,
-    "bytes": 786,
+    "characters": 838,
+    "lines": 31,
+    "bytes": 838,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 30,
-    "linesPerFile": 26,
+    "charactersPerLine": 27,
+    "linesPerFile": 31,
     "numberOfFiles": 1
   },
-  "id": "juskgbjtfatosnmxkggvgnyo"
+  "id": "dsreqvkrslukdvrcxxkooced"
 }

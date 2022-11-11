@@ -1,6 +1,6 @@
 # Key value markdown js
 
-key-value-markdown-js (js operation)
+key-value-markdown-js (`OperationClassification` js)
 
 
 
@@ -54,7 +54,7 @@ parses a key value md string (with support for headings and frontmatter)
 # Internal
 
 <details><summary>Show internal (13)</summary>
-  
+    
   # getKvmdItemsRecursively()
 
 recursively dives into the Chunk to get all kvmd items

@@ -1,6 +1,6 @@
 # Asset input
 
-asset-input (js operation)
+asset-input (`OperationClassification` js)
 
 
 ## 📸 Asset Input
@@ -15,17 +15,11 @@ Add the css to your web project: `import "asset-input/css.css";`
 
 
 
-## Docs
-
-- [Usage in nextjs](#usage-in-nextjs)
-
-
-
 # Docs
 
-## Usage in nextjs
-
-**UPDATE** No need for these workarounds anymore! You can simply use the newer version of next.js. Couldn't find exactly when they added support, but in `13.3.1` it just magically works! Related RFC: https://github.com/vercel/next.js/discussions/31517
+<details><summary>usage-in-nextjs.md</summary>
+    
+  **UPDATE** No need for these workarounds anymore! You can simply use the newer version of next.js. Couldn't find exactly when they added support, but in `13.3.1` it just magically works! Related RFC: https://github.com/vercel/next.js/discussions/31517
 
 
 ### Before
@@ -52,10 +46,11 @@ It gets executed by this file: `/node_modules/extendable-media-recorder-wav-enco
 
 it is imported here: `/Users/king/King/operations/node_modules/extendable-media-recorder-wav-encoder/src/module.ts`
 
+  </details>
 
 # Api reference
 
-## <AssetInput />
+## `<AssetInput />`
 
 Usage possible in: form, writer-ui, anywhere else (custom)
 
@@ -88,8 +83,8 @@ Supports
 # Internal
 
 <details><summary>Show internal (18)</summary>
-  
-  # <FileInput />
+    
+  # `<FileInput />`
 
 
 
@@ -119,7 +114,7 @@ Supports
 
 
 
-## <MediaRecorderComponent />
+## `<MediaRecorderComponent />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -128,7 +123,7 @@ Supports
 
 
 
-## <MediaRecorder />
+## `<MediaRecorder />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -137,7 +132,7 @@ Supports
 
 
 
-## <ReactMediaRecorder />
+## `<ReactMediaRecorder />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -146,7 +141,7 @@ Supports
 
 
 
-## <SelectMedia />
+## `<SelectMedia />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -164,7 +159,7 @@ Supports
 
 
 
-## <WebcamCapture />
+## `<WebcamCapture />`
 
 | Input      |    |    |
 | ---------- | -- | -- |

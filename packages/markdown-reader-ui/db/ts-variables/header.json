@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668149580355,
+  "updatedAt": 1668149580355,
+  "deletedAt": 0,
+  "createdFirstAt": 1668149580355,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "Header",
+  "slug": "header",
+  "operationRelativeTypescriptFilePath": "src/components/Layout.tsx",
+  "type": {
+    "rawType": "(props: { publicBundleConfig?: any; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  publicBundleConfig?: MarkdownReaderPageProps[\"publicBundleConfig\"];\n}) => {\n  const { publicBundleConfig } = props;\n  const title =\n    publicLocalEnvironmentVariables.markdownReaderTitle ||\n    publicEnvironmentVariables.markdownReaderTitle ||\n    publicBundleConfig?.name;\n\n  return (\n    <Div\n      style={{\n        backgroundColor: props.publicBundleConfig?.primaryColor,\n        justifyContent: \"space-between\",\n        flex: 1,\n        display: \"flex\",\n        flexDirection: \"row\",\n        alignItems: \"center\",\n      }}\n    >\n      <ALink\n        href={\n          typeof window !== \"undefined\"\n            ? location.protocol + \"//\" + location.host\n            : \"#\"\n        }\n        style={{ fontSize: 32 }}\n      >\n        {props.publicBundleConfig?.emoji}\n      </ALink>\n\n      <Div>\n        <P className=\"font-bold text-white \">{title}</P>\n        <P className=\"text-xs text-white italic\">\n          {props.publicBundleConfig?.description}\n        </P>\n      </Div>\n\n      {props.publicBundleConfig?.isGitRepoPublic &&\n      props.publicBundleConfig.gitRepoUrl ? (\n        <ALink target=\"_blank\" href={props.publicBundleConfig.gitRepoUrl}>\n          🐱\n        </ALink>\n      ) : null}\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "ajmeofnxvqhluakbhckkckkm"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378840497,
-  "updatedAt": 1667378840497,
+  "createdAt": 1668148281472,
+  "updatedAt": 1668148281472,
   "deletedAt": 0,
-  "createdFirstAt": 1667378840497,
+  "createdFirstAt": 1668148281472,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "get-folder-js",
   "operationRelativeTypescriptFilePath": "src/js.ts",
   "type": {
-    "rawType": "<T extends string | undefined>(filePath: T) => string | undefined",
+    "rawType": "<T extends string | undefined>(filePath: T) => T",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "<T extends string | undefined>(\n  filePath: T\n): string | undefined => {\n  if (filePath === undefined) return;\n  const chunks = filePath.split(\"/\");\n  chunks.pop();\n  const allWithoutFile = chunks.join(\"/\");\n  return allWithoutFile;\n}",
+  "value": "<T extends string | undefined>(filePath: T): T => {\n  if (filePath === undefined) return undefined as T;\n  const chunks = filePath.split(\"/\");\n  chunks.pop();\n  const allWithoutFile = chunks.join(\"/\") as T;\n  return allWithoutFile;\n}",
   "description": "",
-  "id": "eaxdisqqjsjgvzbovkdshsiz"
+  "id": "likthrqenjbwwoqwyauhrnta"
 }

@@ -1,24 +1,18 @@
 # React with native modal
 
-react-with-native-modal (ui-es5 operation)
-
-
-
-## Docs
-
-- [README](#readme)
+react-with-native-modal (`OperationClassification` ui-es5)
 
 
 
 # Docs
 
-## README
+<details><summary>README.md</summary>
+    
+  # Modal
 
-### Modal
+## `NB: Experimental package!`
 
-#### `NB: Experimental package!`
-
-#### Setup
+## Setup
 
 1. Install
 
@@ -38,8 +32,7 @@ import { ModalProvider } from "react-with-native-modal";
 </ModalProvider>;
 ```
 
-
-#### Usage
+## Usage
 
 Whenever you need a modal, use this hook:
 
@@ -55,10 +48,11 @@ const { handleModal } = useModal();
 <Button onClick={() => handleModal(Element | string)}>Show a modal</Button>;
 ```
 
+  </details>
 
 # Api reference
 
-## <ModalProvider />
+## `<ModalProvider />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -83,8 +77,8 @@ const { handleModal } = useModal();
 # Internal
 
 <details><summary>Show internal (2)</summary>
-  
-  # <Modal />
+    
+  # `<Modal />`
 
 
 

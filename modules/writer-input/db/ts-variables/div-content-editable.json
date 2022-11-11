@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588136220,
-  "updatedAt": 1667588136220,
+  "createdAt": 1668152098818,
+  "updatedAt": 1668152098818,
   "deletedAt": 0,
-  "createdFirstAt": 1667588136220,
+  "createdFirstAt": 1668152098818,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: EditorProps) => {\n  const { value, onChange, withContext, className } = props;\n  const contentRef = useRef<HTMLDivElement>(null);\n\n  useEffect(() => {\n    if (!contentRef.current) return;\n    contentRef.current.innerText = value;\n  }, [value]);\n\n  return (\n    <Div\n      contentEditable\n      ref={contentRef}\n      className={className}\n      onPaste={() => {\n        // parse all new words into a span per word\n      }}\n      onKeyPress={() => {\n        const innerText = contentRef.current?.innerText || \"\"; //also innerHTML may be useful\n\n        // IDK how to get this, research it\n        const positionIndex = 0;\n\n        const textEditingContext = getContext({\n          text: innerText,\n          positionIndex,\n        });\n\n        withContext?.(textEditingContext);\n\n        onChange(innerText);\n      }}\n    />\n  );\n}",
   "description": "",
-  "id": "hlxycfikmftaveebewodnukl"
+  "id": "bkpbyecpipiapfctcwhsolot"
 }

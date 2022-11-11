@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668150832729,
+  "updatedAt": 1668150832729,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150832729,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "putIndexAtIndex",
+  "slug": "put-index-at-index",
+  "operationRelativeTypescriptFilePath": "src/array-modifications.ts",
+  "type": {
+    "rawType": "<T>(array: T[], index: number, toIndex: number) => any[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T>(\n  array: T[],\n  index: number,\n  toIndex: number\n) => {\n  const item = array[index];\n  const arrayWithoutIndex = removeIndexFromArray(array, index);\n  const changedArray = insertAt(arrayWithoutIndex, item, toIndex);\n  return changedArray;\n}",
+  "description": "Takes an item from an index of an array and put it somewhere at another index",
+  "id": "hoywowovsbwsqwkzefltbebx"
+}

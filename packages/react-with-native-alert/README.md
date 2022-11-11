@@ -1,6 +1,6 @@
 # React with native alert
 
-react-with-native-alert (ui-es5 operation)
+react-with-native-alert (`OperationClassification` ui-es5)
 
 
 ## Alert
@@ -10,21 +10,15 @@ TODO: NB: seems not to work right now in a new template! Fix it
 
 
 
-## Docs
-
-- [README](#readme)
-
-
-
 # Docs
 
-## README
+<details><summary>README.md</summary>
+    
+  # Alert
 
-### Alert
+## `NB: Experimental package!`
 
-#### `NB: Experimental package!`
-
-#### Setup
+## Setup
 
 ```bash
 yarn add react-with-native-alert
@@ -44,8 +38,7 @@ import { AlertProvider } from "react-with-native-alert";
 <AlertProvider>{... your app ...}</AlertProvider>
 ```
 
-
-#### Usage
+## Usage
 
 ```tsx
 import { useAlert } from "react-with-native-alert";
@@ -57,10 +50,11 @@ const YourPage = () => {
 };
 ```
 
+  </details>
 
 # Api reference
 
-## <AlertProvider />
+## `<AlertProvider />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -85,7 +79,7 @@ const YourPage = () => {
 # Internal
 
 <details><summary>Show internal (1)</summary>
-  
+    
   # 📄 AlertContext (exported const)
 
 

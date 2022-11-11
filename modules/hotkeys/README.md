@@ -1,6 +1,6 @@
 # Hotkeys
 
-hotkeys (js operation)
+hotkeys (`OperationClassification` js)
 
 
 ## ⌨️ hotkeys
@@ -132,7 +132,7 @@ hook that creates an eventlistener for keydown and cleans it up when needed
 # Internal
 
 <details><summary>Show internal (4)</summary>
-  
+    
   # isCtrlBacktick()
 
 ^ `

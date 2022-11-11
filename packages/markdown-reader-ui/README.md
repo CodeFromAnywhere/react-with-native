@@ -1,6 +1,6 @@
 # Markdown reader ui
 
-markdown-reader-ui (ui-es6 operation)
+markdown-reader-ui (`OperationClassification` ui-es6)
 
 
 
@@ -10,9 +10,9 @@ markdown-reader-ui (ui-es6 operation)
 
 # Internal
 
-<details><summary>Show internal (12)</summary>
-  
-  # <AugmentedWordComponent />
+<details><summary>Show internal (16)</summary>
+    
+  # `<AugmentedWordComponent />`
 
 
 
@@ -24,7 +24,7 @@ markdown-reader-ui (ui-es6 operation)
 
 
 
-## <Dictionary />
+## `<Dictionary />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -45,20 +45,44 @@ utility function to get a title from a page
 
 
 
-## <Layout />
+## `<Header />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| props | { publicBundleConfig?: {  }, <br />pages: `MarkdownReaderPage`[], <br />children: {  }, <br />augmentedWordObject?: `MappedObject<AugmentedWord>`, <br /> } |  |
+| - | | |
 | **Output** | `JSX.Element`   |    |
 
 
 
-## <Search />
+## `<Layout />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| props | { results: `AugmentedWord`[], <br /> } |  |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## `<MenuWrapper />`
+
+TODO: This is a good start, but it can be generalised more.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## `<Search />`
+
+This is shit....
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
 | **Output** | `JSX.Element`   |    |
 
 
@@ -72,11 +96,21 @@ utility function to get a title from a page
 utility function to get a title from a page
 
 
+## 📄 Header (exported const)
+
 ## 📄 Layout (exported const)
+
+## 📄 MenuWrapper (exported const)
+
+TODO: This is a good start, but it can be generalised more.
+
 
 ## 📄 pages (exported const)
 
 ## 📄 Search (exported const)
+
+This is shit....
+
 
 ## 📄 { useStore, StoreProvider } (exported const)
 

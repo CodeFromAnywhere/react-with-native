@@ -1,6 +1,6 @@
 # Js util
 
-js-util (js operation)
+js-util (`OperationClassification` js)
 
 
 
@@ -206,6 +206,22 @@ NB: The only difference from Object.keys is that this returns the keys in a type
 
 
 
+## getSubsetFromObject()
+
+takes an object and a subset of its keys and returns a subset of that object
+
+input: { x: "a", y: "b", z: "c" } and ["x"]
+
+output: { x: "a" }
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
 ## insertAt()
 
 Insert an array or item inside of an array before a certain index
@@ -277,6 +293,15 @@ NB: this is not the most efficient method, as it reverses the string by making i
 Handy function to get the keys of an object, but typed.
 
 NB: The only difference from Object.keys is that this returns the keys in a typesafe manner
+
+
+## 📄 getSubsetFromObject (exported const)
+
+takes an object and a subset of its keys and returns a subset of that object
+
+input: { x: "a", y: "b", z: "c" } and ["x"]
+
+output: { x: "a" }
 
 
 ## 📄 insertAt (exported const)
@@ -382,22 +407,6 @@ utility function to get a parameter inside of a nested object
 | Input      |    |    |
 | ---------- | -- | -- |
 | object | {  } |  |,| location | string[] |  |
-| **Output** |    |    |
-
-
-
-## getSubsetFromObject()
-
-takes an object and a subset of its keys and returns a subset of that object
-
-input: { x: "a", y: "b", z: "c" } and ["x"]
-
-output: { x: "a" }
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
 | **Output** |    |    |
 
 
@@ -513,6 +522,18 @@ DEPRECATED in favour of objectMapSync and objectMapAsync
 
 
 
+## putIndexAtIndex()
+
+Takes an item from an index of an array and put it somewhere at another index
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }[]   |    |
+
+
+
 ## sumAllKeys()
 
 sums all keys of an array of objects, assuming the objects have the same datastructure and assuming the values contain either numbers or undefined
@@ -555,15 +576,6 @@ TODO: would be nice if we can validate this string immediately using a JSON SCHE
 ## 📄 getParameterAtLocation (exported const)
 
 utility function to get a parameter inside of a nested object
-
-
-## 📄 getSubsetFromObject (exported const)
-
-takes an object and a subset of its keys and returns a subset of that object
-
-input: { x: "a", y: "b", z: "c" } and ["x"]
-
-output: { x: "a" }
 
 
 ## 📄 mapValuesSync (exported const)
@@ -642,14 +654,50 @@ maps over an object's values with a map function
 DEPRECATED in favour of objectMapSync and objectMapAsync
 
 
+## 📄 putIndexAtIndex (exported const)
+
+Takes an item from an index of an array and put it somewhere at another index
+
+
 ## 📄 sumAllKeys (exported const)
 
 sums all keys of an array of objects, assuming the objects have the same datastructure and assuming the values contain either numbers or undefined
 
+# Tests
+
+<details><summary>Show test information(4)</summary>
+    
+  # concatenate()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| letter | string |  |
+| **Output** |    |    |
+
+
+
+## main()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 concatenate (unexported const)
+
+## 📄 main (unexported const)
+
+  </details>
+
 # Internal
 
-<details><summary>Show internal (14)</summary>
-  
+<details><summary>Show internal (16)</summary>
+    
   # createEnum()
 
 creates an enum object from a readonly const array so you don't have to
@@ -740,6 +788,15 @@ DEPRECATED: in favor of mergeObjects
 
 
 
+## noEmptyString()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | string   |    |
+
+
+
 ## reverseString()
 
 | Input      |    |    |
@@ -815,6 +872,8 @@ In short: merges two objects, for every parameter, use the default as a fallback
 
 DEPRECATED: in favor of mergeObjects
 
+
+## 📄 noEmptyString (exported const)
 
 ## 📄 reverseString (exported const)
 

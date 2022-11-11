@@ -1,6 +1,6 @@
 # Auth types
 
-auth-types (node operation)
+auth-types (`OperationClassification` node)
 
 
 
@@ -52,16 +52,15 @@ For functions, interfaces, variables:
 
 
 
-# Internal
-
-<details><summary>Show internal (2)</summary>
-  
-  # 📄 authorizationLevelReadonlyArray (exported const)
-
-
-
 
 ## 📄 authorizationLevelStringArray (exported const)
+
+# Internal
+
+<details><summary>Show internal (1)</summary>
+    
+  # 📄 authorizationLevelReadonlyArray (exported const)
+
 
   </details>
 

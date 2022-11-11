@@ -1,12 +1,12 @@
 # Clickable icon
 
-clickable-icon (js operation)
+clickable-icon (`OperationClassification` js)
 
 
 
 # Api reference
 
-## <ClickableIcon />
+## `<ClickableIcon />`
 
 Renders a simple clickable icon with some styling
 
@@ -25,11 +25,4 @@ Icon can be either an icon (Svg src) or emoji (string)
 Renders a simple clickable icon with some styling
 
 Icon can be either an icon (Svg src) or emoji (string)
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

@@ -1,6 +1,6 @@
 # Markdown parse js
 
-markdown-parse-js (js operation)
+markdown-parse-js (`OperationClassification` js)
 
 js-only operation containing all kinds of functions that help parsing markdown
 
@@ -122,7 +122,7 @@ TODO: It would be better to find the first paragraph based on the level.
 # Internal
 
 <details><summary>Show internal (19)</summary>
-  
+    
   # getChunkParagraphsRecursively()
 
 Get all paragraphs (`content` values) recursively from a `MarkdownChunk`

@@ -1,6 +1,6 @@
 # Text or binary
 
-text-or-binary (js operation)
+text-or-binary (`OperationClassification` js)
 
 
 ## 🗳 text or binary?
@@ -36,7 +36,7 @@ This is a js operation. This means you cannot use any react or node, it's pure t
 # Internal
 
 <details><summary>Show internal (5)</summary>
-  
+    
   # getEncoding()
 
 /**

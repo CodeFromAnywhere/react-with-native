@@ -1,12 +1,12 @@
 # React with native table
 
-react-with-native-table (ui-es5 operation)
+react-with-native-table (`OperationClassification` ui-es5)
 
 
 
 # Api reference
 
-## <Table />
+## `<Table />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -20,7 +20,7 @@ react-with-native-table (ui-es5 operation)
 # Internal
 
 <details><summary>Show internal (7)</summary>
-  
+    
   # getColumns()
 
 gets all columns you can present based on a modelname, the interfaces of that model, and the data
@@ -33,7 +33,7 @@ gets all columns you can present based on a modelname, the interfaces of that mo
 
 
 
-## <TableHeadItem />
+## `<TableHeadItem />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -42,7 +42,7 @@ gets all columns you can present based on a modelname, the interfaces of that mo
 
 
 
-## <TableRow />
+## `<TableRow />`
 
 | Input      |    |    |
 | ---------- | -- | -- |

@@ -1,0 +1,58 @@
+{
+  "createdAt": 1668150832336,
+  "updatedAt": 1668150832336,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150832336,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/array-modifications.ts",
+  "commentsInside": [],
+  "rawText": " <T>(\n  array: T[],\n  index: number,\n  toIndex: number\n) => {\n  const item = array[index];\n  const arrayWithoutIndex = removeIndexFromArray(array, index);\n  const changedArray = insertAt(arrayWithoutIndex, item, toIndex);\n  return changedArray;\n}",
+  "name": "putIndexAtIndex",
+  "slug": "put-index-at-index",
+  "parameters": [],
+  "description": "Takes an item from an index of an array and put it somewhere at another index",
+  "returnType": {
+    "rawType": "any[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {}
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 323,
+    "lines": 10,
+    "bytes": 323,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "yjdgyvketzkuceurzeoqxmct"
+}

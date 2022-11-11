@@ -1,10 +1,10 @@
 {
-  "createdAt": 1667818194778,
-  "updatedAt": 1667818194778,
+  "createdAt": 1668149491004,
+  "updatedAt": 1668149491004,
   "deletedAt": 0,
-  "createdFirstAt": 1667818194778,
+  "createdFirstAt": 1668149491004,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -13,7 +13,7 @@
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/getAllMarkdownReaderPages.ts",
   "commentsInside": [],
-  "rawText": " async (config?: {\n  manualProjectRoot?: string;\n}): Promise<undefined | MarkdownReaderPage[]> => {\n  const projectRoot = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n\n  const publicBundleConfig = await readJsonFile<\n    Omit<BundleConfig, \"customisableBundleConfig\" | \"createBundleConfig\">\n  >(path.join(projectRoot, \"public-bundle-config.json\"));\n\n  const bundleMarkdownReaderConfig =\n    publicBundleConfig?.bundleMarkdownReaderConfig;\n\n  // the docs folder with all its files\n  const docsPaths = await findAllDocsFolderPaths(true);\n  const relativeDocsPages = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths: docsPaths,\n    // remove docs prefix if docs should be shown as in root\n    mapQueryPath: bundleMarkdownReaderConfig?.docsInRoot\n      ? (old) => (old.startsWith(\"docs/\") ? old.slice(\"docs/\".length) : old)\n      : undefined,\n  });\n  // operations\n  const operationPages = await getOperationPages(\n    projectRoot,\n    bundleMarkdownReaderConfig\n  );\n\n  // markdown model type pages\n  const markdownModelTypePages = await getMarkdownModelPages(projectRoot);\n  // todo pages\n  const todoPages = await getTodoPages(projectRoot);\n\n  const mainReadme = bundleMarkdownReaderConfig?.docsInRoot\n    ? undefined\n    : { queryPath: \"\", filePath: \"README.md\", isMenuItem: true };\n\n  const allPages: MarkdownReaderPage[] = [\n    mainReadme,\n    ...relativeDocsPages,\n    ...operationPages,\n    // `/dictionary` page with all words/definitions, categorised\n    { queryPath: \"dictionary\", isMenuItem: true },\n    // all markdown model types, optionally (with config)\n    ...markdownModelTypePages,\n    // all todo markdown folders, both in operations and outside (with config)\n    ...todoPages,\n  ]\n    .filter(notEmpty)\n    .filter(\n      onlyUnique2<MarkdownReaderPage>((a, b) => a.queryPath === b.queryPath)\n    );\n\n  return allPages;\n}",
+  "rawText": " async (config?: {\n  manualProjectRoot?: string;\n}): Promise<undefined | MarkdownReaderPage[]> => {\n  const projectRoot = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n\n  const publicBundleConfig = await readJsonFile<\n    Omit<BundleConfig, \"customisableBundleConfig\" | \"createBundleConfig\">\n  >(path.join(projectRoot, \"public-bundle-config.json\"));\n\n  const bundleMarkdownReaderConfig =\n    publicBundleConfig?.bundleMarkdownReaderConfig;\n\n  // the docs folder with all its files\n  const docsPaths = await findAllDocsFolderPaths(true);\n\n  const relativeDocsPages = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths: docsPaths,\n    // remove docs prefix if docs should be shown as in root\n    mapQueryPath: bundleMarkdownReaderConfig?.docsInRoot\n      ? (old) =>\n          old.startsWith(\"docs/\")\n            ? old.slice(\"docs/\".length)\n            : // NB: \"docs/README.md\" becomes \"docs\", which should, in turn, become \"\" in this case...\n            old === \"docs\"\n            ? \"\"\n            : old\n      : undefined,\n  });\n\n  // operations\n  const operationPages = await getOperationPages(\n    projectRoot,\n    bundleMarkdownReaderConfig\n  );\n\n  // markdown model type pages\n  const markdownModelTypePages = await getMarkdownModelPages(projectRoot);\n  // todo pages\n  const todoPages = await getTodoPages(projectRoot);\n\n  const mainReadme = bundleMarkdownReaderConfig?.docsInRoot\n    ? undefined\n    : {\n        queryPath: \"\",\n        filePath: \"README.md\",\n        isMenuItem: true,\n      };\n\n  const allPages: MarkdownReaderPage[] = [\n    mainReadme,\n    ...relativeDocsPages,\n    ...operationPages,\n    // `/dictionary` page with all words/definitions, categorised\n    { queryPath: \"dictionary\", isMenuItem: true },\n    // all markdown model types, optionally (with config)\n    ...markdownModelTypePages,\n    // all todo markdown folders, both in operations and outside (with config)\n    ...todoPages,\n  ]\n    .filter(notEmpty)\n    .filter(\n      onlyUnique2<MarkdownReaderPage>((a, b) => a.queryPath === b.queryPath)\n    );\n\n  return allPages;\n}",
   "name": "getAllMarkdownReaderPages",
   "slug": "get-all-markdown-reader-pages",
   "parameters": [
@@ -53,15 +53,15 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "maxIndentationDepth": 3,
+  "maxIndentationDepth": 6,
   "size": {
-    "characters": 2870,
-    "lines": 101,
-    "bytes": 2870,
+    "characters": 3082,
+    "lines": 113,
+    "bytes": 3082,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 28,
-    "linesPerFile": 101,
+    "charactersPerLine": 27,
+    "linesPerFile": 113,
     "numberOfFiles": 1
   },
-  "id": "uzwvpcoaiiqbxjhebppsdxee"
+  "id": "fdzqlieliqglmwayaqxkuqvt"
 }

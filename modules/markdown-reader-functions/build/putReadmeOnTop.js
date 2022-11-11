@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.putReadmeOnTop=void 0;var fs_util_1=require("fs-util"),js_util_1=require("js-util"),putReadmeOnTop=function(e){return e.reduce((function(e,t,r,u){if(!t.path.toLowerCase().endsWith("readme.md"))return e;var n=u.findIndex((function(e){return e.isFolder&&e.path===(0,fs_util_1.getFolder)(t.path)}));return-1===n?e:(0,js_util_1.putIndexAtIndex)(e,r,n+1)}),e)};exports.putReadmeOnTop=putReadmeOnTop;
+//# sourceMappingURL=putReadmeOnTop.js.map

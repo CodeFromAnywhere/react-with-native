@@ -1,10 +1,22 @@
 # Nested menu
 
-nested-menu (ui-es5 operation)
+nested-menu (`OperationClassification` ui-es5)
 
 
 
 # Api reference
+
+## nestedPathObjectToNestedMenuRecursive()
+
+Transform a nested path object into a nested menu (MenuType), recursively
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
 
 ## queryPathsArrayToNestedPathObject()
 
@@ -34,6 +46,11 @@ Output:
 
 
 
+## 📄 nestedPathObjectToNestedMenuRecursive (exported const)
+
+Transform a nested path object into a nested menu (MenuType), recursively
+
+
 ## 📄 queryPathsArrayToNestedPathObject (exported const)
 
 Handy function to transform an array of `querypaths` into a nested menu, assuming you want to create a new sub-menu for every path
@@ -55,7 +72,7 @@ Output:
 }
 
 
-## <NestedMenu />
+## `<NestedMenu />`
 
 General purpose nested menu component
 
@@ -69,18 +86,6 @@ Please make sure that you also wrap your app with `MenuStoreProvider`, or this w
 
 
 
-## nestedPathObjectToNestedMenuRecursive()
-
-Transform a nested path object into a nested menu (MenuType), recursively
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-
 ## 📄 nestedMenuStoreInitialValues (exported const)
 
 ## 📄 NestedMenu (exported const)
@@ -88,11 +93,6 @@ Transform a nested path object into a nested menu (MenuType), recursively
 General purpose nested menu component
 
 Please make sure that you also wrap your app with `MenuStoreProvider`, or this will crash...!
-
-
-## 📄 nestedPathObjectToNestedMenuRecursive (exported const)
-
-Transform a nested path object into a nested menu (MenuType), recursively
 
 
 ## 🔹 NestedPathObject
@@ -121,7 +121,7 @@ A different way to represent a path array in a nested object of folders
 
 Gets all children keys of a nested object at a certain (nested) location in the nested object
 
-`nestedObject` should extend the NestedObject.
+`nestedObject` should extend the `NestedObject`.
 
 The reduce is a bit vague, I need to  test this function further to make sure it does exactly what I want.
 
@@ -137,15 +137,15 @@ The reduce is a bit vague, I need to  test this function further to make sure it
 
 Gets all children keys of a nested object at a certain (nested) location in the nested object
 
-`nestedObject` should extend the NestedObject.
+`nestedObject` should extend the `NestedObject`.
 
 The reduce is a bit vague, I need to  test this function further to make sure it does exactly what I want.
 
 # Internal
 
-<details><summary>Show internal (9)</summary>
-  
-  # <NestedMenuItem />
+<details><summary>Show internal (8)</summary>
+    
+  # `<NestedMenuItem />`
 
 General purpose NestedMenuItem
 
@@ -178,8 +178,6 @@ TODO: make style customizable
 
 
 ## 🔹 ExpandedObject
-
-## 🔹 NestedObject
 
 ## 📄 NestedMenuItem (exported const)
 

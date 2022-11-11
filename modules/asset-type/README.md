@@ -1,24 +1,17 @@
 # Asset type
 
-asset-type (js operation)
+asset-type (`OperationClassification` js)
 
 All types related to asset upload
 
 
 
 
-## Docs
-
-- [README](#readme)
-- [Implementation choices](#implementation-choices)
-
-
-
 # Docs
 
-## README
-
-Support different UX's for file uploading
+<details><summary>README.md</summary>
+    
+  Support different UX's for file uploading
 
 - Audio recording (to mp3)
 - Camera (to png)
@@ -52,10 +45,11 @@ A cleanup strategy would be great. If a model is deleted, all referenced assets 
 
 All in all, this would be a feasible way to store stuff on any SaaS product. It is quite interconnected to other things like `fs-orm`, but this is a nice Micro-SaaS in itself!
 
+  </details>
 
-## Implementation choices
-
-### Model or no model for asset?
+<details><summary>implementation-choices.md</summary>
+    
+  # Model or no model for asset?
 
 If we are going to work with a model, it will be hard to see what the asset is straight from the JSON since it just refers to the id. Also, the Assets are probably not going to be used anywhere else, except for in the media selector itself maybe, to find previous assets.
 
@@ -74,6 +68,7 @@ Fetch has been trying to support ReadableStream, but it seems that it's not comp
 
 There are other ways though to show progress. It can be done with `axios`, but that would create a new dependency. As you can see here: https://stackoverflow.com/a/69400632, it seems that maybe the old fashioned and broadly supported `XMLHttpRequest` can easily do this. So why try to use any libraries or new stuff? Not needed....
 
+  </details>
 
 # Api reference
 
@@ -230,7 +225,7 @@ Properties:
 # Internal
 
 <details><summary>Show internal (4)</summary>
-  
+    
   # 🔹 CompressionOption
 
 CompressionOption should be able to be applied on the model parameter through frontmatter

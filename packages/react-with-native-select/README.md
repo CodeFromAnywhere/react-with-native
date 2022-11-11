@@ -1,41 +1,34 @@
 # React with native select
 
-react-with-native-select (ui-es5 operation)
-
-
-
-## Docs
-
-- [README](#readme)
+react-with-native-select (`OperationClassification` ui-es5)
 
 
 
 # Docs
 
-## README
+<details><summary>README.md</summary>
+    
+  # Select input
 
-### Select input
-
-#### `NB: Experimental package!`
+## `NB: Experimental package!`
 
 `react-with-native-select` renders a native ActionSheet on iOS, a custom actionsheet on Android, and a `<select>` html element on web.
 
-
-#### Installation
+## Installation
 
 ```bash
 yarn add react-with-native-select
 ```
 
-
-#### Usage
+## Usage
 
 Coming soon
 
+  </details>
 
 # Api reference
 
-## <Select />
+## `<Select />`
 
 renders either a SelectDropdown or SelectDrawer, based on screensize
 
@@ -54,7 +47,7 @@ renders either a SelectDropdown or SelectDrawer, based on screensize
 # Internal
 
 <details><summary>Show internal (3)</summary>
-  
+    
   # getRealValue()
 
 

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667634402963,
-  "updatedAt": 1667634402963,
+  "createdAt": 1668148333357,
+  "updatedAt": 1668148333357,
   "deletedAt": 0,
-  "createdFirstAt": 1667634402963,
+  "createdFirstAt": 1668148333357,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  /**\n   * specify the operation folder name\n   */\n  operationName: string,\n  config?: {\n    manualProjectRoot?: string;\n    /**\n     * if true, will not use sdk (defaults to using it first...)\n     */\n    notUseSdk?: boolean;\n  }\n): Promise<string | undefined> => {\n  // NB: In case of manualProjectRoot, we should not use the SDK! The sdk is from our own project root.\n  if (!config?.notUseSdk && !config?.manualProjectRoot) {\n    const projectRelativeOperationPath =\n      operations[operationName as keyof typeof operations];\n    const projectRoot = getProjectRoot();\n    if (projectRelativeOperationPath && projectRoot) {\n      return path.join(projectRoot, projectRelativeOperationPath);\n    }\n  }\n  // if that didn't work, let's find it in realtime\n\n  const basePath = getPathsWithOperations({\n    manualProjectRoot: config?.manualProjectRoot,\n  });\n\n  const operationPaths: string[] = await exploreOperationFolders({ basePath });\n\n  if (operationPaths.length === 0) {\n    log(\"No operations available\", { type: \"error\" });\n    return;\n  }\n  const operationPathsWithTheirFolder = await Promise.all(\n    operationPaths.map(async (p) => ({\n      path: p,\n      folderName: getLastFolder(p),\n    }))\n  );\n\n  const foundPath = operationPathsWithTheirFolder.find(\n    (f) => f.folderName === operationName\n  )?.path;\n\n  return foundPath;\n}",
   "description": "",
-  "id": "hsmnfkdfyadouvbtcrqsbkth"
+  "id": "flmiukgwvnkgqtjywiwwtrac"
 }

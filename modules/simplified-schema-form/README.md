@@ -1,6 +1,6 @@
 # Simplified schema form
 
-simplified-schema-form (ui-es5 operation)
+simplified-schema-form (`OperationClassification` ui-es5)
 
 component that generates a form using react-with-native and a `SimplifiedSchema`. Can obtain any JSON object from the user.
 
@@ -9,7 +9,7 @@ component that generates a form using react-with-native and a `SimplifiedSchema`
 
 # Api reference
 
-## <SimplifiedSchemaForm />
+## `<SimplifiedSchemaForm />`
 
 Recursive component that renders a form for a SimplifiedSchema
 
@@ -26,7 +26,7 @@ Recursive component that renders a form for a SimplifiedSchema
 Recursive component that renders a form for a SimplifiedSchema
 
 
-## <FormContainer />
+## `<FormContainer />`
 
 A `FormContainer` is a simple container that can wrap your `SimplifiedSchemaForm` to give it a button that also sends when hitting enter on your keyboard. To achieve this, a `<form>` is created in this component.
 
@@ -82,8 +82,8 @@ NB: be careful, not to change the simplifiedSchema after using this hook for the
 # Internal
 
 <details><summary>Show internal (13)</summary>
-  
-  # <ArrayForm />
+    
+  # `<ArrayForm />`
 
 Component to render a parameter that holds an array
 
@@ -108,7 +108,7 @@ This component renders a `SimplifiedSchemaForm` for every item in the array, and
 
 
 
-## <ObjectForm />
+## `<ObjectForm />`
 
 Component to render a parameter that holds an object
 
@@ -122,7 +122,7 @@ This is simply a wrapper around another SimplifiedSchemaForm where the onChange 
 
 
 
-## <ReferenceInput />
+## `<ReferenceInput />`
 
 This component renders an input to select an item to reference from another model (or multiple)
 

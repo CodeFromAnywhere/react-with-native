@@ -1,6 +1,6 @@
 # Augmented words
 
-augmented-words (node operation)
+augmented-words (`OperationClassification` node)
 
 
 
@@ -20,7 +20,7 @@ augmented-words (node operation)
 # Internal
 
 <details><summary>Show internal (4)</summary>
-  
+    
   # getAugmentedWords()
 
 Gets all augmented words of the entire project

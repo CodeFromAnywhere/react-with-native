@@ -1,12 +1,12 @@
 # Big button
 
-big-button (js operation)
+big-button (`OperationClassification` js)
 
 
 
 # Api reference
 
-## <BigButton />
+## `<BigButton />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -16,11 +16,4 @@ big-button (js operation)
 
 
 ## 📄 BigButton (exported const)
-
-# Internal
-
-<details><summary>Show internal (0)</summary>
-  
-  
-  </details>
 

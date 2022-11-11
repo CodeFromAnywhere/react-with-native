@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588128118,
-  "updatedAt": 1667588128118,
+  "createdAt": 1668152090345,
+  "updatedAt": 1668152090345,
   "deletedAt": 0,
-  "createdFirstAt": 1667588128118,
+  "createdFirstAt": 1668152090345,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  augmentedWord: AugmentedWord,\n  completableWord: string\n) => {\n  if (augmentedWord.isCaseInsensitive) {\n    const isMatch = augmentedWord.word\n      ? augmentedWord.word.toLowerCase().includes(completableWord.toLowerCase())\n      : false;\n    return isMatch;\n  }\n\n  const isMatch = augmentedWord.word\n    ? augmentedWord.word.includes(completableWord)\n    : false;\n  return isMatch;\n}",
   "description": "",
-  "id": "jfgggjocvqiuvrukluhdjtlu"
+  "id": "jaaubarerobwbjjqqvswavwb"
 }

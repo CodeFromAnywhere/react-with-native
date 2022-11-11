@@ -1,6 +1,6 @@
 # Log
 
-log (js operation)
+log (`OperationClassification` js)
 
 
 
@@ -25,7 +25,7 @@ Log a message with a special type
 # Internal
 
 <details><summary>Show internal (10)</summary>
-  
+    
   # getCallerFileName()
 
 TODO: this is great. now also get the operationName. If the operationName appears in the config, for debug, show the log, otherwise don't show

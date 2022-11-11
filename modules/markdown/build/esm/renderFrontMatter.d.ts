@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { Frontmatter } from "matter-types";
 /**
  * Renders markdown frontmatter parameters (and optionally a spacer)

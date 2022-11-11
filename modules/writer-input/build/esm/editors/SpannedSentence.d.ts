@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ContentEditableRenderProps } from "./types";
 /**
  * Needs to be done for every text that can have potential interactions

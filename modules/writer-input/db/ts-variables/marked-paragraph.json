@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667588118032,
-  "updatedAt": 1667588118032,
+  "createdAt": 1668152078906,
+  "updatedAt": 1668152078906,
   "deletedAt": 0,
-  "createdFirstAt": 1667588118032,
+  "createdFirstAt": 1668152078906,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -67,5 +67,5 @@
   },
   "value": "(props) => {\n  const {\n    markdownFileConfig,\n    markedToken,\n    subtextConfig,\n    subwordConfig,\n    testModeEnabled,\n  } = props;\n\n  const endsWithNewline = markedToken.raw.endsWith(\"\\n\");\n\n  const paragraphText = markedToken.tokens.map((token) => (\n    <MarkedToken\n      item={token}\n      subtextConfig={subtextConfig}\n      subwordConfig={subwordConfig}\n      markdownFileConfig={markdownFileConfig}\n      testModeEnabled={testModeEnabled}\n    />\n  ));\n\n  const paragraphSubtextHtmlString = getSubtext(markedToken.raw, subtextConfig);\n\n  return (\n    <div>\n      {paragraphText}\n      {paragraphSubtextHtmlString}\n      {endsWithNewline ? <br /> : null}\n    </div>\n  );\n}",
   "description": "",
-  "id": "jlthpduuifhowcgxtxtwpzou"
+  "id": "lduyikdtlnxxupucxosmbcow"
 }
