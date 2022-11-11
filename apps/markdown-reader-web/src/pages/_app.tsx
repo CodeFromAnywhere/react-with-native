@@ -69,8 +69,8 @@ function MyApp({ Component, pageProps }: RealAppProps) {
         />
       </Head>
       <StoreProvider>
-        {/* @ts-ignore */}
         {/* <main className={font.className}> */}
+        {/* @ts-ignore */}
         <Component {...pageProps} />
         {/* </main> */}
       </StoreProvider>
