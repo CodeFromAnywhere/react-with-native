@@ -157,7 +157,7 @@ export var renderMarkdownContent = function (content, config) {
                     if (youtubeId) {
                         return (React.createElement("iframe", { width: "560", height: "315", src: "https://www.youtube.com/embed/".concat(youtubeId), title: "YouTube video player", frameBorder: "0", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowFullScreen: true }));
                     }
-                    return (React.createElement("a", __assign({ className: "text-blue-500", style: { color: "darkblue" }, href: href }, props)));
+                    return (React.createElement("a", __assign({ className: "dark:text-blue-200 text-blue-500", href: href }, props)));
                 },
             } }, content)));
 };

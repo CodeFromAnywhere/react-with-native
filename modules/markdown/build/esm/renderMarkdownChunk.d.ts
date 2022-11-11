@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { MarkdownChunk } from "code-types";
 import { MarkdownParseRenderConfig } from "./types.js";
 /**
