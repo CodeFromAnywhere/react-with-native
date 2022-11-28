@@ -1,10 +1,10 @@
 {
-  "createdAt": 1666261553625,
-  "updatedAt": 1666261553625,
+  "createdAt": 1668333622793,
+  "updatedAt": 1668333622793,
   "deletedAt": 0,
-  "createdFirstAt": 1666261553625,
+  "createdFirstAt": 1668333622793,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -206,5 +206,5 @@
   },
   "rawText": "\n\nexport function useNavigation() {\n  const router = useRouter();\n\n  return {\n    addListener: () => {},\n    canGoBack: () => true,\n    dispatch: () => {},\n    getParent: () => {},\n    getState: () => {},\n    goBack: () => {\n      router.back();\n    },\n    isFocused: () => {},\n    removeListener: () => {},\n    reset: () => {},\n    setOptions: () => {},\n    setParams: () => {},\n\n    navigate: (screen: string, params?: { [key: string]: any }) => {\n      router.push(screen, { query: params });\n    },\n  };\n}",
   "maxIndentationDepth": 3,
-  "id": "fktxtnmrbawlrkhnoxprzwql"
+  "id": "bbiexasrpyjlznzepbxnpbka"
 }

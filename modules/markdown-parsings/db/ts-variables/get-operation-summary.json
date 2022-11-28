@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200469551,
+  "updatedAt": 1669200469551,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200469551,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getOperationSummary",
+  "slug": "get-operation-summary",
+  "operationRelativeTypescriptFilePath": "src/getOperationSummary.ts",
+  "type": {
+    "rawType": "(config: { operationName: string; manualProjectRoot?: string | undefined; }) => Promise<import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/OperationSummary\").OperationSummary | undefined>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config: {\n  operationName: string;\n  manualProjectRoot?: string;\n}): Promise<undefined | OperationSummary> => {\n  const { manualProjectRoot, operationName } = config;\n\n  const projectRoot = manualProjectRoot || getProjectRoot();\n  if (!projectRoot) {\n    log(\"Projectroot not found\", { type: \"error\" });\n    return;\n  }\n\n  const operationFolderPath = await getOperationPath(operationName, {\n    manualProjectRoot: projectRoot,\n  });\n\n  if (!operationFolderPath) {\n    log(\"OperationFolder not found\", { type: \"error\" });\n    return;\n  }\n\n  /**    \n  operation info\n  */\n\n  const operation = (await db.get(\"Operation\", { operationName }))[0];\n\n  if (!operation) {\n    log(\"Operation not found\", { type: \"error\" });\n    return;\n  }\n\n  const description = operation.operation?.markdown;\n\n  const coreDependenciesString =\n    noEmptyString(operation.operation?.coreDependenciesIndexed?.join(\", \")) ||\n    \"none\";\n  const operationDependenciesString =\n    noEmptyString(\n      operation.operation?.operationDependenciesIndexed?.join(\", \")\n    ) || \"none\";\n  const packageDependenciesString =\n    noEmptyString(\n      operation.operation?.packageDependenciesIndexed?.join(\", \")\n    ) || \"none\";\n\n  const docsPath = path.join(operationFolderPath, \"docs\");\n\n  const docs = await getMarkdownContents(docsPath);\n\n  /**\n   * all imports at other operations\n   */\n  const imports = (await db.get(\"TsImport\")).filter(\n    (x) => x.operationName !== operationName\n  );\n\n  const tsFunctions = (await db.get(\"TsFunction\", { operationName })).filter(\n    onlyUnique2<TsFunction>((a, b) => a.name === b.name)\n  );\n\n  const exportedTsFunctions = tsFunctions.filter((x) => x.isExported);\n\n  const variables = await db.get(\"TsVariable\", { operationName });\n\n  const exportedVariables = variables.filter((x) => x.isExported);\n\n  const interfaces = (await db.get(\"TsInterface\", { operationName })).filter(\n    (x) => !x.name.startsWith(\"NamedParameters<\")\n  );\n  const exportedInterfaces = interfaces.filter((x) => x.isExported);\n\n  const dependantTsFunctions: DependantCountObject[] = await Promise.all(\n    exportedTsFunctions.map(addDependantCount(\"tsFunction\", imports))\n  );\n\n  const dependantTsInterfaces: DependantCountObject[] = await Promise.all(\n    exportedInterfaces.map(addDependantCount(\"tsInterface\", imports))\n  );\n\n  const dependantTsVariables: DependantCountObject[] = await Promise.all(\n    exportedVariables.map(addDependantCount(\"tsVariable\", imports))\n  );\n\n  // Sort it! :D\n  const sortedDependantCountArray = [\n    dependantTsFunctions,\n    dependantTsInterfaces,\n    dependantTsVariables,\n  ]\n    .flat()\n    .sort((a, b) =>\n      a.externalDependantFiles.length > b.externalDependantFiles.length ? -1 : 1\n    );\n\n  const externalItems = sortedDependantCountArray.filter(\n    (x) => x.externalDependantFiles.length > 0\n  );\n\n  const internalItems = sortedDependantCountArray.filter(\n    (x) => x.externalDependantFiles.length === 0\n  );\n\n  const items: StatementItem[] = [\n    tsFunctions.map((tsFunction) => ({ tsFunction })),\n    interfaces.map((tsInterface) => ({ tsInterface })),\n    variables.map((tsVariable) => ({ tsVariable })),\n  ].flat();\n\n  const testItems = items.filter((x) =>\n    isConventionFileStatement(\n      (x.tsFunction || x.tsInterface || x.tsVariable)!,\n      \"test\"\n    )\n  );\n  const cliItems = items.filter((x) =>\n    isConventionFileStatement(\n      (x.tsFunction || x.tsInterface || x.tsVariable)!,\n      \"cli\"\n    )\n  );\n\n  const summary: OperationSummary = {\n    operationFolderPath,\n    operationName,\n    classification: operation.operation?.classificationIndexed,\n    description,\n    size: operation.operation?.sizeIndexed,\n    coreDependenciesString,\n    operationDependenciesString,\n    packageDependenciesString,\n    docs,\n    cliItems,\n    testItems,\n    internalItems,\n    externalItems,\n  };\n\n  return summary;\n}",
+  "description": "Summarises operation into useful information about it. Especially useful for generating docs.",
+  "id": "revbkleydrtpesrtnbdndvun"
+}

@@ -1,0 +1,47 @@
+{
+  "createdAt": 1669384999152,
+  "updatedAt": 1669384999152,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384999152,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/parseFrontmatterString.ts",
+  "commentsInside": [],
+  "rawText": " (value: string) => {\n  const withoutQuotes = value.includes(\",\")\n    ? value.substring(1, value.length - 1)\n    : value;\n\n  const withNewlines = withoutQuotes.replaceAll(\"\\\\n\", \"\\n\");\n\n  return withNewlines;\n}",
+  "name": "parseFrontmatterString",
+  "slug": "parse-frontmatter-string",
+  "parameters": [
+    {
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Parse a string as stored in frontmatter back to the original string",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 277,
+    "lines": 9,
+    "bytes": 277,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "fdszaogwgndsejvmthlakkki"
+}

@@ -1,0 +1,119 @@
+{
+  "createdAt": 1669467098721,
+  "updatedAt": 1669467098721,
+  "deletedAt": 0,
+  "createdFirstAt": 1669467098721,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/flattenMarkdownString.ts",
+  "commentsInside": [],
+  "rawText": " (\n  markdownString: string,\n  findFunction: (token: marked.Token) => boolean\n): marked.Token[] => {\n  const result = marked\n    .lexer(markdownString)\n    .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n    .filter(notEmpty)\n    .flat();\n\n  return result;\n}",
+  "name": "flattenMarkdownString",
+  "slug": "flatten-markdown-string",
+  "parameters": [],
+  "description": "find all items that match a token, recursively in all nested things",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/node_modules/@types/marked/index\").marked.Token[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 335,
+    "lines": 12,
+    "bytes": 335,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "ridyexsevigxibzhmzqcmvww"
+}

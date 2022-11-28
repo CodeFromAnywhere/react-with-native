@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668335874099,
+  "updatedAt": 1668335874099,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335874099,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "isTestFn",
+  "slug": "is-test-fn",
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "type": {
+    "rawType": "(x: import(\"/Users/king/King/operations/tools/typescript/generate-index/src/util\").ImportStatement) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(x: ImportStatement) => {\n  const nameEndsWithTest = lowerCaseArray(x.name).pop() === \"test\";\n  const typeIsFn = x.type === \"function\";\n  return typeIsFn && nameEndsWithTest;\n}",
+  "description": "",
+  "id": "qefgqfnldfzikwocbxotfprv"
+}

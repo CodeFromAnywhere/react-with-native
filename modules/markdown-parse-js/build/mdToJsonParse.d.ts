@@ -1,4 +1,4 @@
-import { MarkdownParse } from "code-types";
+import { MarkdownParse } from "markdown-types";
 import { MarkdownParseConfig } from "./types";
 /**
  * makes a markdown parse from a markdown string

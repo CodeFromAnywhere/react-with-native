@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669055627252,
+  "updatedAt": 1669055627252,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055627252,
+  "isApiExposed": false,
+  "name": "handleExplicitValidation",
+  "slug": "handle-explicit-validation",
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/typeToSchema.ts",
+  "groupAuthorization": {},
+  "commentsInside": [],
+  "description": "",
+  "parameters": [],
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/typescript/index-typescript/src/typeToSchema\").SimpleJsonSchema",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "size": {
+    "characters": 887,
+    "lines": 40,
+    "bytes": 887,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 40,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\nfunction handleExplicitValidation(\n  type: string,\n  schema: any,\n  decorators: Decorator[] = []\n): SimpleJsonSchema {\n  decorators.forEach((d) => {\n    const dName = d.getName();\n    switch (dName) {\n      case \"min\":\n      case \"max\": {\n        const firstArgumentTextNumber = +d.getArguments()[0].getText();\n        schema = merge(\n          schema,\n          getMinMaxValidation(dName, type, firstArgumentTextNumber)\n        );\n        break;\n      }\n      case \"time\":\n      case \"date\":\n      case \"dateTime\":\n      case \"duration\":\n      case \"uri\":\n      case \"uriReference\":\n      case \"uriTemplate\":\n      case \"email\":\n      case \"hostname\":\n      case \"ipv4\":\n      case \"ipv6\":\n      case \"uuid\":\n      case \"jsonPointer\":\n      case \"relativeJsonPointer\": {\n        schema = merge(schema, { format: toSnack(dName) });\n        break;\n      }\n    }\n  });\n  return schema;\n}",
+  "maxIndentationDepth": 5,
+  "id": "srgfgxhyxlziyhmesornizjt"
+}

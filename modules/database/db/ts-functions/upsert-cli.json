@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666259852282,
-  "updatedAt": 1666259852282,
+  "createdAt": 1668774158918,
+  "updatedAt": 1668774158918,
   "deletedAt": 0,
-  "createdFirstAt": 1666259852282,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774158918,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/cli/test-upsert.cli.ts",
   "commentsInside": [],
   "rawText": " async () => {\n  const [modelName, dataString] = process.argv.slice(2);\n\n  /**\n   FOR kvmd type:\n\n   - required: name\n   - optional: parent_xxxSlug, value, comment\n   */\n  if (!dataString || !modelName) {\n    console.log(\"please choose a model and data\");\n  }\n\n  const theObject = getObjectFromParamsString(dataString);\n  //@ts-ignore\n  const result = await testDb.upsert(modelName as any, theObject);\n\n  console.table(result);\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 19,
     "numberOfFiles": 1
   },
-  "id": "jrqbhartldyxyqvqxoeaptwo"
+  "id": "plbddhjhmgvdktzmsfdfnnrh"
 }

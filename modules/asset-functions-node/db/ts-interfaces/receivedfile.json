@@ -1,0 +1,108 @@
+{
+  "createdAt": 1669384217995,
+  "updatedAt": 1669384217995,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384217995,
+  "id": "receivedfile",
+  "name": "ReceivedFile",
+  "slug": "receivedfile",
+  "operationRelativeTypescriptFilePath": "src/server-context/uploadAssetWithContext.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * This is the format that I receive for a file with server.js, even though they say it's a formidable.file, which it's not...\n */\nexport type ReceivedFile = {\n  size: number;\n  path: string;\n  name: string;\n  type: string;\n  hash: any;\n  lastModifiedDate: Date;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "This is the format that I receive for a file with server.js, even though they say it's a formidable.file, which it's not...",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "size": {
+          "type": "number"
+        },
+        "path": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "hash": {},
+        "lastModifiedDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "size",
+        "path",
+        "name",
+        "type",
+        "hash",
+        "lastModifiedDate"
+      ],
+      "additionalProperties": false,
+      "description": "This is the format that I receive for a file with server.js, even though they say it's a formidable.file, which it's not..."
+    },
+    "simplifiedSchema": {
+      "fullComment": "This is the format that I receive for a file with server.js, even though they say it's a formidable.file, which it's not...",
+      "properties": [
+        {
+          "name": "size",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "hash",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "lastModifiedDate",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ReceivedFile",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

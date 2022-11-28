@@ -1,6 +1,6 @@
 # Asset view
 
-asset-view (`OperationClassification` js)
+asset-view (`OperationClassification` ui-cjs)
 
 
 ## 📁 AssetView
@@ -11,6 +11,49 @@ asset-view (`OperationClassification` js)
 
 
 # Api reference
+
+## `<AssetView />`
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { asset: `Asset`, <br />className?: string, <br />projectRelativeReferencingFilePath: string, <br />hideDownloadLink?: boolean, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## itemGetBackendAssetUrl()
+
+Get remote url for a `BackendAsset` in an `AugmentedAnyModelType` database model item.
+
+If you provide an array it'll take the first asset.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| config | { item: `AugmentedAnyModelType`, <br />backendAsset?: {  }, <br />isDownload?: boolean, <br /> } |  |
+| **Output** | string   |    |
+
+
+
+## `<ModelItemAssetView />`
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 AssetView (exported const)
+
+## 📄 itemGetBackendAssetUrl (exported const)
+
+Get remote url for a `BackendAsset` in an `AugmentedAnyModelType` database model item.
+
+If you provide an array it'll take the first asset.
+
+
+## 📄 ModelItemAssetView (exported const)
 
 ## `<InteractiveAsset />`
 
@@ -40,23 +83,34 @@ shows an `Asset` with interactivity
 
 # Internal
 
-<details><summary>Show internal (3)</summary>
+<details><summary>Show internal (5)</summary>
     
-  # `<AssetView />`
+  # useAssetInfo()
 
 
 
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| props | { asset: `Asset`, <br />className?: string, <br />projectRelativeReferencingFilePath: string, <br />hideDownloadLink?: boolean, <br /> } |  |
-| **Output** | `JSX.Element`   |    |
+| url (optional) | string |  |,| filename (optional) | string |  |
+| **Output** | { rawText?: {  }, <br />type: video / audio / image / text / other, <br /> }   |    |
 
 
 
-## 📄 AssetView (exported const)
+## useAsset()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| asset (optional) | `Asset` |  |,| projectRelativeReferencingFilePath (optional) | string |  |,| isNextStaticProductionBuild (optional) | boolean |  |
+| **Output** | { rawText?: {  }, <br />type?: video / audio / image / text / other, <br />downloadUrl?: string, <br />src: string, <br />extension?: string, <br /> }   |    |
+
+
 
 ## 📄 defaultClassName (exported const)
+
+## 📄 useAssetInfo (exported const)
+
+## 📄 useAsset (exported const)
 
   </details>
 

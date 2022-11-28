@@ -1,2 +1,30 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,r,t,o){void 0===o&&(o=t);var i=Object.getOwnPropertyDescriptor(r,t);i&&!("get"in i?!r.__esModule:i.writable||i.configurable)||(i={enumerable:!0,get:function(){return r[t]}}),Object.defineProperty(e,o,i)}:function(e,r,t,o){void 0===o&&(o=t),e[o]=r[t]}),__exportStar=this&&this.__exportStar||function(e,r){for(var t in e)"default"===t||Object.prototype.hasOwnProperty.call(r,t)||__createBinding(r,e,t)};Object.defineProperty(exports,"__esModule",{value:!0}),__exportStar(require("./copyAllRelativeFiles"),exports),__exportStar(require("./deprecated"),exports),__exportStar(require("./files"),exports),__exportStar(require("./findFileNameCaseInsensitive"),exports),__exportStar(require("./fs"),exports),__exportStar(require("./getAllFoldersUntilFolder"),exports),__exportStar(require("./getFirstAvailableFilename"),exports),__exportStar(require("./getOneFolderUpPath"),exports),__exportStar(require("./js"),exports),__exportStar(require("./parseMd"),exports),__exportStar(require("./path"),exports),__exportStar(require("./removeAllExcept"),exports),__exportStar(require("./renameAndCreate"),exports),__exportStar(require("./types"),exports);
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(require("./copyAllRelativeFiles"), exports);
+__exportStar(require("./files"), exports);
+__exportStar(require("./findFileNameCaseInsensitive"), exports);
+__exportStar(require("./fs"), exports);
+__exportStar(require("./getAllFoldersUntilFolder"), exports);
+__exportStar(require("./getFirstAvailableFilename"), exports);
+__exportStar(require("./getOneFolderUpPath"), exports);
+__exportStar(require("./js"), exports);
+__exportStar(require("./parseMd"), exports);
+__exportStar(require("./path"), exports);
+__exportStar(require("./removeAllExcept"), exports);
+__exportStar(require("./renameAndCreate"), exports);
+__exportStar(require("./types"), exports);
 //# sourceMappingURL=index.js.map

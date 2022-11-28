@@ -1,0 +1,40 @@
+{
+  "createdAt": 1669385500278,
+  "updatedAt": 1669385500278,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385500278,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/UpdateMeForm.tsx",
+  "commentsInside": [],
+  "rawText": " () => {\n  const meQuery = queries.useGetMeWithContext();\n\n  const person = meQuery.data?.result?.device?.currentPersonCalculated;\n  const personProfileDetails: PersonProfileDetails | undefined = person\n    ? {\n        name: person.name,\n        amountAuthenticationMethodsRequired:\n          person.amountAuthenticationMethodsRequired,\n        interestSlugs: person.interestSlugs,\n        media: person.media,\n        pictureImage: person.pictureImage,\n        preferredContactMedium: person.preferredContactMedium,\n        requiredAuthenticationMethods: person.requiredAuthenticationMethods,\n      }\n    : undefined;\n\n  return (\n    <Div className=\"flex flex-1 flex-row justify-center items-center\">\n      <Div className=\"w-96\">\n        <P className=\"text-4xl\">Update your profile</P>\n\n        {personProfileDetails ? (\n          <PersonProfileDetailsForm\n            personProfileDetails={personProfileDetails}\n          />\n        ) : null}\n      </Div>\n    </Div>\n  );\n}",
+  "name": "UpdateMeForm",
+  "slug": "update-me-form",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 975,
+    "lines": 31,
+    "bytes": 975,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "id": "qeipbvwzvjygpthmltamhqyd"
+}

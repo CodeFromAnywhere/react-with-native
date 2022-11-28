@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200477051,
+  "updatedAt": 1669200477051,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200477051,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "makeOutlineMarkdownString",
+  "slug": "make-outline-markdown-string",
+  "operationRelativeTypescriptFilePath": "src/makeOutlineMarkdownString.ts",
+  "type": {
+    "rawType": "(title: string, urls: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/parsing/merge\").MergedMarkdownOutlineUrl[]) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  title: string,\n  urls: MergedMarkdownOutlineUrl[]\n): string => {\n  const outlineString =\n    urls.length > 0\n      ? `## ${title}\\n\\n${urls\n          .map((url) => {\n            return `- [${url.title}](#${url.hashtagPath})`;\n          })\n          .join(\"\\n\")}\\n\\n`\n      : \"\";\n\n  return outlineString;\n}",
+  "description": "",
+  "id": "vsiwqxczhxnwmqnuhizdchbk"
+}

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150085492,
-  "updatedAt": 1668150085492,
+  "createdAt": 1669639268861,
+  "updatedAt": 1669639268861,
   "deletedAt": 0,
-  "createdFirstAt": 1668150085492,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669639268861,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/FunctionExecution.ts",
   "commentsInside": [],
   "rawText": " async (\n  functionId: string\n): Promise<string> => {\n  //1) get the function, make the description, input, and output string\n  const descriptionString = \"\";\n  const inputString = \"\";\n  const outputString = \"\";\n  //2) get all it's examples from `FunctionExecution`, make the example string\n  const examplesString = 'Input `x, y, z`. Output should be \"a\"';\n\n  return `\nWrite a function that can do this:\n\n${descriptionString}\n\nIt should take this as its inputs:\n\n${inputString}\n\nIt should return this:\n\n${outputString}\n\nSome examples:\n\n${examplesString}\n`;\n}",
@@ -48,5 +43,5 @@
     "linesPerFile": 28,
     "numberOfFiles": 1
   },
-  "id": "oupdcylzmqzvjixtabswdhqq"
+  "id": "mnptzrcgouxcfbdzzrnmhapl"
 }

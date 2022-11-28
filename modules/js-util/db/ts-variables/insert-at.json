@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150832729,
-  "updatedAt": 1668150832729,
+  "createdAt": 1668977385052,
+  "updatedAt": 1668977385052,
   "deletedAt": 0,
-  "createdFirstAt": 1668150832729,
+  "createdFirstAt": 1668977385052,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<T>(\n  array: T[],\n  items: T | T[],\n  /**\n   *\n   */\n  beforeIndex: number\n): T[] => {\n  const itemsArray = Array.isArray(items) ? items : [items];\n\n  // NB: slice makes copies\n  const before = array.slice(0, beforeIndex);\n  const after = array.slice(beforeIndex);\n  return [...before, ...itemsArray, ...after];\n}",
   "description": "Insert an array or item inside of an array before a certain index\n\nExample:\n\n```ts\n\nconst testArray = [1, 2, 3, 4, 5];\nconst result = insertAt(testArray, [99, 100], 2);\nconsole.log({ testArray, result });\n\n```",
-  "id": "fnqopxytybcusphpsmbeqeuz"
+  "id": "innlljagnmyojyqcgvptstnz"
 }

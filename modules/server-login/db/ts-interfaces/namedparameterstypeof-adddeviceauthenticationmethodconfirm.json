@@ -1,0 +1,87 @@
+{
+  "createdAt": 1669385320307,
+  "updatedAt": 1669385320307,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385320307,
+  "id": "namedparameterstypeof-adddeviceauthenticationmethodconfirm",
+  "name": "NamedParameters<typeof addDeviceAuthenticationMethodConfirm>",
+  "slug": "namedparameterstypeof-adddeviceauthenticationmethodconfirm",
+  "operationRelativeTypescriptFilePath": "src/confirmAuthenticationMethod.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "deviceId": {
+          "type": "string",
+          "description": "device id"
+        },
+        "method": {
+          "$ref": "#/definitions/AuthenticationMethodMethod"
+        },
+        "otp": {
+          "type": "number",
+          "description": "one time password"
+        }
+      },
+      "required": [
+        "deviceId",
+        "method",
+        "otp"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "deviceId",
+          "required": true,
+          "schema": {
+            "fullComment": "device id",
+            "type": "string"
+          }
+        },
+        {
+          "name": "method",
+          "required": true,
+          "schema": {
+            "enum": [
+              "usernamePassword",
+              "phoneNumber",
+              "email",
+              "apple",
+              "google",
+              "facebook",
+              "twitter",
+              "linkedin",
+              "github"
+            ],
+            "fullComment": "Username + password should be the default\n\nEmail OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n\nAll others can also act as authentication methods, but the token shouldn't be stored",
+            "type": "string"
+          }
+        },
+        {
+          "name": "otp",
+          "required": true,
+          "schema": {
+            "fullComment": "one time password",
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof addDeviceAuthenticationMethodConfirm>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

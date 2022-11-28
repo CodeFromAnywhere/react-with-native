@@ -1,26 +1,8 @@
 {
-  "createdAt": 1662709577328,
-  "updatedAt": 1662709577328,
+  "createdAt": 1668328723113,
+  "updatedAt": 1668328723113,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577328,
-  "version": "0.0.1",
-  "main": "build/index.js",
-  "source": "src/index.ts",
-  "scripts": {
-    "dev": "tsc -w",
-    "build": "tsc",
-    "test": "node ./build/cli.js",
-    "up": "npm version patch -f",
-    "pub": "yarn up && npm publish"
-  },
-  "license": "ISC",
-  "devDependencies": {
-    "@types/csv-parse": "^1.2.2",
-    "@types/node": "^18.0.1",
-    "typescript": "^4.7.4"
-  },
-  "name": "read-csv-file",
-  "slug": "read-csv-file",
+  "createdFirstAt": 1668328723113,
   "id": "ygAZcXXNqmgqODiC",
   "dependencies": {
     "csv-parse": "^5.3.1",
@@ -28,7 +10,78 @@
     "fs-util": "1.0.5",
     "make-test": "0.0.1"
   },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "devDependencies": {
+    "@types/csv-parse": "^1.2.2",
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "read-csv-file",
+  "language": "english",
+  "slug": "read-csv-file",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "read-csv-file",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668334953577,
+    "operationDependenciesIndexed": [
+      "canRead",
+      "fs",
+      "Path",
+      "canReadSync",
+      "path",
+      "makeTest",
+      "CsvItemType"
+    ],
+    "packageDependenciesIndexed": [
+      "parse"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/parsing/read-files",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 1,
+        "lines": 68,
+        "characters": 1676,
+        "bytes": 1676
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 127,
+        "characters": 2843,
+        "bytes": 2843
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 58,
+        "characters": 931,
+        "bytes": 931
+      },
+      "size": {
+        "bytes": 5450,
+        "characters": 5450,
+        "lines": 253,
+        "numberOfFiles": 4
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

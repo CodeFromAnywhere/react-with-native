@@ -1,19 +1,15 @@
 {
-  "createdAt": 1666261462323,
-  "updatedAt": 1666261462323,
+  "createdAt": 1669055927655,
+  "updatedAt": 1669055927655,
   "deletedAt": 0,
-  "createdFirstAt": 1666261462323,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055927655,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "PluginComponent<SelectInputType>",
   "operationRelativeTypescriptFilePath": "src/select/select.tsx",
   "commentsInside": [],
-  "rawText": " ({\n  value,\n  extra,\n  onChange,\n}) => {\n  //console.log({ value, extraOptions: extra.options });\n  return (\n    <Select\n      autoSuggest={extra.autoSuggest}\n      // containerClassName={UI.input}\n      className={UI.selectInput}\n      title={extra.title || \"\"}\n      options={extra.options}\n      value={value}\n      onChange={(value) => {\n        if (value) {\n          onChange(value);\n        }\n      }}\n    />\n  );\n}",
+  "rawText": " (props) => {\n  //console.log({ value, extraOptions: extra.options });\n  const { value, extra, onChange, className } = props;\n  return (\n    <Select\n      autoSuggest={extra.autoSuggest}\n      // containerClassName={UI.input}\n      className={className || UI.selectInput}\n      title={extra.title || \"\"}\n      options={extra.options}\n      value={value}\n      onChange={(value) => {\n        if (value) {\n          onChange(value);\n        }\n      }}\n    />\n  );\n}",
   "name": "SelectInput",
   "slug": "select-input",
   "parameters": [],
@@ -33,13 +29,13 @@
   },
   "maxIndentationDepth": 5,
   "size": {
-    "characters": 423,
-    "lines": 22,
-    "bytes": 423,
+    "characters": 463,
+    "lines": 19,
+    "bytes": 463,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 19,
-    "linesPerFile": 22,
+    "charactersPerLine": 24,
+    "linesPerFile": 19,
     "numberOfFiles": 1
   },
-  "id": "qqazeoaifwwebjdwkvynebjv"
+  "id": "kroynqmjqtreaqukvppruelu"
 }

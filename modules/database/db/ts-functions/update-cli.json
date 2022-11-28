@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666259851065,
-  "updatedAt": 1666259851065,
+  "createdAt": 1668774157825,
+  "updatedAt": 1668774157825,
   "deletedAt": 0,
-  "createdFirstAt": 1666259851065,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774157825,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/cli/test-update.cli.ts",
   "commentsInside": [],
   "rawText": " async () => {\n  const [model, filterKv, updateKv] = process.argv.slice(2);\n\n  if (!filterKv || !model || !updateKv) {\n    console.log(\n      \"please provide 3 arguments: the model name, the key:value of the instance(s) to update, and the key:value of the key to change the value of\"\n    );\n  }\n\n  const [filterKey, filterValue] = filterKv.split(\":\");\n  const [updateKey, updateValue] = updateKv.split(\":\");\n\n  const result = await testDb.update(\n    model as any,\n    (content) => content[filterKey] == filterValue,\n    (content) => ({ ...content, [updateKey]: updateValue })\n  );\n\n  console.table(result);\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 20,
     "numberOfFiles": 1
   },
-  "id": "ztrzzcbjujojlrwzztlutaiy"
+  "id": "cxboegzlyaqpztrdfjmdvmjy"
 }

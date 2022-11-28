@@ -1,15 +1,15 @@
 {
-  "createdAt": 1668150079224,
-  "updatedAt": 1668150079224,
+  "createdAt": 1669639255561,
+  "updatedAt": 1669639255561,
   "deletedAt": 0,
-  "createdFirstAt": 1668150079224,
+  "createdFirstAt": 1669639255561,
   "id": "datasetfilter",
   "name": "DatasetFilter",
   "slug": "datasetfilter",
   "operationRelativeTypescriptFilePath": "src/Dataset.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * Can be better, see https://www.w3schools.com/js/js_comparisons.asp\n */\nexport type DatasetFilter = {\n  objectParameterKey: string;\n  value: string | number | boolean | null | undefined;\n  /**\n   * Uses type equality\n   */\n  operator: \"equal\" | \"notEqual\" | \"gt\" | \"gte\" | \"lt\" | \"lte\";\n  /**\n   * TODO: Maybe add possibility to use a sort function from the SDK\n   */\n  filterFunctionName?: string;\n};",
+  "rawText": "\n/**\n * Can be better, see https://www.w3schools.com/js/js_comparisons.asp\n */\nexport type DatasetFilter = {\n  objectParameterKey: string;\n  /**\n   * This will sometines need to be casted\n   */\n  value: string;\n  /**\n   * Uses type equality\n   */\n  operator: DatasetFilterOperator;\n  /**\n   * TODO: Maybe add possibility to use a sort function from the SDK\n   */\n  filterFunctionName?: string;\n};",
   "extensions": [],
   "isOperationIndex": false,
   "description": "Can be better, see https://www.w3schools.com/js/js_comparisons.asp",
@@ -23,23 +23,11 @@
           "type": "string"
         },
         "value": {
-          "type": [
-            "string",
-            "number",
-            "boolean",
-            "null"
-          ]
+          "type": "string",
+          "description": "This will sometines need to be casted"
         },
         "operator": {
-          "type": "string",
-          "enum": [
-            "equal",
-            "notEqual",
-            "gt",
-            "gte",
-            "lt",
-            "lte"
-          ],
+          "$ref": "#/definitions/DatasetFilterOperator",
           "description": "Uses type equality"
         },
         "filterFunctionName": {
@@ -49,6 +37,7 @@
       },
       "required": [
         "objectParameterKey",
+        "value",
         "operator"
       ],
       "additionalProperties": false,
@@ -66,8 +55,9 @@
         },
         {
           "name": "value",
-          "required": false,
+          "required": true,
           "schema": {
+            "fullComment": "This will sometines need to be casted",
             "type": "string"
           }
         },
@@ -76,14 +66,18 @@
           "required": true,
           "schema": {
             "enum": [
+              "includesLetters",
+              "includes",
+              "startsWith",
+              "endsWith",
               "equal",
               "notEqual",
-              "gt",
-              "gte",
-              "lt",
-              "lte"
+              "greaterThan",
+              "greaterThanOrEqual",
+              "lessThan",
+              "lessThanOrEqual"
             ],
-            "fullComment": "Uses type equality",
+            "fullComment": "Uses type equality\n\n",
             "type": "string"
           }
         },

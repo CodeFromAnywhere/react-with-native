@@ -1,6 +1,6 @@
 # Parse primitive
 
-parse-primitive (`OperationClassification` js)
+parse-primitive (`OperationClassification` cjs)
 
 
 

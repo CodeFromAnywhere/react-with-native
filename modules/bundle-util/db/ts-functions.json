@@ -1,0 +1,89 @@
+[
+  {
+    "createdAt": 1662927908818,
+    "updatedAt": 1662927908818,
+    "deletedAt": 0,
+    "createdFirstAt": 1662927908818,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/getInternalLinks.ts",
+    "commentsInside": [],
+    "rawText": " (pages: MarkdownReaderPage[]) => {\n  /* \n    Make the reader-ui fetch all words at build-time and match the md file for every page against words, statements, functions, interfaces, variables, operations. This will generate an array of extra information: a `description` and possibly a URL. I think there should be a `/definition/*` page for every word/statement inside of every reader-ui (the glossary)\n    */\n\n  const internalLinks: InternalLink[] = pages\n    .filter((page) => !!page.internalLinkWord)\n    .map((page) => {\n      const { queryPath, internalLinkWord } = page;\n      return { internalLinkWord: internalLinkWord!, queryPath };\n    });\n}",
+    "name": "getInternalLinks",
+    "slug": "get-internal-links",
+    "parameters": [
+      {
+        "name": "pages",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarkdownReaderPage"
+          }
+        },
+        "simplifiedSchema": {
+          "items": [],
+          "type": "array"
+        },
+        "required": true
+      }
+    ],
+    "description": "Returns the internal links taken out of the MarkdownReaderPage[]",
+    "returnType": {
+      "rawType": "void",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 3,
+    "size": {
+      "characters": 716,
+      "lines": 12,
+      "bytes": 716,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 60,
+      "linesPerFile": 12,
+      "numberOfFiles": 1
+    },
+    "id": "eQmetDkyqRDqYSPc"
+  },
+  {
+    "createdAt": 1662928119578,
+    "updatedAt": 1662928119578,
+    "deletedAt": 0,
+    "createdFirstAt": 1662928119578,
+    "apiAuthenticationStrategy": "admin",
+    "isApiExposed": true,
+    "isExported": true,
+    "operationRelativeTypescriptFilePath": "src/getDocsMarkdownReaderPages.ts",
+    "commentsInside": [],
+    "rawText": " async (config?: {\n  manualProjectRoot?: string;\n}): Promise<undefined | MarkdownReaderPage[]> => {\n  const projectRoot = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n\n  // the docs folder with all its files\n  const docsPath = path.join(projectRoot, \"docs\");\n\n  const relativeDocsPages: MarkdownReaderPage[] = (\n    await getPublicMarkdownFilePaths(docsPath)\n  ).map((x) => {\n    const filePath = makeRelative(x, projectRoot);\n    const queryPath = removeExtensionsFromPath(filePath);\n    return { queryPath, filePath, isMenuItem: true };\n  });\n\n  const hasDocs = !!relativeDocsPages.find(\n    (x) => x.queryPath.toLowerCase() === \"docs/readme\"\n  );\n  if (!hasDocs) {\n    const hasRootReadme = fs.existsSync(path.join(projectRoot, \"README.md\"));\n    if (hasRootReadme) {\n      relativeDocsPages.unshift({\n        queryPath: \"docs/readme\",\n        filePath: \"README.md\",\n        isMenuItem: true,\n      });\n    }\n  }\n\n  // and all operations (readmes)\n  const operationBasePaths = getPathsWithOperations({\n    manualProjectRoot: projectRoot,\n  });\n\n  const operationPagesPerType: { [key: string]: MarkdownReaderPage[] } =\n    mergeObjectsArray(\n      await Promise.all(\n        operationBasePaths.map(async (basePath) => {\n          const projectRelativeBasePath = makeRelative(basePath, projectRoot);\n          const projectRelativeOperationPaths = (\n            await exploreOperationFolders({ basePath })\n          ).map((absolutePath) => makeRelative(absolutePath, projectRoot));\n\n          const pages: MarkdownReaderPage[] = projectRelativeOperationPaths.map(\n            (relativePath) => {\n              const operationName = getLastFolder(relativePath);\n              return {\n                queryPath: relativePath,\n                // operation filePath is README.md\n                filePath: path.join(relativePath, \"README.md\"),\n                internalLinkWord: operationName,\n                isMenuItem: true,\n              };\n            }\n          );\n\n          return { [projectRelativeBasePath]: pages };\n        })\n      )\n    );\n  // NB: we need to get the right order.\n  const operationPages: MarkdownReaderPage[] = isSensibleProject(projectRoot)\n    ? [\n        ...operationPagesPerType.packages,\n        ...operationPagesPerType.apps,\n        ...operationPagesPerType.modules,\n      ]\n    : [\n        ...operationPagesPerType[\"operations/tools\"],\n        ...operationPagesPerType[\"operations/bundles\"],\n      ];\n\n  const tsVariables = await db.get(\"TsVariable\", {\n    manualProjectRoot: projectRoot,\n  });\n  const tsFunctions = await db.get(\"TsFunction\", {\n    manualProjectRoot: projectRoot,\n  });\n  const tsInterfaces = await db.get(\"TsInterface\", {\n    manualProjectRoot: projectRoot,\n  });\n  const words = await db.get(\"Word\", { manualProjectRoot: projectRoot });\n  const statements = await db.get(\"Statement\", {\n    manualProjectRoot: projectRoot,\n  });\n\n  /*\nTODO: add markdownpages for internal link words of the above models\n\n- variables, interfaces, functions lead to the operation readme with a hash\n- words lead to /word/[slug] and have internalLinkWord [slug]\n- statements lead to /statement/[slug] but have no internalLinkWord. They are defined in `> markdown quote syntax` and should become clickable\n\n*/\n  const allPages: MarkdownReaderPage[] = [\n    { queryPath: \"\", filePath: \"README.md\", isMenuItem: true },\n    ...relativeDocsPages,\n    ...operationPages,\n  ];\n\n  return allPages;\n}",
+    "name": "getDocsMarkdownReaderPages",
+    "slug": "get-docs-markdown-reader-pages",
+    "parameters": [],
+    "description": "- Gets all pages of a bundle based on the fs\n- README should always be on top in a folder.\n- numbers and extensions are omitted from paths, but still connected to the right file\n- If the docs doesn't have a readme, the /docs/readme path shows the root readme.\n\nDoes not include individual functions, interfaces, statements, word-definitions pages",
+    "returnType": {
+      "rawType": "Promise<import(\"/Users/king/King/operations/tools/deployment/bundling/bundle-util/src/types\").MarkdownReaderPage[] | undefined>",
+      "typeCoverage": 0,
+      "isArray": false,
+      "isEnum": false,
+      "isObject": false,
+      "isPrimitive": false,
+      "isEnumLiteral": false
+    },
+    "maxIndentationDepth": 8,
+    "size": {
+      "characters": 3801,
+      "lines": 109,
+      "bytes": 3801,
+      "bytesPerCharacter": 1,
+      "charactersPerLine": 35,
+      "linesPerFile": 109,
+      "numberOfFiles": 1
+    },
+    "id": "OTxNZijOLmqSRsxZ"
+  }
+]

@@ -1,32 +1,9 @@
 {
-  "createdAt": 1662709577327,
-  "updatedAt": 1662709577327,
+  "createdAt": 1668328692144,
+  "updatedAt": 1668328692144,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577327,
-  "version": "0.0.1",
-  "main": "build/index.js",
-  "source": "src/index.ts",
-  "scripts": {
-    "dev": "tsc -w",
-    "build": "tsc",
-    "test": "node ./build/cli.js",
-    "up": "npm version patch -f",
-    "pub": "yarn up && npm publish"
-  },
-  "license": "ISC",
-  "name": "database",
-  "devDependencies": {
-    "@types/node": "^18.0.1",
-    "typescript": "^4.7.4"
-  },
-  "slug": "database",
+  "createdFirstAt": 1668328692144,
   "id": "zppfFLZGjSFDZIPj",
-  "dependencies": {
-    "fs-orm": "1.0.1",
-    "js-util": "0.0.1",
-    "model-types": "0.0.1",
-    "code-types": "0.0.1"
-  },
   "bin": {
     "get": "./build/cli/get.cli.js",
     "testGet": "./build/cli/test-get.cli.js",
@@ -34,7 +11,109 @@
     "testUpdate": "./build/cli/test-update.cli.js",
     "testUpsert": "./build/cli/test-upsert.cli.js"
   },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "dependencies": {
+    "fs-orm": "1.0.1",
+    "js-util": "0.0.1",
+    "model-types": "0.0.1",
+    "code-types": "0.0.1",
+    "measure-performance": "0.0.1",
+    "log": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "database",
+  "language": "english",
+  "slug": "database",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/purpose/codebase-introspection/database/database/src/test-e2e.ts. Error: Error: Unknown type \"function\""
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "database",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668774192149,
+    "operationDependenciesIndexed": [
+      "DbModels",
+      "modelQueryConfig",
+      "createDb",
+      "CustomQueryConfig",
+      "DbConfig",
+      "mergeConfigs",
+      "Creation",
+      "TsConfig",
+      "KeyValueMarkdownModelType",
+      "SlugModelType",
+      "CsvModelType",
+      "MarkdownModelType",
+      "DefaultModelType",
+      "generateId",
+      "Creation",
+      "createDb",
+      "DbConfig",
+      "AnyModelType",
+      "Creation",
+      "Include",
+      "PerformanceItem",
+      "cleanupTimer",
+      "generateUniqueId",
+      "getNewPerformance",
+      "log",
+      "TsConfig",
+      "getObjectFromParamsString",
+      "getSubsetFromObject",
+      "DbModels",
+      "getObjectFromParamsString",
+      "getSubsetFromObject",
+      "getObjectFromParamsString"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/purpose/codebase-introspection/database",
+    "markdown": "Operation that can be used within any typerepo to interact with the `fs-orm` (typebase) database. Relies on `sdk-db` (where your models should be summarized)\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 18,
+        "lines": 676,
+        "characters": 16302,
+        "bytes": 16302
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 153,
+        "characters": 3898,
+        "bytes": 3898
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 519,
+        "characters": 9528,
+        "bytes": 9528
+      },
+      "size": {
+        "bytes": 29728,
+        "characters": 29728,
+        "lines": 1348,
+        "numberOfFiles": 22
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

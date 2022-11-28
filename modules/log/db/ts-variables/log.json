@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666264722195,
-  "updatedAt": 1666264722195,
+  "createdAt": 1668336485313,
+  "updatedAt": 1668336485313,
   "deletedAt": 0,
-  "createdFirstAt": 1666264722195,
+  "createdFirstAt": 1668336485313,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  /**\n   * the message to be displayed to the user\n   */\n  message: string,\n  /**\n   * the configuration (optional)\n   */\n  config?: LogConfig,\n  /**\n   * Extra data the user needs to be able to see.\n   */\n  data?: any\n) => {\n  if (config?.type === \"debug\" && !DEBUG) return;\n  // TODO: figure out if I can also get the path, so I can easily figure out the operation and also store logs somewhere nice\n\n  // const caller = log.caller?.name;\n\n  // const titleParse = parseTitle(message);\n  // const title = config?.title || titleParse.title;\n  const color =\n    config?.type === \"error\"\n      ? options.FgRed\n      : config?.type === \"important\"\n      ? options.FgBlue\n      : config?.type === \"success\"\n      ? options.FgGreen\n      : config?.type === \"warning\"\n      ? options.FgYellow\n      : null;\n\n  if (color) {\n    console.log(`${color}%s${resetString}`, message);\n  } else {\n    console.log(message);\n  }\n\n  if (config?.type === \"error\") {\n    console.log(`(error happened in ${getCallerFileName()})`);\n  }\n\n  if (data) {\n    if (typeof data === \"object\") {\n      console.table(data);\n    } else {\n      console.log(data);\n    }\n  }\n}",
   "description": "Log a message with a special type",
-  "id": "okvtobkgzxlbsiqxqsnizhsw"
+  "id": "mycqzxjbunuwsbyihxuxafqm"
 }

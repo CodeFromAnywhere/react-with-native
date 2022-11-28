@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669384212003,
+  "updatedAt": 1669384212003,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384212003,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/processItemAssets.ts",
+  "commentsInside": [],
+  "rawText": " async <KInterfaceName extends keyof DbModels>(\n  item: AugmentedAnyModelType,\n  interfaceName: KInterfaceName,\n  operationName: string | null,\n  customQueryConfig: CustomQueryConfig\n): Promise<AugmentedAnyModelType | undefined> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n  const absoluteReferencingFilePath = await db.getDbFileLocationPath(\n    item,\n    operationName,\n    interfaceName,\n    customQueryConfig\n  );\n  if (!absoluteReferencingFilePath) return item;\n\n  const projectRelativeReferencingFilePath = makeRelative(\n    absoluteReferencingFilePath,\n    projectRoot\n  );\n\n  const assetParameters = findAssetParametersRecursively(item);\n\n  const assetsToPutOnObject = await Promise.all(\n    assetParameters.map(async (assetParameter) => {\n      const location = [\n        ...(assetParameter.stack || []),\n        assetParameter.parameterName,\n      ];\n\n      const value = getParameterAtLocation<\n        BackendAsset | BackendAsset[] | undefined\n      >(item, location);\n\n      const backendAssetToStore = Array.isArray(value)\n        ? (\n            await Promise.all(\n              value.map((asset) =>\n                processAsset({\n                  ...asset,\n                  projectRelativeReferencingFilePath,\n                  modelName: interfaceName,\n                })\n              )\n            )\n          ).filter(notEmpty)\n        : value\n        ? await processAsset({\n            ...value,\n            projectRelativeReferencingFilePath,\n            modelName: interfaceName,\n          })\n        : undefined;\n\n      return { backendAssetToStore, location };\n    })\n  );\n\n  assetsToPutOnObject.forEach((assetWithLocation) => {\n    setKeyAtLocation(\n      assetWithLocation.location.join(\".\"),\n      assetWithLocation.backendAssetToStore,\n      item\n    );\n  });\n\n  // console.dir(\n  //   { assetParameters, assetsToPutOnObject, finalItem: item },\n  //   { depth: 999 }\n  // );\n\n  return item;\n}",
+  "name": "processItemAssets",
+  "slug": "process-item-assets",
+  "parameters": [],
+  "description": "processes all assets in an item and returns the new item",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").AugmentedAnyModelType | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 9,
+  "size": {
+    "characters": 2008,
+    "lines": 73,
+    "bytes": 2008,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 73,
+    "numberOfFiles": 1
+  },
+  "id": "qasusgcupnznujdfhowirlcp"
+}

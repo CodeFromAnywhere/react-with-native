@@ -1,0 +1,97 @@
+{
+  "createdAt": 1669055711288,
+  "updatedAt": 1669055711288,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055711288,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getFileIds.ts",
+  "commentsInside": [],
+  "rawText": " async ({\n  operationFolderPath,\n  pathSuffix,\n  extension,\n}: {\n  operationFolderPath: string;\n  extension?: SearchableExtension | SearchableExtension[];\n  pathSuffix: string;\n}) => {\n  const basePath = path.join(operationFolderPath, pathSuffix);\n\n  return (\n    await explore({\n      basePath,\n      extension,\n    })\n  )\n    .map((x) => x.path)\n    .map((p) => withoutExtension(p.slice(basePath.length)));\n}",
+  "name": "getFileIds",
+  "slug": "get-file-ids",
+  "parameters": [
+    {
+      "name": "{\n  operationFolderPath,\n  pathSuffix,\n  extension,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "operationFolderPath": {
+            "type": "string"
+          },
+          "extension": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/SearchableExtension"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/SearchableExtension"
+                }
+              }
+            ]
+          },
+          "pathSuffix": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "operationFolderPath",
+          "pathSuffix"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "operationFolderPath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "extension",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "pathSuffix",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "gets all identifiers of files, which are the relative path to a file without the extension",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 500,
+    "lines": 20,
+    "bytes": 500,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "aeeipihwpmxtuzvkutqyinqc"
+}

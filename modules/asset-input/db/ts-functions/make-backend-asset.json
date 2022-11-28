@@ -1,19 +1,14 @@
 {
-  "createdAt": 1667378722987,
-  "updatedAt": 1667378722987,
+  "createdAt": 1669054968077,
+  "updatedAt": 1669054968077,
   "deletedAt": 0,
-  "createdFirstAt": 1667378722987,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669054968077,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util/makeBackendAsset.ts",
   "commentsInside": [],
-  "rawText": " (asset: Asset): BackendAsset => {\n  return {\n    alt: asset.alt,\n    name: asset.name,\n    relativePath: asset.relativePath,\n    temporaryDestination: asset.temporaryDestination,\n  };\n}",
+  "rawText": " (\n  asset: Asset,\n  projectRelativeReferencingFilePath: string,\n  modelName?: string\n): BackendAsset => {\n  return {\n    alt: asset.alt,\n    name: asset.name,\n    relativePath: asset.relativePath,\n    temporaryDestination: asset.temporaryDestination,\n    projectRelativeReferencingFilePath,\n    modelName,\n  };\n}",
   "name": "makeBackendAsset",
   "slug": "make-backend-asset",
   "parameters": [
@@ -55,7 +50,23 @@
             "name": "temporaryDestination",
             "required": false,
             "schema": {
-              "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+              "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectRelativeReferencingFilePath",
+            "required": false,
+            "schema": {
+              "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+              "type": "string"
+            }
+          },
+          {
+            "name": "modelName",
+            "required": false,
+            "schema": {
+              "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
               "type": "string"
             }
           },
@@ -64,6 +75,29 @@
             "required": false,
             "schema": {
               "fullComment": "path to the local blob if uploading",
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "video",
+                "audio",
+                "image",
+                "text",
+                "other"
+              ],
+              "fullComment": "can be calculated from the path, or come directly from the blob\n\nPossible Asset Types",
+              "type": "string"
+            }
+          },
+          {
+            "name": "absoluteUrl",
+            "required": false,
+            "schema": {
+              "fullComment": "Can be available in case it's an asset from an external source URL for example within md.",
               "type": "string"
             }
           },
@@ -119,11 +153,31 @@
         "type": "object"
       },
       "required": true
+    },
+    {
+      "name": "projectRelativeReferencingFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "modelName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
     }
   ],
   "description": "",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").BackendAsset",
+    "rawType": "import(\"/Users/king/King/operations/tools/asset/asset-type/build/BackendAsset\").BackendAsset",
     "typeDefinition": {
       "optional": false
     },
@@ -140,13 +194,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 186,
-    "lines": 8,
-    "bytes": 186,
+    "characters": 313,
+    "lines": 14,
+    "bytes": 313,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 23,
-    "linesPerFile": 8,
+    "charactersPerLine": 22,
+    "linesPerFile": 14,
     "numberOfFiles": 1
   },
-  "id": "ajqpvivlafgcxereobkpuvca"
+  "id": "bislbeifzjjioeqjsuzwffcp"
 }

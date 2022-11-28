@@ -1,6 +1,6 @@
 # Log
 
-log (`OperationClassification` js)
+log (`OperationClassification` cjs)
 
 
 

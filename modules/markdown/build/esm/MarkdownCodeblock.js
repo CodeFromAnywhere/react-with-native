@@ -21,13 +21,14 @@ export var MarkdownCodeblock = function (props) {
             ? text.slice(0, 198) + ".."
             : text
         : text;
+    var nothingToExpand = mode === "preview" && text === realText;
     return (React.createElement(Div, { className: "w-full" },
-        isModeStatic ? null : (React.createElement(Div, null,
+        isModeStatic ? null : nothingToExpand ? null : (React.createElement(Div, null,
             React.createElement(ClickableIcon, { onClick: function () {
                     setIsExpanded(!isExpanded);
                 }, emoji: isExpanded ? "➖ Minimise" : "➕ Expand" }))),
         React.createElement(Div, { className: mode === "scroll"
-                ? "overflow-y-auto h-80"
+                ? "overflow-y-auto max-h-[60vh] max-w-[60vw]"
                 : mode === "preview"
                     ? "opacity-25 bg-black"
                     : undefined }, renderMarkdownContent(createCodeblockMarkdown(realText, extension || null), 

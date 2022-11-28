@@ -1,4 +1,5 @@
-import type { ApiConfig, ApiTypeWithoutConfig, ApiTypeWithConfig, RealApiReturnType, QueryType } from "api-types";
+/** NB: this is removed at compilation so it's not a dependency and doesn't end up in the bundle */
+import type { ApiConfig, ApiTypeWithoutConfig, ApiTypeWithConfig, RealApiReturnType } from "api-types";
 /**
  *
  */
@@ -22,10 +23,4 @@ export declare const apiWithConfig: ApiTypeWithConfig;
  * NB: only use this if you can access localStorage of the browser or the app. This means this won't work in node or in getStaticProps functions or so
  */
 export declare const api: ApiTypeWithoutConfig;
-/**
-
-This object contains a react-query `useQuery` hook for every api function
-
- */
-export declare const queries: QueryType;
 //# sourceMappingURL=api.d.ts.map

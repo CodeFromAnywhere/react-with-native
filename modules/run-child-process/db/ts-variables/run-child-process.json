@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668336573524,
+  "updatedAt": 1668336573524,
+  "deletedAt": 0,
+  "createdFirstAt": 1668336573524,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "runChildProcess",
+  "slug": "run-child-process",
+  "operationRelativeTypescriptFilePath": "src/runChildProcess.ts",
+  "type": {
+    "rawType": "(config: { operationFolderName: string; scriptFileName: string; args?: (string | undefined)[] | undefined; }) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config: {\n  operationFolderName: string;\n  /**\n   * the location of the script in the build folder\n   * NB: this must be a CLI that that actually executes the function!\n   */\n  scriptFileName: string;\n  /**\n   * all arguments you wish to pass to the script. If an argument is undefined, it will not be passed. Arguments to be passed must be strings\n   */\n  args?: (string | undefined)[];\n}) => {\n  const { operationFolderName, scriptFileName, args } = config;\n\n  const childOperationPath = await getOperationPath(operationFolderName);\n  if (!childOperationPath) {\n    log(\n      `Couldn't find childOperationPath for operation ${operationFolderName}`,\n      { type: \"error\" }\n    );\n    return;\n  }\n  const scriptPath = path.join(\n    childOperationPath,\n    `build/${scriptFileName}.js`\n  );\n\n  if (!fs.existsSync(scriptPath)) {\n    log(\n      `Couldn't find scriptFile ${scriptFileName} which should be at build/${scriptFileName}.js`,\n      { type: \"error\" }\n    );\n    return;\n  }\n\n  const readable = await canRead(scriptPath);\n\n  if (!readable) {\n    log(`Can't read ${scriptPath}`, { type: \"error\" });\n    return;\n  }\n\n  const command = `node ${scriptPath} ${\n    args?.filter(notEmpty).join(\" \") || \"\"\n  }`;\n\n  // log(`going to execute: ${command}`, { type: \"important\" });\n\n  const result = spawnSync(command, {\n    shell: true,\n    stdio: \"inherit\",\n    encoding: \"utf8\",\n  });\n\n  return result.output;\n}",
+  "description": "spawns a child process and returns its output after it's done",
+  "id": "dlbioenbecwwznpkfjitnwwz"
+}

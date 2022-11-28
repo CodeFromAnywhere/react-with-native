@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150794705,
-  "updatedAt": 1668150794705,
+  "createdAt": 1668836013738,
+  "updatedAt": 1668836013738,
   "deletedAt": 0,
-  "createdFirstAt": 1668150794705,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668836013738,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getReferenceParameterInfo.ts",
   "commentsInside": [],
   "rawText": " (\n  parameterName: string\n): ReferenceParameterInfo => {\n  const descriptorModelSplit = parameterName.split(\"_\");\n  const descriptor = parameterName.includes(\"_\")\n    ? descriptorModelSplit[0]\n    : undefined;\n  const rest = parameterName.includes(\"_\")\n    ? descriptorModelSplit[1]\n    : parameterName;\n\n  const wordArray = lowerCaseArray(rest);\n\n  const singleWord = wordArray.length === 1;\n\n  const parameterLastWord = wordArray.pop()!;\n\n  const isReferenceSingleParameter =\n    !singleWord && referenceParameterNames.includes(parameterLastWord);\n  const isReferenceMultipleParameter =\n    !singleWord && referencePluralParameterNames.includes(parameterLastWord);\n\n  const isReferenceParameter =\n    isReferenceSingleParameter || isReferenceMultipleParameter;\n\n  // NB: the last item has been removed now\n  const interfaceName = isReferenceParameter\n    ? pascalCase(wordArray.join(\"-\"))\n    : undefined;\n\n  // slug or id\n  const keyInModel = isReferenceParameter\n    ? singularize(parameterLastWord)\n    : undefined;\n\n  /**\n   * the reference keyword should be removed from the parameterName to receive the dataParameterName\n   *\n   * e.g. `weirdSluggyModelSlugs` becomes `weirdSluggyModels`\n   */\n  const dataParameterName =\n    isReferenceParameter && keyInModel\n      ? replaceLastOccurence(\n          parameterName,\n          capitaliseFirstLetter(keyInModel),\n          \"\"\n        )\n      : undefined;\n\n  const referenceParameterInfo: ReferenceParameterInfo = {\n    descriptor,\n    keyInModel,\n    interfaceName,\n    isReferenceMultipleParameter,\n    isReferenceSingleParameter,\n    isReferenceParameter,\n    dataParameterName,\n    parameterName,\n  };\n\n  return referenceParameterInfo;\n}",
@@ -195,5 +190,5 @@
     "linesPerFile": 66,
     "numberOfFiles": 1
   },
-  "id": "duevvyxtomwiegdtcxbkbbsa"
+  "id": "eqfawrbxcwcvxprewxwqwegl"
 }

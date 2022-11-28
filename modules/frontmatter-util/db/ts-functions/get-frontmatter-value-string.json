@@ -1,0 +1,75 @@
+{
+  "createdAt": 1669384993971,
+  "updatedAt": 1669384993971,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384993971,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (\n  value: FrontmatterValue\n): string | null => {\n  if (value === undefined) return null;\n  if (value === null) return \"null\";\n  if (typeof value === \"number\") return String(value);\n  if (typeof value === \"boolean\") return String(value);\n  if (typeof value === \"boolean\") return String(value);\n  if (Array.isArray(value))\n    return value.map(quotedOrNot).map(stringifyNewlines).join(\", \");\n  if (typeof value === \"string\") return stringifyNewlines(quotedOrNot(value));\n  // NB: according to current support this should never happen\n  if (typeof value === \"object\") return `\"${JSON.stringify(value)}\"`;\n\n  return null;\n}",
+  "name": "getFrontmatterValueString",
+  "slug": "get-frontmatter-value-string",
+  "parameters": [
+    {
+      "name": "value",
+      "schema": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "string | null",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string | null"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 621,
+    "lines": 16,
+    "bytes": 621,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 39,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "mhgmohwspvtffzyizpqfyhkq"
+}

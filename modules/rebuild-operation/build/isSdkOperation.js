@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.isSdkOperation=void 0;var fs_util_1=require("fs-util"),isSdkOperation=function(e){return"sdk"===(0,fs_util_1.getLastFolder)(e).split("-")[0]};exports.isSdkOperation=isSdkOperation;
+//# sourceMappingURL=isSdkOperation.js.map

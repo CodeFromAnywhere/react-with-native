@@ -1,0 +1,257 @@
+{
+  "createdAt": 1669385499239,
+  "updatedAt": 1669385499239,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385499239,
+  "id": "namedparameterstypeof-personprofiledetailsform",
+  "name": "NamedParameters<typeof PersonProfileDetailsForm>",
+  "slug": "namedparameterstypeof-personprofiledetailsform",
+  "operationRelativeTypescriptFilePath": "src/UpdateMeForm.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "props": {
+          "type": "object",
+          "properties": {
+            "personProfileDetails": {
+              "$ref": "#/definitions/PersonProfileDetails"
+            }
+          },
+          "required": [
+            "personProfileDetails"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "props"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "props",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "personProfileDetails",
+                "required": true,
+                "schema": {
+                  "fullComment": "Things the user can fill in about themselves on their profile",
+                  "properties": [
+                    {
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "pictureImage",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Part of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+                        "properties": [
+                          {
+                            "name": "alt",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Stored value\n\nAlt text for the asset",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "relativePath",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "name",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                              "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "temporaryDestination",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "projectRelativeReferencingFilePath",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "modelName",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "interestSlugs",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "slugs of interest categories that this person should be notified about.\n\nSince this is a hierarchical model, parent interests will ensure all children are also applied.",
+                        "items": [
+                          {
+                            "schema": {
+                              "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                              "type": "string"
+                            },
+                            "name": "Slug"
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "media",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Media that is attached to this person.\n\nNB: not used to authenticate! Can be filled in by King OS, might be erroneous",
+                        "nb": "not used to authenticate! Can be filled in by King OS, might be erroneous",
+                        "items": [
+                          {
+                            "schema": {
+                              "fullComment": "media (mediums) that a person uses, e.g. linkedin, twitter, whatsapp, sms, calling, and irl",
+                              "properties": [
+                                {
+                                  "name": "platformSlug",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "medium where the person is a user\n\nuse this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "path",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "used to find the user on the platform",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "isPremium",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "(if available) whether or not the user has a premium account",
+                                    "type": "boolean"
+                                  }
+                                },
+                                {
+                                  "name": "tagline",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "(if available) a tagline for the user of the platform",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "bio",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "(if available) a bio for the user of the platform",
+                                    "type": "string"
+                                  }
+                                }
+                              ],
+                              "type": "object"
+                            },
+                            "name": "PersonSocialMedia"
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "preferredContactMedium",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "amountAuthenticationMethodsRequired",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "By default, one is enough, but if this is defined, the user needs to use this amount of authentication methods before he/she is authenticated. Must be at least one",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "requiredAuthenticationMethods",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Optionally, the user can setup for themselves which authentication methods they require for themselves to authenticate on another device",
+                        "items": [
+                          {
+                            "schema": {
+                              "enum": [
+                                "usernamePassword",
+                                "phoneNumber",
+                                "email",
+                                "apple",
+                                "google",
+                                "facebook",
+                                "twitter",
+                                "linkedin",
+                                "github"
+                              ],
+                              "fullComment": "Username + password should be the default\n\nEmail OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n\nAll others can also act as authentication methods, but the token shouldn't be stored",
+                              "type": "string"
+                            },
+                            "name": "AuthenticationMethodMethod"
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof PersonProfileDetailsForm>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

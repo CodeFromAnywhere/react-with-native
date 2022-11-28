@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668149512111,
-  "updatedAt": 1668149512111,
+  "createdAt": 1669639131036,
+  "updatedAt": 1669639131036,
   "deletedAt": 0,
-  "createdFirstAt": 1668149512111,
+  "createdFirstAt": 1669639131036,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "markdown-reader-get-static-paths",
   "operationRelativeTypescriptFilePath": "src/markdownReaderGetStaticPaths.ts",
   "type": {
-    "rawType": "import(\"/Users/king/King/operations/node_modules/next/types/index\").GetStaticPaths<import(\"querystring\").ParsedUrlQuery>",
+    "rawType": "import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/next-types/build/types\").GetStaticPaths<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/next-types/build/types\").ParsedUrlQuery>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  context: GetStaticPathsContext\n) => {\n  const paths: string[] | undefined = await getMarkdownReaderQueryPaths();\n\n  // console.log({ paths });\n  if (!paths) {\n    return { paths: [], fallback: \"blocking\" };\n  }\n\n  const staticPaths = paths\n    .filter((x) => x !== \"\")\n    .map((p) => ({ params: { paths: p.split(\"/\") } }));\n\n  return {\n    paths: staticPaths,\n    fallback: \"blocking\",\n  };\n}",
   "description": "Function that tells Next.js what the pages are that need to be statically generated",
-  "id": "ucjbvwmmteezprkasyaxoytp"
+  "id": "gyidrjihvsfwwjguhtwwbhlx"
 }

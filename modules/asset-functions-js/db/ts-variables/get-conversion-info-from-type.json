@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384148251,
+  "updatedAt": 1669384148251,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384148251,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getConversionInfoFromType",
+  "slug": "get-conversion-info-from-type",
+  "operationRelativeTypescriptFilePath": "src/getConversionInfoFromType.ts",
+  "type": {
+    "rawType": "(uploadMimeType: string | undefined) => { uploadMimeType: string | undefined; targetFormat: string | undefined; isUnchecked?: boolean | undefined; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  uploadMimeType: string | undefined\n): {\n  uploadMimeType: string | undefined;\n  targetFormat: string | undefined;\n  isUnchecked?: boolean;\n} => {\n  const parts = uploadMimeType?.split(\"/\") || [];\n  const firstPart = parts.length > 0 ? parts[0] : undefined;\n  const lastPart = parts.length > 0 ? parts[parts.length - 1] : undefined;\n\n  console.log({ uploadMimeType, lastPart });\n  if (uploadMimeType === \"audio/mp4\") {\n    return { uploadMimeType, targetFormat: \"mp3\" };\n  }\n\n  if (lastPart === \"wav\") {\n    return { uploadMimeType, targetFormat: \"mp3\" };\n  }\n\n  if (lastPart === \"x-m4a\") {\n    return { uploadMimeType, targetFormat: \"mp3\" };\n  }\n\n  if (firstPart === \"audio\") {\n    return { uploadMimeType, targetFormat: \"mp3\" };\n  }\n\n  if (lastPart === \"quicktime\") {\n    return { uploadMimeType, targetFormat: \"mp4\" };\n  }\n\n  if (firstPart === \"video\") {\n    return { uploadMimeType, targetFormat: \"mp4\" };\n  }\n\n  if (firstPart === \"image\") {\n    return { uploadMimeType, targetFormat: \"jpg\" };\n  }\n\n  return { uploadMimeType, targetFormat: lastPart, isUnchecked: true };\n}",
+  "description": "Received files contain a \"type\" like \"audio/mp3\" or \"image/jpeg\", etc...\n\nHere the extension is decided.\n\nNB: we also need to convert the file itself in case of mp3",
+  "id": "meronlyupgbaudrowxaapnpl"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055615454,
+  "updatedAt": 1669055615454,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055615454,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "test",
+  "slug": "test",
+  "operationRelativeTypescriptFilePath": "src/indexTypescript2.test.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const files = {\n    interfaces:\n      \"/Users/king/King/tools/types/code-types/src/code/TypescriptIndex.ts\",\n    interfaces2:\n      \"/Users/king/King/tools/types/code-types/src/code/TsComment.ts\",\n    interfaces3:\n      \"/Users/king/King/tools/types/code-types/src/code/TsInterface.ts\",\n    interfaces4: \"/Users/king/King/tools/types/code-types/src/code/TypeInfo.ts\",\n    interfaces5:\n      \"/Users/king/King/tools/types/code-types/src/code/TsFunction.ts\",\n    interfaces6:\n      \"/Users/king/King/tools/types/foodchain-types/src/FoodChain.ts\",\n    functions:\n      \"/Users/king/King/tools/control-fs/explore-project/src/getFolderExplorationDetails.ts\",\n  };\n\n  const fileReasons = Object.keys(files) as (keyof typeof files)[];\n  oneByOne(fileReasons, async (reason) => {\n    const filePath = files[reason];\n\n    console.log({ filePath });\n\n    await indexTypescript({ filePaths: [filePath], manualProjectRoot: null });\n\n    return;\n  });\n}",
+  "description": "",
+  "id": "qaymgfseqevirkbpxfcracxy"
+}

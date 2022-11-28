@@ -1,19 +1,14 @@
 {
-  "createdAt": 1667634354331,
-  "updatedAt": 1667634354331,
+  "createdAt": 1669384242712,
+  "updatedAt": 1669384242712,
   "deletedAt": 0,
-  "createdFirstAt": 1667634354331,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669384242712,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/AssetView.tsx",
   "commentsInside": [],
-  "rawText": " (props: {\n  asset: Asset;\n  className?: string;\n  projectRelativeReferencingFilePath: string;\n  hideDownloadLink?: boolean;\n}) => {\n  const {\n    asset,\n    className,\n    projectRelativeReferencingFilePath,\n    hideDownloadLink,\n  } = props;\n\n  const isRemote = !asset.blobPath;\n\n  /**\n   * NB: `relativePath` is required\n   */\n  const getRemoteUrl = (isDownload: boolean) =>\n    getReferencedAssetApiUrl(\n      apiUrl,\n      projectRelativeReferencingFilePath,\n      asset.relativePath!,\n      isDownload\n    );\n  /**\n   * NB: `asset.temporaryDestination` is not a URL that can be used to retreive the image as \"src\"\n   */\n  const src = isRemote\n    ? asset.relativePath\n      ? getRemoteUrl(false)\n      : undefined\n    : asset.blobPath;\n\n  const downloadRemotely = isRemote && !!asset.relativePath;\n\n  const downloadHref = downloadRemotely\n    ? getRemoteUrl(true)\n    : // NB: other type is ugly when downloading. Also doesn't make sense much to want to download an asset after uploading\n    asset.type !== \"other\"\n    ? asset.blobPath\n    : undefined;\n\n  const sizeText =\n    asset.sizeBytes !== undefined\n      ? `(${readableSize(asset.sizeBytes)})`\n      : undefined;\n\n  const downloadText = \" ⬇️ Download\";\n\n  const extension = getExtensionFromAsset(asset);\n\n  const filename =\n    isRemote && asset.relativePath\n      ? asset.relativePath.split(\"/\").pop()!\n      : extension\n      ? `untitled.${extension}`\n      : undefined;\n\n  const isTextFile = filename && isText(filename) === true ? true : false;\n\n  const type =\n    isRemote && asset.relativePath\n      ? getTypeFromRelativePath(asset.relativePath)\n      : asset.type;\n\n  const [rawText, setRawText] = useState(\"\");\n  useEffect(() => {\n    if (!!src && isTextFile) {\n      fetch(src).then((result) => {\n        result.text().then((text) => setRawText(text));\n      });\n    }\n  }, [src, isTextFile]);\n\n  return (\n    <Span style={{ position: \"relative\" }}>\n      {downloadHref && !hideDownloadLink ? (\n        <Div\n          style={{\n            padding: \"5px\",\n          }}\n        >\n          <A target=\"_blank\" href={downloadHref}>\n            {downloadText} {sizeText}\n          </A>\n        </Div>\n      ) : null}\n\n      {type === \"image\" && src && (\n        <img src={src} style={{ aspectRatio: \"auto\", width: 150 }} />\n      )}\n      {type === \"audio\" && src && <audio controls src={src} />}\n      {type === \"video\" && src && (\n        <video style={{ aspectRatio: \"auto\", width: 150 }} controls src={src} />\n      )}\n\n      {type === \"other\" && isTextFile ? (\n        <MarkdownCodeblock text={rawText} extension={extension} />\n      ) : null}\n\n      {/* LATER: render PDF renderer here */}\n      {type === \"other\" && extension === \"pdf\" ? null : null}\n\n      {src === undefined ? <P>Asset src not found</P> : null}\n    </Span>\n  );\n}",
+  "rawText": " (props: {\n  asset: Asset;\n  className?: string;\n  projectRelativeReferencingFilePath: string;\n  hideDownloadLink?: boolean;\n}) => {\n  const {\n    asset,\n    className,\n    projectRelativeReferencingFilePath,\n    hideDownloadLink,\n  } = props;\n\n  const result = useAsset(asset, projectRelativeReferencingFilePath, !isDev);\n  const { downloadUrl, rawText, src, type, extension } =\n    destructureOptionalObject(result);\n\n  // console.log({ src });\n\n  const sizeText =\n    asset.sizeBytes !== undefined\n      ? `(${readableSize(asset.sizeBytes)})`\n      : undefined;\n\n  const downloadText = \" ⬇️ Download\";\n\n  return (\n    <Span style={{ position: \"relative\" }}>\n      {downloadUrl && !hideDownloadLink ? (\n        <Div\n          style={{\n            padding: \"5px\",\n          }}\n        >\n          <A target=\"_blank\" href={downloadUrl}>\n            {downloadText} {sizeText}\n          </A>\n        </Div>\n      ) : null}\n\n      {type === \"image\" && src && (\n        <img\n          src={src}\n          className={className || \"w-40\"}\n          style={{ aspectRatio: \"auto\" }}\n        />\n      )}\n      {type === \"audio\" && src && <audio controls src={src} />}\n      {type === \"video\" && src && (\n        <video\n          style={{ aspectRatio: \"auto\" }}\n          className={className || \"w-40\"}\n          preload=\"none\"\n          // not always available, should I check first somehow?\n          poster={src.replace(\".mp4\", \".placeholder.jpeg\")}\n          controls\n          src={src}\n        />\n      )}\n\n      {type === \"text\" && rawText ? (\n        <MarkdownCodeblock text={rawText} extension={extension} />\n      ) : null}\n\n      {/* LATER: render PDF renderer here */}\n      {type === \"other\" && extension === \"pdf\" ? null : null}\n\n      {src === undefined ? <P>Asset src not found</P> : null}\n    </Span>\n  );\n}",
   "name": "AssetView",
   "slug": "asset-view",
   "parameters": [
@@ -79,7 +74,23 @@
                   "name": "temporaryDestination",
                   "required": false,
                   "schema": {
-                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "projectRelativeReferencingFilePath",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "modelName",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                     "type": "string"
                   }
                 },
@@ -88,6 +99,29 @@
                   "required": false,
                   "schema": {
                     "fullComment": "path to the local blob if uploading",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "video",
+                      "audio",
+                      "image",
+                      "text",
+                      "other"
+                    ],
+                    "fullComment": "can be calculated from the path, or come directly from the blob\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "absoluteUrl",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Can be available in case it's an asset from an external source URL for example within md.",
                     "type": "string"
                   }
                 },
@@ -186,13 +220,13 @@
   },
   "maxIndentationDepth": 6,
   "size": {
-    "characters": 2807,
-    "lines": 108,
-    "bytes": 2811,
-    "bytesPerCharacter": 1.0014250089063057,
+    "characters": 1815,
+    "lines": 71,
+    "bytes": 1819,
+    "bytesPerCharacter": 1.0022038567493112,
     "charactersPerLine": 26,
-    "linesPerFile": 108,
+    "linesPerFile": 71,
     "numberOfFiles": 1
   },
-  "id": "zjdevgygwjuhwlzbppxopyiw"
+  "id": "wpnnzrkeorggoffzmnttkjpd"
 }

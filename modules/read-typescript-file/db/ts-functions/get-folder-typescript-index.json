@@ -1,0 +1,201 @@
+{
+  "createdAt": 1666263102986,
+  "updatedAt": 1666263102986,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263102986,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/readTypescriptFile.ts",
+  "commentsInside": [],
+  "rawText": " async ({\n  basePath,\n  filter,\n  sort,\n  type,\n  filePath,\n}: {\n  /**\n   * if given, basePath is ignored\n   *\n   */\n  filePath?: string | string[];\n  /**\n   * is ignored if filePath is provided\n   *\n   * if this path is a single path anywhere in an operaiton, it will only take that operation\n   *\n   * otherwise, it will find all operation folders in that path\n   */\n  basePath?: string | string[];\n\n  /**\n   * if specified, only returns one specific type\n   *\n   * returns all types by default\n   */\n  type?: keyof IndexModels | null;\n\n  filter?: IndexFilter;\n\n  /**\n   * TODO: make functions be sortable:\n   * - alphabetic\n   * - input type\n   * - output type\n   * - usage amount\n   */\n  sort?: string;\n}): Promise<TypescriptIndex | null> => {\n  const operationBasePath =\n    basePath && !Array.isArray(basePath)\n      ? findOperationBasePath(basePath)\n      : undefined;\n\n  // console.log(\"MMMM\", { basePath, operationBasePath });\n\n  const groupedFiles: GroupedFiles = operationBasePath\n    ? { [operationBasePath]: [] }\n    : filePath && filePath.length > 0\n    ? makeArray(filePath).reduce((groups, filePath) => {\n        const operationBasePath = findOperationBasePath(filePath);\n        if (operationBasePath) {\n          groups[operationBasePath] = groups[operationBasePath]\n            ? groups[operationBasePath].concat(filePath)\n            : [filePath];\n        }\n        return groups;\n      }, {} as GroupedFiles)\n    : (await exploreOperationFolders({ basePath })).reduce(\n        (groups, operationBasePath) => {\n          groups[operationBasePath] = [];\n          return groups;\n        },\n        {} as GroupedFiles\n      );\n\n  const typescriptIndexes = await Promise.all(\n    Object.keys(groupedFiles).map(async (operationBasePath) => {\n      const files = groupedFiles[operationBasePath];\n\n      const tsBuildErrors =\n        type === \"TsBuildError\" || !type\n          ? await getOperationIndexModel(\n              \"TsBuildError\",\n              operationBasePath,\n              files\n            )\n          : [];\n\n      const tsLintWarnings =\n        type === \"TsLintWarning\" || !type\n          ? await getOperationIndexModel(\n              \"TsLintWarning\",\n              operationBasePath,\n              files\n            )\n          : [];\n\n      const tsFunctions =\n        type === \"TsFunction\" || !type\n          ? await getOperationIndexModel(\"TsFunction\", operationBasePath, files)\n          : [];\n\n      const extendedTsFuntions = await Promise.all(\n        tsFunctions.map(async (tsFunction) => ({\n          ...tsFunction,\n          dependantFiles: tsFunction.operationName\n            ? await findDependants({\n                operationName: tsFunction.operationName,\n                importName: tsFunction.name,\n              })\n            : [],\n        }))\n      );\n\n      const tsVariables =\n        type === \"TsVariable\" || !type\n          ? await getOperationIndexModel(\"TsVariable\", operationBasePath, files)\n          : [];\n\n      const tsInterfaces =\n        type === \"TsInterface\" || !type\n          ? await getOperationIndexModel(\n              \"TsInterface\",\n              operationBasePath,\n              files\n            )\n          : [];\n\n      const tsComments =\n        type === \"TsComment\" || !type\n          ? await getOperationIndexModel(\"TsComment\", operationBasePath, files)\n          : [];\n\n      const tsImports =\n        type === \"TsImport\" || !type\n          ? await getOperationIndexModel(\"TsImport\", operationBasePath, files)\n          : [];\n\n      const tsExports =\n        type === \"TsExport\" || !type\n          ? await getOperationIndexModel(\"TsExport\", operationBasePath, files)\n          : [];\n\n      const filteredInterfaces = tsInterfaces.filter((x) =>\n        filter?.interfaceIsDbModel ? x.isDbModel : true\n      );\n\n      const typescriptIndex: TypescriptIndex = {\n        tsBuildErrors,\n        tsLintWarnings,\n        tsFunctions: extendedTsFuntions,\n        tsVariables,\n        tsInterfaces: filteredInterfaces,\n        tsComments: tsComments.filter((comment) =>\n          filter?.hasCommentTypes\n            ? comment.types.find((type) =>\n                filter.hasCommentTypes!.includes(type)\n              )\n            : true\n        ),\n        tsImports,\n        tsExports,\n      };\n\n      return typescriptIndex;\n    })\n  );\n\n  const mergedTypescriptIndex = typescriptIndexes.reduce((merged, current) => {\n    if (merged) {\n      const indexModels = Object.keys(merged) as (keyof TypescriptIndex)[];\n\n      const together = mergeObjectsArray(\n        indexModels.map((indexModelName) => {\n          const filterOnName =\n            indexModelName === \"tsComments\" ? () => true : uniqueNames;\n\n          return {\n            [indexModelName]: [\n              ...merged[indexModelName],\n              ...current[indexModelName],\n            ].filter(filterOnName),\n          };\n        })\n      ) as TypescriptIndex;\n\n      return together;\n    }\n\n    return current;\n  }, null as TypescriptIndex | null);\n\n  return mergedTypescriptIndex;\n}",
+  "name": "getFolderTypescriptIndex",
+  "slug": "get-folder-typescript-index",
+  "parameters": [
+    {
+      "name": "{\n  basePath,\n  filter,\n  sort,\n  type,\n  filePath,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ],
+            "description": "if given, basePath is ignored"
+          },
+          "basePath": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ],
+            "description": "is ignored if filePath is provided\n\nif this path is a single path anywhere in an operaiton, it will only take that operation\n\notherwise, it will find all operation folders in that path"
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "TsBuildError",
+              "TsLintWarning",
+              "TsFunction",
+              "TsVariable",
+              "TsInterface",
+              "TsComment",
+              "TsImport",
+              "TsExport",
+              null
+            ],
+            "description": "if specified, only returns one specific type\n\nreturns all types by default"
+          },
+          "filter": {
+            "$ref": "#/definitions/IndexFilter"
+          },
+          "sort": {
+            "type": "string",
+            "description": "TODO: make functions be sortable:\n- alphabetic\n- input type\n- output type\n- usage amount"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "filePath",
+            "required": false,
+            "schema": {
+              "fullComment": "if given, basePath is ignored",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "basePath",
+            "required": false,
+            "schema": {
+              "fullComment": "is ignored if filePath is provided\n\nif this path is a single path anywhere in an operaiton, it will only take that operation\n\notherwise, it will find all operation folders in that path",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "TsBuildError",
+                "TsLintWarning",
+                "TsFunction",
+                "TsVariable",
+                "TsInterface",
+                "TsComment",
+                "TsImport",
+                "TsExport",
+                null
+              ],
+              "fullComment": "if specified, only returns one specific type\n\nreturns all types by default",
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "hasCommentTypes",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "if set, only returns comments containing specific types",
+                    "items": [
+                      {
+                        "schema": {
+                          "enum": [
+                            "todo",
+                            "discussion",
+                            "idea",
+                            "later",
+                            "nb",
+                            "title",
+                            "section",
+                            "description"
+                          ],
+                          "fullComment": "special line prefixes:\n\n**Developer related comments**\n\n- TODO: for developer to know what to do\n- DISCUSSION: for developer to state that discussion is needed\n- IDEA: for developer to state ideas\n- LATER: for developer to mark as thing that needs to be done later\n- NB: for developer to add a note\n\n**Form related comments**\n\n- TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n- SECTION: start a new section in the form from this point, the value behind here can be the title\n- DESCRIPTION: if available, will be used as description of the form input",
+                          "type": "string"
+                        },
+                        "name": "CommentType"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "interfaceIsDbModel",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "if true, only returns interfaces which are db models",
+                    "type": "boolean"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "fullComment": "TODO: make functions be sortable:\n- alphabetic\n- input type\n- output type\n- usage amount",
+              "todo": "make functions be sortable:",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "get a Typescript index for all that is found in a folder",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TypescriptIndex\").TypescriptIndex | null>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 8,
+  "size": {
+    "characters": 5074,
+    "lines": 185,
+    "bytes": 5074,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 185,
+    "numberOfFiles": 1
+  },
+  "id": "rixiypukspdguliccankaxei"
+}

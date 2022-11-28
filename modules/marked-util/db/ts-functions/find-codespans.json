@@ -1,0 +1,75 @@
+{
+  "createdAt": 1669467090908,
+  "updatedAt": 1669467090908,
+  "deletedAt": 0,
+  "createdFirstAt": 1669467090908,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/findCodespans.ts",
+  "commentsInside": [],
+  "rawText": " (markdownString: string): string[] => {\n  const result = flattenMarkdownString(\n    markdownString,\n    (token) => token.type === \"codespan\"\n  );\n\n  const codespans: string[] = result\n    .map((token) => {\n      if (token.type !== \"codespan\") return;\n\n      return token.text;\n    })\n    .filter(notEmpty);\n\n  return codespans;\n}",
+  "name": "findCodespans",
+  "slug": "find-codespans",
+  "parameters": [
+    {
+      "name": "markdownString",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "find all codespans",
+  "returnType": {
+    "rawType": "string[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "allOf": [
+          {
+            "transform": [
+              "trim"
+            ]
+          },
+          {
+            "minLength": 1
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 348,
+    "lines": 16,
+    "bytes": 348,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "mygrqlymjzupyngregrrcozn"
+}

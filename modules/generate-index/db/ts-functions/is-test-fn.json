@@ -1,0 +1,90 @@
+{
+  "createdAt": 1668335873798,
+  "updatedAt": 1668335873798,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335873798,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "commentsInside": [],
+  "rawText": " (x: ImportStatement) => {\n  const nameEndsWithTest = lowerCaseArray(x.name).pop() === \"test\";\n  const typeIsFn = x.type === \"function\";\n  return typeIsFn && nameEndsWithTest;\n}",
+  "name": "isTestFn",
+  "slug": "is-test-fn",
+  "parameters": [
+    {
+      "name": "x",
+      "schema": {
+        "$ref": "#/definitions/ImportStatement"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "type",
+            "required": true,
+            "schema": {
+              "enum": [
+                "variable",
+                "function",
+                "interface"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "srcRelativeFileId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 177,
+    "lines": 5,
+    "bytes": 177,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 35,
+    "linesPerFile": 5,
+    "numberOfFiles": 1
+  },
+  "id": "qjgdduddqprkrdxdrbpyvlmy"
+}

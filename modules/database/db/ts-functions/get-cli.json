@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666259848855,
-  "updatedAt": 1666259848855,
+  "createdAt": 1668774155732,
+  "updatedAt": 1668774155732,
   "deletedAt": 0,
-  "createdFirstAt": 1666259848855,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774155732,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/cli/test-get.cli.ts",
   "commentsInside": [],
   "rawText": " async () => {\n  const [model, configString, keysString] = process.argv.slice(2);\n  const config = configString\n    ? getObjectFromParamsString(configString)\n    : undefined;\n  const keys = keysString\n    ? keysString.split(\",\").map((x) => x.trim())\n    : undefined;\n\n  const result = await testDb.get(model as keyof TestModels, config);\n\n  console.table(\n    result.map((x) =>\n      // @ts-ignore\n      keys && typeof x === \"object\" ? getSubsetFromObject(x, keys) : x\n    )\n  );\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 18,
     "numberOfFiles": 1
   },
-  "id": "geocwpscmstecwfkdzddpoiz"
+  "id": "tktwrfdiyrhxwgtlrnvimsaq"
 }

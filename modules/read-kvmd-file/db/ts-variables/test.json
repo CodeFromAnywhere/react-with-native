@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666263046712,
-  "updatedAt": 1666263046712,
+  "createdAt": 1668334989526,
+  "updatedAt": 1668334989526,
   "deletedAt": 0,
-  "createdFirstAt": 1666263046712,
+  "createdFirstAt": 1668334989526,
   "classification": "const",
   "comments": [],
   "isExported": false,
@@ -29,5 +29,5 @@
   },
   "value": "async () => {\n  const absolutePath = path.join(__dirname, \"..\", \"assets\", \"test.md\");\n  const kvmdParse = await readKvmdFile(absolutePath, {\n    absolutePath,\n    modelName: \"TestModel\",\n    operationName: \"read-kvmd-file\",\n    projectRelativePath:\n      \"/operations/tools/control-fs/read-kvmd-file/assets/test.md\",\n    operationRelativePath: \"/read-kvmd-file/assets/test.md\",\n  });\n\n  await writeJsonToFile(\n    absolutePath.replace(\"test.md\", \"test.json\"),\n    kvmdParse\n  );\n}",
   "description": "",
-  "id": "kfcwqxazstpmupnsparuvbmd"
+  "id": "ceiwcibniupvfkatcjfupbie"
 }

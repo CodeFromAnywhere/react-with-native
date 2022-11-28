@@ -1,0 +1,50 @@
+[
+  {
+    "createdAt": 1668335927644,
+    "updatedAt": 1668335927644,
+    "deletedAt": 0,
+    "createdFirstAt": 1668335927644,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.ts",
+    "comment": "if it doesn't start with a dot it must be an absolute import so most likely a package that needs to be installed",
+    "rawStatement": "export const isAbsoluteImport = (moduleString: string) =>\n  !moduleString.startsWith(\".\");",
+    "parameters": {},
+    "types": [],
+    "firstLine": 4,
+    "lastLine": 6,
+    "id": "vwcymmcsrjkfzkggtswmygdy"
+  },
+  {
+    "createdAt": 1668335927644,
+    "updatedAt": 1668335927644,
+    "deletedAt": 0,
+    "createdFirstAt": 1668335927644,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.ts",
+    "comment": "only the first part",
+    "rawStatement": "export const getPackage = (absoluteModuleString: string) =>\n  absoluteModuleString.split(\"/\")[0];",
+    "parameters": {},
+    "types": [],
+    "firstLine": 10,
+    "lastLine": 12,
+    "id": "gkttmsrkfiteyodudshakvfd"
+  },
+  {
+    "createdAt": 1668335927644,
+    "updatedAt": 1668335927644,
+    "deletedAt": 0,
+    "createdFirstAt": 1668335927644,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.ts",
+    "comment": "DEPRECATED: should use generated index files with imports instead!\n\ngets all imported packages (dependencies) in a project\ndoesn't take into account the fact that someone can set up a rule for absolute imports within the package.\nthis assumes that any absolute package comes from node_modules.",
+    "rawStatement": "export const getImportedDependencies = ({\n  operationFolderPath,\n}: {\n  operationFolderPath: string;\n}) => {\n  const project = getTsMorphProject(operationFolderPath);\n  if (!project) return;\n  const sourceFiles = project.getSourceFiles(\"src/*\");\n  const importModuleStrings = sourceFiles.reduce((imports, sourceFile) => {\n    const allImports: ImportDeclaration[] = sourceFile.getImportDeclarations();\n    const absoluteImports = allImports.map((i) =>\n      i.getModuleSpecifier().getLiteralText()\n    );\n    return imports.concat(absoluteImports);\n  }, [] as string[]);\n\n  const packages = importModuleStrings.filter(isAbsoluteImport).map(getPackage);\n  return packages;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 16,
+    "lastLine": 22,
+    "id": "zopgwzhhimqqkxwarjjuniro"
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055606878,
+  "updatedAt": 1669055606878,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055606878,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getValidatedOperationPathParse",
+  "slug": "get-validated-operation-path-parse",
+  "operationRelativeTypescriptFilePath": "src/getValidatedOperationPathParse.ts",
+  "type": {
+    "rawType": "(filePath: string) => import(\"/Users/king/King/operations/tools/typescript/index-typescript/src/getValidatedOperationPathParse\").CompleteOperationPathParse | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  filePath: string\n): undefined | CompleteOperationPathParse => {\n  const fileParse = path.parse(filePath);\n\n  if (![\".ts\", \".tsx\"].includes(fileParse.ext)) {\n    log(`Incorrect extension ${fileParse.ext}`, { type: \"warning\" });\n    return;\n  }\n\n  // NB: filename is not only a name here but a relative path\n  if (!fs.existsSync(filePath)) {\n    log(`couldn't retreive filepath ${filePath}`, { type: \"error\" });\n    return;\n  }\n\n  const operationPathParse = getOperationPathParse(filePath);\n  if (!operationPathParse) {\n    log(\"Operation must have a pathparse to be indexed\", { type: \"error\" });\n    return;\n  }\n\n  return { ...operationPathParse, filePath };\n}",
+  "description": "",
+  "id": "bhxcwdkfkbldjevrxdjnklou"
+}

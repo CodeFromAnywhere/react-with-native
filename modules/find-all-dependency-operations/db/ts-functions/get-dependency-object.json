@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668150463842,
+  "updatedAt": 1668150463842,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150463842,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/findAllDependencyOperations.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const allOperations = await exploreOperationFolders({});\n\n  const dependencyObject = mergeObjectsArray(\n    await Promise.all(\n      allOperations.map(async (operationFolderPath) => {\n        const operationName = getLastFolder(operationFolderPath);\n        const monorepoModules = await findMonorepoModules(operationName);\n\n        return { [operationName]: monorepoModules };\n      })\n    )\n  );\n\n  return dependencyObject;\n}",
+  "name": "getDependencyObject",
+  "slug": "get-dependency-object",
+  "parameters": [],
+  "description": "findAllDependencyOperations([\"fs-orm\"]).then(console.log);\n\nhow do I get a format like this?\n\nconst x = {\n\n\"fs-orm\": [\"js-util\"],\n\n\"js-util\": [],\n\n}",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 592,
+    "lines": 26,
+    "bytes": 592,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 26,
+    "numberOfFiles": 1
+  },
+  "id": "dfnyemktbkaliwetqzqltkau"
+}

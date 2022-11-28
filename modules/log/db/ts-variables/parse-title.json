@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666264722195,
-  "updatedAt": 1666264722195,
+  "createdAt": 1668336485313,
+  "updatedAt": 1668336485313,
   "deletedAt": 0,
-  "createdFirstAt": 1666264722195,
+  "createdFirstAt": 1668336485313,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(markdown: string) => {\n  const sentences = markdown\n    .split(\"\\n\")\n    .map((x) => x.split(\".\"))\n    .flat();\n\n  const [title, ...rest] = sentences;\n\n  return { title, rest: rest.filter((x) => x.length > 0).join(\"\\n\") };\n}",
   "description": "TODO: Should parse a title from markdown",
-  "id": "fscfjvvoslrlavzexmfcduty"
+  "id": "nqlyvngvjujvqpjnzapctczg"
 }

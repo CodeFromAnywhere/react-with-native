@@ -1,0 +1,199 @@
+{
+  "createdAt": 1669055719745,
+  "updatedAt": 1669055719745,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055719745,
+  "id": "namedparameterstypeof-rebuildoperation",
+  "name": "NamedParameters<typeof rebuildOperation>",
+  "slug": "namedparameterstypeof-rebuildoperation",
+  "operationRelativeTypescriptFilePath": "src/rebuildOperation.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "updatedAt": {
+              "type": "number",
+              "description": "last date when the rebuild-operation operation was updated (or any of its dependencies)"
+            },
+            "typerepoManualProjectRoot": {
+              "type": "string",
+              "description": "If given, uses this as project root for the rebuildOperation dependencies, instead of the calculatable one"
+            },
+            "operationManualProjectRoot": {
+              "type": "string",
+              "description": "If given, uses this as project root for finding things from the database for the operation that needs to be rebuilt"
+            },
+            "operationBasePath": {
+              "type": "string",
+              "description": "Full path to operation folder or any file therein"
+            },
+            "filePaths": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "If not given, explores all files in src folder of the operation. if given, must be an array of absolute file paths. it is not supported to index index files, as this creates duplicate and incorrect interfaces."
+            },
+            "noUnresolvedRebuilding": {
+              "type": "boolean",
+              "description": "used for stopping recursion"
+            },
+            "force": {
+              "type": "boolean",
+              "description": "if true, will not skip if nothing changed"
+            },
+            "debug": {
+              "type": "boolean",
+              "description": "show logs"
+            },
+            "noExit": {
+              "type": "boolean",
+              "description": "normally, it exits if the operation that was rebuilt was itself or one of its dependencies. Handy for watchOperations in combination with nodemon. If we don't want this behavior, provide noExit"
+            },
+            "stack": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "stack of recursion of module names"
+            }
+          },
+          "required": [
+            "operationBasePath"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "updatedAt",
+                "required": false,
+                "schema": {
+                  "fullComment": "last date when the rebuild-operation operation was updated (or any of its dependencies)",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "typerepoManualProjectRoot",
+                "required": false,
+                "schema": {
+                  "fullComment": "If given, uses this as project root for the rebuildOperation dependencies, instead of the calculatable one",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationManualProjectRoot",
+                "required": false,
+                "schema": {
+                  "fullComment": "If given, uses this as project root for finding things from the database for the operation that needs to be rebuilt",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationBasePath",
+                "required": true,
+                "schema": {
+                  "fullComment": "Full path to operation folder or any file therein",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "filePaths",
+                "required": false,
+                "schema": {
+                  "fullComment": "If not given, explores all files in src folder of the operation. if given, must be an array of absolute file paths. it is not supported to index index files, as this creates duplicate and incorrect interfaces.",
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "noUnresolvedRebuilding",
+                "required": false,
+                "schema": {
+                  "fullComment": "used for stopping recursion",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "force",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, will not skip if nothing changed",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "debug",
+                "required": false,
+                "schema": {
+                  "fullComment": "show logs",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "noExit",
+                "required": false,
+                "schema": {
+                  "fullComment": "normally, it exits if the operation that was rebuilt was itself or one of its dependencies. Handy for watchOperations in combination with nodemon. If we don't want this behavior, provide noExit",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "stack",
+                "required": false,
+                "schema": {
+                  "fullComment": "stack of recursion of module names",
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof rebuildOperation>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

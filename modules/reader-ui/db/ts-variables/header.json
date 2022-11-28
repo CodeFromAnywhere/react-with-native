@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669639439879,
+  "updatedAt": 1669639439879,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639439879,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "Header",
+  "slug": "header",
+  "operationRelativeTypescriptFilePath": "src/components/Header.tsx",
+  "type": {
+    "rawType": "(props: { publicBundleConfig?: import(\"/Users/king/King/operations/tools/types/bundle-types/build/PublicBundleConfig\").PublicBundleConfig | null | undefined; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  publicBundleConfig?: PublicBundleConfig | null;\n}) => {\n  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(\n    \"menu.isMobileMenuEnabled\"\n  );\n  const { publicBundleConfig } = props;\n  const title =\n    publicLocalEnvironmentVariables.markdownReaderTitle ||\n    publicEnvironmentVariables.markdownReaderTitle ||\n    publicBundleConfig?.name;\n\n  return (\n    <Div\n      style={{\n        backgroundColor: props.publicBundleConfig?.primaryColor,\n        justifyContent: \"space-between\",\n        display: \"flex\",\n        flexDirection: \"row\",\n        alignItems: \"center\",\n      }}\n    >\n      <ALink\n        href={\n          typeof window !== \"undefined\"\n            ? location.protocol + \"//\" + location.host\n            : \"#\"\n        }\n        style={{ fontSize: 32 }}\n      >\n        {props.publicBundleConfig?.emoji}\n      </ALink>\n\n      <Div>\n        <P className=\"font-bold text-white \">{title}</P>\n        <P className=\"text-xs text-white italic\">\n          {props.publicBundleConfig?.description}\n        </P>\n      </Div>\n\n      <Div className=\"flex flex-row\">\n        <Div className=\"lg:hidden\">\n          <ClickableIcon\n            emoji=\"🔍\"\n            onClick={() => setIsMobileMenuEnabled(!isMobileMenuEnabled)}\n          />\n        </Div>\n        {props.publicBundleConfig?.isGitRepoPublic &&\n        props.publicBundleConfig.gitRepoUrl ? (\n          <ALink target=\"_blank\" href={props.publicBundleConfig.gitRepoUrl}>\n            GitHub\n          </ALink>\n        ) : null}\n      </Div>\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "gqigsywkbogvaulnrrgsijam"
+}

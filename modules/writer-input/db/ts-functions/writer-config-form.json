@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668152073962,
-  "updatedAt": 1668152073962,
+  "createdAt": 1669385120385,
+  "updatedAt": 1669385120385,
   "deletedAt": 0,
-  "createdFirstAt": 1668152073962,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385120385,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/config/WriterConfigForm.tsx",
   "commentsInside": [],
   "rawText": " () => {\n  const [subtextConfig, setSubtextConfig] = useStore(\"subtextConfig\");\n  const [subwordConfig, setSubwordConfig] = useStore(\"subwordConfig\");\n\n  const values: WriterConfigFormValue = [subtextConfig, subwordConfig];\n\n  return (\n    <Div>\n      <SimplifiedSchemaForm\n        id=\"writerConfig\"\n        onChange={(values) => {\n          const [newSubtextConfig, newSubwordConfig] =\n            values as WriterConfigFormValue;\n          setSubtextConfig(newSubtextConfig);\n          setSubwordConfig(newSubwordConfig);\n        }}\n        parameters={[\n          {\n            name: \"SubtextConfig\",\n            required: true,\n            isDbModel: false,\n            simplifiedSchema: SubtextConfigIndex.type\n              .simplifiedSchema as SimplifiedSchema,\n          },\n          {\n            name: \"SubwordConfig\",\n            required: true,\n            isDbModel: false,\n            simplifiedSchema: SubwordConfigIndex.type\n              .simplifiedSchema as SimplifiedSchema,\n          },\n        ]}\n        values={values}\n      />\n    </Div>\n  );\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 37,
     "numberOfFiles": 1
   },
-  "id": "unpgkuaayzegejxouzroauyi"
+  "id": "dnmyxfcehqruhflgglaolgvt"
 }

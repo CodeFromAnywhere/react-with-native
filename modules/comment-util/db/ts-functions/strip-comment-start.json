@@ -1,0 +1,52 @@
+{
+  "createdAt": 1668335766381,
+  "updatedAt": 1668335766381,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335766381,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (trimmedLine: string) =>\n  trimmedLine.startsWith(\"/**\")\n    ? trimmedLine.substring(3).trim()\n    : trimmedLine.startsWith(\"/*\")\n    ? trimmedLine.substring(2).trim()\n    : trimmedLine",
+  "name": "stripCommentStart",
+  "slug": "strip-comment-start",
+  "parameters": [
+    {
+      "name": "trimmedLine",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 186,
+    "lines": 6,
+    "bytes": 186,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 6,
+    "numberOfFiles": 1
+  },
+  "id": "arogemnajperdirswxzjzhrz"
+}

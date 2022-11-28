@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668149316032,
-  "updatedAt": 1668149316032,
+  "createdAt": 1669467162428,
+  "updatedAt": 1669467162428,
   "deletedAt": 0,
-  "createdFirstAt": 1668149316032,
+  "createdFirstAt": 1669467162428,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "render-markdown-parse",
   "operationRelativeTypescriptFilePath": "src/renderMarkdownParse.tsx",
   "type": {
-    "rawType": "(markdownParse: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse, config: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/markdown/src/types\").MarkdownParseRenderConfig) => JSX.Element",
+    "rawType": "(markdownParse: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse, config: import(\"/Users/king/King/operations/tools/user-interfaces/gui/smart/markdown/src/types\").MarkdownParseRenderConfig) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(\n  markdownParse: MarkdownParse,\n  config: MarkdownParseRenderConfig\n) => {\n  // NB: not sure if this is the best way, there may be mulitiple markdown parses....\n  useOpenHashDetails();\n\n  return (\n    <Div>\n      {renderFrontmatter(markdownParse.parameters, { renderSpacer: true })}\n      {/* NB: Previously we needed renderMarkdownTtile, renderMarkdownChunk etc... but this was not rightly parsed, so we are going to use the regular raw parser now from `react-markdown` instead... */}\n      {renderMarkdownContent(markdownParse.raw, config)}\n    </Div>\n  );\n}",
   "description": "renders the MardkownParse interface (including frontmatter)",
-  "id": "gyjygjybsrzjdnvdmrzqutyy"
+  "id": "yxjpoomnvqxhrvbosabpripf"
 }

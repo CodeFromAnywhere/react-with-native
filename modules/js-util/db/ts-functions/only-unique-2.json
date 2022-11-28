@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150835598,
-  "updatedAt": 1668150835598,
+  "createdAt": 1668977389958,
+  "updatedAt": 1668977389958,
   "deletedAt": 0,
-  "createdFirstAt": 1668150835598,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977389958,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/general.ts",
   "commentsInside": [],
   "rawText": "\n  <U>(isEqualFn?: (a: U, b: U) => boolean) =>\n  <T extends U>(value: T, index: number, self: T[]) => {\n    return (\n      self.findIndex((v) => (isEqualFn ? isEqualFn(v, value) : v === value)) ===\n      index\n    );\n  }",
@@ -46,5 +41,5 @@
     "linesPerFile": 10,
     "numberOfFiles": 1
   },
-  "id": "qmcijtldbikoucximdcsegro"
+  "id": "yiwzhffomiiwlyrjyhzgswgm"
 }

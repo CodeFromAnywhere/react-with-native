@@ -1,0 +1,70 @@
+{
+  "createdAt": 1669384298644,
+  "updatedAt": 1669384298644,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384298644,
+  "id": "namedparameterstypeof-getfrontmattersmappedobject",
+  "name": "NamedParameters<typeof getFrontmattersMappedObject>",
+  "slug": "namedparameterstypeof-getfrontmattersmappedobject",
+  "operationRelativeTypescriptFilePath": "src/getFrontmattersMappedObject.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "projectRoot": {
+          "type": "string"
+        },
+        "markdownPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "projectRoot"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "projectRoot",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "markdownPaths",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getFrontmattersMappedObject>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

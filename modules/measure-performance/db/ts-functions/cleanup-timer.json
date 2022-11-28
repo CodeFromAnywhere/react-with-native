@@ -1,0 +1,47 @@
+{
+  "createdAt": 1668775788151,
+  "updatedAt": 1668775788151,
+  "deletedAt": 0,
+  "createdFirstAt": 1668775788151,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/measure-performance.ts",
+  "commentsInside": [],
+  "rawText": " (uniqueId: string) => {\n  delete timer[uniqueId];\n}",
+  "name": "cleanupTimer",
+  "slug": "cleanup-timer",
+  "parameters": [
+    {
+      "name": "uniqueId",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Ensure you run this after finishing the measurement, or you'll run into memory leaks!",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 137,
+    "lines": 3,
+    "bytes": 137,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 46,
+    "linesPerFile": 3,
+    "numberOfFiles": 1
+  },
+  "id": "lrzawfpocemqlsmnwefttkxz"
+}

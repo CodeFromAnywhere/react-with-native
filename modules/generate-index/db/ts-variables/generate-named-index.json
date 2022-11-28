@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668335870057,
+  "updatedAt": 1668335870057,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335870057,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "generateNamedIndex",
+  "slug": "generate-named-index",
+  "operationRelativeTypescriptFilePath": "src/generateNamedIndex.ts",
+  "type": {
+    "rawType": "({ operationName, manualProjectRoot, }: { manualProjectRoot?: string | undefined; operationName: string; }) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async ({\n  operationName,\n  manualProjectRoot,\n}: {\n  manualProjectRoot?: string;\n  operationName: string;\n}) => {\n  if (!operationName) {\n    log(\"No operation name, can't create index\", { type: \"error\" });\n    return;\n  }\n  const operationBasePath = await getOperationPath(operationName, {\n    manualProjectRoot,\n  });\n\n  if (!operationBasePath) {\n    log(`operationPath not found ${operationName}`, { type: \"error\" });\n    return;\n  }\n  const outputPath = path.join(operationBasePath, \"src\", \"index.ts\");\n\n  const functionArray = (\n    await db.get(\"TsFunction\", {\n      operationName,\n      manualProjectRoot,\n    })\n  )\n    .filter(\n      (x) =>\n        x.isExported && x.operationRelativeTypescriptFilePath !== \"src/index.ts\"\n    )\n    .map((item) => mapToImportStatement(item, \"function\"));\n\n  const variableArray = (\n    await db.get(\"TsVariable\", {\n      operationName,\n      manualProjectRoot,\n    })\n  )\n    .filter(\n      (x) =>\n        x.isExported && x.operationRelativeTypescriptFilePath !== \"src/index.ts\"\n    )\n    .map((item) => mapToImportStatement(item, \"variable\"));\n\n  const interfacesArray = (\n    await db.get(\"TsInterface\", {\n      operationName,\n      manualProjectRoot,\n    })\n  )\n    .filter(\n      (x) =>\n        x.isExported && x.operationRelativeTypescriptFilePath !== \"src/index.ts\"\n    )\n    .map((item) => mapToImportStatement(item, \"interface\"));\n\n  const importStatements: ImportStatement[] = [\n    ...interfacesArray,\n    ...functionArray,\n    ...variableArray,\n  ];\n  // PART 1) mapping and filtering data\n\n  const testStatements = importStatements.filter((x) => isTestFn(x));\n  const otherStatements = importStatements.filter(\n    (x) => lowerCaseArray(x.name).pop() !== \"test\"\n  );\n\n  const importStatementsString = importStatements\n    // import all values (mostly functions, some consts)\n    .map((statement) => {\n      return `import { ${statement.name} } from \"./${statement.srcRelativeFileId}\";`;\n    })\n    .filter(notEmpty)\n    .join(\"\\n\")\n    .concat(\"\\n\");\n\n  /**\n   * this should return an array of all tests of all files\n   */\n  const exportTestString =\n    testStatements.length > 0\n      ? `export const test = [${testStatements\n          .map((exp) => exp.name)\n          .join(\", \")}].flat();\\n`\n      : \"\";\n\n  /**\n   * export all values separately.\n   */\n  const exportStatementsString =\n    otherStatements.length > 0\n      ? `export { ${otherStatements.map((x) => x.name).join(\", \")} };\\n`\n      : \"\";\n\n  // PART 3) Aggreagating all scripts into one big string\n\n  const indexationString = \"// THIS FILE HAS BEEN GENERATED\\n\"\n    .concat(\"\\n\")\n    // all imports\n    .concat(importStatementsString)\n    .concat(\"\\n\\n\")\n    // all exports\n    .concat(exportTestString)\n    .concat(exportStatementsString)\n    .concat(\"\\n\")\n    .concat(\"// THANK YOU\\n\");\n\n  await fs.writeFile(outputPath, indexationString, { encoding: \"utf8\" });\n\n  log(`Created index for ${operationName}`, { type: \"debug\" });\n}",
+  "description": "Generates an index.ts file based on named statements in the operation. Also generates test array. Not used currently.\n\nNB: This overwrites the indexfile of the operation in the src folder! Make sure you don't have anything there still.. All functions should be in other filenames.\n\nShould be ran every time an operation changes",
+  "id": "macbztglqmkdrznbyopvhgxv"
+}

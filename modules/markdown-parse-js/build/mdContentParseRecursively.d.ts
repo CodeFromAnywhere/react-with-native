@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { MarkdownChunk } from "code-types";
+import { MarkdownChunk } from "markdown-types";
 /**
  * recursively parses a string containing markdown (without frontmatter) into a MarkdownChunk[]
  

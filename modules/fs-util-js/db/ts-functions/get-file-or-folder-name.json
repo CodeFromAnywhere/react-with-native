@@ -1,0 +1,53 @@
+{
+  "createdAt": 1669200353031,
+  "updatedAt": 1669200353031,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200353031,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/js.ts",
+  "commentsInside": [],
+  "rawText": " <T extends string | undefined>(\n  fileOrFolderPath: T\n): T => {\n  if (!fileOrFolderPath) return undefined as T;\n  const last = fileOrFolderPath.split(\"/\").pop()!;\n  return last as T;\n}",
+  "name": "getFileOrFolderName",
+  "slug": "get-file-or-folder-name",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "string | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 185,
+    "lines": 7,
+    "bytes": 185,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "qnzfuwcsxabvbyfrucmdrlai"
+}

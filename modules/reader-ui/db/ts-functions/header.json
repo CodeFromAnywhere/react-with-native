@@ -1,0 +1,74 @@
+{
+  "createdAt": 1669639439707,
+  "updatedAt": 1669639439707,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639439707,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/components/Header.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  publicBundleConfig?: PublicBundleConfig | null;\n}) => {\n  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(\n    \"menu.isMobileMenuEnabled\"\n  );\n  const { publicBundleConfig } = props;\n  const title =\n    publicLocalEnvironmentVariables.markdownReaderTitle ||\n    publicEnvironmentVariables.markdownReaderTitle ||\n    publicBundleConfig?.name;\n\n  return (\n    <Div\n      style={{\n        backgroundColor: props.publicBundleConfig?.primaryColor,\n        justifyContent: \"space-between\",\n        display: \"flex\",\n        flexDirection: \"row\",\n        alignItems: \"center\",\n      }}\n    >\n      <ALink\n        href={\n          typeof window !== \"undefined\"\n            ? location.protocol + \"//\" + location.host\n            : \"#\"\n        }\n        style={{ fontSize: 32 }}\n      >\n        {props.publicBundleConfig?.emoji}\n      </ALink>\n\n      <Div>\n        <P className=\"font-bold text-white \">{title}</P>\n        <P className=\"text-xs text-white italic\">\n          {props.publicBundleConfig?.description}\n        </P>\n      </Div>\n\n      <Div className=\"flex flex-row\">\n        <Div className=\"lg:hidden\">\n          <ClickableIcon\n            emoji=\"🔍\"\n            onClick={() => setIsMobileMenuEnabled(!isMobileMenuEnabled)}\n          />\n        </Div>\n        {props.publicBundleConfig?.isGitRepoPublic &&\n        props.publicBundleConfig.gitRepoUrl ? (\n          <ALink target=\"_blank\" href={props.publicBundleConfig.gitRepoUrl}>\n            GitHub\n          </ALink>\n        ) : null}\n      </Div>\n    </Div>\n  );\n}",
+  "name": "Header",
+  "slug": "header",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "publicBundleConfig": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/PublicBundleConfig"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "publicBundleConfig",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 1546,
+    "lines": 57,
+    "bytes": 1548,
+    "bytesPerCharacter": 1.001293661060802,
+    "charactersPerLine": 27,
+    "linesPerFile": 57,
+    "numberOfFiles": 1
+  },
+  "id": "dexmgkfzargymyisxsxkgaph"
+}

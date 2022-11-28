@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668149514823,
-  "updatedAt": 1668149514823,
+  "createdAt": 1669639137257,
+  "updatedAt": 1669639137257,
   "deletedAt": 0,
-  "createdFirstAt": 1668149514823,
+  "createdFirstAt": 1669639137257,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<\n  T extends {\n    path: string;\n    isFolder: boolean;\n  }\n>(\n  items: T[]\n) => {\n  const itemsReadmesFirst = items.reduce((previous, item, index, array) => {\n    if (!item.path.toLowerCase().endsWith(\"readme.md\")) {\n      return previous;\n    }\n\n    const folderIndex = array.findIndex(\n      (x) => x.isFolder && x.path === getFolder(item.path)\n    );\n\n    if (folderIndex === -1) {\n      return previous;\n    }\n\n    return putIndexAtIndex(previous, index, folderIndex + 1);\n  }, items);\n\n  return itemsReadmesFirst;\n}",
   "description": "Takes an array of items (`explore` results) and checks them to put readme at the start\n\nDEPRECATED: After writing this, I found that `explore` also has `readmeOnTop` possibility, so this whole thing is not needed",
-  "id": "iexxckxnfrsmwmneatpmzqgm"
+  "id": "jxcnggndywofaxworzcjjmps"
 }

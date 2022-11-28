@@ -1,0 +1,58 @@
+{
+  "createdAt": 1668150643213,
+  "updatedAt": 1668150643213,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150643213,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "commentsInside": [],
+  "rawText": " (symbol: Symbol) => {\n  return [\n    ...getSymbolDeclarationsOfKind<TypeAliasDeclaration>(\n      symbol,\n      SyntaxKind.TypeAliasDeclaration\n    ),\n    ...getSymbolDeclarationsOfKind<InterfaceDeclaration>(\n      symbol,\n      SyntaxKind.InterfaceDeclaration\n    ),\n  ];\n}",
+  "name": "getSymbolTypeDeclarations",
+  "slug": "get-symbol-type-declarations",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {}
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 274,
+    "lines": 12,
+    "bytes": 274,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "scsdobvzpsbavmmgpyzaumec"
+}

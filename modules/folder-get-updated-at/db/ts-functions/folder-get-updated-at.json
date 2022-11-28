@@ -1,0 +1,70 @@
+{
+  "createdAt": 1668331773543,
+  "updatedAt": 1668331773543,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331773543,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/folderGetUpdatedAt.ts",
+  "commentsInside": [],
+  "rawText": " async ({\n  folderPath,\n}: {\n  folderPath: string;\n}): Promise<number> => {\n  return (\n    await explore({\n      basePath: folderPath,\n      includeStats: true,\n      extension: [\"ts\", \"tsx\"],\n      ignore: \"index.ts\",\n    })\n  ).reduce((updatedAt, file) => {\n    const fileUpdatedAt = file.stats?.updatedAt;\n    if (!fileUpdatedAt) return updatedAt;\n    if (fileUpdatedAt > updatedAt) return fileUpdatedAt;\n    return updatedAt;\n  }, 0);\n}",
+  "name": "folderGetUpdatedAt",
+  "slug": "folder-get-updated-at",
+  "parameters": [
+    {
+      "name": "{\n  folderPath,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "folderPath": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "folderPath"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "folderPath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "get last updated file updatedAt time in whole folder, recursively",
+  "returnType": {
+    "rawType": "Promise<number>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 505,
+    "lines": 19,
+    "bytes": 505,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 19,
+    "numberOfFiles": 1
+  },
+  "id": "mpvgiurhvjmzqsaermsazbjf"
+}

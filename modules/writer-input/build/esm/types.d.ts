@@ -1,6 +1,6 @@
 import { WriterType } from "filename-conventions";
 import { MappedObject } from "js-util";
-import { AugmentedWord } from "markdown-reader-types";
+import { AugmentedWord } from "augmented-word-types";
 export declare type DefaultWriterProps = {
     writerType: WriterType;
     value: string;

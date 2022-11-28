@@ -1,4 +1,6 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.kvmdDataMap=void 0;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.kvmdDataMap = void 0;
 /**
  * DEPRECATED: probably never needed, unless I make it useful
  *
@@ -6,5 +8,19 @@
  *
  * NB: not sure if this is useful. it would be useful if we could auto-generate the application of this function for multiple db models.
  */
-var kvmdDataMap=function(a,e){var t=e.keyName,m=e.valueName,c=e.categoryStackCalculatedName,r=e.commentName,o=a.map((function(a){var e;return(e={})[t||"name"]=a.name,e[m||"value"]=a.value,e[r||"comment"]=a.comment,e[c||"categoryStackCalculated"]=a.categoryStackCalculated,e}));return o};exports.kvmdDataMap=kvmdDataMap;
+var kvmdDataMap = function (data, _a) {
+    var keyName = _a.keyName, valueName = _a.valueName, categoryStackCalculatedName = _a.categoryStackCalculatedName, commentName = _a.commentName;
+    var newDataObject = data.map(function (item) {
+        var _a;
+        var newData = (_a = {},
+            _a[keyName || "name"] = item.name,
+            _a[valueName || "value"] = item.value,
+            _a[commentName || "comment"] = item.comment,
+            _a[categoryStackCalculatedName || "categoryStackCalculated"] = item.categoryStackCalculated,
+            _a);
+        return newData;
+    });
+    return newDataObject;
+};
+exports.kvmdDataMap = kvmdDataMap;
 //# sourceMappingURL=kvmdDataMap.js.map

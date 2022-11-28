@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668150463841,
+  "updatedAt": 1668150463841,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150463841,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/findAllDependencyOperations.ts",
+  "commentsInside": [],
+  "rawText": " async (operationName: string) => {\n  const imports = await db.get(\"TsImport\", { operationName });\n  const monorepoModules = imports\n    .map((x) =>\n      x.isModuleFromMonorepo && x.isModuleResolved ? x.module : null\n    )\n    .filter(notEmpty)\n    .filter(onlyUnique);\n\n  return monorepoModules;\n}",
+  "name": "findMonorepoModules",
+  "slug": "find-monorepo-modules",
+  "parameters": [],
+  "description": "finds all dependencies of an operation name",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 342,
+    "lines": 11,
+    "bytes": 342,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "ldtqjyrzmkhharjurxzscfye"
+}

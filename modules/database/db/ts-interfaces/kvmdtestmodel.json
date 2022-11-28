@@ -1,0 +1,192 @@
+{
+  "createdAt": 1668774165918,
+  "updatedAt": 1668774165918,
+  "deletedAt": 0,
+  "createdFirstAt": 1668774165918,
+  "id": "kvmdtestmodel",
+  "name": "KvmdTestModel",
+  "slug": "kvmdtestmodel",
+  "operationRelativeTypescriptFilePath": "src/test-db.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface KvmdTestModel extends KeyValueMarkdownModelType {}",
+  "extensions": [
+    "KeyValueMarkdownModelType"
+  ],
+  "isOperationIndex": false,
+  "description": "",
+  "dbStorageMethod": "keyValueMarkdown",
+  "isDbModel": true,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "same as slug\n\nused for compatibility with some general purpose functions\n\nNB: uniqueness is hard to enforce!"
+        },
+        "name": {
+          "type": "string",
+          "description": "key\n\nshould be english because it's kind of part of the codebase!"
+        },
+        "slug": {
+          "type": "string",
+          "description": "calculated: slug for this key (kebab case form of the name)"
+        },
+        "value": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ],
+          "description": "value behind the semicolom (:). If not given, will be undefined.\n\nIf possible, will be parsed to a number, boolean, null or undefined... otherwise it's a string\n\ncan be any language that we can detect"
+        },
+        "comment": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "comment in html syntax. if not given, will be null"
+        },
+        "operationName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "projectRelativePath": {
+          "type": "string",
+          "description": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "operationRelativePath": {
+          "type": "string",
+          "description": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "categoryStackCalculated": {
+          "$ref": "#/definitions/CategoryStack",
+          "description": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`"
+        },
+        "isHeaderCalculated": {
+          "type": "boolean",
+          "description": "Calculated value indicating whether or not the item has children"
+        }
+      },
+      "required": [
+        "categoryStackCalculated",
+        "comment",
+        "id",
+        "isHeaderCalculated",
+        "name",
+        "operationName",
+        "projectRelativePath",
+        "slug"
+      ]
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "fullComment": "same as slug\n\nused for compatibility with some general purpose functions\n\nNB: uniqueness is hard to enforce!",
+            "nb": "uniqueness is hard to enforce!",
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "fullComment": "key\n\nshould be english because it's kind of part of the codebase!",
+            "type": "string"
+          }
+        },
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "fullComment": "calculated: slug for this key (kebab case form of the name)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "value",
+          "required": false,
+          "schema": {
+            "fullComment": "value behind the semicolom (:). If not given, will be undefined.\n\nIf possible, will be parsed to a number, boolean, null or undefined... otherwise it's a string\n\ncan be any language that we can detect",
+            "type": "string"
+          }
+        },
+        {
+          "name": "comment",
+          "required": true,
+          "schema": {
+            "fullComment": "comment in html syntax. if not given, will be null",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationName",
+          "required": true,
+          "schema": {
+            "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "null"
+          }
+        },
+        {
+          "name": "projectRelativePath",
+          "required": true,
+          "schema": {
+            "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativePath",
+          "required": false,
+          "schema": {
+            "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "categoryStackCalculated",
+          "required": true,
+          "schema": {
+            "fullComment": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+            "nb": "Changing this value when updating/upserting, changes where the item is located!",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "isHeaderCalculated",
+          "required": true,
+          "schema": {
+            "fullComment": "Calculated value indicating whether or not the item has children",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "KvmdTestModel",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

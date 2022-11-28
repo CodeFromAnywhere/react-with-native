@@ -1,18 +1,18 @@
 [
   {
-    "createdAt": 1668149519891,
-    "updatedAt": 1668149519891,
+    "createdAt": 1669639147575,
+    "updatedAt": 1669639147575,
     "deletedAt": 0,
-    "createdFirstAt": 1668149519891,
+    "createdFirstAt": 1669639147575,
     "name": "Comment",
     "slug": "comment",
-    "operationRelativeTypescriptFilePath": "src/shouldExposeMarkdownFile.ts",
-    "comment": "markdown file should only be exposed if it doesn't say `privacy: private` or `isDraft: true` in your frontmatter.",
-    "rawStatement": "export const shouldExposeMarkdownFile = (parameters: Frontmatter) => {\n  return !Boolean(parameters.isDraft) && parameters.privacy !== \"private\";\n};",
+    "operationRelativeTypescriptFilePath": "src/stripReadmeFromFolder.ts",
+    "comment": "To get the queryPath, we need to strip the README.md so we get the folder as URL instead of the attached README.md",
+    "rawStatement": "export const stripReadmeFromFolder = (filePath: string): string => {\n  const suffix = \"/readme.md\";\n\n  if (filePath.toLowerCase().endsWith(suffix)) {\n    const strippedPath = filePath.slice(0, filePath.length - suffix.length);\n\n    return strippedPath;\n  }\n\n  return filePath;\n};",
     "parameters": {},
     "types": [],
-    "firstLine": 3,
-    "lastLine": 5,
-    "id": "efrhakpvragbonegtpywltsm"
+    "firstLine": 1,
+    "lastLine": 3,
+    "id": "pwfejgaxyjyyjhojwjrjorxe"
   }
 ]

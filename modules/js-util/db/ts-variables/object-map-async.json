@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150848198,
-  "updatedAt": 1668150848198,
+  "createdAt": 1668977409126,
+  "updatedAt": 1668977409126,
   "deletedAt": 0,
-  "createdFirstAt": 1668150848198,
+  "createdFirstAt": 1668977409126,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async <\n  TObject extends { [key: string]: any },\n  TResultValue,\n  TResultObject extends {\n    [key in keyof TObject]: TResultValue;\n  }\n>(\n  object: TObject,\n  mapFn: (\n    key: Extract<keyof TObject, string>,\n    value: TObject[keyof TObject]\n  ) => Promise<TResultValue>\n): Promise<TResultObject> => {\n  const keys = getObjectKeysArray(object);\n\n  const result = mergeObjectsArray(\n    await Promise.all(\n      keys.map(async (key) => {\n        const value = object[key];\n        return { [key]: await mapFn(key, value) };\n      })\n    )\n  ) as unknown as TResultObject;\n\n  return result;\n}",
   "description": "Map an object asynchronously and return the same object with the mapped result in its values\n\nExample usage:\n\n\n```ts\n\nconst srcFileContentObject = {\n\"index.ts\": indexString,\n\"public-local.ts\": publicLocalTypescriptFileString,\n\"public.ts\": publicTypescriptFileString,\n};\n\nconst srcFileWriteSuccessObject = await objectMapAsync(srcFileContentObject, async (operationRelativeTypescriptFilePath,content)=>{\n\ntry {\nawait fs.writeFile(\npath.join(operationBasePath, \"src\", operationRelativeTypescriptFilePath),\ncontent,\n\"utf8\"\n);\n\nreturn true;\n\n} catch {\nreturn false;\n}\n\n});\n\n```",
-  "id": "dtqrawuzpouxrjwewgebvdrs"
+  "id": "dzbybomjvtrlhhxxkqnjterk"
 }

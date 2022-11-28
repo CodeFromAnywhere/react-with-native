@@ -1,15 +1,15 @@
 {
-  "createdAt": 1668148862366,
-  "updatedAt": 1668148862366,
+  "createdAt": 1669312137702,
+  "updatedAt": 1669312137702,
   "deletedAt": 0,
-  "createdFirstAt": 1668148862366,
+  "createdFirstAt": 1669312137702,
   "id": "mergedqueryconfig",
   "name": "MergedQueryConfig",
   "slug": "mergedqueryconfig",
   "operationRelativeTypescriptFilePath": "src/types.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\nexport type MergedQueryConfig = QueryConfig & {\n  dbStorageMethod: DbStorageMethod;\n  manualProjectRoot: string;\n};",
+  "rawText": "\n\nexport type MergedQueryConfig = QueryConfig & {\n  dbStorageMethod: DbStorageMethod;\n  /**\n   * manual projectroot, should only be set if it's different from the projectRoot.\n   */\n  manualProjectRoot: string;\n  /**\n   * Hardcoded projectroot. Motivation for this is to be able to see if the projectroot is really manual.\n   */\n  projectRoot: string;\n};",
   "extensions": [],
   "isOperationIndex": false,
   "description": "",
@@ -28,25 +28,29 @@
           "type": "string",
           "description": "if specified, this will be used as the root path to find your data in\n\nif not specified, uses the db folder in your project root and in any operation\n\nNB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries."
         },
+        "projectRoot": {
+          "type": "string",
+          "description": "Hardcoded projectroot. Motivation for this is to be able to see if the projectroot is really manual."
+        },
         "operationName": {
           "type": [
             "string",
             "null"
-          ],
-          "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
-        },
-        "projectRelativePath": {
-          "type": "string",
-          "description": "if specified, only this location will be used"
+          ]
         },
         "operationRelativePath": {
           "type": "string",
           "description": "if specified, only this location will be used (also need an `operationName`)"
+        },
+        "projectRelativePath": {
+          "type": "string",
+          "description": "if specified, only this location will be used"
         }
       },
       "required": [
         "dbStorageMethod",
-        "manualProjectRoot"
+        "manualProjectRoot",
+        "projectRoot"
       ]
     },
     "simplifiedSchema": {
@@ -76,18 +80,17 @@
           }
         },
         {
-          "name": "operationName",
-          "required": false,
+          "name": "projectRoot",
+          "required": true,
           "schema": {
-            "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "fullComment": "Hardcoded projectroot. Motivation for this is to be able to see if the projectroot is really manual.",
             "type": "string"
           }
         },
         {
-          "name": "projectRelativePath",
+          "name": "operationName",
           "required": false,
           "schema": {
-            "fullComment": "if specified, only this location will be used",
             "type": "string"
           }
         },
@@ -96,6 +99,14 @@
           "required": false,
           "schema": {
             "fullComment": "if specified, only this location will be used (also need an `operationName`)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "projectRelativePath",
+          "required": false,
+          "schema": {
+            "fullComment": "if specified, only this location will be used",
             "type": "string"
           }
         }

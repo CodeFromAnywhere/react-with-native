@@ -1,19 +1,14 @@
 {
-  "createdAt": 1667379212740,
-  "updatedAt": 1667379212740,
+  "createdAt": 1668752460780,
+  "updatedAt": 1668752460780,
   "deletedAt": 0,
-  "createdFirstAt": 1667379212740,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668752460780,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util/getTailwindModules.ts",
   "commentsInside": [],
-  "rawText": " (options: {\n  /**\n   * if you are using a sensible monorepo, put the packages with tailwind-based ui here\n   */\n  packages?: string[] /**\n  if you are using any tailwind-based node-modules, put them here.\n */;\n  modules?: string[];\n  /**\n *  if this is a yarn workspace, put true here\n\n */\n  isWorkspace?: boolean;\n}) => {\n  const packages =\n    options.packages?.map((module) => {\n      return `../../packages/${module}/src/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  const modules =\n    options.modules?.map((module) => {\n      return options.isWorkspace\n        ? `../../node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`\n        : `./node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  return packages?.concat(modules);\n}",
+  "rawText": " (options: {\n  /**\n   * if you are using a sensible v1 monorepo, put the packages with tailwind-based ui here\n   */\n  packages?: string[] /**\n  if you are using any tailwind-based node-modules, put them here.\n */;\n  modules?: string[];\n  /**\n *  if this is a yarn workspace, put true here\n\n */\n  isWorkspace?: boolean;\n}) => {\n  const packages =\n    options.packages?.map((module) => {\n      return `../../packages/${module}/src/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  const modules =\n    options.modules?.map((module) => {\n      return options.isWorkspace\n        ? `../../node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`\n        : `./node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  return packages?.concat(modules);\n}",
   "name": "getTailwindModules",
   "slug": "get-tailwind-modules",
   "parameters": [
@@ -27,7 +22,7 @@
             "items": {
               "type": "string"
             },
-            "description": "if you are using a sensible monorepo, put the packages with tailwind-based ui here"
+            "description": "if you are using a sensible v1 monorepo, put the packages with tailwind-based ui here"
           },
           "modules": {
             "type": "array",
@@ -48,7 +43,7 @@
             "name": "packages",
             "required": false,
             "schema": {
-              "fullComment": "if you are using a sensible monorepo, put the packages with tailwind-based ui here",
+              "fullComment": "if you are using a sensible v1 monorepo, put the packages with tailwind-based ui here",
               "items": [
                 {
                   "schema": {
@@ -101,13 +96,13 @@
   },
   "maxIndentationDepth": 4,
   "size": {
-    "characters": 761,
+    "characters": 764,
     "lines": 28,
-    "bytes": 761,
+    "bytes": 764,
     "bytesPerCharacter": 1,
     "charactersPerLine": 27,
     "linesPerFile": 28,
     "numberOfFiles": 1
   },
-  "id": "zqjhdccplgkfgjsfczfiazvx"
+  "id": "ldjajcnczjvyxlthlztzpmov"
 }

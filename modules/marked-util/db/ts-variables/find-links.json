@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669467096873,
+  "updatedAt": 1669467096873,
+  "deletedAt": 0,
+  "createdFirstAt": 1669467096873,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findLinks",
+  "slug": "find-links",
+  "operationRelativeTypescriptFilePath": "src/findLinks.ts",
+  "type": {
+    "rawType": "(markdownString: string) => import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownLink[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(markdownString: string): MarkdownLink[] => {\n  const result = flattenMarkdownString(\n    markdownString,\n    (token) => token.type === \"link\"\n  );\n\n  const links: MarkdownLink[] = result\n    .map((token) => {\n      if (token.type !== \"link\") return;\n\n      const markdownEmbed: MarkdownLink = {\n        alt: token.title,\n        href: token.href,\n        type: getTypeFromUrlOrPath(token.href),\n      };\n\n      return markdownEmbed;\n    })\n    .filter(notEmpty);\n\n  return links;\n}",
+  "description": "find all links",
+  "id": "vzlxlciebcyqrhnciwsmxmkh"
+}

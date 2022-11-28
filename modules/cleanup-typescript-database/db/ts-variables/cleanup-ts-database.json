@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055473113,
+  "updatedAt": 1669055473113,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055473113,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "cleanupTsDatabase",
+  "slug": "cleanup-ts-database",
+  "operationRelativeTypescriptFilePath": "src/cleanupTsDatabase.ts",
+  "type": {
+    "rawType": "(operationName: string, manualProjectRoot?: string | undefined) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  operationName: string,\n  manualProjectRoot?: string\n) => {\n  //console.log(\"let's cleanup operation \", operationName, manualProjectRoot);\n  const operationBasePath = await getOperationPath(operationName);\n\n  //console.log({ operationBasePath });\n  if (!operationBasePath) return;\n  const operationRelativePaths = (\n    await getPackageSourcePaths({ operationBasePath })\n  ).map((absolutePath) =>\n    getOperationRelativePath(absolutePath, operationBasePath)\n  );\n\n  // all typescript index models related to a ts file should be cleaned\n  const removeResults = await Promise.all(\n    typescriptIndexModels.map((modelName) => {\n      return db.remove(\n        modelName,\n        (model) => {\n          const shouldRemove = shouldDeleteTsModel(\n            model,\n            operationName,\n            operationRelativePaths\n          );\n          /*\n          if (shouldRemove) {\n            console.log({\n              modelName,\n              operationRelativePaths,\n              model: model.name,\n              shouldRemove,\n              ts: model.operationRelativeTypescriptFilePath,\n            });\n          }*/\n\n          return shouldRemove;\n        },\n        { operationName, manualProjectRoot }\n      );\n    })\n  );\n\n  //console.log({ removeResults });\n\n  const totalRemoved = removeResults.reduce(\n    (previous, current) => previous + (current.amountRemoved || 0),\n    0\n  );\n\n  return {\n    amountRemoved: totalRemoved,\n  };\n}",
+  "description": "From all Ts Index Models, removes the instances that refer to a ts file that doesn't exist anymore in the operation.",
+  "id": "wkohnzthpbehgtkyebwncuin"
+}

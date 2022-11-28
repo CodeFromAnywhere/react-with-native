@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668150464363,
+  "updatedAt": 1668150464363,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150464363,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDependencyObject",
+  "slug": "get-dependency-object",
+  "operationRelativeTypescriptFilePath": "src/findAllDependencyOperations.ts",
+  "type": {
+    "rawType": "() => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const allOperations = await exploreOperationFolders({});\n\n  const dependencyObject = mergeObjectsArray(\n    await Promise.all(\n      allOperations.map(async (operationFolderPath) => {\n        const operationName = getLastFolder(operationFolderPath);\n        const monorepoModules = await findMonorepoModules(operationName);\n\n        return { [operationName]: monorepoModules };\n      })\n    )\n  );\n\n  return dependencyObject;\n}",
+  "description": "",
+  "id": "pliibrhazttpledkhvikyqmd"
+}

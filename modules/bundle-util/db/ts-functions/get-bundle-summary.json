@@ -1,0 +1,260 @@
+{
+  "createdAt": 1668448344587,
+  "updatedAt": 1668448344587,
+  "deletedAt": 0,
+  "createdFirstAt": 1668448344587,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getBundleSummary.ts",
+  "commentsInside": [],
+  "rawText": " (bundleConfig: BundleConfig): BundleSummary => {\n  const operationsPath = getRootPath(\"operations\");\n  const bundlesPath = operationsPath\n    ? path.join(operationsPath, \"niches\")\n    : undefined;\n\n  const foldersFromRepo = bundlesPath\n    ? bundleConfig.createBundleConfig.foldersFromRepo?.map((x) =>\n        path.join(bundlesPath, kebabCase(bundleConfig.name), x)\n      )\n    : undefined;\n\n  // const filesAndFoldersToInclude = [\n  //   // ...(foldersFromRepo || []),\n  //   bundleConfig.readmeRelativeFilePath,\n  //   bundleConfig.docsRelativeFolderPath,\n  // ].filter(notEmpty);\n\n  const appNames = bundleConfig.createBundleConfig.bundles\n    .map((x) => {\n      const frontendOperationNames = makeArray(\n        x.appShellOperationNames,\n        x.serverOperationName\n      );\n\n      return frontendOperationNames;\n    })\n    .flat()\n    .filter(onlyUnique2());\n\n  const uiOperationNames = makeArray(\n    bundleConfig.createBundleConfig.bundles\n      .map((x) => x.uiOperationName)\n      .filter(notEmpty)\n  );\n\n  const bundlePublicOperationNames = bundleConfig.createBundleConfig.bundles\n    .map(\n      (x) =>\n        x.operations\n          ?.filter((x) => x.privacy === \"public\")\n          .map((x) => x.operationName) || []\n    )\n    .flat();\n  const bundlePrivateOperationNames = bundleConfig.createBundleConfig.bundles\n    .map(\n      (x) =>\n        x.operations\n          ?.filter((x) => x.privacy === \"private\")\n          .map((x) => x.operationName) || []\n    )\n    .flat();\n\n  const packageNames =\n    bundleConfig.createBundleConfig.dependencies\n      ?.filter((x) => x.privacy === \"public\")\n      .map((x) => x.operationName)\n      .concat(uiOperationNames)\n      .concat(bundlePublicOperationNames)\n      .filter(onlyUnique2()) || [];\n\n  const moduleNames =\n    bundleConfig.createBundleConfig.dependencies\n      ?.filter((x) => x.privacy === \"private\")\n      .map((x) => x.operationName)\n      .concat(bundlePrivateOperationNames)\n      .filter(onlyUnique2()) || [];\n\n  const summary: BundleSummary = {\n    // filesAndFoldersToInclude,\n    slug: bundleConfig.slug,\n    packageNames,\n    moduleNames,\n    appNames,\n  };\n\n  // console.dir({ summary, bundleConfig }, { depth: 999 });\n\n  return summary;\n}",
+  "name": "getBundleSummary",
+  "slug": "get-bundle-summary",
+  "parameters": [
+    {
+      "name": "bundleConfig",
+      "schema": {
+        "$ref": "#/definitions/BundleConfig"
+      },
+      "simplifiedSchema": {
+        "fullComment": "--- dbStorageMethod: jsonSingle\n---\n\nConfiguration options for bundles. Used with `generateBundle`\n\nEverything in this model will be copied over to the created bundle, except for `createBundleConfig` and `customisableBundleConfig`.",
+        "properties": [
+          {
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "required": false,
+            "schema": {
+              "fullComment": "a description about this bundle",
+              "type": "string"
+            }
+          },
+          {
+            "name": "emoji",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "primaryColor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gitRepoUrl",
+            "required": false,
+            "schema": {
+              "fullComment": "NB: later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation",
+              "nb": "later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isGitRepoPublic",
+            "required": false,
+            "schema": {
+              "fullComment": "if true, your gitrepo is marked as pubilc and thus users will be linked to it sometimes",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "operationName",
+            "required": true,
+            "schema": {
+              "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "null"
+            }
+          },
+          {
+            "name": "projectRelativePath",
+            "required": true,
+            "schema": {
+              "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationRelativePath",
+            "required": false,
+            "schema": {
+              "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          },
+          {
+            "name": "paymentPlanId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Summarizes a bundle config so it can be used easily in things like explore project",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/deployment/bundling/bundle-util/src/getBundleSummary\").BundleSummary",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "packageNames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          }
+        },
+        "moduleNames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          }
+        },
+        "appNames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "slug",
+        "packageNames",
+        "moduleNames",
+        "appNames"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "packageNames",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "moduleNames",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "appNames",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 2303,
+    "lines": 80,
+    "bytes": 2303,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 80,
+    "numberOfFiles": 1
+  },
+  "id": "zwefmkbubalvjbbwvdoufanp"
+}

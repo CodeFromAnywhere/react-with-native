@@ -1,0 +1,81 @@
+{
+  "createdAt": 1668335873278,
+  "updatedAt": 1668335873278,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335873278,
+  "id": "namedparameterstypeof-maptoimportstatement",
+  "name": "NamedParameters<typeof mapToImportStatement>",
+  "slug": "namedparameterstypeof-maptoimportstatement",
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TsFunction"
+            },
+            {
+              "$ref": "#/definitions/TsVariable"
+            },
+            {
+              "$ref": "#/definitions/TsInterface"
+            }
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "variable",
+            "function",
+            "interface"
+          ]
+        }
+      },
+      "required": [
+        "item",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "item",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "variable",
+              "function",
+              "interface"
+            ],
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof mapToImportStatement>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667378721887,
-  "updatedAt": 1667378721887,
+  "createdAt": 1669054966399,
+  "updatedAt": 1669054966399,
   "deletedAt": 0,
-  "createdFirstAt": 1667378721887,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669054966399,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util/getTypeFromFileBlob.ts",
   "commentsInside": [],
   "rawText": " (file: File) => {\n  const typeFirstPart = file.type.split(\"/\")[0];\n\n  const firstPartAssetTypes = [\"image\", \"video\", \"audio\"];\n\n  const type: AssetType = firstPartAssetTypes.includes(typeFirstPart)\n    ? (typeFirstPart as AssetType)\n    : \"other\";\n\n  return type;\n}",
@@ -99,12 +94,14 @@
         "audio",
         "video",
         "image",
+        "text",
         "other"
       ],
       "x-enumNames": [
         "audio",
         "video",
         "image",
+        "text",
         "other"
       ],
       "type": "string"
@@ -120,6 +117,7 @@
         "audio",
         "video",
         "image",
+        "text",
         "other"
       ],
       "type": "string"
@@ -135,5 +133,5 @@
     "linesPerFile": 11,
     "numberOfFiles": 1
   },
-  "id": "njhyoknbpnoklhfhtvramayx"
+  "id": "pzmmpuydtxvyhnubleancxbq"
 }

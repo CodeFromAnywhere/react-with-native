@@ -1,14 +1,14 @@
-import { NestedPathObject } from "nested-menu";
+import { WebPage } from "webpage-types";
 /**
     
-    Gets exploration information about a folder
-  
-    - reads README.md in current folder
-    - reads OPERATION.md in child folders, or README.md if that doesn't exist
-    - gets an intro from those markdown files and returns that (uses `getMarkdownIntro`)
+Gets exploration information about a folder
+
+- reads README.md in current folder
+- reads OPERATION.md in child folders, or README.md if that doesn't exist
+- gets an intro from those markdown files and returns that (uses `getMarkdownIntro`)
   
    */
-export declare const getFolderExplorationInfo: (nestedPathObject: NestedPathObject, queryPath: string, projectRoot: string) => Promise<{
+export declare const getFolderExplorationInfo: (webPages: WebPage<any>[], queryPath: string, projectRoot: string) => Promise<{
     title: string | undefined;
     description: string | null;
     descriptionProjectRelativeMarkdownPath: string | null;

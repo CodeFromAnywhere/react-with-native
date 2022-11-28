@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148341203,
-  "updatedAt": 1668148341203,
+  "createdAt": 1669055066115,
+  "updatedAt": 1669055066115,
   "deletedAt": 0,
-  "createdFirstAt": 1668148341203,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055066115,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getRelativeLinkPath.test.ts",
   "commentsInside": [],
   "rawText": " () => {\n  const from = __filename;\n\n  const root = getProjectRoot();\n\n  if (!root) return;\n\n  const to = `${root}/README.md`;\n  console.log(getRelativeLinkPath(from, to));\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 10,
     "numberOfFiles": 1
   },
-  "id": "kjjyiyhczhjqaeniiqxvmjgw"
+  "id": "sacttqykkquxfhwwvhdzrfnn"
 }

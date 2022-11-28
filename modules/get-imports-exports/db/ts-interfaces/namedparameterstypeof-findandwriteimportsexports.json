@@ -1,0 +1,61 @@
+{
+  "createdAt": 1668449029188,
+  "updatedAt": 1668449029188,
+  "deletedAt": 0,
+  "createdFirstAt": 1668449029188,
+  "id": "namedparameterstypeof-findandwriteimportsexports",
+  "name": "NamedParameters<typeof findAndWriteImportsExports>",
+  "slug": "namedparameterstypeof-findandwriteimportsexports",
+  "operationRelativeTypescriptFilePath": "src/findAndWriteImportsExports.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "operationBasePath": {
+          "type": "string"
+        },
+        "manualProjectRoot": {
+          "type": "string",
+          "description": "Manual project root of the operation where the imports and exports needs to be detected and written to database"
+        }
+      },
+      "required": [
+        "operationBasePath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "operationBasePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "manualProjectRoot",
+          "required": false,
+          "schema": {
+            "fullComment": "Manual project root of the operation where the imports and exports needs to be detected and written to database",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof findAndWriteImportsExports>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

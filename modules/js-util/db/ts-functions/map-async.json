@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150842113,
-  "updatedAt": 1668150842113,
+  "createdAt": 1668977399384,
+  "updatedAt": 1668977399384,
   "deletedAt": 0,
-  "createdFirstAt": 1668150842113,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977399384,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/mapAsync.ts",
   "commentsInside": [],
   "rawText": " <T, U>(\n  array: T[],\n  callback: (value: T, index: number, array: T[]) => Promise<U>\n) => {\n  const u = Promise.all(array.map(callback));\n  return u;\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 24,
     "numberOfFiles": 1
   },
-  "id": "eachrpbfwsthhcbkpvahjnpw"
+  "id": "syzmngqwxdfbqemarzfwxreq"
 }

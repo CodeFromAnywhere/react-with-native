@@ -1,0 +1,115 @@
+{
+  "createdAt": 1668331939169,
+  "updatedAt": 1668331939169,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331939169,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/categorizeFiles.ts",
+  "commentsInside": [],
+  "rawText": " async ({\n  basePath,\n  type,\n  ignoreIndexFiles,\n}: {\n  basePath: string | string[];\n  /**\n   * ignore index files or not\n   */\n  ignoreIndexFiles?: boolean;\n  /**\n   * if given, only search for files of a specific containing data type\n   */\n  type?: \"code\" | \"data\" | \"text\";\n}): Promise<CategorizedFilePaths> => {\n  const defaultIgnore = [\"node_modules\", databaseFolderName, buildFolderName];\n\n  const filePaths = (\n    await explore({\n      basePath,\n      extension: type ? (extensions[type] as SearchableExtension[]) : undefined,\n      ignore: ignoreIndexFiles\n        ? [\"index.ts\", \"index.tsx\", ...defaultIgnore]\n        : defaultIgnore,\n    })\n  ).map((x) => x.path);\n\n  return filePaths.reduce(\n    (categorizedFilePathsObject, filePath) => {\n      const fileType = determineFileType(filePath);\n      // console.log({ filePath, fileType });\n      if (!fileType) return categorizedFilePathsObject;\n\n      categorizedFilePathsObject[fileType].push(filePath);\n\n      return categorizedFilePathsObject;\n    },\n    { code: [] as string[], data: [] as string[], text: [] as string[] }\n  );\n}",
+  "name": "categorizeFiles",
+  "slug": "categorize-files",
+  "parameters": [
+    {
+      "name": "{\n  basePath,\n  type,\n  ignoreIndexFiles,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "basePath": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "ignoreIndexFiles": {
+            "type": "boolean",
+            "description": "ignore index files or not"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "code",
+              "data",
+              "text"
+            ],
+            "description": "if given, only search for files of a specific containing data type"
+          }
+        },
+        "required": [
+          "basePath"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "basePath",
+            "required": true,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "ignoreIndexFiles",
+            "required": false,
+            "schema": {
+              "fullComment": "ignore index files or not",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "code",
+                "data",
+                "text"
+              ],
+              "fullComment": "if given, only search for files of a specific containing data type",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "explores files in an operation within a specified location or from a specified type",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/Operation\").CategorizedFilePaths>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1178,
+    "lines": 40,
+    "bytes": 1178,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 40,
+    "numberOfFiles": 1
+  },
+  "id": "bjdyjbqmlzyvvlcqdbupcnew"
+}

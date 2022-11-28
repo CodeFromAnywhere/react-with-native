@@ -1,66 +1,27 @@
 {
-  "createdAt": 1668149488500,
-  "updatedAt": 1668149488500,
+  "createdAt": 1669639088257,
+  "updatedAt": 1669639088257,
   "deletedAt": 0,
-  "createdFirstAt": 1668149488500,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669639088257,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/copyStaticAssets.ts",
   "commentsInside": [],
-  "rawText": " async (\n  markdownReaderPages: MarkdownReaderPage[],\n  config?: {\n    /**\n     * by default, uses `markdown-reader-web`\n     */\n    operationName?: string;\n  }\n): Promise<boolean | undefined> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n\n  const nextWebFolder = await getOperationPath(\n    config?.operationName || \"markdown-reader-web\"\n  );\n\n  if (!nextWebFolder) return;\n\n  const referencePathsPromises = markdownReaderPages.map(async (page) => {\n    if (!page.filePath) return;\n    const absoluteMarkdownFilePath = path.join(projectRoot, page.filePath);\n    const markdownString = await fs.readFile(absoluteMarkdownFilePath, \"utf8\");\n    const referencePaths = getMarkdownReferencePaths(markdownString);\n    return referencePaths;\n  });\n\n  const absoluteReferencePaths = (await Promise.all(referencePathsPromises))\n    .filter(notEmpty)\n    .flat()\n    .filter(onlyUnique2());\n\n  const projectRelativeReferencePaths = absoluteReferencePaths.map((x) =>\n    makeRelative(x, projectRoot)\n  );\n\n  const publicAssetsFolder = path.join(nextWebFolder, \"public\");\n\n  const removed = await removeAllExcept(publicAssetsFolder);\n\n  const isSuccessful = await copyAllRelativeFiles(\n    projectRelativeReferencePaths,\n    projectRoot,\n    publicAssetsFolder\n  );\n\n  return isSuccessful;\n}",
+  "rawText": " async (\n  readerWebPages: ReaderWebPage[],\n  config?: {\n    /**\n     * by default, uses `markdown-reader-web`\n     */\n    operationName?: string;\n  }\n): Promise<boolean | undefined> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n\n  const nextWebFolder = await getOperationPath(\n    config?.operationName || \"markdown-reader-web\"\n  );\n\n  if (!nextWebFolder) return;\n\n  const referencePathsPromises = readerWebPages.map(async (page) => {\n    if (!page.pageData.projectRelativeFilePath) return;\n    const absoluteMarkdownFilePath = path.join(\n      projectRoot,\n      page.pageData.projectRelativeFilePath\n    );\n    const markdownString = await fs.readFile(absoluteMarkdownFilePath, \"utf8\");\n    const referencePaths = getMarkdownReferencePaths(markdownString);\n    return referencePaths;\n  });\n\n  const absoluteReferencePaths = (await Promise.all(referencePathsPromises))\n    .filter(notEmpty)\n    .flat()\n    .filter(onlyUnique2());\n\n  const projectRelativeReferencePaths = absoluteReferencePaths.map((x) =>\n    makeRelative(x, projectRoot)\n  );\n\n  const publicAssetsFolder = path.join(nextWebFolder, \"public\");\n\n  const removed = await removeAllExcept(publicAssetsFolder);\n\n  const isSuccessful = await copyAllRelativeFiles(\n    projectRelativeReferencePaths,\n    projectRoot,\n    publicAssetsFolder\n  );\n\n  return isSuccessful;\n}",
   "name": "copyStaticAssets",
   "slug": "copy-static-assets",
   "parameters": [
     {
-      "name": "markdownReaderPages",
+      "name": "readerWebPages",
       "schema": {
         "type": "array",
         "items": {
-          "$ref": "#/definitions/MarkdownReaderPage"
+          "$ref": "#/definitions/ReaderWebPage"
         }
       },
       "simplifiedSchema": {
-        "items": [
-          {
-            "schema": {
-              "fullComment": "for markdown-reader-ui, the pages can be markdown files, but they can also be connected to models",
-              "properties": [
-                {
-                  "name": "queryPath",
-                  "required": true,
-                  "schema": {
-                    "fullComment": "path to be used as the url. no preceding slash",
-                    "type": "string"
-                  }
-                },
-                {
-                  "name": "filePath",
-                  "required": false,
-                  "schema": {
-                    "fullComment": "if given, the md-file will be provided to the frontend\n\nproject relative path",
-                    "type": "string"
-                  }
-                },
-                {
-                  "name": "isMenuItem",
-                  "required": false,
-                  "schema": {
-                    "fullComment": "if true, this item will be shown in the menu",
-                    "type": "boolean"
-                  }
-                }
-              ],
-              "type": "object"
-            },
-            "name": "MarkdownReaderPage"
-          }
-        ],
+        "items": [],
         "type": "array"
       },
       "required": true
@@ -103,15 +64,15 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "maxIndentationDepth": 2,
+  "maxIndentationDepth": 3,
   "size": {
-    "characters": 1721,
-    "lines": 51,
-    "bytes": 1721,
+    "characters": 1772,
+    "lines": 54,
+    "bytes": 1772,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 34,
-    "linesPerFile": 51,
+    "charactersPerLine": 33,
+    "linesPerFile": 54,
     "numberOfFiles": 1
   },
-  "id": "nzhglfiooavibuiucbmuifct"
+  "id": "srulvnnwmrnwxioxoayfylcr"
 }

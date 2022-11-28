@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669132820674,
+  "updatedAt": 1669132820674,
+  "deletedAt": 0,
+  "createdFirstAt": 1669132820674,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/NestedMenuItem.tsx",
+  "commentsInside": [],
+  "rawText": " (item: NestedWebPage): NestedWebPage => {\n  const getTitleExtension = (item: NestedWebPage) =>\n    item.children && item.children.length === 1\n      ? getTitle(item.children[0])\n      : \"\";\n\n  // with exactly 1 child, the titles should be combined, the menu should be flattened\n  return item.children && item.children.length === 1\n    ? getRealItemRecursive({\n        ...item.children[0],\n        menuTitle: getTitle(item) + \" ‣ \" + getTitleExtension(item),\n      })\n    : item;\n}",
+  "name": "getRealItemRecursive",
+  "slug": "get-real-item-recursive",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").NestedWebPage",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 481,
+    "lines": 14,
+    "bytes": 483,
+    "bytesPerCharacter": 1.004158004158004,
+    "charactersPerLine": 34,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "ypckcvgdwybzpedfxoaceqhb"
+}

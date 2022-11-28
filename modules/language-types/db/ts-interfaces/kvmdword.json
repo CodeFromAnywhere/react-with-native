@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150233071,
-  "updatedAt": 1668150233071,
+  "createdAt": 1668335516594,
+  "updatedAt": 1668335516594,
   "deletedAt": 0,
-  "createdFirstAt": 1668150233071,
+  "createdFirstAt": 1668335516594,
   "id": "kvmdword",
   "name": "KvmdWord",
   "slug": "kvmdword",
@@ -159,7 +159,8 @@
           "name": "categoryStackCalculated",
           "required": true,
           "schema": {
-            "fullComment": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`\n\n",
+            "fullComment": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+            "nb": "Changing this value when updating/upserting, changes where the item is located!",
             "items": [
               {
                 "schema": {

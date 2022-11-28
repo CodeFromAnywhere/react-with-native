@@ -1,16 +1,16 @@
 {
-  "createdAt": 1666263144411,
-  "updatedAt": 1666263144411,
+  "createdAt": 1668717087517,
+  "updatedAt": 1668717087517,
   "deletedAt": 0,
-  "createdFirstAt": 1666263144411,
+  "createdFirstAt": 1668717087517,
   "classification": "const",
   "comments": [],
   "isExported": true,
   "name": "bodyFromQueryString",
   "slug": "body-from-query-string",
-  "operationRelativeTypescriptFilePath": "src/rest-util.ts",
+  "operationRelativeTypescriptFilePath": "src/bodyFromQueryString.ts",
   "type": {
-    "rawType": "(query?: string | undefined) => QueryableObject | undefined",
+    "rawType": "(query?: string | undefined) => import(\"/Users/king/King/operations/tools/parsing/rest-util/src/QueryableObject\").QueryableObject | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(\n  /**\n   * NB: everything AFTER The \"?\", so this should be the format: x=x&y=y&z=z&z=z2\n   */\n  query?: string\n): QueryableObject | undefined => {\n  if (!query) return;\n\n  const keyValueObjectArray = query.split(\"&\")?.map((x) => {\n    const [key, value] = x.split(\"=\");\n    return { key, value };\n  });\n\n  const all = keyValueObjectArray?.reduce((object, keyValue) => {\n    // NB: if that key already exists, let's make it an array and add this new value\n    if (object[keyValue.key]) {\n      object[keyValue.key] = [\n        ...makeArray(object[keyValue.key]),\n        keyValue.value,\n      ];\n      return object;\n    }\n    // Otherwise, just add the new key/value to the object.\n    return { ...object, [keyValue.key]: keyValue.value };\n  }, {} as QueryableObject);\n\n  return all;\n}",
   "description": "converts a query string into an object that can be used as a body",
-  "id": "jogcqgqqpilzarwatwzswebq"
+  "id": "htxuypzioixpedvetsulnsrn"
 }

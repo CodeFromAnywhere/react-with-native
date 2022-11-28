@@ -57,18 +57,6 @@ export declare const makeArray: <T>(...arrayOrNotArray: (T | T[] | undefined)[])
  */
 export declare const takeFirst: <T>(arrayOrNot: T | T[]) => T;
 /**
- * takes an object and a subset of its keys and returns a subset of that object
- *
- * input: { x: "a", y: "b", z: "c" } and ["x"]
- *
- * output: { x: "a" }
- */
-export declare const getSubsetFromObject: <T>(object: {
-    [key: string]: T;
-}, keys: string[]) => {
-    [key: string]: T;
-};
-/**
  * useful for cli's that only take strings. This creates an object from a string
  *
  * input: "x:a, y:b, z:c"

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669467100923,
+  "updatedAt": 1669467100923,
+  "deletedAt": 0,
+  "createdFirstAt": 1669467100923,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "flattenMarkedTokenRecursive",
+  "slug": "flatten-marked-token-recursive",
+  "operationRelativeTypescriptFilePath": "src/flattenMarkedTokenRecursive.ts",
+  "type": {
+    "rawType": "(token: import(\"/Users/king/King/operations/node_modules/@types/marked/index\").marked.Token, findFunction: (token: import(\"/Users/king/King/operations/node_modules/@types/marked/index\").marked.Token) => boolean) => import(\"/Users/king/King/operations/node_modules/@types/marked/index\").marked.Token[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  token: marked.Token,\n  findFunction: (token: marked.Token) => boolean\n): marked.Token[] => {\n  if (findFunction(token)) {\n    return [token];\n  }\n\n  if (token.type === \"table\") {\n    const header = token.header\n      .map((token) => {\n        const result = token.tokens\n          .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n          .flat();\n        return result;\n      })\n      .flat();\n\n    const rows = token.rows\n      .map((row) => {\n        const result = row\n          .map((token) => {\n            const result = token.tokens\n              .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n              .flat();\n\n            return result;\n          })\n          .flat();\n\n        return result;\n      })\n      .flat();\n\n    return [header, rows].flat();\n  }\n\n  if (token.type === \"list\") {\n    const result = token.items\n      .map((token) => {\n        const result = token.tokens\n          .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n          .flat();\n        return result;\n      })\n      .flat();\n\n    return result;\n  }\n\n  if (\n    token.type === \"del\" ||\n    token.type === \"em\" ||\n    token.type === \"heading\" ||\n    token.type === \"link\" ||\n    token.type === \"paragraph\" ||\n    token.type === \"strong\"\n  ) {\n    const result = token.tokens\n      .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n      .flat();\n    return result;\n  }\n\n  return [];\n}",
+  "description": "Recursively flatten a marked token and return something if a find function is met",
+  "id": "vfvkjinigutgmnssvswuncfk"
+}

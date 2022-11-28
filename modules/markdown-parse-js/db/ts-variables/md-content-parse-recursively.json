@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379663607,
-  "updatedAt": 1667379663607,
+  "createdAt": 1669467051079,
+  "updatedAt": 1669467051079,
   "deletedAt": 0,
-  "createdFirstAt": 1667379663607,
+  "createdFirstAt": 1669467051079,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "md-content-parse-recursively",
   "operationRelativeTypescriptFilePath": "src/mdContentParseRecursively.ts",
   "type": {
-    "rawType": "(markdownString: string, level: number) => import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownChunk[]",
+    "rawType": "(markdownString: string, level: number) => import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownChunk[]",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(\n  markdownString: string,\n  level: number\n): MarkdownChunk[] => {\n  const chunks = parseMdToChunks(markdownString, level);\n\n  const chunksWithChildren = chunks.map(\n    (chunk: MarkdownChunk): MarkdownChunk[] => {\n      // NB: chunk is a paragraph\n      if (chunk.level === 0 && !chunk.title && chunk.content) {\n        // const lines = chunk.content.split(\"\\n\");\n\n        // // For every line, copy the chunk...\n        // const chunks = lines?.map((line) => ({\n        //   ...chunk,\n        //   content: line,\n        // }));\n\n        // return chunks;\n        return [chunk];\n      }\n\n      // NB: h6 is highest level\n      const children =\n        chunk.content && [1, 2, 3, 4, 5, 6].includes(chunk.level)\n          ? mdContentParseRecursively(chunk.content, chunk.level + 1)\n          : undefined;\n\n      const content = children ? undefined : chunk.content;\n\n      // NB: here we are splitting content with multiple lines into lines only for level 0 chunks\n      return content\n        ? [{ ...chunk, content }]\n        : [{ ...chunk, children, content: undefined }];\n    }\n  );\n\n  return chunksWithChildren.flat();\n}",
   "description": "recursively parses a string containing markdown (without frontmatter) into a MarkdownChunk[]\n\nImprove:\n- include the comment-type (TODO/NB/etc), both on a chunk level and on root level\n- parse paragraphs further around the assets",
-  "id": "mtawbfomfrsgdgumieotmdxh"
+  "id": "rsbgohyszbbjporkaqteuwjd"
 }

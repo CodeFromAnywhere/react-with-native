@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055714477,
+  "updatedAt": 1669055714477,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055714477,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getSrcIds",
+  "slug": "get-src-ids",
+  "operationRelativeTypescriptFilePath": "src/getSrcIds.ts",
+  "type": {
+    "rawType": "(operationFolderPath: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (operationFolderPath: string) =>\n  getFileIds({\n    operationFolderPath,\n    pathSuffix: \"src\",\n    extension: [\"ts\", \"tsx\"],\n  })",
+  "description": "gets identifiers of ts and tsx files, which are the relative path to a file without the extension\n\nin order for them to be unique, we assume here that there's never a file with the ts extension when there's also a tsx file in the same folder with the same name. This would create duplicate ids.",
+  "id": "fnfqsmzqgkccknaljpjnzwst"
+}

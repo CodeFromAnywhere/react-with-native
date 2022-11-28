@@ -1,4 +1,4 @@
-import { MarkdownParse } from "code-types";
+import { MarkdownParse } from "markdown-types";
 /**
  * Gets all paragraphs (recursively) from a `MarkdownParse`
  */

@@ -1,5 +1,9 @@
 export * from "./copyStaticAssets";
+export * from "./docsGetPages";
+export * from "./docsGetStaticPaths";
+export * from "./docsGetStaticProps";
 export * from "./getAllMarkdownReaderPages";
+export * from "./getChildren";
 export * from "./getFolderExplorationInfo";
 export * from "./getMarkdownModelPages";
 export * from "./getMarkdownPageInfo";
@@ -7,11 +11,13 @@ export * from "./getMarkdownReaderPages";
 export * from "./getMarkdownReaderQueryPaths";
 export * from "./getOperationPages";
 export * from "./getPublicMarkdownFilePaths";
-export * from "./getTodoPages";
+export * from "./getReaderTodoPages";
 export * from "./markdownReaderGetStaticPaths";
 export * from "./markdownReaderGetStaticProps";
+export * from "./markdownReaderGetStaticPropsFromPages";
 export * from "./putReadmeOnTop";
 export * from "./removeExtensionsFromPath";
 export * from "./removeNumberPrefix";
 export * from "./shouldExposeMarkdownFile";
+export * from "./stripReadmeFromFolder";
 //# sourceMappingURL=index.d.ts.map

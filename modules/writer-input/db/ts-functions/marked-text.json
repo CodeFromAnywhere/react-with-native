@@ -1,16 +1,12 @@
 {
-  "createdAt": 1668152080025,
-  "updatedAt": 1668152080025,
+  "createdAt": 1669385129968,
+  "updatedAt": 1669385129968,
   "deletedAt": 0,
-  "createdFirstAt": 1668152080025,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385129968,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "ContentEditableRenderComponentType<\n  | marked.Tokens.Text\n  | marked.Tokens.Tag\n  // TODO: I guess that many of these types should eventually get its own test and component...\n  | marked.Tokens.ListItem\n  | marked.Tokens.Em\n  | marked.Tokens.Strong\n  | marked.Tokens.Code\n  | marked.Tokens.Escape\n  | marked.Tokens.Table\n>",
   "operationRelativeTypescriptFilePath": "src/editors/MarkedText.tsx",
   "commentsInside": [],
   "rawText": " (props) => {\n  const {\n    subwordConfig,\n    markdownFileConfig,\n    subtextConfig,\n    markedToken,\n    testModeEnabled,\n  } = props;\n\n  const sentences = markedToken.raw.split(\"\\n\");\n  return (\n    <div>\n      {sentences.map((sentence) => (\n        <div>\n          <SpannedSentence\n            sentence={sentence}\n            subwordConfig={subwordConfig}\n            markdownFileConfig={markdownFileConfig}\n            subtextConfig={subtextConfig}\n            testModeEnabled={testModeEnabled}\n          />\n        </div>\n      ))}\n    </div>\n  );\n}",
@@ -41,5 +37,5 @@
     "linesPerFile": 26,
     "numberOfFiles": 1
   },
-  "id": "mzygaudaxssnkrcfgkzxzbwy"
+  "id": "tnrnzislxuejmbndwgdjpnve"
 }

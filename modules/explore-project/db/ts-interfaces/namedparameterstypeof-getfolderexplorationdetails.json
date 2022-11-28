@@ -1,0 +1,206 @@
+{
+  "createdAt": 1669384297047,
+  "updatedAt": 1669384297047,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384297047,
+  "id": "namedparameterstypeof-getfolderexplorationdetails",
+  "name": "NamedParameters<typeof getFolderExplorationDetails>",
+  "slug": "namedparameterstypeof-getfolderexplorationdetails",
+  "operationRelativeTypescriptFilePath": "src/getFolderExplorationDetails.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "hasCommentTypes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CommentType"
+              },
+              "description": "if set, only returns comments containing specific types"
+            },
+            "interfaceIsDbModel": {
+              "type": "boolean",
+              "description": "if true, only returns interfaces which are db models"
+            },
+            "path": {
+              "type": "string",
+              "description": "relative project path"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "folder",
+                "operation",
+                "operationFolder",
+                "markdown",
+                "typescript",
+                "function",
+                "interface",
+                "variable"
+              ],
+              "description": "folder is a regular folder outside of operations\n\noperation is a folder that is the root of an operation\n\noperationFolder is a folder inside of an operation\n\nother things are self-explanatory"
+            },
+            "name": {
+              "type": "string"
+            },
+            "sort": {
+              "type": "string"
+            },
+            "typeIndexType": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "TsBuildError",
+                "TsLintWarning",
+                "TsFunction",
+                "TsVariable",
+                "TsInterface",
+                "TsComment",
+                "TsImport",
+                "TsExport",
+                null
+              ],
+              "description": "null gives all of them, undefined gives none"
+            }
+          },
+          "required": [
+            "name",
+            "path",
+            "type"
+          ]
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "hasCommentTypes",
+                "required": false,
+                "schema": {
+                  "fullComment": "if set, only returns comments containing specific types",
+                  "items": [
+                    {
+                      "schema": {
+                        "enum": [
+                          "todo",
+                          "discussion",
+                          "idea",
+                          "later",
+                          "nb",
+                          "title",
+                          "section",
+                          "description"
+                        ],
+                        "fullComment": "special line prefixes:\n\n**Developer related comments**\n\n- TODO: for developer to know what to do\n- DISCUSSION: for developer to state that discussion is needed\n- IDEA: for developer to state ideas\n- LATER: for developer to mark as thing that needs to be done later\n- NB: for developer to add a note\n\n**Form related comments**\n\n- TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n- SECTION: start a new section in the form from this point, the value behind here can be the title\n- DESCRIPTION: if available, will be used as description of the form input",
+                        "type": "string"
+                      },
+                      "name": "CommentType"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "interfaceIsDbModel",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, only returns interfaces which are db models",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "path",
+                "required": true,
+                "schema": {
+                  "fullComment": "relative project path",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "type",
+                "required": true,
+                "schema": {
+                  "enum": [
+                    "folder",
+                    "operation",
+                    "operationFolder",
+                    "markdown",
+                    "typescript",
+                    "function",
+                    "interface",
+                    "variable"
+                  ],
+                  "fullComment": "folder is a regular folder outside of operations\n\noperation is a folder that is the root of an operation\n\noperationFolder is a folder inside of an operation\n\nother things are self-explanatory",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "name",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "sort",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "typeIndexType",
+                "required": false,
+                "schema": {
+                  "enum": [
+                    "TsBuildError",
+                    "TsLintWarning",
+                    "TsFunction",
+                    "TsVariable",
+                    "TsInterface",
+                    "TsComment",
+                    "TsImport",
+                    "TsExport",
+                    null
+                  ],
+                  "fullComment": "null gives all of them, undefined gives none",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getFolderExplorationDetails>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

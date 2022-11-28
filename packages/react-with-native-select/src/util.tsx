@@ -11,9 +11,11 @@ export const getRealValue = <T extends unknown>({
   value?: Item<T> | null;
   selectFirstOption?: boolean;
 }): Item<T> => {
-  return value
+  const result = value
     ? value
     : selectFirstOption
     ? options[0]
-    : { label: title, value: undefined as T };
+    : { label: title, value: "", data: undefined };
+
+  return result;
 };

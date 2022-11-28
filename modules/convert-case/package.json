@@ -1,11 +1,16 @@
 {
-  "createdAt": 1662709577330,
-  "updatedAt": 1662709577330,
+  "createdAt": 1668328738313,
+  "updatedAt": 1668328738313,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577330,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328738313,
+  "id": "jZgNJgiTtJkeAhry",
+  "dependencies": {
+    "make-test": "0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.2"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,17 +18,57 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "convert-case",
-  "devDependencies": {
-    "typescript": "^4.7.2"
-  },
+  "language": "english",
   "slug": "convert-case",
-  "id": "jZgNJgiTtJkeAhry",
-  "dependencies": {
-    "make-test": "0.0.1"
-  },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "convert-case",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668336353435,
+    "operationDependenciesIndexed": [
+      "makeTest"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/util",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 2,
+        "lines": 213,
+        "characters": 6465,
+        "bytes": 6465
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 114,
+        "characters": 2565,
+        "bytes": 2565
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 162,
+        "characters": 2716,
+        "bytes": 2716
+      },
+      "size": {
+        "bytes": 11746,
+        "characters": 11746,
+        "lines": 489,
+        "numberOfFiles": 5
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

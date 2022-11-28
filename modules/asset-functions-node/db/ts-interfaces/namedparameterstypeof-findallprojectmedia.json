@@ -1,0 +1,66 @@
+{
+  "createdAt": 1669384204421,
+  "updatedAt": 1669384204421,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384204421,
+  "id": "namedparameterstypeof-findallprojectmedia",
+  "name": "NamedParameters<typeof findAllProjectMedia>",
+  "slug": "namedparameterstypeof-findallprojectmedia",
+  "operationRelativeTypescriptFilePath": "src/findAllProjectMedia.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "searchQuery": {
+          "type": "string"
+        },
+        "returnType": {
+          "type": "string",
+          "enum": [
+            "projectRelative",
+            "absolute"
+          ],
+          "description": "defaults to absolute"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "searchQuery",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "returnType",
+          "required": false,
+          "schema": {
+            "enum": [
+              "projectRelative",
+              "absolute"
+            ],
+            "fullComment": "defaults to absolute",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof findAllProjectMedia>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

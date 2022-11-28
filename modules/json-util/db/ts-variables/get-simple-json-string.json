@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668334773156,
+  "updatedAt": 1668334773156,
+  "deletedAt": 0,
+  "createdFirstAt": 1668334773156,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getSimpleJsonString",
+  "slug": "get-simple-json-string",
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "type": {
+    "rawType": "(json: import(\"/Users/king/King/operations/tools/parsing/file-conversion/json/json-util/src/util\").Json) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(json: Json): string | undefined => {\n  if (\n    [\n      \"string\",\n      \"number\",\n      \"bigint\",\n      \"boolean\",\n      \"symbol\",\n      \"undefined\",\n      // \"function\", // I don't think function is that simple, is it?\n    ].includes(typeof json) ||\n    json === null\n  ) {\n    return String(json);\n  }\n}",
+  "description": "stringifies simple json things if the json is one of them, otherwise returns undefined",
+  "id": "atwpbwxfeauymkyxoawsxlyi"
+}

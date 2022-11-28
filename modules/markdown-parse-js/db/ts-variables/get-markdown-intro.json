@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379657436,
-  "updatedAt": 1667379657436,
+  "createdAt": 1669467037806,
+  "updatedAt": 1669467037806,
   "deletedAt": 0,
-  "createdFirstAt": 1667379657436,
+  "createdFirstAt": 1669467037806,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "get-markdown-intro",
   "operationRelativeTypescriptFilePath": "src/getMarkdownIntro.ts",
   "type": {
-    "rawType": "(markdownParse: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse | null) => { title: any; firstParagraph: any; }",
+    "rawType": "(markdownParse: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse | null) => { title: any; firstParagraph: any; }",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(markdownParse: MarkdownParse | null) => {\n  const firstChunk = markdownParse?.content?.[0];\n  const title = firstChunk?.title;\n  const firstParagraph = firstChunk?.title\n    ? firstChunk?.children?.[0]?.content || null\n    : firstChunk?.content || null;\n\n  return { title, firstParagraph };\n}",
   "description": "This function takes a markdown parse and gets the first paragraph and a title from it, if available.\n\nCurrently assumes that the first paragraph starts directly after the title or there is no title and the content is at the beginning.\n\nTODO: It would be better to find the first paragraph based on the level.",
-  "id": "yjuawtpeewjifwhvwxeukqiv"
+  "id": "xrdbebzwyuczievtuedbsfqn"
 }

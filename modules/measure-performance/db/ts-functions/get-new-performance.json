@@ -1,0 +1,112 @@
+{
+  "createdAt": 1668775788151,
+  "updatedAt": 1668775788151,
+  "deletedAt": 0,
+  "createdFirstAt": 1668775788151,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/measure-performance.ts",
+  "commentsInside": [],
+  "rawText": " (\n  label: string,\n  uniqueId: string,\n  isNew?: boolean\n): PerformanceItem | undefined => {\n  const timePrevious = timer[uniqueId];\n  const timeNow = Date.now();\n  timer[uniqueId] = timeNow;\n\n  if (isNew) return;\n\n  const durationMs = timeNow - timePrevious;\n\n  return { label, durationMs };\n}",
+  "name": "getNewPerformance",
+  "slug": "get-new-performance",
+  "parameters": [
+    {
+      "name": "label",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "uniqueId",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "isNew",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "Function that lets you measure performance inside any function with ease.\n\nUsage:\n\nFirstly, make a performance array, and a unique execution id, and start the measurement, like so:\n\n```ts\nimport { generateUniqueId, getNewPerformance, PerformanceItem, cleanupTimer } from \"measure-performance\";\n\nat the start of your function\n\nconst executionId = generateUniqueId();\nconst performance: (PerformanceItem | undefined)[] = [];\ngetNewPerformance(\"start\", executionId, true)\n```\n\n\nAfter that, push a new performance item at every step you want to measure. Provide your label describing what happened before this (the step you are measuring).\n\n\n```ts\nperformance.push(getNewPerformance(\"your label\", executionId));\n```\n\nAt the end of your function, you can view your performance array by printing it on the console (or store it somewhere if you like)\n\nDon't forget to run `cleanupTimer`, or you'll run into memory leaks!\n\n```ts\ncleanupTimer(executionId);\n```",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/util/measure-performance/src/PerformanceItem\").PerformanceItem | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "durationMs": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "label",
+        "durationMs"
+      ],
+      "optional": true
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "label",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "durationMs",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 1246,
+    "lines": 45,
+    "bytes": 1246,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 45,
+    "numberOfFiles": 1
+  },
+  "id": "abaqbnuyoiczrdhhxtyiwacn"
+}

@@ -1,0 +1,79 @@
+{
+  "createdAt": 1668335461183,
+  "updatedAt": 1668335461183,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335461183,
+  "id": "circle",
+  "name": "Circle",
+  "slug": "circle",
+  "operationRelativeTypescriptFilePath": "src/Area.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface Circle {\n  diameterMeters: number;\n  position: Position;\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "diameterMeters": {
+          "type": "number"
+        },
+        "position": {
+          "$ref": "#/definitions/Position"
+        }
+      },
+      "required": [
+        "diameterMeters",
+        "position"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "diameterMeters",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "position",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "latitude",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "longitude",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "Circle",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

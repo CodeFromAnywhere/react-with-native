@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668152065432,
-  "updatedAt": 1668152065432,
+  "createdAt": 1669385107378,
+  "updatedAt": 1669385107378,
   "deletedAt": 0,
-  "createdFirstAt": 1668152065432,
+  "createdFirstAt": 1669385107378,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "frontmatter-form",
   "operationRelativeTypescriptFilePath": "src/FrontmatterForm.tsx",
   "type": {
-    "rawType": "(props: { projectRelativeMarkdownFilePath: string; frontmatterSchema: import(\"/Users/king/King/operations/tools/types/code-types/build/SimplifiedSchema\").SimplifiedSchema; markdownParse: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse; onChange: (value: string) => void; }) => JSX.Element",
+    "rawType": "(props: { modelName?: string | undefined; projectRelativeMarkdownFilePath: string; frontmatterSchema: import(\"/Users/king/King/operations/tools/types/code-types/build/SimplifiedSchema\").SimplifiedSchema; markdownParse: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse; onChange: (value: string) => void; }) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(props: {\n  projectRelativeMarkdownFilePath: string;\n  frontmatterSchema: SimplifiedSchema;\n  markdownParse: MarkdownParse;\n  onChange: (value: string) => void;\n}) => {\n  const { onChange, projectRelativeMarkdownFilePath, markdownParse } = props;\n  const [immutableFrontmatterSchema] = useState<SimplifiedSchema>(\n    props.frontmatterSchema\n  );\n\n  console.log({\n    parameters: markdownParse.parameters,\n  });\n  const referencableModelData = useReferencableModelData(\n    immutableFrontmatterSchema\n  );\n\n  return (\n    <SimplifiedSchemaForm\n      id={projectRelativeMarkdownFilePath}\n      parameters={[\n        {\n          name: \"Frontmatter\",\n          required: true,\n          isDbModel: true,\n          simplifiedSchema: immutableFrontmatterSchema,\n        },\n      ]}\n      onChange={([frontmatter]) => {\n        const newMarkdownParse: MarkdownParse = {\n          ...markdownParse,\n          parameters: frontmatter,\n        };\n\n        const newMarkdownString =\n          markdownParseToMarkdownString(newMarkdownParse);\n\n        onChange(newMarkdownString);\n      }}\n      values={[markdownParse.parameters]}\n      projectRelativeStorageFilePath={projectRelativeMarkdownFilePath}\n      referencableModelData={referencableModelData}\n    />\n  );\n}",
+  "value": "(props: {\n  modelName?: string;\n  projectRelativeMarkdownFilePath: string;\n  frontmatterSchema: SimplifiedSchema;\n  markdownParse: MarkdownParse;\n  onChange: (value: string) => void;\n}) => {\n  const {\n    onChange,\n    projectRelativeMarkdownFilePath,\n    markdownParse,\n    modelName,\n    frontmatterSchema,\n  } = props;\n  const [immutableFrontmatterSchema] = useState<SimplifiedSchema>(\n    props.frontmatterSchema\n  );\n\n  const referencableModelData = useReferencableModelData(\n    immutableFrontmatterSchema\n  );\n\n  const uploadAssetsThenSetMarkdownString = async (parameters: any[]) => {\n    const [frontmatter] = parameters;\n\n    const assetParameters = findAssetParametersRecursively(frontmatter);\n\n    // NB: because it's too complex and we don't need this in the case of frontmatter, we can just only look at the base level, because frontmatter has just the base level. We therefore skip any items with a stack.\n\n    await Promise.all(\n      assetParameters.map(async (assetParameter) => {\n        if (assetParameter.stack) {\n          console.log(\n            \"WARNING. Stack detected in assetParameters item, shouldn't happen for frontmatter\"\n          );\n          return;\n        }\n        // 1. get the item\n        const item = frontmatter[assetParameter.parameterName] as\n          | BackendAsset\n          | BackendAsset[]\n          | undefined;\n\n        const isCorrectType = typeof item === \"object\";\n        const hasUploaded =\n          item && isCorrectType\n            ? !!makeArray(item).find((x) => x.relativePath)\n            : false;\n        // 2. process if not already\n        const uploadedItem =\n          item && isCorrectType && !hasUploaded\n            ? (await api.processAssetUpload(makeArray(item))).result\n            : item;\n\n        // 3. return uploaded backend-asset\n\n        const newAsset =\n          !uploadedItem || !isCorrectType\n            ? undefined\n            : assetParameter.assetInputType.isMultiple\n            ? makeArray(uploadedItem)\n            : takeFirst(uploadedItem);\n\n        frontmatter[assetParameter.parameterName] = newAsset;\n      })\n    );\n\n    const realFrontmatter: Frontmatter = objectToFrontmatter(\n      frontmatter,\n      frontmatterSchema\n    );\n\n    const newMarkdownParse: MarkdownParse = {\n      ...markdownParse,\n      parameters: realFrontmatter,\n    };\n\n    const newMarkdownString = markdownParseToMarkdownString(newMarkdownParse);\n\n    onChange(newMarkdownString);\n  };\n\n  const frontmatterParse = frontmatterToObject(\n    markdownParse.parameters,\n    frontmatterSchema\n  );\n\n  console.log({ frontmatterParse, frontmatter: markdownParse.parameters });\n\n  return (\n    <SimplifiedSchemaForm\n      modelName={modelName}\n      id={projectRelativeMarkdownFilePath}\n      parameters={[\n        {\n          name: \"Frontmatter\",\n          required: true,\n          isDbModel: true,\n          simplifiedSchema: immutableFrontmatterSchema,\n        },\n      ]}\n      onChange={uploadAssetsThenSetMarkdownString}\n      values={[frontmatterParse]}\n      projectRelativeStorageFilePath={projectRelativeMarkdownFilePath}\n      referencableModelData={referencableModelData}\n    />\n  );\n}",
   "description": "Renders a form for frontmatter without save button",
-  "id": "umaujvdjsrzgifzdelrppmrh"
+  "id": "idntbkoopjuhgdnjhjljyawo"
 }

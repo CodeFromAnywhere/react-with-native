@@ -1,5 +1,5 @@
 import { DbStorageMethod } from "code-types";
-import { ModelLocation, AugmentedAnyModelType, Creation, KeyValueMarkdownModelType, Storing } from "model-types";
+import { AugmentedAnyModelType, Creation, KeyValueMarkdownModelType, Storing } from "model-types";
 import { Frontmatter } from "matter-types";
 export declare type Keys<TObject> = Extract<keyof TObject, string>;
 /**
@@ -14,6 +14,10 @@ export declare type DbQueryResult = {
     amountInserted?: number;
     amountUpdated?: number;
     amountRemoved?: number;
+    /**
+     * If true, all items in the model were removed
+     */
+    allRemoved?: boolean;
 };
 export declare type DbConfig<TModels extends AnyModelObject> = {
     /**
@@ -32,7 +36,17 @@ export declare type DbConfig<TModels extends AnyModelObject> = {
  *
  * Also you can't specify projectRelativePath and operationRelativePath. It should not be needed, you should specify the db storage locations in the createDb config.
  */
-export declare type CustomQueryConfig = Omit<QueryConfig, "dbStorageMethod" | "projectRelativePath" | "operationRelativePath">;
+export declare type CustomQueryConfig = {
+    /**
+     * if specified, this will be used as the root path to find your data in
+     *
+     * if not specified, uses the db folder in your project root and in any operation
+     *
+     * NB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.
+     */
+    manualProjectRoot?: string;
+    operationName?: string | null;
+};
 export declare type Include = {
     /**
      * The key that contains a reference. The name of this key should follow the convention, e.g. `xxxSlug`. If this is given, `xxx` will be filled with the item of the referenced model.
@@ -50,7 +64,15 @@ export declare type Include = {
 /**
  * Same as the CustomQueryConfig, but this adds the possibility to include references into the result.
  */
-export declare type GetQueryConfig<TModel> = CustomQueryConfig & {
+export interface GetQueryConfig<TModel> {
+    /**
+     * if specified, this will be used as the root path to find your data in
+     *
+     * if not specified, uses the db folder in your project root and in any operation
+     *
+     * NB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.
+     */
+    manualProjectRoot?: string;
     /**
      * Optionally you can include things from references into the result
      */
@@ -61,7 +83,13 @@ export declare type GetQueryConfig<TModel> = CustomQueryConfig & {
      * This is done before including references to make it more efficient
      */
     filter?: (item: TModel) => boolean;
-};
+    /**
+     - if not specified or specified as `undefined` or `null`, only the root db folder will be searched
+     - if an operation is specified, only that operation will be searched
+     - if `*` is specified, all operations will be searched as well as the root db. This is discouraged, as it's quite slow
+     */
+    operationName?: string | null;
+}
 /**
  * All possible ways to include items from references into a get query
  */
@@ -156,7 +184,14 @@ export declare type Db<TModels extends AnyModelObject> = {
 };
 export declare type MergedQueryConfig = QueryConfig & {
     dbStorageMethod: DbStorageMethod;
+    /**
+     * manual projectroot, should only be set if it's different from the projectRoot.
+     */
     manualProjectRoot: string;
+    /**
+     * Hardcoded projectroot. Motivation for this is to be able to see if the projectroot is really manual.
+     */
+    projectRoot: string;
 };
 /**
  * QueryConfig is set on 4 levels, which have increasing priority
@@ -168,22 +203,13 @@ export declare type MergedQueryConfig = QueryConfig & {
  *
  * Not all options are available when running a query.
  */
-export interface QueryConfig extends Partial<ModelLocation> {
+export interface QueryConfig extends CustomQueryConfig {
     /**
      * When setting this, make sure your models are able to use this storage method, this is not always possible!
      *
      * defaults to jsonMultiple
      */
     dbStorageMethod?: DbStorageMethod;
-    /**
-     * if specified, this will be used as the root path to find your data in
-     *
-     * if not specified, uses the db folder in your project root and in any operation
-     *
-     * NB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.
-     */
-    manualProjectRoot?: string;
-    operationName?: string | null;
     /**
      * if specified, only this location will be used (also need an `operationName`)
      */

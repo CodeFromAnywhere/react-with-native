@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1666264456435,
+    "updatedAt": 1666264456435,
+    "deletedAt": 0,
+    "createdFirstAt": 1666264456435,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/getTsMorphProject.ts",
+    "comment": "returns a ts-morph Project given a operationFolderPath, if a tsconfig.json can be found",
+    "rawStatement": "export const getTsMorphProject = (operationFolderPath: string) => {\n  const tsConfigFilePath = path.join(operationFolderPath, \"tsconfig.json\");\n\n  const tsConfigExists = fs.existsSync(tsConfigFilePath);\n  const srcExists = existsSync(path.join(operationFolderPath, \"src\"));\n  if (!tsConfigExists || !srcExists) {\n    log(\n      `This is not an operation: ${operationFolderPath}. (src folder or tsconfig.json are not present)`,\n      { type: \"error\" }\n    );\n    return;\n  }\n\n  const project = new Project({ tsConfigFilePath, libFolderPath: \"src\" });\n\n  return project;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 8,
+    "lastLine": 10,
+    "id": "ochihetxfhayylwfyhntovhw"
+  }
+]

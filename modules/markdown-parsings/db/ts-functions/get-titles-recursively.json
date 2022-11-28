@@ -1,0 +1,177 @@
+{
+  "createdAt": 1669200488277,
+  "updatedAt": 1669200488277,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200488277,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/parsing/outline.ts",
+  "commentsInside": [],
+  "rawText": " (chunk: MarkdownChunk) => {\n  const childrenTitles: NestedTitle[] | undefined =\n    chunk.children?.map(getTitlesRecursively);\n\n  const returnStatement: NestedTitle[] = [];\n\n  if (chunk.title) returnStatement.push(chunk.title);\n  if (childrenTitles?.length) returnStatement.push(childrenTitles);\n\n  return returnStatement;\n}",
+  "name": "getTitlesRecursively",
+  "slug": "get-titles-recursively",
+  "parameters": [
+    {
+      "name": "chunk",
+      "schema": {
+        "$ref": "#/definitions/MarkdownChunk"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "level",
+            "required": true,
+            "schema": {
+              "fullComment": "0 is a paragraph 1-6 is h1 until h6",
+              "type": "number"
+            }
+          },
+          {
+            "name": "content",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "markdownEmbed",
+            "required": false,
+            "schema": {
+              "fullComment": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works",
+              "nb": "I need to be very clear how this one works",
+              "properties": [
+                {
+                  "name": "alt",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "src",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "youtube",
+                      "video",
+                      "image",
+                      "audio",
+                      "markdown",
+                      "json",
+                      "typescript",
+                      "file"
+                    ],
+                    "fullComment": "type of asset that is being embedded",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "markdownLink",
+            "required": false,
+            "schema": {
+              "fullComment": "Anything in the format `[alt](href)`\n\nIt needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here",
+              "properties": [
+                {
+                  "name": "alt",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "href",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "youtube",
+                      "video",
+                      "image",
+                      "audio",
+                      "markdown",
+                      "json",
+                      "typescript",
+                      "file"
+                    ],
+                    "fullComment": "Can be inferred from href\n\ntype of asset that is being embedded",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "title",
+            "required": false,
+            "schema": {
+              "fullComment": "NB: title can also be an empty string (\"\")",
+              "nb": "title can also be an empty string (\"\")",
+              "type": "string"
+            }
+          },
+          {
+            "name": "children",
+            "required": false,
+            "schema": {
+              "fullComment": "all content until the next title. it's either a content array if there's any titles found, or a string[] if it's paragraphs",
+              "items": [
+                {
+                  "schema": {
+                    "circularRefName": "MarkdownChunk",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "MarkdownChunk"
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "helper function to get a nested array of the titles and its subtitles",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/parsing/outline\").NestedTitle[]",
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 394,
+    "lines": 11,
+    "bytes": 394,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 36,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "sropizvabisuwaashoxmlnmz"
+}

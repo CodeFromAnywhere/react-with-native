@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055627749,
+  "updatedAt": 1669055627749,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055627749,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "typeToSchema",
+  "slug": "type-to-schema",
+  "operationRelativeTypescriptFilePath": "src/typeToSchema.ts",
+  "type": {
+    "rawType": "(type: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").Type<import(\"/Users/king/King/operations/node_modules/@ts-morph/common/lib/typescript\").Type>) => import(\"/Users/king/King/operations/tools/typescript/index-typescript/src/typeToSchema\").SimpleJsonSchema | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(type: Type) => getParamSchema(type)",
+  "description": "calculates the schema of a type\n\nthis is great for types inside of parameters of variables that are not declared separately, however, it's probably not as good as vega's json schema generator... therefore, it would be great to always prefer vega's way above this.\n\nNB: this method throws sometimes if it can't find some stuff, so make sure to try/catch it.\n\nTODO: Test and improve this one",
+  "id": "kzqrbgfiehptvmfwcbrqhwfx"
+}

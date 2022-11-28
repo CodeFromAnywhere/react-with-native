@@ -1,0 +1,261 @@
+{
+  "createdAt": 1669385207126,
+  "updatedAt": 1669385207126,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385207126,
+  "id": "postableproperties",
+  "name": "PostableProperties",
+  "slug": "postableproperties",
+  "operationRelativeTypescriptFilePath": "src/PostableProperties.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * `Postable` is not extending a modeltype anymore, it can be attached to any `MarkdownModelType` model\n */\nexport interface PostableProperties {\n  /**\n   * A way to store messagepresets in markdown. the headers are the different categories. If the first alinea is bolded, it will be parsed to be the title, and will be removed from the message.\n   */\n  isPreset?: boolean;\n  /**\n   * if `.isPlanned` is set to true, this will be converted into `MediaPost`\n   */\n  isPostable?: boolean;\n  /**\n   * If true, this thing should be parsed into a codestory, after which the `.isPostable: true` will be added.\n   */\n  isCodestory?: boolean;\n  // NB: optionally, connect the post to keep it in the system nearby a certain model instance....\n\n  tsInterfaceIds?: Id[];\n  tsInterfaces?: TsInterface[];\n  tsFunctionIds?: Id[];\n  tsFunctions?: TsFunction[];\n  bundleConfigSlugs?: Slug[];\n  bundleConfigs?: BundleConfig[];\n  operationIds?: Id[];\n  operations?: Operation[];\n  reference_assets?: BackendAsset[];\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "`Postable` is not extending a modeltype anymore, it can be attached to any `MarkdownModelType` model",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "isPreset": {
+          "type": "boolean",
+          "description": "A way to store messagepresets in markdown. the headers are the different categories. If the first alinea is bolded, it will be parsed to be the title, and will be removed from the message."
+        },
+        "isPostable": {
+          "type": "boolean",
+          "description": "if `.isPlanned` is set to true, this will be converted into `MediaPost`"
+        },
+        "isCodestory": {
+          "type": "boolean",
+          "description": "If true, this thing should be parsed into a codestory, after which the `.isPostable: true` will be added."
+        },
+        "tsInterfaceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Id"
+          }
+        },
+        "tsInterfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TsInterface"
+          }
+        },
+        "tsFunctionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Id"
+          }
+        },
+        "tsFunctions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TsFunction"
+          }
+        },
+        "bundleConfigSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          }
+        },
+        "bundleConfigs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BundleConfig"
+          }
+        },
+        "operationIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Id"
+          }
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Operation"
+          }
+        },
+        "reference_assets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BackendAsset"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "description": "`Postable` is not extending a modeltype anymore, it can be attached to any `MarkdownModelType` model"
+    },
+    "simplifiedSchema": {
+      "fullComment": "`Postable` is not extending a modeltype anymore, it can be attached to any `MarkdownModelType` model",
+      "properties": [
+        {
+          "name": "isPreset",
+          "required": false,
+          "schema": {
+            "fullComment": "A way to store messagepresets in markdown. the headers are the different categories. If the first alinea is bolded, it will be parsed to be the title, and will be removed from the message.",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isPostable",
+          "required": false,
+          "schema": {
+            "fullComment": "if `.isPlanned` is set to true, this will be converted into `MediaPost`",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isCodestory",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, this thing should be parsed into a codestory, after which the `.isPostable: true` will be added.",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "tsInterfaceIds",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                  "type": "string"
+                },
+                "name": "Id"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "tsFunctionIds",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                  "type": "string"
+                },
+                "name": "Id"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "bundleConfigSlugs",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "operationIds",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                  "type": "string"
+                },
+                "name": "Id"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "reference_assets",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Part of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+                  "properties": [
+                    {
+                      "name": "alt",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Stored value\n\nAlt text for the asset",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "relativePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "name",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                        "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "temporaryDestination",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "BackendAsset"
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "PostableProperties",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666263018595,
-  "updatedAt": 1666263018595,
+  "createdAt": 1668753030005,
+  "updatedAt": 1668753030005,
   "deletedAt": 0,
-  "createdFirstAt": 1666263018595,
+  "createdFirstAt": 1668753030005,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<T>(filePath: Path): T | null => {\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = canReadSync(filePath);\n  if (!readable) return null;\n  const fileString = fs.readFileSync(filePath, \"utf8\");\n  if (!fileString) return null;\n  const parsed = tryParseJson<T>(fileString);\n  return parsed;\n}",
   "description": "Reads and parses JSON file\n\nmake sure to specify what type the file contains as a generic!",
-  "id": "enxzebrcxepdyjlnopoxytst"
+  "id": "ufbnwknnaijrdsgilbohsrhk"
 }

@@ -1,0 +1,72 @@
+{
+  "createdAt": 1669385322262,
+  "updatedAt": 1669385322262,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385322262,
+  "id": "namedparameterstypeof-findauthenticatedpersonwithhandle",
+  "name": "NamedParameters<typeof findAuthenticatedPersonWithHandle>",
+  "slug": "namedparameterstypeof-findauthenticatedpersonwithhandle",
+  "operationRelativeTypescriptFilePath": "src/findAuthenticatedPersonWithHandle.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/AuthenticationMethodMethod"
+        },
+        "handle": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "method",
+        "handle"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "method",
+          "required": true,
+          "schema": {
+            "enum": [
+              "usernamePassword",
+              "phoneNumber",
+              "email",
+              "apple",
+              "google",
+              "facebook",
+              "twitter",
+              "linkedin",
+              "github"
+            ],
+            "fullComment": "Username + password should be the default\n\nEmail OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n\nAll others can also act as authentication methods, but the token shouldn't be stored",
+            "type": "string"
+          }
+        },
+        {
+          "name": "handle",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof findAuthenticatedPersonWithHandle>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668331941075,
+  "updatedAt": 1668331941075,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331941075,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getSizeSummary",
+  "slug": "get-size-summary",
+  "operationRelativeTypescriptFilePath": "src/getFolderSummary.ts",
+  "type": {
+    "rawType": "(filePath: string) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/FolderSummary\").SizeSummary>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  filePath: string\n): Promise<SizeSummary> => {\n  const stat = await fs.stat(filePath);\n\n  const bytes = stat.size;\n  const characters = bytes;\n\n  const bytesPerCharacter = bytes / characters;\n  let lines = 1;\n  const charactersPerLine = characters / lines;\n  const numberOfFiles = 1;\n  let linesPerFile = lines;\n  if (bytes > 1024 * 1024) {\n    // NB: too big to watch content\n\n    return {\n      bytes,\n      lines: 0,\n      characters,\n      bytesPerCharacter,\n      charactersPerLine,\n      linesPerFile,\n      numberOfFiles,\n    };\n  }\n\n  const content = await fs.readFile(filePath, \"utf8\");\n  lines = content.split(\"\\n\").length;\n  linesPerFile = lines;\n\n  return {\n    bytes,\n    lines,\n    characters,\n    bytesPerCharacter,\n    charactersPerLine,\n    linesPerFile,\n    numberOfFiles,\n  };\n}",
+  "description": "gets a size summary for a file path\n\nDoes not calculate this for files that are too big (bigger than 1MB)",
+  "id": "fisssjpbquxfmdngnqfyvext"
+}

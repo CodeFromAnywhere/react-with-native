@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668332242413,
+  "updatedAt": 1668332242413,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332242413,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "recalculateOperationIndexJson",
+  "slug": "recalculate-operation-index-json",
+  "operationRelativeTypescriptFilePath": "src/recalculateOperationIndexJson.ts",
+  "type": {
+    "rawType": "(operationBasePath: string, manualProjectRoot?: string | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  operationBasePath: string,\n  manualProjectRoot?: string\n) => {\n  const operationMetaData = await getOperationMetaData(operationBasePath);\n\n  if (!operationMetaData) {\n    log(`Operation on ${operationBasePath} doesn't have a basepath`, {\n      type: \"error\",\n    });\n    return;\n  }\n\n  const {\n    operation,\n    operationFolderName,\n    operationName,\n    relativeOperationLocationPath,\n  } = operationMetaData;\n\n  if (!operation || !operationName || !relativeOperationLocationPath) {\n    log(\n      `Operation on ${operationBasePath} doesn't have a name or relativeOperationLocationPath or package.json`,\n      { type: \"error\" }\n    );\n    return;\n  }\n\n  const classificationIndexed = getOperationClassification(operationBasePath)!; //NB: we know it's there because operationBasePath must be valid\n\n  const { coreDependencies, operationDependencies, packageDependencies } =\n    await getDependenciesSummary(operationName);\n\n  const categories = await categorizeFiles({\n    basePath: operationBasePath,\n    ignoreIndexFiles: true,\n  });\n\n  const sizeIndexed = await getFolderSummary(categories);\n  // console.log(\"UPDATE QUERY\");\n  await db.update(\n    \"Operation\",\n    (item) => item.name === operation.name,\n    (old) =>\n      mergeNestedObject(old, {\n        operation: {\n          lastRebuildAt: Date.now(),\n          sizeIndexed,\n          folderNameIndexed: operationFolderName,\n          relativeOperationLocationPathIndexed: relativeOperationLocationPath,\n          classificationIndexed,\n          coreDependenciesIndexed: coreDependencies,\n          operationDependenciesIndexed: operationDependencies,\n          packageDependenciesIndexed: packageDependencies,\n        },\n      }),\n    { operationName: operation.name }\n  );\n}",
+  "description": "Recalculates some operation indexable things and updates that into the database",
+  "id": "tnslzpdvpunzeyibrlvjobmr"
+}

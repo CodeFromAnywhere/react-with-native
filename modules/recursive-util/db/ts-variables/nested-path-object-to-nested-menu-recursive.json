@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385439048,
+  "updatedAt": 1669385439048,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385439048,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "nestedPathObjectToNestedMenuRecursive",
+  "slug": "nested-path-object-to-nested-menu-recursive",
+  "operationRelativeTypescriptFilePath": "src/nestedPathObjectToNestedMenu.ts",
+  "type": {
+    "rawType": "(nestedPathObject: import(\"/Users/king/King/operations/tools/types/recursive-types/build/NestedPathObject\").NestedPathObject | null, pathStack?: string[], config?: { target?: \"_blank\" | undefined; getHref?: ((fullPath: string) => string) | undefined; } | undefined) => import(\"/Users/king/King/operations/tools/user-interfaces/gui/smart/nested-menu-types/build/types\").MenuItemType[] | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  /**\n   * your nested path object that you want to create a menu for\n   */\n  nestedPathObject: NestedPathObject | null,\n  /**\n   * used for recursion to get the final url (defaults to empty array)\n   */\n  pathStack: string[] = [],\n  config?: {\n    target?: \"_blank\";\n    /**\n     * optionally , provide a callback function that returns the actual path\n     */\n    getHref?: (fullPath: string) => string;\n  }\n): MenuItemType[] | undefined => {\n  const target = config?.target;\n  const getHref = config?.getHref;\n\n  // base case\n  if (!nestedPathObject) return;\n\n  const menu: MenuItemType[] = Object.keys(nestedPathObject).map((path) => {\n    const newPathStack = pathStack.concat(path);\n    const fullPath = newPathStack.join(\"/\");\n    const children = nestedPathObjectToNestedMenuRecursive(\n      nestedPathObject[path],\n      newPathStack,\n      config\n    );\n\n    const href = getHref ? getHref(fullPath) : fullPath;\n\n    const menuItem: MenuItemType = {\n      // NB: if there is no path, the title  of the page should be \"home\"\n      title: path.length === 0 ? \"Home\" : path,\n      href,\n      target,\n      children,\n    };\n\n    return menuItem;\n  });\n\n  return menu;\n}",
+  "description": "Transform a nested path object into a nested menu (MenuType), recursively",
+  "id": "abwrddgbkucphnaplazbncic"
+}

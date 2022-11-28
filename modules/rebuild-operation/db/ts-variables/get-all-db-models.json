@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055709882,
+  "updatedAt": 1669055709882,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055709882,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getAllDbModels",
+  "slug": "get-all-db-models",
+  "operationRelativeTypescriptFilePath": "src/getAllDbModels.ts",
+  "type": {
+    "rawType": "(manualProjectRoot?: string | undefined, operationName?: string | undefined) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  manualProjectRoot?: string,\n  operationName?: string\n) => {\n  const allDbModels = (\n    await db.get(\"TsInterface\", { manualProjectRoot, operationName: \"*\" })\n  )\n    .filter(\n      (x) => x.isDbModel && x.dbStorageMethod && x.isExported && !x.hasGeneric\n    )\n    .filter((x) => x.operationName !== \"database\")\n    .filter((x) => (operationName ? x.operationName === operationName : true))\n    .filter((x) => !!x.operationName) // && !dependants.includes(x.operationName)\n    .filter(onlyUnique2<TsInterface>((a, b) => a.name === b.name));\n\n  return allDbModels;\n}",
+  "description": "",
+  "id": "ssjczduyyxlhuiboarxkjpmg"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261588205,
-  "updatedAt": 1666261588205,
+  "createdAt": 1668833460748,
+  "updatedAt": 1668833460748,
   "deletedAt": 0,
-  "createdFirstAt": 1666261588205,
+  "createdFirstAt": 1668833460748,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "select",
   "operationRelativeTypescriptFilePath": "src/Select.tsx",
   "type": {
-    "rawType": "<T extends unknown>({ options, onChange, value, title, containerClassName, selectFirstOption, autoSuggest, children, className, noPlaceholder, placeholder, ios, }: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-select/src/types\").SelectProps<T>) => JSX.Element",
+    "rawType": "<T extends unknown>({ options, onChange, value, title, containerClassName, selectFirstOption, autoSuggest, children, className, noPlaceholder, placeholder, ios, }: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").SelectProps<T>) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "<T extends unknown>({\n  options,\n  onChange,\n\n  value,\n  title,\n  containerClassName,\n  selectFirstOption,\n  autoSuggest,\n  //unused atm\n  children,\n  className,\n  noPlaceholder,\n  placeholder,\n  ios,\n}: SelectProps<T>) => {\n  const [temporaryValue, setTemporaryValue] = useState(\"\");\n  const [id] = useState(`list${String(Math.round(Math.random() * 100000))}`);\n\n  const realValue = getRealValue({ value, selectFirstOption, options, title });\n\n  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist\n\n  const onChangeSelect = (event: ChangeEvent<HTMLSelectElement>) => {\n    const value = event.target.value;\n    const newValue = options.find((x) => x.value === value) || null;\n\n    console.log(\"select change\", { value, newValue });\n    onChange?.(newValue);\n  };\n\n  const renderOptions = () => {\n    return (\n      <>\n        {options.map((option, index) => {\n          return (\n            <option value={String(option.value)} key={index}>\n              {option.label}\n            </option>\n          );\n        })}\n      </>\n    );\n  };\n\n  return (\n    <div className={containerClassName}>\n      {autoSuggest ? (\n        <span>\n          <input\n            list={id}\n            placeholder={\n              !noPlaceholder ? placeholder || \"Type or select one\" : undefined\n            }\n            onChange={(event) => {\n              const value = event.target.value;\n\n              const foundOption = options.find((x) => x.value === value);\n              if (foundOption) {\n                onChange?.(foundOption);\n                setTemporaryValue(\"\");\n              } else {\n                setTemporaryValue(value);\n              }\n            }}\n            className={className}\n            value={\n              temporaryValue && temporaryValue.length > 0\n                ? temporaryValue\n                : value?.value\n                ? String(value?.value)\n                : \"\"\n            }\n          />\n\n          <datalist placeholder={title} id={id}>\n            {renderOptions()}\n          </datalist>\n        </span>\n      ) : (\n        <select\n          onChange={onChangeSelect}\n          className={className}\n          value={String(value?.value)}\n        >\n          {renderOptions()}\n        </select>\n      )}\n    </div>\n  );\n}",
+  "value": "<T extends unknown>({\n  options,\n  onChange,\n  value,\n  title,\n  containerClassName,\n  selectFirstOption,\n  autoSuggest,\n  //unused atm\n  children,\n  className,\n  noPlaceholder,\n  placeholder,\n  ios,\n}: SelectProps<T>) => {\n  const [temporaryValue, setTemporaryValue] = useState(\"\");\n  const [id] = useState(`list${String(Math.round(Math.random() * 100000))}`);\n\n  const realValue = getRealValue({ value, selectFirstOption, options, title });\n\n  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist\n\n  const onChangeSelect = (event: ChangeEvent<HTMLSelectElement>) => {\n    const value = event.target.value;\n    const newValue = options.find((x) => String(x.value) === value) || null;\n\n    onChange?.(newValue);\n  };\n\n  const renderOptions = () => {\n    return (\n      <>\n        {options.map((option, index) => {\n          return (\n            <option value={String(option.value)} key={index}>\n              {option.label}\n            </option>\n          );\n        })}\n      </>\n    );\n  };\n\n  return (\n    <div className={containerClassName}>\n      {autoSuggest ? (\n        <span>\n          <input\n            list={id}\n            placeholder={\n              !noPlaceholder ? placeholder || \"Type or select one\" : undefined\n            }\n            onChange={(event) => {\n              const value = event.target.value;\n\n              const foundOption = options.find((x) => x.value === value);\n              if (foundOption) {\n                onChange?.(foundOption);\n                setTemporaryValue(\"\");\n              } else {\n                setTemporaryValue(value);\n              }\n            }}\n            className={className}\n            value={\n              temporaryValue && temporaryValue.length > 0\n                ? temporaryValue\n                : value?.value\n                ? String(value?.value)\n                : \"\"\n            }\n          />\n\n          <datalist placeholder={title} id={id}>\n            {renderOptions()}\n          </datalist>\n        </span>\n      ) : (\n        <select\n          onChange={onChangeSelect}\n          className={className}\n          value={String(value?.value)}\n        >\n          {renderOptions()}\n        </select>\n      )}\n    </div>\n  );\n}",
   "description": "renders either a SelectDropdown or SelectDrawer, based on screensize",
-  "id": "cddwzjkorrodhgobaxjimdfx"
+  "id": "ptoxtiqleueayxvlvhtoigox"
 }

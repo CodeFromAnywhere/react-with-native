@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668149320994,
-  "updatedAt": 1668149320994,
+  "createdAt": 1669467169836,
+  "updatedAt": 1669467169836,
   "deletedAt": 0,
-  "createdFirstAt": 1668149320994,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669467169836,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util/getRealSrc.ts",
   "commentsInside": [],
   "rawText": " (\n  src: string | undefined,\n  config: MarkdownParseRenderConfig\n) => {\n  // src from static folder of next.js\n  const relativeUrlStrategy =\n    config.isDev || !config.isStatic ? \"api\" : \"static\";\n\n  const realSrc = src\n    ? isPathRelative(src)\n      ? getUrlFromRelativeUrl(\n          src,\n          relativeUrlStrategy,\n          config.projectRelativeBaseFolderPath,\n          config.projectRelativeMarkdownFilePath\n        )\n      : src\n    : undefined;\n\n  return realSrc;\n}",
@@ -31,6 +26,51 @@
       "name": "config",
       "schema": {
         "$ref": "#/definitions/MarkdownParseRenderConfig"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "projectRelativeBaseFolderPath",
+            "required": true,
+            "schema": {
+              "fullComment": "Folder path where the markdown is supposed to be located.\n\nThis is used for knowing where relative links or assets can be found",
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectRelativeMarkdownFilePath",
+            "required": true,
+            "schema": {
+              "fullComment": "project relative path of the markdown file.\n\nThis is used for knowing where relative links or assets can be found",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isStatic",
+            "required": false,
+            "schema": {
+              "fullComment": "If true, the files should come from a static folder. This means the relative references should now become projectRelative. Also see `copyAllRelativeFiles`.\n\nIf not true, we will use the api.",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isDev",
+            "required": false,
+            "schema": {
+              "fullComment": "If true, we assume not all files are present in the static folder yet. This means we need to use the api.",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "big",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
       },
       "required": true
     }
@@ -72,5 +112,5 @@
     "linesPerFile": 21,
     "numberOfFiles": 1
   },
-  "id": "lbvwmjqfodhoxrrakccavwkk"
+  "id": "fijuxtjprwfhddxrayxlobyp"
 }

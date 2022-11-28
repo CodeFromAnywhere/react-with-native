@@ -1,0 +1,53 @@
+{
+  "createdAt": 1669466955755,
+  "updatedAt": 1669466955755,
+  "deletedAt": 0,
+  "createdFirstAt": 1669466955755,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/findReaderStaticAssets.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  /**\n   * Your markdown pages\n   */\n  readerWebPages: ReaderWebPage[]\n) => {\n  const projectRoot = getProjectRoot();\n\n  if (!projectRoot) return;\n\n  const absoluteAssetPaths = (\n    await Promise.all(\n      readerWebPages.map(async (page) => {\n        const absoluteMarkdownFilePath = path.join(\n          projectRoot,\n          page.pageData.projectRelativeFilePath\n        );\n\n        const assetPaths = await findStaticAssets(absoluteMarkdownFilePath);\n\n        return assetPaths;\n      })\n    )\n  )\n    .flat()\n    .filter(onlyUnique2())\n    .filter(fs.existsSync);\n\n  return absoluteAssetPaths;\n}",
+  "name": "findReaderStaticAssets",
+  "slug": "find-reader-static-assets",
+  "parameters": [
+    {
+      "name": "readerWebPages",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/ReaderWebPage"
+        },
+        "description": "Your markdown pages"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Your markdown pages",
+        "items": [],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "markdown-renderer turns a relative link into this: ?mdpath=x&relativePath=y\n\nfor static, we need to turn it into something similar, but we need to guarantee no file collisions. simple!\n\nwe can just take the project-relative file path of the asset, and put it in /public/images in next.js. the final url of the asset in public next.js then becomes `images/[path/to/asset.jpg]`",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 986,
+    "lines": 34,
+    "bytes": 986,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 34,
+    "numberOfFiles": 1
+  },
+  "id": "kvuxxncbndmsgnpocppuadlc"
+}

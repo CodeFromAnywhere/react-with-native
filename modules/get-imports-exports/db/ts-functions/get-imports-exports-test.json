@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668150641797,
+  "updatedAt": 1668150641797,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150641797,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/test.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const operationBasePath = await getOperationPath(\n    \"react-with-native-notification\"\n  );\n  if (!operationBasePath) {\n    return console.log(\"wtf\");\n  }\n\n  const sourceFilePaths = await getPackageSourcePaths({\n    operationBasePath,\n  });\n  const project = getTsMorphProject(operationBasePath);\n  if (!project) {\n    return log(\"couldn't load project\", { type: \"error\" });\n  }\n\n  const sourceFiles = project.getSourceFiles(sourceFilePaths);\n  if (!sourceFiles) {\n    return log(`couldn't load files`, { type: \"error\" });\n  }\n\n  const impexp = await getImportsExports({ sourceFiles });\n\n  return impexp;\n\n  // console.dir(impexp, { depth: 999 });\n}",
+  "name": "getImportsExportsTest",
+  "slug": "get-imports-exports-test",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 666,
+    "lines": 27,
+    "bytes": 666,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 27,
+    "numberOfFiles": 1
+  },
+  "id": "lrkdyhpydweonnewtvameoro"
+}

@@ -1,0 +1,6 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getParametersFromInterfaces=void 0;var js_util_1=require("js-util"),schema_util_1=require("schema-util"),getPossibleRefs_1=require("./getPossibleRefs"),getParametersFromInterfaces=function(e,
+/**
+ * NB: we need ALL interfaces here across the project because there may be others that were not found in the interfaces in the file, but only in the functions.
+ */
+t){var i,r=t.find((function(t){return t.name==="NamedParameters<typeof ".concat(e,">")})),s=null===(i=null==r?void 0:r.type.typeDefinition)||void 0===i?void 0:i.properties,o=s?Object.keys(s).map((function(e){var i,s,o,n,a=(0,schema_util_1.getSchema)(null===(s=null===(i=r.type.typeDefinition)||void 0===i?void 0:i.properties)||void 0===s?void 0:s[e]),l=(null===(n=null===(o=r.type.typeDefinition)||void 0===o?void 0:o.required)||void 0===n?void 0:n.includes(e))||!1;return a?{name:e,schema:a,simplifiedSchema:(0,schema_util_1.simplifySchema)(e,a,(0,getPossibleRefs_1.getPossibleRefs)(t),[]),required:l}:void 0})).filter(js_util_1.notEmpty):[];return o};exports.getParametersFromInterfaces=getParametersFromInterfaces;
+//# sourceMappingURL=getParametersFromInterface.js.map

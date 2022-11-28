@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getChildren=void 0;var getChildren=function(t,e){var r=e.split("/").length;return t.filter((function(t){return t.queryPath.startsWith(e)&&t.queryPath.split("/").length-r==1})).map((function(t){return t.queryPath.split("/")[r]}))};exports.getChildren=getChildren;
+//# sourceMappingURL=getChildren.js.map

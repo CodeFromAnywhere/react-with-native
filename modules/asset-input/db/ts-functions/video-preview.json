@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667378715380,
-  "updatedAt": 1667378715380,
+  "createdAt": 1669054956846,
+  "updatedAt": 1669054956846,
   "deletedAt": 0,
-  "createdFirstAt": 1667378715380,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669054956846,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/MediaRecorder.tsx",
   "commentsInside": [],
   "rawText": " ({ stream }: { stream: MediaStream | null }) => {\n  const videoRef = useRef<HTMLVideoElement>(null);\n\n  useEffect(() => {\n    if (videoRef.current && stream) {\n      videoRef.current.srcObject = stream;\n    }\n  }, [stream]);\n  if (!stream) {\n    return null;\n  }\n  return <video ref={videoRef} width={500} height={500} autoPlay controls />;\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 13,
     "numberOfFiles": 1
   },
-  "id": "iimbomfcbbdrcrgzbgrkvmic"
+  "id": "gcpdrvbedpjklnyoqpbhhdeb"
 }

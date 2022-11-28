@@ -7,3 +7,14 @@ export var Subword = function (props) {
             "xxx",
             word)));
 };
+Subword.example = [
+    function () {
+        return React.createElement(Subword, { subwordConfig: {}, word: "test" });
+    },
+];
+/**
+ * The ultimate typescript database stores data in typescript
+ */
+var add = function (a, b) { return a + b; };
+add.example = [function () { return add(1, 2); }];
+// (await db.get("Example")).filter(x=>x.name==="add")

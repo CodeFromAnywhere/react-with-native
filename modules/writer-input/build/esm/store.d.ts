@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { SubtextConfig, SubwordConfig, WriterViewEnum } from "writer-types";
 export declare const writerInitialValues: {
     writerView: WriterViewEnum;

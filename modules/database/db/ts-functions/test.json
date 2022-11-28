@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666259868447,
-  "updatedAt": 1666259868447,
+  "createdAt": 1668774176167,
+  "updatedAt": 1668774176167,
   "deletedAt": 0,
-  "createdFirstAt": 1666259868447,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774176167,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/updateSingleItem.test.ts",
   "commentsInside": [],
   "rawText": " async () => {\n  const upatedResult = await testDb.update(\n    \"MarkdownTestModel\",\n    (xyz) => true,\n    (item) => {\n      return { ...item, name: `${item.name}123` };\n    }\n  );\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 9,
     "numberOfFiles": 1
   },
-  "id": "ydafbbnnbmekrneeqfljcuhy"
+  "id": "sdpxsrslateyinngwglxuawc"
 }

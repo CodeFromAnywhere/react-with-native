@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055697664,
+  "updatedAt": 1669055697664,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055697664,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "clearTsDatabase",
+  "slug": "clear-ts-database",
+  "operationRelativeTypescriptFilePath": "src/clearTsDatabase.ts",
+  "type": {
+    "rawType": "(operationName: string | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (operationName: string | undefined) => {\n  const result = await Promise.all(\n    typescriptIndexModels.map((modelName) => {\n      return db.clear(modelName, { operationName });\n    })\n  );\n\n  await db.update(\n    \"Operation\",\n    () => true,\n    (old) =>\n      mergeNestedObject(old, {\n        operation: {\n          sizeIndexed: undefined,\n          buildResultIndexed: undefined,\n          classificationIndexed: undefined,\n          folderNameIndexed: undefined,\n          coreDependenciesIndexed: undefined,\n          hasGeneratedDependenciesIndexed: undefined,\n          lastPullTimeAtIndexed: undefined,\n          operationDependenciesIndexed: undefined,\n          packageDependenciesIndexed: undefined,\n          relativeOperationLocationPathIndexed: undefined,\n        },\n      }),\n    { operationName }\n  );\n}",
+  "description": "Clears all typescript indexation models, and removes all indexation from the oprations\n\nTODO: test first, not sure about the Operation one",
+  "id": "ddeqxtacyusztwlndrbzwpmf"
+}

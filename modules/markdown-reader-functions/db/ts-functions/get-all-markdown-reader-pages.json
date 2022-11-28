@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668149491004,
-  "updatedAt": 1668149491004,
+  "createdAt": 1669639098170,
+  "updatedAt": 1669639098170,
   "deletedAt": 0,
-  "createdFirstAt": 1668149491004,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669639098170,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getAllMarkdownReaderPages.ts",
   "commentsInside": [],
-  "rawText": " async (config?: {\n  manualProjectRoot?: string;\n}): Promise<undefined | MarkdownReaderPage[]> => {\n  const projectRoot = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n\n  const publicBundleConfig = await readJsonFile<\n    Omit<BundleConfig, \"customisableBundleConfig\" | \"createBundleConfig\">\n  >(path.join(projectRoot, \"public-bundle-config.json\"));\n\n  const bundleMarkdownReaderConfig =\n    publicBundleConfig?.bundleMarkdownReaderConfig;\n\n  // the docs folder with all its files\n  const docsPaths = await findAllDocsFolderPaths(true);\n\n  const relativeDocsPages = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths: docsPaths,\n    // remove docs prefix if docs should be shown as in root\n    mapQueryPath: bundleMarkdownReaderConfig?.docsInRoot\n      ? (old) =>\n          old.startsWith(\"docs/\")\n            ? old.slice(\"docs/\".length)\n            : // NB: \"docs/README.md\" becomes \"docs\", which should, in turn, become \"\" in this case...\n            old === \"docs\"\n            ? \"\"\n            : old\n      : undefined,\n  });\n\n  // operations\n  const operationPages = await getOperationPages(\n    projectRoot,\n    bundleMarkdownReaderConfig\n  );\n\n  // markdown model type pages\n  const markdownModelTypePages = await getMarkdownModelPages(projectRoot);\n  // todo pages\n  const todoPages = await getTodoPages(projectRoot);\n\n  const mainReadme = bundleMarkdownReaderConfig?.docsInRoot\n    ? undefined\n    : {\n        queryPath: \"\",\n        filePath: \"README.md\",\n        isMenuItem: true,\n      };\n\n  const allPages: MarkdownReaderPage[] = [\n    mainReadme,\n    ...relativeDocsPages,\n    ...operationPages,\n    // `/dictionary` page with all words/definitions, categorised\n    { queryPath: \"dictionary\", isMenuItem: true },\n    // all markdown model types, optionally (with config)\n    ...markdownModelTypePages,\n    // all todo markdown folders, both in operations and outside (with config)\n    ...todoPages,\n  ]\n    .filter(notEmpty)\n    .filter(\n      onlyUnique2<MarkdownReaderPage>((a, b) => a.queryPath === b.queryPath)\n    );\n\n  return allPages;\n}",
+  "rawText": " async (config?: {\n  manualProjectRoot?: string;\n}): Promise<undefined | WebPage<any>[]> => {\n  const projectRoot = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n\n  const publicBundleConfig = await readJsonFile<\n    Omit<BundleConfig, \"customisableBundleConfig\" | \"createBundleConfig\">\n  >(path.join(projectRoot, \"public-bundle-config.json\"));\n\n  const bundleMarkdownReaderConfig =\n    publicBundleConfig?.bundleMarkdownReaderConfig;\n\n  // the docs folder with all its files\n  const docsPaths = await findAllDocsFolderPaths(true);\n\n  const relativeDocsPages: ReaderWebPage[] = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths: docsPaths,\n    // remove docs prefix if docs should be shown as in root\n    mapQueryPath: bundleMarkdownReaderConfig?.docsInRoot\n      ? (old) =>\n          old.startsWith(\"docs/\")\n            ? old.slice(\"docs/\".length)\n            : // NB: \"docs/README.md\" becomes \"docs\", which should, in turn, become \"\" in this case...\n            old === \"docs\"\n            ? \"\"\n            : old\n      : undefined,\n  });\n\n  // operations\n  const operationPages: ReaderWebPage[] = await getOperationPages(\n    projectRoot,\n    bundleMarkdownReaderConfig\n  );\n\n  // markdown model type pages\n  const markdownModelTypePages = await getMarkdownModelPages(projectRoot);\n  // todo pages\n  const todoPages = await getReaderTodoPages(projectRoot);\n\n  const mainReadme: ReaderWebPage | undefined =\n    bundleMarkdownReaderConfig?.docsInRoot\n      ? undefined\n      : {\n          queryPath: \"\",\n          pageData: { projectRelativeFilePath: \"README.md\" },\n          isMenuHidden: false,\n        };\n\n  const dictionaryPage: CustomWebPage = {\n    queryPath: \"dictionary\",\n    isMenuHidden: false,\n    pageData: null,\n  };\n\n  const allPages: WebPage<any>[] = [\n    mainReadme,\n    ...relativeDocsPages,\n    ...operationPages,\n    // `/dictionary` page with all words/definitions, categorised\n    dictionaryPage,\n    // all markdown model types, optionally (with config)\n    ...markdownModelTypePages,\n    // all todo markdown folders, both in operations and outside (with config)\n    ...todoPages,\n  ].filter(notEmpty);\n\n  const filteredPages = allPages.filter(\n    onlyUnique2<ReaderWebPage>((a, b) => a.queryPath === b.queryPath)\n  );\n\n  return filteredPages;\n}",
   "name": "getAllMarkdownReaderPages",
   "slug": "get-all-markdown-reader-pages",
   "parameters": [
@@ -45,7 +40,7 @@
   ],
   "description": "....? I should've commented this\n\nconst hasDocs = !!relativeDocsPages.find(\n\n(x) => x.queryPath.toLowerCase() === \"docs/readme\"\n\n);\n\nif (!hasDocs) {\n\nconst hasRootReadme = fs.existsSync(path.join(projectRoot, \"README.md\"));\n\nif (hasRootReadme) {\n\nrelativeDocsPages.unshift({\n\nqueryPath: \"docs/readme\",\n\nfilePath: \"README.md\",\n\nisMenuItem: true,\n\n});\n\n}\n\n}\n\nGets all pages of a bundle based on the fs and database\n\nPages it finds:\n\n- operation-readmes\n- multiple docs basePaths with all folders and markdown pages there in (`/[project-relative-path]`)\n- `/dictionary`\n- all markdown model types we have in the db-sdk, optionally, depending on config\n\nRequirements:\n\n- README should always be on top in a folder.\n- numbers and extensions are omitted from paths, but still connected to the right file\n- If the docs doesn't have a readme, the /docs/readme path shows the root readme.\n\nDoes not include AugmentedWord. Just the main pages, not with queries and hashes\n\nUsed to generate the menu",
   "returnType": {
-    "rawType": "Promise<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage[] | undefined>",
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").WebPage<any>[] | undefined>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -55,13 +50,13 @@
   },
   "maxIndentationDepth": 6,
   "size": {
-    "characters": 3082,
-    "lines": 113,
-    "bytes": 3082,
+    "characters": 3297,
+    "lines": 120,
+    "bytes": 3297,
     "bytesPerCharacter": 1,
     "charactersPerLine": 27,
-    "linesPerFile": 113,
+    "linesPerFile": 120,
     "numberOfFiles": 1
   },
-  "id": "fdzqlieliqglmwayaqxkuqvt"
+  "id": "cizreaesikvsbgelgobfilpc"
 }

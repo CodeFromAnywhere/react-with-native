@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668152097525,
-  "updatedAt": 1668152097525,
+  "createdAt": 1669385157289,
+  "updatedAt": 1669385157289,
   "deletedAt": 0,
-  "createdFirstAt": 1668152097525,
+  "createdFirstAt": 1669385157289,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "context-text-area",
   "operationRelativeTypescriptFilePath": "src/old/ContextTextArea.tsx",
   "type": {
-    "rawType": "(props: import(\"/Users/king/King/operations/tools/writer/writer-input/src/old/types\").EditorProps) => JSX.Element",
+    "rawType": "(props: import(\"/Users/king/King/operations/tools/purpose/writer/writer-input/src/old/types\").EditorProps) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(props: EditorProps) => {\n  const { value, onChange, withContext, className } = props;\n\n  // EDITOR HOTKEYS\n  useHotkeys([], ({ code, metaKey, ctrlKey, altKey, shiftKey, key }) => {\n    if (code === \"Escape\") {\n      // go out of intellisense\n      alert?.(\"ESCAPE\");\n    }\n\n    if (ctrlKey && code === \"Space\") {\n      // intellisense on\n      alert?.(\"intellisense on\");\n    }\n    if (altKey && code === \"KeyZ\") {\n      if (shiftKey) {\n        alert?.(\"redo\");\n      } else {\n        alert?.(\"undo\");\n      }\n    }\n\n    if (metaKey && key === \"b\") {\n      alert?.(\"bold\");\n    }\n\n    if (metaKey && key === \"i\") {\n      alert?.(\"italic\");\n    }\n  });\n\n  return (\n    <textarea\n      className={className}\n      value={value}\n      // onKeyPress={(e) => {\n      //   console.log({ e });\n      // }}\n      // onCh\n      // onFocusCapture={(e) => {\n      //   const newText = e.target.value;\n      //   const positionIndex = e.target.selectionStart;\n\n      //   console.log({ newText, positionIndex });\n      //   const textEditingContext = getContext({\n      //     text: newText,\n      //     positionIndex,\n      //   });\n      //   withContext?.(textEditingContext);\n\n      //   onChange(newText);\n      // }}\n      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {\n        const newText = e.target.value;\n        const positionIndex = e.target.selectionStart;\n        const textEditingContext = getContext({\n          text: newText,\n          positionIndex,\n        });\n        withContext?.(textEditingContext);\n\n        onChange(newText);\n      }}\n    />\n  );\n}",
   "description": "",
-  "id": "cuycvoviezzuwmnbzzizjjjy"
+  "id": "vuiahhtbmtlwfxzxckdwonvh"
 }

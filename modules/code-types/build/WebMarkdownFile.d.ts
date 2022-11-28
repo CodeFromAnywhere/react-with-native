@@ -44,17 +44,17 @@ WebsiteHeader {
     /**
      * Author, reference to persons
      */
-    author_personSlugs: Slug[];
+    author_personSlugs?: Slug[];
     /**
      * Labels referring to interests
      */
-    interestSlugs: Slug[];
+    interestSlugs?: Slug[];
     /**
      * Price for this file
      *
      * NB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.
      */
-    price: Price;
+    price?: Price;
 }
 /**
  * A call to action suffix is a handy model that can be used to place under a postable. this way we are getting much more conversions from the traffic received on media

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150789235,
-  "updatedAt": 1668150789235,
+  "createdAt": 1668836006354,
+  "updatedAt": 1668836006354,
   "deletedAt": 0,
-  "createdFirstAt": 1668150789235,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668836006354,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/findFirstCommentTypes.ts",
   "commentsInside": [],
   "rawText": " (\n  strippedFullComment?: string\n): CommentTypeObject => {\n  if (strippedFullComment === undefined) return {};\n  const lines = strippedFullComment.split(\"\\n\");\n\n  const specialCommentTypesObject = commentTypes\n    .map((commentType) => {\n      const matchingPart = `${commentType.toUpperCase()}:`;\n      const matchingLine = lines.find((line) => {\n        const trimmedLine = line.trimStart();\n        const isMatch = trimmedLine.startsWith(matchingPart);\n        return isMatch;\n      });\n\n      if (!matchingLine) return;\n\n      const strippedMatchingLine = matchingLine.trimStart();\n      const specialCommentWithoutPrefix = strippedMatchingLine\n        .slice(matchingPart.length)\n        .trim();\n\n      return {\n        [commentType]: specialCommentWithoutPrefix,\n      };\n    })\n    .filter(notEmpty);\n\n  const fullObject = mergeObjectsArray(\n    specialCommentTypesObject\n  ) as CommentTypeObject;\n\n  return fullObject;\n}",
@@ -57,5 +52,5 @@
     "linesPerFile": 34,
     "numberOfFiles": 1
   },
-  "id": "hxblkqytyvlfimgykzxvauiz"
+  "id": "vkpqkfvvqhdghvkrwcowkjrf"
 }

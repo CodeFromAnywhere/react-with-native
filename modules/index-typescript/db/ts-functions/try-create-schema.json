@@ -1,0 +1,206 @@
+{
+  "createdAt": 1669055585611,
+  "updatedAt": 1669055585611,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055585611,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/generateSchema.ts",
+  "commentsInside": [],
+  "rawText": " (\n  config: Config\n): { schema?: Schema; error?: string } => {\n  try {\n    const generator = createGenerator(config);\n    const schema: Schema = generator.createSchema(config.type);\n    return { schema };\n  } catch (e) {\n    return { error: String(e) };\n  }\n}",
+  "name": "tryCreateSchema",
+  "slug": "try-create-schema",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "$ref": "#/definitions/Config"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "path",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minify",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "schemaId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tsconfig",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expose",
+            "required": false,
+            "schema": {
+              "enum": [
+                "all",
+                "none",
+                "export"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "topRef",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "jsDoc",
+            "required": false,
+            "schema": {
+              "enum": [
+                "none",
+                "extended",
+                "basic"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortProps",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "strictTuples",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "skipTypeCheck",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "encodeRefs",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "extraTags",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "additionalProperties",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Try because sometimes generateSchema fails",
+  "returnType": {
+    "rawType": "{ schema?: import(\"/Users/king/King/operations/node_modules/@types/json-schema/index\").JSONSchema7 | undefined; error?: string | undefined; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "schema": {},
+        "error": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "schema",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "error",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 302,
+    "lines": 11,
+    "bytes": 302,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "badoshzdgchcfhqwebcszjad"
+}

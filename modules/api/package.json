@@ -1,11 +1,22 @@
 {
-  "createdAt": 1662709577330,
-  "updatedAt": 1662709577330,
+  "createdAt": 1668328699791,
+  "updatedAt": 1668328699791,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577330,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328699791,
+  "id": "LKkLDGQFSIHMUXTg",
+  "dependencies": {
+    "js-util": "0.0.1",
+    "server-api-url": "0.0.1",
+    "react-with-native-store": "2.0.40",
+    "api-types": "0.0.1",
+    "convert-case": "0.0.1",
+    "rest-util": "0.0.1",
+    "react-query": "*"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,19 +24,74 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^4.7.4"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "api",
+  "language": "english",
   "slug": "api",
-  "id": "LKkLDGQFSIHMUXTg",
-  "dependencies": {
-    "js-util": "0.0.1",
-    "server-api-url": "0.0.1",
-    "react-with-native-store": "2.0.40"
-  },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "api",
+    "hasGeneratedDependenciesIndexed": true,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668775460058,
+    "operationDependenciesIndexed": [
+      "ApiConfig",
+      "ApiTypeWithoutConfig",
+      "ApiTypeWithConfig",
+      "RealApiReturnType",
+      "QueryType",
+      "apiUrl",
+      "getItem",
+      "mergeObjectsArray",
+      "functionApiKeys",
+      "apiConventions",
+      "toQueryString",
+      "QueryType",
+      "camelCase",
+      "mergeObjectsArray",
+      "functionApiKeys"
+    ],
+    "packageDependenciesIndexed": [
+      "useQuery"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/user-interfaces/api",
+    "markdown": "Operation that makes the typerepo API exposable on the frontend in a completely typesafe way.\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 7,
+        "lines": 270,
+        "characters": 7389,
+        "bytes": 7389
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 134,
+        "characters": 3205,
+        "bytes": 3205
+      },
+      "textSize": {
+        "numberOfFiles": 4,
+        "lines": 121,
+        "characters": 3556,
+        "bytes": 3556
+      },
+      "size": {
+        "bytes": 14150,
+        "characters": 14150,
+        "lines": 525,
+        "numberOfFiles": 13
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

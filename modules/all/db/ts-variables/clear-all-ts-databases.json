@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668332053036,
+  "updatedAt": 1668332053036,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332053036,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "clearAllTsDatabases",
+  "slug": "clear-all-ts-databases",
+  "operationRelativeTypescriptFilePath": "src/clearAllTsDatabases.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    callback: async (folderPath, index) => {\n      const operationName = getLastFolder(folderPath);\n      log(\n        `#${index}: Clearing Typescript Indexation Data for ${operationName}`,\n        { type: \"success\" }\n      );\n      await clearTsDatabase(operationName);\n      return;\n    },\n  });\n}",
+  "description": "",
+  "id": "rvzevgkivzwzetlcoieymaib"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666258924302,
+  "updatedAt": 1666258924302,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258924302,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "removeAllFiles",
+  "slug": "remove-all-files",
+  "operationRelativeTypescriptFilePath": "src/removeAllFiles.ts",
+  "type": {
+    "rawType": "(search: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (search: string) => {\n  const filePaths = (\n    await explore({\n      basePath: getRootPath(),\n      ignore: [\"node_modules\", \"build\"],\n      exact: true,\n      search,\n      searchLevel: \"fileName\",\n    })\n  ).map((x) => x.path);\n  console.log({ filePaths });\n  return forAllFiles({\n    filePaths,\n    callback: (filePath) => fs.rmSync(filePath),\n  });\n}",
+  "description": "removes all files that have an exact match of the location (folders not because we use rm without -rf)",
+  "id": "qdpojkvlkhautwuiglxociyo"
+}

@@ -1,0 +1,61 @@
+{
+  "createdAt": 1666263102985,
+  "updatedAt": 1666263102985,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263102985,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/readTypescriptFile.ts",
+  "commentsInside": [],
+  "rawText": " <T extends { name: string }>(\n  value: T,\n  index: number,\n  self: T[]\n) => {\n  return self.findIndex((v) => v.name === value.name) === index;\n}",
+  "name": "uniqueNames",
+  "slug": "unique-names",
+  "parameters": [
+    {
+      "name": "index",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 145,
+    "lines": 7,
+    "bytes": 145,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "grpgfkzijklcwvmrwmmhqegw"
+}

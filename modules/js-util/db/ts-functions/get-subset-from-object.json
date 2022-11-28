@@ -1,25 +1,20 @@
 {
-  "createdAt": 1668150835598,
-  "updatedAt": 1668150835598,
+  "createdAt": 1668977396401,
+  "updatedAt": 1668977396401,
   "deletedAt": 0,
-  "createdFirstAt": 1668150835598,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977396401,
+  "isApiExposed": true,
   "isExported": true,
-  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getSubsetFromObject.ts",
   "commentsInside": [],
-  "rawText": " <T>(\n  object: { [key: string]: T },\n  keys: string[]\n) => {\n  const subsetObject = keys.reduce((obj, key) => {\n    return { ...obj, [key]: object[key] };\n  }, {} as { [key: string]: T });\n  return subsetObject;\n}",
+  "rawText": " <T, K extends readonly (keyof T)[]>(\n  object: T,\n  keys: K\n) => {\n  type Subset = typeof keys[number];\n\n  const subsetObject = keys.reduce((obj, key) => {\n    return { ...obj, [key]: object[key] };\n  }, {} as Partial<T>) as Pick<T, Subset>;\n  return subsetObject;\n}",
   "name": "getSubsetFromObject",
   "slug": "get-subset-from-object",
   "parameters": [],
   "description": "takes an object and a subset of its keys and returns a subset of that object\n\ninput: { x: \"a\", y: \"b\", z: \"c\" } and [\"x\"]\n\noutput: { x: \"a\" }",
   "returnType": {
-    "rawType": "any",
+    "rawType": "Pick<T, Subset>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -29,13 +24,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 355,
-    "lines": 13,
-    "bytes": 355,
+    "characters": 408,
+    "lines": 15,
+    "bytes": 408,
     "bytesPerCharacter": 1,
     "charactersPerLine": 27,
-    "linesPerFile": 13,
+    "linesPerFile": 15,
     "numberOfFiles": 1
   },
-  "id": "hstvubcgewwsatqtzihnpbhf"
+  "id": "hjqbiyukeamkyfmjpipitzpb"
 }

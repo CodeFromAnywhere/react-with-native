@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259866406,
-  "updatedAt": 1666259866406,
+  "createdAt": 1668774174236,
+  "updatedAt": 1668774174236,
   "deletedAt": 0,
-  "createdFirstAt": 1666259866406,
+  "createdFirstAt": 1668774174236,
   "classification": "const",
   "comments": [],
   "isExported": false,
@@ -29,5 +29,5 @@
   },
   "value": "async () => {\n  const result = await db.update(\n    \"TsConfig\",\n    undefined,\n\n    (old) => {\n      const newCompilerOptions: TsConfig[\"compilerOptions\"] = {\n        ...old.compilerOptions,\n        noEmitOnError: true,\n      };\n\n      return { ...old, compilerOptions: newCompilerOptions };\n    }\n  );\n\n  console.log(result);\n}",
   "description": "",
-  "id": "jmhchvexrsjeynmikbstulzb"
+  "id": "ecqizovtkkmqivobxzvgpsff"
 }

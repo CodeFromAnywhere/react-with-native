@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667379171661,
-  "updatedAt": 1667379171661,
+  "createdAt": 1668752410732,
+  "updatedAt": 1668752410732,
   "deletedAt": 0,
-  "createdFirstAt": 1667379171661,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668752410732,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/html/Nav/Nav.native.tsx",
   "commentsInside": [],
   "rawText": " ({\n  native,\n  textClassName,\n  className,\n  children,\n}: NavType) => {\n  const tailwind = useTailwind();\n  const { style, ...nativeWithoutStyle } = native || {};\n  const tailwindStyle = className ? tailwind(trimClassName(className)) : {};\n\n  return (\n    <View\n      style={[\n        tailwindStyle,\n        style,\n        {\n          flexDirection: \"row\",\n          alignItems: \"center\",\n          elevation: 0,\n        },\n      ]}\n      {...nativeWithoutStyle}\n    >\n      {wrapInTextIfNeeded(children, textClassName)}\n    </View>\n  );\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 27,
     "numberOfFiles": 1
   },
-  "id": "ihaxfxjqcuzmalfiqfivmylw"
+  "id": "bdllurhsrdprulscjsbilrru"
 }

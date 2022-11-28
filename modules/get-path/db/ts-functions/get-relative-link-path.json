@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148342385,
-  "updatedAt": 1668148342385,
+  "createdAt": 1669055067493,
+  "updatedAt": 1669055067493,
   "deletedAt": 0,
-  "createdFirstAt": 1668148342385,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055067493,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getRelativeLinkPath.ts",
   "commentsInside": [],
   "rawText": " (\n  absoluteFromFilePath: string,\n  absoluteToFilePath: string,\n  debug?: boolean\n): string => {\n  const commonAncestorPath = getCommonAncestor(\n    absoluteFromFilePath,\n    absoluteToFilePath\n  );\n\n  //1 - go from `absoluteFromPath` to `commonAncestorPath`\n  const commonAncestorRelativeFromPath = makeRelative(\n    absoluteFromFilePath,\n    commonAncestorPath\n  );\n  const commonAncestorRelativeToPath = makeRelative(\n    absoluteToFilePath,\n    commonAncestorPath\n  );\n\n  const foldersToGoBackAmount =\n    commonAncestorRelativeFromPath.split(\"/\").length - 1;\n\n  const backOrStart =\n    foldersToGoBackAmount === 0 ? \"./\" : \"../\".repeat(foldersToGoBackAmount);\n\n  //2 - go from `commonAncestorPath` to `absoluteToPath`\n  const relativeLinkPath = `${backOrStart}${commonAncestorRelativeToPath}`;\n\n  if (debug) {\n    console.log({\n      commonAncestorPath,\n      commonAncestorRelativeFromPath,\n      commonAncestorRelativeToPath,\n    });\n  }\n\n  return relativeLinkPath;\n}",
@@ -72,5 +67,5 @@
     "linesPerFile": 39,
     "numberOfFiles": 1
   },
-  "id": "bsnqjmgjepuepzqebmqzbghm"
+  "id": "oocuuzjwbyucqoculbinprgv"
 }

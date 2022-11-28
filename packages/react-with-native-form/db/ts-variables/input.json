@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261374616,
-  "updatedAt": 1666261374616,
+  "createdAt": 1669055878463,
+  "updatedAt": 1669055878463,
   "deletedAt": 0,
-  "createdFirstAt": 1666261374616,
+  "createdFirstAt": 1669055878463,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "input",
   "operationRelativeTypescriptFilePath": "src/general.tsx",
   "type": {
-    "rawType": "<TInputs extends import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").AllPluginInputTypes, T extends keyof TInputs>({ type, plugin, title, onChange, value, isLast, startSection, sectionTitle, next, extra, errors, reference, description, config, uniqueFieldId, renderInputContainer, errorClassName, fieldName, }: { plugin: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").PluginComponent<TInputs[T]>; type: string; fieldName: string; config: TInputs[T][\"config\"]; extra: TInputs[T][\"extra\"]; next: any; title?: string | undefined; onChange: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").OnChange<TInputs[T]>; value: TInputs[T][\"value\"]; errors?: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").Error[] | undefined; isLast: boolean; startSection?: boolean | undefined; sectionTitle?: string | undefined; reference?: React.RefObject<HTMLDivElement> | undefined; description?: string | undefined; uniqueFieldId: string; renderInputContainer?: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").RenderInputContainerType; errorClassName?: string | undefined; }) => JSX.Element",
+    "rawType": "<TInputs extends import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/src/general\").AllPluginInputTypes, T extends keyof TInputs>({ type, plugin, title, onChange, value, isLast, startSection, sectionTitle, next, extra, errors, reference, description, config, uniqueFieldId, renderInputContainer, errorClassName, fieldName, }: { plugin: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/src/general\").PluginComponent<TInputs[T]>; type: string; fieldName: string; config: TInputs[T][\"config\"]; extra: TInputs[T][\"extra\"]; next: any; title?: string | undefined; onChange: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/src/general\").OnChange<TInputs[T]>; value: TInputs[T][\"value\"]; errors?: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/src/general\").Error[] | undefined; isLast: boolean; startSection?: boolean | undefined; sectionTitle?: string | undefined; reference?: React.RefObject<HTMLDivElement> | undefined; description?: string | undefined; uniqueFieldId: string; renderInputContainer?: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/src/general\").RenderInputContainerType; errorClassName?: string | undefined; }) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "<\n  TInputs extends AllPluginInputTypes,\n  T extends keyof TInputs\n>({\n  type,\n  plugin,\n  title,\n  onChange,\n  value,\n  isLast,\n  startSection,\n  sectionTitle,\n  next,\n  extra,\n  errors,\n  reference,\n  description,\n  config,\n  uniqueFieldId,\n  renderInputContainer,\n  errorClassName,\n  fieldName,\n}: {\n  plugin: PluginComponent<TInputs[T]>;\n  type: string;\n  fieldName: string;\n  config: TInputs[T][\"config\"];\n  extra: TInputs[T][\"extra\"];\n  next: any;\n  title?: string;\n  onChange: OnChange<TInputs[T]>;\n  value: TInputs[T][\"value\"];\n  errors?: Error[];\n  isLast: boolean;\n  startSection?: boolean;\n  sectionTitle?: string;\n  reference?: RefObject<HTMLDivElement>;\n  description?: string;\n  /**\n   * format: {uniqueGeneratedNumber}.{fieldName}\n   */\n  uniqueFieldId: string;\n  renderInputContainer?: RenderInputContainerType;\n  errorClassName?: string;\n}) => {\n  const InputComponent = plugin;\n  const InputContainer = renderInputContainer || DefaultInputContainer;\n  return (\n    <Div ref={reference}>\n      <InputContainer\n        {...{\n          description,\n          sectionTitle,\n          startSection,\n          title,\n          next,\n          isLast,\n          id: uniqueFieldId,\n          type,\n          error:\n            !plugin.hideContainerError &&\n            errors?.find(errorOnField(fieldName))?.message,\n          extra,\n          config,\n          errorClassName,\n        }}\n      >\n        <InputComponent\n          {...{\n            uniqueFieldId,\n            fieldName,\n            config,\n            extra,\n            onChange,\n            value,\n            errors,\n            errorClassName,\n          }}\n        />\n      </InputContainer>\n    </Div>\n  );\n}",
   "description": "",
-  "id": "wafnzxkeaxcnhvdqyycvskxf"
+  "id": "tqckjpdlamoiixawmldpbfnc"
 }

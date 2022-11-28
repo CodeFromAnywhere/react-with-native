@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259851246,
-  "updatedAt": 1666259851246,
+  "createdAt": 1668774157979,
+  "updatedAt": 1668774157979,
   "deletedAt": 0,
-  "createdFirstAt": 1666259851246,
+  "createdFirstAt": 1668774157979,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async () => {\n  const [model, filterKv, updateKv] = process.argv.slice(2);\n\n  if (!filterKv || !model || !updateKv) {\n    console.log(\n      \"please provide 3 arguments: the model name, the key:value of the instance(s) to update, and the key:value of the key to change the value of\"\n    );\n  }\n\n  const [filterKey, filterValue] = filterKv.split(\":\");\n  const [updateKey, updateValue] = updateKv.split(\":\");\n\n  const result = await testDb.update(\n    model as any,\n    (content) => content[filterKey] == filterValue,\n    (content) => ({ ...content, [updateKey]: updateValue })\n  );\n\n  console.table(result);\n}",
   "description": "",
-  "id": "hgkfwymtmbfytkxahxyzngvg"
+  "id": "snfhxxcomqmhsapgfrcuhaxd"
 }

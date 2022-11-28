@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668149488675,
-  "updatedAt": 1668149488675,
+  "createdAt": 1669639088407,
+  "updatedAt": 1669639088407,
   "deletedAt": 0,
-  "createdFirstAt": 1668149488675,
+  "createdFirstAt": 1669639088407,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "copy-static-assets",
   "operationRelativeTypescriptFilePath": "src/copyStaticAssets.ts",
   "type": {
-    "rawType": "(markdownReaderPages: import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage[], config?: { operationName?: string | undefined; } | undefined) => Promise<boolean | undefined>",
+    "rawType": "(readerWebPages: import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").FileWebPage[], config?: { operationName?: string | undefined; } | undefined) => Promise<boolean | undefined>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (\n  markdownReaderPages: MarkdownReaderPage[],\n  config?: {\n    /**\n     * by default, uses `markdown-reader-web`\n     */\n    operationName?: string;\n  }\n): Promise<boolean | undefined> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n\n  const nextWebFolder = await getOperationPath(\n    config?.operationName || \"markdown-reader-web\"\n  );\n\n  if (!nextWebFolder) return;\n\n  const referencePathsPromises = markdownReaderPages.map(async (page) => {\n    if (!page.filePath) return;\n    const absoluteMarkdownFilePath = path.join(projectRoot, page.filePath);\n    const markdownString = await fs.readFile(absoluteMarkdownFilePath, \"utf8\");\n    const referencePaths = getMarkdownReferencePaths(markdownString);\n    return referencePaths;\n  });\n\n  const absoluteReferencePaths = (await Promise.all(referencePathsPromises))\n    .filter(notEmpty)\n    .flat()\n    .filter(onlyUnique2());\n\n  const projectRelativeReferencePaths = absoluteReferencePaths.map((x) =>\n    makeRelative(x, projectRoot)\n  );\n\n  const publicAssetsFolder = path.join(nextWebFolder, \"public\");\n\n  const removed = await removeAllExcept(publicAssetsFolder);\n\n  const isSuccessful = await copyAllRelativeFiles(\n    projectRelativeReferencePaths,\n    projectRoot,\n    publicAssetsFolder\n  );\n\n  return isSuccessful;\n}",
+  "value": "async (\n  readerWebPages: ReaderWebPage[],\n  config?: {\n    /**\n     * by default, uses `markdown-reader-web`\n     */\n    operationName?: string;\n  }\n): Promise<boolean | undefined> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n\n  const nextWebFolder = await getOperationPath(\n    config?.operationName || \"markdown-reader-web\"\n  );\n\n  if (!nextWebFolder) return;\n\n  const referencePathsPromises = readerWebPages.map(async (page) => {\n    if (!page.pageData.projectRelativeFilePath) return;\n    const absoluteMarkdownFilePath = path.join(\n      projectRoot,\n      page.pageData.projectRelativeFilePath\n    );\n    const markdownString = await fs.readFile(absoluteMarkdownFilePath, \"utf8\");\n    const referencePaths = getMarkdownReferencePaths(markdownString);\n    return referencePaths;\n  });\n\n  const absoluteReferencePaths = (await Promise.all(referencePathsPromises))\n    .filter(notEmpty)\n    .flat()\n    .filter(onlyUnique2());\n\n  const projectRelativeReferencePaths = absoluteReferencePaths.map((x) =>\n    makeRelative(x, projectRoot)\n  );\n\n  const publicAssetsFolder = path.join(nextWebFolder, \"public\");\n\n  const removed = await removeAllExcept(publicAssetsFolder);\n\n  const isSuccessful = await copyAllRelativeFiles(\n    projectRelativeReferencePaths,\n    projectRoot,\n    publicAssetsFolder\n  );\n\n  return isSuccessful;\n}",
   "description": "uses `getMarkdownReferencePaths` for all markdown files in the `markdown-reader-ui` and copies them into the `markdown-reader-web/public` folder, keeping the original folder structure.\n\nNB: Removes all files in the public folder first.\n\nTo get a file from public assets after running this function, you need to get it from the `projectRelativeFilePath`, not the file relative, so you need to render it differently.",
-  "id": "kvffvbiodxjgfstlbbkoqbyf"
+  "id": "ppzmwradogkvjzwnftqaguup"
 }

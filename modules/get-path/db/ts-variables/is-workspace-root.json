@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148351025,
-  "updatedAt": 1668148351025,
+  "createdAt": 1669055078571,
+  "updatedAt": 1669055078571,
   "deletedAt": 0,
-  "createdFirstAt": 1668148351025,
+  "createdFirstAt": 1669055078571,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "is-workspace-root",
   "operationRelativeTypescriptFilePath": "src/isWorkspaceRoot.ts",
   "type": {
-    "rawType": "(folderPath: string) => { isSensibleProject: boolean; isWorkspaceRoot: boolean; } | undefined",
+    "rawType": "(folderPath: string) => { isBundle: boolean; isWorkspaceRoot: boolean; } | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(\n  folderPath: string\n): undefined | { isSensibleProject: boolean; isWorkspaceRoot: boolean } => {\n  const packageJsonPath = path.join(folderPath, \"package.json\");\n  const existsPackageJson = fs.existsSync(packageJsonPath);\n  if (!existsPackageJson) return;\n\n  const packageJson = tryParseJson<PackageJson>(\n    fs.readFileSync(packageJsonPath, \"utf8\")\n  );\n\n  const sensibleConfig: SensibleConfig | undefined = packageJson?.sensible;\n  const isSensibleProject = sensibleConfig?.isSensibleProject || false;\n\n  if (!packageJson || !packageJson.workspaces) {\n    return;\n  }\n\n  return { isSensibleProject, isWorkspaceRoot: true };\n}",
+  "value": "(\n  folderPath: string\n): undefined | { isBundle: boolean; isWorkspaceRoot: boolean } => {\n  const packageJsonPath = path.join(folderPath, \"package.json\");\n  const existsPackageJson = fs.existsSync(packageJsonPath);\n  if (!existsPackageJson) return;\n\n  const packageJson = tryParseJson<Operation>(\n    fs.readFileSync(packageJsonPath, \"utf8\")\n  );\n\n  if (!packageJson || !packageJson.workspaces) {\n    return;\n  }\n\n  return {\n    isBundle: packageJson.operation?.isBundle || false,\n    isWorkspaceRoot: true,\n  };\n}",
   "description": "simple sync function to check if a folder is the root of a workspace (not operation but a workspace)",
-  "id": "miyeauaombkqplpepswfoclu"
+  "id": "gtvfpkadokcwroegbznstaod"
 }

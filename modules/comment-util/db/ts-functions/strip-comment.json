@@ -1,0 +1,56 @@
+{
+  "createdAt": 1668335766382,
+  "updatedAt": 1668335766382,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335766382,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (rawCommentString: string): string => {\n  const lines = rawCommentString.split(\"\\n\");\n  const strippedComment = lines\n    .map((line) => {\n      return apply(\n        [\n          trim,\n          stripSlashes,\n          stripCommentStart,\n          stripCommentEnd,\n          stripStar,\n          trim,\n        ],\n        line\n      );\n    })\n    .join(\"\\n\");\n\n  return apply([trimSurroundingNewlines], strippedComment);\n}",
+  "name": "stripComment",
+  "slug": "strip-comment",
+  "parameters": [
+    {
+      "name": "rawCommentString",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "parses comments (single line, multiline and doc) and removes the comment syntax\n\n- removes slashes\n- removes multiline comment prefix\n- removes multiline comment suffix\n- removes doccomment stars\n\nexample input: `// comment`, output: `comment`\n\nexample input:\n```\n\nsome\nmultiline\ncomment *~/\n```\noutput:\n```\nsome\nmultiline\ncomment\n```",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 756,
+    "lines": 41,
+    "bytes": 756,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 18,
+    "linesPerFile": 41,
+    "numberOfFiles": 1
+  },
+  "id": "wyomngtcixzgbzimscasaykf"
+}

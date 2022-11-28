@@ -1,0 +1,513 @@
+{
+  "createdAt": 1669200464227,
+  "updatedAt": 1669200464227,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200464227,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getJsonSchemaSummary.ts",
+  "commentsInside": [],
+  "rawText": " (\n  schema: JSONSchema7 | undefined,\n  isMarkdown: boolean\n) => {\n  if (!schema) return;\n\n  const typeDescriptor = getTypeDescriptorRecursive(schema, isMarkdown);\n\n  return {\n    typeDescriptor,\n    description: schema.description,\n  };\n}",
+  "name": "getJsonSchemaSummary",
+  "slug": "get-json-schema-summary",
+  "parameters": [
+    {
+      "name": "schema",
+      "schema": {
+        "$ref": "#/definitions/JSONSchema7"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "$id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$ref",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$comment",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$defs",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "enum",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "Primitive type",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Type"
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "const",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "multipleOf",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "maximum",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "exclusiveMaximum",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "minimum",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "exclusiveMinimum",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "maxLength",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "minLength",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pattern",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "items",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "additionalItems",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxItems",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "minItems",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "uniqueItems",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "contains",
+            "required": false,
+            "schema": {
+              "circularRefName": "JSONSchema7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "maxProperties",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "minProperties",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "required",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "properties",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "patternProperties",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "additionalProperties",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "dependencies",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "propertyNames",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "if",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "then",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "else",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "allOf",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "JSON Schema v7",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Definition"
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "anyOf",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "JSON Schema v7",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Definition"
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "oneOf",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "JSON Schema v7",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Definition"
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "not",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "format",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentMediaType",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentEncoding",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "definitions",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "title",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "default",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "readOnly",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "writeOnly",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "examples",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    },
+    {
+      "name": "isMarkdown",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": true
+    }
+  ],
+  "description": "Generates short markdown summary",
+  "returnType": {
+    "rawType": "{ typeDescriptor: string; description: string | undefined; } | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "typeDescriptor": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "description": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "typeDescriptor"
+      ],
+      "optional": true
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "typeDescriptor",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "description",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 271,
+    "lines": 13,
+    "bytes": 271,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "pybqbienligxpmhxjnkdumnj"
+}

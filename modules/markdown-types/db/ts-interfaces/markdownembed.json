@@ -1,0 +1,84 @@
+{
+  "createdAt": 1669385204507,
+  "updatedAt": 1669385204507,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385204507,
+  "id": "markdownembed",
+  "name": "MarkdownEmbed",
+  "slug": "markdownembed",
+  "operationRelativeTypescriptFilePath": "src/MarkdownParse.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * Anything in the format `![alt](src)`\n *\n * NB: I need to be very clear how this one works\n */\nexport type MarkdownEmbed = {\n  alt: string;\n  src: string;\n  type: AssetType;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "alt": {
+          "type": "string"
+        },
+        "src": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/AssetType"
+        }
+      },
+      "required": [
+        "alt",
+        "src",
+        "type"
+      ],
+      "additionalProperties": false,
+      "description": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works",
+      "nb": "I need to be very clear how this one works",
+      "properties": [
+        {
+          "name": "alt",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "src",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "video",
+              "audio",
+              "image",
+              "text",
+              "other"
+            ],
+            "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MarkdownEmbed",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

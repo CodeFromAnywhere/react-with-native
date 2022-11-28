@@ -1,9 +1,9 @@
 [
   {
-    "createdAt": 1666261634104,
-    "updatedAt": 1666261634104,
+    "createdAt": 1668775575490,
+    "updatedAt": 1668775575490,
     "deletedAt": 0,
-    "createdFirstAt": 1666261634104,
+    "createdFirstAt": 1668775575490,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/Table.tsx",
@@ -11,15 +11,15 @@
     "rawStatement": "export type TableType<TModel extends { [key: string]: any }> = {\n  data: TModel[] | undefined;\n  columns: ColumnType<TModel>[];\n  onEndReached?: () => void;\n  /** NB: we can provide extra things to render behind all model data */\n\n  renderExtraColumns?: (item: TModel | undefined) => JSX.Element;\n  extraColumnsAtStart?: boolean;\n  /**\n   * optionally provide a function that returns a boolean indicating whether or not this row should be highlighted\n   */\n  shouldHighlightItem?: (item: TModel) => boolean;\n};",
     "parameters": {},
     "types": [],
-    "firstLine": 10,
-    "lastLine": 12,
-    "id": "cbludiebgwqwtritiztasxdj"
+    "firstLine": 13,
+    "lastLine": 15,
+    "id": "intppviqfisqlbauqlrmghwy"
   },
   {
-    "createdAt": 1666261634105,
-    "updatedAt": 1666261634105,
+    "createdAt": 1668775575490,
+    "updatedAt": 1668775575490,
     "deletedAt": 0,
-    "createdFirstAt": 1666261634105,
+    "createdFirstAt": 1668775575490,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/Table.tsx",
@@ -27,15 +27,15 @@
     "rawStatement": "export const getColumns = (\n  modelName: string,\n  interfaces: TsInterface[] | undefined,\n  data: any[]\n): ColumnType<any>[] => {\n  /**\n   * needed in case something goes wrong with the index\n   */\n  const getDumbColumns = (): ColumnType<any>[] => {\n    return data[0] && typeof data[0] === \"object\"\n      ? Object.keys(data[0])\n          .map((objectParameterKey) => {\n            const value = data[0][objectParameterKey];\n            if (\n              ![\"string\", \"boolean\", \"number\", \"null\"].includes(typeof value)\n            ) {\n              return null;\n            }\n            return {\n              name: humanCase(objectParameterKey),\n              objectParameterKey,\n              presentationType: \"text\" as \"text\",\n            };\n          })\n          .filter(notEmpty)\n      : [];\n  };\n  if (!interfaces) return getDumbColumns();\n\n  const properties = interfaces.find((x) => x.name === modelName)?.type\n    .typeDefinition?.properties;\n\n  if (!properties) return getDumbColumns();\n\n  const columns: ColumnType<any>[] = Object.keys(properties)\n    .map((objectParameterKey) => {\n      const maybeProperty = properties[objectParameterKey];\n      const property =\n        typeof maybeProperty !== \"boolean\" ? maybeProperty : undefined;\n\n      if (!property) return;\n\n      if (\n        makeArray(property.type).find((x) => [\"object\", \"array\"].includes(x))\n      ) {\n        // there are arrays or objects among the type of this property\n        return;\n      }\n\n      const column: ColumnType<any> = {\n        name: humanCase(objectParameterKey),\n        objectParameterKey,\n        presentationType: \"text\",\n      };\n\n      return column;\n    })\n    .filter(notEmpty);\n  return columns;\n};",
     "parameters": {},
     "types": [],
-    "firstLine": 27,
-    "lastLine": 29,
-    "id": "gidzlnjrohfqqsutkvcwvtpx"
+    "firstLine": 30,
+    "lastLine": 32,
+    "id": "wbtgusbknghmthgtyschfrem"
   },
   {
-    "createdAt": 1666261634105,
-    "updatedAt": 1666261634105,
+    "createdAt": 1668775575490,
+    "updatedAt": 1668775575490,
     "deletedAt": 0,
-    "createdFirstAt": 1666261634105,
+    "createdFirstAt": 1668775575490,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/Table.tsx",
@@ -43,15 +43,15 @@
     "rawStatement": "export type RowType<TModel extends { [key: string]: any } = any> = {\n  row: TModel | undefined;\n  columns: ColumnType<TModel>[];\n  renderExtraColumns?: (row: TModel | undefined) => JSX.Element;\n  extraColumnsAtStart?: boolean;\n  shouldHighlight?: boolean;\n};",
     "parameters": {},
     "types": [],
-    "firstLine": 91,
-    "lastLine": 93,
-    "id": "jnplrmnoqizizkluhngcvxvg"
+    "firstLine": 94,
+    "lastLine": 96,
+    "id": "mmqphjrjwnlhaehhuoxizxzy"
   },
   {
-    "createdAt": 1666261634105,
-    "updatedAt": 1666261634105,
+    "createdAt": 1668775575491,
+    "updatedAt": 1668775575491,
     "deletedAt": 0,
-    "createdFirstAt": 1666261634105,
+    "createdFirstAt": 1668775575491,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/Table.tsx",
@@ -61,24 +61,24 @@
     "types": [
       "nb"
     ],
-    "firstLine": 104,
-    "lastLine": 108,
-    "id": "ltflmgpwprmgzndoyjqumbps"
+    "firstLine": 107,
+    "lastLine": 111,
+    "id": "mlfctzuzdzxthhpiekautkka"
   },
   {
-    "createdAt": 1666261634105,
-    "updatedAt": 1666261634105,
+    "createdAt": 1668775575491,
+    "updatedAt": 1668775575491,
     "deletedAt": 0,
-    "createdFirstAt": 1666261634105,
+    "createdFirstAt": 1668775575491,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/Table.tsx",
     "comment": "This contains all possible presenation types of the data in the table",
-    "rawStatement": "export type PresentationTypeEnum =\n  | \"text\"\n  | \"referenceSingle\"\n  | \"referenceMultiple\";",
+    "rawStatement": "export type PresentationTypeEnum =\n  | \"text\"\n  | \"backendAsset\"\n  | \"referenceSingle\"\n  | \"referenceMultiple\";",
     "parameters": {},
     "types": [],
-    "firstLine": 121,
-    "lastLine": 123,
-    "id": "bumihemkdydmgcysvpgrtfms"
+    "firstLine": 124,
+    "lastLine": 126,
+    "id": "xbsjdfmowpfnkyjtpbgmtfwz"
   }
 ]

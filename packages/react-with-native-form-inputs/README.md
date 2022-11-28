@@ -1,6 +1,6 @@
 # React with native form inputs
 
-react-with-native-form-inputs (`OperationClassification` ui-es5)
+react-with-native-form-inputs (`OperationClassification` ui-cjs)
 
 
 
@@ -166,7 +166,18 @@ If you want to know the exact type interface of the input (which differs per inp
 
 
 
+## `<ToggleInput />`
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
 ## 📄 SelectMultipleInput (exported const)
+
+## 📄 ToggleInput (exported const)
 
 ## `<NumberInput />`
 
@@ -195,22 +206,27 @@ If you want to know the exact type interface of the input (which differs per inp
 
 
 
-## `<ToggleInput />`
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
 ## 📄 NumberInput (exported const)
 
 ## 📄 PasswordInput (exported const)
 
 ## 📄 TextInput (exported const)
 
-## 📄 ToggleInput (exported const)
+# Internal
+
+<details><summary>Show internal (25)</summary>
+    
+  # castToNumber()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
 
 ## `<DateInput />`
 
@@ -233,7 +249,37 @@ CSS Modules, react-datepicker-cssmodules.css
 
 
 
+## `<FileInput />`
+
+import Icon from "./icon.svg";
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## isNumber()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
 ## `<LabelsInput />`
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## `<MapInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -273,66 +319,6 @@ CSS Modules, react-datepicker-cssmodules.css
 
 CSS Modules, react-datepicker-cssmodules.css
 
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## 📄 DateInput (exported const)
-
-## 📄 DatetimeInput (exported const)
-
-## 📄 LabelsInput (exported const)
-
-## 📄 PhoneInput (exported const)
-
-## 📄 StarsInput (exported const)
-
-## 📄 TextAreaInput (exported const)
-
-## 📄 TimeInput (exported const)
-
-# Internal
-
-<details><summary>Show internal (11)</summary>
-    
-  # castToNumber()
-
-
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
-
-
-## `<FileInput />`
-
-import Icon from "./icon.svg";
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## isNumber()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
-
-
-## `<MapInput />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -384,11 +370,25 @@ Properties:
 
 ## 📄 castToNumber (exported const)
 
+## 📄 DateInput (exported const)
+
+## 📄 DatetimeInput (exported const)
+
 ## 📄 FileInput (exported const)
 
 ## 📄 isNumber (exported const)
 
+## 📄 LabelsInput (exported const)
+
 ## 📄 MapInput (exported const)
+
+## 📄 PhoneInput (exported const)
+
+## 📄 StarsInput (exported const)
+
+## 📄 TextAreaInput (exported const)
+
+## 📄 TimeInput (exported const)
 
   </details>
 

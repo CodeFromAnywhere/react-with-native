@@ -1,11 +1,16 @@
 {
-  "createdAt": 1662709577331,
-  "updatedAt": 1662709577331,
+  "createdAt": 1668328701917,
+  "updatedAt": 1668328701917,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577331,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328701917,
+  "id": "YIaKrUxDlcIGSKGv",
+  "dependencies": {
+    "port-conventions": "0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,17 +18,60 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^4.7.4"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "server-api-url",
+  "language": "english",
   "slug": "server-api-url",
-  "id": "YIaKrUxDlcIGSKGv",
-  "dependencies": {
-    "port-conventions": "0.0.1"
-  },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "server-api-url",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668333116891,
+    "operationDependenciesIndexed": [
+      "publicEnvironmentVariables",
+      "publicLocalEnvironmentVariables",
+      "ports"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/interfaces/api",
+    "markdown": "Operation that exports the api url that the api should be able to be found at, according to the users environment, the typerepo convention and your public environment variables.\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 3,
+        "lines": 29,
+        "characters": 909,
+        "bytes": 909
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 114,
+        "characters": 2849,
+        "bytes": 2849
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 18,
+        "characters": 508,
+        "bytes": 508
+      },
+      "size": {
+        "bytes": 4266,
+        "characters": 4266,
+        "lines": 161,
+        "numberOfFiles": 7
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

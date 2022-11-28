@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668331939354,
+  "updatedAt": 1668331939354,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331939354,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "categorizeFiles",
+  "slug": "categorize-files",
+  "operationRelativeTypescriptFilePath": "src/categorizeFiles.ts",
+  "type": {
+    "rawType": "({ basePath, type, ignoreIndexFiles, }: { basePath: string | string[]; ignoreIndexFiles?: boolean | undefined; type?: \"code\" | \"data\" | \"text\" | undefined; }) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/Operation\").CategorizedFilePaths>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async ({\n  basePath,\n  type,\n  ignoreIndexFiles,\n}: {\n  basePath: string | string[];\n  /**\n   * ignore index files or not\n   */\n  ignoreIndexFiles?: boolean;\n  /**\n   * if given, only search for files of a specific containing data type\n   */\n  type?: \"code\" | \"data\" | \"text\";\n}): Promise<CategorizedFilePaths> => {\n  const defaultIgnore = [\"node_modules\", databaseFolderName, buildFolderName];\n\n  const filePaths = (\n    await explore({\n      basePath,\n      extension: type ? (extensions[type] as SearchableExtension[]) : undefined,\n      ignore: ignoreIndexFiles\n        ? [\"index.ts\", \"index.tsx\", ...defaultIgnore]\n        : defaultIgnore,\n    })\n  ).map((x) => x.path);\n\n  return filePaths.reduce(\n    (categorizedFilePathsObject, filePath) => {\n      const fileType = determineFileType(filePath);\n      // console.log({ filePath, fileType });\n      if (!fileType) return categorizedFilePathsObject;\n\n      categorizedFilePathsObject[fileType].push(filePath);\n\n      return categorizedFilePathsObject;\n    },\n    { code: [] as string[], data: [] as string[], text: [] as string[] }\n  );\n}",
+  "description": "explores files in an operation within a specified location or from a specified type",
+  "id": "iwwlihphtqtaqusvwwpwcemw"
+}

@@ -1,0 +1,481 @@
+{
+  "createdAt": 1669639279807,
+  "updatedAt": 1669639279807,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639279807,
+  "id": "filecontentinfo",
+  "name": "FileContentInfo",
+  "slug": "filecontentinfo",
+  "operationRelativeTypescriptFilePath": "src/PathMetaData.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * Stuff you can find by reading the file\n */\nexport type FileContentInfo = {\n  /**\n   * a comment about this file or folder. Can be parsed from:\n   * - an associated markdown file and/or the top of the file (If they're both there, they're concatenated)\n   * - for folders, looks for README.md\n   */\n  mainComment?: TsComment;\n  /**\n   * filename including extension, if the path is not a folder\n   */\n  fullFileName?: string;\n  /**\n   * categorized sizes for the file(s)\n   */\n  sizes: FolderSummary;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Stuff you can find by reading the file",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "mainComment": {
+          "$ref": "#/definitions/TsComment",
+          "description": "a comment about this file or folder. Can be parsed from:\n- an associated markdown file and/or the top of the file (If they're both there, they're concatenated)\n- for folders, looks for README.md"
+        },
+        "fullFileName": {
+          "type": "string",
+          "description": "filename including extension, if the path is not a folder"
+        },
+        "sizes": {
+          "$ref": "#/definitions/FolderSummary",
+          "description": "categorized sizes for the file(s)"
+        }
+      },
+      "required": [
+        "sizes"
+      ],
+      "additionalProperties": false,
+      "description": "Stuff you can find by reading the file"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Stuff you can find by reading the file",
+      "properties": [
+        {
+          "name": "mainComment",
+          "required": false,
+          "schema": {
+            "fullComment": "a comment about this file or folder. Can be parsed from:\n- an associated markdown file and/or the top of the file (If they're both there, they're concatenated)\n- for folders, looks for README.md\n\ncomments are basically one-or-multi-line human content inside of typescript files, so it's a very important to do something useful with them.\n\n\nThe convention should be that single-line comments should start with that. This then becomes the type of the comment. You can also put multiple prefixes at the start.\n\nExample:\n\n`// TODO: NB: this is a todo but its also important`\n\nMultiline comments can also have one or multiple types in their text, but they should not be split into multiple comments as the context could be needed some times.\n\n\n\nThere are also some other things comments can say about statements, but these should be inside the frontmatter, and are much more flexible.\n- classified[0-10] indicating level of classification. This way I can share subsets of the codebase, maybe...\n- privacy\n- ...?\n\nNB: with the current setup we can also parse `.md` files as being a TsComment, keep it that way!\n\nNB: comments are part of the code, so they should always be in English!",
+            "nb": "with the current setup we can also parse `.md` files as being a TsComment, keep it that way!",
+            "properties": [
+              {
+                "name": "operationName",
+                "required": true,
+                "schema": {
+                  "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "type": "null"
+                }
+              },
+              {
+                "name": "projectRelativePath",
+                "required": true,
+                "schema": {
+                  "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationRelativePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "id",
+                "required": true,
+                "schema": {
+                  "fullComment": "unique id of the model",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "name",
+                "required": true,
+                "schema": {
+                  "fullComment": "name (identifier) of the model",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "slug",
+                "required": true,
+                "schema": {
+                  "fullComment": "kebab-case variant of the name",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationRelativeTypescriptFilePath",
+                "required": true,
+                "schema": {
+                  "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "comment",
+                "required": true,
+                "schema": {
+                  "fullComment": "the content of the comment in markdown, without frontmatter\n\na string that is known to contain markdown.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "parameters",
+                "required": true,
+                "schema": {
+                  "fullComment": "parameters destructured from the frontmatter of the parsed markdown (if comment is not a oneliner, otherwise it'll be empty)\n\nOur version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+                  "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "types",
+                "required": true,
+                "schema": {
+                  "fullComment": "These are the type indicators that were found in this single or multiline comment. Can be multiple.",
+                  "items": [
+                    {
+                      "schema": {
+                        "enum": [
+                          "todo",
+                          "discussion",
+                          "idea",
+                          "later",
+                          "nb",
+                          "title",
+                          "section",
+                          "description"
+                        ],
+                        "fullComment": "special line prefixes:\n\n**Developer related comments**\n\n- TODO: for developer to know what to do\n- DISCUSSION: for developer to state that discussion is needed\n- IDEA: for developer to state ideas\n- LATER: for developer to mark as thing that needs to be done later\n- NB: for developer to add a note\n\n**Form related comments**\n\n- TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n- SECTION: start a new section in the form from this point, the value behind here can be the title\n- DESCRIPTION: if available, will be used as description of the form input",
+                        "type": "string"
+                      },
+                      "name": "CommentType"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "firstLine",
+                "required": true,
+                "schema": {
+                  "fullComment": "first line of the comment",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "lastLine",
+                "required": true,
+                "schema": {
+                  "fullComment": "last line of the comment",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "statementName",
+                "required": false,
+                "schema": {
+                  "fullComment": "statement name the comment belongs to",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "rawStatement",
+                "required": false,
+                "schema": {
+                  "fullComment": "raw statement text the comment belongs to",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "fullFileName",
+          "required": false,
+          "schema": {
+            "fullComment": "filename including extension, if the path is not a folder",
+            "type": "string"
+          }
+        },
+        {
+          "name": "sizes",
+          "required": true,
+          "schema": {
+            "fullComment": "categorized sizes for the file(s)\n\nobjective size measurements of all files in a folder\n\nsummary for a folder should contain file-summaries for different filetypes and an overal file summary",
+            "properties": [
+              {
+                "name": "size",
+                "required": true,
+                "schema": {
+                  "fullComment": "type interface that can be used to summarize multiple files",
+                  "properties": [
+                    {
+                      "name": "numberOfFiles",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if this is about multiple files, the number of files is specified here",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "characters",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of characters",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "lines",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of lines",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "bytes",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of bytes",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "linesPerFile",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of lines per file (averaged)",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "charactersPerLine",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of characters per line (averaged)",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "bytesPerCharacter",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of bytes per character",
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "textSize",
+                "required": true,
+                "schema": {
+                  "fullComment": "type interface that can be used to summarize multiple files",
+                  "properties": [
+                    {
+                      "name": "numberOfFiles",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if this is about multiple files, the number of files is specified here",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "characters",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of characters",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "lines",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of lines",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "bytes",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of bytes",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "linesPerFile",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of lines per file (averaged)",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "charactersPerLine",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of characters per line (averaged)",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "bytesPerCharacter",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of bytes per character",
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "dataSize",
+                "required": true,
+                "schema": {
+                  "fullComment": "type interface that can be used to summarize multiple files",
+                  "properties": [
+                    {
+                      "name": "numberOfFiles",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if this is about multiple files, the number of files is specified here",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "characters",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of characters",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "lines",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of lines",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "bytes",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of bytes",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "linesPerFile",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of lines per file (averaged)",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "charactersPerLine",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of characters per line (averaged)",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "bytesPerCharacter",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of bytes per character",
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "codeSize",
+                "required": true,
+                "schema": {
+                  "fullComment": "type interface that can be used to summarize multiple files",
+                  "properties": [
+                    {
+                      "name": "numberOfFiles",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if this is about multiple files, the number of files is specified here",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "characters",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of characters",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "lines",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of lines",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "bytes",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "amount of bytes",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "linesPerFile",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of lines per file (averaged)",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "charactersPerLine",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of characters per line (averaged)",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "bytesPerCharacter",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "rounded, amount of bytes per character",
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "FileContentInfo",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

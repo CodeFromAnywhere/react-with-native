@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379212890,
-  "updatedAt": 1667379212890,
+  "createdAt": 1668752460935,
+  "updatedAt": 1668752460935,
   "deletedAt": 0,
-  "createdFirstAt": 1667379212890,
+  "createdFirstAt": 1668752460935,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(options: {\n  /**\n   * if you are using a sensible monorepo, put the packages with tailwind-based ui here\n   */\n  packages?: string[] /**\n  if you are using any tailwind-based node-modules, put them here.\n */;\n  modules?: string[];\n  /**\n *  if this is a yarn workspace, put true here\n\n */\n  isWorkspace?: boolean;\n}) => {\n  const packages =\n    options.packages?.map((module) => {\n      return `../../packages/${module}/src/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  const modules =\n    options.modules?.map((module) => {\n      return options.isWorkspace\n        ? `../../node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`\n        : `./node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  return packages?.concat(modules);\n}",
+  "value": "(options: {\n  /**\n   * if you are using a sensible v1 monorepo, put the packages with tailwind-based ui here\n   */\n  packages?: string[] /**\n  if you are using any tailwind-based node-modules, put them here.\n */;\n  modules?: string[];\n  /**\n *  if this is a yarn workspace, put true here\n\n */\n  isWorkspace?: boolean;\n}) => {\n  const packages =\n    options.packages?.map((module) => {\n      return `../../packages/${module}/src/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  const modules =\n    options.modules?.map((module) => {\n      return options.isWorkspace\n        ? `../../node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`\n        : `./node_modules/${module}/{src,build,dist}/**/*.{ts,tsx,js,jsx}`;\n    }) || [];\n\n  return packages?.concat(modules);\n}",
   "description": "",
-  "id": "gkwqxcpopsebhrnjtabkzrlm"
+  "id": "uvgbzclrcfkwfqgzfpuirjcs"
 }

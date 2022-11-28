@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668152086567,
-  "updatedAt": 1668152086567,
+  "createdAt": 1669385139804,
+  "updatedAt": 1669385139804,
   "deletedAt": 0,
-  "createdFirstAt": 1668152086567,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385139804,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/editors/SubtextContainer.tsx",
   "commentsInside": [],
   "rawText": " (props: {\n  /**\n   * raw markdown that should be converted into a subtext\n   */\n  rawMarkdown: string;\n  subtextConfig: SubtextConfig;\n}) => {\n  const { rawMarkdown, subtextConfig } = props;\n\n  if (!subtextConfig.isEnabled) return null;\n  const subtext = getSubtext(rawMarkdown, subtextConfig);\n  return (\n    <div\n      contentEditable={false}\n      spellCheck={false}\n      autoCorrect=\"false\"\n      data-is-augmentation=\"true\"\n      style={{ fontSize: 8, backgroundColor: \"#CCC\", padding: 5 }}\n    >\n      {subtext}\n    </div>\n  );\n}",
@@ -71,6 +66,39 @@
                         "schema": {
                           "properties": [
                             {
+                              "name": "language",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "english",
+                                  "dutch",
+                                  "nepali",
+                                  "portuguese",
+                                  "brazilian",
+                                  "german",
+                                  "french",
+                                  "spanish",
+                                  "italian",
+                                  "norwegian",
+                                  "swedish",
+                                  "danish",
+                                  "vietnamese",
+                                  "indonesian",
+                                  "southAfrican",
+                                  "tokiPona",
+                                  "hindi",
+                                  "mandarin",
+                                  "arabic",
+                                  "bengali",
+                                  "urdu",
+                                  "japanese",
+                                  "swahili"
+                                ],
+                                "fullComment": "all currently supported languages",
+                                "type": "string"
+                              }
+                            },
+                            {
                               "name": "showAlternative",
                               "required": false,
                               "schema": {
@@ -126,7 +154,21 @@
                   "required": false,
                   "schema": {
                     "fullComment": "show definitions of words occuring in this paragraph",
-                    "items": [],
+                    "items": [
+                      {
+                        "schema": {
+                          "enum": [
+                            "critical",
+                            "high",
+                            "medium",
+                            "low"
+                          ],
+                          "fullComment": "",
+                          "type": "string"
+                        },
+                        "name": "WordPriority"
+                      }
+                    ],
                     "type": "array"
                   }
                 },
@@ -135,7 +177,43 @@
                   "required": false,
                   "schema": {
                     "fullComment": "Related stuff related to this paragraph, e.g. other articles/markdown",
-                    "items": [],
+                    "items": [
+                      {
+                        "schema": {
+                          "fullComment": "",
+                          "properties": [
+                            {
+                              "name": "type",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "image",
+                                  "asset",
+                                  "pages",
+                                  "data",
+                                  "code"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "quantity",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "single",
+                                  "short",
+                                  "all"
+                                ],
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": "SubtextRelatedThing"
+                      }
+                    ],
                     "type": "array"
                   }
                 }
@@ -173,5 +251,5 @@
     "linesPerFile": 23,
     "numberOfFiles": 1
   },
-  "id": "egpvkvemxwwzexsucifbugjl"
+  "id": "lkgpcuopaanjxutlqsgwqhre"
 }

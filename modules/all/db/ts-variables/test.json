@@ -1,0 +1,44 @@
+{
+  "createdAt": 1666258929835,
+  "updatedAt": 1666258929835,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258929835,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "test",
+  "slug": "test",
+  "operationRelativeTypescriptFilePath": "src/test.ts",
+  "type": {
+    "rawType": "(() => Promise<boolean>)[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "value": "[\n  makeTest(\n    // set minify to smth\n    async () =>\n      forAllFolders({\n        basePath: getPathsWithOperations(),\n        type: \"operations\",\n        shell: true,\n        callback: (folderPath, index) => {\n          return true;\n          //  setJsonKey({\n          //   jsonPath: path.join(folderPath, \"package.json\"),\n          //   keyLocation: \"scripts.minify\",\n          //   value:\n          //     \"echo build/**/*.js | xargs -n1 sh -c 'terser --output build/${1#build/} --compress --mangle -- $1' argv0\",\n          // });\n        },\n      })\n  ),\n]",
+  "description": "",
+  "id": "shzokcpzqkwgxwpsdewdeadu"
+}

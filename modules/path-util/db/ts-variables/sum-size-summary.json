@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668331941076,
+  "updatedAt": 1668331941076,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331941076,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "sumSizeSummary",
+  "slug": "sum-size-summary",
+  "operationRelativeTypescriptFilePath": "src/getFolderSummary.ts",
+  "type": {
+    "rawType": "(filePaths: string[]) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/FolderSummary\").SizeSummary>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  filePaths: string[]\n): Promise<SizeSummary> => {\n  const sizeSummaries = await Promise.all(filePaths.map(getSizeSummary));\n  const summed = sumAllKeys(sizeSummaries, [\n    \"numberOfFiles\",\n    \"lines\",\n    \"characters\",\n    \"bytes\",\n  ]);\n  return summed;\n}",
+  "description": "",
+  "id": "pyerkkzspghmovebgfioblqj"
+}

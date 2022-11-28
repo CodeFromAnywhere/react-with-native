@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667378714189,
-  "updatedAt": 1667378714189,
+  "createdAt": 1669054955034,
+  "updatedAt": 1669054955034,
   "deletedAt": 0,
-  "createdFirstAt": 1667378714189,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669054955034,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/FileInput.tsx",
   "commentsInside": [],
   "rawText": " (props: { setBlobs: (blobs: Asset[]) => void }) => {\n  const { setBlobs } = props;\n  return (\n    <Input\n      type=\"file\"\n      multiple\n      onChange={(event) => {\n        const files = event.target.files;\n\n        if (!files) {\n          setBlobs([]);\n          return;\n        }\n\n        const fileArray = new Array(files.length)\n          .fill(null)\n          .map((_, index) => {\n            const file = files.item(index);\n\n            return file;\n          })\n          .filter(notEmpty);\n\n        const assetBlobs: Asset[] = fileArray.map((file) => {\n          const type = getTypeFromFileBlob(file);\n          const name = withoutExtension(file.name);\n\n          const asset: Asset = {\n            blobPath: URL.createObjectURL(file),\n            originalFilename: file.name,\n            blob: file,\n            type,\n            name,\n            sizeBytes: file.size,\n            uploadProgress: 0,\n          };\n\n          return asset;\n        });\n        setBlobs(assetBlobs);\n      }}\n    />\n  );\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 44,
     "numberOfFiles": 1
   },
-  "id": "eupwsohdllgflcepdodjusiu"
+  "id": "tomedcfitddbepezrakwtiiy"
 }

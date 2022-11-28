@@ -1,15 +1,15 @@
 {
-  "createdAt": 1668150020116,
-  "updatedAt": 1668150020116,
+  "createdAt": 1669639185561,
+  "updatedAt": 1669639185561,
   "deletedAt": 0,
-  "createdFirstAt": 1668150020116,
+  "createdFirstAt": 1669639185561,
   "id": "createbundleconfig",
   "name": "CreateBundleConfig",
   "slug": "createbundleconfig",
   "operationRelativeTypescriptFilePath": "src/CreateBundleConfig.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\nexport type CreateBundleConfig = {\n  /**\n   * If true, the structure of operation locations is kept the same but still inside packages/apps/modules.\n   */\n  keepStructure?: boolean;\n\n  /**\n   * Default information strategy\n   */\n  informationStrategy?: InformationStrategy;\n\n  /**\n   * Information strategy per model\n   *\n   * For example, this would ensure your diaries are not copied over to the bundle:\n   *\n   * ```json\n   * { \"Diary\": \"ignore\" }\n   * ```\n   *\n   * If you want to be certain something isn't included, instead of putting it into the model specific information strategy, you can also just put it in an operation that isn't required in the bundle.\n   *\n   * This parameter is especially useful if you want to change a information stategy for one model in specific.\n   */\n  modelInformationStrategy?: {\n    [modelName: string]: InformationStrategy;\n  };\n\n  /**\n   * After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be added or overwriting the data\n   */\n  additional_datasetSlugs?: Slug[];\n\n  /**\n   * After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be found in the then available data in the bundle, and will be filtered out.\n   */\n  filter_datasetSlugs?: Slug[];\n\n  /**\n   * If true, this bundleconfig will be skipped when using `generateAllBundles`\n   */\n  isDraft?: boolean;\n\n  /**\n   * if true, todos are also copied into their original location, which is in `packages` if it's not in an operation, or in the operation in any of the folders if it's an operation.\n   *\n   * The markdown-reader will then add them to a todo menu.\n   *\n   * NB: Only works in conjunction with `keepStructure`\n   */\n  keepTodos?: boolean;\n\n  bundles: FrontBackBundle[];\n  /**\n   * Generated, private by default. If they're already here, uses private/public setting as given.\n   *\n   * When generating, removes the ones that are not dependencies (of dependencies) of your standalone apps\n   */\n  dependencies?: OperationPrivacy[];\n\n  /**\n   * optional. Could also find the main file from here and use that as README.md\n   *\n   * Must be a relative path from project root. Can be multiple!\n   */\n  docsRelativeFolderPath?:\n    | ProjectRelativeFolderPath\n    | ProjectRelativeFolderPath[];\n\n  /**\n   * Optional. path to a readme file for the monorepo root.\n   *\n   * If not given, and if you did provide a path for docs, the main docs intro file will be taken\n   *\n   * Must be a relative path from project  root\n   */\n  readmeRelativeFilePath?: ProjectRelativeFilePath;\n\n  /**\n   * if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated\n   *\n   * can be handy if you're working with someone else...\n   */\n  foldersFromRepo?: string[];\n};",
+  "rawText": "\n\nexport type CreateBundleConfig = {\n  /**\n   * You can specify `Slug`s of other `BundleConfig`s here that this bundle should inherit from, recursively.\n   *\n   * Works a little like https://www.typescriptlang.org/tsconfig#extends\n   *\n   * Will only inherit the apps, packages, and modules, nothing else.\n   *\n   * # How it works\n   *\n   * 1) finds all unique `BundleConfig`s that need to be inherited, recursively,\n   * 2) make a `BundleSummary` of every `BundleConfig`\n   * 3) merge the `BundleSummary`s and omit duplicates\n   *\n   * TODO: Implement this\n   */\n  inheritFrom_bundleConfigSlugs?: Slug[];\n  /**\n   * If true, the structure of operation locations is kept the same but still inside packages/apps/modules.\n   */\n  keepStructure?: boolean;\n\n  keepCodestories?: boolean;\n  /**\n   * Default information strategy\n   */\n  informationStrategy?: InformationStrategy;\n\n  /**\n   * Information strategy per model\n   *\n   * For example, this would ensure your diaries are not copied over to the bundle:\n   *\n   * ```json\n   * { \"Diary\": \"ignore\" }\n   * ```\n   *\n   * If you want to be certain something isn't included, instead of putting it into the model specific information strategy, you can also just put it in an operation that isn't required in the bundle.\n   *\n   * This parameter is especially useful if you want to change a information stategy for one model in specific.\n   */\n  modelInformationStrategy?: {\n    [modelName: string]: InformationStrategy;\n  };\n\n  /**\n   * After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be added or overwriting the data\n   */\n  additional_datasetSlugs?: Slug[];\n\n  /**\n   * After applying the `informationStrategy`, and `modelInformationStrategy`, these datasets will be found in the then available data in the bundle, and will be filtered out.\n   */\n  filter_datasetSlugs?: Slug[];\n\n  /**\n   * If true, this bundleconfig will be skipped when using `generateAllBundles`\n   */\n  isDraft?: boolean;\n\n  /**\n   * if true, todos are also copied into their original location, which is in `packages` if it's not in an operation, or in the operation in any of the folders if it's an operation.\n   *\n   * The markdown-reader will then add them to a todo menu.\n   *\n   * NB: Only works in conjunction with `keepStructure`\n   */\n  keepTodos?: boolean;\n\n  bundles: FrontBackBundle[];\n  /**\n   * Generated, private by default. If they're already here, uses private/public setting as given.\n   *\n   * When generating, removes the ones that are not dependencies (of dependencies) of your standalone apps\n   */\n  dependencies?: OperationPrivacy[];\n\n  /**\n   * optional. Could also find the main file from here and use that as README.md\n   *\n   * Must be a relative path from project root. Can be multiple!\n   */\n  docsRelativeFolderPath?:\n    | ProjectRelativeFolderPath\n    | ProjectRelativeFolderPath[];\n\n  /**\n   * paths to image folders that should randomly be used as default headers or footers in the generated markdown.\n   */\n  imagesProjectRelativeFolderPaths?: ProjectRelativeFolderPath[];\n  /**\n   * Optional. path to a readme file for the monorepo root.\n   *\n   * If not given, and if you did provide a path for docs, the main docs intro file will be taken\n   *\n   * Must be a relative path from project  root\n   */\n  readmeRelativeFilePath?: ProjectRelativeFilePath;\n\n  /**\n   * if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated\n   *\n   * can be handy if you're working with someone else...\n   */\n  foldersFromRepo?: string[];\n};",
   "extensions": [],
   "isOperationIndex": false,
   "description": "",
@@ -19,9 +19,19 @@
     "typeDefinition": {
       "type": "object",
       "properties": {
+        "inheritFrom_bundleConfigSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          },
+          "description": "You can specify `Slug`s of other `BundleConfig`s here that this bundle should inherit from, recursively.\n\nWorks a little like https://www.typescriptlang.org/tsconfig#extends\n\nWill only inherit the apps, packages, and modules, nothing else.\n\n# How it works\n\n1) finds all unique `BundleConfig`s that need to be inherited, recursively, 2) make a `BundleSummary` of every `BundleConfig` 3) merge the `BundleSummary`s and omit duplicates\n\nTODO: Implement this"
+        },
         "keepStructure": {
           "type": "boolean",
           "description": "If true, the structure of operation locations is kept the same but still inside packages/apps/modules."
+        },
+        "keepCodestories": {
+          "type": "boolean"
         },
         "informationStrategy": {
           "$ref": "#/definitions/InformationStrategy",
@@ -83,6 +93,13 @@
           ],
           "description": "optional. Could also find the main file from here and use that as README.md\n\nMust be a relative path from project root. Can be multiple!"
         },
+        "imagesProjectRelativeFolderPaths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProjectRelativeFolderPath"
+          },
+          "description": "paths to image folders that should randomly be used as default headers or footers in the generated markdown."
+        },
         "readmeRelativeFilePath": {
           "$ref": "#/definitions/ProjectRelativeFilePath",
           "description": "Optional. path to a readme file for the monorepo root.\n\nIf not given, and if you did provide a path for docs, the main docs intro file will be taken\n\nMust be a relative path from project  root"
@@ -103,10 +120,35 @@
     "simplifiedSchema": {
       "properties": [
         {
+          "name": "inheritFrom_bundleConfigSlugs",
+          "required": false,
+          "schema": {
+            "fullComment": "You can specify `Slug`s of other `BundleConfig`s here that this bundle should inherit from, recursively.\n\nWorks a little like https://www.typescriptlang.org/tsconfig#extends\n\nWill only inherit the apps, packages, and modules, nothing else.\n\n# How it works\n\n1) finds all unique `BundleConfig`s that need to be inherited, recursively, 2) make a `BundleSummary` of every `BundleConfig` 3) merge the `BundleSummary`s and omit duplicates\n\nTODO: Implement this",
+            "todo": "Implement this",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
           "name": "keepStructure",
           "required": false,
           "schema": {
             "fullComment": "If true, the structure of operation locations is kept the same but still inside packages/apps/modules.",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "keepCodestories",
+          "required": false,
+          "schema": {
             "type": "boolean"
           }
         },
@@ -193,6 +235,135 @@
                 "schema": {
                   "fullComment": "This type can specify a frontend and backend that belong to each other. it doesn't include all operations that the ui or server are dependent on, they are calculated separately",
                   "properties": [
+                    {
+                      "name": "slug",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "kebab-case of the name, should be unique\n\nuse this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "language",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "english",
+                          "dutch",
+                          "nepali",
+                          "portuguese",
+                          "brazilian",
+                          "german",
+                          "french",
+                          "spanish",
+                          "italian",
+                          "norwegian",
+                          "swedish",
+                          "danish",
+                          "vietnamese",
+                          "indonesian",
+                          "southAfrican",
+                          "tokiPona",
+                          "hindi",
+                          "mandarin",
+                          "arabic",
+                          "bengali",
+                          "urdu",
+                          "japanese",
+                          "swahili"
+                        ],
+                        "fullComment": "all currently supported languages",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "createdAt",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "updatedAt",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "deletedAt",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "createdFirstAt",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.\n\nTime\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "operationName",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "null"
+                      }
+                    },
+                    {
+                      "name": "projectRelativePath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operationRelativePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "categoryStackCalculated",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+                        "nb": "Changing this value when updating/upserting, changes where the item is located!",
+                        "items": [
+                          {
+                            "schema": {
+                              "type": "string"
+                            },
+                            "name": null
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
                     {
                       "name": "operations",
                       "required": false,
@@ -341,6 +512,23 @@
             "fullComment": "optional. Could also find the main file from here and use that as README.md\n\nMust be a relative path from project root. Can be multiple!",
             "properties": [],
             "type": "object"
+          }
+        },
+        {
+          "name": "imagesProjectRelativeFolderPaths",
+          "required": false,
+          "schema": {
+            "fullComment": "paths to image folders that should randomly be used as default headers or footers in the generated markdown.",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "later this could be known by the frontend so it will render a ui to select a folder\n\nWe need to figure out how we can know all type types in between when getting the type definition schema, not only the final type. If I'm lucky there is a way to find it as a #ref in a consistent way.",
+                  "type": "string"
+                },
+                "name": "ProjectRelativeFolderPath"
+              }
+            ],
+            "type": "array"
           }
         },
         {

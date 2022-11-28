@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148861258,
-  "updatedAt": 1668148861258,
+  "createdAt": 1669312136801,
+  "updatedAt": 1669312136801,
   "deletedAt": 0,
-  "createdFirstAt": 1668148861258,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312136801,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/tests/upsertKeyValueMarkdown.test.ts",
   "commentsInside": [],
   "rawText": " () => {\n  const absolutePath = path.join(__dirname, \"../..\", \"assets\", \"test.md\");\n  const dbFileLocation: DbFileLocation = {\n    absolutePath,\n    modelName: \"Test\",\n    operationName: \"fs-orm\",\n    projectRelativePath: absolutePath,\n    operationRelativePath: absolutePath,\n  };\n\n  alterKeyValueMarkdown(dbFileLocation, (storedData) => {\n    const realStoredData = storedData as Storing<KeyValueMarkdownModelType>[];\n\n    const slug = \"upserted-item\";\n\n    const ids = {\n      id: slug,\n      name: humanCase(slug),\n      slug,\n    };\n\n    const storingItem: Storing<KeyValueMarkdownModelType> = {\n      ...ids,\n      comment: \"yoyoyo\",\n      isHeaderCalculated: false,\n      value: \"you are amazing\",\n      categoryStackCalculated,\n    };\n\n    const result = upsertKeyValueMarkdown(realStoredData, storingItem);\n    const { newStoredData, ...rest } = result;\n    console.log({ rest });\n    return result;\n  });\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 35,
     "numberOfFiles": 1
   },
-  "id": "wlbjotrluvfyusbaqcaioxnn"
+  "id": "svzlksagqblugwifmrybqyho"
 }

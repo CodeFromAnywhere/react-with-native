@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668332050561,
+  "updatedAt": 1668332050561,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332050561,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "allOperationsRemoveJsSrc",
+  "slug": "all-operations-remove-js-src",
+  "operationRelativeTypescriptFilePath": "src/allOperationsRemoveJsSrc.ts",
+  "type": {
+    "rawType": "(debug?: boolean | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (debug?: boolean) => {\n  await forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    command: \"[ -d \\\"src\\\" ] && find src -name '*.d.ts' -delete || echo 'hoi'\",\n    shell: true,\n  });\n\n  await forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    command: \"[ -d \\\"src\\\" ] && find src -name '*.js' -delete || echo 'hoi'\",\n    shell: true,\n  });\n\n  await forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    command:\n      \"[ -d \\\"src\\\" ] && find src -name '*.d.ts.map' -delete || echo 'hoi'\",\n    shell: true,\n  });\n}",
+  "description": "BEWARE! This removes all .d.ts, .js, and .d.ts.map files in your source folder!",
+  "id": "bzemjodccsqlzftgnykubgxv"
+}

@@ -1,0 +1,308 @@
+{
+  "createdAt": 1668334638296,
+  "updatedAt": 1668334638296,
+  "deletedAt": 0,
+  "createdFirstAt": 1668334638296,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/sendSms.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  options: MessageListInstanceCreateOptions\n): Promise<MessageInstance | undefined> => {\n  const { from: optionsFrom, ...otherOptions } = options;\n\n  const persona = await getPrimaryPersona();\n\n  if (!persona) {\n    return;\n  }\n\n  const { twilioAccountSid, twilioAuthToken, twilioFromPhoneNumber } = persona;\n\n  if (!twilioAccountSid || !twilioAuthToken) {\n    console.log(\"Please setup your Twilio credentials first\");\n    return;\n  }\n  const twilioClient = twilio(twilioAccountSid, twilioAuthToken);\n\n  const from = optionsFrom || twilioFromPhoneNumber;\n\n  if (!from) {\n    console.log(\n      \"Please provide a phonenumber to sent from, either in your OsConfig or in the sendSms options\"\n    );\n    return;\n  }\n\n  const message = await twilioClient.messages\n    .create({ from, ...otherOptions })\n    .catch((reason) => {\n      console.log(\"Sending sms failed\", { reason });\n\n      return undefined;\n    });\n\n  return message;\n}",
+  "name": "sendSms",
+  "slug": "send-sms",
+  "parameters": [
+    {
+      "name": "options",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "addressRetention": {
+            "type": "string",
+            "const": "retain"
+          },
+          "applicationSid": {
+            "type": "string"
+          },
+          "attempt": {
+            "type": "number"
+          },
+          "body": {
+            "type": "string"
+          },
+          "contentRetention": {
+            "type": "string",
+            "const": "retain"
+          },
+          "contentSid": {
+            "type": "string"
+          },
+          "contentVariables": {
+            "type": "string"
+          },
+          "forceDelivery": {
+            "type": "boolean"
+          },
+          "from": {
+            "type": "string"
+          },
+          "maxPrice": {
+            "type": "number"
+          },
+          "mediaUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "messagingServiceSid": {
+            "type": "string"
+          },
+          "persistentAction": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "provideFeedback": {
+            "type": "boolean"
+          },
+          "scheduleType": {
+            "type": "string",
+            "const": "fixed"
+          },
+          "sendAsMms": {
+            "type": "boolean"
+          },
+          "sendAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "shortenUrls": {
+            "type": "boolean"
+          },
+          "smartEncoded": {
+            "type": "boolean"
+          },
+          "statusCallback": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "validityPeriod": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "to"
+        ],
+        "additionalProperties": false,
+        "description": "Options to pass to create"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Options to pass to create",
+        "properties": [
+          {
+            "name": "addressRetention",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationSid",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attempt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentRetention",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentSid",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentVariables",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "forceDelivery",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "maxPrice",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mediaUrl",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "messagingServiceSid",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "persistentAction",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "provideFeedback",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "scheduleType",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sendAsMms",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sendAt",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shortenUrls",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "smartEncoded",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "statusCallback",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "validityPeriod",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Send sms\n\nRequires OS Config to have Twilio sid and auth token.\n\nReqruired options: `to` and `body`\n\n`to` is not required, but will overwrite the one you specified in your `OsConfig`",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/node_modules/twilio/lib/rest/api/v2010/account/message\").MessageInstance | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1121,
+    "lines": 44,
+    "bytes": 1121,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 44,
+    "numberOfFiles": 1
+  },
+  "id": "wzxbupnylmfgyafqgxjoervj"
+}

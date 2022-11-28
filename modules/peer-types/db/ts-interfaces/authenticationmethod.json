@@ -1,0 +1,115 @@
+{
+  "createdAt": 1669384887972,
+  "updatedAt": 1669384887972,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384887972,
+  "id": "authenticationmethod",
+  "name": "AuthenticationMethod",
+  "slug": "authenticationmethod",
+  "operationRelativeTypescriptFilePath": "src/AuthenticationMethjod.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type AuthenticationMethod = {\n  /**\n   * NB: Not all are supported yet\n   */\n  method: AuthenticationMethodMethod;\n  /**\n   * most of the time, this is a username, but can also be phone number or email or so\n   */\n  handle: string;\n  /**\n   * This can be a password or token, depending on the method.\n   *\n   * In case of OTP, this isn't required (e.g. for `phoneNumber`)\n   */\n  encryptedCredential?: string;\n  /**\n   * one time password code, that will be sent to email or sms (or in the future other ways)\n   */\n  otp?: number;\n  /**\n   * If OTP is not filled in yet, will be false, otherwise true\n   */\n  isAuthenticated: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/AuthenticationMethodMethod",
+          "description": "NB: Not all are supported yet"
+        },
+        "handle": {
+          "type": "string",
+          "description": "most of the time, this is a username, but can also be phone number or email or so"
+        },
+        "encryptedCredential": {
+          "type": "string",
+          "description": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)"
+        },
+        "otp": {
+          "type": "number",
+          "description": "one time password code, that will be sent to email or sms (or in the future other ways)"
+        },
+        "isAuthenticated": {
+          "type": "boolean",
+          "description": "If OTP is not filled in yet, will be false, otherwise true"
+        }
+      },
+      "required": [
+        "method",
+        "handle",
+        "isAuthenticated"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "method",
+          "required": true,
+          "schema": {
+            "enum": [
+              "usernamePassword",
+              "phoneNumber",
+              "email",
+              "apple",
+              "google",
+              "facebook",
+              "twitter",
+              "linkedin",
+              "github"
+            ],
+            "fullComment": "NB: Not all are supported yet\n\nUsername + password should be the default\n\nEmail OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n\nAll others can also act as authentication methods, but the token shouldn't be stored",
+            "nb": "Not all are supported yet",
+            "type": "string"
+          }
+        },
+        {
+          "name": "handle",
+          "required": true,
+          "schema": {
+            "fullComment": "most of the time, this is a username, but can also be phone number or email or so",
+            "type": "string"
+          }
+        },
+        {
+          "name": "encryptedCredential",
+          "required": false,
+          "schema": {
+            "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "otp",
+          "required": false,
+          "schema": {
+            "fullComment": "one time password code, that will be sent to email or sms (or in the future other ways)",
+            "type": "number"
+          }
+        },
+        {
+          "name": "isAuthenticated",
+          "required": true,
+          "schema": {
+            "fullComment": "If OTP is not filled in yet, will be false, otherwise true",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "AuthenticationMethod",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

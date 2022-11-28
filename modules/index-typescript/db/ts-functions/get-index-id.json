@@ -1,0 +1,57 @@
+{
+  "createdAt": 1669055592630,
+  "updatedAt": 1669055592630,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055592630,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getIndexId.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  filePath: string,\n  name: string\n): Promise<TsIndexModelType | undefined> => {\n  const operationPathParse = getOperationPathParse(filePath);\n  if (!operationPathParse) return;\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) return;\n\n  const { operationRelativeTypescriptFilePath, relativePathFromProjectRoot } =\n    operationPathParse;\n\n  // TODO: not sure if the projectRelativepath is correc,t that is probably needs to be a path to the db file!\n  const tsIndexModelType: TsIndexModelType = {\n    operationName: operationPathParse.operationName || null,\n    operationRelativeTypescriptFilePath,\n    // TODO: FIX\n    projectRelativePath: relativePathFromProjectRoot,\n    // operationName: \"\",\n    // operationRelativePath: \"\",\n    // projectRelativePath: \"\",\n    // operationRelativeTypescriptFilePath: \"\",\n    // srcFileId: \"\",\n\n    id: generateId(),\n    name,\n    slug: kebabCase(name),\n  };\n\n  return tsIndexModelType;\n}",
+  "name": "getIndexId",
+  "slug": "get-index-id",
+  "parameters": [
+    {
+      "name": "filePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "name",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/model-types/build/TsIndexModelType\").TsIndexModelType | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 974,
+    "lines": 31,
+    "bytes": 974,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "id": "rlwwimfvupgptedsfysufhrh"
+}

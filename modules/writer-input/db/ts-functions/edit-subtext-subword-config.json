@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668152075470,
-  "updatedAt": 1668152075470,
+  "createdAt": 1669385122680,
+  "updatedAt": 1669385122680,
   "deletedAt": 0,
-  "createdFirstAt": 1668152075470,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385122680,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/config/editSubtextSubwordConfig.ts",
   "commentsInside": [],
   "rawText": " (\n  subtextConfig: SubtextConfig,\n  subwordConfig: SubwordConfig\n) => {\n  return { subtextConfig, subwordConfig };\n}",
@@ -43,6 +38,39 @@
                 {
                   "schema": {
                     "properties": [
+                      {
+                        "name": "language",
+                        "required": true,
+                        "schema": {
+                          "enum": [
+                            "english",
+                            "dutch",
+                            "nepali",
+                            "portuguese",
+                            "brazilian",
+                            "german",
+                            "french",
+                            "spanish",
+                            "italian",
+                            "norwegian",
+                            "swedish",
+                            "danish",
+                            "vietnamese",
+                            "indonesian",
+                            "southAfrican",
+                            "tokiPona",
+                            "hindi",
+                            "mandarin",
+                            "arabic",
+                            "bengali",
+                            "urdu",
+                            "japanese",
+                            "swahili"
+                          ],
+                          "fullComment": "all currently supported languages",
+                          "type": "string"
+                        }
+                      },
                       {
                         "name": "showAlternative",
                         "required": false,
@@ -99,7 +127,21 @@
             "required": false,
             "schema": {
               "fullComment": "show definitions of words occuring in this paragraph",
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "enum": [
+                      "critical",
+                      "high",
+                      "medium",
+                      "low"
+                    ],
+                    "fullComment": "",
+                    "type": "string"
+                  },
+                  "name": "WordPriority"
+                }
+              ],
               "type": "array"
             }
           },
@@ -108,7 +150,43 @@
             "required": false,
             "schema": {
               "fullComment": "Related stuff related to this paragraph, e.g. other articles/markdown",
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [
+                      {
+                        "name": "type",
+                        "required": true,
+                        "schema": {
+                          "enum": [
+                            "image",
+                            "asset",
+                            "pages",
+                            "data",
+                            "code"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "quantity",
+                        "required": true,
+                        "schema": {
+                          "enum": [
+                            "single",
+                            "short",
+                            "all"
+                          ],
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "SubtextRelatedThing"
+                }
+              ],
               "type": "array"
             }
           }
@@ -152,8 +230,55 @@
             "required": false,
             "schema": {
               "fullComment": "show subwords for one or multiple languages",
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "enum": [
+                      "english",
+                      "dutch",
+                      "nepali",
+                      "portuguese",
+                      "brazilian",
+                      "german",
+                      "french",
+                      "spanish",
+                      "italian",
+                      "norwegian",
+                      "swedish",
+                      "danish",
+                      "vietnamese",
+                      "indonesian",
+                      "southAfrican",
+                      "tokiPona",
+                      "hindi",
+                      "mandarin",
+                      "arabic",
+                      "bengali",
+                      "urdu",
+                      "japanese",
+                      "swahili"
+                    ],
+                    "fullComment": "all currently supported languages",
+                    "type": "string"
+                  },
+                  "name": "Language"
+                }
+              ],
               "type": "array"
+            }
+          },
+          {
+            "name": "translationsViewMode",
+            "required": false,
+            "schema": {
+              "enum": [
+                "disabled",
+                "tooltip",
+                "context",
+                "subword"
+              ],
+              "fullComment": "",
+              "type": "string"
             }
           },
           {
@@ -165,6 +290,20 @@
             }
           },
           {
+            "name": "occurenceAmountViewMode",
+            "required": false,
+            "schema": {
+              "enum": [
+                "disabled",
+                "tooltip",
+                "context",
+                "subword"
+              ],
+              "fullComment": "Show occurrence amount\n\n",
+              "type": "string"
+            }
+          },
+          {
             "name": "blurMode",
             "required": false,
             "schema": {
@@ -173,6 +312,20 @@
                 "special"
               ],
               "fullComment": "Blur the word unless it's special for one reason or another. Might be useful for skimming (or maybe more)",
+              "type": "string"
+            }
+          },
+          {
+            "name": "audioMode",
+            "required": false,
+            "schema": {
+              "enum": [
+                "disabled",
+                "tooltip",
+                "context",
+                "subword"
+              ],
+              "fullComment": "Audio for `WordMatrix` word can be played\n\n",
               "type": "string"
             }
           },
@@ -213,7 +366,7 @@
   ],
   "description": "Interesting... In order to auto-generate a form for this, we need to combine the two into a simple function that does NOTHING. Why? Because we can't store it in the database, it is better to keep this in the frontend...\n\nNB: DEPRECATED: TODO: function isn't used. Since the indexation didn't go right, the solution with a `SimplifiedSchemaForm` ended up being easier. Keeping it here because I need to fix the indexation nonetheless.",
   "returnType": {
-    "rawType": "{ subtextConfig: import(\"/Users/king/King/operations/tools/writer/writer-types/build/types\").SubtextConfig; subwordConfig: import(\"/Users/king/King/operations/tools/writer/writer-types/build/types\").SubwordConfig; }",
+    "rawType": "{ subtextConfig: import(\"/Users/king/King/operations/tools/purpose/writer/writer-types/build/types\").SubtextConfig; subwordConfig: import(\"/Users/king/King/operations/tools/purpose/writer/writer-types/build/types\").SubwordConfig; }",
     "typeDefinition": {
       "type": "object",
       "properties": {
@@ -887,5 +1040,5 @@
     "linesPerFile": 8,
     "numberOfFiles": 1
   },
-  "id": "qwtwhdiloccctkoqtupmhlyo"
+  "id": "tkadhvurpvpfomtpvgivwbyn"
 }

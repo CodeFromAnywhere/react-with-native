@@ -1,4 +1,4 @@
-import { MarkdownChunk } from "code-types";
+import { MarkdownChunk } from "markdown-types";
 /**
  * Get all paragraphs (`content` values) recursively from a `MarkdownChunk`
  */

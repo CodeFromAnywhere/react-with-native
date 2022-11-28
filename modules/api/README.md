@@ -1,6 +1,6 @@
 # Api
 
-api (`OperationClassification` js)
+api (`OperationClassification` cjs)
 
 Operation that makes the typerepo API exposable on the frontend in a completely typesafe way.
 
@@ -19,24 +19,17 @@ https://youtu.be/gGfGVvRn5xw
 
 # Api reference
 
+## 📄 queries (exported const)
+
+This object contains a react-query `useQuery` hook for every api function
+
+
 ## 📄 api (exported const)
 
 This object contains an api function for every function in the backend
 
 
 NB: only use this if you can access localStorage of the browser or the app. This means this won't work in node or in getStaticProps functions or so
-
-
-## 📄 queries (exported const)
-
-This object contains a react-query `useQuery` hook for every api function
-
-
-## 📄 apiWithConfig (exported const)
-
-This object contains a api function for every function in the backend
-
-The difference from `api` is that it allows you to also insert custom api configurations
 
 
 ## getGetApiUrl()
@@ -51,6 +44,13 @@ returns something like `[apiUrl]/[apiFunctionName][queryString]`
 | apiUrl | string |  |,| apiFunctionName | string |  |,| query | { [key: string]: {  } } |  |
 | **Output** | `String`   |    |
 
+
+
+## 📄 apiWithConfig (exported const)
+
+This object contains a api function for every function in the backend
+
+The difference from `api` is that it allows you to also insert custom api configurations
 
 
 ## 📄 AUTH_TOKEN_STORAGE_KEY (exported const)

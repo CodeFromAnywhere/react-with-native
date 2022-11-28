@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261453428,
-  "updatedAt": 1666261453428,
+  "createdAt": 1669055914814,
+  "updatedAt": 1669055914814,
   "deletedAt": 0,
-  "createdFirstAt": 1666261453428,
+  "createdFirstAt": 1669055914814,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "file-input",
   "operationRelativeTypescriptFilePath": "src/file/FileInput.tsx",
   "type": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form-inputs/src/file/FileInput\").FileInputType>",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form-inputs/src/file/FileInput\").FileInputType>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -20,5 +20,5 @@
   },
   "value": "({\n  extra,\n  onChange,\n}) => {\n  const { getRootProps, getInputProps, acceptedFiles } = useDropzone({});\n\n  useEffect(() => {\n    onChange(acceptedFiles);\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [acceptedFiles]);\n\n  const files = acceptedFiles.map((file: FileWithPath) => (\n    <Li key={file.path} className=\"text-sm\">\n      {file.path}\n    </Li>\n  ));\n\n  return (\n    <Div\n      className=\"flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md\"\n      {...getRootProps()}\n    >\n      <Div className=\"space-y-1 text-center\">\n        {/* <Icon /> */}\n        <Div className=\"flex text-sm text-center text-gray-600\">\n          <Label\n            htmlFor=\"file-upload\"\n            className=\"relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500\"\n          />\n          <Input id=\"file-upload\" type=\"file\" {...getInputProps()} />\n        </Div>\n        <P className=\"text-xs text-gray-500\">PNG, JPG, GIF en PDF tot 15MB</P>\n        {acceptedFiles.length > 0 ? (\n          <Aside>\n            <Ul>{files}</Ul>\n          </Aside>\n        ) : null}\n      </Div>\n    </Div>\n  );\n}",
   "description": "",
-  "id": "uzxccyumeijphfqbzasteiay"
+  "id": "bffbwtndhlkkvaizwrndqngz"
 }

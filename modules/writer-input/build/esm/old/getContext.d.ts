@@ -1,5 +1,6 @@
 export declare type TextEditingContext = {
     wordAtPosition: string;
+    positionIndex: number;
 };
 /**
  * Gets the current word you are typing from a text and the cursor position.

@@ -1,23 +1,26 @@
 {
-  "createdAt": 1666263144079,
-  "updatedAt": 1666263144079,
+  "createdAt": 1668717088431,
+  "updatedAt": 1668717088431,
   "deletedAt": 0,
-  "createdFirstAt": 1666263144079,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668717088431,
+  "isApiExposed": true,
   "isExported": true,
-  "operationRelativeTypescriptFilePath": "src/rest-util.ts",
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getFirstQueryStrings.ts",
   "commentsInside": [],
   "rawText": " (query: QueryableObject) => {\n  const queryStrings = Object.keys(query).map((key) => {\n    const value = query[key];\n    return Array.isArray(value) ? value[0] : value;\n  });\n\n  return queryStrings;\n}",
   "name": "getFirstQueryStrings",
   "slug": "get-first-query-strings",
-  "parameters": [],
-  "description": "NB: doesn't work in node.\n\nQuery keys can be string or string[] or undefined.\n\nThis function takes only the first string if it's an array...",
+  "parameters": [
+    {
+      "name": "query",
+      "schema": {
+        "$ref": "#/definitions/QueryableObject"
+      },
+      "required": true
+    }
+  ],
+  "description": "Query keys can be string or string[] or undefined.\n\nThis function takes only the first string if it's an array...",
   "returnType": {
     "rawType": "any",
     "typeCoverage": 0,
@@ -29,13 +32,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 341,
-    "lines": 12,
-    "bytes": 341,
+    "characters": 314,
+    "lines": 10,
+    "bytes": 314,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 28,
-    "linesPerFile": 12,
+    "charactersPerLine": 31,
+    "linesPerFile": 10,
     "numberOfFiles": 1
   },
-  "id": "rhajujdimkfovgopuglzyaan"
+  "id": "tkbrcomwgmpolfheqimpiobc"
 }

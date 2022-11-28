@@ -1,0 +1,56 @@
+{
+  "createdAt": 1669384992774,
+  "updatedAt": 1669384992774,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384992774,
+  "id": "frontmattervalue",
+  "name": "FrontmatterValue",
+  "slug": "frontmattervalue",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type FrontmatterValue =\n  | string\n  | number\n  | boolean\n  | string[]\n  | null\n  | undefined;",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "null"
+        },
+        {
+          "not": {}
+        }
+      ]
+    },
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "FrontmatterValue",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

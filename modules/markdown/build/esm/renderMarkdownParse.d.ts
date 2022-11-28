@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { MarkdownParse } from "code-types";
+import { MarkdownParse } from "markdown-types";
 import { MarkdownParseRenderConfig } from "./types.js";
 /**
  * renders the MardkownParse interface (including frontmatter)

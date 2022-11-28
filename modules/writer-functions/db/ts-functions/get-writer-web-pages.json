@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669385033605,
+  "updatedAt": 1669385033605,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385033605,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getWriterWebPages.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const projectRelativePaths = (await getProjectRelativePaths()) || [];\n\n  console.log({ results: projectRelativePaths.length });\n  const writerWebPages: WriterWebPage[] = projectRelativePaths.map(\n    (projectRelativeFilePath) => {\n      const writerWebPage: WriterWebPage = {\n        pageData: { projectRelativeFilePath },\n        queryPath: projectRelativeFilePath,\n      };\n      return writerWebPage;\n    }\n  );\n\n  return writerWebPages;\n}",
+  "name": "getWriterWebPages",
+  "slug": "get-writer-web-pages",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 459,
+    "lines": 16,
+    "bytes": 459,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "swaaendkmtonspjnulfmapkx"
+}

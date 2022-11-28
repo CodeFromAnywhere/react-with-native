@@ -1,0 +1,145 @@
+{
+  "createdAt": 1669467094672,
+  "updatedAt": 1669467094672,
+  "deletedAt": 0,
+  "createdFirstAt": 1669467094672,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/findEmbeds.ts",
+  "commentsInside": [],
+  "rawText": " (markdownString: string): MarkdownEmbed[] => {\n  const result = flattenMarkdownString(\n    markdownString,\n    (token) => token.type === \"image\"\n  );\n\n  const embeds: MarkdownEmbed[] = result\n    .map((token) => {\n      if (token.type !== \"image\") return;\n\n      const markdownEmbed: MarkdownEmbed = {\n        alt: token.title,\n        src: token.href,\n        type: getTypeFromUrlOrPath(token.href),\n      };\n\n      return markdownEmbed;\n    })\n    .filter(notEmpty);\n\n  return embeds;\n}",
+  "name": "findEmbeds",
+  "slug": "find-embeds",
+  "parameters": [
+    {
+      "name": "markdownString",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "find all embedded assets",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownEmbed[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "alt": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "src": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "type": {
+            "enum": [
+              "video",
+              "audio",
+              "image",
+              "text",
+              "other"
+            ],
+            "x-enumNames": [
+              "video",
+              "audio",
+              "image",
+              "text",
+              "other"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "alt",
+          "src",
+          "type"
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [
+              {
+                "name": "alt",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "src",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "type",
+                "required": true,
+                "schema": {
+                  "enum": [
+                    "video",
+                    "audio",
+                    "image",
+                    "text",
+                    "other"
+                  ],
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 513,
+    "lines": 22,
+    "bytes": 513,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "ktjaetvyydceupgcvumpjict"
+}

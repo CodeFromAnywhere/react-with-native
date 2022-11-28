@@ -1,0 +1,87 @@
+{
+  "createdAt": 1668150643213,
+  "updatedAt": 1668150643213,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150643213,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "commentsInside": [],
+  "rawText": " (\n  importSpecifier: ImportSpecifier,\n  debug?: boolean,\n  /**\n   * Files it was already in (to prevent infinite loops)\n   */\n  fileStack?: string[]\n): TypeSpecifier | undefined => {\n  // NB: find the file where the import is defined\n\n  try {\n    const fileOfExport = importSpecifier\n      .getImportDeclaration()\n      .getModuleSpecifierSourceFile();\n\n    // NB: without the module source we can't know the type of this importspecifier\n    if (!fileOfExport) return;\n    const filePath = fileOfExport.getFilePath();\n    if (!filePath) return;\n\n    const realFileStack = fileStack || [];\n\n    if (realFileStack.includes(filePath)) {\n      console.log(\"Infinite loop found, returning...\", { filePath, fileStack });\n      return;\n    }\n\n    const newFileStack = realFileStack.concat(filePath);\n\n    // NB: in the source, find all exported stuff\n    const exportSymbols: Symbol[] = fileOfExport.getExportSymbols();\n\n    // NB: find the export with the same name as the import\n    const importedSymbol = exportSymbols.find(\n      (x) => x.getName() === importSpecifier.getName()\n    );\n\n    // NB: if the source doesn't contain any export with that name, we can't know its type\n    if (!importedSymbol) return;\n\n    /**\n     * NB: all ExportSpecifiers don't have a more specific SyntaxKind because they are imported.\n     * If there are any ExportSpecifiers with a matching ImportSpecifier, recurse on that!\n     */\n    const exportSpecifierNames = getExportSpecifierNames(importedSymbol);\n\n    if (exportSpecifierNames.length > 0) {\n      const importSpecifiers = getImportSpecifiersWithNames(\n        fileOfExport,\n        exportSpecifierNames\n      );\n\n      if (importSpecifiers.length > 1) {\n        // NB: warn if there is more than one as that would be strange\n\n        log(\"More than one importsSpecifiers with that name\", {\n          type: \"warning\",\n        });\n      }\n\n      if (importSpecifiers.length > 0 && newFileStack.length < 10) {\n        // console.log(`recursing`, { newFileStack, filePath });\n\n        // NB: recursion!\n        const first = importSpecifiers[0];\n        return getTypeFromImportSpecifierRecursive(first, debug, newFileStack);\n      } else {\n        if (debug)\n          console.log(\"Weird, no importspecifiers found for exportSpecifier!!\");\n        return;\n      }\n    }\n\n    // console.log({\n    //   fileOfExport: fileOfExport?.getFilePath(),\n    //   exportSymbols: exportSymbols?.map((x) => x.getName()),\n    //   importSpecifier: importSpecifier.getName(),\n    //   importedSymbol: importedSymbol?.getName(),\n    //   name: importSpecifier.getName(),\n    // });\n\n    return getDefaultSymbolType(importedSymbol, debug);\n  } catch (e) {\n    console.log(\"failed\");\n    return;\n  }\n}",
+  "name": "getTypeFromImportSpecifierRecursive",
+  "slug": "get-type-from-import-specifier-recursive",
+  "parameters": [],
+  "description": "Recursive function that gets the type specifier from an import specifier",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/typescript/get-imports-exports/src/util\").TypeSpecifier | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "type",
+            "value"
+          ],
+          "x-enumNames": [
+            "type",
+            "value"
+          ],
+          "type": "string"
+        },
+        "hasGeneric": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "optional": true
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "type",
+              "value"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "hasGeneric",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 2793,
+    "lines": 87,
+    "bytes": 2793,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 87,
+    "numberOfFiles": 1
+  },
+  "id": "dxmzjriasqhuytnhuyqvmhym"
+}

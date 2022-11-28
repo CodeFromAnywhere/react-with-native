@@ -1,7 +1,11 @@
 export declare const getFolderJs: <T extends string | undefined>(filePath: T) => T;
+export declare const getFileOrFolderName: <T extends string | undefined>(fileOrFolderPath: T) => T;
 export declare const isPathRelative: (path: string) => boolean;
 export declare const removeTrailingSlash: (p: string) => string;
-export declare const getSubExtension: (fileName: string) => string | undefined;
+/**
+ * Provide a filename including its extension, to get the subextension.
+ */
+export declare const getSubExtension: (filename: string) => string | undefined;
 /**
  * removes extension from the filename
  *

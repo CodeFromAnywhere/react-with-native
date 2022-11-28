@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668833465168,
+  "updatedAt": 1668833465168,
+  "deletedAt": 0,
+  "createdFirstAt": 1668833465168,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useSelect",
+  "slug": "use-select",
+  "operationRelativeTypescriptFilePath": "src/useSelect.tsx",
+  "type": {
+    "rawType": "<T extends unknown>(items?: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T>[] | undefined, initialValue?: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T> | undefined, withValue?: ((value: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T> | undefined) => void) | undefined) => [Component: () => JSX.Element, value: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T> | null, setValue: (value: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T> | null) => void]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends unknown>(\n  items?: Item<T>[],\n  initialValue?: Item<T>,\n  /**\n   * Optionally you can do other things with the value as well, like setting it to a global store\n   */\n  withValue?: (value: Item<T> | undefined) => void\n): [\n  Component: () => JSX.Element,\n  value: Item<T> | null,\n  setValue: (value: Item<T> | null) => void\n] => {\n  const realItems = items || [];\n  const [value, setValue] = useState<Item<T> | null>(initialValue || null);\n\n  const Component = () => (\n    <Select\n      className=\"bg-transparent\"\n      title=\"Test\"\n      onChange={(v) => {\n        setValue(v);\n\n        if (v) {\n          withValue?.(v);\n        }\n      }}\n      value={value}\n      options={realItems}\n    />\n  );\n  return [Component, value, setValue];\n}",
+  "description": "Create a value selector in a single line of code, including its state!\n\n# **Usage**\n\n```ts\nconst [SelectView, view, setView] = useSelect(views);\n```",
+  "id": "yrhetvtgmyolpcwfxaruarpq"
+}

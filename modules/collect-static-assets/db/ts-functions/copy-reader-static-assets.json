@@ -1,0 +1,63 @@
+{
+  "createdAt": 1669466953768,
+  "updatedAt": 1669466953768,
+  "deletedAt": 0,
+  "createdFirstAt": 1669466953768,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/copyReaderStaticAssets.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  operationBasePath: string,\n  /**\n   * non-reader webPages will be filtered out by checking if the projectRelativeFilePath exists on pageData and has the extension .md\n   */\n  allWebPages: WebPage<unknown>[]\n) => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n\n  const baseDestinationPath = path.join(\n    operationBasePath,\n    \"public\",\n    \"markdown-assets\"\n  );\n\n  if (fs.existsSync(baseDestinationPath)) {\n    //first clean up if it was generated before\n    await fs.rm(baseDestinationPath, { recursive: true });\n  }\n\n  const readerWebPages = allWebPages\n    .map((x) => ({\n      ...x,\n      pageData: x.pageData as null | { [key: string]: any },\n    }))\n    // filter out the WebPages that don't have a filePath ending on .md\n    .filter((x) => x.pageData?.projectRelativeFilePath?.endsWith(\".md\"))\n    .filter((x) =>\n      fs.existsSync(path.join(projectRoot, x.pageData?.projectRelativeFilePath))\n    )\n    .map((x) => x as ReaderWebPage);\n\n  console.log({ readerPagesThatExist: readerWebPages.length });\n  const absoluteAssetPaths =\n    (await findReaderStaticAssets(readerWebPages)) || [];\n\n  console.log({ foundAssetsThatExist: absoluteAssetPaths.length });\n  const copyPairs = absoluteAssetPaths.map((absoluteAssetPath) => {\n    const projectRelativeAssetPath = makeRelative(\n      absoluteAssetPath,\n      projectRoot\n    );\n\n    const absoluteDestinationPath = path.join(\n      baseDestinationPath,\n      projectRelativeAssetPath\n    );\n\n    return { absoluteSourcePath: absoluteAssetPath, absoluteDestinationPath };\n  });\n\n  await copyCopyPairs(copyPairs);\n\n  console.log(`Copied ${copyPairs.length} files into your public folder`);\n\n  // console.log({ copyPairs });\n}",
+  "name": "copyReaderStaticAssets",
+  "slug": "copy-reader-static-assets",
+  "parameters": [
+    {
+      "name": "operationBasePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "allWebPages",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/WebPage%3Cunknown%3E"
+        },
+        "description": "non-reader webPages will be filtered out by checking if the projectRelativeFilePath exists on pageData and has the extension .md"
+      },
+      "simplifiedSchema": {
+        "fullComment": "non-reader webPages will be filtered out by checking if the projectRelativeFilePath exists on pageData and has the extension .md",
+        "items": [],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1716,
+    "lines": 58,
+    "bytes": 1716,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 58,
+    "numberOfFiles": 1
+  },
+  "id": "vxdejibwiqnerpylpeqtnzkv"
+}

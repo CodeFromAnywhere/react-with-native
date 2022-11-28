@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1669467101064,
+    "updatedAt": 1669467101064,
+    "deletedAt": 0,
+    "createdFirstAt": 1669467101064,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/flattenMarkedTokenRecursive.ts",
+    "comment": "Recursively flatten a marked token and return something if a find function is met",
+    "rawStatement": "export const flattenMarkedTokenRecursive = (\n  token: marked.Token,\n  findFunction: (token: marked.Token) => boolean\n): marked.Token[] => {\n  if (findFunction(token)) {\n    return [token];\n  }\n\n  if (token.type === \"table\") {\n    const header = token.header\n      .map((token) => {\n        const result = token.tokens\n          .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n          .flat();\n        return result;\n      })\n      .flat();\n\n    const rows = token.rows\n      .map((row) => {\n        const result = row\n          .map((token) => {\n            const result = token.tokens\n              .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n              .flat();\n\n            return result;\n          })\n          .flat();\n\n        return result;\n      })\n      .flat();\n\n    return [header, rows].flat();\n  }\n\n  if (token.type === \"list\") {\n    const result = token.items\n      .map((token) => {\n        const result = token.tokens\n          .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n          .flat();\n        return result;\n      })\n      .flat();\n\n    return result;\n  }\n\n  if (\n    token.type === \"del\" ||\n    token.type === \"em\" ||\n    token.type === \"heading\" ||\n    token.type === \"link\" ||\n    token.type === \"paragraph\" ||\n    token.type === \"strong\"\n  ) {\n    const result = token.tokens\n      .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n      .flat();\n    return result;\n  }\n\n  return [];\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 3,
+    "lastLine": 5,
+    "id": "tckojgkxtrlbynunbdyqyolx"
+  }
+]

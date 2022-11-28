@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666260571233,
-  "updatedAt": 1666260571233,
+  "createdAt": 1668775442069,
+  "updatedAt": 1668775442069,
   "deletedAt": 0,
-  "createdFirstAt": 1666260571233,
+  "createdFirstAt": 1668775442069,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(\n  apiUrl: string,\n  apiFunctionName: string,\n  query: { [name: string]: string[] | string | undefined }\n) => {\n  const ending = \"GetApi\";\n  const apiPath = apiFunctionName.slice(\n    0,\n    apiFunctionName.length - ending.length\n  );\n\n  const queryString = Object.keys(query).length > 0 ? toQueryString(query) : \"\";\n  const url = `${apiUrl}/${apiPath}${queryString}`;\n  return url;\n}",
+  "value": "(\n  apiUrl: string,\n  apiFunctionName: string,\n  query: { [name: string]: string[] | string | undefined }\n) => {\n  const queryString = Object.keys(query).length > 0 ? toQueryString(query) : \"\";\n  const url = `${apiUrl}/function/${apiFunctionName}${queryString}`;\n  return url;\n}",
   "description": "gets an api url for a context get api\n\nreturns something like `[apiUrl]/[apiFunctionName][queryString]`",
-  "id": "ctdepvxjxnivjusmwkmumdir"
+  "id": "azoejqfzqvynfkazurhgeafj"
 }

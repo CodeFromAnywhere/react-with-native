@@ -1,5 +1,6 @@
+/// <reference types="react" />
 import { MappedObject } from "js-util";
-import { AugmentedWord } from "markdown-reader-types";
+import { AugmentedWord } from "augmented-word-types";
 import { TextEditingContext } from "../old/getContext";
 export declare const Completion: (props: {
     augmentedWord: AugmentedWord;

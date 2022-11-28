@@ -1,0 +1,51 @@
+{
+  "createdAt": 1669384993971,
+  "updatedAt": 1669384993971,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384993971,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (string: string) => {\n  const returnString = string?.includes(\",\") ? `\"${string}\"` : string;\n  return returnString;\n}",
+  "name": "quotedOrNot",
+  "slug": "quoted-or-not",
+  "parameters": [
+    {
+      "name": "string",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "For now, simply quote a string if it contains commas\n\nThere are probably more edgecases that need to be fixed here",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 232,
+    "lines": 6,
+    "bytes": 232,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 39,
+    "linesPerFile": 6,
+    "numberOfFiles": 1
+  },
+  "id": "jylcmtshvkcwtdvjeiuilwot"
+}

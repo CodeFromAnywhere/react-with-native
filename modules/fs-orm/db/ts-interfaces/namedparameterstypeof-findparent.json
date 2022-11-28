@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148842626,
-  "updatedAt": 1668148842626,
+  "createdAt": 1669312099013,
+  "updatedAt": 1669312099013,
   "deletedAt": 0,
-  "createdFirstAt": 1668148842626,
+  "createdFirstAt": 1669312099013,
   "id": "namedparameterstypeof-findparent",
   "name": "NamedParameters<typeof findParent>",
   "slug": "namedparameterstypeof-findparent",
@@ -51,7 +51,8 @@
                 "name": "categoryStackCalculated",
                 "required": true,
                 "schema": {
-                  "fullComment": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`\n\n",
+                  "fullComment": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+                  "nb": "Changing this value when updating/upserting, changes where the item is located!",
                   "items": [
                     {
                       "schema": {
@@ -111,7 +112,8 @@
           "name": "newCategoryStack",
           "required": true,
           "schema": {
-            "fullComment": "",
+            "fullComment": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+            "nb": "Changing this value when updating/upserting, changes where the item is located!",
             "items": [
               {
                 "schema": {

@@ -1,0 +1,52 @@
+{
+  "createdAt": 1668331940714,
+  "updatedAt": 1668331940714,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331940714,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getFolderSummary.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  filePath: string\n): Promise<SizeSummary> => {\n  const stat = await fs.stat(filePath);\n\n  const bytes = stat.size;\n  const characters = bytes;\n\n  const bytesPerCharacter = bytes / characters;\n  let lines = 1;\n  const charactersPerLine = characters / lines;\n  const numberOfFiles = 1;\n  let linesPerFile = lines;\n  if (bytes > 1024 * 1024) {\n    // NB: too big to watch content\n\n    return {\n      bytes,\n      lines: 0,\n      characters,\n      bytesPerCharacter,\n      charactersPerLine,\n      linesPerFile,\n      numberOfFiles,\n    };\n  }\n\n  const content = await fs.readFile(filePath, \"utf8\");\n  lines = content.split(\"\\n\").length;\n  linesPerFile = lines;\n\n  return {\n    bytes,\n    lines,\n    characters,\n    bytesPerCharacter,\n    charactersPerLine,\n    linesPerFile,\n    numberOfFiles,\n  };\n}",
+  "name": "getSizeSummary",
+  "slug": "get-size-summary",
+  "parameters": [
+    {
+      "name": "filePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "gets a size summary for a file path\n\nDoes not calculate this for files that are too big (bigger than 1MB)",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/FolderSummary\").SizeSummary>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 912,
+    "lines": 43,
+    "bytes": 912,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 43,
+    "numberOfFiles": 1
+  },
+  "id": "uufncghdlffytlgjpaefsxnc"
+}

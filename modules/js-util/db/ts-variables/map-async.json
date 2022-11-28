@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150842350,
-  "updatedAt": 1668150842350,
+  "createdAt": 1668977399481,
+  "updatedAt": 1668977399481,
   "deletedAt": 0,
-  "createdFirstAt": 1668150842350,
+  "createdFirstAt": 1668977399481,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<T, U>(\n  array: T[],\n  callback: (value: T, index: number, array: T[]) => Promise<U>\n) => {\n  const u = Promise.all(array.map(callback));\n  return u;\n}",
   "description": "mapAsync makes it possible to map over an array async without having to do the promise.all afterwards\n\nIt saves a lot of lines of code, and makes it more readable\nExample usage:\n\n\n```ts\n\nconst myNumbers = [1, 2, 3, 4, 5];\n\nconst doubleAsync = (num) => Promise.resolve(num + num);\nconst sqrtAsync = (sum) => Promise.resolve(sum * sum);\nconst halfAsync = (time) => Promise.resolve(time / 2);\n\nconst doubleSqrtHalfs = await mapAsync(myNumbers, doubleAsync)\n.then((sums) => mapAsync(sums, sqrtAsync))\n.then((times) => mapAsync(times, halfAsync));\n```",
-  "id": "dommnzsdlynfkuclkmzgmilu"
+  "id": "ktngpwnxyzyjvhqtomoomfpm"
 }

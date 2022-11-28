@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148496145,
-  "updatedAt": 1668148496145,
+  "createdAt": 1668774011013,
+  "updatedAt": 1668774011013,
   "deletedAt": 0,
-  "createdFirstAt": 1668148496145,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774011013,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getAssetInputType.ts",
   "commentsInside": [],
   "rawText": " (\n  parameterName: string,\n  valueType?: SimplifiedSchemaType\n): AssetInputType | undefined => {\n  const lastWord = lowerCaseArray(parameterName).pop();\n  if (!lastWord) return;\n\n  const isObjectOrArray =\n    !valueType || valueType === \"array\" || valueType === \"object\";\n\n  if (!isObjectOrArray) return;\n\n  if (\n    [\"image\", \"video\", \"audio\", \"file\", \"asset\"].includes(singularize(lastWord))\n  ) {\n    return {\n      type: singularize(lastWord) as AssetInputType[\"type\"],\n      isMultiple: isPlural(lastWord),\n    };\n  }\n\n  return;\n}",
@@ -123,5 +118,5 @@
     "linesPerFile": 25,
     "numberOfFiles": 1
   },
-  "id": "lradtdfhrpklqhxixtzvncod"
+  "id": "pgqmumoyifjbqbyhbqwbxsol"
 }

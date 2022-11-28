@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666258922982,
+  "updatedAt": 1666258922982,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258922982,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/removeAll.ts",
+  "commentsInside": [],
+  "rawText": " async ({\n  basePath,\n  fileName,\n  folderName,\n  type,\n  shell,\n  ignore,\n  onlyRoot,\n}: Omit<AllInputType, \"command\">) => {\n  const callback = (folderName: string) =>\n    new Promise<void>(async (resolve) => {\n      try {\n        if (fs.existsSync(folderName)) {\n          await fs.rm(folderName, { recursive: true });\n        }\n        resolve();\n      } catch (e) {\n        console.log(\n          \"Shouldnt happen, but we got a catch at removing an existing folder\"\n        );\n        resolve();\n      }\n    });\n\n  return forAllFolders({\n    basePath,\n    fileName,\n    onlyRoot,\n    folderName,\n    type,\n    callback,\n    shell,\n    ignore,\n  });\n}",
+  "name": "removeAll",
+  "slug": "remove-all",
+  "parameters": [],
+  "description": "removes all xyz for a folder\n\nmake sure to specify which type you want.... folder or file most likely",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 755,
+    "lines": 37,
+    "bytes": 755,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 20,
+    "linesPerFile": 37,
+    "numberOfFiles": 1
+  },
+  "id": "isegdiyqmyqqkasjzxbiszzq"
+}

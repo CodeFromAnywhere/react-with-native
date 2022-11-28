@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667111124255,
-  "updatedAt": 1667111124255,
+  "createdAt": 1669384160839,
+  "updatedAt": 1669384160839,
   "deletedAt": 0,
-  "createdFirstAt": 1667111124255,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669384160839,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/token/ensureToken.ts",
   "commentsInside": [],
   "rawText": " (\n  name: string,\n  /**\n   * if given, is used for generating new token\n   *\n   * if already present, token is used from the name instead of this one\n   */\n  newToken?: string,\n  attachTokenToFilename?: boolean\n) => {\n  const { nameWithoutToken, token } = removeTokenIfPresent(\n    name,\n    attachTokenToFilename\n  );\n  const nameWithToken = addToken(\n    nameWithoutToken,\n    token || newToken,\n    attachTokenToFilename\n  );\n  return nameWithToken;\n}",
@@ -74,5 +69,5 @@
     "linesPerFile": 21,
     "numberOfFiles": 1
   },
-  "id": "dchbkqdqrynxvnyypmewntfw"
+  "id": "puzxkvppcdlikqxlwsrmbide"
 }

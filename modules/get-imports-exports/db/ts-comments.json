@@ -1,0 +1,20 @@
+[
+  {
+    "createdAt": 1668449029616,
+    "updatedAt": 1668449029616,
+    "deletedAt": 0,
+    "createdFirstAt": 1668449029616,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/findAndWriteImportsExports.ts",
+    "comment": "takes an operation base path and finds all imports and exports in all the files, and writes it to the ts-imports/ts-exports indexes\n\nNB: has a side effect: it also updates the package.json to include all needed dependencies.",
+    "rawStatement": "export const findAndWriteImportsExports = async (\n  operationBasePath: string,\n  /**\n   * Manual project root of the operation where the imports and exports needs to be detected and written to database\n   */\n  manualProjectRoot?: string\n): Promise<void> => {\n  const operationName = getLastFolder(operationBasePath);\n  const sourceFiles = await getAllTsMorphSourceFiles(operationBasePath);\n\n  if (!sourceFiles || sourceFiles.length === 0) {\n    const problem = `couldn't load any SourceFiles for ${operationBasePath} (sourceFiles=${sourceFiles})`;\n    log(problem, { type: \"error\" });\n    await writeResult({\n      success: false,\n      message: problem,\n      operationName,\n      manualProjectRoot,\n    });\n    return;\n  }\n\n  const importsAndExports = await getImportsExports({\n    sourceFiles,\n    manualProjectRoot,\n  });\n\n  if (!importsAndExports) {\n    const problem = \"Something went wrong creating imports/exports\";\n    log(problem, { type: \"error\" });\n    await writeResult({\n      success: false,\n      message: problem,\n      operationName,\n      manualProjectRoot,\n    });\n\n    return;\n  }\n\n  const { exports, imports } = importsAndExports;\n\n  // When rebuilding operations, add `packageJson.dependencies` according to imports found.\n\n  const operations = await db.get(\"Operation\", { manualProjectRoot });\n\n  await db.update(\n    \"Operation\",\n    // NB: this should always be true, but this extra check will make sure it doesn't update too much...\n    (x) => x.name === operationName,\n    (packageJson) => {\n      const { newDependencies, hasGeneratedDependenciesIndexed } =\n        calculatePackageJsonDependencies(\n          packageJson.dependencies,\n          imports,\n          operations,\n          operationName\n        );\n\n      const newOperation: Operation = {\n        ...packageJson,\n        operation: {\n          ...packageJson.operation,\n          hasGeneratedDependenciesIndexed,\n        },\n        dependencies: newDependencies,\n      };\n      return newOperation;\n    },\n    { operationName, manualProjectRoot }\n  );\n\n  await db.clear(\"TsImport\", { operationName, manualProjectRoot });\n  await db.clear(\"TsExport\", { operationName, manualProjectRoot });\n  // @ts-ignore\n  await db.upsert(\"TsImport\", imports, { operationName, manualProjectRoot });\n  // @ts-ignore\n  await db.upsert(\"TsExport\", exports, { operationName, manualProjectRoot });\n\n  await writeResult({\n    success: true,\n    message: \"Succesfully created imports and exports\",\n    operationName,\n    manualProjectRoot,\n  });\n};",
+    "parameters": {},
+    "types": [
+      "nb"
+    ],
+    "firstLine": 12,
+    "lastLine": 16,
+    "id": "pucekfjyynmnxsupofnrrffm"
+  }
+]

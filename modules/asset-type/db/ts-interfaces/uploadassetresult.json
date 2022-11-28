@@ -1,15 +1,15 @@
 {
-  "createdAt": 1666512420246,
-  "updatedAt": 1666512420246,
+  "createdAt": 1669638946979,
+  "updatedAt": 1669638946979,
   "deletedAt": 0,
-  "createdFirstAt": 1666512420246,
+  "createdFirstAt": 1669638946979,
   "id": "uploadassetresult",
   "name": "UploadAssetResult",
   "slug": "uploadassetresult",
   "operationRelativeTypescriptFilePath": "src/frontend-types.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\nexport type UploadAssetResult = {\n  isSuccessful: boolean;\n  isUnauthorized?: boolean;\n  message?: string;\n  temporaryDestination?: string;\n};",
+  "rawText": "\n\nexport type UploadAssetResult = {\n  isSuccessful: boolean;\n  message?: string;\n  temporaryDestination?: string;\n};",
   "extensions": [],
   "isOperationIndex": false,
   "description": "",
@@ -20,9 +20,6 @@
       "type": "object",
       "properties": {
         "isSuccessful": {
-          "type": "boolean"
-        },
-        "isUnauthorized": {
           "type": "boolean"
         },
         "message": {
@@ -42,13 +39,6 @@
         {
           "name": "isSuccessful",
           "required": true,
-          "schema": {
-            "type": "boolean"
-          }
-        },
-        {
-          "name": "isUnauthorized",
-          "required": false,
           "schema": {
             "type": "boolean"
           }

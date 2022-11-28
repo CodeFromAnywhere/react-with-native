@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666258869667,
-  "updatedAt": 1666258869667,
+  "createdAt": 1669384268348,
+  "updatedAt": 1669384268348,
   "deletedAt": 0,
-  "createdFirstAt": 1666258869667,
+  "createdFirstAt": 1669384268348,
   "id": "namedparameterstypeof-writetoassets",
   "name": "NamedParameters<typeof writeToAssets>",
   "slug": "namedparameterstypeof-writetoassets",
@@ -26,6 +26,9 @@
         },
         "assetsFileName": {
           "type": "string"
+        },
+        "hideLog": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -58,6 +61,13 @@
           "required": false,
           "schema": {
             "type": "string"
+          }
+        },
+        {
+          "name": "hideLog",
+          "required": false,
+          "schema": {
+            "type": "boolean"
           }
         }
       ],

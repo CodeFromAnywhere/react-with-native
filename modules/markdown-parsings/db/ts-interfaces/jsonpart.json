@@ -1,0 +1,63 @@
+{
+  "createdAt": 1669200440816,
+  "updatedAt": 1669200440816,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200440816,
+  "id": "jsonpart",
+  "name": "JsonPart",
+  "slug": "jsonpart",
+  "operationRelativeTypescriptFilePath": "src/bundleFolderWithMarkdown.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type JsonPart = { identifier?: string; json: Json };",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "json": {
+          "$ref": "#/definitions/Json"
+        }
+      },
+      "required": [
+        "json"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "identifier",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "json",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "JsonPart",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ModelItemAssetView=void 0;var jsx_runtime_1=require("react/jsx-runtime"),AssetView_1=require("./AssetView"),ModelItemAssetView=function(e){var s=e.backendAsset,t=e.item,i=e.hideDownloadLink,r=e.className;return s?(0,jsx_runtime_1.jsx)(AssetView_1.AssetView,{asset:s,projectRelativeReferencingFilePath:t.projectRelativePath,hideDownloadLink:i,className:r}):null};exports.ModelItemAssetView=ModelItemAssetView;
+//# sourceMappingURL=ModelItemAssetView.js.map

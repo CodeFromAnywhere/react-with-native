@@ -3,7 +3,7 @@ isStory: true
 ---
 # Use url store
 
-use-url-store (`OperationClassification` js)
+use-url-store (`OperationClassification` cjs)
 
 
 

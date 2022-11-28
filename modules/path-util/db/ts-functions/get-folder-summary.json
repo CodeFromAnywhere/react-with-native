@@ -1,0 +1,100 @@
+{
+  "createdAt": 1668331940715,
+  "updatedAt": 1668331940715,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331940715,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getFolderSummary.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  categorizedFiles: CategorizedFilePaths\n): Promise<FolderSummary> => {\n  const categoriesSummary: Omit<FolderSummary, \"size\"> = {\n    codeSize: await sumSizeSummary(categorizedFiles.code),\n    dataSize: await sumSizeSummary(categorizedFiles.data),\n    textSize: await sumSizeSummary(categorizedFiles.text),\n  };\n\n  const folderSummary: FolderSummary = {\n    ...categoriesSummary,\n    size: sumAllKeys(Object.values(categoriesSummary), [\n      \"bytes\",\n      \"characters\",\n      \"lines\",\n      \"numberOfFiles\",\n    ]),\n  };\n\n  return folderSummary;\n}",
+  "name": "getFolderSummary",
+  "slug": "get-folder-summary",
+  "parameters": [
+    {
+      "name": "categorizedFiles",
+      "schema": {
+        "$ref": "#/definitions/CategorizedFilePaths"
+      },
+      "simplifiedSchema": {
+        "fullComment": "filepaths categorized based on the filetype. With king os there are only these filetypes:\n\n- code: ts, tsx\n- data: json\n- text: md, mdx",
+        "properties": [
+          {
+            "name": "code",
+            "required": true,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "data",
+            "required": true,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "text",
+            "required": true,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "calculates folder summary from a categorized file paths object",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/FolderSummary\").FolderSummary>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 621,
+    "lines": 21,
+    "bytes": 621,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "ejufzzxdgcxybadtwhgxypot"
+}

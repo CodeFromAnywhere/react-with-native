@@ -1,8 +1,15 @@
 import type { MouseEvent } from "react";
 import type { ActionSheetIOSOptions } from "react-native";
 export declare type Item<T> = {
-    value: T;
+    /**
+     * Must be string because the HTML select element can only contain a string
+     */
+    value: string;
     label: string;
+    /**
+     * If you want you can provide a data belonging to this item
+     */
+    data?: T;
 };
 export declare type ID = string | number | undefined;
 export declare type ChildrenType<T> = ({ onClick, className, value, }: {

@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1666264775373,
+    "updatedAt": 1666264775373,
+    "deletedAt": 0,
+    "createdFirstAt": 1666264775373,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/oneByOne.ts",
+    "comment": "for every item in an array, executes an async callback, one by one.\npromises an array of the results of every callback once it's done",
+    "rawStatement": "export const oneByOne = async <T, U>(\n  array: T[],\n  callback: (instance: T, index: number) => Promise<U>\n): Promise<U[]> => {\n  const getResults = async (\n    results: Promise<U[]>,\n    instance: T,\n    index: number\n  ) => {\n    const awaitedResults = await results;\n    const result: U = await callback(instance, index);\n    const newResults = [...awaitedResults, result];\n    return newResults;\n  };\n\n  const result = await array.reduce(\n    getResults,\n    new Promise<U[]>((resolve) => resolve([]))\n  );\n\n  return result;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 3,
+    "lastLine": 6,
+    "id": "hwfxyxvivhtzyfhglntnjmtg"
+  }
+]

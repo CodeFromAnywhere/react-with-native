@@ -1,0 +1,37 @@
+{
+  "createdAt": 1669055619031,
+  "updatedAt": 1669055619031,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055619031,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "ProjectWatcher",
+  "operationRelativeTypescriptFilePath": "src/indexTypescriptFilePath.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  eventName,\n  filePath\n) => {\n  const name = path.parse(filePath).name;\n  process.stdout.write(`Indexing file: ${name}`);\n\n  await indexTypescript({\n    filePaths: [filePath],\n    manualProjectRoot: null,\n    showLogging: false,\n  });\n\n  console.log(\"✅\\n\");\n}",
+  "name": "indexTypescriptFilePath",
+  "slug": "index-typescript-file-path",
+  "parameters": [],
+  "description": "Index a single typescript file",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 299,
+    "lines": 15,
+    "bytes": 301,
+    "bytesPerCharacter": 1.0066889632107023,
+    "charactersPerLine": 20,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "bfjufesvdzuxvjyxzmlgzcqe"
+}

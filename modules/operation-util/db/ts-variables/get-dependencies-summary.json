@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668332239704,
+  "updatedAt": 1668332239704,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332239704,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDependenciesSummary",
+  "slug": "get-dependencies-summary",
+  "operationRelativeTypescriptFilePath": "src/getDependenciesSummary.ts",
+  "type": {
+    "rawType": "(operationName: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (operationName: string) => {\n  const operationImports = await db.get(\"TsImport\", {\n    operationName,\n  });\n\n  const coreDependencies = operationImports\n    .filter((x) => [\"node\", \"react\"].includes(x.classification))\n    .map((x) => x.name);\n  const operationDependencies = operationImports\n    .filter((x) => [\"operation\"].includes(x.classification))\n    .map((x) => x.name);\n  const packageDependencies = operationImports\n    .filter((x) => [\"package\"].includes(x.classification))\n    .map((x) => x.name);\n\n  return {\n    coreDependencies,\n    operationDependencies,\n    packageDependencies,\n  };\n}",
+  "description": "",
+  "id": "uroianrdksqmajwkrrojlayo"
+}

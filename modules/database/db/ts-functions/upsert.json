@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666259857810,
-  "updatedAt": 1666259857810,
+  "createdAt": 1668774163753,
+  "updatedAt": 1668774163753,
   "deletedAt": 0,
-  "createdFirstAt": 1666259857810,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774163753,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/setNestedFiles.test.ts",
   "commentsInside": [],
   "rawText": " async () => {\n  await set();\n\n  const item: Creation<MarkdownTestModel> = {\n    categoryStackCalculated: [\"hello\", \"world\"],\n    name: \"hell-yeah\",\n    markdown: \"some other markdown....\",\n  };\n\n  //@ts-ignore\n  const x = await testDb.upsert(\"MarkdownTestModel\", item);\n\n  console.log({ x });\n\n  return;\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 16,
     "numberOfFiles": 1
   },
-  "id": "ayrfwpzsmnxtdqzxccslatoq"
+  "id": "tayioygkkufgxwkywazvltni"
 }

@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669128209304,
+  "updatedAt": 1669128209304,
+  "deletedAt": 0,
+  "createdFirstAt": 1669128209304,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/useTsInterfaceForm.tsx",
+  "commentsInside": [],
+  "rawText": " <T extends unknown>(\n  /**\n   * NB: Don't change this! The amount of hooks depends on this\n   */\n  tsInterface: Storing<TsInterface>,\n  id?: string,\n  /**\n   * Only works if set on first render\n   */\n  initialValue?: T,\n  /**\n   * Tell the form where the model will be stored so the form can render assets correctly\n   *\n   * If not given, it is tried to be taken from tthe initialValue (will only work if it's a db-model instance with a `.projectRelativePath`)\n   */\n  projectRelativeStorageFilePath?: string,\n  /**\n   * must be provided in case of a db model\n   */\n  modelName?: string\n): [\n  form?: JSX.Element,\n  value?: T | undefined,\n  onChange?: (value: T) => void\n] => {\n  const [realId] = useState(id || `s${String(Math.random())}`);\n  const [values, onChange] = useState<[value: T | undefined]>([initialValue]);\n\n  // NB: only the first item matters\n  const value = values[0];\n  const onChangeValue = (value: T) => onChange([value]);\n\n  // NB: we must have the simplifiedSchema, it's not always indexed\n  const simplifiedSchema = tsInterface.type.simplifiedSchema;\n  if (!simplifiedSchema) return [];\n\n  const referencableModelData = useReferencableModelData(simplifiedSchema);\n\n  const form = (\n    <SimplifiedSchemaForm\n      modelName={modelName}\n      key={realId}\n      id={realId}\n      onChange={onChange}\n      values={values}\n      itemNameOrId={\n        (value as AugmentedAnyModelType)?.name ||\n        (value as AugmentedAnyModelType)?.id\n      }\n      parameters={[\n        {\n          name: \"\",\n          required: true,\n          simplifiedSchema,\n          isDbModel: true,\n        },\n      ]}\n      projectRelativeStorageFilePath={\n        projectRelativeStorageFilePath ||\n        (initialValue as AnyModelType)?.projectRelativePath\n      }\n      referencableModelData={referencableModelData}\n    />\n  );\n\n  return [form, value, onChangeValue];\n}",
+  "name": "useTsInterfaceForm",
+  "slug": "use-ts-interface-form",
+  "parameters": [],
+  "description": "hook to create a form for a TsInterface\n\n# Usage\n\n```ts\nimport { useTsInterfaceForm } from \"simplified-schema-form\";\nimport DatasetConfigJson from \"code-types/db/ts-interfaces/datasetconfig.json\";\nimport { DatasetConfig, TsInterface } from \"code-types\";\nimport { Storing } from \"model-types\";\n\nin your component:\nconst initialValue:DatasetConfig = {} as any;\nconst [Form, value, onChange] = useTsInterfaceForm(DatasetConfigJson as Storing<TsInterface>,initialValue);\n```",
+  "returnType": {
+    "rawType": "[form?: JSX.Element | undefined, value?: T | undefined, onChange?: ((value: T) => void) | undefined]",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 2345,
+    "lines": 80,
+    "bytes": 2345,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 80,
+    "numberOfFiles": 1
+  },
+  "id": "xboiksgooflnddhklrarfmwf"
+}

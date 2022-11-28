@@ -1,0 +1,113 @@
+{
+  "createdAt": 1669055472957,
+  "updatedAt": 1669055472957,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055472957,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/cleanupTsDatabase.ts",
+  "commentsInside": [],
+  "rawText": " (\n  tsModel:\n    | TsFunction\n    | TsComment\n    | TsInterface\n    | TsBuildError\n    | TsLintWarning\n    | TsExport\n    | TsImport\n    | TsVariable,\n  operationName: string,\n  operationRelativePaths: string[]\n) => {\n  if (!tsModel.operationName) {\n    // console.log(\"no operationaName\");\n    return true;\n  }\n  if (tsModel.operationName !== operationName) {\n    // console.log(\"wrong operationName\");\n    return true;\n  }\n  if (!tsModel.operationRelativePath) {\n    //   console.log(\"no operationRelativePath\");\n    return true;\n  }\n  if (\n    !operationRelativePaths.includes(\n      tsModel.operationRelativeTypescriptFilePath\n    )\n  ) {\n    // console.log(\"no correct operationRelativeTypescriptFilePath\");\n    return true;\n  }\n\n  return false;\n}",
+  "name": "shouldDeleteTsModel",
+  "slug": "should-delete-ts-model",
+  "parameters": [
+    {
+      "name": "tsModel",
+      "schema": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/TsFunction"
+          },
+          {
+            "$ref": "#/definitions/TsComment"
+          },
+          {
+            "$ref": "#/definitions/TsInterface"
+          },
+          {
+            "$ref": "#/definitions/TsBuildError"
+          },
+          {
+            "$ref": "#/definitions/TsLintWarning"
+          },
+          {
+            "$ref": "#/definitions/TsExport"
+          },
+          {
+            "$ref": "#/definitions/TsImport"
+          },
+          {
+            "$ref": "#/definitions/TsVariable"
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "operationName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "operationRelativePaths",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 753,
+    "lines": 36,
+    "bytes": 753,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 36,
+    "numberOfFiles": 1
+  },
+  "id": "qguzrehatykckurjkkimwhhn"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055604403,
+  "updatedAt": 1669055604403,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055604403,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getTypeInfo",
+  "slug": "get-type-info",
+  "operationRelativeTypescriptFilePath": "src/getTypeInfo.ts",
+  "type": {
+    "rawType": "(type: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").Type<import(\"/Users/king/King/operations/node_modules/@ts-morph/common/lib/typescript\").Type>, schema?: import(\"/Users/king/King/operations/node_modules/@types/json-schema/index\").JSONSchema7 | undefined) => import(\"/Users/king/King/operations/tools/types/code-types/build/TypeInfo\").TypeInfo",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(type: Type, schema?: Schema): TypeInfo => {\n  const rawType = type.getApparentType().getText();\n  const isArray = type.isArray();\n  const isEnum = type.isEnum();\n  const isEnumLiteral = type.isEnumLiteral();\n  const isPrimitive = type.isString() || type.isNumber() || type.isBoolean();\n  const isObject = type.isObject();\n\n  let typeDefinition: Schema | undefined = undefined;\n  try {\n    typeDefinition = schema || typeToSchema(type);\n  } catch (e) {\n    log(`Type to schema failed with error: ${e}`, { type: \"debug\" });\n  }\n\n  const typeInfo: TypeInfo = {\n    rawType,\n    typeDefinition,\n    // TODO:\n    typeCoverage: 0,\n    // this is easy to infer\n    isArray,\n    isEnum,\n    isObject,\n    isPrimitive,\n    isEnumLiteral,\n    simplifiedSchema: typeDefinition\n      ? simplifySchema(\"type\", typeDefinition, [], [])\n      : undefined,\n  };\n\n  return typeInfo;\n}",
+  "description": "takes a ts morph type and returns all info about it\n\nif available, a schema should be provided about the type because it's hard to infer it (probably buggy)",
+  "id": "wwnquwwbvznddrsakgeilhfg"
+}

@@ -1,0 +1,47 @@
+{
+  "createdAt": 1669200471121,
+  "updatedAt": 1669200471121,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200471121,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getPublicMarkdownNestedObject.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  absoluteFolderPath: string\n): Promise<NestedObject<string>> => {\n  const promises = (\n    await getPublicMarkdownFilePaths(absoluteFolderPath, true)\n  ).map(async (result) => {\n    const name = getFolderJs(removeExtensionsFromPath(result.path));\n\n    const nestedPathObjectOrPath: NestedObject<string> | string =\n      result.isFolder\n        ? await getPublicMarkdownNestedPathObject(result.path)\n        : result.path;\n\n    return {\n      [name]: nestedPathObjectOrPath,\n    };\n  });\n\n  const completeNestedObject: NestedObject<string> = mergeObjectsArray(\n    await Promise.all(promises)\n  );\n\n  return completeNestedObject;\n}",
+  "name": "getPublicMarkdownNestedPathObject",
+  "slug": "get-public-markdown-nested-path-object",
+  "parameters": [
+    {
+      "name": "absoluteFolderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Recursively searches a folder for public markdown files, and returns a `NestedObject` with the keys being the file or folder names, and the leafs being the absolute file paths.\n\nFile and folder names are stripped (number prefixes are removed, )\n\nexample:\n```json\n{\n\"README\": \"path/path/README.md\"\n\"folder1\":{\n\"README\": \"path/path/folder1/REAMDE.md\"\n\"file1\": \"path/path/folder1/file1.md\",\n}\n}",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/recursive-types/build/NestedObject\").NestedObject<string>>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1031,
+    "lines": 36,
+    "bytes": 1031,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 36,
+    "numberOfFiles": 1
+  },
+  "id": "gkpmbvgoyxxuqhofhmoznjyb"
+}

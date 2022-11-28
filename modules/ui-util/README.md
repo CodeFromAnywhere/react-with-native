@@ -1,6 +1,6 @@
 # Ui util
 
-ui-util (`OperationClassification` js)
+ui-util (`OperationClassification` cjs)
 
 
 

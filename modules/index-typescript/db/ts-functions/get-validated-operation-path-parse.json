@@ -1,0 +1,47 @@
+{
+  "createdAt": 1669055606338,
+  "updatedAt": 1669055606338,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055606338,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getValidatedOperationPathParse.ts",
+  "commentsInside": [],
+  "rawText": " (\n  filePath: string\n): undefined | CompleteOperationPathParse => {\n  const fileParse = path.parse(filePath);\n\n  if (![\".ts\", \".tsx\"].includes(fileParse.ext)) {\n    log(`Incorrect extension ${fileParse.ext}`, { type: \"warning\" });\n    return;\n  }\n\n  // NB: filename is not only a name here but a relative path\n  if (!fs.existsSync(filePath)) {\n    log(`couldn't retreive filepath ${filePath}`, { type: \"error\" });\n    return;\n  }\n\n  const operationPathParse = getOperationPathParse(filePath);\n  if (!operationPathParse) {\n    log(\"Operation must have a pathparse to be indexed\", { type: \"error\" });\n    return;\n  }\n\n  return { ...operationPathParse, filePath };\n}",
+  "name": "getValidatedOperationPathParse",
+  "slug": "get-validated-operation-path-parse",
+  "parameters": [
+    {
+      "name": "filePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/typescript/index-typescript/src/getValidatedOperationPathParse\").CompleteOperationPathParse | undefined",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 664,
+    "lines": 24,
+    "bytes": 664,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 24,
+    "numberOfFiles": 1
+  },
+  "id": "szrjleuyzyazyrowszvogljy"
+}

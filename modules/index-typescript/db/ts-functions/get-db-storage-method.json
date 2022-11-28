@@ -1,0 +1,100 @@
+{
+  "createdAt": 1669055589395,
+  "updatedAt": 1669055589395,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055589395,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getDbStorageMethod.ts",
+  "commentsInside": [],
+  "rawText": " (config: {\n  typeName: string;\n  frontmatter: Frontmatter;\n  extensions?: string[];\n}): DbStorageMethod | undefined => {\n  const { typeName, frontmatter, extensions } = config;\n  const frontmatterResult = getFrontmatterDbStorageMethod(frontmatter);\n\n  // NB: can also become null if isDbModel is specifically set to false!\n  if (frontmatterResult !== undefined) return frontmatterResult || undefined;\n\n  const specialExtensionStorageMethod =\n    getSpecialExtensionDbStorageMethod(extensions);\n\n  if (specialExtensionStorageMethod) {\n    return specialExtensionStorageMethod;\n  }\n\n  const typeWords = lowerCaseArray(typeName);\n  const isModelTypeName =\n    typeWords.length >= 2 && [\"model\", \"db\"].includes(typeWords.pop()!);\n\n  const dbStorageMethodFromModelTypeName = isModelTypeName\n    ? \"jsonMultiple\"\n    : null;\n\n  if (dbStorageMethodFromModelTypeName) {\n    return dbStorageMethodFromModelTypeName;\n  }\n\n  return;\n}",
+  "name": "getDbStorageMethod",
+  "slug": "get-db-storage-method",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "typeName": {
+            "type": "string"
+          },
+          "frontmatter": {
+            "$ref": "#/definitions/Frontmatter"
+          },
+          "extensions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "typeName",
+          "frontmatter"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "typeName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontmatter",
+            "required": true,
+            "schema": {
+              "fullComment": "Our version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+              "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "extensions",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Gets db storage method for indexation\n\n1) Frontmatter overrules everything\n2) Special extensions are looked at",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 1034,
+    "lines": 35,
+    "bytes": 1034,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 35,
+    "numberOfFiles": 1
+  },
+  "id": "dbpvgzzurtgpeipnjlhpzvmw"
+}

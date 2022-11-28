@@ -1,0 +1,107 @@
+{
+  "createdAt": 1669639255562,
+  "updatedAt": 1669639255562,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639255562,
+  "id": "modelview",
+  "name": "ModelView",
+  "slug": "modelview",
+  "operationRelativeTypescriptFilePath": "src/Dataset.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type ModelView = typeof modelViews[number];",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "view": {
+              "type": "string",
+              "const": "table"
+            },
+            "emoji": {
+              "type": "string",
+              "const": "🍴"
+            }
+          },
+          "required": [
+            "view",
+            "emoji"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view": {
+              "type": "string",
+              "const": "grid"
+            },
+            "emoji": {
+              "type": "string",
+              "const": "⚃"
+            }
+          },
+          "required": [
+            "view",
+            "emoji"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view": {
+              "type": "string",
+              "const": "timeline"
+            },
+            "emoji": {
+              "type": "string",
+              "const": "⏳"
+            }
+          },
+          "required": [
+            "view",
+            "emoji"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "view": {
+              "type": "string",
+              "const": "tree"
+            },
+            "emoji": {
+              "type": "string",
+              "const": "🌳"
+            }
+          },
+          "required": [
+            "view",
+            "emoji"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ModelView",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

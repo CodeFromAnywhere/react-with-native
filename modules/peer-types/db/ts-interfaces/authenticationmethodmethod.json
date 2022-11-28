@@ -1,0 +1,57 @@
+{
+  "createdAt": 1669384887972,
+  "updatedAt": 1669384887972,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384887972,
+  "id": "authenticationmethodmethod",
+  "name": "AuthenticationMethodMethod",
+  "slug": "authenticationmethodmethod",
+  "operationRelativeTypescriptFilePath": "src/AuthenticationMethjod.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "/**\n * Username + password should be the default\n *\n * Email OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n *\n * All others can also act as authentication methods, but the token shouldn't be stored\n */\nexport type AuthenticationMethodMethod =\n  | \"usernamePassword\"\n  | \"phoneNumber\"\n  | \"email\"\n  | \"apple\"\n  | \"google\"\n  | \"facebook\"\n  | \"twitter\"\n  | \"linkedin\"\n  | \"github\";",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Username + password should be the default\n\nEmail OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n\nAll others can also act as authentication methods, but the token shouldn't be stored",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "string",
+      "enum": [
+        "usernamePassword",
+        "phoneNumber",
+        "email",
+        "apple",
+        "google",
+        "facebook",
+        "twitter",
+        "linkedin",
+        "github"
+      ],
+      "description": "Username + password should be the default\n\nEmail OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n\nAll others can also act as authentication methods, but the token shouldn't be stored"
+    },
+    "simplifiedSchema": {
+      "enum": [
+        "usernamePassword",
+        "phoneNumber",
+        "email",
+        "apple",
+        "google",
+        "facebook",
+        "twitter",
+        "linkedin",
+        "github"
+      ],
+      "fullComment": "Username + password should be the default\n\nEmail OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n\nAll others can also act as authentication methods, but the token shouldn't be stored",
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "rawType": "AuthenticationMethodMethod",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

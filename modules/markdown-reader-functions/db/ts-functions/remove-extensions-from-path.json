@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668149516942,
-  "updatedAt": 1668149516942,
+  "createdAt": 1669639140935,
+  "updatedAt": 1669639140935,
   "deletedAt": 0,
-  "createdFirstAt": 1668149516942,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669639140935,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/removeExtensionsFromPath.ts",
   "commentsInside": [],
   "rawText": " (\n  /**\n   * should also work for filenames\n   */\n  relativePath: string\n): string => {\n  const chunks = trimSlashes(relativePath).split(\"/\");\n\n  const chunksWithoutNumbers = chunks.map(removeNumberPrefix);\n\n  // could be file\n  const lastChunkIndex = chunksWithoutNumbers.length - 1;\n\n  const lastChunk = chunksWithoutNumbers[lastChunkIndex];\n  const parts = lastChunk.split(\".\");\n  const lastPart = parts[parts.length - 1];\n\n  if (availableExtensions.includes(lastPart)) {\n    // remove extension\n    parts.pop();\n    chunksWithoutNumbers[lastChunkIndex] = parts.join(\".\");\n  }\n\n  const simplifiedPath = chunksWithoutNumbers.join(\"/\");\n\n  return simplifiedPath;\n}",
@@ -54,5 +49,5 @@
     "linesPerFile": 31,
     "numberOfFiles": 1
   },
-  "id": "dsreqvkrslukdvrcxxkooced"
+  "id": "dfnfjsolhaquubcrotmrmdyz"
 }

@@ -1,0 +1,92 @@
+{
+  "createdAt": 1668328731859,
+  "updatedAt": 1668328731859,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328731859,
+  "id": "HdAdnbXfJAgtncKi",
+  "dependencies": {
+    "js-util": "0.0.1",
+    "database": "0.0.1",
+    "k-explore": "0.0.2",
+    "fs-util": "1.0.5",
+    "code-types": "0.0.1",
+    "all": "0.0.1",
+    "one-by-one": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "find-all-dependency-operations",
+  "language": "english",
+  "slug": "find-all-dependency-operations",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/typescript/find-all-dependency-operations/src/findAllDependencyOperations.ts. Error: Error: Unknown type \\\"function\\\"\"]",
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "find-all-dependency-operations",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668335833181,
+    "operationDependenciesIndexed": [
+      "mergeObjectsArray",
+      "notEmpty",
+      "onlyUnique",
+      "onlyUnique2",
+      "db",
+      "exploreOperationFolders",
+      "getLastFolder",
+      "path",
+      "Operation",
+      "TsImport",
+      "oneByOne",
+      "forAllFolders",
+      "db",
+      "getLastFolder"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/typescript",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 2,
+        "lines": 343,
+        "characters": 8833,
+        "bytes": 8833
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 133,
+        "characters": 3219,
+        "bytes": 3219
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 196,
+        "characters": 3123,
+        "bytes": 3123
+      },
+      "size": {
+        "bytes": 15175,
+        "characters": 15175,
+        "lines": 672,
+        "numberOfFiles": 5
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

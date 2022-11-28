@@ -1,0 +1,45 @@
+{
+  "createdAt": 1668977415640,
+  "updatedAt": 1668977415640,
+  "deletedAt": 0,
+  "createdFirstAt": 1668977415640,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/removeOptionalKeysFromObject.ts",
+  "commentsInside": [],
+  "rawText": " <TObject extends O>(\n  object: TObject,\n  keys: string[]\n): TObject => {\n  const newObject = keys.reduce((objectNow, key) => {\n    return {\n      ...objectNow,\n      [key]: undefined,\n    };\n  }, object);\n\n  return newObject;\n}",
+  "name": "removeOptionalKeysFromObjectStrings",
+  "slug": "remove-optional-keys-from-object-strings",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/util/js-util/src/NestedPartial\").O",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 228,
+    "lines": 13,
+    "bytes": 228,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 18,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "ziekbsburtnzmulsjifajagg"
+}

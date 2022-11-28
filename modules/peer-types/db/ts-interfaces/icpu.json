@@ -1,0 +1,50 @@
+{
+  "createdAt": 1669384916114,
+  "updatedAt": 1669384916114,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384916114,
+  "id": "icpu",
+  "name": "ICPU",
+  "slug": "icpu",
+  "operationRelativeTypescriptFilePath": "src/external/ua-parser-js.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface ICPU {\n  /**\n   * Possible architecture:\n   *  68k, amd64, arm, arm64, avr, ia32, ia64, irix, irix64, mips, mips64, pa-risc,\n   *  ppc, sparc, sparc64\n   */\n  architecture: string | undefined;\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "architecture": {
+          "type": "string",
+          "description": "Possible architecture:  68k, amd64, arm, arm64, avr, ia32, ia64, irix, irix64, mips, mips64, pa-risc,  ppc, sparc, sparc64"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "architecture",
+          "required": false,
+          "schema": {
+            "fullComment": "Possible architecture:  68k, amd64, arm, arm64, avr, ia32, ia64, irix, irix64, mips, mips64, pa-risc,  ppc, sparc, sparc64",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ICPU",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "createdAt": 1669385312224,
+  "updatedAt": 1669385312224,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385312224,
+  "id": "namedparameterstypeof-addauthenticationmethod",
+  "name": "NamedParameters<typeof addAuthenticationMethod>",
+  "slug": "namedparameterstypeof-addauthenticationmethod",
+  "operationRelativeTypescriptFilePath": "src/addAuthenticationMethod.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/AuthenticationMethodMethod"
+        },
+        "handle": {
+          "type": "string"
+        },
+        "shouldBeUnique": {
+          "type": "boolean",
+          "description": "TODO: check if it's unique before sending an email. This is needed in case you are a person trying to add a method, because then there might be another person with the same handle."
+        },
+        "credential": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "method",
+        "handle"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "method",
+          "required": true,
+          "schema": {
+            "enum": [
+              "usernamePassword",
+              "phoneNumber",
+              "email",
+              "apple",
+              "google",
+              "facebook",
+              "twitter",
+              "linkedin",
+              "github"
+            ],
+            "fullComment": "Username + password should be the default\n\nEmail OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n\nAll others can also act as authentication methods, but the token shouldn't be stored",
+            "type": "string"
+          }
+        },
+        {
+          "name": "handle",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "shouldBeUnique",
+          "required": false,
+          "schema": {
+            "fullComment": "TODO: check if it's unique before sending an email. This is needed in case you are a person trying to add a method, because then there might be another person with the same handle.",
+            "todo": "check if it's unique before sending an email. This is needed in case you are a person trying to add a method, because then there might be another person with the same handle.",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "credential",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof addAuthenticationMethod>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

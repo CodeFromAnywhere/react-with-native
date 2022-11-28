@@ -1,0 +1,108 @@
+{
+  "createdAt": 1669384197214,
+  "updatedAt": 1669384197214,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384197214,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/compressAsset.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  absolutePath: string,\n  compressionConfig: CompressionConfig\n): Promise<string> => {\n  return absolutePath;\n}",
+  "name": "compressAsset",
+  "slug": "compress-asset",
+  "parameters": [
+    {
+      "name": "absolutePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "compressionConfig",
+      "schema": {
+        "$ref": "#/definitions/CompressionConfig"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "bitrate",
+            "required": false,
+            "schema": {
+              "fullComment": "used for audio",
+              "type": "number"
+            }
+          },
+          {
+            "name": "fps",
+            "required": false,
+            "schema": {
+              "fullComment": "Frames per second. Used for video",
+              "type": "number"
+            }
+          },
+          {
+            "name": "resolution",
+            "required": false,
+            "schema": {
+              "fullComment": "Set the resolution. Will not upscale.\n\nUsed for video and images",
+              "properties": [
+                {
+                  "name": "width",
+                  "required": true,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "height",
+                  "required": true,
+                  "schema": {
+                    "type": "number"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "shouldOverwrite",
+            "required": false,
+            "schema": {
+              "fullComment": "if true, will overwrite the original file",
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Audio, image, video can be compressed. This should be done to logical defaults, can be turned off, or can be specifically set to other dimensions using a doc-comment on the model.\n\n- audio: bitrate\n- video: fps and resolution\n- image: resolution\n\nReturns the new absolute path of the compressed asset (which can be the same as the initial path)",
+  "returnType": {
+    "rawType": "Promise<string>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 464,
+    "lines": 12,
+    "bytes": 464,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 39,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "lwimwpujharayuoyuezzkwey"
+}

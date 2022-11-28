@@ -1,16 +1,12 @@
 {
-  "createdAt": 1666261468965,
-  "updatedAt": 1666261468965,
+  "createdAt": 1669055937520,
+  "updatedAt": 1669055937520,
   "deletedAt": 0,
-  "createdFirstAt": 1666261468965,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055937520,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "PluginComponent<TextAreaInputType>",
   "operationRelativeTypescriptFilePath": "src/textarea/textArea.tsx",
   "commentsInside": [],
   "rawText": " ({\n  value,\n  extra,\n  config,\n  onChange,\n  errors,\n}) => {\n  const hasError = errors && errors.length > 0;\n  const errorClass = hasError ? config?.errorClassName || \"border-red-600\" : \"\";\n\n  return (\n    <TextArea\n      rows={extra?.rows}\n      maxLength={extra?.maxLength}\n      className={\n        config?.replaceClassName ||\n        `${UI.input} ${errorClass} ${config?.extraClassName}`\n      }\n      value={value}\n      onChange={(event) => {\n        onChange(event.target.value);\n      }}\n      native={{ onChangeText: onChange, value }}\n    />\n  );\n}",
@@ -41,5 +37,5 @@
     "linesPerFile": 26,
     "numberOfFiles": 1
   },
-  "id": "tptihmxhruwtcbptaijibdzh"
+  "id": "vuyjucgqrghvewshdsmrypzb"
 }

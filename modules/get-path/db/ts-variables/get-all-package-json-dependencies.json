@@ -1,16 +1,16 @@
 {
-  "createdAt": 1668148331895,
-  "updatedAt": 1668148331895,
+  "createdAt": 1669055048727,
+  "updatedAt": 1669055048727,
   "deletedAt": 0,
-  "createdFirstAt": 1668148331895,
+  "createdFirstAt": 1669055048727,
   "classification": "const",
   "comments": [],
   "isExported": true,
   "name": "getAllPackageJsonDependencies",
   "slug": "get-all-package-json-dependencies",
-  "operationRelativeTypescriptFilePath": "src/getOperationClassification.ts",
+  "operationRelativeTypescriptFilePath": "src/getAllPackageJsonDependencies.ts",
   "type": {
-    "rawType": "(p: import(\"/Users/king/King/operations/tools/types/code-types/build/PackageJson\").PackageJson) => string[]",
+    "rawType": "(operation: import(\"/Users/king/King/operations/tools/types/code-types/build/Operation\").Operation) => string[]",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(p: PackageJson): string[] => {\n  const dependencies = p.dependencies ? Object.keys(p.dependencies) : [];\n  const devDependencies = p.devDependencies\n    ? Object.keys(p.devDependencies)\n    : [];\n  const peerDependencies = p.peerDependencies\n    ? Object.keys(p.peerDependencies)\n    : [];\n\n  return [...dependencies, ...devDependencies, ...peerDependencies];\n}",
+  "value": "(\n  operation: Operation\n): string[] => {\n  const dependencies = operation.dependencies\n    ? Object.keys(operation.dependencies)\n    : [];\n  const devDependencies = operation.devDependencies\n    ? Object.keys(operation.devDependencies)\n    : [];\n  const peerDependencies = operation.peerDependencies\n    ? Object.keys(operation.peerDependencies)\n    : [];\n\n  return [...dependencies, ...devDependencies, ...peerDependencies];\n}",
   "description": "",
-  "id": "qjawrdicmvsdtbhaaknhgmln"
+  "id": "fdwmfwtpbhgcrhibbsvtqxza"
 }

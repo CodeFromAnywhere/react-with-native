@@ -1,5 +1,5 @@
 import { Path } from "fs-util";
-import { MarkdownParse } from "code-types";
+import { MarkdownParse } from "markdown-types";
 /**
  * Reads and parses a markdown file
  */

@@ -1,6 +1,6 @@
 # Get path
 
-get-path (`OperationClassification` js)
+get-path (`OperationClassification` cjs)
 
 Useful functions to get paths within King OS.
 
@@ -36,15 +36,6 @@ recursive. goes up until it finds a folder that's the project root
 if no source path is given, uses the directory name where the function is executed from as a starting point
 
 
-## findOperationBasePath()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| startPath | string |  |
-| **Output** | string   |    |
-
-
-
 ## getOperationPath()
 
 Gets a path of any operation in the project
@@ -59,9 +50,16 @@ TODO: IDEA: maybe auto-generate key-value JSON where keys are the package-names 
 
 
 
-## 📄 findOperationBasePath (exported const)
-
 ## 📄 getOperationPath (exported const)
+
+## findOperationBasePath()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| startPath | string |  |
+| **Output** | string   |    |
+
+
 
 ## makeRelative()
 
@@ -79,6 +77,8 @@ Resulting path will apply the paths conventions
 
 
 
+## 📄 findOperationBasePath (exported const)
+
 ## 📄 makeRelative (exported const)
 
 Makes a path relative using proper parsing
@@ -92,7 +92,7 @@ Resulting path will apply the paths conventions
 
 returns an array of all (absolute) paths containing operations
 
-for a sensible project, that means /apps, /packages, /modules
+for a bundled project, that means /apps, /packages, /modules
 
 for the OS project, that means /operations/tools and /operations/niches
 
@@ -108,7 +108,7 @@ for the OS project, that means /operations/tools and /operations/niches
 
 returns an array of all (absolute) paths containing operations
 
-for a sensible project, that means /apps, /packages, /modules
+for a bundled project, that means /apps, /packages, /modules
 
 for the OS project, that means /operations/tools and /operations/niches
 
@@ -126,20 +126,6 @@ Gets project path, or a folder in the root that is convention
 
 
 ## 📄 getRootPath (exported const)
-
-## getOperationClassification()
-
-Returns OperationClassification if it's an operation, or undefined if it's not
-
-NB: don't confuse this with ProjectType or ImportClassification
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| folderPath | string |  |
-| **Output** |    |    |
-
-
 
 ## getSrcRelativeFileId()
 
@@ -159,13 +145,6 @@ NB: removes "/" in the beginning, if found
 
 
 
-## 📄 getOperationClassification (exported const)
-
-Returns OperationClassification if it's an operation, or undefined if it's not
-
-NB: don't confuse this with ProjectType or ImportClassification
-
-
 ## 📄 getSrcRelativeFileId (exported const)
 
 returns a file id (path without extension) relative to the src folder of an operation
@@ -177,7 +156,28 @@ NB: assumes all src is in the src folder
 NB: removes "/" in the beginning, if found
 
 
-## isSensibleProject()
+## getOperationClassification()
+
+Returns `OperationClassification` if it's an operation, or undefined if it's not
+
+NB: don't confuse this with `ImportClassification`
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| folderPath | string |  |
+| **Output** |    |    |
+
+
+
+## 📄 getOperationClassification (exported const)
+
+Returns `OperationClassification` if it's an operation, or undefined if it's not
+
+NB: don't confuse this with `ImportClassification`
+
+
+## isBundle()
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -186,7 +186,7 @@ NB: removes "/" in the beginning, if found
 
 
 
-## 📄 isSensibleProject (exported const)
+## 📄 isBundle (exported const)
 
 ## getOperationRelativePath()
 
@@ -243,6 +243,15 @@ NB: currently it also looks up the operation name from its packagejson
 gets all kinds of information that can be inferred from any path (file or folder).
 
 
+## getOperationClassificationObject()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
 ## getRelativeLinkPath()
 
 returns a relative link between two files
@@ -252,20 +261,6 @@ returns a relative link between two files
 | ---------- | -- | -- |
 | absoluteFromFilePath | string |  |,| absoluteToFilePath | string |  |,| debug (optional) | boolean |  |
 | **Output** | `String`   |    |
-
-
-
-## getRelativePath()
-
-gets the relative path from a specified root
-
-will start with "/"
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| absolutePath | string |  |,| relativeFrom | string |  |
-| **Output** |    |    |
 
 
 
@@ -281,16 +276,13 @@ Checks whether or not an absolute path contains an operation. The only check it'
 
 
 
+## 🔹 OperationClassificationObject
+
+## 📄 getOperationClassificationObject (exported const)
+
 ## 📄 getRelativeLinkPath (exported const)
 
 returns a relative link between two files
-
-
-## 📄 getRelativePath (exported const)
-
-gets the relative path from a specified root
-
-will start with "/"
 
 
 ## 📄 isOperation (exported const)
@@ -319,7 +311,7 @@ Checks whether or not an absolute path contains an operation. The only check it'
 
 # Internal
 
-<details><summary>Show internal (16)</summary>
+<details><summary>Show internal (24)</summary>
     
   # findFolderWhereMatch()
 
@@ -351,7 +343,7 @@ because it had to read the package.json anyway, it's returning the operation cla
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| p | `PackageJson` |  |
+| operation | `Operation` |  |
 | **Output** | string[]   |    |
 
 
@@ -368,11 +360,34 @@ Finds the common ancestor for two absolute pahts
 
 
 
+## getRelativePath()
+
+gets the relative path from a specified root
+
+will start with "/"
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| absolutePath | string |  |,| relativeFrom | string |  |
+| **Output** |    |    |
+
+
+
 ## hasDependency()
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| packageJson | `PackageJson` |  |,| dependency | string |  |
+| operation | `Operation` |  |,| dependency | string |  |
+| **Output** |    |    |
+
+
+
+## isUiOperation()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| tsconfig | {  } |  |,| packageJson | {  } |  |
 | **Output** |    |    |
 
 
@@ -385,7 +400,25 @@ simple sync function to check if a folder is the root of a workspace (not operat
 | Input      |    |    |
 | ---------- | -- | -- |
 | folderPath | string |  |
-| **Output** | { isSensibleProject: boolean, <br />isWorkspaceRoot: boolean, <br /> }   |    |
+| **Output** | { isBundle: boolean, <br />isWorkspaceRoot: boolean, <br /> }   |    |
+
+
+
+## packageCompilesTs()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| packageJson | {  } |  |
+| **Output** |    |    |
+
+
+
+## tsconfigCompilesEsm()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| tsconfig | `TsConfig` |  |
+| **Output** | {  }   |    |
 
 
 
@@ -408,7 +441,16 @@ because it had to read the package.json anyway, it's returning the operation cla
 Finds the common ancestor for two absolute pahts
 
 
+## 📄 getRelativePath (exported const)
+
+gets the relative path from a specified root
+
+will start with "/"
+
+
 ## 📄 hasDependency (exported const)
+
+## 📄 isUiOperation (exported const)
 
 ## 📄 isWorkspaceRoot (exported const)
 
@@ -422,12 +464,16 @@ can only be accessed in the OS
 
 ## 📄 osRootFolders (exported const)
 
+## 📄 packageCompilesTs (exported const)
+
 ## 📄 projectRootFoldersConst (exported const)
 
 can be accessed in projects as well as in the OS
 
 
 ## 📄 projectRootFolders (exported const)
+
+## 📄 tsconfigCompilesEsm (exported const)
 
   </details>
 

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668149321167,
-  "updatedAt": 1668149321167,
+  "createdAt": 1669467169989,
+  "updatedAt": 1669467169989,
   "deletedAt": 0,
-  "createdFirstAt": 1668149321167,
+  "createdFirstAt": 1669467169989,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "get-real-src",
   "operationRelativeTypescriptFilePath": "src/util/getRealSrc.ts",
   "type": {
-    "rawType": "(src: string | undefined, config: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/markdown/src/types\").MarkdownParseRenderConfig) => string | undefined",
+    "rawType": "(src: string | undefined, config: import(\"/Users/king/King/operations/tools/user-interfaces/gui/smart/markdown/src/types\").MarkdownParseRenderConfig) => string | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(\n  src: string | undefined,\n  config: MarkdownParseRenderConfig\n) => {\n  // src from static folder of next.js\n  const relativeUrlStrategy =\n    config.isDev || !config.isStatic ? \"api\" : \"static\";\n\n  const realSrc = src\n    ? isPathRelative(src)\n      ? getUrlFromRelativeUrl(\n          src,\n          relativeUrlStrategy,\n          config.projectRelativeBaseFolderPath,\n          config.projectRelativeMarkdownFilePath\n        )\n      : src\n    : undefined;\n\n  return realSrc;\n}",
   "description": "Based on markdown info, gest the real source for an image",
-  "id": "kbkuvlplmkfyesynrimnvxtu"
+  "id": "noefujwdmojmujhusnzkezqk"
 }

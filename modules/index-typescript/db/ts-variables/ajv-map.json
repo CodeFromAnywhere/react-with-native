@@ -1,0 +1,121 @@
+{
+  "createdAt": 1669055627749,
+  "updatedAt": 1669055627749,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055627749,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "ajvMap",
+  "slug": "ajv-map",
+  "operationRelativeTypescriptFilePath": "src/typeToSchema.ts",
+  "type": {
+    "rawType": "{ number: string; string: string; array: string; object: string; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "string": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "array": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "object": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "number",
+        "string",
+        "array",
+        "object"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "number",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "string",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "array",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "object",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "value": "{\n  number: \"imum\",\n  string: \"Length\",\n  array: \"Items\",\n  object: \"Properties\",\n}",
+  "description": "",
+  "id": "wrzbryfnamijwljjzqeskkuu"
+}

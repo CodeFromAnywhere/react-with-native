@@ -4,9 +4,26 @@ import { FrontBackBundle } from "./FrontBackBundle";
 import { Slug } from "model-types";
 export declare type CreateBundleConfig = {
     /**
+     * You can specify `Slug`s of other `BundleConfig`s here that this bundle should inherit from, recursively.
+     *
+     * Works a little like https://www.typescriptlang.org/tsconfig#extends
+     *
+     * Will only inherit the apps, packages, and modules, nothing else.
+     *
+     * # How it works
+     *
+     * 1) finds all unique `BundleConfig`s that need to be inherited, recursively,
+     * 2) make a `BundleSummary` of every `BundleConfig`
+     * 3) merge the `BundleSummary`s and omit duplicates
+     *
+     * TODO: Implement this
+     */
+    inheritFrom_bundleConfigSlugs?: Slug[];
+    /**
      * If true, the structure of operation locations is kept the same but still inside packages/apps/modules.
      */
     keepStructure?: boolean;
+    keepCodestories?: boolean;
     /**
      * Default information strategy
      */
@@ -60,6 +77,10 @@ export declare type CreateBundleConfig = {
      * Must be a relative path from project root. Can be multiple!
      */
     docsRelativeFolderPath?: ProjectRelativeFolderPath | ProjectRelativeFolderPath[];
+    /**
+     * paths to image folders that should randomly be used as default headers or footers in the generated markdown.
+     */
+    imagesProjectRelativeFolderPaths?: ProjectRelativeFolderPath[];
     /**
      * Optional. path to a readme file for the monorepo root.
      *

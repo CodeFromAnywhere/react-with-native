@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668836111847,
+  "updatedAt": 1668836111847,
+  "deletedAt": 0,
+  "createdFirstAt": 1668836111847,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "errorToast",
+  "slug": "error-toast",
+  "operationRelativeTypescriptFilePath": "src/cool-toast.ts",
+  "type": {
+    "rawType": "(message?: string | undefined) => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(message?: string) => {\n  toast(\n    {\n      title: \"\",\n      body: message || \"Something went wrong\",\n    },\n    { hideProgressBar: true, position: \"bottom-right\", type: \"error\" }\n  );\n}",
+  "description": "",
+  "id": "pwlcfosjulrzyeoemudhgrcg"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200466125,
+  "updatedAt": 1669200466125,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200466125,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getMarkdownContents",
+  "slug": "get-markdown-contents",
+  "operationRelativeTypescriptFilePath": "src/getMarkdownContents.ts",
+  "type": {
+    "rawType": "(absoluteFolderPath: string) => Promise<{ content: string; relativePath: string; }[] | undefined>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  absoluteFolderPath: string\n): Promise<{ content: string; relativePath: string }[] | undefined> => {\n  if (!fs.existsSync(absoluteFolderPath)) return;\n  const markdownFiles = await getPublicMarkdownFilePaths(absoluteFolderPath);\n  const markdownContents = await Promise.all(\n    markdownFiles\n      .filter((x) => fs.existsSync(x.path))\n      .map(async (x) => {\n        return {\n          content: await fs.readFile(x.path, \"utf8\"),\n          relativePath: makeRelative(x.path, absoluteFolderPath),\n        };\n      })\n  );\n\n  return markdownContents;\n}",
+  "description": "",
+  "id": "zowpoxmclojbeisucmkksqiv"
+}

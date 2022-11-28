@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384213681,
+  "updatedAt": 1669384213681,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384213681,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "removeOldTemporaryAssets",
+  "slug": "remove-old-temporary-assets",
+  "operationRelativeTypescriptFilePath": "src/removeOldTemporaryAssets.ts",
+  "type": {
+    "rawType": "() => Promise<{ removedAmount: number; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (): Promise<{\n  removedAmount: number;\n}> => {\n  const temporaryAssetsFolderPath = getTemporaryAssetsFolderPath();\n  const contents = await fs.readdir(temporaryAssetsFolderPath, {\n    encoding: \"utf8\",\n  });\n\n  let removedAmount = 0;\n  await Promise.all(\n    contents.map(async (fileOrFolderName) => {\n      const absolutePath = path.join(\n        temporaryAssetsFolderPath,\n        fileOrFolderName\n      );\n\n      const statistics = await fs.stat(absolutePath);\n\n      if (Date.now() - statistics.ctimeMs > 86400 * 1000) {\n        removedAmount++;\n        // more than a day old\n        await fs.rm(absolutePath, { recursive: true });\n      }\n    })\n  );\n\n  return { removedAmount };\n}",
+  "description": "---\nrunEveryPeriod: midnight\n---\n\n\nAll temporary assets that were created more than 24 hours ago and are still there, will be removed by this function.\n\nThis allows us to easily delete assets without concequences and also if the user closes a form without submitting it, these assets uploaded will go away.\n\nThis function should be executed using a daily CRON",
+  "id": "alclxslqakghzludmdvorjiz"
+}

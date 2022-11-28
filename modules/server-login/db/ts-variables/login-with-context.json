@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385333631,
+  "updatedAt": 1669385333631,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385333631,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "loginWithContext",
+  "slug": "login-with-context",
+  "operationRelativeTypescriptFilePath": "src/loginWithContext.ts",
+  "type": {
+    "rawType": "(functionContext: import(\"/Users/king/King/operations/tools/user-interfaces/api/function-context-type/build/FunctionContext\").FunctionContext) => Promise<{ isSuccessful: boolean; message: string; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  functionContext: FunctionContext\n): Promise<{ isSuccessful: boolean; message: string }> => {\n  const { device } = functionContext;\n  const { persons, message } = await findLoggedinPersonsWithContext(\n    functionContext\n  );\n\n  const personIds = persons?.map((x) => x.id);\n\n  const updateResult = await db.update(\n    \"Device\",\n    (item) => item.id === device.id,\n    (old) => ({ ...old, personIds })\n  );\n\n  const isSuccessful =\n    !!updateResult.isSuccesful && updateResult.amountUpdated === 1;\n\n  return {\n    isSuccessful,\n    message: isSuccessful\n      ? \"Logged in\"\n      : updateResult.message || \"Something went wrong\",\n  };\n}",
+  "description": "attaches the `Device` with `authToken` to a `Person` once all required authenticationMethods are provided. If not, it needs to return the required authenticationMethods so the user can attach those to the device until loggin is successful.",
+  "id": "kzcmlvtakkdfqifxjfzwvcwt"
+}

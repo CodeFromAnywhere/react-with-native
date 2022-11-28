@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668332052855,
+  "updatedAt": 1668332052855,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332052855,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/clearAllTsDatabases.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    callback: async (folderPath, index) => {\n      const operationName = getLastFolder(folderPath);\n      log(\n        `#${index}: Clearing Typescript Indexation Data for ${operationName}`,\n        { type: \"success\" }\n      );\n      await clearTsDatabase(operationName);\n      return;\n    },\n  });\n}",
+  "name": "clearAllTsDatabases",
+  "slug": "clear-all-ts-databases",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 396,
+    "lines": 15,
+    "bytes": 396,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "mdftpfsoynsetsjvvwrcdmps"
+}

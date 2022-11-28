@@ -1,0 +1,4 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.tsInterfaceToMarkdownString=void 0;var js_util_1=require("js-util"),simplifiedSchemaToMarkdownString_1=require("./simplifiedSchemaToMarkdownString"),tsInterfaceToMarkdownString=function(e){var t=e.isDbModel?"🔸":"🔹",i="# ".concat(t," ").concat(e.name),r=e.dbStorageMethod?"".concat(e.dbStorageMethod," model\n\n"):void 0,o=(0,simplifiedSchemaToMarkdownString_1.simplifiedSchemaToMarkdownString)(e.type.simplifiedSchema,void 0,!0,2);return[i,
+// operationName,
+r,e.description,o].filter(js_util_1.notEmpty).join("\n\n")};exports.tsInterfaceToMarkdownString=tsInterfaceToMarkdownString;
+//# sourceMappingURL=tsInterfaceToMarkdownString.js.map

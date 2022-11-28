@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1668331773857,
+    "updatedAt": 1668331773857,
+    "deletedAt": 0,
+    "createdFirstAt": 1668331773857,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/folderGetUpdatedAt.ts",
+    "comment": "get last updated file updatedAt time in whole folder, recursively",
+    "rawStatement": "export const folderGetUpdatedAt = async ({\n  folderPath,\n}: {\n  folderPath: string;\n}): Promise<number> => {\n  return (\n    await explore({\n      basePath: folderPath,\n      includeStats: true,\n      extension: [\"ts\", \"tsx\"],\n      ignore: \"index.ts\",\n    })\n  ).reduce((updatedAt, file) => {\n    const fileUpdatedAt = file.stats?.updatedAt;\n    if (!fileUpdatedAt) return updatedAt;\n    if (fileUpdatedAt > updatedAt) return fileUpdatedAt;\n    return updatedAt;\n  }, 0);\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 3,
+    "lastLine": 5,
+    "id": "krqbhtmltnmvtcyumsgpmayl"
+  }
+]

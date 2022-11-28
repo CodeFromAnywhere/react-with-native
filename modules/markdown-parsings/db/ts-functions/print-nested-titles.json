@@ -1,0 +1,87 @@
+{
+  "createdAt": 1669200488277,
+  "updatedAt": 1669200488277,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200488277,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/parsing/outline.ts",
+  "commentsInside": [],
+  "rawText": " (\n  nestedTitles: NestedTitle[] | undefined,\n  depth?: number\n): string | undefined => {\n  const realDepth = depth || 0;\n  const prefix = \"..\".repeat(realDepth);\n\n  const printedTogether = nestedTitles\n    ?.map((nestedTitle) => {\n      return Array.isArray(nestedTitle)\n        ? printNestedTitles(nestedTitle, realDepth + 1)\n        : `${prefix}${nestedTitle}\\n`;\n    })\n    .join(\"\\n\");\n\n  return printedTogether;\n}",
+  "name": "printNestedTitles",
+  "slug": "print-nested-titles",
+  "parameters": [
+    {
+      "name": "nestedTitles",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/NestedTitle"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "fullComment": "",
+              "properties": [],
+              "type": "object"
+            },
+            "name": "NestedTitle"
+          }
+        ],
+        "type": "array"
+      },
+      "required": false
+    },
+    {
+      "name": "depth",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": false
+    }
+  ],
+  "description": "helper function (recursive) that prints nested titles with .. as prefix and a newline after every title\n\nTODO: allow for numbering titles",
+  "returnType": {
+    "rawType": "string | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 556,
+    "lines": 19,
+    "bytes": 556,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 19,
+    "numberOfFiles": 1
+  },
+  "id": "yomjkqqytxucrzfisqoivily"
+}

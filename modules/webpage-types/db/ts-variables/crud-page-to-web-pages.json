@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669276583697,
+  "updatedAt": 1669276583697,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276583697,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "crudPageToWebPages",
+  "slug": "crud-page-to-web-pages",
+  "operationRelativeTypescriptFilePath": "src/to-webpage-conversors.ts",
+  "type": {
+    "rawType": "(pageData: import(\"/Users/king/King/operations/tools/types/webpage-types/src/types\").CrudPage) => import(\"/Users/king/King/operations/tools/types/webpage-types/src/types\").WebPage<import(\"/Users/king/King/operations/tools/types/webpage-types/src/types\").CrudPage>[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(pageData: CrudPage): WebPage<CrudPage>[] => {\n  const dataPage = {\n    pageData,\n    queryPath: `data/${pageData.modelName}`,\n    isMenuHidden: false,\n    menuTitle: humanCase(pageData.modelName),\n  };\n  const upsertOrNot =\n    pageData.canCreate || pageData.canUpdate\n      ? {\n          pageData,\n          queryPath: `upsert/${pageData.modelName}`,\n          isMenuHidden: true,\n        }\n      : undefined;\n\n  return [dataPage, upsertOrNot].filter(notEmpty);\n}",
+  "description": "",
+  "id": "mftjsbqzscgubbiukwoextuk"
+}

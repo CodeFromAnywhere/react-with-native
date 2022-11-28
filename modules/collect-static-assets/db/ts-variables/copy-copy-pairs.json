@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669466952022,
+  "updatedAt": 1669466952022,
+  "deletedAt": 0,
+  "createdFirstAt": 1669466952022,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "copyCopyPairs",
+  "slug": "copy-copy-pairs",
+  "operationRelativeTypescriptFilePath": "src/copyCopyPairs.ts",
+  "type": {
+    "rawType": "(copyPairs: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/collect-static-assets/src/copyCopyPairs\").CopyPair[]) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(copyPairs: CopyPair[]) => {\n  const copyPromises = copyPairs.map(async (copyPair) => {\n    const absoluteDestinationFolderPath = path.parse(\n      copyPair.absoluteDestinationPath\n    ).dir;\n\n    // first make the folder if not already there\n    if (!fs.existsSync(absoluteDestinationFolderPath)) {\n      await fs.mkdir(absoluteDestinationFolderPath, { recursive: true });\n    }\n\n    await fs.cpAsync(\n      copyPair.absoluteSourcePath,\n      copyPair.absoluteDestinationPath,\n      {\n        preserveTimestamps: true,\n      }\n    );\n  });\n\n  return Promise.all(copyPromises);\n}",
+  "description": "",
+  "id": "xgkvjvpvnlywmsqgeioxxoxt"
+}

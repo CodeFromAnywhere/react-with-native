@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384307718,
+  "updatedAt": 1669384307718,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384307718,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getTodoPages",
+  "slug": "get-todo-pages",
+  "operationRelativeTypescriptFilePath": "src/getTodoPages.ts",
+  "type": {
+    "rawType": "(config?: import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/todos/todo-types/build/TodoPagesConfig\").TodoPagesConfig | undefined) => Promise<{ nested: import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").NestedWebPage[]; flat: (import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").WebPage<null> | import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").FileWebPage)[]; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  config?: TodoPagesConfig\n): Promise<{ nested: NestedWebPage[]; flat: (WriterWebPage | WebPage)[] }> => {\n  // console.log({ config });\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return { nested: [], flat: [] };\n\n  //needed for matching persons but also for just showing that it has offers\n  const todoOffers = await db.get(\"TodoOffer\");\n  const todoPaths = await getTodoPaths(config);\n\n  const todoPages: WriterWebPage[] =\n    todoPaths?.map((projectRelativeFilePath) => {\n      const [before, after] = projectRelativeFilePath.split(\"/todo/\");\n      const lastFolderBeforeTodo = getLastFolder(before);\n      const todoRelativeFileId = withoutExtension(after);\n      const fileName = getLastFolder(todoRelativeFileId);\n      /**\n       * Idea: parsing the file for amount of items with and without checkmark, showing the % done and (x/y)\n       */\n      const menuTitle = humanCase(fileName);\n\n      const hasTodoOffers = !!todoOffers.find(\n        (x) => x.todoFileId === projectRelativeFilePath\n      );\n      /**\n       * showing an emoji the status of the todo-offers\n       */\n      const menuTitleAugmentation = hasTodoOffers ? \"🔥\" : undefined;\n\n      /**\n       * Idea: showing a summary, more about the progress and owner(s), and anything you just quickly wanna see\n       */\n      const menuTitleTooltip =\n        \"Tooltip example\\n\\nShould render markdown\\n\\n**Say,this is great, no?**\";\n\n      const page: WriterWebPage = {\n        pageData: {\n          projectRelativeFilePath,\n        },\n        queryPath: `${lastFolderBeforeTodo}/${todoRelativeFileId}`,\n        menuTitle,\n        menuTitleAugmentation,\n        menuTitleTooltip,\n        isMenuHidden: false,\n      };\n\n      return page;\n    }) || [];\n\n  const otherPages: WebPage<unknown>[] = [\n    {\n      queryPath: \"stats\",\n      menuTitle: \"Statistics\",\n      menuTitleTooltip: \"Some stats about cool stuff\",\n      pageData: undefined,\n    },\n\n    {\n      queryPath: \"SelfSprintReview\",\n      menuTitle: \"Sprint review\",\n      menuTitleTooltip: \"Let's do this every friday, 3PM CET\",\n      pageData: undefined,\n    },\n    {\n      queryPath: \"TodoOffer\",\n      isMenuHidden: true,\n      pageData: undefined,\n    },\n    {\n      queryPath: \"upsert/TodoOffer\",\n      isMenuHidden: true,\n      pageData: undefined,\n    },\n    {\n      queryPath: \"upsert/SelfSprintReview\",\n      isMenuHidden: true,\n      pageData: undefined,\n    },\n  ];\n\n  const flat = otherPages.concat(todoPages) as (WriterWebPage | WebPage)[];\n\n  // nestifyQueryPathObjectRecursive(flatWithoutPageData);\n\n  return getMenuPagesObject(flat);\n}",
+  "description": "`getTodoPages(): WebPage[]` function:\n\n- use getProjectRelativePaths, map the result to a queryPath + file\n- [operation-name]/[todo-relative-file-id] for operations\n- [folder-name]/[todo-relative-file-id] for todos within folders",
+  "id": "xqmkcelmvaobgfxagdnlqcjk"
+}

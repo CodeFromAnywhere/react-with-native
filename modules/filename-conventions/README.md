@@ -1,6 +1,6 @@
 # Filename conventions
 
-filename-conventions (`OperationClassification` js)
+filename-conventions (`OperationClassification` cjs)
 
 Any functions and variables related to filename conventions
 

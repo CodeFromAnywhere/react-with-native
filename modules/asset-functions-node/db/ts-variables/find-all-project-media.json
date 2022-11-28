@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384205337,
+  "updatedAt": 1669384205337,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384205337,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findAllProjectMedia",
+  "slug": "find-all-project-media",
+  "operationRelativeTypescriptFilePath": "src/findAllProjectMedia.ts",
+  "type": {
+    "rawType": "(searchQuery?: string | undefined, returnType?: \"projectRelative\" | \"absolute\" | undefined) => Promise<string[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  searchQuery?: string,\n  /**\n   * defaults to absolute\n   */\n  returnType?: \"projectRelative\" | \"absolute\"\n): Promise<string[]> => {\n  const projectRoot = getProjectRoot();\n\n  if (!projectRoot) return [];\n\n  const dbPath = path.join(projectRoot, databaseFolderName);\n\n  const operationBasePaths = Object.values(operations).map(\n    (projectRelativePath) => path.join(projectRoot, projectRelativePath)\n  );\n\n  const databaseFolderPaths = operationBasePaths\n    .map((absoluteOperationPath) =>\n      path.join(absoluteOperationPath, databaseFolderName)\n    )\n    .concat(dbPath)\n    .filter(fs.existsSync);\n\n  const dbResults = await explore({\n    basePath: databaseFolderPaths,\n    extension: mediaExtensions,\n    search: searchQuery,\n  });\n\n  const operationResults = await explore({\n    basePath: operationBasePaths,\n    extension: mediaExtensions,\n    ignore: [...generatedFolders, databaseFolderName, sourceFolderName],\n    search: searchQuery,\n  });\n\n  const anywhereResults = await explore({\n    cancelRecursionOn: pathArrayIsOperation,\n    basePath: projectRoot,\n    extension: mediaExtensions,\n    ignore: [databaseFolderName, \"node_modules\", \".git\"],\n  });\n\n  const results = [dbResults, operationResults, anywhereResults]\n    .flat()\n    .map((x) => x.path);\n\n  return returnType === \"projectRelative\"\n    ? results.map((x) => makeRelative(x, projectRoot))\n    : results;\n}",
+  "description": "Media:`.png`, `.mp4`, `.mp3`, `.zip`, `.pdf`\n\n- finds all media in all `db` folders. Can be anywhere, so an explore will probably be best.\n- finds all media in every operation in any folder except for `node_modules`, `db`, `src`, `build`, `.[anything]`. (so mostly in `todo`, `docs` and `assets`)\n- find all media in every other folder that is not an operation\n\nReturn all of this as project relative path array",
+  "id": "mauvqwyofandswmvcmfkzsiw"
+}

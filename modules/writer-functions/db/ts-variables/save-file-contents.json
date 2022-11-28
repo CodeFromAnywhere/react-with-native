@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385047621,
+  "updatedAt": 1669385047621,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385047621,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "saveFileContents",
+  "slug": "save-file-contents",
+  "operationRelativeTypescriptFilePath": "src/saveFileContents.ts",
+  "type": {
+    "rawType": "(projectRelativeFilePath: string, newContent: string) => Promise<{ isSuccessful: boolean; message?: string | undefined; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  projectRelativeFilePath: string,\n  newContent: string\n): Promise<{ isSuccessful: boolean; message?: string }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root found\" };\n  }\n\n  const absolutePath = path.join(projectRoot, projectRelativeFilePath);\n\n  if (!fs.existsSync(absolutePath)) {\n    return { isSuccessful: false, message: \"This file does not exist\" };\n  }\n\n  await fs.writeFile(absolutePath, newContent, { encoding: \"utf8\" });\n\n  return {\n    isSuccessful: true,\n  };\n}",
+  "description": "",
+  "id": "nghtndgctcpnokbtumxrkkyp"
+}

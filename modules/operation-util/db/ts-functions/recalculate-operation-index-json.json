@@ -1,0 +1,62 @@
+{
+  "createdAt": 1668332242229,
+  "updatedAt": 1668332242229,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332242229,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/recalculateOperationIndexJson.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  operationBasePath: string,\n  manualProjectRoot?: string\n) => {\n  const operationMetaData = await getOperationMetaData(operationBasePath);\n\n  if (!operationMetaData) {\n    log(`Operation on ${operationBasePath} doesn't have a basepath`, {\n      type: \"error\",\n    });\n    return;\n  }\n\n  const {\n    operation,\n    operationFolderName,\n    operationName,\n    relativeOperationLocationPath,\n  } = operationMetaData;\n\n  if (!operation || !operationName || !relativeOperationLocationPath) {\n    log(\n      `Operation on ${operationBasePath} doesn't have a name or relativeOperationLocationPath or package.json`,\n      { type: \"error\" }\n    );\n    return;\n  }\n\n  const classificationIndexed = getOperationClassification(operationBasePath)!; //NB: we know it's there because operationBasePath must be valid\n\n  const { coreDependencies, operationDependencies, packageDependencies } =\n    await getDependenciesSummary(operationName);\n\n  const categories = await categorizeFiles({\n    basePath: operationBasePath,\n    ignoreIndexFiles: true,\n  });\n\n  const sizeIndexed = await getFolderSummary(categories);\n  // console.log(\"UPDATE QUERY\");\n  await db.update(\n    \"Operation\",\n    (item) => item.name === operation.name,\n    (old) =>\n      mergeNestedObject(old, {\n        operation: {\n          lastRebuildAt: Date.now(),\n          sizeIndexed,\n          folderNameIndexed: operationFolderName,\n          relativeOperationLocationPathIndexed: relativeOperationLocationPath,\n          classificationIndexed,\n          coreDependenciesIndexed: coreDependencies,\n          operationDependenciesIndexed: operationDependencies,\n          packageDependenciesIndexed: packageDependencies,\n        },\n      }),\n    { operationName: operation.name }\n  );\n}",
+  "name": "recalculateOperationIndexJson",
+  "slug": "recalculate-operation-index-json",
+  "parameters": [
+    {
+      "name": "operationBasePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "manualProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Recalculates some operation indexable things and updates that into the database",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 1828,
+    "lines": 59,
+    "bytes": 1828,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 59,
+    "numberOfFiles": 1
+  },
+  "id": "wcojmlsnzrdjzrftdpaaiauv"
+}

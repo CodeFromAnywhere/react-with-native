@@ -1,22 +1,27 @@
 {
-  "createdAt": 1666263144079,
-  "updatedAt": 1666263144079,
+  "createdAt": 1668717090488,
+  "updatedAt": 1668717090488,
   "deletedAt": 0,
-  "createdFirstAt": 1666263144079,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668717090488,
+  "isApiExposed": true,
   "isExported": true,
-  "operationRelativeTypescriptFilePath": "src/rest-util.ts",
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/toQueryString.ts",
   "commentsInside": [],
   "rawText": " (query?: any) => {\n  const hasQuery =\n    query && Object.entries(query)?.filter(isValidEntry).length > 0;\n  return hasQuery\n    ? \"?\" +\n        Object.entries(query)\n          .filter(isValidEntry)\n          .map(([key, value]) => {\n            const encodedValue = encodeURIComponent(String(value));\n            return `${key}=${encodedValue}`;\n          })\n          .join(\"&\")\n    : \"\";\n}",
   "name": "toQueryString",
   "slug": "to-query-string",
-  "parameters": [],
+  "parameters": [
+    {
+      "name": "query",
+      "schema": {},
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
   "description": "returns something like `?x=a&y=b&z=c`",
   "returnType": {
     "rawType": "String",
@@ -41,5 +46,5 @@
     "linesPerFile": 14,
     "numberOfFiles": 1
   },
-  "id": "bhtshcdugtdgwyqabckzhzqs"
+  "id": "eictyagtmziipoeqsmdcpedw"
 }

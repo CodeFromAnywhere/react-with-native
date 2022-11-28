@@ -1,0 +1,59 @@
+{
+  "createdAt": 1669385037917,
+  "updatedAt": 1669385037917,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385037917,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/moveFile.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  /**\n   * Can be file only for now\n   */\n  projectRelativePath: string,\n  projectRelativeNewFolderPath: string\n): Promise<{ isSuccessful: boolean; message?: string }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root found\" };\n  }\n\n  const absolutePath = path.join(projectRoot, projectRelativePath);\n\n  if (!fs.existsSync(absolutePath)) {\n    return {\n      isSuccessful: false,\n      message: \"This file or folder doesn't exist\",\n    };\n  }\n\n  const newAbsolutePath = path.join(\n    projectRelativeNewFolderPath,\n    path.parse(absolutePath).base\n  );\n\n  if (fs.existsSync(newAbsolutePath)) {\n    return { isSuccessful: false, message: \"File already exists\" };\n  }\n\n  await fs.rename(absolutePath, newAbsolutePath);\n\n  return { isSuccessful: true };\n}",
+  "name": "moveFile",
+  "slug": "move-file",
+  "parameters": [
+    {
+      "name": "projectRelativePath",
+      "schema": {
+        "type": "string",
+        "description": "Can be file only for now"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Can be file only for now",
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "projectRelativeNewFolderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<{ isSuccessful: boolean; message?: string | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 839,
+    "lines": 34,
+    "bytes": 839,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 34,
+    "numberOfFiles": 1
+  },
+  "id": "vhwddeemrvvlwraxuvcularn"
+}

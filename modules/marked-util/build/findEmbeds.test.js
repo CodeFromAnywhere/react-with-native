@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var findEmbeds_1=require("./findEmbeds"),findEmbedsTest=function(){var e=(0,findEmbeds_1.findEmbeds)("---\nisCodestory: true\nheaderImage: ![](./ksks2.png)\n---\n\n# YO YO YO ![](./ksks.nl)\n\nyo yo yo\n\n![](./ksks.png)\n\n**![](./wow.png)**\n");console.log({result:e})};findEmbedsTest();
+//# sourceMappingURL=findEmbeds.test.js.map

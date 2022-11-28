@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667379659665,
-  "updatedAt": 1667379659665,
+  "createdAt": 1669467041816,
+  "updatedAt": 1669467041816,
   "deletedAt": 0,
-  "createdFirstAt": 1667379659665,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669467041816,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getMarkdownReferencePaths.ts",
   "commentsInside": [],
   "rawText": " (markdownString: string): string[] => {\n  const markdownParse = mdToJsonParse(markdownString);\n  const paragraphs = getMarkdownParseParagraphs(markdownParse);\n  const references = paragraphs.map(getMarkdownReferencesFromParagraph).flat();\n  const paths = references.map((x) => x.path);\n  return paths;\n}",
@@ -76,5 +71,5 @@
     "linesPerFile": 7,
     "numberOfFiles": 1
   },
-  "id": "pmbvzigvmnzwwdiebmzcgiqf"
+  "id": "gvibksogkojamewtxbpopubk"
 }

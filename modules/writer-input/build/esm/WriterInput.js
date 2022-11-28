@@ -12,9 +12,9 @@ import { TitleContainer } from "./TitleContainer";
 import { getWriterTypeFromContent } from "./util/getWriterTypeFromContent";
 import { FrontmatterForm } from "./FrontmatterForm";
 import { WriterConfigForm } from "./config/WriterConfigForm";
-import { SmartContentEditableDivInput } from "./editors/SmartContentEditableDivInput";
 import { useStore } from "./store";
 import { MarkdownView } from "./MarkdownView";
+import { EditWriterInput } from "./EditWriterInput";
 var vscodeOpen = api.vscodeOpen;
 /**
 Writer input for any utf8 based text, file or no file
@@ -57,13 +57,13 @@ export var WriterInput = function (props) {
             isDev: isDev,
             isStatic: false,
         };
-        return (React.createElement(Div, { className: "flex flex-col flex-1" },
+        return (React.createElement(Div, { className: "flex flex-col flex-1 px-4" },
             writerView === "config" ? React.createElement(WriterConfigForm, null) : null,
             writerView === "frontmatter" &&
                 !frontmatterSchemaQuery.isLoading &&
                 ((_b = frontmatterSchemaQuery.data) === null || _b === void 0 ? void 0 : _b.result) &&
-                projectRelativeMarkdownFilePath ? (React.createElement(FrontmatterForm, { key: projectRelativeMarkdownFilePath, markdownParse: markdownParse, projectRelativeMarkdownFilePath: projectRelativeMarkdownFilePath, frontmatterSchema: (_c = frontmatterSchemaQuery.data) === null || _c === void 0 ? void 0 : _c.result, onChange: onChange })) : null,
-            writerView === "edit" || writerView === undefined ? (React.createElement(SmartContentEditableDivInput, { writerType: writerType, value: value, onChange: onChange, markdownParseRenderConfig: markdownParseRenderConfig })) : null,
+                projectRelativeMarkdownFilePath ? (React.createElement(FrontmatterForm, { modelName: markdownModelName, key: projectRelativeMarkdownFilePath, markdownParse: markdownParse, projectRelativeMarkdownFilePath: projectRelativeMarkdownFilePath, frontmatterSchema: (_c = frontmatterSchemaQuery.data) === null || _c === void 0 ? void 0 : _c.result, onChange: onChange })) : null,
+            writerView === "edit" || writerView === undefined ? (React.createElement(EditWriterInput, { onChange: onChange, value: value, projectRelativeFilePath: projectRelativeFilePath, markdownModelName: markdownModelName })) : null,
             writerView === "view" || writerView === "presentation" ? (React.createElement(MarkdownView, { view: writerView, markdownParse: markdownParse, markdownParseRenderConfig: markdownParseRenderConfig })) : null));
     };
     return (React.createElement(Div, { className: "flex flex-col flex-1 ".concat(className) },

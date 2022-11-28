@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1669055725407,
+    "updatedAt": 1669055725407,
+    "deletedAt": 0,
+    "createdFirstAt": 1669055725407,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/yarnBuild.ts",
+    "comment": "Builds and minifies the src",
+    "rawStatement": "export const yarnBuild = async (\n  operationBasePath: string,\n  config?: {\n    /**\n     * if true, build folder will be removed first\n     */\n    rmFirst?: boolean;\n    skipMinify?: boolean;\n  }\n): Promise<Success> => {\n  if (config?.rmFirst && fs.existsSync(path.join(operationBasePath, \"build\"))) {\n    const removed = spawnSync(`rm -rf build`, {\n      cwd: operationBasePath,\n      encoding: \"utf8\",\n      stdio: \"inherit\",\n      shell: true,\n    });\n  }\n\n  if (!fs.existsSync(operationBasePath)) {\n    return false;\n  }\n\n  // TODO:\n  // this should only happen conditionally but for now we'll always try\n  // later we can add the option to not build if any dependant builds break because of our code changes, but this is quite complex.\n  const success = executeCommandQuietUnlessFail({\n    command: \"yarn build\",\n    cwd: operationBasePath,\n    description: `Compiling source ${operationBasePath}`,\n  });\n\n  if (!success) {\n    log(`Build failed for ${getLastFolder(operationBasePath)}`, {\n      type: \"error\",\n    });\n    return false;\n  } //\n\n  if (config?.skipMinify) {\n    console.log(\"SKIPPING MINIFY\");\n\n    return success;\n  }\n\n  const minified = await minifyBuild({\n    buildFolderPath: path.join(operationBasePath, buildFolderName),\n  });\n\n  return minified || false;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 9,
+    "lastLine": 11,
+    "id": "nqpvrgzzmsreiilutqvtypmq"
+  }
+]

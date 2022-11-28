@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148838197,
-  "updatedAt": 1668148838197,
+  "createdAt": 1669312092829,
+  "updatedAt": 1669312092829,
   "deletedAt": 0,
-  "createdFirstAt": 1668148838197,
+  "createdFirstAt": 1669312092829,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "alter-any",
   "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
   "type": {
-    "rawType": "(dbStorageMethod: any, dbFileLocation: import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").DbFileLocation, alterFn: (storedData: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>[]) => { newStoredData: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>[]; } & import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").DbQueryResult) => Promise<import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").DbQueryResult>",
+    "rawType": "(dbStorageMethod: any, dbFileLocation: import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").DbFileLocation, alterFn: (storedData: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>[]) => { newStoredData: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>[]; } & import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/src/types\").DbQueryResult) => Promise<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/src/types\").DbQueryResult>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  dbStorageMethod: DbStorageMethod,\n  ...alterParameters: AlterParameters\n): Promise<DbQueryResult> => {\n  if (dbStorageMethod === \"csv\") return alterCsv(...alterParameters);\n  if (dbStorageMethod === \"jsonSingle\")\n    return alterJsonSingle(...alterParameters);\n  if (dbStorageMethod === \"keyValueMarkdown\") {\n    // this case never happens, this is never the case\n    log(\"Wut??? this case should be prevented by its parent function\", {\n      type: \"warning\",\n    });\n    return alterKeyValueMarkdown(...alterParameters);\n  }\n  if (dbStorageMethod === \"markdown\") return alterMarkdown(...alterParameters);\n  return alterJsonMultiple(...alterParameters);\n}",
   "description": "low level function that alters data from any storage method at a certain location\n\ncomprises all dbStorageMethods",
-  "id": "vthuhiwonzclpqgefnxsghhg"
+  "id": "blqzeoxoevpydnuzqjwxourz"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669132870103,
+  "updatedAt": 1669132870103,
+  "deletedAt": 0,
+  "createdFirstAt": 1669132870103,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getLegacyMenu",
+  "slug": "get-legacy-menu",
+  "operationRelativeTypescriptFilePath": "src/Menu.tsx",
+  "type": {
+    "rawType": "(queryPaths: string[]) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(queryPaths: string[]) => {\n  const projectNestedPathObject = queryPaths\n    ? queryPathsArrayToNestedPathObject(queryPaths)\n    : undefined;\n\n  /**\n   * This one too\n   */\n  const nestedMenu = projectNestedPathObject\n    ? nestedPathObjectToNestedMenuRecursive(projectNestedPathObject, [], {\n        getHref: (fullPath) => {\n          return fullPath;\n        },\n      })\n    : undefined;\n\n  const result = nestedMenu?.map((item) => {\n    const webPage: WebPage<null> = {\n      queryPath: item.title,\n      menuTitleTooltip: \"Should be replaced with WebPage model\",\n      pageData: null,\n    };\n\n    return webPage;\n  });\n\n  return result;\n}",
+  "description": "",
+  "id": "ueybmniiwfgkfqsopjiszkdm"
+}

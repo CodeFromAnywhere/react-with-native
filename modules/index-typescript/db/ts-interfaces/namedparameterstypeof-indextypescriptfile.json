@@ -1,0 +1,132 @@
+{
+  "createdAt": 1669055616252,
+  "updatedAt": 1669055616252,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055616252,
+  "id": "namedparameterstypeof-indextypescriptfile",
+  "name": "NamedParameters<typeof indexTypescriptFile>",
+  "slug": "namedparameterstypeof-indextypescriptfile",
+  "operationRelativeTypescriptFilePath": "src/indexTypescriptFile.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "$ref": "#/definitions/Project"
+        },
+        "file": {
+          "$ref": "#/definitions/CompleteOperationPathParse"
+        },
+        "projectRoot": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "project",
+        "file",
+        "projectRoot"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "project",
+          "required": true,
+          "schema": {
+            "fullComment": "Project that holds source files.",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "file",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "filePath",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "relativeOperationBasePathFromProjectRoot",
+                "required": true,
+                "schema": {
+                  "fullComment": "relative file path from the project-root to the operation (DOES include operation folder)\n\ne.g. /tools/cognition/typescript/index-typescript",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationRelativeTypescriptFilePath",
+                "required": true,
+                "schema": {
+                  "fullComment": "relative file path from the operation src\n\ne.g. general.ts",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "srcFileId",
+                "required": true,
+                "schema": {
+                  "fullComment": "file id (same as operationRelativeTypescriptFilePath but without extension)\n\ne.g. \"general\"\n\nTODO: figure out if this can be omitted",
+                  "todo": "figure out if this can be omitted",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationName",
+                "required": false,
+                "schema": {
+                  "fullComment": "operation package.json name",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationFolderName",
+                "required": true,
+                "schema": {
+                  "fullComment": "operation folder name (by convention, must be identical to operationName, but it could have some mistakes)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "relativePathFromProjectRoot",
+                "required": true,
+                "schema": {
+                  "fullComment": "relative file or folder path from the project root",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "projectRoot",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof indexTypescriptFile>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150230295,
-  "updatedAt": 1668150230295,
+  "createdAt": 1668335514190,
+  "updatedAt": 1668335514190,
   "deletedAt": 0,
-  "createdFirstAt": 1668150230295,
+  "createdFirstAt": 1668335514190,
   "id": "statement",
   "name": "Statement",
   "slug": "statement",
@@ -65,8 +65,7 @@
           "description": "the content of the markdown"
         },
         "categoryStackCalculated": {
-          "$ref": "#/definitions/CategoryStack",
-          "description": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!"
+          "$ref": "#/definitions/CategoryStack"
         },
         "type": {
           "type": "string",
@@ -239,7 +238,7 @@
           "name": "categoryStackCalculated",
           "required": true,
           "schema": {
-            "fullComment": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\n",
+            "fullComment": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
             "nb": "Changing this value when updating/upserting, changes where the item is located!",
             "items": [
               {

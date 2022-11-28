@@ -1,0 +1,71 @@
+{
+  "createdAt": 1668334772973,
+  "updatedAt": 1668334772973,
+  "deletedAt": 0,
+  "createdFirstAt": 1668334772973,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "commentsInside": [],
+  "rawText": " (json: Json): string | undefined => {\n  if (\n    [\n      \"string\",\n      \"number\",\n      \"bigint\",\n      \"boolean\",\n      \"symbol\",\n      \"undefined\",\n      // \"function\", // I don't think function is that simple, is it?\n    ].includes(typeof json) ||\n    json === null\n  ) {\n    return String(json);\n  }\n}",
+  "name": "getSimpleJsonString",
+  "slug": "get-simple-json-string",
+  "parameters": [
+    {
+      "name": "json",
+      "schema": {
+        "$ref": "#/definitions/Json"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "stringifies simple json things if the json is one of them, otherwise returns undefined",
+  "returnType": {
+    "rawType": "string | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 393,
+    "lines": 16,
+    "bytes": 393,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "okdwvlhriiqcrjduakaogqvp"
+}

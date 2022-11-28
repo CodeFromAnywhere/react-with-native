@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055591189,
+  "updatedAt": 1669055591189,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055591189,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getFrontmatterDbStorageMethod",
+  "slug": "get-frontmatter-db-storage-method",
+  "operationRelativeTypescriptFilePath": "src/getFrontmatterDbStorageMethod.ts",
+  "type": {
+    "rawType": "(parameters: import(\"/Users/king/King/operations/tools/types/matter-types/build/Frontmatter\").Frontmatter | null) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  parameters: null | Frontmatter\n): DbStorageMethod | null | undefined => {\n  if (!parameters) return;\n\n  const dbStorageMethod =\n    parameters.dbStorageMethod &&\n    typeof parameters.dbStorageMethod === \"string\" &&\n    dbStorageMethods.includes(parameters.dbStorageMethod)\n      ? (parameters.dbStorageMethod as DbStorageMethod)\n      : undefined;\n\n  if (dbStorageMethod) return dbStorageMethod;\n\n  const isDbModel = parameters.isDbModel;\n\n  if (isDbModel === true) return \"jsonMultiple\";\n\n  if (isDbModel === false) return null;\n}",
+  "description": "if isDbModel is specifically set to false, this will return null (which means this should overwrite other things)",
+  "id": "zmghanljtuceiiysesmhhgle"
+}

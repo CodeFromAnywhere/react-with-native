@@ -10,9 +10,10 @@ export declare const getFrontmatterValueString: (value: FrontmatterValue) => str
 export declare const quotedOrNot: (string: string) => string;
 /**
  * Parses frontmatter object into a frontmatter string
+ *
  * - includes a newline at the end
  * - string[] becomes a comma separated string
- * TODO: maybe parse xxxAt values into human readable dates
+ * - parse xxxAt values into human readable dates
  */
 export declare const frontmatterParseToString: (frontmatter: Frontmatter) => string;
 export declare const test: (() => Promise<boolean>)[];

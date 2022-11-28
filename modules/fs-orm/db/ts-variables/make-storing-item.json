@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148857334,
-  "updatedAt": 1668148857334,
+  "createdAt": 1669312131637,
+  "updatedAt": 1669312131637,
   "deletedAt": 0,
-  "createdFirstAt": 1668148857334,
+  "createdFirstAt": 1669312131637,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "make-storing-item",
   "operationRelativeTypescriptFilePath": "src/convention/storing-items.ts",
   "type": {
-    "rawType": "<T extends { [key: string]: any; }>(item: T) => Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>",
+    "rawType": "<T extends import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").AugmentedAnyModelType>(item: T) => Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "<T extends { [key: string]: any }>(\n  item: T\n): Storing<T> => {\n  const { operationName, projectRelativePath, operationRelativePath, ...rest } =\n    item;\n\n  return rest;\n}",
-  "description": "",
-  "id": "mqqvynccehmxnbnhfkkenltq"
+  "value": "<T extends AugmentedAnyModelType>(\n  item: T\n): Storing<T> => {\n  // remove location related stuff\n\n  const { operationName, projectRelativePath, operationRelativePath, ...rest } =\n    item;\n\n  // remove referenced model data\n\n  const dataParameterNames = getDataParameterNames(item);\n  const restWithoutDataParameters = removeOptionalKeysFromObject(\n    rest,\n    dataParameterNames as any\n  );\n\n  // remove `.xyzCalculated` keys\n\n  const calculatedKeys = Object.keys(restWithoutDataParameters).filter((key) =>\n    key.endsWith(\"Calculated\")\n  );\n  const finalItem = removeOptionalKeysFromObject(\n    restWithoutDataParameters,\n    calculatedKeys as any\n  ) as Storing<T>;\n\n  return finalItem;\n}",
+  "description": "Three things need to happen in order to store an item\n\n1) keys that can be inferred from the file path are omitted\n2) referenced data is omitted\n3) calculated data is omitted",
+  "id": "ftylhfpqzcbupkecvbmtmtrv"
 }

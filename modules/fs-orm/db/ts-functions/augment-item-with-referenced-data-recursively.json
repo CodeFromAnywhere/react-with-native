@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148865159,
-  "updatedAt": 1668148865159,
+  "createdAt": 1669312141718,
+  "updatedAt": 1669312141718,
   "deletedAt": 0,
-  "createdFirstAt": 1668148865159,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312141718,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util/augmentItemWithReferencedDataRecursively.ts",
   "commentsInside": [],
   "rawText": " (\n  item: AugmentedAnyModelType,\n\n  includeArray: Include[],\n  /**\n   * Final includeData object to take items from\n   */\n  includeData: IncludeDataObject\n): AugmentedAnyModelType => {\n  // basecase\n  if (includeArray.length === 0) {\n    return item;\n  }\n\n  const newItem = includeArray.reduce((itemNow, include) => {\n    if (!include.referenceKey) return itemNow;\n\n    const parameterInfo = getReferenceParameterInfo(include.referenceKey);\n\n    if (!parameterInfo.interfaceName) return itemNow;\n\n    const referencedItems = includeData[parameterInfo.interfaceName];\n\n    if (!referencedItems) return itemNow;\n    if (!parameterInfo.dataParameterName) return itemNow;\n    if (!parameterInfo.keyInModel) return itemNow;\n\n    const referenceItems = referencedItems.filter((x) => {\n      if (!parameterInfo.keyInModel) return false;\n      const itemReference: string | string[] | undefined =\n        itemNow[parameterInfo.parameterName];\n      const referenceItemReference = (x as any)[parameterInfo.keyInModel];\n\n      const isMatchingReference = parameterInfo.isReferenceSingleParameter\n        ? itemReference === referenceItemReference\n        : parameterInfo.isReferenceMultipleParameter\n        ? itemReference?.includes?.(referenceItemReference) || false\n        : false;\n\n      return isMatchingReference;\n    });\n\n    const augmentedReferenceData:\n      | AugmentedAnyModelType\n      | AugmentedAnyModelType[]\n      | undefined = parameterInfo.isReferenceSingleParameter\n      ? augmentItemWithReferencedDataRecursively(\n          referenceItems[0],\n          makeArray(include.include),\n          includeData\n        )\n      : parameterInfo.isReferenceMultipleParameter\n      ? referenceItems.map((i) =>\n          augmentItemWithReferencedDataRecursively(\n            i,\n            makeArray(include.include),\n            includeData\n          )\n        )\n      : undefined;\n\n    const newItemNow: AugmentedAnyModelType = {\n      ...itemNow,\n      [parameterInfo.dataParameterName]: augmentedReferenceData,\n    };\n\n    return newItemNow;\n  }, item);\n\n  return newItem;\n}",
@@ -48,6 +43,14 @@
               "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
               "type": "string"
             }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "schema": {
+              "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+              "type": "string"
+            }
           }
         ],
         "type": "object"
@@ -63,7 +66,85 @@
         }
       },
       "simplifiedSchema": {
-        "items": [],
+        "items": [
+          {
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "referenceKey",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "The key that contains a reference. The name of this key should follow the convention, e.g. `xxxSlug`. If this is given, `xxx` will be filled with the item of the referenced model.",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "items",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If provided, the items will be filled from this array. If not provided, the required model will first be fetched using get. It is often more efficient to provide it yourself if you have already fetched it anyway. Nonetheless, `fs-orm` will try and reuse the fetched data to minimize amount of reads to the file system.",
+                    "items": [
+                      {
+                        "schema": {
+                          "fullComment": "",
+                          "properties": [
+                            {
+                              "name": "operationName",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                                "type": "null"
+                              }
+                            },
+                            {
+                              "name": "projectRelativePath",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "operationRelativePath",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "id",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": "AugmentedAnyModelType"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "include",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Optionally, you can provide another include config for this model",
+                    "properties": [],
+                    "type": "object"
+                  }
+                }
+              ],
+              "type": "object"
+            },
+            "name": "Include"
+          }
+        ],
         "type": "array"
       },
       "required": true
@@ -73,6 +154,11 @@
       "schema": {
         "$ref": "#/definitions/IncludeDataObject",
         "description": "Final includeData object to take items from"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Final includeData object to take items from\n\n",
+        "properties": [],
+        "type": "object"
       },
       "required": true
     }
@@ -97,5 +183,5 @@
     "linesPerFile": 71,
     "numberOfFiles": 1
   },
-  "id": "pycrbkrhjrceqoeeoecbvbnr"
+  "id": "wtnzcfiemnfypbgfgjziwnmi"
 }

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148851850,
-  "updatedAt": 1668148851850,
+  "createdAt": 1669312120447,
+  "updatedAt": 1669312120447,
   "deletedAt": 0,
-  "createdFirstAt": 1668148851850,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312120447,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/convention/getLocationPattern.ts",
   "commentsInside": [],
   "rawText": " (\n  dbStorageMethod: DbStorageMethod,\n  modelName: string\n): string | undefined => {\n  const fileOrFolderName = pluralize(kebabCase(modelName));\n  if (dbStorageMethod === \"jsonMultiple\") return `db/${fileOrFolderName}.json`;\n  if (dbStorageMethod === \"keyValueMarkdown\")\n    return `db/${fileOrFolderName}.md`;\n  if (dbStorageMethod === \"csv\") return `db/${fileOrFolderName}.csv`;\n\n  if (dbStorageMethod === \"jsonSingle\") return `db/${fileOrFolderName}/*.json`;\n  if (dbStorageMethod === \"markdown\") return `db/${fileOrFolderName}/*.md`;\n}",
@@ -83,5 +78,5 @@
     "linesPerFile": 13,
     "numberOfFiles": 1
   },
-  "id": "tvpmdpqszzbrksaaniozxdfb"
+  "id": "fzmygtgnbfmzvicesohcdbov"
 }

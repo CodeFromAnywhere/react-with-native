@@ -1,2 +1,42 @@
-"use strict";var __spreadArray=this&&this.__spreadArray||function(e,r,a){if(a||2===arguments.length)for(var t,s=0,p=r.length;s<p;s++)!t&&s in r||(t||(t=Array.prototype.slice.call(r,0,s)),t[s]=r[s]);return e.concat(t||Array.prototype.slice.call(r))};Object.defineProperty(exports,"__esModule",{value:!0}),exports.getParagraphsRecursively=void 0;var make_test_1=require("make-test"),markdown_parse_js_1=require("markdown-parse-js"),example_1=require("./example"),getParagraphsRecursively=function(e,r){var a,t=r||[];e.title&&t.push(e.title);var s=(null===(a=e.children)||void 0===a?void 0:a.map((function(e){return(0,exports.getParagraphsRecursively)(e,t)})).flat())||[],p={paragraph:e.content||"",categoryStackCalculated:t};return __spreadArray([p],s,!0)};exports.getParagraphsRecursively=getParagraphsRecursively;var test=(0,make_test_1.makeTest)((function(){var e=(0,markdown_parse_js_1.mdToJsonParse)(example_1.exampleKvMdString).content;if(e)return(0,exports.getParagraphsRecursively)(e[2])}));
+"use strict";
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getParagraphsRecursively = void 0;
+var make_test_1 = require("make-test");
+var markdown_parse_js_1 = require("markdown-parse-js");
+var example_1 = require("./example");
+/**
+ * recursively dives into the Chunk to get all paragraphs inside
+ */
+var getParagraphsRecursively = function (chunk, categoryStackCalculatedUntilNow) {
+    var _a;
+    var categoryStackCalculated = categoryStackCalculatedUntilNow || [];
+    if (chunk.title) {
+        categoryStackCalculated.push(chunk.title);
+    }
+    var childParagraphs = ((_a = chunk.children) === null || _a === void 0 ? void 0 : _a.map(function (childChunk) {
+        return (0, exports.getParagraphsRecursively)(childChunk, categoryStackCalculated);
+    }).flat()) || [];
+    var thisParagraph = {
+        paragraph: chunk.content || "",
+        categoryStackCalculated: categoryStackCalculated,
+    };
+    return __spreadArray([thisParagraph], childParagraphs, true);
+};
+exports.getParagraphsRecursively = getParagraphsRecursively;
+var test = (0, make_test_1.makeTest)(function () {
+    var content = (0, markdown_parse_js_1.mdToJsonParse)(example_1.exampleKvMdString).content;
+    if (!content) {
+        return;
+    }
+    return (0, exports.getParagraphsRecursively)(content[2]);
+});
 //# sourceMappingURL=getParagraphsRecursively.js.map

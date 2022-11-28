@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263103318,
+  "updatedAt": 1666263103318,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263103318,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "readTypescriptFile",
+  "slug": "read-typescript-file",
+  "operationRelativeTypescriptFilePath": "src/readTypescriptFile.ts",
+  "type": {
+    "rawType": "(filePath: string) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TypescriptIndex\").TypescriptIndex | null>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  filePath: Path\n): Promise<TypescriptIndex | null> => {\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) return null;\n  const operationName = getLastFolder(operationBasePath);\n\n  const operationRelativeTypescriptFilePath = getOperationRelativePath(\n    filePath,\n    operationBasePath\n  );\n\n  const getFileIndexes = <T extends keyof IndexModels>(\n    indexModelName: T\n  ): Promise<IndexModels[T][]> => {\n    const result = db\n      // TODO: make it more efficient by just finding the correct JSON files instead of all files in the operation.\n      .get(indexModelName, { operationName })\n      .then((result) =>\n        result.filter((x) => {\n          return (\n            x.operationRelativeTypescriptFilePath ===\n            operationRelativeTypescriptFilePath\n          );\n        })\n      );\n\n    return result;\n  };\n\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isTypescriptFile = [\"ts\", \"tsx\"].includes(pathParse.ext.slice(1));\n  if (!isTypescriptFile) return null;\n  if (!fs.existsSync(filePath)) return null;\n\n  const typescriptIndex: TypescriptIndex = {\n    tsBuildErrors: await getFileIndexes(\"TsBuildError\"),\n    tsLintWarnings: await getFileIndexes(\"TsLintWarning\"),\n    tsFunctions: await getFileIndexes(\"TsFunction\"),\n    tsVariables: await getFileIndexes(\"TsVariable\"),\n    tsInterfaces: await getFileIndexes(\"TsInterface\"),\n    tsComments: await getFileIndexes(\"TsComment\"),\n    tsImports: await getFileIndexes(\"TsImport\"),\n    tsExports: await getFileIndexes(\"TsExport\"),\n  };\n\n  return typescriptIndex;\n}",
+  "description": "Reads and parses a markdown file",
+  "id": "fvoqwulnqnzemolgofftxnep"
+}

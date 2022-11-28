@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667111123316,
-  "updatedAt": 1667111123316,
+  "createdAt": 1669384159308,
+  "updatedAt": 1669384159308,
   "deletedAt": 0,
-  "createdFirstAt": 1667111123316,
+  "createdFirstAt": 1669384159308,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  name: string,\n  /**\n   * if given, uses this token, otherwise generates a new random token\n   */\n  previousToken?: string,\n  attachTokenToFilename?: boolean\n): string => {\n  if (!attachTokenToFilename) return name;\n  const newRandomToken = generateRandomString(32);\n  return `${name}${tokenPrefix}${previousToken || newRandomToken}`;\n}",
   "description": "If previousToken is not present, will be generated randomly",
-  "id": "jvozrwmaglsijnkglbvovlwe"
+  "id": "qpoyzlpkwdqnkvccqfcjrqhm"
 }

@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669276148065,
+  "updatedAt": 1669276148065,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276148065,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getPublicBundleConfig.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n  const publicBundleConfigPath = path.join(\n    projectRoot,\n    \"public-bundle-config.json\"\n  );\n\n  const publicBundleConfig = await readJsonFile<PublicBundleConfig>(\n    publicBundleConfigPath\n  );\n\n  if (!publicBundleConfig) {\n    return;\n  }\n  return publicBundleConfig;\n}",
+  "name": "getPublicBundleConfig",
+  "slug": "get-public-bundle-config",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 359,
+    "lines": 17,
+    "bytes": 359,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "koourpyqhnekbwoupcecifwu"
+}

@@ -2,7 +2,7 @@
 export declare type BigButton = {
     icon?: any;
     emoji?: string;
-    onClick: () => void;
+    onClick: () => any;
     title: string;
     component?: () => JSX.Element;
     isActive?: boolean;

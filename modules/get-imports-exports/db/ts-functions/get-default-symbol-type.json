@@ -1,0 +1,87 @@
+{
+  "createdAt": 1668150643213,
+  "updatedAt": 1668150643213,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150643213,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "commentsInside": [],
+  "rawText": " (\n  symbol: Symbol,\n  debug?: boolean\n): TypeSpecifier => {\n  if (debug) {\n    console.log({\n      kinds: symbol\n        .getDeclarations()\n        .map((x) => ({ kind: x.getKindName(), name: x.getText() })),\n    });\n  }\n  const symbolTypeDeclarations = getSymbolTypeDeclarations(symbol);\n\n  const type = symbolTypeDeclarations.length > 0 ? \"type\" : \"value\";\n  /**\n   * checks whether the symbol contains a type declaration which has a generic parameter\n   */\n  const hasGeneric =\n    type === \"type\"\n      ? !!symbolTypeDeclarations.find(\n          // NB: type parameters gets the generics\n          (declaration) => getHasGeneric(declaration)\n        )\n      : undefined;\n\n  return { type, hasGeneric };\n}",
+  "name": "getDefaultSymbolType",
+  "slug": "get-default-symbol-type",
+  "parameters": [],
+  "description": "gets type of a symbol and if the type has a generic, without recursing.",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/typescript/get-imports-exports/src/util\").TypeSpecifier",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "type",
+            "value"
+          ],
+          "x-enumNames": [
+            "type",
+            "value"
+          ],
+          "type": "string"
+        },
+        "hasGeneric": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "type",
+              "value"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "hasGeneric",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 779,
+    "lines": 27,
+    "bytes": 779,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 27,
+    "numberOfFiles": 1
+  },
+  "id": "azbmvlraaevyundjzjlrjnbv"
+}

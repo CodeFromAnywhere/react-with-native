@@ -119,6 +119,10 @@ export declare type PluginComponent<TInput extends PluginInputType> = ((props: {
      */
     errors?: Error[];
     errorClassName?: string;
+    /**
+     * sometimes can be applied as overwriting css class
+     */
+    className?: string;
 }) => JSX.Element) & {
     defaultInitialValue: TInput["value"];
     hideContainerError?: boolean;
@@ -235,5 +239,7 @@ export declare const DataForm: <TInputs, TState extends {
 export declare type AllPluginInputTypes = {
     [key: string]: PluginInputType;
 };
-export declare const setConfig: <TInputs, TState>(DataForm: (props: DataFormProps<TInputs, TState>) => JSX.Element, config: DataFormConfig<TInputs>) => (props: DataFormProps<TInputs, TState>) => JSX.Element;
+export declare const setConfig: <TInputs, TState extends {
+    [key: string]: any;
+}>(DataForm: (props: DataFormProps<TInputs, TState>) => JSX.Element, config: DataFormConfig<TInputs>) => (props: DataFormProps<TInputs, TState>) => JSX.Element;
 //# sourceMappingURL=general.d.ts.map

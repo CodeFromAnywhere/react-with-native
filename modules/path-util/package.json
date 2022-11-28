@@ -1,0 +1,103 @@
+{
+  "createdAt": 1668328684138,
+  "updatedAt": 1668328684138,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328684138,
+  "id": "QeSbBbHgeEbynPXh",
+  "dependencies": {
+    "markdown-parse-js": "0.0.1",
+    "fs-util": "1.0.5",
+    "code-types": "0.0.1",
+    "index-typescript": "0.0.1",
+    "get-path": "0.0.1",
+    "k-explore": "0.0.2",
+    "filename-conventions": "0.0.1",
+    "js-util": "0.0.1"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "path-util",
+  "language": "english",
+  "slug": "path-util",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/control-fs/path-util/src/test.ts. Error: Error: Module '\\\"k-explore\\\"' has no exported member 'SearchableExtension'.\\n\\nModule '\\\"k-explore\\\"' has no exported member 'extensions'.\"]",
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "path-util",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668331947596,
+    "operationDependenciesIndexed": [
+      "parseFrontmatterMarkdownString",
+      "path",
+      "fs",
+      "getLastFolder",
+      "getFolder",
+      "CategorizedFilePaths",
+      "PathMetaData",
+      "TsComment",
+      "findCommentTypes",
+      "getIndexId",
+      "getNumberOfLines",
+      "getPathParse",
+      "determineFileType",
+      "explore",
+      "determineFileType",
+      "SearchableExtension",
+      "extensions",
+      "CategorizedFilePaths",
+      "buildFolderName",
+      "databaseFolderName",
+      "sumAllKeys",
+      "fs",
+      "CategorizedFilePaths",
+      "FolderSummary",
+      "SizeSummary"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/control-fs",
+    "markdown": "Gets insightful information about any file or folder (path)\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 4,
+        "lines": 298,
+        "characters": 8351,
+        "bytes": 8351
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 143,
+        "characters": 3617,
+        "bytes": 3617
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 257,
+        "characters": 5375,
+        "bytes": 5375
+      },
+      "size": {
+        "bytes": 17343,
+        "characters": 17343,
+        "lines": 698,
+        "numberOfFiles": 8
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

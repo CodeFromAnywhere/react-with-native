@@ -1,0 +1,93 @@
+{
+  "createdAt": 1669639442070,
+  "updatedAt": 1669639442070,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639442070,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/components/Layout.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  publicBundleConfig: MarkdownReaderPageProps[\"publicBundleConfig\"];\n  children: any;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n  menu: MenuObjectType<FilePage>;\n}) => {\n  const { children, augmentedWordObject, publicBundleConfig, menu } = props;\n\n  return (\n    <LayoutGrid\n      menu={{\n        augmentedWords: Object.values(augmentedWordObject || {}),\n        webPagesFlat: menu.flat,\n        webPagesNested: menu.nested,\n        isLoading: false,\n      }}\n      header={<Header publicBundleConfig={publicBundleConfig} />}\n    >\n      {children}\n    </LayoutGrid>\n  );\n}",
+  "name": "Layout",
+  "slug": "layout",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "publicBundleConfig": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/PublicBundleConfig"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "children": {},
+          "augmentedWordObject": {
+            "$ref": "#/definitions/MappedObject%3CAugmentedWord%3E"
+          },
+          "menu": {
+            "$ref": "#/definitions/MenuObjectType%3CFilePage%3E"
+          }
+        },
+        "required": [
+          "children",
+          "menu"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "publicBundleConfig",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "children",
+            "required": true,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 595,
+    "lines": 22,
+    "bytes": 595,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "orrybilsatisxwywwaqmuopt"
+}

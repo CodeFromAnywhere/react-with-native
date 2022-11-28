@@ -1,0 +1,47 @@
+{
+  "createdAt": 1669385039876,
+  "updatedAt": 1669385039876,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385039876,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/newFile.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  projectRelativeFilePath: string\n): Promise<{ isSuccessful: boolean; message?: string }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root found\" };\n  }\n\n  const absolutePath = path.join(projectRoot, projectRelativeFilePath);\n\n  if (fs.existsSync(absolutePath)) {\n    return { isSuccessful: false, message: \"This file already exists\" };\n  }\n\n  const folderPath = path.parse(absolutePath).dir;\n\n  if (!fs.existsSync(folderPath)) {\n    return { isSuccessful: false, message: \"Folder doesn't exist\" };\n  }\n\n  await fs.writeFile(absolutePath, \"\", { encoding: \"utf8\" });\n\n  return { isSuccessful: true };\n}",
+  "name": "newFile",
+  "slug": "new-file",
+  "parameters": [
+    {
+      "name": "projectRelativeFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<{ isSuccessful: boolean; message?: string | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 688,
+    "lines": 24,
+    "bytes": 688,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 24,
+    "numberOfFiles": 1
+  },
+  "id": "gfgcdwvenwicjunttbclnerb"
+}

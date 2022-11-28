@@ -1,0 +1,100 @@
+{
+  "createdAt": 1668836042811,
+  "updatedAt": 1668836042811,
+  "deletedAt": 0,
+  "createdFirstAt": 1668836042811,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "apiConventions",
+  "slug": "api-conventions",
+  "operationRelativeTypescriptFilePath": "src/function-naming-convention-types.ts",
+  "type": {
+    "rawType": "{ contextFunctionConventionSuffix: string; rawFunctionConventionSuffix: string; getFunctionConventionSuffix: string; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "contextFunctionConventionSuffix": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "rawFunctionConventionSuffix": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "getFunctionConventionSuffix": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "contextFunctionConventionSuffix",
+        "rawFunctionConventionSuffix",
+        "getFunctionConventionSuffix"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "contextFunctionConventionSuffix",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "rawFunctionConventionSuffix",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "getFunctionConventionSuffix",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "value": "{\n  contextFunctionConventionSuffix,\n  rawFunctionConventionSuffix,\n  getFunctionConventionSuffix,\n}",
+  "description": "API conventions:\n\n- `xyzGetApi` is only available via GET, the rest is only available with POST.\n- `xyzWithContext` is taking `FunctionContext` as its first parameter\n- `xyzWithContextRaw` is taking `FunctionContext` as its first parameter, and is expected to return the raw return type the function returns.",
+  "id": "cezgrpqezotquubsqvqxxcur"
+}

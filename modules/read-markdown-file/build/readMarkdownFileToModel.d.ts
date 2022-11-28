@@ -1,6 +1,8 @@
-import { WebMarkdownFile } from "code-types";
+import { MarkdownCallToAction, WebMarkdownFile } from "markdown-types";
 /**
- * Reads a markdown absolute path to a `MarkdownFile` model
+Reads a markdown absolute path to a `WebMarkdownFile` model
+
+Attaches default calls to action and header
  */
-export declare const readMarkdownFileToModel: (absoluteFilePath: string) => Promise<null | WebMarkdownFile>;
+export declare const readMarkdownFileToModel: (absoluteFilePath: string, webOperationName: string, markdownCallToActions: MarkdownCallToAction[]) => Promise<null | WebMarkdownFile>;
 //# sourceMappingURL=readMarkdownFileToModel.d.ts.map

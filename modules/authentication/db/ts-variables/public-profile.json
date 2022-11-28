@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385495184,
+  "updatedAt": 1669385495184,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385495184,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "PublicProfile",
+  "slug": "public-profile",
+  "operationRelativeTypescriptFilePath": "src/PublicProfile.tsx",
+  "type": {
+    "rawType": "() => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  const router = useRouter();\n\n  const id = router.query?.id ? takeFirst(router.query.id) : undefined;\n  const publicPersonQuery = queries.useGetPublicPerson(id);\n\n  const publicPerson = publicPersonQuery.data?.result;\n\n  return (\n    <Div>\n      {publicPersonQuery.isLoading ? <FancyLoader /> : null}\n\n      <PublicPersonComponent publicPerson={publicPerson} />\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "weguxlihakeruzskbuhjoost"
+}

@@ -1,15 +1,15 @@
 {
-  "createdAt": 1668150096239,
-  "updatedAt": 1668150096239,
+  "createdAt": 1669639279807,
+  "updatedAt": 1669639279807,
   "deletedAt": 0,
-  "createdFirstAt": 1668150096239,
+  "createdFirstAt": 1669639279807,
   "id": "pathmetadata",
   "name": "PathMetaData",
   "slug": "pathmetadata",
   "operationRelativeTypescriptFilePath": "src/PathMetaData.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * All interesting metadata about any path (files and folders)\n */\nexport type PathMetaData = {\n  /**\n   * a comment about this file or folder. Can be parsed from:\n   * - an associated markdown file and/or the top of the file (If they're both there, they're concatenated)\n   * - for folders, looks for README.md\n   */\n  mainComment?: TsComment;\n  /**\n   * filename including extension, if the path is not a folder\n   */\n  fullFileName?: string;\n  isFolder: boolean;\n  /**\n   * unix time this file was last updated (or for folders: unix time of last modifiation of any file in this folder, recursively)\n   *\n   * TODO: renames also count as updates, I guess. Needs to be clear!\n   */\n  updatedAt: number;\n  /**\n   * unix time this file was created (or for folders: unix time of creation of the first file in this folder)\n   *\n   * TODO: figure out if we can get the creation date of the folder itself?\n   */\n  createdAt: number;\n  /**\n   * categorized sizes for the file(s)\n   */\n  sizes: FolderSummary;\n} & PathParse;",
+  "rawText": "\n\n/**\n * All interesting metadata about any path (files and folders)\n */\nexport type PathMetaData = FileContentInfo & PathParse & PathStats;",
   "extensions": [],
   "isOperationIndex": false,
   "description": "All interesting metadata about any path (files and folders)",
@@ -20,6 +20,14 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "updatedAt": {
+          "type": "number",
+          "description": "unix time this file was last updated (or for folders: unix time of last modifiation of any file in this folder, recursively)\n\nTODO: renames also count as updates, I guess. Needs to be clear!"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "unix time this file was created (or for folders: unix time of creation of the first file in this folder)\n\nTODO: figure out if we can get the creation date of the folder itself?"
+        },
         "relativePathFromProjectRoot": {
           "type": "string",
           "description": "relative file or folder path from the project root"
@@ -32,17 +40,6 @@
           "type": "string",
           "description": "filename including extension, if the path is not a folder"
         },
-        "isFolder": {
-          "type": "boolean"
-        },
-        "updatedAt": {
-          "type": "number",
-          "description": "unix time this file was last updated (or for folders: unix time of last modifiation of any file in this folder, recursively)\n\nTODO: renames also count as updates, I guess. Needs to be clear!"
-        },
-        "createdAt": {
-          "type": "number",
-          "description": "unix time this file was created (or for folders: unix time of creation of the first file in this folder)\n\nTODO: figure out if we can get the creation date of the folder itself?"
-        },
         "sizes": {
           "$ref": "#/definitions/FolderSummary",
           "description": "categorized sizes for the file(s)"
@@ -50,7 +47,6 @@
       },
       "required": [
         "createdAt",
-        "isFolder",
         "relativePathFromProjectRoot",
         "sizes",
         "updatedAt"
@@ -60,6 +56,24 @@
     "simplifiedSchema": {
       "fullComment": "All interesting metadata about any path (files and folders)",
       "properties": [
+        {
+          "name": "updatedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "unix time this file was last updated (or for folders: unix time of last modifiation of any file in this folder, recursively)\n\nTODO: renames also count as updates, I guess. Needs to be clear!",
+            "todo": "renames also count as updates, I guess. Needs to be clear!",
+            "type": "number"
+          }
+        },
+        {
+          "name": "createdAt",
+          "required": true,
+          "schema": {
+            "fullComment": "unix time this file was created (or for folders: unix time of creation of the first file in this folder)\n\nTODO: figure out if we can get the creation date of the folder itself?",
+            "todo": "figure out if we can get the creation date of the folder itself?",
+            "type": "number"
+          }
+        },
         {
           "name": "relativePathFromProjectRoot",
           "required": true,
@@ -218,31 +232,6 @@
           "schema": {
             "fullComment": "filename including extension, if the path is not a folder",
             "type": "string"
-          }
-        },
-        {
-          "name": "isFolder",
-          "required": true,
-          "schema": {
-            "type": "boolean"
-          }
-        },
-        {
-          "name": "updatedAt",
-          "required": true,
-          "schema": {
-            "fullComment": "unix time this file was last updated (or for folders: unix time of last modifiation of any file in this folder, recursively)\n\nTODO: renames also count as updates, I guess. Needs to be clear!",
-            "todo": "renames also count as updates, I guess. Needs to be clear!",
-            "type": "number"
-          }
-        },
-        {
-          "name": "createdAt",
-          "required": true,
-          "schema": {
-            "fullComment": "unix time this file was created (or for folders: unix time of creation of the first file in this folder)\n\nTODO: figure out if we can get the creation date of the folder itself?",
-            "todo": "figure out if we can get the creation date of the folder itself?",
-            "type": "number"
           }
         },
         {

@@ -1,0 +1,207 @@
+{
+  "createdAt": 1669055584494,
+  "updatedAt": 1669055584494,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055584494,
+  "id": "config",
+  "name": "Config",
+  "slug": "config",
+  "operationRelativeTypescriptFilePath": "src/generateSchema.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "minify": {
+          "type": "boolean"
+        },
+        "schemaId": {
+          "type": "string"
+        },
+        "tsconfig": {
+          "type": "string"
+        },
+        "expose": {
+          "type": "string",
+          "enum": [
+            "all",
+            "none",
+            "export"
+          ]
+        },
+        "topRef": {
+          "type": "boolean"
+        },
+        "jsDoc": {
+          "type": "string",
+          "enum": [
+            "none",
+            "extended",
+            "basic"
+          ]
+        },
+        "sortProps": {
+          "type": "boolean"
+        },
+        "strictTuples": {
+          "type": "boolean"
+        },
+        "skipTypeCheck": {
+          "type": "boolean"
+        },
+        "encodeRefs": {
+          "type": "boolean"
+        },
+        "extraTags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "path",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "minify",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "schemaId",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "tsconfig",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "expose",
+          "required": false,
+          "schema": {
+            "enum": [
+              "all",
+              "none",
+              "export"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "topRef",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "jsDoc",
+          "required": false,
+          "schema": {
+            "enum": [
+              "none",
+              "extended",
+              "basic"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "sortProps",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "strictTuples",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "skipTypeCheck",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "encodeRefs",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "extraTags",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "additionalProperties",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "Config",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

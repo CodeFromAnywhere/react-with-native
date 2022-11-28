@@ -1,0 +1,56 @@
+{
+  "createdAt": 1669055075609,
+  "updatedAt": 1669055075609,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055075609,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/isBundle.ts",
+  "commentsInside": [],
+  "rawText": " (folderPath?: string): boolean => {\n  const realFolderPath = folderPath || getProjectRoot();\n  if (!realFolderPath) return false;\n  // get package-json and check operation config\n  const packageJson = readJsonFileSync<Operation>(\n    path.join(realFolderPath, \"package.json\")\n  );\n  const isBundle = packageJson?.operation?.isBundle || false;\n  return isBundle;\n}",
+  "name": "isBundle",
+  "slug": "is-bundle",
+  "parameters": [
+    {
+      "name": "folderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 364,
+    "lines": 10,
+    "bytes": 364,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 36,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "dxtprtvqrtsmqqepknobzpnf"
+}

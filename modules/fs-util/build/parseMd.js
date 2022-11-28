@@ -1,2 +1,33 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.parseMd=void 0;var graceful_fs_1=__importDefault(require("graceful-fs")),gray_matter_1=__importDefault(require("gray-matter")),parseMd=function(e){var t=graceful_fs_1.default.readFileSync(e,"utf8"),r=graceful_fs_1.default.statSync(e),a=(0,gray_matter_1.default)(t,undefined),u=e.split("/").pop().replace(/\.md$/,"");return{content:a.content,createdAt:r.birthtimeMs,fileName:u,openedAt:r.atimeMs,params:a.data,updatedAt:r.ctimeMs,modifiedAt:r.mtimeMs}};exports.parseMd=parseMd;
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseMd = void 0;
+var graceful_fs_1 = __importDefault(require("graceful-fs"));
+var gray_matter_1 = __importDefault(require("gray-matter"));
+/**
+ * DEPRECATED: just use `md-to-json-parse`
+ *
+ * parse a md file to all the needed info
+ * @param mdFilePath path to a md file
+ * @returns Md
+ */
+var parseMd = function (mdFilePath) {
+    var fileContents = graceful_fs_1.default.readFileSync(mdFilePath, "utf8");
+    var fileStats = graceful_fs_1.default.statSync(mdFilePath);
+    var config = undefined;
+    var matterResult = (0, gray_matter_1.default)(fileContents, config);
+    var fileName = mdFilePath.split("/").pop().replace(/\.md$/, "");
+    return {
+        content: matterResult.content,
+        createdAt: fileStats.birthtimeMs,
+        fileName: fileName,
+        openedAt: fileStats.atimeMs,
+        params: matterResult.data,
+        updatedAt: fileStats.ctimeMs,
+        modifiedAt: fileStats.mtimeMs,
+    };
+};
+exports.parseMd = parseMd;
 //# sourceMappingURL=parseMd.js.map

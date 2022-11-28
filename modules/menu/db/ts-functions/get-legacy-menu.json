@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669132869918,
+  "updatedAt": 1669132869918,
+  "deletedAt": 0,
+  "createdFirstAt": 1669132869918,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/Menu.tsx",
+  "commentsInside": [],
+  "rawText": " (queryPaths: string[]) => {\n  const projectNestedPathObject = queryPaths\n    ? queryPathsArrayToNestedPathObject(queryPaths)\n    : undefined;\n\n  /**\n   * This one too\n   */\n  const nestedMenu = projectNestedPathObject\n    ? nestedPathObjectToNestedMenuRecursive(projectNestedPathObject, [], {\n        getHref: (fullPath) => {\n          return fullPath;\n        },\n      })\n    : undefined;\n\n  const result = nestedMenu?.map((item) => {\n    const webPage: WebPage<null> = {\n      queryPath: item.title,\n      menuTitleTooltip: \"Should be replaced with WebPage model\",\n      pageData: null,\n    };\n\n    return webPage;\n  });\n\n  return result;\n}",
+  "name": "getLegacyMenu",
+  "slug": "get-legacy-menu",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 643,
+    "lines": 28,
+    "bytes": 643,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "uujnybvlywiocvaijpqpfsdq"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378715732,
-  "updatedAt": 1667378715732,
+  "createdAt": 1669054957183,
+  "updatedAt": 1669054957183,
   "deletedAt": 0,
-  "createdFirstAt": 1667378715732,
+  "createdFirstAt": 1669054957183,
   "classification": "const",
   "comments": [],
   "isExported": false,
@@ -29,5 +29,5 @@
   },
   "value": "({ stream }: { stream: MediaStream | null }) => {\n  const videoRef = useRef<HTMLVideoElement>(null);\n\n  useEffect(() => {\n    if (videoRef.current && stream) {\n      videoRef.current.srcObject = stream;\n    }\n  }, [stream]);\n  if (!stream) {\n    return null;\n  }\n  return <video ref={videoRef} width={500} height={500} autoPlay controls />;\n}",
   "description": "",
-  "id": "qskktdcxxduscleajcbbunrt"
+  "id": "etzhtsjsmegqboxhcjjfntwt"
 }

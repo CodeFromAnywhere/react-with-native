@@ -1,0 +1,56 @@
+{
+  "createdAt": 1668449025159,
+  "updatedAt": 1668449025159,
+  "deletedAt": 0,
+  "createdFirstAt": 1668449025159,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/calculatePackageJsonDependencies.ts",
+  "commentsInside": [],
+  "rawText": " (tsImport: Creation<TsImport>) => {\n  const srcRelativeFileId = getSrcRelativeFileId(\n    tsImport.operationRelativeTypescriptFilePath\n  );\n  return hasSubExtension(srcRelativeFileId, frontendOptionalFileSubExtensions);\n}",
+  "name": "isImportFromOptionalFile",
+  "slug": "is-import-from-optional-file",
+  "parameters": [
+    {
+      "name": "tsImport",
+      "schema": {
+        "$ref": "#/definitions/Creation%3CTsImport%3E"
+      },
+      "required": true
+    }
+  ],
+  "description": "returns true if the import was found in an optional file, e.g. this import is not always included in the bundle, so should not be a dependency",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 364,
+    "lines": 6,
+    "bytes": 364,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 61,
+    "linesPerFile": 6,
+    "numberOfFiles": 1
+  },
+  "id": "spcpaopatvuccnqxpmemgvmm"
+}

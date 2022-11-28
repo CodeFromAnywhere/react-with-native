@@ -1,16 +1,12 @@
 {
-  "createdAt": 1666261465681,
-  "updatedAt": 1666261465681,
+  "createdAt": 1669055932692,
+  "updatedAt": 1669055932692,
   "deletedAt": 0,
-  "createdFirstAt": 1666261465681,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055932692,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "PluginComponent<StarsInputType>",
   "operationRelativeTypescriptFilePath": "src/stars/StarsInput.tsx",
   "commentsInside": [],
   "rawText": " ({\n  onChange,\n  value,\n  extra,\n  config,\n}) => {\n  config = config || {};\n\n  // later, this can be extrahered into a react-with-native-stars component, because now this will only work on web\n  return (\n    <ReactStars\n      className={`m-3`}\n      count={5}\n      value={typeof value === \"number\" ? value : 0}\n      onChange={onChange}\n      half={false}\n      size={24}\n      color2={\"#ffd700\"}\n    />\n  );\n}",
@@ -41,5 +37,5 @@
     "linesPerFile": 21,
     "numberOfFiles": 1
   },
-  "id": "sxazvclsvsprsteyjrfzynaz"
+  "id": "fpbxbvvdlthdygyxhfodpmcm"
 }

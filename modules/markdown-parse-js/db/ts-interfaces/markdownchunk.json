@@ -1,12 +1,12 @@
 {
-  "createdAt": 1667379654830,
-  "updatedAt": 1667379654830,
+  "createdAt": 1669467046810,
+  "updatedAt": 1669467046810,
   "deletedAt": 0,
-  "createdFirstAt": 1667379654830,
+  "createdFirstAt": 1669467046810,
   "id": "markdownchunk",
   "name": "MarkdownChunk",
   "slug": "markdownchunk",
-  "operationRelativeTypescriptFilePath": "src/getChunkParagraphsRecursively.ts",
+  "operationRelativeTypescriptFilePath": "src/markdownParseToMarkdownStringFromContent.ts",
   "hasGeneric": false,
   "isExported": false,
   "isOperationIndex": false,
@@ -89,16 +89,13 @@
                 "required": true,
                 "schema": {
                   "enum": [
-                    "youtube",
                     "video",
-                    "image",
                     "audio",
-                    "markdown",
-                    "json",
-                    "typescript",
-                    "file"
+                    "image",
+                    "text",
+                    "other"
                   ],
-                  "fullComment": "type of asset that is being embedded",
+                  "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                   "type": "string"
                 }
               }
@@ -131,16 +128,13 @@
                 "required": true,
                 "schema": {
                   "enum": [
-                    "youtube",
                     "video",
-                    "image",
                     "audio",
-                    "markdown",
-                    "json",
-                    "typescript",
-                    "file"
+                    "image",
+                    "text",
+                    "other"
                   ],
-                  "fullComment": "type of asset that is being embedded",
+                  "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                   "type": "string"
                 }
               }

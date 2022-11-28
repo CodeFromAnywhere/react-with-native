@@ -1,0 +1,62 @@
+{
+  "createdAt": 1669466950611,
+  "updatedAt": 1669466950611,
+  "deletedAt": 0,
+  "createdFirstAt": 1669466950611,
+  "id": "copypair",
+  "name": "CopyPair",
+  "slug": "copypair",
+  "operationRelativeTypescriptFilePath": "src/copyCopyPairs.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type CopyPair = {\n  absoluteSourcePath: string;\n  absoluteDestinationPath: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "absoluteSourcePath": {
+          "type": "string"
+        },
+        "absoluteDestinationPath": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "absoluteSourcePath",
+        "absoluteDestinationPath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "absoluteSourcePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "absoluteDestinationPath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CopyPair",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

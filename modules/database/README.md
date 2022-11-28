@@ -1,6 +1,6 @@
 # Database
 
-database (`OperationClassification` node)
+database (`OperationClassification` node-cjs)
 
 Operation that can be used within any typerepo to interact with the `fs-orm` (typebase) database. Relies on `sdk-db` (where your models should be summarized)
 
@@ -15,7 +15,7 @@ Operation that can be used within any typerepo to interact with the `fs-orm` (ty
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| modelName | Todo / Peer / PeerMessage / Platform / Message / MessageChannel / MessagePreset / Person / PersonInformation / PersonInformationValue / Postable / SocialMediaCredentail / SocialMediaPost / UserPersonPlatformConnection / BundleConfig / MarkdownFileConfig / OperationConfig / OperationIndex / PackageJson / SocialMediaCallToAction / TsBuildError / TsComment / TsConfig / TsExport / TsFunction / TsImport / TsInterface / TsLintWarning / TsVariable / WebsiteCallToAction / Address / Area / City / Country / Location / KvmdWord / MarkdownWord / NepaliEnglishTranslationMatrix / Statement / TokiPonaMatrix / Translation / Word / WordCategory / WordMatrix / SlugModelType / AppDeveloper / Assignment / Bag / Calendar / DataPoint / Deliverable / Diary / Feeling / FeelingLog / Folder / Host / Inventory / Item / ItemCategory / KvmdShortcut / Label / Light / Listing / LoginCredential / Material / ProgressReport / Question / Reservation / Resource / Shit / ShitLog / ShoppingList / Shortcut / Student / Student2 / TaskError / Thing / TodoFile / Trackable / User / UserCredential / JeepType / LocationType / Activity / CompanyRequirement / CompanySize / CompanyType / Company / ContactInformation / Contribution / EsgMetric / ProductCategory / Product / ProofState / Proof / SustainabilityPlan / ValueChainPhase |  |,| customQueryConfig (optional) | `CustomQueryConfig` |  |
+| modelName | SelfSprintReview / TodoFile / TodoOffer / AuthorizationModel / Device / Group / PageVisit / PaymentCoupon / PaymentEvent / PaymentPlan / PaymentSubscription / PeerMessage / Person / Persona / PersonInformation / PersonInformationValue / PersonPlatformConnection / Platform / RecurringReminder / Interest / MediaChannel / MediaCredentail / MediaPost / Postable / BundleConfig / Dataset / FunctionExecution / Operation / SocialMediaCallToAction / TsBuildError / TsComment / TsConfig / TsExport / TsFunction / TsImport / TsInterface / TsLintWarning / TsVariable / TypescriptFile / WebMarkdownFile / WebsiteCallToAction / Address / Area / City / Country / Location / KvmdWord / MarkdownWord / NepaliEnglishTranslationMatrix / Statement / TokiPonaMatrix / Translation / Word / WordCategory / WordCombination / WordMatrix / SlugModelType / AppDeveloper / Assignment / Bag / Calendar / Deliverable / Diary / Feeling / FeelingLog / Folder / Host / Inventory / Item / ItemCategory / KvmdShortcut / Label / Light / Listing / LoginCredential / Material / MessagePreset / PersonalCarbonFootprintProfile / ProgressReport / Question / Reservation / Resource / Shit / ShitLog / ShoppingList / Shortcut / Student / Student2 / TaskError / Trackable / User / UserCredential / Artist / PlayCategory / PlayItem / PlayList / PlaySchedule / RelationModelType / JeepType / LocationType / OperationConfig / OperationIndex / PackageJson / Activity / CompanyRequirement / CompanySize / CompanyType / Company / ContactInformation / Contribution / EsgMetric / ProductCategory / Product / ProofState / Proof / SustainabilityPlan / ValueChainPhase |  |,| customQueryConfig (optional) | `CustomQueryConfig` |  |
 | **Output** |    |    |
 
 
@@ -77,7 +77,7 @@ Operation that can be used within any typerepo to interact with the `fs-orm` (ty
 
 # Tests
 
-<details><summary>Show test information(12)</summary>
+<details><summary>Show test information(14)</summary>
     
   # get()
 
@@ -121,6 +121,15 @@ Can set a markdown item into a subfolder in the db model folder
 
 
 
+## testPerformance()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
 ## test()
 
 | Input      |    |    |
@@ -150,6 +159,8 @@ Can set a markdown item into a subfolder in the db model folder
 Can set a markdown item into a subfolder in the db model folder
 
 
+## 📄 testPerformance (exported const)
+
 ## 📄 test (unexported const)
 
 ## 📄 upsert (unexported const)
@@ -158,7 +169,7 @@ Can set a markdown item into a subfolder in the db model folder
 
 # Internal
 
-<details><summary>Show internal (25)</summary>
+<details><summary>Show internal (33)</summary>
     
   # generateCsvInstance()
 
@@ -259,6 +270,15 @@ Test if it can find all `OperationIndex`, `OperationConfig`, `PackageJson`, `TsC
 
 
 
+## testPerformance()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
 ## updateCli()
 
 | Input      |    |    |
@@ -274,6 +294,184 @@ Test if it can find all `OperationIndex`, `OperationConfig`, `PackageJson`, `TsC
 | ---------- | -- | -- |
 | - | | |
 | **Output** |    |    |
+
+
+
+## 🔸 CsvTestModel
+
+csv model
+
+
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| name  | string |  |
+| description  | string |  |
+| age  | number |  |
+
+
+
+## 🔸 DefaultTestModel
+
+jsonMultiple model
+
+
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| categoryStackCalculated (optional) | array |  |
+| name  | string |  |
+| description  | string |  |
+| markdown  | string |  |
+| special  | boolean |  |
+
+
+
+## 🔸 KvmdTestModel
+
+keyValueMarkdown model
+
+
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| value (optional) | string |  |
+| comment  | string |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| categoryStackCalculated  | array |  |
+| isHeaderCalculated  | boolean |  |
+
+
+
+## 🔸 MarkdownTestModel
+
+markdown model
+
+
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| markdown  | string |  |
+| categoryStackCalculated  | array |  |
+| stringA  | string |  |
+| stringB  | string |  |
+| stringC  | string |  |
+| age  | number |  |
+| yes  | boolean |  |
+| canBeNull  | string |  |
+| canBeUndefined (optional) | string |  |
+
+
+
+## 🔸 SlugTestModel
+
+jsonMultiple model
+
+
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| slug  | string |  |
+| name  | string |  |
+| language  | string |  |
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| categoryStackCalculated (optional) | array |  |
+| description  | string |  |
+| markdown  | string |  |
+| special  | boolean |  |
+
+
+
+## 🔹 TestModels
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| CsvTestModel  | object |  |
+| KeyValueMarkdownTestModel  | object |  |
+| MarkdownTestModel  | object |  |
+| JsonMultipleTestModel  | object |  |
+| DefaultTestModel  | object |  |
+| TsConfig  | object |  |
 
 
 
@@ -307,6 +505,8 @@ a db is created with models from all different db storage methods
 
 Test if it can find all `OperationIndex`, `OperationConfig`, `PackageJson`, `TsConfig`
 
+
+## 📄 testPerformance (exported const)
 
 ## 📄 updateCli (exported const)
 

@@ -1,11 +1,17 @@
 {
-  "createdAt": 1662709577330,
-  "updatedAt": 1662709577330,
+  "createdAt": 1668328700406,
+  "updatedAt": 1668328700406,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577330,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328700406,
+  "id": "YROAWZykJeSsJSKv",
+  "dependencies": {
+    "js-util": "0.0.1",
+    "react-query": "*"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,18 +19,56 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^18.0.1",
-    "typescript": "^4.7.4"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "api-types",
+  "language": "english",
   "slug": "api-types",
-  "id": "YROAWZykJeSsJSKv",
-  "dependencies": {
-    "js-util": "0.0.1"
-  },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/user-interfaces/api/api-types/src/api-types.ts. Error: Error: Unknown node \" import(\"watch-types\").ProjectWatcher\" of kind \"LastTypeNode\""
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "api-types",
+    "hasGeneratedDependenciesIndexed": true,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668836052065,
+    "operationDependenciesIndexed": [],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/user-interfaces/api",
+    "markdown": "api-related types needed for the `api` operation\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 3,
+        "lines": 219,
+        "characters": 7056,
+        "bytes": 7056
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 118,
+        "characters": 2860,
+        "bytes": 2860
+      },
+      "textSize": {
+        "numberOfFiles": 3,
+        "lines": 28,
+        "characters": 1253,
+        "bytes": 1253
+      },
+      "size": {
+        "bytes": 11169,
+        "characters": 11169,
+        "lines": 365,
+        "numberOfFiles": 8
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

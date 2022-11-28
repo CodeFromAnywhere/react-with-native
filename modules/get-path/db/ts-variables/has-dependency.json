@@ -1,16 +1,16 @@
 {
-  "createdAt": 1668148331895,
-  "updatedAt": 1668148331895,
+  "createdAt": 1669055074198,
+  "updatedAt": 1669055074198,
   "deletedAt": 0,
-  "createdFirstAt": 1668148331895,
+  "createdFirstAt": 1669055074198,
   "classification": "const",
   "comments": [],
   "isExported": true,
   "name": "hasDependency",
   "slug": "has-dependency",
-  "operationRelativeTypescriptFilePath": "src/getOperationClassification.ts",
+  "operationRelativeTypescriptFilePath": "src/hasDependency.ts",
   "type": {
-    "rawType": "(packageJson: import(\"/Users/king/King/operations/tools/types/code-types/build/PackageJson\").PackageJson, dependency: string) => any",
+    "rawType": "(operation: import(\"/Users/king/King/operations/tools/types/code-types/build/Operation\").Operation, dependency: string) => any",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(packageJson: PackageJson, dependency: string) => {\n  return getAllPackageJsonDependencies(packageJson).includes(dependency);\n}",
+  "value": "(operation: Operation, dependency: string) => {\n  return getAllPackageJsonDependencies(operation).includes(dependency);\n}",
   "description": "",
-  "id": "qcpeeciwxiwymfoufutqgvpr"
+  "id": "ymimzgzxrlugdtmztcvnuryw"
 }

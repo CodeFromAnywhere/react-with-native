@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150840902,
-  "updatedAt": 1668150840902,
+  "createdAt": 1668977394910,
+  "updatedAt": 1668977394910,
   "deletedAt": 0,
-  "createdFirstAt": 1668150840902,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977394910,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getParameterAtLocation.ts",
   "commentsInside": [],
   "rawText": " <T = any>(\n  object: { [key: string]: any },\n  location: string[]\n): T => {\n  const firstParameter = object[location[0]];\n\n  if (location.length === 1) return firstParameter;\n\n  return getParameterAtLocation(firstParameter, location.slice(1));\n}",
@@ -70,5 +65,5 @@
     "linesPerFile": 10,
     "numberOfFiles": 1
   },
-  "id": "otugfycawefgajxwkhzbazyu"
+  "id": "lwnwyveutywqzbrbeajqzzwn"
 }

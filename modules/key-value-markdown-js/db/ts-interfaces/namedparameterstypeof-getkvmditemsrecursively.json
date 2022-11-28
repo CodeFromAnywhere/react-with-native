@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262775205,
-  "updatedAt": 1666262775205,
+  "createdAt": 1668334793023,
+  "updatedAt": 1668334793023,
   "deletedAt": 0,
-  "createdFirstAt": 1666262775205,
+  "createdFirstAt": 1668334793023,
   "id": "namedparameterstypeof-getkvmditemsrecursively",
   "name": "NamedParameters<typeof getKvmdItemsRecursively>",
   "slug": "namedparameterstypeof-getkvmditemsrecursively",
@@ -129,7 +129,7 @@
                           "typescript",
                           "file"
                         ],
-                        "fullComment": "type of asset that is being embedded",
+                        "fullComment": "Can be inferred from href\n\ntype of asset that is being embedded",
                         "type": "string"
                       }
                     }
@@ -172,7 +172,8 @@
           "name": "categoryStackCalculatedUntilNow",
           "required": false,
           "schema": {
-            "fullComment": "",
+            "fullComment": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+            "nb": "Changing this value when updating/upserting, changes where the item is located!",
             "items": [
               {
                 "schema": {

@@ -1,0 +1,37 @@
+{
+  "createdAt": 1669055622604,
+  "updatedAt": 1669055622604,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055622604,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "ProjectWatcher",
+  "operationRelativeTypescriptFilePath": "src/removeTypescriptIndex.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  eventName,\n  filePath\n) => {\n  // NB: need to provide get folder because the original file is gone so it can't be detected\n  const operationPath = findOperationBasePath(getFolder(filePath));\n  if (!operationPath) {\n    return;\n  }\n\n  const operationName = getLastFolder(operationPath);\n  // console.log(`Found operationName: ${operationName}...`);\n\n  const result = await cleanupTsDatabase(operationName);\n  console.log(\n    `Cleaned up ${result?.amountRemoved || 0} indexes (removed ${\n      path.parse(filePath).base\n    })`\n  );\n}",
+  "name": "removeTypescriptIndex",
+  "slug": "remove-typescript-index",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 544,
+    "lines": 20,
+    "bytes": 544,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "xjrmazpkyiagcdwogyaulwrz"
+}

@@ -1,0 +1,89 @@
+{
+  "createdAt": 1669639089294,
+  "updatedAt": 1669639089294,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639089294,
+  "id": "namedparameterstypeof-docsgetpages",
+  "name": "NamedParameters<typeof docsGetPages>",
+  "slug": "namedparameterstypeof-docsgetpages",
+  "operationRelativeTypescriptFilePath": "src/docsGetPages.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "basePaths": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "projectRelativeBasePath": {
+                "type": "string"
+              },
+              "queryPath": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "projectRelativeBasePath",
+              "queryPath"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "basePaths"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "basePaths",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "projectRelativeBasePath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "queryPath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof docsGetPages>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148854577,
-  "updatedAt": 1668148854577,
+  "createdAt": 1669312127742,
+  "updatedAt": 1669312127742,
   "deletedAt": 0,
-  "createdFirstAt": 1668148854577,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312127742,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/convention/getWildcardDbFileLocations.ts",
   "commentsInside": [],
   "rawText": " async (options: {\n  modelName: string;\n  parsedPath: ParsedPath;\n  operationName: string | null;\n  projectRoot: string;\n  rootFolder: RootDbFolder;\n}): Promise<DbFileLocation[]> => {\n  const { modelName, operationName, parsedPath, projectRoot, rootFolder } =\n    options;\n  if (fs.existsSync(parsedPath.dir)) {\n    // if parsedPath ends with *, read everything in the folder\n    const fileNames: DbFileLocation[] = (await fs.readdir(parsedPath.dir))\n      .filter((fileName) => fileName.endsWith(parsedPath.ext))\n      .map((fileName) => {\n        const absolutePath = path.join(parsedPath.dir, fileName);\n        const projectRelativePath = absolutePath.substring(projectRoot.length);\n        const operationRelativePath = absolutePath.substring(\n          rootFolder.basePath.length\n        );\n        const dbFileLocation: DbFileLocation = {\n          modelName,\n          absolutePath,\n          operationName: rootFolder.operationName,\n          projectRelativePath,\n          operationRelativePath,\n        };\n\n        return dbFileLocation;\n      });\n\n    return fileNames;\n  }\n\n  return [];\n}",
@@ -72,6 +67,31 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "rootFolder",
+            "required": true,
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "basePath",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "is an operation Base path in case of operationName is not null",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "operationName",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
           }
         ],
         "type": "object"
@@ -99,5 +119,5 @@
     "linesPerFile": 35,
     "numberOfFiles": 1
   },
-  "id": "tzyivqhzyihqawlrqlhkxwrc"
+  "id": "qzgqfusfmdyfwbexvyijvyks"
 }

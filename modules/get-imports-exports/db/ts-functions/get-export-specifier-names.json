@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668150643213,
+  "updatedAt": 1668150643213,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150643213,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "commentsInside": [],
+  "rawText": " (symbol: Symbol) => {\n  return (\n    symbol\n      ?.getDeclarations()\n      ?.filter((x) => x.isKind(SyntaxKind.ExportSpecifier))\n      .map((x) => x.asKind(SyntaxKind.ExportSpecifier))\n      .filter(notEmpty)\n      .map((x) => x.getName()) || []\n  );\n}",
+  "name": "getExportSpecifierNames",
+  "slug": "get-export-specifier-names",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 254,
+    "lines": 10,
+    "bytes": 254,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "xopvlobyamdiotktnpfcqqzv"
+}

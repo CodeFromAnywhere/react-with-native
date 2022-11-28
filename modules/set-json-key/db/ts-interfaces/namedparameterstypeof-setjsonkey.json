@@ -1,0 +1,99 @@
+{
+  "createdAt": 1668331973733,
+  "updatedAt": 1668331973733,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331973733,
+  "id": "namedparameterstypeof-setjsonkey",
+  "name": "NamedParameters<typeof setJsonKey>",
+  "slug": "namedparameterstypeof-setjsonkey",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "{\n  jsonPath,\n  keyLocation,\n  value,\n  debug,\n}": {
+          "type": "object",
+          "properties": {
+            "jsonPath": {
+              "type": "string"
+            },
+            "keyLocation": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            },
+            "debug": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "jsonPath",
+            "keyLocation",
+            "value"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "{\n  jsonPath,\n  keyLocation,\n  value,\n  debug,\n}"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "{\n  jsonPath,\n  keyLocation,\n  value,\n  debug,\n}",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "jsonPath",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "keyLocation",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "value",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "debug",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof setJsonKey>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

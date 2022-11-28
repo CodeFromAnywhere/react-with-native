@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666258918540,
+  "updatedAt": 1666258918540,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258918540,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/gitShipAllRepos.ts",
+  "commentsInside": [],
+  "rawText": " ({\n  basePath,\n  callback,\n  fileName,\n  folderName,\n  shell = true,\n}: Omit<AllInputType, \"command\" | \"type\">) =>\n  forAllFolders({\n    type: \"git\",\n    command: 'git add . && git commit -m \"Improvements\" && git push',\n    basePath,\n    callback,\n    shell,\n    fileName,\n    folderName,\n  })",
+  "name": "gitShipAllRepos",
+  "slug": "git-ship-all-repos",
+  "parameters": [],
+  "description": "`gitShipAllPackages` Just ships code everywhere to github, wherever there's a git folder and there are changes.",
+  "returnType": {
+    "rawType": "Promise<void>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 405,
+    "lines": 16,
+    "bytes": 405,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "faogefqrsgyfkjzalgboiqtk"
+}

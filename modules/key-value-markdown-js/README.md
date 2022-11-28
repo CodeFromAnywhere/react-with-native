@@ -1,6 +1,6 @@
 # Key value markdown js
 
-key-value-markdown-js (`OperationClassification` js)
+key-value-markdown-js (`OperationClassification` cjs)
 
 
 

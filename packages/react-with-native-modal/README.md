@@ -1,6 +1,6 @@
 # React with native modal
 
-react-with-native-modal (`OperationClassification` ui-es5)
+react-with-native-modal (`OperationClassification` ui-cjs)
 
 
 
@@ -63,20 +63,9 @@ const { handleModal } = useModal();
 
 ## 📄 ModalProvider (exported const)
 
-## useModal()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | { modalContent?: ul / trin / SX.Elemen, <br />handleModal: {  }, <br />showModal: boolean, <br />title?: string, <br /> }   |    |
-
-
-
-## 📄 useModal (exported const)
-
 # Internal
 
-<details><summary>Show internal (2)</summary>
+<details><summary>Show internal (4)</summary>
     
   # `<Modal />`
 
@@ -90,7 +79,18 @@ const { handleModal } = useModal();
 
 
 
+## useModal()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { modalContent?: ul / trin / SX.Elemen, <br />handleModal: {  }, <br />showModal: boolean, <br />title?: string, <br /> }   |    |
+
+
+
 ## 📄 ModalContext (exported const)
+
+## 📄 useModal (exported const)
 
   </details>
 

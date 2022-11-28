@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668331888877,
+  "updatedAt": 1668331888877,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331888877,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getOperationPackageName",
+  "slug": "get-operation-package-name",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "(operationFolderPath: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (operationFolderPath: string) => {\n  const packageJson = await getPackageJson({ operationFolderPath });\n  return packageJson?.name;\n}",
+  "description": "",
+  "id": "bsyupldmpirncwagcgvbpoji"
+}

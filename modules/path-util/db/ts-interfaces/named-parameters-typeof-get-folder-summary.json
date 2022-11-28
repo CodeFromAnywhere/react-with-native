@@ -1,0 +1,97 @@
+{
+  "createdAt": 1664525068040,
+  "updatedAt": 1664525068040,
+  "deletedAt": 0,
+  "createdFirstAt": 1664525068040,
+  "id": "named-parameters-<typeof-get-folder-summary->",
+  "name": "NamedParameters<typeof getFolderSummary>",
+  "slug": "named-parameters-typeof-get-folder-summary",
+  "operationRelativeTypescriptFilePath": "src/getFolderSummary.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "categorizedFiles": {
+          "$ref": "#/definitions/CategorizedFilePaths"
+        }
+      },
+      "required": [
+        "categorizedFiles"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "categorizedFiles",
+          "required": true,
+          "schema": {
+            "description": "filepaths categorized based on the filetype. With king os there are only these filetypes:\n\n- code: ts, tsx\n- data: json\n- text: md, mdx",
+            "properties": [
+              {
+                "name": "code",
+                "required": true,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "data",
+                "required": true,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "text",
+                "required": true,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getFolderSummary>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "createdAt": 1669200476918,
+  "updatedAt": 1669200476918,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200476918,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/makeOutlineMarkdownString.ts",
+  "commentsInside": [],
+  "rawText": " (\n  title: string,\n  urls: MergedMarkdownOutlineUrl[]\n): string => {\n  const outlineString =\n    urls.length > 0\n      ? `## ${title}\\n\\n${urls\n          .map((url) => {\n            return `- [${url.title}](#${url.hashtagPath})`;\n          })\n          .join(\"\\n\")}\\n\\n`\n      : \"\";\n\n  return outlineString;\n}",
+  "name": "makeOutlineMarkdownString",
+  "slug": "make-outline-markdown-string",
+  "parameters": [
+    {
+      "name": "title",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "urls",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/MergedMarkdownOutlineUrl"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "title",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "hashtagPath",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            },
+            "name": "MergedMarkdownOutlineUrl"
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 310,
+    "lines": 15,
+    "bytes": 310,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 21,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "rtkwxooptcprywpefudnljuz"
+}

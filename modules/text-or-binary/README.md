@@ -1,6 +1,6 @@
 # Text or binary
 
-text-or-binary (`OperationClassification` js)
+text-or-binary (`OperationClassification` cjs)
 
 
 ## 🗳 text or binary?

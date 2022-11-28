@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669384217125,
+  "updatedAt": 1669384217125,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384217125,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/server-context/getReferencedAssetGetApi.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  serverContext: Context\n): Promise<{\n  isSuccessful: boolean;\n  isUnauthorized?: boolean;\n  message: string;\n}> => {\n  if (!serverContext) {\n    return { isSuccessful: false, message: \"No server context provided\" };\n  }\n  /**\n  const authToken = (ctx as any).cookies?.authToken;\n  const authToken2 = ctx.cookie?.authToken;\n\n  console.log({\n    authToken,\n    authToken2,\n    cookie: ctx.cookie,\n    cookies: (ctx as any).cookies,\n    headers: ctx.req.headers,\n  });\n\n  const isAuthed = functionAuthPlugin(\"uploadAsset\", authToken);\n  if (!isAuthed) {\n    return {\n      isSuccessful: false,\n      isUnauthorized: true,\n      message: \"You can only do this when authenticated\",\n    };\n  }\n  */\n  const isDownload = takeFirst(serverContext.query.isDownload) === \"1\";\n\n  const projectRelativeReferencingFilePath = takeFirst(\n    serverContext.query.projectRelativeReferencingFilePath\n  );\n\n  const referencingFileRelativeAssetPath = takeFirst(\n    serverContext?.query.referencingFileRelativeAssetPath\n  );\n\n  const { absoluteAssetPath, message, isSuccessful } =\n    await findAbsoluteAssetPathFromReference(\n      projectRelativeReferencingFilePath,\n      referencingFileRelativeAssetPath\n    );\n\n  if (!absoluteAssetPath) {\n    return { isSuccessful, message };\n  }\n\n  return serverDownloadReply(absoluteAssetPath, isDownload);\n}",
+  "name": "getReferencedAssetGetApi",
+  "slug": "get-referenced-asset-get-api",
+  "parameters": [],
+  "description": "Function to get a referenced asset that has been referenced from any db-model or any ts, tsx or md file, anywhere in the project.\n\nAssets should only be exposed if you have access to the model they are referenced in or to the md file they are referenced in.\n\nExposes all assets like `/asset?path=/text/interests/programming/storage-of-data/best-storage-methods.md&asset=./audio-is-amazing.m4a`\n\n\n# Security\n\nAssets are only exposed if they are referenced in a markdown file that is accessible to the user. So when looking up the asset, make sure there's a link to it via `[]()` or `![]()` in the markdown that is connected to it in the URL. If not, don't expose it!\n\nThis can be used for any ui that has the functions backend available.\n\nThe advantage is that we don't need to build it, this works in `dev` mode. there is no asset duplication.\n\nsince the name is `getReferencedAssetGetApi` this should be exposed on `getReferencedAsset`\n\nIMPLEMENTATION NOW:\n\n- check referencing file to find the reference.\n- for markdown, typescript: `](./xyz)`\n- for json: `\"relativePath\": \"./xyz\"`\n\n- If this occurs, calculate abosolute asset path from referencing file folder + relative path\n\n- If this asset exists, expose it.",
+  "returnType": {
+    "rawType": "Promise<{ isSuccessful: boolean; isUnauthorized?: boolean | undefined; message: string; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 2552,
+    "lines": 78,
+    "bytes": 2552,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 78,
+    "numberOfFiles": 1
+  },
+  "id": "dzuxmcroqzpxhsdbpylpuzkh"
+}

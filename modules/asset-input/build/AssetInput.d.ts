@@ -43,5 +43,9 @@ export declare const AssetInput: (props: {
      */
     onChange: (value: BackendAsset[]) => void;
     projectRelativeReferencingFilePath: string;
+    /**
+     * Must be provided in case the asset is stored in a database
+     */
+    modelName?: string | undefined;
 }) => JSX.Element;
 //# sourceMappingURL=AssetInput.d.ts.map

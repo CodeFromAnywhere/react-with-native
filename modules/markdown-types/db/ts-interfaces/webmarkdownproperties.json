@@ -1,0 +1,273 @@
+{
+  "createdAt": 1669385212922,
+  "updatedAt": 1669385212922,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385212922,
+  "id": "webmarkdownproperties",
+  "name": "WebMarkdownProperties",
+  "slug": "webmarkdownproperties",
+  "operationRelativeTypescriptFilePath": "src/WebMarkdownProperties.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface WebMarkdownProperties\n  /**\n   * NB: it extends WebsiteHeader here because the MarkdownModelType needs to be flat, and cannot have objects\n   *\n   * We won't make the websiteHeader into an object, although, that would also be a possibility.\n   */\n  extends WebsiteHeaderProperties {\n  markdownCallToActionSlugs?: Slug[];\n  markdownCallToActions?: MarkdownCallToAction[];\n  /**\n   * Refers to an `Item` from the shop\n   */\n  shop_itemIds?: Id[];\n  //shop_items:Item[];\n\n  /**\n   * Author, reference to persons\n   */\n  author_personSlugs?: Slug[];\n  //author_persons: Person[];\n\n  /**\n   * Labels referring to interests\n   */\n  interestSlugs?: Slug[];\n  //interests: Interest[];\n\n  /**\n   * Price for this file\n   *\n   * NB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.\n   */\n  price?: Price;\n}",
+  "extensions": [
+    "WebsiteHeaderProperties"
+  ],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "headerImage": {
+          "$ref": "#/definitions/BackendAsset"
+        },
+        "headerTitle": {
+          "type": "string"
+        },
+        "headerBig": {
+          "type": "boolean"
+        },
+        "headerSubTitle": {
+          "type": "string"
+        },
+        "header_markdownCallToActionSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          }
+        },
+        "header_markdownCallToActions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarkdownCallToAction"
+          }
+        },
+        "markdownCallToActionSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          }
+        },
+        "markdownCallToActions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarkdownCallToAction"
+          }
+        },
+        "shop_itemIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Id"
+          },
+          "description": "Refers to an `Item` from the shop"
+        },
+        "author_personSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          },
+          "description": "Author, reference to persons"
+        },
+        "interestSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          },
+          "description": "Labels referring to interests"
+        },
+        "price": {
+          "$ref": "#/definitions/Price",
+          "description": "Price for this file\n\nNB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE."
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "headerImage",
+          "required": false,
+          "schema": {
+            "fullComment": "Part of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+            "properties": [
+              {
+                "name": "alt",
+                "required": false,
+                "schema": {
+                  "fullComment": "Stored value\n\nAlt text for the asset",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "relativePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "name",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                  "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "temporaryDestination",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "projectRelativeReferencingFilePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "modelName",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "headerTitle",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "headerBig",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "headerSubTitle",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "header_markdownCallToActionSlugs",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "markdownCallToActionSlugs",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "shop_itemIds",
+          "required": false,
+          "schema": {
+            "fullComment": "Refers to an `Item` from the shop",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                  "type": "string"
+                },
+                "name": "Id"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "author_personSlugs",
+          "required": false,
+          "schema": {
+            "fullComment": "Author, reference to persons",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "interestSlugs",
+          "required": false,
+          "schema": {
+            "fullComment": "Labels referring to interests",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "price",
+          "required": false,
+          "schema": {
+            "fullComment": "Price for this file\n\nNB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.\n\nTLDR;EUROS\n\nA price is a number indicating the relative cost. Absolute cost is calculated by many other factors\n\nFor now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.\n\nLater we can add all kinds of extra conversion:\n\n- currency support\n- king os currency\n- lower cost for poorer people\n\netc...\n\nFirst we need to start making sales before we can add such complexity.\n\n",
+            "nb": "in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.",
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "WebMarkdownProperties",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,23 +1,18 @@
 {
-  "createdAt": 1668148280933,
-  "updatedAt": 1668148280933,
+  "createdAt": 1669200353032,
+  "updatedAt": 1669200353032,
   "deletedAt": 0,
-  "createdFirstAt": 1668148280933,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669200353032,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/js.ts",
   "commentsInside": [],
-  "rawText": " (fileName: string): string | undefined => {\n  const parts = fileName.split(\".\");\n  //removes extension\n  parts.pop();\n  //returns extension that's left (the sub-extension)\n  const subExtension = parts.pop();\n  return subExtension;\n}",
+  "rawText": " (filename: string): string | undefined => {\n  const parts = filename.split(\".\");\n  //removes extension\n  parts.pop();\n  //returns extension that's left (the sub-extension)\n  const subExtension = parts.pop();\n  return subExtension;\n}",
   "name": "getSubExtension",
   "slug": "get-sub-extension",
   "parameters": [],
-  "description": "",
+  "description": "Provide a filename including its extension, to get the subextension.",
   "returnType": {
     "rawType": "string | undefined",
     "typeDefinition": {
@@ -46,13 +41,13 @@
   },
   "maxIndentationDepth": 1,
   "size": {
-    "characters": 233,
+    "characters": 301,
     "lines": 8,
-    "bytes": 233,
+    "bytes": 301,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 29,
+    "charactersPerLine": 38,
     "linesPerFile": 8,
     "numberOfFiles": 1
   },
-  "id": "zbevkmslsrsqgclpcrktkfby"
+  "id": "foihoghcrlqzumtdyixnqdsj"
 }

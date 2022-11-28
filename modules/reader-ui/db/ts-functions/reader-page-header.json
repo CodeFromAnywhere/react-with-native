@@ -1,0 +1,87 @@
+{
+  "createdAt": 1669639446770,
+  "updatedAt": 1669639446770,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639446770,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/components/ReaderPageHeader.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  markdownFile?: WebMarkdownFile | null;\n  projectRelativeMarkdownPath?: string | null;\n}) => {\n  const { markdownFile, projectRelativeMarkdownPath } = props;\n\n  if (!markdownFile) return null;\n\n  const { src } = destructureOptionalObject(\n    useAsset(markdownFile.headerImage, projectRelativeMarkdownPath, !isDev)\n  );\n\n  const backgroundImage = src ? `url(\"${src}\")` : undefined;\n\n  return (\n    <Div\n      style={{\n        backgroundImage,\n        backgroundRepeat: \"no-repeat\",\n        backgroundSize: \"cover\",\n        backgroundPosition: \"center 75%\",\n      }}\n      className={`w-full ${\n        markdownFile.headerBig ? \"h-screen\" : \"h-[350px]\"\n      } flex flex-col items-center justify-center`}\n    >\n      {markdownFile.headerTitle ? (\n        <P className=\"drop-shadow-lg decoration-8 font-bold text-white text-4xl\">\n          {markdownFile.headerTitle}\n        </P>\n      ) : null}\n      {markdownFile.headerSubTitle ? (\n        <P className=\"drop-shadow-lg text-white text-2xl\">\n          {markdownFile.headerSubTitle}\n        </P>\n      ) : null}\n\n      {markdownFile.header_markdownCallToActions?.map((cta) => {\n        const { title, description, ctaButtonText, hostname, path } = cta;\n        console.log({ cta, ctaButtonText, hostname });\n        return (\n          <ALink\n            href={path}\n            title={description}\n            className=\"bg-blue-500 rounded-full p-4 flex items-center justify-center\"\n          >\n            {title}\n          </ALink>\n        );\n      })}\n    </Div>\n  );\n}",
+  "name": "ReaderPageHeader",
+  "slug": "reader-page-header",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "markdownFile": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/WebMarkdownFile"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "projectRelativeMarkdownPath": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "markdownFile",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "projectRelativeMarkdownPath",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element | null",
+    "typeDefinition": {
+      "optional": true,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 1534,
+    "lines": 53,
+    "bytes": 1534,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 53,
+    "numberOfFiles": 1
+  },
+  "id": "ddetfthgwtbkduoatfgwkybo"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384996990,
+  "updatedAt": 1669384996990,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384996990,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "objectToFrontmatter",
+  "slug": "object-to-frontmatter",
+  "operationRelativeTypescriptFilePath": "src/objectToFrontmatter.ts",
+  "type": {
+    "rawType": "(parse: import(\"/Users/king/King/operations/tools/types/matter-types/build/FrontmatterParse\").FrontmatterParse, schema: import(\"/Users/king/King/operations/tools/types/code-types/build/SimplifiedSchema\").SimplifiedSchema) => import(\"/Users/king/King/operations/tools/types/matter-types/build/Frontmatter\").Frontmatter",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  parse: FrontmatterParse,\n  schema: SimplifiedSchema\n): Frontmatter => {\n  if (!schema.properties || !schema.properties.length) {\n    return {};\n  }\n\n  const propertyStringValueArray: { [key: string]: string }[] =\n    schema.properties\n      .map((property) => {\n        const value = parse[property.name];\n\n        const assetInputType = getAssetInputType(property.name);\n\n        if (\n          (property.schema.type === \"object\" ||\n            property.schema.type === \"array\") &&\n          assetInputType?.type\n        ) {\n          // it's a backendAsset\n\n          const realValue = value as BackendAsset | BackendAsset[] | undefined;\n\n          if (!realValue || typeof realValue !== \"object\") {\n            // must be an array or object, otherwise it's set to nothing\n            return;\n          }\n\n          const backendAssets = makeArray(realValue);\n\n          return {\n            [property.name]: backendAssets\n              .map((backendAsset) => {\n                return `![${backendAsset.alt || \"\"}](${\n                  backendAsset.relativePath || \"\"\n                })`;\n              })\n              .join(\", \"),\n          };\n        }\n\n        if (property.schema.type === \"number\" && property.name.endsWith(\"At\")) {\n          if (typeof value !== \"number\" || (!value && value !== 0)) {\n            // we can only process numbers\n            return;\n          }\n\n          // it's a date, convert to date\n\n          const humanReadableDate = new Date(value).toDateString();\n          return { [property.name]: humanReadableDate };\n        }\n\n        if (property.schema.type === \"boolean\") {\n          if (value === true) return { [property.name]: \"true\" };\n          if (value === false) return { [property.name]: \"false\" };\n          return;\n        }\n\n        if (property.schema.type === \"number\") {\n          if (typeof value !== \"number\" || (!value && value !== 0)) {\n            // we can only process numbers\n            return;\n          }\n\n          return { [property.name]: String(value) };\n        }\n\n        if (property.schema.type === \"null\") {\n          if (value !== null) {\n            return;\n          }\n\n          return { [property.name]: \"null\" };\n        }\n\n        if (property.schema.type === \"string\") {\n          if (typeof value !== \"string\") {\n            return;\n          }\n          return { [property.name]: quotedOrNot(stringifyNewlines(value)) };\n        }\n\n        if (property.schema.type === \"array\") {\n          // turn into comma separated\n\n          if (!Array.isArray(value)) {\n            return;\n          }\n\n          // Let's only support string[] for now!\n          //   const type = property.schema.items?.map(x=>x.schema)?.[0]\n\n          const itemString = value\n            .map((item: any) => {\n              if (typeof item !== \"string\") return;\n\n              return quotedOrNot(stringifyNewlines(item));\n            })\n            .filter(notEmpty)\n            .join(\", \");\n\n          return { [property.name]: itemString };\n        }\n\n        if (property.schema.type === \"object\") {\n          // should not be supported\n          return;\n        }\n\n        return;\n      })\n      .filter(notEmpty);\n\n  const frontmatter = mergeObjectsArray(propertyStringValueArray);\n\n  return frontmatter;\n}",
+  "description": "",
+  "id": "lykuogvqzkqoxpcwtfrifrjp"
+}

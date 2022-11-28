@@ -1,15 +1,15 @@
 {
-  "createdAt": 1668150079224,
-  "updatedAt": 1668150079224,
+  "createdAt": 1669639255561,
+  "updatedAt": 1669639255561,
   "deletedAt": 0,
-  "createdFirstAt": 1668150079224,
+  "createdFirstAt": 1669639255561,
   "id": "dataset",
   "name": "Dataset",
   "slug": "dataset",
   "operationRelativeTypescriptFilePath": "src/Dataset.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * Model\n *\n * Make subsets of models that can be used for authorising someone for a subset of data, or transfering (or filtering out) subsets of data to a bundle.\n */\nexport interface Dataset extends SlugModelType, DatasetConfig {\n  /**\n   * The model you want to make a dataset from\n   */\n  modelName: string;\n\n  /**\n   * How much does this dataset cost?\n   */\n  price?: Price;\n}",
+  "rawText": "\n\n/**\n * Model\n *\n * Make subsets of models that can be used for authorising someone for a subset of data, or transfering (or filtering out) subsets of data to a bundle.\n */\nexport interface Dataset extends SlugModelType, DatasetConfig {\n  /**\n   * The model you want to make a dataset from\n   */\n  modelName: string;\n\n  /**\n   * How much does this dataset cost?\n   */\n  price?: Price;\n\n  defaultView?: ModelViewEnum;\n  allowedModelViews?: ModelViewEnum[];\n}",
   "extensions": [
     "SlugModelType",
     "DatasetConfig"
@@ -24,31 +24,17 @@
       "type": "object",
       "properties": {
         "filter": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/DatasetFilter"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DatasetFilter"
-              }
-            }
-          ],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DatasetFilter"
+          },
           "description": "Filters are applied after each other"
         },
         "sort": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/DatasetSort"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DatasetSort"
-              }
-            }
-          ]
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DatasetSort"
+          }
         },
         "maxRows": {
           "type": "number",
@@ -72,6 +58,7 @@
           },
           "description": "If specified, will omit these keys when creating the dataset"
         },
+        "view": {},
         "slug": {
           "$ref": "#/definitions/Slug",
           "description": "kebab-case of the name, should be unique"
@@ -124,6 +111,15 @@
         "price": {
           "$ref": "#/definitions/Price",
           "description": "How much does this dataset cost?"
+        },
+        "defaultView": {
+          "$ref": "#/definitions/ModelViewEnum"
+        },
+        "allowedModelViews": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ModelViewEnum"
+          }
         }
       },
       "required": [
@@ -139,16 +135,7 @@
         "slug",
         "updatedAt"
       ],
-      "additionalProperties": {
-        "anyOf": [
-          {
-            "$ref": "#/definitions/Id"
-          },
-          {
-            "not": {}
-          }
-        ]
-      },
+      "additionalProperties": false,
       "description": "Model\n\nMake subsets of models that can be used for authorising someone for a subset of data, or transfering (or filtering out) subsets of data to a bundle."
     },
     "simplifiedSchema": {
@@ -159,16 +146,108 @@
           "required": false,
           "schema": {
             "fullComment": "Filters are applied after each other",
-            "properties": [],
-            "type": "object"
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Can be better, see https://www.w3schools.com/js/js_comparisons.asp",
+                  "properties": [
+                    {
+                      "name": "objectParameterKey",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "value",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "This will sometines need to be casted",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operator",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "includesLetters",
+                          "includes",
+                          "startsWith",
+                          "endsWith",
+                          "equal",
+                          "notEqual",
+                          "greaterThan",
+                          "greaterThanOrEqual",
+                          "lessThan",
+                          "lessThanOrEqual"
+                        ],
+                        "fullComment": "Uses type equality\n\n",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "filterFunctionName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "TODO: Maybe add possibility to use a sort function from the SDK",
+                        "todo": "Maybe add possibility to use a sort function from the SDK",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "DatasetFilter"
+              }
+            ],
+            "type": "array"
           }
         },
         {
           "name": "sort",
           "required": false,
           "schema": {
-            "properties": [],
-            "type": "object"
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Sort by comparing the two values using the `Array.sort` method and Greater than and Less than operators.",
+                  "properties": [
+                    {
+                      "name": "objectParameterKey",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "sortDirection",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "ascending",
+                          "descending"
+                        ],
+                        "fullComment": "sort normally or in reverse order",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "sortFunctionName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "TODO:",
+                        "todo": "",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "DatasetSort"
+              }
+            ],
+            "type": "array"
           }
         },
         {
@@ -217,6 +296,14 @@
               }
             ],
             "type": "array"
+          }
+        },
+        {
+          "name": "view",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
           }
         },
         {
@@ -335,7 +422,7 @@
           "name": "categoryStackCalculated",
           "required": false,
           "schema": {
-            "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\n",
+            "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
             "nb": "Changing this value when updating/upserting, changes where the item is located!",
             "items": [
               {
@@ -362,6 +449,42 @@
           "schema": {
             "fullComment": "How much does this dataset cost?\n\nTLDR;EUROS\n\nA price is a number indicating the relative cost. Absolute cost is calculated by many other factors\n\nFor now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.\n\nLater we can add all kinds of extra conversion:\n\n- currency support\n- king os currency\n- lower cost for poorer people\n\netc...\n\nFirst we need to start making sales before we can add such complexity.\n\n",
             "type": "number"
+          }
+        },
+        {
+          "name": "defaultView",
+          "required": false,
+          "schema": {
+            "enum": [
+              "table",
+              "grid",
+              "timeline",
+              "tree"
+            ],
+            "fullComment": "Models should be able to be shown in multiple different views:\n\n- Table: useful to show models with much details\n- Grid: useful to show models with a visual aspect and less details\n- Timeline: useful to show text-related models\n- Tree: useful to show a hierarchy",
+            "type": "string"
+          }
+        },
+        {
+          "name": "allowedModelViews",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "enum": [
+                    "table",
+                    "grid",
+                    "timeline",
+                    "tree"
+                  ],
+                  "fullComment": "Models should be able to be shown in multiple different views:\n\n- Table: useful to show models with much details\n- Grid: useful to show models with a visual aspect and less details\n- Timeline: useful to show text-related models\n- Tree: useful to show a hierarchy",
+                  "type": "string"
+                },
+                "name": "ModelViewEnum"
+              }
+            ],
+            "type": "array"
           }
         }
       ],

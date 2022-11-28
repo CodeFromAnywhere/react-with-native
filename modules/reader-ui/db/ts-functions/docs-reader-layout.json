@@ -1,0 +1,187 @@
+{
+  "createdAt": 1669639437401,
+  "updatedAt": 1669639437401,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639437401,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/components/DocsReaderLayout.tsx",
+  "commentsInside": [],
+  "rawText": " (props: MarkdownReaderPageProps) => {\n  const router = useRouter();\n  const queryPath = getQueryPath(router.query);\n  const word: string | undefined = Array.isArray(router.query?.word)\n    ? router.query?.word?.[0]\n    : router.query.word;\n\n  return (\n    <Layout\n      publicBundleConfig={props.publicBundleConfig}\n      augmentedWordObject={props.content?.augmentedWordObject}\n      menu={props.menu}\n    >\n      {queryPath === \"dictionary\" && props.content?.augmentedWordObject ? (\n        <Dictionary\n          augmentedWordObject={props.content?.augmentedWordObject}\n          word={word}\n        />\n      ) : (\n        <ReaderPageContent {...props.content} />\n      )}\n    </Layout>\n  );\n}",
+  "name": "DocsReaderLayout",
+  "slug": "docs-reader-layout",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "$ref": "#/definitions/MarkdownReaderPageProps"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "publicBundleConfig",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "menu",
+            "required": true,
+            "schema": {
+              "properties": [
+                {
+                  "name": "flat",
+                  "required": true,
+                  "schema": {
+                    "items": [],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "nested",
+                  "required": true,
+                  "schema": {
+                    "items": [],
+                    "type": "array"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "content",
+            "required": false,
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "projectRelativeMarkdownPath",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "markdownFile",
+                  "required": false,
+                  "schema": {
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "title",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Title of the page",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "children",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If path is not a markdownfile, will return all children here",
+                    "items": [
+                      {
+                        "schema": {
+                          "properties": [
+                            {
+                              "name": "title",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "firstParagraph",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "folderName",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "projectRelativeMarkdownPath",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "previousQueryPath",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "nextQueryPath",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "description",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 696,
+    "lines": 24,
+    "bytes": 696,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 24,
+    "numberOfFiles": 1
+  },
+  "id": "dhngzdooziwvtdmsnjtataon"
+}

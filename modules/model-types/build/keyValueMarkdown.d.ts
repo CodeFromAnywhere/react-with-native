@@ -29,7 +29,9 @@ export interface KeyValueMarkdownModelType extends AnyModelType, KvmdLine {
     isHeaderCalculated: boolean;
 }
 /**
+ * Taken from the location in the folder of the db-model.
  *
+ * NB: Changing this value when updating/upserting, changes where the item is located!
  */
 export declare type CategoryStack = string[];
 export declare type KeyValueMarkdownParse = {

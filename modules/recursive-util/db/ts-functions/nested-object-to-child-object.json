@@ -1,0 +1,53 @@
+{
+  "createdAt": 1669385436484,
+  "updatedAt": 1669385436484,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385436484,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/nestedObjectToChildObject.ts",
+  "commentsInside": [],
+  "rawText": " <T extends { [key: string]: any }>(\n  /**\n   * if T is an object, provide __check to check that it's a leaf\n   */\n  nestedObject: NestedObject<T>,\n  /**\n   * Map the folder to T. You can omit queryPath, it will be overwritten\n   */\n  mapFolderToT: (nestedObject: NestedObject<T>, key: string) => T,\n  stack: string[] = []\n): ChildObject<T>[] => {\n  const keys = Object.keys(nestedObject);\n  const children = keys.map((key) => {\n    const t = mapFolderToT(nestedObject, key);\n    const value = nestedObject[key];\n\n    const isLeaf = typeof value !== \"object\" || !!value.__check;\n\n    if (isLeaf) {\n      const { __check, ...valueWithoutCheck } = value;\n      return valueWithoutCheck;\n    }\n\n    const newStack = stack.concat(key);\n    const queryPath = newStack.join(\"/\");\n\n    return {\n      ...t,\n      queryPath,\n      children: nestedObjectToChildObject(value, mapFolderToT, newStack),\n    };\n  }) as ChildObject<T>[];\n\n  return children;\n}",
+  "name": "nestedObjectToChildObject",
+  "slug": "nested-object-to-child-object",
+  "parameters": [],
+  "description": "if T is an object, provide __check as one of its properties, to make it possible to check that it's a leaf. This property will be omitted in the ChildObject array",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/recursive-types/build/ChildObject\").ChildObject<T>[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {}
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1107,
+    "lines": 35,
+    "bytes": 1107,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 35,
+    "numberOfFiles": 1
+  },
+  "id": "avzqrtnnhcztrvurrxauteby"
+}

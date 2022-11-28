@@ -1,0 +1,57 @@
+{
+  "createdAt": 1669385047505,
+  "updatedAt": 1669385047505,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385047505,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/saveFileContents.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  projectRelativeFilePath: string,\n  newContent: string\n): Promise<{ isSuccessful: boolean; message?: string }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root found\" };\n  }\n\n  const absolutePath = path.join(projectRoot, projectRelativeFilePath);\n\n  if (!fs.existsSync(absolutePath)) {\n    return { isSuccessful: false, message: \"This file does not exist\" };\n  }\n\n  await fs.writeFile(absolutePath, newContent, { encoding: \"utf8\" });\n\n  return {\n    isSuccessful: true,\n  };\n}",
+  "name": "saveFileContents",
+  "slug": "save-file-contents",
+  "parameters": [
+    {
+      "name": "projectRelativeFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "newContent",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<{ isSuccessful: boolean; message?: string | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 564,
+    "lines": 21,
+    "bytes": 564,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "arixoayjvmvanbqppdpwmklz"
+}

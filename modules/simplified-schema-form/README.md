@@ -1,6 +1,6 @@
 # Simplified schema form
 
-simplified-schema-form (`OperationClassification` ui-es5)
+simplified-schema-form (`OperationClassification` ui-cjs)
 
 component that generates a form using react-with-native and a `SimplifiedSchema`. Can obtain any JSON object from the user.
 
@@ -8,23 +8,6 @@ component that generates a form using react-with-native and a `SimplifiedSchema`
 
 
 # Api reference
-
-## `<SimplifiedSchemaForm />`
-
-Recursive component that renders a form for a SimplifiedSchema
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## 📄 SimplifiedSchemaForm (exported const)
-
-Recursive component that renders a form for a SimplifiedSchema
-
 
 ## `<FormContainer />`
 
@@ -40,6 +23,32 @@ NB: TODO: There is a bug now where onSubmit gets called too often. Not sure how 
 | - | | |
 | **Output** | `JSX.Element`   |    |
 
+
+
+## `<SimplifiedSchemaForm />`
+
+Recursive component that renders a form for a SimplifiedSchema
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 FormContainer (exported const)
+
+A `FormContainer` is a simple container that can wrap your `SimplifiedSchemaForm` to give it a button that also sends when hitting enter on your keyboard. To achieve this, a `<form>` is created in this component.
+
+Besides this, you can also add some texts, but styling is not possible to change for this component at this point (except for the form className). If you want a completely different style, it's probably better to build it yourself.
+
+NB: TODO: There is a bug now where onSubmit gets called too often. Not sure how to fix this. Because of this, I'll simply remove the onSubmit action in the onsubmit for now, and prevent the default.
+
+
+## 📄 SimplifiedSchemaForm (exported const)
+
+Recursive component that renders a form for a SimplifiedSchema
 
 
 ## useReferencableModelData()
@@ -60,15 +69,6 @@ NB: be careful, not to change the simplifiedSchema after using this hook for the
 
 
 
-## 📄 FormContainer (exported const)
-
-A `FormContainer` is a simple container that can wrap your `SimplifiedSchemaForm` to give it a button that also sends when hitting enter on your keyboard. To achieve this, a `<form>` is created in this component.
-
-Besides this, you can also add some texts, but styling is not possible to change for this component at this point (except for the form className). If you want a completely different style, it's probably better to build it yourself.
-
-NB: TODO: There is a bug now where onSubmit gets called too often. Not sure how to fix this. Because of this, I'll simply remove the onSubmit action in the onsubmit for now, and prevent the default.
-
-
 ## 📄 useReferencableModelData (exported const)
 
 Hook to retreive `ReferencableModelData` to supply to `SimplifiedSchemaForm`.
@@ -78,6 +78,51 @@ Underwater, this calculates all referencableModelNames for a schema, and then it
 NB: be careful, not to change the simplifiedSchema after using this hook for the first time. This will change the amount of hooks and this can break react!
 
 (it will give `Error: Rendered more hooks than during the previous render`)
+
+
+## useTsInterfaceForm()
+
+hook to create a form for a TsInterface
+
+
+## Usage
+
+```ts
+import { useTsInterfaceForm } from "simplified-schema-form";
+import DatasetConfigJson from "code-types/db/ts-interfaces/datasetconfig.json";
+import { DatasetConfig, TsInterface } from "code-types";
+import { Storing } from "model-types";
+
+in your component:
+const initialValue:DatasetConfig = {} as any;
+const [Form, value, onChange] = useTsInterfaceForm(DatasetConfigJson as Storing<TsInterface>,initialValue);
+```
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 useTsInterfaceForm (exported const)
+
+hook to create a form for a TsInterface
+
+
+## Usage
+
+```ts
+import { useTsInterfaceForm } from "simplified-schema-form";
+import DatasetConfigJson from "code-types/db/ts-interfaces/datasetconfig.json";
+import { DatasetConfig, TsInterface } from "code-types";
+import { Storing } from "model-types";
+
+in your component:
+const initialValue:DatasetConfig = {} as any;
+const [Form, value, onChange] = useTsInterfaceForm(DatasetConfigJson as Storing<TsInterface>,initialValue);
+```
 
 # Internal
 

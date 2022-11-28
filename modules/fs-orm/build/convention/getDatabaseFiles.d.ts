@@ -1,20 +1,5 @@
 import { DbFileLocation } from "model-types";
-import { MergedQueryConfig, RootDbFolder } from "../types";
-/**
- * Needed in case of manual project root, otherwise use SDK!
- *
- * Returns project relative operation base paths
- */
-export declare const calculateOperationsObject: (manualProjectRoot: string) => Promise<{
-    [x: string]: string;
-}>;
-export declare const getMergedConfigOperationPath: (mergedConfig: MergedQueryConfig, manualProjectRoot?: string) => Promise<false | string | undefined>;
-export declare const getRootFolders: (config: {
-    manualProjectRoot?: string | undefined;
-    projectRoot: string;
-    mergedConfig: MergedQueryConfig;
-    operationPath: string | false;
-}) => Promise<RootDbFolder[]>;
+import { MergedQueryConfig } from "../types";
 /**
 This function gets the files that the data can be stored, by convention, based on the model and the config
 

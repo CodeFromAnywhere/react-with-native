@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667379660632,
-  "updatedAt": 1667379660632,
+  "createdAt": 1669467043671,
+  "updatedAt": 1669467043671,
   "deletedAt": 0,
-  "createdFirstAt": 1667379660632,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669467043671,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getMarkdownReferencesFromParagraph.ts",
   "commentsInside": [],
   "rawText": " (\n  paragraph: string\n): MarkdownReference[] => {\n  const references = parseMarkdownParagraph(paragraph)\n    .map((x) => x.reference)\n    .filter(notEmpty);\n\n  return references;\n}",
@@ -123,5 +118,5 @@
     "linesPerFile": 9,
     "numberOfFiles": 1
   },
-  "id": "hcgmqaltruxydgjfelhyxpvz"
+  "id": "adfnjligeroehqemtokgnxns"
 }

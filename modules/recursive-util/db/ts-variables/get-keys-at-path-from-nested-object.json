@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385430915,
+  "updatedAt": 1669385430915,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385430915,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getKeysAtPathFromNestedObject",
+  "slug": "get-keys-at-path-from-nested-object",
+  "operationRelativeTypescriptFilePath": "src/getKeysAtPathFromNestedObject.ts",
+  "type": {
+    "rawType": "<T extends { [key: string]: any; }>(nestedObject: T, objectPath: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends { [key: string]: any }>( //NestedObject<null>\n  nestedObject: T,\n  /**\n   * Something like a/b/c/d\n   */\n  objectPath: string\n) => {\n  const pathParts = objectPath.split(\"/\");\n  const objectAtLocation = pathParts.reduce((objectSubset, part) => {\n    // basecase should never happen\n    if (!objectSubset) return;\n    const subset = objectSubset[part];\n    return subset;\n  }, nestedObject as T);\n\n  const children = objectAtLocation ? Object.keys(objectAtLocation) : [];\n\n  return children;\n}",
+  "description": "Gets all children keys of a nested object at a certain (nested) location in the nested object\n\n`nestedObject` should extend the `NestedObject`.\n\nThe reduce is a bit vague, I need to  test this function further to make sure it does exactly what I want.",
+  "id": "fnghjpiwcwoteqtjhsuactxk"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668152077206,
-  "updatedAt": 1668152077206,
+  "createdAt": 1669385125400,
+  "updatedAt": 1669385125400,
   "deletedAt": 0,
-  "createdFirstAt": 1668152077206,
+  "createdFirstAt": 1669385125400,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "get-text-segments",
   "operationRelativeTypescriptFilePath": "src/editors/ContentEditableDivInput.tsx",
   "type": {
-    "rawType": "(element: any) => import(\"/Users/king/King/operations/tools/writer/writer-input/src/editors/ContentEditableDivInput\").TextSegment[]",
+    "rawType": "(element: any) => import(\"/Users/king/King/operations/tools/purpose/writer/writer-input/src/editors/ContentEditableDivInput\").TextSegment[]",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(element: ChildNode | null): TextSegment[] => {\n  if (element === null) return [];\n\n  const children = Array.from(element.childNodes);\n\n  const textSegments: TextSegment[] = children\n    .map((node) => {\n      if (node.nodeType === Node.TEXT_NODE) {\n        return {\n          text: node.nodeValue || \"\",\n          node,\n        };\n      }\n\n      if (node.nodeType === Node.ELEMENT_NODE) {\n        // NB: not sure which nodes contain ID, but this must work\n\n        if (node.nodeName === \"DIV\") {\n          // NB: because nodeName is DIV, it must be a HTMLDivElement\n          const divElement = node as HTMLDivElement;\n          const isAugmentation = divElement.dataset.isAugmentation === \"true\";\n          if (isAugmentation) return;\n        }\n\n        if (node.nodeName === \"BR\") {\n          return { text: \"\\n\", node };\n        } else {\n          return getTextSegments(node);\n        }\n      }\n\n      return;\n    })\n    .filter(notEmpty)\n    .flat();\n\n  return textSegments;\n}",
   "description": "Iterates over all child-nodes in the editor, replaces text with a segment, and replaces nodes with a flat list of segments\n\nReturns all textSegments in an array",
-  "id": "zpvlcukdgjovrycchpidxbdo"
+  "id": "istpxayoqiqgvnbggepuxbgf"
 }

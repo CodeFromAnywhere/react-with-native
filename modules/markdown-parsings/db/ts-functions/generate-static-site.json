@@ -1,0 +1,72 @@
+{
+  "createdAt": 1669200453400,
+  "updatedAt": 1669200453400,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200453400,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/expose/generateStaticSite.ts",
+  "commentsInside": [],
+  "rawText": " ({\n  projectRelativeMdFilePath,\n  singlePage,\n}: {\n  singlePage?: boolean;\n  projectRelativeMdFilePath?: string;\n}) => {\n  //\n}",
+  "name": "generateStaticSite",
+  "slug": "generate-static-site",
+  "parameters": [
+    {
+      "name": "{\n  projectRelativeMdFilePath,\n  singlePage,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "singlePage": {
+            "type": "boolean"
+          },
+          "projectRelativeMdFilePath": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "singlePage",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "projectRelativeMdFilePath",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "generates static site from a markdown file, with a menu on the right by default\n\nuses next.js\n\nbecause it is static, the markdown can be in the frontend assets and there is no need for a backend",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 322,
+    "lines": 13,
+    "bytes": 322,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "wiwplcfrlrnygyzhwrevovyu"
+}

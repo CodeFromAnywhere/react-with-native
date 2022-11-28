@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148409907,
-  "updatedAt": 1668148409907,
+  "createdAt": 1668976648380,
+  "updatedAt": 1668976648380,
   "deletedAt": 0,
-  "createdFirstAt": 1668148409907,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668976648380,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/findAllPackages.ts",
   "commentsInside": [],
   "rawText": " (config?: {\n  basePath: string | string[] | undefined;\n}) => {\n  return explore({\n    basePath: config?.basePath || getPathsWithOperations(),\n    search: \"package.json\",\n    exact: true,\n    extension: \"json\",\n    searchLevel: \"fileName\",\n    ignore: generatedFolders.concat([\"src\", \"assets\", \"data\"]),\n  });\n}",
@@ -74,5 +69,5 @@
     "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "tkdpohtgwtnxzpmslkcjuwhq"
+  "id": "harsuydvvsbgiuefnatcdmas"
 }

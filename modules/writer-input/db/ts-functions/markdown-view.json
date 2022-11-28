@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668152068590,
-  "updatedAt": 1668152068590,
+  "createdAt": 1669385112242,
+  "updatedAt": 1669385112242,
   "deletedAt": 0,
-  "createdFirstAt": 1668152068590,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385112242,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/MarkdownView.tsx",
   "commentsInside": [],
   "rawText": " (props: {\n  view: \"view\" | \"presentation\";\n  markdownParse: MarkdownParse;\n  markdownParseRenderConfig: MarkdownParseRenderConfig;\n}) => {\n  const { markdownParse, markdownParseRenderConfig, view } = props;\n\n  const {\n    projectRelativeBaseFolderPath,\n    projectRelativeMarkdownFilePath,\n    augmentedWordObject,\n  } = markdownParseRenderConfig;\n  return (\n    <>\n      {view === \"view\" ? (\n        <Div className=\"mx-2\">\n          {renderMarkdownParse(markdownParse, markdownParseRenderConfig)}\n        </Div>\n      ) : null}\n\n      {view === \"presentation\" ? (\n        <Div className=\"mx-2 flex flex-1 min-h-[80vh]\">\n          {markdownParse.content ? (\n            <MarkdownParsePresentation\n              markdownParse={markdownParse}\n              augmentedWordObject={augmentedWordObject}\n              projectRelativeBaseFolderPath={projectRelativeBaseFolderPath}\n              projectRelativeMarkdownFilePath={projectRelativeMarkdownFilePath}\n            />\n          ) : (\n            \"Couldn't find any content\"\n          )}\n        </Div>\n      ) : null}\n    </>\n  );\n}",
@@ -106,11 +101,152 @@
                   }
                 },
                 {
+                  "name": "parameters",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "parameters found in frontmatter\n\nOur version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+                    "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
                   "name": "content",
                   "required": false,
                   "schema": {
                     "fullComment": "structured content based on h1, h2, h3, etc (paragraphs, recursive)",
-                    "items": [],
+                    "items": [
+                      {
+                        "schema": {
+                          "fullComment": "",
+                          "properties": [
+                            {
+                              "name": "level",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "0 is a paragraph 1-6 is h1 until h6",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "content",
+                              "required": false,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "markdownEmbed",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works",
+                                "nb": "I need to be very clear how this one works",
+                                "properties": [
+                                  {
+                                    "name": "alt",
+                                    "required": true,
+                                    "schema": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "src",
+                                    "required": true,
+                                    "schema": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "type",
+                                    "required": true,
+                                    "schema": {
+                                      "enum": [
+                                        "video",
+                                        "audio",
+                                        "image",
+                                        "text",
+                                        "other"
+                                      ],
+                                      "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                                      "type": "string"
+                                    }
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            {
+                              "name": "markdownLink",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "Anything in the format `[alt](href)`\n\nIt needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here",
+                                "properties": [
+                                  {
+                                    "name": "alt",
+                                    "required": true,
+                                    "schema": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "href",
+                                    "required": true,
+                                    "schema": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "type",
+                                    "required": true,
+                                    "schema": {
+                                      "enum": [
+                                        "video",
+                                        "audio",
+                                        "image",
+                                        "text",
+                                        "other"
+                                      ],
+                                      "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                                      "type": "string"
+                                    }
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            {
+                              "name": "title",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "NB: title can also be an empty string (\"\")",
+                                "nb": "title can also be an empty string (\"\")",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "children",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "all content until the next title. it's either a content array if there's any titles found, or a string[] if it's paragraphs",
+                                "items": [
+                                  {
+                                    "schema": {
+                                      "circularRefName": "MarkdownChunk",
+                                      "properties": [],
+                                      "type": "object"
+                                    },
+                                    "name": "MarkdownChunk"
+                                  }
+                                ],
+                                "type": "array"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": "MarkdownChunk"
+                      }
+                    ],
                     "type": "array"
                   }
                 },
@@ -205,5 +341,5 @@
     "linesPerFile": 37,
     "numberOfFiles": 1
   },
-  "id": "ttqkvbggsbzaxhuerbxvfopp"
+  "id": "rxzhbicsozbkieeoblmtdagy"
 }

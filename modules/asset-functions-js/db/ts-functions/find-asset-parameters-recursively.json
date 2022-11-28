@@ -1,0 +1,205 @@
+{
+  "createdAt": 1669384143779,
+  "updatedAt": 1669384143779,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384143779,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/findAssetParametersRecursively.ts",
+  "commentsInside": [],
+  "rawText": " (\n  object: {\n    [key: string]: any;\n  },\n  stack?: string[]\n): AssetParameter[] => {\n  if (!object) return [];\n\n  const result = Object.keys(object)\n    .map((objectProperty) => {\n      const value = object[objectProperty];\n\n      const assetInputType = getAssetInputType(objectProperty);\n\n      if (assetInputType) {\n        return [\n          {\n            assetInputType,\n            parameterName: objectProperty,\n            stack,\n          },\n        ];\n      }\n\n      if (typeof value === \"object\") {\n        const newStack = stack ? [...stack, objectProperty] : [objectProperty];\n\n        return findAssetParametersRecursively(value, newStack);\n      }\n    })\n    .filter(notEmpty)\n    .flat();\n\n  return result;\n}",
+  "name": "findAssetParametersRecursively",
+  "slug": "find-asset-parameters-recursively",
+  "parameters": [
+    {
+      "name": "object",
+      "schema": {
+        "type": "object"
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "stack",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": false
+    }
+  ],
+  "description": "Recursively finds all asset parameters in an object (for example in a database model item)",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/asset/asset-functions-js/src/findAssetParametersRecursively\").AssetParameter[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "assetInputType": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "enum": [
+                  "image",
+                  "video",
+                  "audio",
+                  "file",
+                  "asset"
+                ],
+                "x-enumNames": [
+                  "image",
+                  "video",
+                  "audio",
+                  "file",
+                  "asset"
+                ],
+                "type": "string"
+              },
+              "isMultiple": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "type",
+              "isMultiple"
+            ]
+          },
+          "parameterName": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "stack": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "allOf": [
+                {
+                  "transform": [
+                    "trim"
+                  ]
+                },
+                {
+                  "minLength": 1
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "assetInputType",
+          "parameterName"
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [
+              {
+                "name": "assetInputType",
+                "required": true,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "type",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "image",
+                          "video",
+                          "audio",
+                          "file",
+                          "asset"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isMultiple",
+                      "required": true,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "parameterName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "stack",
+                "required": false,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 816,
+    "lines": 35,
+    "bytes": 816,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 35,
+    "numberOfFiles": 1
+  },
+  "id": "ddjdvtglnkkftlxgkuaairga"
+}

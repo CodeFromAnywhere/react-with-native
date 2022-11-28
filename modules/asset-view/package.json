@@ -1,36 +1,124 @@
 {
-  "createdAt": 1666258481086,
-  "updatedAt": 1666258481086,
+  "createdAt": 1668328815625,
+  "updatedAt": 1668328815625,
   "deletedAt": 0,
-  "createdFirstAt": 1666258481086,
-  "version": "0.0.0",
+  "createdFirstAt": 1668328815625,
+  "id": "yiqycykmfrkrufuhrdysvyzu",
+  "dependencies": {
+    "asset-functions-js": "0.0.1",
+    "asset-type": "0.0.1",
+    "binaryextensions": "^4.18.0",
+    "clickable-icon": "0.0.1",
+    "istextorbinary": "^6.0.0",
+    "js-util": "0.0.1",
+    "markdown": "1.0.0",
+    "model-types": "0.0.1",
+    "path-browserify": "^1.0.1",
+    "react": "*",
+    "react-with-native": "1.4.9",
+    "server-api-url": "0.0.1",
+    "text-or-binary": "0.0.1",
+    "textextensions": "^5.15.0"
+  },
+  "devDependencies": {
+    "@types/istextorbinary": "^2.3.1",
+    "@types/path-browserify": "^1.0.0",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "npx tsc-watch --onSuccess 'yarn css'",
     "css": "tailwindcss -o css.css",
     "build": "tsc"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "@types/istextorbinary": "^2.3.1",
-    "typescript": "^4.7.4"
-  },
-  "sensible": {
-    "hasGeneratedDependencies": false
-  },
-  "dependencies": {
-    "binaryextensions": "^4.18.0",
-    "istextorbinary": "^6.0.0",
-    "textextensions": "^5.15.0",
-    "react-with-native": "1.4.9",
-    "markdown": "1.0.0",
-    "text-or-binary": "0.0.1",
-    "asset-functions-js": "0.0.1",
-    "server-api-url": "0.0.1",
-    "clickable-icon": "0.0.1"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.0",
   "name": "asset-view",
+  "language": "english",
   "slug": "asset-view",
-  "id": "yiqycykmfrkrufuhrdysvyzu"
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/asset/asset-view/src/ModelItemAssetView.tsx. Error: TypeError: Cannot read properties of undefined (reading 'getId')"
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "ui-cjs",
+    "coreDependenciesIndexed": [
+      "useEffect",
+      "useState"
+    ],
+    "folderNameIndexed": "asset-view",
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669384257756,
+    "operationDependenciesIndexed": [
+      "readableSize",
+      "Asset",
+      "isDev",
+      "MarkdownCodeblock",
+      "A",
+      "Div",
+      "P",
+      "Span",
+      "destructureOptionalObject",
+      "Asset",
+      "ClickableIcon",
+      "Div",
+      "Input",
+      "Span",
+      "addToken",
+      "removeTokenIfPresent",
+      "getNameWithTokenFromRelativePath",
+      "BackendAsset",
+      "getReferencedAssetApiUrl",
+      "apiUrl",
+      "AugmentedAnyModelType",
+      "takeFirst",
+      "BackendAsset",
+      "AugmentedAnyModelType",
+      "getExtensionFromAsset",
+      "getReferencedAssetApiUrl",
+      "Asset",
+      "apiUrl",
+      "getTypeFromUrlOrPath",
+      "isText"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/asset",
+    "markdown": "# 📁 AssetView\n\n`AssetView` shows an asset. Every file-format has a different way to be rendered.\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 6,
+        "lines": 340,
+        "characters": 9724,
+        "bytes": 9724
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 161,
+        "characters": 4944,
+        "bytes": 4944
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 121,
+        "characters": 2802,
+        "bytes": 2802
+      },
+      "size": {
+        "bytes": 17470,
+        "characters": 17470,
+        "lines": 622,
+        "numberOfFiles": 10
+      }
+    },
+    "hasGeneratedDependenciesIndexed": false,
+    "hasGeneratedImportsIndexed": false
+  }
 }

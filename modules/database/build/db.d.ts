@@ -1,3 +1,6 @@
+/**
+ * TODO: maybe splitting this up + importing DbModels as type, will reduce the risk of circular dependencies
+ */
 import { DbModels } from "sdk-db";
 import { CustomQueryConfig, DbConfig } from "fs-orm";
 export declare const dbConfig: DbConfig<DbModels>;

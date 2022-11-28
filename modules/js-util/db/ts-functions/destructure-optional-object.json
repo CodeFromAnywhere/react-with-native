@@ -1,0 +1,36 @@
+{
+  "createdAt": 1668977388365,
+  "updatedAt": 1668977388365,
+  "deletedAt": 0,
+  "createdFirstAt": 1668977388365,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/destructureOptionalObject.ts",
+  "commentsInside": [],
+  "rawText": " <T extends { [key: string]: any }>(\n  object: T | null | undefined\n): Partial<T> => {\n  if (!object) return {} as Partial<T>;\n  return object;\n}",
+  "name": "destructureOptionalObject",
+  "slug": "destructure-optional-object",
+  "parameters": [],
+  "description": "Easy way to destructure your object even if it may be `undefined` or `null`.\n\nHave you ever had a function with an optional configuration parameter, but you want to access all its properties? It's a hassle. This function lets you turn `doSomething` into `doSomethingBetter`. Check the code.\n\n```ts\n\n\nconst doSomething = (config?: { a: string; b: boolean; c: number }) => {\nconst a = config?.a;\nconst b = config?.b;\nconst c = config?.c;\n\nreturn \"something\" + a + b + c;\n};\n\nconst doSomethingBetter = (config?: { a: string; b: boolean; c: number }) => {\nconst { a, b, c } = destructureOptionalObject(config);\nreturn \"something\" + a + b + c;\n};\n\n```\n\n<!-- It would be great if I could also make examples that not only refer to input/output combos but maybe another function that showcases it's usage... -->",
+  "returnType": {
+    "rawType": "Partial<T>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 948,
+    "lines": 28,
+    "bytes": 948,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "ajzgusbkzxlmkjwygwrexxgn"
+}

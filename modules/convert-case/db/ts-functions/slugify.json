@@ -1,10 +1,10 @@
 {
-  "createdAt": 1666264529980,
-  "updatedAt": 1666264529980,
+  "createdAt": 1668336343841,
+  "updatedAt": 1668336343841,
   "deletedAt": 0,
-  "createdFirstAt": 1666264529980,
+  "createdFirstAt": 1668336343841,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -48,5 +48,5 @@
   },
   "rawText": "/**\n * this function does the same as kebabCase but it also does some more transformation on top\n *\n * useful for making simple URLs and filenames. Kebacase is not enough\n *\n * NB: this is no two way transformation. When slugifying something, information is lost and it cannot be converted back in the original name.\n *\n * TODO: make the tranformations that are done here into smaller util functions and make a clean function that can be ran before running every casing conversion (maybe in a config)\n */\nexport function slugify(string: string) {\n  const a =\n    \"àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;\";\n  const b =\n    \"aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------\";\n  const p = new RegExp(a.split(\"\").join(\"|\"), \"g\");\n\n  return string\n    .toString()\n    .toLowerCase()\n    .replace(/\\s+/g, \"-\") // Replace spaces with -\n    .replace(p, (c) => b.charAt(a.indexOf(c))) // Replace special characters\n    .replace(/&/g, \"-and-\") // Replace & with 'and'\n    .replace(/[^\\w\\-]+/g, \"\") // Remove all non-word characters\n    .replace(/\\-\\-+/g, \"-\") // Replace multiple - with single -\n    .replace(/^-+/, \"\") // Trim - from start of text\n    .replace(/-+$/, \"\"); // Trim - from end of text\n}",
   "maxIndentationDepth": 2,
-  "id": "vfzallaamxoaacivptoeibxh"
+  "id": "kbwsujsyploqhlvyzrnwakqt"
 }

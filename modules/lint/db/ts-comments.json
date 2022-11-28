@@ -1,0 +1,34 @@
+[
+  {
+    "createdAt": 1668336042854,
+    "updatedAt": 1668336042854,
+    "deletedAt": 0,
+    "createdFirstAt": 1668336042854,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.ts",
+    "comment": "Should be a collection of small functions that check if all conventions are used and if there isn't used anything that should NOT be used. this can later become a linter. make sure to research how eslint works first\n\nPlan:\n\n1) just use my own sdk's as much as possible to provide some handy convention checks in a package\n2) later integrate this into vscode, i'm sure this is how it's done",
+    "rawStatement": "export const preIndexLint = async ({\n  operationFolderPath,\n}: {\n  operationFolderPath: string;\n}) => {\n  const problems: string[] = [];\n\n  const packageJson = await getPackageJson({ operationFolderPath });\n  if (!packageJson) {\n    problems.push(\"package.json should exist\");\n  } else {\n    if (!packageJson.name) {\n      problems.push(\"package.json needs a name\");\n    }\n    if (!packageJson.version) {\n      problems.push(\"package.json needs a version\");\n    }\n  }\n\n  const tsConfig = await getTsConfig(operationFolderPath);\n  if (!tsConfig) {\n    problems.push(\"tsconfig.json should exist\");\n  } else {\n    // we can lint tsconfig here too\n  }\n\n  const operationFolderName = getLastFolder(operationFolderPath);\n\n  if (operationFolderName !== packageJson?.name) {\n    problems.push(\n      \"operation folder should have the same name as the package.json name\"\n    );\n  }\n\n  return problems;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 5,
+    "lastLine": 13,
+    "id": "yzbjgfvhqlllpdeqcoclhzny"
+  },
+  {
+    "createdAt": 1668336042854,
+    "updatedAt": 1668336042854,
+    "deletedAt": 0,
+    "createdFirstAt": 1668336042854,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.ts",
+    "comment": "this lint can be done before indexation",
+    "rawStatement": "export const preIndexLint = async ({\n  operationFolderPath,\n}: {\n  operationFolderPath: string;\n}) => {\n  const problems: string[] = [];\n\n  const packageJson = await getPackageJson({ operationFolderPath });\n  if (!packageJson) {\n    problems.push(\"package.json should exist\");\n  } else {\n    if (!packageJson.name) {\n      problems.push(\"package.json needs a name\");\n    }\n    if (!packageJson.version) {\n      problems.push(\"package.json needs a version\");\n    }\n  }\n\n  const tsConfig = await getTsConfig(operationFolderPath);\n  if (!tsConfig) {\n    problems.push(\"tsconfig.json should exist\");\n  } else {\n    // we can lint tsconfig here too\n  }\n\n  const operationFolderName = getLastFolder(operationFolderPath);\n\n  if (operationFolderName !== packageJson?.name) {\n    problems.push(\n      \"operation folder should have the same name as the package.json name\"\n    );\n  }\n\n  return problems;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 15,
+    "lastLine": 17,
+    "id": "lgfbbxjftrutfzwbsqnefgfs"
+  }
+]

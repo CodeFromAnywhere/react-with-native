@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668150844846,
-  "updatedAt": 1668150844846,
+  "createdAt": 1668977402570,
+  "updatedAt": 1668977402570,
   "deletedAt": 0,
-  "createdFirstAt": 1668150844846,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
+  "createdFirstAt": 1668977402570,
   "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
   "name": "arrayGenerator",
   "slug": "array-generator",
   "isExported": false,
   "operationRelativeTypescriptFilePath": "src/mapMany.ts",
+  "groupAuthorization": {},
   "commentsInside": [],
   "description": "/**\n * NB: Do I really need this? Would be nice not to use generators.\n */",
   "parameters": [],
@@ -37,5 +32,5 @@
   },
   "rawText": "\n\n/**\n * NB: Do I really need this? Would be nice not to use generators.\n */\nfunction* arrayGenerator(array: any[]): ArrayGenerator {\n  for (let index = 0; index < array.length; index++) {\n    const currentValue = array[index];\n    const generatorTuple: [any, number, any[]] = [currentValue, index, array];\n    yield generatorTuple;\n  }\n}",
   "maxIndentationDepth": 2,
-  "id": "spgkezsmajkqjecqyrifdyqv"
+  "id": "jxiymqkrqejnflgntbswwker"
 }

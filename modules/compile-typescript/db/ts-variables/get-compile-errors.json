@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263819912,
+  "updatedAt": 1666263819912,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263819912,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getCompileErrors",
+  "slug": "get-compile-errors",
+  "operationRelativeTypescriptFilePath": "src/getCompileErrors.ts",
+  "type": {
+    "rawType": "(operationBasePath: string, onlyDependants?: boolean | undefined, manualProjectRoot?: string | undefined) => Promise<any[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  operationBasePath: string,\n  onlyDependants?: boolean,\n  manualProjectRoot?: string\n): Promise<Creation<TsBuildError>[]> => {\n  const moduleName = await getOperationPackageName(operationBasePath);\n\n  if (onlyDependants) {\n    log(\"Getting compilation errors for all dependants\", { type: \"important\" });\n\n    // should get all operations that have this module in their imports\n    // in the beginning, no indexes for this will exist, so that's fine...\n    const allImports = await db.get(\"TsImport\", { manualProjectRoot });\n    const dependants: string[] = allImports\n      .filter((imp) => imp.module === moduleName)\n      .map((imp) => imp?.operationName)\n      .filter(notEmpty)\n      .filter(onlyUnique);\n\n    log(`Dependants ${dependants.join(\", \")} (now skipping)`, {\n      type: \"important\",\n    });\n    // const stuff = (\n    //   await Promise.all(\n    //     dependants.map(async (dep) => {\n    //       const operationFolderPath = await getOperationPath(dep);\n    //       if (!operationFolderPath) return null;\n\n    //       const filePaths: string[] = await getPackageSourcePaths({\n    //         packageFolder: operationFolderPath,\n    //       });\n    //       const tsConfig = await getTsConfig(operationFolderPath);\n    //       const packageJson = await getPackageJson({ operationFolderPath });\n\n    //       if (!tsConfig) return null;\n    //       if (!packageJson) return null;\n\n    //       return {\n    //         basePath: operationFolderPath,\n    //         packageJson,\n    //         compilerOptions: tsConfig.compilerOptions,\n    //         filePaths,\n    //       };\n    //     })\n    //   )\n    // ).filter(notEmpty);\n\n    const allBuildErrors = [].map(getTypescriptErrorsFromFiles).flat();\n\n    return allBuildErrors;\n  } else {\n    const tsConfig = await getTsConfig(operationBasePath);\n    const compilerOptions = tsConfig?.compilerOptions;\n    if (!compilerOptions) {\n      log(\n        `Couldn't find tsConfig compilerOptions for this operation (${operationBasePath}`,\n        { type: \"error\" }\n      );\n      return [];\n    }\n\n    const filePaths = await getPackageSourcePaths({\n      operationBasePath,\n    });\n\n    const packageJson = await getPackageJson({\n      operationFolderPath: operationBasePath,\n    });\n\n    if (!packageJson) return [];\n\n    const buildErrorsHere = getTypescriptErrorsFromFiles({\n      packageJson,\n      basePath: operationBasePath,\n      filePaths,\n      compilerOptions,\n    });\n\n    // const buildErrorsHere: TsBuildError[] = [];\n    if (buildErrorsHere.length > 0) {\n      return buildErrorsHere;\n    } else if (!onlyDependants) {\n      // do the same for all dependants, but only if this is not already a dependant (just 1 level of recursion)...\n      return getCompileErrors(operationBasePath, true, manualProjectRoot);\n    } else {\n      return [];\n    }\n  }\n}",
+  "description": "gets compileErrors of an operation. if it has no errors, it also check all dependants to see if they have errors, possibly because we changed this one\n\n1) get buildErrors for all src files of current operation\n2) if build doesn't succeed, only check for build errors in current operation\n3) if build succeeds, check iffor build errors in all files in all operations that depend on this one. this means we need compile to be ran for every operation\n\nTODO: Later, only check all build errors of all dependants if and only if an export blueprint (io) has changed and if this export was imported there",
+  "id": "wjymonuwqcsmlkqquydviybn"
+}

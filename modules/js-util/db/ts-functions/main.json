@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150843501,
-  "updatedAt": 1668150843501,
+  "createdAt": 1668977400892,
+  "updatedAt": 1668977400892,
   "deletedAt": 0,
-  "createdFirstAt": 1668150843501,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977400892,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/mapMany.test.ts",
   "commentsInside": [],
   "rawText": " async () => {\n  const urls = [\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n    \"c\",\n    \"a\",\n    \"a\",\n    \"b\",\n  ];\n  console.log(\"Normal map with unlimited concurrency\");\n  console.time(\"normalmap\");\n  const results1 = await Promise.all(urls.map(concatenate));\n  console.timeEnd(\"normalmap\");\n\n  console.log(\"Map many with 10 concurrency\");\n  console.time(\"mapMany\");\n  const results2 = await mapMany(urls, concatenate, 10);\n  console.timeEnd(\"mapMany\");\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 113,
     "numberOfFiles": 1
   },
-  "id": "hqbdfclxqmvawkqvuddjkxzb"
+  "id": "baebrdjzheuabohqmkvrzthr"
 }

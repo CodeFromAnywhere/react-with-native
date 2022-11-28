@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668150464363,
+  "updatedAt": 1668150464363,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150464363,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDependencyTree",
+  "slug": "get-dependency-tree",
+  "operationRelativeTypescriptFilePath": "src/findAllDependencyOperations.ts",
+  "type": {
+    "rawType": "(operationNames: string[], stack: string[]) => Promise<import(\"/Users/king/King/operations/tools/typescript/find-all-dependency-operations/src/findAllDependencyOperations\").DependencyTree | null>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  operationNames: string[],\n  stack: string[]\n): Promise<DependencyTree | null> => {\n  if (operationNames.length === 0) return null;\n\n  const dependencyTree = mergeObjectsArray(\n    await Promise.all(\n      operationNames.map(async (name) => {\n        const deps = await findMonorepoModules(name);\n        const newStack = stack.concat(name);\n        const filtered = deps.filter((dep) => !newStack.includes(dep));\n        const filteredOut = deps.filter((dep) => newStack.includes(dep));\n        if (deps.length !== filtered.length) {\n          console.log(\n            `prevented circular dependency at ${name} (${filteredOut.join(\n              \", \"\n            )} were removed)`\n          );\n        }\n        return {\n          [name]: await getDependencyTree(filtered, newStack),\n        };\n      })\n    )\n  );\n\n  return dependencyTree;\n}",
+  "description": "",
+  "id": "xouxesbedzvhlkewjtmqguyj"
+}

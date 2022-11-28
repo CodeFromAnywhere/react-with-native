@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055624344,
+  "updatedAt": 1669055624344,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055624344,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "schemaToTsInterface",
+  "slug": "schema-to-ts-interface",
+  "operationRelativeTypescriptFilePath": "src/schemaToTsInterface.ts",
+  "type": {
+    "rawType": "(filePath: string, typeName: string, schema: import(\"/Users/king/King/operations/node_modules/@types/json-schema/index\").JSONSchema7, morphInterfaceInfo: import(\"/Users/king/King/operations/tools/typescript/index-typescript/src/MorphInterfaceInfo\").MorphInterfaceInfo | undefined) => Promise<any>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  filePath: string,\n  typeName: string,\n  schema: Schema,\n  morphInterfaceInfo: MorphInterfaceInfo | undefined\n): Promise<Creation<TsInterface> | undefined> => {\n  const definitionOrBoolean = schema.definitions?.[typeName];\n\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) return;\n\n  const possibleRefs = schema.definitions\n    ? Object.keys(schema.definitions)\n        .map((typeName) => {\n          const theSchema = getSchema(schema.definitions?.[typeName]);\n          return theSchema ? { name: typeName, schema: theSchema } : null;\n        })\n        .filter(notEmpty)\n    : [];\n  const definition: Schema | undefined =\n    typeof definitionOrBoolean === \"object\" ? definitionOrBoolean : undefined;\n\n  if (!definition) return undefined;\n\n  const parsedDescription = parseFrontmatterMarkdownString(\n    stripComment(\n      morphInterfaceInfo?.description || definition.description || \"\"\n    )\n  );\n\n  const frontmatter = parsedDescription.parameters;\n\n  const { operationRelativePath } = frontmatter;\n\n  const isOperationIndex: boolean =\n    frontmatter.isOperationIndex === undefined\n      ? morphInterfaceInfo?.extensions.includes(\"TsIndexModelType\") || false\n      : Boolean(frontmatter.isOperationIndex);\n\n  const dbStorageMethod = getDbStorageMethod({\n    typeName,\n    frontmatter,\n    extensions: morphInterfaceInfo?.extensions,\n  });\n\n  const isDbModel = !!dbStorageMethod;\n\n  const slug = slugify(typeName);\n\n  const operationRelativeTypescriptFilePath = getOperationRelativePath(\n    filePath,\n    operationBasePath\n  );\n\n  const hasGeneric = !!morphInterfaceInfo?.hasGeneric;\n  const isExported = !!morphInterfaceInfo?.isExported;\n\n  const simplifiedSchema = simplifySchema(\n    typeName,\n    definition,\n    possibleRefs,\n    []\n  );\n\n  const interfaceObject: Creation<TsInterface> = {\n    // identifiers\n    id: slug,\n    name: typeName,\n    slug,\n\n    operationRelativeTypescriptFilePath,\n\n    hasGeneric,\n    isExported,\n\n    rawText: morphInterfaceInfo?.raw,\n    extensions: morphInterfaceInfo?.extensions,\n    isOperationIndex,\n    operationStorageLocationRelativeFilePath: operationRelativePath\n      ? String(operationRelativePath)\n      : undefined,\n    // interface info\n    description: parsedDescription?.raw,\n    dbStorageMethod,\n    isDbModel,\n    // TODO:\n    commentsInside: [],\n    type: {\n      // TODO: test\n      typeDefinition: definition,\n      simplifiedSchema,\n      // TODO:\n      typeCoverage: 0,\n      rawType: typeName,\n      // TODO:\n      isArray: false,\n      isEnum: false,\n      isEnumLiteral: false,\n      isObject: false,\n      isPrimitive: false,\n    },\n  };\n\n  return interfaceObject;\n}",
+  "description": "make a tsInterface from a schema generated from the file",
+  "id": "julameexsjipwsrtsohjqwyr"
+}

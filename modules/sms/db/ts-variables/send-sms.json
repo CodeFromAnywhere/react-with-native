@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668334638461,
+  "updatedAt": 1668334638461,
+  "deletedAt": 0,
+  "createdFirstAt": 1668334638461,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "sendSms",
+  "slug": "send-sms",
+  "operationRelativeTypescriptFilePath": "src/sendSms.ts",
+  "type": {
+    "rawType": "(options: import(\"/Users/king/King/operations/node_modules/twilio/lib/rest/api/v2010/account/message\").MessageListInstanceCreateOptions) => Promise<import(\"/Users/king/King/operations/node_modules/twilio/lib/rest/api/v2010/account/message\").MessageInstance | undefined>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  options: MessageListInstanceCreateOptions\n): Promise<MessageInstance | undefined> => {\n  const { from: optionsFrom, ...otherOptions } = options;\n\n  const persona = await getPrimaryPersona();\n\n  if (!persona) {\n    return;\n  }\n\n  const { twilioAccountSid, twilioAuthToken, twilioFromPhoneNumber } = persona;\n\n  if (!twilioAccountSid || !twilioAuthToken) {\n    console.log(\"Please setup your Twilio credentials first\");\n    return;\n  }\n  const twilioClient = twilio(twilioAccountSid, twilioAuthToken);\n\n  const from = optionsFrom || twilioFromPhoneNumber;\n\n  if (!from) {\n    console.log(\n      \"Please provide a phonenumber to sent from, either in your OsConfig or in the sendSms options\"\n    );\n    return;\n  }\n\n  const message = await twilioClient.messages\n    .create({ from, ...otherOptions })\n    .catch((reason) => {\n      console.log(\"Sending sms failed\", { reason });\n\n      return undefined;\n    });\n\n  return message;\n}",
+  "description": "Send sms\n\nRequires OS Config to have Twilio sid and auth token.\n\nReqruired options: `to` and `body`\n\n`to` is not required, but will overwrite the one you specified in your `OsConfig`",
+  "id": "zbgdgyyhoyutwtknrnoxdbht"
+}

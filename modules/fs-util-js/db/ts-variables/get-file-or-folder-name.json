@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200353510,
+  "updatedAt": 1669200353510,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200353510,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getFileOrFolderName",
+  "slug": "get-file-or-folder-name",
+  "operationRelativeTypescriptFilePath": "src/js.ts",
+  "type": {
+    "rawType": "<T extends string | undefined>(fileOrFolderPath: T) => T",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends string | undefined>(\n  fileOrFolderPath: T\n): T => {\n  if (!fileOrFolderPath) return undefined as T;\n  const last = fileOrFolderPath.split(\"/\").pop()!;\n  return last as T;\n}",
+  "description": "",
+  "id": "zdteouxdjfzvpnafwzzmzphq"
+}

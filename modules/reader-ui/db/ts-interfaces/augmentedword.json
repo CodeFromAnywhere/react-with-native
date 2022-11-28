@@ -1,0 +1,109 @@
+{
+  "createdAt": 1669639440799,
+  "updatedAt": 1669639440799,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639440799,
+  "id": "augmentedword",
+  "name": "AugmentedWord",
+  "slug": "augmentedword",
+  "operationRelativeTypescriptFilePath": "src/components/Layout.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..\n\nTODO: This is a much more general purpose thing than just `markdown-reader-types`. Move to it's own package",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/AugmentedWordTypeEnum"
+        },
+        "word": {
+          "type": "string",
+          "description": "Word without affixes. The affixes will be decided in the frontend parser based on the type"
+        },
+        "queryPath": {
+          "type": "string"
+        },
+        "projectRelativeMarkdownSourcePath": {
+          "type": "string"
+        },
+        "spoiler": {
+          "type": "string"
+        },
+        "isCaseInsensitive": {
+          "type": "boolean",
+          "description": "If true, will match on lowercase variant of the word"
+        }
+      },
+      "required": [
+        "type",
+        "word",
+        "projectRelativeMarkdownSourcePath"
+      ],
+      "additionalProperties": false,
+      "description": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..\n\nTODO: This is a much more general purpose thing than just `markdown-reader-types`. Move to it's own package"
+    },
+    "simplifiedSchema": {
+      "fullComment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..\n\nTODO: This is a much more general purpose thing than just `markdown-reader-types`. Move to it's own package",
+      "todo": "This is a much more general purpose thing than just `markdown-reader-types`. Move to it's own package",
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "type": "string"
+          }
+        },
+        {
+          "name": "word",
+          "required": true,
+          "schema": {
+            "fullComment": "Word without affixes. The affixes will be decided in the frontend parser based on the type",
+            "type": "string"
+          }
+        },
+        {
+          "name": "queryPath",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "projectRelativeMarkdownSourcePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "spoiler",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isCaseInsensitive",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, will match on lowercase variant of the word",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "AugmentedWord",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

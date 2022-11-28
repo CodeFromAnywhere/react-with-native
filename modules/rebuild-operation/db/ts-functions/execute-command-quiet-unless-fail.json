@@ -1,0 +1,96 @@
+{
+  "createdAt": 1669055705139,
+  "updatedAt": 1669055705139,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055705139,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/executeCommandQuietUnlessFail.ts",
+  "commentsInside": [],
+  "rawText": " (config: {\n  command: string;\n  cwd?: string;\n  /**\n   * if given, will show what is happening and a checkmark if it succeeds\n   */\n  description?: string;\n}): boolean => {\n  const { command, cwd, description } = config;\n  if (description) {\n    process.stdout.write(`${description} `);\n  }\n\n  try {\n    const result = execSync(command, {\n      cwd,\n      encoding: \"utf8\",\n      stdio: \"pipe\",\n    });\n\n    if (description) console.log(\"✅\");\n\n    return true;\n  } catch (e: any) {\n    if (description) console.log(\"❌\");\n    const error: {\n      status: number;\n      signal: any;\n      output: (string | null)[];\n      pid: number;\n      stdout: string;\n      stderr: string;\n    } = e;\n    console.log(`${command} went wrong:`, error?.stdout);\n\n    return false;\n  }\n}",
+  "name": "executeCommandQuietUnlessFail",
+  "slug": "execute-command-quiet-unless-fail",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "type": "string"
+          },
+          "cwd": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "description": "if given, will show what is happening and a checkmark if it succeeds"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "command",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cwd",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "required": false,
+            "schema": {
+              "fullComment": "if given, will show what is happening and a checkmark if it succeeds",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Executes a command without showing the result, unless the command fails, then it will log the output.,",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 873,
+    "lines": 38,
+    "bytes": 877,
+    "bytesPerCharacter": 1.004581901489118,
+    "charactersPerLine": 23,
+    "linesPerFile": 38,
+    "numberOfFiles": 1
+  },
+  "id": "jqzhfwkkczxsxmnscfpquayl"
+}

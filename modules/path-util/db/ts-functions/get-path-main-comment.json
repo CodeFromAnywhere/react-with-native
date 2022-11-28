@@ -1,0 +1,52 @@
+{
+  "createdAt": 1668331937699,
+  "updatedAt": 1668331937699,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331937699,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/calculatePathMetaData.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  absolutePath: string\n): Promise<TsComment | undefined> => {\n  const indexId = await getIndexId(absolutePath, getLastFolder(absolutePath));\n  if (!indexId) return;\n  const folderPath = getFolder(absolutePath);\n  const folderFiles = await fs.readdir(folderPath, \"utf8\");\n  const foundReadmePath = folderFiles.find(\n    (x) => path.parse(x).name.toLowerCase() === \"readme\"\n  );\n\n  const readmeExists = !!foundReadmePath;\n\n  const markdown = readmeExists\n    ? await fs.readFile(foundReadmePath, \"utf8\")\n    : \"\";\n  const { raw: comment, parameters } = parseFrontmatterMarkdownString(markdown);\n\n  const types = findCommentTypes(comment);\n\n  const mainComment: TsComment | undefined = {\n    rawStatement: undefined,\n    statementName: undefined,\n    ...indexId,\n    comment,\n    parameters,\n    types,\n    firstLine: 0,\n    lastLine: getNumberOfLines(markdown),\n  };\n\n  return mainComment;\n}",
+  "name": "getPathMainComment",
+  "slug": "get-path-main-comment",
+  "parameters": [
+    {
+      "name": "absolutePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "export const sumFolderSummary = (\nfirstFolderSummary: FolderSummary,\nsecondFolderSummary: FolderSummary\n): FolderSummary => {\nconst folderSummaryKeys = Object.keys(\nfirstFolderSummary\n) as (keyof FolderSummary)[];\nconst sum = mergeObjectsArray(\nfolderSummaryKeys.map((keyName) => {\nreturn {\n[keyName]: sumAllKeys([\nfirstFolderSummary[keyName],\nsecondFolderSummary[keyName],\n],[\"bytes\",\"characters\",\"lines\",\"numberOfFiles\"]),\n};\n})\n) as FolderSummary;\n\nreturn sum;\n};\n\n\ntakes all PathMetaData of an array that contains all child files, and merges them, taking the newest update date, the earliest created-date, and summing size\n\nexport const sumFileGeneralMetaData = async (\nchildrenMetaDataArray: PathGeneralMetaData[]\n): Promise<PathGeneralMetaData | null> => {\nconst sum = childrenMetaDataArray.reduce(\n(sumMetaData, pathMetaData: PathGeneralMetaData) => {\nconst newPathMetaData: PathGeneralMetaData = {\ncreatedAt:\n!sumMetaData || pathMetaData.createdAt < sumMetaData.createdAt\n? pathMetaData.createdAt\n: sumMetaData.createdAt,\nupdatedAt:\n!sumMetaData || pathMetaData.updatedAt > sumMetaData.updatedAt\n? pathMetaData.updatedAt\n: sumMetaData.updatedAt,\nsizes: !sumMetaData\n? pathMetaData.sizes\n: sumFolderSummary(sumMetaData.sizes, pathMetaData.sizes),\n};\n\nreturn newPathMetaData;\n},\nnull as PathGeneralMetaData | null\n);\n\nreturn sum;\n};",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TsComment\").TsComment | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 2236,
+    "lines": 82,
+    "bytes": 2236,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 82,
+    "numberOfFiles": 1
+  },
+  "id": "uqututmyygsjirnuaofyshph"
+}

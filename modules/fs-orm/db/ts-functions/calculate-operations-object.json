@@ -1,17 +1,12 @@
 {
-  "createdAt": 1668148845853,
-  "updatedAt": 1668148845853,
+  "createdAt": 1669312106724,
+  "updatedAt": 1669312106724,
   "deletedAt": 0,
-  "createdFirstAt": 1668148845853,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312106724,
+  "isApiExposed": true,
   "isExported": true,
-  "operationRelativeTypescriptFilePath": "src/convention/getDatabaseFiles.ts",
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/convention/calculateOperationsObject.ts",
   "commentsInside": [],
   "rawText": " async (manualProjectRoot: string) => {\n  const operationBasePaths = await exploreOperationFolders({\n    basePath: getPathsWithOperations({ manualProjectRoot }),\n  });\n\n  const operationsObject = mergeObjectsArray(\n    operationBasePaths.map((operationBasePath) => {\n      return {\n        [getLastFolder(operationBasePath)]: makeRelative(\n          operationBasePath,\n          manualProjectRoot\n        ),\n      };\n    })\n  );\n\n  return operationsObject;\n}",
   "name": "calculateOperationsObject",
@@ -28,7 +23,7 @@
       "required": true
     }
   ],
-  "description": "Needed in case of manual project root, otherwise use SDK!\n\nReturns project relative operation base paths",
+  "description": "relative\n\nNeeded in case of manual project root, otherwise use SDK!\n\nReturns project relative operation base paths",
   "returnType": {
     "rawType": "unknown",
     "typeCoverage": 0,
@@ -40,13 +35,13 @@
   },
   "maxIndentationDepth": 5,
   "size": {
-    "characters": 562,
-    "lines": 20,
-    "bytes": 562,
+    "characters": 572,
+    "lines": 22,
+    "bytes": 572,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 28,
-    "linesPerFile": 20,
+    "charactersPerLine": 26,
+    "linesPerFile": 22,
     "numberOfFiles": 1
   },
-  "id": "iumhhwcobcdapwrddfsocznk"
+  "id": "fobqxjhnqjhvtlxarxexbjxc"
 }

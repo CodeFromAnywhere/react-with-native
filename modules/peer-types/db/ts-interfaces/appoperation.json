@@ -1,0 +1,94 @@
+{
+  "createdAt": 1669384886097,
+  "updatedAt": 1669384886097,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384886097,
+  "id": "appoperation",
+  "name": "AppOperation",
+  "slug": "appoperation",
+  "operationRelativeTypescriptFilePath": "src/AppOperation.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type AppOperation = {\n  name: string;\n  port: number;\n  description: string | undefined;\n  isOnline?: boolean;\n  /**\n   * Emoji that should be used as the app icon. Can be calculated from the `OPERATION.md`\n   */\n  emoji?: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "port": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isOnline": {
+          "type": "boolean"
+        },
+        "emoji": {
+          "type": "string",
+          "description": "Emoji that should be used as the app icon. Can be calculated from the `OPERATION.md`"
+        }
+      },
+      "required": [
+        "name",
+        "port"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "port",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "description",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isOnline",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "emoji",
+          "required": false,
+          "schema": {
+            "fullComment": "Emoji that should be used as the app icon. Can be calculated from the `OPERATION.md`",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "AppOperation",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

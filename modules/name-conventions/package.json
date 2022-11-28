@@ -1,11 +1,18 @@
 {
-  "createdAt": 1662709577328,
-  "updatedAt": 1662709577328,
+  "createdAt": 1668328691522,
+  "updatedAt": 1668328691522,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577328,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328691522,
+  "id": "KYgjCfCEZaJqxGAZ",
+  "dependencies": {
+    "convert-case": "0.0.1",
+    "pluralize": "0.0.1",
+    "code-types": "0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,18 +20,63 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^4.7.4"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "name-conventions",
-  "dependencies": {
-    "convert-case": "0.0.1",
-    "pluralize": "0.0.1"
-  },
+  "language": "english",
   "slug": "name-conventions",
-  "id": "KYgjCfCEZaJqxGAZ",
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "name-conventions",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668774019515,
+    "operationDependenciesIndexed": [
+      "SimplifiedSchemaType",
+      "lowerCaseArray",
+      "singularize",
+      "isPlural",
+      "ParameterName",
+      "SimplifiedSchemaType"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/conventions",
+    "markdown": "Any functions and variables related to variable declaration naming conventions\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 3,
+        "lines": 202,
+        "characters": 5856,
+        "bytes": 5856
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 122,
+        "characters": 2888,
+        "bytes": 2888
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 131,
+        "characters": 2974,
+        "bytes": 2974
+      },
+      "size": {
+        "bytes": 11718,
+        "characters": 11718,
+        "lines": 455,
+        "numberOfFiles": 7
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

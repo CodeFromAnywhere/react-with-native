@@ -1,11 +1,22 @@
 {
-  "createdAt": 1664682173580,
-  "updatedAt": 1664682173580,
+  "createdAt": 1668328716280,
+  "updatedAt": 1668328716280,
   "deletedAt": 0,
-  "createdFirstAt": 1664682173580,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328716280,
+  "id": "mmhddgzrootleqtfakivowbg",
+  "dependencies": {
+    "code-types": "0.0.1",
+    "bundle-types": "0.0.1",
+    "js-util": "0.0.1",
+    "augmented-word-types": "0.0.1",
+    "webpage-types": "0.0.1",
+    "markdown-types": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,16 +24,64 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^18.0.1",
-    "typescript": "^4.7.4"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "markdown-reader-types",
-  "sensible": {
-    "hasGeneratedDependencies": false
-  },
-  "dependencies": {},
+  "language": "english",
   "slug": "markdown-reader-types",
-  "id": "mmhddgzrootleqtfakivowbg"
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/purpose/codebase-introspection/reader/markdown-reader-types/src/ReaderPageContentProps.ts. Error: TypeError: Cannot read properties of undefined (reading 'filter')"
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "markdown-reader-types",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669287888220,
+    "operationDependenciesIndexed": [
+      "PublicBundleConfig",
+      "NestedWebPage",
+      "ReaderWebPage",
+      "AugmentedWord",
+      "MappedObject",
+      "WebMarkdownFile"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/purpose/codebase-introspection/reader",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 2,
+        "lines": 41,
+        "characters": 1100,
+        "bytes": 1100
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 125,
+        "characters": 4158,
+        "bytes": 4158
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 47,
+        "characters": 812,
+        "bytes": 812
+      },
+      "size": {
+        "bytes": 6070,
+        "characters": 6070,
+        "lines": 213,
+        "numberOfFiles": 5
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
 }

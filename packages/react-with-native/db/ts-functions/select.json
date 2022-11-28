@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667379181992,
-  "updatedAt": 1667379181992,
+  "createdAt": 1668752423609,
+  "updatedAt": 1668752423609,
   "deletedAt": 0,
-  "createdFirstAt": 1667379181992,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668752423609,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/html/Select/Select.tsx",
   "commentsInside": [],
   "rawText": " ({\n  native,\n  options,\n  customOptionSelector,\n  ...props\n}: SelectType) => {\n  // default option selector\n  const defaultOptionSelector = (options || []).map(\n    (option: SelectOptionType) => {\n      <option value={option.value}>{option.label}</option>;\n    }\n  );\n\n  // return component with custom option selector or default\n  return (\n    <select {...props}>\n      {customOptionSelector ? customOptionSelector : defaultOptionSelector}\n    </select>\n  );\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 20,
     "numberOfFiles": 1
   },
-  "id": "dqeicprokcislijtetnamoax"
+  "id": "fbdcegwqysccglisbaawpbyg"
 }

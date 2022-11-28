@@ -1,11 +1,34 @@
 {
-  "createdAt": 1664097555555,
-  "updatedAt": 1664097555555,
+  "createdAt": 1668328815081,
+  "updatedAt": 1668328815081,
   "deletedAt": 0,
-  "createdFirstAt": 1664097555555,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328815081,
+  "id": "oMLGSgwZucEahFtW",
+  "dependencies": {
+    "audio-react-recorder": "^1.0.4",
+    "react-media-recorder": "^1.6.6",
+    "react-webcam": "^7.0.1",
+    "react-with-native-store": "2.0.40",
+    "react-with-native": "1.4.9",
+    "clickable-icon": "0.0.1",
+    "api": "0.0.1",
+    "server-api-url": "0.0.1",
+    "js-util": "0.0.1",
+    "asset-view": "0.0.0",
+    "react-with-native-alert": "1.0.33",
+    "asset-type": "0.0.1",
+    "asset-functions-js": "0.0.1",
+    "model-types": "0.0.1",
+    "fs-util-js": "0.0.1",
+    "extendable-media-recorder": "*",
+    "extendable-media-recorder-wav-encoder": "*",
+    "api-types": "0.0.1",
+    "react": "*"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "npx tsc-watch --onSuccess 'yarn css'",
     "css": "tailwindcss -o css.css",
@@ -14,19 +37,103 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^4.7.4"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "asset-input",
-  "sensible": {
-    "hasGeneratedDependencies": false
-  },
-  "dependencies": {
-    "audio-react-recorder": "^1.0.4",
-    "react-media-recorder": "^1.6.6",
-    "react-webcam": "^7.0.1"
-  },
+  "language": "english",
   "slug": "asset-input",
-  "id": "oMLGSgwZucEahFtW"
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/asset/asset-input/src/Webcam.tsx. Error: Error: Unknown type \"function\""
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "ui-cjs",
+    "coreDependenciesIndexed": [
+      "useState",
+      "useEffect",
+      "useRef",
+      "useEffect",
+      "ReactElement",
+      "useCallback",
+      "useEffect",
+      "useRef",
+      "useState",
+      "useState"
+    ],
+    "folderNameIndexed": "asset-input",
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669054974672,
+    "operationDependenciesIndexed": [
+      "getItem",
+      "Div",
+      "ClickableIcon",
+      "api",
+      "AUTH_TOKEN_STORAGE_KEY",
+      "apiUrl",
+      "notEmpty",
+      "removeIndexFromArray",
+      "InteractiveAsset",
+      "useAlert",
+      "NewAssetType",
+      "UploadAssetResult",
+      "Asset",
+      "BackendAsset",
+      "ensureToken",
+      "generateRandomString",
+      "RealApiReturnType",
+      "Asset",
+      "AssetType",
+      "withoutExtension",
+      "notEmpty",
+      "Input",
+      "Button",
+      "Div",
+      "Image",
+      "Div",
+      "AssetType",
+      "Asset",
+      "BackendAsset"
+    ],
+    "packageDependenciesIndexed": [
+      "register",
+      "MediaRecorder",
+      "IMediaRecorder",
+      "connect",
+      "disconnect"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/asset",
+    "markdown": "# 📸 Asset Input\n\nThis component lets you easily add asset input that includes upload with the `typerepo` server standard (`function-server`)\n\n## Installation\n\nAdd the css to your web project: `import \"asset-input/css.css\";`\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 9,
+        "lines": 1214,
+        "characters": 35189,
+        "bytes": 35189
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 130,
+        "characters": 4508,
+        "bytes": 4508
+      },
+      "textSize": {
+        "numberOfFiles": 3,
+        "lines": 237,
+        "characters": 6569,
+        "bytes": 6569
+      },
+      "size": {
+        "bytes": 46266,
+        "characters": 46266,
+        "lines": 1581,
+        "numberOfFiles": 14
+      }
+    },
+    "hasGeneratedDependenciesIndexed": false,
+    "hasGeneratedImportsIndexed": false
+  }
 }

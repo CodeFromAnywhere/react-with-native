@@ -19,6 +19,10 @@ export declare class AssetInputType implements PluginInputType {
      */
     extra: {
         /**
+         * Needs to be provided if the asset is stored on a model
+         */
+        modelName?: string;
+        /**
          * See `AssetInput` for more info
          */
         attachTokenToFilename?: boolean;

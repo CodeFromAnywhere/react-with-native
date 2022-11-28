@@ -1,12 +1,3 @@
----
-createdAt: 1668158660450
-updatedAt: 1668158660450
-deletedAt: 0
-createdFirstAt: 1668158660450
-categoryStackCalculated: 
-id: rbeyhonhbirdwdouopswjpcb
-slug: sdk-api
-name: sdk-api
----
+# ❌ No description set yet
 
-Default description
+Please set a description for this operation in OPERATION.md

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668150645879,
+  "updatedAt": 1668150645879,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150645879,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "writeResult",
+  "slug": "write-result",
+  "operationRelativeTypescriptFilePath": "src/writeResult.ts",
+  "type": {
+    "rawType": "(options: { operationName: string; success: boolean; message: string; manualProjectRoot?: string | undefined; }) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (options: {\n  operationName: string;\n  success: boolean;\n  message: string;\n  manualProjectRoot?: string;\n}) => {\n  const { message, operationName, success, manualProjectRoot } = options;\n\n  if (!success) {\n    log(`Couldn't write imports/exports.`);\n\n    await db.update(\n      \"OperationIndex\",\n      () => true,\n      (operationIndex) => ({\n        ...operationIndex,\n        indexImportExportError: message,\n      }),\n      { operationName, manualProjectRoot }\n    );\n\n    return false;\n  }\n}",
+  "description": "",
+  "id": "ycgjdyitqvrsksmarhlbapzn"
+}

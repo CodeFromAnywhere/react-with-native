@@ -1,0 +1,47 @@
+{
+  "createdAt": 1669055712890,
+  "updatedAt": 1669055712890,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055712890,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getIndexFileIds.ts",
+  "commentsInside": [],
+  "rawText": " async (operationFolderPath: string) =>\n  getFileIds({\n    operationFolderPath,\n    // NB: we take index/variables here because we need the file ids of any index as they would be the same in any index\n    pathSuffix: `${databaseFolderName}/ts-variables`,\n    extension: \"json\",\n  })",
+  "name": "getIndexFileIds",
+  "slug": "get-index-file-ids",
+  "parameters": [
+    {
+      "name": "operationFolderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "gets identifiers of ts and tsx files, which are the relative path to a file without the extension",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 379,
+    "lines": 7,
+    "bytes": 379,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 54,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "tpllxicuuxotokjjpcbcnqdx"
+}

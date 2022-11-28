@@ -1,0 +1,56 @@
+{
+  "createdAt": 1669055717385,
+  "updatedAt": 1669055717385,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055717385,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/isSdkOperation.ts",
+  "commentsInside": [],
+  "rawText": " (operationBasePath: string) => {\n  const operationName = getLastFolder(operationBasePath);\n\n  return operationName.split(\"-\")[0] === \"sdk\";\n}",
+  "name": "isSdkOperation",
+  "slug": "is-sdk-operation",
+  "parameters": [
+    {
+      "name": "operationBasePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 142,
+    "lines": 5,
+    "bytes": 142,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 5,
+    "numberOfFiles": 1
+  },
+  "id": "zkhlhbrgoiavbfwllhvozwmz"
+}

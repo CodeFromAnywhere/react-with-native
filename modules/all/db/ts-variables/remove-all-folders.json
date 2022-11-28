@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666258925435,
+  "updatedAt": 1666258925435,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258925435,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "removeAllFolders",
+  "slug": "remove-all-folders",
+  "operationRelativeTypescriptFilePath": "src/removeAllFolders.ts",
+  "type": {
+    "rawType": "(config: { basePath: string; folderNames: string[]; ignore?: string | string[] | undefined; onlyRoot?: boolean | undefined; }) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config: {\n  basePath: string;\n  folderNames: string[];\n  ignore?: string | string[];\n  onlyRoot?: boolean;\n}) => {\n  const { basePath, folderNames, ignore, onlyRoot } = config;\n  const removeFolderPromises = folderNames.map(async (folderName) => {\n    const rmResult = await removeAll({\n      basePath,\n      type: \"folder\",\n      folderName,\n      shell: true,\n      onlyRoot,\n      ignore,\n    });\n\n    return;\n  });\n\n  await Promise.all(removeFolderPromises);\n\n  return true;\n}",
+  "description": "",
+  "id": "tvpniezughmobaaqaqfnsirv"
+}

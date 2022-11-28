@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668150641983,
+  "updatedAt": 1668150641983,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150641983,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getImportsExportsTest",
+  "slug": "get-imports-exports-test",
+  "operationRelativeTypescriptFilePath": "src/test.ts",
+  "type": {
+    "rawType": "() => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const operationBasePath = await getOperationPath(\n    \"react-with-native-notification\"\n  );\n  if (!operationBasePath) {\n    return console.log(\"wtf\");\n  }\n\n  const sourceFilePaths = await getPackageSourcePaths({\n    operationBasePath,\n  });\n  const project = getTsMorphProject(operationBasePath);\n  if (!project) {\n    return log(\"couldn't load project\", { type: \"error\" });\n  }\n\n  const sourceFiles = project.getSourceFiles(sourceFilePaths);\n  if (!sourceFiles) {\n    return log(`couldn't load files`, { type: \"error\" });\n  }\n\n  const impexp = await getImportsExports({ sourceFiles });\n\n  return impexp;\n\n  // console.dir(impexp, { depth: 999 });\n}",
+  "description": "",
+  "id": "crjdzsxawehxzvixrftupwkb"
+}

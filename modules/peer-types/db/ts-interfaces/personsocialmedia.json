@@ -1,0 +1,105 @@
+{
+  "createdAt": 1669384909980,
+  "updatedAt": 1669384909980,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384909980,
+  "id": "personsocialmedia",
+  "name": "PersonSocialMedia",
+  "slug": "personsocialmedia",
+  "operationRelativeTypescriptFilePath": "src/PersonSocialMedia.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/** media (mediums) that a person uses, e.g. linkedin, twitter, whatsapp, sms, calling, and irl  */\nexport type PersonSocialMedia = {\n  /** medium where the person is a user */\n  platformSlug: Slug;\n  /** used to find the user on the platform */\n  path: string;\n  //  probably not needed\n  // /** if needed an additional, platform specific ID for the User can be stored here, e.g. a message channel ID on LinkedIn */\n  // additionalId?: string;\n  /** (if available) whether or not the user has a premium account */\n  isPremium: boolean;\n  /** (if available) a tagline for the user of the platform */\n  tagline?: string;\n  /** (if available) a bio for the user of the platform */\n  bio?: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "media (mediums) that a person uses, e.g. linkedin, twitter, whatsapp, sms, calling, and irl",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "platformSlug": {
+          "$ref": "#/definitions/Slug",
+          "description": "medium where the person is a user"
+        },
+        "path": {
+          "type": "string",
+          "description": "used to find the user on the platform"
+        },
+        "isPremium": {
+          "type": "boolean",
+          "description": "(if available) whether or not the user has a premium account"
+        },
+        "tagline": {
+          "type": "string",
+          "description": "(if available) a tagline for the user of the platform"
+        },
+        "bio": {
+          "type": "string",
+          "description": "(if available) a bio for the user of the platform"
+        }
+      },
+      "required": [
+        "platformSlug",
+        "path",
+        "isPremium"
+      ],
+      "additionalProperties": false,
+      "description": "media (mediums) that a person uses, e.g. linkedin, twitter, whatsapp, sms, calling, and irl"
+    },
+    "simplifiedSchema": {
+      "fullComment": "media (mediums) that a person uses, e.g. linkedin, twitter, whatsapp, sms, calling, and irl",
+      "properties": [
+        {
+          "name": "platformSlug",
+          "required": true,
+          "schema": {
+            "fullComment": "medium where the person is a user\n\nuse this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "path",
+          "required": true,
+          "schema": {
+            "fullComment": "used to find the user on the platform",
+            "type": "string"
+          }
+        },
+        {
+          "name": "isPremium",
+          "required": true,
+          "schema": {
+            "fullComment": "(if available) whether or not the user has a premium account",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "tagline",
+          "required": false,
+          "schema": {
+            "fullComment": "(if available) a tagline for the user of the platform",
+            "type": "string"
+          }
+        },
+        {
+          "name": "bio",
+          "required": false,
+          "schema": {
+            "fullComment": "(if available) a bio for the user of the platform",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "PersonSocialMedia",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

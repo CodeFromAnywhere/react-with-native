@@ -1,0 +1,95 @@
+{
+  "createdAt": 1669384310978,
+  "updatedAt": 1669384310978,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384310978,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "commentsInside": [],
+  "rawText": " (\n  array: any[],\n  // NB: I tried with  <T extends TsIndexModelType> but didn't work with a map over an object... strange...\n  relativePathFromProjectRoot: string\n): string[] => {\n  const instances = array.filter(\n    hasSameProjectPath(relativePathFromProjectRoot)\n  );\n\n  const instancePaths = instances.map((x) => x.name);\n  return instancePaths;\n}",
+  "name": "getInstanceNames",
+  "slug": "get-instance-names",
+  "parameters": [
+    {
+      "name": "array",
+      "schema": {
+        "type": "array",
+        "items": {}
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "properties": [],
+              "type": "object"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    },
+    {
+      "name": "relativePathFromProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "returns the paths of instances in a file, like functions, variables or interfaces",
+  "returnType": {
+    "rawType": "string[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "allOf": [
+          {
+            "transform": [
+              "trim"
+            ]
+          },
+          {
+            "minLength": 1
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 434,
+    "lines": 12,
+    "bytes": 434,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 36,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "betfvcvkkziinkykkuswxgub"
+}

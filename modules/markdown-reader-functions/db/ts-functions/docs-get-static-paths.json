@@ -1,0 +1,122 @@
+{
+  "createdAt": 1669639092365,
+  "updatedAt": 1669639092365,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639092365,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/docsGetStaticPaths.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  context: GetStaticPathsContext,\n  basePaths: { projectRelativeBasePath: string; queryPath: string }[]\n): Promise<GetStaticPathsResult> => {\n  const paths: string[] | undefined = (await docsGetPages(basePaths)).map(\n    (x) => x.queryPath\n  );\n\n  // console.log({ paths });\n  if (!paths) {\n    return { paths: [], fallback: \"blocking\" };\n  }\n\n  const staticPaths = paths\n    .filter((x) => x !== \"\")\n    .map((p) => ({ params: { paths: p.split(\"/\") } }));\n\n  return {\n    paths: staticPaths,\n    fallback: \"blocking\",\n  };\n}",
+  "name": "docsGetStaticPaths",
+  "slug": "docs-get-static-paths",
+  "parameters": [
+    {
+      "name": "context",
+      "schema": {
+        "$ref": "#/definitions/GetStaticPathsContext"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "locales",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "defaultLocale",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "basePaths",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "projectRelativeBasePath": {
+              "type": "string"
+            },
+            "queryPath": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "projectRelativeBasePath",
+            "queryPath"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "properties": [
+                {
+                  "name": "projectRelativeBasePath",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "queryPath",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "Function that tells Next.js what the pages are that need to be statically generated",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/next-types/build/types\").GetStaticPathsResult<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/next-types/build/types\").ParsedUrlQuery>>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 617,
+    "lines": 22,
+    "bytes": 617,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "qkuhsuirajbglnmxvftfvbmi"
+}

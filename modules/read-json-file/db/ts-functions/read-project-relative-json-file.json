@@ -1,0 +1,47 @@
+{
+  "createdAt": 1668753031288,
+  "updatedAt": 1668753031288,
+  "deletedAt": 0,
+  "createdFirstAt": 1668753031288,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/readProjectRelativeJsonFile.ts",
+  "commentsInside": [],
+  "rawText": " async <T>(\n  projectRelativePath: string\n): Promise<T | null> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return null;\n\n  const fullPath = path.join(projectRoot, projectRelativePath);\n\n  return readJsonFile<T>(fullPath);\n}",
+  "name": "readProjectRelativeJsonFile",
+  "slug": "read-project-relative-json-file",
+  "parameters": [
+    {
+      "name": "projectRelativePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<T | null>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 244,
+    "lines": 10,
+    "bytes": 244,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "asxzlkqfotdstxmvtuwwytka"
+}

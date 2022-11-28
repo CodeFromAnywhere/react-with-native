@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200488588,
+  "updatedAt": 1669200488588,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200488588,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "printNestedTitles",
+  "slug": "print-nested-titles",
+  "operationRelativeTypescriptFilePath": "src/parsing/outline.ts",
+  "type": {
+    "rawType": "(nestedTitles: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/parsing/outline\").NestedTitle[] | undefined, depth?: number | undefined) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  nestedTitles: NestedTitle[] | undefined,\n  depth?: number\n): string | undefined => {\n  const realDepth = depth || 0;\n  const prefix = \"..\".repeat(realDepth);\n\n  const printedTogether = nestedTitles\n    ?.map((nestedTitle) => {\n      return Array.isArray(nestedTitle)\n        ? printNestedTitles(nestedTitle, realDepth + 1)\n        : `${prefix}${nestedTitle}\\n`;\n    })\n    .join(\"\\n\");\n\n  return printedTogether;\n}",
+  "description": "helper function (recursive) that prints nested titles with .. as prefix and a newline after every title\n\nTODO: allow for numbering titles",
+  "id": "iypmuxsowiibpeywrcfxxhlc"
+}

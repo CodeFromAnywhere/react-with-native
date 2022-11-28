@@ -1,0 +1,108 @@
+{
+  "createdAt": 1669055471654,
+  "updatedAt": 1669055471654,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055471654,
+  "id": "namedparameterstypeof-shoulddeletetsmodel",
+  "name": "NamedParameters<typeof shouldDeleteTsModel>",
+  "slug": "namedparameterstypeof-shoulddeletetsmodel",
+  "operationRelativeTypescriptFilePath": "src/cleanupTsDatabase.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "tsModel": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TsFunction"
+            },
+            {
+              "$ref": "#/definitions/TsComment"
+            },
+            {
+              "$ref": "#/definitions/TsInterface"
+            },
+            {
+              "$ref": "#/definitions/TsBuildError"
+            },
+            {
+              "$ref": "#/definitions/TsLintWarning"
+            },
+            {
+              "$ref": "#/definitions/TsExport"
+            },
+            {
+              "$ref": "#/definitions/TsImport"
+            },
+            {
+              "$ref": "#/definitions/TsVariable"
+            }
+          ]
+        },
+        "operationName": {
+          "type": "string"
+        },
+        "operationRelativePaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "tsModel",
+        "operationName",
+        "operationRelativePaths"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "tsModel",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "operationName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativePaths",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof shouldDeleteTsModel>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

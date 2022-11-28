@@ -1,0 +1,112 @@
+{
+  "createdAt": 1668331938981,
+  "updatedAt": 1668331938981,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331938981,
+  "id": "namedparameterstypeof-categorizefiles",
+  "name": "NamedParameters<typeof categorizeFiles>",
+  "slug": "namedparameterstypeof-categorizefiles",
+  "operationRelativeTypescriptFilePath": "src/categorizeFiles.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "{\n  basePath,\n  type,\n  ignoreIndexFiles,\n}": {
+          "type": "object",
+          "properties": {
+            "basePath": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "ignoreIndexFiles": {
+              "type": "boolean",
+              "description": "ignore index files or not"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "code",
+                "data",
+                "text"
+              ],
+              "description": "if given, only search for files of a specific containing data type"
+            }
+          },
+          "required": [
+            "basePath"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "{\n  basePath,\n  type,\n  ignoreIndexFiles,\n}"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "{\n  basePath,\n  type,\n  ignoreIndexFiles,\n}",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "basePath",
+                "required": true,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "ignoreIndexFiles",
+                "required": false,
+                "schema": {
+                  "fullComment": "ignore index files or not",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "type",
+                "required": false,
+                "schema": {
+                  "enum": [
+                    "code",
+                    "data",
+                    "text"
+                  ],
+                  "fullComment": "if given, only search for files of a specific containing data type",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof categorizeFiles>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

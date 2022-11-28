@@ -2,17 +2,14 @@ import { PluginComponent, PluginInputType } from "react-with-native-form";
 import { Select, Item } from "react-with-native-select";
 import { UI } from "react-with-native-ui";
 
-export const SelectInput: PluginComponent<SelectInputType> = ({
-  value,
-  extra,
-  onChange,
-}) => {
+export const SelectInput: PluginComponent<SelectInputType> = (props) => {
   //console.log({ value, extraOptions: extra.options });
+  const { value, extra, onChange, className } = props;
   return (
     <Select
       autoSuggest={extra.autoSuggest}
       // containerClassName={UI.input}
-      className={UI.selectInput}
+      className={className || UI.selectInput}
       title={extra.title || ""}
       options={extra.options}
       value={value}

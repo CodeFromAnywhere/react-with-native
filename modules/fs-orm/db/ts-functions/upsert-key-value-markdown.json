@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148842918,
-  "updatedAt": 1668148842918,
+  "createdAt": 1669312100708,
+  "updatedAt": 1669312100708,
   "deletedAt": 0,
-  "createdFirstAt": 1668148842918,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312100708,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/alter/upsertKeyValueMarkdown.ts",
   "commentsInside": [],
   "rawText": " (\n  storedData: Storing<KeyValueMarkdownModelType>[],\n  storingItem: Storing<KeyValueMarkdownModelType>\n): DbQueryResult & {\n  newStoredData: Storing<KeyValueMarkdownModelType>[];\n} => {\n  // First case: try to update if the slug is the same\n  let amountUpdated = 0;\n  const updatedData = storedData.map((i) => {\n    const needsUpdate = i.slug === storingItem.slug;\n    if (needsUpdate) {\n      amountUpdated++;\n      // NB: you cannot change something to be a header or not, this is a calculated value\n      return { ...storingItem, isHeaderCalculated: i.isHeaderCalculated };\n    }\n    return i;\n  });\n\n  if (amountUpdated > 0) {\n    return {\n      amountUpdated,\n      amountInserted: 0,\n      newStoredData: updatedData,\n    };\n  }\n\n  // If no \"update\", let's insert\n\n  if (storingItem.isHeaderCalculated) {\n    // Headers cannot be inserted.\n    const errorMessage = `\n      This case is not supported.\n       \nYou cannot insert a header because it will not have any items, which is not what we want.\n\nIf you create items for a parent-item, the parent-item will convert into a header.\n`;\n    log(`upsertKeyValueMarkdown: ${errorMessage}`, {\n      type: \"warning\",\n    });\n\n    return {\n      isSuccesful: false,\n      newStoredData: storedData,\n      amountInserted: 0,\n      amountUpdated: 0,\n      message: errorMessage,\n    };\n  }\n\n  // insert an item\n\n  const parentIndex = storedData.findIndex(\n    (x) => x.slug === getParentSlug(storingItem)\n  );\n  const parent: Storing<KeyValueMarkdownModelType> | undefined =\n    storedData[parentIndex];\n  // If there is no parent, insert it at the start of the file\n  if (!parent) {\n    const newStoredData = [storingItem, ...storedData];\n    return { isSuccesful: true, amountInserted: 1, newStoredData };\n  }\n\n  if (parent.isHeaderCalculated) {\n    /*\n    the parent is a category. in this case, we simply put the item as the first item below that category\n    */\n\n    const newStoredData = insertAt(\n      storedData,\n      makeArray(storingItem),\n      parentIndex + 1\n    );\n\n    return {\n      amountInserted: 1,\n      newStoredData,\n      isSuccesful: true,\n      message: \"Inserted the item in the header parent\",\n    };\n  }\n\n  /**\n           \n  The parent is an item. in this case:\n\n  1) the parent needs to become a category\n  2) the item needs to be placed under it\n  3) the parent should be removed\n  4) the last item that has the same categoryStackCalculated as the parent should be found\n  5) This new category with its sole item needs to be placed as the last item value of its parent (below other items, but above sub categories)\n\n  */\n\n  // 1\n  const parentHeader = { ...parent, isHeaderCalculated: true };\n  // 2\n  const newCategory = [parentHeader, storingItem];\n\n  // WORKS console.log({ newCategory });\n  // 3\n  const storedDataWithoutParentItem = removeIndexFromArray(\n    storedData,\n    parentIndex\n  );\n\n  // WORKS console.log({ storedDataWithoutItem });\n\n  // 4\n\n  const finalItemIndex =\n    findLastIndex(\n      storedDataWithoutParentItem,\n      (item) =>\n        item.categoryStackCalculated.join(\",\") ===\n          parentHeader.categoryStackCalculated.join(\",\") &&\n        !item.isHeaderCalculated\n    ) ||\n    // NB: not sure if this would fix all edgecases but if the only item in a category is the one that we removed, the finalItemIndex is the parentIndex -1 (but now it's a category)\n    parentIndex - 1;\n\n  // if (finalItemIndex === undefined) {\n  //   console.log(\"Unsupported Edgecase... \", { storedData, storingItem });\n  //   return {\n  //     newStoredData: storedData,\n  //     amountRemoved: 0,\n  //     amountInserted: 0,\n  //     amountUpdated: 0,\n  //   };\n  // }\n\n  const newStoredData = insertAt(\n    storedDataWithoutParentItem,\n    newCategory,\n    finalItemIndex + 1\n  );\n\n  return {\n    amountUpdated: 1,\n    amountInserted: 1,\n    newStoredData,\n    message: \"Inserted into an item (made that item a category, moved it)\",\n  };\n}",
@@ -41,7 +36,7 @@
   ],
   "description": "Takes stored data and an item\n\n- updates the data and sets some rows to \"item\" if the item is found (through the slug). this works almost the same as the regular upsert function\n\n- otherwise inserts, at the right category, in the right place in the array\n\nBEWARE:\n\n- the categoryStackCalculated must be existing in the markdownfile.\n- you cannot insert a header, always insert an item with `isHeaderCalculated:false`",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").DbQueryResult & { newStoredData: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>[]; }",
+    "rawType": "import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/src/types\").DbQueryResult & { newStoredData: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>[]; }",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -59,5 +54,5 @@
     "linesPerFile": 153,
     "numberOfFiles": 1
   },
-  "id": "terfpflvhagrtbdtfivuungq"
+  "id": "pmgumhztswdiobuixydlevsb"
 }

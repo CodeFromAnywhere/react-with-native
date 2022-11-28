@@ -1,0 +1,55 @@
+{
+  "createdAt": 1669055053508,
+  "updatedAt": 1669055053508,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055053508,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getOperationClassification.ts",
+  "commentsInside": [],
+  "rawText": " (packageJson: Operation | null) => {\n  return (\n    !!packageJson?.main &&\n    packageJson.main.startsWith(\"src/\") &&\n    (packageJson.main.endsWith(\".ts\") || packageJson.main.endsWith(\".tsx\"))\n  );\n}",
+  "name": "packageCompilesTs",
+  "slug": "package-compiles-ts",
+  "parameters": [
+    {
+      "name": "packageJson",
+      "schema": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Operation"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 201,
+    "lines": 7,
+    "bytes": 201,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "xgsqhuegbphobsxzxzxuumza"
+}

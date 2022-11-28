@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668150469198,
+  "updatedAt": 1668150469198,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150469198,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "test2",
+  "slug": "test-2",
+  "operationRelativeTypescriptFilePath": "src/test.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const imports = await db.get(\"TsImport\", { operationName: \"k-test\" });\n  const packageJsons = await db.get(\"PackageJson\");\n  // const a = await findDependenciesRecursively(\n  //   imports,\n  //   packageJsons,\n  //   \"k-test\",\n  //   []\n  // );\n\n  // console.log(a);\n\n  const allImports = await db.get(\"TsImport\");\n\n  const b = await findAllDependencyOperations({\n    imports: allImports,\n    packageJsons,\n    operationNames: [\"rebuild-operation\"],\n  });\n\n  console.log(\"SECOND\", b);\n}",
+  "description": "",
+  "id": "ftgifvfaosqupivswzetvoiz"
+}

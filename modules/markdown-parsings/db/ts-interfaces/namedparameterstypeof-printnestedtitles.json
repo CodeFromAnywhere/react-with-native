@@ -1,0 +1,69 @@
+{
+  "createdAt": 1669200487002,
+  "updatedAt": 1669200487002,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200487002,
+  "id": "namedparameterstypeof-printnestedtitles",
+  "name": "NamedParameters<typeof printNestedTitles>",
+  "slug": "namedparameterstypeof-printnestedtitles",
+  "operationRelativeTypescriptFilePath": "src/parsing/outline.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "nestedTitles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedTitle"
+          }
+        },
+        "depth": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "nestedTitles",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [],
+                  "type": "object"
+                },
+                "name": "NestedTitle"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "depth",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof printNestedTitles>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

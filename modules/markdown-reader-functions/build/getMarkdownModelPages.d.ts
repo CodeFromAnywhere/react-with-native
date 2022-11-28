@@ -1,4 +1,4 @@
-import { MarkdownReaderPage } from "markdown-reader-types";
+import { ReaderWebPage } from "webpage-types";
 /**
 Transforms all your markdown models into  markdown reader pages
 
@@ -9,5 +9,5 @@ Steps:
  - Finds all markdown therein
  - Makess markdown reader pages out of them
  */
-export declare const getMarkdownModelPages: (projectRoot: string) => Promise<MarkdownReaderPage[]>;
+export declare const getMarkdownModelPages: (projectRoot: string) => Promise<ReaderWebPage[]>;
 //# sourceMappingURL=getMarkdownModelPages.d.ts.map

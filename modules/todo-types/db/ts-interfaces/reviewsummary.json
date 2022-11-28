@@ -1,0 +1,84 @@
+{
+  "createdAt": 1669380095746,
+  "updatedAt": 1669380095746,
+  "deletedAt": 0,
+  "createdFirstAt": 1669380095746,
+  "id": "reviewsummary",
+  "name": "ReviewSummary",
+  "slug": "reviewsummary",
+  "operationRelativeTypescriptFilePath": "src/SelfSprintReview.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type ReviewSummary = {\n  scoreYourselfSlider: number;\n  scoreYourselfDescription: string;\n  coderOfTheWeekVote_personId: string;\n  coderOfTheWeekVoteDescription: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "scoreYourselfSlider": {
+          "type": "number"
+        },
+        "scoreYourselfDescription": {
+          "type": "string"
+        },
+        "coderOfTheWeekVote_personId": {
+          "type": "string"
+        },
+        "coderOfTheWeekVoteDescription": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "scoreYourselfSlider",
+        "scoreYourselfDescription",
+        "coderOfTheWeekVote_personId",
+        "coderOfTheWeekVoteDescription"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "scoreYourselfSlider",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "scoreYourselfDescription",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "coderOfTheWeekVote_personId",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "coderOfTheWeekVoteDescription",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ReviewSummary",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

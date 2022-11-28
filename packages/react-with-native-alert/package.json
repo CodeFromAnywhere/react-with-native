@@ -1,34 +1,22 @@
 {
-  "createdAt": 1662709577330,
-  "updatedAt": 1662709577330,
+  "createdAt": 1668328705569,
+  "updatedAt": 1668328705569,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577330,
-  "name": "react-with-native-alert",
-  "version": "1.0.33",
-  "description": "Alert for web and native",
-  "source": "src/index.ts",
-  "main": "build/index.js",
-  "scripts": {
-    "pub": "npm version patch --force && npm publish",
-    "build": "tsc",
-    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
-    "dev:tw": "tailwindcss -o css.css"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Code-From-Anywhere/react-with-native.git"
-  },
-  "keywords": [
-    "alert",
-    "react",
-    "react-native"
-  ],
+  "createdFirstAt": 1668328705569,
+  "id": "HRCvBKzhcQmtavKi",
   "author": "Wijnand Karsens",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Code-From-Anywhere/react-with-native/issues"
+  "dependencies": {
+    "@types/react-native": "^0.66.11",
+    "react-with-native": "1.4.9",
+    "@headlessui/react": "*",
+    "react-native": "*"
   },
-  "homepage": "https://github.com/Code-From-Anywhere/react-with-native#readme",
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-native": "^0.66.4"
+  },
+  "description": "Alert for web and native",
   "devDependencies": {
     "@headlessui/react": "^1.4.2",
     "@types/react-dom": "^17.0.11",
@@ -38,15 +26,84 @@
     "react-with-native": "*",
     "tailwindcss": "^3.0.24"
   },
-  "dependencies": {
-    "@types/react-native": "^0.66.11",
-    "react-with-native": "1.4.9",
-    "react": "17.0.2",
-    "@headlessui/react": "*"
+  "homepage": "https://github.com/Code-From-Anywhere/react-with-native#readme",
+  "main": "build/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Code-From-Anywhere/react-with-native.git"
   },
+  "scripts": {
+    "pub": "npm version patch --force && npm publish",
+    "build": "tsc",
+    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
+    "dev:tw": "tailwindcss -o css.css"
+  },
+  "source": "src/index.ts",
+  "version": "1.0.33",
+  "name": "react-with-native-alert",
+  "language": "english",
   "slug": "react-with-native-alert",
-  "id": "HRCvBKzhcQmtavKi",
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-alert/src/types.tsx. Error: Error: Unknown type \\\"function\\\"\"]",
+      "lintProblems": []
+    },
+    "classificationIndexed": "ui-cjs",
+    "coreDependenciesIndexed": [
+      "AlertStatic",
+      "Alert",
+      "AlertStatic",
+      "createContext",
+      "Alert",
+      "AlertStatic",
+      "useState",
+      "AlertStatic",
+      "Fragment",
+      "AlertButton",
+      "AlertOptions"
+    ],
+    "folderNameIndexed": "react-with-native-alert",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668333453760,
+    "operationDependenciesIndexed": [
+      "Div",
+      "P"
+    ],
+    "packageDependenciesIndexed": [
+      "Dialog",
+      "Transition"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/interfaces/vui/react-with-native",
+    "markdown": "# Alert\n\nTODO: NB: seems not to work right now in a new template! Fix it\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 5,
+        "lines": 179,
+        "characters": 5913,
+        "bytes": 5913
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 147,
+        "characters": 3750,
+        "bytes": 3750
+      },
+      "textSize": {
+        "numberOfFiles": 3,
+        "lines": 128,
+        "characters": 1808,
+        "bytes": 1808
+      },
+      "size": {
+        "bytes": 11471,
+        "characters": 11471,
+        "lines": 454,
+        "numberOfFiles": 10
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

@@ -1,15 +1,15 @@
 {
-  "createdAt": 1666512416117,
-  "updatedAt": 1666512416117,
+  "createdAt": 1669638939680,
+  "updatedAt": 1669638939680,
   "deletedAt": 0,
-  "createdFirstAt": 1666512416117,
+  "createdFirstAt": 1669638939680,
   "id": "backendasset",
   "name": "BackendAsset",
   "slug": "backendasset",
-  "operationRelativeTypescriptFilePath": "src/Asset.ts",
+  "operationRelativeTypescriptFilePath": "src/BackendAsset.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "/**\n * Part of the asset that should be sent to the backend. The rest should frontend-only\n *\n * Some values are stored, some are not\n */\nexport interface BackendAsset {\n  /**\n   * Stored value\n   *\n   * Alt text for the asset\n   */\n  alt?: string;\n\n  /**\n   * Stored value\n   *\n   * Relative path, relative to the location the asset is defined in.\n   *\n   * Only available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n   *\n   * Changing the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.\n   */\n  relativePath?: string;\n\n  /**\n   * Not stored\n   *\n   * Not given by the backend data, but can be SENT to the backend.\n   *\n   * Should not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n   *\n   * NB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!\n   */\n  name?: string;\n\n  /**\n   * Not stored\n   *\n   *\n   * Filename after uploading in the temporary folder. should still be moved to its final location\n   *\n   * Only available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.\n   */\n  temporaryDestination?: string;\n}",
+  "rawText": "/**\n * Part of the asset that should be sent to the backend. The rest should frontend-only\n *\n * Some values are stored, some are not\n */\nexport interface BackendAsset {\n  /**\n   * Stored value\n   *\n   * Alt text for the asset\n   */\n  alt?: string;\n\n  /**\n   * Stored value\n   *\n   * Relative path, relative to the location the asset is defined in.\n   *\n   * Only available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n   *\n   * Changing the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.\n   */\n  relativePath?: string;\n\n  /**\n   * Not stored\n   *\n   * Not given by the backend data, but can be SENT to the backend.\n   *\n   * Should not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n   *\n   * NB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!\n   */\n  name?: string;\n\n  /**\n   * Not stored\n   *\n   * Filename after uploading in the temporary folder. should still be moved to its final location\n   *\n   * Only available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.\n   */\n  temporaryDestination?: string;\n\n  /**\n   * Not stored\n   *\n   * Needs to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n   *\n   * Location of the place where the asset is referenced\n   *\n   * - markdown file (or folder where it is located)\n   * - typescript file (or folder where it is located)\n   * - database file (or folder where it is located)\n   */\n  projectRelativeReferencingFilePath?: string;\n\n  /**\n   * Not stored\n   *\n   * Needs to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n   *\n   * Model that the asset is related to\n   */\n  modelName?: string;\n\n  /**\n   * NOT STORED\n   *\n   * Can be available in case it's an asset from an external source URL for example within md.\n   *\n   * Also can be set in case it's a static asset from a next project\n   */\n  absoluteUrl?: string;\n}",
   "extensions": [],
   "isOperationIndex": false,
   "description": "Part of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
@@ -33,7 +33,19 @@
         },
         "temporaryDestination": {
           "type": "string",
-          "description": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created."
+          "description": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created."
+        },
+        "projectRelativeReferencingFilePath": {
+          "type": "string",
+          "description": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)"
+        },
+        "modelName": {
+          "type": "string",
+          "description": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to"
+        },
+        "absoluteUrl": {
+          "type": "string",
+          "description": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project"
         }
       },
       "additionalProperties": false,
@@ -71,7 +83,31 @@
           "name": "temporaryDestination",
           "required": false,
           "schema": {
-            "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+            "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "projectRelativeReferencingFilePath",
+          "required": false,
+          "schema": {
+            "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "modelName",
+          "required": false,
+          "schema": {
+            "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+            "type": "string"
+          }
+        },
+        {
+          "name": "absoluteUrl",
+          "required": false,
+          "schema": {
+            "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
             "type": "string"
           }
         }

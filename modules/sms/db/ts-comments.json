@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1668334638627,
+    "updatedAt": 1668334638627,
+    "deletedAt": 0,
+    "createdFirstAt": 1668334638627,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/sendSms.ts",
+    "comment": "Send sms\n\nRequires OS Config to have Twilio sid and auth token.\n\nReqruired options: `to` and `body`\n\n`to` is not required, but will overwrite the one you specified in your `OsConfig`",
+    "rawStatement": "export const sendSms = async (\n  options: MessageListInstanceCreateOptions\n): Promise<MessageInstance | undefined> => {\n  const { from: optionsFrom, ...otherOptions } = options;\n\n  const persona = await getPrimaryPersona();\n\n  if (!persona) {\n    return;\n  }\n\n  const { twilioAccountSid, twilioAuthToken, twilioFromPhoneNumber } = persona;\n\n  if (!twilioAccountSid || !twilioAuthToken) {\n    console.log(\"Please setup your Twilio credentials first\");\n    return;\n  }\n  const twilioClient = twilio(twilioAccountSid, twilioAuthToken);\n\n  const from = optionsFrom || twilioFromPhoneNumber;\n\n  if (!from) {\n    console.log(\n      \"Please provide a phonenumber to sent from, either in your OsConfig or in the sendSms options\"\n    );\n    return;\n  }\n\n  const message = await twilioClient.messages\n    .create({ from, ...otherOptions })\n    .catch((reason) => {\n      console.log(\"Sending sms failed\", { reason });\n\n      return undefined;\n    });\n\n  return message;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 7,
+    "lastLine": 15,
+    "id": "ayznkikjpnghicinurwmvnss"
+  }
+]

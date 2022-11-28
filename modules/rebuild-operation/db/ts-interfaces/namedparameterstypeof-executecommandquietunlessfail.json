@@ -1,0 +1,89 @@
+{
+  "createdAt": 1669055704369,
+  "updatedAt": 1669055704369,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055704369,
+  "id": "namedparameterstypeof-executecommandquietunlessfail",
+  "name": "NamedParameters<typeof executeCommandQuietUnlessFail>",
+  "slug": "namedparameterstypeof-executecommandquietunlessfail",
+  "operationRelativeTypescriptFilePath": "src/executeCommandQuietUnlessFail.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "cwd": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string",
+              "description": "if given, will show what is happening and a checkmark if it succeeds"
+            }
+          },
+          "required": [
+            "command"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "command",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "cwd",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "required": false,
+                "schema": {
+                  "fullComment": "if given, will show what is happening and a checkmark if it succeeds",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof executeCommandQuietUnlessFail>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

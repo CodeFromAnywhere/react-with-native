@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668331974309,
+  "updatedAt": 1668331974309,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331974309,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "setJsonKey",
+  "slug": "set-json-key",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "({ jsonPath, keyLocation, value, debug, }: { jsonPath: string; keyLocation: string; value: string; debug?: boolean | undefined; }) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async ({\n  jsonPath,\n  keyLocation,\n  value,\n  debug,\n}: {\n  jsonPath: string;\n  keyLocation: string;\n  value: string;\n  debug?: boolean;\n}) => {\n  const usage =\n    'usage: npx setjsonkey [json-file-path] key1.key2.[index/latest/push].key3 \"value\" (Check https://github.com/Code-From-Anywhere/setjsonkey for more info)';\n\n  // VALIDATION\n\n  if (!keyLocation || keyLocation.length === 0) {\n    console.log(usage);\n    process.exit(0);\n  }\n\n  const jsonPathWithExtension = jsonPath.endsWith(\".json\")\n    ? jsonPath\n    : jsonPath + \".json\";\n  const absolutePath = path.resolve(jsonPathWithExtension);\n  const fileExists = fs.existsSync(absolutePath);\n\n  if (!fileExists) {\n    const folder = getFolder(absolutePath);\n    console.log(\"creating folder because it didn't exist yet\", folder);\n    fs.mkdir(folder, { recursive: true });\n  }\n\n  let object: Object = {};\n\n  if (fileExists) {\n    try {\n      object = JSON.parse(await fs.readFile(absolutePath, \"utf8\"));\n    } catch (e) {\n      console.log(\n        \"No JSON found here, so we're overwriting it with our new JSON\"\n      );\n    }\n  }\n\n  if (typeof object !== \"object\") {\n    object = {};\n  }\n\n  const realValue =\n    value === \"true\" || value === \"false\"\n      ? Boolean(value)\n      : !isNaN(Number(value))\n      ? Number(value)\n      : value;\n\n  // UPDATE/SET JSON key\n  setKeyAtLocation(keyLocation, realValue, object);\n\n  const newObject = JSON.stringify(object, undefined, 2);\n  await fs.writeFile(absolutePath, newObject, { encoding: \"utf8\" });\n\n  if (debug) {\n    console.log({ absolutePath, fileExists, object, newObject });\n    console.log(\"succesfully changed your json!\");\n  }\n}",
+  "description": "",
+  "id": "pvvyftjrbgcwsnptdsqnsnti"
+}

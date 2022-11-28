@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150844846,
-  "updatedAt": 1668150844846,
+  "createdAt": 1668977402570,
+  "updatedAt": 1668977402570,
   "deletedAt": 0,
-  "createdFirstAt": 1668150844846,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977402570,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/mapMany.ts",
   "commentsInside": [],
   "rawText": " async <T, U>(\n  array: T[],\n  mapFn: (item: T, index: number, array: T[]) => Promise<U>,\n  limit?: number\n): Promise<U[]> => {\n  const result: U[] = [];\n\n  if (array.length === 0) {\n    return result;\n  }\n\n  const generator = arrayGenerator(array);\n  const realLimit = Math.min(limit || array.length, array.length);\n  const workers = new Array(realLimit);\n\n  for (let i = 0; i < realLimit; i++) {\n    workers.push(worker(i, generator, mapFn, result));\n  }\n\n  // console.log(`Initialized ${limit} workers`);\n\n  await Promise.all(workers);\n\n  return result;\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 27,
     "numberOfFiles": 1
   },
-  "id": "jysazqulvugwhhlrrcgswcaf"
+  "id": "cmsjgsuqtuvalwpvpdebcpyk"
 }

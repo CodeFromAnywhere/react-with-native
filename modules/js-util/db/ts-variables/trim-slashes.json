@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150854213,
-  "updatedAt": 1668150854213,
+  "createdAt": 1668977418795,
+  "updatedAt": 1668977418795,
   "deletedAt": 0,
-  "createdFirstAt": 1668150854213,
+  "createdFirstAt": 1668977418795,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(absoluteOrRelativePath: string) => {\n  const isFirstCharacterSlash = absoluteOrRelativePath.charAt(0) === \"/\";\n  const isLastCharacterSlash =\n    absoluteOrRelativePath.charAt(absoluteOrRelativePath.length - 1) === \"/\";\n\n  const withoutSlashPrefix = isFirstCharacterSlash\n    ? absoluteOrRelativePath.slice(1)\n    : absoluteOrRelativePath;\n  const withoutSlashSuffix = isLastCharacterSlash\n    ? withoutSlashPrefix.slice(0, withoutSlashPrefix.length - 1)\n    : withoutSlashPrefix;\n\n  return withoutSlashSuffix;\n}",
   "description": "Trims a slash on both sides in any path",
-  "id": "orbqmiqjylirjhjkrwpqdgub"
+  "id": "lyyeuvduztavolbuumqweeam"
 }

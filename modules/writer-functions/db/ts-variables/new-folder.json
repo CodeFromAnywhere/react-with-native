@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385041861,
+  "updatedAt": 1669385041861,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385041861,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "newFolder",
+  "slug": "new-folder",
+  "operationRelativeTypescriptFilePath": "src/newFolder.ts",
+  "type": {
+    "rawType": "(projectRelativeFolderBasePath: string, folderName: string) => Promise<{ isSuccessful: boolean; message?: string | undefined; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  projectRelativeFolderBasePath: string,\n  folderName: string\n): Promise<{ isSuccessful: boolean; message?: string }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root found\" };\n  }\n\n  const absoluteBasePath = path.join(\n    projectRoot,\n    projectRelativeFolderBasePath\n  );\n\n  if (!fs.existsSync(absoluteBasePath)) {\n    return {\n      isSuccessful: false,\n      message: \"This folder basepath doesn't exist\",\n    };\n  }\n\n  const newFolderPath = path.join(absoluteBasePath, folderName);\n\n  if (fs.existsSync(newFolderPath)) {\n    return { isSuccessful: false, message: \"Folder already exists\" };\n  }\n\n  await fs.mkdir(newFolderPath);\n\n  return { isSuccessful: true };\n}",
+  "description": "",
+  "id": "klmgubcnjxaaytdjtyndahwa"
+}

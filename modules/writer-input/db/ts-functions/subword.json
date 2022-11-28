@@ -1,145 +1,17 @@
 {
-  "createdAt": 1668152088019,
-  "updatedAt": 1668152088019,
+  "createdAt": 1669385142176,
+  "updatedAt": 1669385142176,
   "deletedAt": 0,
-  "createdFirstAt": 1668152088019,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385142176,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/editors/Subword.tsx",
   "commentsInside": [],
   "rawText": " (props: {\n  word: string;\n  subwordConfig: SubwordConfig;\n}) => {\n  const { word } = props;\n\n  return (\n    <span style={{ borderColor: \"red\", border: 1 }}>\n      <div>{word}</div>\n      <div\n        style={{ color: \"red\", paddingRight: 6 }}\n        contentEditable={false}\n        data-is-augmentation=\"true\"\n      >\n        xxx{word}\n      </div>\n    </span>\n  );\n}",
   "name": "Subword",
   "slug": "subword",
-  "parameters": [
-    {
-      "name": "props",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "word": {
-            "type": "string"
-          },
-          "subwordConfig": {
-            "$ref": "#/definitions/SubwordConfig"
-          }
-        },
-        "required": [
-          "word",
-          "subwordConfig"
-        ],
-        "additionalProperties": false
-      },
-      "simplifiedSchema": {
-        "properties": [
-          {
-            "name": "word",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "subwordConfig",
-            "required": true,
-            "schema": {
-              "fullComment": "Configurate what should be shown about words",
-              "properties": [
-                {
-                  "name": "isEnabled",
-                  "required": false,
-                  "schema": {
-                    "fullComment": "TITLE: Enable",
-                    "title": "Enable",
-                    "type": "boolean"
-                  }
-                },
-                {
-                  "name": "subwordSize",
-                  "required": false,
-                  "schema": {
-                    "enum": [
-                      "normal",
-                      "mini",
-                      "micro"
-                    ],
-                    "fullComment": "Optionally, make the subwords smaller for a better overview",
-                    "type": "string"
-                  }
-                },
-                {
-                  "name": "translations",
-                  "required": false,
-                  "schema": {
-                    "fullComment": "show subwords for one or multiple languages",
-                    "items": [],
-                    "type": "array"
-                  }
-                },
-                {
-                  "name": "showDefinition",
-                  "required": false,
-                  "schema": {
-                    "fullComment": "Show definition (always in tooltip)",
-                    "type": "boolean"
-                  }
-                },
-                {
-                  "name": "blurMode",
-                  "required": false,
-                  "schema": {
-                    "enum": [
-                      "disabled",
-                      "special"
-                    ],
-                    "fullComment": "Blur the word unless it's special for one reason or another. Might be useful for skimming (or maybe more)",
-                    "type": "string"
-                  }
-                },
-                {
-                  "name": "replaceWordMode",
-                  "required": false,
-                  "schema": {
-                    "enum": [
-                      "disabled",
-                      "translate",
-                      "alternative",
-                      "phonetic",
-                      "tokiPona",
-                      "emoji"
-                    ],
-                    "fullComment": "if \"translate\" is selected, first language from `translations` will be used\n\n`alternative` picks the alternative writing using the `WordMatrix` if available\n\n`phonetic` picks the phonetic writing using the `WordMatrix` if available",
-                    "type": "string"
-                  }
-                },
-                {
-                  "name": "heatmapMode",
-                  "required": false,
-                  "schema": {
-                    "enum": [
-                      "disabled",
-                      "projectFrequency",
-                      "englishFrequency"
-                    ],
-                    "fullComment": "colour words with heat having different meanings",
-                    "type": "string"
-                  }
-                }
-              ],
-              "type": "object"
-            }
-          }
-        ],
-        "type": "object"
-      },
-      "required": true
-    }
-  ],
+  "parameters": [],
   "description": "",
   "returnType": {
     "rawType": "JSX.Element",
@@ -164,5 +36,5 @@
     "linesPerFile": 19,
     "numberOfFiles": 1
   },
-  "id": "nazksnqpqfvukocyxorlmuwu"
+  "id": "nnomrogbtjuxdgqkgsxhveys"
 }

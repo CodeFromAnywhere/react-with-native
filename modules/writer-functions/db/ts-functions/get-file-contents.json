@@ -1,0 +1,47 @@
+{
+  "createdAt": 1669385028978,
+  "updatedAt": 1669385028978,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385028978,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getFileContents.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  projectRelativeFilePath: string\n): Promise<{\n  isSuccessful: boolean;\n  message?: string;\n  fileContents?: string;\n}> => {\n  const projectRoot = getProjectRoot();\n\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root\" };\n  }\n\n  const absolutePath = path.join(projectRoot, projectRelativeFilePath);\n\n  if (!fs.existsSync(absolutePath)) {\n    return { isSuccessful: false, message: \"File doesn't exist\" };\n  }\n\n  const stats = await fs.stat(absolutePath);\n\n  if (stats.size > 1024 * 1024 || stats.isDirectory()) {\n    return {\n      isSuccessful: false,\n      message: \"That's a directory or bigger than 1MB\",\n    };\n  }\n\n  const fileContents = await fs.readFile(absolutePath, \"utf8\");\n\n  return { fileContents, isSuccessful: true };\n}",
+  "name": "getFileContents",
+  "slug": "get-file-contents",
+  "parameters": [
+    {
+      "name": "projectRelativeFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Gets the contents of a file in the project",
+  "returnType": {
+    "rawType": "Promise<{ isSuccessful: boolean; message?: string | undefined; fileContents?: string | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 815,
+    "lines": 32,
+    "bytes": 815,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 32,
+    "numberOfFiles": 1
+  },
+  "id": "jxairibucrhdsbdaqmhvmiyz"
+}

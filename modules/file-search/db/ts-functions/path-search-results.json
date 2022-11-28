@@ -1,0 +1,156 @@
+{
+  "createdAt": 1668551909409,
+  "updatedAt": 1668551909409,
+  "deletedAt": 0,
+  "createdFirstAt": 1668551909409,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/PathSearchResults.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  paths: string[];\n  search: string;\n  augmentedWords?: AugmentedWord[];\n}) => {\n  const { paths, search, augmentedWords } = props;\n\n  /**\n   * TODO: include this in the results somehow nicely...\n   */\n  const augmentedWordResults = augmentedWords?.filter((x) => {\n    const word = x.isCaseInsensitive ? x.word.toLowerCase() : x.word;\n    const searchQuery = x.isCaseInsensitive ? search.toLowerCase() : search;\n\n    const isMatch = word.includes(searchQuery);\n\n    return isMatch;\n  });\n\n  const results = paths\n    .map((path) => {\n      const augmentedWordsThisPath = augmentedWordResults?.filter(\n        (x) => x.queryPath === path\n      );\n\n      return { path, augmentedWordsThisPath };\n    })\n    .filter((item) => {\n      const isPathMatch = item.path\n        .toLowerCase()\n        .includes(search.toLowerCase());\n      const isMatch = item.augmentedWordsThisPath?.length || isPathMatch;\n\n      return isMatch;\n    })\n    .slice(0, 100);\n\n  return (\n    <Div>\n      {results.map((item) => {\n        const filename = item.path.split(\"/\").pop()!;\n\n        return (\n          <ALink href={`/${item.path}`}>\n            <Div className=\"px-2 hover:dark:bg-gray-600\">\n              <MatchingText\n                truncateLength={30}\n                text={filename}\n                search={search}\n                defaultTextClassName=\"\"\n                matchTextClassName=\"text-blue-500\"\n              />\n\n              <MatchingText\n                truncateLength={30}\n                text={item.path}\n                search={search}\n                defaultTextClassName=\"text-xs\"\n                matchTextClassName=\"text-blue-500\"\n              />\n\n              {item.augmentedWordsThisPath?.map((augmentedWord) => {\n                return (\n                  <MatchingText\n                    truncateLength={30}\n                    text={augmentedWord.word}\n                    search={search}\n                    defaultTextClassName=\"text-xs\"\n                    matchTextClassName=\"text-blue-500\"\n                  />\n                );\n              })}\n            </Div>\n          </ALink>\n        );\n      })}\n    </Div>\n  );\n}",
+  "name": "PathSearchResults",
+  "slug": "path-search-results",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "search": {
+            "type": "string"
+          },
+          "augmentedWords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/AugmentedWord"
+            }
+          }
+        },
+        "required": [
+          "paths",
+          "search"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "paths",
+            "required": true,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "search",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "augmentedWords",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..\n\nTODO: This is a much more general purpose thing than just `markdown-reader-types`. Move to it's own package",
+                    "todo": "This is a much more general purpose thing than just `markdown-reader-types`. Move to it's own package",
+                    "properties": [
+                      {
+                        "name": "word",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "Word without affixes. The affixes will be decided in the frontend parser based on the type",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "queryPath",
+                        "required": false,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "projectRelativeMarkdownSourcePath",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "spoiler",
+                        "required": false,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "isCaseInsensitive",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "If true, will match on lowercase variant of the word",
+                          "type": "boolean"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "AugmentedWord"
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 10,
+  "size": {
+    "characters": 2154,
+    "lines": 79,
+    "bytes": 2154,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 79,
+    "numberOfFiles": 1
+  },
+  "id": "mklvowbfccsjswctoevmfojn"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379659808,
-  "updatedAt": 1667379659808,
+  "createdAt": 1669467041966,
+  "updatedAt": 1669467041966,
   "deletedAt": 0,
-  "createdFirstAt": 1667379659808,
+  "createdFirstAt": 1669467041966,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(markdownString: string): string[] => {\n  const markdownParse = mdToJsonParse(markdownString);\n  const paragraphs = getMarkdownParseParagraphs(markdownParse);\n  const references = paragraphs.map(getMarkdownReferencesFromParagraph).flat();\n  const paths = references.map((x) => x.path);\n  return paths;\n}",
   "description": "",
-  "id": "lsjxtcxoblzkdciuzzjhltzm"
+  "id": "pphokrfokiztwzcprfvbtrtj"
 }

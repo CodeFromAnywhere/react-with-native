@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669466953910,
+  "updatedAt": 1669466953910,
+  "deletedAt": 0,
+  "createdFirstAt": 1669466953910,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "copyReaderStaticAssets",
+  "slug": "copy-reader-static-assets",
+  "operationRelativeTypescriptFilePath": "src/copyReaderStaticAssets.ts",
+  "type": {
+    "rawType": "(operationBasePath: string, allWebPages: import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").WebPage<unknown>[]) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  operationBasePath: string,\n  /**\n   * non-reader webPages will be filtered out by checking if the projectRelativeFilePath exists on pageData and has the extension .md\n   */\n  allWebPages: WebPage<unknown>[]\n) => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n\n  const baseDestinationPath = path.join(\n    operationBasePath,\n    \"public\",\n    \"markdown-assets\"\n  );\n\n  if (fs.existsSync(baseDestinationPath)) {\n    //first clean up if it was generated before\n    await fs.rm(baseDestinationPath, { recursive: true });\n  }\n\n  const readerWebPages = allWebPages\n    .map((x) => ({\n      ...x,\n      pageData: x.pageData as null | { [key: string]: any },\n    }))\n    // filter out the WebPages that don't have a filePath ending on .md\n    .filter((x) => x.pageData?.projectRelativeFilePath?.endsWith(\".md\"))\n    .filter((x) =>\n      fs.existsSync(path.join(projectRoot, x.pageData?.projectRelativeFilePath))\n    )\n    .map((x) => x as ReaderWebPage);\n\n  console.log({ readerPagesThatExist: readerWebPages.length });\n  const absoluteAssetPaths =\n    (await findReaderStaticAssets(readerWebPages)) || [];\n\n  console.log({ foundAssetsThatExist: absoluteAssetPaths.length });\n  const copyPairs = absoluteAssetPaths.map((absoluteAssetPath) => {\n    const projectRelativeAssetPath = makeRelative(\n      absoluteAssetPath,\n      projectRoot\n    );\n\n    const absoluteDestinationPath = path.join(\n      baseDestinationPath,\n      projectRelativeAssetPath\n    );\n\n    return { absoluteSourcePath: absoluteAssetPath, absoluteDestinationPath };\n  });\n\n  await copyCopyPairs(copyPairs);\n\n  console.log(`Copied ${copyPairs.length} files into your public folder`);\n\n  // console.log({ copyPairs });\n}",
+  "description": "",
+  "id": "rsuhzukywetkxavdcrqzhufc"
+}

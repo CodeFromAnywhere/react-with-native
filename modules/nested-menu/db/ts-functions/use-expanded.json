@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668151929530,
-  "updatedAt": 1668151929530,
+  "createdAt": 1669132823960,
+  "updatedAt": 1669132823960,
   "deletedAt": 0,
-  "createdFirstAt": 1668151929530,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669132823960,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/useExpanded.ts",
   "commentsInside": [],
   "rawText": " (queryPath: string = \"\") => {\n  const [expanded, setExpanded, { hydrated }] = useStore(\"menu.expanded\");\n\n  const isExpanded =\n    expanded[queryPath] !== undefined ? expanded[queryPath] : false;\n\n  // console.log({ queryPath, isExpanded });\n  const setIsExpanded = () => {\n    return setExpanded({ ...expanded, [queryPath]: true });\n  };\n\n  const setNotExpanded = () => {\n    return setExpanded({ ...expanded, [queryPath]: false });\n  };\n\n  const toggleExpanded = () => {\n    return setExpanded({\n      ...expanded,\n      [queryPath]: !isExpanded,\n    });\n  };\n\n  const tuple: [\n    boolean,\n    () => Promise<void>,\n    () => Promise<void>,\n    () => Promise<void>,\n    { hydrated: boolean }\n  ] = [isExpanded, toggleExpanded, setIsExpanded, setNotExpanded, { hydrated }];\n\n  return tuple;\n}",
@@ -48,5 +43,5 @@
     "linesPerFile": 32,
     "numberOfFiles": 1
   },
-  "id": "xzkejofmqftscviyblsndnvp"
+  "id": "arazbhrnzpuzwjeykspvxpfy"
 }

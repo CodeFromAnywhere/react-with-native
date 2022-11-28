@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669467098860,
+  "updatedAt": 1669467098860,
+  "deletedAt": 0,
+  "createdFirstAt": 1669467098860,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "flattenMarkdownString",
+  "slug": "flatten-markdown-string",
+  "operationRelativeTypescriptFilePath": "src/flattenMarkdownString.ts",
+  "type": {
+    "rawType": "(markdownString: string, findFunction: (token: import(\"/Users/king/King/operations/node_modules/@types/marked/index\").marked.Token) => boolean) => import(\"/Users/king/King/operations/node_modules/@types/marked/index\").marked.Token[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  markdownString: string,\n  findFunction: (token: marked.Token) => boolean\n): marked.Token[] => {\n  const result = marked\n    .lexer(markdownString)\n    .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n    .filter(notEmpty)\n    .flat();\n\n  return result;\n}",
+  "description": "find all items that match a token, recursively in all nested things",
+  "id": "flvznirgmnvscfnmwthveloj"
+}

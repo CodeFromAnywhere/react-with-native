@@ -1,0 +1,99 @@
+{
+  "createdAt": 1668150645528,
+  "updatedAt": 1668150645528,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150645528,
+  "id": "namedparameterstypeof-writeresult",
+  "name": "NamedParameters<typeof writeResult>",
+  "slug": "namedparameterstypeof-writeresult",
+  "operationRelativeTypescriptFilePath": "src/writeResult.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "options": {
+          "type": "object",
+          "properties": {
+            "operationName": {
+              "type": "string"
+            },
+            "success": {
+              "type": "boolean"
+            },
+            "message": {
+              "type": "string"
+            },
+            "manualProjectRoot": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "operationName",
+            "success",
+            "message"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "options"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "options",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "operationName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "success",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "message",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "manualProjectRoot",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof writeResult>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

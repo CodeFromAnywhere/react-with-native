@@ -1,0 +1,427 @@
+{
+  "createdAt": 1669639436310,
+  "updatedAt": 1669639436310,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639436310,
+  "id": "markdownreaderpageprops",
+  "name": "MarkdownReaderPageProps",
+  "slug": "markdownreaderpageprops",
+  "operationRelativeTypescriptFilePath": "src/components/DocsReaderLayout.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "publicBundleConfig": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/PublicBundleConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "menu": {
+          "type": "object",
+          "properties": {
+            "flat": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReaderWebPage"
+              }
+            },
+            "nested": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NestedWebPage"
+              }
+            }
+          },
+          "required": [
+            "flat",
+            "nested"
+          ],
+          "additionalProperties": false
+        },
+        "content": {
+          "$ref": "#/definitions/ReaderPageContentProps"
+        }
+      },
+      "required": [
+        "menu"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "publicBundleConfig",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "menu",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "flat",
+                "required": true,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "specifically always a markdown page\n\n\n\nGeneral purpose interface for a webpage. Should be compatible within the node.js environment and therefore should not contain any frontend functions. A nested variant (`NestedWebPage`) is used in the frontend to render the `nested-menu` with.",
+                        "properties": [
+                          {
+                            "name": "queryPath",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "query-path to be visited in order to find the page on the web.\n\ncan also be used for nested nav in apps",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "searchTerms",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "can be provided to search in a better way\n\ncan provide representations of possible searches for this page, so you can find the pages much better",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "type": "string"
+                                  },
+                                  "name": null
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "target",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Optionally, open this page in a new window",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "isMenuHidden",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "if true, menu item should be omitted (but path may still be reachable if you so wish)",
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "menuTitleAugmentation",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "if provided, will be shown in the menu besides the title can be something nice like a notification or an emoji",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "menuTitleTooltip",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "If provided, will be rendered as a tooltip when hovering over the menu item",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "menuTitle",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "if provided will be shown instead of the name of the file/folder in the menu. This makes it possible to provide better naming or add emoji's etc",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "pageData",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Data connected to the `queryPath`. can take any shape or form based on your application.\n\nFor example, you can provide a `projectRelativePath` to a file here\n\nThe motivation to put this in a `extraData` object is because this makes the type super flexible.\n\n`.pageData` is not to be included into the menu, only to the page!\n\nSome ideas of what to provide here:\n\n- `projectRelativeFilePath` (so you can open the page if it's connected to some path)\n- `operationName`\n- `operationRelativePath`\n\n\nWhat not to provide here:\n\n- `AugmentedWord`[] (this is way too big, so it'd be a waste of query time to provide it for every page already)\n- stuff you already provided in the WebPage itself (it will also be available on the page, so why bother?)\n\n",
+                              "properties": [
+                                {
+                                  "name": "projectRelativeFilePath",
+                                  "required": true,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "internalLinkWord",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "imagePath",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "shortDescription",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                }
+                              ],
+                              "type": "object"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": "ReaderWebPage"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "nested",
+                "required": true,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "Only used for menu, so can be undefined because it shouldn't be available\n\n",
+                        "properties": [
+                          {
+                            "name": "queryPath",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "query-path to be visited in order to find the page on the web.\n\ncan also be used for nested nav in apps",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "searchTerms",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "can be provided to search in a better way\n\ncan provide representations of possible searches for this page, so you can find the pages much better",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "type": "string"
+                                  },
+                                  "name": null
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "target",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Optionally, open this page in a new window",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "isMenuHidden",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "if true, menu item should be omitted (but path may still be reachable if you so wish)",
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "menuTitleAugmentation",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "if provided, will be shown in the menu besides the title can be something nice like a notification or an emoji",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "menuTitleTooltip",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "If provided, will be rendered as a tooltip when hovering over the menu item",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "menuTitle",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "if provided will be shown instead of the name of the file/folder in the menu. This makes it possible to provide better naming or add emoji's etc",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "pageData",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Data connected to the `queryPath`. can take any shape or form based on your application.\n\nFor example, you can provide a `projectRelativePath` to a file here\n\nThe motivation to put this in a `extraData` object is because this makes the type super flexible.\n\n`.pageData` is not to be included into the menu, only to the page!\n\nSome ideas of what to provide here:\n\n- `projectRelativeFilePath` (so you can open the page if it's connected to some path)\n- `operationName`\n- `operationRelativePath`\n\n\nWhat not to provide here:\n\n- `AugmentedWord`[] (this is way too big, so it'd be a waste of query time to provide it for every page already)\n- stuff you already provided in the WebPage itself (it will also be available on the page, so why bother?)",
+                              "type": "null"
+                            }
+                          },
+                          {
+                            "name": "children",
+                            "required": false,
+                            "schema": {
+                              "items": [
+                                {
+                                  "schema": {
+                                    "circularRefName": "ChildObject<WebPage<null>>",
+                                    "properties": [],
+                                    "type": "object"
+                                  },
+                                  "name": "ChildObject<WebPage<null>>"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": "NestedWebPage"
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "content",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "projectRelativeMarkdownPath",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "augmentedWordObject",
+                "required": false,
+                "schema": {
+                  "fullComment": "",
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "markdownFile",
+                "required": false,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "title",
+                "required": false,
+                "schema": {
+                  "fullComment": "Title of the page",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "children",
+                "required": false,
+                "schema": {
+                  "fullComment": "If path is not a markdownfile, will return all children here",
+                  "items": [
+                    {
+                      "schema": {
+                        "properties": [
+                          {
+                            "name": "title",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "firstParagraph",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "folderName",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "projectRelativeMarkdownPath",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "previousQueryPath",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "nextQueryPath",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MarkdownReaderPageProps",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

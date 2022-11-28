@@ -1,6 +1,6 @@
 # Markdown reader web
 
-markdown-reader-web (`OperationClassification` web)
+markdown-reader-web (`OperationClassification` ui-web)
 
 
 ## 📚 markdown-reader-web

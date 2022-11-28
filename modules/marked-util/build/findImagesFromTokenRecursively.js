@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.findImagesFromTokenRecursively=void 0;var asset_functions_js_1=require("asset-functions-js"),findImagesFromTokenRecursively=function(e){return"image"===e.type?[{src:e.href,alt:e.title,type:(0,asset_functions_js_1.getTypeFromUrlOrPath)(e.href)}]:"paragraph"===e.type?e.tokens.map(exports.findImagesFromTokenRecursively).flat():[]};exports.findImagesFromTokenRecursively=findImagesFromTokenRecursively;
+//# sourceMappingURL=findImagesFromTokenRecursively.js.map

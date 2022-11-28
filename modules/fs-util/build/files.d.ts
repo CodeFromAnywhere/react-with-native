@@ -5,7 +5,7 @@ import type { PathLike } from "./fs";
  * writes all values in an object to the file that should be specified as key of that value
  */
 export declare const writeToFiles: (fileObject: {
-    [filePath: string]: any;
+    [absoluteFilePath: string]: any;
 }) => Promise<void>;
 /**
  * uses fs.access to determine if something can be accessed

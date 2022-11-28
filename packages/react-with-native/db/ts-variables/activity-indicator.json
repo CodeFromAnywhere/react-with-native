@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379200575,
-  "updatedAt": 1667379200575,
+  "createdAt": 1668752445890,
+  "updatedAt": 1668752445890,
   "deletedAt": 0,
-  "createdFirstAt": 1667379200575,
+  "createdFirstAt": 1668752445890,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "activity-indicator",
   "operationRelativeTypescriptFilePath": "src/react-native/ActivityIndicator/ActivityIndicator.tsx",
   "type": {
-    "rawType": "(props: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native/src/react-native/ActivityIndicator/ActivityIndicator.type\").ActivityIndicatorType) => JSX.Element",
+    "rawType": "(props: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native/src/react-native/ActivityIndicator/ActivityIndicator.type\").ActivityIndicatorType) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(props: ActivityIndicatorType) => {\n  const sizeClass =\n    typeof props.size === \"number\"\n      ? \"\"\n      : props.size === \"large\"\n      ? \"w-16 h-16\"\n      : \"w-6 h-6\";\n  const sizeStyle =\n    typeof props.size === \"number\"\n      ? { width: props.size, height: props.size }\n      : undefined;\n\n  const borderClass =\n    props.color === \"white\"\n      ? \"border-white dark:border-gray-900\"\n      : \"border-gray-900 dark:border-white\";\n\n  const className = `${sizeClass} border-b-2 ${borderClass} rounded-full animate-spin ${\n    props.className || \"\"\n  }`;\n\n  return <div style={sizeStyle} className={className} />;\n}",
   "description": "",
-  "id": "bhfjzgfrzdfjavuxccowtgsg"
+  "id": "kbwduuqpkrnphumxfuxtndbc"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384299557,
+  "updatedAt": 1669384299557,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384299557,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getFrontmattersMappedObject",
+  "slug": "get-frontmatters-mapped-object",
+  "operationRelativeTypescriptFilePath": "src/getFrontmattersMappedObject.ts",
+  "type": {
+    "rawType": "(projectRoot: string, markdownPaths?: string[] | undefined) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  projectRoot: string,\n  markdownPaths?: string[]\n) => {\n  const frontmatterPromises = markdownPaths?.map(async (markdownPath) => {\n    const absoluteFilePath = path.join(projectRoot, markdownPath);\n    const frontmatter = (await readMarkdownFile(absoluteFilePath))?.parameters;\n    return { [markdownPath]: frontmatter };\n  });\n  const frontmattersArray = frontmatterPromises\n    ? await Promise.all(frontmatterPromises)\n    : [];\n  const frontmattersMappedObject = mergeObjectsArray(frontmattersArray);\n\n  return frontmattersMappedObject;\n}",
+  "description": "",
+  "id": "imyqijocihhucxruohyeijvw"
+}

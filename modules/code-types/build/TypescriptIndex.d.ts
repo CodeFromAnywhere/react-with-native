@@ -28,15 +28,16 @@ import { TsExport } from "./TsExport";
  * ---
  *
  * Typescript file metadata (all indexes from typescript files, together)
+ *
  */
 export declare type TypescriptIndex = {
+    tsImports: TsImport[];
+    tsFunctions: TsFunction[];
+    tsInterfaces: TsInterface[];
+    tsVariables: TsVariable[];
     tsBuildErrors: TsBuildError[];
     tsLintWarnings: TsLintWarning[];
-    tsFunctions: TsFunction[];
-    tsVariables: TsVariable[];
-    tsInterfaces: TsInterface[];
     tsComments: TsComment[];
-    tsImports: TsImport[];
     tsExports: TsExport[];
 };
 export declare type IndexModels = {
@@ -55,7 +56,7 @@ export declare const typescriptIndexModels: readonly ["TsBuildError", "TsLintWar
  *
  * NB: It's not handy to get this from the database because this is used to generate the database xD
  */
-export declare const indexDbModels: readonly ["TsBuildError", "TsLintWarning", "TsExport", "TsImport", "TsComment", "TsInterface", "TsFunction", "TsVariable", "OperationIndex"];
+export declare const indexDbModels: readonly ["TsBuildError", "TsLintWarning", "TsExport", "TsImport", "TsComment", "TsInterface", "TsFunction", "TsVariable"];
 export declare const indexDbModelFolders: string[];
 export interface TsBuildError extends TsIndexModelType {
     line?: number;

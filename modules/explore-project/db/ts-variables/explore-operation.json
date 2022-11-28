@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384294572,
+  "updatedAt": 1669384294572,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384294572,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "exploreOperation",
+  "slug": "explore-operation",
+  "operationRelativeTypescriptFilePath": "src/exploreOperation.ts",
+  "type": {
+    "rawType": "(operationBasePath: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (operationBasePath: string) => {\n  const srcPath = path.join(operationBasePath, \"src\");\n  const docsPath = path.join(operationBasePath, \"docs\");\n\n  const rootExploreResults = await explore({\n    basePath: operationBasePath,\n    ignore: \".DS_Store\",\n    doNotExploreChildFolders: true,\n    extension: [\"md\", \"mdx\"],\n  });\n\n  const docsExploreResults = await explore({\n    basePath: docsPath,\n    ignore: \".DS_Store\",\n    extension: [\"md\", \"mdx\"],\n    includeFoldersWithResults: true,\n  });\n\n  const docsExploreResultsWithBasePath =\n    docsExploreResults.length > 0\n      ? docsExploreResults.concat([{ path: docsPath, isFolder: true }])\n      : [];\n\n  const srcExploreResults = (\n    await explore({\n      basePath: srcPath,\n      ignore: \".DS_Store\",\n      extension: [\"ts\", \"tsx\"],\n      includeFoldersWithResults: true,\n    })\n  )\n    // NB: filter out index files, they're not interesting for this usecase\n    .filter((x) => !x.path.includes(\"/src/index.ts\"));\n\n  const srcExploreResultsWithBasePath =\n    srcExploreResults.length > 0\n      ? srcExploreResults.concat([{ path: srcPath, isFolder: true }])\n      : [];\n\n  return rootExploreResults\n    .concat(docsExploreResultsWithBasePath)\n    .concat(srcExploreResultsWithBasePath);\n}",
+  "description": "for every package.json it finds, it explores the root, src, and docs.\n- in src, index is ignored\n- in docs, only md is found\n- in the root, only md is found\n- for every file in src, it shows and finds all functions, interfaces and variables, through the indexation from it",
+  "id": "fqgmacpteijhyenwpqnichvg"
+}

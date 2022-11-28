@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148858368,
-  "updatedAt": 1668148858368,
+  "createdAt": 1669312132465,
+  "updatedAt": 1669312132465,
   "deletedAt": 0,
-  "createdFirstAt": 1668148858368,
+  "createdFirstAt": 1669312132465,
   "id": "namedparameterstypeof-createdb",
   "name": "NamedParameters<typeof createDb>",
   "slug": "namedparameterstypeof-createdb",
@@ -47,26 +47,18 @@
                   "fullComment": "provide your default query config for all models\n\nQueryConfig is set on 4 levels, which have increasing priority\n\n- hardcoded in `fs-orm`\n- when calling `createDb`, setting `defaultQueryConfig`\n- when calling `createDb`, setting `modelQueryConfig`\n- when running a query\n\nNot all options are available when running a query.",
                   "properties": [
                     {
+                      "name": "manualProjectRoot",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if specified, this will be used as the root path to find your data in\n\nif not specified, uses the db folder in your project root and in any operation\n\nNB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+                        "nb": "If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+                        "type": "string"
+                      }
+                    },
+                    {
                       "name": "operationName",
                       "required": false,
                       "schema": {
-                        "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "projectRelativePath",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "if specified, only this location will be used",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "operationRelativePath",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "if specified, only this location will be used (also need an `operationName`)",
                         "type": "string"
                       }
                     },
@@ -86,11 +78,18 @@
                       }
                     },
                     {
-                      "name": "manualProjectRoot",
+                      "name": "operationRelativePath",
                       "required": false,
                       "schema": {
-                        "fullComment": "if specified, this will be used as the root path to find your data in\n\nif not specified, uses the db folder in your project root and in any operation\n\nNB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
-                        "nb": "If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+                        "fullComment": "if specified, only this location will be used (also need an `operationName`)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if specified, only this location will be used",
                         "type": "string"
                       }
                     }

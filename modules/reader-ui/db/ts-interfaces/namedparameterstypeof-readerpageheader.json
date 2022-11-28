@@ -1,0 +1,85 @@
+{
+  "createdAt": 1669639445622,
+  "updatedAt": 1669639445622,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639445622,
+  "id": "namedparameterstypeof-readerpageheader",
+  "name": "NamedParameters<typeof ReaderPageHeader>",
+  "slug": "namedparameterstypeof-readerpageheader",
+  "operationRelativeTypescriptFilePath": "src/components/ReaderPageHeader.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "props": {
+          "type": "object",
+          "properties": {
+            "markdownFile": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/WebMarkdownFile"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "projectRelativeMarkdownPath": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "props"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "props",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "markdownFile",
+                "required": false,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "projectRelativeMarkdownPath",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof ReaderPageHeader>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

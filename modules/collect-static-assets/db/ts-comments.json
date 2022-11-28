@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1669466957930,
+    "updatedAt": 1669466957930,
+    "deletedAt": 0,
+    "createdFirstAt": 1669466957930,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/findStaticAssets.ts",
+    "comment": "Returns the absolute paths of all static assets (embeds and links) in a markdown file of which the path is provided.",
+    "rawStatement": "export const findStaticAssets = async (\n  absoluteMarkdownFilePath: string\n): Promise<string[]> => {\n  if (!fs.existsSync(absoluteMarkdownFilePath)) return [];\n  const content: string = await fs.readFile(absoluteMarkdownFilePath, \"utf8\");\n\n  const relativeEmbeds = findEmbeds(content)\n    .filter((x) => isPathRelative(x.src))\n    .map((x) => x.src);\n\n  const relativeLinks = findLinks(content)\n    .filter(\n      (x) => isPathRelative(x.href)\n      // NB: bit shitty that we can't link to typescript files or pdfs this way, but it's ok, we can embed them. Once needed, this must be improved, not now.\n    )\n    .filter((x) => x.type !== \"text\" && x.type !== \"other\")\n    .map((x) => x.href);\n\n  const absoluteMarkdownFolderPath = getFolderJs(absoluteMarkdownFilePath);\n  const absoluteAssetPaths = [relativeLinks, relativeEmbeds]\n    .flat()\n    .map((relativePath) => path.join(absoluteMarkdownFolderPath, relativePath));\n\n  return absoluteAssetPaths;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 4,
+    "lastLine": 6,
+    "id": "bppukbgfvyvtmmzvgifgeevi"
+  }
+]

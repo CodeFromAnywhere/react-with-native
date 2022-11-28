@@ -1,4 +1,4 @@
-import { OperationConfig, OperationIndex, PackageJson, TsConfig } from "code-types";
+import { TsConfig } from "code-types";
 import { KeyValueMarkdownModelType, SlugModelType, CsvModelType, MarkdownModelType, DefaultModelType, Creation } from "model-types";
 export interface SlugTestModel extends SlugModelType {
     id: string;
@@ -37,10 +37,7 @@ export declare type TestModels = {
     MarkdownTestModel: MarkdownTestModel;
     JsonMultipleTestModel: SlugTestModel;
     DefaultTestModel: DefaultTestModel;
-    OperationConfig: OperationConfig;
     TsConfig: TsConfig;
-    PackageJson: PackageJson;
-    OperationIndex: OperationIndex;
 };
 /**
  * a db is created with models from all different db storage methods

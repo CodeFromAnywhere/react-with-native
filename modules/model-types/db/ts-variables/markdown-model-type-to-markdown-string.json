@@ -1,14 +1,14 @@
 {
-  "createdAt": 1668150287054,
-  "updatedAt": 1668150287054,
+  "createdAt": 1669276552113,
+  "updatedAt": 1669276552113,
   "deletedAt": 0,
-  "createdFirstAt": 1668150287054,
+  "createdFirstAt": 1669276552113,
   "classification": "const",
   "comments": [],
   "isExported": true,
   "name": "markdownModelTypeToMarkdownString",
   "slug": "markdown-model-type-to-markdown-string",
-  "operationRelativeTypescriptFilePath": "src/markdown-model-type.ts",
+  "operationRelativeTypescriptFilePath": "src/markdownModelTypeToMarkdownString.ts",
   "type": {
     "rawType": "(markdownModelType: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/src/generics\").ShouldNotBeStored>) => string",
     "typeDefinition": {
@@ -29,5 +29,5 @@
   },
   "value": "(\n  markdownModelType: Storing<MarkdownModelType>\n): string => {\n  const { markdown, ...parameters } = markdownModelType;\n  const frontmatterString = frontmatterParseToString(parameters);\n  return `${frontmatterString}\\n${markdown}`;\n}",
   "description": "",
-  "id": "gbkqrdmqtrmudvpkiofuxmbr"
+  "id": "cdrkavvvjoqzoarpimhmtxaw"
 }

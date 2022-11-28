@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668152097344,
-  "updatedAt": 1668152097344,
+  "createdAt": 1669385157114,
+  "updatedAt": 1669385157114,
   "deletedAt": 0,
-  "createdFirstAt": 1668152097344,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385157114,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/old/ContextTextArea.tsx",
   "commentsInside": [],
   "rawText": " (props: EditorProps) => {\n  const { value, onChange, withContext, className } = props;\n\n  // EDITOR HOTKEYS\n  useHotkeys([], ({ code, metaKey, ctrlKey, altKey, shiftKey, key }) => {\n    if (code === \"Escape\") {\n      // go out of intellisense\n      alert?.(\"ESCAPE\");\n    }\n\n    if (ctrlKey && code === \"Space\") {\n      // intellisense on\n      alert?.(\"intellisense on\");\n    }\n    if (altKey && code === \"KeyZ\") {\n      if (shiftKey) {\n        alert?.(\"redo\");\n      } else {\n        alert?.(\"undo\");\n      }\n    }\n\n    if (metaKey && key === \"b\") {\n      alert?.(\"bold\");\n    }\n\n    if (metaKey && key === \"i\") {\n      alert?.(\"italic\");\n    }\n  });\n\n  return (\n    <textarea\n      className={className}\n      value={value}\n      // onKeyPress={(e) => {\n      //   console.log({ e });\n      // }}\n      // onCh\n      // onFocusCapture={(e) => {\n      //   const newText = e.target.value;\n      //   const positionIndex = e.target.selectionStart;\n\n      //   console.log({ newText, positionIndex });\n      //   const textEditingContext = getContext({\n      //     text: newText,\n      //     positionIndex,\n      //   });\n      //   withContext?.(textEditingContext);\n\n      //   onChange(newText);\n      // }}\n      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {\n        const newText = e.target.value;\n        const positionIndex = e.target.selectionStart;\n        const textEditingContext = getContext({\n          text: newText,\n          positionIndex,\n        });\n        withContext?.(textEditingContext);\n\n        onChange(newText);\n      }}\n    />\n  );\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 66,
     "numberOfFiles": 1
   },
-  "id": "jkwakvufhvkmdmochaaxowyb"
+  "id": "zwbdrswdxusagkyhycgqijgv"
 }

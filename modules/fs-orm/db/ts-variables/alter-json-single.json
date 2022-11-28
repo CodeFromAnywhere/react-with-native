@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148838197,
-  "updatedAt": 1668148838197,
+  "createdAt": 1669312092829,
+  "updatedAt": 1669312092829,
   "deletedAt": 0,
-  "createdFirstAt": 1668148838197,
+  "createdFirstAt": 1669312092829,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n  const storedJson = await readJsonFile<Storing<AugmentedAnyModelType>>(\n    dbFileLocation.absolutePath\n  );\n  const isNewFile = !storedJson;\n  const storedData = storedJson ? [storedJson] : [];\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n  const isSuccesful = await writeJsonToFile(absolutePath, newStoredData[0]);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
   "description": "Alters a json single file",
-  "id": "rbzgxcgymslmupnelbmluyht"
+  "id": "plitbeqrxwlwoopiafivrpid"
 }

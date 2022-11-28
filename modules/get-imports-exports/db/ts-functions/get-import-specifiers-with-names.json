@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668150643213,
+  "updatedAt": 1668150643213,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150643213,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "commentsInside": [],
+  "rawText": " (\n  sourceFile: SourceFile,\n  names: string[]\n) => {\n  return sourceFile\n    .getImportDeclarations()\n    .map((x) => x.getNamedImports())\n    .flat()\n    .filter((x) => names.includes(x.getName()));\n}",
+  "name": "getImportSpecifiersWithNames",
+  "slug": "get-import-specifiers-with-names",
+  "parameters": [],
+  "description": "get the ImportSpecifier(s) of with a certain name.",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 252,
+    "lines": 10,
+    "bytes": 252,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "ssphqzffpwfmvlcxdkcijwoc"
+}

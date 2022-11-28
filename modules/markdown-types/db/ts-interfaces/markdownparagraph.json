@@ -1,0 +1,87 @@
+{
+  "createdAt": 1669385204508,
+  "updatedAt": 1669385204508,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385204508,
+  "id": "markdownparagraph",
+  "name": "MarkdownParagraph",
+  "slug": "markdownparagraph",
+  "operationRelativeTypescriptFilePath": "src/MarkdownParse.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type MarkdownParagraph = {\n  /** the raw text of this paragraph */\n  paragraph: string;\n  /**\n   * the parent stack\n   */\n  categoryStackCalculated: CategoryStack;\n  /**\n   * if the paragraph is\n   * NB: not always used!\n   */\n  level?: MarkdownContentLevel;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "paragraph": {
+          "type": "string",
+          "description": "the raw text of this paragraph"
+        },
+        "categoryStackCalculated": {
+          "$ref": "#/definitions/CategoryStack",
+          "description": "the parent stack"
+        },
+        "level": {
+          "$ref": "#/definitions/MarkdownContentLevel",
+          "description": "if the paragraph is NB: not always used!"
+        }
+      },
+      "required": [
+        "paragraph",
+        "categoryStackCalculated"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "paragraph",
+          "required": true,
+          "schema": {
+            "fullComment": "the raw text of this paragraph",
+            "type": "string"
+          }
+        },
+        {
+          "name": "categoryStackCalculated",
+          "required": true,
+          "schema": {
+            "fullComment": "the parent stack\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+            "nb": "Changing this value when updating/upserting, changes where the item is located!",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "level",
+          "required": false,
+          "schema": {
+            "fullComment": "if the paragraph is NB: not always used!\n\n0 is a paragraph 1-6 is h1 until h6",
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MarkdownParagraph",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

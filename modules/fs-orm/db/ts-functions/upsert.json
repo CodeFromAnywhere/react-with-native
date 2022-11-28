@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148841474,
-  "updatedAt": 1668148841474,
+  "createdAt": 1669312097796,
+  "updatedAt": 1669312097796,
   "deletedAt": 0,
-  "createdFirstAt": 1668148841474,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312097796,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/alter/upsert.ts",
   "commentsInside": [],
   "rawText": " (\n  /**\n   * The items that were already there\n   */\n  storedData: Storing<AugmentedAnyModelType>[],\n  /**\n   * The items that need to be overwritten or inserted\n   */\n  storingItems:\n    | Storing<AugmentedAnyModelType>\n    | Storing<AugmentedAnyModelType>[],\n  /**\n   * If true, the upserting will fail if there are occuring items with equal slugs/ids\n   */\n  onlyInsert?: boolean\n): DbQueryResult & {\n  newStoredData: Storing<AugmentedAnyModelType>[];\n} => {\n  const storingItemsArray = makeArray(storingItems);\n  let amountUpdated = 0;\n\n  const newStoredData = storedData\n    .map((i) => {\n      if (!i) return;\n      // NB: for every item in the stored data, try to find one that matches\n      const storingIndex = storingItemsArray.findIndex((x) => {\n        if (!x) {\n          log(\"weird item found in your data, replacing\", { type: \"debug\" });\n          return true;\n        }\n\n        const matchId = x.id === i.id;\n        // NB: sometimes slug can be undefined for some models.\n        const matchSlug = x.slug !== undefined && x.slug === i.slug;\n\n        return matchId || matchSlug;\n      });\n\n      if (storingIndex !== -1) {\n        // NB: it needs to be updated, so simply remove it because the new item is going to be concatenated\n        amountUpdated++;\n        return;\n      }\n\n      return i;\n    })\n    .filter(notEmpty)\n    .concat(storingItems);\n\n  if (onlyInsert && amountUpdated > 0) {\n    return {\n      amountUpdated: 0,\n      amountInserted: 0,\n      newStoredData: storedData,\n      amountRemoved: 0,\n      isSuccesful: false,\n      message:\n        \"The creation failed because you already have an item with this name\",\n    };\n  }\n  return {\n    amountUpdated,\n    amountInserted: amountUpdated === 0 ? 1 : 0,\n    newStoredData,\n  };\n}",
@@ -71,7 +66,7 @@
   ],
   "description": "Takes stored data and an item\n\n- updates the data and sets some rows to \"item\" if the item is found (through the id or slug)\n- otherwise inserts\n\nNB: this function works for any storage method except for key value markdown",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").DbQueryResult & { newStoredData: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>[]; }",
+    "rawType": "import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/src/types\").DbQueryResult & { newStoredData: Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>[]; }",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -89,5 +84,5 @@
     "linesPerFile": 71,
     "numberOfFiles": 1
   },
-  "id": "tjieuahtvkzusgtknqghqpxw"
+  "id": "hxzgrjytrisseiznphwrcsfy"
 }

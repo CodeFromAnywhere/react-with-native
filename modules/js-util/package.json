@@ -1,11 +1,17 @@
 {
-  "createdAt": 1662709577330,
-  "updatedAt": 1662709577330,
+  "createdAt": 1668328739525,
+  "updatedAt": 1668328739525,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577330,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328739525,
+  "id": "LZEMcPKjXKrmGtyo",
+  "bin": {
+    "jsUtil": "build/cli.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.7.2"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,18 +19,55 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "js-util",
-  "bin": {
-    "jsUtil": "build/cli.js"
-  },
-  "devDependencies": {
-    "typescript": "^4.7.2"
-  },
+  "language": "english",
   "slug": "js-util",
-  "id": "LZEMcPKjXKrmGtyo",
-  "dependencies": {},
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/util/js-util/src/removeOptionalKeysFromObject.ts. Error: TypeError: Cannot read properties of undefined (reading 'getId')"
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "js-util",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668977446191,
+    "operationDependenciesIndexed": [],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/util",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 23,
+        "lines": 1106,
+        "characters": 28493,
+        "bytes": 28493
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 114,
+        "characters": 2736,
+        "bytes": 2736
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 9,
+        "characters": 71,
+        "bytes": 71
+      },
+      "size": {
+        "bytes": 31300,
+        "characters": 31300,
+        "lines": 1229,
+        "numberOfFiles": 26
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

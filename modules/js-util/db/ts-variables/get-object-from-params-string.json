@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150836738,
-  "updatedAt": 1668150836738,
+  "createdAt": 1668977390723,
+  "updatedAt": 1668977390723,
   "deletedAt": 0,
-  "createdFirstAt": 1668150836738,
+  "createdFirstAt": 1668977390723,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(paramsString: string) =>\n  mergeObjectsArray(\n    paramsString\n      .split(\",\")\n      .map((x) => x.trim().split(\":\"))\n      .map((pair) =>\n        pair[0] && pair[1] ? { [pair[0].trim()]: pair[1] } : null\n      )\n      .filter(notEmpty)\n  )",
   "description": "useful for cli's that only take strings. This creates an object from a string\n\ninput: \"x:a, y:b, z:c\"\noutput: { x: \"a\", y: \"b\", z: \"c\" }\n\nTODO: would be nice if we can validate this string immediately using a JSON SCHEMA",
-  "id": "qpaovhzjpzmvipoqlihtpovw"
+  "id": "cuduacerdxdhxfdkkwyjgsun"
 }

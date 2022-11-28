@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668152069801,
-  "updatedAt": 1668152069801,
+  "createdAt": 1669385114433,
+  "updatedAt": 1669385114433,
   "deletedAt": 0,
-  "createdFirstAt": 1668152069801,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385114433,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/TitleContainer.tsx",
   "commentsInside": [],
   "rawText": " ({\n  title,\n  children,\n  buttons,\n}: {\n  title?: string;\n  children: any;\n  buttons: LabeledButtonType[];\n}) => {\n  return (\n    <Div className=\"p-2 m-2 border rounded-xl border-gray-500\">\n      <Div className=\"flex flex-row justify-between items-center\">\n        {title ? <P className=\"text-3xl\">{title}</P> : <Div />}\n\n        <Div className=\"flex flex-row gap-3\">\n          {buttons.filter((x) => x.isEnabled !== false).map(LabeledButton)}\n        </Div>\n      </Div>\n\n      {children}\n    </Div>\n  );\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 23,
     "numberOfFiles": 1
   },
-  "id": "mrfhtplafvyauntftygqicns"
+  "id": "irbzyyozurpodrnfwzhmnyei"
 }

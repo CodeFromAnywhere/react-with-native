@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055580146,
+  "updatedAt": 1669055580146,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055580146,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "cli",
+  "slug": "cli",
+  "operationRelativeTypescriptFilePath": "src/findAndUpsertTsInterfaces.cli.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const [filePath] = process.argv.slice(2);\n\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) {\n    console.log(\"Please provide a filePath that is part of an operation\");\n    return;\n  }\n  const operationName = getLastFolder(operationBasePath);\n\n  // NB: last argument has been removed, which should be the manualProjectRoot\n  await findAndUpsertTsInterfaces({ filePath, operationName });\n}",
+  "description": "",
+  "id": "uewhpqsbqguvakuuisgvbryp"
+}

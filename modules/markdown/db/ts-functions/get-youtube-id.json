@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668149314063,
-  "updatedAt": 1668149314063,
+  "createdAt": 1669467159891,
+  "updatedAt": 1669467159891,
   "deletedAt": 0,
-  "createdFirstAt": 1668149314063,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669467159891,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/renderMarkdownContent.tsx",
   "commentsInside": [],
   "rawText": " (url: string | undefined): string | undefined => {\n  if (!url) return;\n\n  const regExp =\n    /^.*(youtu.be\\/|v\\/|u\\/\\w\\/|embed\\/|watch\\?v=|\\&v=|\\?v=)([^#\\&\\?]*).*/;\n  const match = url.match(regExp);\n\n  if (match && match[2].length == 11) {\n    return match[2];\n  }\n  return;\n}",
@@ -54,5 +49,5 @@
     "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "kfbatgfsskrxspetmfdkeqbx"
+  "id": "dksfskvpwslsisuqhdhltann"
 }

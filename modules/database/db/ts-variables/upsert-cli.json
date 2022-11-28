@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259852474,
-  "updatedAt": 1666259852474,
+  "createdAt": 1668774159067,
+  "updatedAt": 1668774159067,
   "deletedAt": 0,
-  "createdFirstAt": 1666259852474,
+  "createdFirstAt": 1668774159067,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async () => {\n  const [modelName, dataString] = process.argv.slice(2);\n\n  /**\n   FOR kvmd type:\n\n   - required: name\n   - optional: parent_xxxSlug, value, comment\n   */\n  if (!dataString || !modelName) {\n    console.log(\"please choose a model and data\");\n  }\n\n  const theObject = getObjectFromParamsString(dataString);\n  //@ts-ignore\n  const result = await testDb.upsert(modelName as any, theObject);\n\n  console.table(result);\n}",
   "description": "",
-  "id": "mepuucwpigpprypbxscllhvs"
+  "id": "oytgrkktqnjlrwvksstjostc"
 }

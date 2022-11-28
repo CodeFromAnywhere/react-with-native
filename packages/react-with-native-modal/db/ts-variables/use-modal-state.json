@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261507641,
-  "updatedAt": 1666261507641,
+  "createdAt": 1668333576000,
+  "updatedAt": 1668333576000,
   "deletedAt": 0,
-  "createdFirstAt": 1666261507641,
+  "createdFirstAt": 1668333576000,
   "classification": "const",
   "comments": [],
   "isExported": false,
@@ -29,5 +29,5 @@
   },
   "value": "() => {\n  const [showModal, setShowModal] = useState(false);\n  const [modalContent, setModalContent] = useState<ModalContent>(null);\n  const [title, setTitle] = useState(\"\");\n\n  const handleModal: HandleModal = (\n    content: ModalContent = null,\n    title?: string\n  ) => {\n    setShowModal(!showModal);\n    if (content) {\n      setModalContent(content);\n    }\n    if (title) {\n      setTitle(title);\n    }\n  };\n\n  return { showModal, handleModal, modalContent, title };\n}",
   "description": "",
-  "id": "lothnkwsvyqtwlzhoezcmrmv"
+  "id": "bubvjibcpehwzrqugvxphgde"
 }

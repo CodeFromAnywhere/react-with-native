@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668150464363,
+  "updatedAt": 1668150464363,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150464363,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findMonorepoModules",
+  "slug": "find-monorepo-modules",
+  "operationRelativeTypescriptFilePath": "src/findAllDependencyOperations.ts",
+  "type": {
+    "rawType": "(operationName: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (operationName: string) => {\n  const imports = await db.get(\"TsImport\", { operationName });\n  const monorepoModules = imports\n    .map((x) =>\n      x.isModuleFromMonorepo && x.isModuleResolved ? x.module : null\n    )\n    .filter(notEmpty)\n    .filter(onlyUnique);\n\n  return monorepoModules;\n}",
+  "description": "finds all dependencies of an operation name",
+  "id": "yeyiipvxxokvbfaecthqbetp"
+}

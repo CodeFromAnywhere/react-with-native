@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385351352,
+  "updatedAt": 1669385351352,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385351352,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "switchCurrentPersonWithContext",
+  "slug": "switch-current-person-with-context",
+  "operationRelativeTypescriptFilePath": "src/switchCurrentPerson.ts",
+  "type": {
+    "rawType": "(functionContext: import(\"/Users/king/King/operations/tools/user-interfaces/api/function-context-type/build/FunctionContext\").FunctionContext, newCurentPersonId: string) => Promise<{ isSuccessful: boolean; message: string; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  functionContext: FunctionContext,\n  newCurentPersonId: string\n): Promise<{ isSuccessful: boolean; message: string }> => {\n  if (functionContext.device.currentPersonId === newCurentPersonId) {\n    return { isSuccessful: false, message: \"This account is already active\" };\n  }\n\n  const found = functionContext.device.personIds?.find(\n    (x) => x === newCurentPersonId\n  );\n\n  if (!found) {\n    return { isSuccessful: false, message: \"Can't find that account\" };\n  }\n\n  const { isSuccesful, message } = await db.update(\n    \"Device\",\n    (item) => item.id === functionContext.device.id,\n    (old) => ({ ...old, currentPersonId: newCurentPersonId })\n  );\n\n  return {\n    isSuccessful: isSuccesful || false,\n    message: isSuccesful\n      ? \"Switched\"\n      : message || \"Something went wrong (no message)\",\n  };\n}",
+  "description": "",
+  "id": "pbwceljqkqnipgjimzyjhqpk"
+}

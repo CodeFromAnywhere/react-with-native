@@ -1,0 +1,62 @@
+{
+  "createdAt": 1669384296181,
+  "updatedAt": 1669384296181,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384296181,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/exploreProject.ts",
+  "commentsInside": [],
+  "rawText": " async (config?: {\n  bundleId?: string;\n}): Promise<FolderExploration[] | undefined> => {\n  const bundleId = config?.bundleId;\n  let bundleSummary: BundleSummary | undefined = undefined;\n\n  if (bundleId) {\n    const bundle = (await db.get(\"BundleConfig\")).find(\n      (x) => x.id === bundleId\n    );\n\n    if (bundle) {\n      bundleSummary = getBundleSummary(bundle);\n    }\n  }\n\n  const operationPaths = getPathsWithOperations();\n  const textPath = getRootPath(\"text\");\n  const projectRoot = getProjectRoot();\n  if (!operationPaths || !textPath || !projectRoot) return;\n  /**\n   * STEP 1: finds all folders and files unto (and including) the operation level\n   */\n  const foldersWithMarkdownAndOperationsExplore = await explore({\n    basePath: operationPaths.concat(textPath),\n    includeFoldersWithResults: true,\n    ignore: [\n      \"node_modules\",\n      \".git\",\n      databaseFolderName,\n      \".gitignore\",\n      \".DS_Store\",\n    ],\n    // extension: [\"md\",\"mdx\"]\n    cancelRecursionOn: pathArrayIsOperation,\n  });\n\n  /**\n   * STEP 2: explore all paths to include the files of operations\n   */\n  const exploreArrayPromises = foldersWithMarkdownAndOperationsExplore.map(\n    async (exploreResult) => {\n      // NB: Here I am looking if the operationName is in the bundle summary. If there's a bundle summary and this is not the case, the operation should not be explored\n      const operationName = getLastFolder(exploreResult.path);\n      const shouldIncludeOperation = !bundleSummary\n        ? true\n        : bundleSummary.packageNames.includes(operationName);\n\n      const exploreResultArray = exploreResult.isCancelRecursionResult\n        ? shouldIncludeOperation\n          ? await exploreOperation(exploreResult.path)\n          : []\n        : [exploreResult];\n\n      return exploreResultArray;\n    }\n  );\n  const resultPaths = (await Promise.all(exploreArrayPromises))\n    .flat()\n    .map((x) => x.path);\n\n  /**\n   * STEP 3: get all data of all files\n   */\n  const indexData = {\n    functions: await db.get(\"TsFunction\"),\n    variables: await db.get(\"TsVariable\"),\n    interfaces: await db.get(\"TsInterface\"),\n    // comments: await db.get(\"TsComment\"),\n    // \"build-errors\": await db.get(\"TsBuildError\"),\n  };\n\n  const operationFolders: string[] = await exploreOperationFolders({\n    basePath: getPathsWithOperations(),\n  });\n\n  const fullIndexation = resultPaths\n    .map((absolutePath): FolderExploration | null => {\n      const relativeProjectPath = absolutePath.substring(projectRoot.length);\n      // extension like .ts or empty string if there's no extensnion (also for folders)\n      const name = path.parse(absolutePath).name;\n      const type = getExplorationType(absolutePath, operationFolders);\n\n      // Not typescript\n      if (type !== \"typescript\") {\n        // name of folder, operation, operationFolder, or md file\n        // NB: shouldn't happen\n        if (!type) return null;\n        // NB: we are filling in the children in a later step\n        return { name, relativeProjectPath, type, children: undefined };\n      }\n\n      // Typescript\n\n      const typescriptFileChildren = (\n        Object.keys(indexData) as (keyof typeof indexData)[]\n      )\n        .map((indexInstanceName): FolderExploration[] => {\n          const all = indexData[indexInstanceName];\n          const indexNames = getInstanceNames(all, relativeProjectPath);\n          const type =\n            indexInstanceName === \"functions\"\n              ? \"function\"\n              : indexInstanceName === \"interfaces\"\n              ? \"interface\"\n              : \"variable\";\n\n          const instanceChildren: FolderExploration[] = indexNames.map(\n            (name) => ({ name, relativeProjectPath, type })\n          );\n\n          return instanceChildren;\n        })\n        .flat();\n\n      return {\n        name,\n        relativeProjectPath,\n        type,\n        children: typescriptFileChildren,\n      };\n    })\n    .flat()\n    .filter(notEmpty);\n\n  //\n  const oppositeSortedFullIndexation = fullIndexation\n    // sort alphabetically on relativeProjectPath\n    .sort((a, b) => {\n      if (a.relativeProjectPath < b.relativeProjectPath) return -1;\n      if (a.relativeProjectPath > b.relativeProjectPath) return 1;\n      return 0;\n    })\n    // reverse the result so it's in opposite alphabetical order\n    .reverse();\n\n  // NB: copy because we want to test stuff first\n  const copyForNested = [...oppositeSortedFullIndexation];\n  const nestedExploration = copyForNested\n    .reduce((all, folderExploration, currentIndex) => {\n      const parsedPath = path.parse(\n        path.join(projectRoot, folderExploration.relativeProjectPath)\n      );\n\n      /** the parent folder of a folder, or the folder of a path */\n      const baseFolder =\n        parsedPath.base.length > 0\n          ? parsedPath.dir\n          : path.join(parsedPath.dir, \"..\");\n      const relativeBaseFolder = baseFolder.substring(projectRoot.length);\n\n      // console.log({\n      //   relativeBaseFolder,\n      //   relativeProjectPath: folderExploration.relativeProjectPath,\n      // });\n      const baseIndex = all.findIndex(\n        (x) => x?.relativeProjectPath === relativeBaseFolder\n      );\n\n      // there is no parent found for this one\n      if (baseIndex === -1) {\n        return all;\n      }\n\n      // we found a parent on all[baseIndex]. Lets put folderExploration in the children of that one, and remove it from the full indexation\n\n      all[baseIndex] = {\n        ...all[baseIndex],\n        children: all[baseIndex].children\n          ? all[baseIndex].children?.concat(folderExploration)\n          : [folderExploration],\n      };\n\n      delete all[currentIndex];\n\n      return all;\n    }, copyForNested as FolderExploration[])\n    // the deleted keys can now be removed\n    .filter(notEmpty);\n\n  // console.dir(\n  //   oppositeSortedFullIndexation.map((x) => x.relativeProjectPath),\n  //   { depth: 999, maxArrayLength: 9999 }\n  // );\n\n  return nestedExploration;\n}",
+  "name": "exploreProject",
+  "slug": "explore-project",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "bundleId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "bundleId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "TODO: still needs to be cleaned up. It's a huge function now with many useful components. Split it up!\n\n- explores all files and folders until it finds a package.json.\n\nall items in the explore tree are clickable in the ui, and lead to different pages\n-  a folder leads to a summary of what the folder holds\n-  a operation leads to a summary of the operation\n-  a ts file leads to all functions, variables, and interfaces in that file\n-  a function, variable, or interface leads to specific pages for those things. the data, if available, is attached to the interfaces.\n- a md file leads to the editing user interface (with context) of that file\n- a json file leads to a CRUD for it...\n\n## Performance\nIn the end the data it generates should stay up to date, so it's important this exploration happens fast enough. The data involved is simply walking the filesystem once (a small subset of it) and opening some index files (fun)\n\n## Ideas for later\nLATER: some more things that would be useful:\n\n- watching all files that are also explored for changes using some watcher\n- if something changes, recalculating that part and pushing it to the UI, making the thing going over the line small so it'll be super fast, even over slow internet.\n\nhowever, this is premature optimisation. on my m1, locally, it's probably fine to just recalculate every second ^^ and send a couple megabytes over the line.",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/FolderExploration\").FolderExploration[] | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 7338,
+    "lines": 208,
+    "bytes": 7338,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 35,
+    "linesPerFile": 208,
+    "numberOfFiles": 1
+  },
+  "id": "poqsbfeaqhuzpauatgsswozt"
+}

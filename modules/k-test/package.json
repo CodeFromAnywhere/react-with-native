@@ -1,0 +1,83 @@
+{
+  "createdAt": 1668328736774,
+  "updatedAt": 1668328736774,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328736774,
+  "id": "uzdtgVTjvwNzUtBE",
+  "dependencies": {
+    "make-test": "0.0.1",
+    "js-util": "0.0.1",
+    "get-path": "0.0.1",
+    "fs-util": "1.0.5",
+    "log": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "k-test",
+  "language": "english",
+  "slug": "k-test",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/typescript/testing/k-test/src/types.ts. Error: Error: Unknown type \\\"function\\\"\"]",
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "k-test",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668336239746,
+    "operationDependenciesIndexed": [
+      "makeTest",
+      "isAllTrue",
+      "makeArray",
+      "getOperationPath",
+      "fs",
+      "path",
+      "log"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/typescript/testing",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 5,
+        "lines": 134,
+        "characters": 3817,
+        "bytes": 3817
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 123,
+        "characters": 2879,
+        "bytes": 2879
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 77,
+        "characters": 1798,
+        "bytes": 1798
+      },
+      "size": {
+        "bytes": 8494,
+        "characters": 8494,
+        "lines": 334,
+        "numberOfFiles": 8
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

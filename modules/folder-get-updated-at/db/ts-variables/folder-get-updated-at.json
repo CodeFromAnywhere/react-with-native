@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668331773700,
+  "updatedAt": 1668331773700,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331773700,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "folderGetUpdatedAt",
+  "slug": "folder-get-updated-at",
+  "operationRelativeTypescriptFilePath": "src/folderGetUpdatedAt.ts",
+  "type": {
+    "rawType": "({ folderPath, }: { folderPath: string; }) => Promise<number>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async ({\n  folderPath,\n}: {\n  folderPath: string;\n}): Promise<number> => {\n  return (\n    await explore({\n      basePath: folderPath,\n      includeStats: true,\n      extension: [\"ts\", \"tsx\"],\n      ignore: \"index.ts\",\n    })\n  ).reduce((updatedAt, file) => {\n    const fileUpdatedAt = file.stats?.updatedAt;\n    if (!fileUpdatedAt) return updatedAt;\n    if (fileUpdatedAt > updatedAt) return fileUpdatedAt;\n    return updatedAt;\n  }, 0);\n}",
+  "description": "get last updated file updatedAt time in whole folder, recursively",
+  "id": "kwtpegxwpkiuqmyukmaiygbp"
+}

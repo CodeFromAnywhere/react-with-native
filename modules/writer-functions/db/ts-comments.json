@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1669385047740,
+    "updatedAt": 1669385047740,
+    "deletedAt": 0,
+    "createdFirstAt": 1669385047740,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/saveFileContents.ts",
+    "comment": "",
+    "rawStatement": "export const saveFileContents = async (\n  projectRelativeFilePath: string,\n  newContent: string\n): Promise<{ isSuccessful: boolean; message?: string }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root found\" };\n  }\n\n  const absolutePath = path.join(projectRoot, projectRelativeFilePath);\n\n  if (!fs.existsSync(absolutePath)) {\n    return { isSuccessful: false, message: \"This file does not exist\" };\n  }\n\n  await fs.writeFile(absolutePath, newContent, { encoding: \"utf8\" });\n\n  return {\n    isSuccessful: true,\n  };\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 4,
+    "lastLine": 6,
+    "id": "wowqzxgfuialekthbwtqvnjs"
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "createdAt": 1669055706642,
+  "updatedAt": 1669055706642,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055706642,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/exitIfProcessDependenciesChange.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  operationName: string,\n  manualProjectRoot?: string\n) => {\n  const imports = (\n    await Promise.all(\n      [\"watch-operations\", \"rebuild-operation\"].map(\n        async (operationName) =>\n          // @ts-ignore\n          db.get(\"TsImport\", { operationName, manualProjectRoot }) as Promise<\n            TsImport[]\n          >\n      )\n    )\n  )\n    .flat()\n    .map((i: TsImport) => i.module)\n    // apparently this isn't a dependency of the above 3\n    .concat([\"watch-operations\"])\n    .filter(onlyUnique);\n\n  if (operationName && imports.includes(operationName)) {\n    log(`One of our dependencies (${operationName}) changed. Let's restart.`, {\n      type: \"important\",\n    });\n    process.exit(1);\n  }\n}",
+  "name": "exitIfProcessDependenciesChanged",
+  "slug": "exit-if-process-dependencies-changed",
+  "parameters": [
+    {
+      "name": "operationName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "manualProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "exits the process if our own dependencies change",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 765,
+    "lines": 28,
+    "bytes": 765,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "lxqhvqjwscwpofooufrvtesa"
+}

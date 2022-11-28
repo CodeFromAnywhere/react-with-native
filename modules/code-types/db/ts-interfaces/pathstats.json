@@ -1,0 +1,70 @@
+{
+  "createdAt": 1669639279807,
+  "updatedAt": 1669639279807,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639279807,
+  "id": "pathstats",
+  "name": "PathStats",
+  "slug": "pathstats",
+  "operationRelativeTypescriptFilePath": "src/PathMetaData.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n/**\n * Information which can be found by fs.stat\n */\nexport type PathStats = {\n  /**\n   * unix time this file was last updated (or for folders: unix time of last modifiation of any file in this folder, recursively)\n   *\n   * TODO: renames also count as updates, I guess. Needs to be clear!\n   */\n  updatedAt: number;\n  /**\n   * unix time this file was created (or for folders: unix time of creation of the first file in this folder)\n   *\n   * TODO: figure out if we can get the creation date of the folder itself?\n   */\n  createdAt: number;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Information which can be found by fs.stat",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "updatedAt": {
+          "type": "number",
+          "description": "unix time this file was last updated (or for folders: unix time of last modifiation of any file in this folder, recursively)\n\nTODO: renames also count as updates, I guess. Needs to be clear!"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "unix time this file was created (or for folders: unix time of creation of the first file in this folder)\n\nTODO: figure out if we can get the creation date of the folder itself?"
+        }
+      },
+      "required": [
+        "updatedAt",
+        "createdAt"
+      ],
+      "additionalProperties": false,
+      "description": "Information which can be found by fs.stat"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Information which can be found by fs.stat",
+      "properties": [
+        {
+          "name": "updatedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "unix time this file was last updated (or for folders: unix time of last modifiation of any file in this folder, recursively)\n\nTODO: renames also count as updates, I guess. Needs to be clear!",
+            "todo": "renames also count as updates, I guess. Needs to be clear!",
+            "type": "number"
+          }
+        },
+        {
+          "name": "createdAt",
+          "required": true,
+          "schema": {
+            "fullComment": "unix time this file was created (or for folders: unix time of creation of the first file in this folder)\n\nTODO: figure out if we can get the creation date of the folder itself?",
+            "todo": "figure out if we can get the creation date of the folder itself?",
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "PathStats",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

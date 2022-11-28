@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385319513,
+  "updatedAt": 1669385319513,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385319513,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "addPersonAuthenticationMethodWithContext",
+  "slug": "add-person-authentication-method-with-context",
+  "operationRelativeTypescriptFilePath": "src/addPersonAuthenticationMethodWithContext.ts",
+  "type": {
+    "rawType": "(functionContext: import(\"/Users/king/King/operations/tools/user-interfaces/api/function-context-type/build/FunctionContext\").FunctionContext, method: import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/AuthenticationMethjod\").AuthenticationMethodMethod, handle: string, credential?: string | undefined) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  functionContext: FunctionContext,\n  method: AuthenticationMethodMethod,\n  handle: AuthenticationMethod[\"handle\"],\n  credential?: string\n) => {\n  const { isSuccessful, message, authenticationMethod } =\n    await addAuthenticationMethod(method, handle, true, credential);\n\n  if (!isSuccessful || !authenticationMethod) {\n    return { isSuccessful, message };\n  }\n\n  const updateResult = await db.update(\n    \"Person\",\n    (item) => item.id === functionContext.device.currentPersonId,\n    (old) => ({\n      ...old,\n      authenticationMethods:\n        old.authenticationMethods.concat(authenticationMethod),\n    })\n  );\n\n  return { isSuccessful: updateResult.isSuccesful, message };\n}",
+  "description": "",
+  "id": "kpzxhzsglyavwmkuyakadoke"
+}

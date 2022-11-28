@@ -1,0 +1,110 @@
+{
+  "createdAt": 1669385043725,
+  "updatedAt": 1669385043725,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385043725,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/processAssetUpload.ts",
+  "commentsInside": [],
+  "rawText": " async (assets: BackendAsset[]) => {\n  const processed = (\n    await Promise.all(assets.map((asset) => processAsset(asset)))\n  ).filter(notEmpty);\n\n  return processed;\n}",
+  "name": "processAssetUpload",
+  "slug": "process-asset-upload",
+  "parameters": [
+    {
+      "name": "assets",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/BackendAsset"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "fullComment": "Part of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+              "properties": [
+                {
+                  "name": "alt",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Stored value\n\nAlt text for the asset",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "relativePath",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "name",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                    "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "temporaryDestination",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "projectRelativeReferencingFilePath",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "modelName",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            },
+            "name": "BackendAsset"
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "Used for the markdown reader to immediately process a asset upload. If we want to validate this, it would be good to allow a second parameter that checks if you have access to the file",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 353,
+    "lines": 7,
+    "bytes": 353,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 50,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "glmsjozdwvtnxybvaeatbnse"
+}

@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666258921861,
+  "updatedAt": 1666258921861,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258921861,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/publishAllOperations.ts",
+  "commentsInside": [],
+  "rawText": " ({\n  basePath,\n  callback,\n  fileName,\n  folderName,\n  shell = true,\n}: Omit<AllInputType, \"type\" | \"command\">) =>\n  forAllFolders({\n    type: \"operations\",\n    fileName,\n    folderName,\n    callback,\n    basePath,\n    command: \"npm run pub --if-present\",\n    shell,\n  })",
+  "name": "publishAllOperations",
+  "slug": "publish-all-operations",
+  "parameters": [],
+  "description": "Script to publish all packages everywhere (that also runs prepublish). Only src in git, only build in npm.",
+  "returnType": {
+    "rawType": "Promise<void>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 378,
+    "lines": 16,
+    "bytes": 378,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "gwhfwaciggrbowgaamkkdjum"
+}

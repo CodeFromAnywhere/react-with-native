@@ -1,0 +1,45 @@
+{
+  "createdAt": 1669385434558,
+  "updatedAt": 1669385434558,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385434558,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/makeNestedObjectFromQueryPathObject.ts",
+  "commentsInside": [],
+  "rawText": " <T extends QueryPathObject>(\n  objectArray: T[],\n  initialValue: NestedObject<T>\n): NestedObject<T> => {\n  // copy queryPath into chunk\n  const reducableObjectArray = objectArray.map((x) => ({\n    ...x,\n    __chunk: x.__chunk || x.queryPath,\n  }));\n\n  const nestedPathObject = reducableObjectArray.reduce((previous, current) => {\n    const parts: string[] = current.__chunk.split(\"/\");\n    const firstPart = parts[0];\n\n    // Base case 1: if we already have it, skip it\n    if (Object.keys(previous).includes(firstPart)) {\n      return previous;\n    }\n\n    const queryPathsHere = reducableObjectArray\n      .filter((p) => p.__chunk.startsWith(`${firstPart}/`))\n      .map((p) => {\n        return { ...p, __chunk: p.__chunk.substring(firstPart.length + 1) };\n      });\n\n    // Base case 2: if it's a leaf (last item), and it has NO children, return it with its own value\n    if (parts.length === 1 && queryPathsHere.length === 0) {\n      const leaf = { ...previous, [firstPart]: current };\n      return leaf;\n    }\n\n    // Recursion case: find all queryPaths starting with the same branch\n    const newNestedPathObject: NestedObject<T> = {\n      ...previous,\n      [firstPart]: makeNestedObjectFromQueryPathObject(queryPathsHere, {}),\n    };\n\n    return newNestedPathObject;\n  }, initialValue) as NestedObject<T>;\n\n  return nestedPathObject;\n}",
+  "name": "makeNestedObjectFromQueryPathObject",
+  "slug": "make-nested-object-from-query-path-object",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/recursive-types/build/NestedObject\").NestedObject<T>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1343,
+    "lines": 42,
+    "bytes": 1343,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 42,
+    "numberOfFiles": 1
+  },
+  "id": "efrtinzwylcsegyprpjruwtk"
+}

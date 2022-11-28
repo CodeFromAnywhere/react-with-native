@@ -1,0 +1,129 @@
+{
+  "createdAt": 1669055605173,
+  "updatedAt": 1669055605173,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055605173,
+  "id": "completeoperationpathparse",
+  "name": "CompleteOperationPathParse",
+  "slug": "completeoperationpathparse",
+  "operationRelativeTypescriptFilePath": "src/getValidatedOperationPathParse.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type CompleteOperationPathParse = OperationPathParse & {\n  filePath: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "filePath": {
+          "type": "string"
+        },
+        "relativeOperationBasePathFromProjectRoot": {
+          "type": "string",
+          "description": "relative file path from the project-root to the operation (DOES include operation folder)\n\ne.g. /tools/cognition/typescript/index-typescript"
+        },
+        "operationRelativeTypescriptFilePath": {
+          "type": "string",
+          "description": "relative file path from the operation src\n\ne.g. general.ts"
+        },
+        "srcFileId": {
+          "type": "string",
+          "description": "file id (same as operationRelativeTypescriptFilePath but without extension)\n\ne.g. \"general\"\n\nTODO: figure out if this can be omitted"
+        },
+        "operationName": {
+          "type": "string",
+          "description": "operation package.json name"
+        },
+        "operationFolderName": {
+          "type": "string",
+          "description": "operation folder name (by convention, must be identical to operationName, but it could have some mistakes)"
+        },
+        "relativePathFromProjectRoot": {
+          "type": "string",
+          "description": "relative file or folder path from the project root"
+        }
+      },
+      "required": [
+        "filePath",
+        "operationFolderName",
+        "operationRelativeTypescriptFilePath",
+        "relativeOperationBasePathFromProjectRoot",
+        "relativePathFromProjectRoot",
+        "srcFileId"
+      ]
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "filePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "relativeOperationBasePathFromProjectRoot",
+          "required": true,
+          "schema": {
+            "fullComment": "relative file path from the project-root to the operation (DOES include operation folder)\n\ne.g. /tools/cognition/typescript/index-typescript",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativeTypescriptFilePath",
+          "required": true,
+          "schema": {
+            "fullComment": "relative file path from the operation src\n\ne.g. general.ts",
+            "type": "string"
+          }
+        },
+        {
+          "name": "srcFileId",
+          "required": true,
+          "schema": {
+            "fullComment": "file id (same as operationRelativeTypescriptFilePath but without extension)\n\ne.g. \"general\"\n\nTODO: figure out if this can be omitted",
+            "todo": "figure out if this can be omitted",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationName",
+          "required": false,
+          "schema": {
+            "fullComment": "operation package.json name",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationFolderName",
+          "required": true,
+          "schema": {
+            "fullComment": "operation folder name (by convention, must be identical to operationName, but it could have some mistakes)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "relativePathFromProjectRoot",
+          "required": true,
+          "schema": {
+            "fullComment": "relative file or folder path from the project root",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CompleteOperationPathParse",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

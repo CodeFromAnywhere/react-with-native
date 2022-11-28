@@ -1,0 +1,53 @@
+{
+  "createdAt": 1669380105614,
+  "updatedAt": 1669380105614,
+  "deletedAt": 0,
+  "createdFirstAt": 1669380105614,
+  "id": "todoofferstatus",
+  "name": "TodoOfferStatus",
+  "slug": "todoofferstatus",
+  "operationRelativeTypescriptFilePath": "src/TodoOfferStatus.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "/**\n * Status of an offer to do some todolist\n *\n * - `offered`: offer placed, has not been accepted yet. freelancer can still edit offer or remove it\n * - `rejected`: offer can be rejected by admin (before accepting)\n * - `canceled`: freelancer and admin can cancel an previously accepted offer\n * - `accepted`: offer is accepted by admin\n * - `todo`: freelancer has said it still needs to be done\n * - `doing` freelancer has said it's in progress\n * - `done` freelancer said it's done\n * - `approved` approved by admin, offer should become archived\n */\nexport type TodoOfferStatus =\n  | \"offered\"\n  | \"rejected\"\n  | \"accepted\"\n  | \"todo\"\n  | \"doing\"\n  | \"done\"\n  | \"approved\";",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Status of an offer to do some todolist\n\n- `offered`: offer placed, has not been accepted yet. freelancer can still edit offer or remove it\n- `rejected`: offer can be rejected by admin (before accepting)\n- `canceled`: freelancer and admin can cancel an previously accepted offer\n- `accepted`: offer is accepted by admin\n- `todo`: freelancer has said it still needs to be done\n- `doing` freelancer has said it's in progress\n- `done` freelancer said it's done\n- `approved` approved by admin, offer should become archived",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "string",
+      "enum": [
+        "offered",
+        "rejected",
+        "accepted",
+        "todo",
+        "doing",
+        "done",
+        "approved"
+      ],
+      "description": "Status of an offer to do some todolist\n\n- `offered`: offer placed, has not been accepted yet. freelancer can still edit offer or remove it\n- `rejected`: offer can be rejected by admin (before accepting)\n- `canceled`: freelancer and admin can cancel an previously accepted offer\n- `accepted`: offer is accepted by admin\n- `todo`: freelancer has said it still needs to be done\n- `doing` freelancer has said it's in progress\n- `done` freelancer said it's done\n- `approved` approved by admin, offer should become archived"
+    },
+    "simplifiedSchema": {
+      "enum": [
+        "offered",
+        "rejected",
+        "accepted",
+        "todo",
+        "doing",
+        "done",
+        "approved"
+      ],
+      "fullComment": "Status of an offer to do some todolist\n\n- `offered`: offer placed, has not been accepted yet. freelancer can still edit offer or remove it\n- `rejected`: offer can be rejected by admin (before accepting)\n- `canceled`: freelancer and admin can cancel an previously accepted offer\n- `accepted`: offer is accepted by admin\n- `todo`: freelancer has said it still needs to be done\n- `doing` freelancer has said it's in progress\n- `done` freelancer said it's done\n- `approved` approved by admin, offer should become archived",
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "rawType": "TodoOfferStatus",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

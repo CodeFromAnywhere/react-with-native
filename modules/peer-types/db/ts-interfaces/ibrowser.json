@@ -1,0 +1,78 @@
+{
+  "createdAt": 1669384916114,
+  "updatedAt": 1669384916114,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384916114,
+  "id": "ibrowser",
+  "name": "IBrowser",
+  "slug": "ibrowser",
+  "operationRelativeTypescriptFilePath": "src/external/ua-parser-js.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "/**\n * NB: copied from ua-parser-js ^1.0.32 because they weren't indexed\n */\n\nexport interface IBrowser {\n  /**\n   * Possible values :\n   * Amaya, Android Browser, Arora, Avant, Baidu, Blazer, Bolt, Camino, Chimera, Chrome,\n   * Chromium, Comodo Dragon, Conkeror, Dillo, Dolphin, Doris, Edge, Epiphany, Fennec,\n   * Firebird, Firefox, Flock, GoBrowser, iCab, ICE Browser, IceApe, IceCat, IceDragon,\n   * Iceweasel, IE [Mobile], Iron, Jasmine, K-Meleon, Konqueror, Kindle, Links,\n   * Lunascape, Lynx, Maemo, Maxthon, Midori, Minimo, MIUI Browser, [Mobile] Safari,\n   * Mosaic, Mozilla, Netfront, Netscape, NetSurf, Nokia, OmniWeb, Opera [Mini/Mobi/Tablet],\n   * Phoenix, Polaris, QQBrowser, RockMelt, Silk, Skyfire, SeaMonkey, SlimBrowser, Swiftfox,\n   * Tizen, UCBrowser, Vivaldi, w3m, Yandex\n   *\n   */\n  name: string | undefined;\n\n  /**\n   * Determined dynamically\n   */\n  version: string | undefined;\n\n  /**\n   * Determined dynamically\n   * @deprecated\n   */\n  major: string | undefined;\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "NB: copied from ua-parser-js ^1.0.32 because they weren't indexed",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Possible values : Amaya, Android Browser, Arora, Avant, Baidu, Blazer, Bolt, Camino, Chimera, Chrome, Chromium, Comodo Dragon, Conkeror, Dillo, Dolphin, Doris, Edge, Epiphany, Fennec, Firebird, Firefox, Flock, GoBrowser, iCab, ICE Browser, IceApe, IceCat, IceDragon, Iceweasel, IE [Mobile], Iron, Jasmine, K-Meleon, Konqueror, Kindle, Links, Lunascape, Lynx, Maemo, Maxthon, Midori, Minimo, MIUI Browser, [Mobile] Safari, Mosaic, Mozilla, Netfront, Netscape, NetSurf, Nokia, OmniWeb, Opera [Mini/Mobi/Tablet], Phoenix, Polaris, QQBrowser, RockMelt, Silk, Skyfire, SeaMonkey, SlimBrowser, Swiftfox, Tizen, UCBrowser, Vivaldi, w3m, Yandex"
+        },
+        "version": {
+          "type": "string",
+          "description": "Determined dynamically"
+        },
+        "major": {
+          "type": "string",
+          "description": "Determined dynamically",
+          "deprecated": true
+        }
+      },
+      "additionalProperties": false,
+      "description": "NB: copied from ua-parser-js ^1.0.32 because they weren't indexed"
+    },
+    "simplifiedSchema": {
+      "fullComment": "NB: copied from ua-parser-js ^1.0.32 because they weren't indexed",
+      "nb": "copied from ua-parser-js ^1.0.32 because they weren't indexed",
+      "properties": [
+        {
+          "name": "name",
+          "required": false,
+          "schema": {
+            "fullComment": "Possible values : Amaya, Android Browser, Arora, Avant, Baidu, Blazer, Bolt, Camino, Chimera, Chrome, Chromium, Comodo Dragon, Conkeror, Dillo, Dolphin, Doris, Edge, Epiphany, Fennec, Firebird, Firefox, Flock, GoBrowser, iCab, ICE Browser, IceApe, IceCat, IceDragon, Iceweasel, IE [Mobile], Iron, Jasmine, K-Meleon, Konqueror, Kindle, Links, Lunascape, Lynx, Maemo, Maxthon, Midori, Minimo, MIUI Browser, [Mobile] Safari, Mosaic, Mozilla, Netfront, Netscape, NetSurf, Nokia, OmniWeb, Opera [Mini/Mobi/Tablet], Phoenix, Polaris, QQBrowser, RockMelt, Silk, Skyfire, SeaMonkey, SlimBrowser, Swiftfox, Tizen, UCBrowser, Vivaldi, w3m, Yandex",
+            "type": "string"
+          }
+        },
+        {
+          "name": "version",
+          "required": false,
+          "schema": {
+            "fullComment": "Determined dynamically",
+            "type": "string"
+          }
+        },
+        {
+          "name": "major",
+          "required": false,
+          "schema": {
+            "fullComment": "Determined dynamically",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "IBrowser",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

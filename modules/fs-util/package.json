@@ -1,30 +1,101 @@
 {
-  "createdAt": 1662709577328,
-  "updatedAt": 1662709577328,
+  "createdAt": 1668328816458,
+  "updatedAt": 1668328816458,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577328,
-  "name": "fs-util",
-  "version": "1.0.5",
-  "description": "",
-  "main": "build/index.js",
-  "source": "src/index.ts",
-  "scripts": {
-    "initpub": "npm publish --access public",
-    "pub": "npm version patch --force && npm publish",
-    "build": "tsc",
-    "dev": "tsc -w"
-  },
+  "createdFirstAt": 1668328816458,
+  "id": "IPFeFRXDRUiclwih",
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "gray-matter": "^4.0.3",
     "js-util": "0.0.1",
     "log": "0.0.1",
     "graceful-fs": "*"
   },
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "initpub": "npm publish --access public",
+    "pub": "npm version patch --force && npm publish",
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "source": "src/index.ts",
+  "version": "1.0.5",
+  "name": "fs-util",
+  "language": "english",
   "slug": "fs-util",
-  "id": "IPFeFRXDRUiclwih",
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/control-fs/fs-util/src/files.ts. Error: TypeError: Cannot read properties of undefined (reading 'getId')\"]",
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "fs-util",
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668446824234,
+    "operationDependenciesIndexed": [
+      "log",
+      "trimSlashes",
+      "makeArray",
+      "notEmpty"
+    ],
+    "packageDependenciesIndexed": [
+      "constants",
+      "rmSync",
+      "existsSync",
+      "accessSync",
+      "cpSync",
+      "promisify",
+      "cp",
+      "PathLike",
+      "Dir",
+      "Dirent",
+      "Stats",
+      "parse",
+      "basename",
+      "delimiter",
+      "dirname",
+      "extname",
+      "format",
+      "isAbsolute",
+      "join",
+      "normalize",
+      "resolve",
+      "sep",
+      "relative"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/control-fs",
+    "markdown": "General purpose wrapper around `node:fs` and `node:path` that should be used instead of those, because it removes some of its painpoints, removes unneeded stuff, and adds some other useful functions.\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 14,
+        "lines": 604,
+        "characters": 15543,
+        "bytes": 15543
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 141,
+        "characters": 3406,
+        "bytes": 3406
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 625,
+        "characters": 12051,
+        "bytes": 12051
+      },
+      "size": {
+        "bytes": 31000,
+        "characters": 31000,
+        "lines": 1370,
+        "numberOfFiles": 18
+      }
+    },
+    "hasGeneratedDependenciesIndexed": false,
+    "hasGeneratedImportsIndexed": false
   }
 }

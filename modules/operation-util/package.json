@@ -1,0 +1,98 @@
+{
+  "createdAt": 1668328687543,
+  "updatedAt": 1668328687543,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328687543,
+  "id": "ijohgpnKYOINMKGK",
+  "dependencies": {
+    "database": "0.0.1",
+    "get-path": "0.0.1",
+    "get-package-json": "0.0.1",
+    "js-util": "0.0.1",
+    "fs-util": "1.0.5",
+    "code-types": "0.0.1",
+    "log": "0.0.1",
+    "path-util": "0.0.1",
+    "model-types": "0.0.1",
+    "set-json-key": "1.0.9",
+    "filename-conventions": "0.0.1"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "operation-util",
+  "language": "english",
+  "slug": "operation-util",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/control-project/operation-util/src/recalculateOperationIndexJson.ts. Error: Error: Type '{ size: FolderSummary; operationName: string; updatedAt: number; name: string; slug: string; packageName: string; folderName: string; relativeOperationLocationPath: string; ... 17 more ...; language: \\\"english\\\" | ... 21 more ... | \\\"swahili\\\"; } | { ...; }' is not assignable to type 'Creation<OperationIndex>'.\\n  Type '{ size: FolderSummary; buildSucceeded: false; dependenciesBuildsFailed: false; indexErrors: never[]; indexImportExportError: string; indexInteracesErrors: never[]; lintProblems: never[]; ... 15 more ...; createdAt: number; }' is not assignable to type 'Creation<OperationIndex>'.\\n    Type '{ size: FolderSummary; buildSucceeded: false; dependenciesBuildsFailed: false; indexErrors: never[]; indexImportExportError: string; indexInteracesErrors: never[]; lintProblems: never[]; ... 15 more ...; createdAt: number; }' is not assignable to type 'Partial<Pick<OperationIndex, OptionalForCreationKeys<OperationIndex>>>'.\\n      Types of property 'language' are incompatible.\\n        Type '\\\"en\\\"' is not assignable to type '\\\"english\\\" | \\\"dutch\\\" | \\\"nepali\\\" | \\\"portuguese\\\" | \\\"brazilian\\\" | \\\"german\\\" | \\\"french\\\" | \\\"spanish\\\" | \\\"italian\\\" | \\\"norwegian\\\" | \\\"swedish\\\" | \\\"danish\\\" | \\\"vietnamese\\\" | \\\"indonesian\\\" | ... 9 more ... | undefined'.\"]",
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "operation-util",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668332247183,
+    "operationDependenciesIndexed": [
+      "db",
+      "getProjectRoot",
+      "makeRelative",
+      "getPackageJson",
+      "takeFirst",
+      "getLastFolder",
+      "path",
+      "db",
+      "Operation",
+      "log",
+      "Operation",
+      "getOperationClassification",
+      "categorizeFiles",
+      "getFolderSummary",
+      "db",
+      "Creation",
+      "mergeNestedObject"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/control-project",
+    "markdown": "Operation with utility functions to calculate things about operations and alter operation-index.\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 3,
+        "lines": 161,
+        "characters": 4799,
+        "bytes": 4799
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 149,
+        "characters": 5001,
+        "bytes": 5001
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 80,
+        "characters": 1721,
+        "bytes": 1721
+      },
+      "size": {
+        "bytes": 11521,
+        "characters": 11521,
+        "lines": 390,
+        "numberOfFiles": 7
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

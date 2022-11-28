@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385316627,
+  "updatedAt": 1669385316627,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385316627,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "addDeviceAuthenticationMethodWithContext",
+  "slug": "add-device-authentication-method-with-context",
+  "operationRelativeTypescriptFilePath": "src/addDeviceAuthenticationMethodWithContext.ts",
+  "type": {
+    "rawType": "(functionContext: import(\"/Users/king/King/operations/tools/user-interfaces/api/function-context-type/build/FunctionContext\").FunctionContext, method: import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/AuthenticationMethjod\").AuthenticationMethodMethod, handle: string, credential?: string | undefined) => Promise<{ isSuccessful?: boolean | undefined; message?: string | undefined; functionContext?: import(\"/Users/king/King/operations/tools/user-interfaces/api/function-context-type/build/FunctionContext\").FunctionContext | undefined; authenticationMethod?: import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/AuthenticationMethjod\").AuthenticationMethod | undefined; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  functionContext: FunctionContext,\n  method: AuthenticationMethodMethod,\n  handle: string,\n  credential?: string\n): Promise<{\n  isSuccessful?: boolean;\n  message?: string;\n  functionContext?: FunctionContext;\n  authenticationMethod?: AuthenticationMethod;\n}> => {\n  const { isSuccessful, message, authenticationMethod } =\n    await addAuthenticationMethod(method, handle, false, credential);\n  if (!isSuccessful || !authenticationMethod) {\n    return { isSuccessful, message };\n  }\n\n  const newAuthenticationMethods = functionContext.device.authenticationMethods\n    .filter((x) => x.method !== authenticationMethod.method)\n    .concat(authenticationMethod);\n\n  const updateResult = await db.update(\n    \"Device\",\n    (item) => item.authToken === functionContext.authToken,\n    (old) => {\n      return {\n        ...old,\n        authenticationMethods: newAuthenticationMethods,\n      };\n    }\n  );\n\n  const newFunctionContext = mergeNestedObject(functionContext, {\n    device: {\n      authenticationMethods: newAuthenticationMethods,\n    },\n  });\n\n  return {\n    isSuccessful: updateResult.isSuccesful,\n    message: \"Method added\",\n    functionContext: newFunctionContext,\n    authenticationMethod,\n  };\n}",
+  "description": "returns new function context with added authenticationmethod",
+  "id": "qocveuvoozmnysenohavtwnu"
+}

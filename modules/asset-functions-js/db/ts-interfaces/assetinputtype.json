@@ -1,0 +1,74 @@
+{
+  "createdAt": 1669384142653,
+  "updatedAt": 1669384142653,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384142653,
+  "id": "assetinputtype",
+  "name": "AssetInputType",
+  "slug": "assetinputtype",
+  "operationRelativeTypescriptFilePath": "src/findAssetParametersRecursively.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "image",
+            "video",
+            "audio",
+            "file",
+            "asset"
+          ]
+        },
+        "isMultiple": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "isMultiple"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "image",
+              "video",
+              "audio",
+              "file",
+              "asset"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "isMultiple",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "AssetInputType",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

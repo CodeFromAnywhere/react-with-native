@@ -1,0 +1,106 @@
+{
+  "createdAt": 1668331940224,
+  "updatedAt": 1668331940224,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331940224,
+  "id": "categorizedfilepaths",
+  "name": "CategorizedFilePaths",
+  "slug": "categorizedfilepaths",
+  "operationRelativeTypescriptFilePath": "src/getFolderSummary.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "filepaths categorized based on the filetype. With king os there are only these filetypes:\n\n- code: ts, tsx\n- data: json\n- text: md, mdx",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "text": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "code",
+        "data",
+        "text"
+      ],
+      "additionalProperties": false,
+      "description": "filepaths categorized based on the filetype. With king os there are only these filetypes:\n\n- code: ts, tsx\n- data: json\n- text: md, mdx"
+    },
+    "simplifiedSchema": {
+      "fullComment": "filepaths categorized based on the filetype. With king os there are only these filetypes:\n\n- code: ts, tsx\n- data: json\n- text: md, mdx",
+      "properties": [
+        {
+          "name": "code",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "data",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "text",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CategorizedFilePaths",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

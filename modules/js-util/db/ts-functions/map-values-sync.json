@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150847749,
-  "updatedAt": 1668150847749,
+  "createdAt": 1668977408827,
+  "updatedAt": 1668977408827,
   "deletedAt": 0,
-  "createdFirstAt": 1668150847749,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977408827,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/object-maps.ts",
   "commentsInside": [],
   "rawText": " <T, U>(\n  object: { [key: string]: T },\n  mapFn: (value: T) => U\n) => {\n  const valueObjectParts = Object.keys(object).map((key) => {\n    return { [key]: mapFn(object[key]) };\n  });\n\n  return mergeObjectsArray(valueObjectParts);\n}",
@@ -46,5 +41,5 @@
     "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "xyudbtnelfkhmqobnqbzatav"
+  "id": "uguoxveufaphhbimykboivph"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384248517,
+  "updatedAt": 1669384248517,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384248517,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "itemGetBackendAssetUrl",
+  "slug": "item-get-backend-asset-url",
+  "operationRelativeTypescriptFilePath": "src/itemGetBackendAssetUrl.ts",
+  "type": {
+    "rawType": "(config: { item: import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").AugmentedAnyModelType; backendAsset?: import(\"/Users/king/King/operations/tools/asset/asset-type/build/BackendAsset\").BackendAsset | import(\"/Users/king/King/operations/tools/asset/asset-type/build/BackendAsset\").BackendAsset[] | undefined; isDownload?: boolean | undefined; }) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(config: {\n  item: AugmentedAnyModelType;\n  backendAsset?: BackendAsset | BackendAsset[];\n  isDownload?: boolean;\n}) => {\n  const { backendAsset, item, isDownload } = config;\n\n  const realBackendAsset = backendAsset ? takeFirst(backendAsset) : undefined;\n\n  if (!realBackendAsset?.relativePath) {\n    return undefined;\n  }\n\n  const url = getReferencedAssetApiUrl(\n    apiUrl,\n    item.projectRelativePath,\n    realBackendAsset.relativePath,\n    isDownload\n  );\n  return url;\n}",
+  "description": "Get remote url for a `BackendAsset` in an `AugmentedAnyModelType` database model item.\n\nIf you provide an array it'll take the first asset.",
+  "id": "ddnvxhjwwotyemvdioreismp"
+}

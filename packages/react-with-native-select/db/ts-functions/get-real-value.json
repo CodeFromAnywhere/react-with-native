@@ -1,29 +1,36 @@
 {
-  "createdAt": 1666261590261,
-  "updatedAt": 1666261590261,
+  "createdAt": 1668833468222,
+  "updatedAt": 1668833468222,
   "deletedAt": 0,
-  "createdFirstAt": 1666261590261,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668833468222,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util.tsx",
   "commentsInside": [],
-  "rawText": " <T extends unknown>({\n  value,\n  selectFirstOption,\n  options,\n  title,\n}: {\n  title: string;\n  options: Item<T>[];\n  value?: Item<T> | null;\n  selectFirstOption?: boolean;\n}): Item<T> => {\n  return value\n    ? value\n    : selectFirstOption\n    ? options[0]\n    : { label: title, value: undefined as T };\n}",
+  "rawText": " <T extends unknown>({\n  value,\n  selectFirstOption,\n  options,\n  title,\n}: {\n  title: string;\n  options: Item<T>[];\n  value?: Item<T> | null;\n  selectFirstOption?: boolean;\n}): Item<T> => {\n  const result = value\n    ? value\n    : selectFirstOption\n    ? options[0]\n    : { label: title, value: \"\", data: undefined };\n\n  return result;\n}",
   "name": "getRealValue",
   "slug": "get-real-value",
   "parameters": [],
   "description": "",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-select/src/types\").Item<T>",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T>",
     "typeDefinition": {
       "type": "object",
       "properties": {
-        "value": {},
+        "value": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
         "label": {
           "type": "string",
           "allOf": [
@@ -36,11 +43,13 @@
               "minLength": 1
             }
           ]
-        }
+        },
+        "data": {}
       },
       "required": [
         "value",
-        "label"
+        "label",
+        "data"
       ],
       "optional": false
     },
@@ -56,8 +65,7 @@
           "name": "value",
           "required": true,
           "schema": {
-            "properties": [],
-            "type": "object"
+            "type": "string"
           }
         },
         {
@@ -66,6 +74,14 @@
           "schema": {
             "type": "string"
           }
+        },
+        {
+          "name": "data",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
         }
       ],
       "type": "object"
@@ -73,13 +89,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 307,
-    "lines": 17,
-    "bytes": 307,
+    "characters": 338,
+    "lines": 19,
+    "bytes": 338,
     "bytesPerCharacter": 1,
     "charactersPerLine": 18,
-    "linesPerFile": 17,
+    "linesPerFile": 19,
     "numberOfFiles": 1
   },
-  "id": "fygfumkayytuxjzvigmleiip"
+  "id": "mtzplwhzgdwlzfygbfttuhxa"
 }

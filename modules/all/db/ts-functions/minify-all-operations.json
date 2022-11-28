@@ -1,0 +1,100 @@
+{
+  "createdAt": 1666258920777,
+  "updatedAt": 1666258920777,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258920777,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/minifyAllOperations.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  config?: Omit<\n    AllInputType,\n    \"type\" | \"command\" | \"callback\" | \"fileName\" | \"folderName\" | \"ignore\"\n  >\n) => {\n  return forAllFolders({\n    type: \"operations\",\n    callback: (folderPath) => {\n      return minifyBuild({ buildFolderPath: path.join(folderPath, \"build\") });\n    },\n    basePath: config?.basePath || getPathsWithOperations(),\n    shell: config?.shell,\n  });\n}",
+  "name": "minifyAllOperations",
+  "slug": "minify-all-operations",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "basePath": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "onlyRoot": {
+            "type": "boolean"
+          },
+          "shell": {
+            "type": "boolean",
+            "description": "if you run a command, setting this to true, will make sure the results are shown"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "basePath",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "onlyRoot",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "shell",
+            "required": false,
+            "schema": {
+              "fullComment": "if you run a command, setting this to true, will make sure the results are shown",
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "minify all operations everywhere. optionally:\n- enable the shell\n- specify a basepath (tools by default)",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 494,
+    "lines": 17,
+    "bytes": 494,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "vjwbuhuyihpcnzkyxpcoyqib"
+}

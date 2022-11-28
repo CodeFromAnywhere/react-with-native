@@ -1,0 +1,156 @@
+{
+  "createdAt": 1669276584384,
+  "updatedAt": 1669276584384,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276584384,
+  "id": "crudpage",
+  "name": "CrudPage",
+  "slug": "crudpage",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n/**\n * Data needed to make a `WebPage`<CrudPage>\n */\nexport type CrudPage = {\n  modelName: string;\n  datasetSlugs?: string[];\n  canCreate?: boolean;\n  canRead?: boolean;\n  canUpdate?: boolean;\n  canDelete?: boolean;\n  itemActionFunctionNames?: string[];\n  pageActionFunctionNames?: string[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Data needed to make a `WebPage`<CrudPage>",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "modelName": {
+          "type": "string"
+        },
+        "datasetSlugs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "canCreate": {
+          "type": "boolean"
+        },
+        "canRead": {
+          "type": "boolean"
+        },
+        "canUpdate": {
+          "type": "boolean"
+        },
+        "canDelete": {
+          "type": "boolean"
+        },
+        "itemActionFunctionNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pageActionFunctionNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "modelName"
+      ],
+      "additionalProperties": false,
+      "description": "Data needed to make a `WebPage`<CrudPage>"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Data needed to make a `WebPage`<CrudPage>",
+      "properties": [
+        {
+          "name": "modelName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "datasetSlugs",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "canCreate",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "canRead",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "canUpdate",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "canDelete",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "itemActionFunctionNames",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "pageActionFunctionNames",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CrudPage",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

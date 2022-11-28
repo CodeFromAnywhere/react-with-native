@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668149502285,
-  "updatedAt": 1668149502285,
+  "createdAt": 1669639115954,
+  "updatedAt": 1669639115954,
   "deletedAt": 0,
-  "createdFirstAt": 1668149502285,
+  "createdFirstAt": 1669639115954,
   "id": "namedparameterstypeof-getmarkdownpageinfo",
   "name": "NamedParameters<typeof getMarkdownPageInfo>",
   "slug": "namedparameterstypeof-getmarkdownpageinfo",
@@ -17,80 +17,557 @@
     "typeDefinition": {
       "type": "object",
       "properties": {
-        "projectRoot": {
-          "type": "string"
-        },
-        "nestedPathObject": {
-          "$ref": "#/definitions/NestedPathObject"
-        },
-        "queryPath": {
-          "type": "string"
-        },
-        "contentPage": {
-          "$ref": "#/definitions/MarkdownReaderPage"
+        "config": {
+          "type": "object",
+          "properties": {
+            "projectRoot": {
+              "type": "string"
+            },
+            "webPages": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/WebPage%3Cany%3E"
+              }
+            },
+            "queryPath": {
+              "type": "string"
+            },
+            "contentPage": {
+              "$ref": "#/definitions/ReaderWebPage"
+            },
+            "webOperationName": {
+              "type": "string"
+            },
+            "markdownCallToActions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MarkdownCallToAction"
+              }
+            }
+          },
+          "required": [
+            "projectRoot",
+            "webPages",
+            "queryPath",
+            "contentPage",
+            "webOperationName",
+            "markdownCallToActions"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
-        "projectRoot",
-        "nestedPathObject",
-        "queryPath",
-        "contentPage"
+        "config"
       ],
       "additionalProperties": false
     },
     "simplifiedSchema": {
       "properties": [
         {
-          "name": "projectRoot",
+          "name": "config",
           "required": true,
           "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "nestedPathObject",
-          "required": true,
-          "schema": {
-            "fullComment": "A different way to represent a path array in a nested object of folders\n\n{  \"folderName\": {    \"file1\": null,    \"file2\": null  },  \"folderName2\": {    \"file1\": null,    \"file2\": null  } }",
-            "properties": [],
-            "type": "object"
-          }
-        },
-        {
-          "name": "queryPath",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "contentPage",
-          "required": true,
-          "schema": {
-            "fullComment": "for markdown-reader-ui, the pages can be markdown files, but they can also be connected to models",
             "properties": [
+              {
+                "name": "projectRoot",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "webPages",
+                "required": true,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "General purpose interface for a webpage. Should be compatible within the node.js environment and therefore should not contain any frontend functions. A nested variant (`NestedWebPage`) is used in the frontend to render the `nested-menu` with.",
+                        "properties": [
+                          {
+                            "name": "queryPath",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "query-path to be visited in order to find the page on the web.\n\ncan also be used for nested nav in apps",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "searchTerms",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "can be provided to search in a better way\n\ncan provide representations of possible searches for this page, so you can find the pages much better",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "type": "string"
+                                  },
+                                  "name": null
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "target",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Optionally, open this page in a new window",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "isMenuHidden",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "if true, menu item should be omitted (but path may still be reachable if you so wish)",
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "menuTitleAugmentation",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "if provided, will be shown in the menu besides the title can be something nice like a notification or an emoji",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "menuTitleTooltip",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "If provided, will be rendered as a tooltip when hovering over the menu item",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "menuTitle",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "if provided will be shown instead of the name of the file/folder in the menu. This makes it possible to provide better naming or add emoji's etc",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "pageData",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Data connected to the `queryPath`. can take any shape or form based on your application.\n\nFor example, you can provide a `projectRelativePath` to a file here\n\nThe motivation to put this in a `extraData` object is because this makes the type super flexible.\n\n`.pageData` is not to be included into the menu, only to the page!\n\nSome ideas of what to provide here:\n\n- `projectRelativeFilePath` (so you can open the page if it's connected to some path)\n- `operationName`\n- `operationRelativePath`\n\n\nWhat not to provide here:\n\n- `AugmentedWord`[] (this is way too big, so it'd be a waste of query time to provide it for every page already)\n- stuff you already provided in the WebPage itself (it will also be available on the page, so why bother?)",
+                              "properties": [],
+                              "type": "object"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": "WebPage<any>"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
               {
                 "name": "queryPath",
                 "required": true,
                 "schema": {
-                  "fullComment": "path to be used as the url. no preceding slash",
                   "type": "string"
                 }
               },
               {
-                "name": "filePath",
-                "required": false,
+                "name": "contentPage",
+                "required": true,
                 "schema": {
-                  "fullComment": "if given, the md-file will be provided to the frontend\n\nproject relative path",
+                  "fullComment": "specifically always a markdown page\n\n\n\nGeneral purpose interface for a webpage. Should be compatible within the node.js environment and therefore should not contain any frontend functions. A nested variant (`NestedWebPage`) is used in the frontend to render the `nested-menu` with.",
+                  "properties": [
+                    {
+                      "name": "queryPath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "query-path to be visited in order to find the page on the web.\n\ncan also be used for nested nav in apps",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "searchTerms",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "can be provided to search in a better way\n\ncan provide representations of possible searches for this page, so you can find the pages much better",
+                        "items": [
+                          {
+                            "schema": {
+                              "type": "string"
+                            },
+                            "name": null
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "target",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Optionally, open this page in a new window",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isMenuHidden",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if true, menu item should be omitted (but path may still be reachable if you so wish)",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "menuTitleAugmentation",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if provided, will be shown in the menu besides the title can be something nice like a notification or an emoji",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "menuTitleTooltip",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "If provided, will be rendered as a tooltip when hovering over the menu item",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "menuTitle",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if provided will be shown instead of the name of the file/folder in the menu. This makes it possible to provide better naming or add emoji's etc",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "pageData",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Data connected to the `queryPath`. can take any shape or form based on your application.\n\nFor example, you can provide a `projectRelativePath` to a file here\n\nThe motivation to put this in a `extraData` object is because this makes the type super flexible.\n\n`.pageData` is not to be included into the menu, only to the page!\n\nSome ideas of what to provide here:\n\n- `projectRelativeFilePath` (so you can open the page if it's connected to some path)\n- `operationName`\n- `operationRelativePath`\n\n\nWhat not to provide here:\n\n- `AugmentedWord`[] (this is way too big, so it'd be a waste of query time to provide it for every page already)\n- stuff you already provided in the WebPage itself (it will also be available on the page, so why bother?)\n\n",
+                        "properties": [
+                          {
+                            "name": "projectRelativeFilePath",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "internalLinkWord",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "imagePath",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "shortDescription",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "webOperationName",
+                "required": true,
+                "schema": {
                   "type": "string"
                 }
               },
               {
-                "name": "isMenuItem",
-                "required": false,
+                "name": "markdownCallToActions",
+                "required": true,
                 "schema": {
-                  "fullComment": "if true, this item will be shown in the menu",
-                  "type": "boolean"
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "",
+                        "properties": [
+                          {
+                            "name": "slug",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "kebab-case of the name, should be unique\n\nuse this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "name",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "language",
+                            "required": true,
+                            "schema": {
+                              "enum": [
+                                "english",
+                                "dutch",
+                                "nepali",
+                                "portuguese",
+                                "brazilian",
+                                "german",
+                                "french",
+                                "spanish",
+                                "italian",
+                                "norwegian",
+                                "swedish",
+                                "danish",
+                                "vietnamese",
+                                "indonesian",
+                                "southAfrican",
+                                "tokiPona",
+                                "hindi",
+                                "mandarin",
+                                "arabic",
+                                "bengali",
+                                "urdu",
+                                "japanese",
+                                "swahili"
+                              ],
+                              "fullComment": "all currently supported languages",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "createdAt",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                              "type": "number"
+                            }
+                          },
+                          {
+                            "name": "updatedAt",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                              "type": "number"
+                            }
+                          },
+                          {
+                            "name": "deletedAt",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                              "type": "number"
+                            }
+                          },
+                          {
+                            "name": "createdFirstAt",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.\n\nTime\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                              "type": "number"
+                            }
+                          },
+                          {
+                            "name": "operationName",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                              "type": "null"
+                            }
+                          },
+                          {
+                            "name": "projectRelativePath",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "operationRelativePath",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "id",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "categoryStackCalculated",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+                              "nb": "Changing this value when updating/upserting, changes where the item is located!",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "type": "string"
+                                  },
+                                  "name": null
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "path",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "DESCRIPTION: Absolute queryPath to the CTA. Leave empty for going to the homepage. Empty paths will be omitted on the domains where you are already on that domain... If there's a path, will be omitted on other domains (`MarkdownCallToAction`s with a different hostname)",
+                              "description": "Absolute queryPath to the CTA. Leave empty for going to the homepage. Empty paths will be omitted on the domains where you are already on that domain... If there's a path, will be omitted on other domains (`MarkdownCallToAction`s with a different hostname)",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "hostname",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "DESCRIPTION: Hostname as described in `https://www.w3schools.com/js/js_window_location.asp`.",
+                              "description": "Hostname as described in `https://www.w3schools.com/js/js_window_location.asp`.",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "title",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "description",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Will be shown in markdown",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "ctaButtonText",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Can have a default if not provided",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "onlyFooter",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "if true, CTA will only be placed in footer",
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "onlyHeader",
+                            "required": false,
+                            "schema": {
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "isMinimised",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "If true, will be rendered in a <details>, if possible.",
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "bannerImage",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Part of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+                              "properties": [
+                                {
+                                  "name": "alt",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Stored value\n\nAlt text for the asset",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "relativePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "name",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                                    "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "temporaryDestination",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                                    "type": "string"
+                                  }
+                                }
+                              ],
+                              "type": "object"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": "MarkdownCallToAction"
+                    }
+                  ],
+                  "type": "array"
                 }
               }
             ],

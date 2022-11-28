@@ -1,19 +1,18 @@
 {
-  "createdAt": 1668150287920,
-  "updatedAt": 1668150287920,
+  "createdAt": 1669276552737,
+  "updatedAt": 1669276552737,
   "deletedAt": 0,
-  "createdFirstAt": 1668150287920,
+  "createdFirstAt": 1669276552737,
   "id": "csvmodeltype",
   "name": "CsvModelType",
   "slug": "csvmodeltype",
   "operationRelativeTypescriptFilePath": "src/modelTypes.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * Use this model for things you want to store in CSV format\n *\n * TODO: add support for numbers, booleans, null, undefined\n */\nexport interface CsvModelType extends AnyModelType, TimeTypes, RelationType {\n  [key: string]: string | number | boolean | null | undefined;\n}",
+  "rawText": "\n\n/**\n * Use this model for things you want to store in CSV format\n *\n * TODO: add support for numbers, booleans, null, undefined\n */\nexport interface CsvModelType extends AnyModelType, TimeTypes {\n  [key: string]: string | number | boolean | null | undefined;\n}",
   "extensions": [
     "AnyModelType",
-    "TimeTypes",
-    "RelationType"
+    "TimeTypes"
   ],
   "isOperationIndex": false,
   "description": "Use this model for things you want to store in CSV format\n\nTODO: add support for numbers, booleans, null, undefined",
@@ -24,12 +23,6 @@
       "type": "object",
       "additionalProperties": {
         "anyOf": [
-          {
-            "not": {}
-          },
-          {
-            "$ref": "#/definitions/Id"
-          },
           {
             "not": {}
           },

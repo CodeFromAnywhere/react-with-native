@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669466955900,
+  "updatedAt": 1669466955900,
+  "deletedAt": 0,
+  "createdFirstAt": 1669466955900,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findReaderStaticAssets",
+  "slug": "find-reader-static-assets",
+  "operationRelativeTypescriptFilePath": "src/findReaderStaticAssets.ts",
+  "type": {
+    "rawType": "(readerWebPages: import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").FileWebPage[]) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  /**\n   * Your markdown pages\n   */\n  readerWebPages: ReaderWebPage[]\n) => {\n  const projectRoot = getProjectRoot();\n\n  if (!projectRoot) return;\n\n  const absoluteAssetPaths = (\n    await Promise.all(\n      readerWebPages.map(async (page) => {\n        const absoluteMarkdownFilePath = path.join(\n          projectRoot,\n          page.pageData.projectRelativeFilePath\n        );\n\n        const assetPaths = await findStaticAssets(absoluteMarkdownFilePath);\n\n        return assetPaths;\n      })\n    )\n  )\n    .flat()\n    .filter(onlyUnique2())\n    .filter(fs.existsSync);\n\n  return absoluteAssetPaths;\n}",
+  "description": "markdown-renderer turns a relative link into this: ?mdpath=x&relativePath=y\n\nfor static, we need to turn it into something similar, but we need to guarantee no file collisions. simple!\n\nwe can just take the project-relative file path of the asset, and put it in /public/images in next.js. the final url of the asset in public next.js then becomes `images/[path/to/asset.jpg]`",
+  "id": "piwrqosuclcroklbatvdmcci"
+}

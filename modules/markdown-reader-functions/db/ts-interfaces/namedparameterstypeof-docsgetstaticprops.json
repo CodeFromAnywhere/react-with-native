@@ -1,0 +1,169 @@
+{
+  "createdAt": 1669639093412,
+  "updatedAt": 1669639093412,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639093412,
+  "id": "namedparameterstypeof-docsgetstaticprops",
+  "name": "NamedParameters<typeof docsGetStaticProps>",
+  "slug": "namedparameterstypeof-docsgetstaticprops",
+  "operationRelativeTypescriptFilePath": "src/docsGetStaticProps.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "$ref": "#/definitions/GetStaticPropsContext"
+        },
+        "basePaths": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "projectRelativeBasePath": {
+                "type": "string"
+              },
+              "queryPath": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "projectRelativeBasePath",
+              "queryPath"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "webOperationName": {
+          "type": "string",
+          "description": "Operation of the website that is going to be deployed"
+        }
+      },
+      "required": [
+        "context",
+        "basePaths",
+        "webOperationName"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "context",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "params",
+                "required": false,
+                "schema": {
+                  "fullComment": "",
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "preview",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "previewData",
+                "required": false,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "locale",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "locales",
+                "required": false,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "defaultLocale",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "basePaths",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "projectRelativeBasePath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "queryPath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "webOperationName",
+          "required": true,
+          "schema": {
+            "fullComment": "Operation of the website that is going to be deployed",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof docsGetStaticProps>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

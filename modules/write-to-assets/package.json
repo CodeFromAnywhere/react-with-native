@@ -1,11 +1,18 @@
 {
-  "createdAt": 1663305018402,
-  "updatedAt": 1663305018402,
+  "createdAt": 1668328685393,
+  "updatedAt": 1668328685393,
   "deletedAt": 0,
-  "createdFirstAt": 1663305018402,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328685393,
+  "id": "znfCBjyUQumbKlRe",
+  "dependencies": {
+    "fs-util": "1.0.5",
+    "get-path": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,16 +20,62 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^18.0.1",
-    "typescript": "^4.7.4"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "write-to-assets",
-  "sensible": {
-    "hasGeneratedDependencies": false
-  },
-  "dependencies": {},
+  "language": "english",
   "slug": "write-to-assets",
-  "id": "znfCBjyUQumbKlRe"
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "write-to-assets",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669384275756,
+    "operationDependenciesIndexed": [
+      "path",
+      "writeJsonToFile",
+      "writeStringToFile",
+      "findOperationBasePath",
+      "getOperationPath"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/control-fs",
+    "markdown": "Function to write anything to assets.\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 1,
+        "lines": 47,
+        "characters": 1204,
+        "bytes": 1204
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 119,
+        "characters": 3769,
+        "bytes": 3769
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 34,
+        "characters": 800,
+        "bytes": 800
+      },
+      "size": {
+        "bytes": 5773,
+        "characters": 5773,
+        "lines": 200,
+        "numberOfFiles": 5
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
 }

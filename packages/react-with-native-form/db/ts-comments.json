@@ -1,9 +1,9 @@
 [
   {
-    "createdAt": 1666261375372,
-    "updatedAt": 1666261375372,
+    "createdAt": 1669055879185,
+    "updatedAt": 1669055879185,
     "deletedAt": 0,
-    "createdFirstAt": 1666261375372,
+    "createdFirstAt": 1669055879185,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/general.tsx",
@@ -15,13 +15,13 @@
     ],
     "firstLine": 17,
     "lastLine": 17,
-    "id": "iznrjmzxmbvnzkpqbkntbaxp"
+    "id": "nmlngbxzcrwwruidqfpglcrb"
   },
   {
-    "createdAt": 1666261375372,
-    "updatedAt": 1666261375372,
+    "createdAt": 1669055879185,
+    "updatedAt": 1669055879185,
     "deletedAt": 0,
-    "createdFirstAt": 1666261375372,
+    "createdFirstAt": 1669055879185,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/general.tsx",
@@ -31,31 +31,31 @@
     "types": [],
     "firstLine": 55,
     "lastLine": 57,
-    "id": "khyeqmpqvgfkwfxexqtuisbb"
+    "id": "kedfibguuoqcpzonlogtvkrv"
   },
   {
-    "createdAt": 1666261375372,
-    "updatedAt": 1666261375372,
+    "createdAt": 1669055879185,
+    "updatedAt": 1669055879185,
     "deletedAt": 0,
-    "createdFirstAt": 1666261375372,
+    "createdFirstAt": 1669055879185,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/general.tsx",
     "comment": "NB: why are the prop comments not shown in intellisense?",
-    "rawStatement": "export type PluginComponent<TInput extends PluginInputType> = ((props: {\n  onChange: OnChange<TInput>;\n  /**\n   * value is never undefined, unless you didn't declare defaultInitialValue\n   */\n  value: TInput[\"value\"];\n  extra: TInput[\"extra\"];\n  config: TInput[\"config\"];\n  /**\n   * Format: {randomId}.{fieldName}\n   */\n  uniqueFieldId: string;\n  fieldName: string;\n\n  /**\n   * if there are multiple errors for this single field (from the backend), they can be given here. Key is in format `{fieldName}.{subfieldName}`, value should be the string containing the error\n   */\n  errors?: Error[];\n  errorClassName?: string;\n}) => JSX.Element) & {\n  defaultInitialValue: TInput[\"value\"];\n  hideContainerError?: boolean;\n};",
+    "rawStatement": "export type PluginComponent<TInput extends PluginInputType> = ((props: {\n  onChange: OnChange<TInput>;\n  /**\n   * value is never undefined, unless you didn't declare defaultInitialValue\n   */\n  value: TInput[\"value\"];\n  extra: TInput[\"extra\"];\n  config: TInput[\"config\"];\n  /**\n   * Format: {randomId}.{fieldName}\n   */\n  uniqueFieldId: string;\n  fieldName: string;\n\n  /**\n   * if there are multiple errors for this single field (from the backend), they can be given here. Key is in format `{fieldName}.{subfieldName}`, value should be the string containing the error\n   */\n  errors?: Error[];\n  errorClassName?: string;\n  /**\n   * sometimes can be applied as overwriting css class\n   */\n  className?: string;\n}) => JSX.Element) & {\n  defaultInitialValue: TInput[\"value\"];\n  hideContainerError?: boolean;\n};",
     "parameters": {},
     "types": [
       "nb"
     ],
     "firstLine": 152,
     "lastLine": 152,
-    "id": "atkkctnvpgjffsjgcugazccy"
+    "id": "hbnfzcpqcjuszspncjocahrr"
   },
   {
-    "createdAt": 1666261375372,
-    "updatedAt": 1666261375372,
+    "createdAt": 1669055879185,
+    "updatedAt": 1669055879185,
     "deletedAt": 0,
-    "createdFirstAt": 1666261375372,
+    "createdFirstAt": 1669055879185,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/general.tsx",
@@ -63,8 +63,8 @@
     "rawStatement": "export type PossibleValues<TInputs> = {\n  [K in keyof TInputs]: TInputs[K] extends PluginInputType\n    ? TInputs[K][\"value\"]\n    : never;\n};",
     "parameters": {},
     "types": [],
-    "firstLine": 221,
-    "lastLine": 223,
-    "id": "twrvrirhghgdqxklqchgwwog"
+    "firstLine": 225,
+    "lastLine": 227,
+    "id": "lldinwijfaohhianijjhkfpm"
   }
 ]

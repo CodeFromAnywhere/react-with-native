@@ -1,0 +1,66 @@
+{
+  "createdAt": 1668977397807,
+  "updatedAt": 1668977397807,
+  "deletedAt": 0,
+  "createdFirstAt": 1668977397807,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/hasAllLetters.ts",
+  "commentsInside": [],
+  "rawText": " (a: string, b: string) => {\n  const lettersLeft = a\n    .split(\"\")\n    .reduce((lettersLeft, lowercaseValueLetter) => {\n      if (lettersLeft[0] === lowercaseValueLetter) {\n        lettersLeft.shift();\n      }\n\n      return lettersLeft;\n    }, b.split(\"\"));\n\n  return lettersLeft.length === 0;\n}",
+  "name": "hasAllLetters",
+  "slug": "has-all-letters",
+  "parameters": [
+    {
+      "name": "a",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "b",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "all letters of b can be found in a, in order (but other letters in between are allowed)",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 383,
+    "lines": 13,
+    "bytes": 383,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "ihmdlxfnrwwmmvgvckogxluv"
+}

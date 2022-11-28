@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261468014,
-  "updatedAt": 1666261468014,
+  "createdAt": 1669055935856,
+  "updatedAt": 1669055935856,
   "deletedAt": 0,
-  "createdFirstAt": 1666261468014,
+  "createdFirstAt": 1669055935856,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "text-input",
   "operationRelativeTypescriptFilePath": "src/text/text.tsx",
   "type": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form-inputs/src/text/text\").TextInputType>",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form-inputs/src/text/text\").TextInputType>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -20,5 +20,5 @@
   },
   "value": "({\n  onChange,\n  value,\n  extra,\n  config,\n  errors,\n}) => {\n  config = config || {};\n  const hasError = errors && errors.length > 0;\n\n  const inputClassWithError = `my-2 ${UI.textInput}${\n    hasError\n      ? config.errorClassName\n        ? config.errorClassName\n        : \" border border-red-400\"\n      : \"\"\n  }`;\n\n  const onChangeText = (value: TextInputType[\"value\"]) => onChange(value);\n  const placeholder = extra?.placeholder;\n  const maxLength = extra?.maxLength;\n\n  return (\n    <Input\n      type={\n        extra?.type ? extra.type : extra?.isPassword ? \"password\" : undefined\n      }\n      className={inputClassWithError}\n      //why doesn't it get applied corectly?\n      style={{\n        padding: 5,\n        paddingTop: 8,\n        paddingBottom: 8,\n        marginTop: 5,\n        marginBottom: 5,\n      }}\n      value={value}\n      onChange={(event) => onChangeText(event.target.value)}\n      placeholder={placeholder}\n      maxLength={extra?.maxLength}\n      autoComplete={extra?.autoComplete}\n      required={extra?.required}\n      disabled={extra?.disabled}\n      native={{\n        value,\n        onChangeText,\n        placeholder,\n        maxLength,\n        secureTextEntry: extra?.isPassword,\n      }}\n    />\n  );\n}",
   "description": "",
-  "id": "eihqfwkdpbvhmhrnuofvaewv"
+  "id": "tghjvnplcxnlhhmvjammxbgd"
 }

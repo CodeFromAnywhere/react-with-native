@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150022449,
-  "updatedAt": 1668150022449,
+  "createdAt": 1669639189556,
+  "updatedAt": 1669639189556,
   "deletedAt": 0,
-  "createdFirstAt": 1668150022449,
+  "createdFirstAt": 1669639189556,
   "id": "finalbundleconfig",
   "name": "FinalBundleConfig",
   "slug": "finalbundleconfig",
@@ -64,31 +64,41 @@
           "$ref": "#/definitions/CreatedFirstAt"
         },
         "slug": {
-          "$ref": "#/definitions/Id"
+          "$ref": "#/definitions/Slug",
+          "description": "kebab-case of the name, should be unique"
         },
         "name": {
-          "$ref": "#/definitions/Id"
+          "type": "string"
         },
         "language": {
-          "$ref": "#/definitions/Id"
+          "$ref": "#/definitions/Language",
+          "default": "en"
+        },
+        "deploymentHostname": {
+          "type": "string",
+          "description": "Used to determine which call to actions are relevant (must be hostname without schema (name + tld))"
         },
         "description": {
-          "$ref": "#/definitions/Id"
+          "type": "string",
+          "description": "a description about this bundle"
         },
         "emoji": {
-          "$ref": "#/definitions/Id"
+          "type": "string"
         },
         "primaryColor": {
-          "$ref": "#/definitions/Id"
+          "type": "string"
         },
         "gitRepoUrl": {
-          "$ref": "#/definitions/Id"
+          "type": "string",
+          "description": "NB: later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation"
         },
         "isGitRepoPublic": {
-          "$ref": "#/definitions/Id"
+          "type": "boolean",
+          "description": "if true, your gitrepo is marked as pubilc and thus users will be linked to it sometimes"
         },
         "bundleMarkdownReaderConfig": {
-          "$ref": "#/definitions/Id"
+          "$ref": "#/definitions/BundleMarkdownReaderConfig",
+          "description": "configurate your markdown reader"
         }
       },
       "required": [
@@ -98,8 +108,11 @@
         "customisableBundleConfig",
         "deletedAt",
         "id",
+        "language",
+        "name",
         "operationName",
         "projectRelativePath",
+        "slug",
         "updatedAt"
       ]
     },
@@ -155,6 +168,20 @@
                 "required": false,
                 "schema": {
                   "fullComment": "skips the step where it pushes the new bundle to remote",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "skipSyncNicheFolder",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "skipRebuildNicheOperations",
+                "required": false,
+                "schema": {
                   "type": "boolean"
                 }
               },
@@ -241,10 +268,35 @@
                 }
               },
               {
+                "name": "inheritFrom_bundleConfigSlugs",
+                "required": false,
+                "schema": {
+                  "fullComment": "You can specify `Slug`s of other `BundleConfig`s here that this bundle should inherit from, recursively.\n\nWorks a little like https://www.typescriptlang.org/tsconfig#extends\n\nWill only inherit the apps, packages, and modules, nothing else.\n\n# How it works\n\n1) finds all unique `BundleConfig`s that need to be inherited, recursively, 2) make a `BundleSummary` of every `BundleConfig` 3) merge the `BundleSummary`s and omit duplicates\n\nTODO: Implement this",
+                  "todo": "Implement this",
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                        "type": "string"
+                      },
+                      "name": "Slug"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
                 "name": "keepStructure",
                 "required": false,
                 "schema": {
                   "fullComment": "If true, the structure of operation locations is kept the same but still inside packages/apps/modules.",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "keepCodestories",
+                "required": false,
+                "schema": {
                   "type": "boolean"
                 }
               },
@@ -317,6 +369,135 @@
                       "schema": {
                         "fullComment": "This type can specify a frontend and backend that belong to each other. it doesn't include all operations that the ui or server are dependent on, they are calculated separately",
                         "properties": [
+                          {
+                            "name": "slug",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "kebab-case of the name, should be unique\n\nuse this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "name",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "language",
+                            "required": true,
+                            "schema": {
+                              "enum": [
+                                "english",
+                                "dutch",
+                                "nepali",
+                                "portuguese",
+                                "brazilian",
+                                "german",
+                                "french",
+                                "spanish",
+                                "italian",
+                                "norwegian",
+                                "swedish",
+                                "danish",
+                                "vietnamese",
+                                "indonesian",
+                                "southAfrican",
+                                "tokiPona",
+                                "hindi",
+                                "mandarin",
+                                "arabic",
+                                "bengali",
+                                "urdu",
+                                "japanese",
+                                "swahili"
+                              ],
+                              "fullComment": "all currently supported languages",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "createdAt",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                              "type": "number"
+                            }
+                          },
+                          {
+                            "name": "updatedAt",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                              "type": "number"
+                            }
+                          },
+                          {
+                            "name": "deletedAt",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                              "type": "number"
+                            }
+                          },
+                          {
+                            "name": "createdFirstAt",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.\n\nTime\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                              "type": "number"
+                            }
+                          },
+                          {
+                            "name": "operationName",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                              "type": "null"
+                            }
+                          },
+                          {
+                            "name": "projectRelativePath",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "operationRelativePath",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "id",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "categoryStackCalculated",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+                              "nb": "Changing this value when updating/upserting, changes where the item is located!",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "type": "string"
+                                  },
+                                  "name": null
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
                           {
                             "name": "operations",
                             "required": false,
@@ -468,6 +649,23 @@
                 }
               },
               {
+                "name": "imagesProjectRelativeFolderPaths",
+                "required": false,
+                "schema": {
+                  "fullComment": "paths to image folders that should randomly be used as default headers or footers in the generated markdown.",
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "later this could be known by the frontend so it will render a ui to select a folder\n\nWe need to figure out how we can know all type types in between when getting the type definition schema, not only the final type. If I'm lucky there is a way to find it as a #ref in a consistent way.",
+                        "type": "string"
+                      },
+                      "name": "ProjectRelativeFolderPath"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
                 "name": "readmeRelativeFilePath",
                 "required": false,
                 "schema": {
@@ -490,7 +688,7 @@
           "name": "categoryStackCalculated",
           "required": false,
           "schema": {
-            "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\n",
+            "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
             "nb": "Changing this value when updating/upserting, changes where the item is located!",
             "items": [
               {
@@ -569,25 +767,57 @@
         },
         {
           "name": "slug",
-          "required": false,
+          "required": true,
           "schema": {
-            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+            "fullComment": "kebab-case of the name, should be unique\n\nuse this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
             "type": "string"
           }
         },
         {
           "name": "name",
-          "required": false,
+          "required": true,
           "schema": {
-            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
             "type": "string"
           }
         },
         {
           "name": "language",
+          "required": true,
+          "schema": {
+            "enum": [
+              "english",
+              "dutch",
+              "nepali",
+              "portuguese",
+              "brazilian",
+              "german",
+              "french",
+              "spanish",
+              "italian",
+              "norwegian",
+              "swedish",
+              "danish",
+              "vietnamese",
+              "indonesian",
+              "southAfrican",
+              "tokiPona",
+              "hindi",
+              "mandarin",
+              "arabic",
+              "bengali",
+              "urdu",
+              "japanese",
+              "swahili"
+            ],
+            "fullComment": "all currently supported languages",
+            "type": "string"
+          }
+        },
+        {
+          "name": "deploymentHostname",
           "required": false,
           "schema": {
-            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+            "fullComment": "Used to determine which call to actions are relevant (must be hostname without schema (name + tld))",
             "type": "string"
           }
         },
@@ -595,7 +825,7 @@
           "name": "description",
           "required": false,
           "schema": {
-            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+            "fullComment": "a description about this bundle",
             "type": "string"
           }
         },
@@ -603,7 +833,6 @@
           "name": "emoji",
           "required": false,
           "schema": {
-            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
             "type": "string"
           }
         },
@@ -611,7 +840,6 @@
           "name": "primaryColor",
           "required": false,
           "schema": {
-            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
             "type": "string"
           }
         },
@@ -619,7 +847,8 @@
           "name": "gitRepoUrl",
           "required": false,
           "schema": {
-            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+            "fullComment": "NB: later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation",
+            "nb": "later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation",
             "type": "string"
           }
         },
@@ -627,16 +856,82 @@
           "name": "isGitRepoPublic",
           "required": false,
           "schema": {
-            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
-            "type": "string"
+            "fullComment": "if true, your gitrepo is marked as pubilc and thus users will be linked to it sometimes",
+            "type": "boolean"
           }
         },
         {
           "name": "bundleMarkdownReaderConfig",
           "required": false,
           "schema": {
-            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
-            "type": "string"
+            "fullComment": "configurate your markdown reader\n\n",
+            "properties": [
+              {
+                "name": "docsInRoot",
+                "required": false,
+                "schema": {
+                  "fullComment": "When set to `true`, docs are not shown in docs folder but in the root menu of the site",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "showTodos",
+                "required": false,
+                "schema": {
+                  "fullComment": "Show todo menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitModulesMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "`modules` will be hidden from markdown reader menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitAppsMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "`apps` will be hidden from markdown reader menui",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitDictionaryMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, dictionary is omitted from menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "omitPackagesMenu",
+                "required": false,
+                "schema": {
+                  "fullComment": "`packages` will be hidden from markdown reader menu",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "customOperationNames",
+                "required": false,
+                "schema": {
+                  "fullComment": "if given, the operations menu will show with these operations",
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
           }
         }
       ],

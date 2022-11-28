@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669639446992,
+  "updatedAt": 1669639446992,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639446992,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "ReaderPageHeader",
+  "slug": "reader-page-header",
+  "operationRelativeTypescriptFilePath": "src/components/ReaderPageHeader.tsx",
+  "type": {
+    "rawType": "(props: { markdownFile?: import(\"/Users/king/King/operations/tools/types/markdown-types/build/WebMarkdownFile\").WebMarkdownFile | null | undefined; projectRelativeMarkdownPath?: string | null | undefined; }) => JSX.Element | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  markdownFile?: WebMarkdownFile | null;\n  projectRelativeMarkdownPath?: string | null;\n}) => {\n  const { markdownFile, projectRelativeMarkdownPath } = props;\n\n  if (!markdownFile) return null;\n\n  const { src } = destructureOptionalObject(\n    useAsset(markdownFile.headerImage, projectRelativeMarkdownPath, !isDev)\n  );\n\n  const backgroundImage = src ? `url(\"${src}\")` : undefined;\n\n  return (\n    <Div\n      style={{\n        backgroundImage,\n        backgroundRepeat: \"no-repeat\",\n        backgroundSize: \"cover\",\n        backgroundPosition: \"center 75%\",\n      }}\n      className={`w-full ${\n        markdownFile.headerBig ? \"h-screen\" : \"h-[350px]\"\n      } flex flex-col items-center justify-center`}\n    >\n      {markdownFile.headerTitle ? (\n        <P className=\"drop-shadow-lg decoration-8 font-bold text-white text-4xl\">\n          {markdownFile.headerTitle}\n        </P>\n      ) : null}\n      {markdownFile.headerSubTitle ? (\n        <P className=\"drop-shadow-lg text-white text-2xl\">\n          {markdownFile.headerSubTitle}\n        </P>\n      ) : null}\n\n      {markdownFile.header_markdownCallToActions?.map((cta) => {\n        const { title, description, ctaButtonText, hostname, path } = cta;\n        console.log({ cta, ctaButtonText, hostname });\n        return (\n          <ALink\n            href={path}\n            title={description}\n            className=\"bg-blue-500 rounded-full p-4 flex items-center justify-center\"\n          >\n            {title}\n          </ALink>\n        );\n      })}\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "dvhejdmrsafljyzkkhqztofn"
+}

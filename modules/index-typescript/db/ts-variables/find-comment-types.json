@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055583739,
+  "updatedAt": 1669055583739,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055583739,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findCommentTypes",
+  "slug": "find-comment-types",
+  "operationRelativeTypescriptFilePath": "src/findCommentTypes.ts",
+  "type": {
+    "rawType": "(commentWithoutFrontmatter: string) => any[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  commentWithoutFrontmatter: string\n): CommentType[] => {\n  const lines = commentWithoutFrontmatter.split(\"\\n\");\n\n  const types = commentTypes.filter((type) =>\n    lines.find((line) => line.trimStart().startsWith(`${type.toUpperCase()}:`))\n  );\n\n  return types;\n}",
+  "description": "returns all types that are found as start of a line in the comment (capitalised, with a \":\" behind)",
+  "id": "fpwxykxrvaublwfzrkcexlgz"
+}

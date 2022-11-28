@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.coolToast=void 0;var react_with_native_notification_1=require("react-with-native-notification"),coolToast=function(t){(0,react_with_native_notification_1.toast)({title:"",body:t||"Great"},{hideProgressBar:!0,position:"bottom-right",type:"success"})};exports.coolToast=coolToast;
+//# sourceMappingURL=coolToast.js.map

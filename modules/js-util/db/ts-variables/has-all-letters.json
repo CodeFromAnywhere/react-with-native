@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668977397935,
+  "updatedAt": 1668977397935,
+  "deletedAt": 0,
+  "createdFirstAt": 1668977397935,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "hasAllLetters",
+  "slug": "has-all-letters",
+  "operationRelativeTypescriptFilePath": "src/hasAllLetters.ts",
+  "type": {
+    "rawType": "(a: string, b: string) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(a: string, b: string) => {\n  const lettersLeft = a\n    .split(\"\")\n    .reduce((lettersLeft, lowercaseValueLetter) => {\n      if (lettersLeft[0] === lowercaseValueLetter) {\n        lettersLeft.shift();\n      }\n\n      return lettersLeft;\n    }, b.split(\"\"));\n\n  return lettersLeft.length === 0;\n}",
+  "description": "all letters of b can be found in a, in order (but other letters in between are allowed)",
+  "id": "exjgyuwwclmvtunkzlqepdsq"
+}

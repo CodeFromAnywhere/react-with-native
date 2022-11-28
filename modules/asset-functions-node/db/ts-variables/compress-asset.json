@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384197325,
+  "updatedAt": 1669384197325,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384197325,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "compressAsset",
+  "slug": "compress-asset",
+  "operationRelativeTypescriptFilePath": "src/compressAsset.ts",
+  "type": {
+    "rawType": "(absolutePath: string, compressionConfig: import(\"/Users/king/King/operations/tools/asset/asset-type/build/CompressionConfig\").CompressionConfig) => Promise<string>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  absolutePath: string,\n  compressionConfig: CompressionConfig\n): Promise<string> => {\n  return absolutePath;\n}",
+  "description": "Audio, image, video can be compressed. This should be done to logical defaults, can be turned off, or can be specifically set to other dimensions using a doc-comment on the model.\n\n- audio: bitrate\n- video: fps and resolution\n- image: resolution\n\nReturns the new absolute path of the compressed asset (which can be the same as the initial path)",
+  "id": "irhkebyjjxunjwrvydikidrl"
+}

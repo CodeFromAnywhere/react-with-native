@@ -1,16 +1,12 @@
 {
-  "createdAt": 1666261446452,
-  "updatedAt": 1666261446452,
+  "createdAt": 1669055904522,
+  "updatedAt": 1669055904522,
   "deletedAt": 0,
-  "createdFirstAt": 1666261446452,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055904522,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "PluginComponent<DateInputType>",
   "operationRelativeTypescriptFilePath": "src/date/DateInput.tsx",
   "commentsInside": [],
   "rawText": " ({\n  value,\n  onChange,\n}) => {\n  return (\n    <DatePicker\n      selected={value}\n      onChange={(date: Date) => {\n        console.log(\"date\", date);\n        onChange(date);\n      }}\n      dateFormat=\"dd-MM-yyyy\"\n      className={UI.dateInput}\n    />\n  );\n}",
@@ -41,5 +37,5 @@
     "linesPerFile": 16,
     "numberOfFiles": 1
   },
-  "id": "jdrfgyhvrsqryigewwiituwv"
+  "id": "vysiodmjztptjyudogkipqcf"
 }

@@ -1,6 +1,6 @@
 # Writer types
 
-writer-types (`OperationClassification` node)
+writer-types (`OperationClassification` node-cjs)
 
 
 

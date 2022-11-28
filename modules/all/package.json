@@ -1,0 +1,144 @@
+{
+  "createdAt": 1668328685686,
+  "updatedAt": 1668328685686,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328685686,
+  "id": "iKazVukMuqrUgIBQ",
+  "bin": {
+    "clearAllTsDatabases": "./build/cli/clearAllTsDatabases.cli.js",
+    "forAllFolders": "./build/cli/forAllFolders.cli.js",
+    "getAllOperationClassifications": "./build/cli/getAllOperationClassifications.cli.js",
+    "minifyAllOperations": "./build/cli/minifyAllOperations.cli.js",
+    "removeAll": "./build/cli/removeAll.cli.js",
+    "removeAllFiles": "./build/cli/removeAllFiles.cli.js",
+    "removeAllFolders": "./build/cli/removeAllFolders.cli.js",
+    "runScriptEverywhere": "./build/cli/runScriptEverywhere.cli.js",
+    "allOperationsToMarkdown": "./build/cli/allOperationsToMarkdown.cli.js"
+  },
+  "dependencies": {
+    "get-path": "0.0.1",
+    "rebuild-operation": "0.0.1",
+    "log": "0.0.1",
+    "fs-util": "1.0.5",
+    "k-explore": "0.0.2",
+    "one-by-one": "0.0.1",
+    "markdown-parsings": "0.0.1",
+    "minify-build": "0.0.1",
+    "set-json-key": "1.0.9",
+    "make-test": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.2"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "all",
+  "language": "english",
+  "slug": "all",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/control-project/all/src/renameAll.ts. Error: Error: Unknown type \\\"function\\\"\"]",
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "all",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668332084904,
+    "operationDependenciesIndexed": [
+      "getPathsWithOperations",
+      "getPathsWithOperations",
+      "log",
+      "getOperationSummary",
+      "operationToMarkdown",
+      "getLastFolder",
+      "getPathsWithOperations",
+      "rebuildOperation",
+      "log",
+      "clearTsDatabase",
+      "getLastFolder",
+      "getProjectRoot",
+      "explore",
+      "getFolder",
+      "getFolder",
+      "path",
+      "BaseConfig",
+      "explore",
+      "exploreGitRepoFolders",
+      "exploreOperationFolders",
+      "oneByOne",
+      "getOperationClassification",
+      "getPathsWithOperations",
+      "getLastFolder",
+      "getPathsWithOperations",
+      "log",
+      "getOperationSummary",
+      "operationToMarkdown",
+      "getLastFolder",
+      "minifyBuild",
+      "path",
+      "getPathsWithOperations",
+      "fs",
+      "fs",
+      "getRootPath",
+      "explore",
+      "fs",
+      "getFolder",
+      "log",
+      "getLastFolder",
+      "getPathsWithOperations",
+      "log",
+      "getPathsWithOperations",
+      "setJsonKey",
+      "path",
+      "getPathsWithOperations",
+      "makeTest"
+    ],
+    "packageDependenciesIndexed": [
+      "execSync",
+      "execSync",
+      "execSync"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/control-project",
+    "markdown": "This operation contains a lot of different functions that can help you to execute different things on all operations.\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 27,
+        "lines": 678,
+        "characters": 17470,
+        "bytes": 17470
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 180,
+        "characters": 4689,
+        "bytes": 4689
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 330,
+        "characters": 6163,
+        "bytes": 6163
+      },
+      "size": {
+        "bytes": 28322,
+        "characters": 28322,
+        "lines": 1188,
+        "numberOfFiles": 31
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

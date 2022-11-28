@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668149312409,
-  "updatedAt": 1668149312409,
+  "createdAt": 1669467157700,
+  "updatedAt": 1669467157700,
   "deletedAt": 0,
-  "createdFirstAt": 1668149312409,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669467157700,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/renderMarkdownChunk.tsx",
   "commentsInside": [],
   "rawText": " (\n  chunk: MarkdownChunk,\n  config: MarkdownParseRenderConfig\n) => {\n  const title = chunk.title\n    ? renderMarkdownTitle(chunk.title, chunk.level)\n    : null;\n  return (\n    <Div>\n      {title}\n      {chunk.content ? renderMarkdownContent(chunk.content, config) : null}\n      {chunk.children?.map((chunk) => renderMarkdownChunk(chunk, config))}\n    </Div>\n  );\n}",
@@ -26,10 +21,97 @@
         "fullComment": "",
         "properties": [
           {
+            "name": "level",
+            "required": true,
+            "schema": {
+              "fullComment": "0 is a paragraph 1-6 is h1 until h6",
+              "type": "number"
+            }
+          },
+          {
             "name": "content",
             "required": false,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "markdownEmbed",
+            "required": false,
+            "schema": {
+              "fullComment": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works",
+              "nb": "I need to be very clear how this one works",
+              "properties": [
+                {
+                  "name": "alt",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "src",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "video",
+                      "audio",
+                      "image",
+                      "text",
+                      "other"
+                    ],
+                    "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "markdownLink",
+            "required": false,
+            "schema": {
+              "fullComment": "Anything in the format `[alt](href)`\n\nIt needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here",
+              "properties": [
+                {
+                  "name": "alt",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "href",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "video",
+                      "audio",
+                      "image",
+                      "text",
+                      "other"
+                    ],
+                    "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
             }
           },
           {
@@ -69,6 +151,51 @@
       "schema": {
         "$ref": "#/definitions/MarkdownParseRenderConfig"
       },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "projectRelativeBaseFolderPath",
+            "required": true,
+            "schema": {
+              "fullComment": "Folder path where the markdown is supposed to be located.\n\nThis is used for knowing where relative links or assets can be found",
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectRelativeMarkdownFilePath",
+            "required": true,
+            "schema": {
+              "fullComment": "project relative path of the markdown file.\n\nThis is used for knowing where relative links or assets can be found",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isStatic",
+            "required": false,
+            "schema": {
+              "fullComment": "If true, the files should come from a static folder. This means the relative references should now become projectRelative. Also see `copyAllRelativeFiles`.\n\nIf not true, we will use the api.",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isDev",
+            "required": false,
+            "schema": {
+              "fullComment": "If true, we assume not all files are present in the static folder yet. This means we need to use the api.",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "big",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
       "required": true
     }
   ],
@@ -96,5 +223,5 @@
     "linesPerFile": 15,
     "numberOfFiles": 1
   },
-  "id": "zneecyrzgfmclsyulyslalan"
+  "id": "wibvupmzdfvhfsuxleaqeqsr"
 }

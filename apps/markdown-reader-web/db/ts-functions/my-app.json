@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668149622396,
-  "updatedAt": 1668149622396,
+  "createdAt": 1669384750407,
+  "updatedAt": 1669384750407,
   "deletedAt": 0,
-  "createdFirstAt": 1668149622396,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
+  "createdFirstAt": 1669384750407,
   "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
   "name": "MyApp",
   "slug": "my-app",
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/pages/_app.tsx",
+  "groupAuthorization": {},
   "commentsInside": [],
   "description": "",
   "parameters": [],
@@ -31,15 +26,15 @@
     "isEnumLiteral": false
   },
   "size": {
-    "characters": 781,
-    "lines": 28,
-    "bytes": 781,
+    "characters": 1141,
+    "lines": 41,
+    "bytes": 1141,
     "bytesPerCharacter": 1,
     "charactersPerLine": 28,
-    "linesPerFile": 28,
+    "linesPerFile": 41,
     "numberOfFiles": 1
   },
-  "rawText": "\n\nfunction MyApp({ Component, pageProps }: RealAppProps) {\n  const siteName =\n    publicLocalEnvironmentVariables.markdownReaderTitle ||\n    publicEnvironmentVariables.markdownReaderTitle ||\n    \"Docs\";\n\n  const title = pageProps.title ? `${pageProps.title} - ${siteName}` : siteName;\n\n  return (\n    <QueryClientProvider client={queryClient}>\n      <Head>\n        <title>{title}</title>\n\n        {/* NB: for CODE syntax highlighting of \"markdown\" markdown-parser */}\n        <link\n          rel=\"stylesheet\"\n          href=\"https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/default.min.css\"\n        />\n      </Head>\n      <StoreProvider>\n        {/* @ts-ignore */}\n        <Component {...pageProps} />\n      </StoreProvider>\n    </QueryClientProvider>\n  );\n}",
+  "rawText": "\n\nfunction MyApp({ Component, pageProps }: RealAppProps) {\n  const siteName =\n    publicLocalEnvironmentVariables.markdownReaderTitle ||\n    publicEnvironmentVariables.markdownReaderTitle ||\n    \"Docs\";\n\n  const title = pageProps.content?.title\n    ? `${pageProps.content?.title} - ${siteName}`\n    : siteName;\n\n  return (\n    <QueryClientProvider client={queryClient}>\n      <Head>\n        <title>{title}</title>\n\n        {/* <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />\n        <link\n          rel=\"preconnect\"\n          href=\"https://fonts.gstatic.com\"\n          crossOrigin=\"true\"\n        />\n        <link\n          href=\"https://fonts.googleapis.com/css2?family=Raleway&display=swap\"\n          rel=\"stylesheet\"\n        /> */}\n\n        {/* NB: for CODE syntax highlighting of \"markdown\" markdown-parser */}\n        <link\n          rel=\"stylesheet\"\n          href=\"https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/default.min.css\"\n        />\n      </Head>\n      <StoreProvider>\n        {/* @ts-ignore */}\n        <Component {...pageProps} />\n      </StoreProvider>\n    </QueryClientProvider>\n  );\n}",
   "maxIndentationDepth": 5,
-  "id": "riqvljufrcxmpsmzfjpwzujn"
+  "id": "sitgihfexsjgcmnqsbnospsw"
 }

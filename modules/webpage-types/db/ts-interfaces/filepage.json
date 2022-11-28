@@ -1,0 +1,90 @@
+{
+  "createdAt": 1669276584384,
+  "updatedAt": 1669276584384,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276584384,
+  "id": "filepage",
+  "name": "FilePage",
+  "slug": "filepage",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type FilePage = {\n  projectRelativeFilePath: string;\n  internalLinkWord?: string | null;\n  imagePath?: string | null;\n  shortDescription?: string | null;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "projectRelativeFilePath": {
+          "type": "string"
+        },
+        "internalLinkWord": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imagePath": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "shortDescription": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "projectRelativeFilePath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "projectRelativeFilePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "internalLinkWord",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "imagePath",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "shortDescription",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "FilePage",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,339 @@
+{
+  "createdAt": 1669380098994,
+  "updatedAt": 1669380098994,
+  "deletedAt": 0,
+  "createdFirstAt": 1669380098994,
+  "id": "todo",
+  "name": "Todo",
+  "slug": "todo",
+  "operationRelativeTypescriptFilePath": "src/Todo.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * The `Todo` KVMD model parses a `TodoFile` to find individual todos, their status, category, and more structured metadata.\n *\n * Can be chosen to be used for a `TodoFile` to create an alternative UI\n *\n * `TodoFile`s can be parsed to find this datastructure\n *\n * Will be great for insights.\n */\nexport interface Todo extends SpecialKvmdModelType {\n  /**\n   * If line contains a bolded text at the start, this will be the title\n   */\n  title?: string;\n\n  /**\n   * unix timestamp indicating when this thing needs to be done\n   *\n   * can be inferred from the line like:\n   *\n   * `(< 2023-08-20)`\n   */\n  deadlineAt?: number;\n\n  /**\n   * Inferred from the line\n   */\n  todo: string;\n\n  /**\n   * Can be indicated with\n   *\n   * ✅ = done\n   * ❌ = wontdo\n   * 🔧 = doing (maybe use 🟠?)\n   *\n   * (none = todo)\n   */\n  status: \"todo\" | \"doing\" | \"wontdo\" | \"done\";\n  /**\n   * can be indicated with '🚫'\n   */\n  isBlocked: boolean;\n  /**\n   * can be indicated with '❗️'\n   */\n  isCritical: boolean;\n  /**\n   * can be indicated with '🌐'\n   */\n  isInternetRequired: boolean;\n  /**\n   * can be inferred from @[PersonSlug]\n   */\n  assigned_personId?: Id;\n  /**\n   * can be inferred from a time indicator between parenthesises at the end of the sentence\n   *\n   * e.g. `(3h)` or `(20m)` or `(5d)`\n   */\n  duration?: number;\n  durationTimeIndicator: \"hours\" | \"days\" | \"minutes\";\n}",
+  "extensions": [
+    "SpecialKvmdModelType"
+  ],
+  "isOperationIndex": false,
+  "description": "The `Todo` KVMD model parses a `TodoFile` to find individual todos, their status, category, and more structured metadata.\n\nCan be chosen to be used for a `TodoFile` to create an alternative UI\n\n`TodoFile`s can be parsed to find this datastructure\n\nWill be great for insights.",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "same as slug\n\nused for compatibility with some general purpose functions\n\nNB: uniqueness is hard to enforce!"
+        },
+        "name": {
+          "type": "string",
+          "description": "key\n\nshould be english because it's kind of part of the codebase!"
+        },
+        "slug": {
+          "type": "string",
+          "description": "calculated: slug for this key (kebab case form of the name)"
+        },
+        "value": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ],
+          "description": "value behind the semicolom (:). If not given, will be undefined.\n\nIf possible, will be parsed to a number, boolean, null or undefined... otherwise it's a string\n\ncan be any language that we can detect"
+        },
+        "comment": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "comment in html syntax. if not given, will be null"
+        },
+        "operationName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "projectRelativePath": {
+          "type": "string",
+          "description": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "operationRelativePath": {
+          "type": "string",
+          "description": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "categoryStackCalculated": {
+          "$ref": "#/definitions/CategoryStack",
+          "description": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`"
+        },
+        "isHeaderCalculated": {
+          "type": "boolean",
+          "description": "Calculated value indicating whether or not the item has children"
+        },
+        "title": {
+          "type": "string",
+          "description": "If line contains a bolded text at the start, this will be the title"
+        },
+        "deadlineAt": {
+          "type": "number",
+          "description": "unix timestamp indicating when this thing needs to be done\n\ncan be inferred from the line like:\n\n`(< 2023-08-20)`"
+        },
+        "todo": {
+          "type": "string",
+          "description": "Inferred from the line"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "todo",
+            "doing",
+            "wontdo",
+            "done"
+          ],
+          "description": "Can be indicated with\n\n✅ = done ❌ = wontdo 🔧 = doing (maybe use 🟠?)\n\n(none = todo)"
+        },
+        "isBlocked": {
+          "type": "boolean",
+          "description": "can be indicated with '🚫'"
+        },
+        "isCritical": {
+          "type": "boolean",
+          "description": "can be indicated with '❗️'"
+        },
+        "isInternetRequired": {
+          "type": "boolean",
+          "description": "can be indicated with '🌐'"
+        },
+        "assigned_personId": {
+          "$ref": "#/definitions/Id",
+          "description": "can be inferred from @[PersonSlug]"
+        },
+        "duration": {
+          "type": "number",
+          "description": "can be inferred from a time indicator between parenthesises at the end of the sentence\n\ne.g. `(3h)` or `(20m)` or `(5d)`"
+        },
+        "durationTimeIndicator": {
+          "type": "string",
+          "enum": [
+            "hours",
+            "days",
+            "minutes"
+          ]
+        }
+      },
+      "required": [
+        "categoryStackCalculated",
+        "comment",
+        "durationTimeIndicator",
+        "id",
+        "isBlocked",
+        "isCritical",
+        "isHeaderCalculated",
+        "isInternetRequired",
+        "name",
+        "operationName",
+        "projectRelativePath",
+        "slug",
+        "status",
+        "todo"
+      ],
+      "additionalProperties": false,
+      "description": "The `Todo` KVMD model parses a `TodoFile` to find individual todos, their status, category, and more structured metadata.\n\nCan be chosen to be used for a `TodoFile` to create an alternative UI\n\n`TodoFile`s can be parsed to find this datastructure\n\nWill be great for insights."
+    },
+    "simplifiedSchema": {
+      "fullComment": "The `Todo` KVMD model parses a `TodoFile` to find individual todos, their status, category, and more structured metadata.\n\nCan be chosen to be used for a `TodoFile` to create an alternative UI\n\n`TodoFile`s can be parsed to find this datastructure\n\nWill be great for insights.",
+      "properties": [
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "fullComment": "same as slug\n\nused for compatibility with some general purpose functions\n\nNB: uniqueness is hard to enforce!",
+            "nb": "uniqueness is hard to enforce!",
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "fullComment": "key\n\nshould be english because it's kind of part of the codebase!",
+            "type": "string"
+          }
+        },
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "fullComment": "calculated: slug for this key (kebab case form of the name)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "value",
+          "required": false,
+          "schema": {
+            "fullComment": "value behind the semicolom (:). If not given, will be undefined.\n\nIf possible, will be parsed to a number, boolean, null or undefined... otherwise it's a string\n\ncan be any language that we can detect",
+            "type": "string"
+          }
+        },
+        {
+          "name": "comment",
+          "required": true,
+          "schema": {
+            "fullComment": "comment in html syntax. if not given, will be null",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationName",
+          "required": true,
+          "schema": {
+            "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "null"
+          }
+        },
+        {
+          "name": "projectRelativePath",
+          "required": true,
+          "schema": {
+            "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativePath",
+          "required": false,
+          "schema": {
+            "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "categoryStackCalculated",
+          "required": true,
+          "schema": {
+            "fullComment": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+            "nb": "Changing this value when updating/upserting, changes where the item is located!",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "isHeaderCalculated",
+          "required": true,
+          "schema": {
+            "fullComment": "Calculated value indicating whether or not the item has children",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "title",
+          "required": false,
+          "schema": {
+            "fullComment": "If line contains a bolded text at the start, this will be the title",
+            "type": "string"
+          }
+        },
+        {
+          "name": "deadlineAt",
+          "required": false,
+          "schema": {
+            "fullComment": "unix timestamp indicating when this thing needs to be done\n\ncan be inferred from the line like:\n\n`(< 2023-08-20)`",
+            "type": "number"
+          }
+        },
+        {
+          "name": "todo",
+          "required": true,
+          "schema": {
+            "fullComment": "Inferred from the line",
+            "type": "string"
+          }
+        },
+        {
+          "name": "status",
+          "required": true,
+          "schema": {
+            "enum": [
+              "todo",
+              "doing",
+              "wontdo",
+              "done"
+            ],
+            "fullComment": "Can be indicated with\n\n✅ = done ❌ = wontdo 🔧 = doing (maybe use 🟠?)\n\n(none = todo)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "isBlocked",
+          "required": true,
+          "schema": {
+            "fullComment": "can be indicated with '🚫'",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isCritical",
+          "required": true,
+          "schema": {
+            "fullComment": "can be indicated with '❗️'",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isInternetRequired",
+          "required": true,
+          "schema": {
+            "fullComment": "can be indicated with '🌐'",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "assigned_personId",
+          "required": false,
+          "schema": {
+            "fullComment": "can be inferred from @[PersonSlug]\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "duration",
+          "required": false,
+          "schema": {
+            "fullComment": "can be inferred from a time indicator between parenthesises at the end of the sentence\n\ne.g. `(3h)` or `(20m)` or `(5d)`",
+            "type": "number"
+          }
+        },
+        {
+          "name": "durationTimeIndicator",
+          "required": true,
+          "schema": {
+            "enum": [
+              "hours",
+              "days",
+              "minutes"
+            ],
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "Todo",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

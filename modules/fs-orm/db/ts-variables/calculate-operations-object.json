@@ -1,14 +1,14 @@
 {
-  "createdAt": 1668148846221,
-  "updatedAt": 1668148846221,
+  "createdAt": 1669312106899,
+  "updatedAt": 1669312106899,
   "deletedAt": 0,
-  "createdFirstAt": 1668148846221,
+  "createdFirstAt": 1669312106899,
   "classification": "const",
   "comments": [],
   "isExported": true,
   "name": "calculateOperationsObject",
   "slug": "calculate-operations-object",
-  "operationRelativeTypescriptFilePath": "src/convention/getDatabaseFiles.ts",
+  "operationRelativeTypescriptFilePath": "src/convention/calculateOperationsObject.ts",
   "type": {
     "rawType": "(manualProjectRoot: string) => unknown",
     "typeDefinition": {
@@ -29,5 +29,5 @@
   },
   "value": "async (manualProjectRoot: string) => {\n  const operationBasePaths = await exploreOperationFolders({\n    basePath: getPathsWithOperations({ manualProjectRoot }),\n  });\n\n  const operationsObject = mergeObjectsArray(\n    operationBasePaths.map((operationBasePath) => {\n      return {\n        [getLastFolder(operationBasePath)]: makeRelative(\n          operationBasePath,\n          manualProjectRoot\n        ),\n      };\n    })\n  );\n\n  return operationsObject;\n}",
   "description": "Needed in case of manual project root, otherwise use SDK!\n\nReturns project relative operation base paths",
-  "id": "hsuotcxjlqyqslciynuzbdtl"
+  "id": "hsyissznaeaisypxugybpesl"
 }

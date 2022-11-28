@@ -1,0 +1,61 @@
+{
+  "createdAt": 1668331940715,
+  "updatedAt": 1668331940715,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331940715,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "name": "byteCount",
+  "slug": "byte-count",
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getFolderSummary.ts",
+  "commentsInside": [],
+  "description": "/**\n * This function will return the byte size of any UTF-8 string you pass to it.\n */",
+  "parameters": [
+    {
+      "name": "s",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "size": {
+    "characters": 264,
+    "lines": 10,
+    "bytes": 264,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\n/**\n * This function will return the byte size of any UTF-8 string you pass to it.\n */\nexport function byteCount(s: string) {\n  return encodeURI(s).split(/%..|./).length - 1;\n}",
+  "maxIndentationDepth": 1,
+  "id": "xfedlzbwsebxxuimeozoxyjy"
+}

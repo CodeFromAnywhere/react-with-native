@@ -1,0 +1,198 @@
+{
+  "createdAt": 1666263102438,
+  "updatedAt": 1666263102438,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263102438,
+  "id": "namedparameterstypeof-getfoldertypescriptindex",
+  "name": "NamedParameters<typeof getFolderTypescriptIndex>",
+  "slug": "namedparameterstypeof-getfoldertypescriptindex",
+  "operationRelativeTypescriptFilePath": "src/readTypescriptFile.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "{\n  basePath,\n  filter,\n  sort,\n  type,\n  filePath,\n}": {
+          "type": "object",
+          "properties": {
+            "filePath": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "description": "if given, basePath is ignored"
+            },
+            "basePath": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "description": "is ignored if filePath is provided\n\nif this path is a single path anywhere in an operaiton, it will only take that operation\n\notherwise, it will find all operation folders in that path"
+            },
+            "type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "TsBuildError",
+                "TsLintWarning",
+                "TsFunction",
+                "TsVariable",
+                "TsInterface",
+                "TsComment",
+                "TsImport",
+                "TsExport",
+                null
+              ],
+              "description": "if specified, only returns one specific type\n\nreturns all types by default"
+            },
+            "filter": {
+              "$ref": "#/definitions/IndexFilter"
+            },
+            "sort": {
+              "type": "string",
+              "description": "TODO: make functions be sortable:\n- alphabetic\n- input type\n- output type\n- usage amount"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "{\n  basePath,\n  filter,\n  sort,\n  type,\n  filePath,\n}"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "{\n  basePath,\n  filter,\n  sort,\n  type,\n  filePath,\n}",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "filePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "if given, basePath is ignored",
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "basePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "is ignored if filePath is provided\n\nif this path is a single path anywhere in an operaiton, it will only take that operation\n\notherwise, it will find all operation folders in that path",
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "type",
+                "required": false,
+                "schema": {
+                  "enum": [
+                    "TsBuildError",
+                    "TsLintWarning",
+                    "TsFunction",
+                    "TsVariable",
+                    "TsInterface",
+                    "TsComment",
+                    "TsImport",
+                    "TsExport",
+                    null
+                  ],
+                  "fullComment": "if specified, only returns one specific type\n\nreturns all types by default",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "filter",
+                "required": false,
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "hasCommentTypes",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if set, only returns comments containing specific types",
+                        "items": [
+                          {
+                            "schema": {
+                              "enum": [
+                                "todo",
+                                "discussion",
+                                "idea",
+                                "later",
+                                "nb",
+                                "title",
+                                "section",
+                                "description"
+                              ],
+                              "fullComment": "special line prefixes:\n\n**Developer related comments**\n\n- TODO: for developer to know what to do\n- DISCUSSION: for developer to state that discussion is needed\n- IDEA: for developer to state ideas\n- LATER: for developer to mark as thing that needs to be done later\n- NB: for developer to add a note\n\n**Form related comments**\n\n- TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n- SECTION: start a new section in the form from this point, the value behind here can be the title\n- DESCRIPTION: if available, will be used as description of the form input",
+                              "type": "string"
+                            },
+                            "name": "CommentType"
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "interfaceIsDbModel",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if true, only returns interfaces which are db models",
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "sort",
+                "required": false,
+                "schema": {
+                  "fullComment": "TODO: make functions be sortable:\n- alphabetic\n- input type\n- output type\n- usage amount",
+                  "todo": "make functions be sortable:",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getFolderTypescriptIndex>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

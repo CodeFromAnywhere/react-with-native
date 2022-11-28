@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666259866242,
-  "updatedAt": 1666259866242,
+  "createdAt": 1668774174090,
+  "updatedAt": 1668774174090,
   "deletedAt": 0,
-  "createdFirstAt": 1666259866242,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774174090,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/tsconfig.test.ts",
   "commentsInside": [],
   "rawText": " async () => {\n  const result = await db.update(\n    \"TsConfig\",\n    undefined,\n\n    (old) => {\n      const newCompilerOptions: TsConfig[\"compilerOptions\"] = {\n        ...old.compilerOptions,\n        noEmitOnError: true,\n      };\n\n      return { ...old, compilerOptions: newCompilerOptions };\n    }\n  );\n\n  console.log(result);\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 17,
     "numberOfFiles": 1
   },
-  "id": "gtivkzmlnoozerdlnyheuwpq"
+  "id": "bryvaampskhdcfecujuvyvzf"
 }

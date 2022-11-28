@@ -1,0 +1,113 @@
+{
+  "createdAt": 1669384196079,
+  "updatedAt": 1669384196079,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384196079,
+  "id": "compressionconfig",
+  "name": "CompressionConfig",
+  "slug": "compressionconfig",
+  "operationRelativeTypescriptFilePath": "src/compressAsset.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "bitrate": {
+          "type": "number",
+          "description": "used for audio"
+        },
+        "fps": {
+          "type": "number",
+          "description": "Frames per second. Used for video"
+        },
+        "resolution": {
+          "type": "object",
+          "properties": {
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "width",
+            "height"
+          ],
+          "additionalProperties": false,
+          "description": "Set the resolution. Will not upscale.\n\nUsed for video and images"
+        },
+        "shouldOverwrite": {
+          "type": "boolean",
+          "description": "if true, will overwrite the original file"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "bitrate",
+          "required": false,
+          "schema": {
+            "fullComment": "used for audio",
+            "type": "number"
+          }
+        },
+        {
+          "name": "fps",
+          "required": false,
+          "schema": {
+            "fullComment": "Frames per second. Used for video",
+            "type": "number"
+          }
+        },
+        {
+          "name": "resolution",
+          "required": false,
+          "schema": {
+            "fullComment": "Set the resolution. Will not upscale.\n\nUsed for video and images",
+            "properties": [
+              {
+                "name": "width",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "height",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "shouldOverwrite",
+          "required": false,
+          "schema": {
+            "fullComment": "if true, will overwrite the original file",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CompressionConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

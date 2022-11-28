@@ -1,26 +1,22 @@
 # Model types
 
-model-types (`OperationClassification` js)
+model-types (`OperationClassification` cjs)
 
 
 
 # Api reference
 
-## generateId()
+## 🔹 AugmentedAnyModelType
 
-24 characters of the alphabet provides 9E33 combinations, wont be possible to brute-force in centuries, even if there are billions of entries
+Properties: 
 
+ | Name | Type | Description |
+|---|---|---|
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
 
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `String`   |    |
-
-
-
-## 📄 generateId (exported const)
-
-24 characters of the alphabet provides 9E33 combinations, wont be possible to brute-force in centuries, even if there are billions of entries
 
 
 ## 🔹 DefaultModelType
@@ -47,129 +43,14 @@ Properties:
 
 
 
-## 🔹 KeyValueMarkdownModelType
+## generateId()
 
-handy model type for storing stuff in a KeyValue Markdown file.
-empty lines are omitted
+24 characters of the alphabet provides 9E33 combinations, wont be possible to brute-force in centuries, even if there are billions of entries
 
-all you need to specify in the kvmd is the key and the value, separated by ":"
-
-NB: there can be a `parent_modelNameSlug` key exposed that should refer to the parent slug
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| id  | string |  |
-| name  | string |  |
-| slug  | string |  |
-| value (optional) | string |  |
-| comment  | string |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| categoryStackCalculated  | array |  |
-| isHeaderCalculated  | boolean |  |
-
-
-
-## 🔹 AugmentedAnyModelType
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-
-
-
-## 🔹 Slug
-
-use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.
-
-
-
-
-
-
-
-
-## 🔸 SlugModelType
-
-jsonMultiple model
-
-
-
-use this model for things with a name that have an unique slug that can be used to identify the model
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| slug  | string |  |
-| name  | string |  |
-| language  | string |  |
-| createdAt  | number |  |
-| updatedAt  | number |  |
-| deletedAt  | number |  |
-| createdFirstAt  | number |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| categoryStackCalculated (optional) | array |  |
-
-
-
-## 🔹 MarkdownModelType
-
-Handy model type for storing stuff in a Markdown file.
-
-1 markdown file will represent 1 MarkdownModelType extended instance
-
-another option could be to parse the markdown file, but to KISS we are going to just return markdown with the full markdown content
-
-TODO: see how this relates to MarkdownFile. Make this very clear!
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| createdAt  | number |  |
-| updatedAt  | number |  |
-| deletedAt  | number |  |
-| createdFirstAt  | number |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| name  | string |  |
-| slug  | string |  |
-| markdown  | string |  |
-| categoryStackCalculated  | array |  |
-
-
-
-## generateRandomString()
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| length | number |  |
+| - | | |
 | **Output** | `String`   |    |
 
 
@@ -219,14 +100,113 @@ We can always migrate later to a bigger amount, but I don't see good reason to k
 
 
 
-## 🔹 Language
+## 🔹 Slug
 
-all currently supported languages
-
-
+use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.
 
 
 
+
+
+
+
+
+## 📄 generateId (exported const)
+
+24 characters of the alphabet provides 9E33 combinations, wont be possible to brute-force in centuries, even if there are billions of entries
+
+
+## 🔸 SlugModelType
+
+jsonMultiple model
+
+
+
+use this model for things with a name that have an unique slug that can be used to identify the model
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| slug  | string |  |
+| name  | string |  |
+| language  | string |  |
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| categoryStackCalculated (optional) | array |  |
+
+
+
+## 🔹 KeyValueMarkdownModelType
+
+handy model type for storing stuff in a KeyValue Markdown file.
+empty lines are omitted
+
+all you need to specify in the kvmd is the key and the value, separated by ":"
+
+NB: there can be a `parent_modelNameSlug` key exposed that should refer to the parent slug
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| value (optional) | string |  |
+| comment  | string |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| categoryStackCalculated  | array |  |
+| isHeaderCalculated  | boolean |  |
+
+
+
+## 🔹 MarkdownModelType
+
+Handy model type for storing stuff in a Markdown file.
+
+1 markdown file will represent 1 MarkdownModelType extended instance
+
+another option could be to parse the markdown file, but to KISS we are going to just return markdown with the full markdown content
+
+TODO: see how this relates to MarkdownFile. Make this very clear!
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| markdown  | string |  |
+| categoryStackCalculated  | array |  |
 
 
 
@@ -241,14 +221,36 @@ a string that is known to contain markdown.
 
 
 
-## 📄 generateRandomString (exported const)
-
 ## 🔹 CategoryStack
+
+Taken from the location in the folder of the db-model.
+
+NB: Changing this value when updating/upserting, changes where the item is located!
 
 - null: string
 
 
 
+
+
+
+## 🔹 Language
+
+all currently supported languages
+
+
+
+
+
+
+
+
+## generateRandomString()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| length | number |  |
+| **Output** | `String`   |    |
 
 
 
@@ -271,16 +273,7 @@ Properties:
 
 
 
-## 🔹 KeyValueMarkdownParse
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| parameters  | object |  |
-| data  | array |  |
-
-
+## 📄 generateRandomString (exported const)
 
 ## 🔹 AnyModelType
 
@@ -302,6 +295,44 @@ Properties:
 | projectRelativePath  | string |  |
 | operationRelativePath (optional) | string |  |
 | id  | string |  |
+
+
+
+## 🔹 Price
+
+TLDR;EUROS
+
+A price is a number indicating the relative cost. Absolute cost is calculated by many other factors
+
+For now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.
+
+Later we can add all kinds of extra conversion:
+
+- currency support
+- king os currency
+- lower cost for poorer people
+
+etc...
+
+First we need to start making sales before we can add such complexity.
+
+
+
+
+
+
+
+
+## 🔹 Json
+
+## 🔹 KeyValueMarkdownParse
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| parameters  | object |  |
+| data  | array |  |
 
 
 
@@ -349,8 +380,6 @@ Properties:
 | operationRelativePath (optional) | string |  |
 
 
-
-## 🔹 Json
 
 ## 🔹 TsIndexModelType
 
@@ -414,30 +443,7 @@ Properties:
 
 
 
-## 🔹 Price
-
-TLDR;EUROS
-
-A price is a number indicating the relative cost. Absolute cost is calculated by many other factors
-
-For now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.
-
-Later we can add all kinds of extra conversion:
-
-- currency support
-- king os currency
-- lower cost for poorer people
-
-etc...
-
-First we need to start making sales before we can add such complexity.
-
-
-
-
-
-
-
+## 🔹 Credit
 
 ## 🔹 Text
 
@@ -458,12 +464,10 @@ if there is a data model with just a single text and it is clear from the name o
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| markdownModelType | `Storing<MarkdownModelType>` |  |
+| - | | |
 | **Output** | `String`   |    |
 
 
-
-## 🔹 Credit
 
 ## 🔹 KvmdLine
 

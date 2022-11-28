@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.findImages=void 0;var marked_1=require("marked"),js_util_1=require("js-util"),findImagesFromTokenRecursively_1=require("./findImagesFromTokenRecursively"),findImages=function(e){return marked_1.marked.lexer(e).map(findImagesFromTokenRecursively_1.findImagesFromTokenRecursively).filter(js_util_1.notEmpty).flat()};exports.findImages=findImages;
+//# sourceMappingURL=findImages.js.map

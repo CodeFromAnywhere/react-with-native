@@ -1,0 +1,165 @@
+{
+  "createdAt": 1669639094407,
+  "updatedAt": 1669639094407,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639094407,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/docsGetStaticProps.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  context: GetStaticPropsContext,\n  basePaths: {\n    projectRelativeBasePath: string;\n    queryPath: string;\n  }[],\n  /**\n   * Operation of the website that is going to be deployed\n   */\n  webOperationName: string\n): Promise<{\n  props: MarkdownReaderPageProps;\n}> => {\n  const flat = await docsGetPages(basePaths);\n  const propsObject = await markdownReaderGetStaticPropsFromPages(\n    context,\n    flat,\n    webOperationName\n  );\n  return propsObject;\n}",
+  "name": "docsGetStaticProps",
+  "slug": "docs-get-static-props",
+  "parameters": [
+    {
+      "name": "context",
+      "schema": {
+        "$ref": "#/definitions/GetStaticPropsContext"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "params",
+            "required": false,
+            "schema": {
+              "fullComment": "",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "preview",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "previewData",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "locale",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "locales",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "defaultLocale",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "basePaths",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "projectRelativeBasePath": {
+              "type": "string"
+            },
+            "queryPath": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "projectRelativeBasePath",
+            "queryPath"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "properties": [
+                {
+                  "name": "projectRelativeBasePath",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "queryPath",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    },
+    {
+      "name": "webOperationName",
+      "schema": {
+        "type": "string",
+        "description": "Operation of the website that is going to be deployed"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Operation of the website that is going to be deployed",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<{ props: import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/markdown-reader-types/build/MarkdownReaderPageProps\").MarkdownReaderPageProps; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 463,
+    "lines": 21,
+    "bytes": 463,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "ksexdcmzwqleesnexdutzupb"
+}

@@ -1,25 +1,20 @@
 {
-  "createdAt": 1668150834221,
-  "updatedAt": 1668150834221,
+  "createdAt": 1668977386848,
+  "updatedAt": 1668977386848,
   "deletedAt": 0,
-  "createdFirstAt": 1668150834221,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977386848,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/createMappedObject.ts",
   "commentsInside": [],
-  "rawText": " <T extends { [key: string]: any }>(\n  array: T[],\n  /**\n   * key to make the map from. Must be unique or it could be overwritten. must be a string\n   */\n  mapKey: keyof T\n): MappedObject<T> => {\n  const mappedObject = mergeObjectsArray(\n    array.map((item) => {\n      const key: string = item[mapKey];\n      return {\n        [key]: item,\n      };\n    })\n  );\n\n  return mappedObject;\n}",
+  "rawText": " <T extends { [key: string]: any }, U = T>(\n  array: T[],\n  /**\n   Key to make the map from. Must be unique or it could be overwritten. Key must be a string\n   */\n  mapKey: keyof T,\n  /**\n   * If the result of the mapped object, based on the object should have mapped values, provide this mapfunction to get them.\n   */\n  mapFn?: (value: T, array: T[]) => U\n): MappedObject<U> => {\n  const mappedObject = mergeObjectsArray(\n    array.map((item) => {\n      const key: string = item[mapKey];\n      const value = mapFn ? mapFn(item, array) : (item as unknown as U);\n\n      return {\n        [key]: value,\n      };\n    })\n  );\n\n  return mappedObject;\n}",
   "name": "createMappedObject",
   "slug": "create-mapped-object",
   "parameters": [],
   "description": "Creates a `MappedObject` of an array of any type. `MappedObject`s are great for increasing efficiency to get an item from an array. Especially useful when finds are needed on a specific key match for huge arrays. Instead of finding on the array you can simply get the right property from this object.\n\nNB: Don't use this inside of render functions, it's a very slow function, the whole idea is that this makes it faster, so just do it once!",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/util/js-util/src/createMappedObject\").MappedObject<T>",
+    "rawType": "import(\"/Users/king/King/operations/tools/util/js-util/src/createMappedObject\").MappedObject<U>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -38,13 +33,13 @@
   },
   "maxIndentationDepth": 4,
   "size": {
-    "characters": 826,
-    "lines": 20,
-    "bytes": 826,
+    "characters": 1087,
+    "lines": 26,
+    "bytes": 1087,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 41,
-    "linesPerFile": 20,
+    "charactersPerLine": 42,
+    "linesPerFile": 26,
     "numberOfFiles": 1
   },
-  "id": "rfpqysmyzlsrqqdqcmjdhbur"
+  "id": "dbfivfeuqmvqtzmsjrlhubim"
 }

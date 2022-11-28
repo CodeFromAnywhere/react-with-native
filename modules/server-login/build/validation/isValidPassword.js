@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.isValidPassword=void 0;var isValidPassword=function(s){return s.length>=6};exports.isValidPassword=isValidPassword;
+//# sourceMappingURL=isValidPassword.js.map

@@ -1,0 +1,52 @@
+{
+  "createdAt": 1668332239528,
+  "updatedAt": 1668332239528,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332239528,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getDependenciesSummary.ts",
+  "commentsInside": [],
+  "rawText": " async (operationName: string) => {\n  const operationImports = await db.get(\"TsImport\", {\n    operationName,\n  });\n\n  const coreDependencies = operationImports\n    .filter((x) => [\"node\", \"react\"].includes(x.classification))\n    .map((x) => x.name);\n  const operationDependencies = operationImports\n    .filter((x) => [\"operation\"].includes(x.classification))\n    .map((x) => x.name);\n  const packageDependencies = operationImports\n    .filter((x) => [\"package\"].includes(x.classification))\n    .map((x) => x.name);\n\n  return {\n    coreDependencies,\n    operationDependencies,\n    packageDependencies,\n  };\n}",
+  "name": "getDependenciesSummary",
+  "slug": "get-dependencies-summary",
+  "parameters": [
+    {
+      "name": "operationName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 608,
+    "lines": 21,
+    "bytes": 608,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "ufldloxmymdycrttnjswxvbh"
+}

@@ -1,16 +1,16 @@
 {
-  "createdAt": 1668150836738,
-  "updatedAt": 1668150836738,
+  "createdAt": 1668977396497,
+  "updatedAt": 1668977396497,
   "deletedAt": 0,
-  "createdFirstAt": 1668150836738,
+  "createdFirstAt": 1668977396497,
   "classification": "const",
   "comments": [],
   "isExported": true,
   "name": "getSubsetFromObject",
   "slug": "get-subset-from-object",
-  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "operationRelativeTypescriptFilePath": "src/getSubsetFromObject.ts",
   "type": {
-    "rawType": "<T>(object: { [key: string]: T; }, keys: string[]) => any",
+    "rawType": "<T, K extends (keyof T)[]>(object: T, keys: K) => Pick<T, Subset>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "<T>(\n  object: { [key: string]: T },\n  keys: string[]\n) => {\n  const subsetObject = keys.reduce((obj, key) => {\n    return { ...obj, [key]: object[key] };\n  }, {} as { [key: string]: T });\n  return subsetObject;\n}",
+  "value": "<T, K extends readonly (keyof T)[]>(\n  object: T,\n  keys: K\n) => {\n  type Subset = typeof keys[number];\n\n  const subsetObject = keys.reduce((obj, key) => {\n    return { ...obj, [key]: object[key] };\n  }, {} as Partial<T>) as Pick<T, Subset>;\n  return subsetObject;\n}",
   "description": "takes an object and a subset of its keys and returns a subset of that object\n\ninput: { x: \"a\", y: \"b\", z: \"c\" } and [\"x\"]\n\noutput: { x: \"a\" }",
-  "id": "tgxhwtacomlqkazmsvpxfqcm"
+  "id": "iwlojmvnvcshyitjvsfbykfg"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668331921151,
+  "updatedAt": 1668331921151,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331921151,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getTsConfig",
+  "slug": "get-ts-config",
+  "operationRelativeTypescriptFilePath": "src/getTsConfig.ts",
+  "type": {
+    "rawType": "(packageFolder: string) => Promise<T | null>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(packageFolder: string) => {\n  const jsonPath = path.join(packageFolder, \"tsconfig.json\");\n  const json = readJsonFile<TsConfig>(jsonPath);\n  return json;\n}",
+  "description": "",
+  "id": "kxcclxxfolienaxrbvszpwsq"
+}

@@ -1,0 +1,67 @@
+{
+  "createdAt": 1669055595085,
+  "updatedAt": 1669055595085,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055595085,
+  "id": "namedparameterstypeof-getparametersfrominterfaces",
+  "name": "NamedParameters<typeof getParametersFromInterfaces>",
+  "slug": "namedparameterstypeof-getparametersfrominterfaces",
+  "operationRelativeTypescriptFilePath": "src/getParametersFromInterface.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "functionName": {
+          "type": "string"
+        },
+        "interfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Creation%3CTsInterface%3E"
+          },
+          "description": "NB: we need ALL interfaces here across the project because there may be others that were not found in the interfaces in the file, but only in the functions."
+        }
+      },
+      "required": [
+        "functionName",
+        "interfaces"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "functionName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "interfaces",
+          "required": true,
+          "schema": {
+            "fullComment": "NB: we need ALL interfaces here across the project because there may be others that were not found in the interfaces in the file, but only in the functions.",
+            "nb": "we need ALL interfaces here across the project because there may be others that were not found in the interfaces in the file, but only in the functions.",
+            "items": [],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getParametersFromInterfaces>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

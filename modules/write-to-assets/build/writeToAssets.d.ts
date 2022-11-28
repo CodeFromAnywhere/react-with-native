@@ -3,5 +3,5 @@
  *
  * Useful for testing
  */
-export declare const writeToAssets: (filePath: string, data: any, assetsFileName?: string) => Promise<boolean | undefined>;
+export declare const writeToAssets: (filePath: string, data: any, assetsFileName?: string, hideLog?: boolean) => Promise<boolean | undefined>;
 //# sourceMappingURL=writeToAssets.d.ts.map

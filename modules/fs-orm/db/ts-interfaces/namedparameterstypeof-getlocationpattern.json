@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148851530,
-  "updatedAt": 1668148851530,
+  "createdAt": 1669312119469,
+  "updatedAt": 1669312119469,
   "deletedAt": 0,
-  "createdFirstAt": 1668148851530,
+  "createdFirstAt": 1669312119469,
   "id": "namedparameterstypeof-getlocationpattern",
   "name": "NamedParameters<typeof getLocationPattern>",
   "slug": "namedparameterstypeof-getlocationpattern",
@@ -89,18 +89,17 @@
                 }
               },
               {
-                "name": "operationName",
-                "required": false,
+                "name": "projectRoot",
+                "required": true,
                 "schema": {
-                  "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "fullComment": "Hardcoded projectroot. Motivation for this is to be able to see if the projectroot is really manual.",
                   "type": "string"
                 }
               },
               {
-                "name": "projectRelativePath",
+                "name": "operationName",
                 "required": false,
                 "schema": {
-                  "fullComment": "if specified, only this location will be used",
                   "type": "string"
                 }
               },
@@ -109,6 +108,14 @@
                 "required": false,
                 "schema": {
                   "fullComment": "if specified, only this location will be used (also need an `operationName`)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "projectRelativePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "if specified, only this location will be used",
                   "type": "string"
                 }
               }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668151927403,
-  "updatedAt": 1668151927403,
+  "createdAt": 1669132822480,
+  "updatedAt": 1669132822480,
   "deletedAt": 0,
-  "createdFirstAt": 1668151927403,
+  "createdFirstAt": 1669132822480,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -18,12 +18,16 @@
           "type": "object",
           "properties": {}
         },
+        "menu.showMenu": {
+          "type": "boolean"
+        },
         "menu.isMobileMenuEnabled": {
           "type": "boolean"
         }
       },
       "required": [
         "menu.expanded",
+        "menu.showMenu",
         "menu.isMobileMenuEnabled"
       ],
       "optional": false
@@ -45,6 +49,13 @@
           }
         },
         {
+          "name": "menu.showMenu",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
           "name": "menu.isMobileMenuEnabled",
           "required": true,
           "schema": {
@@ -55,7 +66,7 @@
       "type": "object"
     }
   },
-  "value": "{\n  \"menu.expanded\": {},\n  \"menu.isMobileMenuEnabled\": false,\n}",
+  "value": "{\n  \"menu.expanded\": {},\n  \"menu.showMenu\": true,\n  \"menu.isMobileMenuEnabled\": false,\n}",
   "description": "",
-  "id": "qfwrqizrejlitbutmbtzafxx"
+  "id": "mziwsmbvbgcmusmdzbwylocu"
 }

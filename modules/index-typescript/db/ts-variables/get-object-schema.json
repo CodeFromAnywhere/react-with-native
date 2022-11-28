@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055627749,
+  "updatedAt": 1669055627749,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055627749,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "getObjectSchema",
+  "slug": "get-object-schema",
+  "operationRelativeTypescriptFilePath": "src/typeToSchema.ts",
+  "type": {
+    "rawType": "(type: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").Type<import(\"/Users/king/King/operations/node_modules/@ts-morph/common/lib/typescript\").Type>, decorators: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").Decorator[], schemaProps?: { [key: string]: any; }) => import(\"/Users/king/King/operations/tools/typescript/index-typescript/src/typeToSchema\").SimpleJsonSchema",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  type: Type,\n  decorators: Decorator[],\n  schemaProps: { [key: string]: any } = {}\n) => {\n  const schema: SimpleJsonSchema = {};\n  // schema = {} handleExplicitValidation(\"object\", schema, decorators);\n  schema.type = \"object\";\n  schema.properties = {};\n  schema.required = schema.required || [];\n  const typeText = type.getText();\n  const nonNullableType = type.getNonNullableType();\n  const nonNullableTypeText = nonNullableType.getText();\n  schema.optional = nonNullableTypeText !== typeText;\n  type\n    .getNonNullableType()\n    .getProperties()\n    .forEach((prop) => {\n      const key = prop.getName();\n      const isGetter = prop.hasFlags(SymbolFlags.GetAccessor);\n      if ([\"request\", \"reply\"].includes(key) || isGetter) return;\n      const valueDeclaration = prop.getValueDeclarationOrThrow();\n      const decorators = (valueDeclaration as any).getDecorators\n        ? (valueDeclaration as any).getDecorators()\n        : [];\n\n      schema.properties[key] = {\n        ...(getParamSchema(valueDeclaration.getType(), decorators, prop) || {}),\n        ...(schemaProps[key] || {}),\n      };\n\n      if (!schema.properties[key]) {\n        console.warn(\"missing type for - \" + key);\n        schema.properties[key] = { type: \"object\" };\n      }\n      if (schema.properties[key].optional !== true) {\n        schema.required?.push(key);\n      }\n      delete schema.properties[key].optional;\n    });\n\n  if (!schema.required.length) {\n    delete schema.required;\n  }\n\n  return schema;\n}",
+  "description": "",
+  "id": "muutoknyysjvxfyyxbubfstc"
+}

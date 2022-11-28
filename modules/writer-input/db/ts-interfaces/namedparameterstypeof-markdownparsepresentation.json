@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668152066544,
-  "updatedAt": 1668152066544,
+  "createdAt": 1669385108642,
+  "updatedAt": 1669385108642,
   "deletedAt": 0,
-  "createdFirstAt": 1668152066544,
+  "createdFirstAt": 1669385108642,
   "id": "namedparameterstypeof-markdownparsepresentation",
   "name": "NamedParameters<typeof MarkdownParsePresentation>",
   "slug": "namedparameterstypeof-markdownparsepresentation",
@@ -113,38 +113,6 @@
                       }
                     },
                     {
-                      "name": "downmatterParameters",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "downmatter is the same as frontmatter, but it is to be found at the end of the file. It is supposed to be containing things that are not important for the user to know, yet it is important metadata that is connected to this file. This can be indexed things, for example.\n\n",
-                        "properties": [
-                          {
-                            "name": "detectedLanguage",
-                            "required": false,
-                            "schema": {
-                              "type": "string"
-                            }
-                          },
-                          {
-                            "name": "labels",
-                            "required": false,
-                            "schema": {
-                              "items": [
-                                {
-                                  "schema": {
-                                    "type": "string"
-                                  },
-                                  "name": null
-                                }
-                              ],
-                              "type": "array"
-                            }
-                          }
-                        ],
-                        "type": "object"
-                      }
-                    },
-                    {
                       "name": "content",
                       "required": false,
                       "schema": {
@@ -195,16 +163,13 @@
                                         "required": true,
                                         "schema": {
                                           "enum": [
-                                            "youtube",
                                             "video",
-                                            "image",
                                             "audio",
-                                            "markdown",
-                                            "json",
-                                            "typescript",
-                                            "file"
+                                            "image",
+                                            "text",
+                                            "other"
                                           ],
-                                          "fullComment": "type of asset that is being embedded",
+                                          "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                                           "type": "string"
                                         }
                                       }
@@ -237,16 +202,13 @@
                                         "required": true,
                                         "schema": {
                                           "enum": [
-                                            "youtube",
                                             "video",
-                                            "image",
                                             "audio",
-                                            "markdown",
-                                            "json",
-                                            "typescript",
-                                            "file"
+                                            "image",
+                                            "text",
+                                            "other"
                                           ],
-                                          "fullComment": "Can be inferred from href\n\ntype of asset that is being embedded",
+                                          "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                                           "type": "string"
                                         }
                                       }

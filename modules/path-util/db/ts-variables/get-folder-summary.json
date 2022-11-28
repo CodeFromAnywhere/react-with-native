@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668331941076,
+  "updatedAt": 1668331941076,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331941076,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getFolderSummary",
+  "slug": "get-folder-summary",
+  "operationRelativeTypescriptFilePath": "src/getFolderSummary.ts",
+  "type": {
+    "rawType": "(categorizedFiles: import(\"/Users/king/King/operations/tools/types/code-types/build/Operation\").CategorizedFilePaths) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/FolderSummary\").FolderSummary>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  categorizedFiles: CategorizedFilePaths\n): Promise<FolderSummary> => {\n  const categoriesSummary: Omit<FolderSummary, \"size\"> = {\n    codeSize: await sumSizeSummary(categorizedFiles.code),\n    dataSize: await sumSizeSummary(categorizedFiles.data),\n    textSize: await sumSizeSummary(categorizedFiles.text),\n  };\n\n  const folderSummary: FolderSummary = {\n    ...categoriesSummary,\n    size: sumAllKeys(Object.values(categoriesSummary), [\n      \"bytes\",\n      \"characters\",\n      \"lines\",\n      \"numberOfFiles\",\n    ]),\n  };\n\n  return folderSummary;\n}",
+  "description": "calculates folder summary from a categorized file paths object",
+  "id": "yweauzukzmlctpuscunvvqcm"
+}

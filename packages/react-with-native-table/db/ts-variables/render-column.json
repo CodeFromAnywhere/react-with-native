@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261633572,
-  "updatedAt": 1666261633572,
+  "createdAt": 1668775575026,
+  "updatedAt": 1668775575026,
   "deletedAt": 0,
-  "createdFirstAt": 1666261633572,
+  "createdFirstAt": 1668775575026,
   "classification": "const",
   "comments": [],
   "isExported": false,
@@ -10,7 +10,7 @@
   "slug": "render-column",
   "operationRelativeTypescriptFilePath": "src/Table.tsx",
   "type": {
-    "rawType": "<TModel extends { [key: string]: any; }>(column: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-table/src/Table\").ColumnType<TModel>, row: TModel, index: number) => JSX.Element",
+    "rawType": "<TModel extends { [key: string]: any; }>(column: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-table/src/Table\").ColumnType<TModel>, row: TModel, index: number) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "<TModel extends { [key: string]: any }>(\n  column: ColumnType<TModel>,\n  row: TModel,\n  index: number\n) => {\n  if (column.presentationType === \"text\") {\n    const rawValue = row[column.objectParameterKey];\n\n    const value: string =\n      rawValue === undefined ? \"\" : rawValue === \"\" ? \"''\" : String(rawValue);\n    /**\n     * This is a text item that presents just one string\n     */\n    return <td className={tdClassName}>{value}</td>;\n  } else if (column.presentationType === \"referenceSingle\") {\n    // Any parameter with pattern xxxSlug or xxxId should link to that instance in the referred model (link to `db?model={model}#{id}`)\n    const referenceId: string | undefined = row[column.objectParameterKey];\n\n    const referenceParameterInfo = getReferenceParameterInfo(\n      column.objectParameterKey\n    );\n\n    return (\n      <td className={tdClassName}>\n        <a\n          href={`db?model=${referenceParameterInfo.interfaceName}&${referenceParameterInfo.keyInModel}=${referenceId}`}\n        >\n          {referenceId}\n        </a>\n      </td>\n    );\n  } else if (column.presentationType === \"referenceMultiple\") {\n    // Any parameter with pattern xxxSlugs or xxxIds should link to those instance in the referred model (link to `db?model={model}&xxx={id}`) for every instance\n    // NB: it can also be a string in case markdown storage format is used, if there is just one...\n    const referenceIds: undefined | string[] | string =\n      row[column.objectParameterKey];\n    const referenceIdsArray = referenceIds\n      ? makeArray(referenceIds)\n      : undefined;\n\n    const referenceParameterInfo = getReferenceParameterInfo(\n      column.objectParameterKey\n    );\n\n    return (\n      <td className={tdClassName}>\n        {referenceIdsArray?.map((referenceId) => {\n          return (\n            <a\n              href={`db?model=${referenceParameterInfo.interfaceName}&${referenceParameterInfo.keyInModel}=${referenceId}`}\n            >\n              {referenceId}\n            </a>\n          );\n        })}\n      </td>\n    );\n  } else {\n    return <td className={tdClassName}>Unknown Presentation Type</td>;\n  }\n}",
+  "value": "<TModel extends { [key: string]: any }>(\n  column: ColumnType<TModel>,\n  row: TModel,\n  index: number\n) => {\n  if (column.presentationType === \"text\") {\n    const rawValue = row[column.objectParameterKey];\n\n    const value: string =\n      rawValue === undefined ? \"\" : rawValue === \"\" ? \"''\" : String(rawValue);\n    /**\n     * This is a text item that presents just one string\n     */\n    return <td className={tdClassName}>{value}</td>;\n  } else if (column.presentationType === \"backendAsset\") {\n    const backendAssets = row[column.objectParameterKey]\n      ? (makeArray(row[column.objectParameterKey]) as BackendAsset[])\n      : undefined;\n\n    return (\n      <td className={tdClassName}>\n        {backendAssets\n          ? backendAssets.map((backendAsset) => {\n              return (\n                <ModelItemAssetView\n                  item={row as unknown as AugmentedAnyModelType}\n                  backendAsset={backendAsset}\n                />\n              );\n            })\n          : null}\n      </td>\n    );\n  } else if (column.presentationType === \"referenceSingle\") {\n    // Any parameter with pattern xxxSlug or xxxId should link to that instance in the referred model (link to `db?model={model}#{id}`)\n    const referenceId: string | undefined = row[column.objectParameterKey];\n\n    const referenceParameterInfo = getReferenceParameterInfo(\n      column.objectParameterKey\n    );\n\n    return (\n      <td className={tdClassName}>\n        <a\n          href={`/${referenceParameterInfo.interfaceName}?${referenceParameterInfo.keyInModel}=${referenceId}`}\n        >\n          {referenceId}\n        </a>\n      </td>\n    );\n  } else if (column.presentationType === \"referenceMultiple\") {\n    // Any parameter with pattern xxxSlugs or xxxIds should link to those instance in the referred model (link to `db?model={model}&xxx={id}`) for every instance\n    // NB: it can also be a string in case markdown storage format is used, if there is just one...\n    const referenceIds: undefined | string[] | string =\n      row[column.objectParameterKey];\n    const referenceIdsArray = referenceIds\n      ? makeArray(referenceIds)\n      : undefined;\n\n    const referenceParameterInfo = getReferenceParameterInfo(\n      column.objectParameterKey\n    );\n\n    return (\n      <td className={tdClassName}>\n        {referenceIdsArray?.map((referenceId) => {\n          return (\n            <a\n              href={`/${referenceParameterInfo.interfaceName}?${referenceParameterInfo.keyInModel}=${referenceId}`}\n            >\n              {referenceId}\n            </a>\n          );\n        })}\n      </td>\n    );\n  } else {\n    return <td className={tdClassName}>Unknown Presentation Type</td>;\n  }\n}",
   "description": "",
-  "id": "pzbqhbeprqpdsacalrlymyqv"
+  "id": "qqnvbpdrdfkixlnrpxtebghv"
 }

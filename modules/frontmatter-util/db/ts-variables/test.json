@@ -1,0 +1,44 @@
+{
+  "createdAt": 1669384989907,
+  "updatedAt": 1669384989907,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384989907,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "test",
+  "slug": "test",
+  "operationRelativeTypescriptFilePath": "src/frontmatterParseToString.ts",
+  "type": {
+    "rawType": "(() => Promise<boolean>)[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "value": "[\n  makeTest(\n    () => {\n      return frontmatterParseToString({\n        a: \"1\",\n        b: \"2\",\n        c: \"true\",\n        d: \"string\",\n      });\n    },\n    (result) => result === `---\\na: 1\\nb: 2\\nc: true\\nd: string\\n---\\n`\n  ),\n  makeTest(\n    () => {\n      return frontmatterParseToString({});\n    },\n    (result) => result === \"\"\n  ),\n]",
+  "description": "",
+  "id": "umleyszueiqyskdinkjlqlut"
+}

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150835598,
-  "updatedAt": 1668150835598,
+  "createdAt": 1668977389959,
+  "updatedAt": 1668977389959,
   "deletedAt": 0,
-  "createdFirstAt": 1668150835598,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977389959,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/general.ts",
   "commentsInside": [],
   "rawText": " <T extends { [key: string]: number | undefined }>(\n  objectArray: T[],\n  keys: (keyof T)[]\n): T => {\n  const sumObject = objectArray.reduce((total, item) => {\n    // NB: not needed normally, but there seems to be some corrupt data here and there\n    if (!item) return total;\n    const newTotal = mergeObjectsArray(\n      keys.map((key) => {\n        const value1: number = total ? total[key] || 0 : 0;\n        const value2: number = item?.[key] || 0;\n\n        const sum =\n          (!total || total[key] === undefined) && item[key] === undefined\n            ? undefined\n            : value1 + value2;\n\n        return { [key]: sum };\n      })\n    ) as T;\n\n    return newTotal;\n  }, null as null | T) as T;\n\n  return sumObject;\n}",
@@ -46,5 +41,5 @@
     "linesPerFile": 26,
     "numberOfFiles": 1
   },
-  "id": "ekmbyrrangcfbctrtttydmsw"
+  "id": "wjdbqsmzmdtcgeouxbvrxonn"
 }

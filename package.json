@@ -6,7 +6,9 @@
     "packages/**/*",
     "modules/**/*"
   ],
-  "scripts": {},
+  "scripts": {
+    "dev": "pm2 stop app_function-server; node apps/function-server/build/cli/runFunctionServerDev.cli.js"
+  },
   "devDependencies": {
     "prettier": "^2.5.1"
   },
@@ -15,8 +17,14 @@
     "node": ">=14.0.0"
   },
   "packageManager": "yarn@1.22.17",
-  "sensible": {
-    "isSensibleProject": true
+  "operation": {
+    "isBundle": true
+  },
+  "resolutions": {
+    "@types/react": "17.0.30",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-native": "^0.66.4"
   },
   "description": "Bringing together React and React Native",
   "repository": {

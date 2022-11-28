@@ -1,32 +1,17 @@
 {
-  "createdAt": 1667111115444,
-  "updatedAt": 1667111115444,
+  "createdAt": 1669384146245,
+  "updatedAt": 1669384146245,
   "deletedAt": 0,
-  "createdFirstAt": 1667111115444,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669384146245,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getAssetDirectlyApiUrl.ts",
   "commentsInside": [],
-  "rawText": " (\n  apiUrl: string,\n  projectRelativeAssetPath: string\n) => {\n  return getGetApiUrl(apiUrl, \"getAssetDirectlyGetApi\", {\n    projectRelativeAssetPath,\n  });\n}",
+  "rawText": " (projectRelativeAssetPath: string) => {\n  return getGetApiUrl(apiUrl, \"function/getAssetDirectlyGetApi\", {\n    projectRelativeAssetPath,\n  });\n}",
   "name": "getAssetDirectlyApiUrl",
   "slug": "get-asset-directly-api-url",
   "parameters": [
-    {
-      "name": "apiUrl",
-      "schema": {
-        "type": "string"
-      },
-      "simplifiedSchema": {
-        "type": "string"
-      },
-      "required": true
-    },
     {
       "name": "projectRelativeAssetPath",
       "schema": {
@@ -54,13 +39,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 158,
-    "lines": 8,
-    "bytes": 158,
+    "characters": 145,
+    "lines": 5,
+    "bytes": 145,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 20,
-    "linesPerFile": 8,
+    "charactersPerLine": 29,
+    "linesPerFile": 5,
     "numberOfFiles": 1
   },
-  "id": "mkzppbivrskkptcbhpsolmnk"
+  "id": "zoovtyetnhahkhyksbsrccez"
 }

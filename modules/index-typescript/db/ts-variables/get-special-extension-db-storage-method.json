@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055600598,
+  "updatedAt": 1669055600598,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055600598,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getSpecialExtensionDbStorageMethod",
+  "slug": "get-special-extension-db-storage-method",
+  "operationRelativeTypescriptFilePath": "src/getSpecialExtensionDbStorageMethod.ts",
+  "type": {
+    "rawType": "(extensions?: string[] | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(extensions?: string[]) => {\n  if (!extensions) return;\n\n  /**\n   * put any models here that should, if they are used as extension, have a db model generated\n   */\n  const specialExtensions = {\n    TsIndexModelType: \"jsonMultiple\",\n    OperationIndexModelType: \"jsonMultiple\",\n    DefaultModelType: \"jsonMultiple\",\n    SlugModelType: \"jsonMultiple\",\n    CsvModelType: \"csv\",\n    KeyValueMarkdownModelType: \"keyValueMarkdown\",\n    CategoryModelType: \"jsonMultiple\",\n    MarkdownModelType: \"markdown\",\n  };\n\n  const specialExtensionKeys = Object.keys(specialExtensions);\n\n  const specialExtension = extensions.find((x) =>\n    specialExtensionKeys.includes(x)\n  ) as undefined | keyof typeof specialExtensions;\n\n  if (!specialExtension) return;\n\n  const dbStorageMethod = specialExtensions[\n    specialExtension\n  ] as DbStorageMethod;\n  return dbStorageMethod;\n}",
+  "description": "returns undefined if there is not a special extension. if there is, it returns the dbStorageMethod",
+  "id": "rfqmcfmziyqewhgdcsplqmwn"
+}

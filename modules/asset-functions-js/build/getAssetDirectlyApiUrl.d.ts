@@ -1,2 +1,2 @@
-export declare const getAssetDirectlyApiUrl: (apiUrl: string, projectRelativeAssetPath: string) => string;
+export declare const getAssetDirectlyApiUrl: (projectRelativeAssetPath: string) => string;
 //# sourceMappingURL=getAssetDirectlyApiUrl.d.ts.map

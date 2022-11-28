@@ -1,0 +1,264 @@
+{
+  "createdAt": 1666263821030,
+  "updatedAt": 1666263821030,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263821030,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "name": "getTypescriptErrorsFromFiles",
+  "slug": "get-typescript-errors-from-files",
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getTypescriptErrorsFromFiles.ts",
+  "commentsInside": [],
+  "description": "/**\n * uses official typescript compiler to check all given files for compilation errors\n */",
+  "parameters": [
+    {
+      "name": "{\n  filePaths,\n  debug,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "basePath": {
+            "type": "string"
+          },
+          "filePaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "compilerOptions": {
+            "$ref": "#/definitions/CompilerOptions"
+          },
+          "packageJson": {
+            "$ref": "#/definitions/PackageJson"
+          },
+          "debug": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "basePath",
+          "filePaths",
+          "compilerOptions",
+          "packageJson"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "basePath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filePaths",
+            "required": true,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "packageJson",
+            "required": true,
+            "schema": {
+              "fullComment": "--- dbStorageMethod: jsonSingle operationRelativePath: package.json\n---",
+              "properties": [
+                {
+                  "name": "operationName",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                    "type": "null"
+                  }
+                },
+                {
+                  "name": "projectRelativePath",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "operationRelativePath",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "path",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "name",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "main",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "source",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "description",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "version",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "private",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "author",
+                  "required": false,
+                  "schema": {
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "repository",
+                  "required": true,
+                  "schema": {
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "homepage",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "bin",
+                  "required": false,
+                  "schema": {
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "workspaces",
+                  "required": false,
+                  "schema": {
+                    "items": [
+                      {
+                        "schema": {
+                          "type": "string"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "scripts",
+                  "required": false,
+                  "schema": {
+                    "properties": [],
+                    "type": "object"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "debug",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "returnType": {
+    "rawType": "any[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {}
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "size": {
+    "characters": 2897,
+    "lines": 94,
+    "bytes": 2897,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 94,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\n/**\n * uses official typescript compiler to check all given files for compilation errors\n */\nexport function getTypescriptErrorsFromFiles({\n  filePaths,\n  debug,\n}: {\n  basePath: string;\n  filePaths: string[];\n  compilerOptions: TsConfig[\"compilerOptions\"];\n  packageJson: PackageJson;\n  debug?: boolean;\n}): Creation<TsBuildError>[] {\n  try {\n    const program = typescript.createProgram(filePaths, {});\n    const emitResult = program.emit(undefined, (fileName) => {\n      if (debug) console.log(`emitted ${fileName}, not writing.`);\n    });\n\n    const allDiagnostics = typescript\n      .getPreEmitDiagnostics(program)\n      .concat(emitResult.diagnostics);\n\n    const buildErrors = allDiagnostics\n      .map((diagnostic) => {\n        let buildError: null | Creation<TsBuildError> = null;\n\n        // TODO: Fix this! Obviously this isn't correct\n        const filePath = filePaths[0];\n\n        const operationBasePath = findOperationBasePath(filePath);\n        if (!operationBasePath) return;\n\n        const operationPathParse = getOperationPathParse(filePath);\n        if (!operationPathParse) return;\n\n        const operationName = getLastFolder(operationBasePath);\n        const operationRelativeTypescriptFilePath =\n          operationPathParse.operationRelativeTypescriptFilePath;\n\n        if (diagnostic.file && diagnostic.start) {\n          const { line, character } = typescript.getLineAndCharacterOfPosition(\n            diagnostic.file,\n            diagnostic.start\n          );\n          const message = typescript.flattenDiagnosticMessageText(\n            diagnostic.messageText,\n            \"\\n\"\n          );\n\n          buildError = {\n            message,\n            operationName,\n            operationRelativeTypescriptFilePath,\n            line: line + 1,\n            character: character + 1,\n            id: generateId(),\n            // TODO: later I can give this the name of the error maybe\n            name: \"TsBuildError\",\n            slug: \"ts-build-error\",\n          };\n          // console.log(\n          //   `${diagnostic.file.fileName} (${line + 1},${character + 1}): ${message}`\n          // );\n        } else {\n          const message = typescript.flattenDiagnosticMessageText(\n            diagnostic.messageText,\n            \"\\n\"\n          );\n          buildError = {\n            id: generateId(),\n            message,\n            // TODO: later I can give this the name of the error maybe\n            name: \"TsBuildError\",\n            slug: \"ts-build-error\",\n            operationRelativeTypescriptFilePath:\n              operationPathParse.operationRelativeTypescriptFilePath,\n          };\n        }\n\n        return buildError;\n      })\n      .filter(notEmpty);\n\n    return buildErrors;\n  } catch (e) {\n    log(`WTF raar ${e}`, { type: \"error\" });\n    return [];\n  }\n}",
+  "maxIndentationDepth": 7,
+  "id": "larmjwdmppkfcwkrqnzgebij"
+}

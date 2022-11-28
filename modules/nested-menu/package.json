@@ -1,11 +1,27 @@
 {
-  "createdAt": 1662709577330,
-  "updatedAt": 1662709577330,
+  "createdAt": 1668328710976,
+  "updatedAt": 1668328710976,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577330,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328710976,
+  "id": "UTkxpBtFXEwRtTqK",
+  "dependencies": {
+    "react": "17.0.2",
+    "react-with-native": "1.4.9",
+    "next-a-link": "0.0.1",
+    "js-util": "0.0.1",
+    "clickable-icon": "0.0.1",
+    "react-with-native-store": "2.0.40",
+    "react-with-native-router": "1.0.14",
+    "webpage-types": "0.0.1",
+    "fs-util-js": "0.0.1",
+    "recursive-types": "0.0.1",
+    "nested-menu-types": "0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4",
+    "tailwindcss": "^3.0.24"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "build": "tsc",
     "test": "node ./build/cli.js",
@@ -14,23 +30,76 @@
     "dev": "npx tsc-watch --onSuccess 'yarn css'",
     "css": "tailwindcss -o css.css"
   },
-  "license": "ISC",
-  "dependencies": {
-    "react": "17.0.2",
-    "react-with-native": "1.4.9",
-    "next-a-link": "0.0.1",
-    "js-util": "0.0.1",
-    "clickable-icon": "0.0.1",
-    "react-with-native-store": "2.0.40"
-  },
-  "devDependencies": {
-    "typescript": "^4.7.4",
-    "tailwindcss": "^3.0.24"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "nested-menu",
+  "language": "english",
   "slug": "nested-menu",
-  "id": "UTkxpBtFXEwRtTqK",
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/user-interfaces/gui/smart/nested-menu/src/NestedMenuItem.tsx. Error: Error: Unknown type \"function\""
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "ui-cjs",
+    "coreDependenciesIndexed": [
+      "useEffect"
+    ],
+    "folderNameIndexed": "nested-menu",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669132829112,
+    "operationDependenciesIndexed": [
+      "Div",
+      "trimSlashes",
+      "mergeObjectsArray",
+      "notEmpty",
+      "useRouter",
+      "NestedWebPage",
+      "MenuItemType",
+      "MouseEventCallbacks",
+      "Div",
+      "Span",
+      "useRouter",
+      "MenuItemType",
+      "MouseEventCallbacks",
+      "ALink",
+      "NestedWebPage",
+      "WebPage",
+      "getFileOrFolderName",
+      "createStore"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/user-interfaces/gui/smart",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 4,
+        "lines": 292,
+        "characters": 7985,
+        "bytes": 7985
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 147,
+        "characters": 3558,
+        "bytes": 3558
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 104,
+        "characters": 1501,
+        "bytes": 1501
+      },
+      "size": {
+        "bytes": 13044,
+        "characters": 13044,
+        "lines": 543,
+        "numberOfFiles": 7
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

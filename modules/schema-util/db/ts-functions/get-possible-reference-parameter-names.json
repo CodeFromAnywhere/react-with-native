@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150794705,
-  "updatedAt": 1668150794705,
+  "createdAt": 1668836013738,
+  "updatedAt": 1668836013738,
   "deletedAt": 0,
-  "createdFirstAt": 1668150794705,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668836013738,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getReferenceParameterInfo.ts",
   "commentsInside": [],
   "rawText": " (\n  parameterName: string\n): string[] => {\n  const possibleReferenceParameterNames = isPlural(parameterName)\n    ? referencePluralParameterNames\n        .map(capitaliseFirstLetter)\n        .map((ref) => `${singularize(parameterName)}${ref}`)\n    : referenceParameterNames\n        .map(capitaliseFirstLetter)\n        .map((ref) => `${parameterName}${ref}`);\n\n  return possibleReferenceParameterNames;\n}",
@@ -76,5 +71,5 @@
     "linesPerFile": 20,
     "numberOfFiles": 1
   },
-  "id": "lkzdpkgqiyrnhzyjwnawzaow"
+  "id": "rovriyqwmbxgcwcjufzrtvlx"
 }

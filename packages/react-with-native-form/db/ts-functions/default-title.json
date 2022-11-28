@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666261373855,
-  "updatedAt": 1666261373855,
+  "createdAt": 1669055877838,
+  "updatedAt": 1669055877838,
   "deletedAt": 0,
-  "createdFirstAt": 1666261373855,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055877838,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/general.tsx",
   "commentsInside": [],
   "rawText": " ({\n  title,\n  backButton,\n}: {\n  title?: string;\n  backButton?: () => void;\n}) => {\n  return title ? (\n    <Div className=\"flex items-center mb-10 \">\n      {backButton && (\n        <Div onClick={backButton} className={`p-4 cursor-pointer`}>\n          back\n        </Div>\n      )}\n      <H2 className=\"text-2xl font-bold\">{title}</H2>\n    </Div>\n  ) : null;\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 18,
     "numberOfFiles": 1
   },
-  "id": "jcunlnzgrvtwwqlycipepfha"
+  "id": "edilrintrbwdnmvatbmrhlnk"
 }

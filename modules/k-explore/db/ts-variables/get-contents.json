@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148403667,
-  "updatedAt": 1668148403667,
+  "createdAt": 1668976641052,
+  "updatedAt": 1668976641052,
   "deletedAt": 0,
-  "createdFirstAt": 1668148403667,
+  "createdFirstAt": 1668976641052,
   "classification": "const",
   "comments": [],
   "isExported": false,
@@ -29,5 +29,5 @@
   },
   "value": "async (filePath: string) => {\n  // console.log(\"Get contents\", filePath);\n  const extension = getExtension(filePath);\n  if (!isSearchContentExtension(extension)) {\n    return;\n  }\n\n  if (extension === \"json\") {\n    return readJsonFile<any>(filePath);\n  } else if (markdownExtensions.includes(extension)) {\n    const contents = await fs.readFile(filePath, \"utf8\");\n    const markdownParse = mdToJsonParse(contents);\n    return markdownParse;\n  } else {\n    const fileString = fs.readFile(filePath, \"utf8\");\n    return fileString;\n  }\n}",
   "description": "gets needed contents of file path, based on the extension\n\nreturns a markdownparse if it's markdown, a json parse for json, or a file content string for anything else",
-  "id": "fbkbuzqmewfydcykzdrkibzs"
+  "id": "pvrziutqarfcagxpfiojbgbl"
 }

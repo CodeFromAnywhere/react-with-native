@@ -1,19 +1,14 @@
 {
-  "createdAt": 1666259863749,
-  "updatedAt": 1666259863749,
+  "createdAt": 1668774170534,
+  "updatedAt": 1668774170534,
   "deletedAt": 0,
-  "createdFirstAt": 1666259863749,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774170534,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/test-operation-models.ts",
   "commentsInside": [],
-  "rawText": " async () => {\n  const operationIndexs = await testDb.get(\"OperationIndex\");\n  const operationConfigs = await testDb.get(\"OperationConfig\");\n  const packageJsons = await testDb.get(\"PackageJson\");\n  const tsConfigs = await testDb.get(\"TsConfig\");\n\n  console.dir({ operationConfigs, operationIndexs, packageJsons, tsConfigs });\n\n  return true;\n}",
+  "rawText": " async () => {\n  // const operationIndexs = await testDb.get(\"OperationIndex\");\n  // const operationConfigs = await testDb.get(\"OperationConfig\");\n  // const packageJsons = await testDb.get(\"PackageJson\");\n  const tsConfigs = await testDb.get(\"TsConfig\");\n\n  //operationConfigs, operationIndexs, packageJsons,\n  // console.dir({ tsConfigs });\n\n  return true;\n}",
   "name": "testOperationModels",
   "slug": "test-operation-models",
   "parameters": [],
@@ -29,13 +24,13 @@
   },
   "maxIndentationDepth": 1,
   "size": {
-    "characters": 430,
-    "lines": 10,
-    "bytes": 430,
+    "characters": 446,
+    "lines": 11,
+    "bytes": 446,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 43,
-    "linesPerFile": 10,
+    "charactersPerLine": 41,
+    "linesPerFile": 11,
     "numberOfFiles": 1
   },
-  "id": "idvhqvylkadyuxnblkiorrjo"
+  "id": "atbfsckrrehrgxcnzzryftzz"
 }

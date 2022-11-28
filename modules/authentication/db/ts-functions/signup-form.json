@@ -1,0 +1,40 @@
+{
+  "createdAt": 1669385497721,
+  "updatedAt": 1669385497721,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385497721,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/SignupForm.tsx",
+  "commentsInside": [],
+  "rawText": " () => {\n  const router = useRouter();\n  const meQuery = queries.useGetMeWithContext();\n\n  return (\n    <Div className=\"flex flex-1 flex-row mx-10\">\n      <Div className=\"flex flex-1 flex-col\">\n        <P className=\"text-4xl\">Sign up</P>\n        <FunctionForm\n          modelName=\"Person\"\n          projectRelativeStorageFilePath=\"db/persons.json\"\n          tsFunction={Index}\n          withApiResult={(\n            result: RealApiReturnType<\"signupWithPasswordWithContext\">\n          ) => {\n            if (result.isSuccessful && result.result?.isSuccessful) {\n              router.push(\"/\");\n            }\n            meQuery.refetch();\n            showStandardResponse(result);\n          }}\n        />\n        <ALink href=\"/login\">Or click here to login</ALink>\n      </Div>\n    </Div>\n  );\n}",
+  "name": "SignupForm",
+  "slug": "signup-form",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 795,
+    "lines": 27,
+    "bytes": 795,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 27,
+    "numberOfFiles": 1
+  },
+  "id": "ouddfeyjyrtcfvlllqkuguwb"
+}

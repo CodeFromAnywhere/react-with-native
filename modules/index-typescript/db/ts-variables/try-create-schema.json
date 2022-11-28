@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055585852,
+  "updatedAt": 1669055585852,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055585852,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "tryCreateSchema",
+  "slug": "try-create-schema",
+  "operationRelativeTypescriptFilePath": "src/generateSchema.ts",
+  "type": {
+    "rawType": "(config: import(\"/Users/king/King/operations/node_modules/ts-json-schema-generator/dist/src/Config\").Config) => { schema?: import(\"/Users/king/King/operations/node_modules/@types/json-schema/index\").JSONSchema7 | undefined; error?: string | undefined; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  config: Config\n): { schema?: Schema; error?: string } => {\n  try {\n    const generator = createGenerator(config);\n    const schema: Schema = generator.createSchema(config.type);\n    return { schema };\n  } catch (e) {\n    return { error: String(e) };\n  }\n}",
+  "description": "Try because sometimes generateSchema fails",
+  "id": "ooatsvjrvawicvxiraqoozbb"
+}

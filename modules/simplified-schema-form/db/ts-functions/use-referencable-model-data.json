@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667634906327,
-  "updatedAt": 1667634906327,
+  "createdAt": 1669128206639,
+  "updatedAt": 1669128206639,
   "deletedAt": 0,
-  "createdFirstAt": 1667634906327,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669128206639,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/useReferencableModelData.ts",
   "commentsInside": [],
   "rawText": " (\n  simplifiedSchema: SimplifiedSchema\n): ReferencableModelData | undefined => {\n  const referencableModelNames = getReferencableModels(simplifiedSchema)\n    ?.map((x) => x.interfaceName)\n    .filter(notEmpty);\n\n  if (!referencableModelNames) return;\n\n  /**\n   * NB: here we just get the referencable model data for the referencable model names in this form. But since they are decoupled, useQuery is caching them, across forms!\n   */\n  const referencableModelDataArray = referencableModelNames\n    .map((dbModelName) => {\n      const realDbModelName = dbModelName as keyof DbModels;\n      const { data: apiResult, isLoading } =\n        queries.useGetReferencableModelData(realDbModelName);\n\n      const data = apiResult?.result;\n\n      return { [dbModelName]: { data, isLoading } };\n    })\n    .filter(notEmpty);\n\n  const referencableModelData: ReferencableModelData | undefined =\n    referencableModelDataArray\n      ? mergeObjectsArray(referencableModelDataArray)\n      : undefined;\n\n  return referencableModelData;\n}",
@@ -82,6 +77,23 @@
             }
           },
           {
+            "name": "type",
+            "required": true,
+            "schema": {
+              "enum": [
+                "string",
+                "number",
+                "boolean",
+                "object",
+                "array",
+                "null"
+              ],
+              "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+              "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+              "type": "string"
+            }
+          },
+          {
             "name": "circularRefName",
             "required": false,
             "schema": {
@@ -94,7 +106,16 @@
             "required": false,
             "schema": {
               "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "Primitive type",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Type"
+                }
+              ],
               "type": "array"
             }
           },
@@ -103,7 +124,42 @@
             "required": false,
             "schema": {
               "fullComment": "in case of object, this will always appear",
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [
+                      {
+                        "name": "name",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "schema",
+                        "required": true,
+                        "schema": {
+                          "circularRefName": "SimplifiedSchema",
+                          "properties": [],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "required",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                          "nb": "can't we put this in the SimplifiedSchema itself?",
+                          "type": "boolean"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "SimplifiedSchemaProperty"
+                }
+              ],
               "type": "array"
             }
           },
@@ -112,7 +168,34 @@
             "required": false,
             "schema": {
               "fullComment": "in case of arrays, this will always appear",
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [
+                      {
+                        "name": "name",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "name in case of it being a reference, otherwise null",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "schema",
+                        "required": true,
+                        "schema": {
+                          "circularRefName": "SimplifiedSchema",
+                          "properties": [],
+                          "type": "object"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "SimplifiedSchemaItem"
+                }
+              ],
               "type": "array"
             }
           },
@@ -133,7 +216,7 @@
   ],
   "description": "Hook to retreive `ReferencableModelData` to supply to `SimplifiedSchemaForm`.\n\nUnderwater, this calculates all referencableModelNames for a schema, and then it fetches the `ReferencableItem`[] for every one of those models, using `react-query` `useQuery` hooks\n\nNB: be careful, not to change the simplifiedSchema after using this hook for the first time. This will change the amount of hooks and this can break react!\n\n(it will give `Error: Rendered more hooks than during the previous render`)",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/simplified-schema-form/src/types\").ReferencableModelData | undefined",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/wise/simplified-schema-form/src/types\").ReferencableModelData | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -160,5 +243,5 @@
     "linesPerFile": 37,
     "numberOfFiles": 1
   },
-  "id": "qeltfebwuyekclzznvjfrtwa"
+  "id": "vsbdfypcdaegnwnwvnkprnjv"
 }

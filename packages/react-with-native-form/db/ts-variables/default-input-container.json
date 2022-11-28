@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261374616,
-  "updatedAt": 1666261374616,
+  "createdAt": 1669055878462,
+  "updatedAt": 1669055878462,
   "deletedAt": 0,
-  "createdFirstAt": 1666261374616,
+  "createdFirstAt": 1669055878462,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "default-input-container",
   "operationRelativeTypescriptFilePath": "src/general.tsx",
   "type": {
-    "rawType": "({ children, startSection, sectionTitle, title, description, error, errorClassName, }: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").InputContainerProps) => JSX.Element",
+    "rawType": "({ children, startSection, sectionTitle, title, description, error, errorClassName, }: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/src/general\").InputContainerProps) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "({\n  children,\n  startSection,\n  sectionTitle,\n  title,\n  description,\n  error,\n  errorClassName,\n}: InputContainerProps) => (\n  <Div>\n    {startSection ? (\n      <Div\n        style={{\n          display: \"flex\",\n          height: 40,\n          justifyContent: \"center\",\n          paddingLeft: 10,\n        }}\n      >\n        {sectionTitle ? (\n          <P>\n            <Strong>{sectionTitle}</Strong>\n          </P>\n        ) : (\n          <Div style={{ height: 40 }} />\n        )}\n      </Div>\n    ) : null}\n\n    {/* This is the section title */}\n    <Div className=\"pt-0 mb-6\" style={{ marginBottom: 10 }}>\n      {title ? <Label className=\"mb-2 text-sm font-bold\">{title}</Label> : null}\n      {description && (\n        <Div className={`flex mx-3 mb-2 items-start `}>\n          <P className={`text-gray-500 italic`}>{description}</P>\n        </Div>\n      )}\n      {error ? (\n        <P className={errorClassName || `mr-3 mb-2 text-red-500`}>\n          {error || \"Invalid value\"}\n        </P>\n      ) : null}\n\n      <Div>{children}</Div>\n    </Div>\n  </Div>\n)",
   "description": "",
-  "id": "nmmtianccktmrtuevlnkdupw"
+  "id": "sxfbmlujfbgzeacexcsnzvsc"
 }

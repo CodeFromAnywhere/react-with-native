@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668774173099,
+  "updatedAt": 1668774173099,
+  "deletedAt": 0,
+  "createdFirstAt": 1668774173099,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "testPerformance",
+  "slug": "test-performance",
+  "operationRelativeTypescriptFilePath": "src/testPerformance.test.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const executionId = generateUniqueId();\n  const performance: (PerformanceItem | undefined)[] = [];\n  getNewPerformance(\"start\", executionId, true);\n\n  const deviceInclude: Include = {\n    referenceKey: \"personIds\",\n    include: { referenceKey: \"groupSlugs\" },\n  };\n  log(\"Devices with include\", { type: \"important\" });\n\n  const withInclude = await db.get(\"Device\", { include: deviceInclude });\n\n  log(\"Devices without include\", { type: \"important\" });\n\n  const withoutInclude = await db.get(\"Device\");\n\n  performance.push(\n    getNewPerformance(\n      \"testPerformance (2x get, 1x with double include)\",\n      executionId\n    )\n  );\n  cleanupTimer(executionId);\n  log(\"DONE\", { type: \"success\" });\n  console.log(performance);\n}",
+  "description": "",
+  "id": "kpwbjczlwqsaawcibvvhjrdu"
+}

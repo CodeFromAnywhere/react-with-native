@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148838197,
-  "updatedAt": 1668148838197,
+  "createdAt": 1669312092829,
+  "updatedAt": 1669312092829,
   "deletedAt": 0,
-  "createdFirstAt": 1668148838197,
+  "createdFirstAt": 1669312092829,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (dbFileLocation, alterFn) => {\n  const { absolutePath } = dbFileLocation;\n  const bareData =\n    (await readCsvFile<Storing<CsvItemType>>(absolutePath)) || [];\n  const isNewFile = !bareData;\n  const { newStoredData, ...queryResult } = alterFn(bareData);\n  if (newStoredData.length === 0 && !!bareData) {\n    // NB: if new array is empty, just remove the file\n    await fs.rm(absolutePath);\n    return queryResult;\n  }\n\n  const newDataString = csvItemArrayToCsvString(newStoredData);\n  const isSuccesful = await writeStringToFile(absolutePath, newDataString);\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
   "description": "Alters a csv",
-  "id": "kwxkccvtnifvuvpzjtcjczri"
+  "id": "wgpcdlictsteirlqeexrgkhx"
 }

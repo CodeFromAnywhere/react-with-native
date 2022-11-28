@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148497564,
-  "updatedAt": 1668148497564,
+  "createdAt": 1668774012317,
+  "updatedAt": 1668774012317,
   "deletedAt": 0,
-  "createdFirstAt": 1668148497564,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774012317,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/name-conventions.ts",
   "commentsInside": [],
   "rawText": " (parameterName: string) => {\n  const generatedPatterns = parameterNames\n    .filter(\n      (x) => x.contentType.length === 1 && x.contentType[0] === \"generated\"\n    )\n    .map((x) => x.pattern);\n  // TODO: match the patterns against the name to find match\n}",
@@ -48,5 +43,5 @@
     "linesPerFile": 8,
     "numberOfFiles": 1
   },
-  "id": "zgeqtjtfitbumvlmzccvxnba"
+  "id": "dxabqxxzlysyoxnqycwmabwu"
 }

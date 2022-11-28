@@ -1,0 +1,154 @@
+{
+  "createdAt": 1669055604289,
+  "updatedAt": 1669055604289,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055604289,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getTypeInfo.ts",
+  "commentsInside": [],
+  "rawText": " (type: Type, schema?: Schema): TypeInfo => {\n  const rawType = type.getApparentType().getText();\n  const isArray = type.isArray();\n  const isEnum = type.isEnum();\n  const isEnumLiteral = type.isEnumLiteral();\n  const isPrimitive = type.isString() || type.isNumber() || type.isBoolean();\n  const isObject = type.isObject();\n\n  let typeDefinition: Schema | undefined = undefined;\n  try {\n    typeDefinition = schema || typeToSchema(type);\n  } catch (e) {\n    log(`Type to schema failed with error: ${e}`, { type: \"debug\" });\n  }\n\n  const typeInfo: TypeInfo = {\n    rawType,\n    typeDefinition,\n    // TODO:\n    typeCoverage: 0,\n    // this is easy to infer\n    isArray,\n    isEnum,\n    isObject,\n    isPrimitive,\n    isEnumLiteral,\n    simplifiedSchema: typeDefinition\n      ? simplifySchema(\"type\", typeDefinition, [], [])\n      : undefined,\n  };\n\n  return typeInfo;\n}",
+  "name": "getTypeInfo",
+  "slug": "get-type-info",
+  "parameters": [],
+  "description": "takes a ts morph type and returns all info about it\n\nif available, a schema should be provided about the type because it's hard to infer it (probably buggy)",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/code-types/build/TypeInfo\").TypeInfo",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "typeDefinition": {},
+        "simplifiedSchema": {},
+        "isObject": {
+          "type": "boolean"
+        },
+        "isArray": {
+          "type": "boolean"
+        },
+        "isPrimitive": {
+          "type": "boolean"
+        },
+        "isEnum": {
+          "type": "boolean"
+        },
+        "isEnumLiteral": {
+          "type": "boolean"
+        },
+        "typeCoverage": {
+          "type": "number"
+        },
+        "rawType": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "isObject",
+        "isArray",
+        "isPrimitive",
+        "isEnum",
+        "isEnumLiteral",
+        "typeCoverage",
+        "rawType"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "typeDefinition",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "simplifiedSchema",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "isObject",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isArray",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isPrimitive",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isEnum",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isEnumLiteral",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "typeCoverage",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "rawType",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1024,
+    "lines": 35,
+    "bytes": 1024,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 35,
+    "numberOfFiles": 1
+  },
+  "id": "gwfewcpolnrnhramzsgvsyqp"
+}

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150849822,
-  "updatedAt": 1668150849822,
+  "createdAt": 1668977411051,
+  "updatedAt": 1668977411051,
   "deletedAt": 0,
-  "createdFirstAt": 1668150849822,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977411051,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/object-merge.ts",
   "commentsInside": [],
   "rawText": " <T extends { [key: string]: any | undefined }>(\n  ...objects: (Partial<T> | undefined)[]\n): T | undefined => {\n  if (objects.length === 0) return;\n\n  const firstObject = objects[0];\n\n  const mergedObject = objects.reduce((previous, current) => {\n    if (!current) return previous;\n\n    const currentWithoutUndefined = omitUndefinedValues(current);\n\n    const newObject: Partial<T> | undefined = !previous\n      ? current\n      : { ...previous, ...currentWithoutUndefined };\n\n    return newObject;\n    // NB: we cannot guarantee this based on the input!\n  }, firstObject) as T;\n\n  return mergedObject;\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 28,
     "numberOfFiles": 1
   },
-  "id": "rrxyskvuycpphobjyypitaxo"
+  "id": "audfjaxlfehwgxtkclfzfobj"
 }

@@ -1,4 +1,3 @@
-export * from "./AugmentedWord";
-export * from "./MarkdownReaderPage";
 export * from "./MarkdownReaderPageProps";
+export * from "./ReaderPageContentProps";
 //# sourceMappingURL=index.d.ts.map

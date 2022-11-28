@@ -1,0 +1,50 @@
+{
+  "createdAt": 1668551779520,
+  "updatedAt": 1668551779520,
+  "deletedAt": 0,
+  "createdFirstAt": 1668551779520,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getAugmentedWordsObject.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  manualProjectRoot?: string\n): Promise<MappedObject<AugmentedWord> | undefined> => {\n  const projectRoot = manualProjectRoot || getProjectRoot();\n\n  if (!projectRoot) return;\n\n  if (cache) return cache;\n\n  const augmentedWordsSerializable = (await getAugmentedWords(projectRoot)).map(\n    (item) => omitUndefinedValues(item)\n  );\n\n  const mappedObject = createMappedObject(augmentedWordsSerializable, \"word\");\n\n  cache = mappedObject;\n  return mappedObject;\n}",
+  "name": "getAugmentedWordObject",
+  "slug": "get-augmented-word-object",
+  "parameters": [
+    {
+      "name": "manualProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/util/js-util/build/createMappedObject\").MappedObject<import(\"/Users/king/King/operations/tools/purpose/reader/augmented-word-types/build/AugmentedWord\").AugmentedWord> | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 469,
+    "lines": 18,
+    "bytes": 469,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "id": "tsxevfkdqnfrwvseijtzqibl"
+}

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150796753,
-  "updatedAt": 1668150796753,
+  "createdAt": 1668836015790,
+  "updatedAt": 1668836015790,
   "deletedAt": 0,
-  "createdFirstAt": 1668150796753,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668836015790,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/schema-util.ts",
   "commentsInside": [],
   "rawText": " (schema: Schema | undefined): SchemaProperty[] => {\n  if (!schema) return [];\n  const propertyKeys = schema.properties ? Object.keys(schema.properties) : [];\n  const properties = propertyKeys\n    .map((key) => {\n      const propertySchema = getSchema(schema.properties?.[key]);\n      return propertySchema\n        ? {\n            name: key,\n            schema: propertySchema,\n            required: schema.required?.includes(key) || false,\n          }\n        : null;\n    })\n    .filter(notEmpty);\n\n  return properties;\n}",
@@ -68,8 +63,26 @@
             "name": "enum",
             "required": false,
             "schema": {
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "Primitive type",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Type"
+                }
+              ],
               "type": "array"
+            }
+          },
+          {
+            "name": "const",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
             }
           },
           {
@@ -377,6 +390,15 @@
             }
           },
           {
+            "name": "default",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
             "name": "readOnly",
             "required": false,
             "schema": {
@@ -388,6 +410,15 @@
             "required": false,
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "examples",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
             }
           }
         ],
@@ -482,5 +513,5 @@
     "linesPerFile": 18,
     "numberOfFiles": 1
   },
-  "id": "ficnzcirtndkeiahaktylucz"
+  "id": "wnsvvywagzdlbihygnokpuzn"
 }

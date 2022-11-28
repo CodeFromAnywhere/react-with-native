@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148866622,
-  "updatedAt": 1668148866622,
+  "createdAt": 1669312143559,
+  "updatedAt": 1669312143559,
   "deletedAt": 0,
-  "createdFirstAt": 1668148866622,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312143559,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util/getAugmentedData.ts",
   "commentsInside": [],
   "rawText": " async <T>(\n  dbFileLocation: DbFileLocation,\n  dbStorageMethod: DbStorageMethod\n): Promise<T[] | null> => {\n  const { absolutePath, modelName, ...modelLocation } = dbFileLocation;\n\n  const parsedPath = path.parse(absolutePath);\n\n  const isSingleMethod =\n    dbStorageMethod === \"markdown\" || dbStorageMethod === \"jsonSingle\";\n\n  const hasOperationRelativePath = !!modelLocation.operationRelativePath;\n  const shouldAddSingleInfo = isSingleMethod && !hasOperationRelativePath;\n\n  const slugifiedName = shouldAddSingleInfo\n    ? slugify(parsedPath.name)\n    : undefined;\n  const isNameValid = shouldAddSingleInfo\n    ? slugifiedName === parsedPath.name\n    : true;\n  if (!isNameValid) {\n    log(`${parsedPath.name} is not a valid (slugified) filename`, {\n      type: \"warning\",\n    });\n  }\n\n  const rootRelativePath =\n    modelLocation.operationRelativePath || modelLocation.projectRelativePath;\n  const dbModelFolderPath = `db/${pluralize(kebabCase(modelName))}`;\n\n  const dbModelFolderRelativePath = makeRelative(\n    trimSlashes(rootRelativePath),\n    dbModelFolderPath\n  );\n  const chunks = dbModelFolderRelativePath.split(\"/\");\n  // remove the name\n  chunks.pop();\n  // What's left is the folders, if any.\n  const categoryStackCalculated = chunks;\n\n  const singleInfo = shouldAddSingleInfo\n    ? { name: slugifiedName, slug: slugifiedName, categoryStackCalculated }\n    : undefined;\n  const ext = parsedPath.ext;\n\n  if (ext === \".json\") {\n    const jsonContent = await readJsonFile<any>(absolutePath);\n    const jsonContentArray = jsonContent ? makeArray(jsonContent) : null;\n    const augmented: T[] | null = jsonContentArray\n      ? (jsonContentArray.map((x) => ({\n          ...x,\n          ...modelLocation,\n          ...singleInfo,\n        })) as T[])\n      : null;\n\n    return augmented;\n  }\n\n  if (ext === \".csv\") {\n    const csvContent = await readCsvFile<any>(absolutePath);\n\n    if (!csvContent) return null;\n\n    const augmented: T[] = csvContent.map((x) => ({\n      ...x,\n      ...modelLocation,\n    }));\n    return augmented;\n  }\n\n  if (ext === \".md\") {\n    const mdParse = await readMarkdownFile(absolutePath);\n\n    if (!mdParse) return null;\n    const frontmatter = mdParse?.parameters;\n    if (dbStorageMethod === \"markdown\") {\n      const markdownContent = {\n        ...frontmatter,\n\n        markdown: mdParse.raw,\n        ...modelLocation,\n        ...singleInfo,\n        // NB: have to convert to unknown here first because of the specified markdown prop\n      } as unknown as T;\n\n      // console.log({ frontmatter, modelLocation, singleInfo });\n      return [markdownContent];\n    }\n\n    const keyValueMarkdownParse = markdownStringToKvmdParse(\n      mdParse.raw,\n      dbFileLocation\n    );\n\n    // NB: typing as unknown is required because it will only work for keyValueMarkdown models\n    const keyValueMarkdown = keyValueMarkdownParse.data as unknown as T[];\n\n    return keyValueMarkdown;\n  }\n\n  return null;\n}",
@@ -107,5 +102,5 @@
     "linesPerFile": 105,
     "numberOfFiles": 1
   },
-  "id": "aqsejnhxsnsjkrilbnodvasz"
+  "id": "arkejutobjtfhzjwqpljlclt"
 }

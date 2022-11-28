@@ -1,0 +1,52 @@
+[
+  {
+    "createdAt": 1668775788632,
+    "updatedAt": 1668775788632,
+    "deletedAt": 0,
+    "createdFirstAt": 1668775788632,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/measure-performance.ts",
+    "comment": "TODO: This stores into memory. May cause memory leaks in the long run if not cleaned up!",
+    "rawStatement": "let timer: { [uniqueId: string]: number } = {};",
+    "parameters": {},
+    "types": [
+      "todo"
+    ],
+    "firstLine": 2,
+    "lastLine": 4,
+    "id": "pldmtzczbtombbyogweoikdj"
+  },
+  {
+    "createdAt": 1668775788633,
+    "updatedAt": 1668775788633,
+    "deletedAt": 0,
+    "createdFirstAt": 1668775788633,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/measure-performance.ts",
+    "comment": "Function that lets you measure performance inside any function with ease.\n\nUsage:\n\nFirstly, make a performance array, and a unique execution id, and start the measurement, like so:\n\n```ts\nimport { generateUniqueId, getNewPerformance, PerformanceItem, cleanupTimer } from \"measure-performance\";\n\nat the start of your function\n\nconst executionId = generateUniqueId();\nconst performance: (PerformanceItem | undefined)[] = [];\ngetNewPerformance(\"start\", executionId, true)\n```\n\n\nAfter that, push a new performance item at every step you want to measure. Provide your label describing what happened before this (the step you are measuring).\n\n\n```ts\nperformance.push(getNewPerformance(\"your label\", executionId));\n```\n\nAt the end of your function, you can view your performance array by printing it on the console (or store it somewhere if you like)\n\nDon't forget to run `cleanupTimer`, or you'll run into memory leaks!\n\n```ts\ncleanupTimer(executionId);\n```",
+    "rawStatement": "export const getNewPerformance = (\n  label: string,\n  uniqueId: string,\n  isNew?: boolean\n): PerformanceItem | undefined => {\n  const timePrevious = timer[uniqueId];\n  const timeNow = Date.now();\n  timer[uniqueId] = timeNow;\n\n  if (isNew) return;\n\n  const durationMs = timeNow - timePrevious;\n\n  return { label, durationMs };\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 7,
+    "lastLine": 40,
+    "id": "ylvimmlfdboxkcymcpqcvxya"
+  },
+  {
+    "createdAt": 1668775788633,
+    "updatedAt": 1668775788633,
+    "deletedAt": 0,
+    "createdFirstAt": 1668775788633,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/measure-performance.ts",
+    "comment": "Ensure you run this after finishing the measurement, or you'll run into memory leaks!",
+    "rawStatement": "export const cleanupTimer = (uniqueId: string) => {\n  delete timer[uniqueId];\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 57,
+    "lastLine": 59,
+    "id": "ncjqprdtpoheguelqnvxziyv"
+  }
+]

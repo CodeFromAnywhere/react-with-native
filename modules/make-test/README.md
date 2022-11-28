@@ -1,6 +1,6 @@
 # Make test
 
-make-test (`OperationClassification` js)
+make-test (`OperationClassification` cjs)
 
 
 

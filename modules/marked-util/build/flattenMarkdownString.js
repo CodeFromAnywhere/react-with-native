@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.flattenMarkdownString=void 0;var marked_1=require("marked"),js_util_1=require("js-util"),flattenMarkedTokenRecursive_1=require("./flattenMarkedTokenRecursive"),flattenMarkdownString=function(e,r){return marked_1.marked.lexer(e).map((function(e){return(0,flattenMarkedTokenRecursive_1.flattenMarkedTokenRecursive)(e,r)})).filter(js_util_1.notEmpty).flat()};exports.flattenMarkdownString=flattenMarkdownString;
+//# sourceMappingURL=flattenMarkdownString.js.map

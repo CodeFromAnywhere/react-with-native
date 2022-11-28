@@ -1,0 +1,773 @@
+{
+  "createdAt": 1669639445622,
+  "updatedAt": 1669639445622,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639445622,
+  "id": "webmarkdownfile",
+  "name": "WebMarkdownFile",
+  "slug": "webmarkdownfile",
+  "operationRelativeTypescriptFilePath": "src/components/ReaderPageHeader.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "Every markdown file meant for the web, should have these optional parameters that can be declared as its frontmatter\n\nNB: This is not part of MarkdownModelType, because MarkdownModelType is very barebones general purpose, not only for the web!",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "description": "This kind of overwrites frontmatter, but it is needed because there need to be models attached to the markdown model sometimes."
+          },
+          {
+            "$ref": "#/definitions/Id"
+          },
+          {
+            "not": {}
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "properties": {
+        "isPreset": {
+          "type": "boolean",
+          "description": "A way to store messagepresets in markdown. the headers are the different categories. If the first alinea is bolded, it will be parsed to be the title, and will be removed from the message."
+        },
+        "isPostable": {
+          "type": "boolean",
+          "description": "if `.isPlanned` is set to true, this will be converted into `MediaPost`"
+        },
+        "isCodestory": {
+          "type": "boolean",
+          "description": "If true, this thing should be parsed into a codestory, after which the `.isPostable: true` will be added."
+        },
+        "tsInterfaceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Id"
+          }
+        },
+        "tsInterfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TsInterface"
+          }
+        },
+        "tsFunctionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Id"
+          }
+        },
+        "tsFunctions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TsFunction"
+          }
+        },
+        "bundleConfigSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          }
+        },
+        "bundleConfigs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BundleConfig"
+          }
+        },
+        "operationIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Id"
+          }
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Operation"
+          }
+        },
+        "reference_assets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BackendAsset"
+          }
+        },
+        "headerImage": {
+          "$ref": "#/definitions/BackendAsset"
+        },
+        "headerTitle": {
+          "type": "string"
+        },
+        "headerBig": {
+          "type": "boolean"
+        },
+        "headerSubTitle": {
+          "type": "string"
+        },
+        "header_markdownCallToActionSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          }
+        },
+        "header_markdownCallToActions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarkdownCallToAction"
+          }
+        },
+        "markdownCallToActionSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          }
+        },
+        "markdownCallToActions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarkdownCallToAction"
+          }
+        },
+        "shop_itemIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Id"
+          },
+          "description": "Refers to an `Item` from the shop"
+        },
+        "author_personSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          },
+          "description": "Author, reference to persons"
+        },
+        "interestSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          },
+          "description": "Labels referring to interests"
+        },
+        "price": {
+          "$ref": "#/definitions/Price",
+          "description": "Price for this file\n\nNB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE."
+        },
+        "isDraft": {
+          "type": "boolean",
+          "description": "If true, will not show up in markdownReader ui's"
+        },
+        "updatedAt": {
+          "$ref": "#/definitions/UpdatedAt"
+        },
+        "createdAt": {
+          "$ref": "#/definitions/CreatedAt"
+        },
+        "privacy": {
+          "type": "string",
+          "enum": [
+            "public",
+            "private",
+            "request"
+          ],
+          "description": "TODO: implement auth layers, then look at this again"
+        },
+        "language": {
+          "$ref": "#/definitions/Language",
+          "description": "Either filled in or detected"
+        },
+        "isLanguageCustom": {
+          "type": "boolean",
+          "description": "If true, will not auto-detect the language"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/DeletedAt"
+        },
+        "createdFirstAt": {
+          "$ref": "#/definitions/CreatedFirstAt"
+        },
+        "operationName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "projectRelativePath": {
+          "type": "string",
+          "description": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "operationRelativePath": {
+          "type": "string",
+          "description": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "type": "string",
+          "description": "filename (slugified)"
+        },
+        "slug": {
+          "type": "string",
+          "description": "filename (slugified)"
+        },
+        "markdown": {
+          "type": "string",
+          "description": "the content of the markdown"
+        },
+        "categoryStackCalculated": {
+          "$ref": "#/definitions/CategoryStack"
+        }
+      },
+      "required": [
+        "categoryStackCalculated",
+        "createdAt",
+        "createdFirstAt",
+        "deletedAt",
+        "id",
+        "language",
+        "markdown",
+        "name",
+        "operationName",
+        "privacy",
+        "projectRelativePath",
+        "slug",
+        "updatedAt"
+      ],
+      "description": "Every markdown file meant for the web, should have these optional parameters that can be declared as its frontmatter\n\nNB: This is not part of MarkdownModelType, because MarkdownModelType is very barebones general purpose, not only for the web!"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Every markdown file meant for the web, should have these optional parameters that can be declared as its frontmatter\n\nNB: This is not part of MarkdownModelType, because MarkdownModelType is very barebones general purpose, not only for the web!",
+      "nb": "This is not part of MarkdownModelType, because MarkdownModelType is very barebones general purpose, not only for the web!",
+      "properties": [
+        {
+          "name": "isPreset",
+          "required": false,
+          "schema": {
+            "fullComment": "A way to store messagepresets in markdown. the headers are the different categories. If the first alinea is bolded, it will be parsed to be the title, and will be removed from the message.",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isPostable",
+          "required": false,
+          "schema": {
+            "fullComment": "if `.isPlanned` is set to true, this will be converted into `MediaPost`",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isCodestory",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, this thing should be parsed into a codestory, after which the `.isPostable: true` will be added.",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "tsInterfaceIds",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                  "type": "string"
+                },
+                "name": "Id"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "tsFunctionIds",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                  "type": "string"
+                },
+                "name": "Id"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "bundleConfigSlugs",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "operationIds",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                  "type": "string"
+                },
+                "name": "Id"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "reference_assets",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Part of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+                  "properties": [
+                    {
+                      "name": "alt",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Stored value\n\nAlt text for the asset",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "relativePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "name",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                        "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "temporaryDestination",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "BackendAsset"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "headerImage",
+          "required": false,
+          "schema": {
+            "fullComment": "Part of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+            "properties": [
+              {
+                "name": "alt",
+                "required": false,
+                "schema": {
+                  "fullComment": "Stored value\n\nAlt text for the asset",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "relativePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "name",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                  "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "temporaryDestination",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "projectRelativeReferencingFilePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "modelName",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "absoluteUrl",
+                "required": false,
+                "schema": {
+                  "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "headerTitle",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "headerBig",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "headerSubTitle",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "header_markdownCallToActionSlugs",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "markdownCallToActionSlugs",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "shop_itemIds",
+          "required": false,
+          "schema": {
+            "fullComment": "Refers to an `Item` from the shop",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                  "type": "string"
+                },
+                "name": "Id"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "author_personSlugs",
+          "required": false,
+          "schema": {
+            "fullComment": "Author, reference to persons",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "interestSlugs",
+          "required": false,
+          "schema": {
+            "fullComment": "Labels referring to interests",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "price",
+          "required": false,
+          "schema": {
+            "fullComment": "Price for this file\n\nNB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.\n\nTLDR;EUROS\n\nA price is a number indicating the relative cost. Absolute cost is calculated by many other factors\n\nFor now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.\n\nLater we can add all kinds of extra conversion:\n\n- currency support\n- king os currency\n- lower cost for poorer people\n\netc...\n\nFirst we need to start making sales before we can add such complexity.\n\n",
+            "nb": "in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.",
+            "type": "number"
+          }
+        },
+        {
+          "name": "isDraft",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, will not show up in markdownReader ui's",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "updatedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "createdAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "privacy",
+          "required": true,
+          "schema": {
+            "enum": [
+              "public",
+              "private",
+              "request"
+            ],
+            "fullComment": "TODO: implement auth layers, then look at this again",
+            "todo": "implement auth layers, then look at this again",
+            "type": "string"
+          }
+        },
+        {
+          "name": "language",
+          "required": true,
+          "schema": {
+            "enum": [
+              "english",
+              "dutch",
+              "nepali",
+              "portuguese",
+              "brazilian",
+              "german",
+              "french",
+              "spanish",
+              "italian",
+              "norwegian",
+              "swedish",
+              "danish",
+              "vietnamese",
+              "indonesian",
+              "southAfrican",
+              "tokiPona",
+              "hindi",
+              "mandarin",
+              "arabic",
+              "bengali",
+              "urdu",
+              "japanese",
+              "swahili"
+            ],
+            "fullComment": "Either filled in or detected\n\nall currently supported languages",
+            "type": "string"
+          }
+        },
+        {
+          "name": "isLanguageCustom",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, will not auto-detect the language",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "deletedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "createdFirstAt",
+          "required": true,
+          "schema": {
+            "fullComment": "in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.\n\nTime\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "operationName",
+          "required": true,
+          "schema": {
+            "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "null"
+          }
+        },
+        {
+          "name": "projectRelativePath",
+          "required": true,
+          "schema": {
+            "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativePath",
+          "required": false,
+          "schema": {
+            "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "fullComment": "filename (slugified)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "fullComment": "filename (slugified)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "markdown",
+          "required": true,
+          "schema": {
+            "fullComment": "the content of the markdown",
+            "type": "string"
+          }
+        },
+        {
+          "name": "categoryStackCalculated",
+          "required": true,
+          "schema": {
+            "fullComment": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+            "nb": "Changing this value when updating/upserting, changes where the item is located!",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "WebMarkdownFile",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

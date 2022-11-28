@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668149307376,
-  "updatedAt": 1668149307376,
+  "createdAt": 1669467148294,
+  "updatedAt": 1669467148294,
   "deletedAt": 0,
-  "createdFirstAt": 1668149307376,
+  "createdFirstAt": 1669467148294,
   "id": "namedparameterstypeof-markdowncodeblock",
   "name": "NamedParameters<typeof MarkdownCodeblock>",
   "slug": "namedparameterstypeof-markdowncodeblock",
@@ -21,7 +21,8 @@
           "type": "object",
           "properties": {
             "text": {
-              "type": "string"
+              "type": "string",
+              "description": "STRING! don't put a JSON object here,  first use JSON.stringify!"
             },
             "extension": {
               "type": "string"
@@ -65,6 +66,7 @@
                 "name": "text",
                 "required": true,
                 "schema": {
+                  "fullComment": "STRING! don't put a JSON object here,  first use JSON.stringify!",
                   "type": "string"
                 }
               },

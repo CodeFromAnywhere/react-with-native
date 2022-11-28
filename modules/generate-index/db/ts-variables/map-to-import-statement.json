@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668335874100,
+  "updatedAt": 1668335874100,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335874100,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "mapToImportStatement",
+  "slug": "map-to-import-statement",
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "type": {
+    "rawType": "(item: import(\"/Users/king/King/operations/tools/types/code-types/build/TsFunction\").TsFunction | import(\"/Users/king/King/operations/tools/types/code-types/build/TsVariable\").TsVariable | import(\"/Users/king/King/operations/tools/types/code-types/build/TsInterface\").TsInterface, type: \"function\" | \"variable\" | \"interface\") => import(\"/Users/king/King/operations/tools/typescript/generate-index/src/util\").ImportStatement",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  item: TsFunction | TsVariable | TsInterface,\n  type: ImportStatement[\"type\"]\n): ImportStatement => {\n  const srcRelativeFileId = getSrcRelativeFileId(\n    item.operationRelativeTypescriptFilePath\n  );\n\n  return { name: item.name, srcRelativeFileId, type };\n}",
+  "description": "",
+  "id": "ayguaosxwrtqcnqdgedinzar"
+}

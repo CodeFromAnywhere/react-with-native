@@ -1,0 +1,114 @@
+{
+  "createdAt": 1668336573367,
+  "updatedAt": 1668336573367,
+  "deletedAt": 0,
+  "createdFirstAt": 1668336573367,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/runChildProcess.ts",
+  "commentsInside": [],
+  "rawText": " async (config: {\n  operationFolderName: string;\n  /**\n   * the location of the script in the build folder\n   * NB: this must be a CLI that that actually executes the function!\n   */\n  scriptFileName: string;\n  /**\n   * all arguments you wish to pass to the script. If an argument is undefined, it will not be passed. Arguments to be passed must be strings\n   */\n  args?: (string | undefined)[];\n}) => {\n  const { operationFolderName, scriptFileName, args } = config;\n\n  const childOperationPath = await getOperationPath(operationFolderName);\n  if (!childOperationPath) {\n    log(\n      `Couldn't find childOperationPath for operation ${operationFolderName}`,\n      { type: \"error\" }\n    );\n    return;\n  }\n  const scriptPath = path.join(\n    childOperationPath,\n    `build/${scriptFileName}.js`\n  );\n\n  if (!fs.existsSync(scriptPath)) {\n    log(\n      `Couldn't find scriptFile ${scriptFileName} which should be at build/${scriptFileName}.js`,\n      { type: \"error\" }\n    );\n    return;\n  }\n\n  const readable = await canRead(scriptPath);\n\n  if (!readable) {\n    log(`Can't read ${scriptPath}`, { type: \"error\" });\n    return;\n  }\n\n  const command = `node ${scriptPath} ${\n    args?.filter(notEmpty).join(\" \") || \"\"\n  }`;\n\n  // log(`going to execute: ${command}`, { type: \"important\" });\n\n  const result = spawnSync(command, {\n    shell: true,\n    stdio: \"inherit\",\n    encoding: \"utf8\",\n  });\n\n  return result.output;\n}",
+  "name": "runChildProcess",
+  "slug": "run-child-process",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "operationFolderName": {
+            "type": "string"
+          },
+          "scriptFileName": {
+            "type": "string",
+            "description": "the location of the script in the build folder NB: this must be a CLI that that actually executes the function!"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "not": {}
+                }
+              ]
+            },
+            "description": "all arguments you wish to pass to the script. If an argument is undefined, it will not be passed. Arguments to be passed must be strings"
+          }
+        },
+        "required": [
+          "operationFolderName",
+          "scriptFileName"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "operationFolderName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scriptFileName",
+            "required": true,
+            "schema": {
+              "fullComment": "the location of the script in the build folder NB: this must be a CLI that that actually executes the function!",
+              "type": "string"
+            }
+          },
+          {
+            "name": "args",
+            "required": false,
+            "schema": {
+              "fullComment": "all arguments you wish to pass to the script. If an argument is undefined, it will not be passed. Arguments to be passed must be strings",
+              "items": [
+                {
+                  "schema": {
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "spawns a child process and returns its output after it's done",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1481,
+    "lines": 56,
+    "bytes": 1481,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 56,
+    "numberOfFiles": 1
+  },
+  "id": "tzcpzdhfwnsthelokwybwvns"
+}

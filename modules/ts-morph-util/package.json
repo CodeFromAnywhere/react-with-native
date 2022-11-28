@@ -1,0 +1,89 @@
+{
+  "createdAt": 1668328737390,
+  "updatedAt": 1668328737390,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328737390,
+  "id": "buvDfxDAGVPQBAzK",
+  "bin": {
+    "getTsMorphProject": "build/cli.js"
+  },
+  "dependencies": {
+    "ts-morph": "^15.0.0",
+    "get-package-source-paths": "0.0.1",
+    "log": "0.0.1",
+    "fs-util": "1.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.2"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "ts-morph-util",
+  "language": "english",
+  "slug": "ts-morph-util",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/typescript/ts-morph-util/src/getHasGeneric.ts. Error: Error: Reference type not set yet\"]",
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [
+      "existsSync"
+    ],
+    "folderNameIndexed": "ts-morph-util",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668336295728,
+    "operationDependenciesIndexed": [
+      "getPackageSourcePaths",
+      "log",
+      "path",
+      "fs",
+      "log"
+    ],
+    "packageDependenciesIndexed": [
+      "InterfaceDeclaration",
+      "TypeAliasDeclaration",
+      "Project"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/typescript",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 3,
+        "lines": 59,
+        "characters": 1751,
+        "bytes": 1751
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 129,
+        "characters": 3012,
+        "bytes": 3012
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 54,
+        "characters": 988,
+        "bytes": 988
+      },
+      "size": {
+        "bytes": 5751,
+        "characters": 5751,
+        "lines": 242,
+        "numberOfFiles": 6
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

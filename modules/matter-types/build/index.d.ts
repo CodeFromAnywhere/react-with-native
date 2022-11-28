@@ -1,5 +1,3 @@
-export * from "./Downmatter";
 export * from "./Frontmatter";
-export * from "./MarkdownIndex";
-export * from "./frontmatterParseToString";
+export * from "./FrontmatterParse";
 //# sourceMappingURL=index.d.ts.map

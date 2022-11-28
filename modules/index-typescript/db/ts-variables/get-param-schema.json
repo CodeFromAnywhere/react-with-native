@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055627749,
+  "updatedAt": 1669055627749,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055627749,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getParamSchema",
+  "slug": "get-param-schema",
+  "operationRelativeTypescriptFilePath": "src/typeToSchema.ts",
+  "type": {
+    "rawType": "(type: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").Type<import(\"/Users/king/King/operations/node_modules/@ts-morph/common/lib/typescript\").Type>, decorators?: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").Decorator[], prop?: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").Symbol | undefined) => import(\"/Users/king/King/operations/tools/typescript/index-typescript/src/typeToSchema\").SimpleJsonSchema | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  type: Type,\n  decorators: Decorator[] = [],\n  prop: tsSymbol | undefined = undefined\n) => {\n  const typeText = type.getText();\n  const nonNullableType = type.getNonNullableType();\n  const nonNullableTypeText = nonNullableType.getText();\n  let schema: SimpleJsonSchema = {};\n\n  schema.optional = nonNullableTypeText !== typeText;\n\n  if (nonNullableType.isArray()) {\n    schema = handleExplicitValidation(\"array\", schema, decorators);\n    schema.type = \"array\";\n    // NB: recursion!\n    schema.items =\n      getParamSchema(nonNullableType.getArrayElementTypeOrThrow(), []) || {};\n    Object.keys(schema.items).forEach(\n      (key) => delete schema.items[key].optional\n    );\n    delete schema.items.optional;\n    return schema;\n  }\n  if (nonNullableType.getText() === \"Date\") {\n    schema.type = \"string\";\n    schema.format = \"date-time\";\n    return schema;\n  }\n\n  if (isPrimitive(nonNullableType)) {\n    schema.type = typeText.replace(\" | undefined\", \"\");\n    if (schema.type === \"string\") {\n      schema[\"allOf\"] = [{ transform: [\"trim\"] }, { minLength: 1 }];\n    }\n    schema = handleExplicitValidation(\n      nonNullableType.getText(),\n      schema,\n      decorators\n    );\n    return schema;\n  }\n\n  if (nonNullableType.isClass() || nonNullableType.isInterface()) {\n    const name =\n      nonNullableType.getText().split(\").\")[1] || nonNullableType.getText();\n    const importPath = typeText.split('\").')[0].split('import(\"')[1];\n    if (importPath && importPath.includes(\"/node_modules/\")) return schema;\n    // eslint-disable-next-line @typescript-eslint/no-var-requires\n    const c =\n      importPath && !importPath?.includes(\"/node_modules/\")\n        ? require(importPath)[name]\n        : undefined;\n    if (importPath && !c) {\n      console.log(`not found type: ${name}`);\n      return schema;\n    }\n    // NB: we seem not to have it, see https://medium.com/jspoint/introduction-to-reflect-metadata-package-and-its-ecmascript-proposal-8798405d7d88\n    // I installed reflect-metdata and added as require on top. Hope that works!\n    const classSchema = c\n      ? // @ts-ignore\n        Reflect.getMetaData(symbols.validations, c.prototype) || {}\n      : {};\n\n    schema[\"$ref\"] = \"#/definitions/\" + name;\n    if (!definitions[name]) {\n      definitions[name] = getObjectSchema(type, decorators, classSchema);\n    }\n    return schema;\n  }\n\n  if (nonNullableType.isObject()) {\n    schema = getObjectSchema(type, decorators);\n    return schema;\n  }\n  // enum --------------------------------------\n  if (nonNullableType.isEnumLiteral() && prop) {\n    const name = prop.getName();\n    const enumMembers = prop\n      ?.getValueDeclarationOrThrow()\n      ?.getSourceFile()\n      .getEnum((e) => e.getName() === nonNullableType.getText())\n      ?.getMembers();\n\n    const enumSchema: {\n      enum?: string[];\n      \"x-enumNames\"?: (string | number | undefined)[];\n      type?:\n        | \"string\"\n        | \"number\"\n        | \"bigint\"\n        | \"boolean\"\n        | \"symbol\"\n        | \"undefined\"\n        | \"object\"\n        | \"function\";\n    } = {};\n    enumSchema.enum = enumMembers?.map((m) => m.getName());\n    enumSchema[\"x-enumNames\"] = enumMembers?.map((m) => m.getValue());\n\n    enumSchema.type = enumSchema.enum?.[0]\n      ? typeof enumSchema.enum?.[0]\n      : undefined;\n\n    definitions[name] = enumSchema;\n    schema[\"$ref\"] = \"#/definitions/\" + name;\n    return schema;\n  }\n\n  if (nonNullableType.isEnum()) {\n    const name = last(nonNullableType.getText().split(\".\"))!;\n    const enumSchema: any = {};\n    enumSchema.enum = nonNullableType\n      .getUnionTypes()\n      .map((t) => t.getLiteralValueOrThrow());\n    enumSchema[\"x-enumNames\"] = nonNullableType\n      .getUnionTypes()\n      .map((t) => last(t.getText().split(\".\")) as string);\n    enumSchema.type = typeof enumSchema.enum[0];\n    definitions[name] = enumSchema;\n    schema[\"$ref\"] = \"#/definitions/\" + name;\n    return schema;\n  }\n\n  const unionTypes = type.getUnionTypes().filter((t) => !t.isUndefined());\n  if (unionTypes.length > 1) {\n    schema.oneOf = unionTypes.map((t) =>\n      getParamSchema(t, decorators)\n    ) as SimpleJsonSchema[];\n    if (!schema.oneOf[0]) {\n      delete schema.oneOf;\n      schema.enum = unionTypes.map((t) => t.getText().slice(1, -1));\n      schema[\"x-enumNames\"] = unionTypes.map((t) => t.getText().slice(1, -1));\n      schema.type = typeof schema.enum[0];\n    }\n    return schema;\n  }\n}",
+  "description": "",
+  "id": "ihpxrhuumwduxvoxiznwoymj"
+}

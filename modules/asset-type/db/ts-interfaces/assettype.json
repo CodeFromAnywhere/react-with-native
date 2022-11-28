@@ -1,18 +1,18 @@
 {
-  "createdAt": 1666512416118,
-  "updatedAt": 1666512416118,
+  "createdAt": 1669638937575,
+  "updatedAt": 1669638937575,
   "deletedAt": 0,
-  "createdFirstAt": 1666512416118,
+  "createdFirstAt": 1669638937575,
   "id": "assettype",
   "name": "AssetType",
   "slug": "assettype",
   "operationRelativeTypescriptFilePath": "src/Asset.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * Possible Asset Types\n */\nexport type AssetType = \"video\" | \"audio\" | \"image\" | \"other\";",
+  "rawText": "\n\n/**\n * Possible Asset Types\n *\n * Later, maybe also support:\n * \"markdown\",\"json\",\"typescript\"\n */\nexport type AssetType = \"video\" | \"audio\" | \"image\" | \"text\" | \"other\";",
   "extensions": [],
   "isOperationIndex": false,
-  "description": "Possible Asset Types",
+  "description": "Possible Asset Types\n\nLater, maybe also support:\n\"markdown\",\"json\",\"typescript\"",
   "isDbModel": false,
   "commentsInside": [],
   "type": {
@@ -22,18 +22,20 @@
         "video",
         "audio",
         "image",
+        "text",
         "other"
       ],
-      "description": "Possible Asset Types"
+      "description": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\""
     },
     "simplifiedSchema": {
       "enum": [
         "video",
         "audio",
         "image",
+        "text",
         "other"
       ],
-      "fullComment": "Possible Asset Types",
+      "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
       "type": "string"
     },
     "typeCoverage": 0,

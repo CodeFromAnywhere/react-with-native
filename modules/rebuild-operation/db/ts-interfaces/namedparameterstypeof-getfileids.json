@@ -1,0 +1,99 @@
+{
+  "createdAt": 1669055710499,
+  "updatedAt": 1669055710499,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055710499,
+  "id": "namedparameterstypeof-getfileids",
+  "name": "NamedParameters<typeof getFileIds>",
+  "slug": "namedparameterstypeof-getfileids",
+  "operationRelativeTypescriptFilePath": "src/getFileIds.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "{\n  operationFolderPath,\n  pathSuffix,\n  extension,\n}": {
+          "type": "object",
+          "properties": {
+            "operationFolderPath": {
+              "type": "string"
+            },
+            "extension": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SearchableExtension"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SearchableExtension"
+                  }
+                }
+              ]
+            },
+            "pathSuffix": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "operationFolderPath",
+            "pathSuffix"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "{\n  operationFolderPath,\n  pathSuffix,\n  extension,\n}"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "{\n  operationFolderPath,\n  pathSuffix,\n  extension,\n}",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "operationFolderPath",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "extension",
+                "required": false,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "pathSuffix",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getFileIds>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

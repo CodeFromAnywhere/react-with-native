@@ -1,0 +1,117 @@
+{
+  "createdAt": 1669384206973,
+  "updatedAt": 1669384206973,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384206973,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getStorageLocationInfo.ts",
+  "commentsInside": [],
+  "rawText": " (\n  absoluteReferencingFilePath: string,\n  modelName?: string\n): {\n  type: \"typescript\" | \"database\" | \"markdown\";\n  absoluteAssetBaseFolderPath: string;\n} => {\n  if (absoluteReferencingFilePath.includes(`/${sourceFolderName}/`)) {\n    /**\n     *In typescript, the asset can be stored in the `/assets` folder of the operation. The alt is in the markdown.\n     */\n    const operationBasePath = findOperationBasePath(\n      absoluteReferencingFilePath\n    );\n    if (operationBasePath) {\n      const assetsPath = path.join(operationBasePath, \"assets\");\n\n      return { type: \"typescript\", absoluteAssetBaseFolderPath: assetsPath };\n    }\n  }\n  if (\n    modelName &&\n    absoluteReferencingFilePath.includes(`/${databaseFolderName}/`)\n  ) {\n    const databaseFolderBasePath = absoluteReferencingFilePath\n      .split(`/${databaseFolderName}/`)[0]\n      .concat(`/${databaseFolderName}`);\n\n    const databaseFolderRelativeReferenceLocationPath = makeRelative(\n      absoluteReferencingFilePath,\n      databaseFolderBasePath\n    );\n    const isStoredInFolder =\n      databaseFolderRelativeReferenceLocationPath.split(\"/\").length > 1;\n\n    const absoluteAssetBaseFolderPath = isStoredInFolder\n      ? path.parse(absoluteReferencingFilePath).dir\n      : path.join(databaseFolderBasePath, `${kebabCase(modelName)}-assets`);\n\n    /**\n     * In database models, the asset can be stored in\n     *\n     * - in `[modelName]-assets` folder inside of `db` if the data is stored in the root of the db\n     * - in the same folder as the data itself if the data is stored in folders and more separated files\n     */\n    return { type: \"database\", absoluteAssetBaseFolderPath };\n  }\n\n  /**\n   * In markdown, the asset can be stored in the same folder as the markdown file. The alt is in the markdown. The filename can be something else, should be kept original unless changed\n   */\n  return {\n    type: \"markdown\",\n    absoluteAssetBaseFolderPath: path.parse(absoluteReferencingFilePath).dir,\n  };\n}",
+  "name": "getStorageLocationInfo",
+  "slug": "get-storage-location-info",
+  "parameters": [
+    {
+      "name": "absoluteReferencingFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "modelName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "returns the  type of file the asset is referenced from, and the `baseFolderPath` where the `asset` should be stored",
+  "returnType": {
+    "rawType": "{ type: \"typescript\" | \"database\" | \"markdown\"; absoluteAssetBaseFolderPath: string; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "typescript",
+            "database",
+            "markdown"
+          ],
+          "x-enumNames": [
+            "typescript",
+            "database",
+            "markdown"
+          ],
+          "type": "string"
+        },
+        "absoluteAssetBaseFolderPath": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "absoluteAssetBaseFolderPath"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "typescript",
+              "database",
+              "markdown"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "absoluteAssetBaseFolderPath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 2096,
+    "lines": 56,
+    "bytes": 2096,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 37,
+    "linesPerFile": 56,
+    "numberOfFiles": 1
+  },
+  "id": "wpljqxorggmyhrusarmamhxu"
+}

@@ -5,3 +5,5 @@ import { AType } from "./A.type";
 export const A = ({ native, className, textClassName, ...props }: AType) => {
   return <a {...props} className={joinClassNames(className, textClassName)} />;
 };
+
+// export const A = React.forwardRef(PureA);

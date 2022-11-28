@@ -1,18 +1,20 @@
 [
   {
-    "createdAt": 1668151934118,
-    "updatedAt": 1668151934118,
+    "createdAt": 1669132821094,
+    "updatedAt": 1669132821094,
     "deletedAt": 0,
-    "createdFirstAt": 1668151934118,
+    "createdFirstAt": 1669132821094,
     "name": "Comment",
     "slug": "comment",
-    "operationRelativeTypescriptFilePath": "src/util/queryPathsArrayToNestedPathObject.ts",
-    "comment": "Handy function to transform an array of `querypaths` into a nested menu, assuming you want to create a new sub-menu for every path\n\nMay also work for relative filePaths\n\nInput:\n\n[\"hello/world\",\"hello/moon\",\"hello/sun\"]\n\nOutput:\n\n{\n\"hello\":{\n\"moon\":null,\n\"world\":null,\n\"sun\":null\n}\n}",
-    "rawStatement": "export const queryPathsArrayToNestedPathObject = (\n  queryPaths: string[]\n): NestedPathObject => {\n  const nestedPathObject: NestedPathObject = reduceQueryPathsRecursively(\n    queryPaths,\n    {}\n  );\n  return nestedPathObject;\n};",
+    "operationRelativeTypescriptFilePath": "src/NestedMenuItem.tsx",
+    "comment": "General purpose NestedMenuItem.\n----\n\nTODO:\n\n- tooltip support",
+    "rawStatement": "export const NestedMenuItem = (\n  props: {\n    item: NestedWebPage;\n    /**\n     * If true, items with a single child will be merged into the parent\n     */\n    mergeSingleChilds?: boolean;\n    headersClickable?: boolean;\n    level?: number;\n  } & MouseEventCallbacks\n) => {\n  const {\n    onClick,\n    onDoubleClick,\n    onContextMenu,\n    item,\n    level,\n    headersClickable,\n    mergeSingleChilds,\n  } = props;\n\n  const realItem: NestedWebPage = mergeSingleChilds\n    ? getRealItemRecursive(item)\n    : item;\n\n  const {\n    children,\n    target,\n    isMenuHidden,\n    menuTitleAugmentation,\n    menuTitleTooltip,\n    queryPath,\n  } = realItem;\n\n  const shownChildren = children?.filter((x) => !x.isMenuHidden);\n\n  const title = getTitle(realItem);\n\n  const router = useRouter();\n  const currentPath = router.asPath.substring(1).split(\"?\")[0];\n\n  const [isExpanded, toggleExpanded, setIsExpanded, setNotExpanded] =\n    useExpanded(queryPath);\n\n  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(\n    \"menu.isMobileMenuEnabled\"\n  );\n\n  const isSelected = currentPath === queryPath;\n  const realLevel = level || 0;\n\n  const hasChildren = shownChildren && shownChildren.length > 0;\n\n  const isClickable = headersClickable || !hasChildren;\n  const textClassName = isClickable\n    ? `${isSelected ? \"text-blue-500\" : \"\"} hover:text-blue-800 `\n    : undefined;\n\n  const href = isSelected\n    ? undefined\n    : isClickable\n    ? !queryPath || queryPath.length === 0\n      ? \"/\"\n      : queryPath\n    : undefined;\n\n  const allChildrenWereHidden = children?.length && !shownChildren?.length;\n  return allChildrenWereHidden ? null : (\n    <Div className=\"w-full\">\n      <Div\n        className={`w-full flex flex-row justify-center items-center pr-4 ${\n          isClickable\n            ? `hover:bg-gray-200 hover:dark:bg-gray-800 ${\n                isSelected ? \"bg-gray-200 dark:bg-gray-800 \" : \"\"\n              }`\n            : \"\"\n        }`}\n      >\n        <ALink\n          style={{\n            paddingLeft: realLevel * 10 + 5,\n            paddingBottom: 10,\n            paddingTop: 10,\n          }}\n          className=\"flex flex-row justify-between\"\n          textClassName=\"flex flex-1 text-xs\"\n          href={href}\n          target={target}\n          onDoubleClick={(event) => event && onDoubleClick?.(event, realItem)}\n          onContextMenu={(event) => onContextMenu?.(event, realItem)}\n          onClick={(event) => {\n            if (isExpanded && isSelected) {\n              setNotExpanded();\n            } else {\n              onClick?.(event, realItem);\n              setIsExpanded();\n              if (!realItem.children) {\n                setIsMobileMenuEnabled(false);\n              }\n            }\n          }}\n        >\n          <Span\n            //line-clamp-1 truncate text-ellipsis\n            textClassName={textClassName}\n          >\n            {title}\n          </Span>\n          <Span className=\"flex flex-row\">\n            {menuTitleAugmentation ? (\n              <Span>{menuTitleAugmentation}</Span>\n            ) : null}\n          </Span>\n        </ALink>\n        {hasChildren ? (\n          <Div\n            className=\"text-3xl cursor-pointer\"\n            onClick={() => toggleExpanded()}\n          >\n            {isExpanded ? \"▾\" : \"▸\"}\n          </Div>\n        ) : null}\n      </Div>\n\n      {hasChildren && isExpanded ? (\n        <Div className=\"w-full\">\n          {shownChildren.map((child, i) => {\n            return (\n              <NestedMenuItem\n                key={`menu-${href}-${i}`}\n                item={child}\n                headersClickable={headersClickable}\n                level={realLevel + 1}\n              />\n            );\n          })}\n        </Div>\n      ) : null}\n    </Div>\n  );\n};",
     "parameters": {},
-    "types": [],
-    "firstLine": 37,
-    "lastLine": 56,
-    "id": "jpyhclrkfkqovwxqpttwxutv"
+    "types": [
+      "todo"
+    ],
+    "firstLine": 27,
+    "lastLine": 35,
+    "id": "nwotzfpswjsjjofrqyfsvauj"
   }
 ]

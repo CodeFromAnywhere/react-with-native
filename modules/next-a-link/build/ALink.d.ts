@@ -17,6 +17,7 @@ export declare const ALink: ({ children, href, target, rel, linkProps, ...otherA
         locale?: string | false | undefined;
         legacyBehavior?: boolean | undefined;
         onMouseEnter?: ((e: any) => void) | undefined;
+        onTouchStart?: ((e: any) => void) | undefined;
         onClick?: ((e: any) => void) | undefined;
     } | undefined;
 } & import("react").ClassAttributes<HTMLAnchorElement> & import("react").AnchorHTMLAttributes<HTMLAnchorElement> & {

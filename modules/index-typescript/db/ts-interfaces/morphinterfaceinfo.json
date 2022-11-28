@@ -1,0 +1,116 @@
+{
+  "createdAt": 1669055575086,
+  "updatedAt": 1669055575086,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055575086,
+  "id": "morphinterfaceinfo",
+  "name": "MorphInterfaceInfo",
+  "slug": "morphinterfaceinfo",
+  "operationRelativeTypescriptFilePath": "src/MorphInterfaceInfo.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type MorphInterfaceInfo = {\n  raw: string;\n  name: string;\n  description?: string;\n  extensions: string[];\n  isExported: boolean;\n  hasGeneric: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "raw": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "extensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isExported": {
+          "type": "boolean"
+        },
+        "hasGeneric": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "raw",
+        "name",
+        "extensions",
+        "isExported",
+        "hasGeneric"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "raw",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "description",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "extensions",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "isExported",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "hasGeneric",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MorphInterfaceInfo",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

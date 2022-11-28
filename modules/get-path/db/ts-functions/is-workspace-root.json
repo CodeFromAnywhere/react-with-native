@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668148350852,
-  "updatedAt": 1668148350852,
+  "createdAt": 1669055078469,
+  "updatedAt": 1669055078469,
   "deletedAt": 0,
-  "createdFirstAt": 1668148350852,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055078469,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/isWorkspaceRoot.ts",
   "commentsInside": [],
-  "rawText": " (\n  folderPath: string\n): undefined | { isSensibleProject: boolean; isWorkspaceRoot: boolean } => {\n  const packageJsonPath = path.join(folderPath, \"package.json\");\n  const existsPackageJson = fs.existsSync(packageJsonPath);\n  if (!existsPackageJson) return;\n\n  const packageJson = tryParseJson<PackageJson>(\n    fs.readFileSync(packageJsonPath, \"utf8\")\n  );\n\n  const sensibleConfig: SensibleConfig | undefined = packageJson?.sensible;\n  const isSensibleProject = sensibleConfig?.isSensibleProject || false;\n\n  if (!packageJson || !packageJson.workspaces) {\n    return;\n  }\n\n  return { isSensibleProject, isWorkspaceRoot: true };\n}",
+  "rawText": " (\n  folderPath: string\n): undefined | { isBundle: boolean; isWorkspaceRoot: boolean } => {\n  const packageJsonPath = path.join(folderPath, \"package.json\");\n  const existsPackageJson = fs.existsSync(packageJsonPath);\n  if (!existsPackageJson) return;\n\n  const packageJson = tryParseJson<Operation>(\n    fs.readFileSync(packageJsonPath, \"utf8\")\n  );\n\n  if (!packageJson || !packageJson.workspaces) {\n    return;\n  }\n\n  return {\n    isBundle: packageJson.operation?.isBundle || false,\n    isWorkspaceRoot: true,\n  };\n}",
   "name": "isWorkspaceRoot",
   "slug": "is-workspace-root",
   "parameters": [
@@ -30,11 +25,11 @@
   ],
   "description": "simple sync function to check if a folder is the root of a workspace (not operation but a workspace)",
   "returnType": {
-    "rawType": "{ isSensibleProject: boolean; isWorkspaceRoot: boolean; } | undefined",
+    "rawType": "{ isBundle: boolean; isWorkspaceRoot: boolean; } | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {
-        "isSensibleProject": {
+        "isBundle": {
           "type": "boolean"
         },
         "isWorkspaceRoot": {
@@ -42,7 +37,7 @@
         }
       },
       "required": [
-        "isSensibleProject",
+        "isBundle",
         "isWorkspaceRoot"
       ],
       "optional": true
@@ -56,7 +51,7 @@
     "simplifiedSchema": {
       "properties": [
         {
-          "name": "isSensibleProject",
+          "name": "isBundle",
           "required": true,
           "schema": {
             "type": "boolean"
@@ -75,13 +70,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 732,
+    "characters": 616,
     "lines": 20,
-    "bytes": 732,
+    "bytes": 616,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 37,
+    "charactersPerLine": 31,
     "linesPerFile": 20,
     "numberOfFiles": 1
   },
-  "id": "wuqsggcfzigybralxfyfbpkq"
+  "id": "waapmpdjbdcktkfjituipxpv"
 }

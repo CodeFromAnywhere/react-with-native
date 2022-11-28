@@ -1,0 +1,190 @@
+{
+  "createdAt": 1669276839759,
+  "updatedAt": 1669276839759,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276839759,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/Header.tsx",
+  "commentsInside": [],
+  "rawText": " (props: { publicBundleConfig?: PublicBundleConfig }) => {\n  const { publicBundleConfig } = props;\n\n  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(\n    \"menu.isMobileMenuEnabled\"\n  );\n\n  return (\n    <Div\n      className=\"dark:bg-gray-800\"\n      style={{\n        justifyContent: \"space-between\",\n        flex: 1,\n        display: \"flex\",\n        flexDirection: \"row\",\n        alignItems: \"center\",\n      }}\n    >\n      <Div className=\"flex flex-row items-center\">\n        <ALink\n          href={\n            typeof window !== \"undefined\"\n              ? location.protocol + \"//\" + location.host\n              : \"#\"\n          }\n          style={{ fontSize: 32 }}\n        >\n          {publicBundleConfig?.emoji}\n        </ALink>\n\n        <P className=\"font-bold pl-2\">{publicBundleConfig?.name}</P>\n      </Div>\n\n      <Div className=\"flex flex-row items-center\">\n        {props.publicBundleConfig?.isGitRepoPublic &&\n        props.publicBundleConfig.gitRepoUrl ? (\n          <ALink\n            className=\"pr-2\"\n            target=\"_blank\"\n            href={props.publicBundleConfig.gitRepoUrl}\n          >\n            GitHub\n          </ALink>\n        ) : null}\n\n        <Div className=\"lg:hidden\">\n          <ClickableIcon\n            emoji=\"🔍\"\n            onClick={() => setIsMobileMenuEnabled(!isMobileMenuEnabled)}\n          />\n        </Div>\n\n        <MeAuthenticationInfo />\n      </Div>\n    </Div>\n  );\n}",
+  "name": "Header",
+  "slug": "header",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "publicBundleConfig": {
+            "$ref": "#/definitions/PublicBundleConfig"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "publicBundleConfig",
+            "required": false,
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "name",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "Human readable name of the monorepo (A kebab-case version of this will be used as root foldername)",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "description",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "a description about this bundle",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "emoji",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "primaryColor",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "gitRepoUrl",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "NB: later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation",
+                    "nb": "later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "isGitRepoPublic",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "if true, your gitrepo is marked as pubilc and thus users will be linked to it sometimes",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "bundleMarkdownReaderConfig",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "configurate your markdown reader\n\n",
+                    "properties": [
+                      {
+                        "name": "docsInRoot",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "When set to `true`, docs are not shown in docs folder but in the root menu of the site",
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "showTodos",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Show todo menu",
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "omitModulesMenu",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "`modules` will be hidden from markdown reader menu",
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "omitAppsMenu",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "`apps` will be hidden from markdown reader menui",
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "omitDictionaryMenu",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "if true, dictionary is omitted from menu",
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "omitPackagesMenu",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "`packages` will be hidden from markdown reader menu",
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "customOperationNames",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "if given, the operations menu will show with these operations",
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 1429,
+    "lines": 57,
+    "bytes": 1431,
+    "bytesPerCharacter": 1.0013995801259623,
+    "charactersPerLine": 25,
+    "linesPerFile": 57,
+    "numberOfFiles": 1
+  },
+  "id": "wqegnhmsgipnwjmvembzuryz"
+}

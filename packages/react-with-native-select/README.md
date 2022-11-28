@@ -1,6 +1,6 @@
 # React with native select
 
-react-with-native-select (`OperationClassification` ui-es5)
+react-with-native-select (`OperationClassification` ui-cjs)
 
 
 
@@ -27,42 +27,4 @@ Coming soon
   </details>
 
 # Api reference
-
-## `<Select />`
-
-renders either a SelectDropdown or SelectDrawer, based on screensize
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
-## 📄 Select (exported const)
-
-renders either a SelectDropdown or SelectDrawer, based on screensize
-
-# Internal
-
-<details><summary>Show internal (3)</summary>
-    
-  # getRealValue()
-
-
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | { value: {  }, <br />label: string, <br /> }   |    |
-
-
-
-## 🔹 ID
-
-## 📄 getRealValue (exported const)
-
-  </details>
 

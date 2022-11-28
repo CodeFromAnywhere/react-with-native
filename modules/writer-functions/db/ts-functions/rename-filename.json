@@ -1,0 +1,57 @@
+{
+  "createdAt": 1669385045578,
+  "updatedAt": 1669385045578,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385045578,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/renameFilename.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  projectRelativeFilePath: string,\n  newFilename: string\n): Promise<{ isSuccessful: boolean; message?: string }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root found\" };\n  }\n\n  const absoluteFilePath = path.join(projectRoot, projectRelativeFilePath);\n\n  if (!fs.existsSync(absoluteFilePath)) {\n    return {\n      isSuccessful: false,\n      message: \"This file doesn't exist\",\n    };\n  }\n\n  const absoluteFolderPath = path.parse(absoluteFilePath).dir;\n\n  const newAbsoluteFilePath = path.join(absoluteFolderPath, newFilename);\n\n  if (fs.existsSync(newAbsoluteFilePath)) {\n    return { isSuccessful: false, message: \"File already exists\" };\n  }\n\n  await fs.rename(absoluteFilePath, newAbsoluteFilePath);\n\n  return { isSuccessful: true };\n}",
+  "name": "renameFilename",
+  "slug": "rename-filename",
+  "parameters": [
+    {
+      "name": "projectRelativeFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "newFilename",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<{ isSuccessful: boolean; message?: string | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 826,
+    "lines": 30,
+    "bytes": 826,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 30,
+    "numberOfFiles": 1
+  },
+  "id": "fhyfylkadwevnxkidowinyqs"
+}

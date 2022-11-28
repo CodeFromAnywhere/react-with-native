@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669055627251,
+  "updatedAt": 1669055627251,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055627251,
+  "isApiExposed": true,
+  "isExported": false,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/typeToSchema.ts",
+  "commentsInside": [],
+  "rawText": " (\n  type: Type,\n  decorators: Decorator[],\n  schemaProps: { [key: string]: any } = {}\n) => {\n  const schema: SimpleJsonSchema = {};\n  // schema = {} handleExplicitValidation(\"object\", schema, decorators);\n  schema.type = \"object\";\n  schema.properties = {};\n  schema.required = schema.required || [];\n  const typeText = type.getText();\n  const nonNullableType = type.getNonNullableType();\n  const nonNullableTypeText = nonNullableType.getText();\n  schema.optional = nonNullableTypeText !== typeText;\n  type\n    .getNonNullableType()\n    .getProperties()\n    .forEach((prop) => {\n      const key = prop.getName();\n      const isGetter = prop.hasFlags(SymbolFlags.GetAccessor);\n      if ([\"request\", \"reply\"].includes(key) || isGetter) return;\n      const valueDeclaration = prop.getValueDeclarationOrThrow();\n      const decorators = (valueDeclaration as any).getDecorators\n        ? (valueDeclaration as any).getDecorators()\n        : [];\n\n      schema.properties[key] = {\n        ...(getParamSchema(valueDeclaration.getType(), decorators, prop) || {}),\n        ...(schemaProps[key] || {}),\n      };\n\n      if (!schema.properties[key]) {\n        console.warn(\"missing type for - \" + key);\n        schema.properties[key] = { type: \"object\" };\n      }\n      if (schema.properties[key].optional !== true) {\n        schema.required?.push(key);\n      }\n      delete schema.properties[key].optional;\n    });\n\n  if (!schema.required.length) {\n    delete schema.required;\n  }\n\n  return schema;\n}",
+  "name": "getObjectSchema",
+  "slug": "get-object-schema",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/typescript/index-typescript/src/typeToSchema\").SimpleJsonSchema",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1487,
+    "lines": 47,
+    "bytes": 1487,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 47,
+    "numberOfFiles": 1
+  },
+  "id": "vykzdpslbsltmvmohmmubpop"
+}

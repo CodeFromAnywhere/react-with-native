@@ -1,0 +1,47 @@
+{
+  "createdAt": 1669055697531,
+  "updatedAt": 1669055697531,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055697531,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/clearTsDatabase.ts",
+  "commentsInside": [],
+  "rawText": " async (operationName: string | undefined) => {\n  const result = await Promise.all(\n    typescriptIndexModels.map((modelName) => {\n      return db.clear(modelName, { operationName });\n    })\n  );\n\n  await db.update(\n    \"Operation\",\n    () => true,\n    (old) =>\n      mergeNestedObject(old, {\n        operation: {\n          sizeIndexed: undefined,\n          buildResultIndexed: undefined,\n          classificationIndexed: undefined,\n          folderNameIndexed: undefined,\n          coreDependenciesIndexed: undefined,\n          hasGeneratedDependenciesIndexed: undefined,\n          lastPullTimeAtIndexed: undefined,\n          operationDependenciesIndexed: undefined,\n          packageDependenciesIndexed: undefined,\n          relativeOperationLocationPathIndexed: undefined,\n        },\n      }),\n    { operationName }\n  );\n}",
+  "name": "clearTsDatabase",
+  "slug": "clear-ts-database",
+  "parameters": [
+    {
+      "name": "operationName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Clears all typescript indexation models, and removes all indexation from the oprations\n\nTODO: test first, not sure about the Operation one",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 963,
+    "lines": 30,
+    "bytes": 963,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 30,
+    "numberOfFiles": 1
+  },
+  "id": "rngkydcvtabculvpjwxqjcvj"
+}

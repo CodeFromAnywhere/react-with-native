@@ -1,0 +1,154 @@
+{
+  "createdAt": 1669385200805,
+  "updatedAt": 1669385200805,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385200805,
+  "id": "extendedmarkdownproperties",
+  "name": "ExtendedMarkdownProperties",
+  "slug": "extendedmarkdownproperties",
+  "operationRelativeTypescriptFilePath": "src/ExtendedMarkdownProperties.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n/**\n * Some properties for on any `MarkdownModelType` model that are quite general purpose and yet aren't included into the `MarkdownModel` because we may not always want them.\n */\nexport interface ExtendedMarkdownProperties {\n  /**\n   * If true, will not show up in markdownReader ui's\n   */\n  isDraft?: boolean;\n  /**\n   * Should be stored as textual date like `YYYY-MM-DD`\n   */\n  updatedAt: number;\n  /**\n   * Should be stored as textual date like `YYYY-MM-DD`\n   */\n  createdAt: number;\n\n  /**\n   * TODO: implement auth layers, then look at this again\n   */\n  privacy: \"public\" | \"private\" | \"request\";\n\n  /**\n   * Either filled in or detected\n   */\n  language: Language;\n\n  /**\n   * If true, will not auto-detect the language\n   */\n  isLanguageCustom?: boolean;\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Some properties for on any `MarkdownModelType` model that are quite general purpose and yet aren't included into the `MarkdownModel` because we may not always want them.",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "isDraft": {
+          "type": "boolean",
+          "description": "If true, will not show up in markdownReader ui's"
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Should be stored as textual date like `YYYY-MM-DD`"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Should be stored as textual date like `YYYY-MM-DD`"
+        },
+        "privacy": {
+          "type": "string",
+          "enum": [
+            "public",
+            "private",
+            "request"
+          ],
+          "description": "TODO: implement auth layers, then look at this again"
+        },
+        "language": {
+          "$ref": "#/definitions/Language",
+          "description": "Either filled in or detected"
+        },
+        "isLanguageCustom": {
+          "type": "boolean",
+          "description": "If true, will not auto-detect the language"
+        }
+      },
+      "required": [
+        "updatedAt",
+        "createdAt",
+        "privacy",
+        "language"
+      ],
+      "additionalProperties": false,
+      "description": "Some properties for on any `MarkdownModelType` model that are quite general purpose and yet aren't included into the `MarkdownModel` because we may not always want them."
+    },
+    "simplifiedSchema": {
+      "fullComment": "Some properties for on any `MarkdownModelType` model that are quite general purpose and yet aren't included into the `MarkdownModel` because we may not always want them.",
+      "properties": [
+        {
+          "name": "isDraft",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, will not show up in markdownReader ui's",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "updatedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Should be stored as textual date like `YYYY-MM-DD`",
+            "type": "number"
+          }
+        },
+        {
+          "name": "createdAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Should be stored as textual date like `YYYY-MM-DD`",
+            "type": "number"
+          }
+        },
+        {
+          "name": "privacy",
+          "required": true,
+          "schema": {
+            "enum": [
+              "public",
+              "private",
+              "request"
+            ],
+            "fullComment": "TODO: implement auth layers, then look at this again",
+            "todo": "implement auth layers, then look at this again",
+            "type": "string"
+          }
+        },
+        {
+          "name": "language",
+          "required": true,
+          "schema": {
+            "enum": [
+              "english",
+              "dutch",
+              "nepali",
+              "portuguese",
+              "brazilian",
+              "german",
+              "french",
+              "spanish",
+              "italian",
+              "norwegian",
+              "swedish",
+              "danish",
+              "vietnamese",
+              "indonesian",
+              "southAfrican",
+              "tokiPona",
+              "hindi",
+              "mandarin",
+              "arabic",
+              "bengali",
+              "urdu",
+              "japanese",
+              "swahili"
+            ],
+            "fullComment": "Either filled in or detected\n\nall currently supported languages",
+            "type": "string"
+          }
+        },
+        {
+          "name": "isLanguageCustom",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, will not auto-detect the language",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ExtendedMarkdownProperties",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

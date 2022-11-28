@@ -1,0 +1,87 @@
+{
+  "createdAt": 1669639090343,
+  "updatedAt": 1669639090343,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639090343,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/docsGetPages.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  basePaths: { projectRelativeBasePath: string; queryPath: string }[]\n) => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return [];\n  }\n\n  const realProjectRelativeBasePaths = isBundle()\n    ? [\"docs\"]\n    : basePaths.map((x) => x.projectRelativeBasePath);\n\n  const absoluteBasePaths = realProjectRelativeBasePaths.map((x) =>\n    path.join(projectRoot, x)\n  );\n\n  const flat =\n    (await getMarkdownReaderPages({\n      projectRoot,\n      basePaths: absoluteBasePaths,\n      mapQueryPath: (queryPath) => {\n        const found = realProjectRelativeBasePaths.find((x) =>\n          queryPath.startsWith(x)\n        );\n        if (!found) {\n          return queryPath;\n        }\n        const prefix = basePaths.find(\n          (x) => x.projectRelativeBasePath === found\n        );\n\n        if (!prefix) {\n          return queryPath;\n        }\n\n        const newQueryPath = queryPath.replace(\n          prefix.projectRelativeBasePath,\n          prefix.queryPath\n        );\n\n        return newQueryPath;\n      },\n    })) || [];\n\n  return flat;\n}",
+  "name": "docsGetPages",
+  "slug": "docs-get-pages",
+  "parameters": [
+    {
+      "name": "basePaths",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "projectRelativeBasePath": {
+              "type": "string"
+            },
+            "queryPath": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "projectRelativeBasePath",
+            "queryPath"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "properties": [
+                {
+                  "name": "projectRelativeBasePath",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "queryPath",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 1069,
+    "lines": 46,
+    "bytes": 1069,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 46,
+    "numberOfFiles": 1
+  },
+  "id": "fdehuctjnaqrllxtrlkjmtqi"
+}

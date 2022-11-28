@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668189276604,
+  "updatedAt": 1668189276604,
+  "deletedAt": 0,
+  "createdFirstAt": 1668189276604,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "Tooltip",
+  "slug": "tooltip",
+  "operationRelativeTypescriptFilePath": "src/Tooltip.tsx",
+  "type": {
+    "rawType": "(props: { tooltipComponent: (tooltipComponentProps: any) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; tooltipContent: () => React.ReactElement<any, string | React.JSXElementConstructor<any>>; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  tooltipComponent: (\n    tooltipComponentProps: TooltipComponentProps\n  ) => React.ReactElement;\n  tooltipContent: () => React.ReactElement;\n}) => {\n  const [popoverShow, setPopoverShow] = React.useState(false);\n  const btnRef = React.createRef<HTMLAnchorElement>();\n  const popoverRef = React.createRef<HTMLSpanElement>();\n  const openTooltip = () => {\n    if (!btnRef.current || !popoverRef.current) return;\n    createPopper(btnRef.current, popoverRef.current, {\n      placement: \"left\",\n    });\n    setPopoverShow(true);\n  };\n  const closeTooltip = () => {\n    setPopoverShow(false);\n  };\n\n  return (\n    <span>\n      <props.tooltipComponent\n        ref={btnRef}\n        onMouseEnter={openTooltip}\n        onMouseLeave={closeTooltip}\n      />\n\n      <span\n        className={\n          (popoverShow ? \"\" : \"hidden \") +\n          \"bg-gray-200 border-0 mr-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg\"\n        }\n        ref={popoverRef}\n      >\n        {props.tooltipContent}\n      </span>\n    </span>\n  );\n}",
+  "description": "",
+  "id": "qthmcvlowrygzmamqqsonjwj"
+}

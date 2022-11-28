@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667111126347,
-  "updatedAt": 1667111126347,
+  "createdAt": 1669384164351,
+  "updatedAt": 1669384164351,
   "deletedAt": 0,
-  "createdFirstAt": 1667111126347,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669384164351,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/token/removeTokenIfPresent.ts",
   "commentsInside": [],
   "rawText": " (\n  name: string,\n  attachTokenToFilename?: boolean\n) => {\n  if (!attachTokenToFilename) {\n    return { nameWithoutToken: name, token: undefined };\n  }\n  const [nameWithoutToken, token] = name.split(tokenPrefix);\n  return { nameWithoutToken, token: token as string | undefined };\n}",
@@ -101,5 +96,5 @@
     "linesPerFile": 10,
     "numberOfFiles": 1
   },
-  "id": "whsfumjckrezxywjezflruom"
+  "id": "bxbcknbqmnehdvaicbngqros"
 }

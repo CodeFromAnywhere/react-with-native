@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668152099988,
-  "updatedAt": 1668152099988,
+  "createdAt": 1669385162235,
+  "updatedAt": 1669385162235,
   "deletedAt": 0,
-  "createdFirstAt": 1668152099988,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385162235,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/old/getContext.ts",
   "commentsInside": [],
-  "rawText": " (editorDetails: {\n  text: string;\n  positionIndex: number;\n}): TextEditingContext => {\n  const { positionIndex, text } = editorDetails;\n  const wordSeparators = [\" \", \"\\n\", \"\\t\"];\n\n  // NB: find the first separator after the word that we are typing at the position of the cursor.\n  const firstIndexWithSeparatorAfterPosition = Math.min(\n    ...wordSeparators.map((separator) => {\n      const separatorAfterPositionIndex = text.indexOf(\n        separator,\n        positionIndex\n      );\n      if (separatorAfterPositionIndex === -1) return Infinity;\n      return separatorAfterPositionIndex;\n    })\n  );\n\n  const endOfWordIndex =\n    firstIndexWithSeparatorAfterPosition === Infinity\n      ? text.length\n      : firstIndexWithSeparatorAfterPosition;\n\n  const lastIndexWithSeparatorBeforePosition = Math.max(\n    ...wordSeparators.map((separator) => {\n      const spaceBeforePositionIndex =\n        text.slice(0, positionIndex).lastIndexOf(separator) + 1;\n\n      return spaceBeforePositionIndex;\n    })\n  );\n\n  const beginningOfWordIndex =\n    lastIndexWithSeparatorBeforePosition === -1\n      ? 0\n      : lastIndexWithSeparatorBeforePosition;\n\n  const wordAtPosition = text.slice(beginningOfWordIndex, endOfWordIndex);\n\n  /*\n    console.log({\n      beginningOfWordIndex,\n      endOfWordIndex,\n      wordAtPosition,\n    });\n    */\n\n  return {\n    wordAtPosition,\n  };\n}",
+  "rawText": " (editorDetails: {\n  text: string;\n  positionIndex: number;\n}): TextEditingContext => {\n  const { positionIndex, text } = editorDetails;\n  const wordSeparators = [\" \", \"\\n\", \"\\t\"];\n\n  // NB: find the first separator after the word that we are typing at the position of the cursor.\n  const firstIndexWithSeparatorAfterPosition = Math.min(\n    ...wordSeparators.map((separator) => {\n      const separatorAfterPositionIndex = text.indexOf(\n        separator,\n        positionIndex\n      );\n      if (separatorAfterPositionIndex === -1) return Infinity;\n      return separatorAfterPositionIndex;\n    })\n  );\n\n  const endOfWordIndex =\n    firstIndexWithSeparatorAfterPosition === Infinity\n      ? text.length\n      : firstIndexWithSeparatorAfterPosition;\n\n  const lastIndexWithSeparatorBeforePosition = Math.max(\n    ...wordSeparators.map((separator) => {\n      const spaceBeforePositionIndex =\n        text.slice(0, positionIndex).lastIndexOf(separator) + 1;\n\n      return spaceBeforePositionIndex;\n    })\n  );\n\n  const beginningOfWordIndex =\n    lastIndexWithSeparatorBeforePosition === -1\n      ? 0\n      : lastIndexWithSeparatorBeforePosition;\n\n  const wordAtPosition = text.slice(beginningOfWordIndex, endOfWordIndex);\n\n  /*\n    console.log({\n      beginningOfWordIndex,\n      endOfWordIndex,\n      wordAtPosition,\n    });\n    */\n\n  return {\n    wordAtPosition,\n    positionIndex,\n  };\n}",
   "name": "getContext",
   "slug": "get-context",
   "parameters": [
@@ -59,7 +54,7 @@
   ],
   "description": "Gets the current word you are typing from a text and the cursor position.\n\nTakes into account multiple word separators: tabs, newlines, and spaces.",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/writer/writer-input/src/old/getContext\").TextEditingContext",
+    "rawType": "import(\"/Users/king/King/operations/tools/purpose/writer/writer-input/src/old/getContext\").TextEditingContext",
     "typeDefinition": {
       "type": "object",
       "properties": {
@@ -75,10 +70,14 @@
               "minLength": 1
             }
           ]
+        },
+        "positionIndex": {
+          "type": "number"
         }
       },
       "required": [
-        "wordAtPosition"
+        "wordAtPosition",
+        "positionIndex"
       ],
       "optional": false
     },
@@ -96,6 +95,13 @@
           "schema": {
             "type": "string"
           }
+        },
+        {
+          "name": "positionIndex",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
         }
       ],
       "type": "object"
@@ -103,13 +109,13 @@
   },
   "maxIndentationDepth": 4,
   "size": {
-    "characters": 1515,
-    "lines": 54,
-    "bytes": 1515,
+    "characters": 1534,
+    "lines": 55,
+    "bytes": 1534,
     "bytesPerCharacter": 1,
     "charactersPerLine": 28,
-    "linesPerFile": 54,
+    "linesPerFile": 55,
     "numberOfFiles": 1
   },
-  "id": "zjoalzjxuablpfuwyovxvpio"
+  "id": "csgdezfqudsdniaadinqitag"
 }

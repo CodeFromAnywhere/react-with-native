@@ -1,0 +1,111 @@
+{
+  "createdAt": 1668336573195,
+  "updatedAt": 1668336573195,
+  "deletedAt": 0,
+  "createdFirstAt": 1668336573195,
+  "id": "namedparameterstypeof-runchildprocess",
+  "name": "NamedParameters<typeof runChildProcess>",
+  "slug": "namedparameterstypeof-runchildprocess",
+  "operationRelativeTypescriptFilePath": "src/runChildProcess.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "operationFolderName": {
+              "type": "string"
+            },
+            "scriptFileName": {
+              "type": "string",
+              "description": "the location of the script in the build folder NB: this must be a CLI that that actually executes the function!"
+            },
+            "args": {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "not": {}
+                  }
+                ]
+              },
+              "description": "all arguments you wish to pass to the script. If an argument is undefined, it will not be passed. Arguments to be passed must be strings"
+            }
+          },
+          "required": [
+            "operationFolderName",
+            "scriptFileName"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "operationFolderName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "scriptFileName",
+                "required": true,
+                "schema": {
+                  "fullComment": "the location of the script in the build folder NB: this must be a CLI that that actually executes the function!",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "args",
+                "required": false,
+                "schema": {
+                  "fullComment": "all arguments you wish to pass to the script. If an argument is undefined, it will not be passed. Arguments to be passed must be strings",
+                  "items": [
+                    {
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof runChildProcess>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

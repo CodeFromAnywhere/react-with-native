@@ -1,0 +1,64 @@
+{
+  "createdAt": 1669055583640,
+  "updatedAt": 1669055583640,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055583640,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/findCommentTypes.ts",
+  "commentsInside": [],
+  "rawText": " (\n  commentWithoutFrontmatter: string\n): CommentType[] => {\n  const lines = commentWithoutFrontmatter.split(\"\\n\");\n\n  const types = commentTypes.filter((type) =>\n    lines.find((line) => line.trimStart().startsWith(`${type.toUpperCase()}:`))\n  );\n\n  return types;\n}",
+  "name": "findCommentTypes",
+  "slug": "find-comment-types",
+  "parameters": [
+    {
+      "name": "commentWithoutFrontmatter",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "returns all types that are found as start of a line in the comment (capitalised, with a \":\" behind)",
+  "returnType": {
+    "rawType": "any[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {}
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 365,
+    "lines": 11,
+    "bytes": 365,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "dbfygozscaybuqwobpzbkgbd"
+}

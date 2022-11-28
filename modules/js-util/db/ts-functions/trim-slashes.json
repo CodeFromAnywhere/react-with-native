@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150854008,
-  "updatedAt": 1668150854008,
+  "createdAt": 1668977418699,
+  "updatedAt": 1668977418699,
   "deletedAt": 0,
-  "createdFirstAt": 1668150854008,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977418699,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/trimSlashes.ts",
   "commentsInside": [],
   "rawText": " (absoluteOrRelativePath: string) => {\n  const isFirstCharacterSlash = absoluteOrRelativePath.charAt(0) === \"/\";\n  const isLastCharacterSlash =\n    absoluteOrRelativePath.charAt(absoluteOrRelativePath.length - 1) === \"/\";\n\n  const withoutSlashPrefix = isFirstCharacterSlash\n    ? absoluteOrRelativePath.slice(1)\n    : absoluteOrRelativePath;\n  const withoutSlashSuffix = isLastCharacterSlash\n    ? withoutSlashPrefix.slice(0, withoutSlashPrefix.length - 1)\n    : withoutSlashPrefix;\n\n  return withoutSlashSuffix;\n}",
@@ -48,5 +43,5 @@
     "linesPerFile": 14,
     "numberOfFiles": 1
   },
-  "id": "dhodqmscdmmnvnxkuzhbpqcf"
+  "id": "yyjyasnbcctvrbhadensyfhf"
 }

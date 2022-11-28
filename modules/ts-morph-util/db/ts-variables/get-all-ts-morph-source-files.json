@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668336278695,
+  "updatedAt": 1668336278695,
+  "deletedAt": 0,
+  "createdFirstAt": 1668336278695,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getAllTsMorphSourceFiles",
+  "slug": "get-all-ts-morph-source-files",
+  "operationRelativeTypescriptFilePath": "src/getAllTsMorphSourceFiles.ts",
+  "type": {
+    "rawType": "(operationBasePath: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (operationBasePath: string) => {\n  const filePaths = await getPackageSourcePaths({\n    operationBasePath,\n  });\n  const project = getTsMorphProject(operationBasePath);\n  if (!project) {\n    log(\"couldn't load project\", { type: \"error\" });\n    return;\n  }\n\n  //select correct SourceFile from tsmorph project\n  const sourceFiles = project.getSourceFiles(filePaths);\n\n  return sourceFiles;\n}",
+  "description": "",
+  "id": "ictlrapigfqmvchymwdhwfjy"
+}

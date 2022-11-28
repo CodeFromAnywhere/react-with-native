@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666258928747,
+  "updatedAt": 1666258928747,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258928747,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "setScriptEverywhere",
+  "slug": "set-script-everywhere",
+  "operationRelativeTypescriptFilePath": "src/setScriptEverywhere.ts",
+  "type": {
+    "rawType": "(script: string, value: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (script: string, value: string) => {\n  forAllFolders({\n    basePath: getPathsWithOperations(),\n    type: \"operations\",\n    shell: true,\n    callback: (folderPath, index) => {\n      setJsonKey({\n        jsonPath: path.join(folderPath, \"package.json\"),\n        keyLocation: `scripts.${script}`,\n        value,\n      });\n    },\n  });\n}",
+  "description": "set package.json script to another value in all operations in tools folder",
+  "id": "unbjsajrpwwkuwqxfampailm"
+}

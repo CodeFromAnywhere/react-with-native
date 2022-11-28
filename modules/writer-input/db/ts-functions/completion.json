@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668152089885,
-  "updatedAt": 1668152089885,
+  "createdAt": 1669385145056,
+  "updatedAt": 1669385145056,
   "deletedAt": 0,
-  "createdFirstAt": 1668152089885,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385145056,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/editors/autocomplete-components.tsx",
   "commentsInside": [],
   "rawText": " (props: {\n  augmentedWord: AugmentedWord;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n}) => {\n  const { augmentedWord, augmentedWordObject } = props;\n\n  const projectRelativeMarkdownFilePath =\n    augmentedWord.projectRelativeMarkdownSourcePath;\n  const projectRelativeBaseFolderPath = getFolderJs(\n    projectRelativeMarkdownFilePath\n  )!;\n  return (\n    <Div>\n      <Div className=\"flex flex-row justify-between\">\n        <P>{augmentedWord.word}</P>\n        <Div>(?)</Div>\n      </Div>\n      <P>\n        {augmentedWord.spoiler\n          ? renderMarkdownContent(augmentedWord.spoiler, {\n              projectRelativeMarkdownFilePath,\n              projectRelativeBaseFolderPath,\n              augmentedWordObject,\n              isDev,\n              isStatic: false,\n            })\n          : null}\n      </P>\n    </Div>\n  );\n}",
@@ -40,8 +35,17 @@
             "name": "augmentedWord",
             "required": true,
             "schema": {
-              "fullComment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..",
+              "fullComment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..\n\nTODO: This is a much more general purpose thing than just `markdown-reader-types`. Move to it's own package",
+              "todo": "This is a much more general purpose thing than just `markdown-reader-types`. Move to it's own package",
               "properties": [
+                {
+                  "name": "type",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "",
+                    "type": "string"
+                  }
+                },
                 {
                   "name": "word",
                   "required": true,
@@ -113,5 +117,5 @@
     "linesPerFile": 31,
     "numberOfFiles": 1
   },
-  "id": "ywrfkombqahnmtfpjehkneyg"
+  "id": "onvpfkvgaeyqofappwhbqwzf"
 }

@@ -1,16 +1,12 @@
 {
-  "createdAt": 1668148837559,
-  "updatedAt": 1668148837559,
+  "createdAt": 1669312092184,
+  "updatedAt": 1669312092184,
   "deletedAt": 0,
-  "createdFirstAt": 1668148837559,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312092184,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "AlterFunction",
   "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
   "commentsInside": [],
   "rawText": " async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n\n  const kvmdParse: KeyValueMarkdownParse | null = await readKvmdFile(\n    absolutePath,\n    dbFileLocation\n  );\n\n  const isNewFile = !kvmdParse;\n\n  const storedData = kvmdParse?.data || [];\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n\n  const newKvmdParse: KeyValueMarkdownParse = {\n    parameters: kvmdParse?.parameters || {},\n    data: newStoredData as KeyValueMarkdownModelType[],\n  };\n\n  const newDataString = kvmdParseToMarkdownString(newKvmdParse);\n  const isSuccesful = await writeStringToFile(absolutePath, newDataString);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
@@ -37,5 +33,5 @@
     "linesPerFile": 31,
     "numberOfFiles": 1
   },
-  "id": "bsfyzhuzvxzppvpdtwpyryjm"
+  "id": "vyniathmtfnrkqtqbtxfvqmd"
 }

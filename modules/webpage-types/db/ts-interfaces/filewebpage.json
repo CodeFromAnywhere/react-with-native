@@ -1,0 +1,138 @@
+{
+  "createdAt": 1669276584384,
+  "updatedAt": 1669276584384,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276584384,
+  "id": "filewebpage",
+  "name": "FileWebPage",
+  "slug": "filewebpage",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\nexport type FileWebPage = WebPage<FilePage>;",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "$ref": "#/definitions/WebPage%3CFilePage%3E"
+    },
+    "simplifiedSchema": {
+      "fullComment": "General purpose interface for a webpage. Should be compatible within the node.js environment and therefore should not contain any frontend functions. A nested variant (`NestedWebPage`) is used in the frontend to render the `nested-menu` with.",
+      "properties": [
+        {
+          "name": "queryPath",
+          "required": true,
+          "schema": {
+            "fullComment": "query-path to be visited in order to find the page on the web.\n\ncan also be used for nested nav in apps",
+            "type": "string"
+          }
+        },
+        {
+          "name": "searchTerms",
+          "required": false,
+          "schema": {
+            "fullComment": "can be provided to search in a better way\n\ncan provide representations of possible searches for this page, so you can find the pages much better",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "target",
+          "required": false,
+          "schema": {
+            "fullComment": "Optionally, open this page in a new window",
+            "type": "string"
+          }
+        },
+        {
+          "name": "isMenuHidden",
+          "required": false,
+          "schema": {
+            "fullComment": "if true, menu item should be omitted (but path may still be reachable if you so wish)",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "menuTitleAugmentation",
+          "required": false,
+          "schema": {
+            "fullComment": "if provided, will be shown in the menu besides the title can be something nice like a notification or an emoji",
+            "type": "string"
+          }
+        },
+        {
+          "name": "menuTitleTooltip",
+          "required": false,
+          "schema": {
+            "fullComment": "If provided, will be rendered as a tooltip when hovering over the menu item",
+            "type": "string"
+          }
+        },
+        {
+          "name": "menuTitle",
+          "required": false,
+          "schema": {
+            "fullComment": "if provided will be shown instead of the name of the file/folder in the menu. This makes it possible to provide better naming or add emoji's etc",
+            "type": "string"
+          }
+        },
+        {
+          "name": "pageData",
+          "required": true,
+          "schema": {
+            "fullComment": "Data connected to the `queryPath`. can take any shape or form based on your application.\n\nFor example, you can provide a `projectRelativePath` to a file here\n\nThe motivation to put this in a `extraData` object is because this makes the type super flexible.\n\n`.pageData` is not to be included into the menu, only to the page!\n\nSome ideas of what to provide here:\n\n- `projectRelativeFilePath` (so you can open the page if it's connected to some path)\n- `operationName`\n- `operationRelativePath`\n\n\nWhat not to provide here:\n\n- `AugmentedWord`[] (this is way too big, so it'd be a waste of query time to provide it for every page already)\n- stuff you already provided in the WebPage itself (it will also be available on the page, so why bother?)\n\n",
+            "properties": [
+              {
+                "name": "projectRelativeFilePath",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "internalLinkWord",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "imagePath",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "shortDescription",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "FileWebPage",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "createdAt": 1669200475264,
+  "updatedAt": 1669200475264,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200475264,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/isConventionFileStatement.ts",
+  "commentsInside": [],
+  "rawText": " (\n  item: TsFunction | TsVariable | TsInterface,\n  conventionFile: \"test\" | \"cli\"\n) => {\n  const fileId = getSrcRelativeFileId(item.operationRelativeTypescriptFilePath);\n  return hasSubExtension(fileId, [conventionFile], true);\n}",
+  "name": "isConventionFileStatement",
+  "slug": "is-convention-file-statement",
+  "parameters": [
+    {
+      "name": "item",
+      "schema": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/TsFunction"
+          },
+          {
+            "$ref": "#/definitions/TsVariable"
+          },
+          {
+            "$ref": "#/definitions/TsInterface"
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "conventionFile",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "test",
+          "cli"
+        ]
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "test",
+          "cli"
+        ],
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 230,
+    "lines": 7,
+    "bytes": 230,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 7,
+    "numberOfFiles": 1
+  },
+  "id": "stesvmdkgvyoktkktjpstkfw"
+}

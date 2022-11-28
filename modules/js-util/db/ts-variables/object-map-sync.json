@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150848198,
-  "updatedAt": 1668150848198,
+  "createdAt": 1668977409127,
+  "updatedAt": 1668977409127,
   "deletedAt": 0,
-  "createdFirstAt": 1668150848198,
+  "createdFirstAt": 1668977409127,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<\n  TObject extends { [key: string]: any },\n  TMapResult,\n  TResultObject extends { [key in keyof TObject]: TMapResult }\n>(\n  object: TObject,\n  mapFn: (key: keyof TObject, value: TObject[keyof TObject]) => TMapResult\n): TResultObject => {\n  const valueObjectParts = getObjectKeysArray(object).map((key) => {\n    return { [key]: mapFn(key, object[key]) };\n  });\n\n  const merged = mergeObjectsArray(\n    valueObjectParts\n  ) as unknown as TResultObject;\n\n  return merged;\n}",
   "description": "maps over all values in an object and replaces them using a mapfn\n\nExample usage:\n\n```ts\n\nconst result = objectMapSync({ hello: \"world\", isTrue: true }, (key,value) => {\nreturn `${value}123`;\n});\n```",
-  "id": "wtilhztemfnfxkitugncwaok"
+  "id": "rfbcjxoohywxfcqzfatnjrwf"
 }

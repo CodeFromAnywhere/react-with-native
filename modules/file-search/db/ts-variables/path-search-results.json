@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668551909560,
+  "updatedAt": 1668551909560,
+  "deletedAt": 0,
+  "createdFirstAt": 1668551909560,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "PathSearchResults",
+  "slug": "path-search-results",
+  "operationRelativeTypescriptFilePath": "src/PathSearchResults.tsx",
+  "type": {
+    "rawType": "(props: { paths: string[]; search: string; augmentedWords?: import(\"/Users/king/King/operations/tools/purpose/reader/augmented-word-types/build/AugmentedWord\").AugmentedWord[] | undefined; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  paths: string[];\n  search: string;\n  augmentedWords?: AugmentedWord[];\n}) => {\n  const { paths, search, augmentedWords } = props;\n\n  /**\n   * TODO: include this in the results somehow nicely...\n   */\n  const augmentedWordResults = augmentedWords?.filter((x) => {\n    const word = x.isCaseInsensitive ? x.word.toLowerCase() : x.word;\n    const searchQuery = x.isCaseInsensitive ? search.toLowerCase() : search;\n\n    const isMatch = word.includes(searchQuery);\n\n    return isMatch;\n  });\n\n  const results = paths\n    .map((path) => {\n      const augmentedWordsThisPath = augmentedWordResults?.filter(\n        (x) => x.queryPath === path\n      );\n\n      return { path, augmentedWordsThisPath };\n    })\n    .filter((item) => {\n      const isPathMatch = item.path\n        .toLowerCase()\n        .includes(search.toLowerCase());\n      const isMatch = item.augmentedWordsThisPath?.length || isPathMatch;\n\n      return isMatch;\n    })\n    .slice(0, 100);\n\n  return (\n    <Div>\n      {results.map((item) => {\n        const filename = item.path.split(\"/\").pop()!;\n\n        return (\n          <ALink href={`/${item.path}`}>\n            <Div className=\"px-2 hover:dark:bg-gray-600\">\n              <MatchingText\n                truncateLength={30}\n                text={filename}\n                search={search}\n                defaultTextClassName=\"\"\n                matchTextClassName=\"text-blue-500\"\n              />\n\n              <MatchingText\n                truncateLength={30}\n                text={item.path}\n                search={search}\n                defaultTextClassName=\"text-xs\"\n                matchTextClassName=\"text-blue-500\"\n              />\n\n              {item.augmentedWordsThisPath?.map((augmentedWord) => {\n                return (\n                  <MatchingText\n                    truncateLength={30}\n                    text={augmentedWord.word}\n                    search={search}\n                    defaultTextClassName=\"text-xs\"\n                    matchTextClassName=\"text-blue-500\"\n                  />\n                );\n              })}\n            </Div>\n          </ALink>\n        );\n      })}\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "vobyfftxbkmlffiijuifpucx"
+}

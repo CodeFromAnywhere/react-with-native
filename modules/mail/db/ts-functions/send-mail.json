@@ -1,0 +1,73 @@
+{
+  "createdAt": 1668334465784,
+  "updatedAt": 1668334465784,
+  "deletedAt": 0,
+  "createdFirstAt": 1668334465784,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/sendMail.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  mailData: MailDataFromOptional | MailDataFromOptional[],\n  isMultiple?: boolean\n): Promise<ClientResponse | undefined> => {\n  const persona = await getPrimaryPersona();\n\n  if (!persona) {\n    return;\n  }\n\n  const { sendgridApiKey, sendgridFromEmail } = persona;\n\n  if (!sendgridApiKey) {\n    console.log(\"Please setup your Sendgrid credentials first\");\n    return;\n  }\n\n  const realMailData: MailDataRequired[] = makeArray(mailData)\n    .map((data) => {\n      const { from: dataFrom, ...otherData } = data;\n\n      const from = dataFrom || sendgridFromEmail;\n\n      if (!from) {\n        console.log(\n          \"From is missing in email and also not present in OsConfig. Please provide at least one of those. Not sending email!\"\n        );\n        return;\n      }\n\n      // NB: it's a bit ugly, but doesn't work without typecast, and i'm pretty sure the type is correct...\n      const mailData = { from, ...otherData } as MailDataRequired;\n\n      return mailData;\n    })\n    .filter(notEmpty);\n\n  sgMail.setApiKey(sendgridApiKey);\n\n  const result = await sgMail\n    .send(realMailData, isMultiple)\n    .then(([result]) => {\n      return result;\n    })\n    .catch((error: ResponseError) => {\n      console.log(\"Error sending email\", { error });\n\n      return undefined;\n    });\n\n  return result;\n}",
+  "name": "sendMail",
+  "slug": "send-mail",
+  "parameters": [
+    {
+      "name": "mailData",
+      "schema": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/MailDataFromOptional"
+          },
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/MailDataFromOptional"
+            }
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "isMultiple",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "Sends email(s) using sendgrid\n\nEnsure your OS config is there",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/node_modules/@sendgrid/client/src/response\").ClientResponse | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 1366,
+    "lines": 54,
+    "bytes": 1366,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 54,
+    "numberOfFiles": 1
+  },
+  "id": "rflwyhgipnummiamgjktcmom"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385484250,
+  "updatedAt": 1669385484250,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385484250,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "MeAuthenticationInfo",
+  "slug": "me-authentication-info",
+  "operationRelativeTypescriptFilePath": "src/MeAuthenticationInfo.tsx",
+  "type": {
+    "rawType": "() => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  const meQuery = queries.useGetMeWithContext();\n\n  const personInfo: PersonInfo = destructureOptionalObject(\n    meQuery.data?.result?.device\n  );\n\n  const router = useRouter();\n  // if no persons are connected, show circle with ? in front of user icon, with menu \"sign up\" and \"login\" next to it\n\n  // if person is connected, that icon becomes your currentaPerson picture, the text your name. if you click on it, it drops down to show the other persons connected to your device, but also \"login and sign up\"\n\n  const nobodyOrCurrent: PictureWithInfo<Person> =\n    personInfo.currentPersonCalculated\n      ? {\n          pictureUrl: itemGetBackendAssetUrl({\n            item: personInfo.currentPersonCalculated,\n            backendAsset: personInfo.currentPersonCalculated.pictureImage,\n          }),\n          info: personInfo.currentPersonCalculated?.name,\n          data: personInfo.currentPersonCalculated,\n        }\n      : {\n          info: \"Sign in\",\n          pictureUrl: undefined,\n        };\n\n  const dropdown: PictureWithInfo<Person>[] =\n    personInfo.persons?.map((x) => {\n      return {\n        pictureUrl: itemGetBackendAssetUrl({\n          item: x,\n          backendAsset: x.pictureImage,\n        }),\n        info: x.name,\n        data: x,\n        isCurrent: x.id === personInfo.currentPersonId,\n      };\n    }) || [];\n\n  return (\n    <PictureWithInfoDropdown\n      current={nobodyOrCurrent}\n      dropdown={dropdown}\n      extraItems={[\n        {\n          text: \"2FA Settings\",\n          onClick: () => router.push(`/2fa`),\n        },\n\n        {\n          text: \"Edit your profile\",\n          onClick: () => router.push(`/edit-profile`),\n        },\n\n        {\n          text: \"See your profile\",\n          onClick: () =>\n            router.push(`/profile?id=${personInfo.currentPersonId}`),\n        },\n        {\n          text: \"Login into another account\",\n          onClick: () => router.push(\"/login\"),\n        },\n        { text: \"Create a new account\", onClick: () => router.push(\"/signup\") },\n        {\n          text: `Logout from ${personInfo.currentPersonCalculated?.name}`,\n          onClick: async () => {\n            const { result, isSuccessful, message } =\n              await api.logoutWithContext();\n\n            meQuery.refetch();\n            successToast(\n              result?.message || message || \"something went wrong (no message)\"\n            );\n          },\n        },\n      ]}\n      isLoading={meQuery.isLoading}\n      onClickCurrent={\n        personInfo.currentPersonCalculated\n          ? undefined\n          : () => router.push(\"/signup\")\n      }\n      onSelectDropdownItem={async (item) => {\n        if (item?.id) {\n          const { result } = await api.switchCurrentPersonWithContext(item?.id);\n\n          toast(\n            {\n              title: result?.isSuccessful ? \"Done\" : \"Error\",\n              body: result?.message || \"Somethign went wrong\",\n            },\n            { hideProgressBar: true, position: \"bottom-right\", type: \"success\" }\n          );\n\n          meQuery.refetch();\n        }\n      }}\n    />\n  );\n}",
+  "description": "little component for in banner that shows your info on top, and links to signup/login etc",
+  "id": "jiqlzsixyifuicjfsdfiyuzf"
+}

@@ -1,0 +1,57 @@
+{
+  "createdAt": 1669385041742,
+  "updatedAt": 1669385041742,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385041742,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/newFolder.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  projectRelativeFolderBasePath: string,\n  folderName: string\n): Promise<{ isSuccessful: boolean; message?: string }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root found\" };\n  }\n\n  const absoluteBasePath = path.join(\n    projectRoot,\n    projectRelativeFolderBasePath\n  );\n\n  if (!fs.existsSync(absoluteBasePath)) {\n    return {\n      isSuccessful: false,\n      message: \"This folder basepath doesn't exist\",\n    };\n  }\n\n  const newFolderPath = path.join(absoluteBasePath, folderName);\n\n  if (fs.existsSync(newFolderPath)) {\n    return { isSuccessful: false, message: \"Folder already exists\" };\n  }\n\n  await fs.mkdir(newFolderPath);\n\n  return { isSuccessful: true };\n}",
+  "name": "newFolder",
+  "slug": "new-folder",
+  "parameters": [
+    {
+      "name": "projectRelativeFolderBasePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "folderName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<{ isSuccessful: boolean; message?: string | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 758,
+    "lines": 31,
+    "bytes": 758,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "id": "ccziyojyqdbrbfeysirlhhlt"
+}

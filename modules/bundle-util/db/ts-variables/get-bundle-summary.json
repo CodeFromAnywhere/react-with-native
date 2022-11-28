@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668448344753,
+  "updatedAt": 1668448344753,
+  "deletedAt": 0,
+  "createdFirstAt": 1668448344753,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getBundleSummary",
+  "slug": "get-bundle-summary",
+  "operationRelativeTypescriptFilePath": "src/getBundleSummary.ts",
+  "type": {
+    "rawType": "(bundleConfig: import(\"/Users/king/King/operations/tools/types/bundle-types/build/BundleConfig\").BundleConfig) => import(\"/Users/king/King/operations/tools/deployment/bundling/bundle-util/src/getBundleSummary\").BundleSummary",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(bundleConfig: BundleConfig): BundleSummary => {\n  const operationsPath = getRootPath(\"operations\");\n  const bundlesPath = operationsPath\n    ? path.join(operationsPath, \"niches\")\n    : undefined;\n\n  const foldersFromRepo = bundlesPath\n    ? bundleConfig.createBundleConfig.foldersFromRepo?.map((x) =>\n        path.join(bundlesPath, kebabCase(bundleConfig.name), x)\n      )\n    : undefined;\n\n  // const filesAndFoldersToInclude = [\n  //   // ...(foldersFromRepo || []),\n  //   bundleConfig.readmeRelativeFilePath,\n  //   bundleConfig.docsRelativeFolderPath,\n  // ].filter(notEmpty);\n\n  const appNames = bundleConfig.createBundleConfig.bundles\n    .map((x) => {\n      const frontendOperationNames = makeArray(\n        x.appShellOperationNames,\n        x.serverOperationName\n      );\n\n      return frontendOperationNames;\n    })\n    .flat()\n    .filter(onlyUnique2());\n\n  const uiOperationNames = makeArray(\n    bundleConfig.createBundleConfig.bundles\n      .map((x) => x.uiOperationName)\n      .filter(notEmpty)\n  );\n\n  const bundlePublicOperationNames = bundleConfig.createBundleConfig.bundles\n    .map(\n      (x) =>\n        x.operations\n          ?.filter((x) => x.privacy === \"public\")\n          .map((x) => x.operationName) || []\n    )\n    .flat();\n  const bundlePrivateOperationNames = bundleConfig.createBundleConfig.bundles\n    .map(\n      (x) =>\n        x.operations\n          ?.filter((x) => x.privacy === \"private\")\n          .map((x) => x.operationName) || []\n    )\n    .flat();\n\n  const packageNames =\n    bundleConfig.createBundleConfig.dependencies\n      ?.filter((x) => x.privacy === \"public\")\n      .map((x) => x.operationName)\n      .concat(uiOperationNames)\n      .concat(bundlePublicOperationNames)\n      .filter(onlyUnique2()) || [];\n\n  const moduleNames =\n    bundleConfig.createBundleConfig.dependencies\n      ?.filter((x) => x.privacy === \"private\")\n      .map((x) => x.operationName)\n      .concat(bundlePrivateOperationNames)\n      .filter(onlyUnique2()) || [];\n\n  const summary: BundleSummary = {\n    // filesAndFoldersToInclude,\n    slug: bundleConfig.slug,\n    packageNames,\n    moduleNames,\n    appNames,\n  };\n\n  // console.dir({ summary, bundleConfig }, { depth: 999 });\n\n  return summary;\n}",
+  "description": "Summarizes a bundle config so it can be used easily in things like explore project",
+  "id": "rrawrneiiluojpcsdcpyoezz"
+}

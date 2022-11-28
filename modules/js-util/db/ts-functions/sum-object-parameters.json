@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150835598,
-  "updatedAt": 1668150835598,
+  "createdAt": 1668977389959,
+  "updatedAt": 1668977389959,
   "deletedAt": 0,
-  "createdFirstAt": 1668150835598,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977389959,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/general.ts",
   "commentsInside": [],
   "rawText": " <TObject extends { [key: string]: number }>(\n  object1: TObject,\n  object2: TObject\n): TObject => {\n  const objectKeys: (keyof TObject)[] = Object.keys(object1);\n  const summedObject = mergeObjectsArray(\n    objectKeys.map((key) => {\n      const summedObjectPart = { [key]: object1[key] + object2[key] };\n\n      return summedObjectPart;\n    })\n  ) as TObject;\n  // NB: too bad we still need `as TObject` here. I would love to learn how to prevent that\n\n  return summedObject;\n}",
@@ -46,5 +41,5 @@
     "linesPerFile": 16,
     "numberOfFiles": 1
   },
-  "id": "wpnodbmwkfurjmkkdrkpayhf"
+  "id": "vsilxhfuxmhglbygetivbdqt"
 }

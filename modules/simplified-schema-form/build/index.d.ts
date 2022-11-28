@@ -7,4 +7,5 @@ export * from "./getReferencedModelDataItem";
 export * from "./renderParameterTitle";
 export * from "./types";
 export * from "./useReferencableModelData";
+export * from "./useTsInterfaceForm";
 //# sourceMappingURL=index.d.ts.map

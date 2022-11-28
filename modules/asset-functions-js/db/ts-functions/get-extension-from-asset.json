@@ -1,19 +1,14 @@
 {
-  "createdAt": 1667111116589,
-  "updatedAt": 1667111116589,
+  "createdAt": 1669384150108,
+  "updatedAt": 1669384150108,
   "deletedAt": 0,
-  "createdFirstAt": 1667111116589,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669384150108,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getExtensionFromAsset.ts",
   "commentsInside": [],
-  "rawText": " (asset: Asset) => {\n  const extensionFromType =\n    asset.type === \"audio\"\n      ? `mp3`\n      : asset.type === \"image\"\n      ? `jpeg`\n      : asset.type === \"video\"\n      ? `mp4`\n      : undefined;\n\n  const extension = extensionFromType\n    ? extensionFromType\n    : asset.originalFilename\n    ? getExtension(asset.originalFilename)\n    : undefined;\n\n  return extension;\n}",
+  "rawText": " (asset: Asset) => {\n  const extensionFromType =\n    asset.type === \"audio\"\n      ? `mp3`\n      : asset.type === \"image\"\n      ? `jpeg`\n      : asset.type === \"video\"\n      ? `mp4`\n      : undefined;\n\n  const extension = extensionFromType\n    ? extensionFromType\n    : asset.originalFilename\n    ? getExtension(asset.originalFilename)\n    : asset.relativePath\n    ? getExtension(asset.relativePath)\n    : undefined;\n\n  return extension;\n}",
   "name": "getExtensionFromAsset",
   "slug": "get-extension-from-asset",
   "parameters": [
@@ -55,7 +50,23 @@
             "name": "temporaryDestination",
             "required": false,
             "schema": {
-              "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+              "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectRelativeReferencingFilePath",
+            "required": false,
+            "schema": {
+              "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+              "type": "string"
+            }
+          },
+          {
+            "name": "modelName",
+            "required": false,
+            "schema": {
+              "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
               "type": "string"
             }
           },
@@ -64,6 +75,29 @@
             "required": false,
             "schema": {
               "fullComment": "path to the local blob if uploading",
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "video",
+                "audio",
+                "image",
+                "text",
+                "other"
+              ],
+              "fullComment": "can be calculated from the path, or come directly from the blob\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+              "type": "string"
+            }
+          },
+          {
+            "name": "absoluteUrl",
+            "required": false,
+            "schema": {
+              "fullComment": "Can be available in case it's an asset from an external source URL for example within md.",
               "type": "string"
             }
           },
@@ -150,13 +184,13 @@
   },
   "maxIndentationDepth": 3,
   "size": {
-    "characters": 426,
-    "lines": 18,
-    "bytes": 426,
+    "characters": 490,
+    "lines": 20,
+    "bytes": 490,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 24,
-    "linesPerFile": 18,
+    "charactersPerLine": 25,
+    "linesPerFile": 20,
     "numberOfFiles": 1
   },
-  "id": "jsctbvzbrjxjhljhbxbnqoqy"
+  "id": "lglzxmxafwkoxmbwbuwyxfro"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385321410,
+  "updatedAt": 1669385321410,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385321410,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "addDeviceAuthenticationMethodConfirm",
+  "slug": "add-device-authentication-method-confirm",
+  "operationRelativeTypescriptFilePath": "src/confirmAuthenticationMethod.ts",
+  "type": {
+    "rawType": "(deviceId: string, method: import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/AuthenticationMethjod\").AuthenticationMethodMethod, otp: number) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  /** device id */\n  deviceId: string,\n  method: AuthenticationMethodMethod,\n  /** one time password */\n  otp: number\n) => {\n  /////\n\n  const device = (await db.get(\"Device\")).find((x) => x.id === deviceId);\n\n  if (!device) {\n    return { isSuccessful: false, message: \"Couldn't find device\" };\n  }\n\n  const authenticatedMethod = device.authenticationMethods.find(\n    (m) => m.method === method\n  );\n\n  if (authenticatedMethod?.isAuthenticated) {\n    return {\n      isSuccessful: false,\n      message:\n        \"You already authenticated with this method, please delete it first before you add another one.\",\n    };\n  }\n\n  if (!authenticatedMethod) {\n    return { isSuccessful: false, message: \"Can't find method\" };\n  }\n\n  if ([\"email\", \"phoneNumber\"].includes(method)) {\n    const isSuccessful = otp === authenticatedMethod.otp;\n\n    if (isSuccessful) {\n      // add isAuthenticated to device's authenticationMethods\n\n      const newAuthenticatedMethod: AuthenticationMethod = {\n        ...authenticatedMethod,\n        otp: undefined,\n        isAuthenticated: true,\n      };\n\n      const newauthenticationMethods = device.authenticationMethods.map((x) =>\n        x.method === method && x.otp === otp ? newAuthenticatedMethod : x\n      );\n\n      await db.update(\n        \"Device\",\n        (item) => item.id === deviceId,\n        (old) => ({ ...old, authenticationMethods: newauthenticationMethods })\n      );\n    }\n    return {\n      isSuccessful,\n      message: isSuccessful ? \"Successful\" : \"Incorrect code\",\n    };\n  }\n}",
+  "description": "adds an `authenticatedMethod` to `Device` after the OTP is correct\n\nFor now, only handles methods `phoneNumber` and `email`\n\nTODO: extrahere the core into `addAuthenticationMethodConfirm` and use it in this one and make also `addPersonAuthenticationMethodConfirm`",
+  "id": "jpjqnkpntfpthvhficrdpxxx"
+}

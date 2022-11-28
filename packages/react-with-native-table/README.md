@@ -1,6 +1,6 @@
 # React with native table
 
-react-with-native-table (`OperationClassification` ui-es5)
+react-with-native-table (`OperationClassification` ui-cjs)
 
 
 
@@ -29,7 +29,7 @@ gets all columns you can present based on a modelname, the interfaces of that mo
 | Input      |    |    |
 | ---------- | -- | -- |
 | - | | |
-| **Output** | { name: string, <br />presentationType?: text / referenceSingle / referenceMultiple, <br />customPresentation?: {  }, <br />objectParameterKey: {  }, <br /> }[]   |    |
+| **Output** | { name: string, <br />presentationType?: text / backendAsset / referenceSingle / referenceMultiple, <br />customPresentation?: {  }, <br />objectParameterKey: {  }, <br /> }[]   |    |
 
 
 

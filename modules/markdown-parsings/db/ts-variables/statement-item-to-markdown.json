@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200497222,
+  "updatedAt": 1669200497222,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200497222,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "statementItemToMarkdown",
+  "slug": "statement-item-to-markdown",
+  "operationRelativeTypescriptFilePath": "src/statementItemToMarkdown.ts",
+  "type": {
+    "rawType": "(statementItem: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/StatementItem\").StatementItem) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  statementItem: StatementItem\n): string | undefined => {\n  if (statementItem.tsFunction) {\n    return tsFunctionToMarkdownString(statementItem.tsFunction);\n  }\n\n  if (statementItem.tsInterface) {\n    return tsInterfaceToMarkdownString(statementItem.tsInterface);\n  }\n\n  if (statementItem.tsVariable) {\n    return tsVariableToMarkdownString(statementItem.tsVariable);\n  }\n}",
+  "description": "",
+  "id": "xwokumspwlvsoyndlsxfpiqj"
+}

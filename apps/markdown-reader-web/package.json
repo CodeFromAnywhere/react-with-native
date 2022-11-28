@@ -1,28 +1,28 @@
 {
-  "createdAt": 1662709577330,
-  "updatedAt": 1662709577330,
+  "createdAt": 1668328716891,
+  "updatedAt": 1668328716891,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577330,
-  "name": "markdown-reader-web",
-  "version": "0.1.0",
-  "private": true,
+  "createdFirstAt": 1668328716891,
   "scripts": {
-    "start": "next start -p 4204",
-    "dev": "next dev -p 4204",
-    "copyStaticAssets": "copyStaticAssets",
-    "build": "next build",
+    "dev": "next dev -p 42004",
+    "start": "next start -p 42004",
+    "stop": "pm2 stop app_markdown-reader-web",
+    "fillPublic": "node fillPublic.js",
+    "build": "yarn fillPublic && next build",
     "export": "next export",
     "lint": "next lint"
   },
+  "id": "oqRhxGziXSELxSxM",
   "dependencies": {
     "@badrap/bar-of-progress": "^0.2.1",
     "@headlessui/react": "^1.6.2",
     "@next/font": "^13.0.3",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "fs-orm": "1.0.1",
     "fs-util": "1.0.5",
     "get-path": "0.0.1",
     "markdown-reader-functions": "0.0.1",
-    "markdown-reader-ui": "0.0.0",
+    "markdown-reader-types": "0.0.1",
     "next": "12.3.1",
     "next-transpile-modules": "^9.0.0",
     "nightwind": "^1.1.12",
@@ -37,6 +37,7 @@
     "react-with-native-router": "1.0.14",
     "react-with-native-store": "*",
     "read-markdown-file": "0.0.1",
+    "reader-ui": "1.0.0",
     "rehype-highlight": "^5.0.2"
   },
   "devDependencies": {
@@ -45,9 +46,70 @@
     "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24"
   },
+  "private": true,
+  "version": "0.1.0",
+  "name": "markdown-reader-web",
+  "language": "english",
   "slug": "markdown-reader-web",
-  "id": "oqRhxGziXSELxSxM",
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "indirectDependencies": [
+      "collect-static-assets"
+    ],
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/purpose/codebase-introspection/reader/markdown-reader-web/src/pages/_app.tsx. Error: Error: Unknown node \"new (props: P) => Component<P, any>\" of kind \"ConstructorType\""
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "ui-web",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "markdown-reader-web",
+    "hasGeneratedDependenciesIndexed": true,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669384753004,
+    "operationDependenciesIndexed": [
+      "MarkdownReaderPageProps",
+      "StoreProvider",
+      "publicEnvironmentVariables",
+      "publicLocalEnvironmentVariables",
+      "DocsReaderLayout",
+      "markdownReaderGetStaticProps"
+    ],
+    "packageDependenciesIndexed": [
+      "AppProps",
+      "QueryClient",
+      "QueryClientProvider"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/purpose/codebase-introspection/reader",
+    "markdown": "# 📚 markdown-reader-web\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 3,
+        "lines": 102,
+        "characters": 3048,
+        "bytes": 3048
+      },
+      "dataSize": {
+        "numberOfFiles": 17,
+        "lines": 5160,
+        "characters": 181158,
+        "bytes": 181158
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 34,
+        "characters": 433,
+        "bytes": 433
+      },
+      "size": {
+        "bytes": 184639,
+        "characters": 184639,
+        "lines": 5296,
+        "numberOfFiles": 22
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

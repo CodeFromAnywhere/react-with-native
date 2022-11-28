@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200508513,
+  "updatedAt": 1669200508513,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200508513,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "propertyToTableRow",
+  "slug": "property-to-table-row",
+  "operationRelativeTypescriptFilePath": "src/util/propertyToTableRow.ts",
+  "type": {
+    "rawType": "(property: import(\"/Users/king/King/operations/tools/types/code-types/build/SimplifiedSchema\").SimplifiedSchemaProperty) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  property: SimplifiedSchemaProperty\n): string => {\n  const requiredString = property.required ? \"\" : \"(optional)\";\n\n  const descriptionString = noNewlines(property.schema.description) || \"\";\n\n  // TODO: stack deeper objects and make sure to also print tables for those\n  return `| ${property.name} ${requiredString} | ${property.schema.type} | ${descriptionString} |`;\n}",
+  "description": "",
+  "id": "hwjrrjevuqxqulahqdhewhpl"
+}

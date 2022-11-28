@@ -1,30 +1,106 @@
 {
-  "createdAt": 1668148331598,
-  "updatedAt": 1668148331598,
+  "createdAt": 1669055048626,
+  "updatedAt": 1669055048626,
   "deletedAt": 0,
-  "createdFirstAt": 1668148331598,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055048626,
+  "isApiExposed": true,
   "isExported": true,
-  "operationRelativeTypescriptFilePath": "src/getOperationClassification.ts",
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getAllPackageJsonDependencies.ts",
   "commentsInside": [],
-  "rawText": " (p: PackageJson): string[] => {\n  const dependencies = p.dependencies ? Object.keys(p.dependencies) : [];\n  const devDependencies = p.devDependencies\n    ? Object.keys(p.devDependencies)\n    : [];\n  const peerDependencies = p.peerDependencies\n    ? Object.keys(p.peerDependencies)\n    : [];\n\n  return [...dependencies, ...devDependencies, ...peerDependencies];\n}",
+  "rawText": " (\n  operation: Operation\n): string[] => {\n  const dependencies = operation.dependencies\n    ? Object.keys(operation.dependencies)\n    : [];\n  const devDependencies = operation.devDependencies\n    ? Object.keys(operation.devDependencies)\n    : [];\n  const peerDependencies = operation.peerDependencies\n    ? Object.keys(operation.peerDependencies)\n    : [];\n\n  return [...dependencies, ...devDependencies, ...peerDependencies];\n}",
   "name": "getAllPackageJsonDependencies",
   "slug": "get-all-package-json-dependencies",
   "parameters": [
     {
-      "name": "p",
+      "name": "operation",
       "schema": {
-        "$ref": "#/definitions/PackageJson"
+        "$ref": "#/definitions/Operation"
       },
       "simplifiedSchema": {
-        "fullComment": "--- dbStorageMethod: jsonSingle operationRelativePath: package.json\n---",
+        "fullComment": "--- dbStorageMethod: jsonSingle operationRelativePath: package.json\n---\n\nModel for `typerepo` operations. Stored in `package.json` in every package (compatible with regular npm package.json data structure). An `Operation` is a NPM Package that applies the `typerepo` convention.\n\nTODO: add a validation to package.json files for the whole project, to ensure i can apply `fs-orm` convention",
+        "todo": "add a validation to package.json files for the whole project, to ensure i can apply `fs-orm` convention",
         "properties": [
+          {
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "fullComment": "kebab-case of the name, should be unique\n\nuse this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "language",
+            "required": true,
+            "schema": {
+              "enum": [
+                "english",
+                "dutch",
+                "nepali",
+                "portuguese",
+                "brazilian",
+                "german",
+                "french",
+                "spanish",
+                "italian",
+                "norwegian",
+                "swedish",
+                "danish",
+                "vietnamese",
+                "indonesian",
+                "southAfrican",
+                "tokiPona",
+                "hindi",
+                "mandarin",
+                "arabic",
+                "bengali",
+                "urdu",
+                "japanese",
+                "swahili"
+              ],
+              "fullComment": "all currently supported languages",
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdAt",
+            "required": true,
+            "schema": {
+              "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+              "type": "number"
+            }
+          },
+          {
+            "name": "updatedAt",
+            "required": true,
+            "schema": {
+              "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+              "type": "number"
+            }
+          },
+          {
+            "name": "deletedAt",
+            "required": true,
+            "schema": {
+              "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+              "type": "number"
+            }
+          },
+          {
+            "name": "createdFirstAt",
+            "required": true,
+            "schema": {
+              "fullComment": "in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.\n\nTime\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+              "type": "number"
+            }
+          },
           {
             "name": "operationName",
             "required": true,
@@ -50,14 +126,32 @@
             }
           },
           {
-            "name": "path",
-            "required": false,
+            "name": "id",
+            "required": true,
             "schema": {
+              "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
               "type": "string"
             }
           },
           {
-            "name": "name",
+            "name": "categoryStackCalculated",
+            "required": false,
+            "schema": {
+              "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+              "nb": "Changing this value when updating/upserting, changes where the item is located!",
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "path",
             "required": false,
             "schema": {
               "type": "string"
@@ -81,6 +175,7 @@
             "name": "description",
             "required": false,
             "schema": {
+              "fullComment": "one-line description of the operation",
               "type": "string"
             }
           },
@@ -122,6 +217,33 @@
             }
           },
           {
+            "name": "dependencies",
+            "required": false,
+            "schema": {
+              "fullComment": "",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "devDependencies",
+            "required": false,
+            "schema": {
+              "fullComment": "",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "peerDependencies",
+            "required": false,
+            "schema": {
+              "fullComment": "",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
             "name": "bin",
             "required": false,
             "schema": {
@@ -153,23 +275,687 @@
             }
           },
           {
-            "name": "type",
+            "name": "operation",
             "required": false,
             "schema": {
-              "enum": [
-                "js",
-                "ts",
-                "node",
-                "server",
-                "web",
-                "app",
-                "ui-es6",
-                "ui-es5",
-                "ui-esm"
+              "fullComment": "custom keys, both indexed and generated",
+              "properties": [
+                {
+                  "name": "codeOwner_personId",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Who is responsible for this operation?\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "isNodeServer",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Set to true if this operations serves a server. Will be omitted from api.",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "isBundle",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Set to true if this package.json is your bundle. This means almost all other config doesn't apply.\n\nreplaces `isSensibleProject`.\n\nTODO: Might be interesting to see what the differences between the two are, and if it is truly needed to create a convention for this. The bundle folder structure convention is is the more conventional way of structuring a monorepo, but I doubt the if it really benefits me, especially if I have to maintain two conventions for this, and do different things based on the type of applied convention.",
+                    "todo": "Might be interesting to see what the differences between the two are, and if it is truly needed to create a convention for this. The bundle folder structure convention is is the more conventional way of structuring a monorepo, but I doubt the if it really benefits me, especially if I have to maintain two conventions for this, and do different things based on the type of applied convention.",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "markdown",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Indexed from OPERATION.md, don't edit this if you already have an OPERATION.md! If you don't, you can use this property to change the long-form operation description.\n\nMotivation to have both: it's annoying to write markdown inside of JSON in VSCode...\n\n",
+                    "properties": [
+                      {
+                        "name": "fileName",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "params",
+                        "required": true,
+                        "schema": {
+                          "properties": [
+                            {
+                              "name": "title",
+                              "required": false,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "author",
+                              "required": false,
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "createdAt",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "",
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "updatedAt",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "",
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "modifiedAt",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "",
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "openedAt",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "",
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "content",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "",
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "hasGeneratedDependenciesIndexed",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If true, it means that this operation has dependency on one or more operations that have been generated at runtime. We need to know this because it can easily cause circular imports if we don't filter them out sometimes",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "buildResultIndexed",
+                  "required": false,
+                  "schema": {
+                    "properties": [
+                      {
+                        "name": "buildSucceeded",
+                        "required": false,
+                        "schema": {
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "dependenciesBuildsFailed",
+                        "required": false,
+                        "schema": {
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "indexImportExportError",
+                        "required": false,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "lintProblems",
+                        "required": false,
+                        "schema": {
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
+                        "name": "indexInteracesErrors",
+                        "required": false,
+                        "schema": {
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
+                        "name": "indexErrors",
+                        "required": false,
+                        "schema": {
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "lastPullTimeAtIndexed",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "lastRebuildAt",
+                  "required": false,
+                  "schema": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "sizeIndexed",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "objective size measurements of all files in a folder\n\nsummary for a folder should contain file-summaries for different filetypes and an overal file summary",
+                    "properties": [
+                      {
+                        "name": "size",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "type interface that can be used to summarize multiple files",
+                          "properties": [
+                            {
+                              "name": "numberOfFiles",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "if this is about multiple files, the number of files is specified here",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "characters",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of characters",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "lines",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of lines",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "bytes",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of bytes",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "linesPerFile",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of lines per file (averaged)",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "charactersPerLine",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of characters per line (averaged)",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "bytesPerCharacter",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of bytes per character",
+                                "type": "number"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "textSize",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "type interface that can be used to summarize multiple files",
+                          "properties": [
+                            {
+                              "name": "numberOfFiles",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "if this is about multiple files, the number of files is specified here",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "characters",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of characters",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "lines",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of lines",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "bytes",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of bytes",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "linesPerFile",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of lines per file (averaged)",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "charactersPerLine",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of characters per line (averaged)",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "bytesPerCharacter",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of bytes per character",
+                                "type": "number"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "dataSize",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "type interface that can be used to summarize multiple files",
+                          "properties": [
+                            {
+                              "name": "numberOfFiles",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "if this is about multiple files, the number of files is specified here",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "characters",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of characters",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "lines",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of lines",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "bytes",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of bytes",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "linesPerFile",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of lines per file (averaged)",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "charactersPerLine",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of characters per line (averaged)",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "bytesPerCharacter",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of bytes per character",
+                                "type": "number"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "codeSize",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "type interface that can be used to summarize multiple files",
+                          "properties": [
+                            {
+                              "name": "numberOfFiles",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "if this is about multiple files, the number of files is specified here",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "characters",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of characters",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "lines",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of lines",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "bytes",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "amount of bytes",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "linesPerFile",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of lines per file (averaged)",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "charactersPerLine",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of characters per line (averaged)",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "bytesPerCharacter",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "rounded, amount of bytes per character",
+                                "type": "number"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "folderNameIndexed",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "name of the operation folder",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "relativeOperationLocationPathIndexed",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "relative path to the operation (does not include operation folder itself)\n\nrelative from project root",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "classificationIndexed",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "js",
+                      "ts",
+                      "node",
+                      "server",
+                      "web",
+                      "app",
+                      "ui-es6",
+                      "ui-es5",
+                      "ui-esm"
+                    ],
+                    "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\n- js: only js (no node) (well, ts of course, but it gets built into js)\n\n- ts: non-built ts code\n\n- node: includes other node packages, operations, core-imports, or globals.\n\n- server: exposes something on some port when it is ran and uses node code\n\n- web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\n- app: uses react-native and exposes something on some port when it is ran\n\n- DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\n- ui-es5: ui which main entry points to javascript es5 files (this ui package can be built). don't import ESM packages in here, this won't work.\n\n- ui-esm: ui which builds to ESM module resolved Javascript. All packages that use ui-esm packages, need to be `ui-esm`, `ui-es6`, or `web` in order to work properly.",
+                    "todo": "think about what the differences are and how we need to change processes to make it all work good",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "packageDependenciesIndexed",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "external package dependency names (non-operation)\n\nTODO: this are imported names, not the module names.... rename this and add them both under clear names",
+                    "todo": "this are imported names, not the module names.... rename this and add them both under clear names",
+                    "items": [
+                      {
+                        "schema": {
+                          "type": "string"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "operationDependenciesIndexed",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "operation dependency names",
+                    "items": [
+                      {
+                        "schema": {
+                          "type": "string"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "coreDependenciesIndexed",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "core dependencies (e.g. `path` and `fs`)",
+                    "items": [
+                      {
+                        "schema": {
+                          "type": "string"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "indirectDependencies",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Sometimes you are using function in a UI, which cannot be inferred with imports because they are used indirectly via an api. Here you can specify which operations on the backend are needed for an operation (ui mostly)\n\nThis array is simply a list of operation names needed for this operation that are not imported.\n\nNB: No need to specify things here that you also import in this operation, because these are already automatically detected.",
+                    "nb": "No need to specify things here that you also import in this operation, because these are already automatically detected.",
+                    "items": [
+                      {
+                        "schema": {
+                          "type": "string"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "authors",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "A list of authors\n\nShould be used to create bundle AUTHORS.md",
+                    "items": [
+                      {
+                        "schema": {
+                          "type": "string"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "contributors",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "A list of contributors\n\nCan be used to create bundle CONTRIBUTORS.md",
+                    "items": [
+                      {
+                        "schema": {
+                          "type": "string"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "paymentPlanId",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "TODO:",
+                    "todo": "",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "uiSupport",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "For ui-*, it should be noted which platforms are supported\n\nCan be used to generate nice component in the documentation",
+                    "properties": [
+                      {
+                        "name": "android",
+                        "required": false,
+                        "schema": {
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "ios",
+                        "required": false,
+                        "schema": {
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "web",
+                        "required": false,
+                        "schema": {
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "description",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "optionally, let others know why they are not supported yet or what good alternatives are in case they are not supported in certain platforms",
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "skipMinify",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "put on to true if minify doesn't work, so it will be skipped by `rebuildOperation`",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "isNotSdkable",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If set to true, this operation will not be included into the SDKs\n\nConfigurable",
+                    "type": "boolean"
+                  }
+                }
               ],
-              "fullComment": "# Classification\n\nTODO: think about what the differences are and how we need to change processes to make it all work good\n\n## Possible values\n\n- js: only js (no node) (well, ts of course, but it gets built into js)\n\n- ts: non-built ts code\n\n- node: includes other node packages, operations, core-imports, or globals.\n\n- server: exposes something on some port when it is ran and uses node code\n\n- web: has next.config.js and thus exposes something on some port when it is ran. next.js + react-based...\n\n- app: uses react-native and exposes something on some port when it is ran\n\n- DEPRECATED: ui-es6: uses react (with (native)), which main entry points to typescript es6 files (this ui package cannot be built, should be transpiled. highly discouraged, please use ui-es5, or, if needed, ui-esm)\n\n- ui-es5: ui which main entry points to javascript es5 files (this ui package can be built). don't import ESM packages in here, this won't work.\n\n- ui-esm: ui which builds to ESM module resolved Javascript. All packages that use ui-esm packages, need to be `ui-esm`, `ui-es6`, or `web` in order to work properly.",
-              "todo": "think about what the differences are and how we need to change processes to make it all work good",
-              "type": "string"
+              "type": "object"
             }
           }
         ],
@@ -218,13 +1004,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 363,
-    "lines": 11,
-    "bytes": 363,
+    "characters": 429,
+    "lines": 15,
+    "bytes": 429,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 33,
-    "linesPerFile": 11,
+    "charactersPerLine": 29,
+    "linesPerFile": 15,
     "numberOfFiles": 1
   },
-  "id": "vniiusayeqmheomwkirtrilh"
+  "id": "cdrblatginqhxieqpzmsluko"
 }

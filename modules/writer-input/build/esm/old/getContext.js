@@ -33,5 +33,6 @@ export var getContext = function (editorDetails) {
       */
     return {
         wordAtPosition: wordAtPosition,
+        positionIndex: positionIndex,
     };
 };

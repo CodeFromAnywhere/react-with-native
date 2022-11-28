@@ -1,19 +1,14 @@
 {
-  "createdAt": 1667378715380,
-  "updatedAt": 1667378715380,
+  "createdAt": 1669054956846,
+  "updatedAt": 1669054956846,
   "deletedAt": 0,
-  "createdFirstAt": 1667378715380,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669054956846,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/MediaRecorder.tsx",
   "commentsInside": [],
-  "rawText": " (props: {\n  type: MediaRecorderType;\n  withBlob: (blobUrl: string, blob: Blob) => void;\n}) => {\n  const { type, withBlob } = props;\n\n  return (\n    <div>\n      <ReactMediaRecorder\n        screen={type === \"screen\"}\n        audio\n        blobPropertyBag={{}}\n        // audio={type === \"audio\"}\n        video={type === \"video\"}\n        stopStreamsOnStop\n        onStop={(blobUrl, blob) => {\n          withBlob(blobUrl, blob);\n        }}\n        render={(props) => <MediaRecorderComponent {...props} type={type} />}\n      />\n    </div>\n  );\n}",
+  "rawText": " (props: {\n  type: MediaRecorderType;\n  withBlob: (blobUrl: string, blob: Blob) => void;\n}) => {\n  const { type, withBlob } = props;\n\n  return (\n    <div>\n      <ReactMediaRecorder\n        screen={type === \"screen\"}\n        audio\n        blobPropertyBag={{ type: type === \"audio\" ? \"audio/wav\" : \"video/mp4\" }}\n        // audio={type === \"audio\"}\n        video={type === \"video\"}\n        stopStreamsOnStop\n        onStop={(blobUrl, blob) => {\n          withBlob(blobUrl, blob);\n        }}\n        render={(props) => <MediaRecorderComponent {...props} type={type} />}\n      />\n    </div>\n  );\n}",
   "name": "MediaRecorder",
   "slug": "media-recorder",
   "parameters": [],
@@ -33,13 +28,13 @@
   },
   "maxIndentationDepth": 5,
   "size": {
-    "characters": 541,
+    "characters": 593,
     "lines": 23,
-    "bytes": 541,
+    "bytes": 593,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 24,
+    "charactersPerLine": 26,
     "linesPerFile": 23,
     "numberOfFiles": 1
   },
-  "id": "ooaruxjusihwepgaqfvjueur"
+  "id": "xpnhbmcgbmhleakpsqzetvlv"
 }

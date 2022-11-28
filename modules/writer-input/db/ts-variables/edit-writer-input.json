@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385104246,
+  "updatedAt": 1669385104246,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385104246,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "EditWriterInput",
+  "slug": "edit-writer-input",
+  "operationRelativeTypescriptFilePath": "src/EditWriterInput.tsx",
+  "type": {
+    "rawType": "(props: { onChange: (value: string) => void; value: string; projectRelativeFilePath: string; markdownModelName?: keyof import(\"/Users/king/King/operations/tools/generated/sdk-db/build/sdk-db\").DbModels | undefined; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  onChange: (value: string) => void;\n  value: string;\n  projectRelativeFilePath: string;\n  markdownModelName?: keyof DbModels;\n}) => {\n  const { onChange, value, projectRelativeFilePath, markdownModelName } = props;\n  const [lastIndex, setLastIndex] = useState(value.length);\n  const [showAssetUpload, setShowAssetUpload] = useState(false);\n  const toggleAssetUpload = () => setShowAssetUpload(!showAssetUpload);\n\n  return (\n    <Div className=\"w-full h-full flex flex-1 flex-col\">\n      <Div className=\"flex flex-row\">\n        <ClickableIcon\n          emoji={showAssetUpload ? \"❌\" : \"📂\"}\n          onClick={() => toggleAssetUpload()}\n        />\n        {showAssetUpload ? (\n          <Div>\n            <AssetInput\n              config={{}}\n              fieldName=\"upload\"\n              uniqueFieldId=\"upload\"\n              onChange={async (newBackendAssets) => {\n                if (newBackendAssets.length === 0) return;\n\n                // 1) upload to backend and process\n                const apiResult = await api.processAssetUpload(\n                  newBackendAssets\n                );\n                // 2) receive back the actual relativePath\n\n                if (!apiResult.result) {\n                  errorToast(\"Couldn't upload your assets\");\n                  return;\n                }\n\n                const assetsMarkdownString = apiResult.result\n                  .map((backendAsset) => {\n                    return `![${backendAsset.alt || \"\"}](${\n                      backendAsset.relativePath\n                    })`;\n                  })\n                  .join(\"\\n\");\n                // 3) insert those as a snippet in the markdown\n                // console.log({ assetsMarkdownString });\n\n                const before = value.substring(0, lastIndex);\n                const after = value.substring(lastIndex);\n                const newText = `${before}${assetsMarkdownString}${after}`;\n                onChange(newText);\n                toggleAssetUpload();\n              }}\n              extra={{\n                projectRelativeReferencingFilePath: projectRelativeFilePath,\n                defaultAssetName: getFileOrFolderName(projectRelativeFilePath),\n                allowMultiple: true,\n                modelName: markdownModelName,\n                size: \"md\",\n                theme: \"Outlined\",\n              }}\n              value={[]}\n            />\n          </Div>\n        ) : null}\n      </Div>\n      <ContextTextArea\n        withContext={(context) => {\n          setLastIndex(context.positionIndex);\n          // console.log(`Context`, context);\n        }}\n        className=\"w-full bg-transparent flex flex-1\"\n        onChange={onChange}\n        value={value}\n      />\n    </Div>\n  );\n}",
+  "description": "the newer one, eventually to replace `ContextTextArea`\n<SmartContentEditableDivInput\nwriterType={writerType}\nvalue={value}\nonChange={onChange}\nmarkdownParseRenderConfig={markdownParseRenderConfig}\n/>",
+  "id": "qizkodtsshlptvbfsuopudtm"
+}

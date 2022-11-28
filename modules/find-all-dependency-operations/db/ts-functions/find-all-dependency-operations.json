@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668150463841,
+  "updatedAt": 1668150463841,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150463841,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/findAllDependencyOperations.ts",
+  "commentsInside": [],
+  "rawText": " async ({\n  imports,\n  packageJsons,\n  operationNames,\n  ignoreOperationNames,\n  ignoreFilter,\n}: {\n  /**\n   * All imports\n   */\n  imports: TsImport[];\n  packageJsons: PackageJson[];\n  operationNames: string[];\n  ignoreOperationNames?: string[];\n  ignoreFilter?: (operationName: string) => boolean;\n}) => {\n  const dependencies = (\n    await oneByOne(operationNames, async (operationName) => {\n      process.stdout.write(`${operationName} ... `);\n\n      return findDependenciesRecursively(\n        imports,\n        packageJsons,\n        operationName,\n        operationNames,\n        ignoreOperationNames,\n        ignoreFilter\n      );\n    })\n  ).flat();\n\n  return dependencies.filter(onlyUnique);\n}",
+  "name": "findAllDependencyOperations",
+  "slug": "find-all-dependency-operations",
+  "parameters": [],
+  "description": "to be used when you need to know all dependencies for multiple operation names at once\n\nTODO: NB: this breaks with circular dependencies",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 835,
+    "lines": 35,
+    "bytes": 835,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 35,
+    "numberOfFiles": 1
+  },
+  "id": "xlrmjaihakgwefvkstgzqvce"
+}

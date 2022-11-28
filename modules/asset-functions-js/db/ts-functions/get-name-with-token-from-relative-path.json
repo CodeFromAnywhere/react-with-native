@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667111125290,
-  "updatedAt": 1667111125290,
+  "createdAt": 1669384162668,
+  "updatedAt": 1669384162668,
   "deletedAt": 0,
-  "createdFirstAt": 1667111125290,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669384162668,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/token/getNameWithTokenFromRelativePath.ts",
   "commentsInside": [],
   "rawText": " (\n  relativePath: string,\n  attachTokenToFilename?: boolean,\n  newToken?: string\n): string => {\n  const name = getNameFromRelativePath(relativePath);\n  if (!attachTokenToFilename) return name;\n  return ensureToken(name, newToken, attachTokenToFilename);\n}",
@@ -72,5 +67,5 @@
     "linesPerFile": 11,
     "numberOfFiles": 1
   },
-  "id": "qynmuyrnkgtyufeiuzpgexhy"
+  "id": "kwsnrbbydythyubjyrbsfrrk"
 }

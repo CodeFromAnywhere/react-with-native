@@ -1,4 +1,4 @@
-import { GetStaticPaths } from "next";
+import type { GetStaticPaths } from "next-types";
 /**
 
 Function that tells Next.js what the pages are that need to be statically generated

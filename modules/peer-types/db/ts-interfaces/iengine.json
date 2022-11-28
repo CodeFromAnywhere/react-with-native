@@ -1,0 +1,62 @@
+{
+  "createdAt": 1669384916114,
+  "updatedAt": 1669384916114,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384916114,
+  "id": "iengine",
+  "name": "IEngine",
+  "slug": "iengine",
+  "operationRelativeTypescriptFilePath": "src/external/ua-parser-js.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface IEngine {\n  /**\n   * Possible name:\n   * Amaya, EdgeHTML, Gecko, iCab, KHTML, Links, Lynx, NetFront, NetSurf, Presto,\n   * Tasman, Trident, w3m, WebKit\n   */\n  name: string | undefined;\n  /**\n   * Determined dynamically\n   */\n  version: string | undefined;\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Possible name: Amaya, EdgeHTML, Gecko, iCab, KHTML, Links, Lynx, NetFront, NetSurf, Presto, Tasman, Trident, w3m, WebKit"
+        },
+        "version": {
+          "type": "string",
+          "description": "Determined dynamically"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "name",
+          "required": false,
+          "schema": {
+            "fullComment": "Possible name: Amaya, EdgeHTML, Gecko, iCab, KHTML, Links, Lynx, NetFront, NetSurf, Presto, Tasman, Trident, w3m, WebKit",
+            "type": "string"
+          }
+        },
+        {
+          "name": "version",
+          "required": false,
+          "schema": {
+            "fullComment": "Determined dynamically",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "IEngine",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

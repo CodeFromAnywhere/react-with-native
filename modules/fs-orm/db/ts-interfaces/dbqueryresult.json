@@ -1,15 +1,15 @@
 {
-  "createdAt": 1668148862366,
-  "updatedAt": 1668148862366,
+  "createdAt": 1669312137701,
+  "updatedAt": 1669312137701,
   "deletedAt": 0,
-  "createdFirstAt": 1668148862366,
+  "createdFirstAt": 1669312137701,
   "id": "dbqueryresult",
   "name": "DbQueryResult",
   "slug": "dbqueryresult",
   "operationRelativeTypescriptFilePath": "src/types.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * TODO: return the inserted id or other reference\n *\n * Result of any query except `get`. Will not always provide all parameters (depends on the type of query you do)\n */\nexport type DbQueryResult = {\n  isSuccesful?: boolean;\n  message?: string;\n  isNewFile?: boolean;\n  amountInserted?: number;\n  amountUpdated?: number;\n  amountRemoved?: number;\n};",
+  "rawText": "\n\n/**\n * TODO: return the inserted id or other reference\n *\n * Result of any query except `get`. Will not always provide all parameters (depends on the type of query you do)\n */\nexport type DbQueryResult = {\n  isSuccesful?: boolean;\n  message?: string;\n  isNewFile?: boolean;\n  amountInserted?: number;\n  amountUpdated?: number;\n  amountRemoved?: number;\n  /**\n   * If true, all items in the model were removed\n   */\n  allRemoved?: boolean;\n};",
   "extensions": [],
   "isOperationIndex": false,
   "description": "TODO: return the inserted id or other reference\n\nResult of any query except `get`. Will not always provide all parameters (depends on the type of query you do)",
@@ -36,6 +36,10 @@
         },
         "amountRemoved": {
           "type": "number"
+        },
+        "allRemoved": {
+          "type": "boolean",
+          "description": "If true, all items in the model were removed"
         }
       },
       "additionalProperties": false,
@@ -85,6 +89,14 @@
           "required": false,
           "schema": {
             "type": "number"
+          }
+        },
+        {
+          "name": "allRemoved",
+          "required": false,
+          "schema": {
+            "fullComment": "If true, all items in the model were removed",
+            "type": "boolean"
           }
         }
       ],

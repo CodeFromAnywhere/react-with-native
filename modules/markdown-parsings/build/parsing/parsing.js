@@ -1,0 +1,8 @@
+"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(n){for(var r,e=1,o=arguments.length;e<o;e++)for(var t in r=arguments[e])Object.prototype.hasOwnProperty.call(r,t)&&(n[t]=r[t]);return n},__assign.apply(this,arguments)};Object.defineProperty(exports,"__esModule",{value:!0}),exports.markdownChunksToMarkdownStringRecursive=exports.markdownChunkToMarkdownStringRecursive=exports.upMarkdownChunkLevelRecursively=void 0;
+/**
+ * Ups the levels of the markdownChunk array, recursively.
+ *
+ * Can be useful for merging multiple markdown sources
+ */
+var upMarkdownChunkLevelRecursively=function(n){if(n)return n.map((function(n){return __assign(__assign({},n),{level:n.level+1,children:(0,exports.upMarkdownChunkLevelRecursively)(n.children)})}))};exports.upMarkdownChunkLevelRecursively=upMarkdownChunkLevelRecursively;var markdownChunkToMarkdownStringRecursive=function(n){var r=n.title&&0!==n.level?"".concat("#".repeat(n.level)," ").concat(n.title):void 0,e=n.content,o=n.children?(0,exports.markdownChunksToMarkdownStringRecursive)(n.children):"";return"".concat(r?"".concat(r,"\n\n"):"").concat(e?"".concat(e,"\n\n"):"").concat(o)};exports.markdownChunkToMarkdownStringRecursive=markdownChunkToMarkdownStringRecursive;var markdownChunksToMarkdownStringRecursive=function(n){return n.map(exports.markdownChunkToMarkdownStringRecursive).join("")};exports.markdownChunksToMarkdownStringRecursive=markdownChunksToMarkdownStringRecursive;
+//# sourceMappingURL=parsing.js.map

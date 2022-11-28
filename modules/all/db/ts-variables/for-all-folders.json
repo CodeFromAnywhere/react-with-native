@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666258916571,
+  "updatedAt": 1666258916571,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258916571,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "forAllFolders",
+  "slug": "for-all-folders",
+  "operationRelativeTypescriptFilePath": "src/forAllFolders.ts",
+  "type": {
+    "rawType": "({ type, callback, basePath, onlyRoot, command, shell, fileName, folderName, ignore, }: { basePath?: string | string[] | undefined; } & { onlyRoot?: boolean | undefined; type?: import(\"/Users/king/King/operations/tools/control-project/all/src/forAllFolders\").DirectoryType | undefined; fileName?: string | undefined; folderName?: string | undefined; callback?: ((folderPath: string, index: number) => void) | undefined; command?: string | undefined; shell?: boolean | undefined; ignore?: string | string[] | undefined; }) => Promise<void>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async ({\n  type,\n  callback,\n  basePath,\n  onlyRoot,\n  command,\n  shell,\n  fileName,\n  folderName,\n  ignore,\n}: AllInputType): Promise<void> => {\n  let locations =\n    type === \"git\"\n      ? await exploreGitRepoFolders({ basePath })\n      : type === \"operations\"\n      ? await exploreOperationFolders({ basePath })\n      : type === \"folder\" && folderName\n      ? (\n          await explore({\n            basePath,\n            exact: true,\n            doNotExploreChildFolders: onlyRoot,\n            searchLevel: \"folder\",\n            doNotExploreMatch: true,\n            // should be able to ignore stuff\n            ignore,\n            search: folderName,\n          })\n        ).map((x) => x.path)\n      : type === \"file\"\n      ? (\n          await explore({\n            basePath,\n            exact: true,\n            searchLevel: \"fileName\",\n            search: fileName,\n          })\n        ).map((x) => x.path)\n      : [];\n\n  if (locations.length === 0) {\n    // console.log(\"Nothing found\");\n    return;\n  }\n\n  // console.log({ locations: locations.length });\n\n  if (fileName && type !== \"file\") {\n    locations = locations.map((f) => path.join(f, fileName));\n  }\n\n  // console.log({ locations });\n\n  await oneByOne(locations, async (location, index) => {\n    // console.log({ location });\n    if (command) {\n      execSync(command, {\n        env: {\n          LOCATION: location,\n        },\n        cwd: getFolder(location),\n        encoding: \"utf8\",\n        stdio: \"inherit\",\n        // shell,\n      });\n    }\n\n    if (callback) {\n      await callback(location, index);\n    }\n  });\n\n  // console.log(\"done!\");\n}",
+  "description": "executes a command or callback in every folder of a certain type. Supports git repos and operations now",
+  "id": "xanqobxelylpsadjywfudynp"
+}

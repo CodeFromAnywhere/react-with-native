@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150021329,
-  "updatedAt": 1668150021329,
+  "createdAt": 1669639187741,
+  "updatedAt": 1669639187741,
   "deletedAt": 0,
-  "createdFirstAt": 1668150021329,
+  "createdFirstAt": 1669639187741,
   "id": "finalcustomisablebundleconfig",
   "name": "FinalCustomisableBundleConfig",
   "slug": "finalcustomisablebundleconfig",
@@ -42,6 +42,12 @@
         "skipPush": {
           "type": "boolean",
           "description": "skips the step where it pushes the new bundle to remote"
+        },
+        "skipSyncNicheFolder": {
+          "type": "boolean"
+        },
+        "skipRebuildNicheOperations": {
+          "type": "boolean"
         },
         "skipUpsert": {
           "type": "boolean",
@@ -109,6 +115,20 @@
           "required": false,
           "schema": {
             "fullComment": "skips the step where it pushes the new bundle to remote",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "skipSyncNicheFolder",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "skipRebuildNicheOperations",
+          "required": false,
+          "schema": {
             "type": "boolean"
           }
         },

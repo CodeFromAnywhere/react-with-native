@@ -1,14 +1,3 @@
----
-createdAt: 1668158667762
-updatedAt: 1668158667762
-deletedAt: 0
-createdFirstAt: 1668158667762
-categoryStackCalculated: 
-id: dkklyymommjxpltgcrcbirxt
-slug: sdk-env-public
-name: sdk-env-public
----
+# ❌ No description set yet
 
-This operation contains all public environment variables that can be used on the frontend and backend of your application(s).
-
-Generated for bundles (to be set in `BundleConfig`), manually set for King OS.
+Please set a description for this operation in OPERATION.md

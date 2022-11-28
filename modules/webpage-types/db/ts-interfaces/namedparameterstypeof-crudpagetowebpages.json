@@ -1,0 +1,132 @@
+{
+  "createdAt": 1669276582477,
+  "updatedAt": 1669276582477,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276582477,
+  "id": "namedparameterstypeof-crudpagetowebpages",
+  "name": "NamedParameters<typeof crudPageToWebPages>",
+  "slug": "namedparameterstypeof-crudpagetowebpages",
+  "operationRelativeTypescriptFilePath": "src/to-webpage-conversors.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "pageData": {
+          "$ref": "#/definitions/CrudPage"
+        }
+      },
+      "required": [
+        "pageData"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "pageData",
+          "required": true,
+          "schema": {
+            "fullComment": "Data needed to make a `WebPage`<CrudPage>",
+            "properties": [
+              {
+                "name": "modelName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "datasetSlugs",
+                "required": false,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "canCreate",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "canRead",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "canUpdate",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "canDelete",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "itemActionFunctionNames",
+                "required": false,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "pageActionFunctionNames",
+                "required": false,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof crudPageToWebPages>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

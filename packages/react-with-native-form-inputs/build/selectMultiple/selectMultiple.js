@@ -1,46 +1,6 @@
-"use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SelectMultipleInputType = exports.SelectMultipleInput = void 0;
-var jsx_runtime_1 = require("react/jsx-runtime");
-var react_with_native_ui_1 = require("react-with-native-ui");
-var react_with_native_select_1 = require("react-with-native-select");
-var react_with_native_1 = require("react-with-native");
-var SelectMultipleInput = function (_a) {
-    var value = _a.value, extra = _a.extra, onChange = _a.onChange, uniqueFieldId = _a.uniqueFieldId;
-    //console.log({ value, extraOptions: extra.options });
-    var optionsLeft = [{ label: extra.title || "Choose a value", value: "" }]
-        .concat(extra.options)
-        .filter(function (x) { return !value.find(function (i) { return x.value === i.value; }); });
-    return ((0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "flex flex-row flex-wrap" }, { children: [value.map(function (item, index) { return ((0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ onClick: function () {
-                    var newValue = value.filter(function (x) { return x.value !== item.value; });
-                    onChange(newValue);
-                }, className: "mr-3 px-3 py-2 rounded-md border border-gray-400" }, { children: (0, jsx_runtime_1.jsxs)(react_with_native_1.P, __assign({ className: "text-xs" }, { children: [item.label, " ", (0, jsx_runtime_1.jsx)(react_with_native_1.Span, __assign({ textClassName: "text-red-500 text-xs" }, { children: "(x)" }))] })) }), "selected".concat(uniqueFieldId).concat(index))); }), optionsLeft.length > 1 ? ((0, jsx_runtime_1.jsx)(react_with_native_select_1.Select, { placeholder: extra === null || extra === void 0 ? void 0 : extra.placeholder, noPlaceholder: extra === null || extra === void 0 ? void 0 : extra.noPlaceholder, autoSuggest: extra === null || extra === void 0 ? void 0 : extra.autoSuggest, className: react_with_native_ui_1.UI.selectInput, title: extra.title || "", options: optionsLeft, onChange: function (selected) {
-                    console.log({ selected: selected });
-                    if (selected) {
-                        var newValue = value;
-                        newValue.push(selected);
-                        console.log({ value: value, newValue: newValue });
-                        onChange(newValue);
-                    }
-                } })) : null] })));
-};
-exports.SelectMultipleInput = SelectMultipleInput;
-exports.SelectMultipleInput.defaultInitialValue = [];
-var SelectMultipleInputType = /** @class */ (function () {
-    function SelectMultipleInputType() {
-    }
-    return SelectMultipleInputType;
-}());
-exports.SelectMultipleInputType = SelectMultipleInputType;
+"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(e){for(var t,n=1,l=arguments.length;n<l;n++)for(var i in t=arguments[n])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},__assign.apply(this,arguments)};Object.defineProperty(exports,"__esModule",{value:!0}),exports.SelectMultipleInputType=exports.SelectMultipleInput=void 0;var jsx_runtime_1=require("react/jsx-runtime"),react_with_native_ui_1=require("react-with-native-ui"),react_with_native_select_1=require("react-with-native-select"),react_with_native_1=require("react-with-native"),SelectMultipleInput=function(e){var t=e.value,n=e.extra,l=e.onChange,i=e.uniqueFieldId,a=[{label:n.title||"Choose a value",value:""}].concat(n.options).filter((function(e){return!t.find((function(t){return e.value===t.value}))}));
+//console.log({ value, extraOptions: extra.options });
+return(0,jsx_runtime_1.jsxs)(react_with_native_1.Div,__assign({className:"flex flex-row flex-wrap"},{children:[t.map((function(e,n){return(0,jsx_runtime_1.jsx)(react_with_native_1.Button,__assign({onClick:function(){var n=t.filter((function(t){return t.value!==e.value}));l(n)},className:"mr-3 px-3 py-2 rounded-md border border-gray-400"},{children:(0,jsx_runtime_1.jsxs)(react_with_native_1.P,__assign({className:"text-xs"},{children:[e.label," ",(0,jsx_runtime_1.jsx)(react_with_native_1.Span,__assign({textClassName:"text-red-500 text-xs"},{children:"(x)"}))]}))}),"selected".concat(i).concat(n))})),a.length>1?(0,jsx_runtime_1.jsx)(react_with_native_select_1.Select,{placeholder:null==n?void 0:n.placeholder,noPlaceholder:null==n?void 0:n.noPlaceholder,autoSuggest:null==n?void 0:n.autoSuggest,className:react_with_native_ui_1.UI.selectInput,title:n.title||"",options:a,onChange:function(e){if(console.log({selected:e}),e){var n=t;
+//@ts-ignore
+n.push(e),console.log({value:t,newValue:n}),l(n)}}}):null]}))};exports.SelectMultipleInput=SelectMultipleInput,exports.SelectMultipleInput.defaultInitialValue=[];var SelectMultipleInputType=function(){};exports.SelectMultipleInputType=SelectMultipleInputType;
 //# sourceMappingURL=selectMultiple.js.map

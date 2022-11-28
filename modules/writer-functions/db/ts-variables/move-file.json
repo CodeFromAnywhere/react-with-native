@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385038042,
+  "updatedAt": 1669385038042,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385038042,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "moveFile",
+  "slug": "move-file",
+  "operationRelativeTypescriptFilePath": "src/moveFile.ts",
+  "type": {
+    "rawType": "(projectRelativePath: string, projectRelativeNewFolderPath: string) => Promise<{ isSuccessful: boolean; message?: string | undefined; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  /**\n   * Can be file only for now\n   */\n  projectRelativePath: string,\n  projectRelativeNewFolderPath: string\n): Promise<{ isSuccessful: boolean; message?: string }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root found\" };\n  }\n\n  const absolutePath = path.join(projectRoot, projectRelativePath);\n\n  if (!fs.existsSync(absolutePath)) {\n    return {\n      isSuccessful: false,\n      message: \"This file or folder doesn't exist\",\n    };\n  }\n\n  const newAbsolutePath = path.join(\n    projectRelativeNewFolderPath,\n    path.parse(absolutePath).base\n  );\n\n  if (fs.existsSync(newAbsolutePath)) {\n    return { isSuccessful: false, message: \"File already exists\" };\n  }\n\n  await fs.rename(absolutePath, newAbsolutePath);\n\n  return { isSuccessful: true };\n}",
+  "description": "",
+  "id": "jxycavvpojzrrcgnecskhwlr"
+}

@@ -1,19 +1,14 @@
 {
-  "createdAt": 1666261633062,
-  "updatedAt": 1666261633062,
+  "createdAt": 1668775574557,
+  "updatedAt": 1668775574557,
   "deletedAt": 0,
-  "createdFirstAt": 1666261633062,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
+  "createdFirstAt": 1668775574557,
   "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
   "name": "useIsInViewport",
   "slug": "use-is-in-viewport",
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/Table.tsx",
+  "groupAuthorization": {},
   "commentsInside": [],
   "description": "",
   "parameters": [],
@@ -46,5 +41,5 @@
   },
   "rawText": "\n\nexport function useIsInViewport(ref: React.MutableRefObject<Element | null>) {\n  const [isIntersecting, setIsIntersecting] = useState(false);\n\n  const observer = useMemo(\n    () =>\n      new IntersectionObserver(([entry]) =>\n        setIsIntersecting(entry.isIntersecting)\n      ),\n    []\n  );\n\n  useEffect(() => {\n    if (!ref.current) return;\n\n    observer.observe(ref.current);\n\n    return () => {\n      observer.disconnect();\n    };\n  }, [ref, observer]);\n\n  return isIntersecting;\n}",
   "maxIndentationDepth": 4,
-  "id": "fgjlhzzwxdbndctrometztmy"
+  "id": "ygsrgobijsqkwcgdhugpaoqy"
 }

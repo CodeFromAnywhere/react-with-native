@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385440973,
+  "updatedAt": 1669385440973,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385440973,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "nestifyQueryPathObjectRecursive",
+  "slug": "nestify-query-path-object-recursive",
+  "operationRelativeTypescriptFilePath": "src/nestifyQueryPathObjectRecursive.ts",
+  "type": {
+    "rawType": "<T extends import(\"/Users/king/King/operations/tools/user-interfaces/gui/smart/recursive-util/src/nestifyQueryPathObjectRecursive\").QueryPathObject>(queryPathObjects: T[], level?: number | undefined) => import(\"/Users/king/King/operations/tools/user-interfaces/gui/smart/recursive-util/src/nestifyQueryPathObjectRecursive\").NestedQueryPathObject<T>[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends QueryPathObject>(\n  queryPathObjects: T[],\n  level?: number\n): NestedQueryPathObject<T>[] => {\n  console.log({ level });\n  const nestedPathObject: NestedQueryPathObject<T>[] = queryPathObjects.reduce(\n    (previous, current, currentIndex, queryPathObjects) => {\n      const queryPathRemainder =\n        current.queryPathRemainder || current.queryPath;\n      const parts: string[] = queryPathRemainder.split(\"/\");\n      const firstPart = parts.find((x) => x.length !== 0);\n\n      const hasFirstPartAlready = !!previous.find(\n        (x) => x.queryPathChunk === firstPart\n      );\n\n      if (hasFirstPartAlready) {\n        // Base case 1: if we already have it, skip it, go to the next\n        return previous;\n      }\n\n      const children = queryPathObjects\n        // not myself!\n        .filter((x) => x.queryPath !== current.queryPath)\n        .filter((x) => {\n          const queryPath = x.queryPathRemainder || x.queryPath;\n          const isMatch = queryPath.startsWith(firstPart + \"/\");\n          return isMatch;\n        })\n        .map((x) => {\n          // everything after the first part\n          const queryPathRemainder = x.queryPath.split(firstPart!)[1];\n          return { ...x, queryPathRemainder };\n        });\n\n      const newNestedQueryPathObject = {\n        ...current,\n        // queryPath: folderQueryPath,\n        children:\n          children.length === 0\n            ? undefined\n            : [\n                current,\n                ...nestifyQueryPathObjectRecursive(children, (level || 0) + 1),\n              ],\n        queryPathChunk: firstPart,\n      } as NestedQueryPathObject<T>;\n      // add the new one to the array\n      return [...previous, newNestedQueryPathObject];\n    },\n    [] as NestedQueryPathObject<T>[]\n  );\n\n  return nestedPathObject;\n}",
+  "description": "",
+  "id": "ipoafmkreahxzdxtuduqijns"
+}

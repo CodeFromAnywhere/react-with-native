@@ -1,16 +1,12 @@
 {
-  "createdAt": 1668148837559,
-  "updatedAt": 1668148837559,
+  "createdAt": 1669312092183,
+  "updatedAt": 1669312092183,
   "deletedAt": 0,
-  "createdFirstAt": 1668148837559,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312092183,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "AlterFunction",
   "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
   "commentsInside": [],
   "rawText": " async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n  const storedJson = await readJsonFile<Storing<AugmentedAnyModelType>>(\n    dbFileLocation.absolutePath\n  );\n  const isNewFile = !storedJson;\n  const storedData = storedJson ? [storedJson] : [];\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n  const isSuccesful = await writeJsonToFile(absolutePath, newStoredData[0]);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
@@ -37,5 +33,5 @@
     "linesPerFile": 20,
     "numberOfFiles": 1
   },
-  "id": "djmlpnfludldehtynvrwdpqn"
+  "id": "vrmbvhcwptxnwjroqkzmdqni"
 }

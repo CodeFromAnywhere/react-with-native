@@ -1,0 +1,119 @@
+{
+  "createdAt": 1669384304352,
+  "updatedAt": 1669384304352,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384304352,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getProjectRelativePaths.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  // functionContext: FunctionContext,\n  config?: {\n    /**\n     * Optionally filter the results to only:\n     *\n     * - todo: all todos in your project operations\n     * - postable: all your postables in your database\n     *\n     * by default, scans all relevant files...\n     */\n    type?: RelativePathType;\n    earliestUpdatedAt?: number;\n    /**\n     * Not implemented\n     */\n    filterDraft?: boolean;\n    /**\n     * Not implemented\n     */\n    filterPrivate?: boolean;\n    filterGenerated?: boolean;\n    sort?: \"recent\";\n  }\n): Promise<string[] | undefined> => {\n  const {\n    earliestUpdatedAt,\n    filterDraft,\n    filterGenerated,\n    filterPrivate,\n    type,\n    sort,\n  } = destructureOptionalObject(config);\n\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n  const operationsPath = getRootPath(\"operations\");\n  if (!operationsPath) return;\n  const databasePath = getRootPath(databaseFolderName);\n  if (!databasePath) return;\n  const textPath = getRootPath(\"text\");\n  if (!textPath) return;\n\n  const basePath =\n    type === \"todo\"\n      ? await findAllTodoFolderPaths(operationsPath)\n      : [operationsPath, textPath];\n\n  const shouldFilterRecency = earliestUpdatedAt !== undefined;\n  /*\n  everything from projectRoot, except for: `db`, `node_modules`, `build`\n  */\n\n  const results = await explore({\n    basePath,\n    includeStats: shouldFilterRecency || sort === \"recent\",\n    extension: \"md\",\n    ignore: [databaseFolderName, ...generatedFolders],\n  });\n\n  const filtered = results.filter((result) => {\n    if (!shouldFilterRecency) return true;\n\n    const updatedAt = result.stats?.updatedAt;\n\n    // shouldn't happen\n    if (!updatedAt) return false;\n\n    const isRecentEnough = earliestUpdatedAt < updatedAt;\n\n    return isRecentEnough;\n  });\n\n  const sorted =\n    sort === \"recent\"\n      ? filtered.sort((a, b) => {\n          if (a.stats!.createdAt < b.stats!.createdAt) {\n            return 1;\n          }\n\n          return -1;\n        })\n      : filtered;\n\n  const projectRelativePaths = sorted\n    .map((result) => result.path)\n    .map((absolutePath) => makeRelative(absolutePath, projectRoot));\n  return projectRelativePaths;\n}",
+  "name": "getProjectRelativePaths",
+  "slug": "get-project-relative-paths",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/RelativePathType",
+            "description": "Optionally filter the results to only:\n\n- todo: all todos in your project operations\n- postable: all your postables in your database\n\nby default, scans all relevant files..."
+          },
+          "earliestUpdatedAt": {
+            "type": "number"
+          },
+          "filterDraft": {
+            "type": "boolean",
+            "description": "Not implemented"
+          },
+          "filterPrivate": {
+            "type": "boolean",
+            "description": "Not implemented"
+          },
+          "filterGenerated": {
+            "type": "boolean"
+          },
+          "sort": {
+            "type": "string",
+            "const": "recent"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "type",
+            "required": false,
+            "schema": {
+              "fullComment": "Optionally filter the results to only:\n\n- todo: all todos in your project operations\n- postable: all your postables in your database\n\nby default, scans all relevant files...\n\n",
+              "type": "string"
+            }
+          },
+          {
+            "name": "earliestUpdatedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "filterDraft",
+            "required": false,
+            "schema": {
+              "fullComment": "Not implemented",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "filterPrivate",
+            "required": false,
+            "schema": {
+              "fullComment": "Not implemented",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "filterGenerated",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "get file paths within your project",
+  "returnType": {
+    "rawType": "Promise<string[] | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 2216,
+    "lines": 89,
+    "bytes": 2216,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 89,
+    "numberOfFiles": 1
+  },
+  "id": "cucntumhvmsoybukxblxrtyy"
+}

@@ -1,0 +1,320 @@
+{
+  "createdAt": 1669200435265,
+  "updatedAt": 1669200435265,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200435265,
+  "id": "foldersummary",
+  "name": "FolderSummary",
+  "slug": "foldersummary",
+  "operationRelativeTypescriptFilePath": "src/OperationSummary.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "objective size measurements of all files in a folder\n\nsummary for a folder should contain file-summaries for different filetypes and an overal file summary",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "size": {
+          "$ref": "#/definitions/SizeSummary"
+        },
+        "textSize": {
+          "$ref": "#/definitions/SizeSummary"
+        },
+        "dataSize": {
+          "$ref": "#/definitions/SizeSummary"
+        },
+        "codeSize": {
+          "$ref": "#/definitions/SizeSummary"
+        }
+      },
+      "required": [
+        "size",
+        "textSize",
+        "dataSize",
+        "codeSize"
+      ],
+      "additionalProperties": false,
+      "description": "objective size measurements of all files in a folder\n\nsummary for a folder should contain file-summaries for different filetypes and an overal file summary"
+    },
+    "simplifiedSchema": {
+      "fullComment": "objective size measurements of all files in a folder\n\nsummary for a folder should contain file-summaries for different filetypes and an overal file summary",
+      "properties": [
+        {
+          "name": "size",
+          "required": true,
+          "schema": {
+            "fullComment": "type interface that can be used to summarize multiple files",
+            "properties": [
+              {
+                "name": "numberOfFiles",
+                "required": false,
+                "schema": {
+                  "fullComment": "if this is about multiple files, the number of files is specified here",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "characters",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of characters",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "lines",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of lines",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "bytes",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of bytes",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "linesPerFile",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of lines per file (averaged)",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "charactersPerLine",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of characters per line (averaged)",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "bytesPerCharacter",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of bytes per character",
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "textSize",
+          "required": true,
+          "schema": {
+            "fullComment": "type interface that can be used to summarize multiple files",
+            "properties": [
+              {
+                "name": "numberOfFiles",
+                "required": false,
+                "schema": {
+                  "fullComment": "if this is about multiple files, the number of files is specified here",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "characters",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of characters",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "lines",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of lines",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "bytes",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of bytes",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "linesPerFile",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of lines per file (averaged)",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "charactersPerLine",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of characters per line (averaged)",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "bytesPerCharacter",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of bytes per character",
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "dataSize",
+          "required": true,
+          "schema": {
+            "fullComment": "type interface that can be used to summarize multiple files",
+            "properties": [
+              {
+                "name": "numberOfFiles",
+                "required": false,
+                "schema": {
+                  "fullComment": "if this is about multiple files, the number of files is specified here",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "characters",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of characters",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "lines",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of lines",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "bytes",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of bytes",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "linesPerFile",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of lines per file (averaged)",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "charactersPerLine",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of characters per line (averaged)",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "bytesPerCharacter",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of bytes per character",
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "codeSize",
+          "required": true,
+          "schema": {
+            "fullComment": "type interface that can be used to summarize multiple files",
+            "properties": [
+              {
+                "name": "numberOfFiles",
+                "required": false,
+                "schema": {
+                  "fullComment": "if this is about multiple files, the number of files is specified here",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "characters",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of characters",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "lines",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of lines",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "bytes",
+                "required": true,
+                "schema": {
+                  "fullComment": "amount of bytes",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "linesPerFile",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of lines per file (averaged)",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "charactersPerLine",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of characters per line (averaged)",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "bytesPerCharacter",
+                "required": true,
+                "schema": {
+                  "fullComment": "rounded, amount of bytes per character",
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "FolderSummary",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

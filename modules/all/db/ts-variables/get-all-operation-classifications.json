@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666258917669,
+  "updatedAt": 1666258917669,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258917669,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getAllOperationClassifications",
+  "slug": "get-all-operation-classifications",
+  "operationRelativeTypescriptFilePath": "src/getAllOperationClassifications.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const x = forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    callback: async (folderPath, index) => {\n      const operationName = getLastFolder(folderPath);\n\n      console.log(\n        `${operationName}: ${getOperationClassification(folderPath)}`\n      );\n\n      return;\n    },\n  });\n}",
+  "description": "",
+  "id": "xlmrayimmncnoheclkpfupcj"
+}

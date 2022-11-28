@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055722363,
+  "updatedAt": 1669055722363,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055722363,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "shouldSkip",
+  "slug": "should-skip",
+  "operationRelativeTypescriptFilePath": "src/shouldSkip.ts",
+  "type": {
+    "rawType": "(config: { operationBasePath: string; debug?: boolean | undefined; force?: boolean | undefined; operationManualProjectRoot?: string | undefined; rebuildUpdatedAt?: number | undefined; }) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config: {\n  operationBasePath: string;\n  debug?: boolean;\n  force?: boolean;\n  operationManualProjectRoot?: string;\n  rebuildUpdatedAt?: number;\n}) => {\n  const {\n    operationBasePath,\n    debug,\n    force,\n    rebuildUpdatedAt,\n    operationManualProjectRoot,\n  } = config;\n  const operationName = getLastFolder(operationBasePath);\n\n  if (force) {\n    console.log(\"Not skipping (force)\");\n    return false;\n  }\n\n  const operation = (\n    await db.get(\"Operation\", {\n      operationName,\n      manualProjectRoot: operationManualProjectRoot,\n    })\n  )[0];\n  if (!operation.operation?.folderNameIndexed) {\n    console.log(\n      \"Not skipping because no folderNameIndexed (likely never indexed) \"\n    );\n    return false;\n  }\n\n  if (\n    rebuildUpdatedAt &&\n    (!operation.operation?.lastRebuildAt ||\n      operation.operation.lastRebuildAt <= rebuildUpdatedAt)\n  ) {\n    console.log(\"Not skipping because rebuild updated\");\n    return false;\n  }\n\n  const srcPath = path.join(operationBasePath, \"src\");\n  const srcUpdatedAt = await folderGetUpdatedAt({ folderPath: srcPath });\n\n  if (\n    !operation.operation?.lastRebuildAt ||\n    operation.operation.lastRebuildAt <= srcUpdatedAt\n  ) {\n    console.log(\"Not skipping because src updated\");\n    return false;\n  }\n\n  const hasIndexFolder = fs.existsSync(\n    path.join(operationBasePath, databaseFolderName)\n  );\n  if (!hasIndexFolder) {\n    console.log(\"Not skipping because has no db folder \");\n    return false;\n  }\n\n  const noBuildFolder = !fs.existsSync(\n    path.join(operationBasePath, buildFolderName)\n  );\n\n  const isBuildNeeded = isOperationBuildNeeded(operationBasePath);\n\n  if (noBuildFolder && isBuildNeeded) {\n    console.log(\"Not skipping because noBuildFolder\");\n    return false;\n  }\n\n  return true;\n}",
+  "description": "if you don't force it, there's an operation index, there's an index folder, the src has not been touched since hte last indexation, and there's a buildfolder (if needed), then the rebuildOperation can be skipped",
+  "id": "fgcjdgelmevhgtiimfdzqaps"
+}

@@ -1,0 +1,109 @@
+{
+  "createdAt": 1669384142652,
+  "updatedAt": 1669384142652,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384142652,
+  "id": "assetparameter",
+  "name": "AssetParameter",
+  "slug": "assetparameter",
+  "operationRelativeTypescriptFilePath": "src/findAssetParametersRecursively.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type AssetParameter = {\n  assetInputType: AssetInputType;\n  parameterName: string;\n  /**\n   * where the object parameter is located\n   */\n  stack?: string[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "assetInputType": {
+          "$ref": "#/definitions/AssetInputType"
+        },
+        "parameterName": {
+          "type": "string"
+        },
+        "stack": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "where the object parameter is located"
+        }
+      },
+      "required": [
+        "assetInputType",
+        "parameterName"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "assetInputType",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "type",
+                "required": true,
+                "schema": {
+                  "enum": [
+                    "image",
+                    "video",
+                    "audio",
+                    "file",
+                    "asset"
+                  ],
+                  "type": "string"
+                }
+              },
+              {
+                "name": "isMultiple",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "parameterName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "stack",
+          "required": false,
+          "schema": {
+            "fullComment": "where the object parameter is located",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "AssetParameter",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

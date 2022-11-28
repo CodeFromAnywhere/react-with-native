@@ -1,6 +1,6 @@
 # Markdown reader functions js
 
-markdown-reader-functions-js (`OperationClassification` node)
+markdown-reader-functions-js (`OperationClassification` ui-cjs)
 
 
 
@@ -10,7 +10,7 @@ markdown-reader-functions-js (`OperationClassification` node)
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| parsedUrlQuery (optional) | `NextParsedUrlQuery` |  |
+| parsedUrlQuery (optional) | `ParsedUrlQuery` |  |
 | **Output** |    |    |
 
 

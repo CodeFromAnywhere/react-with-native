@@ -1,39 +1,17 @@
 {
-  "createdAt": 1662709577330,
-  "updatedAt": 1662709577330,
+  "createdAt": 1668328705263,
+  "updatedAt": 1668328705263,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577330,
-  "source": "src/index.ts",
-  "main": "build/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
-    "dev:tw": "tailwindcss -w -o css.css",
-    "pub": "npm version patch --force && npm publish"
-  },
-  "name": "react-with-native",
-  "version": "1.4.9",
-  "description": "HTML elements with React Native capabilities.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Karsens/react-with-native.git"
-  },
-  "keywords": [
-    "react",
-    "react native",
-    "html",
-    "elements"
-  ],
+  "createdFirstAt": 1668328705263,
+  "id": "LrYgJCZCgKRrjsKj",
   "author": "Wijnand Karsens",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Karsens/react-with-native/issues"
-  },
-  "homepage": "https://github.com/Karsens/react-with-native#readme",
   "dependencies": {
-    "@types/react-native": "~0.64.12"
+    "@types/react-native": "~0.64.12",
+    "react": "*",
+    "react-native": "*",
+    "next": "*"
   },
+  "description": "HTML elements with React Native capabilities.",
   "devDependencies": {
     "@types/react": "17.0.30",
     "@types/react-dom": "^17.0.11",
@@ -45,14 +23,74 @@
     "tailwindcss": "^3.0.24",
     "typescript": "^4.6.4"
   },
+  "homepage": "https://github.com/Karsens/react-with-native#readme",
+  "main": "build/index.js",
   "peerDependencies": {
     "@types/react": "17.0.30",
     "react": "^17.0.2",
+    "react-dom": "17.0.2",
     "typescript": "^4.6.4"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karsens/react-with-native.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
+    "dev:tw": "tailwindcss -w -o css.css",
+    "pub": "npm version patch --force && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "1.4.9",
+  "name": "react-with-native",
+  "language": "english",
   "slug": "react-with-native",
-  "id": "LrYgJCZCgKRrjsKj",
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native/src/react-native/TouchableOpacity/TouchableOpacity.type.ts. Error: TypeError: Cannot read properties of undefined (reading 'kind')"
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "ui-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "react-with-native",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668752473610,
+    "operationDependenciesIndexed": [],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/user-interfaces/gui/react-with-native",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 80,
+        "lines": 1304,
+        "characters": 35094,
+        "bytes": 35094
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 138,
+        "characters": 3666,
+        "bytes": 3666
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 637,
+        "characters": 12522,
+        "bytes": 12522
+      },
+      "size": {
+        "bytes": 51282,
+        "characters": 51282,
+        "lines": 2079,
+        "numberOfFiles": 84
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

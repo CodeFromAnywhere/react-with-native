@@ -3,7 +3,10 @@ import { TsInterface } from "code-types";
 import { humanCase } from "convert-case";
 import { makeArray, notEmpty } from "js-util";
 import { getReferenceParameterInfo } from "schema-util";
+import { ModelItemAssetView } from "asset-view";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { AugmentedAnyModelType } from "model-types";
+import { BackendAsset } from "asset-type";
 const tdClassName =
   "whitespace-nowrap py-4 pr-3 text-sm first-of-type:font-medium text-gray-500 dark:text-gray-200 first-of-type:text-gray-900 first-of-type:dark:text-gray-100 first-of-type:sm:pl-6 first-of-type:md:pl-0";
 
@@ -123,6 +126,7 @@ export type ColumnType<TModel extends { [key: string]: any }> = {
  */
 export type PresentationTypeEnum =
   | "text"
+  | "backendAsset"
   | "referenceSingle"
   | "referenceMultiple";
 
@@ -161,7 +165,7 @@ export const Table = <TModel extends { [key: string]: any }>({
   const endOfTableDiv = useRef<HTMLDivElement>(null);
   const isEndReached = useIsInViewport(endOfTableDiv);
   useEffect(() => {
-    console.log("END REACHED");
+    // console.log("END REACHED");
     onEndReached?.();
   }, [isEndReached]);
   return (
@@ -247,6 +251,25 @@ const renderColumn = <TModel extends { [key: string]: any }>(
      * This is a text item that presents just one string
      */
     return <td className={tdClassName}>{value}</td>;
+  } else if (column.presentationType === "backendAsset") {
+    const backendAssets = row[column.objectParameterKey]
+      ? (makeArray(row[column.objectParameterKey]) as BackendAsset[])
+      : undefined;
+
+    return (
+      <td className={tdClassName}>
+        {backendAssets
+          ? backendAssets.map((backendAsset) => {
+              return (
+                <ModelItemAssetView
+                  item={row as unknown as AugmentedAnyModelType}
+                  backendAsset={backendAsset}
+                />
+              );
+            })
+          : null}
+      </td>
+    );
   } else if (column.presentationType === "referenceSingle") {
     // Any parameter with pattern xxxSlug or xxxId should link to that instance in the referred model (link to `db?model={model}#{id}`)
     const referenceId: string | undefined = row[column.objectParameterKey];
@@ -258,7 +281,7 @@ const renderColumn = <TModel extends { [key: string]: any }>(
     return (
       <td className={tdClassName}>
         <a
-          href={`db?model=${referenceParameterInfo.interfaceName}&${referenceParameterInfo.keyInModel}=${referenceId}`}
+          href={`/${referenceParameterInfo.interfaceName}?${referenceParameterInfo.keyInModel}=${referenceId}`}
         >
           {referenceId}
         </a>
@@ -282,7 +305,7 @@ const renderColumn = <TModel extends { [key: string]: any }>(
         {referenceIdsArray?.map((referenceId) => {
           return (
             <a
-              href={`db?model=${referenceParameterInfo.interfaceName}&${referenceParameterInfo.keyInModel}=${referenceId}`}
+              href={`/${referenceParameterInfo.interfaceName}?${referenceParameterInfo.keyInModel}=${referenceId}`}
             >
               {referenceId}
             </a>

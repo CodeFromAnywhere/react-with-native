@@ -1,0 +1,70 @@
+{
+  "createdAt": 1668334465335,
+  "updatedAt": 1668334465335,
+  "deletedAt": 0,
+  "createdFirstAt": 1668334465335,
+  "id": "namedparameterstypeof-sendmail",
+  "name": "NamedParameters<typeof sendMail>",
+  "slug": "namedparameterstypeof-sendmail",
+  "operationRelativeTypescriptFilePath": "src/sendMail.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "mailData": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/MailDataFromOptional"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MailDataFromOptional"
+              }
+            }
+          ]
+        },
+        "isMultiple": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "mailData"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "mailData",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "isMultiple",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof sendMail>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

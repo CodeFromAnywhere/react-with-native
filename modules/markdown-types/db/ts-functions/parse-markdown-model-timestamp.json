@@ -1,0 +1,297 @@
+{
+  "createdAt": 1669385218040,
+  "updatedAt": 1669385218040,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385218040,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/markdownParseToMarkdownModelType.ts",
+  "commentsInside": [],
+  "rawText": " (\n  parameters: Frontmatter,\n  markdownParse: MarkdownParse,\n  parameterName:\n    | \"createdAt\"\n    | \"createdFirstAt\"\n    | \"updatedAt\"\n    | \"deletedAt\"\n    | \"openedAt\"\n): number => {\n  const parameterValue = parameters[parameterName];\n  const markdownParseValue = markdownParse[parameterName];\n\n  const parsedParameterValue =\n    typeof parameterValue === \"number\" && !isNaN(parameterValue)\n      ? parameterValue\n      : typeof parameterValue === \"string\"\n      ? tryParseDate(parameterValue)\n      : undefined;\n\n  const generatedValue =\n    parameterName === \"deletedAt\" || parameterName === \"openedAt\"\n      ? 0\n      : Date.now();\n\n  const parsedTimestamp =\n    parsedParameterValue !== undefined\n      ? parsedParameterValue\n      : markdownParseValue !== undefined\n      ? markdownParseValue\n      : generatedValue;\n\n  return parsedTimestamp;\n}",
+  "name": "parseMarkdownModelTimestamp",
+  "slug": "parse-markdown-model-timestamp",
+  "parameters": [
+    {
+      "name": "parameters",
+      "schema": {
+        "$ref": "#/definitions/Frontmatter"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Our version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+        "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "markdownParse",
+      "schema": {
+        "$ref": "#/definitions/MarkdownParse"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "fileName",
+            "required": false,
+            "schema": {
+              "fullComment": "if available, this can be the filename of the markdown in this markdown-parse. Can be used for things like merging",
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "openedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "updatedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "deletedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "createdFirstAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "parameters",
+            "required": true,
+            "schema": {
+              "fullComment": "parameters found in frontmatter\n\nOur version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+              "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "content",
+            "required": false,
+            "schema": {
+              "fullComment": "structured content based on h1, h2, h3, etc (paragraphs, recursive)",
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [
+                      {
+                        "name": "level",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "0 is a paragraph 1-6 is h1 until h6",
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "content",
+                        "required": false,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "markdownEmbed",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works",
+                          "nb": "I need to be very clear how this one works",
+                          "properties": [
+                            {
+                              "name": "alt",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "src",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "type",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "video",
+                                  "audio",
+                                  "image",
+                                  "text",
+                                  "other"
+                                ],
+                                "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "markdownLink",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Anything in the format `[alt](href)`\n\nIt needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here",
+                          "properties": [
+                            {
+                              "name": "alt",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "href",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "type",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "video",
+                                  "audio",
+                                  "image",
+                                  "text",
+                                  "other"
+                                ],
+                                "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "title",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "NB: title can also be an empty string (\"\")",
+                          "nb": "title can also be an empty string (\"\")",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "children",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "all content until the next title. it's either a content array if there's any titles found, or a string[] if it's paragraphs",
+                          "items": [
+                            {
+                              "schema": {
+                                "circularRefName": "MarkdownChunk",
+                                "properties": [],
+                                "type": "object"
+                              },
+                              "name": "MarkdownChunk"
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "MarkdownChunk"
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "raw",
+            "required": true,
+            "schema": {
+              "fullComment": "raw markdown without frontmatter",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "parameterName",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "createdAt",
+          "createdFirstAt",
+          "updatedAt",
+          "deletedAt",
+          "openedAt"
+        ]
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "createdAt",
+          "createdFirstAt",
+          "updatedAt",
+          "deletedAt",
+          "openedAt"
+        ],
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "First tries to look at the frontmatter value, this is leading because it is what the user sees and the file system of the os could be inconsistent\n\nIf this frontmatter doesn't exist, the markdownParse is checked for a date. This should be information collected from the file system\n\nIf that doesn't succeed, sometimes we'll set it to  the current timestamp",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1211,
+    "lines": 38,
+    "bytes": 1211,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 38,
+    "numberOfFiles": 1
+  },
+  "id": "xsxexjbamugkhvtckjobqkpq"
+}

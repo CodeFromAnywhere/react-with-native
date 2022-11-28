@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055620889,
+  "updatedAt": 1669055620889,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055620889,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "makeTsComment",
+  "slug": "make-ts-comment",
+  "operationRelativeTypescriptFilePath": "src/makeTsComment.ts",
+  "type": {
+    "rawType": "(config: { operationRelativeTypescriptFilePath: string; commentRange: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").CommentRange; statementName: string | undefined; rawStatement: string; fileContent: string; }) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(config: {\n  operationRelativeTypescriptFilePath: string;\n  commentRange: CommentRange;\n  /**\n   * if we can give the statement a name, it should be provided here\n   */\n  statementName: string | undefined;\n  rawStatement: string;\n  /** needed for calculating line numbers */\n  fileContent: string;\n}): Creation<TsComment> => {\n  const {\n    commentRange,\n    rawStatement,\n    statementName,\n    fileContent,\n    operationRelativeTypescriptFilePath,\n  } = config;\n  const fullCommentText = commentRange.getText();\n  const strippedComment = stripComment(fullCommentText);\n\n  // NB: wouldn't hurt to put character positions in the TsComment as well, would it? But let's not do it until we need it\n  const firstCharacter = commentRange.getPos();\n  const lastCharacter = commentRange.getEnd();\n  const firstLine = getNumberOfLines(fileContent.substring(0, firstCharacter));\n  const lastLine = getNumberOfLines(fileContent.substring(0, lastCharacter));\n  const isSingleLineComment = firstLine === lastLine;\n\n  const { parameters, raw: comment }: MarkdownParse = isSingleLineComment\n    ? { raw: strippedComment, parameters: {} }\n    : parseFrontmatterMarkdownString(strippedComment);\n\n  const types = findCommentTypes(comment);\n\n  const tsComment: Creation<TsComment> = {\n    name: \"Comment\",\n    slug: kebabCase(\"Comment\"),\n    operationRelativeTypescriptFilePath,\n    comment,\n    statementName,\n    rawStatement,\n    parameters,\n    types,\n    firstLine,\n    lastLine,\n  };\n\n  return tsComment;\n}",
+  "description": "this is actually a fundamental part of the OS. How should comments be structured?\n\nI think, in general, that we should make it look as much as possible at markdown, because it should always be able to have markdown anyway.",
+  "id": "cpglxmnoeuvafezaudxwusxe"
+}

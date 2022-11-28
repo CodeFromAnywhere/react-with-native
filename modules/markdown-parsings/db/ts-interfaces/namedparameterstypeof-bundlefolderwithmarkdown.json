@@ -1,0 +1,85 @@
+{
+  "createdAt": 1669200440816,
+  "updatedAt": 1669200440816,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200440816,
+  "id": "namedparameterstypeof-bundlefolderwithmarkdown",
+  "name": "NamedParameters<typeof bundleFolderWithMarkdown>",
+  "slug": "namedparameterstypeof-bundlefolderwithmarkdown",
+  "operationRelativeTypescriptFilePath": "src/bundleFolderWithMarkdown.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "outlineTitle": {
+          "type": "string"
+        },
+        "markdownStrings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "content of every markdown"
+        },
+        "resultFileName": {
+          "type": "string",
+          "description": "filename to include in the final MarkdownParse"
+        }
+      },
+      "required": [
+        "outlineTitle",
+        "markdownStrings"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "outlineTitle",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "markdownStrings",
+          "required": true,
+          "schema": {
+            "fullComment": "content of every markdown",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "resultFileName",
+          "required": false,
+          "schema": {
+            "fullComment": "filename to include in the final MarkdownParse",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof bundleFolderWithMarkdown>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

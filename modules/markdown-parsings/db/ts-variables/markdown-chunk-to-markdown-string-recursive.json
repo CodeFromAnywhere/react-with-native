@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200491672,
+  "updatedAt": 1669200491672,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200491672,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "markdownChunkToMarkdownStringRecursive",
+  "slug": "markdown-chunk-to-markdown-string-recursive",
+  "operationRelativeTypescriptFilePath": "src/parsing/parsing.ts",
+  "type": {
+    "rawType": "(markdownChunk: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownChunk) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  markdownChunk: MarkdownChunk\n): string => {\n  const title =\n    markdownChunk.title && markdownChunk.level !== 0\n      ? `${\"#\".repeat(markdownChunk.level)} ${markdownChunk.title}`\n      : undefined;\n\n  const content = markdownChunk.content;\n\n  const children = markdownChunk.children\n    ? markdownChunksToMarkdownStringRecursive(markdownChunk.children)\n    : \"\";\n\n  return `${title ? `${title}\\n\\n` : \"\"}${\n    content ? `${content}\\n\\n` : \"\"\n  }${children}`;\n}",
+  "description": "",
+  "id": "vhohfzfqrxsxbtobjlghpjbl"
+}

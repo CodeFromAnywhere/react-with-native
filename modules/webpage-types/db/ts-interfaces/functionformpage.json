@@ -1,0 +1,93 @@
+{
+  "createdAt": 1669276584384,
+  "updatedAt": 1669276584384,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276584384,
+  "id": "functionformpage",
+  "name": "FunctionFormPage",
+  "slug": "functionformpage",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * Data needed to make a `WebPage`<FunctionFormPage>\n */\nexport type FunctionFormPage = {\n  functionName: string;\n  actionWithResult?: string;\n  routeOnIsSuccessful?: string;\n  customTitle?: string;\n  isMenuHidden?: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Data needed to make a `WebPage`<FunctionFormPage>",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "functionName": {
+          "type": "string"
+        },
+        "actionWithResult": {
+          "type": "string"
+        },
+        "routeOnIsSuccessful": {
+          "type": "string"
+        },
+        "customTitle": {
+          "type": "string"
+        },
+        "isMenuHidden": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "functionName"
+      ],
+      "additionalProperties": false,
+      "description": "Data needed to make a `WebPage`<FunctionFormPage>"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Data needed to make a `WebPage`<FunctionFormPage>",
+      "properties": [
+        {
+          "name": "functionName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "actionWithResult",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "routeOnIsSuccessful",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "customTitle",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isMenuHidden",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "FunctionFormPage",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

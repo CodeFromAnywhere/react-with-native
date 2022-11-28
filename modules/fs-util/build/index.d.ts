@@ -1,5 +1,4 @@
 export * from "./copyAllRelativeFiles";
-export * from "./deprecated";
 export * from "./files";
 export * from "./findFileNameCaseInsensitive";
 export * from "./fs";

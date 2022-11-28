@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1668332065142,
+    "updatedAt": 1668332065142,
+    "deletedAt": 0,
+    "createdFirstAt": 1668332065142,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/codeAll.ts",
+    "comment": "opens all files in vscode",
+    "rawStatement": "export const codeAll = async (search: string) => {\n  const filePaths = (\n    await explore({\n      basePath: getProjectRoot(),\n      ignore: [\"node_modules\", \"build\"],\n      exact: true,\n      search,\n      searchLevel: \"fileName\",\n    })\n  ).map((x) => x.path);\n\n  return forAllFiles({ filePaths, command: `code $LOCATION` });\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 5,
+    "lastLine": 5,
+    "id": "jwyqycsldvoyycgefraupasd"
+  }
+]

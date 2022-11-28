@@ -1,0 +1,69 @@
+{
+  "createdAt": 1669385323256,
+  "updatedAt": 1669385323256,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385323256,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/findAuthenticatedPersonWithHandle.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  method: AuthenticationMethodMethod,\n  handle: string\n) => {\n  const persons = await db.get(\"Person\");\n  const alreadyPerson = persons.find((person) => {\n    const matchingAuthMethod = person.authenticationMethods.find(\n      (authMethod) =>\n        authMethod.method === method &&\n        authMethod.isAuthenticated &&\n        authMethod.handle === handle\n    );\n\n    return !!matchingAuthMethod;\n  });\n  return alreadyPerson;\n}",
+  "name": "findAuthenticatedPersonWithHandle",
+  "slug": "find-authenticated-person-with-handle",
+  "parameters": [
+    {
+      "name": "method",
+      "schema": {
+        "$ref": "#/definitions/AuthenticationMethodMethod"
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "usernamePassword",
+          "phoneNumber",
+          "email",
+          "apple",
+          "google",
+          "facebook",
+          "twitter",
+          "linkedin",
+          "github"
+        ],
+        "fullComment": "Username + password should be the default\n\nEmail OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n\nAll others can also act as authentication methods, but the token shouldn't be stored",
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "handle",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Check if the handle is already taken by some person in the system",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 504,
+    "lines": 17,
+    "bytes": 504,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "gowroukbqqulqkiwqciljmpv"
+}

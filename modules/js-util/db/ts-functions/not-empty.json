@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668150835598,
-  "updatedAt": 1668150835598,
+  "createdAt": 1668977389959,
+  "updatedAt": 1668977389959,
   "deletedAt": 0,
-  "createdFirstAt": 1668150835598,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
+  "createdFirstAt": 1668977389959,
   "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
   "name": "notEmpty",
   "slug": "not-empty",
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/general.ts",
+  "groupAuthorization": {},
   "commentsInside": [],
   "description": "/**\n * Removes empty values (null or undefined) from your arrays in a type-safe way\n */",
   "parameters": [],
@@ -46,5 +41,5 @@
   },
   "rawText": "\n\n/**\n * Removes empty values (null or undefined) from your arrays in a type-safe way\n */\nexport function notEmpty<TValue>(\n  value: TValue | null | undefined\n): value is TValue {\n  return value !== null && value !== undefined;\n}",
   "maxIndentationDepth": 1,
-  "id": "axyjjlpubnghwwhlravqvtgh"
+  "id": "xwobiupjhjuwqcvldtbwcfeh"
 }

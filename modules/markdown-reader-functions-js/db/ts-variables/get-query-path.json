@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262345232,
-  "updatedAt": 1666262345232,
+  "createdAt": 1668448753302,
+  "updatedAt": 1668448753302,
   "deletedAt": 0,
-  "createdFirstAt": 1666262345232,
+  "createdFirstAt": 1668448753302,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "get-query-path",
   "operationRelativeTypescriptFilePath": "src/getQueryPath.ts",
   "type": {
-    "rawType": "(parsedUrlQuery: import(\"/Users/king/King/operations/node_modules/next/dist/server/request-meta\").NextParsedUrlQuery | undefined) => any",
+    "rawType": "(parsedUrlQuery: import(\"/Users/king/King/operations/tools/markdown-reader/next-types/build/types\").ParsedUrlQuery | undefined) => any",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(\n  parsedUrlQuery: NextParsedUrlQuery | undefined\n) => {\n  const paths = parsedUrlQuery?.paths;\n  const queryPath = Array.isArray(paths)\n    ? paths.join(\"/\")\n    : paths === undefined\n    ? \"\"\n    : paths;\n  return queryPath;\n}",
+  "value": "(parsedUrlQuery: ParsedUrlQuery | undefined) => {\n  const paths = parsedUrlQuery?.paths;\n  const queryPath = Array.isArray(paths)\n    ? paths.join(\"/\")\n    : paths === undefined\n    ? \"\"\n    : paths;\n  return queryPath;\n}",
   "description": "",
-  "id": "veqzetfrusbkcpdklbhnplci"
+  "id": "ywytuyuzfsbxgcrlddsivapt"
 }

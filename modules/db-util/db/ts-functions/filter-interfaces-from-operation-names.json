@@ -1,0 +1,206 @@
+{
+  "createdAt": 1668332805624,
+  "updatedAt": 1668332805624,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332805624,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/dbUtil.ts",
+  "commentsInside": [],
+  "rawText": " (\n  tsInterface: TsInterface,\n  operationNames?: string[]\n) => {\n  return (\n    !operationNames ||\n    (tsInterface.operationName &&\n      operationNames.includes(tsInterface.operationName))\n  );\n}",
+  "name": "filterInterfacesFromOperationNames",
+  "slug": "filter-interfaces-from-operation-names",
+  "parameters": [
+    {
+      "name": "tsInterface",
+      "schema": {
+        "$ref": "#/definitions/TsInterface"
+      },
+      "simplifiedSchema": {
+        "fullComment": "--- dbStorageMethod: jsonSingle\n---\n\nTODO: Just like parameters, this should be linted for. If you define an interface that's not declared here, that should ring a bell.",
+        "todo": "Just like parameters, this should be linted for. If you define an interface that's not declared here, that should ring a bell.",
+        "properties": [
+          {
+            "name": "operationName",
+            "required": true,
+            "schema": {
+              "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "null"
+            }
+          },
+          {
+            "name": "projectRelativePath",
+            "required": true,
+            "schema": {
+              "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationRelativePath",
+            "required": false,
+            "schema": {
+              "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "schema": {
+              "fullComment": "unique id of the model",
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": true,
+            "schema": {
+              "fullComment": "name (identifier) of the model",
+              "type": "string"
+            }
+          },
+          {
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "fullComment": "kebab-case variant of the name",
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationRelativeTypescriptFilePath",
+            "required": true,
+            "schema": {
+              "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentsInside",
+            "required": true,
+            "schema": {
+              "items": [],
+              "type": "array"
+            }
+          },
+          {
+            "name": "isExported",
+            "required": true,
+            "schema": {
+              "fullComment": "boolean indicating whether or not this interface is exported from the file, and with that, from the operation",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasGeneric",
+            "required": true,
+            "schema": {
+              "fullComment": "boolean indicating whether or not this interface uses one or more generic variables",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "rawText",
+            "required": false,
+            "schema": {
+              "fullComment": "raw interface text, coming from ts-morph",
+              "type": "string"
+            }
+          },
+          {
+            "name": "extensions",
+            "required": false,
+            "schema": {
+              "fullComment": "if the interface extends anything, names will be specified here",
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "isDbModel",
+            "required": true,
+            "schema": {
+              "fullComment": "If true, this interface is marked as a db model, which means it will be included in the db function autocompletion so it's easy to store and fetch data in this format.\n\nIs automatically set to true when indexing and when one of the following statements holds true\n\n- if the doc-comment contains frontmatter with `isDbModel` or `dbStorageMethod` specified\n- if the interface last word is \"db\" or \"model\" and if there are minimum 2 words\n- if the interface extends some other special interface",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isOperationIndex",
+            "required": true,
+            "schema": {
+              "fullComment": "If this is true, this is a db-model that is ALWAYS attached to an operation.\n\nBy default this means it will get a folder in the `db` folder in the operation folder, where the interface will be stored linked to the file-id in specified folder.\n\nHowever, you can also specify a `storageLocationRelativeFilePath` if you want to store the model on an exact location relative to the operation root.",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "operationStorageLocationRelativeFilePath",
+            "required": false,
+            "schema": {
+              "fullComment": "If given, specify a file path here where the data should be stored. Must be an operation relative path.\n\nThis will map onto the \"operationRelativePath\" for that instance.\n\nNB: Since this is a single file per project or per operation, it will overwrite your data in case of `jsonSingle` or `markdown` storage.",
+              "nb": "Since this is a single file per project or per operation, it will overwrite your data in case of `jsonSingle` or `markdown` storage.",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "operationNames",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 198,
+    "lines": 10,
+    "bytes": 198,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 20,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "gzhdxiupgmzinlzfshyqyxsz"
+}

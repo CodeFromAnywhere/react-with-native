@@ -1,0 +1,106 @@
+{
+  "createdAt": 1669200459612,
+  "updatedAt": 1669200459612,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200459612,
+  "id": "namedparameterstypeof-sayablestomp3",
+  "name": "NamedParameters<typeof sayablesToMp3>",
+  "slug": "namedparameterstypeof-sayablestomp3",
+  "operationRelativeTypescriptFilePath": "src/expose/sayablesToMp3.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "{\n  sayables,\n  destinationAbsoluteFilePath,\n}": {
+          "type": "object",
+          "properties": {
+            "destinationAbsoluteFilePath": {
+              "type": "string"
+            },
+            "sayables": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sayable"
+              }
+            }
+          },
+          "required": [
+            "destinationAbsoluteFilePath",
+            "sayables"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "{\n  sayables,\n  destinationAbsoluteFilePath,\n}"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "{\n  sayables,\n  destinationAbsoluteFilePath,\n}",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "destinationAbsoluteFilePath",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "sayables",
+                "required": true,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "",
+                        "properties": [
+                          {
+                            "name": "sayableText",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "voiceFileRelativePath",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": "Sayable"
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof sayablesToMp3>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

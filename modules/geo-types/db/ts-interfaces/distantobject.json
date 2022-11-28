@@ -1,0 +1,80 @@
+{
+  "createdAt": 1668335462379,
+  "updatedAt": 1668335462379,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335462379,
+  "id": "distantobject",
+  "name": "DistantObject",
+  "slug": "distantobject",
+  "operationRelativeTypescriptFilePath": "src/DistantObject.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type DistantObject = {\n  type: \"moon\" | \"planet\" | \"star\" | \"blackHole\" | \"asteroid\" | \"galaxy\";\n  position: SpacePosition;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "moon",
+            "planet",
+            "star",
+            "blackHole",
+            "asteroid",
+            "galaxy"
+          ]
+        },
+        "position": {
+          "$ref": "#/definitions/SpacePosition"
+        }
+      },
+      "required": [
+        "type",
+        "position"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "moon",
+              "planet",
+              "star",
+              "blackHole",
+              "asteroid",
+              "galaxy"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "position",
+          "required": true,
+          "schema": {
+            "fullComment": "IDK HOW TO DO DIS :(",
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "DistantObject",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

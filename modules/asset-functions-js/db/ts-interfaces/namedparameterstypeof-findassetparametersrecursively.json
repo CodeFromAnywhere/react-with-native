@@ -1,0 +1,71 @@
+{
+  "createdAt": 1669384142653,
+  "updatedAt": 1669384142653,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384142653,
+  "id": "namedparameterstypeof-findassetparametersrecursively",
+  "name": "NamedParameters<typeof findAssetParametersRecursively>",
+  "slug": "namedparameterstypeof-findassetparametersrecursively",
+  "operationRelativeTypescriptFilePath": "src/findAssetParametersRecursively.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "object": {
+          "type": "object"
+        },
+        "stack": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "object"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "object",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "stack",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof findAssetParametersRecursively>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

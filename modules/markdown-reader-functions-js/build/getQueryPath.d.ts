@@ -1,3 +1,3 @@
-import { NextParsedUrlQuery } from "next/dist/server/request-meta";
-export declare const getQueryPath: (parsedUrlQuery: NextParsedUrlQuery | undefined) => string;
+import { ParsedUrlQuery } from "next-types";
+export declare const getQueryPath: (parsedUrlQuery: ParsedUrlQuery | undefined) => string;
 //# sourceMappingURL=getQueryPath.d.ts.map

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148867817,
-  "updatedAt": 1668148867817,
+  "createdAt": 1669312145349,
+  "updatedAt": 1669312145349,
   "deletedAt": 0,
-  "createdFirstAt": 1668148867817,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312145349,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util/groupByFile.ts",
   "commentsInside": [],
   "rawText": " async <T extends { [key: string]: any }>(\n  creationItems: Creation<T>[],\n  mergedConfig: MergedQueryConfig,\n  modelName: string\n): Promise<ItemPerFileObject<T>> => {\n  const dataWithLocations = (\n    await Promise.all(\n      creationItems.map(async (item) => {\n        if (!item) {\n          console.log(\"WARN\");\n          return;\n        }\n\n        const fullItem = addDefaultValues(item);\n        const storingItem = makeStoringItem(fullItem) as Storing<T>;\n\n        const itemModelLocation = getItemModelLocation(fullItem);\n\n        const dbFileLocation = await getDbFileLocation(\n          storingItem,\n          itemModelLocation.operationName,\n          mergedConfig,\n          modelName\n        );\n\n        if (!dbFileLocation) return;\n\n        return { storingItem, dbFileLocation };\n      })\n    )\n  ).filter(notEmpty);\n\n  const dataPerStorageFile = dataWithLocations.reduce(\n    (fileObject, itemWithLocation) => {\n      const { absolutePath } = itemWithLocation.dbFileLocation;\n\n      const newItems = fileObject[absolutePath]\n        ? fileObject[absolutePath].items.concat(itemWithLocation.storingItem)\n        : [itemWithLocation.storingItem];\n\n      fileObject[absolutePath] = {\n        items: newItems,\n        dbFileLocation: itemWithLocation.dbFileLocation,\n      };\n\n      return fileObject;\n    },\n    {} as ItemPerFileObject<T>\n  );\n\n  return dataPerStorageFile;\n}",
@@ -19,7 +14,7 @@
   "parameters": [],
   "description": "Used for `set` and `upsert`. Groups creation items into an object where keys are file paths and values are items that need to be stored",
   "returnType": {
-    "rawType": "Promise<import(\"/Users/king/King/operations/tools/database/fs-orm/src/util/groupByFile\").ItemPerFileObject<T>>",
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/src/util/groupByFile\").ItemPerFileObject<T>>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -37,5 +32,5 @@
     "linesPerFile": 52,
     "numberOfFiles": 1
   },
-  "id": "pibotcmjhbexcqdnnrqbocrv"
+  "id": "rxrxsgjyufjwzoghlfhbunre"
 }

@@ -1,4 +1,4 @@
-import { MarkdownParse } from "code-types";
+import { MarkdownParse } from "markdown-types";
 import { MarkdownParseConfig } from "./types";
 /**
  * splits a markdown string into its frontmatter object and the raw content (without frontmatter)

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384311210,
+  "updatedAt": 1669384311210,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384311210,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getInstanceNames",
+  "slug": "get-instance-names",
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "type": {
+    "rawType": "(array: any[], relativePathFromProjectRoot: string) => string[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  array: any[],\n  // NB: I tried with  <T extends TsIndexModelType> but didn't work with a map over an object... strange...\n  relativePathFromProjectRoot: string\n): string[] => {\n  const instances = array.filter(\n    hasSameProjectPath(relativePathFromProjectRoot)\n  );\n\n  const instancePaths = instances.map((x) => x.name);\n  return instancePaths;\n}",
+  "description": "returns the paths of instances in a file, like functions, variables or interfaces",
+  "id": "tnnaawfxqqaqeatngcokeaqc"
+}

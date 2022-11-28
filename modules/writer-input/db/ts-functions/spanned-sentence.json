@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668152085139,
-  "updatedAt": 1668152085139,
+  "createdAt": 1669385137692,
+  "updatedAt": 1669385137692,
   "deletedAt": 0,
-  "createdFirstAt": 1668152085139,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385137692,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/editors/SpannedSentence.tsx",
   "commentsInside": [],
   "rawText": " (\n  props: Omit<ContentEditableRenderProps<any>, \"markedToken\"> & {\n    sentence: string;\n  }\n) => {\n  const { sentence, subwordConfig } = props;\n  if (!subwordConfig.isEnabled) {\n    // NB: if subwords are disabled, we can just return the sentence using a span (not word by word)\n    return <span>{sentence}</span>;\n  }\n\n  const wordSpans = sentence.split(\" \").map((word) => {\n    return <Subword subwordConfig={subwordConfig} word={word} />;\n  });\n\n  return <>{wordSpans}</>;\n}",
@@ -56,6 +51,400 @@
             }
           },
           {
+            "name": "subtextConfig",
+            "required": true,
+            "schema": {
+              "fullComment": "Configuration of what should be shown in the subtext",
+              "properties": [
+                {
+                  "name": "isEnabled",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "TITLE: Enable",
+                    "title": "Enable",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "translations",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "You can show multiple translations in the subtext",
+                    "items": [
+                      {
+                        "schema": {
+                          "properties": [
+                            {
+                              "name": "language",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "english",
+                                  "dutch",
+                                  "nepali",
+                                  "portuguese",
+                                  "brazilian",
+                                  "german",
+                                  "french",
+                                  "spanish",
+                                  "italian",
+                                  "norwegian",
+                                  "swedish",
+                                  "danish",
+                                  "vietnamese",
+                                  "indonesian",
+                                  "southAfrican",
+                                  "tokiPona",
+                                  "hindi",
+                                  "mandarin",
+                                  "arabic",
+                                  "bengali",
+                                  "urdu",
+                                  "japanese",
+                                  "swahili"
+                                ],
+                                "fullComment": "all currently supported languages",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "showAlternative",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showPhonetic",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showLatin",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showTokiPona",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "showCommon",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "showEmojiTranslation",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "showDefinitionsWithPriority",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "show definitions of words occuring in this paragraph",
+                    "items": [
+                      {
+                        "schema": {
+                          "enum": [
+                            "critical",
+                            "high",
+                            "medium",
+                            "low"
+                          ],
+                          "fullComment": "",
+                          "type": "string"
+                        },
+                        "name": "WordPriority"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "showRelated",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Related stuff related to this paragraph, e.g. other articles/markdown",
+                    "items": [
+                      {
+                        "schema": {
+                          "fullComment": "",
+                          "properties": [
+                            {
+                              "name": "type",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "image",
+                                  "asset",
+                                  "pages",
+                                  "data",
+                                  "code"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "quantity",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "single",
+                                  "short",
+                                  "all"
+                                ],
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": "SubtextRelatedThing"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "subwordConfig",
+            "required": true,
+            "schema": {
+              "fullComment": "Configurate what should be shown about words",
+              "properties": [
+                {
+                  "name": "isEnabled",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "TITLE: Enable",
+                    "title": "Enable",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "subwordSize",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "normal",
+                      "mini",
+                      "micro"
+                    ],
+                    "fullComment": "Optionally, make the subwords smaller for a better overview",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "translations",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "show subwords for one or multiple languages",
+                    "items": [
+                      {
+                        "schema": {
+                          "enum": [
+                            "english",
+                            "dutch",
+                            "nepali",
+                            "portuguese",
+                            "brazilian",
+                            "german",
+                            "french",
+                            "spanish",
+                            "italian",
+                            "norwegian",
+                            "swedish",
+                            "danish",
+                            "vietnamese",
+                            "indonesian",
+                            "southAfrican",
+                            "tokiPona",
+                            "hindi",
+                            "mandarin",
+                            "arabic",
+                            "bengali",
+                            "urdu",
+                            "japanese",
+                            "swahili"
+                          ],
+                          "fullComment": "all currently supported languages",
+                          "type": "string"
+                        },
+                        "name": "Language"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "translationsViewMode",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "disabled",
+                      "tooltip",
+                      "context",
+                      "subword"
+                    ],
+                    "fullComment": "",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "showDefinition",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Show definition (always in tooltip)",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "occurenceAmountViewMode",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "disabled",
+                      "tooltip",
+                      "context",
+                      "subword"
+                    ],
+                    "fullComment": "Show occurrence amount\n\n",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "blurMode",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "disabled",
+                      "special"
+                    ],
+                    "fullComment": "Blur the word unless it's special for one reason or another. Might be useful for skimming (or maybe more)",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "audioMode",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "disabled",
+                      "tooltip",
+                      "context",
+                      "subword"
+                    ],
+                    "fullComment": "Audio for `WordMatrix` word can be played\n\n",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "replaceWordMode",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "disabled",
+                      "translate",
+                      "alternative",
+                      "phonetic",
+                      "tokiPona",
+                      "emoji"
+                    ],
+                    "fullComment": "if \"translate\" is selected, first language from `translations` will be used\n\n`alternative` picks the alternative writing using the `WordMatrix` if available\n\n`phonetic` picks the phonetic writing using the `WordMatrix` if available",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "heatmapMode",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "disabled",
+                      "projectFrequency",
+                      "englishFrequency"
+                    ],
+                    "fullComment": "colour words with heat having different meanings",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "markdownFileConfig",
+            "required": true,
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "projectRelativeBaseFolderPath",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "Folder path where the markdown is supposed to be located.\n\nThis is used for knowing where relative links or assets can be found",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "projectRelativeMarkdownFilePath",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "project relative path of the markdown file.\n\nThis is used for knowing where relative links or assets can be found",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "isStatic",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If true, the files should come from a static folder. This means the relative references should now become projectRelative. Also see `copyAllRelativeFiles`.\n\nIf not true, we will use the api.",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "isDev",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If true, we assume not all files are present in the static folder yet. This means we need to use the api.",
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "big",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
             "name": "testModeEnabled",
             "required": false,
             "schema": {
@@ -92,5 +481,5 @@
     "linesPerFile": 17,
     "numberOfFiles": 1
   },
-  "id": "wtodoxexkrwihomozhbzeufv"
+  "id": "keziamtnfbeuavwwvxeyxtlz"
 }

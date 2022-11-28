@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259757885,
-  "updatedAt": 1666259757885,
+  "createdAt": 1668332411847,
+  "updatedAt": 1668332411847,
   "deletedAt": 0,
-  "createdFirstAt": 1666259757885,
+  "createdFirstAt": 1668332411847,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(fileId: string): boolean => {\n  const isOperationName = hasSubExtension(\n    fileId,\n    operationUnindexableNamesOrSubExtensions,\n    true\n  );\n\n  const isFrontendOptionalName = hasSubExtension(\n    fileId,\n    frontendOptionalFileSubExtensions,\n    false\n  );\n\n  const isIndex = fileId === \"index\";\n\n  const isIndexable = !isIndex && !isFrontendOptionalName && !isOperationName;\n\n  return isIndexable;\n}",
   "description": "",
-  "id": "adzmihflfkgmzkwibxkhjbyh"
+  "id": "rtfsgxtgibxghzdzdqzglcua"
 }

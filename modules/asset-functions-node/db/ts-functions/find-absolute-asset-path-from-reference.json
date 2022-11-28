@@ -1,0 +1,57 @@
+{
+  "createdAt": 1669384220654,
+  "updatedAt": 1669384220654,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384220654,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/util/findAbsoluteAssetPathFromReference.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  projectRelativeReferencingFilePath: string,\n  referencingFileRelativeAssetPath: string\n): Promise<{\n  isSuccessful: boolean;\n  message: string;\n  absoluteAssetPath?: string;\n}> => {\n  // TODO: STEP 1: ensure the user is authenticated and can access the referencing file\n\n  const projectRoot = getProjectRoot();\n  if (!projectRoot)\n    return {\n      isSuccessful: false,\n      message: \"No project root\",\n    };\n\n  const extension = getExtension(projectRelativeReferencingFilePath);\n  const allowedExtensions = [\"ts\", \"tsx\", \"md\", \"mdx\", \"json\"];\n  if (!allowedExtensions.includes(extension)) {\n    return {\n      isSuccessful: false,\n      message: \"Invalid extension\",\n    };\n  }\n\n  const absoluteReferencingFilePath = path.join(\n    projectRoot,\n    projectRelativeReferencingFilePath\n  );\n\n  const exists = fs.existsSync(absoluteReferencingFilePath);\n\n  if (!exists) {\n    return {\n      isSuccessful: false,\n      message: \"Invalid file\",\n    };\n  }\n\n  const contents = await fs.readFile(absoluteReferencingFilePath, \"utf8\");\n\n  const patternType = extension === \"json\" ? \"json\" : \"markdown\";\n\n  const pattern =\n    patternType === \"json\"\n      ? `\"relativePath\": \"${referencingFileRelativeAssetPath}\"`\n      : `](${referencingFileRelativeAssetPath})`;\n\n  const foundPattern = contents.includes(pattern);\n\n  if (!foundPattern) {\n    // console.log({ contents, pattern });\n    return {\n      isSuccessful: false,\n      message: \"Pattern not found\",\n    };\n  }\n\n  const referencingFileFolderPath = path.parse(absoluteReferencingFilePath).dir;\n\n  const absoluteAssetPath = path.join(\n    referencingFileFolderPath,\n    referencingFileRelativeAssetPath\n  );\n\n  if (!fs.existsSync(absoluteAssetPath)) {\n    return {\n      isSuccessful: false,\n      message: \"The referenced asset does not exist\",\n    };\n  }\n\n  return { isSuccessful: true, message: \"Found path\", absoluteAssetPath };\n}",
+  "name": "findAbsoluteAssetPathFromReference",
+  "slug": "find-absolute-asset-path-from-reference",
+  "parameters": [
+    {
+      "name": "projectRelativeReferencingFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "referencingFileRelativeAssetPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<{ isSuccessful: boolean; message: string; absoluteAssetPath?: string | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1896,
+    "lines": 75,
+    "bytes": 1896,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 75,
+    "numberOfFiles": 1
+  },
+  "id": "gcahdjxxuobrelrbnxbbudes"
+}

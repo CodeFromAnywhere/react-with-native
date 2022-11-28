@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150846434,
-  "updatedAt": 1668150846434,
+  "createdAt": 1668977407259,
+  "updatedAt": 1668977407259,
   "deletedAt": 0,
-  "createdFirstAt": 1668150846434,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977407259,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/mergeObjectsArray.ts",
   "commentsInside": [],
   "rawText": " <T extends { [key: string]: any }>(\n  objectsArray: T[]\n): T => {\n  const result = objectsArray.reduce((previous, current) => {\n    return { ...previous, ...current };\n  }, {} as T);\n\n  return result;\n}",
@@ -46,5 +41,5 @@
     "linesPerFile": 9,
     "numberOfFiles": 1
   },
-  "id": "bcbkgzdeqlpdckrrguhhmglu"
+  "id": "ttqkopwrezoiimvwaanmjzei"
 }

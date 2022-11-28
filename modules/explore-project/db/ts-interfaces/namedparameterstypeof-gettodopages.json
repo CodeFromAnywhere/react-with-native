@@ -1,0 +1,106 @@
+{
+  "createdAt": 1669384306739,
+  "updatedAt": 1669384306739,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384306739,
+  "id": "namedparameterstypeof-gettodopages",
+  "name": "NamedParameters<typeof getTodoPages>",
+  "slug": "namedparameterstypeof-gettodopages",
+  "operationRelativeTypescriptFilePath": "src/getTodoPages.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "$ref": "#/definitions/TodoPagesConfig"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "recency",
+                "required": false,
+                "schema": {
+                  "enum": [
+                    "24-hours",
+                    "today",
+                    "this-week",
+                    "7-days"
+                  ],
+                  "type": "string"
+                }
+              },
+              {
+                "name": "personId",
+                "required": false,
+                "schema": {
+                  "fullComment": "All TodoOffer's related to this todo will be searched, as well as all TodoFile's with this personId as it's codeOwner.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "categoryStack",
+                "required": false,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "priority",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "subExtension",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "sort",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getTodoPages>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

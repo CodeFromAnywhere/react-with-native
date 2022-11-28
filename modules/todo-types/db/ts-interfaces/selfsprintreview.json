@@ -1,0 +1,909 @@
+{
+  "createdAt": 1669380095746,
+  "updatedAt": 1669380095746,
+  "deletedAt": 0,
+  "createdFirstAt": 1669380095746,
+  "id": "selfsprintreview",
+  "name": "SelfSprintReview",
+  "slug": "selfsprintreview",
+  "operationRelativeTypescriptFilePath": "src/SelfSprintReview.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n---\ndbStorageMethod: jsonSingle\n---\n\n\nGOAL:\n\n- provide a good way for freelancers and students to self-assess\n- structure the data to provide tools for self-analysis\n\nTODO: PREREQUISITE:\n\n- auth layer\n- p2p\n- create a **model-agnostic-ui** that renders this type of models nicely (many checkmarks, some sliders, some descriptions). can simply be converted into text for the most part\n- make the DB crud component\n  - which also allows extra columns\n  - which also has an option to use the **model-agnostic-ui**\n- add `Dataset`s support to DB crud\n- make sure the form shows nicely\n  - slider component and convention\n  - show description by ensuring that, if the trimmed description is an empty string, it shows everything on all lines after, until the next variable\n- monetisation\n\nTHOUGHTS:\n\n- this was just one hour of work, and it kind of is a product (given I make all the general purpose prerequisites). I can make it a bundle that devs can install and BOOM! you got a SaaS... just charge 1$ per entry xD\n- think about other things that can be assessed, can/should they be automated too? not only for teams, also for intimate groups of people to assess private things, also for yourself completely\n- if I have more things like this, which are basically scoring sheets, I can easily reuse the statistics part of the UI that I make for this\n\nTODO: CUSTOM:\n\n- make a `ui-web` operation that has just this crud (or add to the Todo UI) \n- add nice flow for showing the \"coder of the week\"\n- add a column to share an item on social media if it's your own (may be super reusable too)\n- later add things like summaries, history, comparisons, insights (but do it as generic as possible)\n- later provide more auto-filled datapoints (xyzIndexed) for different things\n- later let user auto-share things with the marketstack xD\n\n*/\nexport type SelfSprintReview = ReviewSummary & {\n  personId: string;\n  person?: Person;\n  /**\n  DESCRIPTION:\n\n  - ensure code gets reviewed\n  - document well\n  - clear naming and simple, elegant code\n  - apply all conventions\n  - use all king OS libraries\n  */\n  codeQuality: ReviewSummary & {\n    lastWeeksCodeGotReviewedThisWeek: boolean;\n    allCodeDocumented: boolean;\n  };\n\n  /**\n  DESCRIPTION:\n\n  - full time?\n  - at least 50% coding editor time?\n  - provide screen time statistics\n\n  */\n  timeManagement: ReviewSummary & {\n    screenTimeHours: number;\n    vscodeHours: number;\n    distractedHours: number;\n    projectBrowserHours: number;\n    englishLearningHours: number;\n    screenshotImages: BackendAsset[];\n  };\n  /**\n  \n  DESCRIPTION:\n\n  - daily networking session on linkedin (and maybe others) (<30m)\n  - attract an audience by creating valueable content for your niche\n  - have conversations and (video) calls with recruiters and companies, record and share them\n\n */\n  networking: ReviewSummary & {\n    dailyNetworkingSession: boolean;\n    contentCreatedThisWeek: boolean;\n    recruiterOrCompanyMeetingThisWeek: boolean;\n  };\n\n  /**\n\n  DESCRIPTION:\n\n  - Build some project of your own on the side (or as main thing)\n  - Progress on this every week, keep us updated\n  - Learn how to find a good idea, validate it, form a product, market it, get interested users, get feedback, monetise it.\n\n  */\n  entrepreneurship: ReviewSummary & {\n    workedOnPassionProject: boolean;\n    progressUpdateDescription: string;\n  };\n\n  /**\nDESCRIPTION:\n\n- daily todo list\n- daily done list\n- good sprint planning statement\n- good sprint review statement\n- ask sharp questions\n- never be stuck, ensure you're never blocked\n- share code (changes) and demos frequently\n- if you can't uphold agreement, communicate this asap (better beforehand and as early as possible) and honestly\n- be present and on time (sharp) at all meetings\n- share payment request once per month, on time\n- share hours worked (with proof: wakatime, screentime) at least every week\n- share accomplishments\n- present bigger topics, be proactive about this\n\n    */\n  clientCommunication: ReviewSummary & {\n    dailyTodoList: boolean;\n    dailyDoneList: boolean;\n    goodSprintPlanningStatement: boolean;\n    goodSprintReviewStatement: boolean;\n    iAskSharpQuestions: boolean;\n    iAmNeverBlocked: boolean;\n    iShareCodeChangesDaily: boolean;\n    upheldAgreement: boolean;\n    presentAndOnTimeAtMeetings: boolean;\n    sharePaymentRequest: boolean;\n    shareHoursWorked: boolean;\n  };\n\n  problemsDescription: string;\n  solutionsDescription: string;\n  proudOfDescription: string;\n} & DefaultModelType;",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "\n\nGOAL:\n\n- provide a good way for freelancers and students to self-assess\n- structure the data to provide tools for self-analysis\n\nTODO: PREREQUISITE:\n\n- auth layer\n- p2p\n- create a **model-agnostic-ui** that renders this type of models nicely (many checkmarks, some sliders, some descriptions). can simply be converted into text for the most part\n- make the DB crud component\n- which also allows extra columns\n- which also has an option to use the **model-agnostic-ui**\n- add `Dataset`s support to DB crud\n- make sure the form shows nicely\n- slider component and convention\n- show description by ensuring that, if the trimmed description is an empty string, it shows everything on all lines after, until the next variable\n- monetisation\n\nTHOUGHTS:\n\n- this was just one hour of work, and it kind of is a product (given I make all the general purpose prerequisites). I can make it a bundle that devs can install and BOOM! you got a SaaS... just charge 1$ per entry xD\n- think about other things that can be assessed, can/should they be automated too? not only for teams, also for intimate groups of people to assess private things, also for yourself completely\n- if I have more things like this, which are basically scoring sheets, I can easily reuse the statistics part of the UI that I make for this\n\nTODO: CUSTOM:\n\n- make a `ui-web` operation that has just this crud (or add to the Todo UI)\n- add nice flow for showing the \"coder of the week\"\n- add a column to share an item on social media if it's your own (may be super reusable too)\n- later add things like summaries, history, comparisons, insights (but do it as generic as possible)\n- later provide more auto-filled datapoints (xyzIndexed) for different things\n- later let user auto-share things with the marketstack xD",
+  "dbStorageMethod": "jsonSingle",
+  "isDbModel": true,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "createdAt": {
+          "$ref": "#/definitions/CreatedAt"
+        },
+        "updatedAt": {
+          "$ref": "#/definitions/UpdatedAt"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/DeletedAt"
+        },
+        "createdFirstAt": {
+          "$ref": "#/definitions/CreatedFirstAt"
+        },
+        "operationName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "projectRelativePath": {
+          "type": "string",
+          "description": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "operationRelativePath": {
+          "type": "string",
+          "description": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "categoryStackCalculated": {
+          "$ref": "#/definitions/CategoryStack",
+          "description": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!"
+        },
+        "personId": {
+          "type": "string"
+        },
+        "person": {
+          "$ref": "#/definitions/Person"
+        },
+        "codeQuality": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "lastWeeksCodeGotReviewedThisWeek": {
+              "type": "boolean"
+            },
+            "allCodeDocumented": {
+              "type": "boolean"
+            },
+            "scoreYourselfSlider": {
+              "type": "number"
+            },
+            "scoreYourselfDescription": {
+              "type": "string"
+            },
+            "coderOfTheWeekVote_personId": {
+              "type": "string"
+            },
+            "coderOfTheWeekVoteDescription": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "allCodeDocumented",
+            "coderOfTheWeekVoteDescription",
+            "coderOfTheWeekVote_personId",
+            "lastWeeksCodeGotReviewedThisWeek",
+            "scoreYourselfDescription",
+            "scoreYourselfSlider"
+          ],
+          "description": "DESCRIPTION:\n\n- ensure code gets reviewed\n- document well\n- clear naming and simple, elegant code\n- apply all conventions\n- use all king OS libraries"
+        },
+        "timeManagement": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "screenTimeHours": {
+              "type": "number"
+            },
+            "vscodeHours": {
+              "type": "number"
+            },
+            "distractedHours": {
+              "type": "number"
+            },
+            "projectBrowserHours": {
+              "type": "number"
+            },
+            "englishLearningHours": {
+              "type": "number"
+            },
+            "screenshotImages": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BackendAsset"
+              }
+            },
+            "scoreYourselfSlider": {
+              "type": "number"
+            },
+            "scoreYourselfDescription": {
+              "type": "string"
+            },
+            "coderOfTheWeekVote_personId": {
+              "type": "string"
+            },
+            "coderOfTheWeekVoteDescription": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "coderOfTheWeekVoteDescription",
+            "coderOfTheWeekVote_personId",
+            "distractedHours",
+            "englishLearningHours",
+            "projectBrowserHours",
+            "scoreYourselfDescription",
+            "scoreYourselfSlider",
+            "screenTimeHours",
+            "screenshotImages",
+            "vscodeHours"
+          ],
+          "description": "DESCRIPTION:\n\n- full time?\n- at least 50% coding editor time?\n- provide screen time statistics"
+        },
+        "networking": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dailyNetworkingSession": {
+              "type": "boolean"
+            },
+            "contentCreatedThisWeek": {
+              "type": "boolean"
+            },
+            "recruiterOrCompanyMeetingThisWeek": {
+              "type": "boolean"
+            },
+            "scoreYourselfSlider": {
+              "type": "number"
+            },
+            "scoreYourselfDescription": {
+              "type": "string"
+            },
+            "coderOfTheWeekVote_personId": {
+              "type": "string"
+            },
+            "coderOfTheWeekVoteDescription": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "coderOfTheWeekVoteDescription",
+            "coderOfTheWeekVote_personId",
+            "contentCreatedThisWeek",
+            "dailyNetworkingSession",
+            "recruiterOrCompanyMeetingThisWeek",
+            "scoreYourselfDescription",
+            "scoreYourselfSlider"
+          ],
+          "description": "DESCRIPTION:\n\n- daily networking session on linkedin (and maybe others) (<30m)\n- attract an audience by creating valueable content for your niche\n- have conversations and (video) calls with recruiters and companies, record and share them"
+        },
+        "entrepreneurship": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "workedOnPassionProject": {
+              "type": "boolean"
+            },
+            "progressUpdateDescription": {
+              "type": "string"
+            },
+            "scoreYourselfSlider": {
+              "type": "number"
+            },
+            "scoreYourselfDescription": {
+              "type": "string"
+            },
+            "coderOfTheWeekVote_personId": {
+              "type": "string"
+            },
+            "coderOfTheWeekVoteDescription": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "coderOfTheWeekVoteDescription",
+            "coderOfTheWeekVote_personId",
+            "progressUpdateDescription",
+            "scoreYourselfDescription",
+            "scoreYourselfSlider",
+            "workedOnPassionProject"
+          ],
+          "description": "DESCRIPTION:\n\n- Build some project of your own on the side (or as main thing)\n- Progress on this every week, keep us updated\n- Learn how to find a good idea, validate it, form a product, market it, get interested users, get feedback, monetise it."
+        },
+        "clientCommunication": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dailyTodoList": {
+              "type": "boolean"
+            },
+            "dailyDoneList": {
+              "type": "boolean"
+            },
+            "goodSprintPlanningStatement": {
+              "type": "boolean"
+            },
+            "goodSprintReviewStatement": {
+              "type": "boolean"
+            },
+            "iAskSharpQuestions": {
+              "type": "boolean"
+            },
+            "iAmNeverBlocked": {
+              "type": "boolean"
+            },
+            "iShareCodeChangesDaily": {
+              "type": "boolean"
+            },
+            "upheldAgreement": {
+              "type": "boolean"
+            },
+            "presentAndOnTimeAtMeetings": {
+              "type": "boolean"
+            },
+            "sharePaymentRequest": {
+              "type": "boolean"
+            },
+            "shareHoursWorked": {
+              "type": "boolean"
+            },
+            "scoreYourselfSlider": {
+              "type": "number"
+            },
+            "scoreYourselfDescription": {
+              "type": "string"
+            },
+            "coderOfTheWeekVote_personId": {
+              "type": "string"
+            },
+            "coderOfTheWeekVoteDescription": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "coderOfTheWeekVoteDescription",
+            "coderOfTheWeekVote_personId",
+            "dailyDoneList",
+            "dailyTodoList",
+            "goodSprintPlanningStatement",
+            "goodSprintReviewStatement",
+            "iAmNeverBlocked",
+            "iAskSharpQuestions",
+            "iShareCodeChangesDaily",
+            "presentAndOnTimeAtMeetings",
+            "scoreYourselfDescription",
+            "scoreYourselfSlider",
+            "shareHoursWorked",
+            "sharePaymentRequest",
+            "upheldAgreement"
+          ],
+          "description": "DESCRIPTION:\n\n- daily todo list\n- daily done list\n- good sprint planning statement\n- good sprint review statement\n- ask sharp questions\n- never be stuck, ensure you're never blocked\n- share code (changes) and demos frequently\n- if you can't uphold agreement, communicate this asap (better beforehand and as early as possible) and honestly\n- be present and on time (sharp) at all meetings\n- share payment request once per month, on time\n- share hours worked (with proof: wakatime, screentime) at least every week\n- share accomplishments\n- present bigger topics, be proactive about this"
+        },
+        "problemsDescription": {
+          "type": "string"
+        },
+        "solutionsDescription": {
+          "type": "string"
+        },
+        "proudOfDescription": {
+          "type": "string"
+        },
+        "scoreYourselfSlider": {
+          "type": "number"
+        },
+        "scoreYourselfDescription": {
+          "type": "string"
+        },
+        "coderOfTheWeekVote_personId": {
+          "type": "string"
+        },
+        "coderOfTheWeekVoteDescription": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "clientCommunication",
+        "codeQuality",
+        "coderOfTheWeekVoteDescription",
+        "coderOfTheWeekVote_personId",
+        "createdAt",
+        "createdFirstAt",
+        "deletedAt",
+        "entrepreneurship",
+        "id",
+        "networking",
+        "operationName",
+        "personId",
+        "problemsDescription",
+        "projectRelativePath",
+        "proudOfDescription",
+        "scoreYourselfDescription",
+        "scoreYourselfSlider",
+        "solutionsDescription",
+        "timeManagement",
+        "updatedAt"
+      ],
+      "description": "--- dbStorageMethod: jsonSingle\n---\n\n\nGOAL:\n\n- provide a good way for freelancers and students to self-assess\n- structure the data to provide tools for self-analysis\n\nTODO: PREREQUISITE:\n\n- auth layer\n- p2p\n- create a **model-agnostic-ui** that renders this type of models nicely (many checkmarks, some sliders, some descriptions). can simply be converted into text for the most part\n- make the DB crud component  - which also allows extra columns  - which also has an option to use the **model-agnostic-ui**\n- add `Dataset`s support to DB crud\n- make sure the form shows nicely  - slider component and convention  - show description by ensuring that, if the trimmed description is an empty string, it shows everything on all lines after, until the next variable\n- monetisation\n\nTHOUGHTS:\n\n- this was just one hour of work, and it kind of is a product (given I make all the general purpose prerequisites). I can make it a bundle that devs can install and BOOM! you got a SaaS... just charge 1$ per entry xD\n- think about other things that can be assessed, can/should they be automated too? not only for teams, also for intimate groups of people to assess private things, also for yourself completely\n- if I have more things like this, which are basically scoring sheets, I can easily reuse the statistics part of the UI that I make for this\n\nTODO: CUSTOM:\n\n- make a `ui-web` operation that has just this crud (or add to the Todo UI) \n- add nice flow for showing the \"coder of the week\"\n- add a column to share an item on social media if it's your own (may be super reusable too)\n- later add things like summaries, history, comparisons, insights (but do it as generic as possible)\n- later provide more auto-filled datapoints (xyzIndexed) for different things\n- later let user auto-share things with the marketstack xD"
+    },
+    "simplifiedSchema": {
+      "fullComment": "--- dbStorageMethod: jsonSingle\n---\n\n\nGOAL:\n\n- provide a good way for freelancers and students to self-assess\n- structure the data to provide tools for self-analysis\n\nTODO: PREREQUISITE:\n\n- auth layer\n- p2p\n- create a **model-agnostic-ui** that renders this type of models nicely (many checkmarks, some sliders, some descriptions). can simply be converted into text for the most part\n- make the DB crud component  - which also allows extra columns  - which also has an option to use the **model-agnostic-ui**\n- add `Dataset`s support to DB crud\n- make sure the form shows nicely  - slider component and convention  - show description by ensuring that, if the trimmed description is an empty string, it shows everything on all lines after, until the next variable\n- monetisation\n\nTHOUGHTS:\n\n- this was just one hour of work, and it kind of is a product (given I make all the general purpose prerequisites). I can make it a bundle that devs can install and BOOM! you got a SaaS... just charge 1$ per entry xD\n- think about other things that can be assessed, can/should they be automated too? not only for teams, also for intimate groups of people to assess private things, also for yourself completely\n- if I have more things like this, which are basically scoring sheets, I can easily reuse the statistics part of the UI that I make for this\n\nTODO: CUSTOM:\n\n- make a `ui-web` operation that has just this crud (or add to the Todo UI) \n- add nice flow for showing the \"coder of the week\"\n- add a column to share an item on social media if it's your own (may be super reusable too)\n- later add things like summaries, history, comparisons, insights (but do it as generic as possible)\n- later provide more auto-filled datapoints (xyzIndexed) for different things\n- later let user auto-share things with the marketstack xD",
+      "todo": "PREREQUISITE:",
+      "properties": [
+        {
+          "name": "createdAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "updatedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "deletedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "createdFirstAt",
+          "required": true,
+          "schema": {
+            "fullComment": "in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.\n\nTime\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "operationName",
+          "required": true,
+          "schema": {
+            "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "null"
+          }
+        },
+        {
+          "name": "projectRelativePath",
+          "required": true,
+          "schema": {
+            "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativePath",
+          "required": false,
+          "schema": {
+            "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "categoryStackCalculated",
+          "required": false,
+          "schema": {
+            "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+            "nb": "Changing this value when updating/upserting, changes where the item is located!",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "personId",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "codeQuality",
+          "required": true,
+          "schema": {
+            "fullComment": "DESCRIPTION:\n\n- ensure code gets reviewed\n- document well\n- clear naming and simple, elegant code\n- apply all conventions\n- use all king OS libraries",
+            "description": "",
+            "properties": [
+              {
+                "name": "lastWeeksCodeGotReviewedThisWeek",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "allCodeDocumented",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "scoreYourselfSlider",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "scoreYourselfDescription",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "coderOfTheWeekVote_personId",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "coderOfTheWeekVoteDescription",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "timeManagement",
+          "required": true,
+          "schema": {
+            "fullComment": "DESCRIPTION:\n\n- full time?\n- at least 50% coding editor time?\n- provide screen time statistics",
+            "description": "",
+            "properties": [
+              {
+                "name": "screenTimeHours",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "vscodeHours",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "distractedHours",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "projectBrowserHours",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "englishLearningHours",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "screenshotImages",
+                "required": true,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "Part of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+                        "properties": [
+                          {
+                            "name": "alt",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Stored value\n\nAlt text for the asset",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "relativePath",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "name",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                              "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "temporaryDestination",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "projectRelativeReferencingFilePath",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "modelName",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": "BackendAsset"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "scoreYourselfSlider",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "scoreYourselfDescription",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "coderOfTheWeekVote_personId",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "coderOfTheWeekVoteDescription",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "networking",
+          "required": true,
+          "schema": {
+            "fullComment": "DESCRIPTION:\n\n- daily networking session on linkedin (and maybe others) (<30m)\n- attract an audience by creating valueable content for your niche\n- have conversations and (video) calls with recruiters and companies, record and share them",
+            "description": "",
+            "properties": [
+              {
+                "name": "dailyNetworkingSession",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "contentCreatedThisWeek",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "recruiterOrCompanyMeetingThisWeek",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "scoreYourselfSlider",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "scoreYourselfDescription",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "coderOfTheWeekVote_personId",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "coderOfTheWeekVoteDescription",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "entrepreneurship",
+          "required": true,
+          "schema": {
+            "fullComment": "DESCRIPTION:\n\n- Build some project of your own on the side (or as main thing)\n- Progress on this every week, keep us updated\n- Learn how to find a good idea, validate it, form a product, market it, get interested users, get feedback, monetise it.",
+            "description": "",
+            "properties": [
+              {
+                "name": "workedOnPassionProject",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "progressUpdateDescription",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "scoreYourselfSlider",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "scoreYourselfDescription",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "coderOfTheWeekVote_personId",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "coderOfTheWeekVoteDescription",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "clientCommunication",
+          "required": true,
+          "schema": {
+            "fullComment": "DESCRIPTION:\n\n- daily todo list\n- daily done list\n- good sprint planning statement\n- good sprint review statement\n- ask sharp questions\n- never be stuck, ensure you're never blocked\n- share code (changes) and demos frequently\n- if you can't uphold agreement, communicate this asap (better beforehand and as early as possible) and honestly\n- be present and on time (sharp) at all meetings\n- share payment request once per month, on time\n- share hours worked (with proof: wakatime, screentime) at least every week\n- share accomplishments\n- present bigger topics, be proactive about this",
+            "description": "",
+            "properties": [
+              {
+                "name": "dailyTodoList",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "dailyDoneList",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "goodSprintPlanningStatement",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "goodSprintReviewStatement",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "iAskSharpQuestions",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "iAmNeverBlocked",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "iShareCodeChangesDaily",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "upheldAgreement",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "presentAndOnTimeAtMeetings",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "sharePaymentRequest",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "shareHoursWorked",
+                "required": true,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "scoreYourselfSlider",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "scoreYourselfDescription",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "coderOfTheWeekVote_personId",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "coderOfTheWeekVoteDescription",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "problemsDescription",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "solutionsDescription",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "proudOfDescription",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "scoreYourselfSlider",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "scoreYourselfDescription",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "coderOfTheWeekVote_personId",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "coderOfTheWeekVoteDescription",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "SelfSprintReview",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669385438926,
+  "updatedAt": 1669385438926,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385438926,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/nestedPathObjectToNestedMenu.ts",
+  "commentsInside": [],
+  "rawText": " (\n  /**\n   * your nested path object that you want to create a menu for\n   */\n  nestedPathObject: NestedPathObject | null,\n  /**\n   * used for recursion to get the final url (defaults to empty array)\n   */\n  pathStack: string[] = [],\n  config?: {\n    target?: \"_blank\";\n    /**\n     * optionally , provide a callback function that returns the actual path\n     */\n    getHref?: (fullPath: string) => string;\n  }\n): MenuItemType[] | undefined => {\n  const target = config?.target;\n  const getHref = config?.getHref;\n\n  // base case\n  if (!nestedPathObject) return;\n\n  const menu: MenuItemType[] = Object.keys(nestedPathObject).map((path) => {\n    const newPathStack = pathStack.concat(path);\n    const fullPath = newPathStack.join(\"/\");\n    const children = nestedPathObjectToNestedMenuRecursive(\n      nestedPathObject[path],\n      newPathStack,\n      config\n    );\n\n    const href = getHref ? getHref(fullPath) : fullPath;\n\n    const menuItem: MenuItemType = {\n      // NB: if there is no path, the title  of the page should be \"home\"\n      title: path.length === 0 ? \"Home\" : path,\n      href,\n      target,\n      children,\n    };\n\n    return menuItem;\n  });\n\n  return menu;\n}",
+  "name": "nestedPathObjectToNestedMenuRecursive",
+  "slug": "nested-path-object-to-nested-menu-recursive",
+  "parameters": [],
+  "description": "Transform a nested path object into a nested menu (MenuType), recursively",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/smart/nested-menu-types/build/types\").MenuItemType[] | undefined",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1251,
+    "lines": 47,
+    "bytes": 1251,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 47,
+    "numberOfFiles": 1
+  },
+  "id": "dfsraolnnuhedjqgeibtictw"
+}

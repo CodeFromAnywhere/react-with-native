@@ -1,0 +1,155 @@
+{
+  "createdAt": 1668836109990,
+  "updatedAt": 1668836109990,
+  "deletedAt": 0,
+  "createdFirstAt": 1668836109990,
+  "id": "namedparameterstypeof-showstandardresponse",
+  "name": "NamedParameters<typeof showStandardResponse>",
+  "slug": "namedparameterstypeof-showstandardresponse",
+  "operationRelativeTypescriptFilePath": "src/cool-toast.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "apiResult": {
+          "$ref": "#/definitions/StandardizedApiReturnType"
+        }
+      },
+      "required": [
+        "apiResult"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "apiResult",
+          "required": true,
+          "schema": {
+            "fullComment": "Handy type interface for rendering response",
+            "properties": [
+              {
+                "name": "isSuccessful",
+                "required": true,
+                "schema": {
+                  "fullComment": "A boolean indicating whether or not the backend function was executed succesfully",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "isNotConnected",
+                "required": false,
+                "schema": {
+                  "fullComment": "If true, this indicates that the backend could not be reached for one reason or another. The reason can be found in `message`",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "isCached",
+                "required": false,
+                "schema": {
+                  "fullComment": "If true, this means that the result is coming from a cache",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "isUnauthorized",
+                "required": false,
+                "schema": {
+                  "fullComment": "If true, the function was not executed because you were not authorized",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "message",
+                "required": false,
+                "schema": {
+                  "fullComment": "Optionally there could be a message here with more information about the failure",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "errors",
+                "required": false,
+                "schema": {
+                  "fullComment": "If the input of the api was invalid, the invalidation will return the errors here.",
+                  "items": [
+                    {
+                      "schema": {
+                        "properties": [
+                          {
+                            "name": "fieldStack",
+                            "required": true,
+                            "schema": {
+                              "items": [
+                                {
+                                  "schema": {
+                                    "type": "string"
+                                  },
+                                  "name": null
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "error",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "result",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "isSuccessful",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "message",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof showStandardResponse>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

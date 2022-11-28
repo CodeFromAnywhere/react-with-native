@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668334465972,
+  "updatedAt": 1668334465972,
+  "deletedAt": 0,
+  "createdFirstAt": 1668334465972,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "sendMail",
+  "slug": "send-mail",
+  "operationRelativeTypescriptFilePath": "src/sendMail.ts",
+  "type": {
+    "rawType": "(mailData: any, isMultiple?: boolean | undefined) => Promise<import(\"/Users/king/King/operations/node_modules/@sendgrid/client/src/response\").ClientResponse | undefined>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  mailData: MailDataFromOptional | MailDataFromOptional[],\n  isMultiple?: boolean\n): Promise<ClientResponse | undefined> => {\n  const persona = await getPrimaryPersona();\n\n  if (!persona) {\n    return;\n  }\n\n  const { sendgridApiKey, sendgridFromEmail } = persona;\n\n  if (!sendgridApiKey) {\n    console.log(\"Please setup your Sendgrid credentials first\");\n    return;\n  }\n\n  const realMailData: MailDataRequired[] = makeArray(mailData)\n    .map((data) => {\n      const { from: dataFrom, ...otherData } = data;\n\n      const from = dataFrom || sendgridFromEmail;\n\n      if (!from) {\n        console.log(\n          \"From is missing in email and also not present in OsConfig. Please provide at least one of those. Not sending email!\"\n        );\n        return;\n      }\n\n      // NB: it's a bit ugly, but doesn't work without typecast, and i'm pretty sure the type is correct...\n      const mailData = { from, ...otherData } as MailDataRequired;\n\n      return mailData;\n    })\n    .filter(notEmpty);\n\n  sgMail.setApiKey(sendgridApiKey);\n\n  const result = await sgMail\n    .send(realMailData, isMultiple)\n    .then(([result]) => {\n      return result;\n    })\n    .catch((error: ResponseError) => {\n      console.log(\"Error sending email\", { error });\n\n      return undefined;\n    });\n\n  return result;\n}",
+  "description": "Sends email(s) using sendgrid\n\nEnsure your OS config is there",
+  "id": "paqmgaqybnjetxamahmqywly"
+}

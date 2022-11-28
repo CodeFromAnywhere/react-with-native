@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262780637,
-  "updatedAt": 1666262780637,
+  "createdAt": 1668334799108,
+  "updatedAt": 1668334799108,
   "deletedAt": 0,
-  "createdFirstAt": 1666262780637,
+  "createdFirstAt": 1668334799108,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  keyValueMarkdownParse: KeyValueMarkdownParse\n) => {\n  const frontmatterString = frontmatterParseToString(\n    keyValueMarkdownParse.parameters\n  );\n\n  //2 go over every row, and parse it back into the line\n  const result = keyValueMarkdownParse.data\n    .map((kvmdData, index) => {\n      const previous: KeyValueMarkdownModelType | undefined =\n        keyValueMarkdownParse.data[index - 1];\n      const string = kvmdDataToString(kvmdData, previous);\n      return string;\n    })\n    .join(\"\");\n\n  return `${frontmatterString}${result}`;\n}",
   "description": "parses KeyValueMarkdownParse into a markdown string so it can be saved as a markdown file",
-  "id": "gnggrhayqgytthqaahtganzg"
+  "id": "uruldqbjisvotjveqlfsethm"
 }

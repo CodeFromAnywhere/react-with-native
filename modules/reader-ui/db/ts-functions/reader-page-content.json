@@ -1,0 +1,144 @@
+{
+  "createdAt": 1669639444380,
+  "updatedAt": 1669639444380,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639444380,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/components/ReaderPageContent.tsx",
+  "commentsInside": [],
+  "rawText": " (props: ReaderPageContentProps) => {\n  const router = useRouter();\n  const queryPath = getQueryPath(router.query);\n  const [_, setIsMobileMenuEnabled] = useStore(\"menu.isMobileMenuEnabled\");\n\n  const {\n    augmentedWordObject,\n    children,\n    description,\n    markdownFile,\n    nextQueryPath,\n    previousQueryPath,\n    projectRelativeMarkdownPath,\n    title,\n  } = props;\n\n  const [view, setView] = useState(\"view\" as \"view\" | \"presentation\");\n\n  const renderBottomNavigation = () => {\n    return (\n      <Div className=\"flex flex-row w-full justify-between\">\n        {previousQueryPath ? (\n          <ALink href={`${previousQueryPath}`}>\n            <Div className=\"w-60 h-40 border-2 border-black rounded-3xl m-4 p-4 flex flex-col justify-center items-center\">\n              <P className=\"font-bold text-xl\">\n                {previousQueryPath.split(\"/\").pop()}\n              </P>\n              <P className=\"font-bold text-6xl\">⬅</P>\n            </Div>\n          </ALink>\n        ) : (\n          <Div />\n        )}\n\n        {nextQueryPath ? (\n          <ALink href={`${nextQueryPath}`}>\n            <Div className=\"w-60 h-40 border-2 border-black rounded-3xl m-4 p-4 flex flex-col justify-center items-center\">\n              <P className=\"font-bold text-xl\">\n                {nextQueryPath.split(\"/\").pop()}\n              </P>\n              <P className=\"font-bold text-6xl\">➡</P>\n            </Div>\n          </ALink>\n        ) : (\n          <Div />\n        )}\n      </Div>\n    );\n  };\n\n  const markdownParse: MarkdownParse | null = markdownFile?.markdown\n    ? mdToJsonParse(markdownFile?.markdown)\n    : null;\n\n  const renderMarkdownView = () => {\n    const projectRelativeMarkdownFilePath = projectRelativeMarkdownPath;\n    const projectRelativeBaseFolderPath = projectRelativeMarkdownPath\n      ? getFolderJs(projectRelativeMarkdownPath)\n      : undefined;\n\n    if (\n      !markdownParse ||\n      projectRelativeBaseFolderPath === undefined ||\n      projectRelativeMarkdownFilePath === undefined ||\n      projectRelativeMarkdownFilePath === null\n    ) {\n      return null;\n    }\n\n    const markdownParseRenderConfig = {\n      augmentedWordObject,\n      projectRelativeBaseFolderPath,\n      projectRelativeMarkdownFilePath,\n      isDev,\n      isStatic: true,\n    };\n\n    return (\n      <MarkdownView\n        markdownParse={markdownParse}\n        markdownParseRenderConfig={markdownParseRenderConfig}\n        view={view}\n      />\n    );\n  };\n\n  const renderPage = () => {\n    const hasNoMainTitle =\n      markdownParse?.content?.filter((x) => !!x.title && x.level === 1)\n        .length !== 1;\n\n    // console.log({ hasNoMainTitle, f: props.markdownFile?.name });\n\n    return (\n      <Div>\n        <Div className=\"flex flex-row justify-between\">\n          {queryPath.length > 1 ? (\n            <ClickableIcon\n              emoji=\"⬅\"\n              onClick={() => {\n                const parts = queryPath.split(\"/\");\n                parts.pop();\n                const oneFolderUp = parts.join(\"/\");\n                router.push(oneFolderUp.length === 0 ? \"/\" : oneFolderUp);\n              }}\n            />\n          ) : null}\n\n          <Div className=\"flex flex-row\">\n            <Div className=\"lg:hidden\">\n              <ClickableIcon\n                emoji=\"⃛\"\n                onClick={() => {\n                  setIsMobileMenuEnabled(true);\n                }}\n              />\n            </Div>\n            <ClickableIcon\n              emoji=\"👁\"\n              onClick={() => {\n                setView(view === \"presentation\" ? \"view\" : \"presentation\");\n              }}\n            />\n          </Div>\n        </Div>\n\n        {hasNoMainTitle && markdownFile?.name ? (\n          <P className=\"text-3xl\">{humanCase(markdownFile.name)}</P>\n        ) : null}\n\n        {renderMarkdownView()}\n\n        {previousQueryPath || nextQueryPath ? renderBottomNavigation() : null}\n      </Div>\n    );\n  };\n\n  const renderNav = () => {\n    return (\n      <Div>\n        <Div className=\"flex flex-row items-center\">\n          <ClickableIcon\n            emoji=\"⬅\"\n            onClick={() => {\n              const parts = queryPath.split(\"/\");\n              parts.pop();\n              const oneFolderUp = parts.join(\"/\");\n              router.push(oneFolderUp.length === 0 ? \"/\" : oneFolderUp);\n            }}\n          />\n          <P className=\"text-xl lg:text-4xl w-full\">&nbsp;&nbsp;{title}</P>\n\n          <Div className=\"lg:hidden\">\n            <ClickableIcon\n              emoji=\"⃛\"\n              onClick={() => {\n                setIsMobileMenuEnabled(true);\n              }}\n            />\n          </Div>\n        </Div>\n\n        {description && projectRelativeMarkdownPath ? (\n          <Div>\n            {renderMarkdownContent(description, {\n              projectRelativeMarkdownFilePath: projectRelativeMarkdownPath,\n              augmentedWordObject,\n              projectRelativeBaseFolderPath: getFolderJs(\n                projectRelativeMarkdownPath\n              )!,\n            })}\n          </Div>\n        ) : null}\n\n        <Div className=\"flex flex-row flex-wrap\">\n          {children?.map((child, index) => {\n            return (\n              <ALink\n                key={`child${child.projectRelativeMarkdownPath}-${index}`}\n                href={`${queryPath}/${child.folderName}`}\n              >\n                <Div className=\"w-60 border-2 border-black rounded-3xl m-4 p-4 flex flex-col justify-center items-center\">\n                  <P className=\"font-bold text-xl\">{child.title}</P>\n                  {child.firstParagraph && child.projectRelativeMarkdownPath ? (\n                    <Div>\n                      {renderMarkdownContent(child.firstParagraph, {\n                        projectRelativeBaseFolderPath: getFolderJs(\n                          child.projectRelativeMarkdownPath\n                        )!,\n                        projectRelativeMarkdownFilePath:\n                          child.projectRelativeMarkdownPath,\n                        augmentedWordObject,\n                      })}\n                    </Div>\n                  ) : null}\n                </Div>\n              </ALink>\n            );\n          })}\n        </Div>\n      </Div>\n    );\n  };\n\n  // console.log({ markdownFile });\n  return (\n    <Div>\n      {markdownFile?.headerImage ||\n      markdownFile?.headerTitle ||\n      markdownFile?.header_markdownCallToActionSlugs ? (\n        <ReaderPageHeader\n          markdownFile={markdownFile}\n          projectRelativeMarkdownPath={projectRelativeMarkdownPath}\n        />\n      ) : null}\n      <Div className=\"pb-4 px-4\">\n        {props.children ? renderNav() : renderPage()}\n      </Div>\n    </Div>\n  );\n}",
+  "name": "ReaderPageContent",
+  "slug": "reader-page-content",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "$ref": "#/definitions/ReaderPageContentProps"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "projectRelativeMarkdownPath",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "markdownFile",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "title",
+            "required": false,
+            "schema": {
+              "fullComment": "Title of the page",
+              "type": "string"
+            }
+          },
+          {
+            "name": "children",
+            "required": false,
+            "schema": {
+              "fullComment": "If path is not a markdownfile, will return all children here",
+              "items": [
+                {
+                  "schema": {
+                    "properties": [
+                      {
+                        "name": "title",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "firstParagraph",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "folderName",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "projectRelativeMarkdownPath",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "previousQueryPath",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nextQueryPath",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "This is rendering a `WebMarkdownFile` and optionally navigation.",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 13,
+  "size": {
+    "characters": 6728,
+    "lines": 221,
+    "bytes": 6742,
+    "bytesPerCharacter": 1.0020808561236623,
+    "charactersPerLine": 30,
+    "linesPerFile": 221,
+    "numberOfFiles": 1
+  },
+  "id": "lzwunyeigflyxfrudtohviuz"
+}

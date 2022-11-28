@@ -1,19 +1,14 @@
 {
-  "createdAt": 1666258869998,
-  "updatedAt": 1666258869998,
+  "createdAt": 1669384269431,
+  "updatedAt": 1669384269431,
   "deletedAt": 0,
-  "createdFirstAt": 1666258869998,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669384269431,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/writeToAssets.ts",
   "commentsInside": [],
-  "rawText": " async (\n  /**\n   * Insert `__filename` here or the typescript file path\n   */\n  filePath: string,\n  /**\n   * The data you want to write to a file, can also be a promise\n   */\n  data: any,\n  assetsFileName?: string\n) => {\n  // NB: it may be a promise, so first await it\n  const realData = await data;\n\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) return;\n\n  const extension = typeof realData === \"string\" ? \".md\" : \".json\";\n\n  const realAssetsFileName =\n    assetsFileName || `${path.parse(filePath).name}${extension}`;\n  const assetsFilePath = path.join(\n    operationBasePath,\n    \"assets\",\n    realAssetsFileName\n  );\n\n  console.log({ assetsFilePath });\n\n  if (typeof data === \"string\") {\n    return writeStringToFile(assetsFilePath, realData);\n  }\n\n  return writeJsonToFile(assetsFilePath, realData);\n}",
+  "rawText": " async (\n  /**\n   * Insert `__filename` here or the typescript file path\n   */\n  filePath: string,\n  /**\n   * The data you want to write to a file, can also be a promise\n   */\n  data: any,\n  assetsFileName?: string,\n  hideLog?: boolean\n) => {\n  // NB: it may be a promise, so first await it\n  const realData = await data;\n\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) return;\n\n  const extension = typeof realData === \"string\" ? \".md\" : \".json\";\n\n  const realAssetsFileName =\n    assetsFileName || `${path.parse(filePath).name}${extension}`;\n  const assetsFilePath = path.join(\n    operationBasePath,\n    \"assets\",\n    realAssetsFileName\n  );\n\n  if (!hideLog) {\n    console.log({ assetsFilePath });\n  }\n\n  if (typeof data === \"string\") {\n    return writeStringToFile(assetsFilePath, realData);\n  }\n\n  return writeJsonToFile(assetsFilePath, realData);\n}",
   "name": "writeToAssets",
   "slug": "write-to-assets",
   "parameters": [
@@ -50,6 +45,16 @@
         "type": "string"
       },
       "required": false
+    },
+    {
+      "name": "hideLog",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
     }
   ],
   "description": "Writes anything (string or json) the assets folder of the operation of the caller function of this function\n\nUseful for testing",
@@ -64,13 +69,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 975,
-    "lines": 37,
-    "bytes": 975,
+    "characters": 1020,
+    "lines": 40,
+    "bytes": 1020,
     "bytesPerCharacter": 1,
     "charactersPerLine": 26,
-    "linesPerFile": 37,
+    "linesPerFile": 40,
     "numberOfFiles": 1
   },
-  "id": "vvoecafyetryobtkezyxrkqc"
+  "id": "sbncictonzlaibzyatbldste"
 }

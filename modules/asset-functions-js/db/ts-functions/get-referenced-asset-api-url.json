@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667111119975,
-  "updatedAt": 1667111119975,
+  "createdAt": 1669384154067,
+  "updatedAt": 1669384154067,
   "deletedAt": 0,
-  "createdFirstAt": 1667111119975,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669384154067,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getReferencedAssetApiUrl.ts",
   "commentsInside": [],
   "rawText": " (\n  apiUrl: string,\n  projectRelativeReferencingFilePath: string,\n  referencingFileRelativeAssetPath: string,\n  /**\n   * If true, asset will be returned as download\n   */\n  isDownload?: boolean\n) => {\n  return getGetApiUrl(apiUrl, \"getReferencedAssetGetApi\", {\n    projectRelativeReferencingFilePath,\n    referencingFileRelativeAssetPath,\n    isDownload: isDownload ? \"1\" : undefined,\n  });\n}",
@@ -84,5 +79,5 @@
     "linesPerFile": 15,
     "numberOfFiles": 1
   },
-  "id": "efonhijwuityagbakecrmchf"
+  "id": "rplikckrlrgjxltalavjjbli"
 }

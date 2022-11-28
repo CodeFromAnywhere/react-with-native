@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667634896259,
-  "updatedAt": 1667634896259,
+  "createdAt": 1669128192314,
+  "updatedAt": 1669128192314,
   "deletedAt": 0,
-  "createdFirstAt": 1667634896259,
+  "createdFirstAt": 1669128192314,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(props: {\n  className?: string;\n  onSubmit: () => void;\n  title?: string;\n  isLoading?: boolean;\n  submitButtonText?: string;\n  children?: any;\n}) => {\n  const { className, onSubmit, isLoading, title, children, submitButtonText } =\n    props;\n\n  return (\n    <form\n      className={className}\n      onSubmit={(e) => {\n        e.preventDefault();\n        // onSubmit();\n      }}\n      // may be needed for file upload\n      // encType=\"multipart/form-data\"\n    >\n      {title ? <P className=\"text-3xl\">{title}</P> : null}\n\n      {children}\n\n      <button type=\"submit\">\n        <BigButton\n          isLoading={isLoading}\n          onClick={onSubmit}\n          title={submitButtonText || \"Submit\"}\n        />\n      </button>\n    </form>\n  );\n}",
+  "value": "(props: {\n  className?: string;\n  onSubmit: () => void;\n  title?: string;\n  isLoading?: boolean;\n  submitButtonText?: string;\n  children?: any;\n}) => {\n  const { className, onSubmit, isLoading, title, children, submitButtonText } =\n    props;\n\n  return (\n    <form\n      autoComplete=\"off\"\n      className={className}\n      onSubmit={(e) => {\n        e.preventDefault();\n        // onSubmit();\n      }}\n      // may be needed for file upload\n      // encType=\"multipart/form-data\"\n    >\n      {title ? <P className=\"text-3xl\">{title}</P> : null}\n\n      {children}\n\n      <button type=\"submit\">\n        <BigButton\n          isLoading={isLoading}\n          onClick={onSubmit}\n          title={submitButtonText || \"Submit\"}\n        />\n      </button>\n    </form>\n  );\n}",
   "description": "A `FormContainer` is a simple container that can wrap your `SimplifiedSchemaForm` to give it a button that also sends when hitting enter on your keyboard. To achieve this, a `<form>` is created in this component.\n\nBesides this, you can also add some texts, but styling is not possible to change for this component at this point (except for the form className). If you want a completely different style, it's probably better to build it yourself.\n\nNB: TODO: There is a bug now where onSubmit gets called too often. Not sure how to fix this. Because of this, I'll simply remove the onSubmit action in the onsubmit for now, and prevent the default.",
-  "id": "dgyhpqovprbjhspadwrxsuwc"
+  "id": "qvvokzvaxgpcgzguxrakexuc"
 }

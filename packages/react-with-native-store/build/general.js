@@ -1,16 +1,191 @@
-"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var o in t=arguments[r])Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o]);return e},__assign.apply(this,arguments)},__createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,n){void 0===n&&(n=r);var o=Object.getOwnPropertyDescriptor(t,r);o&&!("get"in o?!t.__esModule:o.writable||o.configurable)||(o={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,n,o)}:function(e,t,r,n){void 0===n&&(n=r),e[n]=t[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)"default"!==r&&Object.prototype.hasOwnProperty.call(e,r)&&__createBinding(t,e,r);return __setModuleDefault(t,e),t},__awaiter=this&&this.__awaiter||function(e,t,r,n){return new(r||(r=Promise))((function(o,i){function a(e){try{u(n.next(e))}catch(e){i(e)}}function c(e){try{u(n.throw(e))}catch(e){i(e)}}function u(e){var t;e.done?o(e.value):(t=e.value,t instanceof r?t:new r((function(e){e(t)}))).then(a,c)}u((n=n.apply(e,t||[])).next())}))},__generator=this&&this.__generator||function(e,t){var r,n,o,i,a={label:0,sent:function(){if(1&o[0])throw o[1];return o[1]},trys:[],ops:[]};return i={next:c(0),throw:c(1),return:c(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function c(i){return function(c){return function(i){if(r)throw new TypeError("Generator is already executing.");for(;a;)try{if(r=1,n&&(o=2&i[0]?n.return:i[0]?n.throw||((o=n.return)&&o.call(n),0):n.next)&&!(o=o.call(n,i[1])).done)return o;switch(n=0,o&&(i=[2&i[0],o.value]),i[0]){case 0:case 1:o=i;break;case 4:return a.label++,{value:i[1],done:!1};case 5:a.label++,n=i[1],i=[0];continue;case 7:i=a.ops.pop(),a.trys.pop();continue;default:if(!(o=a.trys,(o=o.length>0&&o[o.length-1])||6!==i[0]&&2!==i[0])){a=0;continue}if(3===i[0]&&(!o||i[1]>o[0]&&i[1]<o[3])){a.label=i[1];break}if(6===i[0]&&a.label<o[1]){a.label=o[1],o=i;break}if(o&&a.label<o[2]){a.label=o[2],a.ops.push(i);break}o[2]&&a.ops.pop(),a.trys.pop();continue}i=t.call(e,a)}catch(e){i=[6,e],n=0}finally{r=o=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,c])}}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.createStore=exports.createUseStore=exports.createStoreProvider=void 0;var jsx_runtime_1=require("react/jsx-runtime"),React=__importStar(require("react")),react_1=require("react"),storage_1=require("./storage"),debug=!1,contexts={},getKey=function(e,t){return t?"".concat(t,".").concat(e):e},contextKey=function(e){return"".concat(e,"Context")},StoreContextProvider=function(e){var t=e.DynamicContext,r=e.children,n=e.config,o=e.storeKey,i=(0,react_1.useState)(!1),a=i[0],c=i[1],u=(0,react_1.useState)(null==n?void 0:n.initialValues[o]),s=u[0],l=u[1],f=null==n?void 0:n.baseKey;
-// On mount, get the current value from storage
-(0,react_1.useEffect)((function(){var e=getKey(o,f);(0,storage_1.getItem)(e).then((function(t){debug&&console.log("Hydrated store for ".concat(e,":"),t),l(t),c(!0)}))}),[]);var _=null==n?void 0:n.initialValues;return(0,jsx_runtime_1.jsx)(t.Provider,__assign({value:function(e){var t=getKey(e,f),r=_[e];return[void 0!==s?s:void 0!==r?r:null,function(e){return __awaiter(void 0,void 0,void 0,(function(){return __generator(this,(function(r){switch(r.label){case 0:
-//should do a deep equal here, and only set the store and item if the value actually has changed
-//@ts-ignore
-return l(e),[4/*yield*/,(0,storage_1.setItem)(t,e)];case 1:return r.sent(),[2/*return*/]}}))}))},{hydrated:a}]}},{children:r}))},createStoreProvider=function(e){e.debug&&(debug=e.debug),debug&&console.log("Create StoreProvider");var t=Object.keys(e.initialValues),r=t.reduce((function(e,t){var r,n=React.createContext(null);return __assign(__assign({},e),((r={})[contextKey(t)]=n,r))}),{});contexts=__assign(__assign({},contexts),r);
-// console.log({ keys, contexts });
-var n=function(r){var n=r.children;return t.reduce((function(t,r){var n=contexts[contextKey(r)];
-// console.log({ context });
-return(0,jsx_runtime_1.jsx)(StoreContextProvider,__assign({config:e,storeKey:r,DynamicContext:n},{children:t}))}),n)};return function(e){var t=e.children;return(0,jsx_runtime_1.jsx)(n,{children:t})}};exports.createStoreProvider=createStoreProvider;var getContext=function(e){return contexts[contextKey(e)]},createUseStore=function(e){debug&&console.log("Create useStore");return function(t){if(!Object.keys(e).includes(t))throw new Error("Using undefined key in useStore: ".concat(t));var r=getContext(t);if(!r)throw new Error("Failed loading the context with key: ".concat(t,". Did you wrap your component/app with a StoreProvider?"));var n=React.useContext(r),o=typeof n;return"function"!==o&&console.error("useStoreHookType for ".concat(t," is ").concat(o,"... wtf?")),null==n?void 0:n(t)}};
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createStore = exports.createUseStore = exports.createStoreProvider = void 0;
+var jsx_runtime_1 = require("react/jsx-runtime");
+var React = __importStar(require("react"));
+var react_1 = require("react");
+var storage_1 = require("./storage");
+//local variables
+var debug = false;
+var contexts = {};
+var getKey = function (key, baseKey) {
+    return baseKey ? "".concat(baseKey, ".").concat(key) : key;
+};
+var contextKey = function (key) { return "".concat(key, "Context"); };
+var StoreContextProvider = function (_a) {
+    var DynamicContext = _a.DynamicContext, children = _a.children, config = _a.config, storeKey = _a.storeKey;
+    var _b = (0, react_1.useState)(false), hydrated = _b[0], setHydrated = _b[1];
+    var _c = (0, react_1.useState)(config === null || config === void 0 ? void 0 : config.initialValues[storeKey]), store = _c[0], setStore = _c[1]; //null or some object or string or whatever
+    var baseKey = config === null || config === void 0 ? void 0 : config.baseKey;
+    // On mount, get the current value from storage
+    (0, react_1.useEffect)(function () {
+        var fullKey = getKey(storeKey, baseKey);
+        (0, storage_1.getItem)(fullKey).then(function (value) {
+            if (debug) {
+                console.log("Hydrated store for ".concat(fullKey, ":"), value);
+            }
+            setStore(value);
+            setHydrated(true);
+        });
+    }, []);
+    var initialValues = config === null || config === void 0 ? void 0 : config.initialValues;
+    var useStoreHook = function (key) {
+        var fullKey = getKey(key, baseKey);
+        var defaultValue = initialValues[key];
+        // @ts-ignore
+        var value = store !== undefined
+            ? store
+            : defaultValue !== undefined
+                ? defaultValue
+                : null;
+        var dispatch = function (value) { return __awaiter(void 0, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        //should do a deep equal here, and only set the store and item if the value actually has changed
+                        //@ts-ignore
+                        setStore(value);
+                        return [4 /*yield*/, (0, storage_1.setItem)(fullKey, value)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        return [value, dispatch, { hydrated: hydrated }];
+    };
+    return ((0, jsx_runtime_1.jsx)(DynamicContext.Provider, __assign({ value: useStoreHook }, { children: children })));
+};
+/**
+ * Function to create the StoreProvider
+ *
+ * NB: this function uses a local variable on the main scope of javascript in order to create the Context components dynamically. Beware!
+ */
+var createStoreProvider = function (config) {
+    if (config.debug) {
+        debug = config.debug;
+    }
+    if (debug) {
+        console.log("Create StoreProvider");
+    }
+    var keys = Object.keys(config.initialValues);
+    var newContext = keys.reduce(function (acc, key) {
+        var _a;
+        var Context = React.createContext(null);
+        return __assign(__assign({}, acc), (_a = {}, _a[contextKey(key)] = Context, _a));
+    }, {});
+    contexts = __assign(__assign({}, contexts), newContext);
+    // console.log({ keys, contexts });
+    var MainProvider = function (_a) {
+        var children = _a.children;
+        return keys.reduce(function (acc, key) {
+            var context = contexts[contextKey(key)];
+            // console.log({ context });
+            return ((0, jsx_runtime_1.jsx)(StoreContextProvider, __assign({ config: config, storeKey: key, DynamicContext: context }, { children: acc })));
+        }, children);
+    };
+    return function (_a) {
+        var children = _a.children;
+        return (0, jsx_runtime_1.jsx)(MainProvider, { children: children });
+    };
+};
+exports.createStoreProvider = createStoreProvider;
+var getContext = function (key) { return contexts[contextKey(key)]; };
 /**
  * Function to create a hook for accessing the store
- */exports.createUseStore=createUseStore;
+ */
+var createUseStore = function (initialValues) {
+    if (debug) {
+        console.log("Create useStore");
+    }
+    var useStore = function (key) {
+        if (!Object.keys(initialValues).includes(key)) {
+            throw new Error("Using undefined key in useStore: ".concat(key));
+        }
+        var context = getContext(key);
+        if (!context) {
+            throw new Error("Failed loading the context with key: ".concat(key, ". Did you wrap your component/app with a StoreProvider?"));
+        }
+        var useStoreHook = React.useContext(context);
+        var useStoreHookType = typeof useStoreHook;
+        if (useStoreHookType !== "function") {
+            console.error("useStoreHookType for ".concat(key, " is ").concat(useStoreHookType, "... wtf?"));
+        }
+        return useStoreHook === null || useStoreHook === void 0 ? void 0 : useStoreHook(key);
+    };
+    return useStore;
+};
+exports.createUseStore = createUseStore;
 /**
 
 One function is all you need to make a new store!
@@ -38,5 +213,9 @@ export const { useStore, StoreProvider } = createStore(writerInitialValues);
 Simple as pie 🍰
 
  */
-var createStore=function(e){return{StoreProvider:(0,exports.createStoreProvider)({initialValues:e}),useStore:(0,exports.createUseStore)(e)}};exports.createStore=createStore;
+var createStore = function (initialValues) { return ({
+    StoreProvider: (0, exports.createStoreProvider)({ initialValues: initialValues }),
+    useStore: (0, exports.createUseStore)(initialValues),
+}); };
+exports.createStore = createStore;
 //# sourceMappingURL=general.js.map

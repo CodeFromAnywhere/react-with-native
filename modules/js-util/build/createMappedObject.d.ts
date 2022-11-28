@@ -8,5 +8,5 @@ export declare type MappedObject<T> = {
  */
 export declare const createMappedObject: <T extends {
     [key: string]: any;
-}>(array: T[], mapKey: keyof T) => MappedObject<T>;
+}, U = T>(array: T[], mapKey: keyof T, mapFn?: ((value: T, array: T[]) => U) | undefined) => MappedObject<U>;
 //# sourceMappingURL=createMappedObject.d.ts.map

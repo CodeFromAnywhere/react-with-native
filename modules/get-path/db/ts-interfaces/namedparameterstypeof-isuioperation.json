@@ -1,0 +1,76 @@
+{
+  "createdAt": 1669055052311,
+  "updatedAt": 1669055052311,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055052311,
+  "id": "namedparameterstypeof-isuioperation",
+  "name": "NamedParameters<typeof isUiOperation>",
+  "slug": "namedparameterstypeof-isuioperation",
+  "operationRelativeTypescriptFilePath": "src/getOperationClassification.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "tsconfig": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TsConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "packageJson": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Operation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "tsconfig",
+        "packageJson"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "tsconfig",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "packageJson",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof isUiOperation>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,899 @@
+{
+  "createdAt": 1668334465334,
+  "updatedAt": 1668334465334,
+  "deletedAt": 0,
+  "createdFirstAt": 1668334465334,
+  "id": "maildatafromoptional",
+  "name": "MailDataFromOptional",
+  "slug": "maildatafromoptional",
+  "operationRelativeTypescriptFilePath": "src/sendMail.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n/**\n * From is optional for sending an email because it will be filled in by the OsConfig default.\n */\nexport type MailDataFromOptional = Omit<MailDataRequired, \"from\"> & {\n  /**\n   * If you don't fill this in, the `OsConfig` default will be used.\n   */\n  from?: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "From is optional for sending an email because it will be filled in by the OsConfig default.",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "type": "string",
+          "description": "If you don't fill this in, the `OsConfig` default will be used."
+        },
+        "to": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EmailData"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EmailData"
+              }
+            }
+          ]
+        },
+        "cc": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EmailData"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EmailData"
+              }
+            }
+          ]
+        },
+        "bcc": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EmailData"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EmailData"
+              }
+            }
+          ]
+        },
+        "replyTo": {
+          "$ref": "#/definitions/EmailData"
+        },
+        "sendAt": {
+          "type": "number"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "html": {
+          "type": "string"
+        },
+        "content": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MailContent"
+              }
+            },
+            {
+              "allOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/MailContent"
+                  }
+                },
+                {
+                  "type": "object",
+                  "properties": {}
+                }
+              ]
+            }
+          ]
+        },
+        "templateId": {
+          "type": "string"
+        },
+        "personalizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalizationData"
+          }
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttachmentData"
+          }
+        },
+        "ipPoolName": {
+          "type": "string"
+        },
+        "batchId": {
+          "type": "string"
+        },
+        "sections": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "category": {
+          "type": "string"
+        },
+        "customArgs": {
+          "type": "object"
+        },
+        "asm": {
+          "$ref": "#/definitions/ASMOptions"
+        },
+        "mailSettings": {
+          "$ref": "#/definitions/MailSettings"
+        },
+        "trackingSettings": {
+          "$ref": "#/definitions/TrackingSettings"
+        },
+        "substitutions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "substitutionWrappers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isMultiple": {
+          "type": "boolean"
+        },
+        "dynamicTemplateData": {
+          "type": "object"
+        },
+        "hideWarnings": {
+          "type": "boolean"
+        },
+        "replyToList": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EmailJSON"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EmailJSON"
+              }
+            }
+          ]
+        }
+      },
+      "description": "From is optional for sending an email because it will be filled in by the OsConfig default."
+    },
+    "simplifiedSchema": {
+      "fullComment": "From is optional for sending an email because it will be filled in by the OsConfig default.",
+      "properties": [
+        {
+          "name": "from",
+          "required": false,
+          "schema": {
+            "fullComment": "If you don't fill this in, the `OsConfig` default will be used.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "to",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "cc",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "bcc",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "replyTo",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "sendAt",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "subject",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "text",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "html",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "content",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "templateId",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "personalizations",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "to",
+                      "required": true,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "from",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "",
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "cc",
+                      "required": false,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "bcc",
+                      "required": false,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "subject",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "headers",
+                      "required": false,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "substitutions",
+                      "required": false,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "dynamicTemplateData",
+                      "required": false,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "customArgs",
+                      "required": false,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "sendAt",
+                      "required": false,
+                      "schema": {
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "PersonalizationData"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "attachments",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "filename",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "type",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "disposition",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "contentId",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "AttachmentData"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "ipPoolName",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "batchId",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "sections",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "headers",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "categories",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "category",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "customArgs",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "asm",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "groupId",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "groupsToDisplay",
+                "required": false,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "number"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "mailSettings",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "bcc",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "email",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "bypassListManagement",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "bypassSpamManagement",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "bypassBounceManagement",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "bypassUnsubscribeManagement",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "footer",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "text",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "html",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "sandboxMode",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "spamCheck",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "threshold",
+                      "required": false,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "postToUrl",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "trackingSettings",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "clickTracking",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "enableText",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "openTracking",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "substitutionTag",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "subscriptionTracking",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "text",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "html",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "substitutionTag",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "ganalytics",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "enable",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "utmSource",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "utmMedium",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "utmTerm",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "utmContent",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "utmCampaign",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "substitutions",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "substitutionWrappers",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "isMultiple",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "dynamicTemplateData",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "hideWarnings",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "replyToList",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MailDataFromOptional",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

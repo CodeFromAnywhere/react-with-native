@@ -1,0 +1,40 @@
+{
+  "createdAt": 1668833462239,
+  "updatedAt": 1668833462239,
+  "deletedAt": 0,
+  "createdFirstAt": 1668833462239,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/SelectMultiple.tsx",
+  "commentsInside": [],
+  "rawText": " <T extends unknown>(\n  props: SelectMultipleInputProps<T>\n) => {\n  const {\n    onChange,\n    options,\n    className,\n    value,\n    autoSuggest,\n    noPlaceholder,\n    placeholder,\n    title,\n    uniqueFieldId,\n  } = props;\n\n  //console.log({ value, extraOptions: extra.options });\n  const defaultOption: Item<T | null> = {\n    label: title || \"Choose a value\",\n    value: \"\",\n  };\n\n  const optionsLeft = [defaultOption]\n    .concat(options)\n    .filter((x) => !value.find((i) => x.value === i.value));\n  return (\n    <Div className=\"flex flex-row flex-wrap\">\n      {value.map((item, index) => (\n        <Button\n          onClick={() => {\n            const newValue = value.filter((x) => x.value !== item.value);\n            onChange(newValue);\n          }}\n          key={`selected${uniqueFieldId}${index}`}\n          className={`mr-3 px-3 py-2 rounded-md border border-gray-400`}\n        >\n          <P className=\"text-xs\">\n            {item.label} <Span textClassName=\"text-red-500 text-xs\">(x)</Span>\n          </P>\n        </Button>\n      ))}\n\n      {optionsLeft.length > 1 ? (\n        <Select\n          placeholder={placeholder}\n          noPlaceholder={noPlaceholder}\n          autoSuggest={autoSuggest}\n          className={className || UI.selectInput}\n          title={title || \"\"}\n          options={optionsLeft}\n          onChange={(selected) => {\n            // console.log({ selected });\n            if (selected) {\n              const newValue = [...value];\n\n              newValue.push(selected);\n\n              // console.log({ value, newValue });\n              onChange(newValue);\n            }\n          }}\n        />\n      ) : null}\n    </Div>\n  );\n}",
+  "name": "SelectMultipleInput",
+  "slug": "select-multiple-input",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 1670,
+    "lines": 65,
+    "bytes": 1670,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 65,
+    "numberOfFiles": 1
+  },
+  "id": "bkrinbgoippeaflhtiyuoxbc"
+}

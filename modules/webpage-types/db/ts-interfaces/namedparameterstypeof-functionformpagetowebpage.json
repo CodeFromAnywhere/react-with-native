@@ -1,0 +1,87 @@
+{
+  "createdAt": 1669276582476,
+  "updatedAt": 1669276582476,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276582476,
+  "id": "namedparameterstypeof-functionformpagetowebpage",
+  "name": "NamedParameters<typeof functionFormPageToWebPage>",
+  "slug": "namedparameterstypeof-functionformpagetowebpage",
+  "operationRelativeTypescriptFilePath": "src/to-webpage-conversors.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "pageData": {
+          "$ref": "#/definitions/FunctionFormPage"
+        }
+      },
+      "required": [
+        "pageData"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "pageData",
+          "required": true,
+          "schema": {
+            "fullComment": "Data needed to make a `WebPage`<FunctionFormPage>",
+            "properties": [
+              {
+                "name": "functionName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "actionWithResult",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "routeOnIsSuccessful",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "customTitle",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "isMenuHidden",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof functionFormPageToWebPage>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

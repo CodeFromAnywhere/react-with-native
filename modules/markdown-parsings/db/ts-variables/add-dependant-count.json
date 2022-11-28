@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200439965,
+  "updatedAt": 1669200439965,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200439965,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "addDependantCount",
+  "slug": "add-dependant-count",
+  "operationRelativeTypescriptFilePath": "src/addDependantCount.ts",
+  "type": {
+    "rawType": "(type: \"tsFunction\" | \"tsVariable\" | \"tsInterface\", imports: import(\"/Users/king/King/operations/tools/types/code-types/build/TsImport\").TsImport[]) => (item: import(\"/Users/king/King/operations/tools/types/code-types/build/TsFunction\").TsFunction | import(\"/Users/king/King/operations/tools/types/code-types/build/TsVariable\").TsVariable | import(\"/Users/king/King/operations/tools/types/code-types/build/TsInterface\").TsInterface) => Promise<import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/DependantCountObject\").DependantCountObject>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(type: \"tsFunction\" | \"tsVariable\" | \"tsInterface\", imports: TsImport[]) =>\n  async (\n    item: TsFunction | TsVariable | TsInterface\n  ): Promise<DependantCountObject> => {\n    return {\n      [type]: item,\n      externalDependantFiles: item.operationName\n        ? await findDependants({\n            operationName: item.operationName,\n            importName: item.name,\n            imports,\n            onlyExternal: true,\n          })\n        : [],\n    } as DependantCountObject;\n  }",
+  "description": "Double arrow function to get the count for the item",
+  "id": "euiyyhrlozrfcbddutzsrndp"
+}

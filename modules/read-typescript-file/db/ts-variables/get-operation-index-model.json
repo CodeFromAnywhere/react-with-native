@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263103318,
+  "updatedAt": 1666263103318,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263103318,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "getOperationIndexModel",
+  "slug": "get-operation-index-model",
+  "operationRelativeTypescriptFilePath": "src/readTypescriptFile.ts",
+  "type": {
+    "rawType": "<T extends keyof import(\"/Users/king/King/operations/tools/types/code-types/build/TypescriptIndex\").IndexModels>(indexModelName: T, operationBasePath: string, filePaths: string[]) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TypescriptIndex\").IndexModels[T][]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async <T extends keyof IndexModels>(\n  indexModelName: T,\n  operationBasePath: string,\n  /**\n   * if provided, db result will be filtered to specific filepaths\n   */\n  filePaths: string[]\n): Promise<IndexModels[T][]> => {\n  const projectRoot = getProjectRoot(filePaths[0]);\n  if (!projectRoot) return [];\n  const relativeFilePaths = filePaths.map((f) =>\n    f.substring(projectRoot.length)\n  );\n  const result = await db\n    // TODO: make it more efficient by just finding the correct JSON files instead of all files in the operation.\n    .get(indexModelName, { operationName: getLastFolder(operationBasePath) });\n\n  const filterOnName =\n    indexModelName === \"TsComment\" ? () => true : uniqueNames;\n\n  const filtered = result\n    .filter(\n      (x) =>\n        x.projectRelativePath &&\n        (relativeFilePaths.length === 0 ||\n          relativeFilePaths.includes(x.projectRelativePath))\n    )\n    .filter(filterOnName);\n\n  return filtered;\n}",
+  "description": "",
+  "id": "hrtongsvulceysitcfuzibzt"
+}

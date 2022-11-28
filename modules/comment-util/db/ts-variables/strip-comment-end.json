@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668335766858,
+  "updatedAt": 1668335766858,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335766858,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "stripCommentEnd",
+  "slug": "strip-comment-end",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "(trimmedLine: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(trimmedLine: string) =>\n  trimmedLine.endsWith(\"*/\")\n    ? trimmedLine.substring(0, trimmedLine.length - 2).trim()\n    : trimmedLine",
+  "description": "",
+  "id": "ndtqyshbhwlaoclmbcbmdijo"
+}

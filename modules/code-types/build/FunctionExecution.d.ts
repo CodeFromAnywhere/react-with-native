@@ -1,5 +1,5 @@
 import { DefaultModelType, Id, Markdown } from "model-types";
-import { PerformanceItem } from "./PerformanceItem";
+import { PerformanceItem } from "measure-performance";
 import { TsFunction } from "./TsFunction";
 /**
  * Model for tests, examples, cache, and recent executions of any function
@@ -39,7 +39,7 @@ export interface FunctionExecution extends DefaultModelType {
     /**
      * test description or example description or anything
      */
-    description: Markdown;
+    description?: Markdown;
     isResultFromCache: boolean;
     /**
      * if true, the api of the function (input/output interface) has changed in bewteen, so the re-execution would probably fail or return a different result

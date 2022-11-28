@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055581912,
+  "updatedAt": 1669055581912,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055581912,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findAndUpsertTsInterfaces",
+  "slug": "find-and-upsert-ts-interfaces",
+  "operationRelativeTypescriptFilePath": "src/findAndUpsertTsInterfaces.ts",
+  "type": {
+    "rawType": "(config: { sourceFile?: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").SourceFile | undefined; operationName: string; filePath: string; projectRoot?: string | undefined; }) => Promise<any[] | undefined>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config: {\n  /**\n   * If not provided, will load the project at the operation base path of the filepath, and get the source file at the filePath\n   */\n  sourceFile?: SourceFile;\n  operationName: string;\n  /**\n   * path of the file to find TsInterfaces in\n   */\n  filePath: string;\n  projectRoot?: string;\n}): Promise<undefined | Creation<TsInterface>[]> => {\n  const { filePath, operationName, projectRoot } = config;\n  let { sourceFile } = config;\n\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) return;\n\n  if (!sourceFile) {\n    const project = getTsMorphProject(operationBasePath);\n    if (!project) return;\n    sourceFile = project.getSourceFile(filePath);\n  }\n\n  if (!sourceFile) {\n    console.log(\"Filepath not existing\");\n    return;\n  }\n\n  // NB: we need to get the named absolute import names because there may be type interfaces in there that we should add into our database!\n  const namedAbsoluteImportNames = sourceFile\n    .getImportDeclarations()\n    .map((importDeclaration) => {\n      const module = String(\n        importDeclaration.getModuleSpecifier().getLiteralText()\n      );\n      if (isAbsoluteImport(module)) {\n        const namedImports: string[] = importDeclaration\n          .getNamedImports()\n          .map((x) => x.getName());\n\n        return namedImports;\n      }\n    })\n    .filter(notEmpty)\n    .flat();\n\n  const morphInterfaceInfo: MorphInterfaceInfo[] = sourceFile\n    .getInterfaces()\n    .map((x) => ({\n      hasGeneric: getHasGeneric(x),\n      raw: x.getFullText(),\n      name: x.getName(),\n      isExported: x.isExported(),\n      description: x\n        .getLeadingCommentRanges()\n        .map((x) => x.getText())\n        .join(\"\\n\\n\"),\n      extensions: x.getExtends().map((x) => x.getText()),\n    }));\n\n  const morphTypeInfo: MorphInterfaceInfo[] = sourceFile\n    .getTypeAliases()\n    .map((x) => {\n      const isExported = x.isExported();\n      const name = x.getName();\n      return {\n        hasGeneric: getHasGeneric(x),\n        raw: x.getFullText(),\n        isExported,\n        description: x\n          .getLeadingCommentRanges()\n          .map((x) => x.getText())\n          .join(\"\\n\\n\"),\n        name,\n        extensions: [],\n      };\n    });\n\n  const morphTypesAndInterfacesInfo = morphTypeInfo.concat(morphInterfaceInfo);\n\n  const tsInterfaces = await generateSchema(\n    filePath,\n    morphTypesAndInterfacesInfo,\n    namedAbsoluteImportNames\n  );\n\n  const operationRelativeTypescriptFilePath = getOperationRelativePath(\n    filePath,\n    operationBasePath\n  );\n  // console.log({\n  //   morphTypeNames: morphTypesAndInterfacesInfo.map((x) => x.name),\n  //   namedAbsoluteImportNames,\n  //   tsInterfacesLength: tsInterfaces.length,\n  // });\n\n  // @ts-ignore\n  await db.remove(\n    \"TsInterface\",\n    (i) =>\n      i.operationRelativeTypescriptFilePath ===\n        operationRelativeTypescriptFilePath &&\n      !tsInterfaces.map((x) => x.name).includes(i.name),\n    { operationName, manualProjectRoot: projectRoot }\n  );\n  // @ts-ignore\n  const result = await db.upsert(\"TsInterface\", tsInterfaces, {\n    operationName,\n    removeUntouched: true,\n    manualProjectRoot: projectRoot,\n  });\n\n  // log(`Done`, { type: \"debug\" }, result);\n  return tsInterfaces;\n}",
+  "description": "",
+  "id": "ewvgicjgwnerowgghgumssrz"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669639437574,
+  "updatedAt": 1669639437574,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639437574,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "DocsReaderLayout",
+  "slug": "docs-reader-layout",
+  "operationRelativeTypescriptFilePath": "src/components/DocsReaderLayout.tsx",
+  "type": {
+    "rawType": "(props: import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/markdown-reader-types/build/MarkdownReaderPageProps\").MarkdownReaderPageProps) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: MarkdownReaderPageProps) => {\n  const router = useRouter();\n  const queryPath = getQueryPath(router.query);\n  const word: string | undefined = Array.isArray(router.query?.word)\n    ? router.query?.word?.[0]\n    : router.query.word;\n\n  return (\n    <Layout\n      publicBundleConfig={props.publicBundleConfig}\n      augmentedWordObject={props.content?.augmentedWordObject}\n      menu={props.menu}\n    >\n      {queryPath === \"dictionary\" && props.content?.augmentedWordObject ? (\n        <Dictionary\n          augmentedWordObject={props.content?.augmentedWordObject}\n          word={word}\n        />\n      ) : (\n        <ReaderPageContent {...props.content} />\n      )}\n    </Layout>\n  );\n}",
+  "description": "",
+  "id": "kgpulqxhvhdqvqtqjpewllnb"
+}

@@ -1,4 +1,5 @@
 export * from "./MarkdownCodeblock";
+export * from "./Parameter";
 export * from "./getUrlFromRelativeUrl";
 export * from "./renderFrontMatter";
 export * from "./renderMarkdownChunk";

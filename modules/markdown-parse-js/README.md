@@ -1,6 +1,6 @@
 # Markdown parse js
 
-markdown-parse-js (`OperationClassification` js)
+markdown-parse-js (`OperationClassification` cjs)
 
 js-only operation containing all kinds of functions that help parsing markdown
 
@@ -48,6 +48,20 @@ See https://stackoverflow.com/questions/6695439/how-to-link-to-a-named-anchor-in
 
 
 
+## markdownParseToMarkdownString()
+
+NB: this just uses RAW!
+
+Use `markdownParseToMarkdownStringFromContent` for the real deal
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| markdownParse | `MarkdownParse` |  |
+| **Output** | `String`   |    |
+
+
+
 ## parseFrontmatterMarkdownString()
 
 splits a markdown string into its frontmatter object and the raw content (without frontmatter)
@@ -67,21 +81,17 @@ Implicit ids are a convention in markdown. A title gets an implicit id by removi
 See https://stackoverflow.com/questions/6695439/how-to-link-to-a-named-anchor-in-multimarkdown
 
 
+## 📄 markdownParseToMarkdownString (exported const)
+
+NB: this just uses RAW!
+
+Use `markdownParseToMarkdownStringFromContent` for the real deal
+
+
 ## 📄 parseFrontmatterMarkdownString (exported const)
 
 splits a markdown string into its frontmatter object and the raw content (without frontmatter)
 
-
-## markdownParseToMarkdownString()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| markdownParse | `MarkdownParse` |  |
-| **Output** | `String`   |    |
-
-
-
-## 📄 markdownParseToMarkdownString (exported const)
 
 ## getMarkdownIntro()
 
@@ -99,15 +109,6 @@ TODO: It would be better to find the first paragraph based on the level.
 
 
 
-## getMarkdownReferencePaths()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| markdownString | string |  |
-| **Output** | string[]   |    |
-
-
-
 ## 📄 getMarkdownIntro (exported const)
 
 This function takes a markdown parse and gets the first paragraph and a title from it, if available.
@@ -117,13 +118,45 @@ Currently assumes that the first paragraph starts directly after the title or th
 TODO: It would be better to find the first paragraph based on the level.
 
 
+## getMarkdownReferencePaths()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| markdownString | string |  |
+| **Output** | string[]   |    |
+
+
+
+## markdownParseToMarkdownStringFromContent()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| markdownParse | `MarkdownParse` |  |
+| **Output** | string   |    |
+
+
+
 ## 📄 getMarkdownReferencePaths (exported const)
+
+## 📄 markdownParseToMarkdownStringFromContent (exported const)
 
 # Internal
 
-<details><summary>Show internal (19)</summary>
+<details><summary>Show internal (21)</summary>
     
-  # getChunkParagraphsRecursively()
+  # chunkToStringRecursively()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| chunk | `MarkdownChunk` |  |
+| **Output** | `String`   |    |
+
+
+
+## getChunkParagraphsRecursively()
 
 Get all paragraphs (`content` values) recursively from a `MarkdownChunk`
 
@@ -262,6 +295,8 @@ Properties:
 | isAsset (optional) | boolean |  |
 
 
+
+## 📄 chunkToStringRecursively (exported const)
 
 ## 📄 exampleMarkdownFileContents (exported const)
 

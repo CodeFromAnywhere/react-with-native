@@ -1,98 +1,14 @@
-"use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.readMarkdownFileToModel = void 0;
-var fs_util_1 = require("fs-util");
-var js_util_1 = require("js-util");
-var get_path_1 = require("get-path");
-var readMarkdownFile_1 = require("./readMarkdownFile");
+"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var a in t=arguments[r])Object.prototype.hasOwnProperty.call(t,a)&&(e[a]=t[a]);return e},__assign.apply(this,arguments)},__awaiter=this&&this.__awaiter||function(e,t,r,n){return new(r||(r=Promise))((function(a,i){function o(e){try{u(n.next(e))}catch(e){i(e)}}function l(e){try{u(n.throw(e))}catch(e){i(e)}}function u(e){var t;e.done?a(e.value):(t=e.value,t instanceof r?t:new r((function(e){e(t)}))).then(o,l)}u((n=n.apply(e,t||[])).next())}))},__generator=this&&this.__generator||function(e,t){var r,n,a,i,o={label:0,sent:function(){if(1&a[0])throw a[1];return a[1]},trys:[],ops:[]};return i={next:l(0),throw:l(1),return:l(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function l(i){return function(l){return function(i){if(r)throw new TypeError("Generator is already executing.");for(;o;)try{if(r=1,n&&(a=2&i[0]?n.return:i[0]?n.throw||((a=n.return)&&a.call(n),0):n.next)&&!(a=a.call(n,i[1])).done)return a;switch(n=0,a&&(i=[2&i[0],a.value]),i[0]){case 0:case 1:a=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,n=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(a=o.trys,(a=a.length>0&&a[a.length-1])||6!==i[0]&&2!==i[0])){o=0;continue}if(3===i[0]&&(!a||i[1]>a[0]&&i[1]<a[3])){o.label=i[1];break}if(6===i[0]&&o.label<a[1]){o.label=a[1],a=i;break}if(a&&o.label<a[2]){o.label=a[2],o.ops.push(i);break}a[2]&&o.ops.pop(),o.trys.pop();continue}i=t.call(e,o)}catch(e){i=[6,e],n=0}finally{r=a=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,l])}}},__importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.readMarkdownFileToModel=void 0;var sdk_operations_1=require("sdk-operations"),fs_util_1=require("fs-util"),js_util_1=require("js-util"),get_path_1=require("get-path"),readMarkdownFile_1=require("./readMarkdownFile"),frontmatter_util_1=require("frontmatter-util"),webmarkdownfile_json_1=__importDefault(require("markdown-types/db/ts-interfaces/webmarkdownfile.json")),readMarkdownFileToModel=function(e,t,
 /**
- * Reads a markdown absolute path to a `MarkdownFile` model
+ * Only the ones that are not from this domain without path (filter based on hostname/path)
  */
-var readMarkdownFileToModel = function (absoluteFilePath) { return __awaiter(void 0, void 0, void 0, function () {
-    var filename, projectRoot, mdParse, _a, privacy, detectedLanguage, labels, createdAt, createdFirstAt, deletedAt, updatedAt, id, slug, cta, headerImage, headerSubtitle, headerTitle, isDraft, itemId, frontmatter, operationBasePath, modelLocation, markdownFile;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                filename = fs_util_1.path.parse(absoluteFilePath).name;
-                projectRoot = (0, get_path_1.getProjectRoot)(absoluteFilePath);
-                if (!projectRoot)
-                    return [2 /*return*/, null];
-                return [4 /*yield*/, (0, readMarkdownFile_1.readMarkdownFile)(absoluteFilePath)];
-            case 1:
-                mdParse = _b.sent();
-                if (!mdParse)
-                    return [2 /*return*/, null];
-                _a = mdParse.parameters, privacy = _a.privacy, detectedLanguage = _a.detectedLanguage, labels = _a.labels, createdAt = _a.createdAt, createdFirstAt = _a.createdFirstAt, deletedAt = _a.deletedAt, updatedAt = _a.updatedAt, id = _a.id, slug = _a.slug, cta = _a.cta, headerImage = _a.headerImage, headerSubtitle = _a.headerSubtitle, headerTitle = _a.headerTitle, isDraft = _a.isDraft, itemId = _a.itemId, frontmatter = __rest(_a, ["privacy", "detectedLanguage", "labels", "createdAt", "createdFirstAt", "deletedAt", "updatedAt", "id", "slug", "cta", "headerImage", "headerSubtitle", "headerTitle", "isDraft", "itemId"]);
-                operationBasePath = (0, get_path_1.findOperationBasePath)(absoluteFilePath);
-                modelLocation = {
-                    operationName: operationBasePath ? (0, fs_util_1.getLastFolder)(operationBasePath) : null,
-                    projectRelativePath: (0, get_path_1.makeRelative)(absoluteFilePath, projectRoot),
-                    operationRelativePath: operationBasePath
-                        ? (0, get_path_1.makeRelative)(absoluteFilePath, operationBasePath)
-                        : undefined,
-                };
-                markdownFile = __assign(__assign(__assign({}, modelLocation), frontmatter), { markdown: mdParse.raw, categoryStackCalculated: [], language: "english", privacy: privacy, detectedLanguage: detectedLanguage, labels: labels, createdAt: createdAt, createdFirstAt: createdFirstAt, deletedAt: deletedAt, updatedAt: updatedAt, cta: cta, headerImage: headerImage, headerSubTitle: headerSubtitle, headerTitle: headerTitle, isDraft: isDraft, itemId: itemId, name: filename, slug: slug, id: id });
-                return [2 /*return*/, (0, js_util_1.omitUndefinedValues)(markdownFile)];
-        }
-    });
-}); };
-exports.readMarkdownFileToModel = readMarkdownFileToModel;
+r){return __awaiter(void 0,void 0,void 0,(function(){var n,a,i,o,l,u,s,_,d,c,f,p,h,g,w,m;return __generator(this,(function(k){switch(k.label){case 0:return fs_util_1.path.parse(e).name,(n=(0,get_path_1.getProjectRoot)(e))?[4/*yield*/,(0,readMarkdownFile_1.readMarkdownFile)(e)]:[2/*return*/,null];case 1:return(a=k.sent())&&(i=sdk_operations_1.operations[t])?(o=fs_util_1.path.join(n,i,"public/headers"),fs_util_1.fs.existsSync(o)?[4/*yield*/,fs_util_1.fs.readdir(o,"utf8")]:[3/*break*/,3]):[2/*return*/,null];case 2:return u=k.sent(),[3/*break*/,4];case 3:u=[],k.label=4;case 4:return l=u,!(s=(0,frontmatter_util_1.frontmatterToObject)(a.parameters,webmarkdownfile_json_1.default.type.simplifiedSchema)).headerImage&&l.length&&(_=(0,js_util_1.sum)(e.split("").map((function(e){return e.charCodeAt(0)}))),d=_%(l.length-1),c=l[d],
+/**
+                     * Puts it as backendAsset
+                     */
+s.headerImage={
+// NB: this ensures the URL isn't later altered to a backend-url (in dev mode)
+absoluteUrl:"/headers/".concat(c)}),s.markdownCallToActionSlugs||(s.markdownCallToActionSlugs=r.map((function(e){return e.slug}))),
+// attach the actual call to actions
+s.markdownCallToActions=(null===(w=s.markdownCallToActionSlugs)||void 0===w?void 0:w.map((function(e){return r.find((function(t){return t.slug===e}))})).filter(js_util_1.notEmpty))||[],s.header_markdownCallToActions=(null===(m=s.header_markdownCallToActionSlugs)||void 0===m?void 0:m.map((function(e){return r.find((function(t){return t.slug===e}))})).filter(js_util_1.notEmpty))||[],f=(0,get_path_1.findOperationBasePath)(e),p={operationName:f?(0,fs_util_1.getLastFolder)(f):null,projectRelativePath:(0,get_path_1.makeRelative)(e,n),operationRelativePath:f?(0,get_path_1.makeRelative)(e,f):void 0},h=a.fileName||"untitled",g=__assign(__assign(__assign(__assign(__assign({},p),s),{markdown:a.raw,categoryStackCalculated:[]}),s),{id:h,createdFirstAt:Date.now(),deletedAt:0,createdAt:Date.now(),privacy:s.privacy||"public",language:s.language||"english",updatedAt:s.updatedAt||Date.now(),name:h,slug:h}),[2/*return*/,(0,js_util_1.omitUndefinedValues)(g)]}}))}))};exports.readMarkdownFileToModel=readMarkdownFileToModel;
 //# sourceMappingURL=readMarkdownFileToModel.js.map

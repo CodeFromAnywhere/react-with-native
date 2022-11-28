@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666264528255,
-  "updatedAt": 1666264528255,
+  "createdAt": 1668336342097,
+  "updatedAt": 1668336342097,
   "deletedAt": 0,
-  "createdFirstAt": 1666264528255,
+  "createdFirstAt": 1668336342097,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  /**\n   * NB: texts of more than a sentence are not supported\n   */\n  text: string,\n  target: Casing\n) =>\n  text\n    .split(nonCasingDelimiters)\n    .reduce(\n      (all, word) => all.concat(splitCasingDelimiters(word)),\n      [] as string[]\n    )\n    .map((word, index) => convertToTargetCasing(word, index, target))\n    .join(getDelimiter(target))",
   "description": "",
-  "id": "nfyucssrnvwurwzevwtznbgv"
+  "id": "uwptwxhrgubgkhjbsrokedet"
 }

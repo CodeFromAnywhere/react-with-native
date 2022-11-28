@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635457017,
-  "updatedAt": 1667635457017,
+  "createdAt": 1668334949779,
+  "updatedAt": 1668334949779,
   "deletedAt": 0,
-  "createdFirstAt": 1667635457017,
+  "createdFirstAt": 1668334949779,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async <T extends CsvItemType>(\n  filePath: Path | undefined\n): Promise<T[] | null> => {\n  if (!filePath) return null;\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n\n  const fileBuffer = await fs.readFile(filePath);\n  const parsed = parse(fileBuffer, { columns: true }) as T[];\n\n  return parsed;\n}",
   "description": "Reads and parses CSV file\n\nspecify a generic of what type of item the file contains an array of",
-  "id": "nnicpshkvarbabvbqzrhvkla"
+  "id": "xabenmfiuuuqgfejtmvujqop"
 }

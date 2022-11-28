@@ -1,0 +1,52 @@
+[
+  {
+    "createdAt": 1668335767374,
+    "updatedAt": 1668335767374,
+    "deletedAt": 0,
+    "createdFirstAt": 1668335767374,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.ts",
+    "comment": "only strip slahes for single-line comments",
+    "rawStatement": "export const stripCommentEnd = (trimmedLine: string) =>\n  trimmedLine.endsWith(\"*/\")\n    ? trimmedLine.substring(0, trimmedLine.length - 2).trim()\n    : trimmedLine;",
+    "parameters": {},
+    "types": [],
+    "firstLine": 13,
+    "lastLine": 13,
+    "id": "wefizkuzvldeqxooqsddgped"
+  },
+  {
+    "createdAt": 1668335767374,
+    "updatedAt": 1668335767374,
+    "deletedAt": 0,
+    "createdFirstAt": 1668335767374,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.ts",
+    "comment": "removes new lines at beginning and end\n\nNB: This function uses a small recursion! I don't know if this is very efficient, but shouldn't be too deep!\n\nNB: it should be noted that a newline apparently seems to be counting as a single character! Strange.",
+    "rawStatement": "const trimSurroundingNewlines = (string: string): string => {\n  return string.startsWith(\"\\n\")\n    ? trimSurroundingNewlines(string.substring(1))\n    : string.endsWith(\"\\n\")\n    ? trimSurroundingNewlines(string.substring(0, string.length - 1))\n    : string;\n};",
+    "parameters": {},
+    "types": [
+      "nb"
+    ],
+    "firstLine": 22,
+    "lastLine": 27,
+    "id": "pkhovndoggzewpehvuyljqfi"
+  },
+  {
+    "createdAt": 1668335767374,
+    "updatedAt": 1668335767374,
+    "deletedAt": 0,
+    "createdFirstAt": 1668335767374,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.ts",
+    "comment": "parses comments (single line, multiline and doc) and removes the comment syntax\n\n- removes slashes\n- removes multiline comment prefix\n- removes multiline comment suffix\n- removes doccomment stars\n\nexample input: `// comment`, output: `comment`\n\nexample input:\n```\n\nsome\nmultiline\ncomment *~/\n```\noutput:\n```\nsome\nmultiline\ncomment\n```",
+    "rawStatement": "export const stripComment = (rawCommentString: string): string => {\n  const lines = rawCommentString.split(\"\\n\");\n  const strippedComment = lines\n    .map((line) => {\n      return apply(\n        [\n          trim,\n          stripSlashes,\n          stripCommentStart,\n          stripCommentEnd,\n          stripStar,\n          trim,\n        ],\n        line\n      );\n    })\n    .join(\"\\n\");\n\n  return apply([trimSurroundingNewlines], strippedComment);\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 35,
+    "lastLine": 58,
+    "id": "qvneetyehnccwkwdytvfzgcc"
+  }
+]

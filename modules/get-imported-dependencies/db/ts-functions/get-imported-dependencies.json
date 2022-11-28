@@ -1,0 +1,70 @@
+{
+  "createdAt": 1668335927107,
+  "updatedAt": 1668335927107,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335927107,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " ({\n  operationFolderPath,\n}: {\n  operationFolderPath: string;\n}) => {\n  const project = getTsMorphProject(operationFolderPath);\n  if (!project) return;\n  const sourceFiles = project.getSourceFiles(\"src/*\");\n  const importModuleStrings = sourceFiles.reduce((imports, sourceFile) => {\n    const allImports: ImportDeclaration[] = sourceFile.getImportDeclarations();\n    const absoluteImports = allImports.map((i) =>\n      i.getModuleSpecifier().getLiteralText()\n    );\n    return imports.concat(absoluteImports);\n  }, [] as string[]);\n\n  const packages = importModuleStrings.filter(isAbsoluteImport).map(getPackage);\n  return packages;\n}",
+  "name": "getImportedDependencies",
+  "slug": "get-imported-dependencies",
+  "parameters": [
+    {
+      "name": "{\n  operationFolderPath,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "operationFolderPath": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "operationFolderPath"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "operationFolderPath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "DEPRECATED: should use generated index files with imports instead!\n\ngets all imported packages (dependencies) in a project\ndoesn't take into account the fact that someone can set up a rule for absolute imports within the package.\nthis assumes that any absolute package comes from node_modules.",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 928,
+    "lines": 23,
+    "bytes": 928,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 40,
+    "linesPerFile": 23,
+    "numberOfFiles": 1
+  },
+  "id": "pbgeqievteyhykinrxmpxbuk"
+}

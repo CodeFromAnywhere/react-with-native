@@ -1,0 +1,2 @@
+export declare const writeBuildErrors: (operationBasePath: string, operationManualProjectRoot?: string, typerepoManualProjectRoot?: string) => Promise<void>;
+//# sourceMappingURL=writeBuildErrors.d.ts.map

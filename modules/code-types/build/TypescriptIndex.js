@@ -6,5 +6,5 @@ const convert_case_1=require("convert-case");exports.typescriptIndexModels=["TsB
  *
  * NB: It's not handy to get this from the database because this is used to generate the database xD
  */
-exports.indexDbModels=[...exports.typescriptIndexModels,"OperationIndex"],exports.indexDbModelFolders=exports.indexDbModels.map(convert_case_1.kebabCase).map((e=>`${e}s`));
+exports.indexDbModels=[...exports.typescriptIndexModels],exports.indexDbModelFolders=exports.indexDbModels.map(convert_case_1.kebabCase).map((e=>`${e}s`));
 //# sourceMappingURL=TypescriptIndex.js.map

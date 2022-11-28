@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668148845854,
-  "updatedAt": 1668148845854,
+  "createdAt": 1669312109640,
+  "updatedAt": 1669312109640,
   "deletedAt": 0,
-  "createdFirstAt": 1668148845854,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312109640,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/convention/getDatabaseFiles.ts",
   "commentsInside": [],
-  "rawText": " async (\n  modelName: string,\n  mergedConfig: MergedQueryConfig\n): Promise<DbFileLocation[]> => {\n  const manualProjectRoot = mergedConfig?.manualProjectRoot;\n  const projectRoot = manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return [];\n  const dbStorageMethod = mergedConfig.dbStorageMethod;\n\n  const pattern = getLocationPattern(dbStorageMethod, modelName, mergedConfig);\n\n  const operationPath = await getMergedConfigOperationPath(\n    mergedConfig,\n    manualProjectRoot\n  );\n  if (operationPath === undefined) return [];\n\n  const rootFolders = await getRootFolders({\n    mergedConfig,\n    operationPath,\n    projectRoot,\n    manualProjectRoot,\n  });\n  /**\n  based on configuration and convention, we will fill this array with the files to get data from\n\n  NB: this should contain the actual files, not the patterns\n   */\n  let dbFiles: DbFileLocation[] = [];\n\n  const isOperationFile =\n    !!mergedConfig.operationName &&\n    !!operationPath &&\n    !!mergedConfig.operationRelativePath;\n\n  if (isOperationFile && !!operationPath) {\n    const exactAbsoluteOperationFilePath = path.join(\n      operationPath,\n      mergedConfig.operationRelativePath!\n    );\n    //make sure that extension matches `dbStorageMethod`, warn otherwise\n    const customExt = mergedConfig.operationRelativePath\n      ? path.parse(mergedConfig.operationRelativePath).ext\n      : undefined;\n    const isWrongExtension =\n      customExt !== getDbStorageMethodExtension(dbStorageMethod);\n\n    if (isWrongExtension) {\n      log(\n        `Incorrect extension found in operationRelativePath, found ${customExt}`,\n        { type: \"warning\" }\n      );\n    }\n\n    const projectRelativePath = exactAbsoluteOperationFilePath.substring(\n      projectRoot.length\n    );\n    const operationRelativePath =\n      mergedConfig.operationName === null\n        ? undefined\n        : exactAbsoluteOperationFilePath.substring(operationPath.length);\n\n    dbFiles.push({\n      modelName,\n      absolutePath: exactAbsoluteOperationFilePath,\n      operationName: mergedConfig.operationName!,\n      projectRelativePath,\n      operationRelativePath,\n    });\n  }\n\n  if (!isOperationFile && mergedConfig.projectRelativePath) {\n    const absolutePath = path.join(\n      projectRoot,\n      mergedConfig.projectRelativePath\n    );\n    const operationName = null;\n    const projectRelativePath = mergedConfig.projectRelativePath;\n\n    dbFiles.push({\n      modelName,\n      absolutePath,\n      operationName,\n      projectRelativePath,\n    });\n  }\n\n  if (!mergedConfig.projectRelativePath && !isOperationFile && pattern) {\n    // no exact path\n\n    const conventionedPaths: DbFileLocation[] = (\n      await Promise.all(\n        rootFolders.map(async (rootFolder) => {\n          const absolutePathPattern = path.join(rootFolder.basePath, pattern);\n          const projectRelativePath = absolutePathPattern.substring(\n            projectRoot.length\n          );\n\n          const operationRelativePath =\n            rootFolder.operationName === null\n              ? undefined\n              : absolutePathPattern.substring(rootFolder.basePath.length);\n\n          const parsedPath = path.parse(absolutePathPattern);\n\n          if (parsedPath.name === \"*\") {\n            const fileNames = getWildcardDbFileLocations({\n              modelName,\n              parsedPath,\n              operationName: rootFolder.operationName,\n              projectRoot,\n              rootFolder,\n            });\n\n            return fileNames;\n          } else {\n            const dbFileLocation: DbFileLocation = {\n              modelName,\n              absolutePath: absolutePathPattern,\n              operationName: rootFolder.operationName,\n              projectRelativePath,\n              operationRelativePath,\n            };\n            return [dbFileLocation];\n          }\n        })\n      )\n    ).flat();\n\n    dbFiles = dbFiles.concat(conventionedPaths);\n  }\n\n  return dbFiles;\n}",
+  "rawText": " async (\n  modelName: string,\n  mergedConfig: MergedQueryConfig\n): Promise<DbFileLocation[]> => {\n  const executionId = generateUniqueId();\n  const performance: (PerformanceItem | undefined)[] = [];\n  getNewPerformance(\"start\", executionId, true);\n\n  const projectRoot =\n    mergedConfig?.manualProjectRoot || mergedConfig.projectRoot;\n  if (!projectRoot) return [];\n\n  const dbStorageMethod = mergedConfig.dbStorageMethod;\n\n  performance.push(getNewPerformance(\"get projectRoot\", executionId));\n\n  const pattern = getLocationPattern(dbStorageMethod, modelName, mergedConfig);\n\n  performance.push(getNewPerformance(\"get location pattern\", executionId));\n\n  const operationPath = await getMergedConfigOperationPath(\n    mergedConfig,\n    projectRoot\n  );\n\n  performance.push(\n    getNewPerformance(\"get merged config operation path\", executionId)\n  );\n\n  // console.log({ pattern, operationPath });\n\n  // Please note, it can return false as well, which should continue here\n  if (operationPath === undefined) return [];\n\n  const rootFolders = await getRootFolders({\n    mergedConfig,\n    operationPath,\n    projectRoot,\n    manualProjectRoot: projectRoot,\n  });\n\n  // console.log({ rootFolders });\n  performance.push(getNewPerformance(\"getRootFolders\", executionId));\n\n  cleanupTimer(executionId);\n  // console.log({ performance });\n\n  /**\n  based on configuration and convention, we will fill this array with the files to get data from\n\n  NB: this should contain the actual files, not the patterns\n   */\n  let dbFiles: DbFileLocation[] = [];\n\n  const isOperationFile =\n    !!mergedConfig.operationName &&\n    !!operationPath &&\n    !!mergedConfig.operationRelativePath;\n\n  if (isOperationFile && !!operationPath) {\n    const exactAbsoluteOperationFilePath = path.join(\n      operationPath,\n      mergedConfig.operationRelativePath!\n    );\n    //make sure that extension matches `dbStorageMethod`, warn otherwise\n    const customExt = mergedConfig.operationRelativePath\n      ? path.parse(mergedConfig.operationRelativePath).ext\n      : undefined;\n    const isWrongExtension =\n      customExt !== getDbStorageMethodExtension(dbStorageMethod);\n\n    if (isWrongExtension) {\n      log(\n        `Incorrect extension found in operationRelativePath, found ${customExt}`,\n        { type: \"warning\" }\n      );\n    }\n\n    const projectRelativePath = exactAbsoluteOperationFilePath.substring(\n      projectRoot.length\n    );\n    const operationRelativePath =\n      mergedConfig.operationName === null\n        ? undefined\n        : exactAbsoluteOperationFilePath.substring(operationPath.length);\n\n    dbFiles.push({\n      modelName,\n      absolutePath: exactAbsoluteOperationFilePath,\n      operationName: mergedConfig.operationName!,\n      projectRelativePath,\n      operationRelativePath,\n    });\n  }\n\n  if (!isOperationFile && mergedConfig.projectRelativePath) {\n    const absolutePath = path.join(\n      projectRoot,\n      mergedConfig.projectRelativePath\n    );\n    const operationName = null;\n    const projectRelativePath = mergedConfig.projectRelativePath;\n\n    dbFiles.push({\n      modelName,\n      absolutePath,\n      operationName,\n      projectRelativePath,\n    });\n  }\n\n  if (!mergedConfig.projectRelativePath && !isOperationFile && pattern) {\n    // no exact path\n\n    const conventionedPaths: DbFileLocation[] = (\n      await Promise.all(\n        rootFolders.map(async (rootFolder) => {\n          const absolutePathPattern = path.join(rootFolder.basePath, pattern);\n          const projectRelativePath = absolutePathPattern.substring(\n            projectRoot.length\n          );\n\n          const operationRelativePath =\n            rootFolder.operationName === null\n              ? undefined\n              : absolutePathPattern.substring(rootFolder.basePath.length);\n\n          const parsedPath = path.parse(absolutePathPattern);\n\n          if (parsedPath.name === \"*\") {\n            const fileNames = getWildcardDbFileLocations({\n              modelName,\n              parsedPath,\n              operationName: rootFolder.operationName,\n              projectRoot,\n              rootFolder,\n            });\n\n            return fileNames;\n          } else {\n            const dbFileLocation: DbFileLocation = {\n              modelName,\n              absolutePath: absolutePathPattern,\n              operationName: rootFolder.operationName,\n              projectRelativePath,\n              operationRelativePath,\n            };\n            return [dbFileLocation];\n          }\n        })\n      )\n    ).flat();\n\n    dbFiles = dbFiles.concat(conventionedPaths);\n  }\n\n  return dbFiles;\n}",
   "name": "getDatabaseFiles",
   "slug": "get-database-files",
   "parameters": [
@@ -32,6 +27,60 @@
       "schema": {
         "$ref": "#/definitions/MergedQueryConfig"
       },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "dbStorageMethod",
+            "required": true,
+            "schema": {
+              "enum": [
+                "jsonMultiple",
+                "jsonSingle",
+                "markdown",
+                "keyValueMarkdown",
+                "csv"
+              ],
+              "fullComment": "When setting this, make sure your models are able to use this storage method, this is not always possible!\n\ndefaults to jsonMultiple\n\nThe following strategies are available to store the data.\n\n- **jsonMultiple *(default)***: stores the data in a json file which is an array of this data structure. This file will be located in `db/[pluralized-kebab-case-model-name].json`\n\n- **jsonSingle**: stores the data in a json file which is of this data structure (single object) These files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].json`\n\n- **markdown**: stores the data in a markdown file. Takes \"markdown\" parameter as the main markdown. The other parameters are stored as front-matter. This these files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].md`\n\n- **keyValueMarkdown**: stores the data in key value markdown format. This file will be located in `db/[pluralized-kebab-case-model-name].md`\n\n- **csv**: stores the data in a csv file (only possible for flat object datastructures). This file will be located in `db/[pluralized-kebab-case-model-name].csv`\n\n## Definitions:\n\n- [pluralized-kebab-case-model-name]: e.g. `StudentUser` becomes `student-users`\n- [instance-slug-or-id]: For all models with a slug parameter, the filename will be that slug of that instance. Otherwise, `id` will be used",
+              "type": "string"
+            }
+          },
+          {
+            "name": "manualProjectRoot",
+            "required": true,
+            "schema": {
+              "fullComment": "if specified, this will be used as the root path to find your data in\n\nif not specified, uses the db folder in your project root and in any operation\n\nNB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+              "nb": "If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationName",
+            "required": false,
+            "schema": {
+              "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectRelativePath",
+            "required": false,
+            "schema": {
+              "fullComment": "if specified, only this location will be used",
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationRelativePath",
+            "required": false,
+            "schema": {
+              "fullComment": "if specified, only this location will be used (also need an `operationName`)",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
       "required": true
     }
   ],
@@ -47,13 +96,13 @@
   },
   "maxIndentationDepth": 7,
   "size": {
-    "characters": 4434,
-    "lines": 147,
-    "bytes": 4434,
+    "characters": 5098,
+    "lines": 171,
+    "bytes": 5098,
     "bytesPerCharacter": 1,
     "charactersPerLine": 30,
-    "linesPerFile": 147,
+    "linesPerFile": 171,
     "numberOfFiles": 1
   },
-  "id": "gjchlqcncoettyhptzjftsdf"
+  "id": "umkfpnsiibxgntuxfyhdqalz"
 }

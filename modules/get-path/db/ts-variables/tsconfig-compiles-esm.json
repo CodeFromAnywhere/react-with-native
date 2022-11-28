@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055053781,
+  "updatedAt": 1669055053781,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055053781,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "tsconfigCompilesEsm",
+  "slug": "tsconfig-compiles-esm",
+  "operationRelativeTypescriptFilePath": "src/getOperationClassification.ts",
+  "type": {
+    "rawType": "(tsconfig: import(\"/Users/king/King/operations/tools/types/code-types/build/TsConfig\").TsConfig) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(tsconfig: TsConfig) => {\n  return (\n    !!tsconfig.compilerOptions.module &&\n    !!tsconfig.compilerOptions.moduleResolution &&\n    tsconfig.compilerOptions.module !== ModuleKind.CommonJS &&\n    tsconfig.compilerOptions.moduleResolution !== ModuleResolutionKind.Classic\n  );\n}",
+  "description": "",
+  "id": "kjdxmohmfjdlyobjfkvqszpl"
+}

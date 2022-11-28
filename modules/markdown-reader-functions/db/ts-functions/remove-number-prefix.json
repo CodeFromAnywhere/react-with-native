@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668149518251,
-  "updatedAt": 1668149518251,
+  "createdAt": 1669639142989,
+  "updatedAt": 1669639142989,
   "deletedAt": 0,
-  "createdFirstAt": 1668149518251,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669639142989,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/removeNumberPrefix.ts",
   "commentsInside": [],
   "rawText": " (fileOrFolderName: string): string => {\n  const parts = fileOrFolderName.split(\".\");\n\n  const newName = parts.reduce((restName, part, currentIndex, array) => {\n    if (restName) return restName;\n    const isTextPart = isNaN(Number(part));\n\n    if (isTextPart) {\n      // NB: everything after here is supposed to be part of the text\n      const restName = array.slice(currentIndex).join(\".\");\n      return restName;\n    }\n  }, undefined as string | undefined);\n\n  return newName || \"untitled\";\n}",
@@ -52,5 +47,5 @@
     "linesPerFile": 18,
     "numberOfFiles": 1
   },
-  "id": "tfbvxqgrqroytyfeypozdejl"
+  "id": "asqseuybijptexqhujpxccpo"
 }

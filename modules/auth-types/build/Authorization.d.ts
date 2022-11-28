@@ -1,51 +1,70 @@
-export declare type Authorization = {
-    /**
-     * What should be authorized?
-     */
-    type: "TsFunction" | "TsVarialbe" | "TsInterface" | "Dataset" | "operationName" | "fileOrFolderPath";
-    /**
-     * fileOrFolderPath: project relative path string
-     *
-     * operationName: name of the operation (grants access to all models, )
-     *
-     * otherwise: id of the model
-     */
-    value: string;
-    /**
-     * which things are authorized
-     */
-    authorizations: AuthorizationLevel[];
-};
-export declare const authorizationLevelReadonlyArray: readonly ["execute", "write-create", "write-update", "write-delete", "read", "search"];
-export declare const authorizationLevelStringArray: string[];
+import { Id } from "model-types";
 /**
-  
-`AuthorizationLevel` is a single Enum that can apply to privacy and authorization of text, functions, and data.
+
+`Authorization` helps you provide certain access to files, data, functionality, and code. Authorization can be provided custom, or by indexation. The indexation of the codebase and text-files overwrites the custom authorization in the `Group`-model.
+
+## Different authorizations
 
 For files (ts, md, json, etc...):
 
-- write-create
-- write-update
-- write-delete
-- read
-- search (only search index)
+- canWriteCreate
+- canWriteUpdate
+- canWriteDelete
+- canRead
+- canSearch (only search index)
 
 For db model data subsets:
 
-- write-update
-- write-create
-- write-delete
-- read
-- search (only search index)
+- canWriteUpdate
+- canWriteCreate
+- canWriteDelete
+- canRead
+- canSearch (only search index)
 
 For functions:
-- execute
+
+- canExecute
 
 For functions, interfaces, variables:
 
-- read (reading docs only. for source, you need to provide the file auth)
-- search (only search index)
+- canRead (reading docs only. for source, you need to provide the file auth)
+- canSearch (only search index)
 
+ */
+export declare type Authorization = {
+    /**
+     * If true, this authorization is project-wide and applies to everything
      */
-export declare type AuthorizationLevel = typeof authorizationLevelReadonlyArray[number];
+    isProjectWide?: boolean;
+    /**
+     * If selected, the authorization will apply to the whole operation
+     */
+    authorizedOperationName?: string;
+    /**
+     * If selected, the authorization will apply to this function
+     */
+    tsFunctionId?: Id;
+    /**
+     * If selected, the authorization will apply to this variable
+     */
+    tsVariableId?: Id;
+    /**
+     * If selected, the authorization will apply to this interface
+     */
+    tsInterfaceId?: Id;
+    /**
+     * If selected, the authorization will apply to this dataset
+     */
+    datasetId?: Id;
+    /**
+     * If selected, the authorization will apply to everything in this folder or to this specific file
+     */
+    authorizedProjectRelativePath?: string;
+    canExecute?: boolean;
+    canWriteCreate?: boolean;
+    canWriteUpdate?: boolean;
+    canWriteDelete?: boolean;
+    canRead?: boolean;
+    canSearch?: boolean;
+};
 //# sourceMappingURL=Authorization.d.ts.map

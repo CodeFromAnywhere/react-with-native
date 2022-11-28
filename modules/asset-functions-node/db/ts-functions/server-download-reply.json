@@ -1,0 +1,57 @@
+{
+  "createdAt": 1669384222254,
+  "updatedAt": 1669384222254,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384222254,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/util/serverDownloadReply.ts",
+  "commentsInside": [],
+  "rawText": " (\n  absoluteAssetPath: string,\n  isDownload: boolean\n) => {\n  const parsedAsset = path.parse(absoluteAssetPath);\n\n  if (isDownload) {\n    return server.reply.download(absoluteAssetPath, parsedAsset.base);\n  }\n  return (\n    server.reply\n      // @ts-ignore NB: TODO: why doesn't server.js has the right types???\n      .file(absoluteAssetPath)\n  );\n}",
+  "name": "serverDownloadReply",
+  "slug": "server-download-reply",
+  "parameters": [
+    {
+      "name": "absoluteAssetPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "isDownload",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": true
+    }
+  ],
+  "description": "Returns a `server.reply.download` or `server.reply.file` but also sets the `Content-Disposition` header correctly and the `Content-Type`\n\n\n\nFor this I finally ended up using builtin server.js stuff, we don't need to set those manually...\n\nSee https://serverjs.io/documentation/reply/#file-\nAnd https://serverjs.io/documentation/reply/#download-\n\nSee https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition\n\nNB: ensure to return the result of this function in your endpoint, otherwise it won't work",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 869,
+    "lines": 26,
+    "bytes": 869,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 26,
+    "numberOfFiles": 1
+  },
+  "id": "aasgvpmhhagaqhtrxxunveiq"
+}

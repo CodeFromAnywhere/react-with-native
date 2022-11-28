@@ -3,6 +3,7 @@ export declare type ExpandedObject = {
 };
 declare type StoreType = {
     "menu.expanded": ExpandedObject;
+    "menu.showMenu": boolean;
     "menu.isMobileMenuEnabled": boolean;
 };
 export declare const nestedMenuStoreInitialValues: StoreType;

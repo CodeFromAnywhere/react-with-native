@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385492630,
+  "updatedAt": 1669385492630,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385492630,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "PublicPersonComponent",
+  "slug": "public-person-component",
+  "operationRelativeTypescriptFilePath": "src/PublicPersonComponent.tsx",
+  "type": {
+    "rawType": "(props: { publicPerson: any; }) => JSX.Element | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  publicPerson: PublicPerson | undefined;\n}) => {\n  const { publicPerson } = props;\n\n  return !publicPerson ? null : (\n    <Div className=\"w-full bg-red-500\">\n      <ModelItemAssetView\n        item={publicPerson}\n        backendAsset={publicPerson?.pictureImage}\n        hideDownloadLink\n        className=\" w-[800px]\"\n      />\n      <P>{publicPerson.name}</P>\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "hbilbqanvvxugpbnyxyjtsjz"
+}

@@ -1,0 +1,74 @@
+{
+  "createdAt": 1669055609894,
+  "updatedAt": 1669055609894,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055609894,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/hasTypescriptFileChanged.ts",
+  "commentsInside": [],
+  "rawText": " (\n  eventName: WatchEventType,\n  path: string\n) => {\n  // for indexation we don't care about any other event than adding or changing a file\n  if (![\"add\", \"change\"].includes(eventName)) return false;\n  // in order to index a file, it must be in an operation, which means it must be in src\n  if (!path.includes(\"/src/\")) return false;\n  // only ts and tsx files matter, the rest doesn't need to be indexed\n  if (![\"ts\", \"tsx\"].includes(getExtension(path))) return false;\n\n  return true;\n}",
+  "name": "hasTypescriptFileChanged",
+  "slug": "has-typescript-file-changed",
+  "parameters": [
+    {
+      "name": "eventName",
+      "schema": {
+        "$ref": "#/definitions/WatchEventType"
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "add",
+          "addDir",
+          "change",
+          "unlink",
+          "unlinkDir"
+        ],
+        "fullComment": "Different event types for the watcher of the file system (chokidar)\n\n- add: a file got created\n- addDir: a folder got created\n- change: a file changed\n- unlink: a file got removed\n- unlinkDir: a folder got removed",
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "path",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 488,
+    "lines": 13,
+    "bytes": 488,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 38,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "xntcpvboznjfnyplaybgomnz"
+}

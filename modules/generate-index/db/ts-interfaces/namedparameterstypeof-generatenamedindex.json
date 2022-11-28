@@ -1,0 +1,77 @@
+{
+  "createdAt": 1668335869493,
+  "updatedAt": 1668335869493,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335869493,
+  "id": "namedparameterstypeof-generatenamedindex",
+  "name": "NamedParameters<typeof generateNamedIndex>",
+  "slug": "namedparameterstypeof-generatenamedindex",
+  "operationRelativeTypescriptFilePath": "src/generateNamedIndex.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "{\n  operationName,\n  manualProjectRoot,\n}": {
+          "type": "object",
+          "properties": {
+            "manualProjectRoot": {
+              "type": "string"
+            },
+            "operationName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "operationName"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "{\n  operationName,\n  manualProjectRoot,\n}"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "{\n  operationName,\n  manualProjectRoot,\n}",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "manualProjectRoot",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof generateNamedIndex>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

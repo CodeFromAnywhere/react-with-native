@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055717484,
+  "updatedAt": 1669055717484,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055717484,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "isSdkOperation",
+  "slug": "is-sdk-operation",
+  "operationRelativeTypescriptFilePath": "src/isSdkOperation.ts",
+  "type": {
+    "rawType": "(operationBasePath: string) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(operationBasePath: string) => {\n  const operationName = getLastFolder(operationBasePath);\n\n  return operationName.split(\"-\")[0] === \"sdk\";\n}",
+  "description": "",
+  "id": "ypeeafhouzbbraonpjnvuxfo"
+}

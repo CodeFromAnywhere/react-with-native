@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668335766858,
+  "updatedAt": 1668335766858,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335766858,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "stripComment",
+  "slug": "strip-comment",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "(rawCommentString: string) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(rawCommentString: string): string => {\n  const lines = rawCommentString.split(\"\\n\");\n  const strippedComment = lines\n    .map((line) => {\n      return apply(\n        [\n          trim,\n          stripSlashes,\n          stripCommentStart,\n          stripCommentEnd,\n          stripStar,\n          trim,\n        ],\n        line\n      );\n    })\n    .join(\"\\n\");\n\n  return apply([trimSurroundingNewlines], strippedComment);\n}",
+  "description": "parses comments (single line, multiline and doc) and removes the comment syntax\n\n- removes slashes\n- removes multiline comment prefix\n- removes multiline comment suffix\n- removes doccomment stars\n\nexample input: `// comment`, output: `comment`\n\nexample input:\n```\n\nsome\nmultiline\ncomment *~/\n```\noutput:\n```\nsome\nmultiline\ncomment\n```",
+  "id": "evclrnxsaztgosivlcbctwbr"
+}

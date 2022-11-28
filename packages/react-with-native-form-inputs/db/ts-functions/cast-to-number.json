@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666261458643,
-  "updatedAt": 1666261458643,
+  "createdAt": 1669055922205,
+  "updatedAt": 1669055922205,
   "deletedAt": 0,
-  "createdFirstAt": 1666261458643,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055922205,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/number/number.tsx",
   "commentsInside": [],
   "rawText": " (\n  numberString: string | null | undefined\n): null | undefined | number => {\n  if (numberString === null) return null;\n  if (numberString === undefined) return undefined;\n  if (numberString === \"\") return undefined;\n\n  const number = Number(numberString);\n\n  if (isNaN(number)) return undefined;\n\n  return number;\n}",
@@ -45,5 +40,5 @@
     "linesPerFile": 13,
     "numberOfFiles": 1
   },
-  "id": "zclywneshwrtpbpmydrhiqri"
+  "id": "xxvxjghsacpdqjexwblcqghc"
 }

@@ -1,36 +1,20 @@
 [
   {
-    "createdAt": 1666263624751,
-    "updatedAt": 1666263624751,
+    "createdAt": 1669385242681,
+    "updatedAt": 1669385242681,
     "deletedAt": 0,
-    "createdFirstAt": 1666263624751,
+    "createdFirstAt": 1669385242681,
     "name": "Comment",
     "slug": "comment",
-    "operationRelativeTypescriptFilePath": "src/frontmatterParseToString.ts",
-    "comment": "For now, simply quote a string if it contains commas\n\nThere are probably more edgecases that need to be fixed here",
-    "rawStatement": "export const quotedOrNot = (string: string) => {\n  const returnString = string.includes(\",\") ? `\"${string}\"` : string;\n  return returnString;\n};",
-    "parameters": {},
-    "types": [],
-    "firstLine": 35,
-    "lastLine": 39,
-    "id": "cxurjkidqvfhgnusjmzbhdav"
-  },
-  {
-    "createdAt": 1666263624752,
-    "updatedAt": 1666263624752,
-    "deletedAt": 0,
-    "createdFirstAt": 1666263624752,
-    "name": "Comment",
-    "slug": "comment",
-    "operationRelativeTypescriptFilePath": "src/frontmatterParseToString.ts",
-    "comment": "Parses frontmatter object into a frontmatter string\n- includes a newline at the end\n- string[] becomes a comma separated string\nTODO: maybe parse xxxAt values into human readable dates",
-    "rawStatement": "export const frontmatterParseToString = (frontmatter: Frontmatter): string => {\n  const keys = Object.keys(frontmatter);\n\n  const keyValueLines = keys\n    .map((key) => {\n      const value = frontmatter[key];\n      const valueString = getFrontmatterValueString(value);\n\n      if (valueString === null) {\n        return null;\n      }\n\n      const parsedFrontmatterLine = `${key}: ${valueString}`;\n\n      return parsedFrontmatterLine;\n    })\n    .filter(notEmpty);\n\n  return keyValueLines.length === 0\n    ? \"\"\n    : `---\\n${keyValueLines.join(\"\\n\")}\\n---\\n`;\n};",
+    "operationRelativeTypescriptFilePath": "src/Frontmatter.ts",
+    "comment": "Our version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+    "rawStatement": "export type Frontmatter = {\n  [frontMatterKey: string]: string;\n};",
     "parameters": {},
     "types": [
-      "todo"
+      "nb"
     ],
-    "firstLine": 44,
-    "lastLine": 49,
-    "id": "lwtwxehblypiflbywfetukuh"
+    "firstLine": 1,
+    "lastLine": 11,
+    "id": "idpdlospkpndqenxxrjigeqf"
   }
 ]

@@ -1,0 +1,57 @@
+{
+  "createdAt": 1669384200497,
+  "updatedAt": 1669384200497,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384200497,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/convertToMp4.ts",
+  "commentsInside": [],
+  "rawText": " (\n  sourcePath: string,\n  destinationPath: string\n): Promise<string | undefined> => {\n  return new Promise<string | undefined>((resolve, reject) => {\n    ffmpeg({ source: sourcePath })\n      .toFormat(\"mp4\")\n      .saveToFile(destinationPath)\n      .on(\"end\", () => {\n        resolve(destinationPath);\n      })\n      .on(\"error\", (e: Error) => {\n        resolve(undefined);\n      });\n  });\n}",
+  "name": "convertToMp4",
+  "slug": "convert-to-mp-4",
+  "parameters": [
+    {
+      "name": "sourcePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "destinationPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Uses ffmpeg to convert a file to mp3\n\nReturns the new file path on success",
+  "returnType": {
+    "rawType": "Promise<string | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 466,
+    "lines": 18,
+    "bytes": 466,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "id": "tvzidqncczbkmkshzvfmvsnm"
+}

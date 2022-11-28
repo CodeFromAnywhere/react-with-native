@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148402916,
-  "updatedAt": 1668148402916,
+  "createdAt": 1668976640378,
+  "updatedAt": 1668976640378,
   "deletedAt": 0,
-  "createdFirstAt": 1668148402916,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668976640378,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/explore.ts",
   "commentsInside": [],
   "rawText": " (\n  preset: \"packages\" | \"markdown\" | \"todo\" | \"docs\" | \"src\" | \"git\",\n  config?: BaseConfig\n) => {\n  const basePath = config?.basePath;\n\n  const searchConfigs: SearchConfig[] =\n    preset === \"packages\"\n      ? [\n          {\n            basePath,\n            search: \"package.json\",\n            exact: true,\n            extension: \"json\",\n            ignore: generatedFolders,\n          },\n        ]\n      : preset === \"markdown\"\n      ? [\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            ignore: generatedFolders,\n          },\n        ]\n      : preset === \"todo\"\n      ? // finds all `*.todo.md`,` todo/**/*.md` and returns the path + content\n\n        [\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            search: \"/todo/\",\n            searchLevel: \"filePath\",\n            ignore: generatedFolders,\n          },\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            search: \"todo.md\",\n            exact: true,\n            searchLevel: \"fileName\",\n            ignore: generatedFolders,\n          },\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            subExtension: \"todo\",\n            exact: false,\n            searchLevel: \"fileName\",\n            ignore: generatedFolders,\n          },\n        ]\n      : preset === \"docs\"\n      ? [\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            search: \"/docs/\",\n            searchLevel: \"filePath\",\n            ignore: generatedFolders,\n          },\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            search: \"readme.md\",\n            exact: true,\n            searchLevel: \"fileName\",\n            ignore: generatedFolders,\n          },\n          {\n            basePath,\n            extension: [\"md\", \"mdx\"],\n            subExtension: [\"readme\"],\n            exact: false,\n            searchLevel: \"fileName\",\n            ignore: generatedFolders,\n          },\n        ]\n      : preset === \"src\"\n      ? [\n          {\n            basePath,\n            searchLevel: \"folder\",\n            exact: true,\n            search: \"src\",\n            doNotExploreMatch: true,\n            ignore: generatedFolders,\n          },\n        ]\n      : [];\n\n  const textJsons = exploreMultiple(searchConfigs);\n  return textJsons;\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 95,
     "numberOfFiles": 1
   },
-  "id": "agcdedzbdptzojxccgxecfon"
+  "id": "mgojtitgohkprdupjporzgoj"
 }

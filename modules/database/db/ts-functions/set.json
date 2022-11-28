@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666259857810,
-  "updatedAt": 1666259857810,
+  "createdAt": 1668774163752,
+  "updatedAt": 1668774163752,
   "deletedAt": 0,
-  "createdFirstAt": 1666259857810,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774163752,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/setNestedFiles.test.ts",
   "commentsInside": [],
   "rawText": " () => {\n  const item: Creation<MarkdownTestModel> = {\n    categoryStackCalculated: [\"sub\", \"folder\"],\n    name: \"hell-yeah\",\n    markdown: \"some markdown....\",\n  };\n\n  const x = testDb.set(\"MarkdownTestModel\", [item]);\n\n  return x;\n}",
@@ -19,7 +14,7 @@
   "parameters": [],
   "description": "Can set a markdown item into a subfolder in the db model folder",
   "returnType": {
-    "rawType": "Promise<import(\"/Users/king/King/operations/tools/database/fs-orm/build/types\").DbQueryResult>",
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/build/types\").DbQueryResult>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -37,5 +32,5 @@
     "linesPerFile": 11,
     "numberOfFiles": 1
   },
-  "id": "bqalzurawacndueubscpiwuj"
+  "id": "ljaclbfpcgcsdoyqjqdppuzt"
 }

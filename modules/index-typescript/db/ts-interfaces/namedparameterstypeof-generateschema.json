@@ -1,0 +1,146 @@
+{
+  "createdAt": 1669055584494,
+  "updatedAt": 1669055584494,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055584494,
+  "id": "namedparameterstypeof-generateschema",
+  "name": "NamedParameters<typeof generateSchema>",
+  "slug": "namedparameterstypeof-generateschema",
+  "operationRelativeTypescriptFilePath": "src/generateSchema.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "filePath": {
+          "type": "string"
+        },
+        "morphInterfaceInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MorphInterfaceInfo"
+          }
+        },
+        "namedAbsoluteImportNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "filePath",
+        "morphInterfaceInfo",
+        "namedAbsoluteImportNames"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "filePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "morphInterfaceInfo",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "raw",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "description",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "extensions",
+                      "required": true,
+                      "schema": {
+                        "items": [
+                          {
+                            "schema": {
+                              "type": "string"
+                            },
+                            "name": null
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "isExported",
+                      "required": true,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "hasGeneric",
+                      "required": true,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "MorphInterfaceInfo"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "namedAbsoluteImportNames",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof generateSchema>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

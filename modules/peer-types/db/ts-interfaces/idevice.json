@@ -1,0 +1,74 @@
+{
+  "createdAt": 1669384916114,
+  "updatedAt": 1669384916114,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384916114,
+  "id": "idevice",
+  "name": "IDevice",
+  "slug": "idevice",
+  "operationRelativeTypescriptFilePath": "src/external/ua-parser-js.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface IDevice {\n  /**\n   * Determined dynamically\n   */\n  model: string | undefined;\n\n  /**\n   * Possible type:\n   * console, mobile, tablet, smarttv, wearable, embedded\n   */\n  type: string | undefined;\n\n  /**\n   * Possible vendor:\n   * Acer, Alcatel, Amazon, Apple, Archos, Asus, BenQ, BlackBerry, Dell, GeeksPhone,\n   * Google, HP, HTC, Huawei, Jolla, Lenovo, LG, Meizu, Microsoft, Motorola, Nexian,\n   * Nintendo, Nokia, Nvidia, Ouya, Palm, Panasonic, Polytron, RIM, Samsung, Sharp,\n   * Siemens, Sony-Ericsson, Sprint, Xbox, ZTE\n   */\n  vendor: string | undefined;\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "Determined dynamically"
+        },
+        "type": {
+          "type": "string",
+          "description": "Possible type: console, mobile, tablet, smarttv, wearable, embedded"
+        },
+        "vendor": {
+          "type": "string",
+          "description": "Possible vendor: Acer, Alcatel, Amazon, Apple, Archos, Asus, BenQ, BlackBerry, Dell, GeeksPhone, Google, HP, HTC, Huawei, Jolla, Lenovo, LG, Meizu, Microsoft, Motorola, Nexian, Nintendo, Nokia, Nvidia, Ouya, Palm, Panasonic, Polytron, RIM, Samsung, Sharp, Siemens, Sony-Ericsson, Sprint, Xbox, ZTE"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "model",
+          "required": false,
+          "schema": {
+            "fullComment": "Determined dynamically",
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "required": false,
+          "schema": {
+            "fullComment": "Possible type: console, mobile, tablet, smarttv, wearable, embedded",
+            "type": "string"
+          }
+        },
+        {
+          "name": "vendor",
+          "required": false,
+          "schema": {
+            "fullComment": "Possible vendor: Acer, Alcatel, Amazon, Apple, Archos, Asus, BenQ, BlackBerry, Dell, GeeksPhone, Google, HP, HTC, Huawei, Jolla, Lenovo, LG, Meizu, Microsoft, Motorola, Nexian, Nintendo, Nokia, Nvidia, Ouya, Palm, Panasonic, Polytron, RIM, Samsung, Sharp, Siemens, Sony-Ericsson, Sprint, Xbox, ZTE",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "IDevice",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

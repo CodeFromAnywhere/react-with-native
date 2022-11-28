@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666264406267,
+  "updatedAt": 1666264406267,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264406267,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "runTests",
+  "slug": "run-tests",
+  "operationRelativeTypescriptFilePath": "src/runTests.ts",
+  "type": {
+    "rawType": "(test: import(\"/Users/king/King/operations/tools/typescript/testing/k-test/src/types\").Test, operationName?: string | undefined) => Promise<boolean>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  test: Test,\n  operationName?: string\n): Promise<boolean> => {\n  const tests = makeArray(test);\n  if (tests.length === 0) return true;\n  const testsValid = await Promise.all(\n    // NB: doing an extra check on the type of the test in the array here, because it may contain a corrupt value\n    tests.map((t) => (typeof t === \"function\" ? t() : true))\n  );\n  const passedAmount = testsValid.filter((x) => x).length;\n  const failedAmount = testsValid.filter((x) => !x).length;\n\n  /**\n   * TODO:\n   * - makeTest should return the reuslts of the test, not only a boolean\n   * - save test results into operationIndex if operationName is given\n   */\n\n  console.log(\n    `${\n      operationName ? `${operationName}: ` : \"\"\n    }✅ ${passedAmount} tests passed, ${\n      failedAmount === 0 ? \"\" : \"❌ \"\n    }${failedAmount} tests failed`\n  );\n  return isAllTrue(testsValid);\n}",
+  "description": "run tests and log the results.\n\ninput: Test\n\noutput: isAllValid (boolean)",
+  "id": "yhxsmmpsphgzdfemdhenxjtg"
+}

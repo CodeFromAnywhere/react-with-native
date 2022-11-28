@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055599100,
+  "updatedAt": 1669055599100,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055599100,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getSizeSummary",
+  "slug": "get-size-summary",
+  "operationRelativeTypescriptFilePath": "src/getSizeSummary.ts",
+  "type": {
+    "rawType": "(string: string) => import(\"/Users/king/King/operations/tools/types/code-types/build/FolderSummary\").SizeSummary",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(string: string): SizeSummary => {\n  const characters = string.length;\n  const lines = string.split(\"\\n\").length;\n  const bytes = byteCount(string);\n  return {\n    characters,\n    lines,\n    bytes,\n    bytesPerCharacter: bytes / characters,\n    charactersPerLine: Math.round(characters / lines),\n    linesPerFile: lines,\n    numberOfFiles: 1,\n  };\n}",
+  "description": "takes a string and simply returns the amount of characters, the amount of lines and the amount of bytes\n\nTODO: this is not the right place for this function",
+  "id": "kvhzycdzbitwctjsqxiyqtpk"
+}

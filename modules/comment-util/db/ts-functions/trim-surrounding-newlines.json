@@ -1,0 +1,56 @@
+{
+  "createdAt": 1668335766381,
+  "updatedAt": 1668335766381,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335766381,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (string: string): string => {\n  return string.startsWith(\"\\n\")\n    ? trimSurroundingNewlines(string.substring(1))\n    : string.endsWith(\"\\n\")\n    ? trimSurroundingNewlines(string.substring(0, string.length - 1))\n    : string;\n}",
+  "name": "trimSurroundingNewlines",
+  "slug": "trim-surrounding-newlines",
+  "parameters": [
+    {
+      "name": "string",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "removes new lines at beginning and end\n\nNB: This function uses a small recursion! I don't know if this is very efficient, but shouldn't be too deep!\n\nNB: it should be noted that a newline apparently seems to be counting as a single character! Strange.",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 479,
+    "lines": 11,
+    "bytes": 479,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 44,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "zeczxclsfbmulmhmusolkduf"
+}

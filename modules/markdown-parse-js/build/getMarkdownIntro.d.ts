@@ -1,4 +1,4 @@
-import { MarkdownParse } from "code-types";
+import { MarkdownParse } from "markdown-types";
 /**
  This function takes a markdown parse and gets the first paragraph and a title from it, if available.
 

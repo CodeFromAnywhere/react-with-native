@@ -1,0 +1,64 @@
+{
+  "createdAt": 1669385481395,
+  "updatedAt": 1669385481395,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385481395,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/LoginWrapper.tsx",
+  "commentsInside": [],
+  "rawText": " (props: { children: any }) => {\n  const { children } = props;\n  const [authToken, setAuthToken, { hydrated }] = useStore(\"api.authToken\");\n\n  // Ensure there is an authToken\n  useEffect(() => {\n    if (!hydrated) return;\n    if (!authToken || authToken.length === 0) {\n      setAuthToken(generateId());\n    }\n  }, [authToken, hydrated]);\n\n  return children;\n}",
+  "name": "LoginWrapper",
+  "slug": "login-wrapper",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "children": {}
+        },
+        "required": [
+          "children"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "children",
+            "required": true,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "ensures the auth-token is set",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 389,
+    "lines": 14,
+    "bytes": 389,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "ysuivkwcztbylyajoxvrnxsh"
+}

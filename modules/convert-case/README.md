@@ -1,6 +1,6 @@
 # Convert case
 
-convert-case (`OperationClassification` js)
+convert-case (`OperationClassification` cjs)
 
 
 

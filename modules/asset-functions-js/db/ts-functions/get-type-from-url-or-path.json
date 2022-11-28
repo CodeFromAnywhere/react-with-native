@@ -1,0 +1,75 @@
+{
+  "createdAt": 1669384155782,
+  "updatedAt": 1669384155782,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384155782,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getTypeFromUrlOrPath.ts",
+  "commentsInside": [],
+  "rawText": " (urlOrPath: string): AssetType => {\n  const extension = getExtension(urlOrPath);\n  if ([\"mp3\", \"m4a\", \"wav\"].includes(extension)) return \"audio\";\n  if ([\"mp4\", \"avi\"].includes(extension)) return \"video\";\n  if ([\"jpeg\", \"jpg\", \"png\", \"gif\", \"svg\"].includes(extension)) return \"image\";\n  if (isText(urlOrPath)) return \"text\";\n  return \"other\";\n}",
+  "name": "getTypeFromUrlOrPath",
+  "slug": "get-type-from-url-or-path",
+  "parameters": [
+    {
+      "name": "urlOrPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "We are assuming the asset name and extsion appear at the end of the URL",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").AssetType",
+    "typeDefinition": {
+      "optional": false,
+      "enum": [
+        "image",
+        "video",
+        "audio",
+        "text",
+        "other"
+      ],
+      "x-enumNames": [
+        "image",
+        "video",
+        "audio",
+        "text",
+        "other"
+      ],
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "enum": [
+        "image",
+        "video",
+        "audio",
+        "text",
+        "other"
+      ],
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 415,
+    "lines": 8,
+    "bytes": 415,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 52,
+    "linesPerFile": 8,
+    "numberOfFiles": 1
+  },
+  "id": "usffnjcozbjlefptbenjabnj"
+}

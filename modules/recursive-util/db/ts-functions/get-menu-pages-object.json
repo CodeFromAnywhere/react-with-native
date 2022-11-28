@@ -1,0 +1,255 @@
+{
+  "createdAt": 1669385432641,
+  "updatedAt": 1669385432641,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385432641,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getMenuPagesObject.ts",
+  "commentsInside": [],
+  "rawText": " <T>(\n  flat: WebPage<T>[]\n): MenuObjectType<T> => {\n  // NB: to make the NestedWebPage[], we don't want the pageData.\n  const flatWithoutPageData: WebPage[] = flat.map((x) => {\n    return { ...x, pageData: null, __check: true };\n  });\n\n  const nestedObject = makeNestedObjectFromQueryPathObject(\n    flatWithoutPageData,\n    {}\n  );\n\n  const keyToWebPage = (nestedObject: NestedObject<WebPage>, key: string) => {\n    return { ...nestedObject, pageData: null, queryPath: \"\" };\n  };\n\n  const nested: NestedWebPage[] = nestedObjectToChildObject(\n    nestedObject,\n    keyToWebPage\n  );\n\n  return { flat, nested };\n}",
+  "name": "getMenuPagesObject",
+  "slug": "get-menu-pages-object",
+  "parameters": [
+    {
+      "name": "flat",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/WebPage%3C%3E"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").MenuObjectType<T>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "flat": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "queryPath": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              },
+              "searchTerms": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "allOf": [
+                    {
+                      "transform": [
+                        "trim"
+                      ]
+                    },
+                    {
+                      "minLength": 1
+                    }
+                  ]
+                }
+              },
+              "target": {},
+              "isMenuHidden": {
+                "type": "boolean"
+              },
+              "menuTitleAugmentation": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              },
+              "menuTitleTooltip": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              },
+              "menuTitle": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              },
+              "pageData": {}
+            },
+            "required": [
+              "queryPath",
+              "target",
+              "pageData"
+            ]
+          }
+        },
+        "nested": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [
+        "flat",
+        "nested"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "flat",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "queryPath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "searchTerms",
+                      "required": false,
+                      "schema": {
+                        "items": [
+                          {
+                            "schema": {
+                              "type": "string"
+                            },
+                            "name": null
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "target",
+                      "required": true,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "isMenuHidden",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "menuTitleAugmentation",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "menuTitleTooltip",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "menuTitle",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "pageData",
+                      "required": true,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "nested",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 613,
+    "lines": 24,
+    "bytes": 613,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 24,
+    "numberOfFiles": 1
+  },
+  "id": "tuhtszomvhrpsurgyosggnao"
+}

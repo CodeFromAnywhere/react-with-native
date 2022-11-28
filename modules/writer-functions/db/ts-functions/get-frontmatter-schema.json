@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669385031186,
+  "updatedAt": 1669385031186,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385031186,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getFrontmatterSchema.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  markdownModelName: keyof DbModels | undefined\n): Promise<SimplifiedSchema | undefined> => {\n  if (markdownModelName === undefined) return;\n\n  const tsInterfaces = await db.get(\"TsInterface\");\n  const markdownModelTsInterfaces = tsInterfaces.filter(\n    (x) => x.name === markdownModelName && x.isExported\n  );\n\n  // console.log({ markdownModelTsInterfaces });\n\n  const markdownModelTsInterface = markdownModelTsInterfaces[0];\n\n  if (!markdownModelTsInterface) return;\n\n  const fullSimplifiedSchema = markdownModelTsInterface.type?.simplifiedSchema;\n\n  if (!fullSimplifiedSchema) return;\n\n  const newProperties = fullSimplifiedSchema.properties?.filter(\n    (x) => ![\"markdown\", \"name\"].includes(x.name)\n  );\n\n  const frontmatterSchema: SimplifiedSchema = {\n    ...fullSimplifiedSchema,\n    properties: newProperties,\n  };\n\n  return frontmatterSchema;\n}",
+  "name": "getFrontmatterSchema",
+  "slug": "get-frontmatter-schema",
+  "parameters": [],
+  "description": "Gets the frontmatterSchema of any markdown model. This should contain all elements that are required to be in the frontmatter of the markdown",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/SimplifiedSchema\").SimplifiedSchema | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 1004,
+    "lines": 31,
+    "bytes": 1004,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "id": "czsmmxbzrtthzsdqxhfodlai"
+}

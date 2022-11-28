@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055075708,
+  "updatedAt": 1669055075708,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055075708,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "isBundle",
+  "slug": "is-bundle",
+  "operationRelativeTypescriptFilePath": "src/isBundle.ts",
+  "type": {
+    "rawType": "(folderPath?: string | undefined) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(folderPath?: string): boolean => {\n  const realFolderPath = folderPath || getProjectRoot();\n  if (!realFolderPath) return false;\n  // get package-json and check operation config\n  const packageJson = readJsonFileSync<Operation>(\n    path.join(realFolderPath, \"package.json\")\n  );\n  const isBundle = packageJson?.operation?.isBundle || false;\n  return isBundle;\n}",
+  "description": "",
+  "id": "ztnskzqlnwbquugjtadwqboe"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669639442237,
+  "updatedAt": 1669639442237,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639442237,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "Layout",
+  "slug": "layout",
+  "operationRelativeTypescriptFilePath": "src/components/Layout.tsx",
+  "type": {
+    "rawType": "(props: { publicBundleConfig: import(\"/Users/king/King/operations/tools/types/bundle-types/build/PublicBundleConfig\").PublicBundleConfig | null | undefined; children: any; augmentedWordObject?: import(\"/Users/king/King/operations/tools/util/js-util/build/createMappedObject\").MappedObject<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/augmented-word-types/build/AugmentedWord\").AugmentedWord> | undefined; menu: import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").MenuObjectType<import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").FilePage>; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  publicBundleConfig: MarkdownReaderPageProps[\"publicBundleConfig\"];\n  children: any;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n  menu: MenuObjectType<FilePage>;\n}) => {\n  const { children, augmentedWordObject, publicBundleConfig, menu } = props;\n\n  return (\n    <LayoutGrid\n      menu={{\n        augmentedWords: Object.values(augmentedWordObject || {}),\n        webPagesFlat: menu.flat,\n        webPagesNested: menu.nested,\n        isLoading: false,\n      }}\n      header={<Header publicBundleConfig={publicBundleConfig} />}\n    >\n      {children}\n    </LayoutGrid>\n  );\n}",
+  "description": "",
+  "id": "lbyiwvqgolbwhrvviontcadf"
+}

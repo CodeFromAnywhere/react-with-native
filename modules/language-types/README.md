@@ -1,6 +1,6 @@
 # Language types
 
-language-types (`OperationClassification` js)
+language-types (`OperationClassification` cjs)
 
 
 

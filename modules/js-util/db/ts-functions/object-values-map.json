@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150847749,
-  "updatedAt": 1668150847749,
+  "createdAt": 1668977408827,
+  "updatedAt": 1668977408827,
   "deletedAt": 0,
-  "createdFirstAt": 1668150847749,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977408827,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/object-maps.ts",
   "commentsInside": [],
   "rawText": " <\n  T extends { [key: string]: T[string] },\n  U extends unknown\n>(\n  object: T,\n  mapFn: (key: string, value: T[string]) => U\n): { [key: string]: U } => {\n  return Object.keys(object).reduce(function (result, key) {\n    result[key] = mapFn(key, object[key]);\n    return result;\n  }, {} as any);\n}",
@@ -46,5 +41,5 @@
     "linesPerFile": 16,
     "numberOfFiles": 1
   },
-  "id": "sbpgjgkcqjitaackevgpkuor"
+  "id": "zsnntuvizxkpqlpufzlcusae"
 }

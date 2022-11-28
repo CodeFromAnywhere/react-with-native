@@ -1,6 +1,6 @@
 # Asset functions js
 
-asset-functions-js (`OperationClassification` js)
+asset-functions-js (`OperationClassification` cjs)
 
 
 ## ❌ No description set yet
@@ -23,7 +23,24 @@ This is a js operation. This means you cannot use any react or node, it's pure t
 
 
 
+## getTypeFromUrlOrPath()
+
+We are assuming the asset name and extsion appear at the end of the URL
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| urlOrPath | string |  |
+| **Output** | image / video / audio / text / other   |    |
+
+
+
 ## 📄 getReferencedAssetApiUrl (exported const)
+
+## 📄 getTypeFromUrlOrPath (exported const)
+
+We are assuming the asset name and extsion appear at the end of the URL
+
 
 ## addToken()
 
@@ -51,6 +68,15 @@ if already present, token is used from the name instead of this one |,| attachTo
 
 
 
+## getAssetDirectlyApiUrl()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| projectRelativeAssetPath | string |  |
+| **Output** | `String`   |    |
+
+
+
 ## getExtensionFromAsset()
 
 Returns a preliminary filename, based on the `Asset`
@@ -74,31 +100,6 @@ then ensures the token is attached (if not already there)
 | ---------- | -- | -- |
 | relativePath | string |  |,| attachTokenToFilename (optional) | boolean |  |,| newToken (optional) | string |  |
 | **Output** | `String`   |    |
-
-
-
-## getPreferredExtensionFromType()
-
-Received files contain a "type" like "audio/mp3" or "image/jpeg", etc...
-
-Here the extension is decided.
-
-NB: we also need to convert the file itself in case of mp3
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| type (optional) | string |  |
-| **Output** |    |    |
-
-
-
-## getTypeFromRelativePath()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| relativePath | string |  |
-| **Output** | video / audio / image / other   |    |
 
 
 
@@ -130,6 +131,8 @@ If previousToken is not present, will be generated randomly
 Remove the token (if present), then add it again
 
 
+## 📄 getAssetDirectlyApiUrl (exported const)
+
 ## 📄 getExtensionFromAsset (exported const)
 
 Returns a preliminary filename, based on the `Asset`
@@ -142,7 +145,47 @@ first gets the name from the relativePath
 then ensures the token is attached (if not already there)
 
 
-## 📄 getPreferredExtensionFromType (exported const)
+## 📄 readableSize (exported const)
+
+## 📄 removeTokenIfPresent (exported const)
+
+# Tests
+
+<details><summary>Show test information(2)</summary>
+    
+  # test()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 test (unexported const)
+
+  </details>
+
+# Internal
+
+<details><summary>Show internal (8)</summary>
+    
+  # findAssetParametersRecursively()
+
+Recursively finds all asset parameters in an object (for example in a database model item)
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| object | {  } |  |,| stack (optional) | string[] |  |
+| **Output** | { assetInputType: { type: image / video / audio / file / asset, <br />isMultiple: boolean, <br /> }, <br />parameterName: string, <br />stack?: string[], <br /> }[]   |    |
+
+
+
+## getConversionInfoFromType()
 
 Received files contain a "type" like "audio/mp3" or "image/jpeg", etc...
 
@@ -151,25 +194,10 @@ Here the extension is decided.
 NB: we also need to convert the file itself in case of mp3
 
 
-## 📄 getTypeFromRelativePath (exported const)
-
-## 📄 readableSize (exported const)
-
-## 📄 removeTokenIfPresent (exported const)
-
-# Internal
-
-<details><summary>Show internal (5)</summary>
-    
-  # getAssetDirectlyApiUrl()
-
-
-
-
 | Input      |    |    |
 | ---------- | -- | -- |
-| apiUrl | string |  |,| projectRelativeAssetPath | string |  |
-| **Output** | `String`   |    |
+| uploadMimeType (optional) | string |  |
+| **Output** | { uploadMimeType?: string, <br />targetFormat?: string, <br />isUnchecked?: boolean, <br /> }   |    |
 
 
 
@@ -182,7 +210,31 @@ NB: we also need to convert the file itself in case of mp3
 
 
 
-## 📄 getAssetDirectlyApiUrl (exported const)
+## 🔹 AssetParameter
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| assetInputType  | object |  |
+| parameterName  | string |  |
+| stack (optional) | array |  |
+
+
+
+## 📄 findAssetParametersRecursively (exported const)
+
+Recursively finds all asset parameters in an object (for example in a database model item)
+
+
+## 📄 getConversionInfoFromType (exported const)
+
+Received files contain a "type" like "audio/mp3" or "image/jpeg", etc...
+
+Here the extension is decided.
+
+NB: we also need to convert the file itself in case of mp3
+
 
 ## 📄 getNameFromRelativePath (exported const)
 

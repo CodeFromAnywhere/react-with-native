@@ -1,0 +1,47 @@
+{
+  "createdAt": 1669276144538,
+  "updatedAt": 1669276144538,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276144538,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getFunctionExecutions.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  functionName: string | undefined\n): Promise<FunctionExecution[]> => {\n  if (!functionName) return [];\n  const functionExecutions = (\n    await db.get(\"FunctionExecution\", {\n      // TODO: ensure executiosn are stored in the right place before I add this back\n      //  operationName: tsFunction.operationName,\n    })\n  )\n    .filter((x) => x.functionName === functionName)\n    .map(omitUndefinedValues);\n\n  return functionExecutions;\n}",
+  "name": "getFunctionExecutions",
+  "slug": "get-function-executions",
+  "parameters": [
+    {
+      "name": "functionName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/FunctionExecution\").FunctionExecution[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 446,
+    "lines": 15,
+    "bytes": 446,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "qpcgrsyrdgiomyouuxnncbbe"
+}

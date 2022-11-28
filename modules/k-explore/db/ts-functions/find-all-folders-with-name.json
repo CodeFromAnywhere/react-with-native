@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668148408409,
-  "updatedAt": 1668148408409,
+  "createdAt": 1668976646611,
+  "updatedAt": 1668976646611,
   "deletedAt": 0,
-  "createdFirstAt": 1668148408409,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668976646611,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/find-folders.ts",
   "commentsInside": [],
-  "rawText": " async (config: {\n  basePath: string;\n  folderName: string;\n  ignoreOperations?: boolean;\n}): Promise<string[]> => {\n  const { basePath, folderName, ignoreOperations } = config;\n\n  const result = (\n    await explore({\n      basePath,\n      searchLevel: \"folder\",\n      search: folderName,\n      ignore: generatedFolders,\n      exact: true,\n      cancelRecursionOn: ignoreOperations ? pathArrayIsOperation : undefined,\n    })\n  ).map((x) => x.path);\n\n  return result;\n}",
+  "rawText": " async (config: {\n  basePath: string;\n  folderName: string;\n  ignoreOperations?: boolean;\n  /**\n   * folders to ignore\n   */\n  ignoreFolders?: string[];\n}): Promise<string[]> => {\n  const { basePath, folderName, ignoreOperations, ignoreFolders } = config;\n\n  const result = (\n    await explore({\n      basePath,\n      searchLevel: \"folder\",\n      search: folderName,\n      ignore: [...generatedFolders, ...(ignoreFolders || [])],\n      exact: true,\n      cancelRecursionOn: ignoreOperations ? pathArrayIsOperation : undefined,\n    })\n  ).map((x) => x.path);\n\n  return result;\n}",
   "name": "findAllFoldersWithName",
   "slug": "find-all-folders-with-name",
   "parameters": [
@@ -30,6 +25,13 @@
           },
           "ignoreOperations": {
             "type": "boolean"
+          },
+          "ignoreFolders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "folders to ignore"
           }
         },
         "required": [
@@ -60,6 +62,22 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "name": "ignoreFolders",
+            "required": false,
+            "schema": {
+              "fullComment": "folders to ignore",
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
           }
         ],
         "type": "object"
@@ -79,13 +97,13 @@
   },
   "maxIndentationDepth": 3,
   "size": {
-    "characters": 468,
-    "lines": 20,
-    "bytes": 468,
+    "characters": 577,
+    "lines": 24,
+    "bytes": 577,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 23,
-    "linesPerFile": 20,
+    "charactersPerLine": 24,
+    "linesPerFile": 24,
     "numberOfFiles": 1
   },
-  "id": "jopwdhcfeoyaxmqalvbwpsie"
+  "id": "apnyjpxlxetgyuycrzofpiff"
 }

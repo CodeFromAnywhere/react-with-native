@@ -10,6 +10,6 @@
  * NB: string arrays are comma separated values, where you can put values with special characters in between quotes
  */
 export declare type Frontmatter = {
-    [frontMatterKey: string]: string | number | null | boolean | undefined | string[];
+    [frontMatterKey: string]: string;
 };
 //# sourceMappingURL=Frontmatter.d.ts.map

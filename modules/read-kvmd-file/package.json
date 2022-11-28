@@ -1,25 +1,8 @@
 {
-  "createdAt": 1662709577328,
-  "updatedAt": 1662709577328,
+  "createdAt": 1668328723721,
+  "updatedAt": 1668328723721,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577328,
-  "version": "0.0.1",
-  "main": "build/index.js",
-  "source": "src/index.ts",
-  "scripts": {
-    "dev": "tsc -w",
-    "build": "tsc",
-    "test": "node ./build/cli.js",
-    "up": "npm version patch -f",
-    "pub": "yarn up && npm publish"
-  },
-  "license": "ISC",
-  "name": "read-kvmd-file",
-  "devDependencies": {
-    "@types/node": "^18.0.1",
-    "typescript": "^4.7.4"
-  },
-  "slug": "read-kvmd-file",
+  "createdFirstAt": 1668328723721,
   "id": "DXHsjiFjXFmNVcPy",
   "dependencies": {
     "model-types": "0.0.1",
@@ -27,7 +10,83 @@
     "key-value-markdown-js": "0.0.1",
     "read-json-file": "0.0.1"
   },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "read-kvmd-file",
+  "language": "english",
+  "slug": "read-kvmd-file",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "read-kvmd-file",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668334994523,
+    "operationDependenciesIndexed": [
+      "KeyValueMarkdownParse",
+      "path",
+      "writeStringToFile",
+      "kvmdParseToMarkdownString",
+      "readJsonFile",
+      "path",
+      "writeJsonToFile",
+      "canRead",
+      "fs",
+      "path",
+      "Path",
+      "ModelLocation",
+      "DbFileLocation",
+      "KeyValueMarkdownParse",
+      "markdownStringToKvmdParse"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/parsing/read-files",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 3,
+        "lines": 85,
+        "characters": 2298,
+        "bytes": 2298
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 132,
+        "characters": 3033,
+        "bytes": 3033
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 56,
+        "characters": 783,
+        "bytes": 783
+      },
+      "size": {
+        "bytes": 6114,
+        "characters": 6114,
+        "lines": 273,
+        "numberOfFiles": 6
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

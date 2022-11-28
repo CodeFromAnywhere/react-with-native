@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669639435025,
+  "updatedAt": 1669639435025,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639435025,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "AugmentedWordComponent",
+  "slug": "augmented-word-component",
+  "operationRelativeTypescriptFilePath": "src/components/Dictionary.tsx",
+  "type": {
+    "rawType": "(props: { augmentedWord: import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/augmented-word-types/build/AugmentedWord\").AugmentedWord; augmentedWordObject: import(\"/Users/king/King/operations/tools/util/js-util/build/createMappedObject\").MappedObject<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/augmented-word-types/build/AugmentedWord\").AugmentedWord>; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  augmentedWord: AugmentedWord;\n  augmentedWordObject: MappedObject<AugmentedWord>;\n}) => {\n  const { augmentedWord, augmentedWordObject } = props;\n\n  const projectRelativeBaseFolderPath = getFolderJs(\n    augmentedWord.projectRelativeMarkdownSourcePath\n  )!;\n\n  const projectRelativeMarkdownFilePath =\n    augmentedWord.projectRelativeMarkdownSourcePath;\n  return (\n    <Div className=\"border border-gray-500 rounded-md m-2 p-2\">\n      <P className=\"font-bold\">{augmentedWord.word}</P>\n      {augmentedWord.spoiler ? (\n        <P>\n          {renderMarkdownContent(augmentedWord.spoiler, {\n            isDev,\n            isStatic: false,\n            projectRelativeMarkdownFilePath,\n            projectRelativeBaseFolderPath,\n            augmentedWordObject,\n          })}\n        </P>\n      ) : null}\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "augmtyolloisopjlwwazxykp"
+}

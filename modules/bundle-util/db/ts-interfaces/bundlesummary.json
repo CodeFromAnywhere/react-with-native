@@ -1,0 +1,119 @@
+{
+  "createdAt": 1668448344118,
+  "updatedAt": 1668448344118,
+  "deletedAt": 0,
+  "createdFirstAt": 1668448344118,
+  "id": "bundlesummary",
+  "name": "BundleSummary",
+  "slug": "bundlesummary",
+  "operationRelativeTypescriptFilePath": "src/getBundleSummary.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type BundleSummary = {\n  slug: string;\n  /**\n   * Haven't found a good usecase for this yet\n   */\n  // filesAndFoldersToInclude: string[];\n  packageNames: string[];\n  moduleNames: string[];\n  appNames: string[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "packageNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Haven't found a good usecase for this yet"
+        },
+        "moduleNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "appNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "slug",
+        "packageNames",
+        "moduleNames",
+        "appNames"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "packageNames",
+          "required": true,
+          "schema": {
+            "fullComment": "Haven't found a good usecase for this yet",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "moduleNames",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "appNames",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "BundleSummary",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

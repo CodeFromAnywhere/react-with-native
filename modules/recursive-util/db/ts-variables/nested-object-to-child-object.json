@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385436606,
+  "updatedAt": 1669385436606,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385436606,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "nestedObjectToChildObject",
+  "slug": "nested-object-to-child-object",
+  "operationRelativeTypescriptFilePath": "src/nestedObjectToChildObject.ts",
+  "type": {
+    "rawType": "<T extends { [key: string]: any; }>(nestedObject: import(\"/Users/king/King/operations/tools/types/recursive-types/build/NestedObject\").NestedObject<T>, mapFolderToT: (nestedObject: import(\"/Users/king/King/operations/tools/types/recursive-types/build/NestedObject\").NestedObject<T>, key: string) => T, stack?: string[]) => import(\"/Users/king/King/operations/tools/types/recursive-types/build/ChildObject\").ChildObject<T>[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends { [key: string]: any }>(\n  /**\n   * if T is an object, provide __check to check that it's a leaf\n   */\n  nestedObject: NestedObject<T>,\n  /**\n   * Map the folder to T. You can omit queryPath, it will be overwritten\n   */\n  mapFolderToT: (nestedObject: NestedObject<T>, key: string) => T,\n  stack: string[] = []\n): ChildObject<T>[] => {\n  const keys = Object.keys(nestedObject);\n  const children = keys.map((key) => {\n    const t = mapFolderToT(nestedObject, key);\n    const value = nestedObject[key];\n\n    const isLeaf = typeof value !== \"object\" || !!value.__check;\n\n    if (isLeaf) {\n      const { __check, ...valueWithoutCheck } = value;\n      return valueWithoutCheck;\n    }\n\n    const newStack = stack.concat(key);\n    const queryPath = newStack.join(\"/\");\n\n    return {\n      ...t,\n      queryPath,\n      children: nestedObjectToChildObject(value, mapFolderToT, newStack),\n    };\n  }) as ChildObject<T>[];\n\n  return children;\n}",
+  "description": "if T is an object, provide __check as one of its properties, to make it possible to check that it's a leaf. This property will be omitted in the ChildObject array",
+  "id": "fxoixbbxqpzthkzglywxliuh"
+}

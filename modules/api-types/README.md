@@ -1,6 +1,6 @@
 # Api types
 
-api-types (`OperationClassification` node)
+api-types (`OperationClassification` cjs)
 
 api-related types needed for the `api` operation
 

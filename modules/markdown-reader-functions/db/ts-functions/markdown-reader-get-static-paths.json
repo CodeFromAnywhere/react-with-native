@@ -1,16 +1,12 @@
 {
-  "createdAt": 1668149511933,
-  "updatedAt": 1668149511933,
+  "createdAt": 1669639130886,
+  "updatedAt": 1669639130886,
   "deletedAt": 0,
-  "createdFirstAt": 1668149511933,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669639130886,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "GetStaticPaths",
   "operationRelativeTypescriptFilePath": "src/markdownReaderGetStaticPaths.ts",
   "commentsInside": [],
   "rawText": " async (\n  context: GetStaticPathsContext\n) => {\n  const paths: string[] | undefined = await getMarkdownReaderQueryPaths();\n\n  // console.log({ paths });\n  if (!paths) {\n    return { paths: [], fallback: \"blocking\" };\n  }\n\n  const staticPaths = paths\n    .filter((x) => x !== \"\")\n    .map((p) => ({ params: { paths: p.split(\"/\") } }));\n\n  return {\n    paths: staticPaths,\n    fallback: \"blocking\",\n  };\n}",
@@ -73,5 +69,5 @@
     "linesPerFile": 19,
     "numberOfFiles": 1
   },
-  "id": "uuxtddkuhmqaocuxpyncajku"
+  "id": "urbbldrbkbibsehqzhuucnbq"
 }

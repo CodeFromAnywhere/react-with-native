@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668753031463,
+  "updatedAt": 1668753031463,
+  "deletedAt": 0,
+  "createdFirstAt": 1668753031463,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "readProjectRelativeJsonFile",
+  "slug": "read-project-relative-json-file",
+  "operationRelativeTypescriptFilePath": "src/readProjectRelativeJsonFile.ts",
+  "type": {
+    "rawType": "<T>(projectRelativePath: string) => Promise<T | null>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async <T>(\n  projectRelativePath: string\n): Promise<T | null> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return null;\n\n  const fullPath = path.join(projectRoot, projectRelativePath);\n\n  return readJsonFile<T>(fullPath);\n}",
+  "description": "",
+  "id": "oduimcykvnzbponnlmqecqny"
+}

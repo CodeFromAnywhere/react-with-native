@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055594234,
+  "updatedAt": 1669055594234,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055594234,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getMaxIndentationDepth",
+  "slug": "get-max-indentation-depth",
+  "operationRelativeTypescriptFilePath": "src/getMaxIndexationDepth.ts",
+  "type": {
+    "rawType": "(functionText: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(functionText: string) => {\n  const lines = functionText.split(\"\\n\");\n  const maxDepth = lines.reduce((max, line) => {\n    const prefixSpaces = line.length - line.trimStart().length;\n    const lineIndentationDepth = Math.floor(prefixSpaces / 2);\n    return max > lineIndentationDepth ? max : lineIndentationDepth;\n  }, 0);\n\n  return maxDepth;\n}",
+  "description": "gets the maximum indentation depth of any piece of code\n\ndoes this simply by splitting up the piece of code into lines and checking the indentation of every line, finding the highest one.\n\nassumes an indentation contains 2 spaces.",
+  "id": "ymmwfkstxcrnfesykorjucnx"
+}

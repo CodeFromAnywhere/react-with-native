@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667379665364,
-  "updatedAt": 1667379665364,
+  "createdAt": 1669467053526,
+  "updatedAt": 1669467053526,
   "deletedAt": 0,
-  "createdFirstAt": 1667379665364,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669467053526,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/mdToJsonParse.ts",
   "commentsInside": [],
   "rawText": " (\n  markdownString: string,\n  fileName?: string,\n  config?: MarkdownParseConfig\n): MarkdownParse => {\n  const { parameters, raw } = parseFrontmatterMarkdownString(\n    markdownString,\n    config\n  );\n  return {\n    fileName,\n    raw,\n    parameters,\n    content: mdContentParseRecursively(raw, 1),\n  };\n}",
@@ -42,12 +37,224 @@
       "schema": {
         "$ref": "#/definitions/MarkdownParseConfig"
       },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "noFinal",
+            "required": false,
+            "schema": {
+              "fullComment": "setting this to true will \n\n- not trim strings in frontmatter",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "frontmatterSchema",
+            "required": false,
+            "schema": {
+              "fullComment": "if you want frontmatter to be parsed in correct shape, add frontmatterSchema\n\nJSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+              "properties": [
+                {
+                  "name": "todo",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "discussion",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "idea",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "later",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "nb",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "title",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "section",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "description",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "string",
+                      "number",
+                      "boolean",
+                      "object",
+                      "array",
+                      "null"
+                    ],
+                    "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+                    "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "circularRefName",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "enum",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+                    "items": [
+                      {
+                        "schema": {
+                          "fullComment": "Primitive type",
+                          "properties": [],
+                          "type": "object"
+                        },
+                        "name": "JSONSchema7Type"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "properties",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "in case of object, this will always appear",
+                    "items": [
+                      {
+                        "schema": {
+                          "fullComment": "",
+                          "properties": [
+                            {
+                              "name": "name",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "schema",
+                              "required": true,
+                              "schema": {
+                                "circularRefName": "SimplifiedSchema",
+                                "properties": [],
+                                "type": "object"
+                              }
+                            },
+                            {
+                              "name": "required",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                                "nb": "can't we put this in the SimplifiedSchema itself?",
+                                "type": "boolean"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": "SimplifiedSchemaProperty"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "items",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "in case of arrays, this will always appear",
+                    "items": [
+                      {
+                        "schema": {
+                          "fullComment": "",
+                          "properties": [
+                            {
+                              "name": "name",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "name in case of it being a reference, otherwise null",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "schema",
+                              "required": true,
+                              "schema": {
+                                "circularRefName": "SimplifiedSchema",
+                                "properties": [],
+                                "type": "object"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": "SimplifiedSchemaItem"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "fullComment",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                    "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
       "required": false
     }
   ],
   "description": "makes a markdown parse from a markdown string\n\nTODO: `markdownStringToMarkdownParse` is a better name. First make a refactor script for this, because it is too hard to rename stuff that is used a lot.\n\nTODO: BUG: it doesn't take into account triple backticks! if there is markdown inside of the triple backticks, it can still be seen as main markdown. Triple backticks are stronger!",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse",
+    "rawType": "import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -65,5 +272,5 @@
     "linesPerFile": 20,
     "numberOfFiles": 1
   },
-  "id": "mascseygbakpmljlnqjqanll"
+  "id": "rbixmbvwuferfqgxohvjnuag"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385033733,
+  "updatedAt": 1669385033733,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385033733,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getWriterWebPages",
+  "slug": "get-writer-web-pages",
+  "operationRelativeTypescriptFilePath": "src/getWriterWebPages.ts",
+  "type": {
+    "rawType": "() => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const projectRelativePaths = (await getProjectRelativePaths()) || [];\n\n  console.log({ results: projectRelativePaths.length });\n  const writerWebPages: WriterWebPage[] = projectRelativePaths.map(\n    (projectRelativeFilePath) => {\n      const writerWebPage: WriterWebPage = {\n        pageData: { projectRelativeFilePath },\n        queryPath: projectRelativeFilePath,\n      };\n      return writerWebPage;\n    }\n  );\n\n  return writerWebPages;\n}",
+  "description": "",
+  "id": "rlcjqwjnsjprvwkahnsopoxc"
+}

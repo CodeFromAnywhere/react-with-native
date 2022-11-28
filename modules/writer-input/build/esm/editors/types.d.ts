@@ -1,9 +1,10 @@
+/// <reference types="react" />
 import { MarkdownParseRenderConfig } from "markdown";
 import { marked } from "marked";
 import { SubtextConfig, SubwordConfig } from "writer-types";
 export declare type ContentEditableRenderProps<TToken extends marked.Token> = {
     /**
-     * In the actual function you can overwrite this to be more specific
+     * In the actual function you can overwrite t his to be more specific
      */
     markedToken: TToken;
     subtextConfig: SubtextConfig;

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150847748,
-  "updatedAt": 1668150847748,
+  "createdAt": 1668977408827,
+  "updatedAt": 1668977408827,
   "deletedAt": 0,
-  "createdFirstAt": 1668150847748,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977408827,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/object-maps.ts",
   "commentsInside": [],
   "rawText": " async <\n  TObject extends { [key: string]: any },\n  TResultValue,\n  TResultObject extends {\n    [key in keyof TObject]: TResultValue;\n  }\n>(\n  object: TObject,\n  mapFn: (\n    key: Extract<keyof TObject, string>,\n    value: TObject[keyof TObject]\n  ) => Promise<TResultValue>\n): Promise<TResultObject> => {\n  const keys = getObjectKeysArray(object);\n\n  const result = mergeObjectsArray(\n    await Promise.all(\n      keys.map(async (key) => {\n        const value = object[key];\n        return { [key]: await mapFn(key, value) };\n      })\n    )\n  ) as unknown as TResultObject;\n\n  return result;\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 56,
     "numberOfFiles": 1
   },
-  "id": "mbuqhqrkfhdjvvdhyddgewqw"
+  "id": "dpzuumugbsirifqzvivhbnov"
 }

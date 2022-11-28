@@ -1,87 +1,28 @@
 {
-  "createdAt": 1666262345052,
-  "updatedAt": 1666262345052,
+  "createdAt": 1668448753164,
+  "updatedAt": 1668448753164,
   "deletedAt": 0,
-  "createdFirstAt": 1666262345052,
+  "createdFirstAt": 1668448753164,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
   "isExported": true,
   "operationRelativeTypescriptFilePath": "src/getQueryPath.ts",
   "commentsInside": [],
-  "rawText": " (\n  parsedUrlQuery: NextParsedUrlQuery | undefined\n) => {\n  const paths = parsedUrlQuery?.paths;\n  const queryPath = Array.isArray(paths)\n    ? paths.join(\"/\")\n    : paths === undefined\n    ? \"\"\n    : paths;\n  return queryPath;\n}",
+  "rawText": " (parsedUrlQuery: ParsedUrlQuery | undefined) => {\n  const paths = parsedUrlQuery?.paths;\n  const queryPath = Array.isArray(paths)\n    ? paths.join(\"/\")\n    : paths === undefined\n    ? \"\"\n    : paths;\n  return queryPath;\n}",
   "name": "getQueryPath",
   "slug": "get-query-path",
   "parameters": [
     {
       "name": "parsedUrlQuery",
       "schema": {
-        "$ref": "#/definitions/NextParsedUrlQuery"
+        "$ref": "#/definitions/ParsedUrlQuery"
       },
       "simplifiedSchema": {
         "fullComment": "",
-        "properties": [
-          {
-            "name": "amp",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "__nextNotFoundSrcPage",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "__nextDefaultLocale",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "__nextFallback",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "__nextLocale",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "__nextSsgPath",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "_nextBubbleNoFallback",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "_nextDataReq",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "properties": [],
         "type": "object"
       },
       "required": false
@@ -99,13 +40,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 230,
-    "lines": 11,
-    "bytes": 230,
+    "characters": 222,
+    "lines": 9,
+    "bytes": 222,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 21,
-    "linesPerFile": 11,
+    "charactersPerLine": 25,
+    "linesPerFile": 9,
     "numberOfFiles": 1
   },
-  "id": "yslrmexxcinvucxawsgxheky"
+  "id": "ftnnnmhutkgsethzeyqtpsqh"
 }

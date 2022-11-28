@@ -1,2 +1,78 @@
-"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(e){for(var t,r=1,a=arguments.length;r<a;r++)for(var n in t=arguments[r])Object.prototype.hasOwnProperty.call(t,n)&&(e[n]=t[n]);return e},__assign.apply(this,arguments)},__createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,a){void 0===a&&(a=r);var n=Object.getOwnPropertyDescriptor(t,r);n&&!("get"in n?!t.__esModule:n.writable||n.configurable)||(n={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,a,n)}:function(e,t,r,a){void 0===a&&(a=r),e[a]=t[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)"default"!==r&&Object.prototype.hasOwnProperty.call(e,r)&&__createBinding(t,e,r);return __setModuleDefault(t,e),t};Object.defineProperty(exports,"__esModule",{value:!0}),exports.Modal=exports.ModalProvider=exports.useModal=exports.ModalContext=void 0;var jsx_runtime_1=require("react/jsx-runtime"),React=__importStar(require("react")),react_1=require("react"),react_with_native_1=require("react-with-native"),react_native_1=require("react-native");exports.ModalContext=React.createContext({handleModal:function(){return null},modalContent:null,showModal:!1});var Provider=exports.ModalContext.Provider,useModal=function(){return(0,react_1.useContext)(exports.ModalContext)};exports.useModal=useModal;var useModalState=function(){var e=(0,react_1.useState)(!1),t=e[0],r=e[1],a=(0,react_1.useState)(null),n=a[0],i=a[1],o=(0,react_1.useState)(""),s=o[0],l=o[1];return{showModal:t,handleModal:function(e,a){void 0===e&&(e=null),r(!t),e&&i(e),a&&l(a)},modalContent:n,title:s}},ModalProvider=function(e){var t=e.children,r=useModalState(),a=r.showModal,n=r.handleModal,i=r.modalContent,o=r.title;return(0,jsx_runtime_1.jsxs)(Provider,__assign({value:{showModal:a,handleModal:n,modalContent:i,title:o}},{children:[t,(0,jsx_runtime_1.jsx)(Modal,{})]}))};function Modal(){var e=(0,react_1.useContext)(exports.ModalContext),t=e.modalContent,r=e.title,a=e.handleModal,n=e.showModal;return(0,jsx_runtime_1.jsx)(react_native_1.Modal,__assign({visible:n,transparent:!0,animationType:"slide"},{children:(0,jsx_runtime_1.jsx)(react_with_native_1.Div,__assign({className:"flex flex-1"},{children:(0,jsx_runtime_1.jsxs)(react_with_native_1.Div,__assign({className:"flex flex-col flex-1 m-2 p-2 bg-white border border-gray-200 rounded-lg shadow-lg"},{children:[(0,jsx_runtime_1.jsxs)(react_with_native_1.Div,__assign({className:"flex flex-row justify-between items-center"},{children:[(0,jsx_runtime_1.jsx)(react_with_native_1.H2,__assign({className:"text-2xl font-semibold p-2"},{children:r})),(0,jsx_runtime_1.jsx)(react_with_native_1.Button,__assign({className:"flex items-center justify-end p-4",textClassName:"font-bold text-2xl",onClick:function(){return a(null)}},{children:"X"}))]})),(0,jsx_runtime_1.jsx)(react_with_native_1.Div,{children:t})]}))}))}))}exports.ModalProvider=ModalProvider,exports.Modal=Modal;
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Modal = exports.ModalProvider = exports.useModal = exports.ModalContext = void 0;
+var jsx_runtime_1 = require("react/jsx-runtime");
+var React = __importStar(require("react"));
+var react_1 = require("react");
+var react_with_native_1 = require("react-with-native");
+var react_native_1 = require("react-native");
+exports.ModalContext = React.createContext({
+    handleModal: function () { return null; },
+    modalContent: null,
+    showModal: false,
+});
+var Provider = exports.ModalContext.Provider;
+var useModal = function () { return (0, react_1.useContext)(exports.ModalContext); };
+exports.useModal = useModal;
+var useModalState = function () {
+    var _a = (0, react_1.useState)(false), showModal = _a[0], setShowModal = _a[1];
+    var _b = (0, react_1.useState)(null), modalContent = _b[0], setModalContent = _b[1];
+    var _c = (0, react_1.useState)(""), title = _c[0], setTitle = _c[1];
+    var handleModal = function (content, title) {
+        if (content === void 0) { content = null; }
+        setShowModal(!showModal);
+        if (content) {
+            setModalContent(content);
+        }
+        if (title) {
+            setTitle(title);
+        }
+    };
+    return { showModal: showModal, handleModal: handleModal, modalContent: modalContent, title: title };
+};
+var ModalProvider = function (_a) {
+    var children = _a.children;
+    var _b = useModalState(), showModal = _b.showModal, handleModal = _b.handleModal, modalContent = _b.modalContent, title = _b.title;
+    return ((0, jsx_runtime_1.jsxs)(Provider, __assign({ value: { showModal: showModal, handleModal: handleModal, modalContent: modalContent, title: title } }, { children: [children, (0, jsx_runtime_1.jsx)(Modal, {})] })));
+};
+exports.ModalProvider = ModalProvider;
+function Modal() {
+    var _a = (0, react_1.useContext)(exports.ModalContext), modalContent = _a.modalContent, title = _a.title, handleModal = _a.handleModal, showModal = _a.showModal;
+    return ((0, jsx_runtime_1.jsx)(react_native_1.Modal, __assign({ visible: showModal, transparent: true, animationType: "slide" }, { children: (0, jsx_runtime_1.jsx)(react_with_native_1.Div, __assign({ className: "flex flex-1" }, { children: (0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "flex flex-col flex-1 m-2 p-2 bg-white border border-gray-200 rounded-lg shadow-lg" }, { children: [(0, jsx_runtime_1.jsxs)(react_with_native_1.Div, __assign({ className: "flex flex-row justify-between items-center" }, { children: [(0, jsx_runtime_1.jsx)(react_with_native_1.H2, __assign({ className: "text-2xl font-semibold p-2" }, { children: title })), (0, jsx_runtime_1.jsx)(react_with_native_1.Button, __assign({ className: "flex items-center justify-end p-4", textClassName: "font-bold text-2xl", onClick: function () { return handleModal(null); } }, { children: "X" }))] })), (0, jsx_runtime_1.jsx)(react_with_native_1.Div, { children: modalContent })] })) })) })));
+}
+exports.Modal = Modal;
 //# sourceMappingURL=Modal.native.js.map

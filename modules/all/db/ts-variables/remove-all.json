@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666258923197,
+  "updatedAt": 1666258923197,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258923197,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "removeAll",
+  "slug": "remove-all",
+  "operationRelativeTypescriptFilePath": "src/removeAll.ts",
+  "type": {
+    "rawType": "({ basePath, fileName, folderName, type, shell, ignore, onlyRoot, }: Omit<{ basePath?: string | string[] | undefined; } & { onlyRoot?: boolean | undefined; type?: import(\"/Users/king/King/operations/tools/control-project/all/src/forAllFolders\").DirectoryType | undefined; fileName?: string | undefined; folderName?: string | undefined; callback?: ((folderPath: string, index: number) => void) | undefined; command?: string | undefined; shell?: boolean | undefined; ignore?: string | string[] | undefined; }, \"command\">) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async ({\n  basePath,\n  fileName,\n  folderName,\n  type,\n  shell,\n  ignore,\n  onlyRoot,\n}: Omit<AllInputType, \"command\">) => {\n  const callback = (folderName: string) =>\n    new Promise<void>(async (resolve) => {\n      try {\n        if (fs.existsSync(folderName)) {\n          await fs.rm(folderName, { recursive: true });\n        }\n        resolve();\n      } catch (e) {\n        console.log(\n          \"Shouldnt happen, but we got a catch at removing an existing folder\"\n        );\n        resolve();\n      }\n    });\n\n  return forAllFolders({\n    basePath,\n    fileName,\n    onlyRoot,\n    folderName,\n    type,\n    callback,\n    shell,\n    ignore,\n  });\n}",
+  "description": "removes all xyz for a folder\n\nmake sure to specify which type you want.... folder or file most likely",
+  "id": "iixczzckbxepapjevxdghvrc"
+}

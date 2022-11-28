@@ -1,0 +1,105 @@
+{
+  "createdAt": 1669384301068,
+  "updatedAt": 1669384301068,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384301068,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getOperationType.ts",
+  "commentsInside": [],
+  "rawText": " (\n  absolutePath: string,\n  operationFolders: string[]\n): FolderExploration[\"type\"] | undefined => {\n  const parsedPath = path.parse(absolutePath);\n  if ([\".ts\", \".tsx\"].includes(parsedPath.ext)) {\n    return \"typescript\";\n  }\n  if ([\".md\", \".mdx\"].includes(parsedPath.ext)) {\n    return \"markdown\";\n  }\n\n  if (parsedPath.ext.length > 0) {\n    // NB: based on where this function is used, this should never happen\n    return undefined;\n  }\n\n  if (operationFolders.includes(absolutePath)) {\n    return \"operation\";\n  }\n  if (operationFolders.find((x) => absolutePath.startsWith(x))) {\n    return \"operationFolder\";\n  }\n  return \"folder\";\n}",
+  "name": "getExplorationType",
+  "slug": "get-exploration-type",
+  "parameters": [
+    {
+      "name": "absolutePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "operationFolders",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "gets the exploration type from an absolute type",
+  "returnType": {
+    "rawType": "\"function\" | \"folder\" | \"operation\" | \"operationFolder\" | \"markdown\" | \"typescript\" | \"interface\" | \"variable\" | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "enum": [
+        "function",
+        "folder",
+        "operation",
+        "operationFolder",
+        "markdown",
+        "typescript",
+        "interface",
+        "variable"
+      ],
+      "x-enumNames": [
+        "function",
+        "folder",
+        "operation",
+        "operationFolder",
+        "markdown",
+        "typescript",
+        "interface",
+        "variable"
+      ],
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "enum": [
+        "function",
+        "folder",
+        "operation",
+        "operationFolder",
+        "markdown",
+        "typescript",
+        "interface",
+        "variable"
+      ],
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 686,
+    "lines": 25,
+    "bytes": 686,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 25,
+    "numberOfFiles": 1
+  },
+  "id": "ionzoqgwgnrmatcfpqxyuegy"
+}

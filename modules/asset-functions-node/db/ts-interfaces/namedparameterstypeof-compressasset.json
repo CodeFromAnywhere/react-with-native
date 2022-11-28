@@ -1,0 +1,111 @@
+{
+  "createdAt": 1669384196078,
+  "updatedAt": 1669384196078,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384196078,
+  "id": "namedparameterstypeof-compressasset",
+  "name": "NamedParameters<typeof compressAsset>",
+  "slug": "namedparameterstypeof-compressasset",
+  "operationRelativeTypescriptFilePath": "src/compressAsset.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "absolutePath": {
+          "type": "string"
+        },
+        "compressionConfig": {
+          "$ref": "#/definitions/CompressionConfig"
+        }
+      },
+      "required": [
+        "absolutePath",
+        "compressionConfig"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "absolutePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "compressionConfig",
+          "required": true,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "bitrate",
+                "required": false,
+                "schema": {
+                  "fullComment": "used for audio",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "fps",
+                "required": false,
+                "schema": {
+                  "fullComment": "Frames per second. Used for video",
+                  "type": "number"
+                }
+              },
+              {
+                "name": "resolution",
+                "required": false,
+                "schema": {
+                  "fullComment": "Set the resolution. Will not upscale.\n\nUsed for video and images",
+                  "properties": [
+                    {
+                      "name": "width",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "height",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "shouldOverwrite",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, will overwrite the original file",
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof compressAsset>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

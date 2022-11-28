@@ -1,0 +1,52 @@
+{
+  "createdAt": 1668336278537,
+  "updatedAt": 1668336278537,
+  "deletedAt": 0,
+  "createdFirstAt": 1668336278537,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getAllTsMorphSourceFiles.ts",
+  "commentsInside": [],
+  "rawText": " async (operationBasePath: string) => {\n  const filePaths = await getPackageSourcePaths({\n    operationBasePath,\n  });\n  const project = getTsMorphProject(operationBasePath);\n  if (!project) {\n    log(\"couldn't load project\", { type: \"error\" });\n    return;\n  }\n\n  //select correct SourceFile from tsmorph project\n  const sourceFiles = project.getSourceFiles(filePaths);\n\n  return sourceFiles;\n}",
+  "name": "getAllTsMorphSourceFiles",
+  "slug": "get-all-ts-morph-source-files",
+  "parameters": [
+    {
+      "name": "operationBasePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 395,
+    "lines": 15,
+    "bytes": 395,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "mxkspnpqujwbndgxpowhiana"
+}

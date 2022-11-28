@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668149310608,
-  "updatedAt": 1668149310608,
+  "createdAt": 1669467154632,
+  "updatedAt": 1669467154632,
   "deletedAt": 0,
-  "createdFirstAt": 1668149310608,
+  "createdFirstAt": 1669467154632,
   "id": "frontmatter",
   "name": "Frontmatter",
   "slug": "frontmatter",
@@ -17,29 +17,7 @@
     "typeDefinition": {
       "type": "object",
       "additionalProperties": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "null"
-          },
-          {
-            "type": "boolean"
-          },
-          {
-            "not": {}
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        ]
+        "type": "string"
       },
       "description": "Our version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes"
     },

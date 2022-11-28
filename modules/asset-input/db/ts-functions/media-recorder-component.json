@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667378715380,
-  "updatedAt": 1667378715380,
+  "createdAt": 1669054956846,
+  "updatedAt": 1669054956846,
   "deletedAt": 0,
-  "createdFirstAt": 1667378715380,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669054956846,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/MediaRecorder.tsx",
   "commentsInside": [],
   "rawText": " (\n  props: ReactMediaRecorderRenderProps & { type: MediaRecorderType }\n) => {\n  const {\n    status,\n    startRecording,\n    stopRecording,\n    pauseRecording,\n    resumeRecording,\n    previewAudioStream,\n    mediaBlobUrl,\n    previewStream,\n    type,\n    muteAudio,\n    unMuteAudio,\n    isAudioMuted,\n  } = props;\n\n  const AudioOrVideo = type === \"audio\" ? Audio : Video;\n\n  const buttons =\n    status === \"acquiring_media\"\n      ? []\n      : status === \"recording\"\n      ? [\n          <button key=\"stop\" onClick={stopRecording}>\n            ⏹\n          </button>,\n          <button key=\"pause\" onClick={pauseRecording}>\n            ⏸\n          </button>,\n          type === \"video\" || type === \"screen\" ? (\n            isAudioMuted ? (\n              <button key=\"unmute\" onClick={unMuteAudio}>\n                🔈\n              </button>\n            ) : (\n              <button key=\"mute\" onClick={muteAudio}>\n                🔇\n              </button>\n            )\n          ) : undefined,\n        ]\n      : status === \"paused\"\n      ? [\n          <button key=\"stop\" onClick={stopRecording}>\n            ⏹\n          </button>,\n          <button key=\"pause\" onClick={resumeRecording}>\n            ▶️\n          </button>,\n        ]\n      : [\n          <button key=\"start\" onClick={startRecording}>\n            ⏺\n          </button>,\n        ];\n\n  return (\n    <div>\n      {buttons}\n      {mediaBlobUrl && status !== \"recording\" ? (\n        <AudioOrVideo src={mediaBlobUrl} controls autoPlay />\n      ) : null}\n      {type === \"video\" && previewStream && status === \"recording\" ? (\n        <VideoPreview stream={previewStream} />\n      ) : null}\n      {type === \"audio\" && previewAudioStream && status === \"recording\"\n        ? // TODO: visualise with https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API\n          null\n        : null}\n    </div>\n  );\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 74,
     "numberOfFiles": 1
   },
-  "id": "zqkatmdtvnttyonhjvxaevop"
+  "id": "ivqxgcdmbynfvotcsjullhje"
 }

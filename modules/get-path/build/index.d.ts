@@ -1,7 +1,9 @@
 export * from "./findFolderWhereMatch";
 export * from "./findOperationBasePath";
+export * from "./getAllPackageJsonDependencies";
 export * from "./getCommonAncestor";
 export * from "./getOperationClassification";
+export * from "./getOperationClassificationObject";
 export * from "./getOperationPath";
 export * from "./getOperationPathParse";
 export * from "./getOperationRelativePath";
@@ -12,8 +14,9 @@ export * from "./getRelativeLinkPath";
 export * from "./getRelativePath";
 export * from "./getRootPath";
 export * from "./getSrcRelativeFileId";
+export * from "./hasDependency";
+export * from "./isBundle";
 export * from "./isOperation";
-export * from "./isSensibleProject";
 export * from "./isWorkspaceRoot";
 export * from "./makeRelative";
 //# sourceMappingURL=index.d.ts.map

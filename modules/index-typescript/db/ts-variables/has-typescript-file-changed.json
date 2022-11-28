@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055609999,
+  "updatedAt": 1669055609999,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055609999,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "hasTypescriptFileChanged",
+  "slug": "has-typescript-file-changed",
+  "operationRelativeTypescriptFilePath": "src/hasTypescriptFileChanged.ts",
+  "type": {
+    "rawType": "(eventName: import(\"/Users/king/King/operations/tools/control-project/watch-types/build/WatchEventType\").WatchEventType, path: string) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  eventName: WatchEventType,\n  path: string\n) => {\n  // for indexation we don't care about any other event than adding or changing a file\n  if (![\"add\", \"change\"].includes(eventName)) return false;\n  // in order to index a file, it must be in an operation, which means it must be in src\n  if (!path.includes(\"/src/\")) return false;\n  // only ts and tsx files matter, the rest doesn't need to be indexed\n  if (![\"ts\", \"tsx\"].includes(getExtension(path))) return false;\n\n  return true;\n}",
+  "description": "",
+  "id": "nbkkkutfhplisueixmzrrvtw"
+}

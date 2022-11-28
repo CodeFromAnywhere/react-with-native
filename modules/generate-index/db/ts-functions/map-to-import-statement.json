@@ -1,0 +1,164 @@
+{
+  "createdAt": 1668335873798,
+  "updatedAt": 1668335873798,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335873798,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "commentsInside": [],
+  "rawText": " (\n  item: TsFunction | TsVariable | TsInterface,\n  type: ImportStatement[\"type\"]\n): ImportStatement => {\n  const srcRelativeFileId = getSrcRelativeFileId(\n    item.operationRelativeTypescriptFilePath\n  );\n\n  return { name: item.name, srcRelativeFileId, type };\n}",
+  "name": "mapToImportStatement",
+  "slug": "map-to-import-statement",
+  "parameters": [
+    {
+      "name": "item",
+      "schema": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/TsFunction"
+          },
+          {
+            "$ref": "#/definitions/TsVariable"
+          },
+          {
+            "$ref": "#/definitions/TsInterface"
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "type",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "variable",
+          "function",
+          "interface"
+        ]
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "variable",
+          "function",
+          "interface"
+        ],
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/typescript/generate-index/src/util\").ImportStatement",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "function",
+            "variable",
+            "interface"
+          ],
+          "x-enumNames": [
+            "function",
+            "variable",
+            "interface"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "srcRelativeFileId": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "name",
+        "srcRelativeFileId"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "function",
+              "variable",
+              "interface"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "srcRelativeFileId",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 263,
+    "lines": 10,
+    "bytes": 263,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "mwjzjobgmkgvinfyznilosxk"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262778147,
-  "updatedAt": 1666262778147,
+  "createdAt": 1668334796332,
+  "updatedAt": 1668334796332,
   "deletedAt": 0,
-  "createdFirstAt": 1666262778147,
+  "createdFirstAt": 1668334796332,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<\n  T extends { [key: string]: string | string[] | undefined }\n>(\n  data: KeyValueMarkdownModelType[],\n  {\n    keyName,\n    valueName,\n    categoryStackCalculatedName,\n    commentName,\n  }: {\n    /**\n     * key by default\n     */\n    keyName?: string;\n    /**\n     * value by default\n     */\n    valueName?: string;\n    /**\n     * comment by default\n     */\n    commentName?: string;\n    /**\n     * categoryStackCalculated by default\n     */\n    categoryStackCalculatedName?: string;\n  }\n): T[] => {\n  const newDataObject = data.map((item) => {\n    const newData = {\n      [keyName || \"name\"]: item.name,\n      [valueName || \"value\"]: item.value,\n      [commentName || \"comment\"]: item.comment,\n      [categoryStackCalculatedName || \"categoryStackCalculated\"]:\n        item.categoryStackCalculated,\n    } as T;\n\n    return newData;\n  });\n\n  return newDataObject;\n}",
   "description": "DEPRECATED: probably never needed, unless I make it useful\n\nmapper function to give a kvmd data object other parameters.\n\nNB: not sure if this is useful. it would be useful if we could auto-generate the application of this function for multiple db models.",
-  "id": "pgcmydamojzcaaynehxoawzi"
+  "id": "jhcshilzqkcolhfuzvcsqhpr"
 }

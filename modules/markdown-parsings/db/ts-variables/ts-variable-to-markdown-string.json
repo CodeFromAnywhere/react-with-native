@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200503202,
+  "updatedAt": 1669200503202,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200503202,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "tsVariableToMarkdownString",
+  "slug": "ts-variable-to-markdown-string",
+  "operationRelativeTypescriptFilePath": "src/tsVariableToMarkdownString.ts",
+  "type": {
+    "rawType": "(tsVariable: import(\"/Users/king/King/operations/tools/types/code-types/build/TsVariable\").TsVariable) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(tsVariable: TsVariable): string => {\n  const titleString = `# 📄 ${tsVariable.name} (${\n    tsVariable.isExported ? \"exported\" : \"unexported\"\n  } ${tsVariable.classification})`;\n\n  const alineas: (string | undefined)[] = [titleString, tsVariable.description];\n\n  return alineas.filter(notEmpty).join(\"\\n\\n\");\n}",
+  "description": "",
+  "id": "yhjkpxonhrtegvyutextpjns"
+}

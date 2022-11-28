@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666512917169,
-  "updatedAt": 1666512917169,
+  "createdAt": 1668836129425,
+  "updatedAt": 1668836129425,
   "deletedAt": 0,
-  "createdFirstAt": 1666512917169,
+  "createdFirstAt": 1668836129425,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "asset-input",
   "operationRelativeTypescriptFilePath": "src/AssetInput.tsx",
   "type": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form-asset-input/src/AssetInputType\").AssetInputType>",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form-asset-input/src/AssetInputType\").AssetInputType>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -18,7 +18,7 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "value": "(props) => {\n  const { onChange, value, extra, errors } = props;\n\n  const config = props.config || {};\n\n  const hasError = errors && errors.length > 0;\n  const inputClassWithError = `\n  w-full\n  ${InputTheme[extra?.theme]} \n  ${InputSize[extra?.size]}\n    ${\n      hasError\n        ? config.errorClassName\n          ? config.errorClassName\n          : \" border border-red-400\"\n        : \"\"\n    }`;\n\n  return (\n    <OriginalAssetInput\n      attachTokenToFilename={extra.attachTokenToFilename}\n      defaultAssetName={extra.defaultAssetName}\n      projectRelativeReferencingFilePath={\n        extra.projectRelativeReferencingFilePath\n      }\n      allowMultiple={extra.allowMultiple}\n      inputTypes={extra.inputTypes}\n      value={value}\n      onChange={(newAssets) => onChange(newAssets)}\n    />\n  );\n}",
+  "value": "(props) => {\n  const { onChange, value, extra, errors } = props;\n\n  const config = props.config || {};\n\n  const hasError = errors && errors.length > 0;\n  const inputClassWithError = `\n  w-full\n  ${InputTheme[extra?.theme]} \n  ${InputSize[extra?.size]}\n    ${\n      hasError\n        ? config.errorClassName\n          ? config.errorClassName\n          : \" border border-red-400\"\n        : \"\"\n    }`;\n\n  return (\n    <OriginalAssetInput\n      attachTokenToFilename={extra.attachTokenToFilename}\n      defaultAssetName={extra.defaultAssetName}\n      projectRelativeReferencingFilePath={\n        extra.projectRelativeReferencingFilePath\n      }\n      modelName={extra.modelName}\n      allowMultiple={extra.allowMultiple}\n      inputTypes={extra.inputTypes}\n      value={value}\n      onChange={(newAssets) => onChange(newAssets)}\n    />\n  );\n}",
   "description": "",
-  "id": "upjtcbgtwbfdzfzbgdilmdlu"
+  "id": "pnufewrlqjkozhzvjxayukxs"
 }

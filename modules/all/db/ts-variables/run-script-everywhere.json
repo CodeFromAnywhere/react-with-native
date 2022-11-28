@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666258927606,
+  "updatedAt": 1666258927606,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258927606,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "runScriptEverywhere",
+  "slug": "run-script-everywhere",
+  "operationRelativeTypescriptFilePath": "src/runScriptEverywhere.ts",
+  "type": {
+    "rawType": "(script: string, startIndex?: number | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  script: string,\n  startIndex?: number\n) => {\n  forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    callback: (folderPath, index) => {\n      if (startIndex && startIndex > index) {\n        console.log(`skipping ${index}`);\n        return;\n      }\n\n      try {\n        console.log(`now: ${index} (${folderPath})`);\n        execSync(`npm run ${script} --if-present`, {\n          encoding: \"utf8\",\n          cwd: folderPath,\n        });\n      } catch (e: any) {\n        const error: {\n          status: number;\n          signal: any;\n          output: (string | null)[];\n          pid: number;\n          stdout: string;\n          stderr: string;\n        } = e;\n        console.log(error?.stdout);\n      }\n    },\n  });\n}",
+  "description": "runs a package script in all tools operations\n\nNB: uses npm insead of yarn, but for scripts this shouldn't matter",
+  "id": "kiimxjprzlwyzrrtjduzcmft"
+}

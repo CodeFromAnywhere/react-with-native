@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667635482993,
-  "updatedAt": 1667635482993,
+  "createdAt": 1669639004410,
+  "updatedAt": 1669639004410,
   "deletedAt": 0,
-  "createdFirstAt": 1667635482993,
+  "createdFirstAt": 1669639004410,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "read-markdown-file",
   "operationRelativeTypescriptFilePath": "src/readMarkdownFile.ts",
   "type": {
-    "rawType": "(filePath: string) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse | null>",
+    "rawType": "(filePath: string) => Promise<import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse | null>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  filePath: Path\n): Promise<MarkdownParse | null> => {\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isMarkdownFile = [\"md\", \"mdx\"].includes(pathParse.ext.slice(1));\n  if (!isMarkdownFile) return null;\n  if (!fs.existsSync(filePath)) return null;\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const fileName = path.parse(filePath).name;\n\n  const markdownParse = mdToJsonParse(fileString, fileName);\n  return markdownParse;\n}",
   "description": "Reads and parses a markdown file",
-  "id": "yjbevqfmbzvkalralbmmfxhu"
+  "id": "cuohacnclkvrbnkzkwfqiczm"
 }

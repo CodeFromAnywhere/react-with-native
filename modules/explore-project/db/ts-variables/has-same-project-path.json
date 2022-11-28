@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384311210,
+  "updatedAt": 1669384311210,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384311210,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "hasSameProjectPath",
+  "slug": "has-same-project-path",
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "type": {
+    "rawType": "(projectRelativePath: string) => <T extends import(\"/Users/king/King/operations/tools/types/model-types/build/TsIndexModelType\").TsIndexModelType>(x: T) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(projectRelativePath: string) =>\n  <T extends TsIndexModelType>(x: T) => {\n    const isSame = x.projectRelativePath === projectRelativePath;\n    return isSame;\n  }",
+  "description": "function that returns a filter function that can check if some object (that extends an TsIndexModelType) has the same relative file path from the project root",
+  "id": "nqzswyarlyyncmxktswplwhd"
+}

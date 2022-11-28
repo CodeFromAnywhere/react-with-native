@@ -1,19 +1,14 @@
 {
-  "createdAt": 1667379661778,
-  "updatedAt": 1667379661778,
+  "createdAt": 1669467045633,
+  "updatedAt": 1669467045633,
   "deletedAt": 0,
-  "createdFirstAt": 1667379661778,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669467045633,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/markdownParseToMarkdownString.ts",
   "commentsInside": [],
-  "rawText": " (\n  markdownParse: MarkdownParse\n): string => {\n  const frontMatterString = frontmatterParseToString(markdownParse.parameters);\n\n  return `${frontMatterString}${markdownParse.raw}`;\n}",
+  "rawText": " (\n  markdownParse: MarkdownParse\n): string => {\n  const frontMatterString = frontmatterParseToString(markdownParse.parameters);\n  return `${frontMatterString}${markdownParse.raw}`;\n}",
   "name": "markdownParseToMarkdownString",
   "slug": "markdown-parse-to-markdown-string",
   "parameters": [
@@ -69,11 +64,152 @@
             }
           },
           {
+            "name": "parameters",
+            "required": true,
+            "schema": {
+              "fullComment": "parameters found in frontmatter\n\nOur version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+              "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
             "name": "content",
             "required": false,
             "schema": {
               "fullComment": "structured content based on h1, h2, h3, etc (paragraphs, recursive)",
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [
+                      {
+                        "name": "level",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "0 is a paragraph 1-6 is h1 until h6",
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "content",
+                        "required": false,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "markdownEmbed",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works",
+                          "nb": "I need to be very clear how this one works",
+                          "properties": [
+                            {
+                              "name": "alt",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "src",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "type",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "video",
+                                  "audio",
+                                  "image",
+                                  "text",
+                                  "other"
+                                ],
+                                "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "markdownLink",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Anything in the format `[alt](href)`\n\nIt needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here",
+                          "properties": [
+                            {
+                              "name": "alt",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "href",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "type",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "video",
+                                  "audio",
+                                  "image",
+                                  "text",
+                                  "other"
+                                ],
+                                "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "title",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "NB: title can also be an empty string (\"\")",
+                          "nb": "title can also be an empty string (\"\")",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "children",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "all content until the next title. it's either a content array if there's any titles found, or a string[] if it's paragraphs",
+                          "items": [
+                            {
+                              "schema": {
+                                "circularRefName": "MarkdownChunk",
+                                "properties": [],
+                                "type": "object"
+                              },
+                              "name": "MarkdownChunk"
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "MarkdownChunk"
+                }
+              ],
               "type": "array"
             }
           },
@@ -91,7 +227,7 @@
       "required": true
     }
   ],
-  "description": "",
+  "description": "NB: this just uses RAW!\n\nUse `markdownParseToMarkdownStringFromContent` for the real deal",
   "returnType": {
     "rawType": "String",
     "typeDefinition": {
@@ -107,13 +243,13 @@
   },
   "maxIndentationDepth": 1,
   "size": {
-    "characters": 184,
-    "lines": 7,
-    "bytes": 184,
+    "characters": 272,
+    "lines": 8,
+    "bytes": 272,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 26,
-    "linesPerFile": 7,
+    "charactersPerLine": 34,
+    "linesPerFile": 8,
     "numberOfFiles": 1
   },
-  "id": "wnawkeswbkniauoggkdktsue"
+  "id": "ntfsmdkptoammftgibghwdyb"
 }

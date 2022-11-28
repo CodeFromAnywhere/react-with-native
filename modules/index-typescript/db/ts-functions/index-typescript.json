@@ -1,0 +1,102 @@
+{
+  "createdAt": 1669055613648,
+  "updatedAt": 1669055613648,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055613648,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/indexTypescript.ts",
+  "commentsInside": [],
+  "rawText": " async (props: {\n  showLogging?: boolean;\n  /**\n   * filepaths of files to index. must be files from the same operation.\n   */\n  filePaths: string[];\n  manualProjectRoot: string | null;\n}): Promise<void> => {\n  const { filePaths, manualProjectRoot, showLogging } = props;\n  // NB: fix to globally alter real fs in order to fix EMFile error that happens in TSMorph (see https://github.com/isaacs/node-graceful-fs)\n  gracefulFs.gracefulify(realFs);\n\n  const firstFilePath = filePaths[0];\n  if (!firstFilePath) {\n    log(\"Please provide some file paths\");\n  }\n\n  // NB: we can assume all files are from the same operation\n  const operationBasePath = findOperationBasePath(firstFilePath);\n  if (!operationBasePath) {\n    log(\"Operation must have a basepath to be indexed\", { type: \"error\" });\n    return;\n  }\n  const projectRoot = manualProjectRoot || getProjectRoot(firstFilePath);\n  if (!projectRoot) {\n    log(\"No project root found\", { type: \"error\" });\n    return;\n  }\n  const packageJson = await readJsonFile<Operation>(\n    path.join(operationBasePath, \"package.json\")\n  );\n\n  if (!packageJson) {\n    log(\"Operation must have a package.json to be indexed\", { type: \"error\" });\n    return;\n  }\n\n  const operationName = packageJson.name;\n\n  if (!operationName) {\n    log(\"Operation must have a name to be indexed\", { type: \"error\" });\n    return;\n  }\n\n  const problems: string[] = [];\n\n  // TODO: this takes a long time. I should probably execute everything for every file after this and use the same project\n\n  //create tsmorph project for full operation\n  const project = getTsMorphProject(operationBasePath);\n\n  if (!project) {\n    const problem = \"couldn't load project\";\n    problems.push(problem);\n    await db.update(\n      \"Operation\",\n      (item) => item.name === getFolder(operationBasePath),\n      (old) =>\n        mergeNestedObject(old, {\n          operation: { buildResultIndexed: { indexErrors: problems } },\n        })\n    );\n\n    log(problem, { type: \"error\" });\n    return;\n  }\n\n  const filePathsToIndex = filePaths\n    .map(getValidatedOperationPathParse)\n    .filter(notEmpty);\n\n  // NB: one by one because if you do multiple at once, writing commets goes corrupt because concurrent writing.\n  await oneByOne(filePathsToIndex, async (file, index) => {\n    if (showLogging) {\n      process.stdout.write(`${index + 1}) ${file.srcFileId} `);\n    }\n    const result = await indexTypescriptFile(project, file, projectRoot);\n    if (showLogging) {\n      console.log(\"✅\");\n    }\n    return result;\n  });\n}",
+  "name": "indexTypescript",
+  "slug": "index-typescript",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "showLogging": {
+            "type": "boolean"
+          },
+          "filePaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "filepaths of files to index. must be files from the same operation."
+          },
+          "manualProjectRoot": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "filePaths",
+          "manualProjectRoot"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "showLogging",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "filePaths",
+            "required": true,
+            "schema": {
+              "fullComment": "filepaths of files to index. must be files from the same operation.",
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "manualProjectRoot",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Creates a typescript file index in 3 steps\n1) Introspects the file\n2) Calculates all needed information about it\n3) Saves the result to /db/******.json in the operation root\n\nNB: Build errors are done separately as this is done operation-wide, everything else is done for each file\n\nNB: I don't think this is super efficient, because the project is taken to just index a single file. It's probably better to pass the project and the sourcefile in here, right?\n\nTODO: if a typescript file starst with a comment before any statements (but possibly after the `#!/usr/bin/env xyz` statement), this should be indexed as the main file comment... This can be shown when opening the file in the admin... It should also check if there is an associated md file for that in src, so that can also be added in the index.",
+  "returnType": {
+    "rawType": "Promise<void>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 3326,
+    "lines": 92,
+    "bytes": 3328,
+    "bytesPerCharacter": 1.000601322910403,
+    "charactersPerLine": 36,
+    "linesPerFile": 92,
+    "numberOfFiles": 1
+  },
+  "id": "lkrholtujjsvbrqvraqkcfmk"
+}

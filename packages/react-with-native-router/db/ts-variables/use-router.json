@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261554944,
-  "updatedAt": 1666261554944,
+  "createdAt": 1668333624081,
+  "updatedAt": 1668333624081,
   "deletedAt": 0,
-  "createdFirstAt": 1666261554944,
+  "createdFirstAt": 1668333624081,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(): NextRouter => {\n  const navigation = useNavigation();\n\n  const push = async (route: any, options: any) => {\n    const realRoute = route === \"/\" ? \"index\" : route;\n    //@ts-ignore\n    navigation.navigate(realRoute, options?.query);\n    return true;\n  };\n\n  const route = \"\";\n\n  const replace = async (\n    url: NextURL,\n    as?: NextURL | undefined,\n    options?:\n      | {\n          shallow?: boolean;\n          locale?: string | false;\n          scroll?: boolean;\n        }\n      | undefined\n  ) => true;\n\n  const reload = () => {};\n  const back = () => navigation.goBack();\n\n  const prefetch = async (\n    url: string,\n    asPath?: string | undefined,\n    options?: PrefetchOptions | undefined\n  ) => {};\n  const events: MittEmitter<RouterEvent> = {\n    on: (type: RouterEvent, handler: () => void) => {},\n    off: () => {},\n    emit: () => {},\n  };\n\n  const beforePopState = (\n    cb: (state: {\n      url: string;\n      as: string;\n      options: TransitionOptions;\n    }) => boolean\n  ) => {};\n  return {\n    push,\n    route,\n    isLocaleDomain: true,\n    pathname: \"\",\n    query: {},\n    asPath: \"\",\n    isFallback: false,\n    basePath: \"\",\n    locale: \"\",\n    locales: [\"\"],\n    defaultLocale: \"\",\n    isReady: true,\n    isPreview: false,\n    replace,\n    reload,\n    back,\n    prefetch,\n    beforePopState,\n    events,\n  };\n}",
   "description": "",
-  "id": "iwqgnrziwtntxcuzymssxagw"
+  "id": "ngheiruxwavdbwsbezgvswfk"
 }

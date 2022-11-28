@@ -8,7 +8,6 @@ import { getRealValue } from "./util";
 export const Select = <T extends unknown>({
   options,
   onChange,
-
   value,
   title,
   containerClassName,
@@ -30,9 +29,8 @@ export const Select = <T extends unknown>({
 
   const onChangeSelect = (event: ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
-    const newValue = options.find((x) => x.value === value) || null;
+    const newValue = options.find((x) => String(x.value) === value) || null;
 
-    console.log("select change", { value, newValue });
     onChange?.(newValue);
   };
 

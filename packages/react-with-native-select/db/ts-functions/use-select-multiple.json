@@ -1,0 +1,36 @@
+{
+  "createdAt": 1668833466705,
+  "updatedAt": 1668833466705,
+  "deletedAt": 0,
+  "createdFirstAt": 1668833466705,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/useSelectMultiple.tsx",
+  "commentsInside": [],
+  "rawText": " <T extends unknown>(\n  items?: Item<T | null>[],\n  initialValue?: Item<T | null>[],\n  /**\n   * Optionally you can do other things with the value as well, like setting it to a global store\n   */\n  withValue?: (value: Item<T | null>[]) => void,\n  config?: Omit<SelectMultipleInputProps<T>, \"onChange\" | \"value\" | \"options\">\n): [\n  Component: () => JSX.Element,\n  value: Item<T | null>[],\n  setValue: (value: Item<T | null>[]) => void\n] => {\n  const realItems = items || [];\n  const [value, setValue] = useState<Item<T | null>[]>(initialValue || []);\n\n  const realOnChange = (v: Item<T | null>[]) => {\n    setValue(v);\n\n    if (v) {\n      withValue?.(v);\n    }\n  };\n\n  const Component = () => (\n    <SelectMultipleInput\n      {...config}\n      onChange={realOnChange}\n      value={value}\n      options={realItems}\n    />\n  );\n  return [Component, value, realOnChange];\n}",
+  "name": "useSelectMultiple",
+  "slug": "use-select-multiple",
+  "parameters": [],
+  "description": "Create a value selector in a single line of code, including its state!",
+  "returnType": {
+    "rawType": "[Component: () => JSX.Element, value: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T | null>[], setValue: (value: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T | null>[]) => void]",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 938,
+    "lines": 34,
+    "bytes": 938,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 34,
+    "numberOfFiles": 1
+  },
+  "id": "tmovnnzmibasedomoyuzoxxm"
+}

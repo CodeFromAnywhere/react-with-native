@@ -1,0 +1,75 @@
+{
+  "createdAt": 1669466951878,
+  "updatedAt": 1669466951878,
+  "deletedAt": 0,
+  "createdFirstAt": 1669466951878,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/copyCopyPairs.ts",
+  "commentsInside": [],
+  "rawText": " (copyPairs: CopyPair[]) => {\n  const copyPromises = copyPairs.map(async (copyPair) => {\n    const absoluteDestinationFolderPath = path.parse(\n      copyPair.absoluteDestinationPath\n    ).dir;\n\n    // first make the folder if not already there\n    if (!fs.existsSync(absoluteDestinationFolderPath)) {\n      await fs.mkdir(absoluteDestinationFolderPath, { recursive: true });\n    }\n\n    await fs.cpAsync(\n      copyPair.absoluteSourcePath,\n      copyPair.absoluteDestinationPath,\n      {\n        preserveTimestamps: true,\n      }\n    );\n  });\n\n  return Promise.all(copyPromises);\n}",
+  "name": "copyCopyPairs",
+  "slug": "copy-copy-pairs",
+  "parameters": [
+    {
+      "name": "copyPairs",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/CopyPair"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "absoluteSourcePath",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "absoluteDestinationPath",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            },
+            "name": "CopyPair"
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 580,
+    "lines": 22,
+    "bytes": 580,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "nyqbpbidyblewlloqwmmsshu"
+}

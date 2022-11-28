@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150233071,
-  "updatedAt": 1668150233071,
+  "createdAt": 1668335516594,
+  "updatedAt": 1668335516594,
   "deletedAt": 0,
-  "createdFirstAt": 1668150233071,
+  "createdFirstAt": 1668335516594,
   "id": "markdownword",
   "name": "MarkdownWord",
   "slug": "markdownword",
@@ -90,8 +90,7 @@
           "description": "the content of the markdown"
         },
         "categoryStackCalculated": {
-          "$ref": "#/definitions/CategoryStack",
-          "description": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!"
+          "$ref": "#/definitions/CategoryStack"
         }
       },
       "required": [
@@ -204,7 +203,7 @@
           "name": "categoryStackCalculated",
           "required": true,
           "schema": {
-            "fullComment": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\n",
+            "fullComment": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
             "nb": "Changing this value when updating/upserting, changes where the item is located!",
             "items": [
               {

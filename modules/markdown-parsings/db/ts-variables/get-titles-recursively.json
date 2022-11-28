@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200488588,
+  "updatedAt": 1669200488588,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200488588,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getTitlesRecursively",
+  "slug": "get-titles-recursively",
+  "operationRelativeTypescriptFilePath": "src/parsing/outline.ts",
+  "type": {
+    "rawType": "(chunk: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownChunk) => import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/parsing/outline\").NestedTitle[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(chunk: MarkdownChunk) => {\n  const childrenTitles: NestedTitle[] | undefined =\n    chunk.children?.map(getTitlesRecursively);\n\n  const returnStatement: NestedTitle[] = [];\n\n  if (chunk.title) returnStatement.push(chunk.title);\n  if (childrenTitles?.length) returnStatement.push(childrenTitles);\n\n  return returnStatement;\n}",
+  "description": "helper function to get a nested array of the titles and its subtitles",
+  "id": "bmmyiricouzjtwaeddtfimzk"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666260569375,
-  "updatedAt": 1666260569375,
+  "createdAt": 1668775439685,
+  "updatedAt": 1668775439685,
   "deletedAt": 0,
-  "createdFirstAt": 1666260569375,
+  "createdFirstAt": 1668775439685,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "untyped-api-function",
   "operationRelativeTypescriptFilePath": "src/api.ts",
   "type": {
-    "rawType": "(fnName: string, config: import(\"/Users/king/King/operations/tools/interfaces/api/api-types/build/api-types\").ApiConfig, ...parameters: any) => Promise<import(\"/Users/king/King/operations/tools/interfaces/api/api-types/build/api-types\").RealApiReturnType<any>>",
+    "rawType": "(fnName: string, config: import(\"/Users/king/King/operations/tools/user-interfaces/api/api-types/build/api-types\").ApiConfig, ...parameters: any) => Promise<import(\"/Users/king/King/operations/tools/user-interfaces/api/api-types/build/api-types\").ApiReturnType<any>>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (\n  fnName: string,\n  config: ApiConfig,\n  ...parameters: any\n): Promise<RealApiReturnType<any>> => {\n  // TODO: document this convention\n  const storageAuthToken: string = await getItem(AUTH_TOKEN_STORAGE_KEY);\n\n  const authToken = config.authToken || storageAuthToken;\n  const realApiUrl = config.apiUrl || apiUrl;\n  const fullUrl = `${realApiUrl}/function/${fnName}`;\n\n  try {\n    const abortController = new AbortController();\n    const id = setTimeout(\n      () => abortController.abort(),\n      config.timeout || 10000\n    );\n\n    const response = await fetch(fullUrl, {\n      method: \"POST\",\n      signal: config.timeout ? abortController.signal : undefined,\n      headers: {\n        Accept: \"application/json\",\n        \"Content-Type\": \"application/json\",\n      },\n      body: JSON.stringify({ config: { authToken }, parameters }),\n    })\n      .then((response) => response.json())\n      .then((response) => {\n        return response;\n      })\n      .catch((error) => {\n        if (!config.timeout) {\n          console.warn(error);\n        }\n        return {\n          isSuccessful: false,\n          isNotConnected: true,\n          message: \"The API didn't resolve: \" + error, //error + error.status +\n        };\n      });\n\n    clearTimeout(id);\n    return response;\n  } catch (e) {\n    return {\n      isSuccessful: false,\n      isNotConnected: true,\n      message: \"The API didn't resolve: \" + e,\n    };\n  }\n}",
+  "value": "async (\n  fnName: string,\n  config: ApiConfig,\n  ...parameters: any\n): Promise<RealApiReturnType<any>> => {\n  // TODO: document this convention\n  const storageAuthToken: string | undefined = await getItem(\n    AUTH_TOKEN_STORAGE_KEY\n  );\n\n  const authToken = config.authToken || storageAuthToken;\n  const realApiUrl = config.apiUrl || apiUrl;\n  const fullUrl = `${realApiUrl}/function/${fnName}`;\n\n  try {\n    const abortController = new AbortController();\n    const id = setTimeout(\n      () => abortController.abort(),\n      config.timeout || 10000\n    );\n\n    const response = await fetch(fullUrl, {\n      method: \"POST\",\n      signal: config.timeout ? abortController.signal : undefined,\n      headers: {\n        Accept: \"application/json\",\n        \"Content-Type\": \"application/json\",\n      },\n      body: JSON.stringify({ authToken, parameters }),\n    })\n      .then((response) => response.json())\n      .then((response) => {\n        return response;\n      })\n      .catch((error) => {\n        if (!config.timeout) {\n          console.warn(error);\n        }\n        return {\n          isSuccessful: false,\n          isNotConnected: true,\n          message: \"The API didn't resolve: \" + error, //error + error.status +\n        };\n      });\n\n    clearTimeout(id);\n    return response;\n  } catch (e) {\n    return {\n      isSuccessful: false,\n      isNotConnected: true,\n      message: \"The API didn't resolve: \" + e,\n    };\n  }\n}",
   "description": "Used for calling the actual api for a function with some config\n\nNB: this is not a typed function as we are just overwriting it so we don't need any inference on this",
-  "id": "pplsfdqjqfobudcqpqeqpixt"
+  "id": "tzqycpmfhihaqywprvhjsnii"
 }

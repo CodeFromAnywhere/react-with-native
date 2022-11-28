@@ -1,0 +1,64 @@
+{
+  "createdAt": 1669200506591,
+  "updatedAt": 1669200506591,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200506591,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/util/noNewlines.ts",
+  "commentsInside": [],
+  "rawText": " (\n  markdown: string | undefined\n): string | undefined => {\n  return markdown?.replaceAll(\"\\n\", \"<br />\");\n}",
+  "name": "noNewlines",
+  "slug": "no-newlines",
+  "parameters": [
+    {
+      "name": "markdown",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Replaces newlines with a <br />",
+  "returnType": {
+    "rawType": "string | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 140,
+    "lines": 5,
+    "bytes": 140,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 5,
+    "numberOfFiles": 1
+  },
+  "id": "jtpjvecxwybsjocppsyqfjyu"
+}

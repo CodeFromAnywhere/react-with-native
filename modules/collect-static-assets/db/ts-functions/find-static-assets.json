@@ -1,0 +1,47 @@
+{
+  "createdAt": 1669466957645,
+  "updatedAt": 1669466957645,
+  "deletedAt": 0,
+  "createdFirstAt": 1669466957645,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/findStaticAssets.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  absoluteMarkdownFilePath: string\n): Promise<string[]> => {\n  if (!fs.existsSync(absoluteMarkdownFilePath)) return [];\n  const content: string = await fs.readFile(absoluteMarkdownFilePath, \"utf8\");\n\n  const relativeEmbeds = findEmbeds(content)\n    .filter((x) => isPathRelative(x.src))\n    .map((x) => x.src);\n\n  const relativeLinks = findLinks(content)\n    .filter(\n      (x) => isPathRelative(x.href)\n      // NB: bit shitty that we can't link to typescript files or pdfs this way, but it's ok, we can embed them. Once needed, this must be improved, not now.\n    )\n    .filter((x) => x.type !== \"text\" && x.type !== \"other\")\n    .map((x) => x.href);\n\n  const absoluteMarkdownFolderPath = getFolderJs(absoluteMarkdownFilePath);\n  const absoluteAssetPaths = [relativeLinks, relativeEmbeds]\n    .flat()\n    .map((relativePath) => path.join(absoluteMarkdownFolderPath, relativePath));\n\n  return absoluteAssetPaths;\n}",
+  "name": "findStaticAssets",
+  "slug": "find-static-assets",
+  "parameters": [
+    {
+      "name": "absoluteMarkdownFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Returns the absolute paths of all static assets (embeds and links) in a markdown file of which the path is provided.",
+  "returnType": {
+    "rawType": "Promise<string[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1040,
+    "lines": 25,
+    "bytes": 1040,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 42,
+    "linesPerFile": 25,
+    "numberOfFiles": 1
+  },
+  "id": "zqythpubeefplyfyallvflhg"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669276149703,
+  "updatedAt": 1669276149703,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276149703,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getSrcRelativeFolderPath",
+  "slug": "get-src-relative-folder-path",
+  "operationRelativeTypescriptFilePath": "src/getSrcRelativeFolderPath.ts",
+  "type": {
+    "rawType": "(operationRelativeSourcePath: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  operationRelativeSourcePath: string\n) => {\n  // 1) remove src/\n  const withouSrc = operationRelativeSourcePath.startsWith(\"src/\")\n    ? operationRelativeSourcePath.slice(\"src/\".length)\n    : undefined;\n\n  const folder = getFolderJs(withouSrc);\n\n  if (folder === \"\") return undefined;\n\n  return folder;\n}",
+  "description": "",
+  "id": "xyormjygrzwbxvxdyoqyitcs"
+}

@@ -1,0 +1,54 @@
+{
+  "createdAt": 1669384989763,
+  "updatedAt": 1669384989763,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384989763,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/frontmatterParseToString.ts",
+  "commentsInside": [],
+  "rawText": " (frontmatter: Frontmatter): string => {\n  const keys = Object.keys(frontmatter);\n\n  const keyValueLines = keys\n    .map((key) => {\n      const value = frontmatter[key];\n\n      const parsedFrontmatterLine = `${key}: ${value}`;\n\n      return parsedFrontmatterLine;\n    })\n    .filter(notEmpty);\n\n  return keyValueLines.length === 0\n    ? \"\"\n    : `---\\n${keyValueLines.join(\"\\n\")}\\n---\\n`;\n}",
+  "name": "frontmatterParseToString",
+  "slug": "frontmatter-parse-to-string",
+  "parameters": [
+    {
+      "name": "frontmatter",
+      "schema": {
+        "$ref": "#/definitions/Frontmatter"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Our version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+        "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Parses frontmatter object into a frontmatter string",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 441,
+    "lines": 17,
+    "bytes": 441,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "qidilrxishqgdkqschcjxapn"
+}

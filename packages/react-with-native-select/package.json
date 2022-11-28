@@ -1,38 +1,17 @@
 {
-  "createdAt": 1662709577330,
-  "updatedAt": 1662709577330,
+  "createdAt": 1668328707823,
+  "updatedAt": 1668328707823,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577330,
-  "name": "react-with-native-select",
-  "version": "2.0.7",
-  "description": "",
-  "main": "build/index.js",
-  "source": "src/index.tsx",
-  "scripts": {
-    "pub": "npm version patch --force && npm publish",
-    "build": "tsc",
-    "dev": "npx tsc-watch --onSuccess 'yarn dev:tw'",
-    "dev:tw": "tailwindcss -o css.css"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Code-From-Anywhere/react-with-native.git"
-  },
-  "keywords": [
-    "react",
-    "with",
-    "native",
-    "select",
-    "component",
-    "cross",
-    "platform"
-  ],
+  "createdFirstAt": 1668328707823,
+  "id": "ikNZbbUMqkXxVJPs",
   "author": "Wijnand Karsens <wijnand@karsens.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Code-From-Anywhere/react-with-native/issues"
+  "dependencies": {
+    "react": "17.0.2",
+    "react-native": "*",
+    "react-with-native-ui": "1.0.6",
+    "react-with-native": "1.4.9"
   },
-  "homepage": "https://github.com/Code-From-Anywhere/react-with-native#readme",
+  "description": "",
   "devDependencies": {
     "@types/react": "17.0.30",
     "@types/react-dom": "^17.0.11",
@@ -44,15 +23,72 @@
     "tailwindcss": "^3.0.24",
     "typescript": "^4.6.4"
   },
+  "homepage": "https://github.com/Code-From-Anywhere/react-with-native#readme",
+  "main": "build/index.js",
   "peerDependencies": {
     "react-with-native": "*"
   },
-  "slug": "react-with-native-select",
-  "id": "ikNZbbUMqkXxVJPs",
-  "dependencies": {
-    "react": "17.0.2"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Code-From-Anywhere/react-with-native.git"
   },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "scripts": {
+    "pub": "npm version patch --force && npm publish",
+    "build": "tsc",
+    "dev": "npx tsc-watch --onSuccess 'yarn css'",
+    "css": "tailwindcss -o css.css"
+  },
+  "source": "src/index.tsx",
+  "version": "2.0.7",
+  "name": "react-with-native-select",
+  "language": "english",
+  "slug": "react-with-native-select",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/util.tsx. Error: TypeError: Cannot read properties of undefined (reading 'getId')"
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "ui-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "react-with-native-select",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668833473038,
+    "operationDependenciesIndexed": [],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/user-interfaces/gui/react-with-native",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 8,
+        "lines": 427,
+        "characters": 10262,
+        "bytes": 10262
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 136,
+        "characters": 3582,
+        "bytes": 3582
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 47,
+        "characters": 716,
+        "bytes": 716
+      },
+      "size": {
+        "bytes": 14560,
+        "characters": 14560,
+        "lines": 610,
+        "numberOfFiles": 12
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

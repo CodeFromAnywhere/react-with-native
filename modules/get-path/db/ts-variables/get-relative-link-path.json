@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148342560,
-  "updatedAt": 1668148342560,
+  "createdAt": 1669055067593,
+  "updatedAt": 1669055067593,
   "deletedAt": 0,
-  "createdFirstAt": 1668148342560,
+  "createdFirstAt": 1669055067593,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  absoluteFromFilePath: string,\n  absoluteToFilePath: string,\n  debug?: boolean\n): string => {\n  const commonAncestorPath = getCommonAncestor(\n    absoluteFromFilePath,\n    absoluteToFilePath\n  );\n\n  //1 - go from `absoluteFromPath` to `commonAncestorPath`\n  const commonAncestorRelativeFromPath = makeRelative(\n    absoluteFromFilePath,\n    commonAncestorPath\n  );\n  const commonAncestorRelativeToPath = makeRelative(\n    absoluteToFilePath,\n    commonAncestorPath\n  );\n\n  const foldersToGoBackAmount =\n    commonAncestorRelativeFromPath.split(\"/\").length - 1;\n\n  const backOrStart =\n    foldersToGoBackAmount === 0 ? \"./\" : \"../\".repeat(foldersToGoBackAmount);\n\n  //2 - go from `commonAncestorPath` to `absoluteToPath`\n  const relativeLinkPath = `${backOrStart}${commonAncestorRelativeToPath}`;\n\n  if (debug) {\n    console.log({\n      commonAncestorPath,\n      commonAncestorRelativeFromPath,\n      commonAncestorRelativeToPath,\n    });\n  }\n\n  return relativeLinkPath;\n}",
   "description": "returns a relative link between two files",
-  "id": "upagjomfsmudluehigbspgij"
+  "id": "ulmlcwdsgwbketnwntdllvcg"
 }

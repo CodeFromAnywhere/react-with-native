@@ -1,16 +1,12 @@
 {
-  "createdAt": 1668152083409,
-  "updatedAt": 1668152083409,
+  "createdAt": 1669385135095,
+  "updatedAt": 1669385135095,
   "deletedAt": 0,
-  "createdFirstAt": 1668152083409,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385135095,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "ParseTextContentToHtmlString",
   "operationRelativeTypescriptFilePath": "src/editors/SmartContentEditableDivInput.tsx",
   "commentsInside": [],
   "rawText": " (\n  text,\n  type,\n  subtextConfig,\n  subwordConfig,\n  markdownParseRenderConfig\n) => {\n  if (type === \"markdown\" && markdownParseRenderConfig) {\n    const lexed = marked.lexer(text);\n\n    const html = lexed.map((token) => (\n      <MarkedToken\n        item={token}\n        subtextConfig={subtextConfig}\n        subwordConfig={subwordConfig}\n        markdownFileConfig={markdownParseRenderConfig}\n        testModeEnabled={true}\n      />\n    ));\n\n    const result = <>{html}</>;\n\n    const string = ReactDOMServer.renderToString(result);\n\n    return string;\n  }\n\n  return text;\n}",
@@ -41,5 +37,5 @@
     "linesPerFile": 33,
     "numberOfFiles": 1
   },
-  "id": "djvcfhjrbdxeetnsxbwmbeuc"
+  "id": "guxwhzpnwdbcguqslaauphfu"
 }

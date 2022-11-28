@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148402916,
-  "updatedAt": 1668148402916,
+  "createdAt": 1668976640378,
+  "updatedAt": 1668976640378,
   "deletedAt": 0,
-  "createdFirstAt": 1668148402916,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668976640378,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/explore.ts",
   "commentsInside": [],
   "rawText": " (config: BaseConfig) => {\n  return explore({\n    basePath: config?.basePath,\n    search: \".git\",\n    exact: true,\n    searchLevel: \"folder\",\n    doNotExploreMatch: true,\n    // I guess we can assume there will never be git folders inside an operation on a deeper level, that would be strange... Therefore, these can be ignored\n    ignore: [\"node_modules\", \"build\", \".next\", \"src\", \"assets\", \"data\"],\n  });\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 11,
     "numberOfFiles": 1
   },
-  "id": "ahubdswixtvjunnocdcwqrxq"
+  "id": "gkglvhynrrdsrulvyxfbfqym"
 }

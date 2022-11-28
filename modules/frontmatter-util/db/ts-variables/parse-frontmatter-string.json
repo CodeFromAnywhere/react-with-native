@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384999381,
+  "updatedAt": 1669384999381,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384999381,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "parseFrontmatterString",
+  "slug": "parse-frontmatter-string",
+  "operationRelativeTypescriptFilePath": "src/parseFrontmatterString.ts",
+  "type": {
+    "rawType": "(value: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(value: string) => {\n  const withoutQuotes = value.includes(\",\")\n    ? value.substring(1, value.length - 1)\n    : value;\n\n  const withNewlines = withoutQuotes.replaceAll(\"\\\\n\", \"\\n\");\n\n  return withNewlines;\n}",
+  "description": "Parse a string as stored in frontmatter back to the original string",
+  "id": "zmxnmdmwqhomfivtdhleevhp"
+}

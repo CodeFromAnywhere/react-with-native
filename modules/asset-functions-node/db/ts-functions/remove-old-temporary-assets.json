@@ -1,0 +1,37 @@
+{
+  "createdAt": 1669384213571,
+  "updatedAt": 1669384213571,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384213571,
+  "runEveryPeriod": "midnight",
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/removeOldTemporaryAssets.ts",
+  "commentsInside": [],
+  "rawText": " async (): Promise<{\n  removedAmount: number;\n}> => {\n  const temporaryAssetsFolderPath = getTemporaryAssetsFolderPath();\n  const contents = await fs.readdir(temporaryAssetsFolderPath, {\n    encoding: \"utf8\",\n  });\n\n  let removedAmount = 0;\n  await Promise.all(\n    contents.map(async (fileOrFolderName) => {\n      const absolutePath = path.join(\n        temporaryAssetsFolderPath,\n        fileOrFolderName\n      );\n\n      const statistics = await fs.stat(absolutePath);\n\n      if (Date.now() - statistics.ctimeMs > 86400 * 1000) {\n        removedAmount++;\n        // more than a day old\n        await fs.rm(absolutePath, { recursive: true });\n      }\n    })\n  );\n\n  return { removedAmount };\n}",
+  "name": "removeOldTemporaryAssets",
+  "slug": "remove-old-temporary-assets",
+  "parameters": [],
+  "description": "---\nrunEveryPeriod: midnight\n---\n\n\nAll temporary assets that were created more than 24 hours ago and are still there, will be removed by this function.\n\nThis allows us to easily delete assets without concequences and also if the user closes a form without submitting it, these assets uploaded will go away.\n\nThis function should be executed using a daily CRON",
+  "returnType": {
+    "rawType": "Promise<{ removedAmount: number; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1053,
+    "lines": 37,
+    "bytes": 1053,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 37,
+    "numberOfFiles": 1
+  },
+  "id": "xetpvcnrwnqperocsyevwpui"
+}

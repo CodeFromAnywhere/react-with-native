@@ -1,0 +1,62 @@
+{
+  "createdAt": 1666258928585,
+  "updatedAt": 1666258928585,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258928585,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/setScriptEverywhere.ts",
+  "commentsInside": [],
+  "rawText": " async (script: string, value: string) => {\n  forAllFolders({\n    basePath: getPathsWithOperations(),\n    type: \"operations\",\n    shell: true,\n    callback: (folderPath, index) => {\n      setJsonKey({\n        jsonPath: path.join(folderPath, \"package.json\"),\n        keyLocation: `scripts.${script}`,\n        value,\n      });\n    },\n  });\n}",
+  "name": "setScriptEverywhere",
+  "slug": "set-script-everywhere",
+  "parameters": [
+    {
+      "name": "script",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "set package.json script to another value in all operations in tools folder",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 413,
+    "lines": 14,
+    "bytes": 413,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "dqiqyxdzltvxkdqcvachblrh"
+}

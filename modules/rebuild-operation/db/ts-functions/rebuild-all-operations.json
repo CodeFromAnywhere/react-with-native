@@ -1,0 +1,59 @@
+{
+  "createdAt": 1669055718893,
+  "updatedAt": 1669055718893,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055718893,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/rebuildAllOperations.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  /**\n   * If true, you are indicating that the rebuilding process has changed and all operations should be rebuilt after this date.\n   */\n  isRebuildingProcessUpdated?: boolean,\n  manualProjectRoot?: string\n) => {\n  const configPath = path.join(__dirname, \"..\", \"config.json\");\n\n  if (isRebuildingProcessUpdated) {\n    await writeJsonToFile(configPath, { updatedAt: Date.now() });\n  }\n\n  const config = await readJsonFile<{ updatedAt: number }>(configPath);\n\n  forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations({ manualProjectRoot }),\n    callback: async (folderPath, index) => {\n      log(`#${index}: Let's do ${folderPath}`, { type: \"success\" });\n\n      await rebuildOperation({\n        operationBasePath: folderPath,\n        noExit: true,\n        updatedAt: config?.updatedAt,\n      });\n\n      return;\n    },\n  });\n}",
+  "name": "rebuildAllOperations",
+  "slug": "rebuild-all-operations",
+  "parameters": [
+    {
+      "name": "isRebuildingProcessUpdated",
+      "schema": {
+        "type": "boolean",
+        "description": "If true, you are indicating that the rebuilding process has changed and all operations should be rebuilt after this date."
+      },
+      "simplifiedSchema": {
+        "fullComment": "If true, you are indicating that the rebuilding process has changed and all operations should be rebuilt after this date.",
+        "type": "boolean"
+      },
+      "required": false
+    },
+    {
+      "name": "manualProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Rebuilds all operations that are needed to be rebuilt",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 909,
+    "lines": 31,
+    "bytes": 909,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "id": "kylvcwndhgdmeelucfwxjtdy"
+}

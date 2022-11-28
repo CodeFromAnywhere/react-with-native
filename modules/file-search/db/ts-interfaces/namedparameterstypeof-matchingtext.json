@@ -1,0 +1,110 @@
+{
+  "createdAt": 1668551907886,
+  "updatedAt": 1668551907886,
+  "deletedAt": 0,
+  "createdFirstAt": 1668551907886,
+  "id": "namedparameterstypeof-matchingtext",
+  "name": "NamedParameters<typeof MatchingText>",
+  "slug": "namedparameterstypeof-matchingtext",
+  "operationRelativeTypescriptFilePath": "src/MatchingText.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "props": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "search": {
+              "type": "string"
+            },
+            "defaultTextClassName": {
+              "type": "string"
+            },
+            "matchTextClassName": {
+              "type": "string"
+            },
+            "truncateLength": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "text",
+            "search",
+            "defaultTextClassName",
+            "matchTextClassName"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "props"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "props",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "text",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "search",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "defaultTextClassName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "matchTextClassName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "truncateLength",
+                "required": false,
+                "schema": {
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof MatchingText>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

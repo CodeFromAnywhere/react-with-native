@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668150464363,
+  "updatedAt": 1668150464363,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150464363,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findAllDependencyOperations",
+  "slug": "find-all-dependency-operations",
+  "operationRelativeTypescriptFilePath": "src/findAllDependencyOperations.ts",
+  "type": {
+    "rawType": "({ imports, packageJsons, operationNames, ignoreOperationNames, ignoreFilter, }: { imports: import(\"/Users/king/King/operations/tools/types/code-types/build/TsImport\").TsImport[]; packageJsons: import(\"/Users/king/King/operations/tools/types/code-types/build/PackageJson\").PackageJson[]; operationNames: string[]; ignoreOperationNames?: string[] | undefined; ignoreFilter?: ((operationName: string) => boolean) | undefined; }) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async ({\n  imports,\n  packageJsons,\n  operationNames,\n  ignoreOperationNames,\n  ignoreFilter,\n}: {\n  /**\n   * All imports\n   */\n  imports: TsImport[];\n  packageJsons: PackageJson[];\n  operationNames: string[];\n  ignoreOperationNames?: string[];\n  ignoreFilter?: (operationName: string) => boolean;\n}) => {\n  const dependencies = (\n    await oneByOne(operationNames, async (operationName) => {\n      process.stdout.write(`${operationName} ... `);\n\n      return findDependenciesRecursively(\n        imports,\n        packageJsons,\n        operationName,\n        operationNames,\n        ignoreOperationNames,\n        ignoreFilter\n      );\n    })\n  ).flat();\n\n  return dependencies.filter(onlyUnique);\n}",
+  "description": "to be used when you need to know all dependencies for multiple operation names at once\n\nTODO: NB: this breaks with circular dependencies",
+  "id": "xnazawaffciepcngdakcrrvj"
+}

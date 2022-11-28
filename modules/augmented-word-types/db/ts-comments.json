@@ -1,0 +1,54 @@
+[
+  {
+    "createdAt": 1668551796981,
+    "updatedAt": 1668551796981,
+    "deletedAt": 0,
+    "createdFirstAt": 1668551796981,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/AugmentedWord.ts",
+    "comment": "NB: can later be replaced with a string enum type: person, definition, variable, function, type interface, operation, bundle (but there may be much more)",
+    "rawStatement": "export type AugmentedWordTypeEnum = string;",
+    "parameters": {},
+    "types": [
+      "nb"
+    ],
+    "firstLine": 1,
+    "lastLine": 1,
+    "id": "qblkinymdflbqbmftnrlprfn"
+  },
+  {
+    "createdAt": 1668551796981,
+    "updatedAt": 1668551796981,
+    "deletedAt": 0,
+    "createdFirstAt": 1668551796981,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/AugmentedWord.ts",
+    "comment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..\n\nTODO: This is a much more general purpose thing than just `markdown-reader-types`. Move to it's own package",
+    "rawStatement": "export type AugmentedWord = {\n  type: AugmentedWordTypeEnum;\n  /**\n   * Word without affixes. The affixes will be decided in the frontend parser based on the type\n   */\n  word: string;\n  queryPath: string | undefined;\n  projectRelativeMarkdownSourcePath: string;\n  spoiler: string | undefined;\n  /**\n   * If true, will match on lowercase variant of the word\n   */\n  isCaseInsensitive?: boolean;\n};",
+    "parameters": {},
+    "types": [
+      "todo"
+    ],
+    "firstLine": 4,
+    "lastLine": 12,
+    "id": "sbaebqpjgffgxgbwhvhwekaa"
+  },
+  {
+    "createdAt": 1668551796981,
+    "updatedAt": 1668551796981,
+    "deletedAt": 0,
+    "createdFirstAt": 1668551796981,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/AugmentedWord.ts",
+    "comment": "This datastructure is probably needed to make it more efficient.\n\nShould be a lookup table for the querypath for every word",
+    "rawStatement": "export type AugmentedWordObject = {\n  [augmentedWord: string]: AugmentedWord;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 28,
+    "lastLine": 32,
+    "id": "cpvgrponokcwpwswtzpjikkn"
+  }
+]

@@ -1,11 +1,19 @@
 {
-  "createdAt": 1663636756033,
-  "updatedAt": 1663636756033,
+  "createdAt": 1668328729370,
+  "updatedAt": 1668328729370,
   "deletedAt": 0,
-  "createdFirstAt": 1663636756033,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328729370,
+  "id": "MDGCBVVEJDNAZFnc",
+  "dependencies": {
+    "model-types": "0.0.1",
+    "code-types": "0.0.1",
+    "asset-type": "0.0.1",
+    "js-util": "0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,15 +21,76 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^4.7.4"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "language-types",
-  "sensible": {
-    "hasGeneratedDependencies": false
-  },
-  "dependencies": {},
+  "language": "english",
   "slug": "language-types",
-  "id": "MDGCBVVEJDNAZFnc"
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/types/language-types/src/WordMatrix.ts. Error: Error: Interface 'WordMatrix' cannot simultaneously extend types 'SlugModelType' and 'WordInfoObject'.\\n  Named property 'id' of types 'SlugModelType' and 'WordInfoObject' are not identical.\"]",
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "language-types",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668335530422,
+    "operationDependenciesIndexed": [
+      "CategoryStack",
+      "MarkdownModelType",
+      "Slug",
+      "DefaultModelType",
+      "Language",
+      "Markdown",
+      "Text",
+      "ParameterName",
+      "Id",
+      "KeyValueMarkdownModelType",
+      "MarkdownModelType",
+      "Slug",
+      "SlugModelType",
+      "BackendAsset",
+      "MappedObject",
+      "DefaultModelType",
+      "Language",
+      "Markdown",
+      "Slug",
+      "SlugModelType"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/types",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 4,
+        "lines": 368,
+        "characters": 9975,
+        "bytes": 9975
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 134,
+        "characters": 4316,
+        "bytes": 4316
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 519,
+        "characters": 12044,
+        "bytes": 12044
+      },
+      "size": {
+        "bytes": 26335,
+        "characters": 26335,
+        "lines": 1021,
+        "numberOfFiles": 7
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
 }

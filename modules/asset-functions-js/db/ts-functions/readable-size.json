@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667111122076,
-  "updatedAt": 1667111122076,
+  "createdAt": 1669384157464,
+  "updatedAt": 1669384157464,
   "deletedAt": 0,
-  "createdFirstAt": 1667111122076,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669384157464,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/readableSize.ts",
   "commentsInside": [],
   "rawText": " (sizeBytes: number): string => {\n  if (sizeBytes < 1024) return `${sizeBytes} bytes`;\n  if (sizeBytes < 1024 * 1024) return `${Math.round(sizeBytes / 1024)} kb`;\n  if (sizeBytes < 1024 * 1024 * 1024)\n    return `${Math.round(sizeBytes / (1024 * 1024))} mb`;\n  if (sizeBytes < 1024 * 1024 * 1024 * 1024)\n    return `${Math.round(sizeBytes / (1024 * 1024 * 1024))} gb`;\n  if (sizeBytes < 1024 * 1024 * 1024 * 1024 * 1024)\n    return `${Math.round(sizeBytes / (1024 * 1024 * 1024 * 1024))} tb`;\n\n  return \"waaaay to big\";\n}",
@@ -52,5 +47,5 @@
     "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "simfvjontigtiffugpoiinxo"
+  "id": "jxrukpdsmyfbqdcxxyfxbpeg"
 }

@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668150463842,
+  "updatedAt": 1668150463842,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150463842,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/findAllDependencyOperations.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  operationName: string,\n  already?: string[]\n): Promise<string[]> => {\n  const dependantOperationNames = await findDependants({\n    returnOperationName: true,\n    operationName,\n  });\n\n  const dependantsUntilNow = [\n    operationName,\n    ...dependantOperationNames,\n    ...(already || []),\n  ];\n\n  const recursedDependants: string[] =\n    dependantOperationNames.length > 0\n      ? (\n          await Promise.all(\n            dependantOperationNames.map((name) =>\n              findDependantsRecursively(name, dependantsUntilNow)\n            )\n          )\n        ).flat()\n      : [];\n\n  return [...dependantsUntilNow, ...recursedDependants].filter(onlyUnique2());\n}",
+  "name": "findDependantsRecursively",
+  "slug": "find-dependants-recursively",
+  "parameters": [],
+  "description": "findDependants({\n\noperationName: \"js-util\",\n\nimportName: \"notEmpty\",\n\nreturnOperationName: false,\n\n}).then(console.log);",
+  "returnType": {
+    "rawType": "Promise<string[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 796,
+    "lines": 36,
+    "bytes": 796,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 36,
+    "numberOfFiles": 1
+  },
+  "id": "kurzflfxuwgeuotrkdgiqeat"
+}

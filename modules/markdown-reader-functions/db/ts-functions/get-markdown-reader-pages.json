@@ -1,25 +1,20 @@
 {
-  "createdAt": 1668149503851,
-  "updatedAt": 1668149503851,
+  "createdAt": 1669639119171,
+  "updatedAt": 1669639119171,
   "deletedAt": 0,
-  "createdFirstAt": 1668149503851,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669639119171,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getMarkdownReaderPages.ts",
   "commentsInside": [],
-  "rawText": " async (config: {\n  projectRoot: string;\n  /**\n   * basePaths to search for public markdown for\n   */\n  basePaths: string[];\n  /**\n   * if set, maps query path further\n   */\n  mapQueryPath?: (\n    /**\n     * already mapped the relative path to remove extension and numbers from folders\n     */\n    queryPath: string\n  ) => string;\n}): Promise<MarkdownReaderPage[]> => {\n  const { basePaths, projectRoot, mapQueryPath } = config;\n  const markdownReaderPages: MarkdownReaderPage[] = (\n    await Promise.all(\n      basePaths.map(async (basePath) => {\n        const publicMarkdownFileAbsolutePaths =\n          await getPublicMarkdownFilePaths(basePath, false);\n\n        const markdownReaderPages = publicMarkdownFileAbsolutePaths.map((x) => {\n          const filePath = makeRelative(x.path, projectRoot);\n          const pathWithoutReadme = stripReadmeFromFolder(filePath);\n          const pathWithoutExtensions =\n            removeExtensionsFromPath(pathWithoutReadme);\n\n          const queryPath = mapQueryPath\n            ? mapQueryPath(pathWithoutExtensions)\n            : pathWithoutExtensions;\n\n          // NB: folders are no menu items because menu is built from queryPaths recursively\n          const markdownReaderPage: MarkdownReaderPage = {\n            queryPath,\n            filePath,\n            isMenuItem: !x.isFolder,\n          };\n\n          return markdownReaderPage;\n        });\n\n        return markdownReaderPages;\n      })\n    )\n  ).flat();\n\n  return markdownReaderPages;\n}",
+  "rawText": " async (config: {\n  projectRoot: string;\n  /**\n   * basePaths to search for public markdown for\n   */\n  basePaths: string[];\n  /**\n   * if set, maps query path further\n   */\n  mapQueryPath?: (\n    /**\n     * already mapped the relative path to remove extension and numbers from folders\n     */\n    queryPath: string\n  ) => string;\n}): Promise<ReaderWebPage[]> => {\n  const { basePaths, projectRoot, mapQueryPath } = config;\n  const markdownReaderPages: ReaderWebPage[] = (\n    await Promise.all(\n      basePaths.map(async (basePath) => {\n        const publicMarkdownFileAbsolutePaths =\n          await getPublicMarkdownFilePaths(basePath, false);\n\n        const markdownReaderPages = publicMarkdownFileAbsolutePaths.map((x) => {\n          const filePath = makeRelative(x.path, projectRoot);\n          const pathWithoutReadme = stripReadmeFromFolder(filePath);\n          const pathWithoutExtensions =\n            removeExtensionsFromPath(pathWithoutReadme);\n\n          const queryPath = mapQueryPath\n            ? mapQueryPath(pathWithoutExtensions)\n            : pathWithoutExtensions;\n\n          // NB: folders are no menu items because menu is built from queryPaths recursively\n          const readerWebPage: ReaderWebPage = {\n            queryPath,\n            pageData: { projectRelativeFilePath: filePath },\n            isMenuHidden: x.isFolder,\n          };\n\n          return readerWebPage;\n        });\n\n        return markdownReaderPages;\n      })\n    )\n  ).flat();\n\n  return markdownReaderPages;\n}",
   "name": "getMarkdownReaderPages",
   "slug": "get-markdown-reader-pages",
   "parameters": [],
   "description": "Gets all markdownreader pages for multiple basePaths. Can add a prefix, can also remove the last folder of basePath from the suffix.",
   "returnType": {
-    "rawType": "Promise<import(\"/Users/king/King/operations/tools/markdown-reader/markdown-reader-types/build/MarkdownReaderPage\").MarkdownReaderPage[]>",
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").FileWebPage[]>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -29,13 +24,13 @@
   },
   "maxIndentationDepth": 6,
   "size": {
-    "characters": 1622,
+    "characters": 1637,
     "lines": 50,
-    "bytes": 1622,
+    "bytes": 1637,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 32,
+    "charactersPerLine": 33,
     "linesPerFile": 50,
     "numberOfFiles": 1
   },
-  "id": "xowmqvnvkbvmonsaxmuimidd"
+  "id": "qadstzexoejzfzrgghckzsce"
 }

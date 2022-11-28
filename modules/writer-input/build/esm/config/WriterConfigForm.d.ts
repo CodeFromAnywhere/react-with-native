@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { SubtextConfig, SubwordConfig } from "writer-types";
 export declare type WriterConfigFormValue = [
     subtextConfig: SubtextConfig,

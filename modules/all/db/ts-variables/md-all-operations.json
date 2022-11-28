@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666258919868,
+  "updatedAt": 1666258919868,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258919868,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "mdAllOperations",
+  "slug": "md-all-operations",
+  "operationRelativeTypescriptFilePath": "src/mdAllOperations.ts",
+  "type": {
+    "rawType": "(debug?: boolean | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (debug?: boolean) => {\n  forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    callback: async (folderPath, index) => {\n      const operationName = getLastFolder(folderPath);\n      log(`#${index}: README for ${operationName}`, { type: \"success\" });\n      await operationToMarkdown({ operationName, mergeDocsInline: true });\n      return;\n    },\n  });\n}",
+  "description": "",
+  "id": "radgsjeazawzyzphcfoqmxab"
+}

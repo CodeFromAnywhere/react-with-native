@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669055580037,
+  "updatedAt": 1669055580037,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055580037,
+  "isApiExposed": true,
+  "isExported": false,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/findAndUpsertTsInterfaces.cli.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const [filePath] = process.argv.slice(2);\n\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) {\n    console.log(\"Please provide a filePath that is part of an operation\");\n    return;\n  }\n  const operationName = getLastFolder(operationBasePath);\n\n  // NB: last argument has been removed, which should be the manualProjectRoot\n  await findAndUpsertTsInterfaces({ filePath, operationName });\n}",
+  "name": "cli",
+  "slug": "cli",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 443,
+    "lines": 13,
+    "bytes": 443,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "adcluqpzeptgmduiychdomku"
+}

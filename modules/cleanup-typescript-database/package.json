@@ -1,0 +1,91 @@
+{
+  "createdAt": 1668328730905,
+  "updatedAt": 1668328730905,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328730905,
+  "id": "MQXgyYPDztaTqZDK",
+  "dependencies": {
+    "get-package-source-paths": "0.0.1",
+    "database": "0.0.1",
+    "get-path": "0.0.1",
+    "code-types": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "cleanup-typescript-database",
+  "language": "english",
+  "slug": "cleanup-typescript-database",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "cleanup-typescript-database",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669055476958,
+    "operationDependenciesIndexed": [
+      "getPackageSourcePaths",
+      "db",
+      "getOperationPath",
+      "getOperationRelativePath",
+      "TsBuildError",
+      "TsComment",
+      "TsExport",
+      "TsFunction",
+      "TsImport",
+      "TsInterface",
+      "TsLintWarning",
+      "TsVariable",
+      "typescriptIndexModels"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/typescript",
+    "markdown": "Collection of functions to cleanup the typescript database (all typescript related models)\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 2,
+        "lines": 120,
+        "characters": 2916,
+        "bytes": 2916
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 131,
+        "characters": 3148,
+        "bytes": 3148
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 70,
+        "characters": 1303,
+        "bytes": 1303
+      },
+      "size": {
+        "bytes": 7367,
+        "characters": 7367,
+        "lines": 321,
+        "numberOfFiles": 6
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

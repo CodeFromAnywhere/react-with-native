@@ -1,0 +1,82 @@
+{
+  "createdAt": 1669200441770,
+  "updatedAt": 1669200441770,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200441770,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/bundleFolderWithMarkdown.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  outlineTitle: string,\n  /**\n   * content of every markdown\n   */\n  markdownStrings: string[],\n  /**\n   * filename to include in the final MarkdownParse\n   */\n  resultFileName?: string\n): Promise<{ markdownParse: MarkdownParse; outlineString: string }> => {\n  // TODO: Optionally, wrap in `details` for every docs page\n\n  const markdownParses = markdownStrings.map((content) =>\n    mdToJsonParse(content)\n  );\n  const { merged, outline } = mergeMarkdownParse(\n    markdownParses,\n    resultFileName\n  );\n\n  // BUSY HERE\n\n  const outlineString = makeOutlineMarkdownString(outlineTitle, outline);\n\n  return { markdownParse: merged, outlineString };\n}",
+  "name": "bundleFolderWithMarkdown",
+  "slug": "bundle-folder-with-markdown",
+  "parameters": [
+    {
+      "name": "outlineTitle",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "markdownStrings",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "content of every markdown"
+      },
+      "simplifiedSchema": {
+        "fullComment": "content of every markdown",
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    },
+    {
+      "name": "resultFileName",
+      "schema": {
+        "type": "string",
+        "description": "filename to include in the final MarkdownParse"
+      },
+      "simplifiedSchema": {
+        "fullComment": "filename to include in the final MarkdownParse",
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Finds all md files in a folder and creates a single MarkdownParse\n\nhandy for creating a single documentation file or other things that have to include multiple markdown files in a structured way\n\nNB: it recursively structures the files and folders with headings",
+  "returnType": {
+    "rawType": "Promise<{ markdownParse: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse; outlineString: string; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 919,
+    "lines": 31,
+    "bytes": 919,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "id": "wkyvmtudzjqmwyhtlczlhevc"
+}

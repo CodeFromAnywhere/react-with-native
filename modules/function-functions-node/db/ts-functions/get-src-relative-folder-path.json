@@ -1,0 +1,47 @@
+{
+  "createdAt": 1669276149591,
+  "updatedAt": 1669276149591,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276149591,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getSrcRelativeFolderPath.ts",
+  "commentsInside": [],
+  "rawText": " (\n  operationRelativeSourcePath: string\n) => {\n  // 1) remove src/\n  const withouSrc = operationRelativeSourcePath.startsWith(\"src/\")\n    ? operationRelativeSourcePath.slice(\"src/\".length)\n    : undefined;\n\n  const folder = getFolderJs(withouSrc);\n\n  if (folder === \"\") return undefined;\n\n  return folder;\n}",
+  "name": "getSrcRelativeFolderPath",
+  "slug": "get-src-relative-folder-path",
+  "parameters": [
+    {
+      "name": "operationRelativeSourcePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 308,
+    "lines": 14,
+    "bytes": 308,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "zsytmylwcweixcjowyincvzm"
+}

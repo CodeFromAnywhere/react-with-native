@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148412333,
-  "updatedAt": 1668148412333,
+  "createdAt": 1668976651387,
+  "updatedAt": 1668976651387,
   "deletedAt": 0,
-  "createdFirstAt": 1668148412333,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668976651387,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util.ts",
   "commentsInside": [],
   "rawText": " (pathArray: string[]) => {\n  const hasPackageJson = !!pathArray.find(\n    (x) => path.parse(x).base === \"package.json\"\n  );\n  const hasTsConfig = !!pathArray.find(\n    (x) => path.parse(x).base === \"tsconfig.json\"\n  );\n\n  const isOperation = hasPackageJson && hasTsConfig;\n  return isOperation;\n}",
@@ -68,5 +63,5 @@
     "linesPerFile": 13,
     "numberOfFiles": 1
   },
-  "id": "qhpsddikvryscchwhtwdfbxz"
+  "id": "qwwgfaamljxipggqqjqtuodc"
 }

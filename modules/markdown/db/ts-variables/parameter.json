@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669467151829,
+  "updatedAt": 1669467151829,
+  "deletedAt": 0,
+  "createdFirstAt": 1669467151829,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "Parameter",
+  "slug": "parameter",
+  "operationRelativeTypescriptFilePath": "src/Parameter.tsx",
+  "type": {
+    "rawType": "(props: { text: string; }) => JSX.Element | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: { text: string }) => {\n  const { text } = props;\n  if (!text) return null;\n  const [parameter, value] = text\n    .slice(1)\n    .split(\":\")\n    .map((x) => x.trim());\n  return (\n    <Span className=\"rounded-md bg-purple-400 dark:bg-purple-800 px-1\">\n      {parameter ? <Span>{parameter}</Span> : null}\n      {value ? <Span className=\"bg-white bg-opacity-50\">{value}</Span> : null}\n    </Span>\n  );\n}",
+  "description": "In markdown, if you wish to refer to a parameter, you can backtick it and put a \".\" in front. You can also add a value to it if you wish, by adding the \":\" and the value afterwards.",
+  "id": "qqsicyqmquhsfbzbeebhxime"
+}

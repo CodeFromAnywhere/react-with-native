@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385479662,
+  "updatedAt": 1669385479662,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385479662,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "LoginForm",
+  "slug": "login-form",
+  "operationRelativeTypescriptFilePath": "src/LoginForm.tsx",
+  "type": {
+    "rawType": "() => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  const router = useRouter();\n  const meQuery = queries.useGetMeWithContext();\n\n  const [pass, setPass] = useStore(\"api.authToken\");\n  return (\n    <Div className=\"flex flex-1 flex-col mx-10\">\n      <P className=\"text-4xl\">Login</P>\n      {/* <Input\n        className={UI.textInput}\n        placeholder=\"Password\"\n        type=\"password\"\n        value={pass}\n        onChange={(e) => setPass(e.target.value)}\n      />\n      <BigButton title=\"Login\" onClick={() => router.reload()} /> */}\n      {/* New way */}\n      <FunctionForm\n        tsFunction={Index}\n        withApiResult={(\n          result: RealApiReturnType<\"loginWithPasswordWithContext\">\n        ) => {\n          if (result.isSuccessful && result.result?.isSuccessful) {\n            router.push(\"/\");\n          }\n          meQuery.refetch();\n          showStandardResponse(result);\n        }}\n      />\n      <ALink href=\"/signup\">Or click here to sign up</ALink>\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "evvvobgavjdrghlptomhwtlf"
+}

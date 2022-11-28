@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668332241107,
+  "updatedAt": 1668332241107,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332241107,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getOperationMetaData",
+  "slug": "get-operation-meta-data",
+  "operationRelativeTypescriptFilePath": "src/getOperationMetaData.ts",
+  "type": {
+    "rawType": "(operationBasePath: string) => Promise<import(\"/Users/king/King/operations/tools/control-project/operation-util/src/getOperationMetaData\").OperationMetaData | undefined>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  /**\n   * any path in an operation\n   */\n  operationBasePath: string\n): Promise<undefined | OperationMetaData> => {\n  if (!operationBasePath) return;\n  const projectRoot = getProjectRoot(operationBasePath);\n  if (!projectRoot) return;\n  const packageJson = await getPackageJson({\n    operationFolderPath: operationBasePath,\n  });\n  const operationName = packageJson?.name;\n\n  if (!operationName) {\n    return;\n  }\n  const srcPath = path.join(operationBasePath, \"src\");\n  const operationFolderName = getLastFolder(operationBasePath);\n\n  const operations = await db.get(\"Operation\", { operationName });\n  const operation: Operation | undefined = takeFirst(operations);\n\n  const relativeOperationLocationPath = makeRelative(\n    path.join(operationBasePath, \"..\"),\n    projectRoot\n  );\n  if (!relativeOperationLocationPath) return;\n\n  return {\n    operationBasePath,\n    operation,\n    operationName,\n    srcPath,\n    operationFolderName,\n    /**\n     * where the operation is located relative to the project root\n     */\n    relativeOperationLocationPath,\n  };\n}",
+  "description": "gets a whole bunch of metadata about an operation, mainly filepath related, but it also reads the operation index json file",
+  "id": "esabkjxnatnxjoxrbwympwoh"
+}

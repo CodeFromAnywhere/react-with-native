@@ -1,0 +1,296 @@
+{
+  "createdAt": 1669276583533,
+  "updatedAt": 1669276583533,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276583533,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/to-webpage-conversors.ts",
+  "commentsInside": [],
+  "rawText": " (pageData: CrudPage): WebPage<CrudPage>[] => {\n  const dataPage = {\n    pageData,\n    queryPath: `data/${pageData.modelName}`,\n    isMenuHidden: false,\n    menuTitle: humanCase(pageData.modelName),\n  };\n  const upsertOrNot =\n    pageData.canCreate || pageData.canUpdate\n      ? {\n          pageData,\n          queryPath: `upsert/${pageData.modelName}`,\n          isMenuHidden: true,\n        }\n      : undefined;\n\n  return [dataPage, upsertOrNot].filter(notEmpty);\n}",
+  "name": "crudPageToWebPages",
+  "slug": "crud-page-to-web-pages",
+  "parameters": [
+    {
+      "name": "pageData",
+      "schema": {
+        "$ref": "#/definitions/CrudPage"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Data needed to make a `WebPage`<CrudPage>",
+        "properties": [
+          {
+            "name": "modelName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "datasetSlugs",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "canCreate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canRead",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canUpdate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canDelete",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "itemActionFunctionNames",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "pageActionFunctionNames",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/webpage-types/src/types\").WebPage<import(\"/Users/king/King/operations/tools/types/webpage-types/src/types\").CrudPage>[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "queryPath": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "searchTerms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "allOf": [
+                {
+                  "transform": [
+                    "trim"
+                  ]
+                },
+                {
+                  "minLength": 1
+                }
+              ]
+            }
+          },
+          "target": {},
+          "isMenuHidden": {
+            "type": "boolean"
+          },
+          "menuTitleAugmentation": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "menuTitleTooltip": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "menuTitle": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "pageData": {}
+        },
+        "required": [
+          "queryPath",
+          "target",
+          "pageData"
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [
+              {
+                "name": "queryPath",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "searchTerms",
+                "required": false,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "target",
+                "required": true,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "isMenuHidden",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "menuTitleAugmentation",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "menuTitleTooltip",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "menuTitle",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "pageData",
+                "required": true,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 466,
+    "lines": 18,
+    "bytes": 466,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "id": "cafvdyskbvxpzfljsqbsvbct"
+}

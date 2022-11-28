@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384215491,
+  "updatedAt": 1669384215491,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384215491,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getAssetDirectlyGetApi",
+  "slug": "get-asset-directly-get-api",
+  "operationRelativeTypescriptFilePath": "src/server-context/getAssetDirectlyGetApi.ts",
+  "type": {
+    "rawType": "(serverContext: import(\"/Users/king/King/operations/node_modules/@types/server/typings/common\").Context) => void | { isSuccessful: boolean; message: string; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  serverContext: Context\n): { isSuccessful: boolean; message: string } | void => {\n  /**\n  \n  const authToken = (ctx as any).cookies?.authToken;\n  const authToken2 = ctx.cookie?.authToken;\n\n  console.log({\n    authToken,\n    authToken2,\n    cookie: ctx.cookie,\n    cookies: (ctx as any).cookies,\n    headers: ctx.req.headers,\n  });\n  const isAuthed = functionAuthPlugin(\"uploadAsset\", authToken);\n  if (!isAuthed) {\n    return {\n      isSuccessful: false,\n      isUnauthorized: true,\n      message: \"You can only do this when authenticated\",\n    };\n  }\n  */\n  const isDownload = takeFirst(serverContext?.query.isDownload) === \"1\";\n\n  const projectRelativeAssetPath = takeFirst(\n    serverContext?.query.projectRelativeAssetPath\n  );\n\n  // Quick hack to keep it secure, only allow public stuff\n  if (!projectRelativeAssetPath.startsWith(\"public/\"))\n    return {\n      isSuccessful: false,\n      message: \"not allowed for now, only public data\",\n    };\n\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return {\n      isSuccessful: false,\n      message: \"No project root\",\n    };\n  }\n\n  if (!projectRelativeAssetPath) {\n    console.log({ p: serverContext?.query });\n    return {\n      isSuccessful: false,\n      message: \"No path given\",\n    };\n  }\n\n  const absoluteAssetPath = path.join(projectRoot, projectRelativeAssetPath);\n\n  const exists = fs.existsSync(absoluteAssetPath);\n\n  if (!exists) {\n    return {\n      isSuccessful: false,\n      message: \"Invalid file\",\n    };\n  }\n\n  return serverDownloadReply(absoluteAssetPath, isDownload);\n}",
+  "description": "Useful for getting assets directly, for example for the `SelectMedia` component for `project`-media\n\nRequires more access rights",
+  "id": "jgiftnlbqxskqzecxckzihzc"
+}

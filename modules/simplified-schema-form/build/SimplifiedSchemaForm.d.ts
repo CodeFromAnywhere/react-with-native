@@ -2,7 +2,7 @@ import { ReferencableModelData, RenderableFunctionParameter } from "./types";
 /**
 Recursive component that renders a form for a SimplifiedSchema
  */
-export declare const SimplifiedSchemaForm: (props: {
+export declare const SimplifiedSchemaForm: <TValues extends any[]>(props: {
     /** unique id for this form */
     id: string;
     /**
@@ -18,8 +18,8 @@ export declare const SimplifiedSchemaForm: (props: {
      *
      * every item in the value array represents the value of the respective parameter
      */
-    values: undefined | any[];
-    onChange: (values: any[]) => void;
+    values: TValues | undefined;
+    onChange: (values: TValues) => void;
     /**
      * model data (can be filtered) that can be referenced in the schema. This is used to fill the form select inputs so a value can be selected.
      *
@@ -38,5 +38,9 @@ export declare const SimplifiedSchemaForm: (props: {
      * Preferably, this must be realtime, based on the state of this very form, so the default-name of assets can change with the form state...
      */
     itemNameOrId?: string | undefined;
+    /**
+     * Must be provided in case an asset is stored in a db model
+     */
+    modelName?: string | undefined;
 }) => JSX.Element | null;
 //# sourceMappingURL=SimplifiedSchemaForm.d.ts.map

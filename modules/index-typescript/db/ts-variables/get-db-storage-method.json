@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055589498,
+  "updatedAt": 1669055589498,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055589498,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDbStorageMethod",
+  "slug": "get-db-storage-method",
+  "operationRelativeTypescriptFilePath": "src/getDbStorageMethod.ts",
+  "type": {
+    "rawType": "(config: { typeName: string; frontmatter: import(\"/Users/king/King/operations/tools/types/matter-types/build/Frontmatter\").Frontmatter; extensions?: string[] | undefined; }) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(config: {\n  typeName: string;\n  frontmatter: Frontmatter;\n  extensions?: string[];\n}): DbStorageMethod | undefined => {\n  const { typeName, frontmatter, extensions } = config;\n  const frontmatterResult = getFrontmatterDbStorageMethod(frontmatter);\n\n  // NB: can also become null if isDbModel is specifically set to false!\n  if (frontmatterResult !== undefined) return frontmatterResult || undefined;\n\n  const specialExtensionStorageMethod =\n    getSpecialExtensionDbStorageMethod(extensions);\n\n  if (specialExtensionStorageMethod) {\n    return specialExtensionStorageMethod;\n  }\n\n  const typeWords = lowerCaseArray(typeName);\n  const isModelTypeName =\n    typeWords.length >= 2 && [\"model\", \"db\"].includes(typeWords.pop()!);\n\n  const dbStorageMethodFromModelTypeName = isModelTypeName\n    ? \"jsonMultiple\"\n    : null;\n\n  if (dbStorageMethodFromModelTypeName) {\n    return dbStorageMethodFromModelTypeName;\n  }\n\n  return;\n}",
+  "description": "Gets db storage method for indexation\n\n1) Frontmatter overrules everything\n2) Special extensions are looked at",
+  "id": "invfinqxgnxenrsspbjwxgnp"
+}

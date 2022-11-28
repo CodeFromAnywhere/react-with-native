@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666258919713,
+  "updatedAt": 1666258919713,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258919713,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/mdAllOperations.ts",
+  "commentsInside": [],
+  "rawText": " async (debug?: boolean) => {\n  forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    callback: async (folderPath, index) => {\n      const operationName = getLastFolder(folderPath);\n      log(`#${index}: README for ${operationName}`, { type: \"success\" });\n      await operationToMarkdown({ operationName, mergeDocsInline: true });\n      return;\n    },\n  });\n}",
+  "name": "mdAllOperations",
+  "slug": "md-all-operations",
+  "parameters": [
+    {
+      "name": "debug",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 389,
+    "lines": 12,
+    "bytes": 389,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "hkishrwwakuuqadhbqqqttiq"
+}

@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669055615353,
+  "updatedAt": 1669055615353,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055615353,
+  "isApiExposed": true,
+  "isExported": false,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/indexTypescript2.test.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const files = {\n    interfaces:\n      \"/Users/king/King/tools/types/code-types/src/code/TypescriptIndex.ts\",\n    interfaces2:\n      \"/Users/king/King/tools/types/code-types/src/code/TsComment.ts\",\n    interfaces3:\n      \"/Users/king/King/tools/types/code-types/src/code/TsInterface.ts\",\n    interfaces4: \"/Users/king/King/tools/types/code-types/src/code/TypeInfo.ts\",\n    interfaces5:\n      \"/Users/king/King/tools/types/code-types/src/code/TsFunction.ts\",\n    interfaces6:\n      \"/Users/king/King/tools/types/foodchain-types/src/FoodChain.ts\",\n    functions:\n      \"/Users/king/King/tools/control-fs/explore-project/src/getFolderExplorationDetails.ts\",\n  };\n\n  const fileReasons = Object.keys(files) as (keyof typeof files)[];\n  oneByOne(fileReasons, async (reason) => {\n    const filePath = files[reason];\n\n    console.log({ filePath });\n\n    await indexTypescript({ filePaths: [filePath], manualProjectRoot: null });\n\n    return;\n  });\n}",
+  "name": "test",
+  "slug": "test",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 957,
+    "lines": 28,
+    "bytes": 957,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "rwoxppovjcycjeakezvehrte"
+}

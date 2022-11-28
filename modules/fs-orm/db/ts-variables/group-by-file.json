@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148867988,
-  "updatedAt": 1668148867988,
+  "createdAt": 1669312145489,
+  "updatedAt": 1669312145489,
   "deletedAt": 0,
-  "createdFirstAt": 1668148867988,
+  "createdFirstAt": 1669312145489,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "group-by-file",
   "operationRelativeTypescriptFilePath": "src/util/groupByFile.ts",
   "type": {
-    "rawType": "<T extends { [key: string]: any; }>(creationItems: any[], mergedConfig: import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").MergedQueryConfig, modelName: string) => Promise<import(\"/Users/king/King/operations/tools/database/fs-orm/src/util/groupByFile\").ItemPerFileObject<T>>",
+    "rawType": "<T extends { [key: string]: any; }>(creationItems: any[], mergedConfig: import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/src/types\").MergedQueryConfig, modelName: string) => Promise<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/src/util/groupByFile\").ItemPerFileObject<T>>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "async <T extends { [key: string]: any }>(\n  creationItems: Creation<T>[],\n  mergedConfig: MergedQueryConfig,\n  modelName: string\n): Promise<ItemPerFileObject<T>> => {\n  const dataWithLocations = (\n    await Promise.all(\n      creationItems.map(async (item) => {\n        if (!item) {\n          console.log(\"WARN\");\n          return;\n        }\n\n        const fullItem = addDefaultValues(item);\n        const storingItem = makeStoringItem(fullItem) as Storing<T>;\n\n        const itemModelLocation = getItemModelLocation(fullItem);\n\n        const dbFileLocation = await getDbFileLocation(\n          storingItem,\n          itemModelLocation.operationName,\n          mergedConfig,\n          modelName\n        );\n\n        if (!dbFileLocation) return;\n\n        return { storingItem, dbFileLocation };\n      })\n    )\n  ).filter(notEmpty);\n\n  const dataPerStorageFile = dataWithLocations.reduce(\n    (fileObject, itemWithLocation) => {\n      const { absolutePath } = itemWithLocation.dbFileLocation;\n\n      const newItems = fileObject[absolutePath]\n        ? fileObject[absolutePath].items.concat(itemWithLocation.storingItem)\n        : [itemWithLocation.storingItem];\n\n      fileObject[absolutePath] = {\n        items: newItems,\n        dbFileLocation: itemWithLocation.dbFileLocation,\n      };\n\n      return fileObject;\n    },\n    {} as ItemPerFileObject<T>\n  );\n\n  return dataPerStorageFile;\n}",
   "description": "Used for `set` and `upsert`. Groups creation items into an object where keys are file paths and values are items that need to be stored",
-  "id": "ysqblkvgbnnencqaptzynpjz"
+  "id": "xaegzrmnoibimubdwpmvpkuc"
 }

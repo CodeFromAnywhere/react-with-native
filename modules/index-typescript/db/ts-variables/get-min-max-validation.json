@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055627749,
+  "updatedAt": 1669055627749,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055627749,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getMinMaxValidation",
+  "slug": "get-min-max-validation",
+  "operationRelativeTypescriptFilePath": "src/typeToSchema.ts",
+  "type": {
+    "rawType": "(keyword: \"min\" | \"max\", type: string, value: number) => {}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  keyword: \"min\" | \"max\",\n  type: string,\n  value: number\n) => {\n  const t = type.toLowerCase() as keyof typeof ajvMap;\n  return set({}, keyword + ajvMap[t], value);\n}",
+  "description": "",
+  "id": "drzkakyqcszxjjhmltevpioi"
+}

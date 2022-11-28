@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055055662,
+  "updatedAt": 1669055055662,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055055662,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getOperationClassificationObject",
+  "slug": "get-operation-classification-object",
+  "operationRelativeTypescriptFilePath": "src/getOperationClassificationObject.ts",
+  "type": {
+    "rawType": "() => Promise<import(\"/Users/king/King/operations/tools/control-project/get-path/src/getOperationClassificationObject\").OperationClassificationObject>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (): Promise<OperationClassificationObject> => {\n    const operationFolders = await exploreOperationFolders({});\n\n    return mergeObjectsArray(\n      operationFolders\n        .map((operationBasePath) => {\n          const operationClassification =\n            getOperationClassification(operationBasePath);\n          if (!operationClassification) return;\n          const operationName = getLastFolder(operationBasePath);\n          return { [operationName]: operationClassification };\n        })\n        .filter(notEmpty)\n    );\n  }",
+  "description": "",
+  "id": "wxwuolivpphpdcwyxzumhnxp"
+}

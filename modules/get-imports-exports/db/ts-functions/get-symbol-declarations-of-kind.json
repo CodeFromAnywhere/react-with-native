@@ -1,0 +1,58 @@
+{
+  "createdAt": 1668150643213,
+  "updatedAt": 1668150643213,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150643213,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "commentsInside": [],
+  "rawText": " <T>(symbol: Symbol, kind: SyntaxKind) => {\n  const declarations = symbol\n    .getDeclarations()\n    .filter((x) => x.getKind() === kind)\n    .map((x) => x.asKind(kind))\n    .filter(notEmpty) as unknown as T[];\n\n  return declarations;\n}",
+  "name": "getSymbolDeclarationsOfKind",
+  "slug": "get-symbol-declarations-of-kind",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "T[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {}
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 236,
+    "lines": 9,
+    "bytes": 236,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "oxrnnaywdiblixdhmquhnaxj"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385218348,
+  "updatedAt": 1669385218348,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385218348,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "tryParseDate",
+  "slug": "try-parse-date",
+  "operationRelativeTypescriptFilePath": "src/markdownParseToMarkdownModelType.ts",
+  "type": {
+    "rawType": "(dateString: string) => number | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(dateString: string): number | undefined => {\n  try {\n    return new Date(dateString).valueOf();\n  } catch {}\n}",
+  "description": "Tries to parse a date from a string\n- implements default behavior of `new Date` with a try catch\n- returns a unix timestamp (ms since 1970 AD)\n\nTODO: put in a better location... date-util?",
+  "id": "pkinfjojxvbpftkzgvjgcclt"
+}

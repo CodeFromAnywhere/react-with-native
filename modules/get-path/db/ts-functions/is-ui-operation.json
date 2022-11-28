@@ -1,0 +1,73 @@
+{
+  "createdAt": 1669055053508,
+  "updatedAt": 1669055053508,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055053508,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getOperationClassification.ts",
+  "commentsInside": [],
+  "rawText": " (\n  tsconfig: TsConfig | null,\n  packageJson: Operation | null\n) => {\n  const isReactPackage =\n    !!packageJson &&\n    (hasDependency(packageJson, \"react\") ||\n      hasDependency(packageJson, \"react-native\") ||\n      hasDependency(packageJson, \"next\") ||\n      hasDependency(packageJson, \"expo\"));\n\n  const usesJsx = !!tsconfig?.compilerOptions?.jsx;\n\n  return isReactPackage || usesJsx;\n}",
+  "name": "isUiOperation",
+  "slug": "is-ui-operation",
+  "parameters": [
+    {
+      "name": "tsconfig",
+      "schema": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/TsConfig"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "packageJson",
+      "schema": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Operation"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 391,
+    "lines": 15,
+    "bytes": 391,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "sljpzeflaxdrkdxqwkivnxmb"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668836007988,
+  "updatedAt": 1668836007988,
+  "deletedAt": 0,
+  "createdFirstAt": 1668836007988,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDataParameterNames",
+  "slug": "get-data-parameter-names",
+  "operationRelativeTypescriptFilePath": "src/getDataParameterNames.ts",
+  "type": {
+    "rawType": "(item: import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").AugmentedAnyModelType) => string[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  item: AugmentedAnyModelType\n): string[] => {\n  const dataParameterNames = Object.keys(item)\n    .map((key) => {\n      const { dataParameterName } = getReferenceParameterInfo(key);\n\n      return dataParameterName;\n    })\n    .filter(notEmpty);\n\n  return dataParameterNames;\n}",
+  "description": "Finds all the data parameter names that might be there on an item, based on the item object keys and the convention",
+  "id": "pjextxbtnhwtectcfawrsupt"
+}

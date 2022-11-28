@@ -1,19 +1,14 @@
 {
-  "createdAt": 1667634896106,
-  "updatedAt": 1667634896106,
+  "createdAt": 1669128192207,
+  "updatedAt": 1669128192207,
   "deletedAt": 0,
-  "createdFirstAt": 1667634896106,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669128192207,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/FormContainer.tsx",
   "commentsInside": [],
-  "rawText": " (props: {\n  className?: string;\n  onSubmit: () => void;\n  title?: string;\n  isLoading?: boolean;\n  submitButtonText?: string;\n  children?: any;\n}) => {\n  const { className, onSubmit, isLoading, title, children, submitButtonText } =\n    props;\n\n  return (\n    <form\n      className={className}\n      onSubmit={(e) => {\n        e.preventDefault();\n        // onSubmit();\n      }}\n      // may be needed for file upload\n      // encType=\"multipart/form-data\"\n    >\n      {title ? <P className=\"text-3xl\">{title}</P> : null}\n\n      {children}\n\n      <button type=\"submit\">\n        <BigButton\n          isLoading={isLoading}\n          onClick={onSubmit}\n          title={submitButtonText || \"Submit\"}\n        />\n      </button>\n    </form>\n  );\n}",
+  "rawText": " (props: {\n  className?: string;\n  onSubmit: () => void;\n  title?: string;\n  isLoading?: boolean;\n  submitButtonText?: string;\n  children?: any;\n}) => {\n  const { className, onSubmit, isLoading, title, children, submitButtonText } =\n    props;\n\n  return (\n    <form\n      autoComplete=\"off\"\n      className={className}\n      onSubmit={(e) => {\n        e.preventDefault();\n        // onSubmit();\n      }}\n      // may be needed for file upload\n      // encType=\"multipart/form-data\"\n    >\n      {title ? <P className=\"text-3xl\">{title}</P> : null}\n\n      {children}\n\n      <button type=\"submit\">\n        <BigButton\n          isLoading={isLoading}\n          onClick={onSubmit}\n          title={submitButtonText || \"Submit\"}\n        />\n      </button>\n    </form>\n  );\n}",
   "name": "FormContainer",
   "slug": "form-container",
   "parameters": [],
@@ -33,13 +28,13 @@
   },
   "maxIndentationDepth": 5,
   "size": {
-    "characters": 1387,
-    "lines": 39,
-    "bytes": 1387,
+    "characters": 1412,
+    "lines": 40,
+    "bytes": 1412,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 36,
-    "linesPerFile": 39,
+    "charactersPerLine": 35,
+    "linesPerFile": 40,
     "numberOfFiles": 1
   },
-  "id": "devzoaodjabkvamkqvrksbfi"
+  "id": "twimtcwucrqtuvjjfjitoshz"
 }

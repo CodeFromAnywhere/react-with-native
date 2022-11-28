@@ -6,5 +6,5 @@ t,
 /**
  * The data you want to write to a file, can also be a promise
  */
-e,r){return __awaiter(void 0,void 0,void 0,(function(){var n,o,i,a,s;return __generator(this,(function(u){switch(u.label){case 0:return[4/*yield*/,e];case 1:return n=u.sent(),(o=(0,get_path_1.findOperationBasePath)(t))?(i="string"==typeof n?".md":".json",a=r||"".concat(fs_util_1.path.parse(t).name).concat(i),s=fs_util_1.path.join(o,"assets",a),console.log({assetsFilePath:s}),"string"==typeof e?[2/*return*/,(0,fs_util_1.writeStringToFile)(s,n)]:[2/*return*/,(0,fs_util_1.writeJsonToFile)(s,n)]):[2/*return*/]}}))}))};exports.writeToAssets=writeToAssets;
+e,r,n){return __awaiter(void 0,void 0,void 0,(function(){var o,i,a,s,u;return __generator(this,(function(l){switch(l.label){case 0:return[4/*yield*/,e];case 1:return o=l.sent(),(i=(0,get_path_1.findOperationBasePath)(t))?(a="string"==typeof o?".md":".json",s=r||"".concat(fs_util_1.path.parse(t).name).concat(a),u=fs_util_1.path.join(i,"assets",s),n||console.log({assetsFilePath:u}),"string"==typeof e?[2/*return*/,(0,fs_util_1.writeStringToFile)(u,o)]:[2/*return*/,(0,fs_util_1.writeJsonToFile)(u,o)]):[2/*return*/]}}))}))};exports.writeToAssets=writeToAssets;
 //# sourceMappingURL=writeToAssets.js.map

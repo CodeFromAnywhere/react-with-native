@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385500482,
+  "updatedAt": 1669385500482,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385500482,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "UpdateMeForm",
+  "slug": "update-me-form",
+  "operationRelativeTypescriptFilePath": "src/UpdateMeForm.tsx",
+  "type": {
+    "rawType": "() => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  const meQuery = queries.useGetMeWithContext();\n\n  const person = meQuery.data?.result?.device?.currentPersonCalculated;\n  const personProfileDetails: PersonProfileDetails | undefined = person\n    ? {\n        name: person.name,\n        amountAuthenticationMethodsRequired:\n          person.amountAuthenticationMethodsRequired,\n        interestSlugs: person.interestSlugs,\n        media: person.media,\n        pictureImage: person.pictureImage,\n        preferredContactMedium: person.preferredContactMedium,\n        requiredAuthenticationMethods: person.requiredAuthenticationMethods,\n      }\n    : undefined;\n\n  return (\n    <Div className=\"flex flex-1 flex-row justify-center items-center\">\n      <Div className=\"w-96\">\n        <P className=\"text-4xl\">Update your profile</P>\n\n        {personProfileDetails ? (\n          <PersonProfileDetailsForm\n            personProfileDetails={personProfileDetails}\n          />\n        ) : null}\n      </Div>\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "zzybgzciwlaoihdogbzdowwm"
+}

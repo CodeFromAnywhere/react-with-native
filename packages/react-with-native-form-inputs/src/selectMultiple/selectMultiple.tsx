@@ -42,7 +42,7 @@ export const SelectMultipleInput: PluginComponent<SelectMultipleInputType> = ({
             console.log({ selected });
             if (selected) {
               const newValue = value;
-
+              //@ts-ignore
               newValue.push(selected);
 
               console.log({ value, newValue });

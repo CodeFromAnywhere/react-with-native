@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261747419,
-  "updatedAt": 1666261747419,
+  "createdAt": 1668775548811,
+  "updatedAt": 1668775548811,
   "deletedAt": 0,
-  "createdFirstAt": 1666261747419,
+  "createdFirstAt": 1668775548811,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "big-button",
   "operationRelativeTypescriptFilePath": "src/BigButton.tsx",
   "type": {
-    "rawType": "(button: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/big-button/src/BigButton\").BigButton) => JSX.Element",
+    "rawType": "(button: import(\"/Users/king/King/operations/tools/user-interfaces/gui/dumb/big-button/src/BigButton\").BigButton) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(button: BigButton) => {\n  const colors =\n    button.stylePreset === \"cancel\"\n      ? \"bg-red-800 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-400\"\n      : \"bg-blue-800 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-400\";\n  return (\n    <Div\n      className={`cursor-pointer ${colors} p-3 rounded-md border-2 border-black`}\n      onClick={button.onClick}\n    >\n      <Div className={`flex flex-row gap-6`}>\n        {button.isLoading ? (\n          <FancyLoader />\n        ) : button.icon ? (\n          <Svg src={button.icon} width={24} height={24} />\n        ) : button.emoji ? (\n          <P className={`text-xl hover:scale-110`}>{button.emoji}</P>\n        ) : button.component ? (\n          <Div className=\"h-7\">{button.component()}</Div>\n        ) : null}\n        <P className=\"text-xs text-white\">{button.title}</P>\n      </Div>\n    </Div>\n  );\n}",
+  "value": "(button: BigButton) => {\n  const [isLoading, setIsLoading] = useState(false);\n  const colors =\n    button.stylePreset === \"cancel\"\n      ? \"bg-red-800 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-400\"\n      : \"bg-blue-800 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-400\";\n  return (\n    <Div\n      className={`cursor-pointer ${colors} p-3 rounded-md border-2 border-black`}\n      onClick={async () => {\n        setIsLoading(true);\n        await button.onClick();\n        setIsLoading(false);\n      }}\n    >\n      <Div className={`flex flex-row gap-6 items-center`}>\n        {button.isLoading || isLoading ? (\n          <FancyLoader />\n        ) : button.icon ? (\n          <Svg src={button.icon} width={24} height={24} />\n        ) : button.emoji ? (\n          <P className={`text-xl hover:scale-110`}>{button.emoji}</P>\n        ) : button.component ? (\n          <Div className=\"h-7\">{button.component()}</Div>\n        ) : null}\n        <P className=\"text-xs text-white\">{button.title}</P>\n      </Div>\n    </Div>\n  );\n}",
   "description": "",
-  "id": "iqhiudofyaaszkzwwqoyrxms"
+  "id": "chyewqukeieipsucnlyhoofb"
 }

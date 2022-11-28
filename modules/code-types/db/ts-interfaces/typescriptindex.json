@@ -1,15 +1,15 @@
 {
-  "createdAt": 1668150112595,
-  "updatedAt": 1668150112595,
+  "createdAt": 1669639302260,
+  "updatedAt": 1669639302260,
   "deletedAt": 0,
-  "createdFirstAt": 1668150112595,
+  "createdFirstAt": 1669639302260,
   "id": "typescriptindex",
   "name": "TypescriptIndex",
   "slug": "typescriptindex",
   "operationRelativeTypescriptFilePath": "src/TypescriptIndex.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n/**\n * TODO:\n *\n * Any interface/type\n * - should be able to have default values\n * - should be able to have validation functions\n * - should be able to have casting functions\n * - some parameters should be hidden upon creation\n * - some should be hidden on updating\n * - some should even be hidden when listing\n *\n * This is mainly for the admin panel, but it could be integrated on the db level as well.\n * The problem is that this behavior may be app-specific, so this becomes rather opinionated if we do it on the OS level\n * Come up with an exact requirement and implementation plan.\n *\n * There are many more functionalities possible here to speed up development, not only for admin use-case.\n */\n\n/**\n * ---\n * isDbModel: false\n * ---\n *\n * Typescript file metadata (all indexes from typescript files, together)\n */\nexport type TypescriptIndex = {\n  tsBuildErrors: TsBuildError[];\n  tsLintWarnings: TsLintWarning[];\n  tsFunctions: TsFunction[];\n  tsVariables: TsVariable[];\n  tsInterfaces: TsInterface[];\n  tsComments: TsComment[];\n  tsImports: TsImport[];\n  tsExports: TsExport[];\n};",
+  "rawText": "\n/**\n * TODO:\n *\n * Any interface/type\n * - should be able to have default values\n * - should be able to have validation functions\n * - should be able to have casting functions\n * - some parameters should be hidden upon creation\n * - some should be hidden on updating\n * - some should even be hidden when listing\n *\n * This is mainly for the admin panel, but it could be integrated on the db level as well.\n * The problem is that this behavior may be app-specific, so this becomes rather opinionated if we do it on the OS level\n * Come up with an exact requirement and implementation plan.\n *\n * There are many more functionalities possible here to speed up development, not only for admin use-case.\n */\n\n/**\n * ---\n * isDbModel: false\n * ---\n *\n * Typescript file metadata (all indexes from typescript files, together)\n *\n */\nexport type TypescriptIndex = {\n  tsImports: TsImport[];\n  tsFunctions: TsFunction[];\n  tsInterfaces: TsInterface[];\n  tsVariables: TsVariable[];\n  tsBuildErrors: TsBuildError[];\n  tsLintWarnings: TsLintWarning[];\n  tsComments: TsComment[];\n  tsExports: TsExport[];\n};",
   "extensions": [],
   "isOperationIndex": false,
   "description": "\nTypescript file metadata (all indexes from typescript files, together)",
@@ -19,6 +19,30 @@
     "typeDefinition": {
       "type": "object",
       "properties": {
+        "tsImports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TsImport"
+          }
+        },
+        "tsFunctions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TsFunction"
+          }
+        },
+        "tsInterfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TsInterface"
+          }
+        },
+        "tsVariables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TsVariable"
+          }
+        },
         "tsBuildErrors": {
           "type": "array",
           "items": {
@@ -31,34 +55,10 @@
             "$ref": "#/definitions/TsLintWarning"
           }
         },
-        "tsFunctions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TsFunction"
-          }
-        },
-        "tsVariables": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TsVariable"
-          }
-        },
-        "tsInterfaces": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TsInterface"
-          }
-        },
         "tsComments": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/TsComment"
-          }
-        },
-        "tsImports": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TsImport"
           }
         },
         "tsExports": {
@@ -69,13 +69,13 @@
         }
       },
       "required": [
+        "tsImports",
+        "tsFunctions",
+        "tsInterfaces",
+        "tsVariables",
         "tsBuildErrors",
         "tsLintWarnings",
-        "tsFunctions",
-        "tsVariables",
-        "tsInterfaces",
         "tsComments",
-        "tsImports",
         "tsExports"
       ],
       "additionalProperties": false,
@@ -85,7 +85,7 @@
       "fullComment": "--- isDbModel: false\n---\n\nTypescript file metadata (all indexes from typescript files, together)",
       "properties": [
         {
-          "name": "tsBuildErrors",
+          "name": "tsImports",
           "required": true,
           "schema": {
             "items": [
@@ -150,125 +150,235 @@
                       }
                     },
                     {
-                      "name": "line",
-                      "required": false,
+                      "name": "comments",
+                      "required": true,
                       "schema": {
-                        "type": "number"
+                        "fullComment": "surrounding comments and comments inside of the import",
+                        "items": [
+                          {
+                            "schema": {
+                              "fullComment": "comments are basically one-or-multi-line human content inside of typescript files, so it's a very important to do something useful with them.\n\n\nThe convention should be that single-line comments should start with that. This then becomes the type of the comment. You can also put multiple prefixes at the start.\n\nExample:\n\n`// TODO: NB: this is a todo but its also important`\n\nMultiline comments can also have one or multiple types in their text, but they should not be split into multiple comments as the context could be needed some times.\n\n\n\nThere are also some other things comments can say about statements, but these should be inside the frontmatter, and are much more flexible.\n- classified[0-10] indicating level of classification. This way I can share subsets of the codebase, maybe...\n- privacy\n- ...?\n\nNB: with the current setup we can also parse `.md` files as being a TsComment, keep it that way!\n\nNB: comments are part of the code, so they should always be in English!",
+                              "nb": "with the current setup we can also parse `.md` files as being a TsComment, keep it that way!",
+                              "properties": [
+                                {
+                                  "name": "operationName",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                                    "type": "null"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativePath",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "operationRelativePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "id",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "unique id of the model",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "name",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "name (identifier) of the model",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "slug",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "kebab-case variant of the name",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "operationRelativeTypescriptFilePath",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "comment",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "the content of the comment in markdown, without frontmatter\n\na string that is known to contain markdown.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "parameters",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "parameters destructured from the frontmatter of the parsed markdown (if comment is not a oneliner, otherwise it'll be empty)\n\nOur version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+                                    "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "types",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "These are the type indicators that were found in this single or multiline comment. Can be multiple.",
+                                    "items": [
+                                      {
+                                        "schema": {
+                                          "enum": [
+                                            "todo",
+                                            "discussion",
+                                            "idea",
+                                            "later",
+                                            "nb",
+                                            "title",
+                                            "section",
+                                            "description"
+                                          ],
+                                          "fullComment": "special line prefixes:\n\n**Developer related comments**\n\n- TODO: for developer to know what to do\n- DISCUSSION: for developer to state that discussion is needed\n- IDEA: for developer to state ideas\n- LATER: for developer to mark as thing that needs to be done later\n- NB: for developer to add a note\n\n**Form related comments**\n\n- TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n- SECTION: start a new section in the form from this point, the value behind here can be the title\n- DESCRIPTION: if available, will be used as description of the form input",
+                                          "type": "string"
+                                        },
+                                        "name": "CommentType"
+                                      }
+                                    ],
+                                    "type": "array"
+                                  }
+                                },
+                                {
+                                  "name": "firstLine",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "first line of the comment",
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "lastLine",
+                                  "required": true,
+                                  "schema": {
+                                    "fullComment": "last line of the comment",
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "statementName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "statement name the comment belongs to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "rawStatement",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "raw statement text the comment belongs to",
+                                    "type": "string"
+                                  }
+                                }
+                              ],
+                              "type": "object"
+                            },
+                            "name": "TsComment"
+                          }
+                        ],
+                        "type": "array"
                       }
                     },
                     {
-                      "name": "character",
-                      "required": false,
-                      "schema": {
-                        "type": "number"
-                      }
-                    },
-                    {
-                      "name": "message",
+                      "name": "module",
                       "required": true,
                       "schema": {
                         "type": "string"
+                      }
+                    },
+                    {
+                      "name": "alias",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "TODO: not sure, but I believe alias should be defined at the import, not at the export, right?",
+                        "todo": "not sure, but I believe alias should be defined at the import, not at the export, right?",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "classification",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "node",
+                          "react",
+                          "package",
+                          "operation",
+                          "internal"
+                        ],
+                        "fullComment": "node: node core packages like fs and path\n\nreact: react standard packages like react, react-native, expo, react-dom, etc.\n\npackage: packages from npm that are not classified as operations\n\noperation: operations from our monorepo\n\ninternal: imports from other places in the same operation\n\nNB: don't confuse this with OperationClassification",
+                        "nb": "don't confuse this with OperationClassification",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "type",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "value",
+                          "type"
+                        ],
+                        "fullComment": "sometimes the import statement module referenced cannot be found, in that case it cannot be known whether the import should contain a type or value, so it will be undefined.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "hasGeneric",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "only for type exports. tells you whether or not the type has one or more generic parameter(s)",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "isAbsolute",
+                      "required": true,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "isModuleResolved",
+                      "required": true,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "isModuleFromMonorepo",
+                      "required": true,
+                      "schema": {
+                        "type": "boolean"
                       }
                     }
                   ],
                   "type": "object"
                 },
-                "name": "TsBuildError"
-              }
-            ],
-            "type": "array"
-          }
-        },
-        {
-          "name": "tsLintWarnings",
-          "required": true,
-          "schema": {
-            "items": [
-              {
-                "schema": {
-                  "fullComment": "",
-                  "properties": [
-                    {
-                      "name": "operationName",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                        "type": "null"
-                      }
-                    },
-                    {
-                      "name": "projectRelativePath",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "operationRelativePath",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "id",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "unique id of the model",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "name",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "name (identifier) of the model",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "slug",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "kebab-case variant of the name",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "operationRelativeTypescriptFilePath",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "line",
-                      "required": true,
-                      "schema": {
-                        "type": "number"
-                      }
-                    },
-                    {
-                      "name": "character",
-                      "required": true,
-                      "schema": {
-                        "type": "number"
-                      }
-                    },
-                    {
-                      "name": "message",
-                      "required": true,
-                      "schema": {
-                        "type": "string"
-                      }
-                    }
-                  ],
-                  "type": "object"
-                },
-                "name": "TsLintWarning"
+                "name": "TsImport"
               }
             ],
             "type": "array"
@@ -284,83 +394,11 @@
                   "fullComment": "--- dbStorageMethod: jsonSingle\n---\n\nInterface for arrow functions and normal functions",
                   "properties": [
                     {
-                      "name": "operationName",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                        "type": "null"
-                      }
-                    },
-                    {
-                      "name": "projectRelativePath",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "operationRelativePath",
+                      "name": "explicitTypeName",
                       "required": false,
                       "schema": {
-                        "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "fullComment": "If you give a function a type explicitly on its declaration, this type will be set here.",
                         "type": "string"
-                      }
-                    },
-                    {
-                      "name": "id",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "unique id of the model",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "name",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "name (identifier) of the model",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "slug",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "kebab-case variant of the name",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "operationRelativeTypescriptFilePath",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "canCache",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "whether or not the function is can be cached (relies on cache invalidation)",
-                        "type": "boolean"
-                      }
-                    },
-                    {
-                      "name": "isGetApi",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "if true, the function will get the `server`.js context as its only argument, and it's directly exposed as GET api. Endpoint path will be inferred from the function name\n\nFor this to be indexed to `true`, you need to call the function `abcXyzGetApi` whhere `abcXyz` can be anything.",
-                        "type": "boolean"
-                      }
-                    },
-                    {
-                      "name": "isPostApi",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "If true, the function will get the `server`.js context as its only argument, and it's directly exposed as POST api. Endpoint path will be inferred from the function name\n\nFor this to be indexed to `true`, you need to call the function `abcXyzPostApi` where `abcXyz` can be anything.",
-                        "type": "boolean"
                       }
                     },
                     {
@@ -369,59 +407,6 @@
                       "schema": {
                         "fullComment": "The function is immediately exported upon creation. If the os dev tools are being used, this means it is also exported from the operation",
                         "type": "boolean"
-                      }
-                    },
-                    {
-                      "name": "isApiExposed",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "for all exported functions in node operations, true by default false for others\n\ncan be overwritten using frontmatter",
-                        "type": "boolean"
-                      }
-                    },
-                    {
-                      "name": "publicAuthorization",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "The default authorization that is set level applies to users without any specific authorization (granted to everyone).\n\nshould be indexed based on doccomment containing `AUTH-PUBLIC: [execute], [read], [search]`",
-                        "items": [
-                          {
-                            "schema": {
-                              "enum": [
-                                "execute",
-                                "write-create",
-                                "write-update",
-                                "write-delete",
-                                "read",
-                                "search"
-                              ],
-                              "fullComment": "`AuthorizationLevel` is a single Enum that can apply to privacy and authorization of text, functions, and data.\n\nFor files (ts, md, json, etc...):\n\n- write-create\n- write-update\n- write-delete\n- read\n- search (only search index)\n\nFor db model data subsets:\n\n- write-update\n- write-create\n- write-delete\n- read\n- search (only search index)\n\nFor functions:\n- execute\n\nFor functions, interfaces, variables:\n\n- read (reading docs only. for source, you need to provide the file auth)\n- search (only search index)",
-                              "type": "string"
-                            },
-                            "name": "AuthorizationLevel"
-                          }
-                        ],
-                        "type": "array"
-                      }
-                    },
-                    {
-                      "name": "runEveryPeriod",
-                      "required": false,
-                      "schema": {
-                        "enum": [
-                          "minute",
-                          "5-minutes",
-                          "quarter-hour",
-                          "hour",
-                          "6-hours",
-                          "midnight",
-                          "week",
-                          "month",
-                          "3-months",
-                          "year"
-                        ],
-                        "fullComment": "You can specify `runEveryPeriod` in your frontmatter of a function. This will set `runEveryPeriod` for the TsFunction. This is used by `function-server`: it will execute CRON-jobs that run these things on those periods.\n\nWill only work if the function takes no arguments.\n\nUsed to specify functions that need to run every time with a specific interval\n\nAll times are at at the server timezone time\n\n- `minute`: every minute at 0 seconds\n- `5-mintues`: every 5 minutes, starting at the first minute of the hour\n- `quarter-hour`: every 15 minutes, starting at the first minute of the hour\n- `hour`: every hour, starting at the first minute of the hour\n- `6-hours`: every 6 hours, starting at midnight\n- `midnight`: every midnight (00:00:00)\n- `week`: every week at sundaynight (sunday, 1 second after 23:59:59 PM)\n- `month`: at the first second of the first day of the month (0:00:00)\n- `3-months`: every start of the quarter: january 1st (0:00:00), april 1st, july 1st, october 1st\n- `year`: every new year at january 1st at 0:00:00",
-                        "type": "string"
                       }
                     },
                     {
@@ -2344,31 +2329,75 @@
                       }
                     },
                     {
+                      "name": "groupAuthorization",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Other keys in frontmatter that are group names, can be added here",
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "isApiExposed",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "for all exported functions in node operations, true by default false for others\n\ncan be overwritten using frontmatter",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "canCache",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "whether or not the function can be cached (relies on cache invalidation)",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "runEveryPeriod",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "minute",
+                          "5-minutes",
+                          "quarter-hour",
+                          "hour",
+                          "6-hours",
+                          "midnight",
+                          "week",
+                          "month",
+                          "3-months",
+                          "year"
+                        ],
+                        "fullComment": "You can specify `runEveryPeriod` in your frontmatter of a function. This will set `runEveryPeriod` for the TsFunction. This is used by `function-server`: it will execute CRON-jobs that run these things on those periods.\n\nWill only work if the function takes no arguments.\n\nUsed to specify functions that need to run every time with a specific interval\n\nAll times are at at the server timezone time\n\n- `minute`: every minute at 0 seconds\n- `5-mintues`: every 5 minutes, starting at the first minute of the hour\n- `quarter-hour`: every 15 minutes, starting at the first minute of the hour\n- `hour`: every hour, starting at the first minute of the hour\n- `6-hours`: every 6 hours, starting at midnight\n- `midnight`: every midnight (00:00:00)\n- `week`: every week at sundaynight (sunday, 1 second after 23:59:59 PM)\n- `month`: at the first second of the first day of the month (0:00:00)\n- `3-months`: every start of the quarter: january 1st (0:00:00), april 1st, july 1st, october 1st\n- `year`: every new year at january 1st at 0:00:00",
+                        "type": "string"
+                      }
+                    },
+                    {
                       "name": "price",
                       "required": false,
                       "schema": {
                         "fullComment": "Indexed from frontmatter `price`\n\nTLDR;EUROS\n\nA price is a number indicating the relative cost. Absolute cost is calculated by many other factors\n\nFor now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.\n\nLater we can add all kinds of extra conversion:\n\n- currency support\n- king os currency\n- lower cost for poorer people\n\netc...\n\nFirst we need to start making sales before we can add such complexity.\n\n",
                         "type": "number"
                       }
-                    }
-                  ],
-                  "type": "object"
-                },
-                "name": "TsFunction"
-              }
-            ],
-            "type": "array"
-          }
-        },
-        {
-          "name": "tsVariables",
-          "required": true,
-          "schema": {
-            "items": [
-              {
-                "schema": {
-                  "fullComment": "--- dbStorageMethod: jsonSingle\n---",
-                  "properties": [
+                    },
+                    {
+                      "name": "classification",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "wise",
+                          "dumb",
+                          "smart",
+                          "genius",
+                          "react-with-native",
+                          "cli",
+                          "test"
+                        ],
+                        "fullComment": "- `react`: The core library that should always be used that wraps react and react native.\n\n- `dumb`: Presentational components that only care about how things look, and have no idea about the type of information that they will contain (**data-agnostic**), nor their context they're used in.\n\n- `smart`: Presentational components that may contain getters and setters for global state. This means they're still easy enough to set up, but\n\n- `wise`: stateful components that use the backend as well to do things. for example, `simplified-schema-form`\n\n- `genius`: blocks of components that have certain functionality. Example: `file-writer` or `crud`",
+                        "type": "string"
+                      }
+                    },
                     {
                       "name": "operationName",
                       "required": true,
@@ -2424,735 +2453,11 @@
                         "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
                         "type": "string"
                       }
-                    },
-                    {
-                      "name": "description",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "if available , the parsed doccomment of the variable",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "value",
-                      "required": true,
-                      "schema": {
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "classification",
-                      "required": true,
-                      "schema": {
-                        "enum": [
-                          "const",
-                          "var",
-                          "let"
-                        ],
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "type",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "all info that should always be collected when indexing any type interface",
-                        "properties": [
-                          {
-                            "name": "typeDefinition",
-                            "required": false,
-                            "schema": {
-                              "fullComment": "JSON schema definition of a type interface\n\n\nSome info about the Schema:\n\n- if the type is an object, there should be properties\n- if the type is an array, there should be items\n\n\n\n",
-                              "properties": [
-                                {
-                                  "name": "$id",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "$ref",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "$schema",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "Meta schema\n\nRecommended values:\n- 'http://json-schema.org/schema#'\n- 'http://json-schema.org/hyper-schema#'\n- 'http://json-schema.org/draft-07/schema#'\n- 'http://json-schema.org/draft-07/hyper-schema#'",
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "$comment",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "$defs",
-                                  "required": false,
-                                  "schema": {
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "type",
-                                  "required": false,
-                                  "schema": {
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "enum",
-                                  "required": false,
-                                  "schema": {
-                                    "items": [
-                                      {
-                                        "schema": {
-                                          "fullComment": "Primitive type",
-                                          "properties": [],
-                                          "type": "object"
-                                        },
-                                        "name": "JSONSchema7Type"
-                                      }
-                                    ],
-                                    "type": "array"
-                                  }
-                                },
-                                {
-                                  "name": "const",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "Primitive type",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "multipleOf",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "maximum",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "exclusiveMaximum",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "minimum",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "exclusiveMinimum",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "maxLength",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "minLength",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "pattern",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "items",
-                                  "required": false,
-                                  "schema": {
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "additionalItems",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "JSON Schema v7",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "maxItems",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "minItems",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "uniqueItems",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "boolean"
-                                  }
-                                },
-                                {
-                                  "name": "contains",
-                                  "required": false,
-                                  "schema": {
-                                    "circularRefName": "JSONSchema7",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "maxProperties",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "minProperties",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "required",
-                                  "required": false,
-                                  "schema": {
-                                    "items": [
-                                      {
-                                        "schema": {
-                                          "type": "string"
-                                        },
-                                        "name": null
-                                      }
-                                    ],
-                                    "type": "array"
-                                  }
-                                },
-                                {
-                                  "name": "properties",
-                                  "required": false,
-                                  "schema": {
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "patternProperties",
-                                  "required": false,
-                                  "schema": {
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "additionalProperties",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "JSON Schema v7",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "dependencies",
-                                  "required": false,
-                                  "schema": {
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "propertyNames",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "JSON Schema v7",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "if",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "JSON Schema v7",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "then",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "JSON Schema v7",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "else",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "JSON Schema v7",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "allOf",
-                                  "required": false,
-                                  "schema": {
-                                    "items": [
-                                      {
-                                        "schema": {
-                                          "fullComment": "JSON Schema v7",
-                                          "properties": [],
-                                          "type": "object"
-                                        },
-                                        "name": "JSONSchema7Definition"
-                                      }
-                                    ],
-                                    "type": "array"
-                                  }
-                                },
-                                {
-                                  "name": "anyOf",
-                                  "required": false,
-                                  "schema": {
-                                    "items": [
-                                      {
-                                        "schema": {
-                                          "fullComment": "JSON Schema v7",
-                                          "properties": [],
-                                          "type": "object"
-                                        },
-                                        "name": "JSONSchema7Definition"
-                                      }
-                                    ],
-                                    "type": "array"
-                                  }
-                                },
-                                {
-                                  "name": "oneOf",
-                                  "required": false,
-                                  "schema": {
-                                    "items": [
-                                      {
-                                        "schema": {
-                                          "fullComment": "JSON Schema v7",
-                                          "properties": [],
-                                          "type": "object"
-                                        },
-                                        "name": "JSONSchema7Definition"
-                                      }
-                                    ],
-                                    "type": "array"
-                                  }
-                                },
-                                {
-                                  "name": "not",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "JSON Schema v7",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "format",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "contentMediaType",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "contentEncoding",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "definitions",
-                                  "required": false,
-                                  "schema": {
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "title",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "description",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "default",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "Primitive type",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "readOnly",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "boolean"
-                                  }
-                                },
-                                {
-                                  "name": "writeOnly",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "boolean"
-                                  }
-                                },
-                                {
-                                  "name": "examples",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "Primitive type",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                }
-                              ],
-                              "type": "object"
-                            }
-                          },
-                          {
-                            "name": "simplifiedSchema",
-                            "required": false,
-                            "schema": {
-                              "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
-                              "properties": [
-                                {
-                                  "name": "todo",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "discussion",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "idea",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "later",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "nb",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "title",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "section",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "description",
-                                  "required": false,
-                                  "schema": {
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "type",
-                                  "required": true,
-                                  "schema": {
-                                    "enum": [
-                                      "string",
-                                      "number",
-                                      "boolean",
-                                      "object",
-                                      "array",
-                                      "null"
-                                    ],
-                                    "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
-                                    "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "circularRefName",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "enum",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
-                                    "items": [
-                                      {
-                                        "schema": {
-                                          "fullComment": "Primitive type",
-                                          "properties": [],
-                                          "type": "object"
-                                        },
-                                        "name": "JSONSchema7Type"
-                                      }
-                                    ],
-                                    "type": "array"
-                                  }
-                                },
-                                {
-                                  "name": "properties",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "in case of object, this will always appear",
-                                    "items": [
-                                      {
-                                        "schema": {
-                                          "fullComment": "",
-                                          "properties": [
-                                            {
-                                              "name": "name",
-                                              "required": true,
-                                              "schema": {
-                                                "type": "string"
-                                              }
-                                            },
-                                            {
-                                              "name": "schema",
-                                              "required": true,
-                                              "schema": {
-                                                "circularRefName": "SimplifiedSchema",
-                                                "properties": [],
-                                                "type": "object"
-                                              }
-                                            },
-                                            {
-                                              "name": "required",
-                                              "required": true,
-                                              "schema": {
-                                                "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
-                                                "nb": "can't we put this in the SimplifiedSchema itself?",
-                                                "type": "boolean"
-                                              }
-                                            }
-                                          ],
-                                          "type": "object"
-                                        },
-                                        "name": "SimplifiedSchemaProperty"
-                                      }
-                                    ],
-                                    "type": "array"
-                                  }
-                                },
-                                {
-                                  "name": "items",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "in case of arrays, this will always appear",
-                                    "items": [
-                                      {
-                                        "schema": {
-                                          "fullComment": "",
-                                          "properties": [
-                                            {
-                                              "name": "name",
-                                              "required": true,
-                                              "schema": {
-                                                "fullComment": "name in case of it being a reference, otherwise null",
-                                                "type": "string"
-                                              }
-                                            },
-                                            {
-                                              "name": "schema",
-                                              "required": true,
-                                              "schema": {
-                                                "circularRefName": "SimplifiedSchema",
-                                                "properties": [],
-                                                "type": "object"
-                                              }
-                                            }
-                                          ],
-                                          "type": "object"
-                                        },
-                                        "name": "SimplifiedSchemaItem"
-                                      }
-                                    ],
-                                    "type": "array"
-                                  }
-                                },
-                                {
-                                  "name": "fullComment",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
-                                    "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
-                                    "type": "string"
-                                  }
-                                }
-                              ],
-                              "type": "object"
-                            }
-                          },
-                          {
-                            "name": "isObject",
-                            "required": true,
-                            "schema": {
-                              "fullComment": "if the type is an object, this is true. false if it's an array",
-                              "type": "boolean"
-                            }
-                          },
-                          {
-                            "name": "isArray",
-                            "required": true,
-                            "schema": {
-                              "fullComment": "if the type is an array, this is true",
-                              "type": "boolean"
-                            }
-                          },
-                          {
-                            "name": "isPrimitive",
-                            "required": true,
-                            "schema": {
-                              "fullComment": "if it's a primitive type like \"string\", \"number\", \"boolean\", \"null\" | \"undefined\"",
-                              "type": "boolean"
-                            }
-                          },
-                          {
-                            "name": "isEnum",
-                            "required": true,
-                            "schema": {
-                              "fullComment": "will be true for any primitive conjunction types",
-                              "type": "boolean"
-                            }
-                          },
-                          {
-                            "name": "isEnumLiteral",
-                            "required": true,
-                            "schema": {
-                              "fullComment": "will be true for string conjunction types",
-                              "type": "boolean"
-                            }
-                          },
-                          {
-                            "name": "typeCoverage",
-                            "required": true,
-                            "schema": {
-                              "fullComment": "quantification of coverage of the specified type or subtypes in our database.",
-                              "type": "number"
-                            }
-                          },
-                          {
-                            "name": "rawType",
-                            "required": true,
-                            "schema": {
-                              "fullComment": "raw type string",
-                              "type": "string"
-                            }
-                          }
-                        ],
-                        "type": "object"
-                      }
-                    },
-                    {
-                      "name": "isExported",
-                      "required": true,
-                      "schema": {
-                        "type": "boolean"
-                      }
-                    },
-                    {
-                      "name": "comments",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "surrounding comments and comments inside of the variable",
-                        "items": [],
-                        "type": "array"
-                      }
                     }
                   ],
                   "type": "object"
                 },
-                "name": "TsVariable"
+                "name": "TsFunction"
               }
             ],
             "type": "array"
@@ -4155,6 +3460,994 @@
           }
         },
         {
+          "name": "tsVariables",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "--- dbStorageMethod: jsonSingle\n---",
+                  "properties": [
+                    {
+                      "name": "operationName",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "null"
+                      }
+                    },
+                    {
+                      "name": "projectRelativePath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operationRelativePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "unique id of the model",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "name (identifier) of the model",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "slug",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "kebab-case variant of the name",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operationRelativeTypescriptFilePath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "description",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if available , the parsed doccomment of the variable",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "value",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "classification",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "const",
+                          "var",
+                          "let"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "type",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "all info that should always be collected when indexing any type interface",
+                        "properties": [
+                          {
+                            "name": "typeDefinition",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "JSON schema definition of a type interface\n\n\nSome info about the Schema:\n\n- if the type is an object, there should be properties\n- if the type is an array, there should be items\n\n\n\n",
+                              "properties": [
+                                {
+                                  "name": "$id",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "$ref",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "$schema",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Meta schema\n\nRecommended values:\n- 'http://json-schema.org/schema#'\n- 'http://json-schema.org/hyper-schema#'\n- 'http://json-schema.org/draft-07/schema#'\n- 'http://json-schema.org/draft-07/hyper-schema#'",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "$comment",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "$defs",
+                                  "required": false,
+                                  "schema": {
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "type",
+                                  "required": false,
+                                  "schema": {
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "enum",
+                                  "required": false,
+                                  "schema": {
+                                    "items": [
+                                      {
+                                        "schema": {
+                                          "fullComment": "Primitive type",
+                                          "properties": [],
+                                          "type": "object"
+                                        },
+                                        "name": "JSONSchema7Type"
+                                      }
+                                    ],
+                                    "type": "array"
+                                  }
+                                },
+                                {
+                                  "name": "const",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Primitive type",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "multipleOf",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "maximum",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "exclusiveMaximum",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "minimum",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "exclusiveMinimum",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "maxLength",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "minLength",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "pattern",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "items",
+                                  "required": false,
+                                  "schema": {
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "additionalItems",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "JSON Schema v7",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "maxItems",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "minItems",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "uniqueItems",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                {
+                                  "name": "contains",
+                                  "required": false,
+                                  "schema": {
+                                    "circularRefName": "JSONSchema7",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "maxProperties",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "minProperties",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                },
+                                {
+                                  "name": "required",
+                                  "required": false,
+                                  "schema": {
+                                    "items": [
+                                      {
+                                        "schema": {
+                                          "type": "string"
+                                        },
+                                        "name": null
+                                      }
+                                    ],
+                                    "type": "array"
+                                  }
+                                },
+                                {
+                                  "name": "properties",
+                                  "required": false,
+                                  "schema": {
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "patternProperties",
+                                  "required": false,
+                                  "schema": {
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "additionalProperties",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "JSON Schema v7",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "dependencies",
+                                  "required": false,
+                                  "schema": {
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "propertyNames",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "JSON Schema v7",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "if",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "JSON Schema v7",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "then",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "JSON Schema v7",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "else",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "JSON Schema v7",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "allOf",
+                                  "required": false,
+                                  "schema": {
+                                    "items": [
+                                      {
+                                        "schema": {
+                                          "fullComment": "JSON Schema v7",
+                                          "properties": [],
+                                          "type": "object"
+                                        },
+                                        "name": "JSONSchema7Definition"
+                                      }
+                                    ],
+                                    "type": "array"
+                                  }
+                                },
+                                {
+                                  "name": "anyOf",
+                                  "required": false,
+                                  "schema": {
+                                    "items": [
+                                      {
+                                        "schema": {
+                                          "fullComment": "JSON Schema v7",
+                                          "properties": [],
+                                          "type": "object"
+                                        },
+                                        "name": "JSONSchema7Definition"
+                                      }
+                                    ],
+                                    "type": "array"
+                                  }
+                                },
+                                {
+                                  "name": "oneOf",
+                                  "required": false,
+                                  "schema": {
+                                    "items": [
+                                      {
+                                        "schema": {
+                                          "fullComment": "JSON Schema v7",
+                                          "properties": [],
+                                          "type": "object"
+                                        },
+                                        "name": "JSONSchema7Definition"
+                                      }
+                                    ],
+                                    "type": "array"
+                                  }
+                                },
+                                {
+                                  "name": "not",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "JSON Schema v7",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "format",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "contentMediaType",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "contentEncoding",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "definitions",
+                                  "required": false,
+                                  "schema": {
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "title",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "description",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "default",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Primitive type",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                },
+                                {
+                                  "name": "readOnly",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                {
+                                  "name": "writeOnly",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                {
+                                  "name": "examples",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Primitive type",
+                                    "properties": [],
+                                    "type": "object"
+                                  }
+                                }
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          {
+                            "name": "simplifiedSchema",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+                              "properties": [
+                                {
+                                  "name": "todo",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "discussion",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "idea",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "later",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "nb",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "title",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "section",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "description",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "type",
+                                  "required": true,
+                                  "schema": {
+                                    "enum": [
+                                      "string",
+                                      "number",
+                                      "boolean",
+                                      "object",
+                                      "array",
+                                      "null"
+                                    ],
+                                    "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+                                    "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "circularRefName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "enum",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+                                    "items": [
+                                      {
+                                        "schema": {
+                                          "fullComment": "Primitive type",
+                                          "properties": [],
+                                          "type": "object"
+                                        },
+                                        "name": "JSONSchema7Type"
+                                      }
+                                    ],
+                                    "type": "array"
+                                  }
+                                },
+                                {
+                                  "name": "properties",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "in case of object, this will always appear",
+                                    "items": [
+                                      {
+                                        "schema": {
+                                          "fullComment": "",
+                                          "properties": [
+                                            {
+                                              "name": "name",
+                                              "required": true,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "schema",
+                                              "required": true,
+                                              "schema": {
+                                                "circularRefName": "SimplifiedSchema",
+                                                "properties": [],
+                                                "type": "object"
+                                              }
+                                            },
+                                            {
+                                              "name": "required",
+                                              "required": true,
+                                              "schema": {
+                                                "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                                                "nb": "can't we put this in the SimplifiedSchema itself?",
+                                                "type": "boolean"
+                                              }
+                                            }
+                                          ],
+                                          "type": "object"
+                                        },
+                                        "name": "SimplifiedSchemaProperty"
+                                      }
+                                    ],
+                                    "type": "array"
+                                  }
+                                },
+                                {
+                                  "name": "items",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "in case of arrays, this will always appear",
+                                    "items": [
+                                      {
+                                        "schema": {
+                                          "fullComment": "",
+                                          "properties": [
+                                            {
+                                              "name": "name",
+                                              "required": true,
+                                              "schema": {
+                                                "fullComment": "name in case of it being a reference, otherwise null",
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "schema",
+                                              "required": true,
+                                              "schema": {
+                                                "circularRefName": "SimplifiedSchema",
+                                                "properties": [],
+                                                "type": "object"
+                                              }
+                                            }
+                                          ],
+                                          "type": "object"
+                                        },
+                                        "name": "SimplifiedSchemaItem"
+                                      }
+                                    ],
+                                    "type": "array"
+                                  }
+                                },
+                                {
+                                  "name": "fullComment",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                    "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                    "type": "string"
+                                  }
+                                }
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          {
+                            "name": "isObject",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "if the type is an object, this is true. false if it's an array",
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "isArray",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "if the type is an array, this is true",
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "isPrimitive",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "if it's a primitive type like \"string\", \"number\", \"boolean\", \"null\" | \"undefined\"",
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "isEnum",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "will be true for any primitive conjunction types",
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "isEnumLiteral",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "will be true for string conjunction types",
+                              "type": "boolean"
+                            }
+                          },
+                          {
+                            "name": "typeCoverage",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "quantification of coverage of the specified type or subtypes in our database.",
+                              "type": "number"
+                            }
+                          },
+                          {
+                            "name": "rawType",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "raw type string",
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "isExported",
+                      "required": true,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "comments",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "surrounding comments and comments inside of the variable",
+                        "items": [],
+                        "type": "array"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "TsVariable"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "tsBuildErrors",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "operationName",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "null"
+                      }
+                    },
+                    {
+                      "name": "projectRelativePath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operationRelativePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "unique id of the model",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "name (identifier) of the model",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "slug",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "kebab-case variant of the name",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operationRelativeTypescriptFilePath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "line",
+                      "required": false,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "character",
+                      "required": false,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "message",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "TsBuildError"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "tsLintWarnings",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "operationName",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "null"
+                      }
+                    },
+                    {
+                      "name": "projectRelativePath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operationRelativePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "unique id of the model",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "name (identifier) of the model",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "slug",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "kebab-case variant of the name",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operationRelativeTypescriptFilePath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "line",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "character",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "message",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "TsLintWarning"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
           "name": "tsComments",
           "required": true,
           "schema": {
@@ -4301,306 +4594,6 @@
                   "type": "object"
                 },
                 "name": "TsComment"
-              }
-            ],
-            "type": "array"
-          }
-        },
-        {
-          "name": "tsImports",
-          "required": true,
-          "schema": {
-            "items": [
-              {
-                "schema": {
-                  "fullComment": "",
-                  "properties": [
-                    {
-                      "name": "operationName",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                        "type": "null"
-                      }
-                    },
-                    {
-                      "name": "projectRelativePath",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "operationRelativePath",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "id",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "unique id of the model",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "name",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "name (identifier) of the model",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "slug",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "kebab-case variant of the name",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "operationRelativeTypescriptFilePath",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "comments",
-                      "required": true,
-                      "schema": {
-                        "fullComment": "surrounding comments and comments inside of the import",
-                        "items": [
-                          {
-                            "schema": {
-                              "fullComment": "comments are basically one-or-multi-line human content inside of typescript files, so it's a very important to do something useful with them.\n\n\nThe convention should be that single-line comments should start with that. This then becomes the type of the comment. You can also put multiple prefixes at the start.\n\nExample:\n\n`// TODO: NB: this is a todo but its also important`\n\nMultiline comments can also have one or multiple types in their text, but they should not be split into multiple comments as the context could be needed some times.\n\n\n\nThere are also some other things comments can say about statements, but these should be inside the frontmatter, and are much more flexible.\n- classified[0-10] indicating level of classification. This way I can share subsets of the codebase, maybe...\n- privacy\n- ...?\n\nNB: with the current setup we can also parse `.md` files as being a TsComment, keep it that way!\n\nNB: comments are part of the code, so they should always be in English!",
-                              "nb": "with the current setup we can also parse `.md` files as being a TsComment, keep it that way!",
-                              "properties": [
-                                {
-                                  "name": "operationName",
-                                  "required": true,
-                                  "schema": {
-                                    "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                                    "type": "null"
-                                  }
-                                },
-                                {
-                                  "name": "projectRelativePath",
-                                  "required": true,
-                                  "schema": {
-                                    "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "operationRelativePath",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "id",
-                                  "required": true,
-                                  "schema": {
-                                    "fullComment": "unique id of the model",
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "name",
-                                  "required": true,
-                                  "schema": {
-                                    "fullComment": "name (identifier) of the model",
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "slug",
-                                  "required": true,
-                                  "schema": {
-                                    "fullComment": "kebab-case variant of the name",
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "operationRelativeTypescriptFilePath",
-                                  "required": true,
-                                  "schema": {
-                                    "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "comment",
-                                  "required": true,
-                                  "schema": {
-                                    "fullComment": "the content of the comment in markdown, without frontmatter\n\na string that is known to contain markdown.",
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "parameters",
-                                  "required": true,
-                                  "schema": {
-                                    "fullComment": "parameters destructured from the frontmatter of the parsed markdown (if comment is not a oneliner, otherwise it'll be empty)\n\nOur version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
-                                    "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
-                                    "properties": [],
-                                    "type": "object"
-                                  }
-                                },
-                                {
-                                  "name": "types",
-                                  "required": true,
-                                  "schema": {
-                                    "fullComment": "These are the type indicators that were found in this single or multiline comment. Can be multiple.",
-                                    "items": [
-                                      {
-                                        "schema": {
-                                          "enum": [
-                                            "todo",
-                                            "discussion",
-                                            "idea",
-                                            "later",
-                                            "nb",
-                                            "title",
-                                            "section",
-                                            "description"
-                                          ],
-                                          "fullComment": "special line prefixes:\n\n**Developer related comments**\n\n- TODO: for developer to know what to do\n- DISCUSSION: for developer to state that discussion is needed\n- IDEA: for developer to state ideas\n- LATER: for developer to mark as thing that needs to be done later\n- NB: for developer to add a note\n\n**Form related comments**\n\n- TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n- SECTION: start a new section in the form from this point, the value behind here can be the title\n- DESCRIPTION: if available, will be used as description of the form input",
-                                          "type": "string"
-                                        },
-                                        "name": "CommentType"
-                                      }
-                                    ],
-                                    "type": "array"
-                                  }
-                                },
-                                {
-                                  "name": "firstLine",
-                                  "required": true,
-                                  "schema": {
-                                    "fullComment": "first line of the comment",
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "lastLine",
-                                  "required": true,
-                                  "schema": {
-                                    "fullComment": "last line of the comment",
-                                    "type": "number"
-                                  }
-                                },
-                                {
-                                  "name": "statementName",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "statement name the comment belongs to",
-                                    "type": "string"
-                                  }
-                                },
-                                {
-                                  "name": "rawStatement",
-                                  "required": false,
-                                  "schema": {
-                                    "fullComment": "raw statement text the comment belongs to",
-                                    "type": "string"
-                                  }
-                                }
-                              ],
-                              "type": "object"
-                            },
-                            "name": "TsComment"
-                          }
-                        ],
-                        "type": "array"
-                      }
-                    },
-                    {
-                      "name": "module",
-                      "required": true,
-                      "schema": {
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "alias",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "TODO: not sure, but I believe alias should be defined at the import, not at the export, right?",
-                        "todo": "not sure, but I believe alias should be defined at the import, not at the export, right?",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "classification",
-                      "required": true,
-                      "schema": {
-                        "enum": [
-                          "node",
-                          "react",
-                          "package",
-                          "operation",
-                          "internal"
-                        ],
-                        "fullComment": "node: node core packages like fs and path\n\nreact: react standard packages like react, react-native, expo, react-dom, etc.\n\npackage: packages from npm that are not classified as operations\n\noperation: operations from our monorepo\n\ninternal: imports from other places in the same operation\n\nNB: don't confuse this with OperationClassification",
-                        "nb": "don't confuse this with OperationClassification",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "type",
-                      "required": false,
-                      "schema": {
-                        "enum": [
-                          "value",
-                          "type"
-                        ],
-                        "fullComment": "sometimes the import statement module referenced cannot be found, in that case it cannot be known whether the import should contain a type or value, so it will be undefined.",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "hasGeneric",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "only for type exports. tells you whether or not the type has one or more generic parameter(s)",
-                        "type": "boolean"
-                      }
-                    },
-                    {
-                      "name": "isAbsolute",
-                      "required": true,
-                      "schema": {
-                        "type": "boolean"
-                      }
-                    },
-                    {
-                      "name": "isModuleResolved",
-                      "required": true,
-                      "schema": {
-                        "type": "boolean"
-                      }
-                    },
-                    {
-                      "name": "isModuleFromMonorepo",
-                      "required": true,
-                      "schema": {
-                        "type": "boolean"
-                      }
-                    }
-                  ],
-                  "type": "object"
-                },
-                "name": "TsImport"
               }
             ],
             "type": "array"

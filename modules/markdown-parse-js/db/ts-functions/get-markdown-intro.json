@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667379657287,
-  "updatedAt": 1667379657287,
+  "createdAt": 1669467037658,
+  "updatedAt": 1669467037658,
   "deletedAt": 0,
-  "createdFirstAt": 1667379657287,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669467037658,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getMarkdownIntro.ts",
   "commentsInside": [],
   "rawText": " (markdownParse: MarkdownParse | null) => {\n  const firstChunk = markdownParse?.content?.[0];\n  const title = firstChunk?.title;\n  const firstParagraph = firstChunk?.title\n    ? firstChunk?.children?.[0]?.content || null\n    : firstChunk?.content || null;\n\n  return { title, firstParagraph };\n}",
@@ -89,5 +84,5 @@
     "linesPerFile": 13,
     "numberOfFiles": 1
   },
-  "id": "wqgdbbakrgsfjucfltwriszt"
+  "id": "vscrticobttwnmkokujiqxyl"
 }

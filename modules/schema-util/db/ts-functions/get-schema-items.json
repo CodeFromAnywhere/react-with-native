@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150796752,
-  "updatedAt": 1668150796752,
+  "createdAt": 1668836015790,
+  "updatedAt": 1668836015790,
   "deletedAt": 0,
-  "createdFirstAt": 1668150796752,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668836015790,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/schema-util.ts",
   "commentsInside": [],
   "rawText": " (schema: Schema | undefined) => {\n  const schemas = makeArray(schema?.items).map(getSchema).filter(notEmpty);\n  return schemas;\n}",
@@ -68,8 +63,26 @@
             "name": "enum",
             "required": false,
             "schema": {
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "Primitive type",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Type"
+                }
+              ],
               "type": "array"
+            }
+          },
+          {
+            "name": "const",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
             }
           },
           {
@@ -377,6 +390,15 @@
             }
           },
           {
+            "name": "default",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
             "name": "readOnly",
             "required": false,
             "schema": {
@@ -388,6 +410,15 @@
             "required": false,
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "examples",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
             }
           }
         ],
@@ -416,5 +447,5 @@
     "linesPerFile": 6,
     "numberOfFiles": 1
   },
-  "id": "zpofuyclreqqmzqyvrwfmvsy"
+  "id": "lukoanlohplbksavknbmrauw"
 }

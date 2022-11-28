@@ -1,0 +1,2 @@
+"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.serverDownloadReply=void 0;var fs_util_1=require("fs-util"),server_1=__importDefault(require("server")),serverDownloadReply=function(e,r){var t=fs_util_1.path.parse(e);return r?server_1.default.reply.download(e,t.base):server_1.default.reply.file(e)};exports.serverDownloadReply=serverDownloadReply;
+//# sourceMappingURL=serverDownloadReply.js.map

@@ -1,0 +1,125 @@
+{
+  "createdAt": 1669380107133,
+  "updatedAt": 1669380107133,
+  "deletedAt": 0,
+  "createdFirstAt": 1669380107133,
+  "id": "todopagesconfig",
+  "name": "TodoPagesConfig",
+  "slug": "todopagesconfig",
+  "operationRelativeTypescriptFilePath": "src/TodoPagesConfig.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type TodoPagesConfig = {\n  recency?: typeof todoPagesConfigRecencysConst[number];\n  /**\n   * All TodoOffer's related to this todo will be searched, as well as all TodoFile's with this personId as it's codeOwner.\n   */\n  personId?: string;\n  categoryStack?: string[];\n  priority?: \"high\";\n  subExtension?: string;\n  sort?: \"recent\";\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "recency": {
+          "type": "string",
+          "enum": [
+            "24-hours",
+            "today",
+            "this-week",
+            "7-days"
+          ]
+        },
+        "personId": {
+          "type": "string",
+          "description": "All TodoOffer's related to this todo will be searched, as well as all TodoFile's with this personId as it's codeOwner."
+        },
+        "categoryStack": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "priority": {
+          "type": "string",
+          "const": "high"
+        },
+        "subExtension": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "string",
+          "const": "recent"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "recency",
+          "required": false,
+          "schema": {
+            "enum": [
+              "24-hours",
+              "today",
+              "this-week",
+              "7-days"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "personId",
+          "required": false,
+          "schema": {
+            "fullComment": "All TodoOffer's related to this todo will be searched, as well as all TodoFile's with this personId as it's codeOwner.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "categoryStack",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "priority",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "subExtension",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "sort",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "TodoPagesConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

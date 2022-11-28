@@ -1,6 +1,6 @@
 # React with native form
 
-react-with-native-form (`OperationClassification` ui-es5)
+react-with-native-form (`OperationClassification` ui-cjs)
 
 
 
@@ -228,7 +228,14 @@ export default FormPage;
 
 # Api reference
 
-## `<DataForm />`
+# Internal
+
+<details><summary>Show internal (14)</summary>
+    
+  # `<DataForm />`
+
+
+
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -237,38 +244,7 @@ export default FormPage;
 
 
 
-## makeInputField()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
-
-
-## setConfig()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
-
-
-## 📄 DataForm (exported const)
-
-## 📄 makeInputField (exported const)
-
-## 📄 setConfig (exported const)
-
-# Internal
-
-<details><summary>Show internal (8)</summary>
-    
-  # `<DefaultInputContainer />`
-
-
-
+## `<DefaultInputContainer />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -304,6 +280,15 @@ export default FormPage;
 
 
 
+## makeInputField()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
 ## notEmpty()
 
 | Input      |    |    |
@@ -313,11 +298,26 @@ export default FormPage;
 
 
 
+## setConfig()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
+
+
+## 📄 DataForm (exported const)
+
 ## 📄 DefaultInputContainer (exported const)
 
 ## 📄 errorOnField (exported const)
 
 ## 📄 Input (exported const)
+
+## 📄 makeInputField (exported const)
+
+## 📄 setConfig (exported const)
 
   </details>
 

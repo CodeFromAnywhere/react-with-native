@@ -1,0 +1,102 @@
+{
+  "createdAt": 1669200467686,
+  "updatedAt": 1669200467686,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200467686,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getMergedMarkdownOutlineUrl.ts",
+  "commentsInside": [],
+  "rawText": " (title: string) => {\n  return { title, hashtagPath: getImplicitId(title) };\n}",
+  "name": "getMergedMarkdownOutlineUrl",
+  "slug": "get-merged-markdown-outline-url",
+  "parameters": [
+    {
+      "name": "title",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{ title: string; hashtagPath: string; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "hashtagPath": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "hashtagPath"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "title",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "hashtagPath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 78,
+    "lines": 3,
+    "bytes": 78,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 3,
+    "numberOfFiles": 1
+  },
+  "id": "romuqizxutlqmrlqpogfjoof"
+}

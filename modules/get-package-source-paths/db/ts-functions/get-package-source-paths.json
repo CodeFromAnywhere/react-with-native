@@ -1,0 +1,92 @@
+{
+  "createdAt": 1668331905943,
+  "updatedAt": 1668331905943,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331905943,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getPackageSourcePaths.ts",
+  "commentsInside": [],
+  "rawText": " async ({\n  operationBasePath,\n  ignoreIndexFiles,\n  allTypes,\n}: {\n  operationBasePath: string;\n  ignoreIndexFiles?: boolean;\n  /**\n   * by default, only searches for ts and tsx files, if this is true, it will search for any type\n   */\n  allTypes?: boolean;\n}) => {\n  const filePaths = (\n    await explore({\n      basePath: path.join(operationBasePath, \"src\"),\n      extension: allTypes ? undefined : [\"ts\", \"tsx\"],\n      ignore: ignoreIndexFiles ? [\"index.ts\", \"index.tsx\"] : undefined,\n    })\n  ).map((x) => x.path);\n\n  return filePaths;\n}",
+  "name": "getPackageSourcePaths",
+  "slug": "get-package-source-paths",
+  "parameters": [
+    {
+      "name": "{\n  operationBasePath,\n  ignoreIndexFiles,\n  allTypes,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "operationBasePath": {
+            "type": "string"
+          },
+          "ignoreIndexFiles": {
+            "type": "boolean"
+          },
+          "allTypes": {
+            "type": "boolean",
+            "description": "by default, only searches for ts and tsx files, if this is true, it will search for any type"
+          }
+        },
+        "required": [
+          "operationBasePath"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "operationBasePath",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ignoreIndexFiles",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "allTypes",
+            "required": false,
+            "schema": {
+              "fullComment": "by default, only searches for ts and tsx files, if this is true, it will search for any type",
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Returns an array of absolute file paths of (typescript) files in the src of your operation\n\nTODO: we need a way to explore these glob patterns inside of tsConfig.include.\nuntil then, just assume we use \"src\" as the only folder",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 768,
+    "lines": 25,
+    "bytes": 768,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 25,
+    "numberOfFiles": 1
+  },
+  "id": "eglpyubohaigkgoyqebkctyq"
+}

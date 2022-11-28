@@ -1,0 +1,136 @@
+{
+  "createdAt": 1669055599002,
+  "updatedAt": 1669055599002,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055599002,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getSizeSummary.ts",
+  "commentsInside": [],
+  "rawText": " (string: string): SizeSummary => {\n  const characters = string.length;\n  const lines = string.split(\"\\n\").length;\n  const bytes = byteCount(string);\n  return {\n    characters,\n    lines,\n    bytes,\n    bytesPerCharacter: bytes / characters,\n    charactersPerLine: Math.round(characters / lines),\n    linesPerFile: lines,\n    numberOfFiles: 1,\n  };\n}",
+  "name": "getSizeSummary",
+  "slug": "get-size-summary",
+  "parameters": [
+    {
+      "name": "string",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "takes a string and simply returns the amount of characters, the amount of lines and the amount of bytes\n\nTODO: this is not the right place for this function",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/code-types/build/FolderSummary\").SizeSummary",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "numberOfFiles": {
+          "type": "number"
+        },
+        "characters": {
+          "type": "number"
+        },
+        "lines": {
+          "type": "number"
+        },
+        "bytes": {
+          "type": "number"
+        },
+        "linesPerFile": {
+          "type": "number"
+        },
+        "charactersPerLine": {
+          "type": "number"
+        },
+        "bytesPerCharacter": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "characters",
+        "lines",
+        "bytes",
+        "linesPerFile",
+        "charactersPerLine",
+        "bytesPerCharacter"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "numberOfFiles",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "characters",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "lines",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "bytes",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "linesPerFile",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "charactersPerLine",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "bytesPerCharacter",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 506,
+    "lines": 16,
+    "bytes": 506,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "zxypxuemtdtyvxqvqcvhasab"
+}

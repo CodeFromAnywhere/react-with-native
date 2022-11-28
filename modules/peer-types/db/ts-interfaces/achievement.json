@@ -1,0 +1,108 @@
+{
+  "createdAt": 1669384890131,
+  "updatedAt": 1669384890131,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384890131,
+  "id": "achievement",
+  "name": "Achievement",
+  "slug": "achievement",
+  "operationRelativeTypescriptFilePath": "src/Developer.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport interface Achievement {\n  emoji: string;\n  name: string;\n  description: string;\n  /**\n   * in case the developer attained the achievement, this will be set to his level\n   */\n  level?: number;\n  /**\n   * if it's quantifyable, you can add the levels here\n   */\n  levels?: number[];\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "emoji": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "level": {
+          "type": "number",
+          "description": "in case the developer attained the achievement, this will be set to his level"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "if it's quantifyable, you can add the levels here"
+        }
+      },
+      "required": [
+        "emoji",
+        "name",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "emoji",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "description",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "level",
+          "required": false,
+          "schema": {
+            "fullComment": "in case the developer attained the achievement, this will be set to his level",
+            "type": "number"
+          }
+        },
+        {
+          "name": "levels",
+          "required": false,
+          "schema": {
+            "fullComment": "if it's quantifyable, you can add the levels here",
+            "items": [
+              {
+                "schema": {
+                  "type": "number"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "Achievement",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

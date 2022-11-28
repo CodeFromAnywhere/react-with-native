@@ -1,0 +1,79 @@
+{
+  "createdAt": 1669200474069,
+  "updatedAt": 1669200474069,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200474069,
+  "id": "namedparameterstypeof-isconventionfilestatement",
+  "name": "NamedParameters<typeof isConventionFileStatement>",
+  "slug": "namedparameterstypeof-isconventionfilestatement",
+  "operationRelativeTypescriptFilePath": "src/isConventionFileStatement.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TsFunction"
+            },
+            {
+              "$ref": "#/definitions/TsVariable"
+            },
+            {
+              "$ref": "#/definitions/TsInterface"
+            }
+          ]
+        },
+        "conventionFile": {
+          "type": "string",
+          "enum": [
+            "test",
+            "cli"
+          ]
+        }
+      },
+      "required": [
+        "item",
+        "conventionFile"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "item",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "conventionFile",
+          "required": true,
+          "schema": {
+            "enum": [
+              "test",
+              "cli"
+            ],
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof isConventionFileStatement>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

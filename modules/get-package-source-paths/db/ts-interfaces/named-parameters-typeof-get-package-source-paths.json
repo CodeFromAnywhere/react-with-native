@@ -1,0 +1,89 @@
+{
+  "createdAt": 1664525033291,
+  "updatedAt": 1664525033291,
+  "deletedAt": 0,
+  "createdFirstAt": 1664525033291,
+  "id": "named-parameters-<typeof-get-package-source-paths->",
+  "name": "NamedParameters<typeof getPackageSourcePaths>",
+  "slug": "named-parameters-typeof-get-package-source-paths",
+  "operationRelativeTypescriptFilePath": "src/getPackageSourcePaths.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "{\n  operationBasePath,\n  ignoreIndexFiles,\n  allTypes,\n}": {
+          "type": "object",
+          "properties": {
+            "operationBasePath": {
+              "type": "string"
+            },
+            "ignoreIndexFiles": {
+              "type": "boolean"
+            },
+            "allTypes": {
+              "type": "boolean",
+              "description": "by default, only searches for ts and tsx files, if this is true, it will search for any type"
+            }
+          },
+          "required": [
+            "operationBasePath"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "{\n  operationBasePath,\n  ignoreIndexFiles,\n  allTypes,\n}"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "{\n  operationBasePath,\n  ignoreIndexFiles,\n  allTypes,\n}",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "operationBasePath",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "ignoreIndexFiles",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "allTypes",
+                "required": false,
+                "schema": {
+                  "description": "by default, only searches for ts and tsx files, if this is true, it will search for any type",
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getPackageSourcePaths>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

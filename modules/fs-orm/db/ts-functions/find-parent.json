@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148842918,
-  "updatedAt": 1668148842918,
+  "createdAt": 1669312100708,
+  "updatedAt": 1669312100708,
   "deletedAt": 0,
-  "createdFirstAt": 1668148842918,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312100708,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/alter/upsertKeyValueMarkdown.ts",
   "commentsInside": [],
   "rawText": " (\n  arrayItem: Storing<KeyValueMarkdownModelType>,\n  newCategoryStack: CategoryStack\n) => {\n  const categoryStackCalculatedWithItself =\n    arrayItem.categoryStackCalculated.concat(arrayItem.slug);\n  const locationString = categoryStackCalculatedWithItself.join(\",\");\n  const newItemLocationString = newCategoryStack.join(\",\");\n  const isSameLocation = locationString === newItemLocationString;\n\n  return isSameLocation;\n}",
@@ -30,7 +25,8 @@
         "$ref": "#/definitions/CategoryStack"
       },
       "simplifiedSchema": {
-        "fullComment": "",
+        "fullComment": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+        "nb": "Changing this value when updating/upserting, changes where the item is located!",
         "items": [
           {
             "schema": {
@@ -73,5 +69,5 @@
     "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "uetvbaxntecpoyxtcxkbjnmt"
+  "id": "qxztsdwakspbryougxsvqzzm"
 }

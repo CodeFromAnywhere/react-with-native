@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668152089885,
-  "updatedAt": 1668152089885,
+  "createdAt": 1669385145056,
+  "updatedAt": 1669385145056,
   "deletedAt": 0,
-  "createdFirstAt": 1668152089885,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385145056,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/editors/autocomplete-components.tsx",
   "commentsInside": [],
   "rawText": " (word?: string) => {\n  if (word === undefined) return;\n\n  const finalWord = specialCharacters.reduce(\n    (word, character) => {\n      // NB: if a word was already trimmed from a special character, the other special characters don't need to be trimmed\n      if (word.hasChanged) return word;\n      const newWord = trimLeft(word.word, character);\n      return { word: newWord, hasChanged: word.word !== newWord };\n    },\n    { word, hasChanged: false }\n  );\n\n  return finalWord.word;\n}",
@@ -48,5 +43,5 @@
     "linesPerFile": 15,
     "numberOfFiles": 1
   },
-  "id": "vbcpsdffzomfjtilpujdhoqw"
+  "id": "zvslqxgqohmvlduqswgwctfy"
 }

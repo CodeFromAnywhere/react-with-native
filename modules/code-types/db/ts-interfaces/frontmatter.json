@@ -1,12 +1,12 @@
 {
-  "createdAt": 1668150118577,
-  "updatedAt": 1668150118577,
+  "createdAt": 1669639284385,
+  "updatedAt": 1669639284385,
   "deletedAt": 0,
-  "createdFirstAt": 1668150118577,
+  "createdFirstAt": 1669639284385,
   "id": "frontmatter",
   "name": "Frontmatter",
   "slug": "frontmatter",
-  "operationRelativeTypescriptFilePath": "src/markdownParseToMarkdownModelType.ts",
+  "operationRelativeTypescriptFilePath": "src/TsComment.ts",
   "hasGeneric": false,
   "isExported": false,
   "isOperationIndex": false,
@@ -17,29 +17,7 @@
     "typeDefinition": {
       "type": "object",
       "additionalProperties": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "null"
-          },
-          {
-            "type": "boolean"
-          },
-          {
-            "not": {}
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        ]
+        "type": "string"
       },
       "description": "Our version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes"
     },

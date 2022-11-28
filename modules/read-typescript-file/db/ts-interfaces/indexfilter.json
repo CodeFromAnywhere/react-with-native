@@ -1,0 +1,84 @@
+{
+  "createdAt": 1666263102438,
+  "updatedAt": 1666263102438,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263102438,
+  "id": "indexfilter",
+  "name": "IndexFilter",
+  "slug": "indexfilter",
+  "operationRelativeTypescriptFilePath": "src/readTypescriptFile.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type IndexFilter = {\n  /**\n   * if set, only returns comments containing specific types\n   */\n  hasCommentTypes?: CommentType[];\n  /**\n   * if true, only returns interfaces which are db models\n   */\n  interfaceIsDbModel?: boolean;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "hasCommentTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommentType"
+          },
+          "description": "if set, only returns comments containing specific types"
+        },
+        "interfaceIsDbModel": {
+          "type": "boolean",
+          "description": "if true, only returns interfaces which are db models"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "hasCommentTypes",
+          "required": false,
+          "schema": {
+            "fullComment": "if set, only returns comments containing specific types",
+            "items": [
+              {
+                "schema": {
+                  "enum": [
+                    "todo",
+                    "discussion",
+                    "idea",
+                    "later",
+                    "nb",
+                    "title",
+                    "section",
+                    "description"
+                  ],
+                  "fullComment": "special line prefixes:\n\n**Developer related comments**\n\n- TODO: for developer to know what to do\n- DISCUSSION: for developer to state that discussion is needed\n- IDEA: for developer to state ideas\n- LATER: for developer to mark as thing that needs to be done later\n- NB: for developer to add a note\n\n**Form related comments**\n\n- TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n- SECTION: start a new section in the form from this point, the value behind here can be the title\n- DESCRIPTION: if available, will be used as description of the form input",
+                  "type": "string"
+                },
+                "name": "CommentType"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "interfaceIsDbModel",
+          "required": false,
+          "schema": {
+            "fullComment": "if true, only returns interfaces which are db models",
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "IndexFilter",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

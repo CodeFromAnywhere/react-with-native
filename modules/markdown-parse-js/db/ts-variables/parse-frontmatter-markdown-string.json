@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379667611,
-  "updatedAt": 1667379667611,
+  "createdAt": 1669467056491,
+  "updatedAt": 1669467056491,
   "deletedAt": 0,
-  "createdFirstAt": 1667379667611,
+  "createdFirstAt": 1669467056491,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "parse-frontmatter-markdown-string",
   "operationRelativeTypescriptFilePath": "src/parseFrontmatterMarkdownString.ts",
   "type": {
-    "rawType": "(markdownWithFrontmatter: string, config?: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parse-js/src/types\").MarkdownParseConfig | undefined) => import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse",
+    "rawType": "(markdownWithFrontmatter: string, config?: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parse-js/src/types\").MarkdownParseConfig | undefined) => import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(\n  markdownWithFrontmatter: string,\n  config?: MarkdownParseConfig\n): MarkdownParse => {\n  const lines = markdownWithFrontmatter.split(\"\\n\");\n\n  const frontmatterStartIndex = lines.findIndex((x) => x === \"---\");\n\n  //console.log({ frontmatterStartIndex });\n  if (frontmatterStartIndex === -1) {\n    return { raw: markdownWithFrontmatter, parameters: {}, content: [] };\n  }\n\n  const linesAfterStart = lines.slice(frontmatterStartIndex + 1);\n  const frontmatterEndIndex =\n    linesAfterStart.findIndex((x) => x === \"---\") + frontmatterStartIndex + 1;\n\n  //console.log({ frontmatterEndIndex });\n  const frontmatterLines = lines.slice(\n    frontmatterStartIndex + 1,\n    frontmatterEndIndex\n  );\n\n  //   console.log({ frontmatterLines });\n  const parameters: Frontmatter = mergeObjectsArray(\n    frontmatterLines.map((line) => {\n      const needTrim = !config?.noFinal;\n      const key = line.split(\":\")[0]?.trim();\n      const value = line.split(\":\")[1];\n      const finalValue = needTrim ? value?.trim() : value;\n\n      const typeFromSchema = config?.frontmatterSchema?.properties?.find(\n        (x) => x.name === key\n      )?.schema;\n\n      // console.dir(\n      //   {\n      //     frontmatterSchema: config?.frontmatterSchema,\n      //     key,\n      //     typeFromSchema,\n      //   },\n      //   { depth: 999 }\n      // );\n\n      return { [key]: parsePrimitive(finalValue, typeFromSchema) };\n    })\n  );\n\n  const raw = lines.slice(frontmatterEndIndex + 1).join(\"\\n\");\n\n  return { parameters, raw, content: [] };\n}",
+  "value": "(\n  markdownWithFrontmatter: string,\n  config?: MarkdownParseConfig\n): MarkdownParse => {\n  const lines = markdownWithFrontmatter.split(\"\\n\");\n\n  const frontmatterStartIndex = lines.findIndex((x) => x === \"---\");\n\n  //console.log({ frontmatterStartIndex });\n  if (frontmatterStartIndex === -1) {\n    return { raw: markdownWithFrontmatter, parameters: {}, content: [] };\n  }\n\n  const linesAfterStart = lines.slice(frontmatterStartIndex + 1);\n  const frontmatterEndIndex =\n    linesAfterStart.findIndex((x) => x === \"---\") + frontmatterStartIndex + 1;\n\n  //console.log({ frontmatterEndIndex });\n  const frontmatterLines = lines.slice(\n    frontmatterStartIndex + 1,\n    frontmatterEndIndex\n  );\n\n  const parameters: Frontmatter = mergeObjectsArray(\n    frontmatterLines.map((line) => {\n      const needTrim = !config?.noFinal;\n      const key = line.split(\":\")[0]?.trim();\n      const value = line.split(\":\")[1];\n      const finalValue = needTrim ? value?.trim() : value;\n\n      return { [key]: finalValue };\n    })\n  );\n\n  const raw = lines.slice(frontmatterEndIndex + 1).join(\"\\n\");\n\n  return { parameters, raw, content: [] };\n}",
   "description": "splits a markdown string into its frontmatter object and the raw content (without frontmatter)",
-  "id": "nwmwxivnofdtcamedsdxogci"
+  "id": "bsporsiyrdfwnchuhoxanqqn"
 }

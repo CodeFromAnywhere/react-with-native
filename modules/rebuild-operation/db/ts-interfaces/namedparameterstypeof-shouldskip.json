@@ -1,0 +1,107 @@
+{
+  "createdAt": 1669055721495,
+  "updatedAt": 1669055721495,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055721495,
+  "id": "namedparameterstypeof-shouldskip",
+  "name": "NamedParameters<typeof shouldSkip>",
+  "slug": "namedparameterstypeof-shouldskip",
+  "operationRelativeTypescriptFilePath": "src/shouldSkip.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "operationBasePath": {
+              "type": "string"
+            },
+            "debug": {
+              "type": "boolean"
+            },
+            "force": {
+              "type": "boolean"
+            },
+            "operationManualProjectRoot": {
+              "type": "string"
+            },
+            "rebuildUpdatedAt": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "operationBasePath"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "operationBasePath",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "debug",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "force",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "operationManualProjectRoot",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "rebuildUpdatedAt",
+                "required": false,
+                "schema": {
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof shouldSkip>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

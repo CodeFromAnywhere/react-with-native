@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150849822,
-  "updatedAt": 1668150849822,
+  "createdAt": 1668977411051,
+  "updatedAt": 1668977411051,
   "deletedAt": 0,
-  "createdFirstAt": 1668150849822,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977411051,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/object-merge.ts",
   "commentsInside": [],
   "rawText": " <T>(\n  config: T | undefined,\n  defaults: T | undefined\n) => {\n  const parameters = Object.keys({\n    ...config,\n    ...defaults,\n  }) as (keyof T)[];\n\n  const mergedConfig = parameters.reduce(\n    (getConfig, p) => ({ ...getConfig, [p]: config?.[p] || defaults?.[p] }),\n    {} as Partial<T>\n  );\n  return mergedConfig;\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 19,
     "numberOfFiles": 1
   },
-  "id": "gyxbowdfcvnfaqfatmqdbhsf"
+  "id": "ejaonfakkufawmzzzgrgovhd"
 }

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148402916,
-  "updatedAt": 1668148402916,
+  "createdAt": 1668976640378,
+  "updatedAt": 1668976640378,
   "deletedAt": 0,
-  "createdFirstAt": 1668148402916,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668976640378,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/explore.ts",
   "commentsInside": [],
   "rawText": " async ({\n  basePath,\n  searchLevel = \"fileName\",\n  debug,\n  ...other\n}: SearchConfig): Promise<TextJson[]> => {\n  /** accessability depends on whether we need to be able to read the file, or just see it */\n  const canAccess = async (p: string) =>\n    await (searchLevel === \"outline\" || searchLevel === \"full\"\n      ? canRead\n      : canSee)(p);\n\n  /** basepaths becomes an array of only the basepaths that we can access */\n  const accessibleBasePaths = makeArray(basePath || getProjectRoot())\n    .filter(fs.existsSync)\n    .filter(canAccess);\n\n  if (debug) console.log(`finding files in ${accessibleBasePaths.join(\",\")}`);\n\n  const textJsonPromises = accessibleBasePaths.map(async (p) =>\n    findFilesRecursively({ basePath: p, searchLevel, debug, ...other })\n  );\n\n  const textJsons = (await Promise.all(textJsonPromises)).flat();\n\n  return textJsons;\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 27,
     "numberOfFiles": 1
   },
-  "id": "okcbtzfpryyhislalcakevlg"
+  "id": "fgjfqjawyqyrbjevmqvteeyt"
 }

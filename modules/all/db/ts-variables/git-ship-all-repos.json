@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666258918700,
+  "updatedAt": 1666258918700,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258918700,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "gitShipAllRepos",
+  "slug": "git-ship-all-repos",
+  "operationRelativeTypescriptFilePath": "src/gitShipAllRepos.ts",
+  "type": {
+    "rawType": "({ basePath, callback, fileName, folderName, shell, }: Omit<{ basePath?: string | string[] | undefined; } & { onlyRoot?: boolean | undefined; type?: import(\"/Users/king/King/operations/tools/control-project/all/src/forAllFolders\").DirectoryType | undefined; fileName?: string | undefined; folderName?: string | undefined; callback?: ((folderPath: string, index: number) => void) | undefined; command?: string | undefined; shell?: boolean | undefined; ignore?: string | string[] | undefined; }, \"command\" | \"type\">) => Promise<void>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "({\n  basePath,\n  callback,\n  fileName,\n  folderName,\n  shell = true,\n}: Omit<AllInputType, \"command\" | \"type\">) =>\n  forAllFolders({\n    type: \"git\",\n    command: 'git add . && git commit -m \"Improvements\" && git push',\n    basePath,\n    callback,\n    shell,\n    fileName,\n    folderName,\n  })",
+  "description": "",
+  "id": "qhalrgitntalffcdcavulpju"
+}

@@ -1,5 +1,5 @@
 import { MappedObject } from "js-util";
-import { AugmentedWord } from "markdown-reader-types";
+import { AugmentedWord } from "augmented-word-types";
 export declare type MarkdownParseRenderConfig = {
     /**
      * Folder path where the markdown is supposed to be located.

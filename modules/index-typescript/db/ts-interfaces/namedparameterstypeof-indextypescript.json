@@ -1,0 +1,104 @@
+{
+  "createdAt": 1669055612843,
+  "updatedAt": 1669055612843,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055612843,
+  "id": "namedparameterstypeof-indextypescript",
+  "name": "NamedParameters<typeof indexTypescript>",
+  "slug": "namedparameterstypeof-indextypescript",
+  "operationRelativeTypescriptFilePath": "src/indexTypescript.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "props": {
+          "type": "object",
+          "properties": {
+            "showLogging": {
+              "type": "boolean"
+            },
+            "filePaths": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "filepaths of files to index. must be files from the same operation."
+            },
+            "manualProjectRoot": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "filePaths",
+            "manualProjectRoot"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "props"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "props",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "showLogging",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "filePaths",
+                "required": true,
+                "schema": {
+                  "fullComment": "filepaths of files to index. must be files from the same operation.",
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "manualProjectRoot",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof indexTypescript>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

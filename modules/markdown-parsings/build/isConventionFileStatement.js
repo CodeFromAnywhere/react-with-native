@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.isConventionFileStatement=void 0;var filename_conventions_1=require("filename-conventions"),get_path_1=require("get-path"),isConventionFileStatement=function(e,t){var n=(0,get_path_1.getSrcRelativeFileId)(e.operationRelativeTypescriptFilePath);return(0,filename_conventions_1.hasSubExtension)(n,[t],!0)};exports.isConventionFileStatement=isConventionFileStatement;
+//# sourceMappingURL=isConventionFileStatement.js.map

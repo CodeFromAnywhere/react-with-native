@@ -1,0 +1,61 @@
+{
+  "createdAt": 1669200448316,
+  "updatedAt": 1669200448316,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200448316,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/createMinimisedSection.ts",
+  "commentsInside": [],
+  "rawText": " (\n  markdown: string,\n  expandTitle: string\n) => {\n  return `<details><summary>${expandTitle}</summary>\n    \n  ${markdown}\n  </details>`;\n}",
+  "name": "createMinimizedSectionMarkdown",
+  "slug": "create-minimized-section-markdown",
+  "parameters": [
+    {
+      "name": "markdown",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "expandTitle",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 140,
+    "lines": 9,
+    "bytes": 140,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 16,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "klapmiymvrgrcdfoljebmtom"
+}

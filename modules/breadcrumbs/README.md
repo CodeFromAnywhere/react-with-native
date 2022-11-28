@@ -1,6 +1,6 @@
 # Breadcrumbs
 
-breadcrumbs (`OperationClassification` js)
+breadcrumbs (`OperationClassification` cjs)
 
 
 ## 🥐 breadcrumbs

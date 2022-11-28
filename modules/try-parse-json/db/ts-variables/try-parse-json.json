@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666263123814,
-  "updatedAt": 1666263123814,
+  "createdAt": 1668335055223,
+  "updatedAt": 1668335055223,
   "deletedAt": 0,
-  "createdFirstAt": 1666263123814,
+  "createdFirstAt": 1668335055223,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<T>(\n  text: string,\n  logParseError?: boolean\n): T | null => {\n  try {\n    const jsonStringWithoutComments = text.replace(\n      removeCommentsRegex,\n      (m, g) => (g ? \"\" : m)\n    );\n    return JSON.parse(jsonStringWithoutComments) as T;\n  } catch (parseError) {\n    if (logParseError) console.log(\"JSON Parse error:\", parseError);\n    return null;\n  }\n}",
   "description": "if text isn't json, returns null",
-  "id": "cznogkadbuonjsuymlykwjgd"
+  "id": "zwgoxdsxyaxgpnbjovmnvwyg"
 }

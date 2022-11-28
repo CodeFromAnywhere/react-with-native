@@ -1,0 +1,77 @@
+{
+  "createdAt": 1669466950611,
+  "updatedAt": 1669466950611,
+  "deletedAt": 0,
+  "createdFirstAt": 1669466950611,
+  "id": "namedparameterstypeof-copycopypairs",
+  "name": "NamedParameters<typeof copyCopyPairs>",
+  "slug": "namedparameterstypeof-copycopypairs",
+  "operationRelativeTypescriptFilePath": "src/copyCopyPairs.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "copyPairs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CopyPair"
+          }
+        }
+      },
+      "required": [
+        "copyPairs"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "copyPairs",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "absoluteSourcePath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteDestinationPath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "CopyPair"
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof copyCopyPairs>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

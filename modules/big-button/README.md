@@ -1,6 +1,6 @@
 # Big button
 
-big-button (`OperationClassification` js)
+big-button (`OperationClassification` ui-cjs)
 
 
 

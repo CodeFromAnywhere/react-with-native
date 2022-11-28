@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150844845,
-  "updatedAt": 1668150844845,
+  "createdAt": 1668977402569,
+  "updatedAt": 1668977402569,
   "deletedAt": 0,
-  "createdFirstAt": 1668150844845,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977402569,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/mapMany.ts",
   "commentsInside": [],
   "rawText": " async <T, U>(\n  mapFn: MapFn<T, U>,\n  currentValue: T,\n  index: number,\n  array: T[]\n): Promise<{\n  status: \"fulfilled\" | \"rejected\";\n  value?: U;\n  reason?: unknown;\n}> => {\n  try {\n    return {\n      status: \"fulfilled\",\n      value: await mapFn(currentValue, index, array),\n    };\n  } catch (reason) {\n    return {\n      status: \"rejected\",\n      reason,\n    };\n  }\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 22,
     "numberOfFiles": 1
   },
-  "id": "vtqzurykxxeayuhkbidqdcog"
+  "id": "cyebkxojervutcbnoajiogkk"
 }

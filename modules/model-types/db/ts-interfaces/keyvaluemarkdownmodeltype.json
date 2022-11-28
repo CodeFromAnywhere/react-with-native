@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150283632,
-  "updatedAt": 1668150283632,
+  "createdAt": 1669276547456,
+  "updatedAt": 1669276547456,
   "deletedAt": 0,
-  "createdFirstAt": 1668150283632,
+  "createdFirstAt": 1669276547456,
   "id": "keyvaluemarkdownmodeltype",
   "name": "KeyValueMarkdownModelType",
   "slug": "keyvaluemarkdownmodeltype",
@@ -160,7 +160,8 @@
           "name": "categoryStackCalculated",
           "required": true,
           "schema": {
-            "fullComment": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`\n\n",
+            "fullComment": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+            "nb": "Changing this value when updating/upserting, changes where the item is located!",
             "items": [
               {
                 "schema": {

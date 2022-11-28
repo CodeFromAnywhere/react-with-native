@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259849018,
-  "updatedAt": 1666259849018,
+  "createdAt": 1668774155876,
+  "updatedAt": 1668774155876,
   "deletedAt": 0,
-  "createdFirstAt": 1666259849018,
+  "createdFirstAt": 1668774155876,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async () => {\n  const [model, configString, keysString] = process.argv.slice(2);\n  const config = configString\n    ? getObjectFromParamsString(configString)\n    : undefined;\n  const keys = keysString\n    ? keysString.split(\",\").map((x) => x.trim())\n    : undefined;\n\n  const result = await testDb.get(model as keyof TestModels, config);\n\n  console.table(\n    result.map((x) =>\n      // @ts-ignore\n      keys && typeof x === \"object\" ? getSubsetFromObject(x, keys) : x\n    )\n  );\n}",
   "description": "",
-  "id": "karqpcgdipnsqlilthcsbsqj"
+  "id": "eywmuhyodewnzbgsuaaylmgh"
 }

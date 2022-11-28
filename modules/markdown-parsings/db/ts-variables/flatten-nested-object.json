@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200462569,
+  "updatedAt": 1669200462569,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200462569,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "flattenNestedObject",
+  "slug": "flatten-nested-object",
+  "operationRelativeTypescriptFilePath": "src/flattenNestedObject.ts",
+  "type": {
+    "rawType": "<T>(nestedObject: import(\"/Users/king/King/operations/tools/types/recursive-types/build/NestedObject\").NestedObject<T>, isLeaf?: ((content: T | import(\"/Users/king/King/operations/tools/types/recursive-types/build/NestedObject\").NestedObject<T> | undefined) => boolean) | undefined) => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T>(\n  nestedObject: NestedObject<T>,\n  isLeaf?: (content: NestedObject<T> | T | undefined) => boolean\n) => {\n  Object.keys(nestedObject).map((key) => {\n    const value = nestedObject[key];\n\n    const isValueLeaf = isLeaf ? isLeaf(value) : typeof value !== \"object\";\n\n    return;\n  });\n}",
+  "description": "Flattens a nested object by returning an object that hasa the nested path as the key and the leaf as the value\n\nTODO: Finish, if needed. seems hard!",
+  "id": "iouwcwpwzcwnxnhycdgkkhop"
+}

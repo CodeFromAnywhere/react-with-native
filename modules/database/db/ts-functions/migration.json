@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666259864874,
-  "updatedAt": 1666259864874,
+  "createdAt": 1668774171687,
+  "updatedAt": 1668774171687,
   "deletedAt": 0,
-  "createdFirstAt": 1666259864874,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774171687,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/test.ts",
   "commentsInside": [],
   "rawText": " async () => {\n  const result = await testDb.update(\n    \"TsConfig\",\n    () => true,\n    (tsConfig) => ({\n      ...tsConfig,\n      compilerOptions: { ...tsConfig.compilerOptions, resolveJsonModule: true },\n    })\n  );\n\n  console.dir(result, { depth: 111 });\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "ybuseyvvwvtquidmklsmofpm"
+  "id": "hreonitejsweuboepngittvk"
 }

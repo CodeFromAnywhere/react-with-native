@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385323378,
+  "updatedAt": 1669385323378,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385323378,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findAuthenticatedPersonWithHandle",
+  "slug": "find-authenticated-person-with-handle",
+  "operationRelativeTypescriptFilePath": "src/findAuthenticatedPersonWithHandle.ts",
+  "type": {
+    "rawType": "(method: import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/AuthenticationMethjod\").AuthenticationMethodMethod, handle: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  method: AuthenticationMethodMethod,\n  handle: string\n) => {\n  const persons = await db.get(\"Person\");\n  const alreadyPerson = persons.find((person) => {\n    const matchingAuthMethod = person.authenticationMethods.find(\n      (authMethod) =>\n        authMethod.method === method &&\n        authMethod.isAuthenticated &&\n        authMethod.handle === handle\n    );\n\n    return !!matchingAuthMethod;\n  });\n  return alreadyPerson;\n}",
+  "description": "Check if the handle is already taken by some person in the system",
+  "id": "gfswsizmfmunuycfdaohlgbe"
+}

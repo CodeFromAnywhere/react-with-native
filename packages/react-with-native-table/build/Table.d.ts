@@ -55,7 +55,7 @@ export declare type ColumnType<TModel extends {
 /**
  * This contains all possible presenation types of the data in the table
  */
-export declare type PresentationTypeEnum = "text" | "referenceSingle" | "referenceMultiple";
+export declare type PresentationTypeEnum = "text" | "backendAsset" | "referenceSingle" | "referenceMultiple";
 export declare function useIsInViewport(ref: React.MutableRefObject<Element | null>): boolean;
 export declare const Table: <TModel extends {
     [key: string]: any;

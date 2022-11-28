@@ -1,0 +1,482 @@
+{
+  "createdAt": 1669384965042,
+  "updatedAt": 1669384965042,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384965042,
+  "id": "mediapost",
+  "name": "MediaPost",
+  "slug": "mediapost",
+  "operationRelativeTypescriptFilePath": "src/MediaPost.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * Post/message on any medium.\n */\nexport interface MediaPost extends MarkdownModelType {\n  /**\n   * Parsed content from the postable content, every social media platform parses in a different way\n   *\n   * For example, a big blog could be parsed into multiple tweets.\n   *\n   * Another example: maybe in some cases we need to remove images or audio\n   *\n   * Another example: markdown is mostly unsupported!\n   */\n  mediaPlatform: MediaPlatformEnum;\n  posted_messageChannelId?: string;\n  posted_messageChannel?: MediaChannel;\n\n  isVerified?: boolean;\n  isPostable: boolean;\n  unpostableReason?: string;\n  isPosted?: boolean;\n\n  /**\n   * URL that leads directly to the posted message\n   */\n  postedUrl?: string;\n  channelOrGroupName?: string;\n\n  /**\n   * projectRelativePath referring to the file that has been parsed into this MediaPost\n   */\n  webMarkdownFile_projectRelativePath?: string;\n  /**\n * \n * \n * the following are DEPRECATED, use `markdown` and parse the title, content, and potential asset  from there\n\n  parsedTitle\n  parsedContent\n\n */\n  markdown: string;\n\n  /**\n   * Calculated from `.markdown`\n   */\n  parsedTitleCalculated?: string;\n  /**\n   * Calculated from `.markdown`\n   */\n  parsedContentCalculated?: string;\n  /**\n   * Calculated from `.markdown`\n   */\n  parsedAssetCalculated?: BackendAsset;\n\n  /**\n   * After it has been posted, this should be filled and frequently updated\n   *\n   * Omitted from the form in writer-input because it's indexed\n   */\n  postedDetailsIndexed?: {\n    views: number;\n    reactions: number;\n    interactions: number;\n    statisticsUpdatedAt: number;\n  };\n}",
+  "extensions": [
+    "MarkdownModelType"
+  ],
+  "isOperationIndex": false,
+  "description": "Post/message on any medium.",
+  "dbStorageMethod": "markdown",
+  "isDbModel": true,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "$ref": "#/definitions/CreatedAt"
+        },
+        "updatedAt": {
+          "$ref": "#/definitions/UpdatedAt"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/DeletedAt"
+        },
+        "createdFirstAt": {
+          "$ref": "#/definitions/CreatedFirstAt"
+        },
+        "operationName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "projectRelativePath": {
+          "type": "string",
+          "description": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "operationRelativePath": {
+          "type": "string",
+          "description": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "type": "string",
+          "description": "filename (slugified)"
+        },
+        "slug": {
+          "type": "string",
+          "description": "filename (slugified)"
+        },
+        "markdown": {
+          "type": "string",
+          "description": "the following are DEPRECATED, use `markdown` and parse the title, content, and potential asset  from there\n\nparsedTitle parsedContent"
+        },
+        "categoryStackCalculated": {
+          "$ref": "#/definitions/CategoryStack"
+        },
+        "mediaPlatform": {
+          "$ref": "#/definitions/MediaPlatformEnum",
+          "description": "Parsed content from the postable content, every social media platform parses in a different way\n\nFor example, a big blog could be parsed into multiple tweets.\n\nAnother example: maybe in some cases we need to remove images or audio\n\nAnother example: markdown is mostly unsupported!"
+        },
+        "posted_messageChannelId": {
+          "type": "string"
+        },
+        "posted_messageChannel": {
+          "$ref": "#/definitions/MediaChannel"
+        },
+        "isVerified": {
+          "type": "boolean"
+        },
+        "isPostable": {
+          "type": "boolean"
+        },
+        "unpostableReason": {
+          "type": "string"
+        },
+        "isPosted": {
+          "type": "boolean"
+        },
+        "postedUrl": {
+          "type": "string",
+          "description": "URL that leads directly to the posted message"
+        },
+        "channelOrGroupName": {
+          "type": "string"
+        },
+        "webMarkdownFile_projectRelativePath": {
+          "type": "string",
+          "description": "projectRelativePath referring to the file that has been parsed into this MediaPost"
+        },
+        "parsedTitleCalculated": {
+          "type": "string",
+          "description": "Calculated from `.markdown`"
+        },
+        "parsedContentCalculated": {
+          "type": "string",
+          "description": "Calculated from `.markdown`"
+        },
+        "parsedAssetCalculated": {
+          "$ref": "#/definitions/BackendAsset",
+          "description": "Calculated from `.markdown`"
+        },
+        "postedDetailsIndexed": {
+          "type": "object",
+          "properties": {
+            "views": {
+              "type": "number"
+            },
+            "reactions": {
+              "type": "number"
+            },
+            "interactions": {
+              "type": "number"
+            },
+            "statisticsUpdatedAt": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "views",
+            "reactions",
+            "interactions",
+            "statisticsUpdatedAt"
+          ],
+          "additionalProperties": false,
+          "description": "After it has been posted, this should be filled and frequently updated\n\nOmitted from the form in writer-input because it's indexed"
+        }
+      },
+      "required": [
+        "categoryStackCalculated",
+        "createdAt",
+        "createdFirstAt",
+        "deletedAt",
+        "id",
+        "isPostable",
+        "markdown",
+        "mediaPlatform",
+        "name",
+        "operationName",
+        "projectRelativePath",
+        "slug",
+        "updatedAt"
+      ],
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "description": "This kind of overwrites frontmatter, but it is needed because there need to be models attached to the markdown model sometimes."
+          },
+          {
+            "$ref": "#/definitions/Id"
+          },
+          {
+            "not": {}
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "description": "Post/message on any medium."
+    },
+    "simplifiedSchema": {
+      "fullComment": "Post/message on any medium.",
+      "properties": [
+        {
+          "name": "createdAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "updatedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "deletedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "createdFirstAt",
+          "required": true,
+          "schema": {
+            "fullComment": "in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.\n\nTime\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "operationName",
+          "required": true,
+          "schema": {
+            "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "null"
+          }
+        },
+        {
+          "name": "projectRelativePath",
+          "required": true,
+          "schema": {
+            "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativePath",
+          "required": false,
+          "schema": {
+            "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "fullComment": "filename (slugified)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "fullComment": "filename (slugified)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "markdown",
+          "required": true,
+          "schema": {
+            "fullComment": "the following are DEPRECATED, use `markdown` and parse the title, content, and potential asset  from there\n\nparsedTitle parsedContent",
+            "type": "string"
+          }
+        },
+        {
+          "name": "categoryStackCalculated",
+          "required": true,
+          "schema": {
+            "fullComment": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+            "nb": "Changing this value when updating/upserting, changes where the item is located!",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "mediaPlatform",
+          "required": true,
+          "schema": {
+            "enum": [
+              "facebook",
+              "twitter",
+              "medium",
+              "reddit",
+              "devto",
+              "linkedin",
+              "whatsapp",
+              "slack"
+            ],
+            "fullComment": "Parsed content from the postable content, every social media platform parses in a different way\n\nFor example, a big blog could be parsed into multiple tweets.\n\nAnother example: maybe in some cases we need to remove images or audio\n\nAnother example: markdown is mostly unsupported!\n\n",
+            "type": "string"
+          }
+        },
+        {
+          "name": "posted_messageChannelId",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isVerified",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isPostable",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "unpostableReason",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isPosted",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "postedUrl",
+          "required": false,
+          "schema": {
+            "fullComment": "URL that leads directly to the posted message",
+            "type": "string"
+          }
+        },
+        {
+          "name": "channelOrGroupName",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "webMarkdownFile_projectRelativePath",
+          "required": false,
+          "schema": {
+            "fullComment": "projectRelativePath referring to the file that has been parsed into this MediaPost",
+            "type": "string"
+          }
+        },
+        {
+          "name": "parsedTitleCalculated",
+          "required": false,
+          "schema": {
+            "fullComment": "Calculated from `.markdown`",
+            "type": "string"
+          }
+        },
+        {
+          "name": "parsedContentCalculated",
+          "required": false,
+          "schema": {
+            "fullComment": "Calculated from `.markdown`",
+            "type": "string"
+          }
+        },
+        {
+          "name": "parsedAssetCalculated",
+          "required": false,
+          "schema": {
+            "fullComment": "Calculated from `.markdown`\n\nPart of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+            "properties": [
+              {
+                "name": "alt",
+                "required": false,
+                "schema": {
+                  "fullComment": "Stored value\n\nAlt text for the asset",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "relativePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "name",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                  "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "temporaryDestination",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "projectRelativeReferencingFilePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "modelName",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postedDetailsIndexed",
+          "required": false,
+          "schema": {
+            "fullComment": "After it has been posted, this should be filled and frequently updated\n\nOmitted from the form in writer-input because it's indexed",
+            "properties": [
+              {
+                "name": "views",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "reactions",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "interactions",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "statisticsUpdatedAt",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "MediaPost",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

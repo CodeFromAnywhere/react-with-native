@@ -1,11 +1,24 @@
 {
-  "createdAt": 1662709577328,
-  "updatedAt": 1662709577328,
+  "createdAt": 1668328724052,
+  "updatedAt": 1668328724052,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577328,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328724052,
+  "id": "tXARCsgZzVfslPOp",
+  "dependencies": {
+    "fs-util": "1.0.5",
+    "code-types": "0.0.1",
+    "markdown-parse-js": "0.0.1",
+    "get-path": "0.0.1",
+    "js-util": "0.0.1",
+    "model-types": "0.0.1",
+    "markdown-types": "0.0.1",
+    "frontmatter-util": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,22 +26,78 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "read-markdown-file",
-  "devDependencies": {
-    "@types/node": "^18.0.1",
-    "typescript": "^4.7.4"
-  },
+  "language": "english",
   "slug": "read-markdown-file",
-  "id": "tXARCsgZzVfslPOp",
-  "dependencies": {
-    "fs-util": "1.0.5",
-    "code-types": "0.0.1",
-    "markdown-parse-js": "0.0.1",
-    "get-path": "0.0.1",
-    "js-util": "0.0.1"
-  },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/parsing/read-files/read-markdown-file/src/readMarkdownFileToModel.ts. Error: Error: Type '{ markdown: string; categoryStackCalculated: never[]; language: \\\"english\\\"; privacy: \\\"private\\\" | \\\"request\\\" | \\\"public\\\"; detectedLanguage: any; labels: any; createdAt: number; createdFirstAt: number; ... 13 more ...; operationRelativePath?: string | undefined; }' is missing the following properties from type 'WebMarkdownFile': author_personSlugs, interestSlugs, headerCta\"]",
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "read-markdown-file",
+    "hasGeneratedDependenciesIndexed": true,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669639015703,
+    "operationDependenciesIndexed": [
+      "canRead",
+      "fs",
+      "path",
+      "Path",
+      "MarkdownParse",
+      "mdToJsonParse",
+      "ExtendedMarkdownProperties",
+      "MarkdownCallToAction",
+      "PostableProperties",
+      "WebMarkdownFile",
+      "WebMarkdownProperties",
+      "operations",
+      "fs",
+      "getLastFolder",
+      "path",
+      "notEmpty",
+      "omitUndefinedValues",
+      "sum",
+      "findOperationBasePath",
+      "getProjectRoot",
+      "makeRelative",
+      "ModelLocation",
+      "frontmatterToObject",
+      "SimplifiedSchema"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/parsing/read-files",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 2,
+        "lines": 163,
+        "characters": 5441,
+        "bytes": 5441
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 135,
+        "characters": 3773,
+        "bytes": 3773
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 46,
+        "characters": 918,
+        "bytes": 918
+      },
+      "size": {
+        "bytes": 10132,
+        "characters": 10132,
+        "lines": 344,
+        "numberOfFiles": 5
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

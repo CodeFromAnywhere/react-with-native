@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1668551908483,
+    "updatedAt": 1668551908483,
+    "deletedAt": 0,
+    "createdFirstAt": 1668551908483,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/MatchingText.tsx",
+    "comment": "Component that highlights the matching text",
+    "rawStatement": "export const MatchingText = (props: {\n  text: string;\n  search: string;\n  defaultTextClassName: string;\n  matchTextClassName: string;\n  truncateLength?: number;\n}) => {\n  const {\n    truncateLength,\n    text,\n    defaultTextClassName,\n    matchTextClassName,\n    search,\n  } = props;\n\n  // 1: find index of search in text\n  const matchIndex = text.toLowerCase().indexOf(search.toLowerCase());\n\n  // 2: find stuff before that and after that\n  const beforeText = text.slice(0, matchIndex);\n  const afterText = text.slice(matchIndex + search.length);\n  const matchText = text.slice(matchIndex, matchIndex + search.length);\n\n  const totalLength = beforeText.length + search.length + afterText.length;\n\n  const reduceCharactersAmount = truncateLength\n    ? totalLength - truncateLength\n    : 0;\n\n  const beforeTextLengthPercentage =\n    beforeText.length / (beforeText.length + afterText.length);\n  const afterTextLengthPercentage =\n    afterText.length / (beforeText.length + afterText.length);\n\n  const reduceBeforeCharacters = Math.round(\n    beforeTextLengthPercentage * reduceCharactersAmount\n  );\n  const reduceAfterCharacters = Math.round(\n    afterTextLengthPercentage * reduceCharactersAmount\n  );\n\n  const truncatedBeforeText =\n    reduceBeforeCharacters > beforeText.length && truncateLength\n      ? beforeText.slice(0, beforeText.length - reduceBeforeCharacters - 2) +\n        \"..\"\n      : beforeText;\n  const truncatedAfterText =\n    truncateLength && reduceAfterCharacters > afterText.length\n      ? \"..\" + afterText.slice(afterText.length - reduceAfterCharacters - 2)\n      : afterText;\n\n  // 3: render before, match, and after\n  return matchIndex === -1 ? (\n    // with no match, truncate at truncateLength at the end\n    <P title={text} className={defaultTextClassName}>\n      {truncateLength && text.length > truncateLength\n        ? text.substring(0, truncateLength - 2) + \"..\"\n        : text}\n    </P>\n  ) : (\n    /**\n     * with a match, the total length needs to be `truncateLength`\n     *\n     * the `search` result should not be truncated\n     *\n     * `beforeText` should be truncated at the end to reduce to `truncateLength`\n     * `afterText` should be truncated at the beginning to reduce to `truncateLength`\n     *\n     * it should be truncated as much as needed on both sides, but we must take into account at the length of the sides as well\n     */\n    <P\n      title={text} //`(${reduceCharactersAmount}== ${reduceBeforeCharacters} <> ${reduceAfterCharacters} .... ${beforeTextLengthPercentage}, ${afterTextLengthPercentage}) ${text}`\n      className={defaultTextClassName}\n    >\n      {beforeText}\n      <Span className={matchTextClassName}>{matchText}</Span>\n      {afterText}\n    </P>\n  );\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 3,
+    "lastLine": 5,
+    "id": "ixyscmvogpyunlmxacvpibcr"
+  }
+]

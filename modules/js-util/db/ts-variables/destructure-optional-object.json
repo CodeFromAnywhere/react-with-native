@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668977388462,
+  "updatedAt": 1668977388462,
+  "deletedAt": 0,
+  "createdFirstAt": 1668977388462,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "destructureOptionalObject",
+  "slug": "destructure-optional-object",
+  "operationRelativeTypescriptFilePath": "src/destructureOptionalObject.ts",
+  "type": {
+    "rawType": "<T extends { [key: string]: any; }>(object: T | null | undefined) => Partial<T>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends { [key: string]: any }>(\n  object: T | null | undefined\n): Partial<T> => {\n  if (!object) return {} as Partial<T>;\n  return object;\n}",
+  "description": "Easy way to destructure your object even if it may be `undefined` or `null`.\n\nHave you ever had a function with an optional configuration parameter, but you want to access all its properties? It's a hassle. This function lets you turn `doSomething` into `doSomethingBetter`. Check the code.\n\n```ts\n\n\nconst doSomething = (config?: { a: string; b: boolean; c: number }) => {\nconst a = config?.a;\nconst b = config?.b;\nconst c = config?.c;\n\nreturn \"something\" + a + b + c;\n};\n\nconst doSomethingBetter = (config?: { a: string; b: boolean; c: number }) => {\nconst { a, b, c } = destructureOptionalObject(config);\nreturn \"something\" + a + b + c;\n};\n\n```\n\n<!-- It would be great if I could also make examples that not only refer to input/output combos but maybe another function that showcases it's usage... -->",
+  "id": "oyfamljwqwgxuucqwtlzaixg"
+}

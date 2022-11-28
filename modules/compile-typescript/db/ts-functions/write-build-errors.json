@@ -1,0 +1,72 @@
+{
+  "createdAt": 1666263823542,
+  "updatedAt": 1666263823542,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263823542,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/writeBuildErrors.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  operationBasePath: string,\n  operationManualProjectRoot?: string,\n  typerepoManualProjectRoot?: string\n) => {\n  const operationName = getLastFolder(operationBasePath);\n  const projectRoot = operationManualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n  // NB: fix to globally alter real fs in order to fix EMFile error that happens in TSMorph (see https://github.com/isaacs/node-graceful-fs)\n  gracefulFs.gracefulify(realFs);\n\n  // NB: this does it for all files in the whole operation!\n  const buildErrors = await getCompileErrors(\n    operationBasePath,\n    false,\n    operationManualProjectRoot\n  );\n\n  await db.clear(\"TsBuildError\", {\n    operationName,\n    manualProjectRoot: operationManualProjectRoot,\n  });\n  // @ts-ignore\n  await db.upsert(\"TsBuildError\", buildErrors, {\n    operationName,\n    manualProjectRoot: operationManualProjectRoot,\n  });\n\n  // log(`Wrote ts-build-errors for ${operationFolder}`, { type: \"success\" });\n\n  process.exit(0);\n}",
+  "name": "writeBuildErrors",
+  "slug": "write-build-errors",
+  "parameters": [
+    {
+      "name": "operationBasePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "operationManualProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    },
+    {
+      "name": "typerepoManualProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 983,
+    "lines": 32,
+    "bytes": 983,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 32,
+    "numberOfFiles": 1
+  },
+  "id": "obrzovmuklpkreymbotvaltn"
+}

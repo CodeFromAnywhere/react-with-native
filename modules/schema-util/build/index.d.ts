@@ -1,4 +1,5 @@
 export * from "./findFirstCommentTypes";
+export * from "./getDataParameterNames";
 export * from "./getRecerencableModels";
 export * from "./getRefLink";
 export * from "./getReferenceParameterInfo";

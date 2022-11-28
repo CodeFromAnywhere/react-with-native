@@ -1,18 +1,18 @@
 [
   {
-    "createdAt": 1667379483088,
-    "updatedAt": 1667379483088,
+    "createdAt": 1668751743645,
+    "updatedAt": 1668751743645,
     "deletedAt": 0,
-    "createdFirstAt": 1667379483088,
+    "createdFirstAt": 1668751743645,
     "name": "Comment",
     "slug": "comment",
-    "operationRelativeTypescriptFilePath": "src/Authorization.ts",
-    "comment": "`AuthorizationLevel` is a single Enum that can apply to privacy and authorization of text, functions, and data.\n\nFor files (ts, md, json, etc...):\n\n- write-create\n- write-update\n- write-delete\n- read\n- search (only search index)\n\nFor db model data subsets:\n\n- write-update\n- write-create\n- write-delete\n- read\n- search (only search index)\n\nFor functions:\n- execute\n\nFor functions, interfaces, variables:\n\n- read (reading docs only. for source, you need to provide the file auth)\n- search (only search index)",
-    "rawStatement": "export type AuthorizationLevel = typeof authorizationLevelReadonlyArray[number];",
+    "operationRelativeTypescriptFilePath": "src/AuthorizationModel.ts",
+    "comment": "Authorization model for indexed authorizations\n\nDon't edit this! If you wish to add authorizations to a group, either edit the code or text-files, or provide custom authorizations to the `Group`.",
+    "rawStatement": "export interface AuthorizationModel extends DefaultModelType, Authorization {}",
     "parameters": {},
     "types": [],
-    "firstLine": 40,
-    "lastLine": 68,
-    "id": "oaeehhtloaalujfbetmoaget"
+    "firstLine": 4,
+    "lastLine": 8,
+    "id": "jqwfxyocwonrrkjoolhzjfny"
   }
 ]

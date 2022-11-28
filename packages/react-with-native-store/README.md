@@ -1,6 +1,6 @@
 # React with native store
 
-react-with-native-store (`OperationClassification` ui-es5)
+react-with-native-store (`OperationClassification` ui-cjs)
 
 
 
@@ -140,18 +140,6 @@ Simple as pie 🍰
 
 
 
-## createUseStore()
-
-Function to create a hook for accessing the store
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
-
-
-
 ## 📄 createStore (exported const)
 
 One function is all you need to make a new store!
@@ -177,6 +165,18 @@ export const { useStore, StoreProvider } = createStore(writerInitialValues);
 ```
 
 Simple as pie 🍰
+
+
+## createUseStore()
+
+Function to create a hook for accessing the store
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | {  }   |    |
+
 
 
 ## 📄 createUseStore (exported const)

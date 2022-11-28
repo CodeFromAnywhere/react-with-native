@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148408695,
-  "updatedAt": 1668148408695,
+  "createdAt": 1668976646824,
+  "updatedAt": 1668976646824,
   "deletedAt": 0,
-  "createdFirstAt": 1668148408695,
+  "createdFirstAt": 1668976646824,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "find-all-folders-with-name",
   "operationRelativeTypescriptFilePath": "src/find-folders.ts",
   "type": {
-    "rawType": "(config: { basePath: string; folderName: string; ignoreOperations?: boolean | undefined; }) => Promise<string[]>",
+    "rawType": "(config: { basePath: string; folderName: string; ignoreOperations?: boolean | undefined; ignoreFolders?: string[] | undefined; }) => Promise<string[]>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (config: {\n  basePath: string;\n  folderName: string;\n  ignoreOperations?: boolean;\n}): Promise<string[]> => {\n  const { basePath, folderName, ignoreOperations } = config;\n\n  const result = (\n    await explore({\n      basePath,\n      searchLevel: \"folder\",\n      search: folderName,\n      ignore: generatedFolders,\n      exact: true,\n      cancelRecursionOn: ignoreOperations ? pathArrayIsOperation : undefined,\n    })\n  ).map((x) => x.path);\n\n  return result;\n}",
+  "value": "async (config: {\n  basePath: string;\n  folderName: string;\n  ignoreOperations?: boolean;\n  /**\n   * folders to ignore\n   */\n  ignoreFolders?: string[];\n}): Promise<string[]> => {\n  const { basePath, folderName, ignoreOperations, ignoreFolders } = config;\n\n  const result = (\n    await explore({\n      basePath,\n      searchLevel: \"folder\",\n      search: folderName,\n      ignore: [...generatedFolders, ...(ignoreFolders || [])],\n      exact: true,\n      cancelRecursionOn: ignoreOperations ? pathArrayIsOperation : undefined,\n    })\n  ).map((x) => x.path);\n\n  return result;\n}",
   "description": "",
-  "id": "zazydmyuckgjklukelolopos"
+  "id": "dxmqyudtakchqhbxgicujrqn"
 }

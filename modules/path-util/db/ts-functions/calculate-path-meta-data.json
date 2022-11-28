@@ -1,0 +1,52 @@
+{
+  "createdAt": 1668331937699,
+  "updatedAt": 1668331937699,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331937699,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/calculatePathMetaData.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  absolutePath: string\n): Promise<PathMetaData | undefined> => {\n  const exists = fs.existsSync(absolutePath);\n  if (!exists) return;\n  const pathParse = getPathParse(absolutePath);\n  if (!pathParse) return;\n\n  const stats = await fs.stat(absolutePath);\n  const isFolder = stats.isDirectory();\n  const fullFileName = isFolder ? undefined : path.parse(absolutePath).base;\n\n  const fileType = isFolder ? null : determineFileType(absolutePath);\n\n  const categorizedFiles: CategorizedFilePaths = isFolder\n    ? await categorizeFiles({ basePath: absolutePath })\n    : {\n        code: fileType === \"code\" ? [absolutePath] : [],\n        data: fileType === \"data\" ? [absolutePath] : [],\n        text: fileType === \"text\" ? [absolutePath] : [],\n      };\n\n  const folderSummary = await getFolderSummary(categorizedFiles);\n  const mainComment = await getPathMainComment(absolutePath);\n\n  const pathMetaData: PathMetaData = {\n    mainComment,\n    fullFileName,\n    createdAt: stats.ctimeMs,\n    updatedAt: stats.mtimeMs,\n    ...pathParse,\n    sizes: folderSummary,\n  };\n\n  return pathMetaData;\n}",
+  "name": "calculatePathMetaData",
+  "slug": "calculate-path-meta-data",
+  "parameters": [
+    {
+      "name": "absolutePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "for folders: finds all files used for calculation and uses sumPathMetaData to create a new PathMetaData.\nfor files: just calculates the path metadata",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/PathMetaData\").PathMetaData | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1241,
+    "lines": 37,
+    "bytes": 1241,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 37,
+    "numberOfFiles": 1
+  },
+  "id": "rhvmoyvychqdfmldzviqekjd"
+}

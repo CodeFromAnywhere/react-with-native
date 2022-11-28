@@ -1,6 +1,6 @@
 # Read kvmd file
 
-read-kvmd-file (`OperationClassification` node)
+read-kvmd-file (`OperationClassification` node-cjs)
 
 
 

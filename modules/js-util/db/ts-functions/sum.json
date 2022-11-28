@@ -1,22 +1,38 @@
 {
-  "createdAt": 1668150835598,
-  "updatedAt": 1668150835598,
+  "createdAt": 1668977389958,
+  "updatedAt": 1668977389958,
   "deletedAt": 0,
-  "createdFirstAt": 1668150835598,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977389958,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/general.ts",
   "commentsInside": [],
   "rawText": " (items: number[]) => {\n  const total = items.reduce((total, num) => {\n    if (typeof num !== \"number\") {\n      console.log(\"WTF\", num);\n    }\n    return total + num;\n  }, 0);\n\n  return total;\n}",
   "name": "sum",
   "slug": "sum",
-  "parameters": [],
+  "parameters": [
+    {
+      "name": "a",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    },
+    {
+      "name": "b",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    }
+  ],
   "description": "",
   "returnType": {
     "rawType": "any",
@@ -37,5 +53,5 @@
     "linesPerFile": 10,
     "numberOfFiles": 1
   },
-  "id": "vqbgkdxpiazarbnoidetddlf"
+  "id": "xkjxnpjxaoichsfhdfcmmfns"
 }

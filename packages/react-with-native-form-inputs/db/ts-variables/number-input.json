@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261458920,
-  "updatedAt": 1666261458920,
+  "createdAt": 1669055922496,
+  "updatedAt": 1669055922496,
   "deletedAt": 0,
-  "createdFirstAt": 1666261458920,
+  "createdFirstAt": 1669055922496,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "number-input",
   "operationRelativeTypescriptFilePath": "src/number/number.tsx",
   "type": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form-inputs/src/number/number\").NumberInputType>",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form-inputs/src/number/number\").NumberInputType>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -20,5 +20,5 @@
   },
   "value": "({\n  extra,\n  onChange,\n  value,\n  ...props\n}) => {\n  const stringifiedValue =\n    value === null || value === undefined ? \"\" : String(value);\n\n  const [numberStringValue, setNumberStringValue] = useState(stringifiedValue);\n\n  const newExtra: NumberInputType[\"extra\"] = { type: \"text\", ...extra };\n\n  return (\n    <TextInput\n      {...props}\n      value={numberStringValue}\n      onChange={(value) => {\n        setNumberStringValue(value);\n\n        if (isNumber(value)) {\n          const casted = castToNumber(value);\n          onChange(casted);\n        }\n      }}\n      extra={newExtra}\n    />\n  );\n}",
   "description": "",
-  "id": "dwovwektisdhjplxwtsunqmu"
+  "id": "danghiacxygtndlntsqmvajc"
 }

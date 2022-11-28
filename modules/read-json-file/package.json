@@ -1,11 +1,19 @@
 {
-  "createdAt": 1662709577328,
-  "updatedAt": 1662709577328,
+  "createdAt": 1668328723423,
+  "updatedAt": 1668328723423,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577328,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328723423,
+  "id": "IGzRtGgKipiDNcid",
+  "dependencies": {
+    "fs-util": "1.0.5",
+    "try-parse-json": "0.0.1",
+    "get-path": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,18 +21,63 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "read-json-file",
-  "devDependencies": {
-    "@types/node": "^18.0.1",
-    "typescript": "^4.7.4"
-  },
+  "language": "english",
   "slug": "read-json-file",
-  "id": "IGzRtGgKipiDNcid",
-  "dependencies": {
-    "fs-util": "1.0.5"
-  },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "read-json-file",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668753040828,
+    "operationDependenciesIndexed": [
+      "canRead",
+      "fs",
+      "Path",
+      "canReadSync",
+      "tryParseJson",
+      "path",
+      "getProjectRoot"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/parsing/read-files",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 2,
+        "lines": 55,
+        "characters": 1525,
+        "bytes": 1525
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 121,
+        "characters": 2756,
+        "bytes": 2756
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 70,
+        "characters": 1090,
+        "bytes": 1090
+      },
+      "size": {
+        "bytes": 5371,
+        "characters": 5371,
+        "lines": 246,
+        "numberOfFiles": 5
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

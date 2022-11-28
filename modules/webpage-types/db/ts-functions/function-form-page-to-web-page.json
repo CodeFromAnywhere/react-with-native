@@ -1,0 +1,240 @@
+{
+  "createdAt": 1669276583533,
+  "updatedAt": 1669276583533,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276583533,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/to-webpage-conversors.ts",
+  "commentsInside": [],
+  "rawText": " (\n  pageData: FunctionFormPage\n): WebPage<FunctionFormPage> => {\n  return {\n    pageData,\n    queryPath: `function/${pageData.functionName}`,\n    isMenuHidden: false,\n    menuTitle: humanCase(pageData.functionName),\n  };\n}",
+  "name": "functionFormPageToWebPage",
+  "slug": "function-form-page-to-web-page",
+  "parameters": [
+    {
+      "name": "pageData",
+      "schema": {
+        "$ref": "#/definitions/FunctionFormPage"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Data needed to make a `WebPage`<FunctionFormPage>",
+        "properties": [
+          {
+            "name": "functionName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "actionWithResult",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "routeOnIsSuccessful",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customTitle",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isMenuHidden",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/webpage-types/src/types\").WebPage<import(\"/Users/king/King/operations/tools/types/webpage-types/src/types\").FunctionFormPage>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "queryPath": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "searchTerms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          }
+        },
+        "target": {},
+        "isMenuHidden": {
+          "type": "boolean"
+        },
+        "menuTitleAugmentation": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "menuTitleTooltip": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "menuTitle": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "pageData": {}
+      },
+      "required": [
+        "queryPath",
+        "target",
+        "pageData"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "queryPath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "searchTerms",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "target",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "isMenuHidden",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "menuTitleAugmentation",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "menuTitleTooltip",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "menuTitle",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "pageData",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 223,
+    "lines": 10,
+    "bytes": 223,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "tkuodtzossdfuutdhedzxqbt"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668150643821,
+  "updatedAt": 1668150643821,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150643821,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getExportSpecifierNames",
+  "slug": "get-export-specifier-names",
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "type": {
+    "rawType": "(symbol: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").Symbol) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(symbol: Symbol) => {\n  return (\n    symbol\n      ?.getDeclarations()\n      ?.filter((x) => x.isKind(SyntaxKind.ExportSpecifier))\n      .map((x) => x.asKind(SyntaxKind.ExportSpecifier))\n      .filter(notEmpty)\n      .map((x) => x.getName()) || []\n  );\n}",
+  "description": "",
+  "id": "ofexexdlffdhqvphrfnyewki"
+}

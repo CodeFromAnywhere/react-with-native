@@ -1,19 +1,15 @@
 {
-  "createdAt": 1666261473870,
-  "updatedAt": 1666261473870,
+  "createdAt": 1669055944142,
+  "updatedAt": 1669055944142,
   "deletedAt": 0,
-  "createdFirstAt": 1666261473870,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055944142,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "PluginComponent<ToggleInputType>",
   "operationRelativeTypescriptFilePath": "src/toggle/toggle.tsx",
   "commentsInside": [],
-  "rawText": " ({\n  onChange,\n  value,\n  extra,\n  config,\n  uniqueFieldId,\n  errors,\n}) => {\n  config = config || {};\n\n  const defaultClass = \"\";\n  const hasError = errors && errors.length > 0;\n  const errorClass = hasError\n    ? config.errorClassName\n      ? config.errorClassName\n      : \" border border-red-400\"\n    : \"\";\n\n  const classWithError = config.replaceClassName\n    ? `${config.replaceClassName} ${errorClass}`\n    : `${defaultClass} ${config.extraClassName} ${errorClass}`;\n\n  return (\n    <Div className=\"flex flex-row items-center\">\n      <Toggle\n        id={uniqueFieldId}\n        // class not working with border on checkbox\n        className={classWithError}\n        checked={value}\n        onChange={(value: ToggleInputType[\"value\"]) => onChange(value)}\n      />\n      {extra?.label ? (\n        <Label\n          className={`pl-3 select-none ${hasError ? \"text-red-500\" : \"\"}`}\n          htmlFor={uniqueFieldId}\n        >\n          {extra.label}\n        </Label>\n      ) : null}\n    </Div>\n  );\n}",
+  "rawText": " ({\n  onChange,\n  value,\n  extra,\n  config,\n  uniqueFieldId,\n  errors,\n  className,\n}) => {\n  config = config || {};\n\n  const defaultClass = \"\";\n  const hasError = errors && errors.length > 0;\n  const errorClass = hasError\n    ? config.errorClassName\n      ? config.errorClassName\n      : \" border border-red-400\"\n    : \"\";\n\n  const classWithError = config.replaceClassName\n    ? `${config.replaceClassName} ${errorClass}`\n    : `${defaultClass} ${config.extraClassName} ${errorClass}`;\n\n  return (\n    <Div className={`flex flex-row items-center ${className || \"\"}`}>\n      <Toggle\n        id={uniqueFieldId}\n        // class not working with border on checkbox\n        className={classWithError}\n        checked={value}\n        onChange={(value: ToggleInputType[\"value\"]) => onChange(value)}\n      />\n      {extra?.label ? (\n        <Label\n          className={`pl-3 select-none ${hasError ? \"text-red-500\" : \"\"}`}\n          htmlFor={uniqueFieldId}\n        >\n          {extra.label}\n        </Label>\n      ) : null}\n    </Div>\n  );\n}",
   "name": "ToggleInput",
   "slug": "toggle-input",
   "parameters": [],
@@ -33,13 +29,13 @@
   },
   "maxIndentationDepth": 5,
   "size": {
-    "characters": 1001,
-    "lines": 42,
-    "bytes": 1001,
+    "characters": 1035,
+    "lines": 43,
+    "bytes": 1035,
     "bytesPerCharacter": 1,
     "charactersPerLine": 24,
-    "linesPerFile": 42,
+    "linesPerFile": 43,
     "numberOfFiles": 1
   },
-  "id": "ngddfuuquewbtfbdqnvlwaeo"
+  "id": "wbbcufxxczmuuwciwuqlxqky"
 }

@@ -1,6 +1,6 @@
 # Asset input
 
-asset-input (`OperationClassification` js)
+asset-input (`OperationClassification` ui-cjs)
 
 
 ## 📸 Asset Input
@@ -101,7 +101,7 @@ Supports
 | Input      |    |    |
 | ---------- | -- | -- |
 | file | { size: number, <br />type: string, <br />lastModified: number, <br />name: string, <br />webkitRelativePath: string, <br /> } |  |
-| **Output** | audio / video / image / other   |    |
+| **Output** | audio / video / image / text / other   |    |
 
 
 
@@ -109,7 +109,7 @@ Supports
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| asset | `Asset` |  |
+| asset | `Asset` |  |,| projectRelativeReferencingFilePath | string |  |,| modelName (optional) | string |  |
 | **Output** | {  }   |    |
 
 

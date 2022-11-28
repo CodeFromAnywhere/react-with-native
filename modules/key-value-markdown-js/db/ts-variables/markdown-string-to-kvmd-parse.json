@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262781890,
-  "updatedAt": 1666262781890,
+  "createdAt": 1668334800500,
+  "updatedAt": 1668334800500,
   "deletedAt": 0,
-  "createdFirstAt": 1666262781890,
+  "createdFirstAt": 1668334800500,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  kvMdString: string,\n  dbFileLocation: DbFileLocation\n): KeyValueMarkdownParse => {\n  const { parameters, content } = mdToJsonParse(kvMdString);\n  const { absolutePath, modelName, ...modelLocation } = dbFileLocation;\n\n  const parentKey = `parent_${camelCase(modelName)}Slug`;\n\n  if (!content) {\n    console.log(\"NO CONTENT FOUND\");\n    return { parameters: {}, data: [] };\n  }\n\n  const kvmdItems = content\n    .map((chunk) => getKvmdItemsRecursively(chunk))\n    .flat();\n\n  const data: KeyValueMarkdownModelType[] = kvmdItems.map((x) => ({\n    ...x,\n    ...modelLocation,\n    // NB: here we set the reference to its parent (which is equal to the last item in the categoryStackCalculated)\n    [parentKey]:\n      x.categoryStackCalculated[x.categoryStackCalculated.length - 1],\n  }));\n\n  return { parameters, data };\n}",
   "description": "parses a key value md string (with support for headings and frontmatter)",
-  "id": "vutuqgtriivunubmlquziwsw"
+  "id": "jdzcxtptwlgpdvsjmzaockls"
 }

@@ -1,14 +1,14 @@
 {
-  "createdAt": 1668149504073,
-  "updatedAt": 1668149504073,
+  "createdAt": 1669639147396,
+  "updatedAt": 1669639147396,
   "deletedAt": 0,
-  "createdFirstAt": 1668149504073,
+  "createdFirstAt": 1669639147396,
   "classification": "const",
   "comments": [],
   "isExported": true,
   "name": "stripReadmeFromFolder",
   "slug": "strip-readme-from-folder",
-  "operationRelativeTypescriptFilePath": "src/getMarkdownReaderPages.ts",
+  "operationRelativeTypescriptFilePath": "src/stripReadmeFromFolder.ts",
   "type": {
     "rawType": "(filePath: string) => string",
     "typeDefinition": {
@@ -29,5 +29,5 @@
   },
   "value": "(filePath: string): string => {\n  const suffix = \"/readme.md\";\n\n  if (filePath.toLowerCase().endsWith(suffix)) {\n    const strippedPath = filePath.slice(0, filePath.length - suffix.length);\n\n    return strippedPath;\n  }\n\n  return filePath;\n}",
   "description": "To get the queryPath, we need to strip the README.md so we get the folder as URL instead of the attached README.md",
-  "id": "bulgbovfiwoydwjlgefbiqol"
+  "id": "pfyegiqboggxfcyxjrdxutix"
 }

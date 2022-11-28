@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { WriterType } from "filename-conventions";
 import { MarkdownParseRenderConfig } from "markdown";
 import { SubtextConfig, SubwordConfig } from "writer-types";

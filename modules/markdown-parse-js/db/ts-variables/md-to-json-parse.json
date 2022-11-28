@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379665512,
-  "updatedAt": 1667379665512,
+  "createdAt": 1669467053680,
+  "updatedAt": 1669467053680,
   "deletedAt": 0,
-  "createdFirstAt": 1667379665512,
+  "createdFirstAt": 1669467053680,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "md-to-json-parse",
   "operationRelativeTypescriptFilePath": "src/mdToJsonParse.ts",
   "type": {
-    "rawType": "(markdownString: string, fileName?: string | undefined, config?: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parse-js/src/types\").MarkdownParseConfig | undefined) => import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse",
+    "rawType": "(markdownString: string, fileName?: string | undefined, config?: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parse-js/src/types\").MarkdownParseConfig | undefined) => import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(\n  markdownString: string,\n  fileName?: string,\n  config?: MarkdownParseConfig\n): MarkdownParse => {\n  const { parameters, raw } = parseFrontmatterMarkdownString(\n    markdownString,\n    config\n  );\n  return {\n    fileName,\n    raw,\n    parameters,\n    content: mdContentParseRecursively(raw, 1),\n  };\n}",
   "description": "makes a markdown parse from a markdown string\n\nTODO: `markdownStringToMarkdownParse` is a better name. First make a refactor script for this, because it is too hard to rename stuff that is used a lot.\n\nTODO: BUG: it doesn't take into account triple backticks! if there is markdown inside of the triple backticks, it can still be seen as main markdown. Triple backticks are stronger!",
-  "id": "dpngoyxjfwpxwcfhoyqoszcl"
+  "id": "mghkvrripyajhvdwnsleihbh"
 }

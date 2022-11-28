@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200488588,
+  "updatedAt": 1669200488588,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200488588,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getOutline",
+  "slug": "get-outline",
+  "operationRelativeTypescriptFilePath": "src/parsing/outline.ts",
+  "type": {
+    "rawType": "(markdownParse: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  markdownParse: MarkdownParse\n): string | undefined => {\n  const titles = markdownParse.content?.map(getTitlesRecursively).flat();\n  const outlineString = printNestedTitles(titles);\n  return outlineString;\n}",
+  "description": "low-level function that gets the outline for MarkdownParse\n\nNB: with books usually the pages are referred in the outline. Since that depends on the font size and dimensions, this cannot be done straight from the markdown parse. Eventually we probably need to check the made pdf for its content, maybe there is even a pdf feature that creates an outline for you. There must be more people having this problem.",
+  "id": "hspvdjhueubgcifehnxjokpf"
+}

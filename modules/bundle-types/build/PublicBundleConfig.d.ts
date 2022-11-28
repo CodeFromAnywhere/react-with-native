@@ -5,6 +5,10 @@ export declare type PublicBundleConfig = {
      */
     name: string;
     /**
+     * Used to determine which call to actions are relevant (must be hostname without schema (name + tld))
+     */
+    deploymentHostname?: string;
+    /**
      * a description about this bundle
      */
     description?: string;

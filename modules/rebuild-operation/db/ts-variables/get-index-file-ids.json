@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055712987,
+  "updatedAt": 1669055712987,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055712987,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getIndexFileIds",
+  "slug": "get-index-file-ids",
+  "operationRelativeTypescriptFilePath": "src/getIndexFileIds.ts",
+  "type": {
+    "rawType": "(operationFolderPath: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (operationFolderPath: string) =>\n  getFileIds({\n    operationFolderPath,\n    // NB: we take index/variables here because we need the file ids of any index as they would be the same in any index\n    pathSuffix: `${databaseFolderName}/ts-variables`,\n    extension: \"json\",\n  })",
+  "description": "gets identifiers of ts and tsx files, which are the relative path to a file without the extension",
+  "id": "jujzsyxvvwtlfvpcippdflya"
+}

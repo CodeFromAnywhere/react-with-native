@@ -1,0 +1,2335 @@
+{
+  "createdAt": 1669639305167,
+  "updatedAt": 1669639305167,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639305167,
+  "id": "typescriptfile",
+  "name": "TypescriptFile",
+  "slug": "typescriptfile",
+  "operationRelativeTypescriptFilePath": "src/ts/TypescriptFile.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * IDEA: What if we could make a custom db storage method for a typescript file, so you can read and write typescript with the database?\n *\n * The first thing I can do, is to generate all typescript stuff using a model like this:\n *\n * Later, I can read a typescript file with a rust parser to get it into this model again.\n *\n * This is actually super useful for metacoding and coding GUI's\n *\n * Also a great start for making my own programming language ;)\n *\n *\n * There are multiple ways of describing a typescript file I guess. This is one of them. Another one could be a definition where you put the required context in the statements and types themselves.\n */\nexport interface TypescriptFile\n  extends DefaultModelType,\n    TypescriptScopeContext,\n    TypescriptScopeContent {}",
+  "extensions": [
+    "DefaultModelType",
+    "TypescriptScopeContext",
+    "TypescriptScopeContent"
+  ],
+  "isOperationIndex": false,
+  "description": "IDEA: What if we could make a custom db storage method for a typescript file, so you can read and write typescript with the database?\n\nThe first thing I can do, is to generate all typescript stuff using a model like this:\n\nLater, I can read a typescript file with a rust parser to get it into this model again.\n\nThis is actually super useful for metacoding and coding GUI's\n\nAlso a great start for making my own programming language ;)\n\n\nThere are multiple ways of describing a typescript file I guess. This is one of them. Another one could be a definition where you put the required context in the statements and types themselves.",
+  "dbStorageMethod": "jsonMultiple",
+  "isDbModel": true,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "statements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "isExported": {
+                "type": "boolean",
+                "description": "can not be done in functions"
+              },
+              "comment": {
+                "type": "string"
+              },
+              "isFunction": {
+                "type": "boolean"
+              },
+              "variableJsonValue": {},
+              "functionDefinition": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "content": {
+                    "$ref": "#/definitions/TypescriptScopeContent",
+                    "description": "Inside of the function (recursion on itself)"
+                  },
+                  "statementContext": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/TypescriptScopeStatementContext"
+                    },
+                    "description": "Parameters"
+                  },
+                  "typeContext": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/TypescriptScopeTypeContext"
+                    },
+                    "description": "Generics"
+                  }
+                },
+                "required": [
+                  "content"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "isExported"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "interfaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "isExported": {
+                "type": "boolean"
+              },
+              "comment": {
+                "type": "string"
+              },
+              "simplifiedSchema": {
+                "$ref": "#/definitions/SimplifiedSchema"
+              }
+            },
+            "required": [
+              "name",
+              "isExported",
+              "simplifiedSchema"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "returnStatementRaw": {
+          "type": "string",
+          "description": "Only in functions"
+        },
+        "statementContext": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TypescriptScopeStatementContext"
+          },
+          "description": "Parameters"
+        },
+        "typeContext": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TypescriptScopeTypeContext"
+          },
+          "description": "Generics"
+        },
+        "createdAt": {
+          "$ref": "#/definitions/CreatedAt"
+        },
+        "updatedAt": {
+          "$ref": "#/definitions/UpdatedAt"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/DeletedAt"
+        },
+        "createdFirstAt": {
+          "$ref": "#/definitions/CreatedFirstAt"
+        },
+        "operationName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "projectRelativePath": {
+          "type": "string",
+          "description": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "operationRelativePath": {
+          "type": "string",
+          "description": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "categoryStackCalculated": {
+          "$ref": "#/definitions/CategoryStack",
+          "description": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!"
+        }
+      },
+      "required": [
+        "createdAt",
+        "createdFirstAt",
+        "deletedAt",
+        "id",
+        "interfaces",
+        "operationName",
+        "projectRelativePath",
+        "statements",
+        "updatedAt"
+      ],
+      "description": "IDEA: What if we could make a custom db storage method for a typescript file, so you can read and write typescript with the database?\n\nThe first thing I can do, is to generate all typescript stuff using a model like this:\n\nLater, I can read a typescript file with a rust parser to get it into this model again.\n\nThis is actually super useful for metacoding and coding GUI's\n\nAlso a great start for making my own programming language ;)\n\n\nThere are multiple ways of describing a typescript file I guess. This is one of them. Another one could be a definition where you put the required context in the statements and types themselves."
+    },
+    "simplifiedSchema": {
+      "fullComment": "IDEA: What if we could make a custom db storage method for a typescript file, so you can read and write typescript with the database?\n\nThe first thing I can do, is to generate all typescript stuff using a model like this:\n\nLater, I can read a typescript file with a rust parser to get it into this model again.\n\nThis is actually super useful for metacoding and coding GUI's\n\nAlso a great start for making my own programming language ;)\n\n\nThere are multiple ways of describing a typescript file I guess. This is one of them. Another one could be a definition where you put the required context in the statements and types themselves.",
+      "idea": "What if we could make a custom db storage method for a typescript file, so you can read and write typescript with the database?",
+      "properties": [
+        {
+          "name": "statements",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isExported",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "can not be done in functions",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "comment",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isFunction",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "variableJsonValue",
+                      "required": false,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "functionDefinition",
+                      "required": false,
+                      "schema": {
+                        "properties": [
+                          {
+                            "name": "content",
+                            "required": true,
+                            "schema": {
+                              "fullComment": "Inside of the function (recursion on itself)\n\n",
+                              "properties": [
+                                {
+                                  "name": "statements",
+                                  "required": true,
+                                  "schema": {
+                                    "items": [
+                                      {
+                                        "schema": {
+                                          "properties": [
+                                            {
+                                              "name": "name",
+                                              "required": true,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "isExported",
+                                              "required": true,
+                                              "schema": {
+                                                "fullComment": "can not be done in functions",
+                                                "type": "boolean"
+                                              }
+                                            },
+                                            {
+                                              "name": "comment",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "isFunction",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "boolean"
+                                              }
+                                            },
+                                            {
+                                              "name": "variableJsonValue",
+                                              "required": false,
+                                              "schema": {
+                                                "properties": [],
+                                                "type": "object"
+                                              }
+                                            },
+                                            {
+                                              "name": "functionDefinition",
+                                              "required": false,
+                                              "schema": {
+                                                "properties": [
+                                                  {
+                                                    "name": "content",
+                                                    "required": true,
+                                                    "schema": {
+                                                      "circularRefName": "TypescriptScopeContent",
+                                                      "fullComment": "Inside of the function (recursion on itself)",
+                                                      "properties": [],
+                                                      "type": "object"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "statementContext",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "fullComment": "Parameters",
+                                                      "items": [
+                                                        {
+                                                          "schema": {
+                                                            "fullComment": "",
+                                                            "properties": [
+                                                              {
+                                                                "name": "name",
+                                                                "required": true,
+                                                                "schema": {
+                                                                  "type": "string"
+                                                                }
+                                                              },
+                                                              {
+                                                                "name": "isRequired",
+                                                                "required": false,
+                                                                "schema": {
+                                                                  "fullComment": "Only for functions",
+                                                                  "type": "boolean"
+                                                                }
+                                                              },
+                                                              {
+                                                                "name": "simplifiedSchema",
+                                                                "required": true,
+                                                                "schema": {
+                                                                  "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+                                                                  "properties": [
+                                                                    {
+                                                                      "name": "todo",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "discussion",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "idea",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "later",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "nb",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "title",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "section",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "description",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "type",
+                                                                      "required": true,
+                                                                      "schema": {
+                                                                        "enum": [
+                                                                          "string",
+                                                                          "number",
+                                                                          "boolean",
+                                                                          "object",
+                                                                          "array",
+                                                                          "null"
+                                                                        ],
+                                                                        "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+                                                                        "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "circularRefName",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "enum",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+                                                                        "items": [
+                                                                          {
+                                                                            "schema": {
+                                                                              "fullComment": "Primitive type",
+                                                                              "properties": [],
+                                                                              "type": "object"
+                                                                            },
+                                                                            "name": "JSONSchema7Type"
+                                                                          }
+                                                                        ],
+                                                                        "type": "array"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "properties",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "fullComment": "in case of object, this will always appear",
+                                                                        "items": [
+                                                                          {
+                                                                            "schema": {
+                                                                              "fullComment": "",
+                                                                              "properties": [
+                                                                                {
+                                                                                  "name": "name",
+                                                                                  "required": true,
+                                                                                  "schema": {
+                                                                                    "type": "string"
+                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                  "name": "schema",
+                                                                                  "required": true,
+                                                                                  "schema": {
+                                                                                    "circularRefName": "SimplifiedSchema",
+                                                                                    "properties": [],
+                                                                                    "type": "object"
+                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                  "name": "required",
+                                                                                  "required": true,
+                                                                                  "schema": {
+                                                                                    "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                                                                                    "nb": "can't we put this in the SimplifiedSchema itself?",
+                                                                                    "type": "boolean"
+                                                                                  }
+                                                                                }
+                                                                              ],
+                                                                              "type": "object"
+                                                                            },
+                                                                            "name": "SimplifiedSchemaProperty"
+                                                                          }
+                                                                        ],
+                                                                        "type": "array"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "items",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "fullComment": "in case of arrays, this will always appear",
+                                                                        "items": [
+                                                                          {
+                                                                            "schema": {
+                                                                              "fullComment": "",
+                                                                              "properties": [
+                                                                                {
+                                                                                  "name": "name",
+                                                                                  "required": true,
+                                                                                  "schema": {
+                                                                                    "fullComment": "name in case of it being a reference, otherwise null",
+                                                                                    "type": "string"
+                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                  "name": "schema",
+                                                                                  "required": true,
+                                                                                  "schema": {
+                                                                                    "circularRefName": "SimplifiedSchema",
+                                                                                    "properties": [],
+                                                                                    "type": "object"
+                                                                                  }
+                                                                                }
+                                                                              ],
+                                                                              "type": "object"
+                                                                            },
+                                                                            "name": "SimplifiedSchemaItem"
+                                                                          }
+                                                                        ],
+                                                                        "type": "array"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "fullComment",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                                                        "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                                                        "type": "string"
+                                                                      }
+                                                                    }
+                                                                  ],
+                                                                  "type": "object"
+                                                                }
+                                                              },
+                                                              {
+                                                                "name": "comment",
+                                                                "required": true,
+                                                                "schema": {
+                                                                  "type": "string"
+                                                                }
+                                                              },
+                                                              {
+                                                                "name": "isRest",
+                                                                "required": false,
+                                                                "schema": {
+                                                                  "type": "boolean"
+                                                                }
+                                                              }
+                                                            ],
+                                                            "type": "object"
+                                                          },
+                                                          "name": "TypescriptScopeStatementContext"
+                                                        }
+                                                      ],
+                                                      "type": "array"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "typeContext",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "fullComment": "Generics",
+                                                      "items": [
+                                                        {
+                                                          "schema": {
+                                                            "fullComment": "",
+                                                            "properties": [
+                                                              {
+                                                                "name": "name",
+                                                                "required": true,
+                                                                "schema": {
+                                                                  "type": "string"
+                                                                }
+                                                              },
+                                                              {
+                                                                "name": "comment",
+                                                                "required": false,
+                                                                "schema": {
+                                                                  "type": "string"
+                                                                }
+                                                              },
+                                                              {
+                                                                "name": "simplifiedSchema",
+                                                                "required": true,
+                                                                "schema": {
+                                                                  "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+                                                                  "properties": [
+                                                                    {
+                                                                      "name": "todo",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "discussion",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "idea",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "later",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "nb",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "title",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "section",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "description",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "type",
+                                                                      "required": true,
+                                                                      "schema": {
+                                                                        "enum": [
+                                                                          "string",
+                                                                          "number",
+                                                                          "boolean",
+                                                                          "object",
+                                                                          "array",
+                                                                          "null"
+                                                                        ],
+                                                                        "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+                                                                        "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "circularRefName",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "enum",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+                                                                        "items": [
+                                                                          {
+                                                                            "schema": {
+                                                                              "fullComment": "Primitive type",
+                                                                              "properties": [],
+                                                                              "type": "object"
+                                                                            },
+                                                                            "name": "JSONSchema7Type"
+                                                                          }
+                                                                        ],
+                                                                        "type": "array"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "properties",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "fullComment": "in case of object, this will always appear",
+                                                                        "items": [
+                                                                          {
+                                                                            "schema": {
+                                                                              "fullComment": "",
+                                                                              "properties": [
+                                                                                {
+                                                                                  "name": "name",
+                                                                                  "required": true,
+                                                                                  "schema": {
+                                                                                    "type": "string"
+                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                  "name": "schema",
+                                                                                  "required": true,
+                                                                                  "schema": {
+                                                                                    "circularRefName": "SimplifiedSchema",
+                                                                                    "properties": [],
+                                                                                    "type": "object"
+                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                  "name": "required",
+                                                                                  "required": true,
+                                                                                  "schema": {
+                                                                                    "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                                                                                    "nb": "can't we put this in the SimplifiedSchema itself?",
+                                                                                    "type": "boolean"
+                                                                                  }
+                                                                                }
+                                                                              ],
+                                                                              "type": "object"
+                                                                            },
+                                                                            "name": "SimplifiedSchemaProperty"
+                                                                          }
+                                                                        ],
+                                                                        "type": "array"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "items",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "fullComment": "in case of arrays, this will always appear",
+                                                                        "items": [
+                                                                          {
+                                                                            "schema": {
+                                                                              "fullComment": "",
+                                                                              "properties": [
+                                                                                {
+                                                                                  "name": "name",
+                                                                                  "required": true,
+                                                                                  "schema": {
+                                                                                    "fullComment": "name in case of it being a reference, otherwise null",
+                                                                                    "type": "string"
+                                                                                  }
+                                                                                },
+                                                                                {
+                                                                                  "name": "schema",
+                                                                                  "required": true,
+                                                                                  "schema": {
+                                                                                    "circularRefName": "SimplifiedSchema",
+                                                                                    "properties": [],
+                                                                                    "type": "object"
+                                                                                  }
+                                                                                }
+                                                                              ],
+                                                                              "type": "object"
+                                                                            },
+                                                                            "name": "SimplifiedSchemaItem"
+                                                                          }
+                                                                        ],
+                                                                        "type": "array"
+                                                                      }
+                                                                    },
+                                                                    {
+                                                                      "name": "fullComment",
+                                                                      "required": false,
+                                                                      "schema": {
+                                                                        "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                                                        "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                                                        "type": "string"
+                                                                      }
+                                                                    }
+                                                                  ],
+                                                                  "type": "object"
+                                                                }
+                                                              }
+                                                            ],
+                                                            "type": "object"
+                                                          },
+                                                          "name": "TypescriptScopeTypeContext"
+                                                        }
+                                                      ],
+                                                      "type": "array"
+                                                    }
+                                                  }
+                                                ],
+                                                "type": "object"
+                                              }
+                                            }
+                                          ],
+                                          "type": "object"
+                                        },
+                                        "name": null
+                                      }
+                                    ],
+                                    "type": "array"
+                                  }
+                                },
+                                {
+                                  "name": "interfaces",
+                                  "required": true,
+                                  "schema": {
+                                    "items": [
+                                      {
+                                        "schema": {
+                                          "properties": [
+                                            {
+                                              "name": "name",
+                                              "required": true,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "isExported",
+                                              "required": true,
+                                              "schema": {
+                                                "type": "boolean"
+                                              }
+                                            },
+                                            {
+                                              "name": "comment",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "simplifiedSchema",
+                                              "required": true,
+                                              "schema": {
+                                                "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+                                                "properties": [
+                                                  {
+                                                    "name": "todo",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "discussion",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "idea",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "later",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "nb",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "title",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "section",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "description",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "type",
+                                                    "required": true,
+                                                    "schema": {
+                                                      "enum": [
+                                                        "string",
+                                                        "number",
+                                                        "boolean",
+                                                        "object",
+                                                        "array",
+                                                        "null"
+                                                      ],
+                                                      "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+                                                      "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "circularRefName",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "enum",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+                                                      "items": [
+                                                        {
+                                                          "schema": {
+                                                            "fullComment": "Primitive type",
+                                                            "properties": [],
+                                                            "type": "object"
+                                                          },
+                                                          "name": "JSONSchema7Type"
+                                                        }
+                                                      ],
+                                                      "type": "array"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "properties",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "fullComment": "in case of object, this will always appear",
+                                                      "items": [
+                                                        {
+                                                          "schema": {
+                                                            "fullComment": "",
+                                                            "properties": [
+                                                              {
+                                                                "name": "name",
+                                                                "required": true,
+                                                                "schema": {
+                                                                  "type": "string"
+                                                                }
+                                                              },
+                                                              {
+                                                                "name": "schema",
+                                                                "required": true,
+                                                                "schema": {
+                                                                  "circularRefName": "SimplifiedSchema",
+                                                                  "properties": [],
+                                                                  "type": "object"
+                                                                }
+                                                              },
+                                                              {
+                                                                "name": "required",
+                                                                "required": true,
+                                                                "schema": {
+                                                                  "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                                                                  "nb": "can't we put this in the SimplifiedSchema itself?",
+                                                                  "type": "boolean"
+                                                                }
+                                                              }
+                                                            ],
+                                                            "type": "object"
+                                                          },
+                                                          "name": "SimplifiedSchemaProperty"
+                                                        }
+                                                      ],
+                                                      "type": "array"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "items",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "fullComment": "in case of arrays, this will always appear",
+                                                      "items": [
+                                                        {
+                                                          "schema": {
+                                                            "fullComment": "",
+                                                            "properties": [
+                                                              {
+                                                                "name": "name",
+                                                                "required": true,
+                                                                "schema": {
+                                                                  "fullComment": "name in case of it being a reference, otherwise null",
+                                                                  "type": "string"
+                                                                }
+                                                              },
+                                                              {
+                                                                "name": "schema",
+                                                                "required": true,
+                                                                "schema": {
+                                                                  "circularRefName": "SimplifiedSchema",
+                                                                  "properties": [],
+                                                                  "type": "object"
+                                                                }
+                                                              }
+                                                            ],
+                                                            "type": "object"
+                                                          },
+                                                          "name": "SimplifiedSchemaItem"
+                                                        }
+                                                      ],
+                                                      "type": "array"
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "fullComment",
+                                                    "required": false,
+                                                    "schema": {
+                                                      "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                                      "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                                      "type": "string"
+                                                    }
+                                                  }
+                                                ],
+                                                "type": "object"
+                                              }
+                                            }
+                                          ],
+                                          "type": "object"
+                                        },
+                                        "name": null
+                                      }
+                                    ],
+                                    "type": "array"
+                                  }
+                                },
+                                {
+                                  "name": "returnStatementRaw",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Only in functions",
+                                    "type": "string"
+                                  }
+                                }
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          {
+                            "name": "statementContext",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Parameters",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "",
+                                    "properties": [
+                                      {
+                                        "name": "name",
+                                        "required": true,
+                                        "schema": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      {
+                                        "name": "isRequired",
+                                        "required": false,
+                                        "schema": {
+                                          "fullComment": "Only for functions",
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      {
+                                        "name": "simplifiedSchema",
+                                        "required": true,
+                                        "schema": {
+                                          "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+                                          "properties": [
+                                            {
+                                              "name": "todo",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "discussion",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "idea",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "later",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "nb",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "title",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "section",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "description",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "type",
+                                              "required": true,
+                                              "schema": {
+                                                "enum": [
+                                                  "string",
+                                                  "number",
+                                                  "boolean",
+                                                  "object",
+                                                  "array",
+                                                  "null"
+                                                ],
+                                                "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+                                                "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "circularRefName",
+                                              "required": false,
+                                              "schema": {
+                                                "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "enum",
+                                              "required": false,
+                                              "schema": {
+                                                "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+                                                "items": [
+                                                  {
+                                                    "schema": {
+                                                      "fullComment": "Primitive type",
+                                                      "properties": [],
+                                                      "type": "object"
+                                                    },
+                                                    "name": "JSONSchema7Type"
+                                                  }
+                                                ],
+                                                "type": "array"
+                                              }
+                                            },
+                                            {
+                                              "name": "properties",
+                                              "required": false,
+                                              "schema": {
+                                                "fullComment": "in case of object, this will always appear",
+                                                "items": [
+                                                  {
+                                                    "schema": {
+                                                      "fullComment": "",
+                                                      "properties": [
+                                                        {
+                                                          "name": "name",
+                                                          "required": true,
+                                                          "schema": {
+                                                            "type": "string"
+                                                          }
+                                                        },
+                                                        {
+                                                          "name": "schema",
+                                                          "required": true,
+                                                          "schema": {
+                                                            "circularRefName": "SimplifiedSchema",
+                                                            "properties": [],
+                                                            "type": "object"
+                                                          }
+                                                        },
+                                                        {
+                                                          "name": "required",
+                                                          "required": true,
+                                                          "schema": {
+                                                            "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                                                            "nb": "can't we put this in the SimplifiedSchema itself?",
+                                                            "type": "boolean"
+                                                          }
+                                                        }
+                                                      ],
+                                                      "type": "object"
+                                                    },
+                                                    "name": "SimplifiedSchemaProperty"
+                                                  }
+                                                ],
+                                                "type": "array"
+                                              }
+                                            },
+                                            {
+                                              "name": "items",
+                                              "required": false,
+                                              "schema": {
+                                                "fullComment": "in case of arrays, this will always appear",
+                                                "items": [
+                                                  {
+                                                    "schema": {
+                                                      "fullComment": "",
+                                                      "properties": [
+                                                        {
+                                                          "name": "name",
+                                                          "required": true,
+                                                          "schema": {
+                                                            "fullComment": "name in case of it being a reference, otherwise null",
+                                                            "type": "string"
+                                                          }
+                                                        },
+                                                        {
+                                                          "name": "schema",
+                                                          "required": true,
+                                                          "schema": {
+                                                            "circularRefName": "SimplifiedSchema",
+                                                            "properties": [],
+                                                            "type": "object"
+                                                          }
+                                                        }
+                                                      ],
+                                                      "type": "object"
+                                                    },
+                                                    "name": "SimplifiedSchemaItem"
+                                                  }
+                                                ],
+                                                "type": "array"
+                                              }
+                                            },
+                                            {
+                                              "name": "fullComment",
+                                              "required": false,
+                                              "schema": {
+                                                "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                                "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                                "type": "string"
+                                              }
+                                            }
+                                          ],
+                                          "type": "object"
+                                        }
+                                      },
+                                      {
+                                        "name": "comment",
+                                        "required": true,
+                                        "schema": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      {
+                                        "name": "isRest",
+                                        "required": false,
+                                        "schema": {
+                                          "type": "boolean"
+                                        }
+                                      }
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "name": "TypescriptScopeStatementContext"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "typeContext",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Generics",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "",
+                                    "properties": [
+                                      {
+                                        "name": "name",
+                                        "required": true,
+                                        "schema": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      {
+                                        "name": "comment",
+                                        "required": false,
+                                        "schema": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      {
+                                        "name": "simplifiedSchema",
+                                        "required": true,
+                                        "schema": {
+                                          "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+                                          "properties": [
+                                            {
+                                              "name": "todo",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "discussion",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "idea",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "later",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "nb",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "title",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "section",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "description",
+                                              "required": false,
+                                              "schema": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "type",
+                                              "required": true,
+                                              "schema": {
+                                                "enum": [
+                                                  "string",
+                                                  "number",
+                                                  "boolean",
+                                                  "object",
+                                                  "array",
+                                                  "null"
+                                                ],
+                                                "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+                                                "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "circularRefName",
+                                              "required": false,
+                                              "schema": {
+                                                "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+                                                "type": "string"
+                                              }
+                                            },
+                                            {
+                                              "name": "enum",
+                                              "required": false,
+                                              "schema": {
+                                                "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+                                                "items": [
+                                                  {
+                                                    "schema": {
+                                                      "fullComment": "Primitive type",
+                                                      "properties": [],
+                                                      "type": "object"
+                                                    },
+                                                    "name": "JSONSchema7Type"
+                                                  }
+                                                ],
+                                                "type": "array"
+                                              }
+                                            },
+                                            {
+                                              "name": "properties",
+                                              "required": false,
+                                              "schema": {
+                                                "fullComment": "in case of object, this will always appear",
+                                                "items": [
+                                                  {
+                                                    "schema": {
+                                                      "fullComment": "",
+                                                      "properties": [
+                                                        {
+                                                          "name": "name",
+                                                          "required": true,
+                                                          "schema": {
+                                                            "type": "string"
+                                                          }
+                                                        },
+                                                        {
+                                                          "name": "schema",
+                                                          "required": true,
+                                                          "schema": {
+                                                            "circularRefName": "SimplifiedSchema",
+                                                            "properties": [],
+                                                            "type": "object"
+                                                          }
+                                                        },
+                                                        {
+                                                          "name": "required",
+                                                          "required": true,
+                                                          "schema": {
+                                                            "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                                                            "nb": "can't we put this in the SimplifiedSchema itself?",
+                                                            "type": "boolean"
+                                                          }
+                                                        }
+                                                      ],
+                                                      "type": "object"
+                                                    },
+                                                    "name": "SimplifiedSchemaProperty"
+                                                  }
+                                                ],
+                                                "type": "array"
+                                              }
+                                            },
+                                            {
+                                              "name": "items",
+                                              "required": false,
+                                              "schema": {
+                                                "fullComment": "in case of arrays, this will always appear",
+                                                "items": [
+                                                  {
+                                                    "schema": {
+                                                      "fullComment": "",
+                                                      "properties": [
+                                                        {
+                                                          "name": "name",
+                                                          "required": true,
+                                                          "schema": {
+                                                            "fullComment": "name in case of it being a reference, otherwise null",
+                                                            "type": "string"
+                                                          }
+                                                        },
+                                                        {
+                                                          "name": "schema",
+                                                          "required": true,
+                                                          "schema": {
+                                                            "circularRefName": "SimplifiedSchema",
+                                                            "properties": [],
+                                                            "type": "object"
+                                                          }
+                                                        }
+                                                      ],
+                                                      "type": "object"
+                                                    },
+                                                    "name": "SimplifiedSchemaItem"
+                                                  }
+                                                ],
+                                                "type": "array"
+                                              }
+                                            },
+                                            {
+                                              "name": "fullComment",
+                                              "required": false,
+                                              "schema": {
+                                                "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                                "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                                                "type": "string"
+                                              }
+                                            }
+                                          ],
+                                          "type": "object"
+                                        }
+                                      }
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "name": "TypescriptScopeTypeContext"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "interfaces",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isExported",
+                      "required": true,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "comment",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "simplifiedSchema",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+                        "properties": [
+                          {
+                            "name": "todo",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "discussion",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "idea",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "later",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "nb",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "title",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "section",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "description",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "type",
+                            "required": true,
+                            "schema": {
+                              "enum": [
+                                "string",
+                                "number",
+                                "boolean",
+                                "object",
+                                "array",
+                                "null"
+                              ],
+                              "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+                              "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "circularRefName",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "enum",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "Primitive type",
+                                    "properties": [],
+                                    "type": "object"
+                                  },
+                                  "name": "JSONSchema7Type"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "properties",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "in case of object, this will always appear",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "",
+                                    "properties": [
+                                      {
+                                        "name": "name",
+                                        "required": true,
+                                        "schema": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      {
+                                        "name": "schema",
+                                        "required": true,
+                                        "schema": {
+                                          "circularRefName": "SimplifiedSchema",
+                                          "properties": [],
+                                          "type": "object"
+                                        }
+                                      },
+                                      {
+                                        "name": "required",
+                                        "required": true,
+                                        "schema": {
+                                          "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                                          "nb": "can't we put this in the SimplifiedSchema itself?",
+                                          "type": "boolean"
+                                        }
+                                      }
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "name": "SimplifiedSchemaProperty"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "items",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "in case of arrays, this will always appear",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "",
+                                    "properties": [
+                                      {
+                                        "name": "name",
+                                        "required": true,
+                                        "schema": {
+                                          "fullComment": "name in case of it being a reference, otherwise null",
+                                          "type": "string"
+                                        }
+                                      },
+                                      {
+                                        "name": "schema",
+                                        "required": true,
+                                        "schema": {
+                                          "circularRefName": "SimplifiedSchema",
+                                          "properties": [],
+                                          "type": "object"
+                                        }
+                                      }
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "name": "SimplifiedSchemaItem"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "fullComment",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                              "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "returnStatementRaw",
+          "required": false,
+          "schema": {
+            "fullComment": "Only in functions",
+            "type": "string"
+          }
+        },
+        {
+          "name": "statementContext",
+          "required": false,
+          "schema": {
+            "fullComment": "Parameters",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isRequired",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Only for functions",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "simplifiedSchema",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+                        "properties": [
+                          {
+                            "name": "todo",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "discussion",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "idea",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "later",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "nb",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "title",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "section",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "description",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "type",
+                            "required": true,
+                            "schema": {
+                              "enum": [
+                                "string",
+                                "number",
+                                "boolean",
+                                "object",
+                                "array",
+                                "null"
+                              ],
+                              "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+                              "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "circularRefName",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "enum",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "Primitive type",
+                                    "properties": [],
+                                    "type": "object"
+                                  },
+                                  "name": "JSONSchema7Type"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "properties",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "in case of object, this will always appear",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "",
+                                    "properties": [
+                                      {
+                                        "name": "name",
+                                        "required": true,
+                                        "schema": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      {
+                                        "name": "schema",
+                                        "required": true,
+                                        "schema": {
+                                          "circularRefName": "SimplifiedSchema",
+                                          "properties": [],
+                                          "type": "object"
+                                        }
+                                      },
+                                      {
+                                        "name": "required",
+                                        "required": true,
+                                        "schema": {
+                                          "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                                          "nb": "can't we put this in the SimplifiedSchema itself?",
+                                          "type": "boolean"
+                                        }
+                                      }
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "name": "SimplifiedSchemaProperty"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "items",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "in case of arrays, this will always appear",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "",
+                                    "properties": [
+                                      {
+                                        "name": "name",
+                                        "required": true,
+                                        "schema": {
+                                          "fullComment": "name in case of it being a reference, otherwise null",
+                                          "type": "string"
+                                        }
+                                      },
+                                      {
+                                        "name": "schema",
+                                        "required": true,
+                                        "schema": {
+                                          "circularRefName": "SimplifiedSchema",
+                                          "properties": [],
+                                          "type": "object"
+                                        }
+                                      }
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "name": "SimplifiedSchemaItem"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "fullComment",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                              "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "comment",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isRest",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "TypescriptScopeStatementContext"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "typeContext",
+          "required": false,
+          "schema": {
+            "fullComment": "Generics",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "comment",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "simplifiedSchema",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+                        "properties": [
+                          {
+                            "name": "todo",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "discussion",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "idea",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "later",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "nb",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "title",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "section",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "description",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "type",
+                            "required": true,
+                            "schema": {
+                              "enum": [
+                                "string",
+                                "number",
+                                "boolean",
+                                "object",
+                                "array",
+                                "null"
+                              ],
+                              "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+                              "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "circularRefName",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "enum",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "Primitive type",
+                                    "properties": [],
+                                    "type": "object"
+                                  },
+                                  "name": "JSONSchema7Type"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "properties",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "in case of object, this will always appear",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "",
+                                    "properties": [
+                                      {
+                                        "name": "name",
+                                        "required": true,
+                                        "schema": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      {
+                                        "name": "schema",
+                                        "required": true,
+                                        "schema": {
+                                          "circularRefName": "SimplifiedSchema",
+                                          "properties": [],
+                                          "type": "object"
+                                        }
+                                      },
+                                      {
+                                        "name": "required",
+                                        "required": true,
+                                        "schema": {
+                                          "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                                          "nb": "can't we put this in the SimplifiedSchema itself?",
+                                          "type": "boolean"
+                                        }
+                                      }
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "name": "SimplifiedSchemaProperty"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "items",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "in case of arrays, this will always appear",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "",
+                                    "properties": [
+                                      {
+                                        "name": "name",
+                                        "required": true,
+                                        "schema": {
+                                          "fullComment": "name in case of it being a reference, otherwise null",
+                                          "type": "string"
+                                        }
+                                      },
+                                      {
+                                        "name": "schema",
+                                        "required": true,
+                                        "schema": {
+                                          "circularRefName": "SimplifiedSchema",
+                                          "properties": [],
+                                          "type": "object"
+                                        }
+                                      }
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "name": "SimplifiedSchemaItem"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "fullComment",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                              "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "TypescriptScopeTypeContext"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "createdAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "updatedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "deletedAt",
+          "required": true,
+          "schema": {
+            "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "createdFirstAt",
+          "required": true,
+          "schema": {
+            "fullComment": "in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.\n\nTime\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+            "type": "number"
+          }
+        },
+        {
+          "name": "operationName",
+          "required": true,
+          "schema": {
+            "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "null"
+          }
+        },
+        {
+          "name": "projectRelativePath",
+          "required": true,
+          "schema": {
+            "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativePath",
+          "required": false,
+          "schema": {
+            "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "categoryStackCalculated",
+          "required": false,
+          "schema": {
+            "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+            "nb": "Changing this value when updating/upserting, changes where the item is located!",
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "TypescriptFile",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

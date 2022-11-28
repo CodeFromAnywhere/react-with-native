@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148857102,
-  "updatedAt": 1668148857102,
+  "createdAt": 1669312131443,
+  "updatedAt": 1669312131443,
   "deletedAt": 0,
-  "createdFirstAt": 1668148857102,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312131443,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/convention/storing-items.ts",
   "commentsInside": [],
   "rawText": " <T extends { [key: string]: any }>(\n  item: T\n): ModelLocation => {\n  const { operationName, projectRelativePath, operationRelativePath, ...rest } =\n    item;\n\n  return { operationName, projectRelativePath, operationRelativePath };\n}",
@@ -44,5 +39,5 @@
     "linesPerFile": 8,
     "numberOfFiles": 1
   },
-  "id": "tpprpjjgjsprjirkqmfvhwoz"
+  "id": "kjbdmainnwafkmpufoyrwjod"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384246682,
+  "updatedAt": 1669384246682,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384246682,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "ModelItemAssetView",
+  "slug": "model-item-asset-view",
+  "operationRelativeTypescriptFilePath": "src/ModelItemAssetView.tsx",
+  "type": {
+    "rawType": "<T extends import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").AugmentedAnyModelType>(props: { item: T; backendAsset?: import(\"/Users/king/King/operations/tools/asset/asset-type/build/BackendAsset\").BackendAsset | undefined; hideDownloadLink?: boolean | undefined; className?: string | undefined; }) => JSX.Element | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends AugmentedAnyModelType>(props: {\n  item: T;\n  backendAsset?: BackendAsset;\n  hideDownloadLink?: boolean;\n  className?: string;\n}) => {\n  const { backendAsset, item, hideDownloadLink, className } = props;\n\n  return backendAsset ? (\n    <AssetView\n      asset={backendAsset}\n      projectRelativeReferencingFilePath={item.projectRelativePath}\n      hideDownloadLink={hideDownloadLink}\n      className={className}\n    />\n  ) : null;\n}",
+  "description": "",
+  "id": "icyqdphrabeepbfatxgoqcew"
+}

@@ -1,0 +1,140 @@
+{
+  "createdAt": 1669639290964,
+  "updatedAt": 1669639290964,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639290964,
+  "id": "tsfunctionfrontmatterconfig",
+  "name": "TsFunctionFrontmatterConfig",
+  "slug": "tsfunctionfrontmatterconfig",
+  "operationRelativeTypescriptFilePath": "src/TsFunction.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * Everything you can do with frontmatter on a TsFunction\n */\nexport type TsFunctionFrontmatterConfig = {\n  /**\n   * Other keys in frontmatter that are group names, can be added here\n   */\n  groupAuthorization: { [groupName: string]: string };\n  /**\n   * for all exported functions in node operations, true by default\n   * false for others\n   *\n   * can be overwritten using frontmatter\n   */\n  isApiExposed: boolean;\n  /**\n   * whether or not the function can be cached (relies on cache invalidation)\n   */\n  canCache?: boolean;\n\n  /**\n   You can specify `runEveryPeriod` in your frontmatter of a function. This will set `runEveryPeriod` for the TsFunction. This is used by `function-server`: it will execute CRON-jobs that run these things on those periods.\n\n   Will only work if the function takes no arguments.\n   */\n  runEveryPeriod?: RunEveryPeriodEnum;\n\n  /**\n   * Indexed from frontmatter `price`\n   */\n  price?: Price;\n\n  classification?: FunctionClassification;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Everything you can do with frontmatter on a TsFunction",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "groupAuthorization": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Other keys in frontmatter that are group names, can be added here"
+        },
+        "isApiExposed": {
+          "type": "boolean",
+          "description": "for all exported functions in node operations, true by default false for others\n\ncan be overwritten using frontmatter"
+        },
+        "canCache": {
+          "type": "boolean",
+          "description": "whether or not the function can be cached (relies on cache invalidation)"
+        },
+        "runEveryPeriod": {
+          "$ref": "#/definitions/RunEveryPeriodEnum",
+          "description": "You can specify `runEveryPeriod` in your frontmatter of a function. This will set `runEveryPeriod` for the TsFunction. This is used by `function-server`: it will execute CRON-jobs that run these things on those periods.\n\nWill only work if the function takes no arguments."
+        },
+        "price": {
+          "$ref": "#/definitions/Price",
+          "description": "Indexed from frontmatter `price`"
+        },
+        "classification": {
+          "$ref": "#/definitions/FunctionClassification"
+        }
+      },
+      "required": [
+        "groupAuthorization",
+        "isApiExposed"
+      ],
+      "additionalProperties": false,
+      "description": "Everything you can do with frontmatter on a TsFunction"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Everything you can do with frontmatter on a TsFunction",
+      "properties": [
+        {
+          "name": "groupAuthorization",
+          "required": true,
+          "schema": {
+            "fullComment": "Other keys in frontmatter that are group names, can be added here",
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "isApiExposed",
+          "required": true,
+          "schema": {
+            "fullComment": "for all exported functions in node operations, true by default false for others\n\ncan be overwritten using frontmatter",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "canCache",
+          "required": false,
+          "schema": {
+            "fullComment": "whether or not the function can be cached (relies on cache invalidation)",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "runEveryPeriod",
+          "required": false,
+          "schema": {
+            "enum": [
+              "minute",
+              "5-minutes",
+              "quarter-hour",
+              "hour",
+              "6-hours",
+              "midnight",
+              "week",
+              "month",
+              "3-months",
+              "year"
+            ],
+            "fullComment": "You can specify `runEveryPeriod` in your frontmatter of a function. This will set `runEveryPeriod` for the TsFunction. This is used by `function-server`: it will execute CRON-jobs that run these things on those periods.\n\nWill only work if the function takes no arguments.\n\nUsed to specify functions that need to run every time with a specific interval\n\nAll times are at at the server timezone time\n\n- `minute`: every minute at 0 seconds\n- `5-mintues`: every 5 minutes, starting at the first minute of the hour\n- `quarter-hour`: every 15 minutes, starting at the first minute of the hour\n- `hour`: every hour, starting at the first minute of the hour\n- `6-hours`: every 6 hours, starting at midnight\n- `midnight`: every midnight (00:00:00)\n- `week`: every week at sundaynight (sunday, 1 second after 23:59:59 PM)\n- `month`: at the first second of the first day of the month (0:00:00)\n- `3-months`: every start of the quarter: january 1st (0:00:00), april 1st, july 1st, october 1st\n- `year`: every new year at january 1st at 0:00:00",
+            "type": "string"
+          }
+        },
+        {
+          "name": "price",
+          "required": false,
+          "schema": {
+            "fullComment": "Indexed from frontmatter `price`\n\nTLDR;EUROS\n\nA price is a number indicating the relative cost. Absolute cost is calculated by many other factors\n\nFor now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.\n\nLater we can add all kinds of extra conversion:\n\n- currency support\n- king os currency\n- lower cost for poorer people\n\netc...\n\nFirst we need to start making sales before we can add such complexity.\n\n",
+            "type": "number"
+          }
+        },
+        {
+          "name": "classification",
+          "required": false,
+          "schema": {
+            "enum": [
+              "wise",
+              "dumb",
+              "smart",
+              "genius",
+              "react-with-native",
+              "cli",
+              "test"
+            ],
+            "fullComment": "- `react`: The core library that should always be used that wraps react and react native.\n\n- `dumb`: Presentational components that only care about how things look, and have no idea about the type of information that they will contain (**data-agnostic**), nor their context they're used in.\n\n- `smart`: Presentational components that may contain getters and setters for global state. This means they're still easy enough to set up, but\n\n- `wise`: stateful components that use the backend as well to do things. for example, `simplified-schema-form`\n\n- `genius`: blocks of components that have certain functionality. Example: `file-writer` or `crud`",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "TsFunctionFrontmatterConfig",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,8 +1,9 @@
+import { SlugModelType } from "model-types";
 import { OperationPrivacy } from "./types";
 /**
  * This type can specify a frontend and backend that belong to each other. it doesn't include all operations that the ui or server are dependent on, they are calculated separately
  */
-export interface FrontBackBundle {
+export interface FrontBackBundle extends SlugModelType {
     /**
      * any operation names that are not necesarily dependencies of the named front-back bundle but still need to be available.
      */

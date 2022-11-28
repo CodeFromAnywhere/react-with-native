@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1669384999568,
+    "updatedAt": 1669384999568,
+    "deletedAt": 0,
+    "createdFirstAt": 1669384999568,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/parseFrontmatterString.ts",
+    "comment": "Parse a string as stored in frontmatter back to the original string",
+    "rawStatement": "export const parseFrontmatterString = (value: string) => {\n  const withoutQuotes = value.includes(\",\")\n    ? value.substring(1, value.length - 1)\n    : value;\n\n  const withNewlines = withoutQuotes.replaceAll(\"\\\\n\", \"\\n\");\n\n  return withNewlines;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 1,
+    "lastLine": 3,
+    "id": "zjiqxfbhhlbueuefelhfkagu"
+  }
+]

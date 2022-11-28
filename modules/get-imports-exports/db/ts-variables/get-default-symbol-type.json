@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668150643821,
+  "updatedAt": 1668150643821,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150643821,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDefaultSymbolType",
+  "slug": "get-default-symbol-type",
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "type": {
+    "rawType": "(symbol: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").Symbol, debug?: boolean | undefined) => import(\"/Users/king/King/operations/tools/typescript/get-imports-exports/src/util\").TypeSpecifier",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  symbol: Symbol,\n  debug?: boolean\n): TypeSpecifier => {\n  if (debug) {\n    console.log({\n      kinds: symbol\n        .getDeclarations()\n        .map((x) => ({ kind: x.getKindName(), name: x.getText() })),\n    });\n  }\n  const symbolTypeDeclarations = getSymbolTypeDeclarations(symbol);\n\n  const type = symbolTypeDeclarations.length > 0 ? \"type\" : \"value\";\n  /**\n   * checks whether the symbol contains a type declaration which has a generic parameter\n   */\n  const hasGeneric =\n    type === \"type\"\n      ? !!symbolTypeDeclarations.find(\n          // NB: type parameters gets the generics\n          (declaration) => getHasGeneric(declaration)\n        )\n      : undefined;\n\n  return { type, hasGeneric };\n}",
+  "description": "gets type of a symbol and if the type has a generic, without recursing.",
+  "id": "deajyhgrqtaechbakcviwwkh"
+}

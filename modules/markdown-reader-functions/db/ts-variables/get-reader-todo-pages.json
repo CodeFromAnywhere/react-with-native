@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669639128870,
+  "updatedAt": 1669639128870,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639128870,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getReaderTodoPages",
+  "slug": "get-reader-todo-pages",
+  "operationRelativeTypescriptFilePath": "src/getReaderTodoPages.ts",
+  "type": {
+    "rawType": "(projectRoot: string) => Promise<import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").FileWebPage[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  projectRoot: string\n): Promise<ReaderWebPage[]> => {\n  const operationsPath = getRootPath(\"operations\");\n  if (!operationsPath) return [];\n\n  const todoFolderPaths = await findAllTodoFolderPaths(operationsPath, false);\n  const markdownReaderPages: ReaderWebPage[] = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths: todoFolderPaths,\n    mapQueryPath: (queryPath) => {\n      const almostPath = queryPath\n        .replaceAll(\"todo/\", \"\")\n        .replace(\"operations/\", \"todo/\");\n\n      return almostPath.startsWith(\"todo/\") ? almostPath : \"todo/\" + almostPath;\n    },\n  });\n\n  return markdownReaderPages;\n}",
+  "description": "gets all todo pages as markdownreader pages",
+  "id": "yincdossvltxtoqezirqdaor"
+}

@@ -1,0 +1,86 @@
+{
+  "createdAt": 1669055724494,
+  "updatedAt": 1669055724494,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055724494,
+  "id": "namedparameterstypeof-yarnbuild",
+  "name": "NamedParameters<typeof yarnBuild>",
+  "slug": "namedparameterstypeof-yarnbuild",
+  "operationRelativeTypescriptFilePath": "src/yarnBuild.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "operationBasePath": {
+          "type": "string"
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "rmFirst": {
+              "type": "boolean",
+              "description": "if true, build folder will be removed first"
+            },
+            "skipMinify": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "operationBasePath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "operationBasePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "config",
+          "required": false,
+          "schema": {
+            "properties": [
+              {
+                "name": "rmFirst",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, build folder will be removed first",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "skipMinify",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof yarnBuild>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

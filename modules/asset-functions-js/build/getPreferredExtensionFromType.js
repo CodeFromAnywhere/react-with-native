@@ -1,4 +1,6 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getPreferredExtensionFromType=void 0;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getPreferredExtensionFromType = void 0;
 /**
  * Received files contain a "type" like "audio/mp3" or "image/jpeg", etc...
  *
@@ -6,5 +8,13 @@
  *
  * NB: we also need to convert the file itself in case of mp3
  */
-var getPreferredExtensionFromType=function(e){return"audio/mp4"===e?"mp3":null==e?void 0:e.split("/").pop()};exports.getPreferredExtensionFromType=getPreferredExtensionFromType;
+var getPreferredExtensionFromType = function (type) {
+    if (type === "audio/mp4")
+        return "mp3";
+    var lastPart = type === null || type === void 0 ? void 0 : type.split("/").pop();
+    if (lastPart === "quicktime")
+        return "mp4";
+    return lastPart;
+};
+exports.getPreferredExtensionFromType = getPreferredExtensionFromType;
 //# sourceMappingURL=getPreferredExtensionFromType.js.map

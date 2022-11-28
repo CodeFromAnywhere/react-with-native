@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668334621790,
+  "updatedAt": 1668334621790,
+  "deletedAt": 0,
+  "createdFirstAt": 1668334621790,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getPrimaryPersona.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const personas = await db.get(\"Persona\");\n\n  const primary = personas.find((x) => x.isPrimary) || personas[0];\n\n  if (!primary) {\n    console.log(\"No primary persona found\");\n  }\n\n  return primary;\n}",
+  "name": "getPrimaryPersona",
+  "slug": "get-primary-persona",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 216,
+    "lines": 11,
+    "bytes": 216,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 20,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "eunxedbgfzpuvhrksjyhcdge"
+}

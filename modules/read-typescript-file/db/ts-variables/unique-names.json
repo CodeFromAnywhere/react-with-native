@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263103317,
+  "updatedAt": 1666263103317,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263103317,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "uniqueNames",
+  "slug": "unique-names",
+  "operationRelativeTypescriptFilePath": "src/readTypescriptFile.ts",
+  "type": {
+    "rawType": "<T extends { name: string; }>(value: T, index: number, self: T[]) => boolean",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends { name: string }>(\n  value: T,\n  index: number,\n  self: T[]\n) => {\n  return self.findIndex((v) => v.name === value.name) === index;\n}",
+  "description": "",
+  "id": "mlclmniqeovwpdfmcnbvvwrh"
+}

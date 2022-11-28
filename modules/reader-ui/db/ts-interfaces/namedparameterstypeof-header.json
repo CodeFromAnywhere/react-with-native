@@ -1,0 +1,72 @@
+{
+  "createdAt": 1669639438496,
+  "updatedAt": 1669639438496,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639438496,
+  "id": "namedparameterstypeof-header",
+  "name": "NamedParameters<typeof Header>",
+  "slug": "namedparameterstypeof-header",
+  "operationRelativeTypescriptFilePath": "src/components/Header.tsx",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "props": {
+          "type": "object",
+          "properties": {
+            "publicBundleConfig": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/PublicBundleConfig"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "props"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "props",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "publicBundleConfig",
+                "required": false,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof Header>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

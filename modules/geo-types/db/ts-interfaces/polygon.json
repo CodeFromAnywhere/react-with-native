@@ -1,0 +1,61 @@
+{
+  "createdAt": 1668335464920,
+  "updatedAt": 1668335464920,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335464920,
+  "id": "polygon",
+  "name": "Polygon",
+  "slug": "polygon",
+  "operationRelativeTypescriptFilePath": "src/Polygon.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type Polygon = Position[];",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Position"
+      }
+    },
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "latitude",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "longitude",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          },
+          "name": "Position"
+        }
+      ],
+      "type": "array"
+    },
+    "typeCoverage": 0,
+    "rawType": "Polygon",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150847748,
-  "updatedAt": 1668150847748,
+  "createdAt": 1668977408827,
+  "updatedAt": 1668977408827,
   "deletedAt": 0,
-  "createdFirstAt": 1668150847748,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977408827,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/object-maps.ts",
   "commentsInside": [],
   "rawText": " <\n  TObject extends { [key: string]: any },\n  TMapResult,\n  TResultObject extends { [key in keyof TObject]: TMapResult }\n>(\n  object: TObject,\n  mapFn: (key: keyof TObject, value: TObject[keyof TObject]) => TMapResult\n): TResultObject => {\n  const valueObjectParts = getObjectKeysArray(object).map((key) => {\n    return { [key]: mapFn(key, object[key]) };\n  });\n\n  const merged = mergeObjectsArray(\n    valueObjectParts\n  ) as unknown as TResultObject;\n\n  return merged;\n}",
@@ -46,5 +41,5 @@
     "linesPerFile": 27,
     "numberOfFiles": 1
   },
-  "id": "ovagoctaybcdyyupxsyfabpt"
+  "id": "cprzkogmprhqerxylvexlcaj"
 }

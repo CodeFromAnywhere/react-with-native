@@ -1,9 +1,9 @@
-import { pagesObject } from "markdown-reader-ui";
 import {
   markdownReaderGetStaticPaths,
   markdownReaderGetStaticProps,
 } from "markdown-reader-functions";
-export default pagesObject.index;
+import { DocsReaderLayout } from "reader-ui";
+export default DocsReaderLayout;
 
 export const getStaticPaths = markdownReaderGetStaticPaths;
 export const getStaticProps = markdownReaderGetStaticProps;

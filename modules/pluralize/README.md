@@ -1,6 +1,6 @@
 # Pluralize
 
-pluralize (`OperationClassification` js)
+pluralize (`OperationClassification` cjs)
 
 
 

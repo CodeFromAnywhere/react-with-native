@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666264775030,
+  "updatedAt": 1666264775030,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264775030,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/oneByOne.ts",
+  "commentsInside": [],
+  "rawText": " async <T, U>(\n  array: T[],\n  callback: (instance: T, index: number) => Promise<U>\n): Promise<U[]> => {\n  const getResults = async (\n    results: Promise<U[]>,\n    instance: T,\n    index: number\n  ) => {\n    const awaitedResults = await results;\n    const result: U = await callback(instance, index);\n    const newResults = [...awaitedResults, result];\n    return newResults;\n  };\n\n  const result = await array.reduce(\n    getResults,\n    new Promise<U[]>((resolve) => resolve([]))\n  );\n\n  return result;\n}",
+  "name": "oneByOne",
+  "slug": "one-by-one",
+  "parameters": [],
+  "description": "for every item in an array, executes an async callback, one by one.\npromises an array of the results of every callback once it's done",
+  "returnType": {
+    "rawType": "Promise<U[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 640,
+    "lines": 23,
+    "bytes": 640,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 23,
+    "numberOfFiles": 1
+  },
+  "id": "arqtrikqrnogqhljfjofppch"
+}

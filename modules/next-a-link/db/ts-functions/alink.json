@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666261132453,
-  "updatedAt": 1666261132453,
+  "createdAt": 1668752324761,
+  "updatedAt": 1668752324761,
   "deletedAt": 0,
-  "createdFirstAt": 1666261132453,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668752324761,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/ALink.tsx",
   "commentsInside": [],
   "rawText": " ({\n  children,\n  href,\n  target,\n  rel,\n  linkProps,\n  ...otherAProps\n}: { linkProps?: LinkProps } & AType) => {\n  return (\n    <Link {...linkProps} href={href || \"#\"} passHref>\n      <A {...otherAProps} rel={rel} target={target}>\n        {children}\n      </A>\n    </Link>\n  );\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 18,
     "numberOfFiles": 1
   },
-  "id": "uinwrlptnkmgvrueemgztwpb"
+  "id": "xcozploqjbmqnldvehawcrse"
 }

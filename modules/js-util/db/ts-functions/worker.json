@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668150844846,
-  "updatedAt": 1668150844846,
+  "createdAt": 1668977402570,
+  "updatedAt": 1668977402570,
   "deletedAt": 0,
-  "createdFirstAt": 1668150844846,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
+  "createdFirstAt": 1668977402570,
   "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
   "name": "worker",
   "slug": "worker",
   "isExported": false,
   "operationRelativeTypescriptFilePath": "src/mapMany.ts",
+  "groupAuthorization": {},
   "commentsInside": [],
   "description": "",
   "parameters": [],
@@ -37,5 +32,5 @@
   },
   "rawText": "\n\nasync function worker(\n  id: number,\n  generator: ArrayGenerator,\n  mapFn: MapFn<any, any>,\n  result: any[]\n) {\n  //console.time(`Worker ${id}`);\n  for (let [currentValue, index, array] of generator) {\n    //console.time(`Worker ${id} --- index ${index} item ${currentValue}`);\n\n    const mappedResult = await mapItem(mapFn, currentValue, index, array);\n\n    // NB: if mappedResult gets rejected, change nothing!\n    if (mappedResult.status === \"fulfilled\") {\n      result[index] = mappedResult.value;\n    }\n\n    //console.timeEnd(`Worker ${id} --- index ${index} item ${currentValue}`);\n  }\n  //console.timeEnd(`Worker ${id}`);\n}",
   "maxIndentationDepth": 3,
-  "id": "kkzxcrcarhmltpulfuswtlds"
+  "id": "iyjhztimlwibldussvfooxfe"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668151922476,
-  "updatedAt": 1668151922476,
+  "createdAt": 1669132819019,
+  "updatedAt": 1669132819019,
   "deletedAt": 0,
-  "createdFirstAt": 1668151922476,
+  "createdFirstAt": 1669132819019,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "nested-menu",
   "operationRelativeTypescriptFilePath": "src/NestedMenu.tsx",
   "type": {
-    "rawType": "(props: { menu: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/nested-menu/src/types\").MenuType; headersClickable?: boolean | undefined; }) => JSX.Element",
+    "rawType": "(props: { items?: import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").NestedWebPage[] | undefined; headersClickable?: boolean | undefined; } & import(\"/Users/king/King/operations/tools/user-interfaces/gui/smart/nested-menu-types/build/types\").MouseEventCallbacks) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(props: {\n  menu: MenuType;\n  headersClickable?: boolean;\n}) => {\n  const router = useRouter();\n  const [expanded, setExpanded, { hydrated }] = useStore(\"menu.expanded\");\n\n  const expandCompleteUrlInMenu = () => {\n    const parts = trimSlashes(router.asPath).split(\"/\");\n    const cummulativeParts = parts\n      .map((part, index, array) => {\n        if (part === \"\") return;\n        return array.slice(0, index + 1).join(\"/\");\n      })\n      .filter(notEmpty);\n    const cumulativePartsExpandedObject = mergeObjectsArray(\n      cummulativeParts.map((url) => ({ [url]: true }))\n    );\n    setExpanded({ ...expanded, ...cumulativePartsExpandedObject });\n  };\n  useEffect(() => {\n    expandCompleteUrlInMenu();\n  }, [router.asPath]);\n\n  const { menu, headersClickable } = props;\n  const menuItems = menu?.map((menuItem, index) => {\n    return (\n      <NestedMenuItem\n        {...menuItem}\n        headersClickable={headersClickable}\n        key={`menu${index}`}\n      />\n    );\n  });\n  return <Div className=\"w-full\">{menuItems}</Div>;\n}",
+  "value": "(\n  props: {\n    items?: NestedWebPage[];\n    headersClickable?: boolean;\n  } & MouseEventCallbacks\n) => {\n  const router = useRouter();\n  const [expanded, setExpanded, { hydrated }] = useStore(\"menu.expanded\");\n\n  const expandCompleteUrlInMenu = () => {\n    const parts = trimSlashes(router.asPath).split(\"/\");\n    const cummulativeParts = parts\n      .map((part, index, array) => {\n        if (part === \"\") return;\n        return array.slice(0, index + 1).join(\"/\");\n      })\n      .filter(notEmpty);\n    const cumulativePartsExpandedObject = mergeObjectsArray(\n      cummulativeParts.map((url) => ({ [url]: true }))\n    );\n    setExpanded({ ...expanded, ...cumulativePartsExpandedObject });\n  };\n  useEffect(() => {\n    expandCompleteUrlInMenu();\n  }, [router.asPath]);\n\n  const { items, ...menuItemProps } = props;\n  const menuItems = items\n    ?.filter((x) => !x.isMenuHidden)\n    .map((nestedWebPage, index) => {\n      return (\n        <NestedMenuItem\n          mergeSingleChilds\n          item={nestedWebPage}\n          key={`menu${index}`}\n          {...menuItemProps}\n        />\n      );\n    });\n\n  return <Div className=\"w-full\">{menuItems}</Div>;\n}",
   "description": "General purpose nested menu component\n\nPlease make sure that you also wrap your app with `MenuStoreProvider`, or this will crash...!",
-  "id": "erdtinshcbamdgnitfdampab"
+  "id": "tnjvxjbqobvtaqeebuqubkve"
 }

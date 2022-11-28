@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384219110,
+  "updatedAt": 1669384219110,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384219110,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "uploadAssetWithContext",
+  "slug": "upload-asset-with-context",
+  "operationRelativeTypescriptFilePath": "src/server-context/uploadAssetWithContext.ts",
+  "type": {
+    "rawType": "(functionContext: import(\"/Users/king/King/operations/tools/user-interfaces/api/function-context-type/build/FunctionContext\").FunctionContext) => Promise<import(\"/Users/king/King/operations/tools/asset/asset-type/build/frontend-types\").UploadAssetResult>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  functionContext: FunctionContext\n): Promise<UploadAssetResult> => {\n  const file = functionContext.serverContext?.files.file;\n  if (!file) {\n    console.log(\"Got no file, fuktup\");\n    return { isSuccessful: false, message: \"No file found\" };\n  }\n\n  const realFile = (Array.isArray(file)\n    ? file[0]\n    : file) as unknown as ReceivedFile;\n\n  const functionFile = {\n    size: realFile.size,\n    path: realFile.path,\n    name: realFile.name,\n    type: realFile.type,\n  };\n\n  const randomName = generateRandomString(32);\n  const temporaryAssetsFolderPath = getTemporaryAssetsFolderPath();\n  const conversionInfo = getConversionInfoFromType(realFile.type);\n\n  console.log({ conversionInfo });\n\n  const temporaryFileName = `${randomName}.${conversionInfo.targetFormat}`;\n  const absoluteTemporaryDestinationPath = path.join(\n    temporaryAssetsFolderPath,\n    temporaryFileName\n  );\n\n  if (!fs.existsSync(temporaryAssetsFolderPath)) {\n    await fs.mkdir(temporaryAssetsFolderPath, { recursive: true });\n  }\n\n  if (conversionInfo.targetFormat === \"mp3\") {\n    // Conversion needed!\n    const resultingPath = await convertToMp3(\n      functionFile.path,\n      absoluteTemporaryDestinationPath\n    );\n  } else if (conversionInfo.targetFormat === \"mp4\") {\n    // in many cases, conversion needed\n    const resultingPath = await convertToMp4(\n      functionFile.path,\n      absoluteTemporaryDestinationPath\n    );\n  } else {\n    await fs.rename(functionFile.path, absoluteTemporaryDestinationPath);\n  }\n\n  return {\n    isSuccessful: true,\n    message: \"File received\",\n    temporaryDestination: temporaryFileName,\n  };\n}",
+  "description": "Uploads an asset to the server, and puts it in a temporary location in the assets folder of `function-server`. It returns the filename of the file in the temporary location.\n\nIt can only be accessed through that random name. This random name has 32 characters so cannot be easily guessed. This should be secure enough. The file should be moved to the final destination in the actual function that needs the file.\n\nNB: this function only works by providing a file as blobs under the \"file\" property name!",
+  "id": "igfemjfyetkfvpgnqlmxsscg"
+}

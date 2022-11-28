@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384155922,
+  "updatedAt": 1669384155922,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384155922,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getTypeFromUrlOrPath",
+  "slug": "get-type-from-url-or-path",
+  "operationRelativeTypescriptFilePath": "src/getTypeFromUrlOrPath.ts",
+  "type": {
+    "rawType": "(urlOrPath: string) => import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").AssetType",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(urlOrPath: string): AssetType => {\n  const extension = getExtension(urlOrPath);\n  if ([\"mp3\", \"m4a\", \"wav\"].includes(extension)) return \"audio\";\n  if ([\"mp4\", \"avi\"].includes(extension)) return \"video\";\n  if ([\"jpeg\", \"jpg\", \"png\", \"gif\", \"svg\"].includes(extension)) return \"image\";\n  if (isText(urlOrPath)) return \"text\";\n  return \"other\";\n}",
+  "description": "We are assuming the asset name and extsion appear at the end of the URL",
+  "id": "hrfgssaoydeavrjybqkgpfzu"
+}

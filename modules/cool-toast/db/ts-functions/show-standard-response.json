@@ -1,0 +1,153 @@
+{
+  "createdAt": 1668836111509,
+  "updatedAt": 1668836111509,
+  "deletedAt": 0,
+  "createdFirstAt": 1668836111509,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/cool-toast.ts",
+  "commentsInside": [],
+  "rawText": " (apiResult: StandardizedApiReturnType) => {\n  if (apiResult.errors) {\n    console.log({ errors: apiResult.errors });\n  }\n\n  if (apiResult.isUnauthorized) {\n    errorToast(apiResult.message);\n    return;\n  }\n\n  if (apiResult.isNotConnected) {\n    warningToast(apiResult.message || \"Not connected\");\n    return;\n  }\n\n  if (!apiResult.isSuccessful) {\n    errorToast(apiResult.message || \"Something went wrong\");\n    return;\n  }\n\n  if (!apiResult.result) {\n    successToast(\"Done\");\n    return;\n  }\n\n  if (!apiResult.result.isSuccessful) {\n    errorToast(apiResult.result.message || \"Something went wrong\");\n    return;\n  }\n\n  successToast(apiResult.result.message || \"Done\");\n}",
+  "name": "showStandardResponse",
+  "slug": "show-standard-response",
+  "parameters": [
+    {
+      "name": "apiResult",
+      "schema": {
+        "$ref": "#/definitions/StandardizedApiReturnType"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Handy type interface for rendering response",
+        "properties": [
+          {
+            "name": "isSuccessful",
+            "required": true,
+            "schema": {
+              "fullComment": "A boolean indicating whether or not the backend function was executed succesfully",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isNotConnected",
+            "required": false,
+            "schema": {
+              "fullComment": "If true, this indicates that the backend could not be reached for one reason or another. The reason can be found in `message`",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isCached",
+            "required": false,
+            "schema": {
+              "fullComment": "If true, this means that the result is coming from a cache",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isUnauthorized",
+            "required": false,
+            "schema": {
+              "fullComment": "If true, the function was not executed because you were not authorized",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "message",
+            "required": false,
+            "schema": {
+              "fullComment": "Optionally there could be a message here with more information about the failure",
+              "type": "string"
+            }
+          },
+          {
+            "name": "errors",
+            "required": false,
+            "schema": {
+              "fullComment": "If the input of the api was invalid, the invalidation will return the errors here.",
+              "items": [
+                {
+                  "schema": {
+                    "properties": [
+                      {
+                        "name": "fieldStack",
+                        "required": true,
+                        "schema": {
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
+                        "name": "error",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "result",
+            "required": false,
+            "schema": {
+              "properties": [
+                {
+                  "name": "isSuccessful",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "message",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Useful to show if the api has a standard response",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 724,
+    "lines": 32,
+    "bytes": 724,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 32,
+    "numberOfFiles": 1
+  },
+  "id": "yzweqoyzfwogzcfvarurvlud"
+}

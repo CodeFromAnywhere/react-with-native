@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667635482825,
-  "updatedAt": 1667635482825,
+  "createdAt": 1669639004189,
+  "updatedAt": 1669639004189,
   "deletedAt": 0,
-  "createdFirstAt": 1667635482825,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669639004189,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/readMarkdownFile.ts",
   "commentsInside": [],
   "rawText": " async (\n  filePath: Path\n): Promise<MarkdownParse | null> => {\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isMarkdownFile = [\"md\", \"mdx\"].includes(pathParse.ext.slice(1));\n  if (!isMarkdownFile) return null;\n  if (!fs.existsSync(filePath)) return null;\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const fileName = path.parse(filePath).name;\n\n  const markdownParse = mdToJsonParse(fileString, fileName);\n  return markdownParse;\n}",
@@ -31,7 +26,7 @@
   ],
   "description": "Reads and parses a markdown file",
   "returnType": {
-    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse | null>",
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse | null>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -49,5 +44,5 @@
     "linesPerFile": 18,
     "numberOfFiles": 1
   },
-  "id": "kjzsipzredkwnfuuqxpwifzj"
+  "id": "hbozvzffecouinmlqtqlelvn"
 }

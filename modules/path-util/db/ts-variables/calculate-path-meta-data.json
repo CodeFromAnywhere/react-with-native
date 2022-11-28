@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668331937946,
+  "updatedAt": 1668331937946,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331937946,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "calculatePathMetaData",
+  "slug": "calculate-path-meta-data",
+  "operationRelativeTypescriptFilePath": "src/calculatePathMetaData.ts",
+  "type": {
+    "rawType": "(absolutePath: string) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/PathMetaData\").PathMetaData | undefined>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  absolutePath: string\n): Promise<PathMetaData | undefined> => {\n  const exists = fs.existsSync(absolutePath);\n  if (!exists) return;\n  const pathParse = getPathParse(absolutePath);\n  if (!pathParse) return;\n\n  const stats = await fs.stat(absolutePath);\n  const isFolder = stats.isDirectory();\n  const fullFileName = isFolder ? undefined : path.parse(absolutePath).base;\n\n  const fileType = isFolder ? null : determineFileType(absolutePath);\n\n  const categorizedFiles: CategorizedFilePaths = isFolder\n    ? await categorizeFiles({ basePath: absolutePath })\n    : {\n        code: fileType === \"code\" ? [absolutePath] : [],\n        data: fileType === \"data\" ? [absolutePath] : [],\n        text: fileType === \"text\" ? [absolutePath] : [],\n      };\n\n  const folderSummary = await getFolderSummary(categorizedFiles);\n  const mainComment = await getPathMainComment(absolutePath);\n\n  const pathMetaData: PathMetaData = {\n    mainComment,\n    fullFileName,\n    createdAt: stats.ctimeMs,\n    updatedAt: stats.mtimeMs,\n    ...pathParse,\n    sizes: folderSummary,\n  };\n\n  return pathMetaData;\n}",
+  "description": "for folders: finds all files used for calculation and uses sumPathMetaData to create a new PathMetaData.\nfor files: just calculates the path metadata",
+  "id": "sqqvclilimudshelwssopklp"
+}

@@ -1,0 +1,69 @@
+{
+  "createdAt": 1669467151683,
+  "updatedAt": 1669467151683,
+  "deletedAt": 0,
+  "createdFirstAt": 1669467151683,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/Parameter.tsx",
+  "commentsInside": [],
+  "rawText": " (props: { text: string }) => {\n  const { text } = props;\n  if (!text) return null;\n  const [parameter, value] = text\n    .slice(1)\n    .split(\":\")\n    .map((x) => x.trim());\n  return (\n    <Span className=\"rounded-md bg-purple-400 dark:bg-purple-800 px-1\">\n      {parameter ? <Span>{parameter}</Span> : null}\n      {value ? <Span className=\"bg-white bg-opacity-50\">{value}</Span> : null}\n    </Span>\n  );\n}",
+  "name": "Parameter",
+  "slug": "parameter",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "text",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "In markdown, if you wish to refer to a parameter, you can backtick it and put a \".\" in front. You can also add a value to it if you wish, by adding the \":\" and the value afterwards.",
+  "returnType": {
+    "rawType": "JSX.Element | null",
+    "typeDefinition": {
+      "optional": true,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 588,
+    "lines": 14,
+    "bytes": 588,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 42,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "lnsangnogiflskeqyrsamvru"
+}

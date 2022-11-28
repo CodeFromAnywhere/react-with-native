@@ -1,0 +1,59 @@
+{
+  "createdAt": 1669055708207,
+  "updatedAt": 1669055708207,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055708207,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/generateJsonSchemas.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  manualProjectRoot?: string,\n  /**\n   * If given, does it just for a single operation\n   */\n  operationName?: string\n) => {\n  const projectRoot = manualProjectRoot || getProjectRoot();\n\n  if (!projectRoot) return;\n\n  const dbModels = await getAllDbModels(manualProjectRoot, operationName);\n\n  const jsonDbModels = dbModels.filter(\n    (x) =>\n      x.dbStorageMethod &&\n      [\"jsonMultiple\", \"jsonSingle\"].includes(x.dbStorageMethod)\n  );\n  /**\nLoop:\n\n- get the operationName for the model\n- use the db to get all interfaces with that very operationName except for the one of the model...,\n- get every `TsInterface.type.typeDefinition`\n- put those inside of keys in the `defintions` key\n- add the interface doccomment to the `title` key\n- put the main properties in properties\n- change copy `description` into `markdownDescription`, everywhere, to support Markdown Intellisense within JSON\n- set `additionalProperties` to `false`\n- set `\"$schema\": \"http://json-schema.org/draft-07/schema#\"`\n- maybe also apply storage of db convention, so no `xxxCalculated` properties or `operationName` etc... (Same as `Storage<X>`)\n- set `type: \"object\"`\n\n         */\n\n  const allSchemas = (\n    await Promise.all(\n      jsonDbModels.map(async (dbModel) => {\n        if (!dbModel.dbStorageMethod) return;\n        const locationPattern = getDefaultLocationPattern(\n          dbModel.dbStorageMethod,\n          dbModel.name\n        );\n        if (!locationPattern) return;\n\n        const allInterfaces = await db.get(\"TsInterface\", {\n          // operationName: dbModel.operationName,\n        });\n        const mainSchema = dbModel.type.typeDefinition;\n\n        const definitions = mergeObjectsArray(\n          allInterfaces\n            .filter((x) => x.name !== dbModel.name)\n            .map((x) => {\n              if (!x.type.typeDefinition) return;\n\n              const goodName = x.name.replace(\">\", \"%3E\").replace(\"<\", \"%3C\");\n              return { [goodName]: x.type.typeDefinition };\n            })\n            .filter(notEmpty)\n        );\n\n        const schema: JSONSchema7 = {\n          ...mainSchema,\n          $schema: \"http://json-schema.org/draft-07/schema#\",\n          title: dbModel.name,\n          additionalProperties: false,\n          description: dbModel.description,\n          definitions,\n        };\n\n        return {\n          schema,\n          fileMatch: [`/${locationPattern}`],\n          url: `./schemas/${pluralize(kebabCase(dbModel.name))}.schema.json`,\n        };\n      })\n    )\n  ).filter(notEmpty);\n\n  /**\n   The finished file should be put into `~/schemas/model-name.schema.json`\n\n    Recalculate `json.schemas` in `project-root.code-workspace` (in project root)\n\n    Put the storage convention in the `fileMatch` and the url to the project-relative schema in `url`...\n\n   */\n  const jsonSchemas = (\n    await Promise.all(\n      allSchemas.map(async (schemaObject) => {\n        const isWriteSuccessful = await writeJsonToFile(\n          path.join(projectRoot, schemaObject.url),\n          schemaObject.schema\n        );\n\n        if (!isWriteSuccessful) {\n          console.log(\"WRITE WERNT WRONG\");\n          return;\n        }\n\n        const { fileMatch, url } = schemaObject;\n        const setting = { fileMatch, url };\n\n        return setting;\n      })\n    )\n  ).filter(notEmpty);\n\n  const workspacePath = path.join(projectRoot, \"project-root.code-workspace\");\n  const workspace =\n    (await readJsonFile<{ [key: string]: any }>(workspacePath)) || {};\n\n  const oldSchemas = workspace.settings?.[\"json.schemas\"] || [];\n\n  // make new workspace by concatenating the schemas with the old one and removing duplicates\n  const newWorkspace = {\n    ...workspace,\n    settings: {\n      ...workspace.settings,\n      \"json.schemas\": jsonSchemas\n        .concat(oldSchemas)\n        .filter(\n          onlyUnique2<{ fileMatch: string[]; url: string }>(\n            (a, b) => a.url === b.url\n          )\n        ),\n    },\n  };\n\n  const isNewWorkspaceWritten = await writeJsonToFile(\n    workspacePath,\n    newWorkspace\n  );\n\n  // console.log({ isNewWorkspaceWritten, workspacePath });\n}",
+  "name": "generateJsonSchemas",
+  "slug": "generate-json-schemas",
+  "parameters": [
+    {
+      "name": "manualProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    },
+    {
+      "name": "operationName",
+      "schema": {
+        "type": "string",
+        "description": "If given, does it just for a single operation"
+      },
+      "simplifiedSchema": {
+        "fullComment": "If given, does it just for a single operation",
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "generates schemas for db models\n\nIs done every time you run `rebuildOperation` and `generateSdkOperations`\n\nTODO: there are some problems with references that cannot be found with references to generic types... This can probably be solved, but it's not going to be easy!\n\nIDEA:\n\n1) find all referencing definitions in the main schema\n2) find those in all other interfaces\n3) recursively find references in those as well\n4) if you can't find the reference, remove the reference and replace type to \"any\" (add WARNING to description \"reference not found\")\n\nThis will result in a valid schema that has no unresolved references\n\nTODO: apply Storage<X> to db-models\n\nTODO: apply Array<X> to db-models with json-multiple\n\nTODO: apply special config conventions (MergedDbConfig) like tsconfig.json and package.json\n\nTODO: Make a validator that validates the whole database to this schema.",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 4983,
+    "lines": 158,
+    "bytes": 4983,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 158,
+    "numberOfFiles": 1
+  },
+  "id": "yvovqqqprrqtmpkfytrxaryr"
+}

@@ -1,0 +1,92 @@
+{
+  "createdAt": 1669385313721,
+  "updatedAt": 1669385313721,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385313721,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/addAuthenticationMethod.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  method: AuthenticationMethodMethod,\n  handle: string,\n  /**\n   * TODO: check if it's unique before sending an email.\n   * This is needed in case you are a person trying to add a method, because then there might be another person with the same handle.\n   */\n  shouldBeUnique?: boolean,\n  credential?: string\n): Promise<{\n  isSuccessful: boolean;\n  message: string;\n  authenticationMethod?: AuthenticationMethod;\n}> => {\n  if (method === \"email\") {\n    // send email to `handle`\n\n    if (!isEmail(handle)) {\n      return {\n        isSuccessful: false,\n        message: \"Please provide a correct email\",\n      };\n    }\n\n    if (shouldBeUnique) {\n      const isAuthenticationMethodUnavaiable =\n        await findAuthenticatedPersonWithHandle(method, handle);\n      if (isAuthenticationMethodUnavaiable) {\n        console.log({ isAuthenticationMethodUnavaiable });\n        return {\n          isSuccessful: false,\n          message: \"That email is already taken\",\n        };\n      }\n    }\n\n    const otp = Math.round(100000 + Math.random() * 900000);\n\n    const text = `Please verify your email with this code: ${otp}. You have 10 minutes.`;\n\n    const authenticationMethod: AuthenticationMethod = {\n      method: \"email\",\n      handle,\n      isAuthenticated: false,\n      otp,\n    };\n\n    const mailResult = await sendMail({\n      to: handle,\n      subject: \"Verify your email\",\n      text,\n    });\n\n    if (!mailResult) {\n      return { isSuccessful: false, message: \"Couldn't send email\" };\n    }\n\n    return {\n      isSuccessful: true,\n      message: \"Code sent, please verify.\",\n      authenticationMethod,\n    };\n  }\n\n  if (method === \"phoneNumber\") {\n    // send sms to `handle`\n\n    if (!isPhoneNumber(handle)) {\n      return {\n        isSuccessful: false,\n        message: \"Please provide a correct phone number\",\n      };\n    }\n\n    if (shouldBeUnique) {\n      const isAuthenticationMethodUnavaiablePerson =\n        await findAuthenticatedPersonWithHandle(method, handle);\n      if (isAuthenticationMethodUnavaiablePerson) {\n        console.log({ isAuthenticationMethodUnavaiablePerson });\n        return {\n          isSuccessful: false,\n          message: \"That phone number is already taken\",\n        };\n      }\n    }\n\n    const otp = Math.round(100000 + Math.random() * 900000);\n    const body = `Please verify your phone number with this code: ${otp}. You have 10 minutes.`;\n\n    const authenticationMethod: AuthenticationMethod = {\n      method: \"phoneNumber\",\n      handle,\n      isAuthenticated: false,\n      otp,\n    };\n\n    const smsResult = await sendSms({ to: handle, body });\n\n    if (!smsResult) {\n      return { isSuccessful: false, message: \"Couldn't send sms\" };\n    }\n\n    return {\n      isSuccessful: true,\n      message: \"Code sent, please verify.\",\n      authenticationMethod,\n    };\n  }\n\n  if (method === \"usernamePassword\") {\n    // add username and password to the authenticated methods\n\n    if (!credential || !isValidPassword(credential)) {\n      return {\n        isSuccessful: false,\n        message: \"Please provide a valid password\",\n      };\n    }\n\n    const encryptedCredential = await encryptPassword(credential);\n\n    const authenticationMethod: AuthenticationMethod = {\n      method: \"usernamePassword\",\n      handle,\n      encryptedCredential,\n      isAuthenticated: true,\n    };\n\n    return {\n      isSuccessful: true,\n      message: \"Username/password has been set.\",\n      authenticationMethod,\n    };\n  }\n\n  return { isSuccessful: false, message: \"method not implemented yet\" };\n}",
+  "name": "addAuthenticationMethod",
+  "slug": "add-authentication-method",
+  "parameters": [
+    {
+      "name": "method",
+      "schema": {
+        "$ref": "#/definitions/AuthenticationMethodMethod"
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "usernamePassword",
+          "phoneNumber",
+          "email",
+          "apple",
+          "google",
+          "facebook",
+          "twitter",
+          "linkedin",
+          "github"
+        ],
+        "fullComment": "Username + password should be the default\n\nEmail OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n\nAll others can also act as authentication methods, but the token shouldn't be stored",
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "handle",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "shouldBeUnique",
+      "schema": {
+        "type": "boolean",
+        "description": "TODO: check if it's unique before sending an email. This is needed in case you are a person trying to add a method, because then there might be another person with the same handle."
+      },
+      "simplifiedSchema": {
+        "fullComment": "TODO: check if it's unique before sending an email. This is needed in case you are a person trying to add a method, because then there might be another person with the same handle.",
+        "todo": "check if it's unique before sending an email. This is needed in case you are a person trying to add a method, because then there might be another person with the same handle.",
+        "type": "boolean"
+      },
+      "required": false
+    },
+    {
+      "name": "credential",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "sends an email or sms, or already confirms in case of emailPassword\n\ncore function for `addPersonAuthenticationMethod` and `addDeviceAuthenticatedMethod`",
+  "returnType": {
+    "rawType": "Promise<{ isSuccessful: boolean; message: string; authenticationMethod?: import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/AuthenticationMethjod\").AuthenticationMethod | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 3686,
+    "lines": 139,
+    "bytes": 3686,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 139,
+    "numberOfFiles": 1
+  },
+  "id": "lwoqqzgyfdtagnblpwinmeqi"
+}

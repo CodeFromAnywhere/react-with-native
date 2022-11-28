@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148838197,
-  "updatedAt": 1668148838197,
+  "createdAt": 1669312092829,
+  "updatedAt": 1669312092829,
   "deletedAt": 0,
-  "createdFirstAt": 1668148838197,
+  "createdFirstAt": 1669312092829,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (dbFileLocation, alterFn) => {\n  const { absolutePath } = dbFileLocation;\n  const markdownParse = await readMarkdownFile(absolutePath);\n  const isNewFile = !markdownParse;\n  const markdownModelItem = markdownParseToMarkdownModelType(markdownParse);\n\n  const storedData = markdownModelItem ? [markdownModelItem] : [];\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n  const finalItem: Storing<MarkdownModelType> = newStoredData[0];\n  const markdownString = markdownModelTypeToMarkdownString(finalItem);\n  const isSuccesful = await writeStringToFile(absolutePath, markdownString);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
   "description": "Alters a markdown file",
-  "id": "poriqbafnwbesebrdihzlaip"
+  "id": "efjoibbqyhjbufhtyrbwjsns"
 }

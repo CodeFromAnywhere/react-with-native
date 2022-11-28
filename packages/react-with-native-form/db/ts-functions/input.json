@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666261373855,
-  "updatedAt": 1666261373855,
+  "createdAt": 1669055877838,
+  "updatedAt": 1669055877838,
   "deletedAt": 0,
-  "createdFirstAt": 1666261373855,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055877838,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/general.tsx",
   "commentsInside": [],
   "rawText": " <\n  TInputs extends AllPluginInputTypes,\n  T extends keyof TInputs\n>({\n  type,\n  plugin,\n  title,\n  onChange,\n  value,\n  isLast,\n  startSection,\n  sectionTitle,\n  next,\n  extra,\n  errors,\n  reference,\n  description,\n  config,\n  uniqueFieldId,\n  renderInputContainer,\n  errorClassName,\n  fieldName,\n}: {\n  plugin: PluginComponent<TInputs[T]>;\n  type: string;\n  fieldName: string;\n  config: TInputs[T][\"config\"];\n  extra: TInputs[T][\"extra\"];\n  next: any;\n  title?: string;\n  onChange: OnChange<TInputs[T]>;\n  value: TInputs[T][\"value\"];\n  errors?: Error[];\n  isLast: boolean;\n  startSection?: boolean;\n  sectionTitle?: string;\n  reference?: RefObject<HTMLDivElement>;\n  description?: string;\n  /**\n   * format: {uniqueGeneratedNumber}.{fieldName}\n   */\n  uniqueFieldId: string;\n  renderInputContainer?: RenderInputContainerType;\n  errorClassName?: string;\n}) => {\n  const InputComponent = plugin;\n  const InputContainer = renderInputContainer || DefaultInputContainer;\n  return (\n    <Div ref={reference}>\n      <InputContainer\n        {...{\n          description,\n          sectionTitle,\n          startSection,\n          title,\n          next,\n          isLast,\n          id: uniqueFieldId,\n          type,\n          error:\n            !plugin.hideContainerError &&\n            errors?.find(errorOnField(fieldName))?.message,\n          extra,\n          config,\n          errorClassName,\n        }}\n      >\n        <InputComponent\n          {...{\n            uniqueFieldId,\n            fieldName,\n            config,\n            extra,\n            onChange,\n            value,\n            errors,\n            errorClassName,\n          }}\n        />\n      </InputContainer>\n    </Div>\n  );\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 83,
     "numberOfFiles": 1
   },
-  "id": "lztqljdlzzisamvjqnpbcjba"
+  "id": "hkrdkhihpsgohkwglaefalrq"
 }

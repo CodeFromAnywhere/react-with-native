@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150847749,
-  "updatedAt": 1668150847749,
+  "createdAt": 1668977408827,
+  "updatedAt": 1668977408827,
   "deletedAt": 0,
-  "createdFirstAt": 1668150847749,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977408827,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/object-maps.ts",
   "commentsInside": [],
   "rawText": " async (\n  object: { [key: string]: any },\n  mapFn: (key: string) => string | Promise<string> | undefined\n) => {\n  const keyPairs = await Promise.all(\n    Object.keys(object).map(async (oldKey) => {\n      return { oldKey, newKey: await mapFn(oldKey) };\n    })\n  );\n\n  return mergeObjectsArray(\n    keyPairs\n      .map((pair) => {\n        return pair.newKey ? { [pair.newKey]: object[pair.oldKey] } : null;\n      })\n      .filter(notEmpty)\n  );\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 18,
     "numberOfFiles": 1
   },
-  "id": "zngmnazpwqyudkhridrlppsp"
+  "id": "fdwlpcqzwdjluorsadoreqes"
 }

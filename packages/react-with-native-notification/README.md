@@ -1,6 +1,6 @@
 # React with native notification
 
-react-with-native-notification (`OperationClassification` ui-es5)
+react-with-native-notification (`OperationClassification` ui-cjs)
 
 
 ## 🔔 react-with-native-notification

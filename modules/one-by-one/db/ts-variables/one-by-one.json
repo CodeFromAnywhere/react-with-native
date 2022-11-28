@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666264775205,
+  "updatedAt": 1666264775205,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264775205,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "oneByOne",
+  "slug": "one-by-one",
+  "operationRelativeTypescriptFilePath": "src/oneByOne.ts",
+  "type": {
+    "rawType": "<T, U>(array: T[], callback: (instance: T, index: number) => Promise<U>) => Promise<U[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async <T, U>(\n  array: T[],\n  callback: (instance: T, index: number) => Promise<U>\n): Promise<U[]> => {\n  const getResults = async (\n    results: Promise<U[]>,\n    instance: T,\n    index: number\n  ) => {\n    const awaitedResults = await results;\n    const result: U = await callback(instance, index);\n    const newResults = [...awaitedResults, result];\n    return newResults;\n  };\n\n  const result = await array.reduce(\n    getResults,\n    new Promise<U[]>((resolve) => resolve([]))\n  );\n\n  return result;\n}",
+  "description": "for every item in an array, executes an async callback, one by one.\npromises an array of the results of every callback once it's done",
+  "id": "whitrihkvtfwbyrvgllxecnr"
+}

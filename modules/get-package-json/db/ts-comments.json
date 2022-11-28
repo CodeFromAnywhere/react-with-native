@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1668331889091,
+    "updatedAt": 1668331889091,
+    "deletedAt": 0,
+    "createdFirstAt": 1668331889091,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/general.ts",
+    "comment": "returns array of bins. by convention, these bins should also be exported from operation index file",
+    "rawStatement": "export const getOperationBins = async (operationFolderPath: string) => {\n  const packageJson = await getPackageJson({ operationFolderPath });\n  return packageJson?.bin ? Object.keys(packageJson.bin) : [];\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 5,
+    "lastLine": 7,
+    "id": "zfmyzoibxvzfppaoubkkgywx"
+  }
+]

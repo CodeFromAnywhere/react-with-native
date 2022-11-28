@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261633572,
-  "updatedAt": 1666261633572,
+  "createdAt": 1668775575026,
+  "updatedAt": 1668775575026,
   "deletedAt": 0,
-  "createdFirstAt": 1666261633572,
+  "createdFirstAt": 1668775575026,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "table-row",
   "operationRelativeTypescriptFilePath": "src/Table.tsx",
   "type": {
-    "rawType": "<T extends { [key: string]: any; } = any>({ row, columns, renderExtraColumns, extraColumnsAtStart, shouldHighlight, }: import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-table/src/Table\").RowType<T>) => JSX.Element",
+    "rawType": "<T extends { [key: string]: any; } = any>({ row, columns, renderExtraColumns, extraColumnsAtStart, shouldHighlight, }: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-table/src/Table\").RowType<T>) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "<T extends { [key: string]: any } = any>({\n  row,\n  columns,\n  renderExtraColumns,\n  extraColumnsAtStart,\n  shouldHighlight,\n}: RowType<T>) => {\n  /**\n   * Check which presentation type is set for this column and return this component\n   */\n  return (\n    <tr className={shouldHighlight ? \"bg-blue-300\" : undefined}>\n      {extraColumnsAtStart && (\n        <td className={tdClassName}>{renderExtraColumns?.(row)}</td>\n      )}\n      {columns.map((column, index) => {\n        if (!row) {\n          return <Skeleton />;\n        }\n\n        // we can optionally have a custom presentation for any column\n        if (column.customPresentation) {\n          return column.customPresentation(row);\n        }\n\n        return renderColumn(column, row, index);\n      })}\n\n      {!extraColumnsAtStart && (\n        <td className={tdClassName}>{renderExtraColumns?.(row)}</td>\n      )}\n    </tr>\n  );\n}",
   "description": "",
-  "id": "bhkpikbaunrivmktbgyrxbgm"
+  "id": "gsnovlsqduufpfukstgclmzs"
 }

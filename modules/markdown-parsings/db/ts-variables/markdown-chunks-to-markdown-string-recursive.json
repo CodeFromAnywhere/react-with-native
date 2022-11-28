@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200491672,
+  "updatedAt": 1669200491672,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200491672,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "markdownChunksToMarkdownStringRecursive",
+  "slug": "markdown-chunks-to-markdown-string-recursive",
+  "operationRelativeTypescriptFilePath": "src/parsing/parsing.ts",
+  "type": {
+    "rawType": "(markdownChunks: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownChunk[]) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  markdownChunks: MarkdownChunk[]\n): string => {\n  const result: string = markdownChunks\n    .map(markdownChunkToMarkdownStringRecursive)\n    .join(\"\");\n\n  return result;\n}",
+  "description": "",
+  "id": "mbbsovxdldqfgslqejkwhsnw"
+}

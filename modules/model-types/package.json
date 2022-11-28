@@ -1,12 +1,17 @@
 {
-  "createdAt": 1662709577330,
-  "updatedAt": 1662709577330,
+  "createdAt": 1668328729983,
+  "updatedAt": 1668328729983,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577330,
-  "name": "model-types",
-  "version": "0.0.1",
+  "createdFirstAt": 1668328729983,
+  "id": "IXDTUWkcNmDrRNZr",
+  "author": "",
+  "dependencies": {
+    "matter-types": "0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "test": "node build/index.js",
     "dev": "tsc -w",
@@ -14,17 +19,61 @@
     "up": "npm version patch -f",
     "pub": "npm run up && npm publish"
   },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^4.6.4"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "model-types",
+  "language": "english",
   "slug": "model-types",
-  "id": "IXDTUWkcNmDrRNZr",
-  "dependencies": {
-    "matter-types": "0.0.1"
-  },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/types/model-types/src/markdownModelTypeToMarkdownString.ts. Error: TypeError: Cannot read properties of undefined (reading 'filter')"
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "model-types",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669276572383,
+    "operationDependenciesIndexed": [
+      "Frontmatter",
+      "Frontmatter",
+      "frontmatterParseToString"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/types",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 13,
+        "lines": 625,
+        "characters": 18153,
+        "bytes": 18153
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 106,
+        "characters": 2643,
+        "bytes": 2643
+      },
+      "textSize": {
+        "numberOfFiles": 3,
+        "lines": 684,
+        "characters": 13613,
+        "bytes": 13613
+      },
+      "size": {
+        "bytes": 34409,
+        "characters": 34409,
+        "lines": 1415,
+        "numberOfFiles": 18
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

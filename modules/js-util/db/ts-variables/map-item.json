@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150845241,
-  "updatedAt": 1668150845241,
+  "createdAt": 1668977402818,
+  "updatedAt": 1668977402818,
   "deletedAt": 0,
-  "createdFirstAt": 1668150845241,
+  "createdFirstAt": 1668977402818,
   "classification": "const",
   "comments": [],
   "isExported": false,
@@ -29,5 +29,5 @@
   },
   "value": "async <T, U>(\n  mapFn: MapFn<T, U>,\n  currentValue: T,\n  index: number,\n  array: T[]\n): Promise<{\n  status: \"fulfilled\" | \"rejected\";\n  value?: U;\n  reason?: unknown;\n}> => {\n  try {\n    return {\n      status: \"fulfilled\",\n      value: await mapFn(currentValue, index, array),\n    };\n  } catch (reason) {\n    return {\n      status: \"rejected\",\n      reason,\n    };\n  }\n}",
   "description": "",
-  "id": "xfjkjocpkwkirtxbqhsxxesk"
+  "id": "ddnoyfhxeigpiyrmayxugpmo"
 }

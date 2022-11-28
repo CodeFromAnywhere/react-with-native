@@ -1,0 +1,37 @@
+{
+  "createdAt": 1669055611887,
+  "updatedAt": 1669055611887,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055611887,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "ProjectWatcher",
+  "operationRelativeTypescriptFilePath": "src/indexImportsExportsForFilePath.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  eventName,\n  filePath\n) => {\n  const name = path.parse(filePath).name;\n  process.stdout.write(`Change detected: ${name}\\n`);\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) {\n    console.log(\"\\nCouldn't find operationBasePath\");\n    return;\n  }\n  process.stdout.write(`Indexing operation imports ...`);\n\n  await findAndWriteImportsExports(operationBasePath);\n\n  console.log(\"✅\\n\");\n}",
+  "name": "indexImportsExportsForFilePath",
+  "slug": "index-imports-exports-for-file-path",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 433,
+    "lines": 17,
+    "bytes": 435,
+    "bytesPerCharacter": 1.0046189376443417,
+    "charactersPerLine": 25,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "imsyqnrlyigkunsvnyzfxcwj"
+}

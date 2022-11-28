@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668152093460,
-  "updatedAt": 1668152093460,
+  "createdAt": 1669385150451,
+  "updatedAt": 1669385150451,
   "deletedAt": 0,
-  "createdFirstAt": 1668152093460,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385150451,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/editors/testAllContentEditableRenderComponents.tsx",
   "commentsInside": [],
   "rawText": " () => {\n  const allComponents: ContentEditableRenderComponentType<any>[] = [\n    MarkedText,\n    MarkedParagraph,\n  ];\n\n  const results = allComponents.map((component) => {\n    return {\n      name: component.name,\n      isValid: testContentEditableRenderComponent(component),\n    };\n  });\n\n  console.log(results);\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 17,
     "numberOfFiles": 1
   },
-  "id": "jwfvyelbjkrbblvzlxuorofq"
+  "id": "uizticihgmhztmgfluhxsmjd"
 }

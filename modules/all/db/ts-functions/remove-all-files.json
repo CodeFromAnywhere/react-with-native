@@ -1,0 +1,52 @@
+{
+  "createdAt": 1666258924145,
+  "updatedAt": 1666258924145,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258924145,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/removeAllFiles.ts",
+  "commentsInside": [],
+  "rawText": " async (search: string) => {\n  const filePaths = (\n    await explore({\n      basePath: getRootPath(),\n      ignore: [\"node_modules\", \"build\"],\n      exact: true,\n      search,\n      searchLevel: \"fileName\",\n    })\n  ).map((x) => x.path);\n  console.log({ filePaths });\n  return forAllFiles({\n    filePaths,\n    callback: (filePath) => fs.rmSync(filePath),\n  });\n}",
+  "name": "removeAllFiles",
+  "slug": "remove-all-files",
+  "parameters": [
+    {
+      "name": "search",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "removes all files that have an exact match of the location (folders not because we use rm without -rf)",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 464,
+    "lines": 16,
+    "bytes": 464,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "thakoomlctfuvmxorpmnjpkq"
+}

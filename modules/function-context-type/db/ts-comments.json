@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1668548058836,
+    "updatedAt": 1668548058836,
+    "deletedAt": 0,
+    "createdFirstAt": 1668548058836,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/FunctionContext.ts",
+    "comment": "Should be attached as first argument of the function, if the name of the function is in the format of:\n\n- `xyzWithContext`: attaches all context\n- `xyzWithContextRaw`: attaches all context, api returns just the result of the function without wrapping it in the `RealApiReturnType`. Needed in case you have a different server.js `server.reply`\n\nFor more info see `apiConvention`",
+    "rawStatement": "export type FunctionContext = {\n  tsFunction?: TsFunction;\n  /**\n   * Authorizations accumulated of the person(s), the group(s), and public authorizations.\n   *\n   * NB: This contains all authorisations because there may also be model authorisations and file authorisations that are needed IN the function.\n   */\n  authorizations?: Authorization[];\n  /**\n   * Device from authToken\n   */\n  device: Device;\n  /**\n   * Groups the person(s) of the device belong to\n   */\n  groups?: Group[];\n\n  /**\n   * Device has authorization to the function\n   */\n  hasAuthorization: boolean;\n  /**\n   *\n   */\n  authToken: string;\n  /**\n   * Original context coming from server.js\n   *\n   * NB: due to indexation problems the type has been removed. It can be casted to the `Context` type, which you can import from:\n   *\n   * `import { Context } from \"server/typings/common\";`\n   *\n   */\n  serverContext?: any;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 6,
+    "lastLine": 13,
+    "id": "jdwfkzfdunuzaravjntvhmjp"
+  }
+]

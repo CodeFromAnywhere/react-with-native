@@ -1,6 +1,6 @@
 # Labeled button
 
-labeled-button (`OperationClassification` js)
+labeled-button (`OperationClassification` cjs)
 
 
 

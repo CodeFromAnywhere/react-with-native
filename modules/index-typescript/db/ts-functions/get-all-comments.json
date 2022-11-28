@@ -1,0 +1,53 @@
+{
+  "createdAt": 1669055587825,
+  "updatedAt": 1669055587825,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055587825,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getAllComments.ts",
+  "commentsInside": [],
+  "rawText": " (\n  tsMorphNode: VariableDeclaration | Statement | Expression,\n  fileContent: string,\n  operationRelativeTypescriptFilePath: string\n): Creation<TsComment>[] => {\n  const statementName = tsMorphNode\n    .asKind(SyntaxKind.VariableDeclaration)\n    ?.getName();\n  const rawStatement = tsMorphNode.getText();\n  const leadingComments = tsMorphNode\n    .getLeadingCommentRanges()\n    .map((commentRange) =>\n      makeTsComment({\n        operationRelativeTypescriptFilePath,\n        commentRange,\n        rawStatement,\n        statementName,\n        fileContent,\n      })\n    );\n  const trailingComments = tsMorphNode\n    .getTrailingCommentRanges()\n    .map((commentRange) =>\n      makeTsComment({\n        operationRelativeTypescriptFilePath,\n        commentRange,\n        rawStatement,\n        statementName,\n        fileContent,\n      })\n    );\n\n  const all = leadingComments.concat(trailingComments);\n  return all;\n}",
+  "name": "getAllComments",
+  "slug": "get-all-comments",
+  "parameters": [],
+  "description": "gets all leading comments and trailing comments raw text, put together, separated with newlines",
+  "returnType": {
+    "rawType": "any[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {}
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1009,
+    "lines": 35,
+    "bytes": 1009,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 35,
+    "numberOfFiles": 1
+  },
+  "id": "ekupyqyboxwawlbpdjadbkuz"
+}

@@ -1,0 +1,47 @@
+{
+  "createdAt": 1669200466000,
+  "updatedAt": 1669200466000,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200466000,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getMarkdownContents.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  absoluteFolderPath: string\n): Promise<{ content: string; relativePath: string }[] | undefined> => {\n  if (!fs.existsSync(absoluteFolderPath)) return;\n  const markdownFiles = await getPublicMarkdownFilePaths(absoluteFolderPath);\n  const markdownContents = await Promise.all(\n    markdownFiles\n      .filter((x) => fs.existsSync(x.path))\n      .map(async (x) => {\n        return {\n          content: await fs.readFile(x.path, \"utf8\"),\n          relativePath: makeRelative(x.path, absoluteFolderPath),\n        };\n      })\n  );\n\n  return markdownContents;\n}",
+  "name": "getMarkdownContents",
+  "slug": "get-markdown-contents",
+  "parameters": [
+    {
+      "name": "absoluteFolderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<{ content: string; relativePath: string; }[] | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 564,
+    "lines": 18,
+    "bytes": 564,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "id": "xlykyaujgixldjnmdasbkuyp"
+}

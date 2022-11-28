@@ -65,12 +65,12 @@ export declare type SearchConfig = {
      */
     exact?: boolean;
     /**
-     * DEPRECATED: please use `includeMetaData` instead
-     *
      * if true, filestats will be included in result
      */
     includeStats?: boolean;
     /**
+     * TODO: Implement this
+     *
      * if true, metadata will be included in the result
      */
     includeMetaData?: boolean;

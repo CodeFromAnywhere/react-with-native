@@ -1,0 +1,79 @@
+{
+  "createdAt": 1668335871996,
+  "updatedAt": 1668335871996,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335871996,
+  "id": "namedparameterstypeof-generatesimpleindex",
+  "name": "NamedParameters<typeof generateSimpleIndex>",
+  "slug": "namedparameterstypeof-generatesimpleindex",
+  "operationRelativeTypescriptFilePath": "src/generateSimpleIndex.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "{\n  operationName,\n  manualProjectRoot,\n}": {
+          "type": "object",
+          "properties": {
+            "operationName": {
+              "type": "string",
+              "description": "if given, just exports * from those"
+            },
+            "manualProjectRoot": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "operationName"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "{\n  operationName,\n  manualProjectRoot,\n}"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "{\n  operationName,\n  manualProjectRoot,\n}",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "operationName",
+                "required": true,
+                "schema": {
+                  "fullComment": "if given, just exports * from those",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "manualProjectRoot",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof generateSimpleIndex>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

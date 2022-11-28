@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getMergedMarkdownOutlineUrl=void 0;var markdown_parse_js_1=require("markdown-parse-js"),getMergedMarkdownOutlineUrl=function(e){return{title:e,hashtagPath:(0,markdown_parse_js_1.getImplicitId)(e)}};exports.getMergedMarkdownOutlineUrl=getMergedMarkdownOutlineUrl;
+//# sourceMappingURL=getMergedMarkdownOutlineUrl.js.map

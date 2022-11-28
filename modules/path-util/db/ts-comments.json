@@ -1,0 +1,50 @@
+[
+  {
+    "createdAt": 1668331941388,
+    "updatedAt": 1668331941388,
+    "deletedAt": 0,
+    "createdFirstAt": 1668331941388,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/getFolderSummary.ts",
+    "comment": "This function will return the byte size of any UTF-8 string you pass to it.",
+    "rawStatement": "export function byteCount(s: string) {\n  return encodeURI(s).split(/%..|./).length - 1;\n}",
+    "parameters": {},
+    "types": [],
+    "firstLine": 5,
+    "lastLine": 7,
+    "id": "zjsfrobsaktrjpjeovuunziw"
+  },
+  {
+    "createdAt": 1668331941388,
+    "updatedAt": 1668331941388,
+    "deletedAt": 0,
+    "createdFirstAt": 1668331941388,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/getFolderSummary.ts",
+    "comment": "gets a size summary for a file path\n\nDoes not calculate this for files that are too big (bigger than 1MB)",
+    "rawStatement": "export const getSizeSummary = async (\n  filePath: string\n): Promise<SizeSummary> => {\n  const stat = await fs.stat(filePath);\n\n  const bytes = stat.size;\n  const characters = bytes;\n\n  const bytesPerCharacter = bytes / characters;\n  let lines = 1;\n  const charactersPerLine = characters / lines;\n  const numberOfFiles = 1;\n  let linesPerFile = lines;\n  if (bytes > 1024 * 1024) {\n    // NB: too big to watch content\n\n    return {\n      bytes,\n      lines: 0,\n      characters,\n      bytesPerCharacter,\n      charactersPerLine,\n      linesPerFile,\n      numberOfFiles,\n    };\n  }\n\n  const content = await fs.readFile(filePath, \"utf8\");\n  lines = content.split(\"\\n\").length;\n  linesPerFile = lines;\n\n  return {\n    bytes,\n    lines,\n    characters,\n    bytesPerCharacter,\n    charactersPerLine,\n    linesPerFile,\n    numberOfFiles,\n  };\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 12,
+    "lastLine": 16,
+    "id": "avemajlvayydtoqtzsaeyean"
+  },
+  {
+    "createdAt": 1668331941388,
+    "updatedAt": 1668331941388,
+    "deletedAt": 0,
+    "createdFirstAt": 1668331941388,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/getFolderSummary.ts",
+    "comment": "calculates folder summary from a categorized file paths object",
+    "rawStatement": "export const getFolderSummary = async (\n  categorizedFiles: CategorizedFilePaths\n): Promise<FolderSummary> => {\n  const categoriesSummary: Omit<FolderSummary, \"size\"> = {\n    codeSize: await sumSizeSummary(categorizedFiles.code),\n    dataSize: await sumSizeSummary(categorizedFiles.data),\n    textSize: await sumSizeSummary(categorizedFiles.text),\n  };\n\n  const folderSummary: FolderSummary = {\n    ...categoriesSummary,\n    size: sumAllKeys(Object.values(categoriesSummary), [\n      \"bytes\",\n      \"characters\",\n      \"lines\",\n      \"numberOfFiles\",\n    ]),\n  };\n\n  return folderSummary;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 72,
+    "lastLine": 74,
+    "id": "bryxcrvbztbfetrnzhtaqdyt"
+  }
+]

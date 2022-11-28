@@ -1,6 +1,6 @@
 # React with native ui
 
-react-with-native-ui (`OperationClassification` js)
+react-with-native-ui (`OperationClassification` cjs)
 
 
 

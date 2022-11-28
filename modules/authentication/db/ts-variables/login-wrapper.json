@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385481513,
+  "updatedAt": 1669385481513,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385481513,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "LoginWrapper",
+  "slug": "login-wrapper",
+  "operationRelativeTypescriptFilePath": "src/LoginWrapper.tsx",
+  "type": {
+    "rawType": "(props: { children: any; }) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: { children: any }) => {\n  const { children } = props;\n  const [authToken, setAuthToken, { hydrated }] = useStore(\"api.authToken\");\n\n  // Ensure there is an authToken\n  useEffect(() => {\n    if (!hydrated) return;\n    if (!authToken || authToken.length === 0) {\n      setAuthToken(generateId());\n    }\n  }, [authToken, hydrated]);\n\n  return children;\n}",
+  "description": "ensures the auth-token is set",
+  "id": "qqdvvknhxeewotfwyiawhtjg"
+}

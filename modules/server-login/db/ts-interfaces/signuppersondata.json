@@ -1,0 +1,552 @@
+{
+  "createdAt": 1669385344520,
+  "updatedAt": 1669385344520,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385344520,
+  "id": "signuppersondata",
+  "name": "SignupPersonData",
+  "slug": "signuppersondata",
+  "operationRelativeTypescriptFilePath": "src/signupWithContext.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type SignupPersonData = Pick<\n  Person,\n  | \"authorizations\"\n  | \"credit\"\n  | \"dataEntries\"\n  | \"interestSlugs\"\n  | \"media\"\n  | \"name\"\n  | \"slug\"\n  | \"pictureImage\"\n  | \"groupSlugs\"\n  | \"requiredAuthenticationMethods\"\n  | \"amountAuthenticationMethodsRequired\"\n>;",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "authorizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Authorization"
+          },
+          "description": "Which custom authorizations does this `Person` have?"
+        },
+        "credit": {
+          "$ref": "#/definitions/Credit",
+          "description": "Actions by the `Person` can create changes in the amount of credits\n\nThe exact meaning of the number of credits is determined by the OS settings. Can for example be 1:1 to euro, 1:1 to bitcoin, or a custom credit system. Transferability is also customisable.\n\nInsufficient credit can limit the persons possibilities within the OS"
+        },
+        "dataEntries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonInformationValue"
+          }
+        },
+        "interestSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          },
+          "description": "slugs of interest categories that this person should be notified about.\n\nSince this is a hierarchical model, parent interests will ensure all children are also applied."
+        },
+        "media": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonSocialMedia"
+          },
+          "description": "Media that is attached to this person.\n\nNB: not used to authenticate! Can be filled in by King OS, might be erroneous"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "pictureImage": {
+          "$ref": "#/definitions/BackendAsset"
+        },
+        "groupSlugs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slug"
+          },
+          "description": "To which groups does this person belong?\n\nThis determines additional authorizations\n\nCan be set on signup, but can always be edited by admin"
+        },
+        "requiredAuthenticationMethods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AuthenticationMethodMethod"
+          },
+          "description": "Optionally, the user can setup for themselves which authentication methods they require for themselves to authenticate on another device"
+        },
+        "amountAuthenticationMethodsRequired": {
+          "type": "number",
+          "description": "By default, one is enough, but if this is defined, the user needs to use this amount of authentication methods before he/she is authenticated. Must be at least one"
+        }
+      },
+      "required": [
+        "name",
+        "slug"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "authorizations",
+          "required": false,
+          "schema": {
+            "fullComment": "Which custom authorizations does this `Person` have?",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "`Authorization` helps you provide certain access to files, data, functionality, and code. Authorization can be provided custom, or by indexation. The indexation of the codebase and text-files overwrites the custom authorization in the `Group`-model.\n\n## Different authorizations\n\nFor files (ts, md, json, etc...):\n\n- canWriteCreate\n- canWriteUpdate\n- canWriteDelete\n- canRead\n- canSearch (only search index)\n\nFor db model data subsets:\n\n- canWriteUpdate\n- canWriteCreate\n- canWriteDelete\n- canRead\n- canSearch (only search index)\n\nFor functions:\n\n- canExecute\n\nFor functions, interfaces, variables:\n\n- canRead (reading docs only. for source, you need to provide the file auth)\n- canSearch (only search index)",
+                  "properties": [
+                    {
+                      "name": "isProjectWide",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "If true, this authorization is project-wide and applies to everything",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "authorizedOperationName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "If selected, the authorization will apply to the whole operation",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "tsFunctionId",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "If selected, the authorization will apply to this function\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "tsVariableId",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "If selected, the authorization will apply to this variable\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "tsInterfaceId",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "If selected, the authorization will apply to this interface\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "datasetId",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "If selected, the authorization will apply to this dataset\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "authorizedProjectRelativePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "If selected, the authorization will apply to everything in this folder or to this specific file",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "canExecute",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "canWriteCreate",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "canWriteUpdate",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "canWriteDelete",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "canRead",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "canSearch",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "Authorization"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "credit",
+          "required": false,
+          "schema": {
+            "fullComment": "Actions by the `Person` can create changes in the amount of credits\n\nThe exact meaning of the number of credits is determined by the OS settings. Can for example be 1:1 to euro, 1:1 to bitcoin, or a custom credit system. Transferability is also customisable.\n\nInsufficient credit can limit the persons possibilities within the OS\n\n",
+            "type": "number"
+          }
+        },
+        {
+          "name": "dataEntries",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "key value data storage model for information about a person\n\n- the filename must identify the person this is about (`personSlug`)\n- the categories are the different people and the person information categories\n- the keys are the person information datapoints\n- the values are the values of the datapoints that you stored about this user\n\nExample:\n\nthe file `person-information-values/abraham-lincoln.md` could contain something like this:\n\n```md # life born: 11-01-1777 died: 20-12-1812\n\n# identification firstName: Abraham lastName: Lincoln ```\n\nNB: It's not going to be easy to keep this model in sync with the model it relies on!\n\nTODO: figure out if this kan be a `KeyValueMarkdownModelType` or `MarkdownModelType`",
+                  "todo": "figure out if this kan be a `KeyValueMarkdownModelType` or `MarkdownModelType`",
+                  "nb": "It's not going to be easy to keep this model in sync with the model it relies on!",
+                  "properties": [
+                    {
+                      "name": "createdAt",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "updatedAt",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "deletedAt",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "createdFirstAt",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.\n\nTime\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "operationName",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "null"
+                      }
+                    },
+                    {
+                      "name": "projectRelativePath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operationRelativePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "categoryStackCalculated",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+                        "nb": "Changing this value when updating/upserting, changes where the item is located!",
+                        "items": [
+                          {
+                            "schema": {
+                              "type": "string"
+                            },
+                            "name": null
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "personId",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "personInformationSlug",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "value",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "PersonInformationValue"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "interestSlugs",
+          "required": false,
+          "schema": {
+            "fullComment": "slugs of interest categories that this person should be notified about.\n\nSince this is a hierarchical model, parent interests will ensure all children are also applied.",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "media",
+          "required": false,
+          "schema": {
+            "fullComment": "Media that is attached to this person.\n\nNB: not used to authenticate! Can be filled in by King OS, might be erroneous",
+            "nb": "not used to authenticate! Can be filled in by King OS, might be erroneous",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "media (mediums) that a person uses, e.g. linkedin, twitter, whatsapp, sms, calling, and irl",
+                  "properties": [
+                    {
+                      "name": "platformSlug",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "medium where the person is a user\n\nuse this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "path",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "used to find the user on the platform",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isPremium",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "(if available) whether or not the user has a premium account",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "tagline",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "(if available) a tagline for the user of the platform",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "bio",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "(if available) a bio for the user of the platform",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "PersonSocialMedia"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "pictureImage",
+          "required": false,
+          "schema": {
+            "fullComment": "Part of the asset that should be sent to the backend. The rest should frontend-only\n\nSome values are stored, some are not",
+            "properties": [
+              {
+                "name": "alt",
+                "required": false,
+                "schema": {
+                  "fullComment": "Stored value\n\nAlt text for the asset",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "relativePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Stored value\n\nRelative path, relative to the location the asset is defined in.\n\nOnly available if the asset was already processed by a backend. Before backend processing, only `temporaryDestination` is available.\n\nChanging the `relativePath` shouldn't do anything, it can only be changed by backend processing by giving a new `temporaryDestination`, or by changing the `name`.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "name",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNot given by the backend data, but can be SENT to the backend.\n\nShould not be stored, but if you change this value and send it to the backend, it should rename the file and thus the relativePath stored should change.\n\nNB: I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                  "nb": "I'm not sure how to solve having multiple references to a single file. If this occurs, which is hard to prevent if allowing manual editing of data, it may be hard to prevent dead links if someone changes the name of a file that is also refered to in other places. In this case, it would be ideal if all references also would be renamed, but it may be hard to find them. Even if we solve this, it's still possible to get dead links if someone renames the file (or removes it) manually. This should be taken into account, and may not break anything!",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "temporaryDestination",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "projectRelativeReferencingFilePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "modelName",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "groupSlugs",
+          "required": false,
+          "schema": {
+            "fullComment": "To which groups does this person belong?\n\nThis determines additional authorizations\n\nCan be set on signup, but can always be edited by admin",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                  "type": "string"
+                },
+                "name": "Slug"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "requiredAuthenticationMethods",
+          "required": false,
+          "schema": {
+            "fullComment": "Optionally, the user can setup for themselves which authentication methods they require for themselves to authenticate on another device",
+            "items": [
+              {
+                "schema": {
+                  "enum": [
+                    "usernamePassword",
+                    "phoneNumber",
+                    "email",
+                    "apple",
+                    "google",
+                    "facebook",
+                    "twitter",
+                    "linkedin",
+                    "github"
+                  ],
+                  "fullComment": "Username + password should be the default\n\nEmail OTP, phone number OTP (sms or call or whatsapp), should be optional 2FA methods\n\nAll others can also act as authentication methods, but the token shouldn't be stored",
+                  "type": "string"
+                },
+                "name": "AuthenticationMethodMethod"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "amountAuthenticationMethodsRequired",
+          "required": false,
+          "schema": {
+            "fullComment": "By default, one is enough, but if this is defined, the user needs to use this amount of authentication methods before he/she is authenticated. Must be at least one",
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "SignupPersonData",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

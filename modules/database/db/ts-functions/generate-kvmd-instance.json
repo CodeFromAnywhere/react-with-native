@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666259860418,
-  "updatedAt": 1666259860418,
+  "createdAt": 1668774167071,
+  "updatedAt": 1668774167071,
   "deletedAt": 0,
-  "createdFirstAt": 1666259860418,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774167071,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/test-db.ts",
   "commentsInside": [],
   "rawText": " (): Creation<KvmdTestModel> => {\n  const id = generateId();\n  return {\n    slug: id,\n    // Needed for deletion later\n    id: id,\n    isHeaderCalculated: true,\n    categoryStackCalculated: [],\n    comment: \"comment\",\n    value: \"value\",\n    name: id,\n  };\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 13,
     "numberOfFiles": 1
   },
-  "id": "wttnffctpkfjfykojkvmbwxa"
+  "id": "uqnbtrkldwjszweubsfwephm"
 }

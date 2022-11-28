@@ -1,16 +1,31 @@
 {
-  "createdAt": 1667582662057,
-  "updatedAt": 1667582662057,
+  "createdAt": 1668328710662,
+  "updatedAt": 1668328710662,
   "deletedAt": 0,
-  "createdFirstAt": 1667582662057,
-  "name": "markdown",
-  "version": "1.0.0",
-  "main": "./build/esm/index.js",
-  "types": "./build/esm/index.d.ts",
-  "files": [
-    "/build"
-  ],
-  "license": "MIT",
+  "createdFirstAt": 1668328710662,
+  "id": "kizrquhyzzljipgcekjjtedi",
+  "dependencies": {
+    "@popperjs/core": "2.4.4",
+    "asset-functions-js": "0.0.1",
+    "augmented-word-types": "0.0.1",
+    "clickable-icon": "0.0.1",
+    "code-types": "0.0.1",
+    "fs-util-js": "0.0.1",
+    "js-util": "0.0.1",
+    "markdown-parse-js": "0.0.1",
+    "matter-types": "0.0.1",
+    "react": "*",
+    "react-markdown": "*",
+    "react-with-native": "1.4.9",
+    "rehype-raw": "^6.1.1",
+    "remark-gfm": "^3.0.1",
+    "server-api-url": "0.0.1",
+    "tooltip": "0.0.1",
+    "ui-util": "0.0.1",
+    "asset-view": "0.0.0",
+    "asset-type": "0.0.1",
+    "markdown-types": "0.0.1"
+  },
   "devDependencies": {
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
@@ -18,6 +33,7 @@
     "react-dom": "17.0.2",
     "typescript": "^4.8.4"
   },
+  "main": "./build/esm/index.js",
   "peerDependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2"
@@ -28,21 +44,90 @@
     "css": "tailwindcss -o css.css",
     "css-watch": "tailwindcss -w -o css.css"
   },
-  "sensible": {
-    "hasGeneratedDependencies": false
-  },
-  "dependencies": {
-    "@popperjs/core": "2.4.4",
-    "asset-functions-js": "0.0.1",
-    "clickable-icon": "0.0.1",
-    "fs-util-js": "0.0.1",
-    "markdown-parse-js": "0.0.1",
-    "react-with-native": "1.4.9",
-    "rehype-raw": "^6.1.1",
-    "remark-gfm": "^3.0.1",
-    "server-api-url": "0.0.1",
-    "ui-util": "0.0.1"
-  },
+  "version": "1.0.0",
+  "name": "markdown",
+  "language": "english",
   "slug": "markdown",
-  "id": "kizrquhyzzljipgcekjjtedi"
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/user-interfaces/gui/smart/markdown/src/renderMarkdownContent.tsx. Error: TypeError: Invalid value used as weak map key"
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "ui-esm",
+    "coreDependenciesIndexed": [
+      "useState"
+    ],
+    "folderNameIndexed": "markdown",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669467172284,
+    "operationDependenciesIndexed": [
+      "path",
+      "apiUrl",
+      "getReferencedAssetApiUrl",
+      "createCodeblockMarkdown",
+      "Div",
+      "ClickableIcon",
+      "Span",
+      "Frontmatter",
+      "Div",
+      "P",
+      "Div",
+      "MarkdownChunk",
+      "AugmentedWord",
+      "AssetView",
+      "getFolderJs",
+      "isPathRelative",
+      "getImplicitId",
+      "Div",
+      "Span",
+      "Tooltip",
+      "Asset",
+      "Div",
+      "MarkdownParse",
+      "getImplicitId",
+      "P",
+      "MappedObject",
+      "AugmentedWord",
+      "isPathRelative"
+    ],
+    "packageDependenciesIndexed": [
+      "Components"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/user-interfaces/gui/smart",
+    "markdown": "# markdown\n\nthis uses `react-markdown` to render markdown in the browser with react...\n\nThis is a ui-esm operation. This means it's a ui operation that builds to javascript with ESM module resolving... It was based on this example: https://prateeksurana.me/blog/react-library-with-typescript/\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 11,
+        "lines": 635,
+        "characters": 18591,
+        "bytes": 18591
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 157,
+        "characters": 4245,
+        "bytes": 4245
+      },
+      "textSize": {
+        "numberOfFiles": 4,
+        "lines": 275,
+        "characters": 6717,
+        "bytes": 6717
+      },
+      "size": {
+        "bytes": 29553,
+        "characters": 29553,
+        "lines": 1067,
+        "numberOfFiles": 17
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
 }

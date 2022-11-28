@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666261373855,
-  "updatedAt": 1666261373855,
+  "createdAt": 1669055877838,
+  "updatedAt": 1669055877838,
   "deletedAt": 0,
-  "createdFirstAt": 1666261373855,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055877838,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/general.tsx",
   "commentsInside": [],
   "rawText": " <TInputs extends AllPluginInputTypes>(\n  type: string | undefined,\n  plugins: Plugins<TInputs>\n) => {\n  return type\n    ? plugins[type]\n    : plugins[Object.keys(plugins)[0] as keyof Plugins<TInputs>];\n}",
@@ -19,7 +14,7 @@
   "parameters": [],
   "description": "",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/src/general\").Plugin<any>",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/src/general\").Plugin<any>",
     "typeDefinition": {
       "type": "object",
       "properties": {
@@ -70,5 +65,5 @@
     "linesPerFile": 8,
     "numberOfFiles": 1
   },
-  "id": "bxrvyhonmipjrzmavvdsmitn"
+  "id": "anmjhjdkmxqentvwnqfiytiw"
 }

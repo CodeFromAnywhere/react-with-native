@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385500483,
+  "updatedAt": 1669385500483,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385500483,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "PersonProfileDetailsForm",
+  "slug": "person-profile-details-form",
+  "operationRelativeTypescriptFilePath": "src/UpdateMeForm.tsx",
+  "type": {
+    "rawType": "(props: { personProfileDetails: Omit<import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/Person\").Person, \"slug\" | \"groupSlugs\" | \"authenticationMethods\" | \"authorizations\" | \"credit\" | keyof import(\"/Users/king/King/operations/tools/types/model-types/build/modelTypes\").DefaultModelType | \"dataEntries\" | \"devicesCalculated\" | \"groups\" | \"paymentAuthToken\">; }) => JSX.Element | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  personProfileDetails: PersonProfileDetails;\n}) => {\n  const meQuery = queries.useGetMeWithContext();\n\n  const projectRelativeStorageFilePath =\n    meQuery.data?.result?.device?.currentPersonCalculated?.projectRelativePath;\n  const [form, details, onChange] = useTsInterfaceForm(\n    PersonProfileDetailsIndex as Storing<TsInterface>,\n    \"test\",\n    props.personProfileDetails,\n    projectRelativeStorageFilePath,\n    \"Person\"\n  );\n\n  return form ? (\n    <FormContainer\n      onSubmit={async () => {\n        if (!details || !projectRelativeStorageFilePath) return;\n        const apiResult = await api.updateMeWithContext(details);\n        showStandardResponse(apiResult);\n        await meQuery.refetch();\n      }}\n    >\n      {form}\n    </FormContainer>\n  ) : null;\n}",
+  "description": "",
+  "id": "hleijpbaddvnniktwlfeoule"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055617225,
+  "updatedAt": 1669055617225,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055617225,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "indexTypescriptFile",
+  "slug": "index-typescript-file",
+  "operationRelativeTypescriptFilePath": "src/indexTypescriptFile.ts",
+  "type": {
+    "rawType": "(project: import(\"/Users/king/King/operations/node_modules/ts-morph/lib/ts-morph\").Project, file: import(\"/Users/king/King/operations/tools/typescript/index-typescript/src/getValidatedOperationPathParse\").CompleteOperationPathParse, projectRoot: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  project: Project,\n  file: CompleteOperationPathParse,\n  projectRoot: string\n) => {\n  const problems: string[] = [];\n\n  const { filePath, operationName, operationRelativeTypescriptFilePath } = file;\n  if (!operationName) return;\n\n  // console.log(`indexing file`, {\n  //   operationName,\n  //   filePath,\n  //   operationRelativeTypescriptFilePath,\n  // });\n  // END VALIDATION\n\n  const fileContent = await fs.readFile(filePath, \"utf8\");\n\n  //select correct SourceFile from tsmorph project\n  const sourceFile = project.getSourceFile(filePath);\n\n  if (!sourceFile) {\n    const problem = `couldn't load file ${filePath}`;\n    problems.push(problem);\n\n    await db.update(\n      \"Operation\",\n      (item) => item.name === operationName,\n      (old) =>\n        mergeNestedObject(old, {\n          operation: { buildResultIndexed: { indexInteracesErrors: problems } },\n        }),\n      { operationName }\n    );\n\n    log(problem, { type: \"error\" });\n    return;\n  }\n\n  const newTsInterfaces = await findAndUpsertTsInterfaces({\n    filePath,\n    sourceFile,\n    operationName,\n    projectRoot,\n  });\n\n  if (!newTsInterfaces) {\n    log(\"Shouldn't happen but tsInterfaces is undefined here...\");\n    return;\n  }\n\n  const allTsInterfaces = await db.get(\"TsInterface\");\n\n  const allWithNewTsInterfaces = [\n    ...newTsInterfaces,\n    ...allTsInterfaces,\n  ].filter(onlyUnique2<Creation<TsInterface>>((a, b) => a.name === b.name));\n  // NB: interfaces are a prerequisite for function...\n\n  // console.log({\n  //   newTsInterfaces: newTsInterfaces.length,\n  //   allTsInterfaces: allTsInterfaces.length,\n  //   allWithNewTsInterfacesUnique: allWithNewTsInterfaces.length,\n  // });\n  // TODO:\n  const tsLintWarnings: TsLintWarning[] = [];\n\n  // TODO: get main comment from top of file or associated md\n  const mainComment = undefined;\n  const pathMetaData = await calculatePathMetaData(filePath);\n\n  const { tsFunctions, tsVariables } = await getTsStatements(\n    sourceFile,\n    allWithNewTsInterfaces,\n    operationRelativeTypescriptFilePath,\n    fileContent\n  );\n\n  // gets all top level statements\n  const topLevelComments: Creation<TsComment>[] = sourceFile\n    .getStatementsWithComments()\n    .map((x) => {\n      const comments = getAllComments(\n        x,\n        fileContent,\n        operationRelativeTypescriptFilePath\n      );\n      return comments;\n    })\n    .flat();\n\n  const functionComments: Creation<TsComment>[] = tsFunctions\n    .map((f) => f.commentsInside)\n    .flat();\n  const interfaceComments: Creation<TsComment>[] = newTsInterfaces\n    .map((f) => f.commentsInside)\n    .flat();\n  const variableComments: Creation<TsComment>[] = tsVariables\n    .map((f) => f.comments)\n    .flat();\n\n  // TODO: get all top level comments from the statements, but also get all comments already found in functions, variables, and interfaces, put together.\n  const tsComments: Creation<TsComment>[] = [\n    topLevelComments,\n    functionComments,\n    interfaceComments,\n    variableComments,\n  ].flat();\n\n  // Inserting all results into the database...\n\n  // @ts-ignore\n  await db.remove(\n    \"TsFunction\",\n    (fn) =>\n      fn.operationRelativeTypescriptFilePath ===\n        operationRelativeTypescriptFilePath &&\n      !tsFunctions.map((x) => x.name).includes(fn.name),\n    { operationName, manualProjectRoot: projectRoot }\n  );\n  // @ts-ignore\n  await db.upsert(\"TsFunction\", tsFunctions, {\n    operationName,\n    manualProjectRoot: projectRoot,\n  });\n\n  await db.remove(\n    \"TsVariable\",\n    (v) =>\n      v.operationRelativeTypescriptFilePath ===\n        operationRelativeTypescriptFilePath &&\n      !tsVariables.map((x) => x.name).includes(v.name),\n    { operationName, manualProjectRoot: projectRoot }\n  );\n  await db.upsert(\"TsVariable\", tsVariables, {\n    operationName,\n    removeUntouched: true,\n    manualProjectRoot: projectRoot,\n  });\n\n  await db.remove(\n    \"TsComment\",\n    (c) =>\n      c.operationRelativeTypescriptFilePath ===\n      operationRelativeTypescriptFilePath,\n    { operationName, manualProjectRoot: projectRoot }\n  );\n  await db.upsert(\"TsComment\", tsComments, {\n    operationName,\n    removeUntouched: true,\n    manualProjectRoot: projectRoot,\n  });\n}",
+  "description": "",
+  "id": "xaebogzzdxdqlzmmngyehcji"
+}

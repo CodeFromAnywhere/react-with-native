@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669466957790,
+  "updatedAt": 1669466957790,
+  "deletedAt": 0,
+  "createdFirstAt": 1669466957790,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findStaticAssets",
+  "slug": "find-static-assets",
+  "operationRelativeTypescriptFilePath": "src/findStaticAssets.ts",
+  "type": {
+    "rawType": "(absoluteMarkdownFilePath: string) => Promise<string[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  absoluteMarkdownFilePath: string\n): Promise<string[]> => {\n  if (!fs.existsSync(absoluteMarkdownFilePath)) return [];\n  const content: string = await fs.readFile(absoluteMarkdownFilePath, \"utf8\");\n\n  const relativeEmbeds = findEmbeds(content)\n    .filter((x) => isPathRelative(x.src))\n    .map((x) => x.src);\n\n  const relativeLinks = findLinks(content)\n    .filter(\n      (x) => isPathRelative(x.href)\n      // NB: bit shitty that we can't link to typescript files or pdfs this way, but it's ok, we can embed them. Once needed, this must be improved, not now.\n    )\n    .filter((x) => x.type !== \"text\" && x.type !== \"other\")\n    .map((x) => x.href);\n\n  const absoluteMarkdownFolderPath = getFolderJs(absoluteMarkdownFilePath);\n  const absoluteAssetPaths = [relativeLinks, relativeEmbeds]\n    .flat()\n    .map((relativePath) => path.join(absoluteMarkdownFolderPath, relativePath));\n\n  return absoluteAssetPaths;\n}",
+  "description": "Returns the absolute paths of all static assets (embeds and links) in a markdown file of which the path is provided.",
+  "id": "txumdyfinnoahuiltjzvcbjt"
+}

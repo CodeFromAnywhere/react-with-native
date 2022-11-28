@@ -1,0 +1,108 @@
+{
+  "createdAt": 1669384148108,
+  "updatedAt": 1669384148108,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384148108,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getConversionInfoFromType.ts",
+  "commentsInside": [],
+  "rawText": " (\n  uploadMimeType: string | undefined\n): {\n  uploadMimeType: string | undefined;\n  targetFormat: string | undefined;\n  isUnchecked?: boolean;\n} => {\n  const parts = uploadMimeType?.split(\"/\") || [];\n  const firstPart = parts.length > 0 ? parts[0] : undefined;\n  const lastPart = parts.length > 0 ? parts[parts.length - 1] : undefined;\n\n  console.log({ uploadMimeType, lastPart });\n  if (uploadMimeType === \"audio/mp4\") {\n    return { uploadMimeType, targetFormat: \"mp3\" };\n  }\n\n  if (lastPart === \"wav\") {\n    return { uploadMimeType, targetFormat: \"mp3\" };\n  }\n\n  if (lastPart === \"x-m4a\") {\n    return { uploadMimeType, targetFormat: \"mp3\" };\n  }\n\n  if (firstPart === \"audio\") {\n    return { uploadMimeType, targetFormat: \"mp3\" };\n  }\n\n  if (lastPart === \"quicktime\") {\n    return { uploadMimeType, targetFormat: \"mp4\" };\n  }\n\n  if (firstPart === \"video\") {\n    return { uploadMimeType, targetFormat: \"mp4\" };\n  }\n\n  if (firstPart === \"image\") {\n    return { uploadMimeType, targetFormat: \"jpg\" };\n  }\n\n  return { uploadMimeType, targetFormat: lastPart, isUnchecked: true };\n}",
+  "name": "getConversionInfoFromType",
+  "slug": "get-conversion-info-from-type",
+  "parameters": [
+    {
+      "name": "uploadMimeType",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Received files contain a \"type\" like \"audio/mp3\" or \"image/jpeg\", etc...\n\nHere the extension is decided.\n\nNB: we also need to convert the file itself in case of mp3",
+  "returnType": {
+    "rawType": "{ uploadMimeType: string | undefined; targetFormat: string | undefined; isUnchecked?: boolean | undefined; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "uploadMimeType": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "targetFormat": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "isUnchecked": {
+          "type": "boolean"
+        }
+      },
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "uploadMimeType",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "targetFormat",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "isUnchecked",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 1244,
+    "lines": 46,
+    "bytes": 1244,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 46,
+    "numberOfFiles": 1
+  },
+  "id": "pvjdvklwzhkinrumhljdjtbn"
+}

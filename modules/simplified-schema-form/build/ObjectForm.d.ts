@@ -23,5 +23,6 @@ export declare const ObjectForm: (props: {
      * Unique id for this ObjectForm
      */
     id: string;
+    modelName?: string | undefined;
 }) => JSX.Element | null;
 //# sourceMappingURL=ObjectForm.d.ts.map

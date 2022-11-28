@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055585852,
+  "updatedAt": 1669055585852,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055585852,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "generateSchema",
+  "slug": "generate-schema",
+  "operationRelativeTypescriptFilePath": "src/generateSchema.ts",
+  "type": {
+    "rawType": "(filePath: string, morphInterfaceInfo: import(\"/Users/king/King/operations/tools/typescript/index-typescript/src/MorphInterfaceInfo\").MorphInterfaceInfo[], namedAbsoluteImportNames: string[]) => Promise<any[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  filePath: string,\n  morphInterfaceInfo: MorphInterfaceInfo[],\n  namedAbsoluteImportNames: string[]\n): Promise<Creation<TsInterface>[]> => {\n  // console.log({ filePath, namedAbsoluteImportNames });\n  const problems: string[] = [];\n\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) {\n    log(\"No operation base path\");\n    return [];\n  }\n  const operationRelativePath = makeRelative(filePath, operationBasePath);\n  const operationFolderName = getLastFolder(operationBasePath);\n  if (operationRelativePath === \"src/index.ts\") {\n    // should not index index\n    log(\"This should never happen, operationRelativePath is src/index\");\n    return [];\n  }\n\n  const tsConfigPath = path.join(operationBasePath, \"tsconfig.json\");\n  const tsConfigExists = fs.existsSync(tsConfigPath);\n\n  if (!tsConfigExists) {\n    const problem = `no tsconfig found for ${filePath}, not generating schemas`;\n    log(problem, {\n      type: \"error\",\n    });\n    problems.push(problem);\n\n    await db.update(\n      \"Operation\",\n      (item) => item.name === operationFolderName,\n      (old) =>\n        mergeNestedObject(old, {\n          operation: { buildResultIndexed: { indexInteracesErrors: problems } },\n        }),\n      { operationName: operationFolderName }\n    );\n\n    return [];\n  }\n\n  // TODO: check the defaults and possibilities in the docs/readme\n  const config: Config = {\n    // skipTypeCheck: true,\n    path: filePath,\n    tsconfig: tsConfigPath,\n    skipTypeCheck: true,\n    type: \"*\", // Or <type-name> if you want to generate schema for that one type only\n  };\n  const { schema, error } = tryCreateSchema(config);\n\n  if (!schema || !schema.definitions) {\n    const problem = `No schema/definitions found for ${filePath}. Error: ${error}`;\n    log(problem, { type: \"warning\" });\n\n    await db.update(\n      \"Operation\",\n      (item) => item.name === operationFolderName,\n      (old) =>\n        mergeNestedObject(old, {\n          operation: {\n            buildResultIndexed: { indexInteracesErrors: [problem] },\n          },\n        }),\n      { operationName: operationFolderName }\n    );\n\n    return [];\n  }\n\n  const interfacePromises = Object.keys(schema.definitions).map((typeName) => {\n    const thisMorphInterfaceInfo = morphInterfaceInfo.find(\n      (x) => x.name === typeName\n    );\n\n    const tsMorphFoundTypeAlso = !!thisMorphInterfaceInfo;\n    const isImportedType = namedAbsoluteImportNames.includes(typeName);\n    const isNamedParameters = typeName.startsWith(\"NamedParameters\");\n    if (tsMorphFoundTypeAlso || isImportedType || isNamedParameters) {\n      return schemaToTsInterface(\n        filePath,\n        typeName,\n        schema,\n        thisMorphInterfaceInfo\n      );\n    }\n\n    // console.log({ definitionNames: Object.keys(schema.definitions) });\n\n    log(\n      `Skipping type ${typeName}`,\n      { type: \"debug\" },\n      { tsMorphFoundTypeAlso, isImportedType, isNamedParameters }\n    );\n\n    // NB: only the interfaces declared in this file end up in the database! otherwise you'll get duplicates anyway.\n\n    // NB: we are still allowing absolute imported types to end up in the database. They will not be exported from our index, but we still need them for some frontend-generation tasks.\n    return;\n  });\n\n  const interfaces = (await Promise.all(interfacePromises)).filter(notEmpty);\n\n  return interfaces;\n}",
+  "description": "If existing schema is not stale, just require it.\nOtherwise, generate it for a file\n\nNB: The `createGenerator` function finds also imported TsInterfaces, which leads to duplicate TsInterfaces. With pushing the interfaces to the slug filename, this is no problem though, there should not be any duplication!",
+  "id": "ukoftkcvwxnkbschevqdrbes"
+}

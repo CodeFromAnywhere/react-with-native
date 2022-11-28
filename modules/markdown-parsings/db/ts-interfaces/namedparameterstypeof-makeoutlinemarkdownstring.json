@@ -1,0 +1,88 @@
+{
+  "createdAt": 1669200476078,
+  "updatedAt": 1669200476078,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200476078,
+  "id": "namedparameterstypeof-makeoutlinemarkdownstring",
+  "name": "NamedParameters<typeof makeOutlineMarkdownString>",
+  "slug": "namedparameterstypeof-makeoutlinemarkdownstring",
+  "operationRelativeTypescriptFilePath": "src/makeOutlineMarkdownString.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "urls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MergedMarkdownOutlineUrl"
+          }
+        }
+      },
+      "required": [
+        "title",
+        "urls"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "title",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "urls",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "title",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "hashtagPath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "MergedMarkdownOutlineUrl"
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof makeOutlineMarkdownString>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

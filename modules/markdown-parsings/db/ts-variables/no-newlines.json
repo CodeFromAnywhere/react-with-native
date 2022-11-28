@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200506717,
+  "updatedAt": 1669200506717,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200506717,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "noNewlines",
+  "slug": "no-newlines",
+  "operationRelativeTypescriptFilePath": "src/util/noNewlines.ts",
+  "type": {
+    "rawType": "(markdown: string | undefined) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  markdown: string | undefined\n): string | undefined => {\n  return markdown?.replaceAll(\"\\n\", \"<br />\");\n}",
+  "description": "Replaces newlines with a <br />",
+  "id": "dqmsceaxoattlxtbqhuzriam"
+}

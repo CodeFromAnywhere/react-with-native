@@ -1,6 +1,6 @@
 # Name conventions
 
-name-conventions (`OperationClassification` js)
+name-conventions (`OperationClassification` cjs)
 
 Any functions and variables related to variable declaration naming conventions
 

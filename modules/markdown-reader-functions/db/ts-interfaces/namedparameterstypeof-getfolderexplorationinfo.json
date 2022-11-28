@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668149499633,
-  "updatedAt": 1668149499633,
+  "createdAt": 1669639112026,
+  "updatedAt": 1669639112026,
   "deletedAt": 0,
-  "createdFirstAt": 1668149499633,
+  "createdFirstAt": 1669639112026,
   "id": "namedparameterstypeof-getfolderexplorationinfo",
   "name": "NamedParameters<typeof getFolderExplorationInfo>",
   "slug": "namedparameterstypeof-getfolderexplorationinfo",
@@ -17,8 +17,11 @@
     "typeDefinition": {
       "type": "object",
       "properties": {
-        "nestedPathObject": {
-          "$ref": "#/definitions/NestedPathObject"
+        "webPages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WebPage%3Cany%3E"
+          }
         },
         "queryPath": {
           "type": "string"
@@ -28,7 +31,7 @@
         }
       },
       "required": [
-        "nestedPathObject",
+        "webPages",
         "queryPath",
         "projectRoot"
       ],
@@ -37,12 +40,94 @@
     "simplifiedSchema": {
       "properties": [
         {
-          "name": "nestedPathObject",
+          "name": "webPages",
           "required": true,
           "schema": {
-            "fullComment": "A different way to represent a path array in a nested object of folders\n\n{  \"folderName\": {    \"file1\": null,    \"file2\": null  },  \"folderName2\": {    \"file1\": null,    \"file2\": null  } }",
-            "properties": [],
-            "type": "object"
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "General purpose interface for a webpage. Should be compatible within the node.js environment and therefore should not contain any frontend functions. A nested variant (`NestedWebPage`) is used in the frontend to render the `nested-menu` with.",
+                  "properties": [
+                    {
+                      "name": "queryPath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "query-path to be visited in order to find the page on the web.\n\ncan also be used for nested nav in apps",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "searchTerms",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "can be provided to search in a better way\n\ncan provide representations of possible searches for this page, so you can find the pages much better",
+                        "items": [
+                          {
+                            "schema": {
+                              "type": "string"
+                            },
+                            "name": null
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "target",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Optionally, open this page in a new window",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "isMenuHidden",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if true, menu item should be omitted (but path may still be reachable if you so wish)",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "name": "menuTitleAugmentation",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if provided, will be shown in the menu besides the title can be something nice like a notification or an emoji",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "menuTitleTooltip",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "If provided, will be rendered as a tooltip when hovering over the menu item",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "menuTitle",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "if provided will be shown instead of the name of the file/folder in the menu. This makes it possible to provide better naming or add emoji's etc",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "pageData",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "Data connected to the `queryPath`. can take any shape or form based on your application.\n\nFor example, you can provide a `projectRelativePath` to a file here\n\nThe motivation to put this in a `extraData` object is because this makes the type super flexible.\n\n`.pageData` is not to be included into the menu, only to the page!\n\nSome ideas of what to provide here:\n\n- `projectRelativeFilePath` (so you can open the page if it's connected to some path)\n- `operationName`\n- `operationRelativePath`\n\n\nWhat not to provide here:\n\n- `AugmentedWord`[] (this is way too big, so it'd be a waste of query time to provide it for every page already)\n- stuff you already provided in the WebPage itself (it will also be available on the page, so why bother?)",
+                        "properties": [],
+                        "type": "object"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "WebPage<any>"
+              }
+            ],
+            "type": "array"
           }
         },
         {

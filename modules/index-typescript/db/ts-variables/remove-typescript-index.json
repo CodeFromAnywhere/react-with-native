@@ -1,0 +1,50 @@
+{
+  "createdAt": 1669055622704,
+  "updatedAt": 1669055622704,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055622704,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "removeTypescriptIndex",
+  "slug": "remove-typescript-index",
+  "operationRelativeTypescriptFilePath": "src/removeTypescriptIndex.ts",
+  "type": {
+    "rawType": "import(\"/Users/king/King/operations/tools/control-project/watch-types/build/ProjectWatcher\").ProjectWatcher",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      "required": [
+        "filter"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "filter",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  eventName,\n  filePath\n) => {\n  // NB: need to provide get folder because the original file is gone so it can't be detected\n  const operationPath = findOperationBasePath(getFolder(filePath));\n  if (!operationPath) {\n    return;\n  }\n\n  const operationName = getLastFolder(operationPath);\n  // console.log(`Found operationName: ${operationName}...`);\n\n  const result = await cleanupTsDatabase(operationName);\n  console.log(\n    `Cleaned up ${result?.amountRemoved || 0} indexes (removed ${\n      path.parse(filePath).base\n    })`\n  );\n}",
+  "description": "",
+  "id": "rukhlidvigsmgvpdtfmlfdyj"
+}

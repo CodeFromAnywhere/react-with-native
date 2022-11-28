@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668150463842,
+  "updatedAt": 1668150463842,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150463842,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/findAllDependencyOperations.ts",
+  "commentsInside": [],
+  "rawText": " async (config: {\n  operationName: string;\n  /**\n   * Optionally specify a specific import from an operation that you want to find the dependants for\n   */\n  importName?: string;\n  returnOperationName?: boolean;\n  /**\n   * For efficiency reasons you can provide precalculated imports\n   */\n  imports?: TsImport[];\n  /**\n   * If true, only external imports are found\n   */\n  onlyExternal?: boolean;\n}) => {\n  const {\n    operationName,\n    importName,\n    returnOperationName,\n    imports,\n    onlyExternal,\n  } = config;\n\n  const resultValueKey: keyof TsImport = returnOperationName\n    ? \"operationName\"\n    : \"projectRelativePath\";\n  const theImports = imports || (await db.get(\"TsImport\"));\n  const monorepoModules = theImports\n    .filter((x) => x.module === operationName)\n    .filter((x) => (importName ? x.name === importName : true))\n    .filter((x) =>\n      onlyExternal ? x.isAbsolute && x.operationName !== operationName : true\n    )\n    .map((x) =>\n      x.isModuleFromMonorepo && x.isModuleResolved ? x[resultValueKey] : null\n    )\n    .filter(notEmpty)\n    .filter(onlyUnique);\n\n  return monorepoModules;\n}",
+  "name": "findDependants",
+  "slug": "find-dependants",
+  "parameters": [],
+  "description": "getDependencyTree([\"k-types\", \"fs-orm\"], []).then((res) =>\n\nconsole.dir(res, { depth: 999 })\n\n);\n\nfinds all dependants of an operation or a specific import from that operation\n\nnormally returns the files where the operation or function is used, unless you specify to return the operationNames only.",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1418,
+    "lines": 50,
+    "bytes": 1418,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 50,
+    "numberOfFiles": 1
+  },
+  "id": "mbmtpwowvsrmpzohoosbpdil"
+}

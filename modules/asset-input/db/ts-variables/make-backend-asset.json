@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378723136,
-  "updatedAt": 1667378723136,
+  "createdAt": 1669054968179,
+  "updatedAt": 1669054968179,
   "deletedAt": 0,
-  "createdFirstAt": 1667378723136,
+  "createdFirstAt": 1669054968179,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "make-backend-asset",
   "operationRelativeTypescriptFilePath": "src/util/makeBackendAsset.ts",
   "type": {
-    "rawType": "(asset: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").Asset) => import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").BackendAsset",
+    "rawType": "(asset: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").Asset, projectRelativeReferencingFilePath: string, modelName?: string | undefined) => import(\"/Users/king/King/operations/tools/asset/asset-type/build/BackendAsset\").BackendAsset",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(asset: Asset): BackendAsset => {\n  return {\n    alt: asset.alt,\n    name: asset.name,\n    relativePath: asset.relativePath,\n    temporaryDestination: asset.temporaryDestination,\n  };\n}",
+  "value": "(\n  asset: Asset,\n  projectRelativeReferencingFilePath: string,\n  modelName?: string\n): BackendAsset => {\n  return {\n    alt: asset.alt,\n    name: asset.name,\n    relativePath: asset.relativePath,\n    temporaryDestination: asset.temporaryDestination,\n    projectRelativeReferencingFilePath,\n    modelName,\n  };\n}",
   "description": "",
-  "id": "zkdffrmucyqkabniejzvgbiu"
+  "id": "tzfdcpkbwkqrezchpdhpblbk"
 }

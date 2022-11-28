@@ -1,0 +1,130 @@
+{
+  "createdAt": 1668448345837,
+  "updatedAt": 1668448345837,
+  "deletedAt": 0,
+  "createdFirstAt": 1668448345837,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getDbModelsForBundle.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  bundleConfig: BundleConfig\n): Promise<TsInterface[]> => {\n  const bundleSummary = getBundleSummary(bundleConfig);\n\n  const dbModels = getDbModelsFromOperations(\n    bundleSummary.packageNames\n      .concat(bundleSummary.moduleNames)\n      .concat(bundleSummary.appNames)\n  );\n  return dbModels;\n}",
+  "name": "getDbModelsForBundle",
+  "slug": "get-db-models-for-bundle",
+  "parameters": [
+    {
+      "name": "bundleConfig",
+      "schema": {
+        "$ref": "#/definitions/BundleConfig"
+      },
+      "simplifiedSchema": {
+        "fullComment": "--- dbStorageMethod: jsonSingle\n---\n\nConfiguration options for bundles. Used with `generateBundle`\n\nEverything in this model will be copied over to the created bundle, except for `createBundleConfig` and `customisableBundleConfig`.",
+        "properties": [
+          {
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "required": false,
+            "schema": {
+              "fullComment": "a description about this bundle",
+              "type": "string"
+            }
+          },
+          {
+            "name": "emoji",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "primaryColor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gitRepoUrl",
+            "required": false,
+            "schema": {
+              "fullComment": "NB: later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation",
+              "nb": "later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isGitRepoPublic",
+            "required": false,
+            "schema": {
+              "fullComment": "if true, your gitrepo is marked as pubilc and thus users will be linked to it sometimes",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "operationName",
+            "required": true,
+            "schema": {
+              "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "null"
+            }
+          },
+          {
+            "name": "projectRelativePath",
+            "required": true,
+            "schema": {
+              "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationRelativePath",
+            "required": false,
+            "schema": {
+              "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+              "type": "string"
+            }
+          },
+          {
+            "name": "paymentPlanId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "Gets all TsInterface's that are used in a bundle according to a BundleConfig",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TsInterface\").TsInterface[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 383,
+    "lines": 12,
+    "bytes": 383,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "qjetnvzwfpurzpihgcfruzti"
+}

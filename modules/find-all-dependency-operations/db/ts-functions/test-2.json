@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668150468904,
+  "updatedAt": 1668150468904,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150468904,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/test.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const imports = await db.get(\"TsImport\", { operationName: \"k-test\" });\n  const packageJsons = await db.get(\"PackageJson\");\n  // const a = await findDependenciesRecursively(\n  //   imports,\n  //   packageJsons,\n  //   \"k-test\",\n  //   []\n  // );\n\n  // console.log(a);\n\n  const allImports = await db.get(\"TsImport\");\n\n  const b = await findAllDependencyOperations({\n    imports: allImports,\n    packageJsons,\n    operationNames: [\"rebuild-operation\"],\n  });\n\n  console.log(\"SECOND\", b);\n}",
+  "name": "test2",
+  "slug": "test-2",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 503,
+    "lines": 22,
+    "bytes": 503,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "iqzmdcgqavgvkkszmhqbroxu"
+}

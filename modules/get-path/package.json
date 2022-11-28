@@ -1,21 +1,8 @@
 {
-  "createdAt": 1662709577328,
-  "updatedAt": 1662709577328,
+  "createdAt": 1668328686931,
+  "updatedAt": 1668328686931,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577328,
-  "name": "get-path",
-  "version": "0.0.1",
-  "main": "build/index.js",
-  "source": "src/index.ts",
-  "scripts": {
-    "dev": "tsc -w",
-    "build": "tsc",
-    "test": "node ./build/cli.js",
-    "up": "npm version patch -f",
-    "pub": "yarn up && npm publish"
-  },
-  "license": "ISC",
-  "slug": "get-path",
+  "createdFirstAt": 1668328686931,
   "id": "dryPyPWnCUmLjarA",
   "dependencies": {
     "fs-util": "1.0.5",
@@ -24,9 +11,116 @@
     "read-json-file": "0.0.1",
     "k-explore": "0.0.2",
     "filename-conventions": "0.0.1",
-    "try-parse-json": "0.0.1"
+    "try-parse-json": "0.0.1",
+    "js-util": "0.0.1"
   },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "get-path",
+  "language": "english",
+  "slug": "get-path",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/control-project/get-path/src/getRootPath.ts. Error: Error: Unknown node \" databaseFolderName\" of kind \"Identifier\""
+      ],
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "get-path",
+    "hasGeneratedDependenciesIndexed": true,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669055099565,
+    "operationDependenciesIndexed": [
+      "path",
+      "fs",
+      "log",
+      "OperationClassification",
+      "Operation",
+      "path",
+      "ModuleKind",
+      "ModuleResolutionKind",
+      "Operation",
+      "OperationClassification",
+      "TsConfig",
+      "fs",
+      "path",
+      "readJsonFileSync",
+      "tryParseJson",
+      "OperationClassification",
+      "getLastFolder",
+      "mergeObjectsArray",
+      "notEmpty",
+      "exploreOperationFolders",
+      "exploreOperationFolders",
+      "getLastFolder",
+      "path",
+      "operations",
+      "log",
+      "path",
+      "getLastFolder",
+      "OperationPathParse",
+      "Operation",
+      "readJsonFileSync",
+      "PathParse",
+      "fs",
+      "path",
+      "log",
+      "fs",
+      "path",
+      "databaseFolderName",
+      "path",
+      "Operation",
+      "path",
+      "Operation",
+      "readJsonFileSync",
+      "fs",
+      "path",
+      "fs",
+      "path",
+      "Operation",
+      "tryParseJson"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/control-project",
+    "markdown": "Useful functions to get paths within King OS.\n\nDepends on `sdk-operations`, which makes it only work inside of a typerepo.\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 23,
+        "lines": 750,
+        "characters": 22264,
+        "bytes": 22264
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 166,
+        "characters": 3934,
+        "bytes": 3934
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 484,
+        "characters": 10510,
+        "bytes": 10510
+      },
+      "size": {
+        "bytes": 36708,
+        "characters": 36708,
+        "lines": 1400,
+        "numberOfFiles": 27
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

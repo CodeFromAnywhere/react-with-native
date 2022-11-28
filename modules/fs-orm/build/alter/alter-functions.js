@@ -9,7 +9,7 @@ var t=e,r=i?t.find((function(e){return e.slug===i})):void 0,n=s?r?r.categoryStac
  */
 var removeMultiple=function(e,t,r){return __awaiter(void 0,void 0,void 0,(function(){var n,a,o;return __generator(this,(function(s){switch(s.label){case 0:return t.absolutePath,t.modelName,n=__rest(t,["absolutePath","modelName"]),"jsonSingle"===e||"markdown"===e?[4/*yield*/,(0,getAugmentedData_1.getAugmentedData)(t,e)]:[3/*break*/,4];case 1:return a=s.sent(),o=a?a[0]:null,fs_util_1.fs.existsSync(t.absolutePath)&&(0,fs_util_1.canWriteSync)(t.absolutePath)&&o&&r(o)?[4/*yield*/,fs_util_1.fs.rm(t.absolutePath)]:[3/*break*/,3];case 2:return s.sent(),[2/*return*/,{amountRemoved:1}];case 3:return[2/*return*/,{amountRemoved:0}];case 4:return"keyValueMarkdown"===e?[2/*return*/,(0,exports.alterKeyValueMarkdown)(t,(function(e){var t=e.reduce((function(e,t){var a=__assign(__assign({},t),n);return r(a)?(0,removeKeyValueMarkdown_1.removeKeyValueMarkdown)(e,a.slug).newStoredData:e;
 // Otherwise it stays the same
-}),[]);return{newStoredData:t,isSuccesful:!0,amountRemoved:(0,exports.getLength)(t)-(0,exports.getLength)(e)}}))]:[2/*return*/,(0,exports.alterAny)(e,t,(function(e){var t=e.map((function(e){return __assign(__assign({},e),n)})),a=t.filter((function(e){return!r(e)})),o=a.map((function(e){return(0,storing_items_1.makeStoringItem)(e)}));return{amountRemoved:(0,exports.getLength)(a)-(0,exports.getLength)(e),newStoredData:o,isSuccesful:!0}}))];
+}),[]);return{newStoredData:t,isSuccesful:!0,amountRemoved:(0,exports.getLength)(t)-(0,exports.getLength)(e)}}))]:[2/*return*/,(0,exports.alterAny)(e,t,(function(e){var t=e.map((function(e){return __assign(__assign({},e),n)})),a=t.filter((function(e){return!r(e)})),o=a.map((function(e){return(0,storing_items_1.makeStoringItem)(e)}));return{amountRemoved:(0,exports.getLength)(e)-(0,exports.getLength)(a),allRemoved:0===(0,exports.getLength)(a),newStoredData:o,isSuccesful:!0}}))];
 // otherwise, we'll remove the item from the array
 }}))}))};exports.removeMultiple=removeMultiple;
 /**
@@ -29,7 +29,7 @@ var alterJsonSingle=function(e,t){return __awaiter(void 0,void 0,void 0,(functio
  */
 var getLength=function(e){return Array.isArray(e)?e.length:((0,log_1.log)("Array is not array",{type:"error"},{array:e}),0)};exports.getLength=getLength;
 /**
- * Alters a json single file
+ * Alters a json multiple file
  */
 var alterJsonMultiple=function(e,t){return __awaiter(void 0,void 0,void 0,(function(){var r,n,a,o,s,i,u;return __generator(this,(function(l){switch(l.label){case 0:return r=e.absolutePath,[4/*yield*/,(0,read_json_file_1.readJsonFile)(e.absolutePath)];case 1:return n=l.sent(),a=!n,o=t(n||[]),s=o.newStoredData,i=__rest(o,["newStoredData"]),0===s.length&&n?[4/*yield*/,fs_util_1.fs.rm(r)]:[3/*break*/,3];
 // NB: if new stored data is an empty array, just remove the file

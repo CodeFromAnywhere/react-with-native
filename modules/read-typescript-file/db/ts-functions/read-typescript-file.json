@@ -1,0 +1,53 @@
+{
+  "createdAt": 1666263102985,
+  "updatedAt": 1666263102985,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263102985,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/readTypescriptFile.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  filePath: Path\n): Promise<TypescriptIndex | null> => {\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) return null;\n  const operationName = getLastFolder(operationBasePath);\n\n  const operationRelativeTypescriptFilePath = getOperationRelativePath(\n    filePath,\n    operationBasePath\n  );\n\n  const getFileIndexes = <T extends keyof IndexModels>(\n    indexModelName: T\n  ): Promise<IndexModels[T][]> => {\n    const result = db\n      // TODO: make it more efficient by just finding the correct JSON files instead of all files in the operation.\n      .get(indexModelName, { operationName })\n      .then((result) =>\n        result.filter((x) => {\n          return (\n            x.operationRelativeTypescriptFilePath ===\n            operationRelativeTypescriptFilePath\n          );\n        })\n      );\n\n    return result;\n  };\n\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isTypescriptFile = [\"ts\", \"tsx\"].includes(pathParse.ext.slice(1));\n  if (!isTypescriptFile) return null;\n  if (!fs.existsSync(filePath)) return null;\n\n  const typescriptIndex: TypescriptIndex = {\n    tsBuildErrors: await getFileIndexes(\"TsBuildError\"),\n    tsLintWarnings: await getFileIndexes(\"TsLintWarning\"),\n    tsFunctions: await getFileIndexes(\"TsFunction\"),\n    tsVariables: await getFileIndexes(\"TsVariable\"),\n    tsInterfaces: await getFileIndexes(\"TsInterface\"),\n    tsComments: await getFileIndexes(\"TsComment\"),\n    tsImports: await getFileIndexes(\"TsImport\"),\n    tsExports: await getFileIndexes(\"TsExport\"),\n  };\n\n  return typescriptIndex;\n}",
+  "name": "readTypescriptFile",
+  "slug": "read-typescript-file",
+  "parameters": [
+    {
+      "name": "filePath",
+      "schema": {
+        "$ref": "#/definitions/Path"
+      },
+      "simplifiedSchema": {
+        "fullComment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Reads and parses a markdown file",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TypescriptIndex\").TypescriptIndex | null>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 1636,
+    "lines": 49,
+    "bytes": 1636,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 49,
+    "numberOfFiles": 1
+  },
+  "id": "fezxpsamgyeeaemowlcudcdx"
+}

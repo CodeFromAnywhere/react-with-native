@@ -1,0 +1,118 @@
+{
+  "createdAt": 1669384303445,
+  "updatedAt": 1669384303445,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384303445,
+  "id": "namedparameterstypeof-getprojectrelativepaths",
+  "name": "NamedParameters<typeof getProjectRelativePaths>",
+  "slug": "namedparameterstypeof-getprojectrelativepaths",
+  "operationRelativeTypescriptFilePath": "src/getProjectRelativePaths.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/RelativePathType",
+              "description": "Optionally filter the results to only:\n\n- todo: all todos in your project operations\n- postable: all your postables in your database\n\nby default, scans all relevant files..."
+            },
+            "earliestUpdatedAt": {
+              "type": "number"
+            },
+            "filterDraft": {
+              "type": "boolean",
+              "description": "Not implemented"
+            },
+            "filterPrivate": {
+              "type": "boolean",
+              "description": "Not implemented"
+            },
+            "filterGenerated": {
+              "type": "boolean"
+            },
+            "sort": {
+              "type": "string",
+              "const": "recent"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": false,
+          "schema": {
+            "properties": [
+              {
+                "name": "type",
+                "required": false,
+                "schema": {
+                  "fullComment": "Optionally filter the results to only:\n\n- todo: all todos in your project operations\n- postable: all your postables in your database\n\nby default, scans all relevant files...\n\n",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "earliestUpdatedAt",
+                "required": false,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "filterDraft",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not implemented",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "filterPrivate",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not implemented",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "filterGenerated",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "sort",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getProjectRelativePaths>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

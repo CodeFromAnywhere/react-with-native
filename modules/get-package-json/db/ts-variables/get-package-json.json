@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668331890086,
+  "updatedAt": 1668331890086,
+  "deletedAt": 0,
+  "createdFirstAt": 1668331890086,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getPackageJson",
+  "slug": "get-package-json",
+  "operationRelativeTypescriptFilePath": "src/getPackageJson.ts",
+  "type": {
+    "rawType": "(config: { operationFolderPath: string; }) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/Operation\").Operation | null>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config: {\n  operationFolderPath: string;\n}): Promise<Operation | null> => {\n  const { operationFolderPath } = config;\n  const packageJsonPath = path.join(operationFolderPath, \"package.json\");\n  const packageJson = readJsonFile<Operation>(packageJsonPath);\n  return packageJson;\n}",
+  "description": "",
+  "id": "pqltfbexekobwkeegljnxocl"
+}

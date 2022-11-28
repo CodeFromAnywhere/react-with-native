@@ -1,18 +1,18 @@
 {
-  "createdAt": 1668150283632,
-  "updatedAt": 1668150283632,
+  "createdAt": 1669276547457,
+  "updatedAt": 1669276547457,
   "deletedAt": 0,
-  "createdFirstAt": 1668150283632,
+  "createdFirstAt": 1669276547457,
   "id": "categorystack",
   "name": "CategoryStack",
   "slug": "categorystack",
   "operationRelativeTypescriptFilePath": "src/keyValueMarkdown.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n *\n */\nexport type CategoryStack = string[];",
+  "rawText": "\n\n/**\n * Taken from the location in the folder of the db-model.\n *\n * NB: Changing this value when updating/upserting, changes where the item is located!\n */\nexport type CategoryStack = string[];",
   "extensions": [],
   "isOperationIndex": false,
-  "description": "",
+  "description": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
   "isDbModel": false,
   "commentsInside": [],
   "type": {
@@ -20,9 +20,12 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!"
     },
     "simplifiedSchema": {
+      "fullComment": "Taken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+      "nb": "Changing this value when updating/upserting, changes where the item is located!",
       "items": [
         {
           "schema": {

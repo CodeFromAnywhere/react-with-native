@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055716036,
+  "updatedAt": 1669055716036,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055716036,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "isOperationBuildNeeded",
+  "slug": "is-operation-build-needed",
+  "operationRelativeTypescriptFilePath": "src/isOperationBuildNeeded.ts",
+  "type": {
+    "rawType": "(operationBasePath: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(operationBasePath: string) => {\n  const classification = getOperationClassification(operationBasePath)!;\n\n  console.log(`${getLastFolder(operationBasePath)}: ${classification}`);\n\n  // NB: server, web, app and ui-es6 have different ways to keep the build up-to-date\n  // NB: esm can't be minified with current thing\n  const buildNeededOperatons: OperationClassification[] = [\n    \"cjs\",\n    // \"esm\",\n    \"node-cjs\",\n    // \"node-esm\",\n    \"ui-cjs\",\n    // \"ui-esm\",\n  ];\n  const isBuildNeeded = buildNeededOperatons.includes(classification);\n\n  return isBuildNeeded;\n}",
+  "description": "returns a boolean indicating whether or not the operation should be able to be built, based on the OperationClassification",
+  "id": "dnizcwmmmemsauzxuccrfoae"
+}

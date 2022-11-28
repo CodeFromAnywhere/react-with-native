@@ -169,6 +169,10 @@ export type PluginComponent<TInput extends PluginInputType> = ((props: {
    */
   errors?: Error[];
   errorClassName?: string;
+  /**
+   * sometimes can be applied as overwriting css class
+   */
+  className?: string;
 }) => JSX.Element) & {
   defaultInitialValue: TInput["value"];
   hideContainerError?: boolean;
@@ -727,7 +731,6 @@ export const DataForm = <TInputs, TState extends { [key: string]: any }>({
           const next = fields[index + 1]?.();
 
           const onChange = (state: TState) => (newValue: any) => {
-
             const newState = { [field.field]: newValue };
             const newFullState = { ...state, ...newState };
             const fieldErrors = errors.filter(errorOnField(field.field));
@@ -815,7 +818,7 @@ export const DataForm = <TInputs, TState extends { [key: string]: any }>({
 
 export type AllPluginInputTypes = { [key: string]: PluginInputType };
 
-export const setConfig = <TInputs, TState>(
+export const setConfig = <TInputs, TState extends { [key: string]: any }>(
   DataForm: (props: DataFormProps<TInputs, TState>) => JSX.Element,
   config: DataFormConfig<TInputs>
 ) => {

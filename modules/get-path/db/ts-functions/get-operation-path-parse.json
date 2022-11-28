@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668148334566,
-  "updatedAt": 1668148334566,
+  "createdAt": 1669055058593,
+  "updatedAt": 1669055058593,
   "deletedAt": 0,
-  "createdFirstAt": 1668148334566,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055058593,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getOperationPathParse.ts",
   "commentsInside": [],
-  "rawText": " (\n  absolutePath: string\n): OperationPathParse | undefined => {\n  if (!absolutePath) return;\n  const pathParse = getPathParse(absolutePath);\n  if (!pathParse) return;\n  const projectRoot = getProjectRoot(absolutePath);\n  if (!projectRoot) return;\n  const operationBasePath = findOperationBasePath(absolutePath);\n  if (!operationBasePath) return;\n  const operationSrcPath = path.join(operationBasePath, \"src\");\n\n  const operationFolderName = getLastFolder(operationBasePath);\n  const operationName = readJsonFileSync<PackageJson>(\n    path.join(operationBasePath, \"package.json\")\n  )?.name;\n\n  const operationRelativeTypescriptFilePath = getOperationRelativePath(\n    absolutePath,\n    operationBasePath\n  );\n\n  const parsedPath = path.parse(absolutePath);\n  const srcFileId = makeRelative(\n    path.join(parsedPath.dir, parsedPath.name),\n    operationSrcPath\n  );\n\n  const relativeOperationBasePathFromProjectRoot = operationBasePath.slice(\n    projectRoot.length\n  );\n\n  return {\n    relativePathFromProjectRoot: pathParse.relativePathFromProjectRoot,\n    srcFileId,\n    operationFolderName,\n    operationRelativeTypescriptFilePath,\n    relativeOperationBasePathFromProjectRoot,\n    operationName,\n  };\n}",
+  "rawText": " (\n  absolutePath: string\n): OperationPathParse | undefined => {\n  if (!absolutePath) return;\n  const pathParse = getPathParse(absolutePath);\n  if (!pathParse) return;\n  const projectRoot = getProjectRoot(absolutePath);\n  if (!projectRoot) return;\n  const operationBasePath = findOperationBasePath(absolutePath);\n  if (!operationBasePath) return;\n  const operationSrcPath = path.join(operationBasePath, \"src\");\n\n  const operationFolderName = getLastFolder(operationBasePath);\n  const operationName = readJsonFileSync<Operation>(\n    path.join(operationBasePath, \"package.json\")\n  )?.name;\n\n  const operationRelativeTypescriptFilePath = getOperationRelativePath(\n    absolutePath,\n    operationBasePath\n  );\n\n  const parsedPath = path.parse(absolutePath);\n  const srcFileId = makeRelative(\n    path.join(parsedPath.dir, parsedPath.name),\n    operationSrcPath\n  );\n\n  const relativeOperationBasePathFromProjectRoot = operationBasePath.slice(\n    projectRoot.length\n  );\n\n  return {\n    relativePathFromProjectRoot: pathParse.relativePathFromProjectRoot,\n    srcFileId,\n    operationFolderName,\n    operationRelativeTypescriptFilePath,\n    relativeOperationBasePathFromProjectRoot,\n    operationName,\n  };\n}",
   "name": "getOperationPathParse",
   "slug": "get-operation-path-parse",
   "parameters": [
@@ -40,13 +35,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 1355,
+    "characters": 1353,
     "lines": 43,
-    "bytes": 1355,
+    "bytes": 1353,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 32,
+    "charactersPerLine": 31,
     "linesPerFile": 43,
     "numberOfFiles": 1
   },
-  "id": "kcoholunijykvhwqsevuokcu"
+  "id": "ivpaqqfltkucpirgrvxckorn"
 }

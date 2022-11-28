@@ -1,19 +1,14 @@
 {
-  "createdAt": 1666259862540,
-  "updatedAt": 1666259862540,
+  "createdAt": 1668774169352,
+  "updatedAt": 1668774169352,
   "deletedAt": 0,
-  "createdFirstAt": 1666259862540,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668774169352,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/test-e2e.ts",
   "commentsInside": [],
-  "rawText": " async (\n  modelName: keyof TestModels,\n  generateInstance: () => Creation<AnyModelType>\n) => {\n  /**\n   * this is done synchronously for every model: set, get, push, get, remove, get, update, get, get, remove all, get\n   */\n\n  const firstInstance = generateInstance();\n  const firstId = firstInstance.id;\n\n  console.log({ firstId, firstInstance });\n\n  //@ts-ignore\n  const setResult = await testDb.set(modelName, [firstInstance]);\n  const getResult = await testDb.get(modelName);\n\n  if (getResult.length !== 1) {\n    console.log({ setResult, getResult });\n    console.log(\"Invalid length\");\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Set test passed`);\n  }\n\n  // @ts-ignore\n  const pushResult = await testDb.push(modelName, generateInstance());\n  const getResult2 = await testDb.get(modelName);\n\n  if (getResult2.length !== 2) {\n    console.log({ pushResult, getResult2 });\n    console.log(\"Invalid length\");\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Push test passed`);\n  }\n\n  // NB: now we have 2 items in the db\n\n  const removeResult = await testDb.remove(\n    modelName,\n    // NB: we don't remove first Id\n    (content) => content.id !== firstId\n  );\n\n  if (removeResult.amountRemoved !== 1) {\n    console.log({ removeResult });\n\n    console.log(\"Invalid amount removed\");\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Remove test: correct amount removed`);\n  }\n\n  const getResult3 = await testDb.get(modelName);\n\n  if (getResult3.length !== 1) {\n    console.log({ getResult3 });\n\n    console.log(\"Invalid length\");\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Remove test passed`);\n  }\n\n  // now we have 1 item in the db\n\n  const updateResult = await testDb.update(\n    modelName,\n    (content) => content.id === firstId,\n    (content) => {\n      return { ...content, id: \"NEWIDDDD\" };\n    }\n  );\n\n  if (updateResult.amountUpdated !== 1) {\n    console.log({ updateResult });\n\n    console.log(\"Invalid rows updated\", { firstId });\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Update test: right amount of rows updated`);\n  }\n\n  const getResult4 = await testDb.get(modelName);\n\n  if (getResult4[0].id !== \"NEWIDDDD\") {\n    console.log({ firstItem: getResult4[0] }, \"id != NEWIDDDD\");\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Update test passed`);\n  }\n\n  if (getResult4.length !== 1) {\n    console.log({ getResult4 });\n\n    console.log(\"Invalid length\");\n    process.exit(1);\n  }\n\n  console.log(`Test Succeeded for ${modelName}`);\n\n  return true;\n}",
+  "rawText": " async (\n  modelName: keyof TestModels,\n  generateInstance: () => Creation<AnyModelType>\n) => {\n  /**\n   * this is done synchronously for every model: set, get, push, get, remove, get, update, get, get, remove all, get\n   */\n\n  const firstInstance = generateInstance();\n  const firstId = firstInstance.id;\n\n  // console.log({ firstId, firstInstance });\n\n  //@ts-ignore\n  const setResult = await testDb.set(modelName, [firstInstance]);\n  const getResult = await testDb.get(modelName);\n\n  if (getResult.length !== 1) {\n    console.log({ setResult, getResult });\n    console.log(\"Invalid length\");\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Set test passed`);\n  }\n  //@ts-ignore\n  const pushResult = await testDb.upsert(modelName, generateInstance());\n  const getResult2 = await testDb.get(modelName);\n\n  if (getResult2.length !== 2) {\n    console.log({ pushResult, getResult2 });\n    console.log(\"Invalid length\");\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Push test passed`);\n  }\n\n  // NB: now we have 2 items in the db\n\n  const removeResult = await testDb.remove(\n    modelName,\n    // NB: we don't remove first Id\n    (content) => content.id !== firstId\n  );\n\n  if (removeResult.amountRemoved !== 1) {\n    console.log({ removeResult });\n\n    console.log(\"Invalid amount removed\");\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Remove test: correct amount removed`);\n  }\n\n  const getResult3 = await testDb.get(modelName);\n\n  if (getResult3.length !== 1) {\n    console.log({ getResult3 });\n\n    console.log(\"Invalid length\");\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Remove test passed`);\n  }\n\n  // now we have 1 item in the db\n\n  const updateResult = await testDb.update(\n    modelName,\n    (content) => content.id === firstId,\n    (content) => {\n      return { ...content, id: \"NEWIDDDD\" };\n    }\n  );\n\n  if (updateResult.amountUpdated !== 1) {\n    console.log({ updateResult });\n\n    console.log(\"Invalid rows updated\", { firstId });\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Update test: right amount of rows updated`);\n  }\n\n  const getResult4 = await testDb.get(modelName);\n\n  if (getResult4[0].id !== \"NEWIDDDD\") {\n    console.log({ firstItem: getResult4[0] }, \"id != NEWIDDDD\");\n    process.exit(1);\n  } else {\n    console.log(`${modelName} Update test passed`);\n  }\n\n  if (getResult4.length !== 1) {\n    console.log({ getResult4 });\n\n    console.log(\"Invalid length\");\n    process.exit(1);\n  }\n\n  console.log(`Test Succeeded for ${modelName}`);\n\n  return true;\n}",
   "name": "runModelEndToEndTest",
   "slug": "run-model-end-to-end-test",
   "parameters": [],
@@ -29,13 +24,13 @@
   },
   "maxIndentationDepth": 3,
   "size": {
-    "characters": 2658,
-    "lines": 104,
-    "bytes": 2658,
+    "characters": 2661,
+    "lines": 103,
+    "bytes": 2661,
     "bytesPerCharacter": 1,
     "charactersPerLine": 26,
-    "linesPerFile": 104,
+    "linesPerFile": 103,
     "numberOfFiles": 1
   },
-  "id": "uvltgskkkustzbmpurwomaqv"
+  "id": "dgkhytopxlocoqwnymfufxwk"
 }

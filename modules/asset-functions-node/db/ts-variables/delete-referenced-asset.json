@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384202227,
+  "updatedAt": 1669384202227,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384202227,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "deleteReferencedAsset",
+  "slug": "delete-referenced-asset",
+  "operationRelativeTypescriptFilePath": "src/deleteReferencedAsset.ts",
+  "type": {
+    "rawType": "(projectRelativeReferencingFilePath: string, referencingFileRelativeAssetPath: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  projectRelativeReferencingFilePath: string,\n  referencingFileRelativeAssetPath: string\n) => {\n  const { absoluteAssetPath, message, isSuccessful } =\n    await findAbsoluteAssetPathFromReference(\n      projectRelativeReferencingFilePath,\n      referencingFileRelativeAssetPath\n    );\n\n  if (!absoluteAssetPath) {\n    return { isSuccessful, message };\n  }\n\n  // got `absoluteAssetPath`\n\n  await fs.rm(absoluteAssetPath);\n\n  return { isSuccessful: true, message: \"Deleted the asset\" };\n}",
+  "description": "",
+  "id": "qrnibpkjxjatiysiptqxqnzn"
+}

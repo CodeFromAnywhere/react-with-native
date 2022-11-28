@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669055055559,
+  "updatedAt": 1669055055559,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055055559,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getOperationClassificationObject.ts",
+  "commentsInside": [],
+  "rawText": "\n  async (): Promise<OperationClassificationObject> => {\n    const operationFolders = await exploreOperationFolders({});\n\n    return mergeObjectsArray(\n      operationFolders\n        .map((operationBasePath) => {\n          const operationClassification =\n            getOperationClassification(operationBasePath);\n          if (!operationClassification) return;\n          const operationName = getLastFolder(operationBasePath);\n          return { [operationName]: operationClassification };\n        })\n        .filter(notEmpty)\n    );\n  }",
+  "name": "getOperationClassificationObject",
+  "slug": "get-operation-classification-object",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/control-project/get-path/src/getOperationClassificationObject\").OperationClassificationObject>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 538,
+    "lines": 16,
+    "bytes": 538,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "bxzjwfmpyjghhozohtxmcklx"
+}

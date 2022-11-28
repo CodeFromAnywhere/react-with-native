@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667111123168,
-  "updatedAt": 1667111123168,
+  "createdAt": 1669384159184,
+  "updatedAt": 1669384159184,
   "deletedAt": 0,
-  "createdFirstAt": 1667111123168,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669384159184,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/token/addToken.ts",
   "commentsInside": [],
   "rawText": " (\n  name: string,\n  /**\n   * if given, uses this token, otherwise generates a new random token\n   */\n  previousToken?: string,\n  attachTokenToFilename?: boolean\n): string => {\n  if (!attachTokenToFilename) return name;\n  const newRandomToken = generateRandomString(32);\n  return `${name}${tokenPrefix}${previousToken || newRandomToken}`;\n}",
@@ -74,5 +69,5 @@
     "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "bfakibixinlxuerapspcagjw"
+  "id": "vpfmvochhyyvdcxhbebinbmp"
 }

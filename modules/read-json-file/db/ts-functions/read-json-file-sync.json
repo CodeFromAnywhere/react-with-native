@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666263018374,
-  "updatedAt": 1666263018374,
+  "createdAt": 1668753029761,
+  "updatedAt": 1668753029761,
   "deletedAt": 0,
-  "createdFirstAt": 1666263018374,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668753029761,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/readJsonFile.ts",
   "commentsInside": [],
   "rawText": " <T>(filePath: Path): T | null => {\n  // TODO: is this needed?\n  if (!fs.existsSync(filePath)) return null;\n\n  const readable = canReadSync(filePath);\n  if (!readable) return null;\n  const fileString = fs.readFileSync(filePath, \"utf8\");\n  if (!fileString) return null;\n  const parsed = tryParseJson<T>(fileString);\n  return parsed;\n}",
@@ -68,5 +63,5 @@
     "linesPerFile": 13,
     "numberOfFiles": 1
   },
-  "id": "ulwuxncmciljuydmzfyztmfz"
+  "id": "ogiugvbvhbnpvhxfdhwhtwlx"
 }

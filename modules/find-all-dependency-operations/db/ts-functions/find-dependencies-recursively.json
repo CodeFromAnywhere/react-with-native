@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668150463841,
+  "updatedAt": 1668150463841,
+  "deletedAt": 0,
+  "createdFirstAt": 1668150463841,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/findAllDependencyOperations.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  /**\n   * all imports\n   */\n  imports: TsImport[],\n  packageJsons: PackageJson[],\n  operationName: string,\n  /**\n   * skip recursing on these ones because they are already found\n   */\n  already: string[],\n  ignore?: string[],\n  ignoreFilter?: (operationName: string) => boolean\n): Promise<string[]> => {\n  if (ignore?.includes(operationName)) return [];\n\n  const packageJson = packageJsons.find(\n    (x) => x.operationName === operationName\n  );\n\n  if (!packageJson) {\n    console.log(\n      `WARN: couldn't find packagejson ${operationName}. weird...`,\n      packageJsons.slice(0, 5)\n    );\n    return [];\n  }\n\n  const indirectDependencies =\n    packageJson.operation?.indirectDependencies || [];\n\n  /**\n   * Filter out ignored ones, either by ignore prop or ignore filter\n   */\n  const onlyIncluded = (operationName: string) =>\n    !ignore?.includes(operationName) &&\n    (!ignoreFilter || ignoreFilter(operationName));\n\n  const thisImports = imports.filter((x) => x.operationName === operationName);\n\n  const monorepoModules = thisImports\n    .map((x) =>\n      x.isModuleFromMonorepo && x.isModuleResolved ? x.module : null\n    )\n    .filter(notEmpty)\n    .filter(onlyIncluded)\n    // add the indirect ones\n    .concat(indirectDependencies);\n\n  const newAlready = already.concat(monorepoModules).filter(onlyUnique);\n\n  const dependencyPromises = monorepoModules\n    .filter((x) => !already?.includes(x))\n    .map((operationName) =>\n      findDependenciesRecursively(\n        imports,\n        packageJsons,\n        operationName,\n        newAlready,\n        ignore\n      )\n    );\n  const dependencies = (await Promise.all(dependencyPromises)).flat();\n  const all: string[] = monorepoModules.concat(dependencies);\n  return all;\n}",
+  "name": "findDependenciesRecursively",
+  "slug": "find-dependencies-recursively",
+  "parameters": [],
+  "description": "finds all dependencies of an operation name",
+  "returnType": {
+    "rawType": "Promise<string[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1783,
+    "lines": 66,
+    "bytes": 1783,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 66,
+    "numberOfFiles": 1
+  },
+  "id": "eakipagmxihxjogbprscjfuo"
+}

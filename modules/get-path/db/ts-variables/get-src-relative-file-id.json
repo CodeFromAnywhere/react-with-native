@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148347062,
-  "updatedAt": 1668148347062,
+  "createdAt": 1669055072650,
+  "updatedAt": 1669055072650,
   "deletedAt": 0,
-  "createdFirstAt": 1668148347062,
+  "createdFirstAt": 1669055072650,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(operationRelativePath: string) => {\n  const srcRelativePath = operationRelativePath.replace(\"src/\", \"\");\n  const parts = srcRelativePath.split(\".\");\n  // remove the last one\n  parts.pop();\n  const srcRelativeFileId = parts.join(\".\");\n\n  const finalId = srcRelativeFileId.startsWith(\"/\")\n    ? srcRelativeFileId.substring(1)\n    : srcRelativeFileId;\n  return finalId;\n}",
   "description": "returns a file id (path without extension) relative to the src folder of an operation\n\ne.g. \"general\" for src/general.ts\n\nNB: assumes all src is in the src folder\n\nNB: removes \"/\" in the beginning, if found",
-  "id": "kmqgzzdqmbrtmqmqzyljetcx"
+  "id": "fdfmgxzqjshyacxzzhnhhujz"
 }

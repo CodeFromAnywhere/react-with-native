@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669200462448,
+  "updatedAt": 1669200462448,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200462448,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/flattenNestedObject.ts",
+  "commentsInside": [],
+  "rawText": " <T>(\n  nestedObject: NestedObject<T>,\n  isLeaf?: (content: NestedObject<T> | T | undefined) => boolean\n) => {\n  Object.keys(nestedObject).map((key) => {\n    const value = nestedObject[key];\n\n    const isValueLeaf = isLeaf ? isLeaf(value) : typeof value !== \"object\";\n\n    return;\n  });\n}",
+  "name": "flattenNestedObject",
+  "slug": "flatten-nested-object",
+  "parameters": [],
+  "description": "Flattens a nested object by returning an object that hasa the nested path as the key and the leaf as the value\n\nTODO: Finish, if needed. seems hard!",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 436,
+    "lines": 14,
+    "bytes": 436,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "cslrygtrvkypbabrtboxxfec"
+}

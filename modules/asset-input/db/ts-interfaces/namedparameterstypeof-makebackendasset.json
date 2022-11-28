@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378722785,
-  "updatedAt": 1667378722785,
+  "createdAt": 1669054967170,
+  "updatedAt": 1669054967170,
   "deletedAt": 0,
-  "createdFirstAt": 1667378722785,
+  "createdFirstAt": 1669054967170,
   "id": "namedparameterstypeof-makebackendasset",
   "name": "NamedParameters<typeof makeBackendAsset>",
   "slug": "namedparameterstypeof-makebackendasset",
@@ -19,10 +19,17 @@
       "properties": {
         "asset": {
           "$ref": "#/definitions/Asset"
+        },
+        "projectRelativeReferencingFilePath": {
+          "type": "string"
+        },
+        "modelName": {
+          "type": "string"
         }
       },
       "required": [
-        "asset"
+        "asset",
+        "projectRelativeReferencingFilePath"
       ],
       "additionalProperties": false
     },
@@ -64,7 +71,23 @@
                 "name": "temporaryDestination",
                 "required": false,
                 "schema": {
-                  "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                  "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "projectRelativeReferencingFilePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "modelName",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                   "type": "string"
                 }
               },
@@ -84,9 +107,18 @@
                     "video",
                     "audio",
                     "image",
+                    "text",
                     "other"
                   ],
                   "fullComment": "can be calculated from the path, or come directly from the blob\n\nPossible Asset Types",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "absoluteUrl",
+                "required": false,
+                "schema": {
+                  "fullComment": "Can be available in case it's an asset from an external source URL for example within md.",
                   "type": "string"
                 }
               },
@@ -140,6 +172,20 @@
               }
             ],
             "type": "object"
+          }
+        },
+        {
+          "name": "projectRelativeReferencingFilePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "modelName",
+          "required": false,
+          "schema": {
+            "type": "string"
           }
         }
       ],

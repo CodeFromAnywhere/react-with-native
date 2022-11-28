@@ -1,0 +1,113 @@
+{
+  "createdAt": 1669384251911,
+  "updatedAt": 1669384251911,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384251911,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/useAssetInfo.ts",
+  "commentsInside": [],
+  "rawText": " (url?: string, filename?: string) => {\n  if (!url && !filename) {\n    console.log(\"MUST PROVIDE EITHER URL OR FILENAME\");\n    return;\n  }\n  const urlOrFilename = (url || filename)!;\n  const realFilename = (url ? url.split(\"/\").pop() : filename)!;\n  const isTextFile = isText(realFilename) === true ? true : false;\n\n  const [rawText, setRawText] = useState<string | null>(null);\n  useEffect(() => {\n    if (!!url && isTextFile) {\n      fetch(url).then((result) => {\n        result.text().then((text) => setRawText(text));\n      });\n    }\n  }, [url, isTextFile]);\n\n  const type = getTypeFromUrlOrPath(urlOrFilename);\n\n  return { rawText, type };\n}",
+  "name": "useAssetInfo",
+  "slug": "use-asset-info",
+  "parameters": [
+    {
+      "name": "url",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    },
+    {
+      "name": "filename",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{ rawText: string | null; type: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").AssetType; } | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "rawText": {
+          "type": "string | null"
+        },
+        "type": {
+          "enum": [
+            "video",
+            "audio",
+            "image",
+            "text",
+            "other"
+          ],
+          "x-enumNames": [
+            "video",
+            "audio",
+            "image",
+            "text",
+            "other"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "optional": true
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "rawText",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "video",
+              "audio",
+              "image",
+              "text",
+              "other"
+            ],
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 646,
+    "lines": 22,
+    "bytes": 646,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "onwidoaytfesqhcqjotgngay"
+}

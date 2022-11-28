@@ -1,0 +1,600 @@
+{
+  "createdAt": 1668449025159,
+  "updatedAt": 1668449025159,
+  "deletedAt": 0,
+  "createdFirstAt": 1668449025159,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/calculatePackageJsonDependencies.ts",
+  "commentsInside": [],
+  "rawText": " (\n  /**\n   * Current dependencies object in your operation\n   */\n  dependencies: PackageInfoObject | undefined,\n  /**\n   * All imports found in your operation\n   */\n  imports: Creation<TsImport>[],\n  /**\n   * All package-json's in your monorepo\n   */\n  operations: Operation[],\n  operationName: string\n) => {\n  const dependencyImports = imports\n    .filter((x) => x.isAbsolute)\n    .filter((x) => !isAbsoluteImportBuiltin(x.module))\n    .filter((x) => !isImportFromOptionalFile(x))\n    .filter(onlyUnique2<Creation<TsImport>>((a, b) => a.module === b.module));\n\n  /**\n   *  NB: imports of types are removed and need not to be installed for running this package\n   */\n  const valueDependencyImports = dependencyImports.filter(\n    (x) => x.type === \"value\"\n  );\n\n  const monorepoImports = dependencyImports.filter(\n    (x) =>\n      operationName &&\n      x.isModuleFromMonorepo &&\n      !isGeneratedOperationName(x.module)\n  );\n\n  const hasGeneratedDependenciesIndexed =\n    valueDependencyImports.filter(isImportGenerated).length > 0;\n\n  // console.log({ valueDependencyImports, hasGeneratedDependenciesIndexed });\n  // const hasGeneratedImportsIndexed =\n  //   dependencyImports.filter(isImportGenerated).length > 0;\n\n  const externalImports = dependencyImports.filter(\n    (x) => !x.isModuleFromMonorepo\n  );\n\n  const externalDependencyObject = mergeObjectsArray(\n    externalImports\n      .map((x) => {\n        const moduleName = getPackageNameFromAbsoluteImport(x.module);\n        if (!moduleName) return;\n        const already = dependencies?.[moduleName];\n        /**\n         * TODO: fetch this from monorepo\n         */\n        const calculatedVersion = \"*\";\n\n        /**\n         * NB: Minimize the use of \"*\"\n         */\n        const version =\n          already !== \"*\" && already !== undefined\n            ? already\n            : calculatedVersion;\n        return { [moduleName]: version };\n      })\n      .filter(notEmpty)\n  );\n\n  const monorepoDependencyObject = mergeObjectsArray(\n    monorepoImports\n      .map((x) => {\n        const moduleName = getPackageNameFromAbsoluteImport(x.module);\n        if (!moduleName) return;\n        const operation = operations.find((x) => x.name === moduleName);\n        if (!operation) return;\n        const { version } = operation;\n        if (!version) return;\n        return { [moduleName]: version };\n      })\n      .filter(notEmpty)\n  );\n\n  // console.log({\n  //   imports: imports.length,\n  //   dependencyImports: dependencyImports,\n  //   dependencies,\n  //   monorepoImports,\n  //   monorepoDependencyObject,\n  //   externalDependencyObject,\n  // });\n\n  const newDependencies: PackageInfoObject = {\n    ...dependencies,\n    ...monorepoDependencyObject,\n    ...externalDependencyObject,\n  };\n\n  return {\n    newDependencies,\n    hasGeneratedDependenciesIndexed,\n    // hasGeneratedImportsIndexed,\n  };\n}",
+  "name": "calculatePackageJsonDependencies",
+  "slug": "calculate-package-json-dependencies",
+  "parameters": [
+    {
+      "name": "dependencies",
+      "schema": {
+        "$ref": "#/definitions/PackageInfoObject",
+        "description": "Current dependencies object in your operation"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Current dependencies object in your operation\n\n",
+        "properties": [],
+        "type": "object"
+      },
+      "required": false
+    },
+    {
+      "name": "imports",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Creation%3CTsImport%3E"
+        },
+        "description": "All imports found in your operation"
+      },
+      "simplifiedSchema": {
+        "fullComment": "All imports found in your operation",
+        "items": [],
+        "type": "array"
+      },
+      "required": true
+    },
+    {
+      "name": "operations",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Operation"
+        },
+        "description": "All package-json's in your monorepo"
+      },
+      "simplifiedSchema": {
+        "fullComment": "All package-json's in your monorepo",
+        "items": [
+          {
+            "schema": {
+              "fullComment": "--- dbStorageMethod: jsonSingle operationRelativePath: package.json\n---\n\nModel for `typerepo` operations. Stored in `package.json` in every package (compatible with regular npm package.json data structure). An `Operation` is a NPM Package that applies the `typerepo` convention.\n\nTODO: add a validation to package.json files for the whole project, to ensure i can apply `fs-orm` convention",
+              "todo": "add a validation to package.json files for the whole project, to ensure i can apply `fs-orm` convention",
+              "properties": [
+                {
+                  "name": "name",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "operationName",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                    "type": "null"
+                  }
+                },
+                {
+                  "name": "projectRelativePath",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "operationRelativePath",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "path",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "main",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "source",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "description",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "one-line description of the operation",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "version",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "private",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                {
+                  "name": "author",
+                  "required": false,
+                  "schema": {
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "repository",
+                  "required": false,
+                  "schema": {
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "homepage",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "dependencies",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "devDependencies",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "peerDependencies",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "bin",
+                  "required": false,
+                  "schema": {
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "workspaces",
+                  "required": false,
+                  "schema": {
+                    "items": [
+                      {
+                        "schema": {
+                          "type": "string"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "scripts",
+                  "required": false,
+                  "schema": {
+                    "properties": [],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "operation",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "custom keys, both indexed and generated",
+                    "properties": [
+                      {
+                        "name": "isNodeServer",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Set to true if this operations serves a server. Will be omitted from api.",
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "isBundle",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Set to true if this package.json is your bundle. This means almost all other config doesn't apply.\n\nreplaces `isSensibleProject`.\n\nTODO: Might be interesting to see what the differences between the two are, and if it is truly needed to create a convention for this. The bundle folder structure convention is is the more conventional way of structuring a monorepo, but I doubt the if it really benefits me, especially if I have to maintain two conventions for this, and do different things based on the type of applied convention.",
+                          "todo": "Might be interesting to see what the differences between the two are, and if it is truly needed to create a convention for this. The bundle folder structure convention is is the more conventional way of structuring a monorepo, but I doubt the if it really benefits me, especially if I have to maintain two conventions for this, and do different things based on the type of applied convention.",
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "hasGeneratedDependenciesIndexed",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "If true, it means that this operation has dependency on one or more operations that have been generated at runtime. We need to know this because it can easily cause circular imports if we don't filter them out sometimes",
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "buildResultIndexed",
+                        "required": false,
+                        "schema": {
+                          "properties": [
+                            {
+                              "name": "buildSucceeded",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "dependenciesBuildsFailed",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "indexImportExportError",
+                              "required": false,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "lintProblems",
+                              "required": false,
+                              "schema": {
+                                "items": [
+                                  {
+                                    "schema": {
+                                      "type": "string"
+                                    },
+                                    "name": null
+                                  }
+                                ],
+                                "type": "array"
+                              }
+                            },
+                            {
+                              "name": "indexInteracesErrors",
+                              "required": false,
+                              "schema": {
+                                "items": [
+                                  {
+                                    "schema": {
+                                      "type": "string"
+                                    },
+                                    "name": null
+                                  }
+                                ],
+                                "type": "array"
+                              }
+                            },
+                            {
+                              "name": "indexErrors",
+                              "required": false,
+                              "schema": {
+                                "items": [
+                                  {
+                                    "schema": {
+                                      "type": "string"
+                                    },
+                                    "name": null
+                                  }
+                                ],
+                                "type": "array"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "lastPullTimeAtIndexed",
+                        "required": false,
+                        "schema": {
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "lastRebuildAt",
+                        "required": false,
+                        "schema": {
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "folderNameIndexed",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "name of the operation folder",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "relativeOperationLocationPathIndexed",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "relative path to the operation (does not include operation folder itself)\n\nrelative from project root",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "packageDependenciesIndexed",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "external package dependency names (non-operation)\n\nTODO: this are imported names, not the module names.... rename this and add them both under clear names",
+                          "todo": "this are imported names, not the module names.... rename this and add them both under clear names",
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
+                        "name": "operationDependenciesIndexed",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "operation dependency names",
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
+                        "name": "coreDependenciesIndexed",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "core dependencies (e.g. `path` and `fs`)",
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
+                        "name": "indirectDependencies",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Sometimes you are using function in a UI, which cannot be inferred with imports because they are used indirectly via an api. Here you can specify which operations on the backend are needed for an operation (ui mostly)\n\nThis array is simply a list of operation names needed for this operation that are not imported.\n\nNB: No need to specify things here that you also import in this operation, because these are already automatically detected.",
+                          "nb": "No need to specify things here that you also import in this operation, because these are already automatically detected.",
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
+                        "name": "authors",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "A list of authors\n\nShould be used to create bundle AUTHORS.md",
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
+                        "name": "contributors",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "A list of contributors\n\nCan be used to create bundle CONTRIBUTORS.md",
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
+                        "name": "paymentPlanId",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "TODO:",
+                          "todo": "",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "uiSupport",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "For ui-*, it should be noted which platforms are supported\n\nCan be used to generate nice component in the documentation",
+                          "properties": [
+                            {
+                              "name": "android",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "ios",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "web",
+                              "required": false,
+                              "schema": {
+                                "type": "boolean"
+                              }
+                            },
+                            {
+                              "name": "description",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "optionally, let others know why they are not supported yet or what good alternatives are in case they are not supported in certain platforms",
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "skipMinify",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "put on to true if minify doesn't work, so it will be skipped by `rebuildOperation`",
+                          "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "isNotSdkable",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "If set to true, this operation will not be included into the SDKs\n\nConfigurable",
+                          "type": "boolean"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  }
+                }
+              ],
+              "type": "object"
+            },
+            "name": "Operation"
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    },
+    {
+      "name": "operationName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Calculates new packageJson dependencies object based on imports found in the whole operation.\n\nFor monorepo modules, uses the version inside its packagejson (Uses the database to obtain the package.json)\n\nGenerated packages are not added to dependencies. Instead a config is added saying this operation only works within a monorepo since it has generated operation deps that are not on the npm registry\n\nFor external modules, uses the version that was already present in dependencies, or uses \"*\"\n\nAlso keeps the dependencies that were already there, nothing is removed.",
+  "returnType": {
+    "rawType": "{ newDependencies: import(\"/Users/king/King/operations/tools/types/code-types/build/Operation\").PackageInfoObject; hasGeneratedDependenciesIndexed: boolean; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "newDependencies": {
+          "type": "object",
+          "properties": {}
+        },
+        "hasGeneratedDependenciesIndexed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "newDependencies",
+        "hasGeneratedDependenciesIndexed"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "newDependencies",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "hasGeneratedDependenciesIndexed",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 3433,
+    "lines": 112,
+    "bytes": 3433,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 112,
+    "numberOfFiles": 1
+  },
+  "id": "ikasyilmxcddtffnrzggqbvk"
+}

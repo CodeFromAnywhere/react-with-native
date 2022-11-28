@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668148845854,
-  "updatedAt": 1668148845854,
+  "createdAt": 1669312125852,
+  "updatedAt": 1669312125852,
   "deletedAt": 0,
-  "createdFirstAt": 1668148845854,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312125852,
+  "isApiExposed": true,
   "isExported": true,
-  "operationRelativeTypescriptFilePath": "src/convention/getDatabaseFiles.ts",
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/convention/getRootFolders.ts",
   "commentsInside": [],
-  "rawText": " async (config: {\n  manualProjectRoot?: string;\n  projectRoot: string;\n  mergedConfig: MergedQueryConfig;\n  operationPath: string | false;\n}): Promise<RootDbFolder[]> => {\n  const { mergedConfig, operationPath, projectRoot, manualProjectRoot } =\n    config;\n\n  const shouldSearchOperations = mergedConfig.operationName !== null;\n  const shouldSearchProject = !mergedConfig.operationName;\n\n  // NB: for this we need to be sure that sdk-operations is up-to-date!\n  const realProjectRelativeOperationPathsObject: {\n    [operationName: string]: string;\n  } = manualProjectRoot\n    ? await calculateOperationsObject(manualProjectRoot)\n    : operations;\n\n  const operationFolders: RootDbFolder[] = shouldSearchOperations\n    ? mergedConfig.operationName && operationPath // NB: specific operation\n      ? [\n          {\n            basePath: operationPath,\n            operationName: mergedConfig.operationName,\n          },\n        ]\n      : Object.keys(realProjectRelativeOperationPathsObject).map(\n          (operationName) => {\n            const operationBasePath = path.join(\n              projectRoot,\n              realProjectRelativeOperationPathsObject[operationName]\n            );\n\n            return {\n              basePath: operationBasePath,\n              operationName,\n            };\n          }\n        )\n    : [];\n\n  const projectFolder: RootDbFolder | undefined = shouldSearchProject\n    ? { operationName: null, basePath: projectRoot }\n    : undefined;\n\n  const rootFolders: RootDbFolder[] = [\n    projectFolder,\n    ...operationFolders,\n  ].filter(notEmpty);\n\n  return rootFolders;\n}",
+  "rawText": " async (config: {\n  manualProjectRoot?: string;\n  projectRoot: string;\n  mergedConfig: MergedQueryConfig;\n  operationPath: string | false;\n}): Promise<RootDbFolder[]> => {\n  const { mergedConfig, operationPath, projectRoot, manualProjectRoot } =\n    config;\n\n  // simple case: specific operation\n  if (operationPath && mergedConfig.operationName) {\n    return [\n      { basePath: operationPath, operationName: mergedConfig.operationName },\n    ];\n  }\n\n  const shouldSearchOperations = mergedConfig.operationName === \"*\";\n  const shouldSearchProject =\n    mergedConfig.operationName === undefined ||\n    mergedConfig.operationName === null ||\n    mergedConfig.operationName !== \"*\";\n\n  const projectFolder: RootDbFolder | undefined = shouldSearchProject\n    ? { operationName: null, basePath: projectRoot }\n    : undefined;\n\n  if (!shouldSearchOperations) {\n    // early return for performance reasons\n    return shouldSearchProject && projectFolder ? [projectFolder] : [];\n  }\n\n  // NB: for this we need to be sure that sdk-operations is up-to-date!\n  const realProjectRelativeOperationPathsObject: {\n    [operationName: string]: string;\n  } = manualProjectRoot\n    ? // NB: this is super slow!!! (up to 80ms)\n      await calculateOperationsObject(manualProjectRoot)\n    : operations;\n\n  const operationFolders: RootDbFolder[] = Object.keys(\n    realProjectRelativeOperationPathsObject\n  ).map((operationName) => {\n    const operationBasePath = path.join(\n      projectRoot,\n      realProjectRelativeOperationPathsObject[operationName]\n    );\n\n    return {\n      basePath: operationBasePath,\n      operationName,\n    };\n  });\n\n  const rootFolders: RootDbFolder[] = [\n    projectFolder,\n    ...operationFolders,\n  ].filter(notEmpty);\n\n  return rootFolders;\n}",
   "name": "getRootFolders",
   "slug": "get-root-folders",
   "parameters": [
@@ -67,6 +62,64 @@
             }
           },
           {
+            "name": "mergedConfig",
+            "required": true,
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "dbStorageMethod",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "jsonMultiple",
+                      "jsonSingle",
+                      "markdown",
+                      "keyValueMarkdown",
+                      "csv"
+                    ],
+                    "fullComment": "When setting this, make sure your models are able to use this storage method, this is not always possible!\n\ndefaults to jsonMultiple\n\nThe following strategies are available to store the data.\n\n- **jsonMultiple *(default)***: stores the data in a json file which is an array of this data structure. This file will be located in `db/[pluralized-kebab-case-model-name].json`\n\n- **jsonSingle**: stores the data in a json file which is of this data structure (single object) These files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].json`\n\n- **markdown**: stores the data in a markdown file. Takes \"markdown\" parameter as the main markdown. The other parameters are stored as front-matter. This these files will be located in `db/[pluralized-kebab-case-model-name]/[instance-slug-or-id].md`\n\n- **keyValueMarkdown**: stores the data in key value markdown format. This file will be located in `db/[pluralized-kebab-case-model-name].md`\n\n- **csv**: stores the data in a csv file (only possible for flat object datastructures). This file will be located in `db/[pluralized-kebab-case-model-name].csv`\n\n## Definitions:\n\n- [pluralized-kebab-case-model-name]: e.g. `StudentUser` becomes `student-users`\n- [instance-slug-or-id]: For all models with a slug parameter, the filename will be that slug of that instance. Otherwise, `id` will be used",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "manualProjectRoot",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "if specified, this will be used as the root path to find your data in\n\nif not specified, uses the db folder in your project root and in any operation\n\nNB: If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+                    "nb": "If you set this, the model interfaces of your current project are applied on another project! Make sure they are the same there before you run such queries.",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "operationName",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "projectRelativePath",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "if specified, only this location will be used",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "operationRelativePath",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "if specified, only this location will be used (also need an `operationName`)",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
             "name": "operationPath",
             "required": true,
             "schema": {
@@ -80,9 +133,9 @@
       "required": true
     }
   ],
-  "description": "",
+  "description": "Gets all root folders where db folders can be located inside of\n\nNB: Before november '22, this function is quite slow if it needs to find all operation folders becuase this takes at least 60ms.",
   "returnType": {
-    "rawType": "Promise<import(\"/Users/king/King/operations/tools/database/fs-orm/src/types\").RootDbFolder[]>",
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/src/types\").RootDbFolder[]>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -90,15 +143,15 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "maxIndentationDepth": 7,
+  "maxIndentationDepth": 3,
   "size": {
-    "characters": 1598,
-    "lines": 53,
-    "bytes": 1598,
+    "characters": 1950,
+    "lines": 62,
+    "bytes": 1950,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 30,
-    "linesPerFile": 53,
+    "charactersPerLine": 31,
+    "linesPerFile": 62,
     "numberOfFiles": 1
   },
-  "id": "hiileeixjqwcaoqpopkznqsg"
+  "id": "tlqwezvdoahxloqhdxlijshj"
 }

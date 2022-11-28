@@ -1,11 +1,21 @@
 {
-  "createdAt": 1662709577329,
-  "updatedAt": 1662709577329,
+  "createdAt": 1668328720590,
+  "updatedAt": 1668328720590,
   "deletedAt": 0,
-  "createdFirstAt": 1662709577329,
-  "version": "0.0.1",
+  "createdFirstAt": 1668328720590,
+  "id": "iISehUGBHgtHVUce",
+  "dependencies": {
+    "csv-stringify": "^6.2.0",
+    "js-util": "0.0.1",
+    "make-test": "0.0.1",
+    "parse-primitive": "0.0.1",
+    "csv-parse": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
   "main": "build/index.js",
-  "source": "src/index.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
@@ -13,21 +23,63 @@
     "up": "npm version patch -f",
     "pub": "yarn up && npm publish"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^18.0.1",
-    "typescript": "^4.7.4"
-  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
   "name": "csv-util",
+  "language": "english",
   "slug": "csv-util",
-  "id": "iISehUGBHgtHVUce",
-  "dependencies": {
-    "csv-stringify": "^6.2.0",
-    "js-util": "0.0.1",
-    "make-test": "0.0.1",
-    "parse-primitive": "0.0.1"
-  },
-  "sensible": {
-    "hasGeneratedDependencies": false
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/parsing/file-conversion/csv/csv-util/src/csvItemArrayToCsvString.ts. Error: TypeError: Cannot read properties of undefined (reading 'getId')\"]",
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "csv-util",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668334729001,
+    "operationDependenciesIndexed": [
+      "makeTest",
+      "mergeObjectsArray",
+      "makeTest",
+      "parsePrimitive"
+    ],
+    "packageDependenciesIndexed": [
+      "stringify",
+      "parse"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/parsing/file-conversion/csv",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 3,
+        "lines": 155,
+        "characters": 3270,
+        "bytes": 3270
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 125,
+        "characters": 3037,
+        "bytes": 3037
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 60,
+        "characters": 940,
+        "bytes": 940
+      },
+      "size": {
+        "bytes": 7247,
+        "characters": 7247,
+        "lines": 340,
+        "numberOfFiles": 6
+      }
+    },
+    "hasGeneratedImportsIndexed": false
   }
 }

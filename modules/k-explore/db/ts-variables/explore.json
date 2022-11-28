@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148403667,
-  "updatedAt": 1668148403667,
+  "createdAt": 1668976641052,
+  "updatedAt": 1668976641052,
   "deletedAt": 0,
-  "createdFirstAt": 1668148403667,
+  "createdFirstAt": 1668976641052,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async ({\n  basePath,\n  searchLevel = \"fileName\",\n  debug,\n  ...other\n}: SearchConfig): Promise<TextJson[]> => {\n  /** accessability depends on whether we need to be able to read the file, or just see it */\n  const canAccess = async (p: string) =>\n    await (searchLevel === \"outline\" || searchLevel === \"full\"\n      ? canRead\n      : canSee)(p);\n\n  /** basepaths becomes an array of only the basepaths that we can access */\n  const accessibleBasePaths = makeArray(basePath || getProjectRoot())\n    .filter(fs.existsSync)\n    .filter(canAccess);\n\n  if (debug) console.log(`finding files in ${accessibleBasePaths.join(\",\")}`);\n\n  const textJsonPromises = accessibleBasePaths.map(async (p) =>\n    findFilesRecursively({ basePath: p, searchLevel, debug, ...other })\n  );\n\n  const textJsons = (await Promise.all(textJsonPromises)).flat();\n\n  return textJsons;\n}",
   "description": "This is the safe and friendly version of `findFilesRecursively`",
-  "id": "pcmddyambkaofetzzdxxnsnu"
+  "id": "sqlogiffwmrbkeljmtgxeytv"
 }

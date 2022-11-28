@@ -1,6 +1,6 @@
 # Markdown reader functions
 
-markdown-reader-functions (`OperationClassification` node)
+markdown-reader-functions (`OperationClassification` ui-cjs)
 
 
 
@@ -20,10 +20,19 @@ Readme is put on top!
 
 
 
+## markdownReaderGetStaticPropsFromPages()
+
+Takes the routes and pages you want to show, and returns the MarkdownReaderPageProps you need to render the reader page.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| context | `GetStaticPropsContext` |  |,| fileWebPages | `WebPage<any>`[] |  |,| webOperationName | string |  |
+| **Output** |    |    |
+
+
+
 ## markdownReaderGetStaticProps()
-
-Fix `operationBasePath not working` error when building: log `getStaticProps`/`getStaticPaths`
-
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -55,10 +64,12 @@ Returns all absolute markdown file paths within a basePath which are not drafts 
 Readme is put on top!
 
 
+## 📄 markdownReaderGetStaticPropsFromPages (exported const)
+
+Takes the routes and pages you want to show, and returns the MarkdownReaderPageProps you need to render the reader page.
+
+
 ## 📄 markdownReaderGetStaticProps (exported const)
-
-Fix `operationBasePath not working` error when building: log `getStaticProps`/`getStaticPaths`
-
 
 ## 📄 removeExtensionsFromPath (exported const)
 
@@ -121,7 +132,7 @@ Works for files and folders
 
 # Internal
 
-<details><summary>Show internal (29)</summary>
+<details><summary>Show internal (37)</summary>
     
   # copyStaticAssets()
 
@@ -134,7 +145,37 @@ To get a file from public assets after running this function, you need to get it
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| markdownReaderPages | `MarkdownReaderPage`[] |  |,| config (optional) | { operationName?: string, <br /> } |  |
+| readerWebPages | `ReaderWebPage`[] |  |,| config (optional) | { operationName?: string, <br /> } |  |
+| **Output** |    |    |
+
+
+
+## docsGetPages()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| basePaths | { projectRelativeBasePath: string, <br />queryPath: string, <br /> }[] |  |
+| **Output** |    |    |
+
+
+
+## docsGetStaticPaths()
+
+Function that tells Next.js what the pages are that need to be statically generated
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| context | `GetStaticPathsContext` |  |,| basePaths | { projectRelativeBasePath: string, <br />queryPath: string, <br /> }[] |  |
+| **Output** |    |    |
+
+
+
+## docsGetStaticProps()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| context | `GetStaticPropsContext` |  |,| basePaths | { projectRelativeBasePath: string, <br />queryPath: string, <br /> }[] |  |,| webOperationName | string | Operation of the website that is going to be deployed |
 | **Output** |    |    |
 
 
@@ -196,6 +237,15 @@ Used to generate the menu
 
 
 
+## getChildren()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| webPages | `WebPage<any>`[] |  |,| queryPath | string |  |
+| **Output** |    |    |
+
+
+
 ## getFolderExplorationInfo()
 
 Gets exploration information about a folder
@@ -207,7 +257,7 @@ Gets exploration information about a folder
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| nestedPathObject | `NestedPathObject` |  |,| queryPath | string |  |,| projectRoot | string |  |
+| webPages | `WebPage<any>`[] |  |,| queryPath | string |  |,| projectRoot | string |  |
 | **Output** |    |    |
 
 
@@ -238,7 +288,7 @@ If a markdown page is found, this function fetches all metadata needed to render
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| projectRoot | string |  |,| nestedPathObject | `NestedPathObject` |  |,| queryPath | string |  |,| contentPage | `MarkdownReaderPage` |  |
+| config | { projectRoot: string, <br />webPages: `WebPage<any>`[], <br />queryPath: string, <br />contentPage: `ReaderWebPage`, <br />webOperationName: string, <br />markdownCallToActions: `MarkdownCallToAction`[], <br /> } |  |
 | **Output** |    |    |
 
 
@@ -273,7 +323,7 @@ Gets all markdownreader pages for multiple basePaths. Can add a prefix, can also
 
 
 
-## getTodoPages()
+## getReaderTodoPages()
 
 gets all todo pages as markdownreader pages
 
@@ -344,7 +394,7 @@ To get the queryPath, we need to strip the README.md so we get the folder as URL
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| - | | |
+| filePath | string |  |
 | **Output** | `String`   |    |
 
 
@@ -359,6 +409,15 @@ NB: Removes all files in the public folder first.
 
 To get a file from public assets after running this function, you need to get it from the `projectRelativeFilePath`, not the file relative, so you need to render it differently.
 
+
+## 📄 docsGetPages (exported const)
+
+## 📄 docsGetStaticPaths (exported const)
+
+Function that tells Next.js what the pages are that need to be statically generated
+
+
+## 📄 docsGetStaticProps (exported const)
 
 ## 📄 getAllMarkdownReaderPages (exported const)
 
@@ -381,6 +440,8 @@ Does not include AugmentedWord. Just the main pages, not with queries and hashes
 
 Used to generate the menu
 
+
+## 📄 getChildren (exported const)
 
 ## 📄 getFolderExplorationInfo (exported const)
 
@@ -417,7 +478,7 @@ Gets all markdownreader pages for multiple basePaths. Can add a prefix, can also
 
 ## 📄 getOperationPages (exported const)
 
-## 📄 getTodoPages (exported const)
+## 📄 getReaderTodoPages (exported const)
 
 gets all todo pages as markdownreader pages
 

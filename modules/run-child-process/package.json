@@ -1,0 +1,81 @@
+{
+  "createdAt": 1668328741348,
+  "updatedAt": 1668328741348,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328741348,
+  "id": "jErGyuybqueevsjw",
+  "dependencies": {
+    "fs-util": "1.0.5",
+    "get-path": "0.0.1",
+    "log": "0.0.1",
+    "js-util": "0.0.1"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "run-child-process",
+  "language": "english",
+  "slug": "run-child-process",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "run-child-process",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668336578395,
+    "operationDependenciesIndexed": [
+      "path",
+      "fs",
+      "canRead",
+      "getOperationPath",
+      "notEmpty",
+      "log"
+    ],
+    "packageDependenciesIndexed": [
+      "spawnSync"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/util",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 3,
+        "lines": 93,
+        "characters": 2185,
+        "bytes": 2185
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 121,
+        "characters": 2693,
+        "bytes": 2693
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 47,
+        "characters": 723,
+        "bytes": 723
+      },
+      "size": {
+        "bytes": 5601,
+        "characters": 5601,
+        "lines": 261,
+        "numberOfFiles": 6
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

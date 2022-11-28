@@ -1,0 +1,57 @@
+{
+  "createdAt": 1669055709784,
+  "updatedAt": 1669055709784,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055709784,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getAllDbModels.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  manualProjectRoot?: string,\n  operationName?: string\n) => {\n  const allDbModels = (\n    await db.get(\"TsInterface\", { manualProjectRoot, operationName: \"*\" })\n  )\n    .filter(\n      (x) => x.isDbModel && x.dbStorageMethod && x.isExported && !x.hasGeneric\n    )\n    .filter((x) => x.operationName !== \"database\")\n    .filter((x) => (operationName ? x.operationName === operationName : true))\n    .filter((x) => !!x.operationName) // && !dependants.includes(x.operationName)\n    .filter(onlyUnique2<TsInterface>((a, b) => a.name === b.name));\n\n  return allDbModels;\n}",
+  "name": "getAllDbModels",
+  "slug": "get-all-db-models",
+  "parameters": [
+    {
+      "name": "manualProjectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    },
+    {
+      "name": "operationName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 576,
+    "lines": 17,
+    "bytes": 576,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "ytgyxljzvynpjqfagheqqnwg"
+}

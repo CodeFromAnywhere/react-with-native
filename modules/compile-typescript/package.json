@@ -1,0 +1,105 @@
+{
+  "createdAt": 1668328731524,
+  "updatedAt": 1668328731524,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328731524,
+  "id": "AvWuSXOnPmDqTnlH",
+  "dependencies": {
+    "log": "0.0.1",
+    "get-package-json": "0.0.1",
+    "get-ts-config": "0.0.1",
+    "code-types": "0.0.1",
+    "database": "0.0.1",
+    "js-util": "0.0.1",
+    "get-package-source-paths": "0.0.1",
+    "model-types": "0.0.1",
+    "fs-util": "1.0.5",
+    "get-path": "0.0.1"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "compile-typescript",
+  "language": "english",
+  "slug": "compile-typescript",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "compile-typescript",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668335802378,
+    "operationDependenciesIndexed": [
+      "log",
+      "getOperationPackageName",
+      "getPackageJson",
+      "getTsConfig",
+      "TsBuildError",
+      "db",
+      "notEmpty",
+      "onlyUnique",
+      "getPackageSourcePaths",
+      "Creation",
+      "log",
+      "getLastFolder",
+      "path",
+      "TsConfig",
+      "TsBuildError",
+      "Operation",
+      "Creation",
+      "generateId",
+      "findOperationBasePath",
+      "getOperationPathParse",
+      "getPathParse",
+      "notEmpty",
+      "getLastFolder",
+      "getPathParse",
+      "getProjectRoot",
+      "db"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/typescript",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 4,
+        "lines": 264,
+        "characters": 8669,
+        "bytes": 8669
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 145,
+        "characters": 3311,
+        "bytes": 3311
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 85,
+        "characters": 2519,
+        "bytes": 2519
+      },
+      "size": {
+        "bytes": 14499,
+        "characters": 14499,
+        "lines": 494,
+        "numberOfFiles": 7
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

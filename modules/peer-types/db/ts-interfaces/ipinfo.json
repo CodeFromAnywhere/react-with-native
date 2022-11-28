@@ -1,0 +1,133 @@
+{
+  "createdAt": 1669384896221,
+  "updatedAt": 1669384896221,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384896221,
+  "id": "ipinfo",
+  "name": "IPInfo",
+  "slug": "ipinfo",
+  "operationRelativeTypescriptFilePath": "src/IPInfo.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n * Information that is inferred from an IP\n */\nexport type IPInfo = {\n  /**\n   * The ip of the device. Can be a local IP or remote IP.\n   *\n   * NB: Port is not included\n   */\n  ip: string;\n  city: string | undefined;\n  position: Position | undefined;\n  positionRadiusKm: number | undefined;\n  country: string | undefined;\n  region: string | undefined;\n  timezone: string | undefined;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Information that is inferred from an IP",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "ip": {
+          "type": "string",
+          "description": "The ip of the device. Can be a local IP or remote IP.\n\nNB: Port is not included"
+        },
+        "city": {
+          "type": "string"
+        },
+        "position": {
+          "$ref": "#/definitions/Position"
+        },
+        "positionRadiusKm": {
+          "type": "number"
+        },
+        "country": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ip"
+      ],
+      "additionalProperties": false,
+      "description": "Information that is inferred from an IP"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Information that is inferred from an IP",
+      "properties": [
+        {
+          "name": "ip",
+          "required": true,
+          "schema": {
+            "fullComment": "The ip of the device. Can be a local IP or remote IP.\n\nNB: Port is not included",
+            "nb": "Port is not included",
+            "type": "string"
+          }
+        },
+        {
+          "name": "city",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "position",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "latitude",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "longitude",
+                "required": true,
+                "schema": {
+                  "type": "number"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "positionRadiusKm",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "country",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "region",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "timezone",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "IPInfo",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

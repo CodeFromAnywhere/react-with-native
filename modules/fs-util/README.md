@@ -1,6 +1,6 @@
 # Fs util
 
-fs-util (`OperationClassification` js)
+fs-util (`OperationClassification` cjs)
 
 General purpose wrapper around `node:fs` and `node:path` that should be used instead of those, because it removes some of its painpoints, removes unneeded stuff, and adds some other useful functions.
 
@@ -117,19 +117,6 @@ if the path doesn't exist: returns pathString witout last chunk (this would only
 
 
 
-## 🔹 Path
-
-unlike PathLike, this is only a string
-
-For now, we don't have a clear convention whether or not this string should be absolute or anything.
-
-
-
-
-
-
-
-
 ## 📄 canRead (exported const)
 
 File is readable to the calling process
@@ -142,6 +129,19 @@ if the path exists:
 - if the pathstring is not a folder, returns the pathstring without the file suffix
 
 if the path doesn't exist: returns pathString witout last chunk (this would only work for file paths)
+
+
+## 🔹 Path
+
+unlike PathLike, this is only a string
+
+For now, we don't have a clear convention whether or not this string should be absolute or anything.
+
+
+
+
+
+
 
 
 ## canReadSync()
@@ -252,18 +252,6 @@ File is writable to the calling process
 
 
 
-## findAllMd()
-
-DEPRECATED: `k-explore` can be used
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-
 ## getFileName()
 
 removes everything before the last slash to get file name
@@ -297,75 +285,12 @@ Takes a folder path and returns a path that is one folder up
 
 
 
-## importFromFiles()
-
-DEPRECATED:
-
-works fine but this requires us to know exactly what we want from the file, so it requires a very clear convention.
-better would be to introspect the code and just require whatever's there
-returns T[] where every T is one of:
-- the default export (importStrategy "default")
-- the export with the name of the extension
-- an object with a subset of exports
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | {  }[]   |    |
-
-
-
-## isArrayGuard()
-
-DEPRECATED
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-
-## parseMd()
-
-DEPRECATED: just use `md-to-json-parse`
-
-parse a md file to all the needed info
-@param mdFilePath path to a md file
-@returns Md
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| mdFilePath | `Path` | path to a md file |
-| **Output** |    |    |
-
-
-
 ## renameAndCreate()
 
 | Input      |    |    |
 | ---------- | -- | -- |
 | oldPath | string |  |,| newPath | string |  |
 | **Output** |    |    |
-
-
-
-## 🔹 Markdown
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| fileName  | string |  |
-| params  | object |  |
-| createdAt  | number |  |
-| updatedAt  | number |  |
-| modifiedAt  | number |  |
-| openedAt  | number |  |
-| content  | string |  |
 
 
 
@@ -377,11 +302,6 @@ File is visible to the calling process
 ## 📄 canWriteSync (exported const)
 
 File is writable to the calling process
-
-
-## 📄 findAllMd (exported const)
-
-DEPRECATED: `k-explore` can be used
 
 
 ## 📄 getFileName (exported const)
@@ -396,42 +316,11 @@ removes everything before the last slash to get file name
 Takes a folder path and returns a path that is one folder up
 
 
-## 📄 importFromFiles (exported const)
-
-DEPRECATED:
-
-works fine but this requires us to know exactly what we want from the file, so it requires a very clear convention.
-better would be to introspect the code and just require whatever's there
-returns T[] where every T is one of:
-- the default export (importStrategy "default")
-- the export with the name of the extension
-- an object with a subset of exports
-
-
-## 📄 isArrayGuard (exported const)
-
-DEPRECATED
-
-
-## 📄 mergeObjectsArray (exported const)
-
-DEPRECATED: in favor of mergeObjectsArray from "js-util"
-
-
-## 📄 parseMd (exported const)
-
-DEPRECATED: just use `md-to-json-parse`
-
-parse a md file to all the needed info
-@param mdFilePath path to a md file
-@returns Md
-
-
 ## 📄 renameAndCreate (exported const)
 
 # Internal
 
-<details><summary>Show internal (32)</summary>
+<details><summary>Show internal (30)</summary>
     
   # canAccessSync()
 
@@ -521,32 +410,6 @@ returns a path of a fileName
 
 
 
-## findFilesRecursively()
-
-DEPRECATED: in favour of `explore` from "k-explore"
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | { relativeFolder?: string, <br />path: string, <br /> }[]   |    |
-
-
-
-## findSensibleFiles()
-
-DEPRECATED:
-
-this is sensible-specific
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | { relativeFolder?: string, <br />path: string, <br /> }[]   |    |
-
-
-
 ## getPathCombinations()
 
 gets combinations for paths
@@ -577,6 +440,22 @@ E.g.
 | ---------- | -- | -- |
 | filename | string |  |
 | **Output** | `String`   |    |
+
+
+
+## parseMd()
+
+DEPRECATED: just use `md-to-json-parse`
+
+parse a md file to all the needed info
+@param mdFilePath path to a md file
+@returns Md
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| mdFilePath | `Path` | path to a md file |
+| **Output** |    |    |
 
 
 
@@ -647,6 +526,22 @@ Properties:
 
 ## 🔹 MarkdownContent
 
+## 🔹 Markdown
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| fileName  | string |  |
+| params  | object |  |
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| modifiedAt  | number |  |
+| openedAt  | number |  |
+| content  | string |  |
+
+
+
 ## 🔹 MarkdownContent
 
 ## 🔹 UnixTimestamp
@@ -692,27 +587,6 @@ File is writable to the calling process
 returns a path of a fileName
 
 
-## 📄 findFilesRecursively (exported const)
-
-DEPRECATED: in favour of `explore` from "k-explore"
-
-
-## 📄 findFiles (exported const)
-
-DEPRECATED:
-
-SHOULD BE REPLACED
-
-this is sensible-specific
-
-
-## 📄 findSensibleFiles (exported const)
-
-DEPRECATED:
-
-this is sensible-specific
-
-
 ## 📄 getPathCombinations (exported const)
 
 gets combinations for paths
@@ -730,6 +604,15 @@ E.g.
 
 - `hello-world` becomes `hello-world1`
 - `hello36` becomes `hello37`
+
+
+## 📄 parseMd (exported const)
+
+DEPRECATED: just use `md-to-json-parse`
+
+parse a md file to all the needed info
+@param mdFilePath path to a md file
+@returns Md
 
 
 ## 📄 writeToFiles (exported const)

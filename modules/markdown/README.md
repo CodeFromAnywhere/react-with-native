@@ -22,25 +22,13 @@ renders a markdown striing (without frontmatter)
 | Input      |    |    |
 | ---------- | -- | -- |
 | - | | |
-| **Output** | `JSX.Element`   |    |
+| **Output** | {  }   |    |
 
 
 
 ## 📄 renderMarkdownContent (exported const)
 
 renders a markdown striing (without frontmatter)
-
-
-## getRealSrc()
-
-Based on markdown info, gest the real source for an image
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| src (optional) | string |  |,| config | `MarkdownParseRenderConfig` |  |
-| **Output** | string   |    |
-
 
 
 ## `<MarkdownCodeblock />`
@@ -55,15 +43,20 @@ Renders a markdown codeblock with a text as content and an optional extension
 
 
 
-## renderMarkdownParse()
+## 📄 MarkdownCodeblock (exported const)
 
-renders the MardkownParse interface (including frontmatter)
+Renders a markdown codeblock with a text as content and an optional extension
+
+
+## getRealSrc()
+
+Based on markdown info, gest the real source for an image
 
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| markdownParse | `MarkdownParse` |  |,| config | `MarkdownParseRenderConfig` |  |
-| **Output** | `JSX.Element`   |    |
+| src (optional) | string |  |,| config | `MarkdownParseRenderConfig` |  |
+| **Output** | string   |    |
 
 
 
@@ -86,19 +79,9 @@ Properties:
 
 Based on markdown info, gest the real source for an image
 
-
-## 📄 MarkdownCodeblock (exported const)
-
-Renders a markdown codeblock with a text as content and an optional extension
-
-
-## 📄 renderMarkdownParse (exported const)
-
-renders the MardkownParse interface (including frontmatter)
-
 # Internal
 
-<details><summary>Show internal (17)</summary>
+<details><summary>Show internal (21)</summary>
     
   # getUrlFromRelativeUrl()
 
@@ -121,11 +104,23 @@ gets the renderable asset url from the relative url
 
 
 
-## header()
+## `<HtmlHeader />`
 
 | Input      |    |    |
 | ---------- | -- | -- |
 | - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## `<Parameter />`
+
+In markdown, if you wish to refer to a parameter, you can backtick it and put a "." in front. You can also add a value to it if you wish, by adding the ":" and the value afterwards.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { text: string, <br /> } |  |
 | **Output** | `JSX.Element`   |    |
 
 
@@ -150,6 +145,18 @@ renders a MarkdownChunk interface
 | Input      |    |    |
 | ---------- | -- | -- |
 | chunk | `MarkdownChunk` |  |,| config | `MarkdownParseRenderConfig` |  |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## renderMarkdownParse()
+
+renders the MardkownParse interface (including frontmatter)
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| markdownParse | `MarkdownParse` |  |,| config | `MarkdownParseRenderConfig` |  |
 | **Output** | `JSX.Element`   |    |
 
 
@@ -188,7 +195,12 @@ gets the renderable asset url from the relative url
 
 ## 📄 getYoutubeId (exported const)
 
-## 📄 header (exported const)
+## 📄 HtmlHeader (exported const)
+
+## 📄 Parameter (exported const)
+
+In markdown, if you wish to refer to a parameter, you can backtick it and put a "." in front. You can also add a value to it if you wish, by adding the ":" and the value afterwards.
+
 
 ## 📄 renderFrontmatter (exported const)
 
@@ -198,6 +210,11 @@ Renders markdown frontmatter parameters (and optionally a spacer)
 ## 📄 renderMarkdownChunk (exported const)
 
 renders a MarkdownChunk interface
+
+
+## 📄 renderMarkdownParse (exported const)
+
+renders the MardkownParse interface (including frontmatter)
 
 
 ## 📄 renderMarkdownTitle (exported const)

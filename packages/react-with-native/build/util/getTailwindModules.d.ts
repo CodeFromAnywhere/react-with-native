@@ -1,6 +1,6 @@
 export declare const getTailwindModules: (options: {
     /**
-     * if you are using a sensible monorepo, put the packages with tailwind-based ui here
+     * if you are using a sensible v1 monorepo, put the packages with tailwind-based ui here
      */
     packages?: string[] | undefined;
     modules?: string[] | undefined;

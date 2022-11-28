@@ -1,0 +1,2 @@
+"use strict";var _a;Object.defineProperty(exports,"__esModule",{value:!0}),exports.useStore=exports.StoreProvider=void 0;var react_with_native_store_1=require("react-with-native-store"),api_store_1=require("api-store");exports.StoreProvider=(_a=(0,react_with_native_store_1.createStore)(api_store_1.apiStoreInitialValues)).StoreProvider,exports.useStore=_a.useStore;
+//# sourceMappingURL=store.js.map

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261463615,
-  "updatedAt": 1666261463615,
+  "createdAt": 1669055929429,
+  "updatedAt": 1669055929429,
   "deletedAt": 0,
-  "createdFirstAt": 1666261463615,
+  "createdFirstAt": 1669055929429,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "select-multiple-input",
   "operationRelativeTypescriptFilePath": "src/selectMultiple/selectMultiple.tsx",
   "type": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form-inputs/src/selectMultiple/selectMultiple\").SelectMultipleInputType>",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form-inputs/src/selectMultiple/selectMultiple\").SelectMultipleInputType>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -18,7 +18,7 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "value": "({\n  value,\n  extra,\n  onChange,\n  uniqueFieldId,\n}) => {\n  //console.log({ value, extraOptions: extra.options });\n  const optionsLeft = [{ label: extra.title || \"Choose a value\", value: \"\" }]\n    .concat(extra.options)\n    .filter((x) => !value.find((i) => x.value === i.value));\n  return (\n    <Div className=\"flex flex-row flex-wrap\">\n      {value.map((item, index) => (\n        <Button\n          onClick={() => {\n            const newValue = value.filter((x) => x.value !== item.value);\n            onChange(newValue);\n          }}\n          key={`selected${uniqueFieldId}${index}`}\n          className={`mr-3 px-3 py-2 rounded-md border border-gray-400`}\n        >\n          <P className=\"text-xs\">\n            {item.label} <Span textClassName=\"text-red-500 text-xs\">(x)</Span>\n          </P>\n        </Button>\n      ))}\n\n      {optionsLeft.length > 1 ? (\n        <Select\n          placeholder={extra?.placeholder}\n          noPlaceholder={extra?.noPlaceholder}\n          autoSuggest={extra?.autoSuggest}\n          className={UI.selectInput}\n          title={extra.title || \"\"}\n          options={optionsLeft}\n          onChange={(selected) => {\n            console.log({ selected });\n            if (selected) {\n              const newValue = value;\n\n              newValue.push(selected);\n\n              console.log({ value, newValue });\n              onChange(newValue);\n            }\n          }}\n        />\n      ) : null}\n    </Div>\n  );\n}",
+  "value": "({\n  value,\n  extra,\n  onChange,\n  uniqueFieldId,\n}) => {\n  //console.log({ value, extraOptions: extra.options });\n  const optionsLeft = [{ label: extra.title || \"Choose a value\", value: \"\" }]\n    .concat(extra.options)\n    .filter((x) => !value.find((i) => x.value === i.value));\n  return (\n    <Div className=\"flex flex-row flex-wrap\">\n      {value.map((item, index) => (\n        <Button\n          onClick={() => {\n            const newValue = value.filter((x) => x.value !== item.value);\n            onChange(newValue);\n          }}\n          key={`selected${uniqueFieldId}${index}`}\n          className={`mr-3 px-3 py-2 rounded-md border border-gray-400`}\n        >\n          <P className=\"text-xs\">\n            {item.label} <Span textClassName=\"text-red-500 text-xs\">(x)</Span>\n          </P>\n        </Button>\n      ))}\n\n      {optionsLeft.length > 1 ? (\n        <Select\n          placeholder={extra?.placeholder}\n          noPlaceholder={extra?.noPlaceholder}\n          autoSuggest={extra?.autoSuggest}\n          className={UI.selectInput}\n          title={extra.title || \"\"}\n          options={optionsLeft}\n          onChange={(selected) => {\n            console.log({ selected });\n            if (selected) {\n              const newValue = value;\n              //@ts-ignore\n              newValue.push(selected);\n\n              console.log({ value, newValue });\n              onChange(newValue);\n            }\n          }}\n        />\n      ) : null}\n    </Div>\n  );\n}",
   "description": "",
-  "id": "vleknmldykfqtncxzobyfqpq"
+  "id": "jhxfrlageofxwiocnropnqjk"
 }

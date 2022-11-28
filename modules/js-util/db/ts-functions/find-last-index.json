@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150832336,
-  "updatedAt": 1668150832336,
+  "createdAt": 1668977384786,
+  "updatedAt": 1668977384786,
   "deletedAt": 0,
-  "createdFirstAt": 1668150832336,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977384786,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/array-modifications.ts",
   "commentsInside": [],
   "rawText": " <T>(array: T[], findFn: (item: T) => boolean) => {\n  const lastIndex = array\n    .map((item, index) => ({ item, index }))\n    .filter(({ item }) => findFn(item))\n    .pop()?.index;\n\n  return lastIndex;\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 8,
     "numberOfFiles": 1
   },
-  "id": "gcquyzzrgywdbfzvhiovztpw"
+  "id": "aaqyosozqycligjuwfbabmvg"
 }

@@ -1,0 +1,76 @@
+{
+  "createdAt": 1668328683841,
+  "updatedAt": 1668328683841,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328683841,
+  "id": "KDQDhuKmgVOmWJmD",
+  "dependencies": {
+    "read-json-file": "0.0.1",
+    "fs-util": "1.0.5",
+    "code-types": "0.0.1"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "get-ts-config",
+  "language": "english",
+  "slug": "get-ts-config",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "get-ts-config",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668331924961,
+    "operationDependenciesIndexed": [
+      "readJsonFile",
+      "path",
+      "TsConfig"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/control-fs",
+    "markdown": "Gets the TsConfig given a path to an operation\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 1,
+        "lines": 10,
+        "characters": 323,
+        "bytes": 323
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 116,
+        "characters": 2673,
+        "bytes": 2673
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 25,
+        "characters": 343,
+        "bytes": 343
+      },
+      "size": {
+        "bytes": 3339,
+        "characters": 3339,
+        "lines": 151,
+        "numberOfFiles": 5
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

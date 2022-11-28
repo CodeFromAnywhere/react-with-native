@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148339816,
-  "updatedAt": 1668148339816,
+  "createdAt": 1669055064519,
+  "updatedAt": 1669055064519,
   "deletedAt": 0,
-  "createdFirstAt": 1668148339816,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055064519,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getProjectRoot.ts",
   "commentsInside": [],
   "rawText": " (fullSourcePath?: string): string | undefined => {\n  const matchFolder = findFolderWhereMatch(\n    fullSourcePath || __dirname,\n    hasProjectRootFile\n  );\n  if (!matchFolder) return;\n  return matchFolder.folderPath;\n}",
@@ -65,5 +60,5 @@
     "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "nqkbjjgxlnnhvouqgtqbhuju"
+  "id": "olflgyxmzdfgddybuhvkczyo"
 }

@@ -1,10 +1,10 @@
 {
-  "createdAt": 1666261507308,
-  "updatedAt": 1666261507308,
+  "createdAt": 1668333575670,
+  "updatedAt": 1668333575670,
   "deletedAt": 0,
-  "createdFirstAt": 1666261507308,
+  "createdFirstAt": 1668333575670,
   "publicAuthorization": [
-    "read-docs",
+    "read",
     "search"
   ],
   "isApiExposed": false,
@@ -41,5 +41,5 @@
   },
   "rawText": "\n\nexport function Modal() {\n  const [inside, setInside] = useState(false);\n  let { modalContent, title, handleModal, showModal } =\n    useContext(ModalContext);\n\n  if (showModal) {\n    return (\n      <>\n        <Div\n          onClick={() => !inside && handleModal(null)}\n          className=\"fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none\"\n        >\n          <Div\n            onMouseEnter={() => setInside(true)}\n            onMouseLeave={() => setInside(false)}\n            className=\"relative w-auto max-w-3xl mx-auto my-6 lg:w-10/12 lg:h-10/12\"\n          >\n            {/*content*/}\n            <Div className=\"relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none\">\n              {/*header*/}\n              <Div className=\"flex items-start justify-between p-5 border-b border-gray-200 border-solid rounded-t\">\n                <h3 className=\"text-3xl font-semibold\">{title}</h3>\n                <Button\n                  className=\"float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none\"\n                  onClick={() => handleModal(null)}\n                >\n                  <span className=\"block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none\">\n                    x\n                  </span>\n                </Button>\n              </Div>\n              {/*body*/}\n              <Div className=\"relative flex-auto p-6\">\n                <p className=\"my-4 text-lg leading-relaxed text-gray-500\">\n                  {modalContent}\n                </p>\n              </Div>\n              {/*footer*/}\n              <Div className=\"flex items-center justify-end p-6 border-t border-gray-200 border-solid\">\n                <Button\n                  className=\"px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none\"\n                  onClick={() => handleModal(null)}\n                >\n                  Close...\n                </Button>\n              </Div>\n            </Div>\n          </Div>\n        </Div>\n        <Div className=\"fixed inset-0 z-40 bg-black opacity-50\"></Div>\n      </>\n    );\n  } else return null;\n}",
   "maxIndentationDepth": 10,
-  "id": "rmqmupurwjgsashxacltvqbc"
+  "id": "jzcggvxkjsxpdlwipygaiibg"
 }

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666261373854,
-  "updatedAt": 1666261373854,
+  "createdAt": 1669055877837,
+  "updatedAt": 1669055877837,
   "deletedAt": 0,
-  "createdFirstAt": 1666261373854,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055877837,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/general.tsx",
   "commentsInside": [],
   "rawText": " <\n  T extends Field<TInputs, Keys<TInputs>>[],\n  TInputs extends any\n>(\n  arr1: T,\n  arr2: T\n) => {\n  const simpleArr1 = arr1.map(\n    ({ shouldHide, titleFromState, hasError, ...item }) => item\n  );\n  const simpleArr2 = arr2.map(\n    ({ shouldHide, titleFromState, hasError, ...item }) => item\n  );\n\n  const isDeepEqual = deepEqual(simpleArr1, simpleArr2);\n  // console.log({ simpleArr1, simpleArr2, isDeepEqual });\n  return isDeepEqual;\n}",
@@ -46,5 +41,5 @@
     "linesPerFile": 18,
     "numberOfFiles": 1
   },
-  "id": "vsxisytvkjscfqbxqkitncyu"
+  "id": "nzlurzgxukzntwdtuihizmhc"
 }

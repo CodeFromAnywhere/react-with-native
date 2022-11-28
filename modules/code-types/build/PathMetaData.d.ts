@@ -3,7 +3,11 @@ import { TsComment } from "./TsComment";
 /**
  * All interesting metadata about any path (files and folders)
  */
-export declare type PathMetaData = {
+export declare type PathMetaData = FileContentInfo & PathParse & PathStats;
+/**
+ * Stuff you can find by reading the file
+ */
+export declare type FileContentInfo = {
     /**
      * a comment about this file or folder. Can be parsed from:
      * - an associated markdown file and/or the top of the file (If they're both there, they're concatenated)
@@ -14,7 +18,15 @@ export declare type PathMetaData = {
      * filename including extension, if the path is not a folder
      */
     fullFileName?: string;
-    isFolder: boolean;
+    /**
+     * categorized sizes for the file(s)
+     */
+    sizes: FolderSummary;
+};
+/**
+ * Information which can be found by fs.stat
+ */
+export declare type PathStats = {
     /**
      * unix time this file was last updated (or for folders: unix time of last modifiation of any file in this folder, recursively)
      *
@@ -27,11 +39,7 @@ export declare type PathMetaData = {
      * TODO: figure out if we can get the creation date of the folder itself?
      */
     createdAt: number;
-    /**
-     * categorized sizes for the file(s)
-     */
-    sizes: FolderSummary;
-} & PathParse;
+};
 /**
  * object to represent a folder or file path in different ways
  *

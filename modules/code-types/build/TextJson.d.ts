@@ -1,7 +1,8 @@
-/// <reference types="node" />
-import { Stats } from "fs-util";
-import { PathMetaData } from "./PathMetaData";
+import { FileContentInfo, PathStats } from "./PathMetaData";
 import { MarkdownParse } from "./MarkdownParse";
+/**
+ * TODO: Rename
+ */
 export interface TextJson {
     /**
      * only available if it's a json file
@@ -16,20 +17,18 @@ export interface TextJson {
      */
     markdownJson?: MarkdownParse;
     /**
-     * full path to the file or folder
+     * full absolute path to the file or folder
      */
     path: string;
     isFolder: boolean;
     /**
-     * DEPRECATED: to be replaced with metaData
-     *
-     * only returned if this is requested
+     * only returned if `includeStats` is true
      */
-    stats?: Stats;
+    stats?: PathStats;
     /**
-     * replaces stats. only returned if `includeMetaData` is set to true
+     * only returned if `includeMetaData` is set to true
      */
-    metaData?: PathMetaData;
+    metaData?: FileContentInfo;
     /** if true, this means this path is given back because it was the last opened base path that searching was canceled on because of the cancelRecursionOn prop */
     isCancelRecursionResult?: boolean;
 }

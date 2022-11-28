@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668149312164,
-  "updatedAt": 1668149312164,
+  "createdAt": 1669467156702,
+  "updatedAt": 1669467156702,
   "deletedAt": 0,
-  "createdFirstAt": 1668149312164,
+  "createdFirstAt": 1669467156702,
   "id": "namedparameterstypeof-rendermarkdownchunk",
   "name": "NamedParameters<typeof renderMarkdownChunk>",
   "slug": "namedparameterstypeof-rendermarkdownchunk",
@@ -79,16 +79,13 @@
                       "required": true,
                       "schema": {
                         "enum": [
-                          "youtube",
                           "video",
-                          "image",
                           "audio",
-                          "markdown",
-                          "json",
-                          "typescript",
-                          "file"
+                          "image",
+                          "text",
+                          "other"
                         ],
-                        "fullComment": "type of asset that is being embedded",
+                        "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                         "type": "string"
                       }
                     }
@@ -121,16 +118,13 @@
                       "required": true,
                       "schema": {
                         "enum": [
-                          "youtube",
                           "video",
-                          "image",
                           "audio",
-                          "markdown",
-                          "json",
-                          "typescript",
-                          "file"
+                          "image",
+                          "text",
+                          "other"
                         ],
-                        "fullComment": "Can be inferred from href\n\ntype of asset that is being embedded",
+                        "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                         "type": "string"
                       }
                     }

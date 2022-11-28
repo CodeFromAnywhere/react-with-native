@@ -1,0 +1,72 @@
+{
+  "createdAt": 1669384966671,
+  "updatedAt": 1669384966671,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384966671,
+  "id": "socialmediaposttypereturntype",
+  "name": "SocialMediaPostTypeReturnType",
+  "slug": "socialmediaposttypereturntype",
+  "operationRelativeTypescriptFilePath": "src/SocialMediaPostReturnType.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export interface SocialMediaPostTypeReturnType {\n  isSuccess: boolean;\n  message: string;\n  postUrl?: string;\n}",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "isSuccess": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "postUrl": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "isSuccess",
+        "message"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "isSuccess",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "message",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "postUrl",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "SocialMediaPostTypeReturnType",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -22,7 +22,7 @@ export declare const alterJsonSingle: AlterFunction;
  */
 export declare const getLength: (array: any[]) => number;
 /**
- * Alters a json single file
+ * Alters a json multiple file
  */
 export declare const alterJsonMultiple: AlterFunction;
 declare type AlterFunction = (...parameters: AlterParameters) => Promise<DbQueryResult>;

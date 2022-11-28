@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667634902016,
-  "updatedAt": 1667634902016,
+  "createdAt": 1669128200464,
+  "updatedAt": 1669128200464,
   "deletedAt": 0,
-  "createdFirstAt": 1667634902016,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669128200464,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getReferencedModelDataItem.tsx",
   "commentsInside": [],
   "rawText": " (\n  parameterName: string,\n  referencedModelData?: ReferencableModelData\n): ReferencedModelDataItem | undefined => {\n  const interfaceInfo = getReferenceParameterInfo(parameterName);\n  const referencedData: ReferenceItemsObject | undefined =\n    interfaceInfo &&\n    interfaceInfo.interfaceName &&\n    referencedModelData &&\n    referencedModelData[interfaceInfo.interfaceName]\n      ? referencedModelData[interfaceInfo.interfaceName]\n      : undefined;\n\n  return interfaceInfo\n    ? {\n        ...referencedData,\n        ...interfaceInfo,\n      }\n    : undefined;\n}",
@@ -37,7 +32,7 @@
   ],
   "description": "",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/simplified-schema-form/src/getReferencedModelDataItem\").ReferencedModelDataItem | undefined",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/wise/simplified-schema-form/src/getReferencedModelDataItem\").ReferencedModelDataItem | undefined",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -55,5 +50,5 @@
     "linesPerFile": 20,
     "numberOfFiles": 1
   },
-  "id": "jwebkpdjokhfbtvpjewvoggc"
+  "id": "dyhkujejiqxipucsoglrjuac"
 }

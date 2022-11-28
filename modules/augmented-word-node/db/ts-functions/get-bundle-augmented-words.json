@@ -1,0 +1,39 @@
+{
+  "createdAt": 1668551780597,
+  "updatedAt": 1668551780597,
+  "deletedAt": 0,
+  "createdFirstAt": 1668551780597,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getBundleAugmentedWords.ts",
+  "commentsInside": [],
+  "rawText": " async (): Promise<AugmentedWord[]> => {\n  // NB: we need to cast the string because in OS-projects this might otherwise fail\n  const bundles: AugmentedAnyModelType[] = await db.get(\n    \"BundleConfig\" as keyof DbModels\n  );\n\n  const bundleAugmentedWords: AugmentedWord[] = bundles.map((bundle) => {\n    const augmentedWord: AugmentedWord = {\n      queryPath: bundle.docsRelativeFolderPath,\n      spoiler: bundle.description,\n      type: \"bundle\",\n      word: bundle.slug,\n      projectRelativeMarkdownSourcePath: bundle.projectRelativePath,\n    };\n\n    return augmentedWord;\n  });\n\n  return bundleAugmentedWords;\n}",
+  "name": "getBundleAugmentedWords",
+  "slug": "get-bundle-augmented-words",
+  "parameters": [],
+  "description": "NB: should only be executed if this is not a sensible-project, as it might not have `BundleConfig` otherwise",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/purpose/reader/augmented-word-types/build/AugmentedWord\").AugmentedWord[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 723,
+    "lines": 20,
+    "bytes": 723,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 36,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "zjhyqlgxbqhzlvcguygkhoih"
+}

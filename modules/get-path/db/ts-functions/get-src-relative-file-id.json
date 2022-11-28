@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148346873,
-  "updatedAt": 1668148346873,
+  "createdAt": 1669055072553,
+  "updatedAt": 1669055072553,
   "deletedAt": 0,
-  "createdFirstAt": 1668148346873,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055072553,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getSrcRelativeFileId.ts",
   "commentsInside": [],
   "rawText": " (operationRelativePath: string) => {\n  const srcRelativePath = operationRelativePath.replace(\"src/\", \"\");\n  const parts = srcRelativePath.split(\".\");\n  // remove the last one\n  parts.pop();\n  const srcRelativeFileId = parts.join(\".\");\n\n  const finalId = srcRelativeFileId.startsWith(\"/\")\n    ? srcRelativeFileId.substring(1)\n    : srcRelativeFileId;\n  return finalId;\n}",
@@ -48,5 +43,5 @@
     "linesPerFile": 18,
     "numberOfFiles": 1
   },
-  "id": "benmaghehusyhcxerqwimveh"
+  "id": "ueutomsddbhunfdnqofdvonx"
 }

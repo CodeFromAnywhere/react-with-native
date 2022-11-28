@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666264722195,
-  "updatedAt": 1666264722195,
+  "createdAt": 1668336485312,
+  "updatedAt": 1668336485312,
   "deletedAt": 0,
-  "createdFirstAt": 1666264722195,
+  "createdFirstAt": 1668336485312,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "() => {\n  const stack = new Error().stack;\n  if (!stack) return;\n\n  // console.log(\"Complete stack\", stack);\n  const firstRelevantLine = stack.split(\"\\n\")[3];\n  if (!firstRelevantLine) return;\n\n  const jsFilePath = firstRelevantLine.split(\"at \")[1].split(\":\")[0];\n\n  if (!jsFilePath) return;\n\n  const srcPath = jsFilePath.replace(\"/build/\", \"/src/\").replace(\".js\", \".ts\");\n\n  return srcPath;\n}",
   "description": "TODO: this is great. now also get the operationName. If the operationName appears in the config, for debug, show the log, otherwise don't show",
-  "id": "tfnudcoqbtdddyxmzfggouuy"
+  "id": "fbxytavpjlnfytmavdfkzvwd"
 }

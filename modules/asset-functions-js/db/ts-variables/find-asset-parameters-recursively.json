@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384143905,
+  "updatedAt": 1669384143905,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384143905,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findAssetParametersRecursively",
+  "slug": "find-asset-parameters-recursively",
+  "operationRelativeTypescriptFilePath": "src/findAssetParametersRecursively.ts",
+  "type": {
+    "rawType": "(object: { [key: string]: any; }, stack?: string[] | undefined) => import(\"/Users/king/King/operations/tools/asset/asset-functions-js/src/findAssetParametersRecursively\").AssetParameter[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  object: {\n    [key: string]: any;\n  },\n  stack?: string[]\n): AssetParameter[] => {\n  if (!object) return [];\n\n  const result = Object.keys(object)\n    .map((objectProperty) => {\n      const value = object[objectProperty];\n\n      const assetInputType = getAssetInputType(objectProperty);\n\n      if (assetInputType) {\n        return [\n          {\n            assetInputType,\n            parameterName: objectProperty,\n            stack,\n          },\n        ];\n      }\n\n      if (typeof value === \"object\") {\n        const newStack = stack ? [...stack, objectProperty] : [objectProperty];\n\n        return findAssetParametersRecursively(value, newStack);\n      }\n    })\n    .filter(notEmpty)\n    .flat();\n\n  return result;\n}",
+  "description": "Recursively finds all asset parameters in an object (for example in a database model item)",
+  "id": "zmfvlhpuwgodvwzbkvupnmww"
+}

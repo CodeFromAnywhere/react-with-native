@@ -1,6 +1,6 @@
 # Hotkeys
 
-hotkeys (`OperationClassification` js)
+hotkeys (`OperationClassification` cjs)
 
 
 ## ⌨️ hotkeys

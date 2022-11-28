@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666260569375,
-  "updatedAt": 1666260569375,
+  "createdAt": 1668775439685,
+  "updatedAt": 1668775439685,
   "deletedAt": 0,
-  "createdFirstAt": 1666260569375,
+  "createdFirstAt": 1668775439685,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "api-with-config",
   "operationRelativeTypescriptFilePath": "src/api.ts",
   "type": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/api/api-types/build/api-types\").ApiTypeWithConfig",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/api/api-types/build/api-types\").ApiTypeWithConfig",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -20,5 +20,5 @@
   },
   "value": "mergeObjectsArray(\n  functionApiKeys.map((fnName) => {\n    const apiWithConfigFunction = (config: ApiConfig, ...parameters: any[]) =>\n      untypedApiFunction(fnName, config, ...parameters);\n    const objectPart = { [fnName]: apiWithConfigFunction };\n\n    return objectPart;\n  })\n) as unknown as ApiTypeWithConfig",
   "description": "This object contains a api function for every function in the backend\n\nThe difference from `api` is that it allows you to also insert custom api configurations",
-  "id": "ijbimvukhejtwmhitrykblur"
+  "id": "pywevnadbljzwmrkbhzffogi"
 }

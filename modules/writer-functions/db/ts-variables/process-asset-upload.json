@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385043849,
+  "updatedAt": 1669385043849,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385043849,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "processAssetUpload",
+  "slug": "process-asset-upload",
+  "operationRelativeTypescriptFilePath": "src/processAssetUpload.ts",
+  "type": {
+    "rawType": "(assets: import(\"/Users/king/King/operations/tools/asset/asset-type/build/BackendAsset\").BackendAsset[]) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (assets: BackendAsset[]) => {\n  const processed = (\n    await Promise.all(assets.map((asset) => processAsset(asset)))\n  ).filter(notEmpty);\n\n  return processed;\n}",
+  "description": "Used for the markdown reader to immediately process a asset upload. If we want to validate this, it would be good to allow a second parameter that checks if you have access to the file",
+  "id": "twxubodkedshlwtpxygqmzof"
+}

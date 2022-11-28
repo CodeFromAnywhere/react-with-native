@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666264528256,
-  "updatedAt": 1666264528256,
+  "createdAt": 1668336342097,
+  "updatedAt": 1668336342097,
   "deletedAt": 0,
-  "createdFirstAt": 1666264528256,
+  "createdFirstAt": 1668336342097,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "makeTest(\n  () => {\n    const testCases = [\n      \"Handige harry\",\n      \"handigeHarry\",\n      \"HandigeHarry\",\n      \"handige-harry\",\n      \"handige_harry\",\n      \"HANDIGE_HARRY\",\n    ];\n\n    const results = testCases.map((word) => {\n      return {\n        word,\n        camel: camelCase(word),\n        snake: snakeCase(word),\n        kebab: kebabCase(word),\n        pascal: pascalCase(word),\n        capital: capitalCase(word),\n        human: humanCase(word),\n      };\n    });\n\n    return results;\n  },\n  (result) =>\n    JSON.stringify(result) ===\n    JSON.stringify([\n      {\n        word: \"Handige harry\",\n        camel: \"handigeHarry\",\n        snake: \"handige_harry\",\n        kebab: \"handige-harry\",\n        pascal: \"HandigeHarry\",\n        capital: \"HANDIGE_HARRY\",\n        human: \"Handige harry\",\n      },\n      {\n        word: \"handigeHarry\",\n        camel: \"handigeHarry\",\n        snake: \"handige_harry\",\n        kebab: \"handige-harry\",\n        pascal: \"HandigeHarry\",\n        capital: \"HANDIGE_HARRY\",\n        human: \"Handige harry\",\n      },\n      {\n        word: \"HandigeHarry\",\n        camel: \"handigeHarry\",\n        snake: \"handige_harry\",\n        kebab: \"handige-harry\",\n        pascal: \"HandigeHarry\",\n        capital: \"HANDIGE_HARRY\",\n        human: \"Handige harry\",\n      },\n      {\n        word: \"handige-harry\",\n        camel: \"handigeHarry\",\n        snake: \"handige_harry\",\n        kebab: \"handige-harry\",\n        pascal: \"HandigeHarry\",\n        capital: \"HANDIGE_HARRY\",\n        human: \"Handige harry\",\n      },\n      {\n        word: \"handige_harry\",\n        camel: \"handigeHarry\",\n        snake: \"handige_harry\",\n        kebab: \"handige-harry\",\n        pascal: \"HandigeHarry\",\n        capital: \"HANDIGE_HARRY\",\n        human: \"Handige harry\",\n      },\n      {\n        word: \"HANDIGE_HARRY\",\n        camel: \"handigeHARRY\",\n        snake: \"handige_harry\",\n        kebab: \"handige-harry\",\n        pascal: \"HANDIGEHARRY\",\n        capital: \"HANDIGE_HARRY\",\n        human: \"HANDIGE harry\",\n      },\n    ])\n)",
   "description": "",
-  "id": "fpsgthxkntbyvazswrebdmfi"
+  "id": "cwekwzbkmaufdiiruxxxkxat"
 }

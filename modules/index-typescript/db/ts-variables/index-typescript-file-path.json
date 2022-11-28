@@ -1,0 +1,50 @@
+{
+  "createdAt": 1669055619131,
+  "updatedAt": 1669055619131,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055619131,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "indexTypescriptFilePath",
+  "slug": "index-typescript-file-path",
+  "operationRelativeTypescriptFilePath": "src/indexTypescriptFilePath.ts",
+  "type": {
+    "rawType": "import(\"/Users/king/King/operations/tools/control-project/watch-types/build/ProjectWatcher\").ProjectWatcher",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      "required": [
+        "filter"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "filter",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  eventName,\n  filePath\n) => {\n  const name = path.parse(filePath).name;\n  process.stdout.write(`Indexing file: ${name}`);\n\n  await indexTypescript({\n    filePaths: [filePath],\n    manualProjectRoot: null,\n    showLogging: false,\n  });\n\n  console.log(\"✅\\n\");\n}",
+  "description": "Index a single typescript file",
+  "id": "arswztzclqltiornqsygmqwg"
+}

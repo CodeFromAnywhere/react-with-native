@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148844290,
-  "updatedAt": 1668148844290,
+  "createdAt": 1669312103948,
+  "updatedAt": 1669312103948,
   "deletedAt": 0,
-  "createdFirstAt": 1668148844290,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312103948,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/convention/addDefaultValues.ts",
   "commentsInside": [],
   "rawText": " (\n  bareItem: Creation<AugmentedAnyModelType>,\n  isKvmdStorage?: boolean\n): AugmentedAnyModelType => {\n  const now = Date.now();\n\n  const defaultValues = {\n    createdAt: now,\n    updatedAt: now,\n    deletedAt: 0,\n    createdFirstAt: now,\n  };\n\n  const shouldCreateSlugFromName =\n    !!bareItem.name && bareItem.slug === undefined;\n\n  const slugifiedSlug = bareItem.slug ? slugify(bareItem.slug) : undefined;\n\n  const isValidSlug =\n    bareItem.slug === undefined || slugifiedSlug === bareItem.slug;\n\n  if (!isValidSlug) {\n    log(\n      `${bareItem.slug} is not a slugified slug, it has been altered to a valid slug`,\n      { type: \"warning\" }\n    );\n  }\n\n  const slug: string | undefined = shouldCreateSlugFromName\n    ? slugify(bareItem.name)\n    : slugifiedSlug;\n\n  const id =\n    bareItem.id === undefined\n      ? isKvmdStorage\n        ? kebabCase(bareItem.name)\n        : generateId()\n      : bareItem.id;\n\n  const item = {\n    ...defaultValues,\n    ...bareItem,\n    slug,\n    id,\n  } as AugmentedAnyModelType;\n\n  return item;\n}",
@@ -55,5 +50,5 @@
     "linesPerFile": 55,
     "numberOfFiles": 1
   },
-  "id": "vltnywogfhwblqpnciqfhjcy"
+  "id": "uemqrgikscdqgimtpgqnchkt"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666258926476,
+  "updatedAt": 1666258926476,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258926476,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "renameAll",
+  "slug": "rename-all",
+  "operationRelativeTypescriptFilePath": "src/renameAll.ts",
+  "type": {
+    "rawType": "({ filePaths, newFileName, newFilePath, }: { filePaths: string[]; newFileName?: string | undefined; newFilePath?: ((oldPath: string) => string) | undefined; }) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async ({\n  filePaths,\n  newFileName,\n  newFilePath,\n}: {\n  filePaths: string[];\n  /**\n   * if given, all files will be replaces by this filename\n   */\n  newFileName?: string;\n  /**\n   * if given, this will be used to determine the new path\n   */\n  newFilePath?: (oldPath: string) => string;\n}) => {\n  return forAllFiles({\n    filePaths,\n    callback: (filePath) =>\n      new Promise<void>(async (resolve) => {\n        if (fs.existsSync(filePath)) {\n          const newPath = newFileName\n            ? path.join(getFolder(filePath), newFileName)\n            : newFilePath?.(filePath);\n\n          if (!newPath) {\n            return log(\"couldn't determine new path\", { type: \"error\" });\n          }\n          console.log(`renamed ${filePath} to ${newPath}`);\n          await fs.rename(filePath, newPath);\n        }\n        resolve();\n      }),\n  });\n}",
+  "description": "renames all files to a new name (optionally a func, based on the old path)",
+  "id": "mrhlvfuisvglmkdyqyyxmqmd"
+}

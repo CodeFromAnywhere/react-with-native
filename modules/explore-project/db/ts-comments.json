@@ -1,0 +1,34 @@
+[
+  {
+    "createdAt": 1669384311449,
+    "updatedAt": 1669384311449,
+    "deletedAt": 0,
+    "createdFirstAt": 1669384311449,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/util.ts",
+    "comment": "returns the paths of instances in a file, like functions, variables or interfaces",
+    "rawStatement": "export const getInstanceNames = (\n  array: any[],\n  // NB: I tried with  <T extends TsIndexModelType> but didn't work with a map over an object... strange...\n  relativePathFromProjectRoot: string\n): string[] => {\n  const instances = array.filter(\n    hasSameProjectPath(relativePathFromProjectRoot)\n  );\n\n  const instancePaths = instances.map((x) => x.name);\n  return instancePaths;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 4,
+    "lastLine": 6,
+    "id": "bpvhgrzsdxxkhxmgjbwhlumu"
+  },
+  {
+    "createdAt": 1669384311449,
+    "updatedAt": 1669384311449,
+    "deletedAt": 0,
+    "createdFirstAt": 1669384311449,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/util.ts",
+    "comment": "function that returns a filter function that can check if some object (that extends an TsIndexModelType) has the same relative file path from the project root",
+    "rawStatement": "export const hasSameProjectPath =\n  (projectRelativePath: string) =>\n  <T extends TsIndexModelType>(x: T) => {\n    const isSame = x.projectRelativePath === projectRelativePath;\n    return isSame;\n  };",
+    "parameters": {},
+    "types": [],
+    "firstLine": 19,
+    "lastLine": 21,
+    "id": "jgneiqysybvlhjjuuqidolzy"
+  }
+]

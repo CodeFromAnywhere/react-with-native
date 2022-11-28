@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669467091062,
+  "updatedAt": 1669467091062,
+  "deletedAt": 0,
+  "createdFirstAt": 1669467091062,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findCodespans",
+  "slug": "find-codespans",
+  "operationRelativeTypescriptFilePath": "src/findCodespans.ts",
+  "type": {
+    "rawType": "(markdownString: string) => string[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(markdownString: string): string[] => {\n  const result = flattenMarkdownString(\n    markdownString,\n    (token) => token.type === \"codespan\"\n  );\n\n  const codespans: string[] = result\n    .map((token) => {\n      if (token.type !== \"codespan\") return;\n\n      return token.text;\n    })\n    .filter(notEmpty);\n\n  return codespans;\n}",
+  "description": "find all codespans",
+  "id": "xdcwcbfmlltpekhknuywzdfr"
+}

@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669200478736,
+  "updatedAt": 1669200478736,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200478736,
+  "isApiExposed": true,
+  "isExported": false,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/operationToMarkdown.test.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const operationName = \"database\";\n\n  const operationSummary = await getOperationSummary({ operationName });\n  if (!operationSummary) return;\n  const result = (await operationToMarkdown({\n    operationSummary,\n    returnType: \"string\",\n  })) as string;\n  // console.dir({ result }, { depth: 99 });\n\n  writeToAssets(__filename, result, `${operationName}.md`);\n}",
+  "name": "test",
+  "slug": "test",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 376,
+    "lines": 13,
+    "bytes": 376,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "ahvtuzmdsjyxmmqtododygow"
+}

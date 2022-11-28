@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { MarkdownChunk } from "code-types";
+import { MarkdownChunk } from "markdown-types";
 import { MarkdownParseRenderConfig } from "./types.js";
 /**
  * renders a MarkdownChunk interface

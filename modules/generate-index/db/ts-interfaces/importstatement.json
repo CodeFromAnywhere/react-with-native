@@ -1,0 +1,83 @@
+{
+  "createdAt": 1668335873278,
+  "updatedAt": 1668335873278,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335873278,
+  "id": "importstatement",
+  "name": "ImportStatement",
+  "slug": "importstatement",
+  "operationRelativeTypescriptFilePath": "src/util.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type ImportStatement = {\n  type: \"variable\" | \"function\" | \"interface\";\n  name: string;\n  srcRelativeFileId: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "variable",
+            "function",
+            "interface"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "srcRelativeFileId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "name",
+        "srcRelativeFileId"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": true,
+          "schema": {
+            "enum": [
+              "variable",
+              "function",
+              "interface"
+            ],
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "srcRelativeFileId",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ImportStatement",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

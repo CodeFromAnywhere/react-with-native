@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668335927378,
+  "updatedAt": 1668335927378,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335927378,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getImportedDependencies",
+  "slug": "get-imported-dependencies",
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "type": {
+    "rawType": "({ operationFolderPath, }: { operationFolderPath: string; }) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "({\n  operationFolderPath,\n}: {\n  operationFolderPath: string;\n}) => {\n  const project = getTsMorphProject(operationFolderPath);\n  if (!project) return;\n  const sourceFiles = project.getSourceFiles(\"src/*\");\n  const importModuleStrings = sourceFiles.reduce((imports, sourceFile) => {\n    const allImports: ImportDeclaration[] = sourceFile.getImportDeclarations();\n    const absoluteImports = allImports.map((i) =>\n      i.getModuleSpecifier().getLiteralText()\n    );\n    return imports.concat(absoluteImports);\n  }, [] as string[]);\n\n  const packages = importModuleStrings.filter(isAbsoluteImport).map(getPackage);\n  return packages;\n}",
+  "description": "DEPRECATED: should use generated index files with imports instead!\n\ngets all imported packages (dependencies) in a project\ndoesn't take into account the fact that someone can set up a rule for absolute imports within the package.\nthis assumes that any absolute package comes from node_modules.",
+  "id": "mfnlgsitrxxcvpxcgjtvyoce"
+}

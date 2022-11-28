@@ -1,0 +1,127 @@
+{
+  "createdAt": 1669639135141,
+  "updatedAt": 1669639135141,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639135141,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/markdownReaderGetStaticPropsFromPages.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  context: GetStaticPropsContext,\n  fileWebPages: WebPage<any>[],\n  webOperationName: string\n): Promise<{\n  props: MarkdownReaderPageProps;\n}> => {\n  const menu = getMenuPagesObject(fileWebPages);\n  const projectRoot = getProjectRoot();\n\n  if (!projectRoot) {\n    return { props: { menu } };\n  }\n\n  const publicBundleConfig = await readJsonFile<PublicBundleConfig>(\n    path.join(projectRoot, \"public-bundle-config.json\")\n  );\n\n  const queryPath = getQueryPath(context.params);\n\n  // console.log(\"get static props\", queryPath);\n\n  // definitions/statements/functions/interfaces/operations\n\n  // NB: finds a page with actual content\n  const contentPage = fileWebPages.find((x) => x.queryPath === queryPath);\n\n  if (!contentPage) {\n    // NB: we need to render an exploration page\n    const {\n      children,\n      title,\n      description,\n      descriptionProjectRelativeMarkdownPath,\n    } = await getFolderExplorationInfo(fileWebPages, queryPath, projectRoot);\n    return {\n      props: {\n        publicBundleConfig,\n        menu,\n        content: {\n          children,\n          title,\n          description,\n          projectRelativeMarkdownPath: descriptionProjectRelativeMarkdownPath,\n        },\n      },\n    };\n  }\n\n  // NB: There's a content page. We need to return it (`MarkdownFile`), including its previous, next pages, and a title\n\n  const markdownCallToActions = await db.get(\"MarkdownCallToAction\");\n\n  const filteredMarkdownCtas = markdownCallToActions.filter((x) => {\n    const isExternalRoot =\n      x.hostname !== publicBundleConfig?.deploymentHostname &&\n      (!x.path || x.path === \"\");\n\n    if (isExternalRoot) return true;\n\n    const isInternalNonRoot =\n      x.hostname === publicBundleConfig?.deploymentHostname &&\n      x.path &&\n      x.path !== \"\";\n\n    return isInternalNonRoot;\n  });\n\n  const markdownPageInfo = await getMarkdownPageInfo({\n    projectRoot,\n    webPages: fileWebPages,\n    queryPath,\n    contentPage,\n    webOperationName,\n    markdownCallToActions: filteredMarkdownCtas,\n  });\n\n  const augmentedWordObject = await getAugmentedWordObject(projectRoot);\n\n  return {\n    // Passed to the page component as props\n    props: {\n      content: {\n        ...markdownPageInfo,\n        augmentedWordObject,\n      },\n      publicBundleConfig,\n      menu,\n    },\n  };\n}",
+  "name": "markdownReaderGetStaticPropsFromPages",
+  "slug": "markdown-reader-get-static-props-from-pages",
+  "parameters": [
+    {
+      "name": "context",
+      "schema": {
+        "$ref": "#/definitions/GetStaticPropsContext"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "params",
+            "required": false,
+            "schema": {
+              "fullComment": "",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "preview",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "previewData",
+            "required": false,
+            "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "locale",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "locales",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "defaultLocale",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "fileWebPages",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/WebPage%3Cany%3E"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [],
+        "type": "array"
+      },
+      "required": true
+    },
+    {
+      "name": "webOperationName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Takes the routes and pages you want to show, and returns the MarkdownReaderPageProps you need to render the reader page.",
+  "returnType": {
+    "rawType": "Promise<{ props: import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/markdown-reader-types/build/MarkdownReaderPageProps\").MarkdownReaderPageProps; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 2432,
+    "lines": 91,
+    "bytes": 2432,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 91,
+    "numberOfFiles": 1
+  },
+  "id": "vyxnkdiaoxdgosrxyogphiqj"
+}

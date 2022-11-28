@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200499259,
+  "updatedAt": 1669200499259,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200499259,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "tsFunctionToMarkdownString",
+  "slug": "ts-function-to-markdown-string",
+  "operationRelativeTypescriptFilePath": "src/tsFunctionToMarkdownString.ts",
+  "type": {
+    "rawType": "(tsFunction: import(\"/Users/king/King/operations/tools/types/code-types/build/TsFunction\").TsFunction) => string",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(tsFunction: TsFunction): string => {\n  const isComponent =\n    tsFunction.operationRelativeTypescriptFilePath.endsWith(\".tsx\") &&\n    isUpperCase(tsFunction.name.charAt(0));\n\n  const titleString = `# ${\n    isComponent ? `\\`<${tsFunction.name} />\\`` : `${tsFunction.name}()`\n  }`;\n\n  const infoString = `${\n    tsFunction.codeSize?.lines ? `${tsFunction.codeSize.lines} LOC, ` : \"\"\n  }Max. indexation depth: ${tsFunction.maxIndentationDepth}, ${\n    tsFunction.cumulativeCodeSize?.lines\n      ? `${tsFunction.cumulativeCodeSize?.lines} Cumulative LOC`\n      : \"\"\n  }`;\n\n  const returnString = tsFunction.returnType.simplifiedSchema\n    ? simplifiedSchemaToMarkdownString(\n        tsFunction.returnType.simplifiedSchema,\n        \"Returns\",\n        true,\n        2\n      )\n    : \"\";\n\n  /*\n\n| Input      |        |     |\n| ---------- | ------ | --- |\n| fileId     | string |     |\n| **Output** |        |     |\n| object     |        |     |\n\n\n    */\n\n  const paramaterTableRows =\n    tsFunction.parameters && tsFunction.parameters.length > 0\n      ? tsFunction.parameters.map((parameter) => {\n          const summary = getJsonSchemaSummary(parameter.schema, true);\n          return `| ${parameter.name}${\n            parameter.required ? \"\" : \" (optional)\"\n          } | ${summary?.typeDescriptor || \"\"} | ${\n            summary?.description || \"\"\n          } |`;\n        })\n      : \"| - | | |\";\n\n  // const argumentStrings =\n  // tsFunction.parameters && tsFunction.parameters.length > 0\n  //   ? `## Parameters (${\n  //       tsFunction.parameters.length\n  //     })\\n\\n${tsFunction.parameters\n  //       .map((x, i) =>\n  //         simplifiedSchemaToMarkdownString(\n  //           x.simplifiedSchema,\n  //           `Parameter ${i + 1}: ${x.name}`,\n  //           x.required,\n  //           3\n  //         )\n  //       )\n  //       .join(\"\\n\\n\")}`\n  //   : undefined;\n\n  const returnTypeMarkdownString = tsFunction.returnType.typeDefinition\n    ? getTypeDescriptorRecursive(tsFunction.returnType.typeDefinition, true)\n    : \"\";\n\n  const outputRow = `| **Output** | ${returnTypeMarkdownString}   | ${\n    tsFunction.returnType.typeDefinition?.description || \"\"\n  }   |`;\n  const tableString = `\n| Input      |    |    |\n| ---------- | -- | -- |\n${paramaterTableRows}\n${outputRow}\n`;\n\n  const alineas: (string | undefined)[] = [\n    titleString,\n    // infoString, // TODO: Maybe make it optional.\n    tsFunction.description,\n    // returnTypeString,\n    tableString,\n  ];\n\n  return alineas.filter(notEmpty).join(\"\\n\\n\");\n}",
+  "description": "TsFunction:\n- name and operation\n- size\n- description (doc-comment)\n- input, output",
+  "id": "zcskzegupoaekglgnaudxzob"
+}

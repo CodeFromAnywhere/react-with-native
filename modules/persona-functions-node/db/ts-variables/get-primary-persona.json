@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668334621949,
+  "updatedAt": 1668334621949,
+  "deletedAt": 0,
+  "createdFirstAt": 1668334621949,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getPrimaryPersona",
+  "slug": "get-primary-persona",
+  "operationRelativeTypescriptFilePath": "src/getPrimaryPersona.ts",
+  "type": {
+    "rawType": "() => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const personas = await db.get(\"Persona\");\n\n  const primary = personas.find((x) => x.isPrimary) || personas[0];\n\n  if (!primary) {\n    console.log(\"No primary persona found\");\n  }\n\n  return primary;\n}",
+  "description": "",
+  "id": "ckkhiuzztsojfveaxhbbsozh"
+}

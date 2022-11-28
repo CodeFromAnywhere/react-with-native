@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666260923197,
-  "updatedAt": 1666260923197,
+  "createdAt": 1668333265959,
+  "updatedAt": 1668333265959,
   "deletedAt": 0,
-  "createdFirstAt": 1666260923197,
+  "createdFirstAt": 1668333265959,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  string: string\n): { [key: string]: JSONValue } => {\n  const chunks = string.split(\",\").map((x) => x.trim());\n  const keyValues = chunks.map((chunk) => {\n    const [key, value] = chunk.split(\":\").map((x) => x.trim());\n    return { [key]: stringToJson(value) };\n  });\n\n  const mergedObject = mergeObjectsArray(keyValues);\n\n  return mergedObject;\n}",
   "description": "takes an object string and parses it to JSON\n\nInstead of requiring objects to be in JSON format, they can be in the following format:\n\nkey1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }\n\nNB: you can have objects in parameters of objects by surrounding the same syntax with `{` and `}`",
-  "id": "garwvtjueqhmgkbjexgssyis"
+  "id": "chjhnpgxsiufijssxxaqhxxa"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669132870103,
+  "updatedAt": 1669132870103,
+  "deletedAt": 0,
+  "createdFirstAt": 1669132870103,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "Menu",
+  "slug": "menu",
+  "operationRelativeTypescriptFilePath": "src/Menu.tsx",
+  "type": {
+    "rawType": "(props: import(\"/Users/king/King/operations/tools/user-interfaces/gui/wise/menu/src/MenuProps\").MenuProps & { message?: string | undefined; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  props: MenuProps & {\n    message?: string;\n  }\n) => {\n  const {\n    queryPaths,\n    isLoading,\n    message,\n    augmentedWords,\n    webPagesNested,\n    webPagesFlat,\n    menuHeader,\n  } = props;\n\n  const realWebPages: NestedWebPage[] =\n    !webPagesNested && queryPaths\n      ? getLegacyMenu(queryPaths) || []\n      : webPagesNested || [];\n\n  const [showMenu, setShowMenu] = useStore(\"menu.showMenu\");\n\n  useHotkey(isCtrlP, () => setShowMenu(true), []);\n  useHotkey(isAltB, () => setShowMenu(!showMenu), [showMenu]);\n\n  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(\n    \"menu.isMobileMenuEnabled\"\n  );\n\n  /**\n   * This is a slow function to calculate for a lot of paths, needs to be optimised\n   */\n\n  const [search, setSearch] = useState(\"\");\n  const isSearching = search.length > 0;\n\n  const closeMenu = (\n    <Div className=\"lg:hidden\">\n      <Div>\n        <ClickableIcon\n          emoji=\"╳\"\n          onClick={() => {\n            setIsMobileMenuEnabled(false);\n          }}\n        />\n      </Div>\n    </Div>\n  );\n\n  return (\n    <Div>\n      <Div className=\"flex flex-row justify-between w-full\">\n        {menuHeader?.()}\n        {closeMenu}\n      </Div>\n\n      <Input\n        value={search}\n        placeholder=\"Search\"\n        onChange={(e) => setSearch(e.target.value)}\n        className=\"border px-2 border-white bg-transparent w-full rounded-lg h-9 focus:outline-none\"\n        autoComplete=\"off\"\n      />\n\n      {isLoading ? (\n        <FancyLoader />\n      ) : isSearching && webPagesFlat ? (\n        <PathSearchResults\n          search={search}\n          paths={webPagesFlat.map((x) => x.queryPath)}\n          augmentedWords={augmentedWords}\n        />\n      ) : !isSearching && realWebPages ? (\n        <NestedMenu items={realWebPages} headersClickable />\n      ) : (\n        <P>{message || \"Menu.tsx: Something's wrong, no message given\"}) </P>\n      )}\n    </Div>\n  );\n}",
+  "description": "`\"wise\"` component that lets you render a menu easily, including search\n\n-----\n\nTODO:\n\n- provide menu with NestedWebPage<unknown>[]",
+  "id": "tnmcgfiememgoykjjeodwyzf"
+}

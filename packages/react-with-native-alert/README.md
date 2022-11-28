@@ -1,6 +1,6 @@
 # React with native alert
 
-react-with-native-alert (`OperationClassification` ui-es5)
+react-with-native-alert (`OperationClassification` ui-cjs)
 
 
 ## Alert

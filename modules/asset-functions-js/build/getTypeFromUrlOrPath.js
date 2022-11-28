@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getTypeFromUrlOrPath=void 0;var fs_util_js_1=require("fs-util-js"),text_or_binary_1=require("text-or-binary"),getTypeFromUrlOrPath=function(e){var r=(0,fs_util_js_1.getExtension)(e);return["mp3","m4a","wav"].includes(r)?"audio":["mp4","avi"].includes(r)?"video":["jpeg","jpg","png","gif","svg"].includes(r)?"image":(0,text_or_binary_1.isText)(e)?"text":"other"};exports.getTypeFromUrlOrPath=getTypeFromUrlOrPath;
+//# sourceMappingURL=getTypeFromUrlOrPath.js.map

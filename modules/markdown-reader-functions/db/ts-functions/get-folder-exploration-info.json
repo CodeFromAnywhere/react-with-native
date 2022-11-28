@@ -1,31 +1,28 @@
 {
-  "createdAt": 1668149499867,
-  "updatedAt": 1668149499867,
+  "createdAt": 1669639112953,
+  "updatedAt": 1669639112953,
   "deletedAt": 0,
-  "createdFirstAt": 1668149499867,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669639112953,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getFolderExplorationInfo.ts",
   "commentsInside": [],
-  "rawText": " async (\n  nestedPathObject: NestedPathObject,\n  queryPath: string,\n  projectRoot: string\n): Promise<{\n  title: string | undefined;\n  description: string | null;\n  descriptionProjectRelativeMarkdownPath: string | null;\n  children: {\n    projectRelativeMarkdownPath: string | null;\n    title: string;\n    firstParagraph: string | null;\n    folderName: string;\n  }[];\n}> => {\n  const childrenKeys = getKeysAtPathFromNestedObject(\n    nestedPathObject,\n    queryPath\n  );\n\n  const potentialReadmePath = path.join(projectRoot, queryPath, \"README.md\");\n\n  const readmeMarkdownParse = fs.existsSync(potentialReadmePath)\n    ? await readMarkdownFile(potentialReadmePath)\n    : null;\n\n  const queryPathTitle = queryPath.split(\"/\").pop();\n  const readmeInfo = getMarkdownIntro(readmeMarkdownParse);\n  const title = readmeInfo.title || queryPathTitle;\n  const description = readmeInfo.firstParagraph;\n\n  const children = await Promise.all(\n    childrenKeys.map(async (folderName) => {\n      const potentialReadmePath = path.join(\n        projectRoot,\n        queryPath,\n        folderName,\n        \"README.md\"\n      );\n      const potentialOperationPath = path.join(\n        projectRoot,\n        queryPath,\n        folderName,\n        \"OPERATION.md\"\n      );\n\n      const pathToRead = fs.existsSync(potentialOperationPath)\n        ? potentialOperationPath\n        : fs.existsSync(potentialReadmePath)\n        ? potentialReadmePath\n        : undefined;\n\n      const markdownParse = pathToRead\n        ? await readMarkdownFile(pathToRead)\n        : null;\n\n      const { title, firstParagraph } = getMarkdownIntro(markdownParse);\n      return {\n        title: title || folderName,\n        firstParagraph,\n        folderName,\n        projectRelativeMarkdownPath: pathToRead || null,\n      };\n    })\n  );\n\n  return {\n    title,\n    description,\n    children,\n    descriptionProjectRelativeMarkdownPath: readmeMarkdownParse\n      ? potentialReadmePath\n      : null,\n  };\n}",
+  "rawText": " async (\n  webPages: WebPage<any>[],\n  queryPath: string,\n  projectRoot: string\n): Promise<{\n  title: string | undefined;\n  description: string | null;\n  descriptionProjectRelativeMarkdownPath: string | null;\n  children: {\n    projectRelativeMarkdownPath: string | null;\n    title: string;\n    firstParagraph: string | null;\n    folderName: string;\n  }[];\n}> => {\n  const childrenKeys = getChildren(webPages, queryPath);\n\n  const potentialReadmePath = path.join(projectRoot, queryPath, \"README.md\");\n  const readmeMarkdownParse = fs.existsSync(potentialReadmePath)\n    ? await readMarkdownFile(potentialReadmePath)\n    : null;\n\n  const queryPathTitle = queryPath.split(\"/\").pop();\n  const readmeInfo = getMarkdownIntro(readmeMarkdownParse);\n  const title = readmeInfo.title || queryPathTitle;\n  const description = readmeInfo.firstParagraph;\n\n  const children = await Promise.all(\n    childrenKeys.map(async (folderName) => {\n      const potentialReadmePath = path.join(\n        projectRoot,\n        queryPath,\n        folderName,\n        \"README.md\"\n      );\n      const potentialOperationPath = path.join(\n        projectRoot,\n        queryPath,\n        folderName,\n        \"OPERATION.md\"\n      );\n\n      const pathToRead = fs.existsSync(potentialOperationPath)\n        ? potentialOperationPath\n        : fs.existsSync(potentialReadmePath)\n        ? potentialReadmePath\n        : undefined;\n\n      const markdownParse = pathToRead\n        ? await readMarkdownFile(pathToRead)\n        : null;\n\n      const { title, firstParagraph } = getMarkdownIntro(markdownParse);\n      return {\n        title: title || folderName,\n        firstParagraph,\n        folderName,\n        projectRelativeMarkdownPath: pathToRead || null,\n      };\n    })\n  );\n\n  return {\n    title,\n    description,\n    children,\n    descriptionProjectRelativeMarkdownPath: readmeMarkdownParse\n      ? potentialReadmePath\n      : null,\n  };\n}",
   "name": "getFolderExplorationInfo",
   "slug": "get-folder-exploration-info",
   "parameters": [
     {
-      "name": "nestedPathObject",
+      "name": "webPages",
       "schema": {
-        "$ref": "#/definitions/NestedPathObject"
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/WebPage%3Cany%3E"
+        }
       },
       "simplifiedSchema": {
-        "fullComment": "A different way to represent a path array in a nested object of folders\n\n{  \"folderName\": {    \"file1\": null,    \"file2\": null  },  \"folderName2\": {    \"file1\": null,    \"file2\": null  } }",
-        "properties": [],
-        "type": "object"
+        "items": [],
+        "type": "array"
       },
       "required": true
     },
@@ -62,13 +59,13 @@
   },
   "maxIndentationDepth": 4,
   "size": {
-    "characters": 2195,
-    "lines": 79,
-    "bytes": 2195,
+    "characters": 2146,
+    "lines": 75,
+    "bytes": 2146,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 28,
-    "linesPerFile": 79,
+    "charactersPerLine": 29,
+    "linesPerFile": 75,
     "numberOfFiles": 1
   },
-  "id": "obgrmppfzpnilmqtoytlssis"
+  "id": "gnregeudfxcfdyveakoqmrxh"
 }

@@ -1,16 +1,12 @@
 {
-  "createdAt": 1668152078736,
-  "updatedAt": 1668152078736,
+  "createdAt": 1669385127646,
+  "updatedAt": 1669385127646,
   "deletedAt": 0,
-  "createdFirstAt": 1668152078736,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669385127646,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "ContentEditableRenderComponentType<\n  marked.Tokens.Paragraph\n>",
   "operationRelativeTypescriptFilePath": "src/editors/MarkedParagraph.tsx",
   "commentsInside": [],
   "rawText": " (props) => {\n  const {\n    markdownFileConfig,\n    markedToken,\n    subtextConfig,\n    subwordConfig,\n    testModeEnabled,\n  } = props;\n\n  const endsWithNewline = markedToken.raw.endsWith(\"\\n\");\n\n  const paragraphText = markedToken.tokens.map((token) => (\n    <MarkedToken\n      item={token}\n      subtextConfig={subtextConfig}\n      subwordConfig={subwordConfig}\n      markdownFileConfig={markdownFileConfig}\n      testModeEnabled={testModeEnabled}\n    />\n  ));\n\n  const paragraphSubtextHtmlString = getSubtext(markedToken.raw, subtextConfig);\n\n  return (\n    <div>\n      {paragraphText}\n      {paragraphSubtextHtmlString}\n      {endsWithNewline ? <br /> : null}\n    </div>\n  );\n}",
@@ -41,5 +37,5 @@
     "linesPerFile": 31,
     "numberOfFiles": 1
   },
-  "id": "fgoukrpcwnjoyrqutzasmguz"
+  "id": "pydqaliwqqttfandpaszvmwg"
 }

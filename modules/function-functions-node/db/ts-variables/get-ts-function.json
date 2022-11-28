@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669276151356,
+  "updatedAt": 1669276151356,
+  "deletedAt": 0,
+  "createdFirstAt": 1669276151356,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getTsFunction",
+  "slug": "get-ts-function",
+  "operationRelativeTypescriptFilePath": "src/getTsFunction.ts",
+  "type": {
+    "rawType": "(functionName?: string | undefined) => Promise<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/functions/function-types/build/types\").FunctionData | undefined>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  functionName?: string\n): Promise<undefined | FunctionData> => {\n  const tsFunctions = (await db.get(\"TsFunction\")).filter((x) => x.isExported);\n\n  const tsFunction = tsFunctions.find(\n    (x) => x.name !== undefined && x.name === functionName\n  );\n\n  if (!tsFunction) return;\n\n  const functionData: FunctionData = { tsFunction };\n\n  return functionData;\n}",
+  "description": "",
+  "id": "ioxnnvgsyakwzwywqczqmrdy"
+}

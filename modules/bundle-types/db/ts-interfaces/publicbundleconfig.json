@@ -1,15 +1,15 @@
 {
-  "createdAt": 1668150025528,
-  "updatedAt": 1668150025528,
+  "createdAt": 1669639194666,
+  "updatedAt": 1669639194666,
   "deletedAt": 0,
-  "createdFirstAt": 1668150025528,
+  "createdFirstAt": 1669639194666,
   "id": "publicbundleconfig",
   "name": "PublicBundleConfig",
   "slug": "publicbundleconfig",
   "operationRelativeTypescriptFilePath": "src/PublicBundleConfig.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\nexport type PublicBundleConfig = {\n  /**\n   * Human readable name of the monorepo (A kebab-case version of this will be used as root foldername)\n   */\n  name: string;\n  /**\n   * a description about this bundle\n   */\n  description?: string;\n  emoji?: string;\n  primaryColor?: string;\n  /**NB: later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation*/\n  gitRepoUrl?: string;\n\n  /**\n   * if true, your gitrepo is marked as pubilc and thus users will be linked to it sometimes\n   */\n  isGitRepoPublic?: boolean;\n\n  /**\n   * configurate your markdown reader\n   */\n  bundleMarkdownReaderConfig?: BundleMarkdownReaderConfig;\n};",
+  "rawText": "\n\nexport type PublicBundleConfig = {\n  /**\n   * Human readable name of the monorepo (A kebab-case version of this will be used as root foldername)\n   */\n  name: string;\n\n  /**\n   * Used to determine which call to actions are relevant (must be hostname without schema (name + tld))\n   */\n  deploymentHostname?: string;\n\n  /**\n   * a description about this bundle\n   */\n  description?: string;\n  emoji?: string;\n  primaryColor?: string;\n  /**NB: later we may also want to automate the server and frontend deployment setup. for that we need credentials and automation*/\n  gitRepoUrl?: string;\n\n  /**\n   * if true, your gitrepo is marked as pubilc and thus users will be linked to it sometimes\n   */\n  isGitRepoPublic?: boolean;\n\n  /**\n   * configurate your markdown reader\n   */\n  bundleMarkdownReaderConfig?: BundleMarkdownReaderConfig;\n};",
   "extensions": [],
   "isOperationIndex": false,
   "description": "",
@@ -22,6 +22,10 @@
         "name": {
           "type": "string",
           "description": "Human readable name of the monorepo (A kebab-case version of this will be used as root foldername)"
+        },
+        "deploymentHostname": {
+          "type": "string",
+          "description": "Used to determine which call to actions are relevant (must be hostname without schema (name + tld))"
         },
         "description": {
           "type": "string",
@@ -58,6 +62,14 @@
           "required": true,
           "schema": {
             "fullComment": "Human readable name of the monorepo (A kebab-case version of this will be used as root foldername)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "deploymentHostname",
+          "required": false,
+          "schema": {
+            "fullComment": "Used to determine which call to actions are relevant (must be hostname without schema (name + tld))",
             "type": "string"
           }
         },

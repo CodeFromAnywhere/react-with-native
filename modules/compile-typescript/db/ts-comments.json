@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1666263821300,
+    "updatedAt": 1666263821300,
+    "deletedAt": 0,
+    "createdFirstAt": 1666263821300,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/getTypescriptErrorsFromFiles.ts",
+    "comment": "uses official typescript compiler to check all given files for compilation errors",
+    "rawStatement": "export function getTypescriptErrorsFromFiles({\n  filePaths,\n  debug,\n}: {\n  basePath: string;\n  filePaths: string[];\n  compilerOptions: TsConfig[\"compilerOptions\"];\n  packageJson: PackageJson;\n  debug?: boolean;\n}): Creation<TsBuildError>[] {\n  try {\n    const program = typescript.createProgram(filePaths, {});\n    const emitResult = program.emit(undefined, (fileName) => {\n      if (debug) console.log(`emitted ${fileName}, not writing.`);\n    });\n\n    const allDiagnostics = typescript\n      .getPreEmitDiagnostics(program)\n      .concat(emitResult.diagnostics);\n\n    const buildErrors = allDiagnostics\n      .map((diagnostic) => {\n        let buildError: null | Creation<TsBuildError> = null;\n\n        // TODO: Fix this! Obviously this isn't correct\n        const filePath = filePaths[0];\n\n        const operationBasePath = findOperationBasePath(filePath);\n        if (!operationBasePath) return;\n\n        const operationPathParse = getOperationPathParse(filePath);\n        if (!operationPathParse) return;\n\n        const operationName = getLastFolder(operationBasePath);\n        const operationRelativeTypescriptFilePath =\n          operationPathParse.operationRelativeTypescriptFilePath;\n\n        if (diagnostic.file && diagnostic.start) {\n          const { line, character } = typescript.getLineAndCharacterOfPosition(\n            diagnostic.file,\n            diagnostic.start\n          );\n          const message = typescript.flattenDiagnosticMessageText(\n            diagnostic.messageText,\n            \"\\n\"\n          );\n\n          buildError = {\n            message,\n            operationName,\n            operationRelativeTypescriptFilePath,\n            line: line + 1,\n            character: character + 1,\n            id: generateId(),\n            // TODO: later I can give this the name of the error maybe\n            name: \"TsBuildError\",\n            slug: \"ts-build-error\",\n          };\n          // console.log(\n          //   `${diagnostic.file.fileName} (${line + 1},${character + 1}): ${message}`\n          // );\n        } else {\n          const message = typescript.flattenDiagnosticMessageText(\n            diagnostic.messageText,\n            \"\\n\"\n          );\n          buildError = {\n            id: generateId(),\n            message,\n            // TODO: later I can give this the name of the error maybe\n            name: \"TsBuildError\",\n            slug: \"ts-build-error\",\n            operationRelativeTypescriptFilePath:\n              operationPathParse.operationRelativeTypescriptFilePath,\n          };\n        }\n\n        return buildError;\n      })\n      .filter(notEmpty);\n\n    return buildErrors;\n  } catch (e) {\n    log(`WTF raar ${e}`, { type: \"error\" });\n    return [];\n  }\n}",
+    "parameters": {},
+    "types": [],
+    "firstLine": 13,
+    "lastLine": 15,
+    "id": "exioaduiedofxoztmegdtkqx"
+  }
+]

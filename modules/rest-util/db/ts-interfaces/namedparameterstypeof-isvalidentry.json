@@ -1,0 +1,75 @@
+{
+  "createdAt": 1668717089393,
+  "updatedAt": 1668717089393,
+  "deletedAt": 0,
+  "createdFirstAt": 1668717089393,
+  "id": "namedparameterstypeof-isvalidentry",
+  "name": "NamedParameters<typeof isValidEntry>",
+  "slug": "namedparameterstypeof-isvalidentry",
+  "operationRelativeTypescriptFilePath": "src/isValidEntry.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "[_, value]": {
+          "type": "array",
+          "minItems": 2,
+          "items": [
+            {
+              "type": "string",
+              "title": "key"
+            },
+            {
+              "title": "value"
+            }
+          ],
+          "maxItems": 2
+        }
+      },
+      "required": [
+        "[_, value]"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "[_, value]",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              },
+              {
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof isValidEntry>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

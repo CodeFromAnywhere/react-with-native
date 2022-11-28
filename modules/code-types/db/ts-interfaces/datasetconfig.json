@@ -1,16 +1,18 @@
 {
-  "createdAt": 1668150079225,
-  "updatedAt": 1668150079225,
+  "createdAt": 1669639255562,
+  "updatedAt": 1669639255562,
   "deletedAt": 0,
-  "createdFirstAt": 1668150079225,
+  "createdFirstAt": 1669639255562,
   "id": "datasetconfig",
   "name": "DatasetConfig",
   "slug": "datasetconfig",
   "operationRelativeTypescriptFilePath": "src/Dataset.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * The part of dataset that can be used in certain functions\n */\nexport interface DatasetConfig {\n  /**\n   * Filters are applied after each other\n   */\n  filter?: DatasetFilter | DatasetFilter[];\n\n  /**\n   *\n   */\n  sort?: DatasetSort | DatasetSort[];\n\n  /**\n   * Specify a max amount of items n\n   */\n  maxRows?: number;\n\n  /**\n   * If specified, slices the sorted array to omit the first n items;\n   */\n  startFromIndex?: number;\n\n  /**\n   * If specified, will only include these parameter keys of the model object. Otherwise all keys will be taken\n   */\n  objectParameterKeys?: string[];\n\n  /**\n   * If specified, will omit these keys when creating the dataset\n   */\n  ignoreObjectParameterKeys?: string[];\n}",
-  "extensions": [],
+  "rawText": "\n\n/**\n * The part of dataset that can be used in certain functions\n */\nexport interface DatasetConfig extends DatasetConfigShape {\n  /**\n   * Filters are applied after each other\n   */\n  filter?: DatasetFilter[];\n\n  /**\n   *\n   */\n  sort?: DatasetSort[];\n\n  /**\n   * Specify a max amount of items n\n   */\n  maxRows?: number;\n\n  /**\n   * If specified, slices the sorted array to omit the first n items;\n   */\n  startFromIndex?: number;\n\n  /**\n   * If specified, will only include these parameter keys of the model object. Otherwise all keys will be taken\n   */\n  objectParameterKeys?: string[];\n\n  /**\n   * If specified, will omit these keys when creating the dataset\n   */\n  ignoreObjectParameterKeys?: string[];\n}",
+  "extensions": [
+    "DatasetConfigShape"
+  ],
   "isOperationIndex": false,
   "description": "The part of dataset that can be used in certain functions",
   "isDbModel": false,
@@ -20,31 +22,17 @@
       "type": "object",
       "properties": {
         "filter": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/DatasetFilter"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DatasetFilter"
-              }
-            }
-          ],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DatasetFilter"
+          },
           "description": "Filters are applied after each other"
         },
         "sort": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/DatasetSort"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DatasetSort"
-              }
-            }
-          ]
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DatasetSort"
+          }
         },
         "maxRows": {
           "type": "number",
@@ -67,7 +55,8 @@
             "type": "string"
           },
           "description": "If specified, will omit these keys when creating the dataset"
-        }
+        },
+        "view": {}
       },
       "additionalProperties": false,
       "description": "The part of dataset that can be used in certain functions"
@@ -80,16 +69,108 @@
           "required": false,
           "schema": {
             "fullComment": "Filters are applied after each other",
-            "properties": [],
-            "type": "object"
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Can be better, see https://www.w3schools.com/js/js_comparisons.asp",
+                  "properties": [
+                    {
+                      "name": "objectParameterKey",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "value",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "This will sometines need to be casted",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operator",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "includesLetters",
+                          "includes",
+                          "startsWith",
+                          "endsWith",
+                          "equal",
+                          "notEqual",
+                          "greaterThan",
+                          "greaterThanOrEqual",
+                          "lessThan",
+                          "lessThanOrEqual"
+                        ],
+                        "fullComment": "Uses type equality\n\n",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "filterFunctionName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "TODO: Maybe add possibility to use a sort function from the SDK",
+                        "todo": "Maybe add possibility to use a sort function from the SDK",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "DatasetFilter"
+              }
+            ],
+            "type": "array"
           }
         },
         {
           "name": "sort",
           "required": false,
           "schema": {
-            "properties": [],
-            "type": "object"
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Sort by comparing the two values using the `Array.sort` method and Greater than and Less than operators.",
+                  "properties": [
+                    {
+                      "name": "objectParameterKey",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "sortDirection",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "ascending",
+                          "descending"
+                        ],
+                        "fullComment": "sort normally or in reverse order",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "sortFunctionName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "TODO:",
+                        "todo": "",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "DatasetSort"
+              }
+            ],
+            "type": "array"
           }
         },
         {
@@ -138,6 +219,14 @@
               }
             ],
             "type": "array"
+          }
+        },
+        {
+          "name": "view",
+          "required": false,
+          "schema": {
+            "properties": [],
+            "type": "object"
           }
         }
       ],

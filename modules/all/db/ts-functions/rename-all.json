@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666258926320,
+  "updatedAt": 1666258926320,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258926320,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/renameAll.ts",
+  "commentsInside": [],
+  "rawText": " async ({\n  filePaths,\n  newFileName,\n  newFilePath,\n}: {\n  filePaths: string[];\n  /**\n   * if given, all files will be replaces by this filename\n   */\n  newFileName?: string;\n  /**\n   * if given, this will be used to determine the new path\n   */\n  newFilePath?: (oldPath: string) => string;\n}) => {\n  return forAllFiles({\n    filePaths,\n    callback: (filePath) =>\n      new Promise<void>(async (resolve) => {\n        if (fs.existsSync(filePath)) {\n          const newPath = newFileName\n            ? path.join(getFolder(filePath), newFileName)\n            : newFilePath?.(filePath);\n\n          if (!newPath) {\n            return log(\"couldn't determine new path\", { type: \"error\" });\n          }\n          console.log(`renamed ${filePath} to ${newPath}`);\n          await fs.rename(filePath, newPath);\n        }\n        resolve();\n      }),\n  });\n}",
+  "name": "renameAll",
+  "slug": "rename-all",
+  "parameters": [],
+  "description": "renames all files to a new name (optionally a func, based on the old path)",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 924,
+    "lines": 34,
+    "bytes": 924,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 34,
+    "numberOfFiles": 1
+  },
+  "id": "rbwhkrypyszzyorwmgofxcwp"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669385353609,
+  "updatedAt": 1669385353609,
+  "deletedAt": 0,
+  "createdFirstAt": 1669385353609,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "updateMeWithContext",
+  "slug": "update-me-with-context",
+  "operationRelativeTypescriptFilePath": "src/updateMeWithContext.ts",
+  "type": {
+    "rawType": "(functionContext: import(\"/Users/king/King/operations/tools/user-interfaces/api/function-context-type/build/FunctionContext\").FunctionContext, details: Omit<import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/Person\").Person, \"authorizations\" | \"groups\" | \"credit\" | \"dataEntries\" | \"slug\" | \"groupSlugs\" | \"authenticationMethods\" | keyof import(\"/Users/king/King/operations/tools/types/model-types/build/modelTypes\").DefaultModelType | \"devicesCalculated\" | \"paymentAuthToken\">) => Promise<{ isSuccessful: boolean; message: string; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  functionContext: FunctionContext,\n  details: PersonProfileDetails\n): Promise<{ isSuccessful: boolean; message: string }> => {\n  const person = functionContext.device.currentPersonCalculated;\n\n  const processedAsset = await processAsset(details.pictureImage);\n  if (processedAsset) details.pictureImage = processedAsset;\n\n  if (!person) {\n    return {\n      isSuccessful: false,\n      message: \"Couldn't find you, are you logged in?\",\n    };\n  }\n\n  const { isSuccesful, message, amountUpdated } = await db.update(\n    \"Person\",\n    (item) => item.id === person.id,\n    (old) => ({ ...old, ...details })\n  );\n\n  const isReallySuccessful = (isSuccesful && amountUpdated === 1) || false;\n\n  return {\n    isSuccessful: isReallySuccessful,\n    message: isReallySuccessful\n      ? \"Updated your profile details\"\n      : message || \"Something went wrong (no message)\",\n  };\n}",
+  "description": "",
+  "id": "lklmfcubfkisxmkrxtlblagu"
+}

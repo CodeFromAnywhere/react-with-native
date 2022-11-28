@@ -1,16 +1,16 @@
 {
-  "createdAt": 1666260569375,
-  "updatedAt": 1666260569375,
+  "createdAt": 1668775446063,
+  "updatedAt": 1668775446063,
   "deletedAt": 0,
-  "createdFirstAt": 1666260569375,
+  "createdFirstAt": 1668775446063,
   "classification": "const",
   "comments": [],
   "isExported": true,
   "name": "queries",
   "slug": "queries",
-  "operationRelativeTypescriptFilePath": "src/api.ts",
+  "operationRelativeTypescriptFilePath": "src/queries.ts",
   "type": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/api/api-types/build/api-types\").QueryType",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/api/api-types/build/api-types\").QueryType",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "mergeObjectsArray(\n  functionApiKeys\n    .map((fnName) => fnName as keyof typeof api)\n    .map((fnName) => {\n      const apiFn = api[fnName];\n      const useQueryFunction = (...parameters: any[]) => {\n        const queryResult = useQuery(\n          [fnName, ...parameters],\n          // @ts-ignore\n          () => apiFn(...parameters),\n          { enabled: true, refetchOnWindowFocus: \"always\" }\n        );\n        return queryResult;\n      };\n\n      const hookName = camelCase(`use-${fnName}`);\n      const objectPart = { [hookName]: useQueryFunction };\n\n      return objectPart;\n    })\n) as unknown as QueryType",
   "description": "This object contains a react-query `useQuery` hook for every api function",
-  "id": "lpqqmxzkbegafsqawvqeoqgz"
+  "id": "upaiifdoxqglasmqpycruqwu"
 }

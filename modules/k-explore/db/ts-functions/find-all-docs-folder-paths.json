@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668148408409,
-  "updatedAt": 1668148408409,
+  "createdAt": 1668976646612,
+  "updatedAt": 1668976646612,
   "deletedAt": 0,
-  "createdFirstAt": 1668148408409,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668976646612,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/find-folders.ts",
   "commentsInside": [],
-  "rawText": " async (\n  /**\n   * Don't look for docs folders inside of operation folders\n   */\n  ignoreOperations?: boolean\n): Promise<string[]> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return [];\n  const isSensible = isSensibleProject(projectRoot);\n\n  const docsBasePath = isSensible ? projectRoot : getRootPath(\"operations\");\n  if (!docsBasePath) return [];\n\n  const docsFolderPaths = await findAllFoldersWithName({\n    basePath: docsBasePath,\n    folderName: \"docs\",\n    ignoreOperations,\n  });\n  return docsFolderPaths;\n}",
+  "rawText": " async (\n  /**\n   * Don't look for docs folders inside of operation folders\n   */\n  ignoreOperations?: boolean,\n  /**\n   * optionally, ignore some folders\n   */\n  ignoreFolders?: string[]\n): Promise<string[]> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return [];\n  const docsBasePath = isBundle(projectRoot)\n    ? projectRoot\n    : getRootPath(\"operations\");\n\n  if (!docsBasePath) return [];\n\n  const docsFolderPaths = await findAllFoldersWithName({\n    basePath: docsBasePath,\n    folderName: \"docs\",\n    ignoreOperations,\n    ignoreFolders,\n  });\n  return docsFolderPaths;\n}",
   "name": "findAllDocsFolderPaths",
   "slug": "find-all-docs-folder-paths",
   "parameters": [
@@ -26,6 +21,29 @@
       "simplifiedSchema": {
         "fullComment": "Don't look for docs folders inside of operation folders",
         "type": "boolean"
+      },
+      "required": false
+    },
+    {
+      "name": "ignoreFolders",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "optionally, ignore some folders"
+      },
+      "simplifiedSchema": {
+        "fullComment": "optionally, ignore some folders",
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
       },
       "required": false
     }
@@ -42,13 +60,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 602,
-    "lines": 20,
-    "bytes": 602,
+    "characters": 664,
+    "lines": 26,
+    "bytes": 664,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 30,
-    "linesPerFile": 20,
+    "charactersPerLine": 26,
+    "linesPerFile": 26,
     "numberOfFiles": 1
   },
-  "id": "ifnbfzddiiameokzzvyfniyu"
+  "id": "ecntcoylxyfeupahhkzxxxax"
 }

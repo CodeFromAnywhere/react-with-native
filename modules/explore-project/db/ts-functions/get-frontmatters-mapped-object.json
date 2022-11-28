@@ -1,0 +1,68 @@
+{
+  "createdAt": 1669384299449,
+  "updatedAt": 1669384299449,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384299449,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getFrontmattersMappedObject.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  projectRoot: string,\n  markdownPaths?: string[]\n) => {\n  const frontmatterPromises = markdownPaths?.map(async (markdownPath) => {\n    const absoluteFilePath = path.join(projectRoot, markdownPath);\n    const frontmatter = (await readMarkdownFile(absoluteFilePath))?.parameters;\n    return { [markdownPath]: frontmatter };\n  });\n  const frontmattersArray = frontmatterPromises\n    ? await Promise.all(frontmatterPromises)\n    : [];\n  const frontmattersMappedObject = mergeObjectsArray(frontmattersArray);\n\n  return frontmattersMappedObject;\n}",
+  "name": "getFrontmattersMappedObject",
+  "slug": "get-frontmatters-mapped-object",
+  "parameters": [
+    {
+      "name": "projectRoot",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "markdownPaths",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 551,
+    "lines": 16,
+    "bytes": 551,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 16,
+    "numberOfFiles": 1
+  },
+  "id": "zwwxkcmhyhhyzjcycczngysc"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384301176,
+  "updatedAt": 1669384301176,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384301176,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getExplorationType",
+  "slug": "get-exploration-type",
+  "operationRelativeTypescriptFilePath": "src/getOperationType.ts",
+  "type": {
+    "rawType": "(absolutePath: string, operationFolders: string[]) => \"function\" | \"folder\" | \"operation\" | \"operationFolder\" | \"markdown\" | \"typescript\" | \"interface\" | \"variable\" | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  absolutePath: string,\n  operationFolders: string[]\n): FolderExploration[\"type\"] | undefined => {\n  const parsedPath = path.parse(absolutePath);\n  if ([\".ts\", \".tsx\"].includes(parsedPath.ext)) {\n    return \"typescript\";\n  }\n  if ([\".md\", \".mdx\"].includes(parsedPath.ext)) {\n    return \"markdown\";\n  }\n\n  if (parsedPath.ext.length > 0) {\n    // NB: based on where this function is used, this should never happen\n    return undefined;\n  }\n\n  if (operationFolders.includes(absolutePath)) {\n    return \"operation\";\n  }\n  if (operationFolders.find((x) => absolutePath.startsWith(x))) {\n    return \"operationFolder\";\n  }\n  return \"folder\";\n}",
+  "description": "gets the exploration type from an absolute type",
+  "id": "botwqaqoqjydjiqsydgxyedo"
+}

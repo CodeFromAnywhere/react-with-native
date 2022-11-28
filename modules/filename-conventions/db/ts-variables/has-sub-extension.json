@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666259759380,
-  "updatedAt": 1666259759380,
+  "createdAt": 1668332413461,
+  "updatedAt": 1668332413461,
   "deletedAt": 0,
-  "createdFirstAt": 1666259759380,
+  "createdFirstAt": 1668332413461,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  srcRelativeFileId: string,\n  subExtensions: string | string[],\n  /**\n   * if true, also returns true if the extension is the complete name of the file\n   */\n  includeRootName?: boolean\n): boolean => {\n  const subExtensionsArray = makeArray(subExtensions);\n  const parts = srcRelativeFileId.split(\".\");\n  const isSinglePart = parts.length === 1;\n  const subExtension = parts.pop()!;\n  const includesSubExtension = subExtensionsArray.includes(subExtension);\n  const isCounting = includeRootName ? true : !isSinglePart;\n  const has = isCounting && includesSubExtension;\n  return has;\n}",
   "description": "Returns true if a fileid includes one of the specified subextensions.",
-  "id": "vpdxqtbtmobcsggwkmwecuqp"
+  "id": "irejufsdjulyqzgckwdtucqw"
 }

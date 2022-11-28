@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666262776958,
-  "updatedAt": 1666262776958,
+  "createdAt": 1668334794991,
+  "updatedAt": 1668334794991,
   "deletedAt": 0,
-  "createdFirstAt": 1666262776958,
+  "createdFirstAt": 1668334794991,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  chunk: MarkdownChunk,\n  categoryStackCalculatedUntilNow?: CategoryStack\n): MarkdownParagraph[] => {\n  const categoryStackCalculated = categoryStackCalculatedUntilNow || [];\n  if (chunk.title) {\n    categoryStackCalculated.push(chunk.title);\n  }\n\n  const childParagraphs =\n    chunk.children\n      ?.map((childChunk) =>\n        getParagraphsRecursively(childChunk, categoryStackCalculated)\n      )\n      .flat() || [];\n\n  const thisParagraph: MarkdownParagraph = {\n    paragraph: chunk.content || \"\",\n    categoryStackCalculated,\n  };\n\n  return [thisParagraph, ...childParagraphs];\n}",
   "description": "recursively dives into the Chunk to get all paragraphs inside",
-  "id": "snsbwbsxuhnlrgbyyvoacjil"
+  "id": "qnuxlaoqvdjfhkmqnfvmxwpy"
 }

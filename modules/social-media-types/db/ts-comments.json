@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1669384966080,
+    "updatedAt": 1669384966080,
+    "deletedAt": 0,
+    "createdFirstAt": 1669384966080,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/MediaPost.ts",
+    "comment": "Post/message on any medium.",
+    "rawStatement": "export interface MediaPost extends MarkdownModelType {\n  /**\n   * Parsed content from the postable content, every social media platform parses in a different way\n   *\n   * For example, a big blog could be parsed into multiple tweets.\n   *\n   * Another example: maybe in some cases we need to remove images or audio\n   *\n   * Another example: markdown is mostly unsupported!\n   */\n  mediaPlatform: MediaPlatformEnum;\n  posted_messageChannelId?: string;\n  posted_messageChannel?: MediaChannel;\n\n  isVerified?: boolean;\n  isPostable: boolean;\n  unpostableReason?: string;\n  isPosted?: boolean;\n\n  /**\n   * URL that leads directly to the posted message\n   */\n  postedUrl?: string;\n  channelOrGroupName?: string;\n\n  /**\n   * projectRelativePath referring to the file that has been parsed into this MediaPost\n   */\n  webMarkdownFile_projectRelativePath?: string;\n  /**\n * \n * \n * the following are DEPRECATED, use `markdown` and parse the title, content, and potential asset  from there\n\n  parsedTitle\n  parsedContent\n\n */\n  markdown: string;\n\n  /**\n   * Calculated from `.markdown`\n   */\n  parsedTitleCalculated?: string;\n  /**\n   * Calculated from `.markdown`\n   */\n  parsedContentCalculated?: string;\n  /**\n   * Calculated from `.markdown`\n   */\n  parsedAssetCalculated?: BackendAsset;\n\n  /**\n   * After it has been posted, this should be filled and frequently updated\n   *\n   * Omitted from the form in writer-input because it's indexed\n   */\n  postedDetailsIndexed?: {\n    views: number;\n    reactions: number;\n    interactions: number;\n    statisticsUpdatedAt: number;\n  };\n}",
+    "parameters": {},
+    "types": [],
+    "firstLine": 6,
+    "lastLine": 8,
+    "id": "khiummjdgobvphtduujrsgyl"
+  }
+]

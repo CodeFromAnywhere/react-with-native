@@ -1,0 +1,77 @@
+{
+  "createdAt": 1669200468520,
+  "updatedAt": 1669200468520,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200468520,
+  "id": "namedparameterstypeof-getoperationsummary",
+  "name": "NamedParameters<typeof getOperationSummary>",
+  "slug": "namedparameterstypeof-getoperationsummary",
+  "operationRelativeTypescriptFilePath": "src/getOperationSummary.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "operationName": {
+              "type": "string"
+            },
+            "manualProjectRoot": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "operationName"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "operationName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "manualProjectRoot",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getOperationSummary>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

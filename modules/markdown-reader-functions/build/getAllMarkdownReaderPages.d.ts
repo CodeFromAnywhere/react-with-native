@@ -1,4 +1,4 @@
-import { MarkdownReaderPage } from "markdown-reader-types";
+import { WebPage } from "webpage-types";
 /**
 
  
@@ -23,5 +23,5 @@ Used to generate the menu
  */
 export declare const getAllMarkdownReaderPages: (config?: {
     manualProjectRoot?: string;
-}) => Promise<undefined | MarkdownReaderPage[]>;
+}) => Promise<undefined | WebPage<any>[]>;
 //# sourceMappingURL=getAllMarkdownReaderPages.d.ts.map

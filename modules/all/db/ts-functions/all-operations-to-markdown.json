@@ -1,0 +1,41 @@
+{
+  "createdAt": 1668332051657,
+  "updatedAt": 1668332051657,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332051657,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/allOperationsToMarkdown.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    callback: async (folderPath, index) => {\n      const operationName = getLastFolder(folderPath);\n      log(`#${index}: Making new README for ${operationName}`, {\n        type: \"success\",\n      });\n\n      const operationSummary = await getOperationSummary({ operationName });\n      if (!operationSummary) return;\n      await operationToMarkdown({\n        operationSummary,\n        returnType: \"save\",\n      });\n      return;\n    },\n  });\n}",
+  "name": "allOperationsToMarkdown",
+  "slug": "all-operations-to-markdown",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 538,
+    "lines": 20,
+    "bytes": 538,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "zzgmmpvwjebpukpaavmvbqby"
+}

@@ -1,0 +1,260 @@
+{
+  "createdAt": 1669384991949,
+  "updatedAt": 1669384991949,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384991949,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/frontmatterToObject.ts",
+  "commentsInside": [],
+  "rawText": " (\n  frontmatter: Frontmatter,\n  schema: SimplifiedSchema\n): FrontmatterParse => {\n  if (!schema.properties || !schema.properties.length) {\n    return {};\n  }\n\n  const valueObjectArray: { [key: string]: any }[] = schema.properties\n    .map((property) => {\n      const value = frontmatter[property.name]\n        ? frontmatter[property.name].trim()\n        : undefined;\n\n      if (value === undefined) return;\n\n      const assetInputType = getAssetInputType(property.name);\n\n      if (\n        (property.schema.type === \"object\" ||\n          property.schema.type === \"array\") &&\n        assetInputType?.type\n      ) {\n        // it's a backendAsset\n\n        const backendAssets: BackendAsset[] = findEmbeds(value).map((x) => {\n          return { alt: x.alt, relativePath: x.src };\n        });\n\n        if (backendAssets.length === 0) return;\n\n        if (assetInputType.isMultiple) {\n          return { [property.name]: backendAssets };\n        }\n\n        return { [property.name]: backendAssets[0] };\n      }\n\n      if (property.schema.type === \"number\" && property.name.endsWith(\"At\")) {\n        const unixTimestamp = tryParseDate(value);\n\n        return { [property.name]: unixTimestamp };\n      }\n\n      if (property.schema.type === \"boolean\") {\n        if (value === \"true\") return { [property.name]: true };\n        if (value === \"false\") return { [property.name]: false };\n        return;\n      }\n\n      if (property.schema.type === \"number\") {\n        const number = Number(value);\n\n        if (isNaN(number)) return;\n\n        return { [property.name]: number };\n      }\n\n      if (property.schema.type === \"null\") {\n        if (value !== \"null\") {\n          return;\n        }\n\n        return { [property.name]: null };\n      }\n\n      if (property.schema.type === \"string\") {\n        return { [property.name]: parseFrontmatterString(value) };\n      }\n\n      if (property.schema.type === \"array\") {\n        // turn into comma separated\n        // Let's only support string[] for now!\n\n        const itemString = value\n          .split(\",\")\n          .map((x) => x.trim())\n          .map(parseFrontmatterString);\n\n        return { [property.name]: itemString };\n      }\n\n      if (property.schema.type === \"object\") {\n        // should not be supported\n        return;\n      }\n\n      return;\n    })\n    .filter(notEmpty);\n\n  const parse = mergeObjectsArray(valueObjectArray);\n\n  return parse;\n}",
+  "name": "frontmatterToObject",
+  "slug": "frontmatter-to-object",
+  "parameters": [
+    {
+      "name": "frontmatter",
+      "schema": {
+        "$ref": "#/definitions/Frontmatter"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Our version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+        "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "schema",
+      "schema": {
+        "$ref": "#/definitions/SimplifiedSchema"
+      },
+      "simplifiedSchema": {
+        "fullComment": "JSONSchema7 derivative that has the following capabilities and and characteristics...\n\n- does not include objects in objects that are also referenced to using xxxSlug or xxxId\n- recursively finds the references and expands them, unless the references are circular\n- easier to read\n- has all the information we need\n- is able to generate an object with values in the exact format the function needs it\n- is able to easily generate a form",
+        "properties": [
+          {
+            "name": "todo",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "discussion",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idea",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "later",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nb",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "title",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "section",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": true,
+            "schema": {
+              "enum": [
+                "string",
+                "number",
+                "boolean",
+                "object",
+                "array",
+                "null"
+              ],
+              "fullComment": "- string\n- number\n- boolean\n- object\n- array\n- null\n\nNB: Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;\n\n",
+              "nb": "Omit doesn't work for the indexer! This would be the type: Omit<JSONSchema7TypeName, \"integer\">;",
+              "type": "string"
+            }
+          },
+          {
+            "name": "circularRefName",
+            "required": false,
+            "schema": {
+              "fullComment": "sometimes we still need to reference to another schema because this thing is recursive. In that case the ref name will be here",
+              "type": "string"
+            }
+          },
+          {
+            "name": "enum",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of enums this could appear... mostly strings, but e.g. numbers can also be an enum I think",
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "Primitive type",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Type"
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "properties",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of object, this will always appear",
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [
+                      {
+                        "name": "name",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "schema",
+                        "required": true,
+                        "schema": {
+                          "circularRefName": "SimplifiedSchema",
+                          "properties": [],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "required",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "NB: can't we put this in the SimplifiedSchema itself?",
+                          "nb": "can't we put this in the SimplifiedSchema itself?",
+                          "type": "boolean"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "SimplifiedSchemaProperty"
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "items",
+            "required": false,
+            "schema": {
+              "fullComment": "in case of arrays, this will always appear",
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [
+                      {
+                        "name": "name",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "name in case of it being a reference, otherwise null",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "schema",
+                        "required": true,
+                        "schema": {
+                          "circularRefName": "SimplifiedSchema",
+                          "properties": [],
+                          "type": "object"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "SimplifiedSchemaItem"
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "fullComment",
+            "required": false,
+            "schema": {
+              "fullComment": "Full doccomment, parsed without all stars syntax.\n\nNB: besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+              "nb": "besides this, every `CommentType` can optionally also be found as a property on the `SimplifiedSchema`",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/types/matter-types/build/FrontmatterParse\").FrontmatterParse",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 2398,
+    "lines": 95,
+    "bytes": 2398,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 95,
+    "numberOfFiles": 1
+  },
+  "id": "rfpqlcnfejqduassieufjsif"
+}

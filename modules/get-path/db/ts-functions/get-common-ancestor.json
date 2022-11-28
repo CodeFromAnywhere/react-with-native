@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148330010,
-  "updatedAt": 1668148330010,
+  "createdAt": 1669055051540,
+  "updatedAt": 1669055051540,
   "deletedAt": 0,
-  "createdFirstAt": 1668148330010,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055051540,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getCommonAncestor.ts",
   "commentsInside": [],
   "rawText": " (path1: string, path2: string): string => {\n  const chunks = path1.split(\"/\");\n  const chunks2 = path2.split(\"/\");\n\n  const firstFolderMismatchIndex = chunks.findIndex((chunk, index, array) => {\n    const isMismatch = chunks2[index] !== chunk;\n\n    return isMismatch;\n  });\n\n  const commonAncestor = chunks.slice(0, firstFolderMismatchIndex).join(\"/\");\n\n  return commonAncestor;\n}",
@@ -62,5 +57,5 @@
     "linesPerFile": 14,
     "numberOfFiles": 1
   },
-  "id": "jgnogmrhizbiwohhdzuxwkzq"
+  "id": "byysatvrnmtzghntnknlxhxu"
 }

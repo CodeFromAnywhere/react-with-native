@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378789191,
-  "updatedAt": 1667378789191,
+  "createdAt": 1668446792627,
+  "updatedAt": 1668446792627,
   "deletedAt": 0,
-  "createdFirstAt": 1667378789191,
+  "createdFirstAt": 1668446792627,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  relativeFilePaths: string[],\n  absoluteSourceRoot: string,\n  absoluteDestinationRoot: string,\n  /**\n   * Overwrite existing file or directory\n   */\n  force?: boolean\n) => {\n  const promises = relativeFilePaths.map(async (relativeFilePath) => {\n    const fullSourcePath = path.join(absoluteSourceRoot, relativeFilePath);\n    const fullDestinationPath = path.join(\n      absoluteDestinationRoot,\n      relativeFilePath\n    );\n    if (fs.existsSync(fullSourcePath)) {\n      await fs.cpAsync(fullSourcePath, fullDestinationPath, {\n        recursive: true,\n        force: force || false,\n      });\n    }\n  });\n  await Promise.all(promises);\n\n  return true;\n}",
   "description": "copy a bunch of relative files from one root folder to another",
-  "id": "ollappxtckvsdouxalnmwpek"
+  "id": "mvnyqltsnkagvthvxwsumrno"
 }

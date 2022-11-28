@@ -2,15 +2,8 @@ import { Markdown, Price, TsIndexModelType } from "model-types";
 import { SizeSummary } from "./FolderSummary";
 import { TypeInfo } from "./TypeInfo";
 import { TsComment } from "./TsComment";
-import { Schema } from "ts-json-schema-generator";
-import { SimplifiedSchema } from "./SimplifiedSchema";
-import { AuthorizationLevel } from "auth-types";
-export interface FunctionParameter {
-    name: string;
-    schema?: Schema;
-    simplifiedSchema?: SimplifiedSchema;
-    required: boolean;
-}
+import { FunctionClassification } from "./FunctionClassification";
+import { FunctionParameter } from "./FunctionParameter";
 export declare const runEveryPeriodReadonlyArray: readonly ["minute", "5-minutes", "quarter-hour", "hour", "6-hours", "midnight", "week", "month", "3-months", "year"];
 export declare const runEveryPeriodStringArray: string[];
 /**
@@ -32,33 +25,15 @@ All times are at at the server timezone time
  */
 export declare type RunEveryPeriodEnum = typeof runEveryPeriodReadonlyArray[number];
 /**
- * ---
- * dbStorageMethod: jsonSingle
- * ---
- *
- * Interface for arrow functions and normal functions
+ * Everything you can do with frontmatter on a TsFunction
  */
-export interface TsFunction extends TsIndexModelType {
+export declare type TsFunctionFrontmatterConfig = {
     /**
-     * whether or not the function is can be cached (relies on cache invalidation)
+     * Other keys in frontmatter that are group names, can be added here
      */
-    canCache?: boolean;
-    /**
-     * if true, the function will get the `server`.js context as its only argument, and it's directly exposed as GET api. Endpoint path will be inferred from the function name
-     *
-     * For this to be indexed to `true`, you need to call the function `abcXyzGetApi` whhere `abcXyz` can be anything.
-     */
-    isGetApi?: boolean;
-    /**
-     * If true, the function will get the `server`.js context as its only argument, and it's directly exposed as POST api. Endpoint path will be inferred from the function name
-     *
-     * For this to be indexed to `true`, you need to call the function `abcXyzPostApi` where `abcXyz` can be anything.
-     */
-    isPostApi?: boolean;
-    /**
-     * The function is immediately exported upon creation. If the os dev tools are being used, this means it is also exported from the operation
-     */
-    isExported: boolean;
+    groupAuthorization: {
+        [groupName: string]: string;
+    };
     /**
      * for all exported functions in node operations, true by default
      * false for others
@@ -67,19 +42,30 @@ export interface TsFunction extends TsIndexModelType {
      */
     isApiExposed: boolean;
     /**
-     * The default authorization that is set level applies to users without any specific authorization (granted to everyone).
-     *
-     * should be indexed based on doccomment containing `AUTH-PUBLIC: [execute], [read], [search]`
-     *
-     *
+     * whether or not the function can be cached (relies on cache invalidation)
      */
-    publicAuthorization: AuthorizationLevel[];
+    canCache?: boolean;
     /**
      You can specify `runEveryPeriod` in your frontmatter of a function. This will set `runEveryPeriod` for the TsFunction. This is used by `function-server`: it will execute CRON-jobs that run these things on those periods.
   
      Will only work if the function takes no arguments.
      */
     runEveryPeriod?: RunEveryPeriodEnum;
+    /**
+     * Indexed from frontmatter `price`
+     */
+    price?: Price;
+    classification?: FunctionClassification;
+};
+export declare type TsFunctionIndex = {
+    /**
+     * If you give a function a type explicitly on its declaration, this type will be set here.
+     */
+    explicitTypeName?: string;
+    /**
+     * The function is immediately exported upon creation. If the os dev tools are being used, this means it is also exported from the operation
+     */
+    isExported: boolean;
     /**
      * parsed comment from doc-comment
      */
@@ -130,9 +116,14 @@ export interface TsFunction extends TsIndexModelType {
      * NB: this is not indexed because this information has nothing to do with the operation itself, but the exposure to the broader monorepo. This is calculated on the fly.
      */
     dependantFiles?: string[];
-    /**
-     * Indexed from frontmatter `price`
-     */
-    price?: Price;
+};
+/**
+ * ---
+ * dbStorageMethod: jsonSingle
+ * ---
+ *
+ * Interface for arrow functions and normal functions
+ */
+export interface TsFunction extends TsIndexModelType, TsFunctionFrontmatterConfig, TsFunctionIndex {
 }
 //# sourceMappingURL=TsFunction.d.ts.map

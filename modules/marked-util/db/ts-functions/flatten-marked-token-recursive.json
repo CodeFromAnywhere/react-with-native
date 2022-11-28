@@ -1,0 +1,119 @@
+{
+  "createdAt": 1669467100786,
+  "updatedAt": 1669467100786,
+  "deletedAt": 0,
+  "createdFirstAt": 1669467100786,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/flattenMarkedTokenRecursive.ts",
+  "commentsInside": [],
+  "rawText": " (\n  token: marked.Token,\n  findFunction: (token: marked.Token) => boolean\n): marked.Token[] => {\n  if (findFunction(token)) {\n    return [token];\n  }\n\n  if (token.type === \"table\") {\n    const header = token.header\n      .map((token) => {\n        const result = token.tokens\n          .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n          .flat();\n        return result;\n      })\n      .flat();\n\n    const rows = token.rows\n      .map((row) => {\n        const result = row\n          .map((token) => {\n            const result = token.tokens\n              .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n              .flat();\n\n            return result;\n          })\n          .flat();\n\n        return result;\n      })\n      .flat();\n\n    return [header, rows].flat();\n  }\n\n  if (token.type === \"list\") {\n    const result = token.items\n      .map((token) => {\n        const result = token.tokens\n          .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n          .flat();\n        return result;\n      })\n      .flat();\n\n    return result;\n  }\n\n  if (\n    token.type === \"del\" ||\n    token.type === \"em\" ||\n    token.type === \"heading\" ||\n    token.type === \"link\" ||\n    token.type === \"paragraph\" ||\n    token.type === \"strong\"\n  ) {\n    const result = token.tokens\n      .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n      .flat();\n    return result;\n  }\n\n  return [];\n}",
+  "name": "flattenMarkedTokenRecursive",
+  "slug": "flatten-marked-token-recursive",
+  "parameters": [],
+  "description": "Recursively flatten a marked token and return something if a find function is met",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/node_modules/@types/marked/index\").marked.Token[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          },
+          {
+            "optional": false
+          }
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 1501,
+    "lines": 66,
+    "bytes": 1501,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 66,
+    "numberOfFiles": 1
+  },
+  "id": "ohxpdtkpjuasvqbanccyfwch"
+}

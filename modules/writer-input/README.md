@@ -33,15 +33,6 @@ Writer input for any utf8 based text, file or no file
 Writer input for any utf8 based text, file or no file
 
 
-## `<DivContentEditable />`
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
-
-
-
 ## `<MarkdownView />`
 
 | Input      |    |    |
@@ -51,13 +42,11 @@ Writer input for any utf8 based text, file or no file
 
 
 
-## 📄 DivContentEditable (exported const)
-
 ## 📄 MarkdownView (exported const)
 
 # Internal
 
-<details><summary>Show internal (65)</summary>
+<details><summary>Show internal (69)</summary>
     
   # `<Completion />`
 
@@ -92,6 +81,15 @@ Div that is `contentEditable` by default and has possibilities for color/style h
 
 
 
+## `<DivContentEditable />`
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
 ## editSubtextSubwordConfig()
 
 Interesting... In order to auto-generate a form for this, we need to combine the two into a simple function that does NOTHING. Why? Because we can't store it in the database, it is better to keep this in the frontend...
@@ -103,6 +101,24 @@ NB: DEPRECATED: TODO: function isn't used. Since the indexation didn't go right,
 | ---------- | -- | -- |
 | subtextConfig | `SubtextConfig` |  |,| subwordConfig | `SubwordConfig` |  |
 | **Output** | { subtextConfig: { isEnabled?: boolean, <br />translations?: { language: english / dutch / nepali / portuguese / brazilian / german / french / spanish / italian / norwegian / swedish / danish / vietnamese / indonesian / southAfrican / tokiPona / hindi / mandarin / arabic / bengali / urdu / japanese / swahili, <br />showAlternative?: boolean, <br />showPhonetic?: boolean, <br />showLatin?: boolean, <br />showTokiPona?: boolean, <br />showCommon?: boolean, <br /> }[], <br />showEmojiTranslation?: boolean, <br />showDefinitionsWithPriority?: critical / high / medium / low[], <br />showRelated?: { type: image / asset / pages / data / code, <br />quantity: single / short / all, <br /> }[], <br /> }, <br />subwordConfig: { isEnabled?: boolean, <br />subwordSize?: normal / mini / micro, <br />translations?: english / dutch / nepali / portuguese / brazilian / german / french / spanish / italian / norwegian / swedish / danish / vietnamese / indonesian / southAfrican / tokiPona / hindi / mandarin / arabic / bengali / urdu / japanese / swahili[], <br />translationsViewMode?: disabled / tooltip / context / subword, <br />showDefinition?: boolean, <br />occurenceAmountViewMode?: disabled / tooltip / context / subword, <br />blurMode?: disabled / special, <br />audioMode?: disabled / tooltip / context / subword, <br />replaceWordMode?: tokiPona / disabled / translate / alternative / phonetic / emoji, <br />heatmapMode?: disabled / projectFrequency / englishFrequency, <br /> }, <br /> }   |    |
+
+
+
+## `<EditWriterInput />`
+
+the newer one, eventually to replace `ContextTextArea`
+<SmartContentEditableDivInput
+writerType={writerType}
+value={value}
+onChange={onChange}
+markdownParseRenderConfig={markdownParseRenderConfig}
+/>
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
 
 
 
@@ -128,7 +144,7 @@ Takes into account multiple word separators: tabs, newlines, and spaces.
 | Input      |    |    |
 | ---------- | -- | -- |
 | editorDetails | { text: string, <br />positionIndex: number, <br /> } |  |
-| **Output** | { wordAtPosition: string, <br /> }   |    |
+| **Output** | { wordAtPosition: string, <br />positionIndex: number, <br /> }   |    |
 
 
 
@@ -311,7 +327,7 @@ Returns a string with HTML for the subtext container, given you already have
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| props | { word: string, <br />subwordConfig: `SubwordConfig`, <br /> } |  |
+| - | | |
 | **Output** | `JSX.Element`   |    |
 
 
@@ -408,6 +424,7 @@ Properties:
  | Name | Type | Description |
 |---|---|---|
 | wordAtPosition  | string |  |
+| positionIndex  | number |  |
 
 
 
@@ -432,11 +449,24 @@ Div that is `contentEditable` by default and has possibilities for color/style h
 
 ## 📄 depthFontSizes (exported const)
 
+## 📄 DivContentEditable (exported const)
+
 ## 📄 editSubtextSubwordConfig (exported const)
 
 Interesting... In order to auto-generate a form for this, we need to combine the two into a simple function that does NOTHING. Why? Because we can't store it in the database, it is better to keep this in the frontend...
 
 NB: DEPRECATED: TODO: function isn't used. Since the indexation didn't go right, the solution with a `SimplifiedSchemaForm` ended up being easier. Keeping it here because I need to fix the indexation nonetheless.
+
+
+## 📄 EditWriterInput (exported const)
+
+the newer one, eventually to replace `ContextTextArea`
+<SmartContentEditableDivInput
+writerType={writerType}
+value={value}
+onChange={onChange}
+markdownParseRenderConfig={markdownParseRenderConfig}
+/>
 
 
 ## 📄 FrontmatterForm (exported const)

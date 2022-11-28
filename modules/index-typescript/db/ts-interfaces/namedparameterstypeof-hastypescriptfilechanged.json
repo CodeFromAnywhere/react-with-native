@@ -1,0 +1,68 @@
+{
+  "createdAt": 1669055608648,
+  "updatedAt": 1669055608648,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055608648,
+  "id": "namedparameterstypeof-hastypescriptfilechanged",
+  "name": "NamedParameters<typeof hasTypescriptFileChanged>",
+  "slug": "namedparameterstypeof-hastypescriptfilechanged",
+  "operationRelativeTypescriptFilePath": "src/hasTypescriptFileChanged.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "eventName": {
+          "$ref": "#/definitions/WatchEventType"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "eventName",
+        "path"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "eventName",
+          "required": true,
+          "schema": {
+            "enum": [
+              "add",
+              "addDir",
+              "change",
+              "unlink",
+              "unlinkDir"
+            ],
+            "fullComment": "Different event types for the watcher of the file system (chokidar)\n\n- add: a file got created\n- addDir: a folder got created\n- change: a file changed\n- unlink: a file got removed\n- unlinkDir: a folder got removed",
+            "type": "string"
+          }
+        },
+        {
+          "name": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof hasTypescriptFileChanged>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

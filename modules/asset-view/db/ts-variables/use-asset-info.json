@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669384252016,
+  "updatedAt": 1669384252016,
+  "deletedAt": 0,
+  "createdFirstAt": 1669384252016,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useAssetInfo",
+  "slug": "use-asset-info",
+  "operationRelativeTypescriptFilePath": "src/useAssetInfo.ts",
+  "type": {
+    "rawType": "(url?: string | undefined, filename?: string | undefined) => { rawText: string | null; type: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").AssetType; } | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(url?: string, filename?: string) => {\n  if (!url && !filename) {\n    console.log(\"MUST PROVIDE EITHER URL OR FILENAME\");\n    return;\n  }\n  const urlOrFilename = (url || filename)!;\n  const realFilename = (url ? url.split(\"/\").pop() : filename)!;\n  const isTextFile = isText(realFilename) === true ? true : false;\n\n  const [rawText, setRawText] = useState<string | null>(null);\n  useEffect(() => {\n    if (!!url && isTextFile) {\n      fetch(url).then((result) => {\n        result.text().then((text) => setRawText(text));\n      });\n    }\n  }, [url, isTextFile]);\n\n  const type = getTypeFromUrlOrPath(urlOrFilename);\n\n  return { rawText, type };\n}",
+  "description": "",
+  "id": "ttyxabgdxwjwxzcggjqqsdcm"
+}

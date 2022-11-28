@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150835598,
-  "updatedAt": 1668150835598,
+  "createdAt": 1668977389958,
+  "updatedAt": 1668977389958,
   "deletedAt": 0,
-  "createdFirstAt": 1668150835598,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668977389958,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/general.ts",
   "commentsInside": [],
   "rawText": " <T>(...arrayOrNotArray: (T | T[] | undefined)[]) => {\n  return arrayOrNotArray\n    .map((arrayOrNot) => {\n      const array: T[] = arrayOrNot\n        ? Array.isArray(arrayOrNot)\n          ? arrayOrNot\n          : [arrayOrNot]\n        : [];\n\n      return array;\n    })\n    .flat();\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 17,
     "numberOfFiles": 1
   },
-  "id": "tlyimbrzwespicjnkcbxwmxx"
+  "id": "sfhkjwbbgjqdajvdeqmrytoj"
 }

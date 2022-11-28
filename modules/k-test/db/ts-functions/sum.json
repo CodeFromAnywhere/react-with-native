@@ -1,0 +1,71 @@
+{
+  "createdAt": 1668336222451,
+  "updatedAt": 1668336222451,
+  "deletedAt": 0,
+  "createdFirstAt": 1668336222451,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/general.ts",
+  "commentsInside": [],
+  "rawText": " (a: number, b: number): number => a + b",
+  "name": "sum",
+  "slug": "sum",
+  "parameters": [
+    {
+      "name": "a",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    },
+    {
+      "name": "b",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    }
+  ],
+  "description": "NB: Tried, but doesn't work, probably because it only invalidates cache for one file, not all the files that are required by that file... we need a separate process\n\nconst requireWithoutCache = (filePath: string) => {\n\ndelete require.cache[path.resolve(filePath)];\n\nreturn require(filePath);\n\n};\n\nexample function that can be tested",
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 0,
+  "size": {
+    "characters": 372,
+    "lines": 11,
+    "bytes": 372,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "tdcqmbyzpjgbciavpmnqcpnq"
+}

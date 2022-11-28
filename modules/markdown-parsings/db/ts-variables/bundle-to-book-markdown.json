@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669200443853,
+  "updatedAt": 1669200443853,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200443853,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "bundleToBookMarkdown",
+  "slug": "bundle-to-book-markdown",
+  "operationRelativeTypescriptFilePath": "src/bundleToBookMarkdown.ts",
+  "type": {
+    "rawType": "(config: { bundleConfig: import(\"/Users/king/King/operations/tools/types/bundle-types/build/BundleConfig\").BundleConfig; title?: string | undefined; coverImagePath?: string | undefined; isModulesIncluded?: boolean | undefined; manualProjectRoot?: string | undefined; }) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config: {\n  bundleConfig: BundleConfig;\n  title?: string;\n  coverImagePath?: string;\n  isModulesIncluded?: boolean;\n  manualProjectRoot?: string;\n}) => {\n  const {\n    bundleConfig,\n    coverImagePath,\n    title,\n    isModulesIncluded,\n    manualProjectRoot,\n  } = config;\n\n  const bundleSummary = getBundleSummary(bundleConfig);\n\n  const bundleDocs = bundleConfig.createBundleConfig.docsRelativeFolderPath;\n\n  const moduleNamesOrNot = isModulesIncluded ? [] : bundleSummary.moduleNames;\n\n  const allOperations = [\n    ...bundleSummary.appNames,\n    ...bundleSummary.packageNames,\n    ...moduleNamesOrNot,\n  ];\n\n  const operationMarkdownParses = (\n    await Promise.all(\n      allOperations.map(async (operationName) => {\n        const operationSummary = await getOperationSummary({\n          operationName,\n          manualProjectRoot,\n        });\n        if (!operationSummary) return;\n        const markdownParse = (await operationToMarkdown({\n          operationSummary,\n          returnType: \"parse\",\n        })) as MarkdownParse;\n        if (!markdownParse) return;\n\n        return markdownParse;\n      })\n    )\n  ).filter(notEmpty);\n\n  const mergedMarkdown = mergeMarkdownParse(operationMarkdownParses);\n\n  //   getOutline();\n\n  // 1) getOutline\n  // 2) mergeMarkdownParse\n  // 3) add cover + outline + contents together\n}",
+  "description": "Input: BundleConfig (one or more folder(s), readme, operations with a docs folder)\n\nOutput should be all md files concatenated in the right order with the right titles",
+  "id": "zsiaahmrcpdapasdfbrtghzy"
+}

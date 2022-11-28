@@ -1,0 +1,82 @@
+{
+  "createdAt": 1668335872204,
+  "updatedAt": 1668335872204,
+  "deletedAt": 0,
+  "createdFirstAt": 1668335872204,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/generateSimpleIndex.ts",
+  "commentsInside": [],
+  "rawText": " async ({\n  operationName,\n  manualProjectRoot,\n}: {\n  /**\n   * if given, just exports * from those\n   */\n  operationName: string;\n  manualProjectRoot?: string;\n}): Promise<string | undefined> => {\n  if (!operationName) {\n    log(\"No operation name, can't create index\", { type: \"error\" });\n    return;\n  }\n  const operationBasePath = await getOperationPath(operationName, {\n    manualProjectRoot,\n  });\n\n  if (!operationBasePath) {\n    log(`operationPath not found ${operationName}`, { type: \"error\" });\n    return;\n  }\n\n  const classification = getOperationClassification(operationBasePath);\n\n  if (classification === \"ui-web\") {\n    log(\"Not generating index.ts for next.js project, not needed.\", {\n      type: \"default\",\n    });\n    return;\n  }\n\n  const outputPath = path.join(operationBasePath, \"src\", \"index.ts\");\n\n  const files = await getPackageSourcePaths({ operationBasePath });\n\n  const srcRelativeFileIds = files.map((fullPath) =>\n    getSrcRelativeFileId(makeRelative(fullPath, operationBasePath))\n  );\n\n  const indexationString = srcRelativeFileIds\n    .filter(isIndexableFileId)\n    .map((id) => `export * from \"./${id}\";`)\n    .join(\"\\n\");\n\n  await fs.writeFile(outputPath, indexationString, { encoding: \"utf8\" });\n\n  return outputPath;\n}",
+  "name": "generateSimpleIndex",
+  "slug": "generate-simple-index",
+  "parameters": [
+    {
+      "name": "{\n  operationName,\n  manualProjectRoot,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "operationName": {
+            "type": "string",
+            "description": "if given, just exports * from those"
+          },
+          "manualProjectRoot": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "operationName"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "operationName",
+            "required": true,
+            "schema": {
+              "fullComment": "if given, just exports * from those",
+              "type": "string"
+            }
+          },
+          {
+            "name": "manualProjectRoot",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "generates operation index and writes it to index.ts in src of the operation.\n\nNB: This overwrites the indexfile of the operation in the src folder! Make sure you don't have anything there still.. All functions should be in other filenames.\n\nShould be ran every time an operation changes",
+  "returnType": {
+    "rawType": "Promise<string | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1540,
+    "lines": 53,
+    "bytes": 1540,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 53,
+    "numberOfFiles": 1
+  },
+  "id": "moxudhqdgcfnbcfblxcxtwzf"
+}

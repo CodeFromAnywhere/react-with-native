@@ -1,0 +1,45 @@
+{
+  "createdAt": 1668189276427,
+  "updatedAt": 1668189276427,
+  "deletedAt": 0,
+  "createdFirstAt": 1668189276427,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/Tooltip.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  tooltipComponent: (\n    tooltipComponentProps: TooltipComponentProps\n  ) => React.ReactElement;\n  tooltipContent: () => React.ReactElement;\n}) => {\n  const [popoverShow, setPopoverShow] = React.useState(false);\n  const btnRef = React.createRef<HTMLAnchorElement>();\n  const popoverRef = React.createRef<HTMLSpanElement>();\n  const openTooltip = () => {\n    if (!btnRef.current || !popoverRef.current) return;\n    createPopper(btnRef.current, popoverRef.current, {\n      placement: \"left\",\n    });\n    setPopoverShow(true);\n  };\n  const closeTooltip = () => {\n    setPopoverShow(false);\n  };\n\n  return (\n    <span>\n      <props.tooltipComponent\n        ref={btnRef}\n        onMouseEnter={openTooltip}\n        onMouseLeave={closeTooltip}\n      />\n\n      <span\n        className={\n          (popoverShow ? \"\" : \"hidden \") +\n          \"bg-gray-200 border-0 mr-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg\"\n        }\n        ref={popoverRef}\n      >\n        {props.tooltipContent}\n      </span>\n    </span>\n  );\n}",
+  "name": "Tooltip",
+  "slug": "tooltip",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 1079,
+    "lines": 40,
+    "bytes": 1079,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 40,
+    "numberOfFiles": 1
+  },
+  "id": "wjzxduhxyljoibgnwbeqybhh"
+}

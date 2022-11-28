@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148280933,
-  "updatedAt": 1668148280933,
+  "createdAt": 1669200353031,
+  "updatedAt": 1669200353031,
   "deletedAt": 0,
-  "createdFirstAt": 1668148280933,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669200353031,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/js.ts",
   "commentsInside": [],
   "rawText": " <T extends string | undefined>(filePath: T): T => {\n  if (filePath === undefined) return undefined as T;\n  const chunks = filePath.split(\"/\");\n  chunks.pop();\n  const allWithoutFile = chunks.join(\"/\") as T;\n  return allWithoutFile;\n}",
@@ -54,5 +49,5 @@
     "linesPerFile": 7,
     "numberOfFiles": 1
   },
-  "id": "zntygsngupocmiykqgbjgoeu"
+  "id": "hppkorebhtcnqyixxtngbuwt"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669055595963,
+  "updatedAt": 1669055595963,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055595963,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getParametersFromInterfaces",
+  "slug": "get-parameters-from-interfaces",
+  "operationRelativeTypescriptFilePath": "src/getParametersFromInterface.ts",
+  "type": {
+    "rawType": "(functionName: string, interfaces: any[]) => import(\"/Users/king/King/operations/tools/types/code-types/build/FunctionParameter\").FunctionParameter[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  functionName: string,\n  /**\n   * NB: we need ALL interfaces here across the project because there may be others that were not found in the interfaces in the file, but only in the functions.\n   */\n  interfaces: Creation<TsInterface>[]\n) => {\n  const parametersInterface = interfaces.find(\n    (x) => x.name === `NamedParameters<typeof ${functionName}>`\n  );\n\n  /*\n    NB: this is how a named parameters typeDefinition looks for a function with 2 arguments\n    {\n      \"type\": \"object\",\n      \"properties\": {\n        \"markdownString\": { \"type\": \"string\" },\n        \"level\": { \"type\": \"number\" }\n      },\n      \"required\": [\"markdownString\", \"level\"],\n      \"additionalProperties\": false\n    }\n    */\n  const properties = parametersInterface?.type.typeDefinition?.properties;\n\n  const parameters: FunctionParameter[] = properties\n    ? Object.keys(properties)\n        .map((name) => {\n          const propertySchema = getSchema(\n            parametersInterface.type.typeDefinition?.properties?.[name]\n          );\n          const required =\n            parametersInterface.type.typeDefinition?.required?.includes(name) ||\n            false;\n\n          return propertySchema\n            ? {\n                name,\n                schema: propertySchema,\n                simplifiedSchema: simplifySchema(\n                  name,\n                  propertySchema,\n                  getPossibleRefs(interfaces),\n                  []\n                ),\n                required,\n              }\n            : undefined;\n        })\n        .filter(notEmpty)\n    : [];\n\n  return parameters;\n}",
+  "description": "",
+  "id": "wcgjqzjayumzqskwfmhgogko"
+}

@@ -1,0 +1,93 @@
+{
+  "createdAt": 1668328693955,
+  "updatedAt": 1668328693955,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328693955,
+  "id": "sDuCZxdPfWnSMouU",
+  "dependencies": {
+    "fs-util": "1.0.5",
+    "get-path": "0.0.1",
+    "k-explore": "0.0.2",
+    "convert-case": "0.0.1",
+    "js-util": "0.0.1",
+    "bundle-types": "0.0.1",
+    "code-types": "0.0.1",
+    "db-util": "0.0.1",
+    "markdown-parse-js": "0.0.1",
+    "database": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.4"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "bundle-util",
+  "language": "english",
+  "slug": "bundle-util",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "bundle-util",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668448350672,
+    "operationDependenciesIndexed": [
+      "kebabCase",
+      "getRootPath",
+      "makeArray",
+      "notEmpty",
+      "onlyUnique2",
+      "BundleConfig",
+      "path",
+      "TsInterface",
+      "getDbModelsFromOperations",
+      "BundleConfig"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/deployment/bundling",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 2,
+        "lines": 122,
+        "characters": 3419,
+        "bytes": 3419
+      },
+      "dataSize": {
+        "numberOfFiles": 4,
+        "lines": 31793,
+        "characters": 1275283,
+        "bytes": 1275283
+      },
+      "textSize": {
+        "numberOfFiles": 1,
+        "lines": 55,
+        "characters": 1079,
+        "bytes": 1079
+      },
+      "size": {
+        "bytes": 1279781,
+        "characters": 1279781,
+        "lines": 31970,
+        "numberOfFiles": 7
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

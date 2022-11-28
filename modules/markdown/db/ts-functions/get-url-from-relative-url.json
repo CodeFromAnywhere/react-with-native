@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668149309403,
-  "updatedAt": 1668149309403,
+  "createdAt": 1669467153614,
+  "updatedAt": 1669467153614,
   "deletedAt": 0,
-  "createdFirstAt": 1668149309403,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669467153614,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getUrlFromRelativeUrl.ts",
   "commentsInside": [],
   "rawText": " (\n  relativeUrl: string,\n  relativeUrlStrategy: \"api\" | \"static\",\n  projectRelativeBaseFolderPath: string,\n  projectRelativeMarkdownFilePath: string\n) => {\n  if (relativeUrlStrategy === \"static\")\n    return path.join(projectRelativeBaseFolderPath, relativeUrl);\n\n  const relativeUrlWithoutStart = relativeUrl.slice(2);\n\n  return getReferencedAssetApiUrl(\n    apiUrl,\n    projectRelativeMarkdownFilePath,\n    relativeUrlWithoutStart\n  );\n}",
@@ -90,5 +85,5 @@
     "linesPerFile": 17,
     "numberOfFiles": 1
   },
-  "id": "thckezujwqppjqfsgflbcsgn"
+  "id": "qqjiwlevxicgkpwdjwzxcdfq"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1666261469131,
-  "updatedAt": 1666261469131,
+  "createdAt": 1669055937641,
+  "updatedAt": 1669055937641,
   "deletedAt": 0,
-  "createdFirstAt": 1666261469131,
+  "createdFirstAt": 1669055937641,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "text-area-input",
   "operationRelativeTypescriptFilePath": "src/textarea/textArea.tsx",
   "type": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-form-inputs/src/textarea/textArea\").TextAreaInputType>",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form/build/general\").PluginComponent<import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-form-inputs/src/textarea/textArea\").TextAreaInputType>",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -20,5 +20,5 @@
   },
   "value": "({\n  value,\n  extra,\n  config,\n  onChange,\n  errors,\n}) => {\n  const hasError = errors && errors.length > 0;\n  const errorClass = hasError ? config?.errorClassName || \"border-red-600\" : \"\";\n\n  return (\n    <TextArea\n      rows={extra?.rows}\n      maxLength={extra?.maxLength}\n      className={\n        config?.replaceClassName ||\n        `${UI.input} ${errorClass} ${config?.extraClassName}`\n      }\n      value={value}\n      onChange={(event) => {\n        onChange(event.target.value);\n      }}\n      native={{ onChangeText: onChange, value }}\n    />\n  );\n}",
   "description": "",
-  "id": "nprjikeqwbpkzqnrphsyjqdy"
+  "id": "khqmkksnjxlyucltzziwxird"
 }

@@ -1,6 +1,6 @@
 # Csv util
 
-csv-util (`OperationClassification` node)
+csv-util (`OperationClassification` node-cjs)
 
 
 

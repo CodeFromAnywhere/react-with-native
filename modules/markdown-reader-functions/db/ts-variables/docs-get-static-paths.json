@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669639092505,
+  "updatedAt": 1669639092505,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639092505,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "docsGetStaticPaths",
+  "slug": "docs-get-static-paths",
+  "operationRelativeTypescriptFilePath": "src/docsGetStaticPaths.ts",
+  "type": {
+    "rawType": "(context: import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/next-types/build/types\").GetStaticPathsContext, basePaths: { projectRelativeBasePath: string; queryPath: string; }[]) => Promise<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/next-types/build/types\").GetStaticPathsResult<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/next-types/build/types\").ParsedUrlQuery>>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  context: GetStaticPathsContext,\n  basePaths: { projectRelativeBasePath: string; queryPath: string }[]\n): Promise<GetStaticPathsResult> => {\n  const paths: string[] | undefined = (await docsGetPages(basePaths)).map(\n    (x) => x.queryPath\n  );\n\n  // console.log({ paths });\n  if (!paths) {\n    return { paths: [], fallback: \"blocking\" };\n  }\n\n  const staticPaths = paths\n    .filter((x) => x !== \"\")\n    .map((p) => ({ params: { paths: p.split(\"/\") } }));\n\n  return {\n    paths: staticPaths,\n    fallback: \"blocking\",\n  };\n}",
+  "description": "Function that tells Next.js what the pages are that need to be statically generated",
+  "id": "rzpwrxgsxfxwzbfsnsvunflm"
+}

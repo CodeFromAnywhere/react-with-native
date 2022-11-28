@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148281472,
-  "updatedAt": 1668148281472,
+  "createdAt": 1669200353510,
+  "updatedAt": 1669200353510,
   "deletedAt": 0,
-  "createdFirstAt": 1668148281472,
+  "createdFirstAt": 1669200353510,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "get-sub-extension",
   "operationRelativeTypescriptFilePath": "src/js.ts",
   "type": {
-    "rawType": "(fileName: string) => string | undefined",
+    "rawType": "(filename: string) => string | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(fileName: string): string | undefined => {\n  const parts = fileName.split(\".\");\n  //removes extension\n  parts.pop();\n  //returns extension that's left (the sub-extension)\n  const subExtension = parts.pop();\n  return subExtension;\n}",
-  "description": "",
-  "id": "tizdvbezxkvhxqhzfaxpcpqa"
+  "value": "(filename: string): string | undefined => {\n  const parts = filename.split(\".\");\n  //removes extension\n  parts.pop();\n  //returns extension that's left (the sub-extension)\n  const subExtension = parts.pop();\n  return subExtension;\n}",
+  "description": "Provide a filename including its extension, to get the subextension.",
+  "id": "wisognugjvarrdjlwlgmiumh"
 }

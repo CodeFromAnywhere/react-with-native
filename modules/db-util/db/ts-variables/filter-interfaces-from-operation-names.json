@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668332805876,
+  "updatedAt": 1668332805876,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332805876,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "filterInterfacesFromOperationNames",
+  "slug": "filter-interfaces-from-operation-names",
+  "operationRelativeTypescriptFilePath": "src/dbUtil.ts",
+  "type": {
+    "rawType": "(tsInterface: import(\"/Users/king/King/operations/tools/types/code-types/build/TsInterface\").TsInterface, operationNames?: string[] | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  tsInterface: TsInterface,\n  operationNames?: string[]\n) => {\n  return (\n    !operationNames ||\n    (tsInterface.operationName &&\n      operationNames.includes(tsInterface.operationName))\n  );\n}",
+  "description": "",
+  "id": "rhklhjikzgmnxhrrpqzovpws"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668148408120,
-  "updatedAt": 1668148408120,
+  "createdAt": 1668976645682,
+  "updatedAt": 1668976645682,
   "deletedAt": 0,
-  "createdFirstAt": 1668148408120,
+  "createdFirstAt": 1668976645682,
   "id": "namedparameterstypeof-findallfolderswithname",
   "name": "NamedParameters<typeof findAllFoldersWithName>",
   "slug": "namedparameterstypeof-findallfolderswithname",
@@ -28,6 +28,13 @@
             },
             "ignoreOperations": {
               "type": "boolean"
+            },
+            "ignoreFolders": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "folders to ignore"
             }
           },
           "required": [
@@ -68,6 +75,22 @@
                 "required": false,
                 "schema": {
                   "type": "boolean"
+                }
+              },
+              {
+                "name": "ignoreFolders",
+                "required": false,
+                "schema": {
+                  "fullComment": "folders to ignore",
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
                 }
               }
             ],

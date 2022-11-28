@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150834427,
-  "updatedAt": 1668150834427,
+  "createdAt": 1668977386946,
+  "updatedAt": 1668977386946,
   "deletedAt": 0,
-  "createdFirstAt": 1668150834427,
+  "createdFirstAt": 1668977386946,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "create-mapped-object",
   "operationRelativeTypescriptFilePath": "src/createMappedObject.ts",
   "type": {
-    "rawType": "<T extends { [key: string]: any; }>(array: T[], mapKey: keyof T) => import(\"/Users/king/King/operations/tools/util/js-util/src/createMappedObject\").MappedObject<T>",
+    "rawType": "<T extends { [key: string]: any; }, U = T>(array: T[], mapKey: keyof T, mapFn?: ((value: T, array: T[]) => U) | undefined) => import(\"/Users/king/King/operations/tools/util/js-util/src/createMappedObject\").MappedObject<U>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "<T extends { [key: string]: any }>(\n  array: T[],\n  /**\n   * key to make the map from. Must be unique or it could be overwritten. must be a string\n   */\n  mapKey: keyof T\n): MappedObject<T> => {\n  const mappedObject = mergeObjectsArray(\n    array.map((item) => {\n      const key: string = item[mapKey];\n      return {\n        [key]: item,\n      };\n    })\n  );\n\n  return mappedObject;\n}",
+  "value": "<T extends { [key: string]: any }, U = T>(\n  array: T[],\n  /**\n   Key to make the map from. Must be unique or it could be overwritten. Key must be a string\n   */\n  mapKey: keyof T,\n  /**\n   * If the result of the mapped object, based on the object should have mapped values, provide this mapfunction to get them.\n   */\n  mapFn?: (value: T, array: T[]) => U\n): MappedObject<U> => {\n  const mappedObject = mergeObjectsArray(\n    array.map((item) => {\n      const key: string = item[mapKey];\n      const value = mapFn ? mapFn(item, array) : (item as unknown as U);\n\n      return {\n        [key]: value,\n      };\n    })\n  );\n\n  return mappedObject;\n}",
   "description": "Creates a `MappedObject` of an array of any type. `MappedObject`s are great for increasing efficiency to get an item from an array. Especially useful when finds are needed on a specific key match for huge arrays. Instead of finding on the array you can simply get the right property from this object.\n\nNB: Don't use this inside of render functions, it's a very slow function, the whole idea is that this makes it faster, so just do it once!",
-  "id": "vfrfxbzzhcffjujdmoasgcvs"
+  "id": "efxfycnznbzozxqjxkggtpdm"
 }

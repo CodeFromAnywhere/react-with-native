@@ -1,0 +1,78 @@
+{
+  "createdAt": 1668328817850,
+  "updatedAt": 1668328817850,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328817850,
+  "id": "nkRNpxpdpuOQaEui",
+  "dependencies": {
+    "fs-util": "1.0.5",
+    "k-explore": "0.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.2"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "get-package-source-paths",
+  "language": "english",
+  "slug": "get-package-source-paths",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "get-package-source-paths",
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1668331911015,
+    "operationDependenciesIndexed": [
+      "path",
+      "explore"
+    ],
+    "packageDependenciesIndexed": [],
+    "relativeOperationLocationPathIndexed": "operations/tools/control-fs",
+    "markdown": "Returns an array of absolute file paths of (typescript) files in the src of your operation\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 1,
+        "lines": 33,
+        "characters": 957,
+        "bytes": 957
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 118,
+        "characters": 2787,
+        "bytes": 2787
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 40,
+        "characters": 1069,
+        "bytes": 1069
+      },
+      "size": {
+        "bytes": 4813,
+        "characters": 4813,
+        "lines": 191,
+        "numberOfFiles": 5
+      }
+    },
+    "hasGeneratedDependenciesIndexed": false,
+    "hasGeneratedImportsIndexed": false
+  }
+}

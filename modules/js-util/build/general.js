@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(r){for(var e,t=1,n=arguments.length;t<n;t++)for(var u in e=arguments[t])Object.prototype.hasOwnProperty.call(e,u)&&(r[u]=e[u]);return r},__assign.apply(this,arguments)};Object.defineProperty(exports,"__esModule",{value:!0}),exports.notEmpty=exports.sumAllKeys=exports.sumObjectParameters=exports.getObjectFromParamsString=exports.getSubsetFromObject=exports.takeFirst=exports.makeArray=exports.onlyUnique2=exports.onlyUnique=exports.isAllTrue=exports.groupByKey=exports.createEnum=exports.apply=exports.sum=exports.noEmptyString=void 0;var mergeObjectsArray_1=require("./mergeObjectsArray"),noEmptyString=function(r){if(""!==r)return r};exports.noEmptyString=noEmptyString;var sum=function(r){return r.reduce((function(r,e){return"number"!=typeof e&&console.log("WTF",e),r+e}),0)};exports.sum=sum;
+"use strict";var __assign=this&&this.__assign||function(){return __assign=Object.assign||function(r){for(var e,t=1,n=arguments.length;t<n;t++)for(var u in e=arguments[t])Object.prototype.hasOwnProperty.call(e,u)&&(r[u]=e[u]);return r},__assign.apply(this,arguments)};Object.defineProperty(exports,"__esModule",{value:!0}),exports.notEmpty=exports.sumAllKeys=exports.sumObjectParameters=exports.getObjectFromParamsString=exports.takeFirst=exports.makeArray=exports.onlyUnique2=exports.onlyUnique=exports.isAllTrue=exports.groupByKey=exports.createEnum=exports.apply=exports.sum=exports.noEmptyString=void 0;var mergeObjectsArray_1=require("./mergeObjectsArray"),noEmptyString=function(r){if(""!==r)return r};exports.noEmptyString=noEmptyString;var sum=function(r){return r.reduce((function(r,e){return"number"!=typeof e&&console.log("WTF",e),r+e}),0)};exports.sum=sum;
 // sum([1, 2, 3]);
 /**
  * function that takes an array of functions and applies them one by one, on the value or the result of the previous function. Only possible if the type of the value stays the same.
@@ -56,14 +56,6 @@ var makeArray=function(){for(var r=[],e=0;e<arguments.length;e++)r[e]=arguments[
  * takes any type T or an array of T and returns T or the first of the array (which is T)
  */
 var takeFirst=function(r){return(0,exports.makeArray)(r)[0]};exports.takeFirst=takeFirst;
-/**
- * takes an object and a subset of its keys and returns a subset of that object
- *
- * input: { x: "a", y: "b", z: "c" } and ["x"]
- *
- * output: { x: "a" }
- */
-var getSubsetFromObject=function(r,e){return e.reduce((function(e,t){var n;return __assign(__assign({},e),((n={})[t]=r[t],n))}),{})};exports.getSubsetFromObject=getSubsetFromObject;
 /**
  * useful for cli's that only take strings. This creates an object from a string
  *

@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667379140285,
-  "updatedAt": 1667379140285,
+  "createdAt": 1668752370807,
+  "updatedAt": 1668752370807,
   "deletedAt": 0,
-  "createdFirstAt": 1667379140285,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668752370807,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/html/Aside/Aside.native.tsx",
   "commentsInside": [],
   "rawText": " ({\n  native,\n  textClassName,\n  className,\n  children,\n}: AsideType) => {\n  const tailwind = useTailwind();\n  const { style, ...nativeWithoutStyle } = native || {};\n  const tailwindStyle = className ? tailwind(trimClassName(className)) : {};\n  return (\n    <View style={[tailwindStyle, style]} {...nativeWithoutStyle}>\n      {wrapInTextIfNeeded(children, textClassName)}\n    </View>\n  );\n}",
@@ -41,5 +36,5 @@
     "linesPerFile": 15,
     "numberOfFiles": 1
   },
-  "id": "kclthtuznlrgsciqtbnvozel"
+  "id": "ftquzjsvtvecbynuhpnocpbv"
 }

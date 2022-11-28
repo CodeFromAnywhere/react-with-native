@@ -1,0 +1,79 @@
+{
+  "createdAt": 1669200444552,
+  "updatedAt": 1669200444552,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200444552,
+  "id": "namedparameterstypeof-bundletomarkdown",
+  "name": "NamedParameters<typeof bundleToMarkdown>",
+  "slug": "namedparameterstypeof-bundletomarkdown",
+  "operationRelativeTypescriptFilePath": "src/bundleToMarkdown.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "{\n  bundleConfigId,\n  includeModules,\n}": {
+          "type": "object",
+          "properties": {
+            "bundleConfigId": {
+              "type": "string"
+            },
+            "includeModules": {
+              "type": "boolean",
+              "description": "if true, also includes the private modules"
+            }
+          },
+          "required": [
+            "bundleConfigId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "{\n  bundleConfigId,\n  includeModules,\n}"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "{\n  bundleConfigId,\n  includeModules,\n}",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "bundleConfigId",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "includeModules",
+                "required": false,
+                "schema": {
+                  "fullComment": "if true, also includes the private modules",
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof bundleToMarkdown>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

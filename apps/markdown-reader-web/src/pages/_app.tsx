@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 import { MarkdownReaderPageProps } from "markdown-reader-types";
-import { StoreProvider } from "markdown-reader-ui";
+import { StoreProvider } from "reader-ui";
 import Head from "next/head";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
@@ -15,10 +15,14 @@ import {
 
 // CSS
 import "../globals.css";
+import "authentication/css.css";
+import "layout/css.css";
+import "menu/css.css";
+import "tooltip/css.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-datetime/css/react-datetime.css";
 import "react-datepicker/dist/react-datepicker.css";
-import "markdown-reader-ui/css.css";
+import "reader-ui/css.css";
 import "nested-menu/css.css";
 import "markdown/css.css";
 import "react-with-native/css.css";
@@ -44,14 +48,16 @@ function MyApp({ Component, pageProps }: RealAppProps) {
     publicEnvironmentVariables.markdownReaderTitle ||
     "Docs";
 
-  const title = pageProps.title ? `${pageProps.title} - ${siteName}` : siteName;
+  const title = pageProps.content?.title
+    ? `${pageProps.content?.title} - ${siteName}`
+    : siteName;
 
   return (
     <QueryClientProvider client={queryClient}>
       <Head>
         <title>{title}</title>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
@@ -60,7 +66,7 @@ function MyApp({ Component, pageProps }: RealAppProps) {
         <link
           href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
           rel="stylesheet"
-        />
+        /> */}
 
         {/* NB: for CODE syntax highlighting of "markdown" markdown-parser */}
         <link
@@ -69,10 +75,8 @@ function MyApp({ Component, pageProps }: RealAppProps) {
         />
       </Head>
       <StoreProvider>
-        {/* <main className={font.className}> */}
         {/* @ts-ignore */}
         <Component {...pageProps} />
-        {/* </main> */}
       </StoreProvider>
     </QueryClientProvider>
   );

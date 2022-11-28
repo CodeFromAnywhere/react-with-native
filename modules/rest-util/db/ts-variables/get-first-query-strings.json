@@ -1,16 +1,16 @@
 {
-  "createdAt": 1666263144411,
-  "updatedAt": 1666263144411,
+  "createdAt": 1668717088581,
+  "updatedAt": 1668717088581,
   "deletedAt": 0,
-  "createdFirstAt": 1666263144411,
+  "createdFirstAt": 1668717088581,
   "classification": "const",
   "comments": [],
   "isExported": true,
   "name": "getFirstQueryStrings",
   "slug": "get-first-query-strings",
-  "operationRelativeTypescriptFilePath": "src/rest-util.ts",
+  "operationRelativeTypescriptFilePath": "src/getFirstQueryStrings.ts",
   "type": {
-    "rawType": "(query: QueryableObject) => any",
+    "rawType": "(query: import(\"/Users/king/King/operations/tools/parsing/rest-util/src/QueryableObject\").QueryableObject) => any",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(query: QueryableObject) => {\n  const queryStrings = Object.keys(query).map((key) => {\n    const value = query[key];\n    return Array.isArray(value) ? value[0] : value;\n  });\n\n  return queryStrings;\n}",
   "description": "Query keys can be string or string[] or undefined.\n\nThis function takes only the first string if it's an array...",
-  "id": "sfzjpboggadfyzkytzhdmurq"
+  "id": "bmdwqzonvtiewpvrlaudvmfd"
 }

@@ -1,0 +1,41 @@
+{
+  "createdAt": 1666258917514,
+  "updatedAt": 1666258917514,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258917514,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/getAllOperationClassifications.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const x = forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    callback: async (folderPath, index) => {\n      const operationName = getLastFolder(folderPath);\n\n      console.log(\n        `${operationName}: ${getOperationClassification(folderPath)}`\n      );\n\n      return;\n    },\n  });\n}",
+  "name": "getAllOperationClassifications",
+  "slug": "get-all-operation-classifications",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 335,
+    "lines": 15,
+    "bytes": 335,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 15,
+    "numberOfFiles": 1
+  },
+  "id": "enuerezzpdwdcfdzzqdxgzth"
+}

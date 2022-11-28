@@ -9,6 +9,7 @@ export * from "./getMarkdownParseParagraphs";
 export * from "./getMarkdownReferencePaths";
 export * from "./getMarkdownReferencesFromParagraph";
 export * from "./markdownParseToMarkdownString";
+export * from "./markdownParseToMarkdownStringFromContent";
 export * from "./mdContentParseRecursively";
 export * from "./mdToJsonParse";
 export * from "./parseFrontmatterMarkdownString";

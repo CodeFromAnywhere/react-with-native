@@ -1,0 +1,122 @@
+{
+  "createdAt": 1669639434770,
+  "updatedAt": 1669639434770,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639434770,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/components/Dictionary.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  augmentedWord: AugmentedWord;\n  augmentedWordObject: MappedObject<AugmentedWord>;\n}) => {\n  const { augmentedWord, augmentedWordObject } = props;\n\n  const projectRelativeBaseFolderPath = getFolderJs(\n    augmentedWord.projectRelativeMarkdownSourcePath\n  )!;\n\n  const projectRelativeMarkdownFilePath =\n    augmentedWord.projectRelativeMarkdownSourcePath;\n  return (\n    <Div className=\"border border-gray-500 rounded-md m-2 p-2\">\n      <P className=\"font-bold\">{augmentedWord.word}</P>\n      {augmentedWord.spoiler ? (\n        <P>\n          {renderMarkdownContent(augmentedWord.spoiler, {\n            isDev,\n            isStatic: false,\n            projectRelativeMarkdownFilePath,\n            projectRelativeBaseFolderPath,\n            augmentedWordObject,\n          })}\n        </P>\n      ) : null}\n    </Div>\n  );\n}",
+  "name": "AugmentedWordComponent",
+  "slug": "augmented-word-component",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "augmentedWord": {
+            "$ref": "#/definitions/AugmentedWord"
+          },
+          "augmentedWordObject": {
+            "$ref": "#/definitions/MappedObject%3CAugmentedWord%3E"
+          }
+        },
+        "required": [
+          "augmentedWord",
+          "augmentedWordObject"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "augmentedWord",
+            "required": true,
+            "schema": {
+              "fullComment": "AugmentedWords should have a small footprint since there can be many of them\n\nWords with a specific affix (backticks, bolded, italic) will match against these.\n\nUsed to link automatically to functionNames, InterfaceNames, operation-names, words, and more..\n\nTODO: This is a much more general purpose thing than just `markdown-reader-types`. Move to it's own package",
+              "todo": "This is a much more general purpose thing than just `markdown-reader-types`. Move to it's own package",
+              "properties": [
+                {
+                  "name": "type",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "word",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "Word without affixes. The affixes will be decided in the frontend parser based on the type",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "queryPath",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "projectRelativeMarkdownSourcePath",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "spoiler",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "isCaseInsensitive",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "If true, will match on lowercase variant of the word",
+                    "type": "boolean"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 830,
+    "lines": 29,
+    "bytes": 830,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 29,
+    "numberOfFiles": 1
+  },
+  "id": "qvpcizawlvlcxuucjnqdjxcf"
+}

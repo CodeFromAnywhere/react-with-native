@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666263823705,
+  "updatedAt": 1666263823705,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263823705,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "writeBuildErrors",
+  "slug": "write-build-errors",
+  "operationRelativeTypescriptFilePath": "src/writeBuildErrors.ts",
+  "type": {
+    "rawType": "(operationBasePath: string, operationManualProjectRoot?: string | undefined, typerepoManualProjectRoot?: string | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  operationBasePath: string,\n  operationManualProjectRoot?: string,\n  typerepoManualProjectRoot?: string\n) => {\n  const operationName = getLastFolder(operationBasePath);\n  const projectRoot = operationManualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n  // NB: fix to globally alter real fs in order to fix EMFile error that happens in TSMorph (see https://github.com/isaacs/node-graceful-fs)\n  gracefulFs.gracefulify(realFs);\n\n  // NB: this does it for all files in the whole operation!\n  const buildErrors = await getCompileErrors(\n    operationBasePath,\n    false,\n    operationManualProjectRoot\n  );\n\n  await db.clear(\"TsBuildError\", {\n    operationName,\n    manualProjectRoot: operationManualProjectRoot,\n  });\n  // @ts-ignore\n  await db.upsert(\"TsBuildError\", buildErrors, {\n    operationName,\n    manualProjectRoot: operationManualProjectRoot,\n  });\n\n  // log(`Wrote ts-build-errors for ${operationFolder}`, { type: \"success\" });\n\n  process.exit(0);\n}",
+  "description": "",
+  "id": "blhilhapfznwuegninklnhng"
+}

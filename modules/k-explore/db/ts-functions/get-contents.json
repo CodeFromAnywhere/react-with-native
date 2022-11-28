@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668148402916,
-  "updatedAt": 1668148402916,
+  "createdAt": 1668976640378,
+  "updatedAt": 1668976640378,
   "deletedAt": 0,
-  "createdFirstAt": 1668148402916,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668976640378,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/explore.ts",
   "commentsInside": [],
   "rawText": " async (filePath: string) => {\n  // console.log(\"Get contents\", filePath);\n  const extension = getExtension(filePath);\n  if (!isSearchContentExtension(extension)) {\n    return;\n  }\n\n  if (extension === \"json\") {\n    return readJsonFile<any>(filePath);\n  } else if (markdownExtensions.includes(extension)) {\n    const contents = await fs.readFile(filePath, \"utf8\");\n    const markdownParse = mdToJsonParse(contents);\n    return markdownParse;\n  } else {\n    const fileString = fs.readFile(filePath, \"utf8\");\n    return fileString;\n  }\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 20,
     "numberOfFiles": 1
   },
-  "id": "iaurroldjkwmfyapgrteurpo"
+  "id": "hndhkdhnovdubnwajvzgaqdb"
 }

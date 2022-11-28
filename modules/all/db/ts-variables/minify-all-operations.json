@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666258920936,
+  "updatedAt": 1666258920936,
+  "deletedAt": 0,
+  "createdFirstAt": 1666258920936,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "minifyAllOperations",
+  "slug": "minify-all-operations",
+  "operationRelativeTypescriptFilePath": "src/minifyAllOperations.ts",
+  "type": {
+    "rawType": "(config?: any) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  config?: Omit<\n    AllInputType,\n    \"type\" | \"command\" | \"callback\" | \"fileName\" | \"folderName\" | \"ignore\"\n  >\n) => {\n  return forAllFolders({\n    type: \"operations\",\n    callback: (folderPath) => {\n      return minifyBuild({ buildFolderPath: path.join(folderPath, \"build\") });\n    },\n    basePath: config?.basePath || getPathsWithOperations(),\n    shell: config?.shell,\n  });\n}",
+  "description": "minify all operations everywhere. optionally:\n- enable the shell\n- specify a basepath (tools by default)",
+  "id": "gcvuuuyevtzeiklrhqkobtwl"
+}

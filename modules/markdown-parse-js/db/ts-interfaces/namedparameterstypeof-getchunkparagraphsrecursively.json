@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667379654830,
-  "updatedAt": 1667379654830,
+  "createdAt": 1669467032769,
+  "updatedAt": 1669467032769,
   "deletedAt": 0,
-  "createdFirstAt": 1667379654830,
+  "createdFirstAt": 1669467032769,
   "id": "namedparameterstypeof-getchunkparagraphsrecursively",
   "name": "NamedParameters<typeof getChunkParagraphsRecursively>",
   "slug": "namedparameterstypeof-getchunkparagraphsrecursively",
@@ -75,16 +75,13 @@
                       "required": true,
                       "schema": {
                         "enum": [
-                          "youtube",
                           "video",
-                          "image",
                           "audio",
-                          "markdown",
-                          "json",
-                          "typescript",
-                          "file"
+                          "image",
+                          "text",
+                          "other"
                         ],
-                        "fullComment": "type of asset that is being embedded",
+                        "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                         "type": "string"
                       }
                     }
@@ -117,16 +114,13 @@
                       "required": true,
                       "schema": {
                         "enum": [
-                          "youtube",
                           "video",
-                          "image",
                           "audio",
-                          "markdown",
-                          "json",
-                          "typescript",
-                          "file"
+                          "image",
+                          "text",
+                          "other"
                         ],
-                        "fullComment": "type of asset that is being embedded",
+                        "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                         "type": "string"
                       }
                     }

@@ -1,19 +1,15 @@
 {
-  "createdAt": 1666261463451,
-  "updatedAt": 1666261463451,
+  "createdAt": 1669055929309,
+  "updatedAt": 1669055929309,
   "deletedAt": 0,
-  "createdFirstAt": 1666261463451,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669055929309,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "PluginComponent<SelectMultipleInputType>",
   "operationRelativeTypescriptFilePath": "src/selectMultiple/selectMultiple.tsx",
   "commentsInside": [],
-  "rawText": " ({\n  value,\n  extra,\n  onChange,\n  uniqueFieldId,\n}) => {\n  //console.log({ value, extraOptions: extra.options });\n  const optionsLeft = [{ label: extra.title || \"Choose a value\", value: \"\" }]\n    .concat(extra.options)\n    .filter((x) => !value.find((i) => x.value === i.value));\n  return (\n    <Div className=\"flex flex-row flex-wrap\">\n      {value.map((item, index) => (\n        <Button\n          onClick={() => {\n            const newValue = value.filter((x) => x.value !== item.value);\n            onChange(newValue);\n          }}\n          key={`selected${uniqueFieldId}${index}`}\n          className={`mr-3 px-3 py-2 rounded-md border border-gray-400`}\n        >\n          <P className=\"text-xs\">\n            {item.label} <Span textClassName=\"text-red-500 text-xs\">(x)</Span>\n          </P>\n        </Button>\n      ))}\n\n      {optionsLeft.length > 1 ? (\n        <Select\n          placeholder={extra?.placeholder}\n          noPlaceholder={extra?.noPlaceholder}\n          autoSuggest={extra?.autoSuggest}\n          className={UI.selectInput}\n          title={extra.title || \"\"}\n          options={optionsLeft}\n          onChange={(selected) => {\n            console.log({ selected });\n            if (selected) {\n              const newValue = value;\n\n              newValue.push(selected);\n\n              console.log({ value, newValue });\n              onChange(newValue);\n            }\n          }}\n        />\n      ) : null}\n    </Div>\n  );\n}",
+  "rawText": " ({\n  value,\n  extra,\n  onChange,\n  uniqueFieldId,\n}) => {\n  //console.log({ value, extraOptions: extra.options });\n  const optionsLeft = [{ label: extra.title || \"Choose a value\", value: \"\" }]\n    .concat(extra.options)\n    .filter((x) => !value.find((i) => x.value === i.value));\n  return (\n    <Div className=\"flex flex-row flex-wrap\">\n      {value.map((item, index) => (\n        <Button\n          onClick={() => {\n            const newValue = value.filter((x) => x.value !== item.value);\n            onChange(newValue);\n          }}\n          key={`selected${uniqueFieldId}${index}`}\n          className={`mr-3 px-3 py-2 rounded-md border border-gray-400`}\n        >\n          <P className=\"text-xs\">\n            {item.label} <Span textClassName=\"text-red-500 text-xs\">(x)</Span>\n          </P>\n        </Button>\n      ))}\n\n      {optionsLeft.length > 1 ? (\n        <Select\n          placeholder={extra?.placeholder}\n          noPlaceholder={extra?.noPlaceholder}\n          autoSuggest={extra?.autoSuggest}\n          className={UI.selectInput}\n          title={extra.title || \"\"}\n          options={optionsLeft}\n          onChange={(selected) => {\n            console.log({ selected });\n            if (selected) {\n              const newValue = value;\n              //@ts-ignore\n              newValue.push(selected);\n\n              console.log({ value, newValue });\n              onChange(newValue);\n            }\n          }}\n        />\n      ) : null}\n    </Div>\n  );\n}",
   "name": "SelectMultipleInput",
   "slug": "select-multiple-input",
   "parameters": [],
@@ -33,13 +29,13 @@
   },
   "maxIndentationDepth": 7,
   "size": {
-    "characters": 1451,
+    "characters": 1477,
     "lines": 51,
-    "bytes": 1451,
+    "bytes": 1477,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 28,
+    "charactersPerLine": 29,
     "linesPerFile": 51,
     "numberOfFiles": 1
   },
-  "id": "cqugvmwrxyeefvyaafhxuyrv"
+  "id": "lmayicwxxpqxvwqqulhrzvot"
 }

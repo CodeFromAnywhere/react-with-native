@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150112595,
-  "updatedAt": 1668150112595,
+  "createdAt": 1669639302260,
+  "updatedAt": 1669639302260,
   "deletedAt": 0,
-  "createdFirstAt": 1668150112595,
+  "createdFirstAt": 1669639302260,
   "id": "indexmodels",
   "name": "IndexModels",
   "slug": "indexmodels",
@@ -239,83 +239,11 @@
             "fullComment": "--- dbStorageMethod: jsonSingle\n---\n\nInterface for arrow functions and normal functions",
             "properties": [
               {
-                "name": "operationName",
-                "required": true,
-                "schema": {
-                  "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                  "type": "null"
-                }
-              },
-              {
-                "name": "projectRelativePath",
-                "required": true,
-                "schema": {
-                  "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
-                  "type": "string"
-                }
-              },
-              {
-                "name": "operationRelativePath",
+                "name": "explicitTypeName",
                 "required": false,
                 "schema": {
-                  "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "fullComment": "If you give a function a type explicitly on its declaration, this type will be set here.",
                   "type": "string"
-                }
-              },
-              {
-                "name": "id",
-                "required": true,
-                "schema": {
-                  "fullComment": "unique id of the model",
-                  "type": "string"
-                }
-              },
-              {
-                "name": "name",
-                "required": true,
-                "schema": {
-                  "fullComment": "name (identifier) of the model",
-                  "type": "string"
-                }
-              },
-              {
-                "name": "slug",
-                "required": true,
-                "schema": {
-                  "fullComment": "kebab-case variant of the name",
-                  "type": "string"
-                }
-              },
-              {
-                "name": "operationRelativeTypescriptFilePath",
-                "required": true,
-                "schema": {
-                  "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
-                  "type": "string"
-                }
-              },
-              {
-                "name": "canCache",
-                "required": false,
-                "schema": {
-                  "fullComment": "whether or not the function is can be cached (relies on cache invalidation)",
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "isGetApi",
-                "required": false,
-                "schema": {
-                  "fullComment": "if true, the function will get the `server`.js context as its only argument, and it's directly exposed as GET api. Endpoint path will be inferred from the function name\n\nFor this to be indexed to `true`, you need to call the function `abcXyzGetApi` whhere `abcXyz` can be anything.",
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "isPostApi",
-                "required": false,
-                "schema": {
-                  "fullComment": "If true, the function will get the `server`.js context as its only argument, and it's directly exposed as POST api. Endpoint path will be inferred from the function name\n\nFor this to be indexed to `true`, you need to call the function `abcXyzPostApi` where `abcXyz` can be anything.",
-                  "type": "boolean"
                 }
               },
               {
@@ -324,59 +252,6 @@
                 "schema": {
                   "fullComment": "The function is immediately exported upon creation. If the os dev tools are being used, this means it is also exported from the operation",
                   "type": "boolean"
-                }
-              },
-              {
-                "name": "isApiExposed",
-                "required": true,
-                "schema": {
-                  "fullComment": "for all exported functions in node operations, true by default false for others\n\ncan be overwritten using frontmatter",
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "publicAuthorization",
-                "required": true,
-                "schema": {
-                  "fullComment": "The default authorization that is set level applies to users without any specific authorization (granted to everyone).\n\nshould be indexed based on doccomment containing `AUTH-PUBLIC: [execute], [read], [search]`",
-                  "items": [
-                    {
-                      "schema": {
-                        "enum": [
-                          "execute",
-                          "write-create",
-                          "write-update",
-                          "write-delete",
-                          "read",
-                          "search"
-                        ],
-                        "fullComment": "`AuthorizationLevel` is a single Enum that can apply to privacy and authorization of text, functions, and data.\n\nFor files (ts, md, json, etc...):\n\n- write-create\n- write-update\n- write-delete\n- read\n- search (only search index)\n\nFor db model data subsets:\n\n- write-update\n- write-create\n- write-delete\n- read\n- search (only search index)\n\nFor functions:\n- execute\n\nFor functions, interfaces, variables:\n\n- read (reading docs only. for source, you need to provide the file auth)\n- search (only search index)",
-                        "type": "string"
-                      },
-                      "name": "AuthorizationLevel"
-                    }
-                  ],
-                  "type": "array"
-                }
-              },
-              {
-                "name": "runEveryPeriod",
-                "required": false,
-                "schema": {
-                  "enum": [
-                    "minute",
-                    "5-minutes",
-                    "quarter-hour",
-                    "hour",
-                    "6-hours",
-                    "midnight",
-                    "week",
-                    "month",
-                    "3-months",
-                    "year"
-                  ],
-                  "fullComment": "You can specify `runEveryPeriod` in your frontmatter of a function. This will set `runEveryPeriod` for the TsFunction. This is used by `function-server`: it will execute CRON-jobs that run these things on those periods.\n\nWill only work if the function takes no arguments.\n\nUsed to specify functions that need to run every time with a specific interval\n\nAll times are at at the server timezone time\n\n- `minute`: every minute at 0 seconds\n- `5-mintues`: every 5 minutes, starting at the first minute of the hour\n- `quarter-hour`: every 15 minutes, starting at the first minute of the hour\n- `hour`: every hour, starting at the first minute of the hour\n- `6-hours`: every 6 hours, starting at midnight\n- `midnight`: every midnight (00:00:00)\n- `week`: every week at sundaynight (sunday, 1 second after 23:59:59 PM)\n- `month`: at the first second of the first day of the month (0:00:00)\n- `3-months`: every start of the quarter: january 1st (0:00:00), april 1st, july 1st, october 1st\n- `year`: every new year at january 1st at 0:00:00",
-                  "type": "string"
                 }
               },
               {
@@ -2299,11 +2174,129 @@
                 }
               },
               {
+                "name": "groupAuthorization",
+                "required": true,
+                "schema": {
+                  "fullComment": "Other keys in frontmatter that are group names, can be added here",
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "isApiExposed",
+                "required": true,
+                "schema": {
+                  "fullComment": "for all exported functions in node operations, true by default false for others\n\ncan be overwritten using frontmatter",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "canCache",
+                "required": false,
+                "schema": {
+                  "fullComment": "whether or not the function can be cached (relies on cache invalidation)",
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "runEveryPeriod",
+                "required": false,
+                "schema": {
+                  "enum": [
+                    "minute",
+                    "5-minutes",
+                    "quarter-hour",
+                    "hour",
+                    "6-hours",
+                    "midnight",
+                    "week",
+                    "month",
+                    "3-months",
+                    "year"
+                  ],
+                  "fullComment": "You can specify `runEveryPeriod` in your frontmatter of a function. This will set `runEveryPeriod` for the TsFunction. This is used by `function-server`: it will execute CRON-jobs that run these things on those periods.\n\nWill only work if the function takes no arguments.\n\nUsed to specify functions that need to run every time with a specific interval\n\nAll times are at at the server timezone time\n\n- `minute`: every minute at 0 seconds\n- `5-mintues`: every 5 minutes, starting at the first minute of the hour\n- `quarter-hour`: every 15 minutes, starting at the first minute of the hour\n- `hour`: every hour, starting at the first minute of the hour\n- `6-hours`: every 6 hours, starting at midnight\n- `midnight`: every midnight (00:00:00)\n- `week`: every week at sundaynight (sunday, 1 second after 23:59:59 PM)\n- `month`: at the first second of the first day of the month (0:00:00)\n- `3-months`: every start of the quarter: january 1st (0:00:00), april 1st, july 1st, october 1st\n- `year`: every new year at january 1st at 0:00:00",
+                  "type": "string"
+                }
+              },
+              {
                 "name": "price",
                 "required": false,
                 "schema": {
                   "fullComment": "Indexed from frontmatter `price`\n\nTLDR;EUROS\n\nA price is a number indicating the relative cost. Absolute cost is calculated by many other factors\n\nFor now, we're going to keep it simple: 1 `Price` is equal to 1 Eurocent.\n\nLater we can add all kinds of extra conversion:\n\n- currency support\n- king os currency\n- lower cost for poorer people\n\netc...\n\nFirst we need to start making sales before we can add such complexity.\n\n",
                   "type": "number"
+                }
+              },
+              {
+                "name": "classification",
+                "required": false,
+                "schema": {
+                  "enum": [
+                    "wise",
+                    "dumb",
+                    "smart",
+                    "genius",
+                    "react-with-native",
+                    "cli",
+                    "test"
+                  ],
+                  "fullComment": "- `react`: The core library that should always be used that wraps react and react native.\n\n- `dumb`: Presentational components that only care about how things look, and have no idea about the type of information that they will contain (**data-agnostic**), nor their context they're used in.\n\n- `smart`: Presentational components that may contain getters and setters for global state. This means they're still easy enough to set up, but\n\n- `wise`: stateful components that use the backend as well to do things. for example, `simplified-schema-form`\n\n- `genius`: blocks of components that have certain functionality. Example: `file-writer` or `crud`",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationName",
+                "required": true,
+                "schema": {
+                  "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "type": "null"
+                }
+              },
+              {
+                "name": "projectRelativePath",
+                "required": true,
+                "schema": {
+                  "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationRelativePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "id",
+                "required": true,
+                "schema": {
+                  "fullComment": "unique id of the model",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "name",
+                "required": true,
+                "schema": {
+                  "fullComment": "name (identifier) of the model",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "slug",
+                "required": true,
+                "schema": {
+                  "fullComment": "kebab-case variant of the name",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "operationRelativeTypescriptFilePath",
+                "required": true,
+                "schema": {
+                  "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
+                  "type": "string"
                 }
               }
             ],

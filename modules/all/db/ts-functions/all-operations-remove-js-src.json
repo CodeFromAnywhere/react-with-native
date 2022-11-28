@@ -1,0 +1,52 @@
+{
+  "createdAt": 1668332050374,
+  "updatedAt": 1668332050374,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332050374,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/allOperationsRemoveJsSrc.ts",
+  "commentsInside": [],
+  "rawText": " async (debug?: boolean) => {\n  await forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    command: \"[ -d \\\"src\\\" ] && find src -name '*.d.ts' -delete || echo 'hoi'\",\n    shell: true,\n  });\n\n  await forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    command: \"[ -d \\\"src\\\" ] && find src -name '*.js' -delete || echo 'hoi'\",\n    shell: true,\n  });\n\n  await forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations(),\n    command:\n      \"[ -d \\\"src\\\" ] && find src -name '*.d.ts.map' -delete || echo 'hoi'\",\n    shell: true,\n  });\n}",
+  "name": "allOperationsRemoveJsSrc",
+  "slug": "all-operations-remove-js-src",
+  "parameters": [
+    {
+      "name": "debug",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "BEWARE! This removes all .d.ts, .js, and .d.ts.map files in your source folder!",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 693,
+    "lines": 23,
+    "bytes": 693,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 23,
+    "numberOfFiles": 1
+  },
+  "id": "tuevcqwdrrefuklweuwlfjgd"
+}

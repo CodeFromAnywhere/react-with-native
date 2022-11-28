@@ -1,0 +1,36 @@
+{
+  "createdAt": 1668977404224,
+  "updatedAt": 1668977404224,
+  "deletedAt": 0,
+  "createdFirstAt": 1668977404224,
+  "isApiExposed": true,
+  "isExported": false,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/mergeNestedObject.test.ts",
+  "commentsInside": [],
+  "rawText": " () => {\n  const testObject: {\n    a: string;\n    b: number;\n    c: { x: string; y: number; z: { a: string; b: number; c: { x: \"wow\" } } };\n  } = {\n    a: \"lol\",\n    b: 8,\n    c: { x: \"lol\", y: 88, z: { a: \"wow\", b: 888, c: { x: \"wow\" } } },\n  };\n\n  const result = mergeNestedObject(testObject, {\n    c: { z: { c: { x: undefined }, b: 999 } },\n  });\n\n  console.dir({ testObject, result }, { depth: 999 });\n}",
+  "name": "mergeNestedObjectTest",
+  "slug": "merge-nested-object-test",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 407,
+    "lines": 17,
+    "bytes": 407,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "geygbeumjopjvdsnrlvyildb"
+}

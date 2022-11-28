@@ -1,0 +1,76 @@
+{
+  "createdAt": 1669200493291,
+  "updatedAt": 1669200493291,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200493291,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/projectToMarkdown.ts",
+  "commentsInside": [],
+  "rawText": " ({\n  includeTodo,\n}: {\n  includeTodo?: boolean;\n  includeOperationDetails?: boolean;\n}): string => {\n  /**\n    \n     - the folder structure should be the outline\n     - hierarchically delve into folders with all its content (md and operations)\n  \n     */\n  return \"\";\n}",
+  "name": "projectToMarkdown",
+  "slug": "project-to-markdown",
+  "parameters": [
+    {
+      "name": "{\n  includeTodo,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "includeTodo": {
+            "type": "boolean"
+          },
+          "includeOperationDetails": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "includeTodo",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeOperationDetails",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "summarizes the whole OS project into a markdown string",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 324,
+    "lines": 14,
+    "bytes": 324,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "bobctxqiqrlhvlbgzszjhwfw"
+}

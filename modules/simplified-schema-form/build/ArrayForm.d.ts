@@ -20,5 +20,6 @@ export declare const ArrayForm: (props: {
     isDebug?: boolean | undefined;
     referencableModelData?: ReferencableModelData | undefined;
     id: string;
+    modelName?: string | undefined;
 }) => JSX.Element | null;
 //# sourceMappingURL=ArrayForm.d.ts.map

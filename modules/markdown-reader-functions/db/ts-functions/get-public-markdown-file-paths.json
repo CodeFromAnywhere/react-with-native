@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668149509087,
-  "updatedAt": 1668149509087,
+  "createdAt": 1669639126840,
+  "updatedAt": 1669639126840,
   "deletedAt": 0,
-  "createdFirstAt": 1668149509087,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669639126840,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getPublicMarkdownFilePaths.ts",
   "commentsInside": [],
   "rawText": " async (\n  baseFolderPath: string,\n  includeFoldersWithResults?: boolean\n) => {\n  const publicMarkdownFilePaths: { path: string; isFolder: boolean }[] = (\n    await explore({\n      basePath: baseFolderPath,\n      extension: \"md\",\n      readmeOnTop: true,\n      includeFoldersWithResults,\n    })\n  )\n    .filter((x) => {\n      if (x.isFolder) return true;\n\n      // NB: we have a file\n      const markdownString = fs.readFileSync(x.path, \"utf8\");\n      const { parameters } = parseFrontmatterMarkdownString(markdownString);\n      if (!shouldExposeMarkdownFile(parameters)) {\n        return false;\n      }\n      return true;\n    })\n    .map(({ path, isFolder }) => ({ path, isFolder }));\n\n  return publicMarkdownFilePaths;\n}",
@@ -58,5 +53,5 @@
     "linesPerFile": 29,
     "numberOfFiles": 1
   },
-  "id": "repnxspztukfvxrgxzbqzqpo"
+  "id": "ygnccgwzqamskpdlefevskvt"
 }

@@ -1,6 +1,6 @@
 # React with native router
 
-react-with-native-router (`OperationClassification` ui-es5)
+react-with-native-router (`OperationClassification` ui-cjs)
 
 
 

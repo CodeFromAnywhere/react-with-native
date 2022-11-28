@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668150800256,
-  "updatedAt": 1668150800256,
+  "createdAt": 1668836019302,
+  "updatedAt": 1668836019302,
   "deletedAt": 0,
-  "createdFirstAt": 1668150800256,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668836019302,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/simplifySchema.ts",
   "commentsInside": [],
-  "rawText": " (\n  /** The name of the type interface, (this could be used as $ref). */\n  name: string | null,\n\n  /** The schema that needs to be simplified */\n  schema: JSONSchema7,\n\n  /** The array of other schemas found when crawling file this schema was found in. this also includes all refs to other type interfaces in all schemas in that file */\n  possibleRefs: {\n    /** the name of the schema, (without /definitions/ prefix like $ref) */\n    name: string;\n    schema: JSONSchema7;\n  }[],\n  /**\n   * This function is recursive. If we find any reference to another schema, we will add the name of the current schema to the rootStack and explore that schema.\n   */\n  rootStack: string[]\n): SimplifiedSchema | undefined => {\n  if (Array.isArray(schema.type)) {\n    // let's do this one later\n    log(\n      `I don't support this usecase (type is an array of multiple types)... ${schema.type.join(\n        \",\"\n      )}`,\n      {\n        type: \"debug\",\n      }\n    );\n  }\n  const type = Array.isArray(schema.type) ? schema.type[0] : schema.type;\n  const newRootStack = name ? rootStack.concat(name) : rootStack;\n  const refName = getRefLink(schema.$ref);\n\n  // NB: we already encountered this ref before, let's avoid infinite recursion here.\n\n  const isCircularRef = !!refName && rootStack.includes(refName);\n\n  if (refName && !isCircularRef) {\n    const refSchema = possibleRefs.find((r) => r.name === refName);\n    if (!refSchema) {\n      log(\n        \"Strange, ref was not present in the possible refs\",\n        {\n          type: \"debug\",\n        },\n        { possibleRefNames: possibleRefs.map((x) => x.name), refName }\n      );\n    }\n\n    const thisDescription = schema.description\n      ? `${schema.description}\\n\\n`\n      : \"\";\n    const mergedSchema = refSchema?.schema\n      ? {\n          ...refSchema.schema,\n          description: `${thisDescription}${\n            refSchema.schema.description || \"\"\n          }`,\n        }\n      : undefined;\n\n    return mergedSchema\n      ? simplifySchema(refName, mergedSchema, possibleRefs, newRootStack)\n      : undefined;\n  }\n\n  const fullComment = schema.description;\n\n  const commentTypeObject = findFirstCommentTypes(fullComment);\n  // TODO: Add all other `CommentType`s as properties\n  const simplifiedPrimitive = {\n    enum: schema.enum,\n    circularRefName: refName,\n    fullComment,\n    ...commentTypeObject,\n  };\n\n  if (type === \"boolean\") {\n    return { ...simplifiedPrimitive, type: \"boolean\" };\n  }\n\n  if (type === \"integer\" || type === \"number\") {\n    // NB: integers are also numbers\n    return { ...simplifiedPrimitive, type: \"number\" };\n  }\n\n  if (type === \"null\") {\n    return { ...simplifiedPrimitive, type: \"null\" };\n  }\n\n  if (type === \"string\") {\n    return { ...simplifiedPrimitive, type: \"string\" };\n  }\n\n  if (type === \"array\") {\n    const items = getSchemaItems(schema);\n\n    const simplifiedItems: SimplifiedSchemaItem[] = items\n      .map((item) => {\n        const itemName = getRefLink(item.$ref) || null;\n        const schema = simplifySchema(\n          itemName,\n          item,\n          possibleRefs,\n          name ? rootStack.concat(name) : rootStack\n        );\n        if (!schema) return;\n        return {\n          schema,\n          name: itemName,\n        };\n      })\n      .filter(notEmpty);\n\n    return {\n      ...simplifiedPrimitive,\n      items: simplifiedItems,\n      type: \"array\",\n    };\n  }\n\n  // NB: type must be an object here, it's the only possibility left...\n  // in case of objects\n\n  const properties = getProperties(schema);\n\n  const simplifiedProperties: SimplifiedSchemaProperty[] = properties\n    .map((property) => {\n      const schema = simplifySchema(\n        property.name,\n        property.schema,\n        possibleRefs,\n        newRootStack\n      );\n\n      if (!schema) return;\n\n      const possibleReferenceParameterNames =\n        getPossibleReferenceParameterNames(property.name);\n\n      const hasReferenceParameter = !!properties.find((x) =>\n        possibleReferenceParameterNames.includes(x.name)\n      );\n\n      // NB: if the property has a model reference, we just need the model reference, not the whole model. This is only for retreiving, it's not present in the database.\n      if (hasReferenceParameter) return;\n\n      return {\n        name: property.name,\n        required: property.required,\n        schema,\n      };\n    })\n    .filter(notEmpty);\n\n  return {\n    ...simplifiedPrimitive,\n    properties: simplifiedProperties,\n    type: \"object\",\n  };\n}",
+  "rawText": " (\n  /** The name of the type interface, (this could be used as $ref). */\n  name: string | null,\n\n  /** The schema that needs to be simplified */\n  schema: JSONSchema7,\n\n  /** The array of other schemas found when crawling file this schema was found in. this also includes all refs to other type interfaces in all schemas in that file */\n  possibleRefs: {\n    /** the name of the schema, (without /definitions/ prefix like $ref) */\n    name: string;\n    schema: JSONSchema7;\n  }[],\n  /**\n   * This function is recursive. If we find any reference to another schema, we will add the name of the current schema to the rootStack and explore that schema.\n   */\n  rootStack: string[]\n): SimplifiedSchema | undefined => {\n  if (Array.isArray(schema.type)) {\n    // let's do this one later\n    log(\n      `I don't support this usecase (type is an array of multiple types)... ${schema.type.join(\n        \",\"\n      )}`,\n      {\n        type: \"debug\",\n      }\n    );\n  }\n  const type = Array.isArray(schema.type) ? schema.type[0] : schema.type;\n  const newRootStack = name ? rootStack.concat(name) : rootStack;\n  const refName = getRefLink(schema.$ref);\n\n  // NB: we already encountered this ref before, let's avoid infinite recursion here.\n\n  const isCircularRef = !!refName && rootStack.includes(refName);\n\n  if (refName && !isCircularRef) {\n    const refSchema = possibleRefs.find((r) => r.name === refName);\n    if (!refSchema) {\n      log(`ref not present: ${refName}`, { type: \"warning\" });\n      // log(\"Strange, ref was not present in the possible refs\", {\n      //   type: \"debug\",\n      // });\n\n      // console.log({\n      //   possibleRefNames: possibleRefs.map((x) => x.name),\n      //   refName,\n      // });\n    }\n\n    const thisDescription = schema.description\n      ? `${schema.description}\\n\\n`\n      : \"\";\n    const mergedSchema = refSchema?.schema\n      ? {\n          ...refSchema.schema,\n          description: `${thisDescription}${\n            refSchema.schema.description || \"\"\n          }`,\n        }\n      : undefined;\n\n    return mergedSchema\n      ? simplifySchema(refName, mergedSchema, possibleRefs, newRootStack)\n      : undefined;\n  }\n\n  const fullComment = schema.description;\n\n  const commentTypeObject = findFirstCommentTypes(fullComment);\n  // TODO: Add all other `CommentType`s as properties\n  const simplifiedPrimitive = {\n    enum: schema.enum,\n    circularRefName: refName,\n    fullComment,\n    ...commentTypeObject,\n  };\n\n  if (type === \"boolean\") {\n    return { ...simplifiedPrimitive, type: \"boolean\" };\n  }\n\n  if (type === \"integer\" || type === \"number\") {\n    // NB: integers are also numbers\n    return { ...simplifiedPrimitive, type: \"number\" };\n  }\n\n  if (type === \"null\") {\n    return { ...simplifiedPrimitive, type: \"null\" };\n  }\n\n  if (type === \"string\") {\n    return { ...simplifiedPrimitive, type: \"string\" };\n  }\n\n  if (type === \"array\") {\n    const items = getSchemaItems(schema);\n\n    const simplifiedItems: SimplifiedSchemaItem[] = items\n      .map((item) => {\n        const itemName = getRefLink(item.$ref) || null;\n        const schema = simplifySchema(\n          itemName,\n          item,\n          possibleRefs,\n          name ? rootStack.concat(name) : rootStack\n        );\n        if (!schema) return;\n        return {\n          schema,\n          name: itemName,\n        };\n      })\n      .filter(notEmpty);\n\n    return {\n      ...simplifiedPrimitive,\n      items: simplifiedItems,\n      type: \"array\",\n    };\n  }\n\n  // NB: type must be an object here, it's the only possibility left...\n  // in case of objects\n\n  const properties = getProperties(schema);\n\n  const simplifiedProperties: SimplifiedSchemaProperty[] = properties\n    .map((property) => {\n      const schema = simplifySchema(\n        property.name,\n        property.schema,\n        possibleRefs,\n        newRootStack\n      );\n\n      if (!schema) return;\n\n      const possibleReferenceParameterNames =\n        getPossibleReferenceParameterNames(property.name);\n\n      const hasReferenceParameter = !!properties.find((x) =>\n        possibleReferenceParameterNames.includes(x.name)\n      );\n\n      // NB: if the property has a model reference, we just need the model reference, not the whole model. This is only for retreiving, it's not present in the database.\n      if (hasReferenceParameter) return;\n\n      return {\n        name: property.name,\n        required: property.required,\n        schema,\n      };\n    })\n    .filter(notEmpty);\n\n  return {\n    ...simplifiedPrimitive,\n    properties: simplifiedProperties,\n    type: \"object\",\n  };\n}",
   "name": "simplifySchema",
   "slug": "simplify-schema",
   "parameters": [
@@ -82,8 +77,26 @@
             "name": "enum",
             "required": false,
             "schema": {
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "Primitive type",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Type"
+                }
+              ],
               "type": "array"
+            }
+          },
+          {
+            "name": "const",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
             }
           },
           {
@@ -146,6 +159,15 @@
             "name": "items",
             "required": false,
             "schema": {
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "additionalItems",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
               "properties": [],
               "type": "object"
             }
@@ -226,6 +248,15 @@
             }
           },
           {
+            "name": "additionalProperties",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
             "name": "dependencies",
             "required": false,
             "schema": {
@@ -234,10 +265,55 @@
             }
           },
           {
+            "name": "propertyNames",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "if",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "then",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "else",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
             "name": "allOf",
             "required": false,
             "schema": {
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "JSON Schema v7",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Definition"
+                }
+              ],
               "type": "array"
             }
           },
@@ -245,7 +321,16 @@
             "name": "anyOf",
             "required": false,
             "schema": {
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "JSON Schema v7",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Definition"
+                }
+              ],
               "type": "array"
             }
           },
@@ -253,8 +338,26 @@
             "name": "oneOf",
             "required": false,
             "schema": {
-              "items": [],
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "JSON Schema v7",
+                    "properties": [],
+                    "type": "object"
+                  },
+                  "name": "JSONSchema7Definition"
+                }
+              ],
               "type": "array"
+            }
+          },
+          {
+            "name": "not",
+            "required": false,
+            "schema": {
+              "fullComment": "JSON Schema v7",
+              "properties": [],
+              "type": "object"
             }
           },
           {
@@ -301,6 +404,15 @@
             }
           },
           {
+            "name": "default",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
             "name": "readOnly",
             "required": false,
             "schema": {
@@ -312,6 +424,15 @@
             "required": false,
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "examples",
+            "required": false,
+            "schema": {
+              "fullComment": "Primitive type",
+              "properties": [],
+              "type": "object"
             }
           }
         ],
@@ -403,8 +524,26 @@
                         "name": "enum",
                         "required": false,
                         "schema": {
-                          "items": [],
+                          "items": [
+                            {
+                              "schema": {
+                                "fullComment": "Primitive type",
+                                "properties": [],
+                                "type": "object"
+                              },
+                              "name": "JSONSchema7Type"
+                            }
+                          ],
                           "type": "array"
+                        }
+                      },
+                      {
+                        "name": "const",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Primitive type",
+                          "properties": [],
+                          "type": "object"
                         }
                       },
                       {
@@ -467,6 +606,15 @@
                         "name": "items",
                         "required": false,
                         "schema": {
+                          "properties": [],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "additionalItems",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "JSON Schema v7",
                           "properties": [],
                           "type": "object"
                         }
@@ -547,6 +695,15 @@
                         }
                       },
                       {
+                        "name": "additionalProperties",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "JSON Schema v7",
+                          "properties": [],
+                          "type": "object"
+                        }
+                      },
+                      {
                         "name": "dependencies",
                         "required": false,
                         "schema": {
@@ -555,10 +712,55 @@
                         }
                       },
                       {
+                        "name": "propertyNames",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "JSON Schema v7",
+                          "properties": [],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "if",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "JSON Schema v7",
+                          "properties": [],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "then",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "JSON Schema v7",
+                          "properties": [],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "else",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "JSON Schema v7",
+                          "properties": [],
+                          "type": "object"
+                        }
+                      },
+                      {
                         "name": "allOf",
                         "required": false,
                         "schema": {
-                          "items": [],
+                          "items": [
+                            {
+                              "schema": {
+                                "fullComment": "JSON Schema v7",
+                                "properties": [],
+                                "type": "object"
+                              },
+                              "name": "JSONSchema7Definition"
+                            }
+                          ],
                           "type": "array"
                         }
                       },
@@ -566,7 +768,16 @@
                         "name": "anyOf",
                         "required": false,
                         "schema": {
-                          "items": [],
+                          "items": [
+                            {
+                              "schema": {
+                                "fullComment": "JSON Schema v7",
+                                "properties": [],
+                                "type": "object"
+                              },
+                              "name": "JSONSchema7Definition"
+                            }
+                          ],
                           "type": "array"
                         }
                       },
@@ -574,8 +785,26 @@
                         "name": "oneOf",
                         "required": false,
                         "schema": {
-                          "items": [],
+                          "items": [
+                            {
+                              "schema": {
+                                "fullComment": "JSON Schema v7",
+                                "properties": [],
+                                "type": "object"
+                              },
+                              "name": "JSONSchema7Definition"
+                            }
+                          ],
                           "type": "array"
+                        }
+                      },
+                      {
+                        "name": "not",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "JSON Schema v7",
+                          "properties": [],
+                          "type": "object"
                         }
                       },
                       {
@@ -622,6 +851,15 @@
                         }
                       },
                       {
+                        "name": "default",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Primitive type",
+                          "properties": [],
+                          "type": "object"
+                        }
+                      },
+                      {
                         "name": "readOnly",
                         "required": false,
                         "schema": {
@@ -633,6 +871,15 @@
                         "required": false,
                         "schema": {
                           "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "examples",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Primitive type",
+                          "properties": [],
+                          "type": "object"
                         }
                       }
                     ],
@@ -692,13 +939,13 @@
   },
   "maxIndentationDepth": 6,
   "size": {
-    "characters": 5136,
-    "lines": 193,
-    "bytes": 5136,
+    "characters": 5227,
+    "lines": 195,
+    "bytes": 5227,
     "bytesPerCharacter": 1,
     "charactersPerLine": 27,
-    "linesPerFile": 193,
+    "linesPerFile": 195,
     "numberOfFiles": 1
   },
-  "id": "alsmwqrigowrwakgthicczuh"
+  "id": "eniwteltbjqfxsqzbjbwjecr"
 }

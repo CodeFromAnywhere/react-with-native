@@ -1,6 +1,6 @@
 # Fs orm
 
-fs-orm (`OperationClassification` node)
+fs-orm (`OperationClassification` node-cjs)
 
 ORM that lets you create a database with models that are stored on the file system in multiple formats that are easy to understand and well structured.
 
@@ -267,6 +267,21 @@ const mapFn = (todo: Todo): Todo => {
 const updatedResult = await db.get("Todo", filterFunction, mapFunction);
 ```
 
+
+### Advanced: Example with `mergeNestedObject`
+
+`mergeNestedObject` lets you easily update deeply nested objects without having to write out too much code... It works like this:
+
+```ts
+const updatedResult = await db.get(
+  "SuperDeepModel",
+  () => true,
+  (old) => mergeNestedObject(old, { a: { b: { c: { d: undefined, e: 1 } } } })
+);
+```
+
+If you ever have todo many updates in a deeply nested model, you might find this useful!
+
   </details>
 
 <details><summary>upsert.md</summary>
@@ -337,6 +352,18 @@ Properties:
 
 
 
+## 🔹 Include
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| referenceKey (optional) | string |  |
+| items (optional) | array |  |
+| include (optional) | object |  |
+
+
+
 ## getDatabaseFiles()
 
 This function gets the files that the data can be stored, by convention, based on the model and the config
@@ -362,15 +389,50 @@ Returns not only the file paths, but also where they were found (`operationName,
 
 
 
-## 🔹 Include
+## 🔹 DbQueryResult
+
+TODO: return the inserted id or other reference
+
+Result of any query except `get`. Will not always provide all parameters (depends on the type of query you do)
+
+
+
+> TODO: return the inserted id or other reference<br /><br />Result of any query except `get`. Will not always provide all parameters (depends on the type of query you do)
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| referenceKey (optional) | string |  |
-| items (optional) | array |  |
-| include (optional) | object |  |
+| isSuccesful (optional) | boolean |  |
+| message (optional) | string |  |
+| isNewFile (optional) | boolean |  |
+| amountInserted (optional) | number |  |
+| amountUpdated (optional) | number |  |
+| amountRemoved (optional) | number |  |
+
+
+
+## 🔹 DbQueryResult
+
+TODO: return the inserted id or other reference
+
+Result of any query except `get`. Will not always provide all parameters (depends on the type of query you do)
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| isSuccesful (optional) | boolean |  |
+| message (optional) | string |  |
+| isNewFile (optional) | boolean |  |
+| amountInserted (optional) | number |  |
+| amountUpdated (optional) | number |  |
+| amountRemoved (optional) | number |  |
+| allRemoved (optional) | boolean |  |
 
 
 
@@ -425,52 +487,6 @@ DB main storage convention
 
 
 
-## 🔹 DbQueryResult
-
-TODO: return the inserted id or other reference
-
-Result of any query except `get`. Will not always provide all parameters (depends on the type of query you do)
-
-
-
-> TODO: return the inserted id or other reference<br /><br />Result of any query except `get`. Will not always provide all parameters (depends on the type of query you do)
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isSuccesful (optional) | boolean |  |
-| message (optional) | string |  |
-| isNewFile (optional) | boolean |  |
-| amountInserted (optional) | number |  |
-| amountUpdated (optional) | number |  |
-| amountRemoved (optional) | number |  |
-
-
-
-## 🔹 DbQueryResult
-
-TODO: return the inserted id or other reference
-
-Result of any query except `get`. Will not always provide all parameters (depends on the type of query you do)
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isSuccesful (optional) | boolean |  |
-| message (optional) | string |  |
-| isNewFile (optional) | boolean |  |
-| amountInserted (optional) | number |  |
-| amountUpdated (optional) | number |  |
-| amountRemoved (optional) | number |  |
-
-
-
 ## 🔹 MergedQueryConfig
 
 Properties: 
@@ -493,9 +509,10 @@ Properties:
 |---|---|---|
 | dbStorageMethod  | string |  |
 | manualProjectRoot  | string |  |
+| projectRoot  | string |  |
 | operationName (optional) | string |  |
-| projectRelativePath (optional) | string |  |
 | operationRelativePath (optional) | string |  |
+| projectRelativePath (optional) | string |  |
 
 
 
@@ -545,11 +562,11 @@ Properties:
 
  | Name | Type | Description |
 |---|---|---|
-| operationName (optional) | string |  |
-| projectRelativePath (optional) | string |  |
-| operationRelativePath (optional) | string |  |
-| dbStorageMethod (optional) | string |  |
 | manualProjectRoot (optional) | string |  |
+| operationName (optional) | string |  |
+| dbStorageMethod (optional) | string |  |
+| operationRelativePath (optional) | string |  |
+| projectRelativePath (optional) | string |  |
 
 
 
@@ -664,7 +681,7 @@ Alters a csv
 
 ## alterJsonMultiple()
 
-Alters a json single file
+Alters a json multiple file
 
 
 | Input      |    |    |
@@ -717,6 +734,8 @@ Alters a markdown file
 
 
 ## calculateOperationsObject()
+
+relative
 
 Needed in case of manual project root, otherwise use SDK!
 
@@ -849,6 +868,12 @@ Returning relative path has no preceding slash
 
 ## getMergedConfigOperationPath()
 
+NB: returns 3 things:
+- false: no operation path
+- undefined: operation path undefined
+- path: the specific operation path
+
+
 | Input      |    |    |
 | ---------- | -- | -- |
 | mergedConfig | `MergedQueryConfig` |  |,| manualProjectRoot (optional) | string |  |
@@ -871,6 +896,11 @@ can be undefined if the item has no parent
 
 
 ## getRootFolders()
+
+Gets all root folders where db folders can be located inside of
+
+NB: Before november '22, this function is quite slow if it needs to find all operation folders becuase this takes at least 60ms.
+
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -913,6 +943,13 @@ Used for `set` and `upsert`. Groups creation items into an object where keys are
 
 
 ## makeStoringItem()
+
+Three things need to happen in order to store an item
+
+1) keys that can be inferred from the file path are omitted
+2) referenced data is omitted
+3) calculated data is omitted
+
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -1095,7 +1132,7 @@ Alters a csv
 
 ## 📄 alterJsonMultiple (exported const)
 
-Alters a json single file
+Alters a json multiple file
 
 
 ## 📄 alterJsonSingle (exported const)
@@ -1176,6 +1213,12 @@ Returning relative path has no preceding slash
 
 ## 📄 getMergedConfigOperationPath (exported const)
 
+NB: returns 3 things:
+- false: no operation path
+- undefined: operation path undefined
+- path: the specific operation path
+
+
 ## 📄 getParentSlug (exported const)
 
 get a parent slug without the parent_xxxSlug reference (uses the categoryStackCalculated)
@@ -1184,6 +1227,11 @@ can be undefined if the item has no parent
 
 
 ## 📄 getRootFolders (exported const)
+
+Gets all root folders where db folders can be located inside of
+
+NB: Before november '22, this function is quite slow if it needs to find all operation folders becuase this takes at least 60ms.
+
 
 ## 📄 getWildcardDbFileLocations__OLD (exported const)
 
@@ -1198,6 +1246,13 @@ Used for `set` and `upsert`. Groups creation items into an object where keys are
 
 
 ## 📄 makeStoringItem (exported const)
+
+Three things need to happen in order to store an item
+
+1) keys that can be inferred from the file path are omitted
+2) referenced data is omitted
+3) calculated data is omitted
+
 
 ## 📄 removeKeyValueMarkdown (exported const)
 

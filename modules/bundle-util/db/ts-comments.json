@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1668448346157,
+    "updatedAt": 1668448346157,
+    "deletedAt": 0,
+    "createdFirstAt": 1668448346157,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/getDbModelsForBundle.ts",
+    "comment": "Gets all TsInterface's that are used in a bundle according to a BundleConfig",
+    "rawStatement": "export const getDbModelsForBundle = async (\n  bundleConfig: BundleConfig\n): Promise<TsInterface[]> => {\n  const bundleSummary = getBundleSummary(bundleConfig);\n\n  const dbModels = getDbModelsFromOperations(\n    bundleSummary.packageNames\n      .concat(bundleSummary.moduleNames)\n      .concat(bundleSummary.appNames)\n  );\n  return dbModels;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 6,
+    "lastLine": 8,
+    "id": "ptqptevssbwewvztlxqvpkat"
+  }
+]

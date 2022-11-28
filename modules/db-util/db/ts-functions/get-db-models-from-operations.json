@@ -1,0 +1,63 @@
+{
+  "createdAt": 1668332805624,
+  "updatedAt": 1668332805624,
+  "deletedAt": 0,
+  "createdFirstAt": 1668332805624,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/dbUtil.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  operationNames: string[]\n): Promise<TsInterface[]> => {\n  const dbModels = (await db.get(\"TsInterface\"))\n    .filter((x) => x.isDbModel)\n    .filter(onlyUnique2<TsInterface>((a, b) => a.name === b.name))\n    .filter((tsInterface) =>\n      filterInterfacesFromOperationNames(tsInterface, operationNames)\n    )\n    .filter(onlyUnique2<TsInterface>((a, b) => a.name === b.name));\n\n  return dbModels;\n}",
+  "name": "getDbModelsFromOperations",
+  "slug": "get-db-models-from-operations",
+  "parameters": [
+    {
+      "name": "operationNames",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TsInterface\").TsInterface[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 409,
+    "lines": 13,
+    "bytes": 409,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "rgtqwttabhaxcztjmlkoywsb"
+}

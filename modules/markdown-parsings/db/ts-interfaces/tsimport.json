@@ -1,0 +1,401 @@
+{
+  "createdAt": 1669200438746,
+  "updatedAt": 1669200438746,
+  "deletedAt": 0,
+  "createdFirstAt": 1669200438746,
+  "id": "tsimport",
+  "name": "TsImport",
+  "slug": "tsimport",
+  "operationRelativeTypescriptFilePath": "src/addDependantCount.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "operationName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "projectRelativePath": {
+          "type": "string",
+          "description": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "operationRelativePath": {
+          "type": "string",
+          "description": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you"
+        },
+        "id": {
+          "type": "string",
+          "description": "unique id of the model"
+        },
+        "name": {
+          "type": "string",
+          "description": "name (identifier) of the model"
+        },
+        "slug": {
+          "type": "string",
+          "description": "kebab-case variant of the name"
+        },
+        "operationRelativeTypescriptFilePath": {
+          "type": "string",
+          "description": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TsComment"
+          },
+          "description": "surrounding comments and comments inside of the import"
+        },
+        "module": {
+          "type": "string"
+        },
+        "alias": {
+          "type": "string",
+          "description": "TODO: not sure, but I believe alias should be defined at the import, not at the export, right?"
+        },
+        "classification": {
+          "$ref": "#/definitions/ImportClassification"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "value",
+            "type"
+          ],
+          "description": "sometimes the import statement module referenced cannot be found, in that case it cannot be known whether the import should contain a type or value, so it will be undefined."
+        },
+        "hasGeneric": {
+          "type": "boolean",
+          "description": "only for type exports. tells you whether or not the type has one or more generic parameter(s)"
+        },
+        "isAbsolute": {
+          "type": "boolean"
+        },
+        "isModuleResolved": {
+          "type": "boolean"
+        },
+        "isModuleFromMonorepo": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "classification",
+        "comments",
+        "id",
+        "isAbsolute",
+        "isModuleFromMonorepo",
+        "isModuleResolved",
+        "module",
+        "name",
+        "operationName",
+        "operationRelativeTypescriptFilePath",
+        "projectRelativePath",
+        "slug"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "operationName",
+          "required": true,
+          "schema": {
+            "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "null"
+          }
+        },
+        {
+          "name": "projectRelativePath",
+          "required": true,
+          "schema": {
+            "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativePath",
+          "required": false,
+          "schema": {
+            "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+            "type": "string"
+          }
+        },
+        {
+          "name": "id",
+          "required": true,
+          "schema": {
+            "fullComment": "unique id of the model",
+            "type": "string"
+          }
+        },
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "fullComment": "name (identifier) of the model",
+            "type": "string"
+          }
+        },
+        {
+          "name": "slug",
+          "required": true,
+          "schema": {
+            "fullComment": "kebab-case variant of the name",
+            "type": "string"
+          }
+        },
+        {
+          "name": "operationRelativeTypescriptFilePath",
+          "required": true,
+          "schema": {
+            "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "comments",
+          "required": true,
+          "schema": {
+            "fullComment": "surrounding comments and comments inside of the import",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "comments are basically one-or-multi-line human content inside of typescript files, so it's a very important to do something useful with them.\n\n\nThe convention should be that single-line comments should start with that. This then becomes the type of the comment. You can also put multiple prefixes at the start.\n\nExample:\n\n`// TODO: NB: this is a todo but its also important`\n\nMultiline comments can also have one or multiple types in their text, but they should not be split into multiple comments as the context could be needed some times.\n\n\n\nThere are also some other things comments can say about statements, but these should be inside the frontmatter, and are much more flexible.\n- classified[0-10] indicating level of classification. This way I can share subsets of the codebase, maybe...\n- privacy\n- ...?\n\nNB: with the current setup we can also parse `.md` files as being a TsComment, keep it that way!\n\nNB: comments are part of the code, so they should always be in English!",
+                  "nb": "with the current setup we can also parse `.md` files as being a TsComment, keep it that way!",
+                  "properties": [
+                    {
+                      "name": "operationName",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "name of operation the model belongs to\n\n- calculated value (not stored in database)\n- can be `null` or an actual operationName that it was saved at\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "null"
+                      }
+                    },
+                    {
+                      "name": "projectRelativePath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "path to dbfile\n\n- calculated value (not stored in database)\n- relatively from the project (without slash at start)\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operationRelativePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "unique id of the model",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "name (identifier) of the model",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "slug",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "kebab-case variant of the name",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "operationRelativeTypescriptFilePath",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "relative file path from the operation that this indexed instance is referencing to\n\ne.g. src/general.ts\n\n(no preceding slash)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "comment",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "the content of the comment in markdown, without frontmatter\n\na string that is known to contain markdown.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "parameters",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "parameters destructured from the frontmatter of the parsed markdown (if comment is not a oneliner, otherwise it'll be empty)\n\nOur version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+                        "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "types",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "These are the type indicators that were found in this single or multiline comment. Can be multiple.",
+                        "items": [
+                          {
+                            "schema": {
+                              "enum": [
+                                "todo",
+                                "discussion",
+                                "idea",
+                                "later",
+                                "nb",
+                                "title",
+                                "section",
+                                "description"
+                              ],
+                              "fullComment": "special line prefixes:\n\n**Developer related comments**\n\n- TODO: for developer to know what to do\n- DISCUSSION: for developer to state that discussion is needed\n- IDEA: for developer to state ideas\n- LATER: for developer to mark as thing that needs to be done later\n- NB: for developer to add a note\n\n**Form related comments**\n\n- TITLE: if available, will be used as title of form input (overwrites humanCase version of the property-name itself in that case)\n- SECTION: start a new section in the form from this point, the value behind here can be the title\n- DESCRIPTION: if available, will be used as description of the form input",
+                              "type": "string"
+                            },
+                            "name": "CommentType"
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "firstLine",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "first line of the comment",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "lastLine",
+                      "required": true,
+                      "schema": {
+                        "fullComment": "last line of the comment",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "statementName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "statement name the comment belongs to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "rawStatement",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "raw statement text the comment belongs to",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "TsComment"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "module",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "alias",
+          "required": false,
+          "schema": {
+            "fullComment": "TODO: not sure, but I believe alias should be defined at the import, not at the export, right?",
+            "todo": "not sure, but I believe alias should be defined at the import, not at the export, right?",
+            "type": "string"
+          }
+        },
+        {
+          "name": "classification",
+          "required": true,
+          "schema": {
+            "enum": [
+              "node",
+              "react",
+              "package",
+              "operation",
+              "internal"
+            ],
+            "fullComment": "node: node core packages like fs and path\n\nreact: react standard packages like react, react-native, expo, react-dom, etc.\n\npackage: packages from npm that are not classified as operations\n\noperation: operations from our monorepo\n\ninternal: imports from other places in the same operation\n\nNB: don't confuse this with OperationClassification",
+            "nb": "don't confuse this with OperationClassification",
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "required": false,
+          "schema": {
+            "enum": [
+              "value",
+              "type"
+            ],
+            "fullComment": "sometimes the import statement module referenced cannot be found, in that case it cannot be known whether the import should contain a type or value, so it will be undefined.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "hasGeneric",
+          "required": false,
+          "schema": {
+            "fullComment": "only for type exports. tells you whether or not the type has one or more generic parameter(s)",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isAbsolute",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isModuleResolved",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "isModuleFromMonorepo",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "TsImport",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

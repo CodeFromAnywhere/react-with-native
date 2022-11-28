@@ -1,0 +1,75 @@
+{
+  "createdAt": 1666263102985,
+  "updatedAt": 1666263102985,
+  "deletedAt": 0,
+  "createdFirstAt": 1666263102985,
+  "publicAuthorization": [
+    "read-docs",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isPostApi": false,
+  "isGetApi": false,
+  "isExported": false,
+  "operationRelativeTypescriptFilePath": "src/readTypescriptFile.ts",
+  "commentsInside": [],
+  "rawText": " async <T extends keyof IndexModels>(\n  indexModelName: T,\n  operationBasePath: string,\n  /**\n   * if provided, db result will be filtered to specific filepaths\n   */\n  filePaths: string[]\n): Promise<IndexModels[T][]> => {\n  const projectRoot = getProjectRoot(filePaths[0]);\n  if (!projectRoot) return [];\n  const relativeFilePaths = filePaths.map((f) =>\n    f.substring(projectRoot.length)\n  );\n  const result = await db\n    // TODO: make it more efficient by just finding the correct JSON files instead of all files in the operation.\n    .get(indexModelName, { operationName: getLastFolder(operationBasePath) });\n\n  const filterOnName =\n    indexModelName === \"TsComment\" ? () => true : uniqueNames;\n\n  const filtered = result\n    .filter(\n      (x) =>\n        x.projectRelativePath &&\n        (relativeFilePaths.length === 0 ||\n          relativeFilePaths.includes(x.projectRelativePath))\n    )\n    .filter(filterOnName);\n\n  return filtered;\n}",
+  "name": "getOperationIndexModel",
+  "slug": "get-operation-index-model",
+  "parameters": [
+    {
+      "name": "operationBasePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "filePaths",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "if provided, db result will be filtered to specific filepaths"
+      },
+      "simplifiedSchema": {
+        "fullComment": "if provided, db result will be filtered to specific filepaths",
+        "items": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": null
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TypescriptIndex\").IndexModels[T][]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 946,
+    "lines": 31,
+    "bytes": 946,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "id": "bslvdmhoimbrkoocowmmrjqu"
+}

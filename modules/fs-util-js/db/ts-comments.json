@@ -1,9 +1,25 @@
 [
   {
-    "createdAt": 1668148282072,
-    "updatedAt": 1668148282072,
+    "createdAt": 1669200353988,
+    "updatedAt": 1669200353988,
     "deletedAt": 0,
-    "createdFirstAt": 1668148282072,
+    "createdFirstAt": 1669200353988,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/js.ts",
+    "comment": "Provide a filename including its extension, to get the subextension.",
+    "rawStatement": "export const getSubExtension = (filename: string): string | undefined => {\n  const parts = filename.split(\".\");\n  //removes extension\n  parts.pop();\n  //returns extension that's left (the sub-extension)\n  const subExtension = parts.pop();\n  return subExtension;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 23,
+    "lastLine": 25,
+    "id": "rgbmcmeuadcpscyehzqdapoy"
+  },
+  {
+    "createdAt": 1669200353988,
+    "updatedAt": 1669200353988,
+    "deletedAt": 0,
+    "createdFirstAt": 1669200353988,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/js.ts",
@@ -11,15 +27,15 @@
     "rawStatement": "export const withoutExtension = (fileName: string) => {\n  const pieces = fileName.split(\".\");\n  pieces.pop();\n  return pieces.join(\".\");\n};",
     "parameters": {},
     "types": [],
-    "firstLine": 24,
-    "lastLine": 27,
-    "id": "aciypzvngrrldhszoefmboxa"
+    "firstLine": 35,
+    "lastLine": 38,
+    "id": "shzrirlpbbvqjetbqyelrksv"
   },
   {
-    "createdAt": 1668148282073,
-    "updatedAt": 1668148282073,
+    "createdAt": 1669200353988,
+    "updatedAt": 1669200353988,
     "deletedAt": 0,
-    "createdFirstAt": 1668148282073,
+    "createdFirstAt": 1669200353988,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/js.ts",
@@ -29,8 +45,8 @@
     "types": [
       "nb"
     ],
-    "firstLine": 34,
-    "lastLine": 38,
-    "id": "umclsfuyragkhabacafxngel"
+    "firstLine": 45,
+    "lastLine": 49,
+    "id": "avglteaxrykzvzfpyiwrihai"
   }
 ]

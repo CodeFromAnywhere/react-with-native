@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668836111847,
+  "updatedAt": 1668836111847,
+  "deletedAt": 0,
+  "createdFirstAt": 1668836111847,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "showStandardResponse",
+  "slug": "show-standard-response",
+  "operationRelativeTypescriptFilePath": "src/cool-toast.ts",
+  "type": {
+    "rawType": "(apiResult: import(\"/Users/king/King/operations/tools/user-interfaces/api/api-types/build/api-types\").StandardizedApiReturnType) => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(apiResult: StandardizedApiReturnType) => {\n  if (apiResult.errors) {\n    console.log({ errors: apiResult.errors });\n  }\n\n  if (apiResult.isUnauthorized) {\n    errorToast(apiResult.message);\n    return;\n  }\n\n  if (apiResult.isNotConnected) {\n    warningToast(apiResult.message || \"Not connected\");\n    return;\n  }\n\n  if (!apiResult.isSuccessful) {\n    errorToast(apiResult.message || \"Something went wrong\");\n    return;\n  }\n\n  if (!apiResult.result) {\n    successToast(\"Done\");\n    return;\n  }\n\n  if (!apiResult.result.isSuccessful) {\n    errorToast(apiResult.result.message || \"Something went wrong\");\n    return;\n  }\n\n  successToast(apiResult.result.message || \"Done\");\n}",
+  "description": "Useful to show if the api has a standard response",
+  "id": "dsvyjqqcfdbuhnkfvsynjurp"
+}

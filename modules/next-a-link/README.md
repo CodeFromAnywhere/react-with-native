@@ -1,6 +1,6 @@
 # Next a link
 
-next-a-link (`OperationClassification` js)
+next-a-link (`OperationClassification` ui-cjs)
 
 
 

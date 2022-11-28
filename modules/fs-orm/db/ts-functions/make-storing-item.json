@@ -1,23 +1,18 @@
 {
-  "createdAt": 1668148857101,
-  "updatedAt": 1668148857101,
+  "createdAt": 1669312131443,
+  "updatedAt": 1669312131443,
   "deletedAt": 0,
-  "createdFirstAt": 1668148857101,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312131443,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/convention/storing-items.ts",
   "commentsInside": [],
-  "rawText": " <T extends { [key: string]: any }>(\n  item: T\n): Storing<T> => {\n  const { operationName, projectRelativePath, operationRelativePath, ...rest } =\n    item;\n\n  return rest;\n}",
+  "rawText": " <T extends AugmentedAnyModelType>(\n  item: T\n): Storing<T> => {\n  // remove location related stuff\n\n  const { operationName, projectRelativePath, operationRelativePath, ...rest } =\n    item;\n\n  // remove referenced model data\n\n  const dataParameterNames = getDataParameterNames(item);\n  const restWithoutDataParameters = removeOptionalKeysFromObject(\n    rest,\n    dataParameterNames as any\n  );\n\n  // remove `.xyzCalculated` keys\n\n  const calculatedKeys = Object.keys(restWithoutDataParameters).filter((key) =>\n    key.endsWith(\"Calculated\")\n  );\n  const finalItem = removeOptionalKeysFromObject(\n    restWithoutDataParameters,\n    calculatedKeys as any\n  ) as Storing<T>;\n\n  return finalItem;\n}",
   "name": "makeStoringItem",
   "slug": "make-storing-item",
   "parameters": [],
-  "description": "",
+  "description": "Three things need to happen in order to store an item\n\n1) keys that can be inferred from the file path are omitted\n2) referenced data is omitted\n3) calculated data is omitted",
   "returnType": {
     "rawType": "Omit<TModel, import(\"/Users/king/King/operations/tools/types/model-types/build/generics\").ShouldNotBeStored>",
     "typeCoverage": 0,
@@ -29,13 +24,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 174,
-    "lines": 8,
-    "bytes": 174,
+    "characters": 871,
+    "lines": 32,
+    "bytes": 871,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 22,
-    "linesPerFile": 8,
+    "charactersPerLine": 27,
+    "linesPerFile": 32,
     "numberOfFiles": 1
   },
-  "id": "vyuesmxdqqumsrlwgcykbadb"
+  "id": "gnkdvqamkskvblaltftlwyui"
 }

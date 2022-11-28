@@ -1,0 +1,50 @@
+{
+  "createdAt": 1669055611998,
+  "updatedAt": 1669055611998,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055611998,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "indexImportsExportsForFilePath",
+  "slug": "index-imports-exports-for-file-path",
+  "operationRelativeTypescriptFilePath": "src/indexImportsExportsForFilePath.ts",
+  "type": {
+    "rawType": "import(\"/Users/king/King/operations/tools/control-project/watch-types/build/ProjectWatcher\").ProjectWatcher",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      "required": [
+        "filter"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "filter",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  eventName,\n  filePath\n) => {\n  const name = path.parse(filePath).name;\n  process.stdout.write(`Change detected: ${name}\\n`);\n  const operationBasePath = findOperationBasePath(filePath);\n  if (!operationBasePath) {\n    console.log(\"\\nCouldn't find operationBasePath\");\n    return;\n  }\n  process.stdout.write(`Indexing operation imports ...`);\n\n  await findAndWriteImportsExports(operationBasePath);\n\n  console.log(\"✅\\n\");\n}",
+  "description": "",
+  "id": "gqwrohghpgbtxirhvsbudtvc"
+}

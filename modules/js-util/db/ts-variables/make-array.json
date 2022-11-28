@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150836737,
-  "updatedAt": 1668150836737,
+  "createdAt": 1668977390723,
+  "updatedAt": 1668977390723,
   "deletedAt": 0,
-  "createdFirstAt": 1668150836737,
+  "createdFirstAt": 1668977390723,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<T>(...arrayOrNotArray: (T | T[] | undefined)[]) => {\n  return arrayOrNotArray\n    .map((arrayOrNot) => {\n      const array: T[] = arrayOrNot\n        ? Array.isArray(arrayOrNot)\n          ? arrayOrNot\n          : [arrayOrNot]\n        : [];\n\n      return array;\n    })\n    .flat();\n}",
   "description": "if something is not an array, returns it as the first element of an array\n\nif the input is undefined, an empty array will be returned.\n\nNB: TODO: find out the workings of the array constructor (`Array(\"any value\")`), because maybe it does something very similar. No need to have a dependency then if it's similar.",
-  "id": "fxkoilmfjgrggznsykazbhpe"
+  "id": "nffjhimvprdwirxuhrutqmdi"
 }

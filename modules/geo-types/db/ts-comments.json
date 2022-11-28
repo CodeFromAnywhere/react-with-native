@@ -1,0 +1,34 @@
+[
+  {
+    "createdAt": 1668335464242,
+    "updatedAt": 1668335464242,
+    "deletedAt": 0,
+    "createdFirstAt": 1668335464242,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/Location.ts",
+    "comment": "locations are hierarchically categorized pieces of information.\n\na city can refer to the area, the area can refer the the country, the country to the continent, etc.\n\nthere are multiple ways to categorize it, but this depends on the application.",
+    "rawStatement": "export interface Location extends KeyValueMarkdownModelType {\n  parent_locationSlug?: Slug;\n  parent_location?: Location;\n}",
+    "parameters": {},
+    "types": [],
+    "firstLine": 29,
+    "lastLine": 35,
+    "id": "yrtmxatgqxjfgnvjcgwwlkhv"
+  },
+  {
+    "createdAt": 1668335464242,
+    "updatedAt": 1668335464242,
+    "deletedAt": 0,
+    "createdFirstAt": 1668335464242,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/Location.ts",
+    "comment": "The old location interface I made up had multiple references, but I don't think this is needed. We can simply use the category interface\n\n\nexport interface Location extends SlugModelType {\ncontinent_locationSlug: Slug;\ncountry_locationSlug?: Slug;\nregionProvinceState_locationSlug?: Slug;\ncity_locationSlug?: Slug;\n}",
+    "rawStatement": "export interface Address extends SlugModelType {\n  locationSlug: Slug;\n  location?: Location;\n  postalCode: string;\n  street: string;\n  houseNumber: string;\n  area?: Area;\n  description?: Markdown;\n}",
+    "parameters": {},
+    "types": [],
+    "firstLine": 41,
+    "lastLine": 53,
+    "id": "whspgnkwzslvvzacmaekmdpu"
+  }
+]

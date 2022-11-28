@@ -13,6 +13,8 @@ export declare type CustomisableBundleConfig = {
     skipPull?: boolean;
     /** skips the step where it pushes the new bundle to remote */
     skipPush?: boolean;
+    skipSyncNicheFolder?: boolean;
+    skipRebuildNicheOperations?: boolean;
     /** skips the step where it saves to the db */
     skipUpsert?: boolean;
     debug?: boolean;

@@ -1,0 +1,50 @@
+{
+  "createdAt": 1668717086060,
+  "updatedAt": 1668717086060,
+  "deletedAt": 0,
+  "createdFirstAt": 1668717086060,
+  "id": "queryableobject",
+  "name": "QueryableObject",
+  "slug": "queryableobject",
+  "operationRelativeTypescriptFilePath": "src/QueryableObject.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type QueryableObject = { [key: string]: string | string[] | undefined };",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "not": {}
+          }
+        ]
+      }
+    },
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "QueryableObject",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

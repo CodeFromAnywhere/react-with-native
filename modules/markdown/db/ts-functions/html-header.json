@@ -1,0 +1,41 @@
+{
+  "createdAt": 1669467159891,
+  "updatedAt": 1669467159891,
+  "deletedAt": 0,
+  "createdFirstAt": 1669467159891,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "| Components[\"h1\"]\n  | Components[\"h2\"]\n  | Components[\"h3\"]\n  | Components[\"h4\"]\n  | Components[\"h5\"]\n  | Components[\"h6\"]",
+  "operationRelativeTypescriptFilePath": "src/renderMarkdownContent.tsx",
+  "commentsInside": [],
+  "rawText": " ({ level, children }) => {\n  const levelSize =\n    level === 1\n      ? \"text-3xl\"\n      : level === 2\n      ? \"text-2xl\"\n      : level === 3\n      ? \"text-xl\"\n      : level === 4\n      ? \"text-lg\"\n      : level === 5\n      ? \"text-md\"\n      : level === 6\n      ? \"text-sm\"\n      : \"text-xs\";\n  // {...props\n  return (\n    <Div id={getImplicitId(String(children))} className={levelSize}>\n      {children}\n    </Div>\n  );\n}",
+  "name": "HtmlHeader",
+  "slug": "html-header",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 422,
+    "lines": 22,
+    "bytes": 422,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 19,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "njmgffgymudjdwziyqcsziop"
+}

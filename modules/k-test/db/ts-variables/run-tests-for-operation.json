@@ -1,0 +1,33 @@
+{
+  "createdAt": 1666264408794,
+  "updatedAt": 1666264408794,
+  "deletedAt": 0,
+  "createdFirstAt": 1666264408794,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "runTestsForOperation",
+  "slug": "run-tests-for-operation",
+  "operationRelativeTypescriptFilePath": "src/runTestsForOperation.ts",
+  "type": {
+    "rawType": "(operationName: string, writeResultsToIndex?: boolean | undefined, manualProjectRoot?: string | undefined) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  operationName: string,\n  writeResultsToIndex?: boolean,\n  manualProjectRoot?: string\n) => {\n  // console.log(`TESTING ${operationName}`);\n  const operationBasePath = await getOperationPath(operationName, {\n    manualProjectRoot,\n  });\n  if (!operationBasePath) {\n    console.log(\"k-test:Couldn't find operation base path...\", {\n      operationName,\n    });\n    return;\n  }\n\n  const operationIndexJsPath = path.join(operationBasePath, \"build/index.js\");\n\n  if (!fs.existsSync(operationIndexJsPath)) {\n    console.log(\"Couldn't find operation build/index.js file\", {\n      operationName,\n      operationIndexJsPath,\n    });\n    return;\n  }\n\n  const tests: Test | undefined = require(operationIndexJsPath).test;\n\n  if (!tests) {\n    log(`No tests found for ${operationName}`, { type: \"debug\" });\n    return;\n  }\n\n  return runTests(tests, operationName);\n}",
+  "description": "runTestsForOperation(operationName) runs all tests that can be found in an operation. nicely logs and returns which funtions are working or not and why\n\nthis assumes the index file exports all tests under the `test` constant, which should be done using this framework\n\nthis also assumes your tests are exported from build/index.js (which means you need to build your code, not transpile, so it's not possible for every type of operation)",
+  "id": "iajekvnsfqiloaakwsjmtlaw"
+}

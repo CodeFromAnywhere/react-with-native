@@ -1,16 +1,11 @@
 {
-  "createdAt": 1666261633061,
-  "updatedAt": 1666261633061,
+  "createdAt": 1668775574556,
+  "updatedAt": 1668775574556,
   "deletedAt": 0,
-  "createdFirstAt": 1666261633061,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1668775574556,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/Table.tsx",
   "commentsInside": [],
   "rawText": " (\n  modelName: string,\n  interfaces: TsInterface[] | undefined,\n  data: any[]\n): ColumnType<any>[] => {\n  /**\n   * needed in case something goes wrong with the index\n   */\n  const getDumbColumns = (): ColumnType<any>[] => {\n    return data[0] && typeof data[0] === \"object\"\n      ? Object.keys(data[0])\n          .map((objectParameterKey) => {\n            const value = data[0][objectParameterKey];\n            if (\n              ![\"string\", \"boolean\", \"number\", \"null\"].includes(typeof value)\n            ) {\n              return null;\n            }\n            return {\n              name: humanCase(objectParameterKey),\n              objectParameterKey,\n              presentationType: \"text\" as \"text\",\n            };\n          })\n          .filter(notEmpty)\n      : [];\n  };\n  if (!interfaces) return getDumbColumns();\n\n  const properties = interfaces.find((x) => x.name === modelName)?.type\n    .typeDefinition?.properties;\n\n  if (!properties) return getDumbColumns();\n\n  const columns: ColumnType<any>[] = Object.keys(properties)\n    .map((objectParameterKey) => {\n      const maybeProperty = properties[objectParameterKey];\n      const property =\n        typeof maybeProperty !== \"boolean\" ? maybeProperty : undefined;\n\n      if (!property) return;\n\n      if (\n        makeArray(property.type).find((x) => [\"object\", \"array\"].includes(x))\n      ) {\n        // there are arrays or objects among the type of this property\n        return;\n      }\n\n      const column: ColumnType<any> = {\n        name: humanCase(objectParameterKey),\n        objectParameterKey,\n        presentationType: \"text\",\n      };\n\n      return column;\n    })\n    .filter(notEmpty);\n  return columns;\n}",
@@ -19,7 +14,7 @@
   "parameters": [],
   "description": "gets all columns you can present based on a modelname, the interfaces of that model, and the data",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/interfaces/vui/react-with-native/react-with-native-table/src/Table\").ColumnType<any>[]",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-table/src/Table\").ColumnType<any>[]",
     "typeDefinition": {
       "optional": false,
       "type": "array",
@@ -42,11 +37,13 @@
           "presentationType": {
             "enum": [
               "text",
+              "backendAsset",
               "referenceSingle",
               "referenceMultiple"
             ],
             "x-enumNames": [
               "text",
+              "backendAsset",
               "referenceSingle",
               "referenceMultiple"
             ],
@@ -88,6 +85,7 @@
                 "schema": {
                   "enum": [
                     "text",
+                    "backendAsset",
                     "referenceSingle",
                     "referenceMultiple"
                   ],
@@ -129,5 +127,5 @@
     "linesPerFile": 60,
     "numberOfFiles": 1
   },
-  "id": "xzzrpbstkvmypmeuggtcsumq"
+  "id": "bonpchpptohsvikqsxsxxfdr"
 }

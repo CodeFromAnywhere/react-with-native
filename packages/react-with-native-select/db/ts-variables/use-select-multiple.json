@@ -1,0 +1,33 @@
+{
+  "createdAt": 1668833466801,
+  "updatedAt": 1668833466801,
+  "deletedAt": 0,
+  "createdFirstAt": 1668833466801,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useSelectMultiple",
+  "slug": "use-select-multiple",
+  "operationRelativeTypescriptFilePath": "src/useSelectMultiple.tsx",
+  "type": {
+    "rawType": "<T extends unknown>(items?: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T | null>[] | undefined, initialValue?: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T | null>[] | undefined, withValue?: ((value: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T | null>[]) => void) | undefined, config?: any) => [Component: () => JSX.Element, value: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T | null>[], setValue: (value: import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/src/types\").Item<T | null>[]) => void]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends unknown>(\n  items?: Item<T | null>[],\n  initialValue?: Item<T | null>[],\n  /**\n   * Optionally you can do other things with the value as well, like setting it to a global store\n   */\n  withValue?: (value: Item<T | null>[]) => void,\n  config?: Omit<SelectMultipleInputProps<T>, \"onChange\" | \"value\" | \"options\">\n): [\n  Component: () => JSX.Element,\n  value: Item<T | null>[],\n  setValue: (value: Item<T | null>[]) => void\n] => {\n  const realItems = items || [];\n  const [value, setValue] = useState<Item<T | null>[]>(initialValue || []);\n\n  const realOnChange = (v: Item<T | null>[]) => {\n    setValue(v);\n\n    if (v) {\n      withValue?.(v);\n    }\n  };\n\n  const Component = () => (\n    <SelectMultipleInput\n      {...config}\n      onChange={realOnChange}\n      value={value}\n      options={realItems}\n    />\n  );\n  return [Component, value, realOnChange];\n}",
+  "description": "Create a value selector in a single line of code, including its state!",
+  "id": "cgbhvanzssnmlpkoaykxssha"
+}

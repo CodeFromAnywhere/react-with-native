@@ -1,0 +1,55 @@
+{
+  "createdAt": 1669055591088,
+  "updatedAt": 1669055591088,
+  "deletedAt": 0,
+  "createdFirstAt": 1669055591088,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getFrontmatterDbStorageMethod.ts",
+  "commentsInside": [],
+  "rawText": " (\n  parameters: null | Frontmatter\n): DbStorageMethod | null | undefined => {\n  if (!parameters) return;\n\n  const dbStorageMethod =\n    parameters.dbStorageMethod &&\n    typeof parameters.dbStorageMethod === \"string\" &&\n    dbStorageMethods.includes(parameters.dbStorageMethod)\n      ? (parameters.dbStorageMethod as DbStorageMethod)\n      : undefined;\n\n  if (dbStorageMethod) return dbStorageMethod;\n\n  const isDbModel = parameters.isDbModel;\n\n  if (isDbModel === true) return \"jsonMultiple\";\n\n  if (isDbModel === false) return null;\n}",
+  "name": "getFrontmatterDbStorageMethod",
+  "slug": "get-frontmatter-db-storage-method",
+  "parameters": [
+    {
+      "name": "parameters",
+      "schema": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "$ref": "#/definitions/Frontmatter"
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "if isDbModel is specifically set to false, this will return null (which means this should overwrite other things)",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 650,
+    "lines": 20,
+    "bytes": 650,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "iodfnbszeneclpwskddguwbc"
+}

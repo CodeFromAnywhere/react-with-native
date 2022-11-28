@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669132820883,
+  "updatedAt": 1669132820883,
+  "deletedAt": 0,
+  "createdFirstAt": 1669132820883,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getRealItemRecursive",
+  "slug": "get-real-item-recursive",
+  "operationRelativeTypescriptFilePath": "src/NestedMenuItem.tsx",
+  "type": {
+    "rawType": "(item: import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").NestedWebPage) => import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").NestedWebPage",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(item: NestedWebPage): NestedWebPage => {\n  const getTitleExtension = (item: NestedWebPage) =>\n    item.children && item.children.length === 1\n      ? getTitle(item.children[0])\n      : \"\";\n\n  // with exactly 1 child, the titles should be combined, the menu should be flattened\n  return item.children && item.children.length === 1\n    ? getRealItemRecursive({\n        ...item.children[0],\n        menuTitle: getTitle(item) + \" ‣ \" + getTitleExtension(item),\n      })\n    : item;\n}",
+  "description": "",
+  "id": "uxbjlzkqtzzwjqzlsjbhsodd"
+}

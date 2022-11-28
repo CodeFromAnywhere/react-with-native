@@ -1,0 +1,50 @@
+{
+  "createdAt": 1668449025159,
+  "updatedAt": 1668449025159,
+  "deletedAt": 0,
+  "createdFirstAt": 1668449025159,
+  "publicAuthorization": [
+    "read",
+    "search"
+  ],
+  "isApiExposed": false,
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/calculatePackageJsonDependencies.ts",
+  "commentsInside": [],
+  "rawText": " (absoluteImportName: string) => {\n  const realModuleName = getPackageNameFromAbsoluteImport(absoluteImportName);\n  return realModuleName ? builtinModules.includes(realModuleName) : false;\n}",
+  "name": "isAbsoluteImportBuiltin",
+  "slug": "is-absolute-import-builtin",
+  "parameters": [
+    {
+      "name": "absoluteImportName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "returns true if the absolute import is built in into node",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 247,
+    "lines": 4,
+    "bytes": 247,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 62,
+    "linesPerFile": 4,
+    "numberOfFiles": 1
+  },
+  "id": "ymwpcsrbrlmlzkemueysjomv"
+}

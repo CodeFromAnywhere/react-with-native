@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669639094552,
+  "updatedAt": 1669639094552,
+  "deletedAt": 0,
+  "createdFirstAt": 1669639094552,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "docsGetStaticProps",
+  "slug": "docs-get-static-props",
+  "operationRelativeTypescriptFilePath": "src/docsGetStaticProps.ts",
+  "type": {
+    "rawType": "(context: import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/next-types/build/types\").GetStaticPropsContext<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/next-types/build/types\").ParsedUrlQuery, import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/next-types/build/types\").PreviewData>, basePaths: { projectRelativeBasePath: string; queryPath: string; }[], webOperationName: string) => Promise<{ props: import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/reader/markdown-reader-types/build/MarkdownReaderPageProps\").MarkdownReaderPageProps; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  context: GetStaticPropsContext,\n  basePaths: {\n    projectRelativeBasePath: string;\n    queryPath: string;\n  }[],\n  /**\n   * Operation of the website that is going to be deployed\n   */\n  webOperationName: string\n): Promise<{\n  props: MarkdownReaderPageProps;\n}> => {\n  const flat = await docsGetPages(basePaths);\n  const propsObject = await markdownReaderGetStaticPropsFromPages(\n    context,\n    flat,\n    webOperationName\n  );\n  return propsObject;\n}",
+  "description": "",
+  "id": "epebkbnxuigbahwwvizhapaa"
+}

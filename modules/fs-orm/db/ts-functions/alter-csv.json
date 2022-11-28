@@ -1,16 +1,12 @@
 {
-  "createdAt": 1668148837559,
-  "updatedAt": 1668148837559,
+  "createdAt": 1669312092183,
+  "updatedAt": 1669312092183,
   "deletedAt": 0,
-  "createdFirstAt": 1668148837559,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669312092183,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
+  "explicitTypeName": "AlterFunction",
   "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
   "commentsInside": [],
   "rawText": " async (dbFileLocation, alterFn) => {\n  const { absolutePath } = dbFileLocation;\n  const bareData =\n    (await readCsvFile<Storing<CsvItemType>>(absolutePath)) || [];\n  const isNewFile = !bareData;\n  const { newStoredData, ...queryResult } = alterFn(bareData);\n  if (newStoredData.length === 0 && !!bareData) {\n    // NB: if new array is empty, just remove the file\n    await fs.rm(absolutePath);\n    return queryResult;\n  }\n\n  const newDataString = csvItemArrayToCsvString(newStoredData);\n  const isSuccesful = await writeStringToFile(absolutePath, newDataString);\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
@@ -37,5 +33,5 @@
     "linesPerFile": 21,
     "numberOfFiles": 1
   },
-  "id": "jkyigairmsptbbvwljopjqsk"
+  "id": "ambmsastjlvxwjumxxctyylu"
 }

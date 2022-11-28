@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668152068766,
-  "updatedAt": 1668152068766,
+  "createdAt": 1669385112385,
+  "updatedAt": 1669385112385,
   "deletedAt": 0,
-  "createdFirstAt": 1668152068766,
+  "createdFirstAt": 1669385112385,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "markdown-view",
   "operationRelativeTypescriptFilePath": "src/MarkdownView.tsx",
   "type": {
-    "rawType": "(props: { view: \"view\" | \"presentation\"; markdownParse: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse; markdownParseRenderConfig: import(\"/Users/king/King/operations/tools/interfaces/vui/vui-elements/markdown/build/esm/types\").MarkdownParseRenderConfig; }) => JSX.Element",
+    "rawType": "(props: { view: \"view\" | \"presentation\"; markdownParse: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse; markdownParseRenderConfig: import(\"/Users/king/King/operations/tools/user-interfaces/gui/smart/markdown/build/esm/types\").MarkdownParseRenderConfig; }) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  view: \"view\" | \"presentation\";\n  markdownParse: MarkdownParse;\n  markdownParseRenderConfig: MarkdownParseRenderConfig;\n}) => {\n  const { markdownParse, markdownParseRenderConfig, view } = props;\n\n  const {\n    projectRelativeBaseFolderPath,\n    projectRelativeMarkdownFilePath,\n    augmentedWordObject,\n  } = markdownParseRenderConfig;\n  return (\n    <>\n      {view === \"view\" ? (\n        <Div className=\"mx-2\">\n          {renderMarkdownParse(markdownParse, markdownParseRenderConfig)}\n        </Div>\n      ) : null}\n\n      {view === \"presentation\" ? (\n        <Div className=\"mx-2 flex flex-1 min-h-[80vh]\">\n          {markdownParse.content ? (\n            <MarkdownParsePresentation\n              markdownParse={markdownParse}\n              augmentedWordObject={augmentedWordObject}\n              projectRelativeBaseFolderPath={projectRelativeBaseFolderPath}\n              projectRelativeMarkdownFilePath={projectRelativeMarkdownFilePath}\n            />\n          ) : (\n            \"Couldn't find any content\"\n          )}\n        </Div>\n      ) : null}\n    </>\n  );\n}",
   "description": "",
-  "id": "igdhzodrennqxvaqmwoqsqqz"
+  "id": "cfkhfdjsaktyemowlqwcwxpj"
 }
