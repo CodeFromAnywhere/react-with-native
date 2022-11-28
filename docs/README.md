@@ -1,7 +1,7 @@
 ---
 headerBig: true
 headerTitle: React with Native
-headerSubtitle: The best way to build fully cross-platform apps!
+headerSubTitle: The best way to build fully cross-platform apps!
 headerImage: ![](./header.png)
 ---
 

@@ -1,7 +1,7 @@
 ---
 headerBig: true
 headerTitle: Typebase
-headerSubtitle: Typescript optimised File system ORM & Database
+headerSubTitle: Typescript optimised File system ORM & Database
 headerImage: ![](./header.png)
 ---
 
