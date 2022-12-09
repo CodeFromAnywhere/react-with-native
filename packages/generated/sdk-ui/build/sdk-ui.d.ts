@@ -340,7 +340,7 @@ export declare const sdk: {
     UpsertPage: () => JSX.Element;
     useInfiniteGetDbModel: () => import("react-query").UseInfiniteQueryResult<import("api-types").ApiReturnType<"getDbModel">, unknown>;
     useModelFromUrl: () => string | undefined;
-    useUrl: <T_7 extends "id" | "name" | "type" | "slug" | "path">(queryKey: T_7) => {
+    useUrl: <T_7 extends "path" | "id" | "name" | "type" | "slug">(queryKey: T_7) => {
         path: [string | undefined, (newValue: string | undefined) => Promise<boolean>];
         name: [string | undefined, (newValue: string | undefined) => Promise<boolean>];
         type: [string | undefined, (newValue: string | undefined) => Promise<boolean>];
@@ -586,8 +586,8 @@ export declare const sdk: {
     useOnScreen: typeof useOnScreen;
     getRealSrc: (src: string | undefined, config: import("markdown").MarkdownParseRenderConfig) => string | undefined;
     getUrlFromRelativeUrl: (relativeUrl: string, relativeUrlStrategy: "api" | "static", projectRelativeBaseFolderPath: string, projectRelativeMarkdownFilePath: string) => string | undefined;
-    getYoutubeId: any;
-    HtmlHeader: any;
+    getYoutubeId: (url: string | undefined) => string | undefined;
+    HtmlHeader: keyof JSX.IntrinsicElements | import("react-markdown/lib/ast-to-react").HeadingComponent | undefined;
     MarkdownCodeblock: (props: {
         text: string;
         extension?: string | undefined;
