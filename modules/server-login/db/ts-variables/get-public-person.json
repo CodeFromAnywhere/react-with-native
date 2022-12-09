@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385329799,
-  "updatedAt": 1669385329799,
+  "createdAt": 1670528486065,
+  "updatedAt": 1670528486065,
   "deletedAt": 0,
-  "createdFirstAt": 1669385329799,
+  "createdFirstAt": 1670528486065,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,10 +10,30 @@
   "slug": "get-public-person",
   "operationRelativeTypescriptFilePath": "src/getPublicPerson.ts",
   "type": {
-    "rawType": "(id?: string | undefined) => unknown",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/api/function-server-types/build/ApiFunction\").ApiFunction",
     "typeDefinition": {
       "type": "object",
-      "properties": {},
+      "properties": {
+        "isPublic": {
+          "type": "boolean"
+        },
+        "allowedRoles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          }
+        }
+      },
       "optional": false
     },
     "typeCoverage": 0,
@@ -23,11 +43,34 @@
     "isPrimitive": false,
     "isEnumLiteral": false,
     "simplifiedSchema": {
-      "properties": [],
+      "properties": [
+        {
+          "name": "isPublic",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "allowedRoles",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
       "type": "object"
     }
   },
   "value": "async (id?: string) => {\n  return (await getPublicPersons()).find((x) => x.id === id);\n}",
   "description": "",
-  "id": "lltnsiftrvyvbjbvbrukihys"
+  "id": "frdjusrmsvvosjdvlypxolfm"
 }

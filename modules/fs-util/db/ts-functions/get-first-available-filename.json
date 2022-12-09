@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667378801227,
-  "updatedAt": 1667378801227,
+  "createdAt": 1670526989497,
+  "updatedAt": 1670526989497,
   "deletedAt": 0,
-  "createdFirstAt": 1667378801227,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670526989497,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getFirstAvailableFilename.ts",
   "commentsInside": [],
   "rawText": " (absoluteFilePath: string): string => {\n  // If that doesn't exist, use that\n  if (!fs.existsSync(absoluteFilePath)) return absoluteFilePath;\n\n  const parsedPath = path.parse(absoluteFilePath);\n\n  const newFilename = `${oneUp(parsedPath.name)}${parsedPath.ext}`;\n  const newProposedPath = path.join(parsedPath.dir, newFilename);\n  return getFirstAvailableFilename(newProposedPath);\n}",
@@ -52,5 +47,5 @@
     "linesPerFile": 10,
     "numberOfFiles": 1
   },
-  "id": "ugsljluyetukgliuhvmyyxfl"
+  "id": "vlrfuotfiaplpaioonrsaxyl"
 }

@@ -36,31 +36,6 @@ recursive. goes up until it finds a folder that's the project root
 if no source path is given, uses the directory name where the function is executed from as a starting point
 
 
-## getOperationPath()
-
-Gets a path of any operation in the project
-
-TODO: IDEA: maybe auto-generate key-value JSON where keys are the package-names of all operations and values are paths of their locations in the file system. we can easily generate this ourselves, but maybe it's also easy to use the npm yarn workspace for this, although it may not be available in all circumstances, so better not rely on it. The advantage of this would be that this function becomes sync and is much more efficient. The disadvantage is that every time you move something or add something new, this indexation has to happen, otherwise it fails.
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| operationName | string | specify the operation folder name |,| config (optional) | { manualProjectRoot?: string, <br />notUseSdk?: boolean, <br /> } |  |
-| **Output** |    |    |
-
-
-
-## 📄 getOperationPath (exported const)
-
-## findOperationBasePath()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| startPath | string |  |
-| **Output** | string   |    |
-
-
-
 ## makeRelative()
 
 Makes a path relative using proper parsing
@@ -77,8 +52,6 @@ Resulting path will apply the paths conventions
 
 
 
-## 📄 findOperationBasePath (exported const)
-
 ## 📄 makeRelative (exported const)
 
 Makes a path relative using proper parsing
@@ -87,6 +60,33 @@ Resulting path will apply the paths conventions
 - no slash at the end
 - no slash at the beginning
 
+
+## findOperationBasePath()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| startPath | string |  |
+| **Output** | string   |    |
+
+
+
+## getOperationPath()
+
+Gets a path of any operation in the project
+
+TODO: IDEA: maybe auto-generate key-value JSON where keys are the package-names of all operations and values are paths of their locations in the file system. we can easily generate this ourselves, but maybe it's also easy to use the npm yarn workspace for this, although it may not be available in all circumstances, so better not rely on it. The advantage of this would be that this function becomes sync and is much more efficient. The disadvantage is that every time you move something or add something new, this indexation has to happen, otherwise it fails.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| operationName | string | specify the operation folder name |,| config (optional) | { manualProjectRoot?: string, <br />notUseSdk?: boolean, <br /> } |  |
+| **Output** |    |    |
+
+
+
+## 📄 findOperationBasePath (exported const)
+
+## 📄 getOperationPath (exported const)
 
 ## getPathsWithOperations()
 
@@ -170,13 +170,6 @@ NB: don't confuse this with `ImportClassification`
 
 
 
-## 📄 getOperationClassification (exported const)
-
-Returns `OperationClassification` if it's an operation, or undefined if it's not
-
-NB: don't confuse this with `ImportClassification`
-
-
 ## isBundle()
 
 | Input      |    |    |
@@ -184,6 +177,13 @@ NB: don't confuse this with `ImportClassification`
 | folderPath (optional) | string |  |
 | **Output** | {  }   |    |
 
+
+
+## 📄 getOperationClassification (exported const)
+
+Returns `OperationClassification` if it's an operation, or undefined if it's not
+
+NB: don't confuse this with `ImportClassification`
 
 
 ## 📄 isBundle (exported const)

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528568249,
+  "updatedAt": 1670528568249,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528568249,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "ContextMenuItemComponent",
+  "slug": "context-menu-item-component",
+  "operationRelativeTypescriptFilePath": "src/ContextMenuItemComponent.tsx",
+  "type": {
+    "rawType": "(props: { item: import(\"/Users/king/King/operations/tools/user-interfaces/gui/dumb/context-menu/src/types\").ContextMenuItem; id: string | undefined; onClose: () => void; itemClassName?: string | undefined; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  item: ContextMenuItem;\n  id: string | undefined;\n  onClose: () => void;\n  itemClassName?: string;\n}) => {\n  const { item, id, onClose, itemClassName } = props;\n\n  const [loading, setLoading] = useState(false);\n  return (\n    <P\n      onClick={async () => {\n        setLoading(true);\n        await item.onClick(id);\n        setLoading(false);\n        onClose();\n      }}\n      className={\n        itemClassName ||\n        \"select-none dark:text-black cursor-pointer lg:hover:bg-blue-300 py-2 px-4 flex flex-row\"\n      }\n    >\n      {loading ? (\n        <Span>\n          <FancyLoader />\n        </Span>\n      ) : null}{\" \"}\n      <Span>{item.getTitle(id)}</Span>\n    </P>\n  );\n}",
+  "description": "",
+  "id": "kocinwbhhextznmxmycosscw"
+}

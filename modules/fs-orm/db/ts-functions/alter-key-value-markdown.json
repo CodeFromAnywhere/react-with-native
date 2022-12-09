@@ -1,15 +1,15 @@
 {
-  "createdAt": 1669312092184,
-  "updatedAt": 1669312092184,
+  "createdAt": 1670592508065,
+  "updatedAt": 1670592508065,
   "deletedAt": 0,
-  "createdFirstAt": 1669312092184,
+  "createdFirstAt": 1670592508065,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "explicitTypeName": "AlterFunction",
   "operationRelativeTypescriptFilePath": "src/alter/alter-functions.ts",
   "commentsInside": [],
-  "rawText": " async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n\n  const kvmdParse: KeyValueMarkdownParse | null = await readKvmdFile(\n    absolutePath,\n    dbFileLocation\n  );\n\n  const isNewFile = !kvmdParse;\n\n  const storedData = kvmdParse?.data || [];\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n\n  const newKvmdParse: KeyValueMarkdownParse = {\n    parameters: kvmdParse?.parameters || {},\n    data: newStoredData as KeyValueMarkdownModelType[],\n  };\n\n  const newDataString = kvmdParseToMarkdownString(newKvmdParse);\n  const isSuccesful = await writeStringToFile(absolutePath, newDataString);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
+  "rawText": " async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n\n  const kvmdParse: KeyValueMarkdownParse | null = await readKvmdFile(\n    absolutePath,\n    dbFileLocation\n  );\n\n  const isNewFile = !kvmdParse;\n\n  const storedData = kvmdParse?.data || [];\n\n  // console.log({ storedData });\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n  // console.log({ newStoredData });\n  const newKvmdParse: KeyValueMarkdownParse = {\n    parameters: kvmdParse?.parameters || {},\n    data: newStoredData as KeyValueMarkdownModelType[],\n  };\n\n  const newDataString = kvmdParseToMarkdownString(newKvmdParse);\n  const isSuccesful = await writeStringToFile(absolutePath, newDataString);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
   "name": "alterKeyValueMarkdown",
   "slug": "alter-key-value-markdown",
   "parameters": [],
@@ -25,13 +25,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 790,
-    "lines": 31,
-    "bytes": 790,
+    "characters": 861,
+    "lines": 33,
+    "bytes": 861,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 25,
-    "linesPerFile": 31,
+    "charactersPerLine": 26,
+    "linesPerFile": 33,
     "numberOfFiles": 1
   },
-  "id": "vyniathmtfnrkqtqbtxfvqmd"
+  "id": "ebacefthulonvoscidzumfui"
 }

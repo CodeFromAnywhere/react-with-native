@@ -1,6 +1,6 @@
 # Tooltip
 
-tooltip (`OperationClassification` cjs)
+tooltip (`OperationClassification` ui-cjs)
 
 
 ## ❌ No description set yet

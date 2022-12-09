@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670216333088,
+  "updatedAt": 1670216333088,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216333088,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "parseDialogue",
+  "slug": "parse-dialogue",
+  "operationRelativeTypescriptFilePath": "src/parseDialogue.ts",
+  "type": {
+    "rawType": "(textMarkdown: string) => { voice: string | undefined; sentence: string; }[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  textMarkdown: string\n): { voice: string | undefined; sentence: string }[] => {\n  const sentences = textMarkdown\n    .split(\"\\n\")\n    .map((line) => (line.trim() === \"\" ? undefined : line))\n    .filter(notEmpty)\n    .map((line) => {\n      const parts = line.split(\":\");\n      const voice = parts.length < 2 ? undefined : parts.shift();\n      const sentence = parts.join(\":\").trim();\n\n      return { voice, sentence };\n    });\n\n  return sentences;\n}",
+  "description": "",
+  "id": "nuwwmgqesflrojgaipdyeadr"
+}

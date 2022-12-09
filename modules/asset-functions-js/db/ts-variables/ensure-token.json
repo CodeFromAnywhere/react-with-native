@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384160973,
-  "updatedAt": 1669384160973,
+  "createdAt": 1670526646742,
+  "updatedAt": 1670526646742,
   "deletedAt": 0,
-  "createdFirstAt": 1669384160973,
+  "createdFirstAt": 1670526646742,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  name: string,\n  /**\n   * if given, is used for generating new token\n   *\n   * if already present, token is used from the name instead of this one\n   */\n  newToken?: string,\n  attachTokenToFilename?: boolean\n) => {\n  const { nameWithoutToken, token } = removeTokenIfPresent(\n    name,\n    attachTokenToFilename\n  );\n  const nameWithToken = addToken(\n    nameWithoutToken,\n    token || newToken,\n    attachTokenToFilename\n  );\n  return nameWithToken;\n}",
   "description": "Remove the token (if present), then add it again",
-  "id": "lvqherztagycihtuvbgbjaum"
+  "id": "jijokngxcgghaqovrlmuceof"
 }

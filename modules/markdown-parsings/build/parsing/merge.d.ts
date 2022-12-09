@@ -1,4 +1,4 @@
-import { MarkdownParse } from "code-types";
+import { MarkdownParse } from "markdown-types";
 export declare type MergedMarkdownOutlineUrl = {
     title: string;
     hashtagPath: string;

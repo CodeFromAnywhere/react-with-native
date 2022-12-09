@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384202227,
-  "updatedAt": 1669384202227,
+  "createdAt": 1670526712628,
+  "updatedAt": 1670526712628,
   "deletedAt": 0,
-  "createdFirstAt": 1669384202227,
+  "createdFirstAt": 1670526712628,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  projectRelativeReferencingFilePath: string,\n  referencingFileRelativeAssetPath: string\n) => {\n  const { absoluteAssetPath, message, isSuccessful } =\n    await findAbsoluteAssetPathFromReference(\n      projectRelativeReferencingFilePath,\n      referencingFileRelativeAssetPath\n    );\n\n  if (!absoluteAssetPath) {\n    return { isSuccessful, message };\n  }\n\n  // got `absoluteAssetPath`\n\n  await fs.rm(absoluteAssetPath);\n\n  return { isSuccessful: true, message: \"Deleted the asset\" };\n}",
   "description": "",
-  "id": "qrnibpkjxjatiysiptqxqnzn"
+  "id": "fnjhwbqrcjaebbjvqtplfhcz"
 }

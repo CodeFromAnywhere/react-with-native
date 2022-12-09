@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385319513,
-  "updatedAt": 1669385319513,
+  "createdAt": 1670528468854,
+  "updatedAt": 1670528468854,
   "deletedAt": 0,
-  "createdFirstAt": 1669385319513,
+  "createdFirstAt": 1670528468854,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  functionContext: FunctionContext,\n  method: AuthenticationMethodMethod,\n  handle: AuthenticationMethod[\"handle\"],\n  credential?: string\n) => {\n  const { isSuccessful, message, authenticationMethod } =\n    await addAuthenticationMethod(method, handle, true, credential);\n\n  if (!isSuccessful || !authenticationMethod) {\n    return { isSuccessful, message };\n  }\n\n  const updateResult = await db.update(\n    \"Person\",\n    (item) => item.id === functionContext.device.currentPersonId,\n    (old) => ({\n      ...old,\n      authenticationMethods:\n        old.authenticationMethods.concat(authenticationMethod),\n    })\n  );\n\n  return { isSuccessful: updateResult.isSuccesful, message };\n}",
   "description": "",
-  "id": "kpzxhzsglyavwmkuyakadoke"
+  "id": "tvcjdjihpdwsjkfkcsidaezf"
 }

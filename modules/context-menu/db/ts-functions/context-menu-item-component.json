@@ -1,0 +1,40 @@
+{
+  "createdAt": 1670528568050,
+  "updatedAt": 1670528568050,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528568050,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/ContextMenuItemComponent.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  item: ContextMenuItem;\n  id: string | undefined;\n  onClose: () => void;\n  itemClassName?: string;\n}) => {\n  const { item, id, onClose, itemClassName } = props;\n\n  const [loading, setLoading] = useState(false);\n  return (\n    <P\n      onClick={async () => {\n        setLoading(true);\n        await item.onClick(id);\n        setLoading(false);\n        onClose();\n      }}\n      className={\n        itemClassName ||\n        \"select-none dark:text-black cursor-pointer lg:hover:bg-blue-300 py-2 px-4 flex flex-row\"\n      }\n    >\n      {loading ? (\n        <Span>\n          <FancyLoader />\n        </Span>\n      ) : null}{\" \"}\n      <Span>{item.getTitle(id)}</Span>\n    </P>\n  );\n}",
+  "name": "ContextMenuItemComponent",
+  "slug": "context-menu-item-component",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 689,
+    "lines": 31,
+    "bytes": 689,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 22,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "id": "dpvguakqpwvqrbnaegbdnbrl"
+}

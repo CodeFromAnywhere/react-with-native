@@ -1,0 +1,44 @@
+{
+  "createdAt": 1670529083681,
+  "updatedAt": 1670529083681,
+  "deletedAt": 0,
+  "createdFirstAt": 1670529083681,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/useLastSelection.ts",
+  "commentsInside": [],
+  "rawText": " (): string | null => {\n  // Initialize a ref to store the last selection\n  const [selection, setSelection] = useState<string | null>(null);\n\n  // Create a callback that updates the ref when the user makes a selection\n  const updateLastSelection = () => {\n    if (typeof window === \"undefined\") return null;\n\n    const newSelection = window.getSelection()?.toString() || null;\n    setSelection(newSelection);\n\n    return null;\n  };\n\n  // Add the event listener when the hook is called\n  useEffect(() => {\n    // Add the event listener to the document, so it will fire whenever the user makes a selection anywhere on the page\n    document.addEventListener(\"selectionchange\", updateLastSelection);\n\n    // Return a cleanup function that removes the event listener\n    return () => {\n      document.removeEventListener(\"selectionchange\", updateLastSelection);\n    };\n  }, []); // We only want to add the event listener once, so we pass an empty array as the second argument to useEffect\n\n  // Return the last selection\n  return selection;\n}",
+  "name": "useLastSelection",
+  "slug": "use-last-selection",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "string | null",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string | null"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1037,
+    "lines": 28,
+    "bytes": 1037,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 37,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "fezbwxntacllpcmbdyfsyauj"
+}

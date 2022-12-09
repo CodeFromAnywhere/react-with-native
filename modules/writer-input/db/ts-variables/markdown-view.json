@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385112385,
-  "updatedAt": 1669385112385,
+  "createdAt": 1670527738395,
+  "updatedAt": 1670527738395,
   "deletedAt": 0,
-  "createdFirstAt": 1669385112385,
+  "createdFirstAt": 1670527738395,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  view: \"view\" | \"presentation\";\n  markdownParse: MarkdownParse;\n  markdownParseRenderConfig: MarkdownParseRenderConfig;\n}) => {\n  const { markdownParse, markdownParseRenderConfig, view } = props;\n\n  const {\n    projectRelativeBaseFolderPath,\n    projectRelativeMarkdownFilePath,\n    augmentedWordObject,\n  } = markdownParseRenderConfig;\n  return (\n    <>\n      {view === \"view\" ? (\n        <Div className=\"mx-2\">\n          {renderMarkdownParse(markdownParse, markdownParseRenderConfig)}\n        </Div>\n      ) : null}\n\n      {view === \"presentation\" ? (\n        <Div className=\"mx-2 flex flex-1 min-h-[80vh]\">\n          {markdownParse.content ? (\n            <MarkdownParsePresentation\n              markdownParse={markdownParse}\n              augmentedWordObject={augmentedWordObject}\n              projectRelativeBaseFolderPath={projectRelativeBaseFolderPath}\n              projectRelativeMarkdownFilePath={projectRelativeMarkdownFilePath}\n            />\n          ) : (\n            \"Couldn't find any content\"\n          )}\n        </Div>\n      ) : null}\n    </>\n  );\n}",
   "description": "",
-  "id": "cfkhfdjsaktyemowlqwcwxpj"
+  "id": "ojldpvevcfmmqboqjqrfhkwg"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669962262979,
+  "updatedAt": 1669962262979,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962262979,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "markdownParseToShortMarkdown",
+  "slug": "markdown-parse-to-short-markdown",
+  "operationRelativeTypescriptFilePath": "src/markdownParseToShortMarkdown.ts",
+  "type": {
+    "rawType": "(markdownParse: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse) => import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/short-markdown/short-markdown-types/build/ShortMarkdown\").ShortMarkdown | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  markdownParse: MarkdownParse\n): ShortMarkdown | undefined => {\n  if (!markdownParse.content) return;\n\n  // TODO: Make a nested function for this that actually works... -.-\n  const paragraphs: { title?: string; paragraph: string }[] =\n    markdownParse.content?.[0]?.children?.map((child) => {\n      return {\n        title: child.title,\n        paragraph:\n          child.content || child.children?.[0]?.content || \"No content\",\n      };\n    }) || [];\n\n  const audioWithViewsArray = paragraphs\n    .map((p, index) => {\n      const viewSlides = findAudioWithViewsArray(p.paragraph, index, p.title);\n      return viewSlides;\n    })\n    .flat()\n    // No empty items\n    .filter((x) => x.audioPath || x.viewEmbeds.length > 0);\n\n  const shortMarkdown: ShortMarkdown = {\n    // Can add this option later\n    backgroundMusicTrack: [],\n    audioWithViewsArray,\n  };\n\n  return shortMarkdown;\n}",
+  "description": "",
+  "id": "vdartmgsmshhfnjeidppotid"
+}

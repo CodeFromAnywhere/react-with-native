@@ -1,0 +1,98 @@
+{
+  "createdAt": 1669884001636,
+  "updatedAt": 1669884001636,
+  "deletedAt": 0,
+  "createdFirstAt": 1669884001636,
+  "id": "viewembed",
+  "name": "ViewEmbed",
+  "slug": "viewembed",
+  "operationRelativeTypescriptFilePath": "src/AudioWithViews.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type ViewEmbed = {\n  /**\n   * Unique key for the belonging audio, used to find the desired audio\n   */\n  audioKey?: string;\n  /**\n   * Either viewPath or title is required\n   */\n  title?: string;\n  /**\n   * Either viewPath or title is required\n   */\n  viewPath?: string;\n\n  /**\n   * Text in the alt of the image or video, but only if the alt is wrapped in quotes (e.g. \"your spoken text\"). Can be parsed into an audio and subtitles, and also a duration.\n   */\n  spokenText?: string;\n  /**\n   * Added afterwards\n   */\n  durationMs?: number;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "audioKey": {
+          "type": "string",
+          "description": "Unique key for the belonging audio, used to find the desired audio"
+        },
+        "title": {
+          "type": "string",
+          "description": "Either viewPath or title is required"
+        },
+        "viewPath": {
+          "type": "string",
+          "description": "Either viewPath or title is required"
+        },
+        "spokenText": {
+          "type": "string",
+          "description": "Text in the alt of the image or video, but only if the alt is wrapped in quotes (e.g. \"your spoken text\"). Can be parsed into an audio and subtitles, and also a duration."
+        },
+        "durationMs": {
+          "type": "number",
+          "description": "Added afterwards"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "audioKey",
+          "required": false,
+          "schema": {
+            "fullComment": "Unique key for the belonging audio, used to find the desired audio",
+            "type": "string"
+          }
+        },
+        {
+          "name": "title",
+          "required": false,
+          "schema": {
+            "fullComment": "Either viewPath or title is required",
+            "type": "string"
+          }
+        },
+        {
+          "name": "viewPath",
+          "required": false,
+          "schema": {
+            "fullComment": "Either viewPath or title is required",
+            "type": "string"
+          }
+        },
+        {
+          "name": "spokenText",
+          "required": false,
+          "schema": {
+            "fullComment": "Text in the alt of the image or video, but only if the alt is wrapped in quotes (e.g. \"your spoken text\"). Can be parsed into an audio and subtitles, and also a duration.",
+            "type": "string"
+          }
+        },
+        {
+          "name": "durationMs",
+          "required": false,
+          "schema": {
+            "fullComment": "Added afterwards",
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ViewEmbed",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

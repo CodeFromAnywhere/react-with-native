@@ -1,0 +1,47 @@
+{
+  "createdAt": 1670216330992,
+  "updatedAt": 1670216330992,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216330992,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getOrGenerateShortMarkdown.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  projectRelativeMarkdownFilePath: string\n): Promise<ShortMarkdown | null> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return null;\n\n  const absoluteFilePath = path.join(\n    projectRoot,\n    projectRelativeMarkdownFilePath\n  );\n\n  const fileParse = path.parse(absoluteFilePath);\n\n  const indexFilePath = path.join(fileParse.dir, `${fileParse.name}.json`);\n\n  if (!fs.existsSync(indexFilePath)) {\n    const shortMarkdown = await generateAugmentedShortMarkdown(\n      projectRelativeMarkdownFilePath\n    );\n\n    return shortMarkdown || null;\n  }\n\n  const shortMarkdown = await readJsonFile<ShortMarkdown>(indexFilePath);\n\n  return shortMarkdown;\n}",
+  "name": "getOrGenerateShortMarkdown",
+  "slug": "get-or-generate-short-markdown",
+  "parameters": [
+    {
+      "name": "projectRelativeMarkdownFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/short-markdown/short-markdown-types/build/ShortMarkdown\").ShortMarkdown | null>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 676,
+    "lines": 27,
+    "bytes": 676,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 27,
+    "numberOfFiles": 1
+  },
+  "id": "lhazfehljomjgvjxvngmljqn"
+}

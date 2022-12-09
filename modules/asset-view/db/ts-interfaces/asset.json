@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384249291,
-  "updatedAt": 1669384249291,
+  "createdAt": 1670526894650,
+  "updatedAt": 1670526894650,
   "deletedAt": 0,
-  "createdFirstAt": 1669384249291,
+  "createdFirstAt": 1670526894650,
   "id": "asset",
   "name": "Asset",
   "slug": "asset",
@@ -41,6 +41,10 @@
           "type": "string",
           "description": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to"
         },
+        "absoluteUrl": {
+          "type": "string",
+          "description": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project"
+        },
         "blobPath": {
           "type": "string",
           "description": "path to the local blob if uploading"
@@ -48,10 +52,6 @@
         "type": {
           "$ref": "#/definitions/AssetType",
           "description": "can be calculated from the path, or come directly from the blob"
-        },
-        "absoluteUrl": {
-          "type": "string",
-          "description": "Can be available in case it's an asset from an external source URL for example within md."
         },
         "originalFilename": {
           "type": "string",
@@ -140,6 +140,14 @@
           }
         },
         {
+          "name": "absoluteUrl",
+          "required": false,
+          "schema": {
+            "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+            "type": "string"
+          }
+        },
+        {
           "name": "blobPath",
           "required": false,
           "schema": {
@@ -159,14 +167,6 @@
               "other"
             ],
             "fullComment": "can be calculated from the path, or come directly from the blob\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
-            "type": "string"
-          }
-        },
-        {
-          "name": "absoluteUrl",
-          "required": false,
-          "schema": {
-            "fullComment": "Can be available in case it's an asset from an external source URL for example within md.",
             "type": "string"
           }
         },

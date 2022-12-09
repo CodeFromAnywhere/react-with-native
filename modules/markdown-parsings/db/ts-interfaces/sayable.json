@@ -1,18 +1,18 @@
 {
-  "createdAt": 1669200459612,
-  "updatedAt": 1669200459612,
+  "createdAt": 1670590060167,
+  "updatedAt": 1670590060167,
   "deletedAt": 0,
-  "createdFirstAt": 1669200459612,
+  "createdFirstAt": 1670590060167,
   "id": "sayable",
   "name": "Sayable",
   "slug": "sayable",
   "operationRelativeTypescriptFilePath": "src/expose/sayablesToMp3.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\nexport type Sayable = {\n  sayableText?: string;\n  voiceFileRelativePath?: string;\n};",
+  "rawText": "/**\nGOAL:\n- distribute read only (and audio only) material of my codebase\n- it is also a fundament for other applications in the future\n */\n\nexport type Sayable = {\n  sayableText?: string;\n  voiceFileRelativePath?: string;\n};",
   "extensions": [],
   "isOperationIndex": false,
-  "description": "",
+  "description": "GOAL:\n- distribute read only (and audio only) material of my codebase\n- it is also a fundament for other applications in the future",
   "isDbModel": false,
   "commentsInside": [],
   "type": {
@@ -26,9 +26,11 @@
           "type": "string"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "GOAL:\n- distribute read only (and audio only) material of my codebase\n- it is also a fundament for other applications in the future"
     },
     "simplifiedSchema": {
+      "fullComment": "GOAL:\n- distribute read only (and audio only) material of my codebase\n- it is also a fundament for other applications in the future",
       "properties": [
         {
           "name": "sayableText",

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528580314,
+  "updatedAt": 1670528580314,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528580314,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useContextMenu",
+  "slug": "use-context-menu",
+  "operationRelativeTypescriptFilePath": "src/useContextMenu.tsx",
+  "type": {
+    "rawType": "(props: { items: import(\"/Users/king/King/operations/tools/user-interfaces/gui/dumb/context-menu/src/types\").ContextMenuItem[]; longTouchDurationMs?: number | undefined; className?: string | undefined; itemClassName?: string | undefined; customItemRender?: ((contextMenuItem: import(\"/Users/king/King/operations/tools/user-interfaces/gui/dumb/context-menu/src/types\").ContextMenuItem, index: number, onClose: () => any, id: string | undefined) => JSX.Element | null) | undefined; }) => { renderContextMenu: () => JSX.Element | null; openContextMenuProps: { ref: React.RefObject<HTMLDivElement>; onContextMenu: (event: React.MouseEvent<Element, MouseEvent>) => void; onTouchStart: (event: React.TouchEvent<Element>) => void; onTouchEnd: () => void; onClick: (mouseEvent: React.MouseEvent<Element, MouseEvent>) => void; style: React.CSSProperties; }; onClose: () => void; isOpen: boolean; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  items: ContextMenuItem[];\n  longTouchDurationMs?: number;\n  /**\n   * Customise the container class\n   */\n  className?: string;\n\n  /**\n   * Customise the contextMenuItem className\n   *\n   * Example:\n   *\n   * `select-none cursor-pointer lg:hover:bg-blue-300 py-2 px-4`\n   */\n  itemClassName?: string;\n  /**\n   * \n   * Overwrite the default item using this custom renderer:\n   * \n   * Example:\n   * \n   * ```tsx\n  customItemRender={(\n    contextMenuItem,\n    index,\n    onClose,\n    id\n  ) => (\n      <P\n        onClick={() => {\n          contextMenuItem.onClick(id);\n          onClose();\n        }}\n        className=\"select-none cursor-pointer lg:hover:bg-blue-300 py-2 px-4\"\n        key={`menu${index}`}\n      >\n        {contextMenuItem.getTitle(id)}\n      </P>)}\n              \n   * ```\n   */\n  customItemRender?: (\n    contextMenuItem: ContextMenuItem,\n    index: number,\n    onClose: () => any,\n    id: string | undefined\n  ) => JSX.Element | null;\n}) => {\n  const {\n    items,\n    longTouchDurationMs,\n    className,\n    customItemRender,\n    itemClassName,\n  } = props;\n  const {\n    renderContextPopper: renderContextMenu,\n    openContextPopperProps: openContextMenuProps,\n    onClose,\n    isOpen,\n  } = useContextPopper({\n    longTouchDurationMs,\n    renderPopper: (props) => {\n      const { id } = props;\n      return (\n        <Div\n          className={\n            // className ||\n            \"bg-white dark:bg-gray-700 border border-black h-40 overflow-y-scroll\"\n          }\n        >\n          {items\n            .filter((x) => (x.getIsEnabled ? x.getIsEnabled(id) : true))\n            .map((contextMenuItem, index) => {\n              if (customItemRender) {\n                return customItemRender(contextMenuItem, index, onClose, id);\n              }\n\n              return (\n                <ContextMenuItemComponent\n                  id={id}\n                  item={contextMenuItem}\n                  key={`menuItem${index}`}\n                  onClose={onClose}\n                  itemClassName={itemClassName}\n                />\n              );\n            })}\n        </Div>\n      );\n    },\n  });\n\n  return { renderContextMenu, openContextMenuProps, onClose, isOpen };\n}",
+  "description": "Use this if you want to render a context menu where the menu closes if you click one of the items.\n\nOptionally, you can create a custom renderer for it.",
+  "id": "dzgmrnqdetnydzrduslmtmzg"
+}

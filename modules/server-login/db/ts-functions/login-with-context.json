@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669385333517,
-  "updatedAt": 1669385333517,
+  "createdAt": 1670528492379,
+  "updatedAt": 1670528492379,
   "deletedAt": 0,
-  "createdFirstAt": 1669385333517,
+  "createdFirstAt": 1670528492379,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/loginWithContext.ts",
   "commentsInside": [],
-  "rawText": " async (\n  functionContext: FunctionContext\n): Promise<{ isSuccessful: boolean; message: string }> => {\n  const { device } = functionContext;\n  const { persons, message } = await findLoggedinPersonsWithContext(\n    functionContext\n  );\n\n  const personIds = persons?.map((x) => x.id);\n\n  const updateResult = await db.update(\n    \"Device\",\n    (item) => item.id === device.id,\n    (old) => ({ ...old, personIds })\n  );\n\n  const isSuccessful =\n    !!updateResult.isSuccesful && updateResult.amountUpdated === 1;\n\n  return {\n    isSuccessful,\n    message: isSuccessful\n      ? \"Logged in\"\n      : updateResult.message || \"Something went wrong\",\n  };\n}",
+  "rawText": " async (\n  functionContext: FunctionContext\n): Promise<{ isSuccessful: boolean; message: string }> => {\n  const { device } = functionContext;\n  const findPersonsResult = await findLoggedinPersonsWithContext(\n    functionContext\n  );\n\n  if (!findPersonsResult.isSuccessful) {\n    return {\n      isSuccessful: findPersonsResult.isSuccessful,\n      message: findPersonsResult.message,\n    };\n  }\n\n  const personIds = findPersonsResult.persons?.map((x) => x.id);\n\n  const updateResult = await db.update(\n    \"Device\",\n    (item) => item.id === device.id,\n    (old) => ({ ...old, personIds })\n  );\n\n  const isSuccessful = updateResult.isSuccesful || false;\n\n  return {\n    isSuccessful,\n    message: isSuccessful\n      ? \"Logged in\"\n      : updateResult.message || \"Something went wrong (weird)\",\n  };\n}",
   "name": "loginWithContext",
   "slug": "login-with-context",
   "parameters": [
@@ -3013,6 +3013,14 @@
                                 "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                                 "type": "string"
                               }
+                            },
+                            {
+                              "name": "absoluteUrl",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                                "type": "string"
+                              }
                             }
                           ],
                           "type": "object"
@@ -3289,6 +3297,14 @@
                                     "required": false,
                                     "schema": {
                                       "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "credential",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "original credential. should only be available on the device, not on the person",
                                       "type": "string"
                                     }
                                   },
@@ -3605,6 +3621,14 @@
                               "required": false,
                               "schema": {
                                 "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "credential",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "original credential. should only be available on the device, not on the person",
                                 "type": "string"
                               }
                             },
@@ -4187,13 +4211,13 @@
   },
   "maxIndentationDepth": 3,
   "size": {
-    "characters": 887,
-    "lines": 26,
-    "bytes": 887,
+    "characters": 1037,
+    "lines": 32,
+    "bytes": 1037,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 34,
-    "linesPerFile": 26,
+    "charactersPerLine": 32,
+    "linesPerFile": 32,
     "numberOfFiles": 1
   },
-  "id": "uwmehylekubvkapkutbpphoj"
+  "id": "lwnebnykjmswifoemfgyrzei"
 }

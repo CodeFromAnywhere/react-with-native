@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669639117219,
-  "updatedAt": 1669639117219,
+  "createdAt": 1670063674707,
+  "updatedAt": 1670063674707,
   "deletedAt": 0,
-  "createdFirstAt": 1669639117219,
+  "createdFirstAt": 1670063674707,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (config: {\n  projectRoot: string;\n  webPages: WebPage<any>[];\n  queryPath: string;\n  contentPage: ReaderWebPage;\n  webOperationName: string;\n  markdownCallToActions: MarkdownCallToAction[];\n}): Promise<{\n  markdownFile: WebMarkdownFile | null;\n  nextQueryPath: string | null;\n  previousQueryPath: string | null;\n  projectRelativeMarkdownPath: string | null;\n}> => {\n  console.log({ config });\n\n  const {\n    contentPage,\n    markdownCallToActions,\n    projectRoot,\n    queryPath,\n    webOperationName,\n    webPages,\n  } = config;\n\n  const parentQuery = getOneFolderUpPath(queryPath);\n  const siblings = getChildren(webPages, parentQuery);\n  const thisPageKey = queryPath.split(\"/\").pop();\n  const meIndex = siblings.findIndex((sibling) => thisPageKey === sibling);\n\n  const previousFolder = siblings[meIndex - 1];\n  const previousQueryPath = previousFolder\n    ? `${parentQuery}/${previousFolder}`\n    : null;\n  const nextFolder = siblings[meIndex + 1];\n  const nextQueryPath = nextFolder ? `${parentQuery}/${nextFolder}` : null;\n\n  const absoluteMarkdownPath = contentPage.pageData?.projectRelativeFilePath\n    ? path.join(projectRoot, contentPage.pageData.projectRelativeFilePath)\n    : undefined;\n\n  console.log({ absoluteMarkdownPath });\n\n  const markdownFile = absoluteMarkdownPath\n    ? await readMarkdownFileToModel(\n        absoluteMarkdownPath,\n        webOperationName,\n        markdownCallToActions\n      )\n    : null;\n\n  const projectRelativeMarkdownPath = absoluteMarkdownPath\n    ? makeRelative(absoluteMarkdownPath, projectRoot)\n    : null;\n\n  return {\n    markdownFile,\n    nextQueryPath,\n    previousQueryPath,\n    projectRelativeMarkdownPath,\n  };\n}",
+  "value": "async (config: {\n  projectRoot: string;\n  webPages: WebPage<any>[];\n  queryPath: string;\n  contentPage: ReaderWebPage;\n  webOperationName: string;\n  markdownCallToActions: MarkdownCallToAction[];\n}): Promise<{\n  markdownFile: WebMarkdownFile | null;\n  nextQueryPath: string | null;\n  previousQueryPath: string | null;\n  projectRelativeMarkdownPath: string | null;\n}> => {\n  const {\n    contentPage,\n    markdownCallToActions,\n    projectRoot,\n    queryPath,\n    webOperationName,\n    webPages,\n  } = config;\n\n  const parentQuery = getOneFolderUpPath(queryPath);\n  const siblings = getChildren(webPages, parentQuery);\n  const thisPageKey = queryPath.split(\"/\").pop();\n  const meIndex = siblings.findIndex((sibling) => thisPageKey === sibling);\n\n  const previousFolder = siblings[meIndex - 1];\n  const previousQueryPath = previousFolder\n    ? `${parentQuery}/${previousFolder}`\n    : null;\n  const nextFolder = siblings[meIndex + 1];\n  const nextQueryPath = nextFolder ? `${parentQuery}/${nextFolder}` : null;\n\n  const absoluteMarkdownPath = contentPage.pageData?.projectRelativeFilePath\n    ? path.join(projectRoot, contentPage.pageData.projectRelativeFilePath)\n    : undefined;\n\n  const markdownFile = absoluteMarkdownPath\n    ? await readMarkdownFileToModel(\n        absoluteMarkdownPath,\n        webOperationName,\n        markdownCallToActions\n      )\n    : null;\n\n  const projectRelativeMarkdownPath = absoluteMarkdownPath\n    ? makeRelative(absoluteMarkdownPath, projectRoot)\n    : null;\n\n  return {\n    markdownFile,\n    nextQueryPath,\n    previousQueryPath,\n    projectRelativeMarkdownPath,\n  };\n}",
   "description": "If a markdown page is found, this function fetches all metadata needed to render that markdown page",
-  "id": "nwleuudryglpfbttggvedlaf"
+  "id": "flvlvxcmclrgnyrrrfvpfycn"
 }

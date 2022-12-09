@@ -1,0 +1,65 @@
+{
+  "createdAt": 1670218563687,
+  "updatedAt": 1670218563687,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218563687,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getFunctionIndex.ts",
+  "commentsInside": [],
+  "rawText": " async ({\n  functionName,\n}: {\n  functionName: string;\n}): Promise<{ success: boolean; response: string; function?: TsFunction }> => {\n  const cachedFunctions = await getCachedFunctions();\n\n  // get info about this operation\n  const functionIndex = cachedFunctions.find(\n    (fn) => fn.name === camelCase(functionName)\n  );\n\n  if (!functionIndex) {\n    return { success: false, response: \"Couldn't find function\" };\n  }\n\n  return { success: true, function: functionIndex, response: \"Found\" };\n}",
+  "name": "getFunctionIndex",
+  "slug": "get-function-index",
+  "parameters": [
+    {
+      "name": "{\n  functionName,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "functionName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "functionName"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "functionName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "finds function indexation from database\n\nTODO: this should be used!",
+  "returnType": {
+    "rawType": "Promise<{ success: boolean; response: string; function?: import(\"/Users/king/King/operations/tools/types/code-types/build/TsFunction\").TsFunction | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 561,
+    "lines": 20,
+    "bytes": 561,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "vgbrtamliwwhystnuvbssghr"
+}

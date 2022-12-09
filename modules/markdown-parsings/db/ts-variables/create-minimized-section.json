@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200448504,
-  "updatedAt": 1669200448504,
+  "createdAt": 1670590039913,
+  "updatedAt": 1670590039913,
   "deletedAt": 0,
-  "createdFirstAt": 1669200448504,
+  "createdFirstAt": 1670590039913,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "create-minimized-section",
   "operationRelativeTypescriptFilePath": "src/createMinimisedSection.ts",
   "type": {
-    "rawType": "(markdown: string | undefined, title: string, expandTitle: string) => import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse | undefined",
+    "rawType": "(markdown: string | undefined, title: string, expandTitle: string) => import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(\n  markdown: string | undefined,\n  title: string,\n  expandTitle: string\n): MarkdownParse | undefined => {\n  if (!markdown) return;\n  return mdToJsonParse(\n    createMinimizedSectionMarkdown(markdown, expandTitle),\n    title\n  );\n}",
   "description": "",
-  "id": "nehhukfuuvegopdxftqikxbp"
+  "id": "uhoyjcjemlgfmlwlycfyezwe"
 }

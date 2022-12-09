@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668334794991,
-  "updatedAt": 1668334794991,
+  "createdAt": 1669962082832,
+  "updatedAt": 1669962082832,
   "deletedAt": 0,
-  "createdFirstAt": 1668334794991,
+  "createdFirstAt": 1669962082832,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "get-paragraphs-recursively",
   "operationRelativeTypescriptFilePath": "src/getParagraphsRecursively.ts",
   "type": {
-    "rawType": "(chunk: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownChunk, categoryStackCalculatedUntilNow?: import(\"/Users/king/King/operations/tools/types/model-types/build/keyValueMarkdown\").CategoryStack | undefined) => import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParagraph[]",
+    "rawType": "(chunk: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownChunk, categoryStackCalculatedUntilNow?: import(\"/Users/king/King/operations/tools/types/model-types/build/keyValueMarkdown\").CategoryStack | undefined) => import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParagraph[]",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(\n  chunk: MarkdownChunk,\n  categoryStackCalculatedUntilNow?: CategoryStack\n): MarkdownParagraph[] => {\n  const categoryStackCalculated = categoryStackCalculatedUntilNow || [];\n  if (chunk.title) {\n    categoryStackCalculated.push(chunk.title);\n  }\n\n  const childParagraphs =\n    chunk.children\n      ?.map((childChunk) =>\n        getParagraphsRecursively(childChunk, categoryStackCalculated)\n      )\n      .flat() || [];\n\n  const thisParagraph: MarkdownParagraph = {\n    paragraph: chunk.content || \"\",\n    categoryStackCalculated,\n  };\n\n  return [thisParagraph, ...childParagraphs];\n}",
+  "value": "(\n  chunk: MarkdownChunk,\n  categoryStackCalculatedUntilNow?: CategoryStack\n): MarkdownParagraph[] => {\n  // NB: no copy!\n  const categoryStackCalculated = categoryStackCalculatedUntilNow\n    ? categoryStackCalculatedUntilNow\n    : [];\n\n  if (chunk.title) {\n    categoryStackCalculated.push(chunk.title);\n  }\n\n  const childParagraphs =\n    chunk.children\n      ?.map((childChunk) =>\n        getParagraphsRecursively(childChunk, categoryStackCalculated)\n      )\n      .flat() || [];\n\n  const thisParagraph: MarkdownParagraph = {\n    paragraph: chunk.content || \"\",\n    categoryStackCalculated,\n  };\n\n  return [thisParagraph, ...childParagraphs];\n}",
   "description": "recursively dives into the Chunk to get all paragraphs inside",
-  "id": "qnuxlaoqvdjfhkmqnfvmxwpy"
+  "id": "gmluprmmqrpovrodaaqdgpcd"
 }

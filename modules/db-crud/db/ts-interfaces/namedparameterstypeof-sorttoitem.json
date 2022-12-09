@@ -1,0 +1,80 @@
+{
+  "createdAt": 1670528939967,
+  "updatedAt": 1670528939967,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528939967,
+  "id": "namedparameterstypeof-sorttoitem",
+  "name": "NamedParameters<typeof sortToItem>",
+  "slug": "namedparameterstypeof-sorttoitem",
+  "operationRelativeTypescriptFilePath": "src/crud/sortToItem.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "sort": {
+          "$ref": "#/definitions/DatasetSort"
+        }
+      },
+      "required": [
+        "sort"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "sort",
+          "required": true,
+          "schema": {
+            "fullComment": "Sort by comparing the two values using the `Array.sort` method and Greater than and Less than operators.",
+            "properties": [
+              {
+                "name": "objectParameterKey",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "sortDirection",
+                "required": false,
+                "schema": {
+                  "enum": [
+                    "ascending",
+                    "descending"
+                  ],
+                  "fullComment": "sort normally or in reverse order",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "sortFunctionName",
+                "required": false,
+                "schema": {
+                  "fullComment": "TODO:",
+                  "todo": "",
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof sortToItem>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

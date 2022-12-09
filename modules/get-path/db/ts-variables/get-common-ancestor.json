@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055051639,
-  "updatedAt": 1669055051639,
+  "createdAt": 1670589858266,
+  "updatedAt": 1670589858266,
   "deletedAt": 0,
-  "createdFirstAt": 1669055051639,
+  "createdFirstAt": 1670589858266,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(path1: string, path2: string): string => {\n  const chunks = path1.split(\"/\");\n  const chunks2 = path2.split(\"/\");\n\n  const firstFolderMismatchIndex = chunks.findIndex((chunk, index, array) => {\n    const isMismatch = chunks2[index] !== chunk;\n\n    return isMismatch;\n  });\n\n  const commonAncestor = chunks.slice(0, firstFolderMismatchIndex).join(\"/\");\n\n  return commonAncestor;\n}",
   "description": "Finds the common ancestor for two absolute pahts",
-  "id": "ovoaluiwxmgqxvokxzsuspyw"
+  "id": "zbbyqsrhxbpsgtaihtmctyzd"
 }

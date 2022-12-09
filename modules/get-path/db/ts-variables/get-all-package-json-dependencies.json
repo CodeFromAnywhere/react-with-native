@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055048727,
-  "updatedAt": 1669055048727,
+  "createdAt": 1670589852513,
+  "updatedAt": 1670589852513,
   "deletedAt": 0,
-  "createdFirstAt": 1669055048727,
+  "createdFirstAt": 1670589852513,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  operation: Operation\n): string[] => {\n  const dependencies = operation.dependencies\n    ? Object.keys(operation.dependencies)\n    : [];\n  const devDependencies = operation.devDependencies\n    ? Object.keys(operation.devDependencies)\n    : [];\n  const peerDependencies = operation.peerDependencies\n    ? Object.keys(operation.peerDependencies)\n    : [];\n\n  return [...dependencies, ...devDependencies, ...peerDependencies];\n}",
   "description": "",
-  "id": "fdwmfwtpbhgcrhibbsvtqxza"
+  "id": "gnxpycmdcwqfekeuepeywfxh"
 }

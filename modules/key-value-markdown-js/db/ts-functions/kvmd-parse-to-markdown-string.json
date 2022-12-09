@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668334798907,
-  "updatedAt": 1668334798907,
+  "createdAt": 1669962088677,
+  "updatedAt": 1669962088677,
   "deletedAt": 0,
-  "createdFirstAt": 1668334798907,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669962088677,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/kvmdParseToMarkdownString.ts",
   "commentsInside": [],
   "rawText": " (\n  keyValueMarkdownParse: KeyValueMarkdownParse\n) => {\n  const frontmatterString = frontmatterParseToString(\n    keyValueMarkdownParse.parameters\n  );\n\n  //2 go over every row, and parse it back into the line\n  const result = keyValueMarkdownParse.data\n    .map((kvmdData, index) => {\n      const previous: KeyValueMarkdownModelType | undefined =\n        keyValueMarkdownParse.data[index - 1];\n      const string = kvmdDataToString(kvmdData, previous);\n      return string;\n    })\n    .join(\"\");\n\n  return `${frontmatterString}${result}`;\n}",
@@ -25,6 +20,16 @@
       "simplifiedSchema": {
         "fullComment": "",
         "properties": [
+          {
+            "name": "parameters",
+            "required": true,
+            "schema": {
+              "fullComment": "Our version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+              "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+              "properties": [],
+              "type": "object"
+            }
+          },
           {
             "name": "data",
             "required": true,
@@ -101,6 +106,23 @@
                         }
                       },
                       {
+                        "name": "categoryStackCalculated",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+                          "nb": "Changing this value when updating/upserting, changes where the item is located!",
+                          "items": [
+                            {
+                              "schema": {
+                                "type": "string"
+                              },
+                              "name": null
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
                         "name": "isHeaderCalculated",
                         "required": true,
                         "schema": {
@@ -147,5 +169,5 @@
     "linesPerFile": 19,
     "numberOfFiles": 1
   },
-  "id": "gdxjbwxvokdkgzptxrxaatvj"
+  "id": "agfgbboahhpazyxucxgwadoo"
 }

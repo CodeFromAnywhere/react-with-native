@@ -1,14 +1,11 @@
 {
-  "createdAt": 1668449028144,
-  "updatedAt": 1668449028144,
+  "createdAt": 1670590312689,
+  "updatedAt": 1670590312689,
   "deletedAt": 0,
-  "createdFirstAt": 1668449028144,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
+  "createdFirstAt": 1670590312689,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/findAndWriteImportsExports.test.ts",
   "commentsInside": [],
   "rawText": " async () => {\n  const operationBasePath = await getOperationPath(\"rebuild-operation\");\n  if (!operationBasePath) {\n    console.log(\"Couldn't find that path\");\n    return;\n  }\n  await findAndWriteImportsExports(operationBasePath);\n  console.log(\"DONE\");\n}",
@@ -35,5 +32,5 @@
     "linesPerFile": 9,
     "numberOfFiles": 1
   },
-  "id": "uwwlcgshsiokbscriloysaqu"
+  "id": "ohrfhexywlzhcdwhfhoqruae"
 }

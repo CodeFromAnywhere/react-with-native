@@ -1,0 +1,40 @@
+{
+  "createdAt": 1670528884636,
+  "updatedAt": 1670528884636,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528884636,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/IndexInstanceContainer.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  title,\n  children,\n  buttons,\n}: {\n  title: string;\n  children: any;\n  buttons: LabeledButtonType[];\n}) => {\n  return (\n    <Div className=\"p-2 m-2 border rounded-xl border-gray-500\">\n      <Div className=\"flex flex-row justify-between items-center\">\n        <P className=\"text-3xl\">{title}</P>\n\n        <Div className=\"flex flex-row gap-3\">{buttons.map(LabeledButton)}</Div>\n      </Div>\n\n      {children}\n    </Div>\n  );\n}",
+  "name": "IndexInstanceContainer",
+  "slug": "index-instance-container",
+  "parameters": [],
+  "description": "container for any index instance that needs to be rendered in the explore page",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 508,
+    "lines": 21,
+    "bytes": 508,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 21,
+    "numberOfFiles": 1
+  },
+  "id": "tiacxwvoxnyaqynicxcpemoq"
+}

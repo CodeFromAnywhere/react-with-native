@@ -1,3 +1,4 @@
+export * from "./CommitInfo";
 export * from "./Dataset";
 export * from "./DbStorageMethod";
 export * from "./FolderExploration";
@@ -8,6 +9,7 @@ export * from "./FunctionParameter";
 export * from "./Menu";
 export * from "./Operation";
 export * from "./OperationClassification";
+export * from "./OperationRepositoryInfo";
 export * from "./ParameterName";
 export * from "./PathMetaData";
 export * from "./SimplifiedSchema";

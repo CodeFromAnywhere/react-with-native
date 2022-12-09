@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668150645704,
-  "updatedAt": 1668150645704,
+  "createdAt": 1670590331361,
+  "updatedAt": 1670590331361,
   "deletedAt": 0,
-  "createdFirstAt": 1668150645704,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670590331361,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/writeResult.ts",
   "commentsInside": [],
-  "rawText": " async (options: {\n  operationName: string;\n  success: boolean;\n  message: string;\n  manualProjectRoot?: string;\n}) => {\n  const { message, operationName, success, manualProjectRoot } = options;\n\n  if (!success) {\n    log(`Couldn't write imports/exports.`);\n\n    await db.update(\n      \"OperationIndex\",\n      () => true,\n      (operationIndex) => ({\n        ...operationIndex,\n        indexImportExportError: message,\n      }),\n      { operationName, manualProjectRoot }\n    );\n\n    return false;\n  }\n}",
+  "rawText": " async (options: {\n  operationName: string;\n  success: boolean;\n  message: string;\n  manualProjectRoot?: string;\n}) => {\n  const { message, operationName, success, manualProjectRoot } = options;\n\n  if (!success) {\n    log(`Couldn't write imports/exports.`);\n\n    await db.update(\n      \"Operation\",\n      () => true,\n      (old) =>\n        mergeNestedObject(old, {\n          operation: {\n            buildResultIndexed: { indexImportExportError: message },\n          },\n        }),\n      { operationName, manualProjectRoot }\n    );\n\n    return false;\n  }\n}",
   "name": "writeResult",
   "slug": "write-result",
   "parameters": [
@@ -88,15 +83,15 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "maxIndentationDepth": 4,
+  "maxIndentationDepth": 6,
   "size": {
-    "characters": 503,
-    "lines": 24,
-    "bytes": 503,
+    "characters": 556,
+    "lines": 26,
+    "bytes": 556,
     "bytesPerCharacter": 1,
     "charactersPerLine": 21,
-    "linesPerFile": 24,
+    "linesPerFile": 26,
     "numberOfFiles": 1
   },
-  "id": "oxiqpdzvrducfzfsvhxoidgf"
+  "id": "iigxkxtmklswddvuebyfliup"
 }

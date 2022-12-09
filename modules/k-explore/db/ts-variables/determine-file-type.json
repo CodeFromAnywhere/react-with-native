@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668976641051,
-  "updatedAt": 1668976641051,
+  "createdAt": 1670216116716,
+  "updatedAt": 1670216116716,
   "deletedAt": 0,
-  "createdFirstAt": 1668976641051,
+  "createdFirstAt": 1670216116716,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "determine-file-type",
   "operationRelativeTypescriptFilePath": "src/explore.ts",
   "type": {
-    "rawType": "(filePath: string) => any",
+    "rawType": "(filePath: string) => import(\"/Users/king/King/operations/tools/conventions/filename-conventions/build/extensions\").FileType | null",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(filePath: string) => {\n  const extension = path.parse(filePath).ext.substring(1);\n  if (!isSearchContentExtension(extension)) return null;\n  const index = fileTypes.findIndex((fileType) =>\n    extensions[fileType].includes(extension)\n  );\n  const fileType = fileTypes[index];\n  return fileType;\n}",
+  "value": "(filePath: string): FileType | null => {\n  const extension = path.parse(filePath).ext.substring(1);\n  if (!isSearchContentExtension(extension)) return null;\n  const index = fileTypes.findIndex((fileType) =>\n    extensions[fileType].includes(extension)\n  );\n  const fileType = fileTypes[index];\n  return fileType;\n}",
   "description": "returns the file type or null if it's unknown",
-  "id": "xfbadyubygjbwyeuhnkxiqlc"
+  "id": "enbqsahgrkrggcosruzqfclp"
 }

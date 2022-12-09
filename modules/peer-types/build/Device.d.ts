@@ -5,6 +5,7 @@ import { IPInfo } from "./IPInfo";
 import { AuthenticationMethod } from "./AuthenticationMethjod";
 import { IResult } from "./external/ua-parser-js";
 /**
+ *
  A Device that accesses any King OS api.
 
  A device can be connected to a person. A person can have multiple `Device`s.

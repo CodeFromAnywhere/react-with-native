@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055705235,
-  "updatedAt": 1669055705235,
+  "createdAt": 1670590375514,
+  "updatedAt": 1670590375514,
   "deletedAt": 0,
-  "createdFirstAt": 1669055705235,
+  "createdFirstAt": 1670590375514,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(config: {\n  command: string;\n  cwd?: string;\n  /**\n   * if given, will show what is happening and a checkmark if it succeeds\n   */\n  description?: string;\n}): boolean => {\n  const { command, cwd, description } = config;\n  if (description) {\n    process.stdout.write(`${description} `);\n  }\n\n  try {\n    const result = execSync(command, {\n      cwd,\n      encoding: \"utf8\",\n      stdio: \"pipe\",\n    });\n\n    if (description) console.log(\"✅\");\n\n    return true;\n  } catch (e: any) {\n    if (description) console.log(\"❌\");\n    const error: {\n      status: number;\n      signal: any;\n      output: (string | null)[];\n      pid: number;\n      stdout: string;\n      stderr: string;\n    } = e;\n    console.log(`${command} went wrong:`, error?.stdout);\n\n    return false;\n  }\n}",
   "description": "Executes a command without showing the result, unless the command fails, then it will log the output.,",
-  "id": "ijivvczhapvvomxsegxbgwia"
+  "id": "crgdhnafteffhiibvxriyvln"
 }

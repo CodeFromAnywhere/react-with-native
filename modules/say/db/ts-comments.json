@@ -1,0 +1,20 @@
+[
+  {
+    "createdAt": 1669962594453,
+    "updatedAt": 1669962594453,
+    "deletedAt": 0,
+    "createdFirstAt": 1669962594453,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/saySomething.ts",
+    "comment": "TODO: do research what else is out there\n\nsay [-v voice] [-r rate] [-o outfile [aud\nio format options] | -n name:port | -a device] [-f f\nile | string ...]\n\nDESCRIPTION\nThis tool uses the Speech Synthesis manager\nto convert input text to audible speech and\neither play it through the sound output\ndevice chosen in System Preferences or save\nit to an AIFF file.\n\n\nfor usage, see `man say`",
+    "rawStatement": "export const saySomething = async (\n  input: string | SayOptions\n): Promise<void> => {\n  const paramKeys =\n    typeof input === \"string\"\n      ? null\n      : (Object.keys(input) as (keyof SayOptions)[]);\n\n  const params =\n    typeof input === \"string\"\n      ? null\n      : paramKeys?.reduce((all, key) => {\n          const value = input[key];\n\n          if (value === undefined) {\n            return all;\n          }\n\n          if (key === \"message\") {\n            return `${all} \"${value}\"`;\n          }\n\n          return `${all} --${shorthands[key]}=${String(value)}`;\n        }, \"\");\n\n  const spawnInput = typeof input === \"string\" ? input : (params as string);\n\n  const result = execSync(`say ${spawnInput}`, { stdio: \"inherit\" });\n\n  return;\n  // const res= spawn(`say ${spawnInput}`, {shell:true})\n  // res.\n};",
+    "parameters": {},
+    "types": [
+      "todo"
+    ],
+    "firstLine": 40,
+    "lastLine": 56,
+    "id": "ecczmzaobcwemuryzqppcviz"
+  }
+]

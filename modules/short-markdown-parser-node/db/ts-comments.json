@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1670216331257,
+    "updatedAt": 1670216331257,
+    "deletedAt": 0,
+    "createdFirstAt": 1670216331257,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/getOrGenerateShortMarkdown.ts",
+    "comment": "",
+    "rawStatement": "export const getOrGenerateShortMarkdown = async (\n  projectRelativeMarkdownFilePath: string\n): Promise<ShortMarkdown | null> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return null;\n\n  const absoluteFilePath = path.join(\n    projectRoot,\n    projectRelativeMarkdownFilePath\n  );\n\n  const fileParse = path.parse(absoluteFilePath);\n\n  const indexFilePath = path.join(fileParse.dir, `${fileParse.name}.json`);\n\n  if (!fs.existsSync(indexFilePath)) {\n    const shortMarkdown = await generateAugmentedShortMarkdown(\n      projectRelativeMarkdownFilePath\n    );\n\n    return shortMarkdown || null;\n  }\n\n  const shortMarkdown = await readJsonFile<ShortMarkdown>(indexFilePath);\n\n  return shortMarkdown;\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 6,
+    "lastLine": 8,
+    "id": "wyjvnbmazrfybiqnhwqyswrc"
+  }
+]

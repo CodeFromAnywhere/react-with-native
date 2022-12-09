@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668332411661,
-  "updatedAt": 1668332411661,
+  "createdAt": 1670216173916,
+  "updatedAt": 1670216173916,
   "deletedAt": 0,
-  "createdFirstAt": 1668332411661,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670216173916,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/filename-conventions.ts",
   "commentsInside": [],
   "rawText": " (fileId: string): boolean => {\n  const isOperationName = hasSubExtension(\n    fileId,\n    operationUnindexableNamesOrSubExtensions,\n    true\n  );\n\n  const isFrontendOptionalName = hasSubExtension(\n    fileId,\n    frontendOptionalFileSubExtensions,\n    false\n  );\n\n  const isIndex = fileId === \"index\";\n\n  const isIndexable = !isIndex && !isFrontendOptionalName && !isOperationName;\n\n  return isIndexable;\n}",
@@ -57,5 +52,5 @@
     "linesPerFile": 19,
     "numberOfFiles": 1
   },
-  "id": "kdyrkroatdeazjkshfdwctvy"
+  "id": "ovxjfohssazcimvoqmnhpzqi"
 }

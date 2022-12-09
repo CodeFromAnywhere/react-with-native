@@ -1,0 +1,76 @@
+{
+  "createdAt": 1670589802324,
+  "updatedAt": 1670589802324,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589802324,
+  "id": "namedparameterstypeof-getcontextualprompt",
+  "name": "NamedParameters<typeof getContextualPrompt>",
+  "slug": "namedparameterstypeof-getcontextualprompt",
+  "operationRelativeTypescriptFilePath": "src/getContextualPrompt.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "contextualPromptSlug": {
+          "type": "string"
+        },
+        "customPromptContent": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "saveNewPromptWithName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "customPromptContent",
+        "saveNewPromptWithName"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "contextualPromptSlug",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "customPromptContent",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "saveNewPromptWithName",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getContextualPrompt>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

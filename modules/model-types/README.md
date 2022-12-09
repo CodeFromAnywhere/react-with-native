@@ -6,19 +6,6 @@ model-types (`OperationClassification` cjs)
 
 # Api reference
 
-## 🔹 AugmentedAnyModelType
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-
-
-
 ## 🔹 DefaultModelType
 
 Use this model by default
@@ -43,15 +30,16 @@ Properties:
 
 
 
-## generateId()
+## 🔹 AugmentedAnyModelType
 
-24 characters of the alphabet provides 9E33 combinations, wont be possible to brute-force in centuries, even if there are billions of entries
+Properties: 
 
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `String`   |    |
+ | Name | Type | Description |
+|---|---|---|
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
 
 
 
@@ -100,20 +88,16 @@ We can always migrate later to a bigger amount, but I don't see good reason to k
 
 
 
-## 🔹 Slug
-
-use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.
-
-
-
-
-
-
-
-
-## 📄 generateId (exported const)
+## generateId()
 
 24 characters of the alphabet provides 9E33 combinations, wont be possible to brute-force in centuries, even if there are billions of entries
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `String`   |    |
+
 
 
 ## 🔸 SlugModelType
@@ -147,6 +131,22 @@ Properties:
 
 
 
+## 📄 generateId (exported const)
+
+24 characters of the alphabet provides 9E33 combinations, wont be possible to brute-force in centuries, even if there are billions of entries
+
+
+## 🔹 Slug
+
+use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.
+
+
+
+
+
+
+
+
 ## 🔹 KeyValueMarkdownModelType
 
 handy model type for storing stuff in a KeyValue Markdown file.
@@ -174,6 +174,17 @@ Properties:
 | operationRelativePath (optional) | string |  |
 | categoryStackCalculated  | array |  |
 | isHeaderCalculated  | boolean |  |
+
+
+
+## 🔹 Markdown
+
+a string that is known to contain markdown.
+
+
+
+
+
 
 
 
@@ -210,27 +221,12 @@ Properties:
 
 
 
-## 🔹 Markdown
+## generateRandomString()
 
-a string that is known to contain markdown.
-
-
-
-
-
-
-
-
-## 🔹 CategoryStack
-
-Taken from the location in the folder of the db-model.
-
-NB: Changing this value when updating/upserting, changes where the item is located!
-
-- null: string
-
-
-
+| Input      |    |    |
+| ---------- | -- | -- |
+| length | number |  |
+| **Output** | `String`   |    |
 
 
 
@@ -245,58 +241,7 @@ all currently supported languages
 
 
 
-## generateRandomString()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| length | number |  |
-| **Output** | `String`   |    |
-
-
-
-## 🔹 ModelLocation
-
-Parameters that tell you about the location an instance of a model.
-Models can be tied to an operation. They always have a `projectRelativePath`, and if they are tied to an operation, also an `operationRelativePath`.
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-
-
-
 ## 📄 generateRandomString (exported const)
-
-## 🔹 AnyModelType
-
-Parameters that every model will always have.
-
-NB: TimeTypes (createdAt, updatedAt, etc.) are not always included because the kvmd-model doesn't have them.
-
-NB: RelationTypes are also not always included for the same reason
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-
-
 
 ## 🔹 Price
 
@@ -323,18 +268,43 @@ First we need to start making sales before we can add such complexity.
 
 
 
-## 🔹 Json
+## 🔹 AnyModelType
 
-## 🔹 KeyValueMarkdownParse
+Parameters that every model will always have.
+
+NB: TimeTypes (createdAt, updatedAt, etc.) are not always included because the kvmd-model doesn't have them.
+
+NB: RelationTypes are also not always included for the same reason
+
+
+
+
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| parameters  | object |  |
-| data  | array |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
 
 
+
+## 🔹 CategoryStack
+
+Taken from the location in the folder of the db-model.
+
+NB: Changing this value when updating/upserting, changes where the item is located!
+
+- null: string
+
+
+
+
+
+
+## 🔹 Json
 
 ## 🔹 CsvModelType
 
@@ -361,9 +331,21 @@ Properties:
 
 
 
-## 🔹 DbFileLocation
+## 🔹 KeyValueMarkdownParse
 
-Object used to hand over all information about the location of a db-file in a structured way
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| parameters  | object |  |
+| data  | array |  |
+
+
+
+## 🔹 ModelLocation
+
+Parameters that tell you about the location an instance of a model.
+Models can be tied to an operation. They always have a `projectRelativePath`, and if they are tied to an operation, also an `operationRelativePath`.
 
 
 
@@ -373,8 +355,6 @@ Properties:
 
  | Name | Type | Description |
 |---|---|---|
-| absolutePath  | string |  |
-| modelName  | string |  |
 | operationName  | null |  |
 | projectRelativePath  | string |  |
 | operationRelativePath (optional) | string |  |
@@ -412,7 +392,12 @@ Properties:
 
 
 
-## 🔹 CategoryModelType
+## 🔸 CategoryModelType
+
+keyValueMarkdown model
+
+
+
 
 TODO: make this be able to hold more than just the KV. If that's not really needed just throw this away...
 
@@ -445,6 +430,26 @@ Properties:
 
 ## 🔹 Credit
 
+## 🔹 DbFileLocation
+
+Object used to hand over all information about the location of a db-file in a structured way
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| absolutePath  | string |  |
+| modelName  | string |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+
+
+
 ## 🔹 Text
 
 text can be in multiple formats.
@@ -457,15 +462,6 @@ if there is a data model with just a single text and it is clear from the name o
 
 
 
-
-
-
-## markdownModelTypeToMarkdownString()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `String`   |    |
 
 
 
@@ -499,12 +495,9 @@ country code without +
 
 
 
-
-## 📄 markdownModelTypeToMarkdownString (exported const)
-
 # Internal
 
-<details><summary>Show internal (17)</summary>
+<details><summary>Show internal (19)</summary>
     
   # generatePassword()
 
@@ -526,6 +519,15 @@ country code without +
 | ---------- | -- | -- |
 | - | | |
 | **Output** | {  }   |    |
+
+
+
+## markdownModelTypeToMarkdownString()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `String`   |    |
 
 
 
@@ -666,5 +668,9 @@ valid url, can be validated
 ## 📄 languages (exported const)
 
 keys are the iso codes which will be saved in the db, the values are values which can be shown to the user in any UI
+
+
+## 📄 markdownModelTypeToMarkdownString (exported const)
+
   </details>
 

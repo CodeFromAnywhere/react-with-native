@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384241556,
-  "updatedAt": 1669384241556,
+  "createdAt": 1670526876392,
+  "updatedAt": 1670526876392,
   "deletedAt": 0,
-  "createdFirstAt": 1669384241556,
+  "createdFirstAt": 1670526876392,
   "id": "namedparameterstypeof-assetview",
   "name": "NamedParameters<typeof AssetView>",
   "slug": "namedparameterstypeof-assetview",
@@ -27,15 +27,15 @@
               "type": "string"
             },
             "projectRelativeReferencingFilePath": {
-              "type": "string"
+              "type": "string",
+              "description": "Must be provided for relative assets to know the location"
             },
             "hideDownloadLink": {
               "type": "boolean"
             }
           },
           "required": [
-            "asset",
-            "projectRelativeReferencingFilePath"
+            "asset"
           ],
           "additionalProperties": false
         }
@@ -109,6 +109,14 @@
                       }
                     },
                     {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                        "type": "string"
+                      }
+                    },
+                    {
                       "name": "blobPath",
                       "required": false,
                       "schema": {
@@ -128,14 +136,6 @@
                           "other"
                         ],
                         "fullComment": "can be calculated from the path, or come directly from the blob\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
-                        "type": "string"
-                      }
-                    },
-                    {
-                      "name": "absoluteUrl",
-                      "required": false,
-                      "schema": {
-                        "fullComment": "Can be available in case it's an asset from an external source URL for example within md.",
                         "type": "string"
                       }
                     },
@@ -200,8 +200,9 @@
               },
               {
                 "name": "projectRelativeReferencingFilePath",
-                "required": true,
+                "required": false,
                 "schema": {
+                  "fullComment": "Must be provided for relative assets to know the location",
                   "type": "string"
                 }
               },

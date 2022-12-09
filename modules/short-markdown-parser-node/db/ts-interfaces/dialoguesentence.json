@@ -1,0 +1,81 @@
+{
+  "createdAt": 1670216333765,
+  "updatedAt": 1670216333765,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216333765,
+  "id": "dialoguesentence",
+  "name": "DialogueSentence",
+  "slug": "dialoguesentence",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type DialogueSentence = {\n  remotePath?: string;\n  uuid?: string;\n  voice?: string;\n  sentence: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "remotePath": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "voice": {
+          "type": "string"
+        },
+        "sentence": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sentence"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "remotePath",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "uuid",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "voice",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "sentence",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "DialogueSentence",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -74,7 +74,14 @@ export declare type FilePage = {
     projectRelativeFilePath: string;
     internalLinkWord?: string | null;
     imagePath?: string | null;
+    /**
+     * One line description of the content
+     */
     shortDescription?: string | null;
+    /**
+     * Intor, usually the first alinea of the page, may contain markdown
+     */
+    introDescription?: string;
 };
 /**
  * Data needed to make a `WebPage`<CrudPage>

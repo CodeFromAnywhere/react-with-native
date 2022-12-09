@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670218570841,
+  "updatedAt": 1670218570841,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218570841,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "makeSrcRelativeFolder",
+  "slug": "make-src-relative-folder",
+  "operationRelativeTypescriptFilePath": "src/makeSrcRelativeFolder.ts",
+  "type": {
+    "rawType": "(operationRelativeTypescriptFilePath: string) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  operationRelativeTypescriptFilePath: string\n): string | undefined => {\n  const srcPrefix = \"src/\";\n  if (!operationRelativeTypescriptFilePath.startsWith(srcPrefix)) return;\n  const withoutSrc = operationRelativeTypescriptFilePath.substring(\n    srcPrefix.length\n  );\n\n  const parts = withoutSrc.split(\"/\");\n\n  parts.pop();\n\n  const withoutFile = parts.join(\"/\");\n\n  if (withoutFile.length === 0) return;\n\n  return withoutFile;\n}",
+  "description": "gets a src relative folder path (so maybe \"\" for a file `src/util.ts` or \"util\" for a file `src/util/thing.ts`)",
+  "id": "oypdibwekhumnwglxnczryim"
+}

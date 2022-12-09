@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670216331126,
+  "updatedAt": 1670216331126,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216331126,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getOrGenerateShortMarkdown",
+  "slug": "get-or-generate-short-markdown",
+  "operationRelativeTypescriptFilePath": "src/getOrGenerateShortMarkdown.ts",
+  "type": {
+    "rawType": "(projectRelativeMarkdownFilePath: string) => Promise<import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/short-markdown/short-markdown-types/build/ShortMarkdown\").ShortMarkdown | null>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  projectRelativeMarkdownFilePath: string\n): Promise<ShortMarkdown | null> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return null;\n\n  const absoluteFilePath = path.join(\n    projectRoot,\n    projectRelativeMarkdownFilePath\n  );\n\n  const fileParse = path.parse(absoluteFilePath);\n\n  const indexFilePath = path.join(fileParse.dir, `${fileParse.name}.json`);\n\n  if (!fs.existsSync(indexFilePath)) {\n    const shortMarkdown = await generateAugmentedShortMarkdown(\n      projectRelativeMarkdownFilePath\n    );\n\n    return shortMarkdown || null;\n  }\n\n  const shortMarkdown = await readJsonFile<ShortMarkdown>(indexFilePath);\n\n  return shortMarkdown;\n}",
+  "description": "",
+  "id": "tzmliggkxkydvnhwuzlnetok"
+}

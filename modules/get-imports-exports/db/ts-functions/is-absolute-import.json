@@ -1,22 +1,28 @@
 {
-  "createdAt": 1668150643213,
-  "updatedAt": 1668150643213,
+  "createdAt": 1670590326140,
+  "updatedAt": 1670590326140,
   "deletedAt": 0,
-  "createdFirstAt": 1668150643213,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670590326140,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util.ts",
   "commentsInside": [],
   "rawText": " (moduleString: string | undefined) =>\n  moduleString ? !moduleString.startsWith(\".\") : false",
   "name": "isAbsoluteImport",
   "slug": "is-absolute-import",
-  "parameters": [],
+  "parameters": [
+    {
+      "name": "moduleString",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
   "description": "",
   "returnType": {
     "rawType": "{}",
@@ -46,5 +52,5 @@
     "linesPerFile": 2,
     "numberOfFiles": 1
   },
-  "id": "bzuchgavingabjxlrrcwhsiy"
+  "id": "bgwxcwtwxoefuoegoofiqwds"
 }

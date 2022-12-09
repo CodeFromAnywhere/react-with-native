@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200486125,
-  "updatedAt": 1669200486125,
+  "createdAt": 1670590107102,
+  "updatedAt": 1670590107102,
   "deletedAt": 0,
-  "createdFirstAt": 1669200486125,
+  "createdFirstAt": 1670590107102,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
@@ -130,16 +130,13 @@
                                     "required": true,
                                     "schema": {
                                       "enum": [
-                                        "youtube",
                                         "video",
-                                        "image",
                                         "audio",
-                                        "markdown",
-                                        "json",
-                                        "typescript",
-                                        "file"
+                                        "image",
+                                        "text",
+                                        "other"
                                       ],
-                                      "fullComment": "type of asset that is being embedded",
+                                      "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                                       "type": "string"
                                     }
                                   }
@@ -172,16 +169,13 @@
                                     "required": true,
                                     "schema": {
                                       "enum": [
-                                        "youtube",
                                         "video",
-                                        "image",
                                         "audio",
-                                        "markdown",
-                                        "json",
-                                        "typescript",
-                                        "file"
+                                        "image",
+                                        "text",
+                                        "other"
                                       ],
-                                      "fullComment": "Can be inferred from href\n\ntype of asset that is being embedded",
+                                      "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                                       "type": "string"
                                     }
                                   }
@@ -256,7 +250,7 @@
   ],
   "description": "Merges multiple markdown parses to create a new markdown parse",
   "returnType": {
-    "rawType": "{ merged: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse; outline: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/parsing/merge\").MergedMarkdownOutlineUrl[]; }",
+    "rawType": "{ merged: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse; outline: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/parsing/merge\").MergedMarkdownOutlineUrl[]; }",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -274,5 +268,5 @@
     "linesPerFile": 45,
     "numberOfFiles": 1
   },
-  "id": "mmgrtuyjajzhzpbfbsjowjhw"
+  "id": "ligbrxxdlwkaxhtdlkfjflzb"
 }

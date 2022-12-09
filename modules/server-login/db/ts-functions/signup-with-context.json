@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669385345757,
-  "updatedAt": 1669385345757,
+  "createdAt": 1670528510538,
+  "updatedAt": 1670528510538,
   "deletedAt": 0,
-  "createdFirstAt": 1669385345757,
+  "createdFirstAt": 1670528510538,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/signupWithContext.ts",
   "commentsInside": [],
-  "rawText": " async (\n  functionContext: FunctionContext,\n  /**\n   * Data required for creating a `Person`. Can be filled in by the user partly, but also partly automatically\n   */\n  personData: SignupPersonData\n): Promise<{ isSuccessful: boolean; message: string }> => {\n  const { device } = functionContext;\n\n  console.log(`Signup with context`);\n  if (\n    device.authenticationMethods.filter((x) => x.isAuthenticated).length === 0\n  ) {\n    return { isSuccessful: false, message: \"Please authenticate first\" };\n  }\n\n  const methodsAugmented = await Promise.all(\n    device.authenticationMethods.map(async (method) => {\n      const alreadyPerson = await findAuthenticatedPersonWithHandle(\n        method.method,\n        method.handle\n      );\n\n      return { ...method, alreadyPerson };\n    })\n  );\n\n  const unavailableMethod = methodsAugmented.find(\n    (method) => method.alreadyPerson\n  );\n\n  if (unavailableMethod) {\n    const methodString = englishMethod[unavailableMethod.method].toLowerCase();\n    return {\n      isSuccessful: false,\n      message: `There is already someone else with the ${methodString} ${unavailableMethod.handle}`,\n    };\n  }\n\n  // it seesms fine , lets' create a new person\n\n  const newPersonId = generateId();\n  const newPerson: Creation<Person> = {\n    id: newPersonId,\n    authenticationMethods: device.authenticationMethods,\n    ...personData,\n  };\n\n  //@ts-ignore\n  const upsertResult = await db.upsert(\"Person\", newPerson, {\n    onlyInsert: true,\n  });\n\n  const updateResult = await db.update(\n    \"Device\",\n    (item) => item.id === device.id,\n    (old) => {\n      console.log(`set new person id to ${newPersonId}`);\n      return {\n        ...old,\n        personIds: old.personIds\n          ? old.personIds.concat(newPersonId)\n          : [newPersonId],\n        currentPersonId: newPersonId,\n      };\n    }\n  );\n\n  const isSuccessful =\n    updateResult.amountUpdated === 1 &&\n    !!updateResult.isSuccesful &&\n    !!upsertResult.isSuccesful;\n\n  const nonSuccessfulMessage = !updateResult.isSuccesful\n    ? updateResult.message\n    : !upsertResult.isSuccesful\n    ? upsertResult.message\n    : undefined;\n  return {\n    isSuccessful,\n    message: isSuccessful\n      ? \"Signed up\"\n      : nonSuccessfulMessage ||\n        \"signupWithContext: Something went wrong with the queries\",\n  };\n}",
+  "rawText": " async (\n  functionContext: FunctionContext,\n  /**\n   * Data required for creating a `Person`. Can be filled in by the user partly, but also partly automatically\n   */\n  personData: SignupPersonData\n): Promise<{ isSuccessful: boolean; message: string }> => {\n  const { device } = functionContext;\n\n  console.log(`Signup with context`);\n  if (\n    device.authenticationMethods.filter((x) => x.isAuthenticated).length === 0\n  ) {\n    return { isSuccessful: false, message: \"Please authenticate first\" };\n  }\n\n  const methodsAugmented = await Promise.all(\n    device.authenticationMethods.map(async (method) => {\n      const alreadyPerson = await findAuthenticatedPersonWithHandle(\n        method.method,\n        method.handle\n      );\n\n      return { ...method, alreadyPerson };\n    })\n  );\n\n  const unavailableMethod = methodsAugmented.find(\n    (method) => method.alreadyPerson\n  );\n\n  if (unavailableMethod) {\n    const methodString = englishMethod[unavailableMethod.method].toLowerCase();\n    return {\n      isSuccessful: false,\n      message: `There is already someone else with the ${methodString} ${unavailableMethod.handle}`,\n    };\n  }\n\n  // it seesms fine , lets' create a new person\n\n  const newPersonId = generateId();\n  const newPerson: Creation<Person> = {\n    id: newPersonId,\n    authenticationMethods: device.authenticationMethods.map(\n      ({ credential, ...other }) => other\n    ),\n    ...personData,\n  };\n\n  //@ts-ignore\n  const upsertResult = await db.upsert(\"Person\", newPerson, {\n    onlyInsert: true,\n  });\n\n  if (!upsertResult.isSuccesful) {\n    return {\n      isSuccessful: false,\n      message: upsertResult.message || \"Upsert person not successful\",\n    };\n  }\n\n  const updateResult = await db.update(\n    \"Device\",\n    (item) => item.id === device.id,\n    (old) => {\n      console.log(`set new person id to ${newPersonId}`);\n      return {\n        ...old,\n        personIds: old.personIds\n          ? old.personIds.concat(newPersonId)\n          : [newPersonId],\n        currentPersonId: newPersonId,\n      };\n    }\n  );\n\n  return {\n    isSuccessful: updateResult.isSuccesful || false,\n    message: updateResult.isSuccesful\n      ? \"Signed up\"\n      : updateResult.isSuccesful || \"Something went wrong, no mess\",\n  };\n}",
   "name": "signupWithContext",
   "slug": "signup-with-context",
   "parameters": [
@@ -3013,6 +3013,14 @@
                                 "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                                 "type": "string"
                               }
+                            },
+                            {
+                              "name": "absoluteUrl",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                                "type": "string"
+                              }
                             }
                           ],
                           "type": "object"
@@ -3033,6 +3041,31 @@
                             }
                           ],
                           "type": "array"
+                        }
+                      },
+                      {
+                        "name": "mediaChannelIds",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "After the `MediaChannel` DB is filled, we can index the names of the persons of the `MediaChannel`, and and we can push them to here, if the name is \"similar\" to the name of this `Person`.\n\n`*` = \"similar\" means: exact match, or at least first name + last name match",
+                          "items": [
+                            {
+                              "schema": {
+                                "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                                "type": "string"
+                              },
+                              "name": "Id"
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
+                        "name": "preferred_mediaChannelId",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Optional. Can be set by admin (not indexed)\n\nIf not available, take the first (mediaChannelIds[0])\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                          "type": "string"
                         }
                       },
                       {
@@ -3093,14 +3126,6 @@
                             }
                           ],
                           "type": "array"
-                        }
-                      },
-                      {
-                        "name": "preferredContactMedium",
-                        "required": false,
-                        "schema": {
-                          "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
-                          "type": "string"
                         }
                       },
                       {
@@ -3289,6 +3314,14 @@
                                     "required": false,
                                     "schema": {
                                       "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "credential",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "original credential. should only be available on the device, not on the person",
                                       "type": "string"
                                     }
                                   },
@@ -3605,6 +3638,14 @@
                               "required": false,
                               "schema": {
                                 "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "credential",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "original credential. should only be available on the device, not on the person",
                                 "type": "string"
                               }
                             },
@@ -4577,6 +4618,14 @@
                     "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                     "type": "string"
                   }
+                },
+                {
+                  "name": "absoluteUrl",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                    "type": "string"
+                  }
                 }
               ],
               "type": "object"
@@ -4653,13 +4702,13 @@
   },
   "maxIndentationDepth": 5,
   "size": {
-    "characters": 2547,
-    "lines": 90,
-    "bytes": 2547,
+    "characters": 2484,
+    "lines": 88,
+    "bytes": 2484,
     "bytesPerCharacter": 1,
     "charactersPerLine": 28,
-    "linesPerFile": 90,
+    "linesPerFile": 88,
     "numberOfFiles": 1
   },
-  "id": "mhucoeibuyvzqawtuklvquew"
+  "id": "jvhamlznlflpmxeuahrpkfbh"
 }

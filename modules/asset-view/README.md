@@ -12,12 +12,12 @@ asset-view (`OperationClassification` ui-cjs)
 
 # Api reference
 
-## `<AssetView />`
+## getSrc()
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| props | { asset: `Asset`, <br />className?: string, <br />projectRelativeReferencingFilePath: string, <br />hideDownloadLink?: boolean, <br /> } |  |
-| **Output** | `JSX.Element`   |    |
+| asset | `Asset` |  |,| projectRelativeReferencingFilePath | string |  |,| isNextStaticProductionBuild (optional) | boolean |  |
+| **Output** | { src?: string, <br />downloadUrl?: string, <br /> }   |    |
 
 
 
@@ -44,7 +44,7 @@ If you provide an array it'll take the first asset.
 
 
 
-## 📄 AssetView (exported const)
+## 📄 getSrc (exported const)
 
 ## 📄 itemGetBackendAssetUrl (exported const)
 
@@ -54,6 +54,15 @@ If you provide an array it'll take the first asset.
 
 
 ## 📄 ModelItemAssetView (exported const)
+
+## `<AssetView />`
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| props | { asset: `Asset`, <br />className?: string, <br />projectRelativeReferencingFilePath?: string, <br />hideDownloadLink?: boolean, <br /> } |  |
+| **Output** | `JSX.Element`   |    |
+
+
 
 ## `<InteractiveAsset />`
 
@@ -72,6 +81,17 @@ shows an `Asset` with interactivity
 
 
 
+## useAsset()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| asset (optional) | `Asset` |  |,| projectRelativeReferencingFilePath (optional) | string |  |,| isNextStaticProductionBuild (optional) | boolean |  |
+| **Output** | { rawText?: {  }, <br />type?: video / audio / image / text / other, <br />downloadUrl?: string, <br />src?: string, <br />extension?: string, <br /> }   |    |
+
+
+
+## 📄 AssetView (exported const)
+
 ## 📄 InteractiveAsset (exported const)
 
 shows an `Asset` with interactivity
@@ -81,9 +101,12 @@ shows an `Asset` with interactivity
 - Audio show duration and amplitude
 - Video/screen show thumbnail and duration
 
+
+## 📄 useAsset (exported const)
+
 # Internal
 
-<details><summary>Show internal (5)</summary>
+<details><summary>Show internal (3)</summary>
     
   # useAssetInfo()
 
@@ -97,20 +120,9 @@ shows an `Asset` with interactivity
 
 
 
-## useAsset()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| asset (optional) | `Asset` |  |,| projectRelativeReferencingFilePath (optional) | string |  |,| isNextStaticProductionBuild (optional) | boolean |  |
-| **Output** | { rawText?: {  }, <br />type?: video / audio / image / text / other, <br />downloadUrl?: string, <br />src: string, <br />extension?: string, <br /> }   |    |
-
-
-
 ## 📄 defaultClassName (exported const)
 
 ## 📄 useAssetInfo (exported const)
-
-## 📄 useAsset (exported const)
 
   </details>
 

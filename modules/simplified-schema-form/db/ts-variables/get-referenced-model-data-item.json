@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669128200570,
-  "updatedAt": 1669128200570,
+  "createdAt": 1670529144089,
+  "updatedAt": 1670529144089,
   "deletedAt": 0,
-  "createdFirstAt": 1669128200570,
+  "createdFirstAt": 1670529144089,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  parameterName: string,\n  referencedModelData?: ReferencableModelData\n): ReferencedModelDataItem | undefined => {\n  const interfaceInfo = getReferenceParameterInfo(parameterName);\n  const referencedData: ReferenceItemsObject | undefined =\n    interfaceInfo &&\n    interfaceInfo.interfaceName &&\n    referencedModelData &&\n    referencedModelData[interfaceInfo.interfaceName]\n      ? referencedModelData[interfaceInfo.interfaceName]\n      : undefined;\n\n  return interfaceInfo\n    ? {\n        ...referencedData,\n        ...interfaceInfo,\n      }\n    : undefined;\n}",
   "description": "",
-  "id": "ljpkwlrghebsqfxumgmwclkq"
+  "id": "wrlycodarqlmxmrsephhtqcc"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385327775,
-  "updatedAt": 1669385327775,
+  "createdAt": 1670528482818,
+  "updatedAt": 1670528482818,
   "deletedAt": 0,
-  "createdFirstAt": 1669385327775,
+  "createdFirstAt": 1670528482818,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,10 +10,30 @@
   "slug": "get-me-with-context",
   "operationRelativeTypescriptFilePath": "src/getMeWithContext.ts",
   "type": {
-    "rawType": "(functionContext: import(\"/Users/king/King/operations/tools/user-interfaces/api/function-context-type/build/FunctionContext\").FunctionContext) => { authorizations?: import(\"/Users/king/King/operations/tools/purpose/p2p/auth-types/build/Authorization\").Authorization[] | undefined; device: import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/Device\").Device; groups?: import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/Group\").Group[] | undefined; }",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/api/function-server-types/build/ApiFunction\").ApiFunction",
     "typeDefinition": {
       "type": "object",
-      "properties": {},
+      "properties": {
+        "isPublic": {
+          "type": "boolean"
+        },
+        "allowedRoles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          }
+        }
+      },
       "optional": false
     },
     "typeCoverage": 0,
@@ -23,11 +43,34 @@
     "isPrimitive": false,
     "isEnumLiteral": false,
     "simplifiedSchema": {
-      "properties": [],
+      "properties": [
+        {
+          "name": "isPublic",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "allowedRoles",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
       "type": "object"
     }
   },
-  "value": "(functionContext: FunctionContext) => {\n  const {\n    tsFunction,\n    serverContext,\n    hasAuthorization,\n    authToken,\n    ...userInfo\n  } = functionContext;\n\n  return userInfo;\n}",
+  "value": "(\n  functionContext: FunctionContext\n) => {\n  const {\n    tsFunction,\n    serverContext,\n    hasAuthorization,\n    authToken,\n    ...userInfo\n  } = functionContext;\n\n  return userInfo;\n}",
   "description": "Get all relevant information about yourself, including all persons that are attached to you.\n\nNB: probably need to omit some fields later, but for now it's fine",
-  "id": "zhdoihodndimmjazhummaqta"
+  "id": "ddscoedpoelwpjribtixghdv"
 }

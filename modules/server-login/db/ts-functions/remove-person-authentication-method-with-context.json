@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385343225,
-  "updatedAt": 1669385343225,
+  "createdAt": 1670528506945,
+  "updatedAt": 1670528506945,
   "deletedAt": 0,
-  "createdFirstAt": 1669385343225,
+  "createdFirstAt": 1670528506945,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
@@ -3013,6 +3013,14 @@
                                 "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                                 "type": "string"
                               }
+                            },
+                            {
+                              "name": "absoluteUrl",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                                "type": "string"
+                              }
                             }
                           ],
                           "type": "object"
@@ -3289,6 +3297,14 @@
                                     "required": false,
                                     "schema": {
                                       "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "credential",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "original credential. should only be available on the device, not on the person",
                                       "type": "string"
                                     }
                                   },
@@ -3605,6 +3621,14 @@
                               "required": false,
                               "schema": {
                                 "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "credential",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "original credential. should only be available on the device, not on the person",
                                 "type": "string"
                               }
                             },
@@ -4217,5 +4241,5 @@
     "linesPerFile": 48,
     "numberOfFiles": 1
   },
-  "id": "jwaddhufaybrwcoqeoyzmxuf"
+  "id": "zaiplvjriwtenrkjabixvzln"
 }

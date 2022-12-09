@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385218348,
-  "updatedAt": 1669385218348,
+  "createdAt": 1670527964141,
+  "updatedAt": 1670527964141,
   "deletedAt": 0,
-  "createdFirstAt": 1669385218348,
+  "createdFirstAt": 1670527964141,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  parameters: Frontmatter,\n  markdownParse: MarkdownParse,\n  parameterName:\n    | \"createdAt\"\n    | \"createdFirstAt\"\n    | \"updatedAt\"\n    | \"deletedAt\"\n    | \"openedAt\"\n): number => {\n  const parameterValue = parameters[parameterName];\n  const markdownParseValue = markdownParse[parameterName];\n\n  const parsedParameterValue =\n    typeof parameterValue === \"number\" && !isNaN(parameterValue)\n      ? parameterValue\n      : typeof parameterValue === \"string\"\n      ? tryParseDate(parameterValue)\n      : undefined;\n\n  const generatedValue =\n    parameterName === \"deletedAt\" || parameterName === \"openedAt\"\n      ? 0\n      : Date.now();\n\n  const parsedTimestamp =\n    parsedParameterValue !== undefined\n      ? parsedParameterValue\n      : markdownParseValue !== undefined\n      ? markdownParseValue\n      : generatedValue;\n\n  return parsedTimestamp;\n}",
   "description": "First tries to look at the frontmatter value, this is leading because it is what the user sees and the file system of the os could be inconsistent\n\nIf this frontmatter doesn't exist, the markdownParse is checked for a date. This should be information collected from the file system\n\nIf that doesn't succeed, sometimes we'll set it to  the current timestamp",
-  "id": "iwtcswmivcdkgevoabdzbcdw"
+  "id": "bylpfnmqvmtwknqwwfvajtlv"
 }

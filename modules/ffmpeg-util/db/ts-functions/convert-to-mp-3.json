@@ -1,0 +1,57 @@
+{
+  "createdAt": 1670063316329,
+  "updatedAt": 1670063316329,
+  "deletedAt": 0,
+  "createdFirstAt": 1670063316329,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/convertToMp3.ts",
+  "commentsInside": [],
+  "rawText": " (\n  sourcePath: string,\n  destinationPath: string\n): Promise<string | undefined> => {\n  return new Promise<string | undefined>((resolve, reject) => {\n    if (!fs.existsSync(sourcePath)) {\n      console.log(\"sourcePath doesn't exist\", sourcePath);\n    }\n    ffmpeg({ source: sourcePath })\n      .toFormat(\"mp3\")\n      .saveToFile(destinationPath)\n      .on(\"end\", () => {\n        resolve(destinationPath);\n      })\n      .on(\"error\", (e: Error) => {\n        console.log({ e });\n        resolve(undefined);\n      });\n  });\n}",
+  "name": "convertToMp3",
+  "slug": "convert-to-mp-3",
+  "parameters": [
+    {
+      "name": "sourcePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "destinationPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "Uses ffmpeg to convert a file to mp3\n\nReturns the new file path on success",
+  "returnType": {
+    "rawType": "Promise<string | undefined>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 597,
+    "lines": 22,
+    "bytes": 597,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "bumhfbhbanbrhawwozejqiym"
+}

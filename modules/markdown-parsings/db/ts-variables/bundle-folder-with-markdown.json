@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200441896,
-  "updatedAt": 1669200441896,
+  "createdAt": 1670590024833,
+  "updatedAt": 1670590024833,
   "deletedAt": 0,
-  "createdFirstAt": 1669200441896,
+  "createdFirstAt": 1670590024833,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "bundle-folder-with-markdown",
   "operationRelativeTypescriptFilePath": "src/bundleFolderWithMarkdown.ts",
   "type": {
-    "rawType": "(outlineTitle: string, markdownStrings: string[], resultFileName?: string | undefined) => Promise<{ markdownParse: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse; outlineString: string; }>",
+    "rawType": "(outlineTitle: string, markdownStrings: string[], resultFileName?: string | undefined) => Promise<{ markdownParse: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse; outlineString: string; }>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  outlineTitle: string,\n  /**\n   * content of every markdown\n   */\n  markdownStrings: string[],\n  /**\n   * filename to include in the final MarkdownParse\n   */\n  resultFileName?: string\n): Promise<{ markdownParse: MarkdownParse; outlineString: string }> => {\n  // TODO: Optionally, wrap in `details` for every docs page\n\n  const markdownParses = markdownStrings.map((content) =>\n    mdToJsonParse(content)\n  );\n  const { merged, outline } = mergeMarkdownParse(\n    markdownParses,\n    resultFileName\n  );\n\n  // BUSY HERE\n\n  const outlineString = makeOutlineMarkdownString(outlineTitle, outline);\n\n  return { markdownParse: merged, outlineString };\n}",
   "description": "Finds all md files in a folder and creates a single MarkdownParse\n\nhandy for creating a single documentation file or other things that have to include multiple markdown files in a structured way\n\nNB: it recursively structures the files and folders with headings",
-  "id": "bbymwbrfojwvthgwlypgwbue"
+  "id": "ogfkvtvnpqqzbcbepsxlmhia"
 }

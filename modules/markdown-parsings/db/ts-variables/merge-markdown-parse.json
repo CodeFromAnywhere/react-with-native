@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200486253,
-  "updatedAt": 1669200486253,
+  "createdAt": 1670590107300,
+  "updatedAt": 1670590107300,
   "deletedAt": 0,
-  "createdFirstAt": 1669200486253,
+  "createdFirstAt": 1670590107300,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "merge-markdown-parse",
   "operationRelativeTypescriptFilePath": "src/parsing/merge.ts",
   "type": {
-    "rawType": "(markdownParses: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse[], fileName?: string | undefined) => { merged: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse; outline: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/parsing/merge\").MergedMarkdownOutlineUrl[]; }",
+    "rawType": "(markdownParses: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse[], fileName?: string | undefined) => { merged: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse; outline: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/parsing/merge\").MergedMarkdownOutlineUrl[]; }",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(\n  markdownParses: MarkdownParse[],\n  fileName?: string\n): { merged: MarkdownParse; outline: MergedMarkdownOutlineUrl[] } => {\n  const allParameters = mergeObjectsArray(\n    markdownParses.map((x) => x.parameters)\n  );\n\n  const allMarkdownChunks = markdownParses.map((x) => {\n    const newMarkodwnChunk: MarkdownChunk = {\n      children: upMarkdownChunkLevelRecursively(x.content),\n      level: 1,\n      content: undefined,\n      title: x.fileName\n        ? humanCase(removeExtensionsFromPath(x.fileName))\n        : undefined,\n    };\n\n    return newMarkodwnChunk;\n  });\n\n  const newMarkdownParse: MarkdownParse = {\n    parameters: allParameters,\n    raw: markdownChunksToMarkdownStringRecursive(allMarkdownChunks),\n    content: allMarkdownChunks,\n    fileName,\n  };\n\n  const outline: MergedMarkdownOutlineUrl[] = markdownParses\n    .map((markdownParse) => {\n      if (!markdownParse.fileName) return;\n\n      const title = humanCase(markdownParse.fileName);\n\n      const implicitId = getImplicitId(title);\n      return {\n        title,\n        // NB: because the title in the markdownparse is humancase, we need to slugify that to get the hashtagpath\n        hashtagPath: implicitId,\n      };\n    })\n    .filter(notEmpty);\n\n  return { merged: newMarkdownParse, outline };\n}",
   "description": "Merges multiple markdown parses to create a new markdown parse",
-  "id": "eakswiheekvxlswrcvnereet"
+  "id": "qrnnkmzmhdqmfycekjangnyk"
 }

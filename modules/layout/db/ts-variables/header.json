@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669276839863,
-  "updatedAt": 1669276839863,
+  "createdAt": 1670529011197,
+  "updatedAt": 1670529011197,
   "deletedAt": 0,
-  "createdFirstAt": 1669276839863,
+  "createdFirstAt": 1670529011197,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(props: { publicBundleConfig?: PublicBundleConfig }) => {\n  const { publicBundleConfig } = props;\n\n  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(\n    \"menu.isMobileMenuEnabled\"\n  );\n\n  return (\n    <Div\n      className=\"dark:bg-gray-800\"\n      style={{\n        justifyContent: \"space-between\",\n        flex: 1,\n        display: \"flex\",\n        flexDirection: \"row\",\n        alignItems: \"center\",\n      }}\n    >\n      <Div className=\"flex flex-row items-center\">\n        <ALink\n          href={\n            typeof window !== \"undefined\"\n              ? location.protocol + \"//\" + location.host\n              : \"#\"\n          }\n          style={{ fontSize: 32 }}\n        >\n          {publicBundleConfig?.emoji}\n        </ALink>\n\n        <P className=\"font-bold pl-2\">{publicBundleConfig?.name}</P>\n      </Div>\n\n      <Div className=\"flex flex-row items-center\">\n        {props.publicBundleConfig?.isGitRepoPublic &&\n        props.publicBundleConfig.gitRepoUrl ? (\n          <ALink\n            className=\"pr-2\"\n            target=\"_blank\"\n            href={props.publicBundleConfig.gitRepoUrl}\n          >\n            GitHub\n          </ALink>\n        ) : null}\n\n        <Div className=\"lg:hidden\">\n          <ClickableIcon\n            emoji=\"🔍\"\n            onClick={() => setIsMobileMenuEnabled(!isMobileMenuEnabled)}\n          />\n        </Div>\n\n        <MeAuthenticationInfo />\n      </Div>\n    </Div>\n  );\n}",
+  "value": "(props: { publicBundleConfig?: PublicBundleConfig }) => {\n  const { publicBundleConfig } = props;\n\n  const [isMobileMenuEnabled, setIsMobileMenuEnabled] = useStore(\n    \"menu.isMobileMenuEnabled\"\n  );\n\n  return (\n    <Div\n      className=\"dark:bg-gray-800\"\n      style={{\n        justifyContent: \"space-between\",\n        flex: 1,\n        display: \"flex\",\n        flexDirection: \"row\",\n        alignItems: \"center\",\n      }}\n    >\n      <Div className=\"flex flex-row items-center\">\n        <ALink\n          href={\n            typeof window !== \"undefined\"\n              ? location.protocol + \"//\" + location.host\n              : \"#\"\n          }\n          style={{ fontSize: 32 }}\n        >\n          {publicBundleConfig?.emoji}\n        </ALink>\n\n        <P className=\"font-bold pl-2\">{publicBundleConfig?.name}</P>\n      </Div>\n\n      <Div className=\"flex flex-row items-center\">\n        {props.publicBundleConfig?.isGitRepoPublic &&\n        props.publicBundleConfig.gitRepoUrl ? (\n          <ALink\n            className=\"pr-2\"\n            target=\"_blank\"\n            href={props.publicBundleConfig.gitRepoUrl}\n          >\n            GitHub\n          </ALink>\n        ) : null}\n\n        <Share />\n\n        <PingApi />\n\n        <a target=\"_blank\" href=\"https://twitter.com/WKarsens\">\n          🤯\n        </a>\n\n        <Div className=\"lg:hidden\">\n          <ClickableIcon\n            emoji=\"🔍\"\n            onClick={() => setIsMobileMenuEnabled(!isMobileMenuEnabled)}\n          />\n        </Div>\n\n        <MeAuthenticationInfo />\n      </Div>\n    </Div>\n  );\n}",
   "description": "",
-  "id": "oczinxhzxpbdluszctcfumev"
+  "id": "grfkwhocohdmlaljqnumdjxs"
 }

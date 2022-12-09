@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385042654,
-  "updatedAt": 1669385042654,
+  "createdAt": 1670218861362,
+  "updatedAt": 1670218861362,
   "deletedAt": 0,
-  "createdFirstAt": 1669385042654,
+  "createdFirstAt": 1670218861362,
   "id": "namedparameterstypeof-processassetupload",
   "name": "NamedParameters<typeof processAssetUpload>",
   "slug": "namedparameterstypeof-processassetupload",
@@ -86,6 +86,14 @@
                       "required": false,
                       "schema": {
                         "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }

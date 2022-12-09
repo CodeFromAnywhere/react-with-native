@@ -55,6 +55,7 @@ Properties:
 | headerBig (optional) | boolean |  |
 | headerSubTitle (optional) | string |  |
 | header_markdownCallToActionSlugs (optional) | array |  |
+| domain (optional) | string |  |
 | markdownCallToActionSlugs (optional) | array |  |
 | shop_itemIds (optional) | array |  |
 | author_personSlugs (optional) | array |  |
@@ -79,27 +80,6 @@ Properties:
 
 
 
-## 🔹 ExtendedMarkdownProperties
-
-Some properties for on any `MarkdownModelType` model that are quite general purpose and yet aren't included into the `MarkdownModel` because we may not always want them.
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isDraft (optional) | boolean |  |
-| updatedAt  | number |  |
-| createdAt  | number |  |
-| privacy  | string |  |
-| language  | string |  |
-| isLanguageCustom (optional) | boolean |  |
-
-
-
 ## 🔹 MarkdownChunk
 
 Properties: 
@@ -112,26 +92,6 @@ Properties:
 | markdownLink (optional) | object |  |
 | title (optional) | string |  |
 | children (optional) | array |  |
-
-
-
-## 🔹 MarkdownEmbed
-
-Anything in the format `![alt](src)`
-
-NB: I need to be very clear how this one works
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| alt  | string |  |
-| src  | string |  |
-| type  | string |  |
 
 
 
@@ -158,78 +118,24 @@ Properties:
 
 
 
-## 🔹 WebMarkdownProperties
+## 🔹 ExtendedMarkdownProperties
+
+Some properties for on any `MarkdownModelType` model that are quite general purpose and yet aren't included into the `MarkdownModel` because we may not always want them.
+
+
+
+
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| headerImage (optional) | object |  |
-| headerTitle (optional) | string |  |
-| headerBig (optional) | boolean |  |
-| headerSubTitle (optional) | string |  |
-| header_markdownCallToActionSlugs (optional) | array |  |
-| markdownCallToActionSlugs (optional) | array |  |
-| shop_itemIds (optional) | array |  |
-| author_personSlugs (optional) | array |  |
-| interestSlugs (optional) | array |  |
-| price (optional) | number |  |
-
-
-
-## tryParseDate()
-
-Tries to parse a date from a string
-- implements default behavior of `new Date` with a try catch
-- returns a unix timestamp (ms since 1970 AD)
-
-TODO: put in a better location... date-util?
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| dateString | string |  |
-| **Output** | number   |    |
-
-
-
-## 📄 tryParseDate (exported const)
-
-Tries to parse a date from a string
-- implements default behavior of `new Date` with a try catch
-- returns a unix timestamp (ms since 1970 AD)
-
-TODO: put in a better location... date-util?
-
-# Internal
-
-<details><summary>Show internal (12)</summary>
-    
-  # markdownParseToMarkdownModelType()
-
-makes a markdownModelType from a markdownParse.
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| markdownParse | {  } |  |
-| **Output** |    |    |
-
-
-
-## parseMarkdownModelTimestamp()
-
-First tries to look at the frontmatter value, this is leading because it is what the user sees and the file system of the os could be inconsistent
-
-If this frontmatter doesn't exist, the markdownParse is checked for a date. This should be information collected from the file system
-
-If that doesn't succeed, sometimes we'll set it to  the current timestamp
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| parameters | `Frontmatter` |  |,| markdownParse | `MarkdownParse` |  |,| parameterName | createdAt / createdFirstAt / updatedAt / deletedAt / openedAt |  |
-| **Output** | {  }   |    |
+| isDraft (optional) | boolean |  |
+| updatedAt  | number |  |
+| createdAt  | number |  |
+| privacy  | string |  |
+| language  | string |  |
+| isLanguageCustom (optional) | boolean |  |
 
 
 
@@ -273,26 +179,59 @@ Properties:
 
 
 
-## 🔹 MarkdownContentLevel
-
-0 is a paragraph
-1-6 is h1 until h6
-
-
-
-
-
-
-
-
-## 🔹 MarkdownHeader
+## 🔹 WebMarkdownProperties
 
 Properties: 
 
  | Name | Type | Description |
 |---|---|---|
-| level  | number |  |
-| title  | string |  |
+| headerImage (optional) | object |  |
+| headerTitle (optional) | string |  |
+| headerBig (optional) | boolean |  |
+| headerSubTitle (optional) | string |  |
+| header_markdownCallToActionSlugs (optional) | array |  |
+| domain (optional) | string |  |
+| markdownCallToActionSlugs (optional) | array |  |
+| shop_itemIds (optional) | array |  |
+| author_personSlugs (optional) | array |  |
+| interestSlugs (optional) | array |  |
+| price (optional) | number |  |
+
+
+
+## tryParseDate()
+
+Tries to parse a date from a string
+- implements default behavior of `new Date` with a try catch
+- returns a unix timestamp (ms since 1970 AD)
+
+TODO: put in a better location... date-util?
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| dateString | string |  |
+| **Output** | number   |    |
+
+
+
+## 🔹 MarkdownEmbed
+
+Anything in the format `![alt](src)`
+
+NB: I need to be very clear how this one works
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| alt  | string |  |
+| src  | string |  |
+| type  | string |  |
 
 
 
@@ -348,6 +287,69 @@ Properties:
 | stats (optional) | object |  |
 | metaData (optional) | object |  |
 | isCancelRecursionResult (optional) | boolean |  |
+
+
+
+## 📄 tryParseDate (exported const)
+
+Tries to parse a date from a string
+- implements default behavior of `new Date` with a try catch
+- returns a unix timestamp (ms since 1970 AD)
+
+TODO: put in a better location... date-util?
+
+# Internal
+
+<details><summary>Show internal (8)</summary>
+    
+  # markdownParseToMarkdownModelType()
+
+makes a markdownModelType from a markdownParse.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| markdownParse | {  } |  |
+| **Output** |    |    |
+
+
+
+## parseMarkdownModelTimestamp()
+
+First tries to look at the frontmatter value, this is leading because it is what the user sees and the file system of the os could be inconsistent
+
+If this frontmatter doesn't exist, the markdownParse is checked for a date. This should be information collected from the file system
+
+If that doesn't succeed, sometimes we'll set it to  the current timestamp
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| parameters | `Frontmatter` |  |,| markdownParse | `MarkdownParse` |  |,| parameterName | createdAt / createdFirstAt / updatedAt / deletedAt / openedAt |  |
+| **Output** | {  }   |    |
+
+
+
+## 🔹 MarkdownContentLevel
+
+0 is a paragraph
+1-6 is h1 until h6
+
+
+
+
+
+
+
+
+## 🔹 MarkdownHeader
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| level  | number |  |
+| title  | string |  |
 
 
 

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669054957183,
-  "updatedAt": 1669054957183,
+  "createdAt": 1670526817154,
+  "updatedAt": 1670526817154,
   "deletedAt": 0,
-  "createdFirstAt": 1669054957183,
+  "createdFirstAt": 1670526817154,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  props: ReactMediaRecorderRenderProps & { type: MediaRecorderType }\n) => {\n  const {\n    status,\n    startRecording,\n    stopRecording,\n    pauseRecording,\n    resumeRecording,\n    previewAudioStream,\n    mediaBlobUrl,\n    previewStream,\n    type,\n    muteAudio,\n    unMuteAudio,\n    isAudioMuted,\n  } = props;\n\n  const AudioOrVideo = type === \"audio\" ? Audio : Video;\n\n  const buttons =\n    status === \"acquiring_media\"\n      ? []\n      : status === \"recording\"\n      ? [\n          <button key=\"stop\" onClick={stopRecording}>\n            ⏹\n          </button>,\n          <button key=\"pause\" onClick={pauseRecording}>\n            ⏸\n          </button>,\n          type === \"video\" || type === \"screen\" ? (\n            isAudioMuted ? (\n              <button key=\"unmute\" onClick={unMuteAudio}>\n                🔈\n              </button>\n            ) : (\n              <button key=\"mute\" onClick={muteAudio}>\n                🔇\n              </button>\n            )\n          ) : undefined,\n        ]\n      : status === \"paused\"\n      ? [\n          <button key=\"stop\" onClick={stopRecording}>\n            ⏹\n          </button>,\n          <button key=\"pause\" onClick={resumeRecording}>\n            ▶️\n          </button>,\n        ]\n      : [\n          <button key=\"start\" onClick={startRecording}>\n            ⏺\n          </button>,\n        ];\n\n  return (\n    <div>\n      {buttons}\n      {mediaBlobUrl && status !== \"recording\" ? (\n        <AudioOrVideo src={mediaBlobUrl} controls autoPlay />\n      ) : null}\n      {type === \"video\" && previewStream && status === \"recording\" ? (\n        <VideoPreview stream={previewStream} />\n      ) : null}\n      {type === \"audio\" && previewAudioStream && status === \"recording\"\n        ? // TODO: visualise with https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API\n          null\n        : null}\n    </div>\n  );\n}",
   "description": "",
-  "id": "katrxtfbnefgxnootijwplzd"
+  "id": "wgzfumuhzvjnzmkhiepieixl"
 }

@@ -21,10 +21,18 @@ export interface MediaChannel extends DefaultModelType {
     name: string;
     slug: string;
     description?: string;
+    /**
+     * Person this channel is connected to
+     *
+     * Can be indexed once the `MediaChannel` is found, and it seems to be a person. Then the person neds to be created as well and the `.personId` needs to be attached to the `MediaChannel`
+     */
+    personId?: Id;
     /** if true, this channel is a group */
     isGroup?: boolean;
-    /** ids that each identify a `Person` that is part of this channel. Isn't always available */
-    memberPersonIds?: Id[];
+    /**
+     * Ids that each identify a `Person` that is part of this channel. Isn't always available
+     */
+    member_personIds?: Id[];
     /**
      * The below parameters should ONLY be used if the instance is a channel for a group.
      * if this is a channel for a person, the interests should be stored on the person instead.

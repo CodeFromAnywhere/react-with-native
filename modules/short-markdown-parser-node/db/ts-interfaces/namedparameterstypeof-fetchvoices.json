@@ -1,0 +1,91 @@
+{
+  "createdAt": 1670216324177,
+  "updatedAt": 1670216324177,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216324177,
+  "id": "namedparameterstypeof-fetchvoices",
+  "name": "NamedParameters<typeof fetchVoices>",
+  "slug": "namedparameterstypeof-fetchvoices",
+  "operationRelativeTypescriptFilePath": "src/fetchVoices.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "dialogue": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DialogueSentence"
+          }
+        }
+      },
+      "required": [
+        "dialogue"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "dialogue",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "remotePath",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "uuid",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "voice",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "sentence",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "DialogueSentence"
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof fetchVoices>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669467096727,
-  "updatedAt": 1669467096727,
+  "createdAt": 1669962236175,
+  "updatedAt": 1669962236175,
   "deletedAt": 0,
-  "createdFirstAt": 1669467096727,
+  "createdFirstAt": 1669962236175,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/findLinks.ts",
   "commentsInside": [],
-  "rawText": " (markdownString: string): MarkdownLink[] => {\n  const result = flattenMarkdownString(\n    markdownString,\n    (token) => token.type === \"link\"\n  );\n\n  const links: MarkdownLink[] = result\n    .map((token) => {\n      if (token.type !== \"link\") return;\n\n      const markdownEmbed: MarkdownLink = {\n        alt: token.title,\n        href: token.href,\n        type: getTypeFromUrlOrPath(token.href),\n      };\n\n      return markdownEmbed;\n    })\n    .filter(notEmpty);\n\n  return links;\n}",
+  "rawText": " (markdownString: string): MarkdownLink[] => {\n  const result = flattenMarkdownString(\n    markdownString,\n    (token) => token.type === \"link\"\n  );\n\n  const links: MarkdownLink[] = result\n    .map((token) => {\n      if (token.type !== \"link\") return;\n\n      const markdownEmbed: MarkdownLink = {\n        alt: token.text || \"\",\n        href: token.href,\n        type: getTypeFromUrlOrPath(token.href),\n      };\n\n      return markdownEmbed;\n    })\n    .filter(notEmpty);\n\n  return links;\n}",
   "name": "findLinks",
   "slug": "find-links",
   "parameters": [
@@ -133,13 +133,13 @@
   },
   "maxIndentationDepth": 4,
   "size": {
-    "characters": 497,
+    "characters": 502,
     "lines": 22,
-    "bytes": 497,
+    "bytes": 502,
     "bytesPerCharacter": 1,
     "charactersPerLine": 23,
     "linesPerFile": 22,
     "numberOfFiles": 1
   },
-  "id": "qwjdljzktnywibcnbaaksbtu"
+  "id": "ogdmjjbucqbtmibhpdrryucj"
 }

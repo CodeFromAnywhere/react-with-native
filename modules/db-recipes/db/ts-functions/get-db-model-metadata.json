@@ -1,0 +1,47 @@
+{
+  "createdAt": 1670218559436,
+  "updatedAt": 1670218559436,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218559436,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getDbModelMetadata.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  modelName: string | undefined\n): Promise<{\n  tsInterface?: TsInterface;\n  datasets?: Dataset[];\n  projectRelativeStorageFilePath?: string;\n}> => {\n  if (!modelName) return {};\n  if (!([...dbModelKeys] as string[]).includes(modelName)) {\n    return {};\n  }\n\n  const realModelName = modelName as DbModelEnum;\n\n  const mergedConfig: MergedQueryConfig = getMergedQueryConfig(realModelName);\n  const projectRelativeStorageFilePath = (\n    await getDatabaseFiles(realModelName, mergedConfig)\n  ).map((x) => x.projectRelativePath)[0];\n\n  const indexPath = sdkInterfacePaths[realModelName];\n  const tsInterface =\n    (await readProjectRelativeJsonFile<TsInterface>(indexPath)) || undefined;\n\n  const allDatasets = await db.get(\"Dataset\");\n  const datasets = allDatasets.filter((x) => x.modelName === realModelName);\n\n  return { tsInterface, datasets, projectRelativeStorageFilePath };\n}",
+  "name": "getDbModelMetadata",
+  "slug": "get-db-model-metadata",
+  "parameters": [
+    {
+      "name": "modelName",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<{ tsInterface?: import(\"/Users/king/King/operations/tools/types/code-types/build/TsInterface\").TsInterface | undefined; datasets?: import(\"/Users/king/King/operations/tools/types/code-types/build/Dataset\").Dataset[] | undefined; projectRelativeStorageFilePath?: string | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 889,
+    "lines": 28,
+    "bytes": 889,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 28,
+    "numberOfFiles": 1
+  },
+  "id": "jcvtcighctddqecisweviqef"
+}

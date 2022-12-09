@@ -1,18 +1,18 @@
 [
   {
-    "createdAt": 1669467170138,
-    "updatedAt": 1669467170138,
+    "createdAt": 1670528700551,
+    "updatedAt": 1670528700551,
     "deletedAt": 0,
-    "createdFirstAt": 1669467170138,
+    "createdFirstAt": 1670528700551,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/util/getRealSrc.ts",
-    "comment": "Based on markdown info, gest the real source for an image",
-    "rawStatement": "export const getRealSrc = (\n  src: string | undefined,\n  config: MarkdownParseRenderConfig\n) => {\n  // src from static folder of next.js\n  const relativeUrlStrategy =\n    config.isDev || !config.isStatic ? \"api\" : \"static\";\n\n  const realSrc = src\n    ? isPathRelative(src)\n      ? getUrlFromRelativeUrl(\n          src,\n          relativeUrlStrategy,\n          config.projectRelativeBaseFolderPath,\n          config.projectRelativeMarkdownFilePath\n        )\n      : src\n    : undefined;\n\n  return realSrc;\n};",
+    "comment": "Based on markdown info, gest the real source for an asset",
+    "rawStatement": "export const getRealSrc = (\n  src: string | undefined,\n  config: MarkdownParseRenderConfig\n) => {\n  // src from static folder of next.js\n  const relativeUrlStrategy =\n    config.isDev || !config.isStatic ? \"api\" : \"static\";\n\n  if (!src) return undefined;\n\n  if (\n    isPathRelative(src) &&\n    config.projectRelativeBaseFolderPath &&\n    config.projectRelativeMarkdownFilePath\n  ) {\n    return getUrlFromRelativeUrl(\n      src,\n      relativeUrlStrategy,\n      config.projectRelativeBaseFolderPath,\n      config.projectRelativeMarkdownFilePath\n    );\n  }\n\n  return src;\n};",
     "parameters": {},
     "types": [],
     "firstLine": 5,
     "lastLine": 7,
-    "id": "pjfhbbbwarnaygmqlbmzpeox"
+    "id": "gbdzdykyuetrltvjujqicnqh"
   }
 ]

@@ -40,8 +40,9 @@ Properties:
 | slug  | string |  |
 | pictureImage (optional) | object |  |
 | interestSlugs (optional) | array |  |
+| mediaChannelIds (optional) | array |  |
+| preferred_mediaChannelId (optional) | string |  |
 | media (optional) | array |  |
-| preferredContactMedium (optional) | string |  |
 | dataEntries (optional) | array |  |
 | devicesCalculated (optional) | array |  |
 | authenticationMethods  | array |  |
@@ -192,8 +193,9 @@ Properties:
 | name  | string |  |
 | pictureImage (optional) | object |  |
 | interestSlugs (optional) | array |  |
+| mediaChannelIds (optional) | array |  |
+| preferred_mediaChannelId (optional) | string |  |
 | media (optional) | array |  |
-| preferredContactMedium (optional) | string |  |
 | amountAuthenticationMethodsRequired (optional) | number |  |
 | requiredAuthenticationMethods (optional) | array |  |
 
@@ -211,7 +213,7 @@ Properties:
 | pictureImage (optional) | object |  |
 | interestSlugs (optional) | array |  |
 | media (optional) | array |  |
-| preferredContactMedium (optional) | string |  |
+| preferred_mediaChannelId (optional) | string |  |
 | groupSlugs (optional) | array |  |
 | operationName  | null |  |
 | projectRelativePath  | string |  |
@@ -241,6 +243,7 @@ Properties:
 | method  | string |  |
 | handle  | string |  |
 | encryptedCredential (optional) | string |  |
+| credential (optional) | string |  |
 | otp (optional) | number |  |
 | isAuthenticated  | boolean |  |
 
@@ -328,7 +331,6 @@ Properties:
 | deviceId  | string |  |
 | path  | string |  |
 | ipInfo  | object |  |
-| hello  | string |  |
 
 
 
@@ -383,8 +385,9 @@ Properties:
 | slug  | string |  |
 | pictureImage (optional) | object |  |
 | interestSlugs (optional) | array |  |
+| mediaChannelIds (optional) | array |  |
+| preferred_mediaChannelId (optional) | string |  |
 | media (optional) | array |  |
-| preferredContactMedium (optional) | string |  |
 | dataEntries (optional) | array |  |
 | devicesCalculated (optional) | array |  |
 | authenticationMethods  | array |  |

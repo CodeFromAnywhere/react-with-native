@@ -1,0 +1,76 @@
+{
+  "createdAt": 1670528952845,
+  "updatedAt": 1670528952845,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528952845,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/openWhatsapp.tsx",
+  "commentsInside": [],
+  "rawText": " ({\n  phone,\n  text,\n}: {\n  phone: string;\n  text: string;\n}) => {\n  const url =\n    \"https://api.whatsapp.com/send/\" +\n    toQueryString({ phone, text, app_absent: 0 });\n  window.open(url, \"_blank\")?.focus();\n}",
+  "name": "openWhatsapp",
+  "slug": "open-whatsapp",
+  "parameters": [
+    {
+      "name": "{\n  phone,\n  text,\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "phone",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "phone",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "text",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 211,
+    "lines": 12,
+    "bytes": 211,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 18,
+    "linesPerFile": 12,
+    "numberOfFiles": 1
+  },
+  "id": "ldlcmdiukshavxolivrlrzkm"
+}

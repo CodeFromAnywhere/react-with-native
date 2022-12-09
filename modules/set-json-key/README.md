@@ -33,8 +33,6 @@ convert value string (arg3) to number, boolean if they seem to be like that
 
 
 
-## 📄 setJsonKey (exported const)
-
 ## setKeyAtLocation()
 
 | Input      |    |    |
@@ -42,4 +40,7 @@ convert value string (arg3) to number, boolean if they seem to be like that
 | path | string |  |,| value | {  } |  |,| object | {  } |  |
 | **Output** |    |    |
 
+
+
+## 📄 setJsonKey (exported const)
 

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670218547113,
+  "updatedAt": 1670218547113,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218547113,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "cacheLookup",
+  "slug": "cache-lookup",
+  "operationRelativeTypescriptFilePath": "src/cacheLookup.ts",
+  "type": {
+    "rawType": "(functionName: string, parameters: any[] | undefined) => import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/db-recipes/src/cacheLookup\").CacheLookupResult",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  functionName: string,\n  parameters: undefined | any[]\n): CacheLookupResult => {\n  // TODO: think of a smart way to look in cache and make sure it works with as many functions as possible with a smart cache invalidation + cleanup strategy\n  return { hasValidCache: false };\n}",
+  "description": "Wrapper function to cache any function and invalidate it, in some way\n\ncaching\nautomatic cache invalidation if data sources are updated\noptimistic caching after cache invalidation",
+  "id": "qeemtvdewtopjfebqphzymyq"
+}

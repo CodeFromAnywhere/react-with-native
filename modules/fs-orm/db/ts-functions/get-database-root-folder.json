@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669312112453,
-  "updatedAt": 1669312112453,
+  "createdAt": 1670592525169,
+  "updatedAt": 1670592525169,
   "deletedAt": 0,
-  "createdFirstAt": 1669312112453,
+  "createdFirstAt": 1670592525169,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/convention/getDatabaseRootFolder.ts",
   "commentsInside": [],
-  "rawText": " async (\n  operationName: string | null | undefined,\n  manualProjectRoot?: string\n): Promise<string | undefined> => {\n  const projectRoot = manualProjectRoot || getProjectRoot();\n  if (!projectRoot) {\n    log(\"getDatabaseRootFolder: No project root found\");\n    process.exit(1);\n  }\n\n  if (!operationName) {\n    return projectRoot;\n  }\n\n  const operationBasePath = await getOperationPath(operationName, {\n    manualProjectRoot: projectRoot,\n  });\n\n  if (!operationBasePath) {\n    log(`Couldn't find operation base path for ${operationName}`, {\n      type: \"error\",\n    });\n  }\n\n  return operationBasePath;\n}",
+  "rawText": " async (\n  operationName: string | null | undefined,\n  manualProjectRoot?: string\n): Promise<string | undefined> => {\n  const projectRoot = manualProjectRoot || getProjectRoot();\n  if (!projectRoot) {\n    log(\"getDatabaseRootFolder: No project root found\");\n    process.exit(1);\n  }\n\n  if (!operationName) {\n    return projectRoot;\n  }\n\n  const operationBasePath = await getOperationPath(operationName, {\n    manualProjectRoot,\n  });\n\n  if (!operationBasePath) {\n    log(`Couldn't find operation base path for ${operationName}`, {\n      type: \"error\",\n    });\n  }\n\n  return operationBasePath;\n}",
   "name": "getDatabaseRootFolder",
   "slug": "get-database-root-folder",
   "parameters": [
@@ -48,13 +48,13 @@
   },
   "maxIndentationDepth": 3,
   "size": {
-    "characters": 786,
+    "characters": 773,
     "lines": 29,
-    "bytes": 786,
+    "bytes": 773,
     "bytesPerCharacter": 1,
     "charactersPerLine": 27,
     "linesPerFile": 29,
     "numberOfFiles": 1
   },
-  "id": "wkzkanuvweemdbldhvlofzkg"
+  "id": "luoosaouzbpqefophfrjbaaq"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384155922,
-  "updatedAt": 1669384155922,
+  "createdAt": 1670526637458,
+  "updatedAt": 1670526637458,
   "deletedAt": 0,
-  "createdFirstAt": 1669384155922,
+  "createdFirstAt": 1670526637458,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(urlOrPath: string): AssetType => {\n  const extension = getExtension(urlOrPath);\n  if ([\"mp3\", \"m4a\", \"wav\"].includes(extension)) return \"audio\";\n  if ([\"mp4\", \"avi\"].includes(extension)) return \"video\";\n  if ([\"jpeg\", \"jpg\", \"png\", \"gif\", \"svg\"].includes(extension)) return \"image\";\n  if (isText(urlOrPath)) return \"text\";\n  return \"other\";\n}",
+  "value": "(urlOrPath: string): AssetType => {\n  const extension = getExtension(urlOrPath);\n  if ([\"mp3\", \"m4a\", \"wav\"].includes(extension)) return \"audio\";\n  if ([\"mp4\", \"avi\", \"mov\"].includes(extension)) return \"video\";\n  if ([\"jpeg\", \"jpg\", \"png\", \"gif\", \"svg\"].includes(extension)) return \"image\";\n  if (isText(urlOrPath)) return \"text\";\n  return \"other\";\n}",
   "description": "We are assuming the asset name and extsion appear at the end of the URL",
-  "id": "hrfgssaoydeavrjybqkgpfzu"
+  "id": "gztxiktxpjskpzwislwxdinw"
 }

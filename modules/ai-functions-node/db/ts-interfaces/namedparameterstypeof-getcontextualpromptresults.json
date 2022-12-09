@@ -1,0 +1,82 @@
+{
+  "createdAt": 1670589805504,
+  "updatedAt": 1670589805504,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589805504,
+  "id": "namedparameterstypeof-getcontextualpromptresults",
+  "name": "NamedParameters<typeof getContextualPromptResults>",
+  "slug": "namedparameterstypeof-getcontextualpromptresults",
+  "operationRelativeTypescriptFilePath": "src/getContextualPromptResults.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "prompt_projectRelativePath": {
+              "type": "string"
+            },
+            "promptSlugs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": false,
+          "schema": {
+            "properties": [
+              {
+                "name": "prompt_projectRelativePath",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "promptSlugs",
+                "required": false,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getContextualPromptResults>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

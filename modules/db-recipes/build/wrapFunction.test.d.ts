@@ -1,0 +1,2 @@
+export declare const wrapFunction: <TFunc extends (...parameters: any[]) => any>(originalFunction: TFunc) => (...parameters: Parameters<TFunc>) => ReturnType<TFunc>;
+//# sourceMappingURL=wrapFunction.test.d.ts.map

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668775439685,
-  "updatedAt": 1668775439685,
+  "createdAt": 1670528155758,
+  "updatedAt": 1670528155758,
   "deletedAt": 0,
-  "createdFirstAt": 1668775439685,
+  "createdFirstAt": 1670528155758,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (\n  fnName: string,\n  config: ApiConfig,\n  ...parameters: any\n): Promise<RealApiReturnType<any>> => {\n  // TODO: document this convention\n  const storageAuthToken: string | undefined = await getItem(\n    AUTH_TOKEN_STORAGE_KEY\n  );\n\n  const authToken = config.authToken || storageAuthToken;\n  const realApiUrl = config.apiUrl || apiUrl;\n  const fullUrl = `${realApiUrl}/function/${fnName}`;\n\n  try {\n    const abortController = new AbortController();\n    const id = setTimeout(\n      () => abortController.abort(),\n      config.timeout || 10000\n    );\n\n    const response = await fetch(fullUrl, {\n      method: \"POST\",\n      signal: config.timeout ? abortController.signal : undefined,\n      headers: {\n        Accept: \"application/json\",\n        \"Content-Type\": \"application/json\",\n      },\n      body: JSON.stringify({ authToken, parameters }),\n    })\n      .then((response) => response.json())\n      .then((response) => {\n        return response;\n      })\n      .catch((error) => {\n        if (!config.timeout) {\n          console.warn(error);\n        }\n        return {\n          isSuccessful: false,\n          isNotConnected: true,\n          message: \"The API didn't resolve: \" + error, //error + error.status +\n        };\n      });\n\n    clearTimeout(id);\n    return response;\n  } catch (e) {\n    return {\n      isSuccessful: false,\n      isNotConnected: true,\n      message: \"The API didn't resolve: \" + e,\n    };\n  }\n}",
+  "value": "async (\n  fnName: string,\n  config: ApiConfig,\n  ...parameters: any\n): Promise<RealApiReturnType<any>> => {\n  // TODO: document this convention\n  const storageAuthToken: string | undefined = await getItem(\n    AUTH_TOKEN_STORAGE_KEY\n  );\n\n  const authToken = config.authToken || storageAuthToken;\n  const realApiUrl = config.apiUrl || apiUrl;\n\n  if (realApiUrl === undefined) {\n    return {\n      isSuccessful: false,\n      isNotConnected: true,\n      message: \"The API cannot be found\",\n    };\n  }\n\n  const fullUrl = `${realApiUrl}/function/${fnName}`;\n\n  try {\n    const abortController = new AbortController();\n    const id = setTimeout(\n      () => abortController.abort(),\n      config.timeout || 10000\n    );\n\n    const response = await fetch(fullUrl, {\n      method: \"POST\",\n      signal: config.timeout ? abortController.signal : undefined,\n      headers: {\n        Accept: \"application/json\",\n        \"Content-Type\": \"application/json\",\n      },\n      body: JSON.stringify({ authToken, parameters }),\n    })\n      .then((response) => response.json())\n      .then((response) => {\n        setItem(API_NO_RESPONSE_TIME_KEY, \"0\");\n\n        return response;\n      })\n      .catch((error) => {\n        if (!config.timeout) {\n          console.warn(error);\n        }\n        setItem(API_NO_RESPONSE_TIME_KEY, String(Date.now()));\n        return {\n          isSuccessful: false,\n          isNotConnected: true,\n          message: \"The API didn't resolve: \" + String(error), //error + error.status +\n        };\n      });\n\n    clearTimeout(id);\n    return response;\n  } catch (e) {\n    setItem(API_NO_RESPONSE_TIME_KEY, String(Date.now()));\n\n    return {\n      isSuccessful: false,\n      isNotConnected: true,\n      message:\n        \"The API didn't resolve, and the fetch crashed because of it: \" +\n        String(e),\n    };\n  }\n}",
   "description": "Used for calling the actual api for a function with some config\n\nNB: this is not a typed function as we are just overwriting it so we don't need any inference on this",
-  "id": "tzqycpmfhihaqywprvhjsnii"
+  "id": "flgzokligseykeoyuaxdnkbq"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669276146409,
-  "updatedAt": 1669276146409,
+  "createdAt": 1670527327577,
+  "updatedAt": 1670527327577,
   "deletedAt": 0,
-  "createdFirstAt": 1669276146409,
+  "createdFirstAt": 1670527327577,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  tsFunctions?: TsFunction[]\n): Promise<{ nested: NestedWebPage[]; flat: WebPage[] }> => {\n  // if you don't provide it, overwrite it from the db\n  tsFunctions =\n    tsFunctions || (await db.get(\"TsFunction\")).filter((x) => x.isExported);\n\n  // TODO: use the `functionQueryPaths` and add the needed ones to main project and every bundle available\n  const bundles = await db.get(\"BundleConfig\");\n\n  // console.log({ tsFunctions });\n\n  const functionQueryPaths: string[] = tsFunctions\n    .map((tsFunction) => {\n      if (!tsFunction.operationName) {\n        console.log(`no name`);\n        return;\n      }\n\n      // part 1: relative path from project root until operation name\n      const operationPath =\n        operations[tsFunction.operationName as keyof typeof operations];\n\n      if (!operationPath) return;\n\n      // part 2: src relative folder path (without file)\n\n      const srcRelativeFolderPath = getSrcRelativeFolderPath(\n        tsFunction.operationRelativeTypescriptFilePath\n      );\n\n      // part 3: name of the function\n      const name = tsFunction.name;\n\n      const queryPath = srcRelativeFolderPath\n        ? `${operationPath}/${srcRelativeFolderPath}/${name}`\n        : `${operationPath}/${name}`;\n\n      return queryPath;\n    })\n    .filter(notEmpty)\n    .sort((a, b) => {\n      if (a < b) return -1;\n      return 1;\n    });\n\n  const flat = functionQueryPaths.map((queryPath) => {\n    const webPage: WebPage = {\n      queryPath,\n      pageData: null,\n    };\n    return webPage;\n  });\n\n  const menuObject = getMenuPagesObject(flat);\n\n  return menuObject;\n}",
   "description": "Calculate all required query paths for the function UI menu...\n\n- bundles + main project as root folders (`[\"main project\", ...bundleNames]`)\n- per folder all operations it contains, nested, in the project relative folder where it should be ending up\n- per operation all functions it contains, nested, relative to the src folder. not file, only folders should become menu\n\nExample:\n\n- main\n- modules\n- packages\n- db-ui\n- components\n- `<IndexInstanceContainer>`\n- `<Layout>`\n- `<UpsertForm>`\n- hooks\n- `useGetDbModelQuery`\n- `useReferencableModelDataQuery`\n- pages\n- Page\n- Page\n- Page\n- getPageTitle\n- generated\n- himalayajeep-functions\n- apps\n- bundle A\n- bundle B\n\nNB: if possible, rename the menu items if the items in a folder are not unique (use file-name to replace item name if this happens)",
-  "id": "tudwqqbpokstxporgbdbhdgr"
+  "id": "qzllnusuyufrxvcfgpqpmnzd"
 }

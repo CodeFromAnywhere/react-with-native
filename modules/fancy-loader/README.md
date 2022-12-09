@@ -1,6 +1,6 @@
 # Fancy loader
 
-fancy-loader (`OperationClassification` cjs)
+fancy-loader (`OperationClassification` ui-cjs)
 
 
 

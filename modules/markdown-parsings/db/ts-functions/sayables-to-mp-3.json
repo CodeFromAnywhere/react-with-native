@@ -1,19 +1,19 @@
 {
-  "createdAt": 1669200460546,
-  "updatedAt": 1669200460546,
+  "createdAt": 1670590061958,
+  "updatedAt": 1670590061958,
   "deletedAt": 0,
-  "createdFirstAt": 1669200460546,
+  "createdFirstAt": 1670590061958,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/expose/sayablesToMp3.ts",
   "commentsInside": [],
-  "rawText": " ({\n  sayables,\n  destinationAbsoluteFilePath,\n}: {\n  destinationAbsoluteFilePath: string;\n  sayables: Sayable[];\n}) => {\n  /**\n  \n  \n  \n   */\n}",
+  "rawText": " (config: {\n  destinationAbsoluteFilePath: string;\n  sayables: Sayable[];\n}) => {\n  const { sayables, destinationAbsoluteFilePath } = config;\n  /**\n  \n  \n  \n   */\n}",
   "name": "sayablesToMp3",
   "slug": "sayables-to-mp-3",
   "parameters": [
     {
-      "name": "{\n  sayables,\n  destinationAbsoluteFilePath,\n}",
+      "name": "config",
       "schema": {
         "type": "object",
         "properties": {
@@ -49,7 +49,7 @@
               "items": [
                 {
                   "schema": {
-                    "fullComment": "",
+                    "fullComment": "GOAL:\n- distribute read only (and audio only) material of my codebase\n- it is also a fundament for other applications in the future",
                     "properties": [
                       {
                         "name": "sayableText",
@@ -92,13 +92,13 @@
   },
   "maxIndentationDepth": 1,
   "size": {
-    "characters": 226,
-    "lines": 13,
-    "bytes": 226,
+    "characters": 246,
+    "lines": 11,
+    "bytes": 246,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 17,
-    "linesPerFile": 13,
+    "charactersPerLine": 22,
+    "linesPerFile": 11,
     "numberOfFiles": 1
   },
-  "id": "luqxdbuzmevloxvcepegbmsj"
+  "id": "fmfilfmbmejapnxfdjshpzto"
 }

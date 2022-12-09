@@ -76,6 +76,23 @@ Properties:
 
 
 
+## 🔹 WriterWebPage
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| queryPath  | string |  |
+| searchTerms (optional) | array |  |
+| target (optional) | string |  |
+| isMenuHidden (optional) | boolean |  |
+| menuTitleAugmentation (optional) | string |  |
+| menuTitleTooltip (optional) | string |  |
+| menuTitle (optional) | string |  |
+| pageData  | object |  |
+
+
+
 ## crudPageToWebPages()
 
 | Input      |    |    |
@@ -127,6 +144,7 @@ Properties:
 | internalLinkWord (optional) | string |  |
 | imagePath (optional) | string |  |
 | shortDescription (optional) | string |  |
+| introDescription (optional) | string |  |
 
 
 
@@ -164,23 +182,6 @@ Properties:
 | routeOnIsSuccessful (optional) | string |  |
 | customTitle (optional) | string |  |
 | isMenuHidden (optional) | boolean |  |
-
-
-
-## 🔹 WriterWebPage
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| queryPath  | string |  |
-| searchTerms (optional) | array |  |
-| target (optional) | string |  |
-| isMenuHidden (optional) | boolean |  |
-| menuTitleAugmentation (optional) | string |  |
-| menuTitleTooltip (optional) | string |  |
-| menuTitle (optional) | string |  |
-| pageData  | object |  |
 
 
 

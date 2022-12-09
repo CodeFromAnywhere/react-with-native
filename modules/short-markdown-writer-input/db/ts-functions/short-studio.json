@@ -1,0 +1,40 @@
+{
+  "createdAt": 1670215598230,
+  "updatedAt": 1670215598230,
+  "deletedAt": 0,
+  "createdFirstAt": 1670215598230,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/ShortStudio.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  onChange: (value: string) => void;\n  value: string;\n  projectRelativeFilePath: string;\n  markdownModelName?: keyof DbModels;\n}) => {\n  const { projectRelativeFilePath } = props;\n\n  const shortMarkdownQuery = queries.useGetOrGenerateShortMarkdown(\n    projectRelativeFilePath\n  );\n\n  const shortMarkdown = shortMarkdownQuery.data?.result || undefined;\n\n  // console.log({ shortMarkdown });\n  return (\n    <Div className=\"w-full h-full flex flex-1 flex-col\">\n      {shortMarkdownQuery.isLoading ? <FancyLoader /> : null}\n      <ShortMarkdownPlayer\n        shortMarkdown={shortMarkdown}\n        projectRelativeFilePath={projectRelativeFilePath}\n      />\n    </Div>\n  );\n}",
+  "name": "ShortStudio",
+  "slug": "short-studio",
+  "parameters": [],
+  "description": "the newer one, eventually to replace `ContextTextArea`\n<SmartContentEditableDivInput\nwriterType={writerType}\nvalue={value}\nonChange={onChange}\nmarkdownParseRenderConfig={markdownParseRenderConfig}\n/>",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 880,
+    "lines": 31,
+    "bytes": 880,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "id": "gprvbocfrowmjiwzsdmooshg"
+}

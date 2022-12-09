@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668334990643,
-  "updatedAt": 1668334990643,
+  "createdAt": 1669884027113,
+  "updatedAt": 1669884027113,
   "deletedAt": 0,
-  "createdFirstAt": 1668334990643,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669884027113,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/readKvmdFile.ts",
   "commentsInside": [],
-  "rawText": " async (\n  filePath: Path,\n  /**\n   * TODO: make this optional. if not provided, calculate it ourselves here.\n   */\n  dbFileLocation: DbFileLocation\n): Promise<KeyValueMarkdownParse | null> => {\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isMarkdownFile = [\"md\", \"mdx\"].includes(pathParse.ext.slice(1));\n  if (!isMarkdownFile) return null;\n\n  if (!fs.existsSync(filePath)) return null;\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const keyValueMarkdownParse = markdownStringToKvmdParse(\n    fileString,\n    dbFileLocation\n  );\n\n  console.log({ keyValueMarkdownParse });\n  return keyValueMarkdownParse;\n}",
+  "rawText": " async (\n  filePath: Path,\n  /**\n   * TODO: make this optional. if not provided, calculate it ourselves here.\n   */\n  dbFileLocation: DbFileLocation\n): Promise<KeyValueMarkdownParse | null> => {\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isMarkdownFile = [\"md\", \"mdx\"].includes(pathParse.ext.slice(1));\n  if (!isMarkdownFile) return null;\n\n  if (!fs.existsSync(filePath)) return null;\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const keyValueMarkdownParse = markdownStringToKvmdParse(\n    fileString,\n    dbFileLocation\n  );\n\n  // console.log({ keyValueMarkdownParse });\n  return keyValueMarkdownParse;\n}",
   "name": "readKvmdFile",
   "slug": "read-kvmd-file",
   "parameters": [
@@ -94,13 +89,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 791,
+    "characters": 794,
     "lines": 26,
-    "bytes": 791,
+    "bytes": 794,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 30,
+    "charactersPerLine": 31,
     "linesPerFile": 26,
     "numberOfFiles": 1
   },
-  "id": "ewyqhyrrbhceqvqacluybmml"
+  "id": "gunslrdkvbvtnfvotlcgdwsb"
 }

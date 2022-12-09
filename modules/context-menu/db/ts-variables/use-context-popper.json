@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528583713,
+  "updatedAt": 1670528583713,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528583713,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useContextPopper",
+  "slug": "use-context-popper",
+  "operationRelativeTypescriptFilePath": "src/useContextPopper.tsx",
+  "type": {
+    "rawType": "(props: { renderPopper: (props: { id?: string | undefined; }) => JSX.Element; longTouchDurationMs?: number | undefined; }) => { isOpen: boolean; renderContextPopper: () => JSX.Element | null; onClose: () => void; openContextPopperProps: { ref: React.RefObject<HTMLDivElement>; onContextMenu: (event: React.MouseEvent<Element, MouseEvent>) => void; onTouchStart: (event: React.TouchEvent<Element>) => void; onTouchEnd: () => void; onClick: (mouseEvent: React.MouseEvent<Element, MouseEvent>) => void; style: React.CSSProperties; }; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  renderPopper: (props: { id?: string }) => JSX.Element;\n  longTouchDurationMs?: number;\n}): {\n  isOpen: boolean;\n  /**\n   * Render this function anywhere in your component. Ensure it's high enough up the tree to make sure the positioning is correct. Not tested in modals and scrollable divs...\n   */\n  renderContextPopper: () => JSX.Element | null;\n\n  /**\n   * Callback to close the popper from anywhere\n   */\n  onClose: () => void;\n  /**\n   * Attach these props to the element that should be right-clickable or long-pressable\n   *\n   * You can also pass an id to this element in order to pass this to the callback\n   * e.g.\n   *\n   * ```tsx\n   * <div id=\"some-id\" {...openContextPopperProps}>your html</div>\n   * ```\n   *\n   * If you also want to attach your own properties, you can destructure this and wrap the individual props in your final prop.\n   */\n  openContextPopperProps: {\n    ref: React.RefObject<HTMLDivElement>;\n    onContextMenu: (event: React.MouseEvent<Element, MouseEvent>) => void;\n    onTouchStart: (event: React.TouchEvent<Element>) => void;\n    onTouchEnd: () => void;\n    onClick: (mouseEvent: React.MouseEvent<Element, MouseEvent>) => void;\n    style: React.CSSProperties;\n  };\n} => {\n  const { longTouchDurationMs } = props;\n  const [contextEvent, setContextEvent] = useState<ContextEvent | null>(null);\n\n  useEffect(() => {\n    if (typeof window === \"undefined\") return;\n\n    // Needed to make it go away when clicking outside of the popper, doesn't work for textarea though\n    window.addEventListener(\"click\", () => {\n      setContextEvent(null);\n    });\n  }, []);\n\n  const contextProps = useContext(\n    (contextEvent) => {\n      setContextEvent(contextEvent);\n      console.log(\"callback called\", props);\n    },\n    { longTouchDurationMs }\n  );\n\n  const virtualReference = useMemo(\n    () => ({\n      // This is going to create a virtual reference element\n\n      getBoundingClientRect() {\n        console.log({ contextEvent });\n        const clientRect: ClientRect = {\n          top: contextEvent?.clientY || 10,\n          left: contextEvent?.clientX || 10,\n          bottom: 0,\n          right: 0,\n          width: 0,\n          height: 0,\n          x: 0,\n          y: 0,\n          toJSON() {\n            return \"\";\n          },\n        };\n        return clientRect;\n      },\n    }),\n    [contextEvent]\n  );\n\n  const popperRef = useRef<HTMLDivElement>(null);\n  const { styles, attributes } = usePopper(\n    virtualReference,\n    popperRef.current,\n    {\n      strategy: \"fixed\",\n      placement: \"auto-start\",\n      modifiers: [{ name: \"preventOverflow\", enabled: false }],\n    }\n  );\n\n  const renderContextPopper = () =>\n    contextEvent ? (\n      <div\n        onClick={(e) => {\n          // NB: needed to ensure it doesn't close due to the window.click\n          e.stopPropagation();\n        }}\n        style={styles.popper}\n        {...attributes.popper}\n      >\n        {props.renderPopper({ id: contextEvent.id })}\n      </div>\n    ) : null;\n\n  const openContextPopperProps = {\n    ...contextProps,\n    ref: popperRef,\n  };\n\n  const onClose = () => setContextEvent(null);\n\n  return {\n    openContextPopperProps,\n    renderContextPopper,\n    onClose,\n    isOpen: !!contextEvent,\n  };\n}",
+  "description": "Use this hook if you want to create your own custom render that opens on the right location once the `.onContextMenu` is fired.",
+  "id": "gmanaqdkzwwuybdjagppvdeb"
+}

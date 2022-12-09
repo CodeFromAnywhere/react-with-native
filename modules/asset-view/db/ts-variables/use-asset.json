@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384250320,
-  "updatedAt": 1669384250320,
+  "createdAt": 1670526897311,
+  "updatedAt": 1670526897311,
   "deletedAt": 0,
-  "createdFirstAt": 1669384250320,
+  "createdFirstAt": 1670526897311,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "use-asset",
   "operationRelativeTypescriptFilePath": "src/useAsset.ts",
   "type": {
-    "rawType": "(asset: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").Asset | undefined, projectRelativeReferencingFilePath?: string | null | undefined, isNextStaticProductionBuild?: boolean | undefined) => { rawText: string | null; type: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").AssetType | undefined; downloadUrl: string | undefined; src: string; extension: string | undefined; } | undefined",
+    "rawType": "(asset: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").Asset | undefined, projectRelativeReferencingFilePath?: string | null | undefined, isNextStaticProductionBuild?: boolean | undefined) => { rawText: string | null; type: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").AssetType | undefined; downloadUrl: string | undefined; src: string | undefined; extension: string | undefined; } | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(\n  asset: Asset | undefined,\n  projectRelativeReferencingFilePath?: string | null,\n  isNextStaticProductionBuild?: boolean\n) => {\n  if (!asset || !projectRelativeReferencingFilePath) return;\n  // console.log({ apiUrl });\n  /**\n   * NB: `relativePath` is required\n   */\n  const getRemoteUrl = (isDownload: boolean) =>\n    getReferencedAssetApiUrl(\n      apiUrl,\n      projectRelativeReferencingFilePath,\n      asset.relativePath!,\n      isDownload\n    );\n\n  const getPublicUrl = (relativePath: string) =>\n    `markdown-assets/${path.join(\n      path.parse(projectRelativeReferencingFilePath).dir,\n      relativePath\n    )}`;\n  /**\n   * NB: `asset.temporaryDestination` is not a URL that can be used to retreive the image as \"src\"\n   */\n  const src = asset.absoluteUrl\n    ? asset.absoluteUrl\n    : asset.blobPath\n    ? asset.blobPath\n    : isNextStaticProductionBuild && asset.relativePath\n    ? getPublicUrl(asset.relativePath)\n    : getRemoteUrl(false);\n\n  // console.log(\"UseAssetSRC:\", src);\n  const downloadRemotely = !asset.blobPath && !!asset.relativePath;\n\n  const downloadUrl =\n    isNextStaticProductionBuild && asset.relativePath\n      ? getPublicUrl(asset.relativePath)\n      : downloadRemotely\n      ? getRemoteUrl(true)\n      : // NB: other type is ugly when downloading. Also doesn't make sense much to want to download an asset after uploading\n      asset.type !== \"other\"\n      ? asset.blobPath\n      : undefined;\n\n  const extension = getExtensionFromAsset(asset);\n\n  const assetInfo = useAssetInfo(src, asset.originalFilename);\n\n  const rawText = assetInfo?.rawText || null;\n  const type = asset.type || assetInfo?.type;\n\n  return { rawText, type, downloadUrl, src, extension };\n}",
+  "value": "(\n  asset: Asset | undefined,\n  projectRelativeReferencingFilePath?: string | null,\n  isNextStaticProductionBuild?: boolean\n) => {\n  if (!asset || !projectRelativeReferencingFilePath) return;\n\n  const { src, downloadUrl } = getSrc(\n    asset,\n    projectRelativeReferencingFilePath,\n    isNextStaticProductionBuild\n  );\n\n  const extension = getExtensionFromAsset(asset);\n\n  const assetInfo = useAssetInfo(src, asset.originalFilename);\n\n  const rawText = assetInfo?.rawText || null;\n  const type = asset.type || assetInfo?.type;\n\n  return { rawText, type, downloadUrl, src, extension };\n}",
   "description": "",
-  "id": "tczckzbuudqgzhykcwztwlpz"
+  "id": "jxdsuzxxioufyydaathlolpq"
 }

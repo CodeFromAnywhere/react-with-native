@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668449025491,
-  "updatedAt": 1668449025491,
+  "createdAt": 1670590305692,
+  "updatedAt": 1670590305692,
   "deletedAt": 0,
-  "createdFirstAt": 1668449025491,
+  "createdFirstAt": 1670590305692,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  absoluteImportName: string\n) => {\n  const slashParts = absoluteImportName.split(\"/\");\n  const beforeSlash = slashParts[0];\n\n  if (!beforeSlash || beforeSlash.length === 0) return;\n\n  // NB: scoped packages look like `@company/package` and should be parsed correctly as well\n  const withoutInternalNavigation = beforeSlash.startsWith(\"@\")\n    ? slashParts.slice(0, 2).join(\"/\")\n    : beforeSlash;\n\n  const columnParts = withoutInternalNavigation.split(\":\");\n\n  const partAfterColumns = columnParts.pop()!;\n\n  return partAfterColumns;\n}",
   "description": "parses the absolute import name into the actual package name\n\n- removes internal navigation in the package (everything after the package name)\n- assumes packages don't have slashes in their names, execpt that it takes into account scoped packages (e.g. `@company/package`)\n- removes things that come before any column (`:`) e.g. `node:fs` becomes `fs`",
-  "id": "uluymjmflhrizgpsjbqchfyz"
+  "id": "sfiavhxgtyfguwjiynlrvyps"
 }

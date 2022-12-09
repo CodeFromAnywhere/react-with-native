@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668335516594,
-  "updatedAt": 1668335516594,
+  "createdAt": 1670527872323,
+  "updatedAt": 1670527872323,
   "deletedAt": 0,
-  "createdFirstAt": 1668335516594,
+  "createdFirstAt": 1670527872323,
   "id": "word",
   "name": "Word",
   "slug": "word",
@@ -137,16 +137,7 @@
         "slug",
         "updatedAt"
       ],
-      "additionalProperties": {
-        "anyOf": [
-          {
-            "$ref": "#/definitions/Id"
-          },
-          {
-            "not": {}
-          }
-        ]
-      },
+      "additionalProperties": false,
       "description": "The goal of the words model is to provide a definition for every word we use, in any language.\n\nDEPRECATED: Should be replaced with `WordMatrix`"
     },
     "simplifiedSchema": {

@@ -1,4 +1,5 @@
-import { TextJson } from "code-types";
+import { TextJson } from "markdown-types";
+import { FileType } from "filename-conventions";
 import { SearchableExtension, SearchLevel } from "filename-conventions";
 export declare type BaseConfig = undefined | {
     basePath?: string | string[];
@@ -6,7 +7,7 @@ export declare type BaseConfig = undefined | {
 /**
  * returns the file type or null if it's unknown
  */
-export declare const determineFileType: (filePath: string) => import("filename-conventions").FileType | null;
+export declare const determineFileType: (filePath: string) => FileType | null;
 export declare type SearchConfig = {
     /**
      * if true, the folder paths that contain matches will also be returned

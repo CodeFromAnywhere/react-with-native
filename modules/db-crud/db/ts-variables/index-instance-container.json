@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528884833,
+  "updatedAt": 1670528884833,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528884833,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "IndexInstanceContainer",
+  "slug": "index-instance-container",
+  "operationRelativeTypescriptFilePath": "src/IndexInstanceContainer.tsx",
+  "type": {
+    "rawType": "({ title, children, buttons, }: { title: string; children: any; buttons: import(\"/Users/king/King/operations/tools/user-interfaces/gui/dumb/labeled-button/build/LabeledButton\").LabeledButtonType[]; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "({\n  title,\n  children,\n  buttons,\n}: {\n  title: string;\n  children: any;\n  buttons: LabeledButtonType[];\n}) => {\n  return (\n    <Div className=\"p-2 m-2 border rounded-xl border-gray-500\">\n      <Div className=\"flex flex-row justify-between items-center\">\n        <P className=\"text-3xl\">{title}</P>\n\n        <Div className=\"flex flex-row gap-3\">{buttons.map(LabeledButton)}</Div>\n      </Div>\n\n      {children}\n    </Div>\n  );\n}",
+  "description": "container for any index instance that needs to be rendered in the explore page",
+  "id": "davyrrjmcbjdubrndrgimglt"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670592547451,
+  "updatedAt": 1670592547451,
+  "deletedAt": 0,
+  "createdFirstAt": 1670592547451,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "waitForLockfile",
+  "slug": "wait-for-lockfile",
+  "operationRelativeTypescriptFilePath": "src/createDb.ts",
+  "type": {
+    "rawType": "(lockfilePath: string) => Promise<boolean>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  lockfilePath: string\n): Promise<boolean> => {\n  if (fs.existsSync(lockfilePath)) {\n    const unixDate = await fs.readFile(lockfilePath, \"utf8\");\n    const msAgo = Date.now() - Number(unixDate);\n    if (msAgo < maxQueryTimeSeconds * 1000) {\n      // wait a 100ms!\n      // console.log(\"Waiting for lockfile...\");\n\n      await new Promise<undefined>((resolve) =>\n        setTimeout(() => resolve(undefined), 100)\n      );\n      return waitForLockfile(lockfilePath);\n    }\n\n    // if we get here, the file exists for more than 10 seconds\n\n    console.log(\n      \"Warning: lockfile exists more than ten seconds. I'm assuming the query failed, but this is not good! Should never have such slow queries.\"\n    );\n  }\n\n  await fs.writeFile(lockfilePath, String(Date.now()), \"utf8\");\n\n  return true;\n}",
+  "description": "",
+  "id": "xslkkllneylnpixtbgfvejtf"
+}

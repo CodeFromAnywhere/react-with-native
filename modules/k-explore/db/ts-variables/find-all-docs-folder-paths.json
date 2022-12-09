@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668976646824,
-  "updatedAt": 1668976646824,
+  "createdAt": 1670216124043,
+  "updatedAt": 1670216124043,
   "deletedAt": 0,
-  "createdFirstAt": 1668976646824,
+  "createdFirstAt": 1670216124043,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  /**\n   * Don't look for docs folders inside of operation folders\n   */\n  ignoreOperations?: boolean,\n  /**\n   * optionally, ignore some folders\n   */\n  ignoreFolders?: string[]\n): Promise<string[]> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return [];\n  const docsBasePath = isBundle(projectRoot)\n    ? projectRoot\n    : getRootPath(\"operations\");\n\n  if (!docsBasePath) return [];\n\n  const docsFolderPaths = await findAllFoldersWithName({\n    basePath: docsBasePath,\n    folderName: \"docs\",\n    ignoreOperations,\n    ignoreFolders,\n  });\n  return docsFolderPaths;\n}",
   "description": "Returns absolute paths for all docs folders (not the files inside)",
-  "id": "csobdymeddnigpofuaafewto"
+  "id": "tjvedjofxutkuchwqrdtmcfr"
 }

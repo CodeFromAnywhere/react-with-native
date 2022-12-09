@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385047621,
-  "updatedAt": 1669385047621,
+  "createdAt": 1670218866286,
+  "updatedAt": 1670218866286,
   "deletedAt": 0,
-  "createdFirstAt": 1669385047621,
+  "createdFirstAt": 1670218866286,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  projectRelativeFilePath: string,\n  newContent: string\n): Promise<{ isSuccessful: boolean; message?: string }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root found\" };\n  }\n\n  const absolutePath = path.join(projectRoot, projectRelativeFilePath);\n\n  if (!fs.existsSync(absolutePath)) {\n    return { isSuccessful: false, message: \"This file does not exist\" };\n  }\n\n  await fs.writeFile(absolutePath, newContent, { encoding: \"utf8\" });\n\n  return {\n    isSuccessful: true,\n  };\n}",
   "description": "",
-  "id": "nghtndgctcpnokbtumxrkkyp"
+  "id": "inoujwtnqbklgibdsgpqktat"
 }

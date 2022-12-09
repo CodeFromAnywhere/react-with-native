@@ -1,0 +1,218 @@
+{
+  "createdAt": 1670215593090,
+  "updatedAt": 1670215593090,
+  "deletedAt": 0,
+  "createdFirstAt": 1670215593090,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/ShortMarkdownPlayer.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  shortMarkdown?: ShortMarkdown;\n  projectRelativeFilePath?: string;\n}) => {\n  const { shortMarkdown, projectRelativeFilePath } = props;\n  const [slide, setSlide] = useState<number | null>(null);\n\n  const audioUrls =\n    shortMarkdown?.audioWithViewsArray\n      .filter((x) => !!x.audioPath)\n      .map((x) => {\n        if (!x.audioPath || !projectRelativeFilePath) return;\n\n        const src = getSrc(\n          { relativePath: x.audioPath },\n          projectRelativeFilePath\n        ).src;\n\n        return { audioKey: x.audioKey, src };\n      })\n      .filter(notEmpty) || [];\n\n  const audioPlayer = useMultiAudio(audioUrls.map((x) => x.src));\n\n  const items = shortMarkdown?.audioWithViewsArray\n    .map((x) => x.viewEmbeds)\n    .flat();\n\n  useEffect(() => {\n    if (!items) return;\n    if (slide === null) return;\n    // 1 - find corresponding item\n    const item = items[slide];\n\n    // 2 - find the audio connected to it and where it should start for that audio\n    const audioIndex = audioUrls.findIndex((x) => x.audioKey === item.audioKey);\n\n    if (audioIndex === -1) return;\n\n    // 3 - stop the previous audio, start next audio\n    audioPlayer.toggle(audioIndex)();\n  }, [slide]);\n\n  if (!shortMarkdown) return null;\n  if (!projectRelativeFilePath) return null;\n  if (!items) return null;\n\n  return (\n    <Div className=\"h-[80vh] overflow-auto snap-mandatory snap-y\">\n      {items.map((item, index) => {\n        return (\n          <div id={`slide${index}`}>\n            <ShortMarkdownSlide\n              projectRelativeFilePath={projectRelativeFilePath}\n              setSlide={setSlide}\n              isAutoplay\n              item={item}\n              index={index}\n              key={`slidekey${index}`}\n            />\n          </div>\n        );\n      })}\n    </Div>\n  );\n}",
+  "name": "ShortMarkdownPlayer",
+  "slug": "short-markdown-player",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "shortMarkdown": {
+            "$ref": "#/definitions/ShortMarkdown"
+          },
+          "projectRelativeFilePath": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "shortMarkdown",
+            "required": false,
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "audioWithViewsArray",
+                  "required": true,
+                  "schema": {
+                    "items": [
+                      {
+                        "schema": {
+                          "fullComment": "",
+                          "properties": [
+                            {
+                              "name": "audioPath",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "audioKey",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "Unique key for the audio",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "audioDurationMs",
+                              "required": false,
+                              "schema": {
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "viewEmbeds",
+                              "required": true,
+                              "schema": {
+                                "items": [
+                                  {
+                                    "schema": {
+                                      "fullComment": "",
+                                      "properties": [
+                                        {
+                                          "name": "audioKey",
+                                          "required": false,
+                                          "schema": {
+                                            "fullComment": "Unique key for the belonging audio, used to find the desired audio",
+                                            "type": "string"
+                                          }
+                                        },
+                                        {
+                                          "name": "title",
+                                          "required": false,
+                                          "schema": {
+                                            "fullComment": "Either viewPath or title is required",
+                                            "type": "string"
+                                          }
+                                        },
+                                        {
+                                          "name": "viewPath",
+                                          "required": false,
+                                          "schema": {
+                                            "fullComment": "Either viewPath or title is required",
+                                            "type": "string"
+                                          }
+                                        },
+                                        {
+                                          "name": "spokenText",
+                                          "required": false,
+                                          "schema": {
+                                            "fullComment": "Text in the alt of the image or video, but only if the alt is wrapped in quotes (e.g. \"your spoken text\"). Can be parsed into an audio and subtitles, and also a duration.",
+                                            "type": "string"
+                                          }
+                                        },
+                                        {
+                                          "name": "durationMs",
+                                          "required": false,
+                                          "schema": {
+                                            "fullComment": "Added afterwards",
+                                            "type": "number"
+                                          }
+                                        }
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "name": "ViewEmbed"
+                                  }
+                                ],
+                                "type": "array"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": "AudioWithViews"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
+                  "name": "backgroundMusicTrack",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "LATER:",
+                    "later": "",
+                    "items": [
+                      {
+                        "schema": {
+                          "fullComment": "",
+                          "properties": [
+                            {
+                              "name": "relativeAudioFilePath",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "durationMs",
+                              "required": false,
+                              "schema": {
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "startMs",
+                              "required": false,
+                              "schema": {
+                                "type": "number"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": "AudioTrackItem"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "projectRelativeFilePath",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element | null",
+    "typeDefinition": {
+      "optional": true,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 1799,
+    "lines": 66,
+    "bytes": 1799,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 66,
+    "numberOfFiles": 1
+  },
+  "id": "ippredcoarayxwmkolykyuaa"
+}

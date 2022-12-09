@@ -33,9 +33,34 @@ optionally you can chooose to force a type...
 
 TODO: figure out how I can do this without ts-ignores
 
+
+## stringToJson()
+
+takes any string, and parses it to JSON
+
+if you provide (nested) objects, make sure to use the following format:
+
+key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| value | string |  |,| isObject (optional) | boolean |  |
+| **Output** |    |    |
+
+
+
+## 📄 stringToJson (exported const)
+
+takes any string, and parses it to JSON
+
+if you provide (nested) objects, make sure to use the following format:
+
+key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }
+
 # Internal
 
-<details><summary>Show internal (7)</summary>
+<details><summary>Show internal (5)</summary>
     
   # objectStringToJson()
 
@@ -67,22 +92,6 @@ if it's a string with a parsable JSON inside, parse it and return the object/arr
 
 
 
-## stringToJson()
-
-takes any string, and parses it to JSON
-
-if you provide (nested) objects, make sure to use the following format:
-
-key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| value | string |  |,| isObject (optional) | boolean |  |
-| **Output** |    |    |
-
-
-
 ## 🔹 JSONValue
 
 ## 📄 objectStringToJson (exported const)
@@ -99,14 +108,5 @@ NB: you can have objects in parameters of objects by surrounding the same syntax
 ## 📄 parseIfJson (exported const)
 
 if it's a string with a parsable JSON inside, parse it and return the object/array
-
-
-## 📄 stringToJson (exported const)
-
-takes any string, and parses it to JSON
-
-if you provide (nested) objects, make sure to use the following format:
-
-key1: value, key2: another value, key3: 9, key4: false, key5: null, key6: { subkey: true, subkey2: 0 }
   </details>
 

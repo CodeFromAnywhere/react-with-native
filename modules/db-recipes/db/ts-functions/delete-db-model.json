@@ -1,0 +1,36 @@
+{
+  "createdAt": 1670218551176,
+  "updatedAt": 1670218551176,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218551176,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/deleteDbModel.ts",
+  "commentsInside": [],
+  "rawText": " async <KInterface extends DbModelEnum>(\n  interfaceName: KInterface,\n  id: string\n): Promise<DbQueryResult> => {\n  const deleteResult = await db.remove(\n    interfaceName,\n    (content) => content.id === id\n  );\n  return deleteResult;\n}",
+  "name": "deleteDbModel",
+  "slug": "delete-db-model",
+  "parameters": [],
+  "description": "deletes an instance of an db data interface from the db in a typesafe way",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/build/types\").DbQueryResult>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 310,
+    "lines": 10,
+    "bytes": 310,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 10,
+    "numberOfFiles": 1
+  },
+  "id": "jywekfxzwrwsqsdjbzvqcjhk"
+}

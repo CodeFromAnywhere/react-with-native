@@ -1,6 +1,3 @@
----
-publicAuthorization: read, search, execute
----
 # Server login
 
 server-login (`OperationClassification` node-cjs)
@@ -11,34 +8,6 @@ This thing is far from finished, see `todo/` for what needs to be done.
 
 
 
-
-# Docs
-
-Your doccomment here
-*/
-```
-
-This overwrites the public authorisation.
-
-
-### Editing api availability
-
-By default, every exported backend function will become available through the api after indexation of the operation and generating the SDK.
-
-If you want to disable that for a function, you can do so by disabling it altogether, by adding this parameter into your frontmatter.
-
-```ts
-/**
----
-isApiExposed: false
----
-
-Your doccomment here
-*/
-const yourFunction = () => void
-```
-
-  </details>
 
 # Api reference
 
@@ -54,6 +23,143 @@ const yourFunction = () => void
 ## 📄 isValidPassword (exported const)
 
 # Internal
+
+<details><summary>Show internal (39)</summary>
+    
+  # addAuthenticationMethod()
+
+sends an email or sms, or already confirms in case of emailPassword
+
+core function for `addPersonAuthenticationMethod` and `addDeviceAuthenticatedMethod`
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| method | `AuthenticationMethodMethod` |  |,| handle | string |  |,| shouldBeUnique (optional) | boolean | TODO: check if it's unique before sending an email. This is needed in case you are a person trying to add a method, because then there might be another person with the same handle. |,| credential (optional) | string |  |
+| **Output** |    |    |
+
+
+
+## addDeviceAuthenticationMethodConfirm()
+
+adds an `authenticatedMethod` to `Device` after the OTP is correct
+
+For now, only handles methods `phoneNumber` and `email`
+
+TODO: extrahere the core into `addAuthenticationMethodConfirm` and use it in this one and make also `addPersonAuthenticationMethodConfirm`
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| deviceId | string | device id |,| method | `AuthenticationMethodMethod` |  |,| otp | number | one time password |
+| **Output** |    |    |
+
+
+
+## addDeviceAuthenticationMethodWithContext()
+
+returns new function context with added authenticationmethod
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| functionContext | `FunctionContext` |  |,| method | `AuthenticationMethodMethod` |  |,| handle | string |  |,| credential (optional) | string |  |
+| **Output** |    |    |
+
+
+
+## addPersonAuthenticationMethodWithContext()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| functionContext | `FunctionContext` |  |,| method | `AuthenticationMethodMethod` |  |,| handle | string | most of the time, this is a username, but can also be phone number or email or so |,| credential (optional) | string |  |
+| **Output** |    |    |
+
+
+
+## findAuthenticatedPersonWithHandle()
+
+Check if the handle is already taken by some person in the system
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| method | `AuthenticationMethodMethod` |  |,| handle | string |  |
+| **Output** |    |    |
+
+
+
+## findLoggedinPersonsWithContext()
+
+This finds all persons you should be logged in as according to all your device's Authentication Methods.
+
+Does not update your device to add the found persons.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| functionContext | `FunctionContext` |  |
+| **Output** |    |    |
+
+
+
+## getMeWithContext()
+
+Get all relevant information about yourself, including all persons that are attached to you.
+
+NB: probably need to omit some fields later, but for now it's fine
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| functionContext | `FunctionContext` |  |
+| **Output** | { authorizations?: { isProjectWide?: boolean, <br />authorizedOperationName?: string, <br />tsFunctionId?: string, <br />tsVariableId?: string, <br />tsInterfaceId?: string, <br />datasetId?: string, <br />authorizedProjectRelativePath?: string, <br />canExecute?: boolean, <br />canWriteCreate?: boolean, <br />canWriteUpdate?: boolean, <br />canWriteDelete?: boolean, <br />canRead?: boolean, <br />canSearch?: boolean, <br /> }[], <br />device: {  }, <br />groups?: {  }[], <br /> }   |    |
+
+
+
+## getPublicPerson()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| id (optional) | string |  |
+| **Output** |    |    |
+
+
+
+## getPublicPersons()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## isPhoneNumber()
+
+TODO: Implement this
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| phoneNumber | string |  |
+| **Output** | {  }   |    |
+
+
+
+## loginWithContext()
+
+attaches the `Device` with `authToken` to a `Person` once all required authenticationMethods are provided. If not, it needs to return the required authenticationMethods so the user can attach those to the device until loggin is successful.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| functionContext | `FunctionContext` |  |
+| **Output** |    |    |
+
+
+
+## loginWithPasswordWithContext()
 
 Login with username and password
 
@@ -129,10 +235,6 @@ Creates a new `Person` for a `Device`. Adds that person to the `Device`.
 
 ## signupWithPasswordWithContext()
 
----
-publicAuthorization: read, search, execute
----
-
 For now only username/pass is supported due to direct verification
 
 This function makes an authenticationmethod for the device and then signs up by creating a person for it and attaching it to the device.
@@ -140,7 +242,7 @@ This function makes an authenticationmethod for the device and then signs up by 
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| functionContext | `FunctionContext` |  |,| name | string |  |,| handle | string |  |,| pictureImage (optional) | `BackendAsset` |  |,| password | string |  |,| repeatPassword | string |  |
+| functionContext | `FunctionContext` |  |,| fullName | string |  |,| username | string |  |,| pictureImage (optional) | `BackendAsset` |  |,| password | string |  |,| repeatPassword | string |  |
 | **Output** |    |    |
 
 
@@ -241,10 +343,6 @@ attaches the `Device` with `authToken` to a `Person` once all required authentic
 
 ## 📄 loginWithPasswordWithContext (exported const)
 
----
-publicAuthorization: read, search, execute
----
-
 Login with username and password
 
 1. Adds an username/password combo as auth-method to the device,
@@ -283,10 +381,6 @@ Creates a new `Person` for a `Device`. Adds that person to the `Device`.
 
 
 ## 📄 signupWithPasswordWithContext (exported const)
-
----
-publicAuthorization: read, search, execute
----
 
 For now only username/pass is supported due to direct verification
 

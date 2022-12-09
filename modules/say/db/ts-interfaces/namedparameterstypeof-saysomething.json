@@ -1,0 +1,57 @@
+{
+  "createdAt": 1669962592213,
+  "updatedAt": 1669962592213,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962592213,
+  "id": "namedparameterstypeof-saysomething",
+  "name": "NamedParameters<typeof saySomething>",
+  "slug": "namedparameterstypeof-saysomething",
+  "operationRelativeTypescriptFilePath": "src/saySomething.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/SayOptions"
+            }
+          ]
+        }
+      },
+      "required": [
+        "input"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "input",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof saySomething>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

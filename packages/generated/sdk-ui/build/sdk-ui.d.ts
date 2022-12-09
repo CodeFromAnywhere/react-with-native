@@ -8,6 +8,7 @@ import { useNavigation } from "react-with-native-router";
 import { useIsInViewport } from "react-with-native-table";
 import { useReactMediaRecorder } from "asset-input";
 import { BigButton } from "big-button";
+import { useOnScreen } from "use-on-screen";
 export declare const sdk: {
     A: ({ native, className, textClassName, ...props }: import("react-with-native").AType) => JSX.Element;
     ActivityIndicator: (props: import("react-with-native").ActivityIndicatorType) => JSX.Element;
@@ -42,7 +43,7 @@ export declare const sdk: {
     AlertProvider: ({ children }: {
         children: any;
     }) => JSX.Element;
-    useAlert: () => ((title: string, message?: string | undefined, buttons?: import("react-native").AlertButton[] | undefined, options?: import("react-native").AlertOptions | undefined) => void) | null;
+    useAlert: () => import("react-with-native-alert").AlertFn | null;
     DataForm: <TInputs, TState extends {
         [key: string]: any;
     }>({ fields, defaultValues, initialValues, onSubmit, withSubmitProps, noSubmit, submitButtonText, submitButtonColor, title, backButton, plugins, renderSubmitComponent, renderInputContainer, stickySubmit, renderTitle, submitClassName, errorClassName, successClassName, }: import("react-with-native-form").DataFormProps<TInputs, TState>) => JSX.Element;
@@ -157,9 +158,13 @@ export declare const sdk: {
     AssetView: (props: {
         asset: import("asset-type").Asset;
         className?: string | undefined;
-        projectRelativeReferencingFilePath: string;
+        projectRelativeReferencingFilePath?: string | undefined;
         hideDownloadLink?: boolean | undefined;
     }) => JSX.Element;
+    getSrc: (asset: import("asset-type").Asset, projectRelativeReferencingFilePath: string, isNextStaticProductionBuild?: boolean | undefined) => {
+        src: string | undefined;
+        downloadUrl: string | undefined;
+    };
     InteractiveAsset: (props: {
         asset: import("asset-type").Asset;
         attachTokenToFilename?: boolean | undefined;
@@ -186,7 +191,7 @@ export declare const sdk: {
         rawText: string | null;
         type: import("asset-type").AssetType | undefined;
         downloadUrl: string | undefined;
-        src: string;
+        src: string | undefined;
         extension: string | undefined;
     } | undefined;
     AuthenticationMethodsCrud: () => JSX.Element;
@@ -221,11 +226,127 @@ export declare const sdk: {
     }) => JSX.Element;
     renderBreadCrumbs: (chunks: string[]) => JSX.Element[];
     ClickableIcon: (button: import("clickable-icon").ClickableIconType) => JSX.Element;
+    ContextMenuItemComponent: (props: {
+        item: import("context-menu").ContextMenuItem;
+        id: string | undefined;
+        onClose: () => void;
+        itemClassName?: string | undefined;
+    }) => JSX.Element;
+    useContextMenu: (props: {
+        items: import("context-menu").ContextMenuItem[];
+        longTouchDurationMs?: number | undefined;
+        className?: string | undefined;
+        itemClassName?: string | undefined;
+        customItemRender?: ((contextMenuItem: import("context-menu").ContextMenuItem, index: number, onClose: () => any, id: string | undefined) => JSX.Element | null) | undefined;
+    }) => {
+        renderContextMenu: () => JSX.Element | null;
+        openContextMenuProps: {
+            ref: import("react").RefObject<HTMLDivElement>;
+            onContextMenu: (event: import("react").MouseEvent<Element, MouseEvent>) => void;
+            onTouchStart: (event: import("react").TouchEvent<Element>) => void;
+            onTouchEnd: () => void;
+            onClick: (mouseEvent: import("react").MouseEvent<Element, MouseEvent>) => void;
+            style: import("react").CSSProperties;
+        };
+        onClose: () => void;
+        isOpen: boolean;
+    };
+    useContextPopper: (props: {
+        renderPopper: (props: {
+            id?: string | undefined;
+        }) => JSX.Element;
+        longTouchDurationMs?: number | undefined;
+    }) => {
+        isOpen: boolean;
+        renderContextPopper: () => JSX.Element | null;
+        onClose: () => void;
+        openContextPopperProps: {
+            ref: import("react").RefObject<HTMLDivElement>;
+            onContextMenu: (event: import("react").MouseEvent<Element, MouseEvent>) => void;
+            onTouchStart: (event: import("react").TouchEvent<Element>) => void;
+            onTouchEnd: () => void;
+            onClick: (mouseEvent: import("react").MouseEvent<Element, MouseEvent>) => void;
+            style: import("react").CSSProperties;
+        };
+    };
+    useContext: (callback: (position: import("context-menu").ContextEvent) => any, config?: {
+        longTouchDurationMs?: number | undefined;
+    } | undefined) => {
+        onContextMenu: (event: import("react").MouseEvent<Element, MouseEvent>) => void;
+        onTouchStart: (event: import("react").TouchEvent<Element>) => void;
+        onTouchEnd: () => void;
+        onClick: (mouseEvent: import("react").MouseEvent<Element, MouseEvent>) => void;
+        style: {
+            userSelect: import("csstype").Property.UserSelect | undefined;
+        };
+    };
     errorToast: (message?: string | undefined) => void;
     infoToast: (message?: string | undefined) => void;
     showStandardResponse: (apiResult: import("api-types").StandardizedApiReturnType) => void;
     successToast: (message?: string | undefined) => void;
     warningToast: (message?: string | undefined) => void;
+    CrudGrid: (props: import("db-crud").CrudViewProps) => JSX.Element;
+    CrudTable: (props: import("db-crud").CrudViewProps) => JSX.Element;
+    CrudTimeline: (props: import("db-crud").CrudViewProps) => JSX.Element;
+    CrudTree: (props: import("db-crud").CrudViewProps) => JSX.Element;
+    DatasetForm: (props: {
+        modelName: string;
+    }) => JSX.Element;
+    DbPage: (props: {
+        filter?: ((item: import("model-types").AugmentedAnyModelType) => boolean) | undefined;
+        modelName?: string | undefined;
+    }) => JSX.Element;
+    getPropertiesDataParameterNames: (properties: import("schema-util").SchemaProperty[]) => string[];
+    IndexInstanceContainer: ({ title, children, buttons, }: {
+        title: string;
+        children: any;
+        buttons: import("labeled-button").LabeledButtonType[];
+    }) => JSX.Element;
+    ModelComponent: (props: {
+        modelName?: string | undefined;
+        highlight: import("db-crud").Highlight;
+    }) => JSX.Element;
+    openWhatsapp: ({ phone, text, }: {
+        phone: string;
+        text: string;
+    }) => void;
+    SearchBar: (props: {
+        initialValue?: string | undefined;
+        placeholder?: string | undefined;
+    }) => JSX.Element;
+    shimmer: (w: number, h: number) => string;
+    SimplifiedSchemaFormDebug: ({ parameters, values, }: {
+        parameters: import("code-types").FunctionParameter[] | undefined;
+        values: any[];
+    }) => JSX.Element;
+    sortToItem: (sort: import("code-types").DatasetSort) => import("react-with-native-select").Item<import("code-types").DatasetSort>;
+    SpaceCard: (props: {
+        secondaryImageUrl: string | null;
+        darkened: boolean;
+        base64?: string | undefined;
+        imageUrl: string;
+        ctaText: string;
+        title: string;
+        subtitle: string;
+        action?: (() => any) | undefined;
+    }) => JSX.Element;
+    toBase64: (str: string) => string;
+    UpsertForm: (props: {
+        simplifiedSchema: import("code-types").SimplifiedSchema;
+        instance: any;
+        referencableModelNames?: string[] | undefined;
+        modelName: string;
+    }) => JSX.Element;
+    UpsertPage: () => JSX.Element;
+    useInfiniteGetDbModel: () => import("react-query").UseInfiniteQueryResult<import("api-types").ApiReturnType<"getDbModel">, unknown>;
+    useModelFromUrl: () => string | undefined;
+    useUrl: <T_7 extends "id" | "name" | "type" | "slug" | "path">(queryKey: T_7) => {
+        path: [string | undefined, (newValue: string | undefined) => Promise<boolean>];
+        name: [string | undefined, (newValue: string | undefined) => Promise<boolean>];
+        type: [string | undefined, (newValue: string | undefined) => Promise<boolean>];
+        slug: [string | undefined, (newValue: string | undefined) => Promise<boolean>];
+        id: [string | undefined, (newValue: string | undefined) => Promise<boolean>];
+    }[T_7];
     FancyLoader: ({ big, medium, }: {
         big?: boolean | undefined;
         medium?: boolean | undefined;
@@ -242,15 +363,16 @@ export declare const sdk: {
         search: string;
         augmentedWords?: import("augmented-word-types").AugmentedWord[] | undefined;
     }) => JSX.Element;
-    FunctionForm: <T_7 extends (...params: any[]) => any>(props: {
+    FunctionForm: <T_8 extends (...params: any[]) => any>(props: {
         projectRelativeStorageFilePath?: string | undefined;
         modelName?: string | undefined;
         tsFunction: any;
-        submitFunction?: T_7 | undefined;
-        withResult?: ((result: import("api-types").WithoutPromise<ReturnType<T_7>>) => void) | undefined;
+        submitFunction?: T_8 | undefined;
+        withResult?: ((result: import("api-types").WithoutPromise<ReturnType<T_8>>) => void) | undefined;
         withApiResult?: ((result: any) => void) | undefined;
         initialValues?: any[] | undefined;
         showResult?: boolean | undefined;
+        referencableModelData?: import("simplified-schema-form").ReferencableModelData | undefined;
     }) => JSX.Element;
     isAltB: (keyboardEvent: KeyboardEvent) => boolean;
     isAltN: (keyboardEvent: KeyboardEvent) => boolean;
@@ -278,6 +400,7 @@ export declare const sdk: {
         header: import("react").ReactNode;
         menu?: import("menu").MenuProps | undefined;
     }) => JSX.Element;
+    PingApi: () => JSX.Element;
     copyStaticAssets: (readerWebPages: import("webpage-types").FileWebPage[], config?: {
         operationName?: string | undefined;
     } | undefined) => Promise<boolean | undefined>;
@@ -327,6 +450,7 @@ export declare const sdk: {
     getMarkdownReaderPages: (config: {
         projectRoot: string;
         basePaths: string[];
+        queryPathCustomPrefix?: ((basePath?: string | undefined) => string | undefined) | undefined;
         mapQueryPath?: ((queryPath: string) => string) | undefined;
     }) => Promise<import("webpage-types").FileWebPage[]>;
     getMarkdownReaderQueryPaths: (config?: {
@@ -345,10 +469,10 @@ export declare const sdk: {
     markdownReaderGetStaticProps: (context: import("next-types").GetStaticPropsContext<import("next-types").ParsedUrlQuery, import("next-types").PreviewData>) => Promise<{
         props: import("markdown-reader-types").MarkdownReaderPageProps;
     }>;
-    putReadmeOnTop: <T_8 extends {
+    putReadmeOnTop: <T_9 extends {
         path: string;
         isFolder: boolean;
-    }>(items: T_8[]) => T_8[];
+    }>(items: T_9[]) => T_9[];
     removeExtensionsFromPath: (relativePath: string) => string;
     removeNumberPrefix: (fileOrFolderName: string) => string;
     shouldExposeMarkdownFile: (parameters: import("matter-types").Frontmatter) => boolean;
@@ -453,16 +577,17 @@ export declare const sdk: {
         modelName?: string | undefined;
     }) => JSX.Element | null;
     useReferencableModelData: (simplifiedSchema: import("code-types").SimplifiedSchema) => import("simplified-schema-form").ReferencableModelData | undefined;
-    useTsInterfaceForm: <T_9 extends unknown>(tsInterface: import("model-types").Storing<import("code-types").TsInterface>, id?: string | undefined, initialValue?: T_9 | undefined, projectRelativeStorageFilePath?: string | undefined, modelName?: string | undefined) => [form?: JSX.Element | undefined, value?: T_9 | undefined, onChange?: ((value: T_9) => void) | undefined];
+    useTsInterfaceForm: <T_10 extends unknown>(tsInterface: import("model-types").Storing<import("code-types").TsInterface>, id?: string | undefined, initialValue?: T_10 | undefined, projectRelativeStorageFilePath?: string | undefined, modelName?: string | undefined) => [form?: JSX.Element | undefined, value?: T_10 | undefined, onChange?: ((value: T_10) => void) | undefined];
     Tooltip: (props: {
         tooltip: import("react").ReactElement<any, string | import("react").JSXElementConstructor<any>>;
         children: import("react").ReactNode;
         placement?: import("@popperjs/core").Placement | undefined;
     }) => JSX.Element;
+    useOnScreen: typeof useOnScreen;
     getRealSrc: (src: string | undefined, config: import("markdown").MarkdownParseRenderConfig) => string | undefined;
-    getUrlFromRelativeUrl: (relativeUrl: string, relativeUrlStrategy: "api" | "static", projectRelativeBaseFolderPath: string, projectRelativeMarkdownFilePath: string) => string;
-    getYoutubeId: (url: string | undefined) => string | undefined;
-    HtmlHeader: keyof JSX.IntrinsicElements | import("react-markdown/lib/ast-to-react").HeadingComponent | undefined;
+    getUrlFromRelativeUrl: (relativeUrl: string, relativeUrlStrategy: "api" | "static", projectRelativeBaseFolderPath: string, projectRelativeMarkdownFilePath: string) => string | undefined;
+    getYoutubeId: any;
+    HtmlHeader: any;
     MarkdownCodeblock: (props: {
         text: string;
         extension?: string | undefined;
@@ -478,7 +603,7 @@ export declare const sdk: {
         renderSpacer?: boolean | undefined;
     } | undefined) => JSX.Element | null;
     renderMarkdownChunk: (chunk: import("markdown-types").MarkdownChunk, config: import("markdown").MarkdownParseRenderConfig) => JSX.Element;
-    renderMarkdownContent: (content: string, config: import("markdown").MarkdownParseRenderConfig) => JSX.Element | "[No content]";
+    renderMarkdownContent: (content: string, config: import("markdown").MarkdownParseRenderConfig) => JSX.Element;
     renderMarkdownParse: (markdownParse: import("markdown-types").MarkdownParse, config: import("markdown").MarkdownParseRenderConfig) => JSX.Element;
     renderMarkdownTitle: (title: string, level: number) => JSX.Element;
     useOpenHashDetails: () => void;
@@ -502,18 +627,47 @@ export declare const sdk: {
         markdownFile?: import("markdown-types").WebMarkdownFile | null | undefined;
         projectRelativeMarkdownPath?: string | null | undefined;
     }) => JSX.Element | null;
+    Share: (props: {
+        contextText?: string | undefined;
+    }) => JSX.Element;
+    useAllText: () => string | undefined;
+    useLastSelection: () => string | null;
+    ShortMarkdownPlayer: (props: {
+        shortMarkdown?: import("short-markdown-types").ShortMarkdown | undefined;
+        projectRelativeFilePath?: string | undefined;
+    }) => JSX.Element | null;
+    ShortMarkdownSlide: (props: {
+        item: import("short-markdown-types").ViewEmbed;
+        index: number;
+        projectRelativeFilePath: string;
+        setSlide: (index: number) => void;
+        isAutoplay?: boolean | undefined;
+    }) => JSX.Element;
+    ShortStudio: (props: {
+        onChange: (value: string) => void;
+        value: string;
+        projectRelativeFilePath: string;
+        markdownModelName?: string | number | symbol | undefined;
+    }) => JSX.Element;
+    useMultiAudio: (urls: string[]) => {
+        players: {
+            url: string;
+            playing: boolean;
+        }[];
+        toggle: (targetIndex: number) => () => void;
+    };
     Completion: (props: {
         augmentedWord: import("augmented-word-types").AugmentedWord;
         augmentedWordObject?: import("js-util").MappedObject<import("augmented-word-types").AugmentedWord> | undefined;
     }) => JSX.Element;
-    ContentEditableDivInput: <T_10 extends unknown>(props: {
+    ContentEditableDivInput: <T_11 extends unknown>(props: {
         value: string;
         onChange: (newValue: string) => void;
         markdownParseRenderConfig?: import("markdown").MarkdownParseRenderConfig | undefined;
         subwordConfig: import("writer-types").SubwordConfig;
         subtextConfig: import("writer-types").SubtextConfig;
         parseTextContentToHtmlString: import("writer-input").ParseTextContentToHtmlString;
-        divProps: Omit<import("react-with-native").FinalDivType<T_10>, "contentEditable" | "onChange" | "onInput" | "value">;
+        divProps: Omit<import("react-with-native").FinalDivType<T_11>, "contentEditable" | "onChange" | "onInput" | "value">;
     }) => JSX.Element;
     ContextTextArea: (props: import("writer-input").EditorProps) => JSX.Element;
     DivContentEditable: (props: import("writer-input").EditorProps) => JSX.Element;

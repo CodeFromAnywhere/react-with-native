@@ -1,4 +1,4 @@
-import { MarkdownChunk, MarkdownParse } from "code-types";
+import { MarkdownChunk, MarkdownParse } from "markdown-types";
 export declare type NestedTitle = string | NestedTitle[];
 /**
  * helper function to get a nested array of the titles and its subtitles

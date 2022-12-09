@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385500483,
-  "updatedAt": 1669385500483,
+  "createdAt": 1670528794145,
+  "updatedAt": 1670528794145,
   "deletedAt": 0,
-  "createdFirstAt": 1669385500483,
+  "createdFirstAt": 1670528794145,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  personProfileDetails: PersonProfileDetails;\n}) => {\n  const meQuery = queries.useGetMeWithContext();\n\n  const projectRelativeStorageFilePath =\n    meQuery.data?.result?.device?.currentPersonCalculated?.projectRelativePath;\n  const [form, details, onChange] = useTsInterfaceForm(\n    PersonProfileDetailsIndex as Storing<TsInterface>,\n    \"test\",\n    props.personProfileDetails,\n    projectRelativeStorageFilePath,\n    \"Person\"\n  );\n\n  return form ? (\n    <FormContainer\n      onSubmit={async () => {\n        if (!details || !projectRelativeStorageFilePath) return;\n        const apiResult = await api.updateMeWithContext(details);\n        showStandardResponse(apiResult);\n        await meQuery.refetch();\n      }}\n    >\n      {form}\n    </FormContainer>\n  ) : null;\n}",
   "description": "",
-  "id": "hleijpbaddvnniktwlfeoule"
+  "id": "qdwpuopzmmddpypfmpjdssfm"
 }

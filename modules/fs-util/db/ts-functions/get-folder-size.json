@@ -1,0 +1,47 @@
+{
+  "createdAt": 1670526992762,
+  "updatedAt": 1670526992762,
+  "deletedAt": 0,
+  "createdFirstAt": 1670526992762,
+  "isApiExposed": true,
+  "isExported": false,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getFolderSize.ts",
+  "commentsInside": [],
+  "rawText": " async (absoluteFolderPath: string): Promise<number> => {\n  const files = await fs.readdir(absoluteFolderPath, { withFileTypes: true });\n\n  const paths = files.map(async (file) => {\n    const newPath = path.join(absoluteFolderPath, file.name);\n\n    if (file.isDirectory()) return await getFolderSize(newPath);\n\n    if (file.isFile()) {\n      const { size } = await fs.stat(newPath);\n\n      return size;\n    }\n\n    return 0;\n  });\n\n  return (\n    (await Promise.all(paths))\n      //  NB: lol!\n      .flat(Infinity)\n      .reduce((i, size) => i + size, 0)\n  );\n}",
+  "name": "getFolderSize",
+  "slug": "get-folder-size",
+  "parameters": [
+    {
+      "name": "absoluteFolderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<number>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 560,
+    "lines": 24,
+    "bytes": 560,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 23,
+    "linesPerFile": 24,
+    "numberOfFiles": 1
+  },
+  "id": "razixfasroxzzuwvbyzycjik"
+}

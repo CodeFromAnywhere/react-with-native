@@ -12,6 +12,8 @@ export declare const operations: {
     "react-with-native-table": string;
     "react-with-native-ui": string;
     "use-url-store": string;
+    "ai-functions-node": string;
+    "ai-types": string;
     all: string;
     api: string;
     "api-store": string;
@@ -35,14 +37,18 @@ export declare const operations: {
     "collect-static-assets": string;
     "comment-util": string;
     "compile-typescript": string;
+    "context-menu": string;
     "convert-case": string;
     "cool-toast": string;
     "csv-util": string;
     database: string;
+    "db-crud": string;
+    "db-recipes": string;
     "db-util": string;
     "encrypt-password": string;
     "explore-project": string;
     "fancy-loader": string;
+    "ffmpeg-util": string;
     "file-search": string;
     "filename-conventions": string;
     "find-all-dependency-operations": string;
@@ -54,6 +60,7 @@ export declare const operations: {
     "function-context-type": string;
     "function-form": string;
     "function-functions-node": string;
+    "function-server-types": string;
     "function-types": string;
     "generate-index": string;
     "geo-types": string;
@@ -103,6 +110,7 @@ export declare const operations: {
     "persona-functions-node": string;
     pluralize: string;
     "port-conventions": string;
+    "prompt-components": string;
     "react-with-native-form-asset-input": string;
     "read-csv-file": string;
     "read-json-file": string;
@@ -115,10 +123,16 @@ export declare const operations: {
     "recursive-util": string;
     "rest-util": string;
     "run-child-process": string;
+    say: string;
     "schema-util": string;
     "server-api-url": string;
     "server-login": string;
     "set-json-key": string;
+    share: string;
+    "short-markdown-parser-js": string;
+    "short-markdown-parser-node": string;
+    "short-markdown-types": string;
+    "short-markdown-writer-input": string;
     "simplified-schema-form": string;
     sms: string;
     "social-media-types": string;
@@ -129,6 +143,7 @@ export declare const operations: {
     "try-parse-json": string;
     "ts-morph-util": string;
     "ui-util": string;
+    "use-on-screen": string;
     "watch-types": string;
     "webpage-types": string;
     "write-to-assets": string;

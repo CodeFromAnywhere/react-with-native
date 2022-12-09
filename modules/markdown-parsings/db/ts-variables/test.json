@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200478858,
-  "updatedAt": 1669200478858,
+  "createdAt": 1670590094544,
+  "updatedAt": 1670590094544,
   "deletedAt": 0,
-  "createdFirstAt": 1669200478858,
+  "createdFirstAt": 1670590094544,
   "classification": "const",
   "comments": [],
   "isExported": false,
@@ -29,5 +29,5 @@
   },
   "value": "async () => {\n  const operationName = \"database\";\n\n  const operationSummary = await getOperationSummary({ operationName });\n  if (!operationSummary) return;\n  const result = (await operationToMarkdown({\n    operationSummary,\n    returnType: \"string\",\n  })) as string;\n  // console.dir({ result }, { depth: 99 });\n\n  writeToAssets(__filename, result, `${operationName}.md`);\n}",
   "description": "",
-  "id": "cbosstiyynzbpdjqavmriqgu"
+  "id": "xfmhzigotexwgydeepqtnlzu"
 }

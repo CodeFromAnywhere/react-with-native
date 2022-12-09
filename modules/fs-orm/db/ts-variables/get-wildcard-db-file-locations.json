@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669312127925,
-  "updatedAt": 1669312127925,
+  "createdAt": 1670592540738,
+  "updatedAt": 1670592540738,
   "deletedAt": 0,
-  "createdFirstAt": 1669312127925,
+  "createdFirstAt": 1670592540738,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (options: {\n  modelName: string;\n  parsedPath: ParsedPath;\n  operationName: string | null;\n  projectRoot: string;\n  rootFolder: RootDbFolder;\n}): Promise<DbFileLocation[]> => {\n  const { modelName, operationName, parsedPath, projectRoot, rootFolder } =\n    options;\n\n  if (fs.existsSync(parsedPath.dir)) {\n    // if parsedPath ends with *, read everything in the folder\n\n    const exploreAbsolutePaths = (\n      await explore({\n        basePath: parsedPath.dir,\n        extension: getExtension(parsedPath.base),\n      })\n    ).map((x) => x.path);\n\n    const dbFileLocations: DbFileLocation[] = exploreAbsolutePaths.map(\n      (absolutePath) => {\n        const dbFileOperationName = rootFolder.operationName;\n\n        const projectRelativePath = absolutePath.substring(projectRoot.length);\n\n        const operationRelativePath = dbFileOperationName\n          ? absolutePath.substring(rootFolder.basePath.length)\n          : undefined;\n\n        const dbFileLocation: DbFileLocation = {\n          modelName,\n          absolutePath,\n          operationName: dbFileOperationName,\n          projectRelativePath,\n          operationRelativePath,\n        };\n\n        return dbFileLocation;\n      }\n    );\n\n    return dbFileLocations;\n  }\n\n  return [];\n}",
   "description": "",
-  "id": "zhrijugimrbqgaoyloesnqji"
+  "id": "saresryxdagkgaqzhjdbazyb"
 }

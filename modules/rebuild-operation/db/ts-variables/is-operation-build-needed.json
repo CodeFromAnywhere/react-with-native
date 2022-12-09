@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055716036,
-  "updatedAt": 1669055716036,
+  "createdAt": 1670590389298,
+  "updatedAt": 1670590389298,
   "deletedAt": 0,
-  "createdFirstAt": 1669055716036,
+  "createdFirstAt": 1670590389298,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(operationBasePath: string) => {\n  const classification = getOperationClassification(operationBasePath)!;\n\n  console.log(`${getLastFolder(operationBasePath)}: ${classification}`);\n\n  // NB: server, web, app and ui-es6 have different ways to keep the build up-to-date\n  // NB: esm can't be minified with current thing\n  const buildNeededOperatons: OperationClassification[] = [\n    \"cjs\",\n    // \"esm\",\n    \"node-cjs\",\n    // \"node-esm\",\n    \"ui-cjs\",\n    // \"ui-esm\",\n  ];\n  const isBuildNeeded = buildNeededOperatons.includes(classification);\n\n  return isBuildNeeded;\n}",
   "description": "returns a boolean indicating whether or not the operation should be able to be built, based on the OperationClassification",
-  "id": "dnizcwmmmemsauzxuccrfoae"
+  "id": "dtkykttmlskbzukehjlrmbrk"
 }

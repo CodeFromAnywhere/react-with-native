@@ -29,6 +29,11 @@ ensures the auth-token is set
 
 
 
+## 📄 LoginWrapper (exported const)
+
+ensures the auth-token is set
+
+
 ## `<MeAuthenticationInfo />`
 
 little component for in banner that shows your info on top, and links to signup/login etc
@@ -39,11 +44,6 @@ little component for in banner that shows your info on top, and links to signup/
 | - | | |
 | **Output** | `JSX.Element`   |    |
 
-
-
-## 📄 LoginWrapper (exported const)
-
-ensures the auth-token is set
 
 
 ## 📄 MeAuthenticationInfo (exported const)

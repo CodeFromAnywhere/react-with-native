@@ -1,0 +1,141 @@
+{
+  "createdAt": 1669884001635,
+  "updatedAt": 1669884001635,
+  "deletedAt": 0,
+  "createdFirstAt": 1669884001635,
+  "id": "audiowithviews",
+  "name": "AudioWithViews",
+  "slug": "audiowithviews",
+  "operationRelativeTypescriptFilePath": "src/AudioWithViews.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type AudioWithViews = {\n  audioPath: string | null;\n  /**\n   * Unique key for the audio\n   */\n  audioKey?: string;\n  audioDurationMs?: number;\n  viewEmbeds: ViewEmbed[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "audioPath": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "audioKey": {
+          "type": "string",
+          "description": "Unique key for the audio"
+        },
+        "audioDurationMs": {
+          "type": "number"
+        },
+        "viewEmbeds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ViewEmbed"
+          }
+        }
+      },
+      "required": [
+        "audioPath",
+        "viewEmbeds"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "audioPath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "audioKey",
+          "required": false,
+          "schema": {
+            "fullComment": "Unique key for the audio",
+            "type": "string"
+          }
+        },
+        {
+          "name": "audioDurationMs",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "viewEmbeds",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "audioKey",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Unique key for the belonging audio, used to find the desired audio",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "title",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Either viewPath or title is required",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "viewPath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Either viewPath or title is required",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "spokenText",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Text in the alt of the image or video, but only if the alt is wrapped in quotes (e.g. \"your spoken text\"). Can be parsed into an audio and subtitles, and also a duration.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "durationMs",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Added afterwards",
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "ViewEmbed"
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "AudioWithViews",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

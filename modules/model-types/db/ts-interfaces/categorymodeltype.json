@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669276547457,
-  "updatedAt": 1669276547457,
+  "createdAt": 1670528044077,
+  "updatedAt": 1670528044077,
   "deletedAt": 0,
-  "createdFirstAt": 1669276547457,
+  "createdFirstAt": 1670528044077,
   "id": "categorymodeltype",
   "name": "CategoryModelType",
   "slug": "categorymodeltype",
@@ -15,7 +15,8 @@
   ],
   "isOperationIndex": false,
   "description": "\nTODO: make this be able to hold more than just the KV. If that's not really needed just throw this away...\n\nSimple recursive data structure for hierarchical categories. Should be used to make any category model\n\nMake sure, when extending this, to provide a reference `xxxSlug` and its content `xxx` as optional parameters to its parent categories.\n\nE.g. for a `CountryCategory`, you should provide `countryCategorySlug` and `countryCategory`",
-  "isDbModel": false,
+  "dbStorageMethod": "keyValueMarkdown",
+  "isDbModel": true,
   "commentsInside": [],
   "type": {
     "typeDefinition": {

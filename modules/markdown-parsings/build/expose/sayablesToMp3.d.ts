@@ -10,7 +10,7 @@ export declare type Sayable = {
 /**
  * Creates a single audiofile of a Sayable[] and stores that in a configured location
  */
-export declare const sayablesToMp3: ({ sayables, destinationAbsoluteFilePath, }: {
+export declare const sayablesToMp3: (config: {
     destinationAbsoluteFilePath: string;
     sayables: Sayable[];
 }) => void;

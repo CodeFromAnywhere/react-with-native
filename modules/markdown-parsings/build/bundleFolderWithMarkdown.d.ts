@@ -1,4 +1,4 @@
-import { MarkdownParse } from "code-types";
+import { MarkdownParse } from "markdown-types";
 import { Json } from "json-util";
 export declare type JsonPart = {
     identifier?: string;

@@ -1,0 +1,112 @@
+{
+  "createdAt": 1670485933799,
+  "updatedAt": 1670485933799,
+  "deletedAt": 0,
+  "createdFirstAt": 1670485933799,
+  "name": "prompt-components",
+  "version": "1.0.0",
+  "main": "./build/esm/index.js",
+  "source:": "./src/index.ts",
+  "types": "./build/esm/index.d.ts",
+  "files": [
+    "/build"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.8.4"
+  },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "npx tsc-watch --onSuccess 'yarn css'",
+    "wcss": "tailwindcss -w -o css.css",
+    "css": "tailwindcss -o css.css"
+  },
+  "operation": {
+    "hasGeneratedDependenciesIndexed": false,
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "lintProblems": [],
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/ai/prompt-components/src/usePromptResultAlert.tsx. Error: Error: Unknown type \"function\""
+      ]
+    },
+    "lastRebuildAt": 1670526563042,
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 5,
+        "lines": 313,
+        "characters": 9657,
+        "bytes": 9657
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 132,
+        "characters": 3494,
+        "bytes": 3494
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 13,
+        "characters": 175,
+        "bytes": 175
+      },
+      "size": {
+        "bytes": 13326,
+        "characters": 13326,
+        "lines": 458,
+        "numberOfFiles": 9
+      }
+    },
+    "folderNameIndexed": "prompt-components",
+    "relativeOperationLocationPathIndexed": "operations/tools/ai",
+    "classificationIndexed": "ui-esm",
+    "coreDependenciesIndexed": [
+      "AlertButton"
+    ],
+    "operationDependenciesIndexed": [
+      "queries",
+      "Div",
+      "ContextualPromptResult",
+      "renderMarkdownContent",
+      "ContextualPrompt",
+      "useAlert",
+      "Item",
+      "useSelect",
+      "useLastSelection",
+      "ContextualContent",
+      "ContextualPrompt",
+      "api",
+      "api",
+      "renderMarkdownContent",
+      "useAlert",
+      "ContextualPrompt",
+      "ContextualContent",
+      "ContextMenuItem",
+      "useContextMenu",
+      "useAlert"
+    ],
+    "packageDependenciesIndexed": []
+  },
+  "dependencies": {
+    "api": "0.0.1",
+    "react-with-native": "1.4.9",
+    "ai-types": "0.0.1",
+    "markdown": "1.0.0",
+    "react-with-native-alert": "1.0.33",
+    "react-with-native-select": "2.0.7",
+    "share": "1.0.0",
+    "react-native": "*",
+    "context-menu": "0.0.0"
+  },
+  "slug": "prompt-components",
+  "id": "vqykiaraonhamykiyozkjhsx"
+}

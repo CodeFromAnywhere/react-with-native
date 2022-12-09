@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 import { SourceFile } from "ts-morph";
 import { ImportsAndExports } from "./util";
+export declare const CONCURRENTLY_INDEXED_FILES_AMOUNT = 10;
 /**
  * Uses ts-morph to get all exports inside all files in a project or an array of source files.
  * Doesn't use index, it actually looks in all files except index,
  * so some of them may not be exported from the package itself depending on your indexing strategy!
+ *
+ * NB: uses a lot of memory!
+ *
+ * #performance
  **/
 export declare const getImportsExports: ({ sourceFiles, debug, manualProjectRoot, }: {
     /**

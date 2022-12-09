@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384301176,
-  "updatedAt": 1669384301176,
+  "createdAt": 1670216075297,
+  "updatedAt": 1670216075297,
   "deletedAt": 0,
-  "createdFirstAt": 1669384301176,
+  "createdFirstAt": 1670216075297,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  absolutePath: string,\n  operationFolders: string[]\n): FolderExploration[\"type\"] | undefined => {\n  const parsedPath = path.parse(absolutePath);\n  if ([\".ts\", \".tsx\"].includes(parsedPath.ext)) {\n    return \"typescript\";\n  }\n  if ([\".md\", \".mdx\"].includes(parsedPath.ext)) {\n    return \"markdown\";\n  }\n\n  if (parsedPath.ext.length > 0) {\n    // NB: based on where this function is used, this should never happen\n    return undefined;\n  }\n\n  if (operationFolders.includes(absolutePath)) {\n    return \"operation\";\n  }\n  if (operationFolders.find((x) => absolutePath.startsWith(x))) {\n    return \"operationFolder\";\n  }\n  return \"folder\";\n}",
   "description": "gets the exploration type from an absolute type",
-  "id": "botwqaqoqjydjiqsydgxyedo"
+  "id": "jxksrnlycbohksevnfjaymfn"
 }

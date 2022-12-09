@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528931973,
+  "updatedAt": 1670528931973,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528931973,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "ModelComponent",
+  "slug": "model-component",
+  "operationRelativeTypescriptFilePath": "src/crud/ModelComponent.tsx",
+  "type": {
+    "rawType": "(props: { modelName?: string | undefined; highlight: import(\"/Users/king/King/operations/tools/user-interfaces/gui/wise/db-crud/src/crud/types\").Highlight; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  modelName?: string;\n  highlight: Highlight;\n}) => {\n  const { modelName, highlight } = props;\n  const alert = useAlert();\n  const router = useRouter();\n\n  const views = modelViews.map((modelView) => ({\n    value: modelView.view,\n    label: `${modelView.emoji} ${modelView.view}`,\n  }));\n\n  const [SelectView, viewItem] = useSelect(views, views[0]);\n  const view = viewItem!.value;\n\n  const metadataQuery = queries.useGetDbModelMetadata(modelName as DbModelEnum);\n  const { datasets, tsInterface } = destructureOptionalObject(\n    metadataQuery.data?.result\n  );\n\n  const datasetItems = datasets?.map((dataset) => ({\n    label: dataset.name,\n    value: dataset.id,\n    data: dataset,\n  }));\n\n  const datasetSelectItems: Item<Dataset>[] = [\n    { value: \"\", label: \"Select a dataset\" },\n    ...(datasetItems || []),\n    { value: \"new\", label: \"(+) New dataset\" },\n  ];\n\n  const [SelectDataset] = useSelect(\n    datasetSelectItems,\n    undefined,\n    (newValue) => {\n      if (newValue?.value === \"new\") {\n        // show a blank screen\n        setDatasetConfig({ key: `config${Math.random()}` });\n        return;\n      }\n\n      if (newValue?.value === \"\") {\n        setDatasetConfig(null);\n        return;\n      }\n\n      if (newValue?.data) {\n        setDatasetConfig({ ...newValue.data, key: `config${Math.random()}` });\n        return;\n      }\n    }\n  );\n\n  const [datasetConfig, setDatasetConfig] = useStore(\"db-crud.datasetConfig\");\n\n  const model = useInfiniteGetDbModel();\n  const modelReferences = queries.useGetReferencableModelData(\n    modelName as DbModelEnum\n  );\n\n  const isLoading = model.isLoading || model.isRefetching || model.isFetching;\n\n  const allData = model?.data?.pages\n    .map((x) => x.result?.data)\n    .flat()\n    .filter(notEmpty);\n\n  // const  count = sum(model.data?.pages.map((x) => x.result?.data.length || 0) || []);\n\n  const indexDescription = tsInterface ? (\n    <Div>\n      <P className=\"font-bold\">{tsInterface.name}</P>\n\n      {renderMarkdownContent(tsInterface.description || \"No description\", {\n        projectRelativeBaseFolderPath: getFolderJs(\n          tsInterface.projectRelativePath\n        ),\n        projectRelativeMarkdownFilePath: tsInterface.projectRelativePath,\n      })}\n    </Div>\n  ) : isLoading ? (\n    <Div />\n  ) : (\n    \"No index found\"\n  );\n\n  const headerButtons = (\n    <Div className=\"flex flex-row items-center\">\n      <LabeledButton\n        onClick={() => router.push(`/upsert/${modelName}`)}\n        title=\"New\"\n        emoji=\"➕\"\n      />\n\n      <LabeledButton\n        {...{\n          onClick: () => model.refetch(),\n          title: \"Reload\",\n          emoji: isLoading ? undefined : \"🔄\",\n          component: isLoading ? () => <FancyLoader medium /> : undefined,\n        }}\n      />\n\n      <SelectView />\n\n      <SelectDataset />\n\n      <SearchBar />\n    </Div>\n  );\n\n  const onEndReached = () => {\n    const pages = model.data?.pages;\n\n    const lastPage = pages ? pages[pages.length - 1] : undefined;\n\n    const hasMore = lastPage?.result?.hasMore;\n\n    if (hasMore && !model.isFetchingNextPage) {\n      model.fetchNextPage();\n    }\n  };\n\n  const deleteItem = (item: AugmentedAnyModelType) => {\n    alert?.(\"Are you sure?\", \"Do you want to delete this one?\", [\n      {\n        text: \"Yes\",\n        style: \"destructive\",\n        onPress: () => {\n          if (item?.id) {\n            // console.log({ id: item.id });\n            deleteDbModel(modelName as any, item.id).then((result) => {\n              model.refetch();\n              modelReferences.refetch();\n            });\n          }\n        },\n      },\n      { text: \"Cancel\", style: \"cancel\" },\n    ]);\n  };\n\n  const deleteAction: ItemAction = {\n    action: deleteItem,\n    emoji: \"❌\",\n    name: \"Delete\",\n  };\n\n  const updateItem = (item: AugmentedAnyModelType) =>\n    router.push(`/upsert/${modelName}?id=${item?.id}`);\n\n  const updateAction: ItemAction = {\n    name: \"Update\",\n    emoji: \"✏️\",\n    action: updateItem,\n  };\n\n  const actions: ItemAction[] = [deleteAction, updateAction];\n\n  const CrudView = {\n    table: CrudTable,\n    grid: CrudGrid,\n    timeline: CrudTimeline,\n    tree: CrudTree,\n  }[view];\n\n  const crudViewProps: CrudViewProps = {\n    actions,\n    data: allData,\n    highlight,\n    tsInterface,\n    onEndReached,\n  };\n\n  return (\n    <Div>\n      <Div className=\"px-8 lg:px-20 py-4\">\n        {headerButtons}\n        {indexDescription}\n\n        {datasetConfig && modelName ? (\n          <DatasetForm key={datasetConfig.key} modelName={modelName} />\n        ) : null}\n      </Div>\n\n      {/* NB: here a table view should be rendered */}\n      {Array.isArray(allData) && allData.length > 0 && CrudView ? (\n        <CrudView {...crudViewProps} />\n      ) : null}\n    </Div>\n  );\n}",
+  "description": "In the table headings, all xxxSlug, xxxId etc should be called xxx.\n\nIn the table values, all slugs and ids should show the name of the instance of the refered model.\n\nIt has to be possible to navigate to an id or slug using `#[id] or #[slug]` in the URL, just add div ids to all rows",
+  "id": "pvtnlhocjbwwszsgzkvfqpbo"
+}

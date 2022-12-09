@@ -1,0 +1,117 @@
+{
+  "createdAt": 1670528954300,
+  "updatedAt": 1670528954300,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528954300,
+  "id": "dbcrudstore",
+  "name": "DbCrudStore",
+  "slug": "dbcrudstore",
+  "operationRelativeTypescriptFilePath": "src/store.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type DbCrudStore = {\n  \"db-crud.datasetConfig\":\n    | (DatasetConfig & {\n        /**\n         * If you selected a dataset, this will be set, so you can also delete it after selecting it\n         */\n        id?: string;\n        /**\n         * Used to determine if it's a new form or not\n         */\n        key?: string;\n      })\n    | null;\n  \"db-crud.search\": string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "db-crud.datasetConfig": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "If you selected a dataset, this will be set, so you can also delete it after selecting it"
+                },
+                "key": {
+                  "type": "string",
+                  "description": "Used to determine if it's a new form or not"
+                },
+                "filter": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/DatasetFilter"
+                  },
+                  "description": "Filters are applied after each other"
+                },
+                "sort": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/DatasetSort"
+                  }
+                },
+                "maxRows": {
+                  "type": "number",
+                  "description": "Specify a max amount of items n"
+                },
+                "startFromIndex": {
+                  "type": "number",
+                  "description": "If specified, slices the sorted array to omit the first n items;"
+                },
+                "objectParameterKeys": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "If specified, will only include these parameter keys of the model object. Otherwise all keys will be taken"
+                },
+                "ignoreObjectParameterKeys": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "If specified, will omit these keys when creating the dataset"
+                },
+                "view": {}
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "db-crud.search": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "db-crud.datasetConfig",
+        "db-crud.search"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "db-crud.datasetConfig",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "db-crud.search",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "DbCrudStore",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

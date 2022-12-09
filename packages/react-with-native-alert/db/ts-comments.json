@@ -1,18 +1,18 @@
 [
   {
-    "createdAt": 1668333431716,
-    "updatedAt": 1668333431716,
+    "createdAt": 1670218986738,
+    "updatedAt": 1670218986738,
     "deletedAt": 0,
-    "createdFirstAt": 1668333431716,
+    "createdFirstAt": 1670218986738,
     "name": "Comment",
     "slug": "comment",
-    "operationRelativeTypescriptFilePath": "src/AlertProvider.native.tsx",
-    "comment": "import { AlertContext } from \"./Alert\";",
-    "rawStatement": "export const AlertContext = createContext<AlertStatic[\"alert\"] | null>(null);",
+    "operationRelativeTypescriptFilePath": "src/types.tsx",
+    "comment": "Replaces `AlertStatic[\"alert\"]`",
+    "rawStatement": "export type AlertFn = (\n  title: string,\n  message?: string | JSX.Element,\n  buttons?: AlertButton[],\n  options?: AlertOptions\n) => void;",
     "parameters": {},
     "types": [],
-    "firstLine": 4,
-    "lastLine": 4,
-    "id": "ndrsqxldcyegawskxxvchtjn"
+    "firstLine": 11,
+    "lastLine": 13,
+    "id": "bvjjjdycjcoywxrzdmofpgvb"
   }
 ]

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385317957,
-  "updatedAt": 1669385317957,
+  "createdAt": 1670528466590,
+  "updatedAt": 1670528466590,
   "deletedAt": 0,
-  "createdFirstAt": 1669385317957,
+  "createdFirstAt": 1670528466590,
   "id": "authenticationmethod",
   "name": "AuthenticationMethod",
   "slug": "authenticationmethod",
@@ -28,6 +28,10 @@
         "encryptedCredential": {
           "type": "string",
           "description": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)"
+        },
+        "credential": {
+          "type": "string",
+          "description": "original credential. should only be available on the device, not on the person"
         },
         "otp": {
           "type": "number",
@@ -80,6 +84,14 @@
           "required": false,
           "schema": {
             "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+            "type": "string"
+          }
+        },
+        {
+          "name": "credential",
+          "required": false,
+          "schema": {
+            "fullComment": "original credential. should only be available on the device, not on the person",
             "type": "string"
           }
         },

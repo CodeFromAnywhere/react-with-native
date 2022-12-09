@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670216319593,
+  "updatedAt": 1670216319593,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216319593,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "augmentShortMarkdown",
+  "slug": "augment-short-markdown",
+  "operationRelativeTypescriptFilePath": "src/augmentShortMarkdown.ts",
+  "type": {
+    "rawType": "(shortMarkdown: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/short-markdown/short-markdown-types/build/ShortMarkdown\").ShortMarkdown, projectRelativeFilePath: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  shortMarkdown: ShortMarkdown,\n  projectRelativeFilePath: string\n) => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n\n  const absoluteFilePath = path.join(projectRoot, projectRelativeFilePath);\n\n  const fileParse = path.parse(absoluteFilePath);\n\n  const audioWithViewsArray = await Promise.all(\n    shortMarkdown.audioWithViewsArray.map(async (audioWithViews) => {\n      const spokenText = audioWithViews.audioPath\n        ? undefined\n        : audioWithViews.viewEmbeds.find((x) => x.spokenText)?.spokenText;\n      const absoluteSpeechFilePath = path.join(\n        fileParse.dir,\n        `${fileParse.name}.speech-${audioWithViews.audioKey}.mp3`\n      );\n\n      const finalSpeechFilePath = spokenText\n        ? await textToMp3({ message: spokenText }, absoluteSpeechFilePath)\n        : undefined;\n      const relativeSpeechFilePath = finalSpeechFilePath\n        ? \"./\" + makeRelative(finalSpeechFilePath, fileParse.dir)\n        : undefined;\n\n      const audioPath =\n        audioWithViews.audioPath || relativeSpeechFilePath || null;\n\n      const audioDurationMs = finalSpeechFilePath\n        ? await new Promise<number | undefined>((resolve) =>\n            ffprobe(finalSpeechFilePath, (err, data) =>\n              resolve((data.format.duration || 0) * 1000)\n            )\n          )\n        : undefined;\n\n      const newAudioWithViews: AudioWithViews = {\n        audioPath,\n        audioDurationMs,\n        audioKey: audioWithViews.audioKey,\n        viewEmbeds: audioWithViews.viewEmbeds.map((x) => {\n          const durationMs = audioDurationMs\n            ? audioDurationMs / audioWithViews.viewEmbeds.length\n            : MINIMUM_DURATION_MS;\n          return { ...x, durationMs };\n        }),\n      };\n\n      return newAudioWithViews;\n    })\n  );\n\n  const newShortMarkdown: ShortMarkdown = {\n    ...shortMarkdown,\n    audioWithViewsArray,\n  };\n\n  const indexFilePath = path.join(fileParse.dir, `${fileParse.name}.json`);\n  await writeJsonToFile(indexFilePath, newShortMarkdown);\n\n  return newShortMarkdown;\n}",
+  "description": "",
+  "id": "vhdcyflgjwalcnyjimnptvjb"
+}

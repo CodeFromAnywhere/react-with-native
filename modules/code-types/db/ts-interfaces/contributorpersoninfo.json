@@ -1,0 +1,89 @@
+{
+  "createdAt": 1670064009606,
+  "updatedAt": 1670064009606,
+  "deletedAt": 0,
+  "createdFirstAt": 1670064009606,
+  "id": "contributorpersoninfo",
+  "name": "ContributorPersonInfo",
+  "slug": "contributorpersoninfo",
+  "operationRelativeTypescriptFilePath": "src/Operation.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type ContributorPersonInfo = {\n  /**\n   * NPM convention, name of the contributor\n   */\n  name: string;\n  /**\n   * NPM convention, url with more info of the contributor\n   */\n  url?: string;\n  /**\n   * NPM convention, email of the contributor\n   */\n  email?: string;\n\n  /**\n   * Relative amount of estimated contribution to this operation, should be a number between 0 and 1\n   */\n  contributionAmount?: number;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "NPM convention, name of the contributor"
+        },
+        "url": {
+          "type": "string",
+          "description": "NPM convention, url with more info of the contributor"
+        },
+        "email": {
+          "type": "string",
+          "description": "NPM convention, email of the contributor"
+        },
+        "contributionAmount": {
+          "type": "number",
+          "description": "Relative amount of estimated contribution to this operation, should be a number between 0 and 1"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "name",
+          "required": true,
+          "schema": {
+            "fullComment": "NPM convention, name of the contributor",
+            "type": "string"
+          }
+        },
+        {
+          "name": "url",
+          "required": false,
+          "schema": {
+            "fullComment": "NPM convention, url with more info of the contributor",
+            "type": "string"
+          }
+        },
+        {
+          "name": "email",
+          "required": false,
+          "schema": {
+            "fullComment": "NPM convention, email of the contributor",
+            "type": "string"
+          }
+        },
+        {
+          "name": "contributionAmount",
+          "required": false,
+          "schema": {
+            "fullComment": "Relative amount of estimated contribution to this operation, should be a number between 0 and 1",
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ContributorPersonInfo",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

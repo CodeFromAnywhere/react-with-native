@@ -9,7 +9,10 @@
     "gray-matter": "^4.0.3",
     "js-util": "0.0.1",
     "log": "0.0.1",
-    "graceful-fs": "*"
+    "graceful-fs": "*",
+    "recursive-types": "0.0.1",
+    "filename-conventions": "0.0.1",
+    "write-to-assets": "0.0.1"
   },
   "description": "",
   "main": "build/index.js",
@@ -28,19 +31,28 @@
     "buildResultIndexed": {
       "buildSucceeded": true,
       "indexImportExportError": "",
-      "indexInteracesErrors": "[\"No schema/definitions found for /Users/king/King/operations/tools/control-fs/fs-util/src/files.ts. Error: TypeError: Cannot read properties of undefined (reading 'getId')\"]",
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/control-fs/fs-util/src/files.ts. Error: TypeError: Cannot read properties of undefined (reading 'getId')"
+      ],
       "lintProblems": []
     },
     "classificationIndexed": "cjs",
     "coreDependenciesIndexed": [],
     "folderNameIndexed": "fs-util",
     "lastPullTimeAtIndexed": 0,
-    "lastRebuildAt": 1668446824234,
+    "lastRebuildAt": 1670527107697,
     "operationDependenciesIndexed": [
       "log",
       "trimSlashes",
+      "ChildObject",
+      "sum",
+      "ChildObject",
+      "generatedFolders",
+      "notEmpty",
+      "sum",
       "makeArray",
-      "notEmpty"
+      "notEmpty",
+      "writeToAssets"
     ],
     "packageDependenciesIndexed": [
       "constants",
@@ -71,28 +83,28 @@
     "markdown": "General purpose wrapper around `node:fs` and `node:path` that should be used instead of those, because it removes some of its painpoints, removes unneeded stuff, and adds some other useful functions.\n",
     "sizeIndexed": {
       "codeSize": {
-        "numberOfFiles": 14,
-        "lines": 604,
-        "characters": 15543,
-        "bytes": 15543
+        "numberOfFiles": 17,
+        "lines": 704,
+        "characters": 18223,
+        "bytes": 18223
       },
       "dataSize": {
-        "numberOfFiles": 2,
-        "lines": 141,
-        "characters": 3406,
-        "bytes": 3406
+        "numberOfFiles": 3,
+        "lines": 31623,
+        "characters": 902190,
+        "bytes": 902190
       },
       "textSize": {
         "numberOfFiles": 2,
-        "lines": 625,
-        "characters": 12051,
-        "bytes": 12051
+        "lines": 642,
+        "characters": 12520,
+        "bytes": 12520
       },
       "size": {
-        "bytes": 31000,
-        "characters": 31000,
-        "lines": 1370,
-        "numberOfFiles": 18
+        "bytes": 932933,
+        "characters": 932933,
+        "lines": 32969,
+        "numberOfFiles": 22
       }
     },
     "hasGeneratedDependenciesIndexed": false,

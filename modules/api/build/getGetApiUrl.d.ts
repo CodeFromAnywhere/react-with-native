@@ -3,7 +3,7 @@
  *
  * returns something like `[apiUrl]/[apiFunctionName][queryString]`
  */
-export declare const getGetApiUrl: (apiUrl: string, apiFunctionName: string, query: {
+export declare const getGetApiUrl: (apiUrl: string | undefined, apiFunctionName: string, query: {
     [name: string]: string | string[] | undefined;
-}) => string;
+}) => string | undefined;
 //# sourceMappingURL=getGetApiUrl.d.ts.map

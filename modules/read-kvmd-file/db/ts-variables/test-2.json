@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668334988409,
-  "updatedAt": 1668334988409,
+  "createdAt": 1669884023443,
+  "updatedAt": 1669884023443,
   "deletedAt": 0,
-  "createdFirstAt": 1668334988409,
+  "createdFirstAt": 1669884023443,
   "classification": "const",
   "comments": [],
   "isExported": false,
@@ -29,5 +29,5 @@
   },
   "value": "async () => {\n  const absolutePath = path.join(__dirname, \"..\", \"assets\", \"test.json\");\n\n  const kvmdParse = await readJsonFile<KeyValueMarkdownParse>(absolutePath);\n\n  if (!kvmdParse) {\n    console.log(\"reading json file failed\");\n    return;\n  }\n\n  const string = kvmdParseToMarkdownString(kvmdParse);\n\n  await writeStringToFile(\n    absolutePath.replace(\"test.json\", \"stringifiedTest.md\"),\n    string\n  );\n}",
   "description": "",
-  "id": "wmyxfrymtfqakzxnvteskxvl"
+  "id": "hzjpfeyfkreotlouvdwinygi"
 }

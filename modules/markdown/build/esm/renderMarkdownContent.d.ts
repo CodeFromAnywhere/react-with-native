@@ -1,9 +1,11 @@
 /// <reference types="react" />
-import { Components } from "react-markdown";
 import { MarkdownParseRenderConfig } from "./types.js";
-export declare const HtmlHeader: Components["h1"] | Components["h2"] | Components["h3"] | Components["h4"] | Components["h5"] | Components["h6"];
 /**
- * renders a markdown striing (without frontmatter)
+Renders a markdown string (without frontmatter)
+
+TODO:
+
+- **Show selection prompt-results** In `renderMarkdownContent`, augment the alineas with the `ContextualPromptResult`. Would be great to see the results when hovering over the selected thing, or maybe showing it with a button, or inline, even.
+
  */
-export declare const renderMarkdownContent: (content: string, config: MarkdownParseRenderConfig) => JSX.Element | "[No content]";
-export declare const getYoutubeId: (url: string | undefined) => string | undefined;
+export declare const renderMarkdownContent: (content: string, config: MarkdownParseRenderConfig) => JSX.Element;

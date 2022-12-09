@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669639094552,
-  "updatedAt": 1669639094552,
+  "createdAt": 1670063649683,
+  "updatedAt": 1670063649683,
   "deletedAt": 0,
-  "createdFirstAt": 1669639094552,
+  "createdFirstAt": 1670063649683,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  context: GetStaticPropsContext,\n  basePaths: {\n    projectRelativeBasePath: string;\n    queryPath: string;\n  }[],\n  /**\n   * Operation of the website that is going to be deployed\n   */\n  webOperationName: string\n): Promise<{\n  props: MarkdownReaderPageProps;\n}> => {\n  const flat = await docsGetPages(basePaths);\n  const propsObject = await markdownReaderGetStaticPropsFromPages(\n    context,\n    flat,\n    webOperationName\n  );\n  return propsObject;\n}",
   "description": "",
-  "id": "epebkbnxuigbahwwvizhapaa"
+  "id": "xpbejosycuiahnvryqvylaoo"
 }

@@ -27,7 +27,7 @@ markdown for reading (so there are no links)
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| config | { operationSummary: `OperationSummary`, <br />returnType?: parse / string / save, <br /> } |  |
+| config | { operationSummary: `OperationSummary`, <br />returnType?: parse / string / save, <br />includeDocs?: boolean, <br />includeInfo?: boolean, <br /> } |  |
 | **Output** |    |    |
 
 
@@ -45,9 +45,9 @@ markdown for reading (so there are no links)
 
 # Tests
 
-<details><summary>Show test information(2)</summary>
+<details><summary>Show test information(4)</summary>
     
-  # test()
+  # concatMarkdownFiles()
 
 
 
@@ -59,13 +59,24 @@ markdown for reading (so there are no links)
 
 
 
+## test()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 concatMarkdownFiles (exported const)
+
 ## 📄 test (unexported const)
 
   </details>
 
 # Internal
 
-<details><summary>Show internal (87)</summary>
+<details><summary>Show internal (89)</summary>
     
   # addDependantCount()
 
@@ -123,6 +134,15 @@ NB: Related to `bundleToBookMd`
   includeModules,
 } | { bundleConfigId: string, <br />includeModules?: boolean, <br /> } |  |
 | **Output** | `String`   |    |
+
+
+
+## concatMarkdownFiles()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
 
 
 
@@ -481,10 +501,7 @@ Creates a single audiofile of a Sayable[] and stores that in a configured locati
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| {
-  sayables,
-  destinationAbsoluteFilePath,
-} | { destinationAbsoluteFilePath: string, <br />sayables: `Sayable`[], <br /> } |  |
+| config | { destinationAbsoluteFilePath: string, <br />sayables: `Sayable`[], <br /> } |  |
 | **Output** |    |    |
 
 
@@ -642,6 +659,14 @@ Properties:
 
 ## 🔹 Sayable
 
+GOAL:
+- distribute read only (and audio only) material of my codebase
+- it is also a fundament for other applications in the future
+
+
+
+
+
 Properties: 
 
  | Name | Type | Description |
@@ -690,6 +715,8 @@ creates a summary for a whole bundle
 
 NB: Related to `bundleToBookMd`
 
+
+## 📄 concatMarkdownFiles (exported const)
 
 ## 📄 createMinimizedSectionMarkdown (exported const)
 

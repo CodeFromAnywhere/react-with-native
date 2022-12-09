@@ -1,0 +1,83 @@
+{
+  "createdAt": 1670589807214,
+  "updatedAt": 1670589807214,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589807214,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getContextualPromptResults.ts",
+  "commentsInside": [],
+  "rawText": " async (config?: {\n  prompt_projectRelativePath?: string;\n  promptSlugs?: string[];\n}) => {\n  const { prompt_projectRelativePath, promptSlugs } =\n    destructureOptionalObject(config);\n  const results = (await db.get(\"ContextualPromptResult\")).map(\n    omitUndefinedValues\n  );\n\n  const onlyForPath = prompt_projectRelativePath\n    ? results?.filter(\n        (x) => x.prompt_projectRelativePath === prompt_projectRelativePath\n      )\n    : results;\n\n  const onlyForPrompts = promptSlugs\n    ? onlyForPath.filter((result) => {\n        if (!result.contextualPromptSlug) return false;\n\n        if (promptSlugs.includes(result.contextualPromptSlug)) return true;\n\n        return false;\n      })\n    : onlyForPath;\n  return onlyForPrompts;\n}",
+  "name": "getContextualPromptResults",
+  "slug": "get-contextual-prompt-results",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "prompt_projectRelativePath": {
+            "type": "string"
+          },
+          "promptSlugs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "prompt_projectRelativePath",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "promptSlugs",
+            "required": false,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "name": null
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "Gets all contextualPromptResults, but only if specific things are true\n\nTODO:\n\n- For any prompt we have for this filetype: get it from the database\n- For prompts about a folder: path/to/folder/.index/prompt-results.json\n- For prompts about a file or a selection thereof: path/to/folder/.index/[filename]/prompt-results.json\n\nNB: the slug of the ones in index should be the ID, and does not need to be set by the user, because we cannot guarantee that it's no duplicate.",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1205,
+    "lines": 35,
+    "bytes": 1205,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 35,
+    "numberOfFiles": 1
+  },
+  "id": "suvfpzjyoqpagqhhnyhtiinv"
+}

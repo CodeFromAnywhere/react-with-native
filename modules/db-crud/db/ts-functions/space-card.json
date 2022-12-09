@@ -1,0 +1,40 @@
+{
+  "createdAt": 1670528901415,
+  "updatedAt": 1670528901415,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528901415,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/card/SpaceCard.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  secondaryImageUrl: string | null;\n  darkened: boolean;\n  base64?: string;\n  imageUrl: string;\n  ctaText: string;\n  title: string;\n  subtitle: string;\n  action?: () => any;\n}) => {\n  const {\n    secondaryImageUrl,\n    darkened,\n    base64,\n    ctaText,\n    imageUrl,\n    subtitle,\n    title,\n    action,\n  } = props;\n  const [isImageReady, setIsImageReady] = useState(false);\n\n  const onLoadCallBack = () => {\n    setIsImageReady(true);\n  };\n\n  return (\n    <ALink onClick={() => action?.()}>\n      <a\n        target={\"_blank\"}\n        className=\"transition duration-300 ease-out transform cursor-pointer mb-2\"\n      >\n        <div\n          className={`relative m-2 overflow-hidden text-center rounded-xl lg:h-[268px] lg:w-[268px] h-72 w-72 ${\n            darkened ? \"bg-black\" : \"\"\n          }`}\n        >\n          {!isImageReady && (\n            <div className={`bg-gray-300 rounded-xl flex flex-1`} />\n          )}\n          {secondaryImageUrl ? (\n            <img\n              className={`rounded-xl ${darkened ? \"opacity-50\" : \"\"}`}\n              src={secondaryImageUrl}\n              // layout=\"fill\"\n              // alt=\"banner\"\n              // onLoad={onLoadCallBack}\n              // placeholder=\"blur\"\n              // objectFit=\"cover\"\n              // blurDataURL={\n              //   base64 ||\n              //   `data:image/svg+xml;base64,${toBase64(shimmer(320, 320))}`\n              // }\n            />\n          ) : null}\n          <div className=\"absolute inset-0 duration-300 ease-in-out rounded-lg group hover:bg-black hover:bg-opacity-40\">\n            <button className=\"invisible px-4 py-2 text-sm border-2 rounded-md text-white group-hover:visible group-hover:transition duration-450 mt-28\">\n              <p className=\"flex\">\n                <div className=\"\">🔍</div>\n                <p className=\"ml-2 font-bold\">{ctaText}</p>\n              </p>\n            </button>\n          </div>\n        </div>\n        <div className=\"flex justify-between mx-2 mt-2\">\n          <div className=\"flex space-x-2\">\n            {imageUrl ? (\n              <img\n                alt=\"host image\"\n                src={imageUrl}\n                width={40}\n                height={37}\n                className=\"rounded-full\"\n                // objectFit=\"cover\"\n              />\n            ) : null}\n            <div className=\"flex flex-col\">\n              <h3 className=\"text-black text-sm\">{title}</h3>\n              <h3 className=\"text-sm text-[#C4C4C4]\">{subtitle}</h3>\n            </div>\n          </div>\n        </div>\n      </a>\n    </ALink>\n  );\n}",
+  "name": "SpaceCard",
+  "slug": "space-card",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 8,
+  "size": {
+    "characters": 2580,
+    "lines": 86,
+    "bytes": 2582,
+    "bytesPerCharacter": 1.0007751937984497,
+    "charactersPerLine": 30,
+    "linesPerFile": 86,
+    "numberOfFiles": 1
+  },
+  "id": "gmusarwznjsigoaekobslwmf"
+}

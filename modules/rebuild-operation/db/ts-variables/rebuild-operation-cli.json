@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055703728,
-  "updatedAt": 1669055703728,
+  "createdAt": 1670590373589,
+  "updatedAt": 1670590373589,
   "deletedAt": 0,
-  "createdFirstAt": 1669055703728,
+  "createdFirstAt": 1670590373589,
   "classification": "const",
   "comments": [],
   "isExported": false,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async () => {\n  const argumentsArray = process.argv.slice(2);\n\n  if (argumentsArray.length > 0) {\n    oneByOne(argumentsArray, async (operationNameOrRelativePath) => {\n      let operationBasePath: string | undefined;\n      let operationManualProjectRoot: string | undefined;\n      if (operationNameOrRelativePath.startsWith(\".\")) {\n        operationBasePath = path.join(\n          process.cwd(),\n          operationNameOrRelativePath\n        );\n\n        operationManualProjectRoot = getProjectRoot(operationBasePath);\n      } else {\n        operationBasePath = await getOperationPath(operationNameOrRelativePath);\n      }\n\n      if (!operationBasePath) {\n        log(\"couldn't find that operation\");\n        return;\n      }\n\n      // console.log({ operationNames, operationName });\n\n      const x = await rebuildOperation({\n        operationBasePath,\n        operationManualProjectRoot,\n        force: true,\n        debug: true,\n        noExit: true,\n      });\n    });\n  }\n}",
+  "value": "async () => {\n  const argumentsArray = process.argv.slice(2);\n  const currentProjectRoot = getProjectRoot();\n\n  if (argumentsArray.length > 0) {\n    oneByOne(argumentsArray, async (operationNameOrRelativePath) => {\n      let operationBasePath: string | undefined;\n      let realProjectRoot: string | undefined;\n      if (operationNameOrRelativePath.startsWith(\".\")) {\n        operationBasePath = path.join(\n          process.cwd(),\n          operationNameOrRelativePath\n        );\n\n        realProjectRoot = getProjectRoot(operationBasePath);\n      } else {\n        realProjectRoot = await getOperationPath(operationNameOrRelativePath);\n      }\n\n      if (!operationBasePath) {\n        log(\"couldn't find that operation\");\n        return;\n      }\n\n      // console.log({ operationNames, operationName });\n\n      const x = await rebuildOperation({\n        operationBasePath,\n        operationManualProjectRoot:\n          realProjectRoot !== currentProjectRoot ? realProjectRoot : undefined,\n        force: true,\n        debug: true,\n        noExit: true,\n      });\n    });\n  }\n}",
   "description": "`rebuildOperation` CLI syntax:\n\n`rebuildOperation [...operations]`\n\nOperations can be a list of differnt operation names you want to rebuild. It's also possible to specify a relative path instead of an operation name.\n\nfor example:\n\n`rebuildOperation ./packages/operation-x` would rebuild `operation-x` in your packages folder\n\nanother handy one is `rebuildOperation .` because it will rebuild the operation in your current folder.",
-  "id": "qhpghlkytztoiotsegrrnnww"
+  "id": "qaekckrqbejfluowblondvkt"
 }

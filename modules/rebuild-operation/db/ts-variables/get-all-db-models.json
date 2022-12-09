@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055709882,
-  "updatedAt": 1669055709882,
+  "createdAt": 1670590381516,
+  "updatedAt": 1670590381516,
   "deletedAt": 0,
-  "createdFirstAt": 1669055709882,
+  "createdFirstAt": 1670590381516,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  manualProjectRoot?: string,\n  operationName?: string\n) => {\n  const allDbModels = (\n    await db.get(\"TsInterface\", { manualProjectRoot, operationName: \"*\" })\n  )\n    .filter(\n      (x) => x.isDbModel && x.dbStorageMethod && x.isExported && !x.hasGeneric\n    )\n    .filter((x) => x.operationName !== \"database\")\n    .filter((x) => (operationName ? x.operationName === operationName : true))\n    .filter((x) => !!x.operationName) // && !dependants.includes(x.operationName)\n    .filter(onlyUnique2<TsInterface>((a, b) => a.name === b.name));\n\n  return allDbModels;\n}",
   "description": "",
-  "id": "ssjczduyyxlhuiboarxkjpmg"
+  "id": "fnrjttjfwnlnybkiglpzgvgb"
 }

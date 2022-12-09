@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528962563,
+  "updatedAt": 1670528962563,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528962563,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useUrl",
+  "slug": "use-url",
+  "operationRelativeTypescriptFilePath": "src/useUrl.ts",
+  "type": {
+    "rawType": "<T extends \"path\" | \"name\" | \"type\" | \"slug\" | \"id\">(queryKey: T) => { path: [string | undefined, (newValue: string | undefined) => Promise<boolean>]; name: [string | undefined, (newValue: string | undefined) => Promise<boolean>]; type: [string | undefined, (newValue: string | undefined) => Promise<boolean>]; slug: [string | undefined, (newValue: string | undefined) => Promise<boolean>]; id: [string | undefined, (newValue: string | undefined) => Promise<boolean>]; }[T]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "<T extends keyof typeof queryStore>(queryKey: T) => {\n  /**\n   * Here you can define your global storages that can be present in any URL\n   *\n   * Make sure you use the CustomUrlConfig type\n   */\n  const queryStore = {\n    path: useCustomUrlStore<string | undefined>(\"path\", { type: \"string\" }),\n    name: useCustomUrlStore<string | undefined>(\"name\", { type: \"string\" }),\n    type: useCustomUrlStore<string | undefined>(\"type\", { type: \"string\" }),\n\n    // for db page\n    slug: useCustomUrlStore<string | undefined>(\"slug\", { type: \"string\" }),\n    id: useCustomUrlStore<string | undefined>(\"id\", { type: \"string\" }),\n  };\n\n  return queryStore[queryKey];\n}",
+  "description": "",
+  "id": "pdcjljgftwdrfxeczeordujd"
+}

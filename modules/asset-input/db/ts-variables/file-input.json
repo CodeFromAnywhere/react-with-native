@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669054955135,
-  "updatedAt": 1669054955135,
+  "createdAt": 1670526813314,
+  "updatedAt": 1670526813314,
   "deletedAt": 0,
-  "createdFirstAt": 1669054955135,
+  "createdFirstAt": 1670526813314,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: { setBlobs: (blobs: Asset[]) => void }) => {\n  const { setBlobs } = props;\n  return (\n    <Input\n      type=\"file\"\n      multiple\n      onChange={(event) => {\n        const files = event.target.files;\n\n        if (!files) {\n          setBlobs([]);\n          return;\n        }\n\n        const fileArray = new Array(files.length)\n          .fill(null)\n          .map((_, index) => {\n            const file = files.item(index);\n\n            return file;\n          })\n          .filter(notEmpty);\n\n        const assetBlobs: Asset[] = fileArray.map((file) => {\n          const type = getTypeFromFileBlob(file);\n          const name = withoutExtension(file.name);\n\n          const asset: Asset = {\n            blobPath: URL.createObjectURL(file),\n            originalFilename: file.name,\n            blob: file,\n            type,\n            name,\n            sizeBytes: file.size,\n            uploadProgress: 0,\n          };\n\n          return asset;\n        });\n        setBlobs(assetBlobs);\n      }}\n    />\n  );\n}",
   "description": "",
-  "id": "uluiqjccllcimdpishwsoyht"
+  "id": "abytnddibrgvqwcyzoukivxp"
 }

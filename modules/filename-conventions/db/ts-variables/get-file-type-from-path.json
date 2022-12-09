@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670216176448,
+  "updatedAt": 1670216176448,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216176448,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getFileTypeFromPath",
+  "slug": "get-file-type-from-path",
+  "operationRelativeTypescriptFilePath": "src/getFileTypeFromPath.ts",
+  "type": {
+    "rawType": "(path?: string | undefined) => \"other\" | import(\"/Users/king/King/operations/tools/conventions/filename-conventions/src/extensions\").FileType",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(path?: string): FileType | \"other\" => {\n  if (!path) return \"other\";\n  //code\n  if (path.endsWith(\".ts\")) return \"code\";\n  if (path.endsWith(\".tsx\")) return \"code\";\n  if (path.endsWith(\".js\")) return \"code\";\n  if (path.endsWith(\".jsx\")) return \"code\";\n\n  //text\n  if (path.endsWith(\".md\")) return \"text\";\n  if (path.endsWith(\".mdx\")) return \"text\";\n  if (path.endsWith(\".txt\")) return \"text\";\n\n  //data\n  if (path.endsWith(\".json\")) return \"data\";\n\n  return \"other\";\n}",
+  "description": "",
+  "id": "mhnughqzdktfnzjvvzpctxtc"
+}

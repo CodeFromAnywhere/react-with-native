@@ -1,0 +1,163 @@
+{
+  "createdAt": 1670063311675,
+  "updatedAt": 1670063311675,
+  "deletedAt": 0,
+  "createdFirstAt": 1670063311675,
+  "id": "namedparameterstypeof-compressimage",
+  "name": "NamedParameters<typeof compressImage>",
+  "slug": "namedparameterstypeof-compressimage",
+  "operationRelativeTypescriptFilePath": "src/compressImage.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "absoluteSourceImagePath": {
+          "type": "string"
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "sizeWidthPx": {
+              "type": "number"
+            },
+            "aspectRatio": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "x",
+                "y"
+              ],
+              "additionalProperties": false
+            },
+            "quality": {
+              "type": "number"
+            },
+            "targetFormat": {
+              "type": "string",
+              "enum": [
+                "webp",
+                "png",
+                "mp4"
+              ]
+            },
+            "keepOriginal": {
+              "type": "boolean"
+            },
+            "isDebug": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "absoluteSourceImagePath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "absoluteSourceImagePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "config",
+          "required": false,
+          "schema": {
+            "properties": [
+              {
+                "name": "sizeWidthPx",
+                "required": false,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "aspectRatio",
+                "required": false,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "x",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "quality",
+                "required": false,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "targetFormat",
+                "required": false,
+                "schema": {
+                  "enum": [
+                    "webp",
+                    "png",
+                    "mp4"
+                  ],
+                  "type": "string"
+                }
+              },
+              {
+                "name": "keepOriginal",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "isDebug",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof compressImage>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,14 +1,11 @@
 {
-  "createdAt": 1668449025159,
-  "updatedAt": 1668449025159,
+  "createdAt": 1670590305086,
+  "updatedAt": 1670590305086,
   "deletedAt": 0,
-  "createdFirstAt": 1668449025159,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
+  "createdFirstAt": 1670590305086,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/calculatePackageJsonDependencies.ts",
   "commentsInside": [],
   "rawText": " (\n  /**\n   * Current dependencies object in your operation\n   */\n  dependencies: PackageInfoObject | undefined,\n  /**\n   * All imports found in your operation\n   */\n  imports: Creation<TsImport>[],\n  /**\n   * All package-json's in your monorepo\n   */\n  operations: Operation[],\n  operationName: string\n) => {\n  const dependencyImports = imports\n    .filter((x) => x.isAbsolute)\n    .filter((x) => !isAbsoluteImportBuiltin(x.module))\n    .filter((x) => !isImportFromOptionalFile(x))\n    .filter(onlyUnique2<Creation<TsImport>>((a, b) => a.module === b.module));\n\n  /**\n   *  NB: imports of types are removed and need not to be installed for running this package\n   */\n  const valueDependencyImports = dependencyImports.filter(\n    (x) => x.type === \"value\"\n  );\n\n  const monorepoImports = dependencyImports.filter(\n    (x) =>\n      operationName &&\n      x.isModuleFromMonorepo &&\n      !isGeneratedOperationName(x.module)\n  );\n\n  const hasGeneratedDependenciesIndexed =\n    valueDependencyImports.filter(isImportGenerated).length > 0;\n\n  // console.log({ valueDependencyImports, hasGeneratedDependenciesIndexed });\n  // const hasGeneratedImportsIndexed =\n  //   dependencyImports.filter(isImportGenerated).length > 0;\n\n  const externalImports = dependencyImports.filter(\n    (x) => !x.isModuleFromMonorepo\n  );\n\n  const externalDependencyObject = mergeObjectsArray(\n    externalImports\n      .map((x) => {\n        const moduleName = getPackageNameFromAbsoluteImport(x.module);\n        if (!moduleName) return;\n        const already = dependencies?.[moduleName];\n        /**\n         * TODO: fetch this from monorepo\n         */\n        const calculatedVersion = \"*\";\n\n        /**\n         * NB: Minimize the use of \"*\"\n         */\n        const version =\n          already !== \"*\" && already !== undefined\n            ? already\n            : calculatedVersion;\n        return { [moduleName]: version };\n      })\n      .filter(notEmpty)\n  );\n\n  const monorepoDependencyObject = mergeObjectsArray(\n    monorepoImports\n      .map((x) => {\n        const moduleName = getPackageNameFromAbsoluteImport(x.module);\n        if (!moduleName) return;\n        const operation = operations.find((x) => x.name === moduleName);\n        if (!operation) return;\n        const { version } = operation;\n        if (!version) return;\n        return { [moduleName]: version };\n      })\n      .filter(notEmpty)\n  );\n\n  // console.log({\n  //   imports: imports.length,\n  //   dependencyImports: dependencyImports,\n  //   dependencies,\n  //   monorepoImports,\n  //   monorepoDependencyObject,\n  //   externalDependencyObject,\n  // });\n\n  const newDependencies: PackageInfoObject = {\n    ...dependencies,\n    ...monorepoDependencyObject,\n    ...externalDependencyObject,\n  };\n\n  return {\n    newDependencies,\n    hasGeneratedDependenciesIndexed,\n    // hasGeneratedImportsIndexed,\n  };\n}",
@@ -62,10 +59,83 @@
               "todo": "add a validation to package.json files for the whole project, to ensure i can apply `fs-orm` convention",
               "properties": [
                 {
+                  "name": "slug",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "kebab-case of the name, should be unique\n\nuse this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
+                    "type": "string"
+                  }
+                },
+                {
                   "name": "name",
                   "required": true,
                   "schema": {
                     "type": "string"
+                  }
+                },
+                {
+                  "name": "language",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "english",
+                      "dutch",
+                      "nepali",
+                      "portuguese",
+                      "brazilian",
+                      "german",
+                      "french",
+                      "spanish",
+                      "italian",
+                      "norwegian",
+                      "swedish",
+                      "danish",
+                      "vietnamese",
+                      "indonesian",
+                      "southAfrican",
+                      "tokiPona",
+                      "hindi",
+                      "mandarin",
+                      "arabic",
+                      "bengali",
+                      "urdu",
+                      "japanese",
+                      "swahili"
+                    ],
+                    "fullComment": "all currently supported languages",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "createdAt",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "updatedAt",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "deletedAt",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "Time\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "createdFirstAt",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "in some cases, data can be created before it was created in our system. In this case, use CreatedFirstAt if this information is important.\n\nTime\n\nTime can be stored in various ways but in my experience it is, again, best to keep it simple and just have one way to store time. I can think about this for hours, but my intuition goes towards using the same format as Date.now() because it is a very small format and is easy to read.\n\nIt is the amount of ms since 1970.\n\nI could argue to store it in seconds since 1970 since there are few applications of doing ms, but maybe we do, and it's just 30% bigger. No problem.\n\nTherefore, let's store all time values in the format Date.now()",
+                    "type": "number"
                   }
                 },
                 {
@@ -93,6 +163,31 @@
                   }
                 },
                 {
+                  "name": "id",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "categoryStackCalculated",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "In case of jsonSingle storageMethod, the categoryStack is generated by the location of the file in the db model folder in the db folder.\n\nNB: Changing this value when updating/upserting, changes where the item is located!\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+                    "nb": "Changing this value when updating/upserting, changes where the item is located!",
+                    "items": [
+                      {
+                        "schema": {
+                          "type": "string"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
+                  }
+                },
+                {
                   "name": "path",
                   "required": false,
                   "schema": {
@@ -111,6 +206,56 @@
                   "required": false,
                   "schema": {
                     "type": "string"
+                  }
+                },
+                {
+                  "name": "contributors",
+                  "required": false,
+                  "schema": {
+                    "items": [
+                      {
+                        "schema": {
+                          "fullComment": "",
+                          "properties": [
+                            {
+                              "name": "name",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "NPM convention, name of the contributor",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "url",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "NPM convention, url with more info of the contributor",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "email",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "NPM convention, email of the contributor",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "contributionAmount",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "Relative amount of estimated contribution to this operation, should be a number between 0 and 1",
+                                "type": "number"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        },
+                        "name": "ContributorPersonInfo"
+                      }
+                    ],
+                    "type": "array"
                   }
                 },
                 {
@@ -147,6 +292,8 @@
                   "name": "repository",
                   "required": false,
                   "schema": {
+                    "fullComment": "NB: this data becomes public, even for private repositories. If you don't want this, you're out of luck.",
+                    "nb": "this data becomes public, even for private repositories. If you don't want this, you're out of luck.",
                     "properties": [],
                     "type": "object"
                   }
@@ -223,6 +370,22 @@
                     "fullComment": "custom keys, both indexed and generated",
                     "properties": [
                       {
+                        "name": "port",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Can be set in case this is a ui-web operation",
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "codeOwner_personId",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Who is responsible for this operation?\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                          "type": "string"
+                        }
+                      },
+                      {
                         "name": "isNodeServer",
                         "required": false,
                         "schema": {
@@ -237,6 +400,86 @@
                           "fullComment": "Set to true if this package.json is your bundle. This means almost all other config doesn't apply.\n\nreplaces `isSensibleProject`.\n\nTODO: Might be interesting to see what the differences between the two are, and if it is truly needed to create a convention for this. The bundle folder structure convention is is the more conventional way of structuring a monorepo, but I doubt the if it really benefits me, especially if I have to maintain two conventions for this, and do different things based on the type of applied convention.",
                           "todo": "Might be interesting to see what the differences between the two are, and if it is truly needed to create a convention for this. The bundle folder structure convention is is the more conventional way of structuring a monorepo, but I doubt the if it really benefits me, especially if I have to maintain two conventions for this, and do different things based on the type of applied convention.",
                           "type": "boolean"
+                        }
+                      },
+                      {
+                        "name": "markdown",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Indexed from OPERATION.md, don't edit this if you already have an OPERATION.md! If you don't, you can use this property to change the long-form operation description.\n\nMotivation to have both: it's annoying to write markdown inside of JSON in VSCode...\n\n",
+                          "properties": [
+                            {
+                              "name": "fileName",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "params",
+                              "required": true,
+                              "schema": {
+                                "properties": [
+                                  {
+                                    "name": "title",
+                                    "required": false,
+                                    "schema": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "author",
+                                    "required": false,
+                                    "schema": {
+                                      "type": "string"
+                                    }
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            {
+                              "name": "createdAt",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "updatedAt",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "modifiedAt",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "openedAt",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "",
+                                "type": "number"
+                              }
+                            },
+                            {
+                              "name": "content",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "",
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
                         }
                       },
                       {
@@ -323,17 +566,284 @@
                         }
                       },
                       {
-                        "name": "lastPullTimeAtIndexed",
+                        "name": "lastRebuildAt",
                         "required": false,
                         "schema": {
                           "type": "number"
                         }
                       },
                       {
-                        "name": "lastRebuildAt",
+                        "name": "sizeIndexed",
                         "required": false,
                         "schema": {
-                          "type": "number"
+                          "fullComment": "objective size measurements of all files in a folder\n\nsummary for a folder should contain file-summaries for different filetypes and an overal file summary",
+                          "properties": [
+                            {
+                              "name": "size",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "type interface that can be used to summarize multiple files",
+                                "properties": [
+                                  {
+                                    "name": "numberOfFiles",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "if this is about multiple files, the number of files is specified here",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "characters",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of characters",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "lines",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of lines",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "bytes",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of bytes",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "linesPerFile",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of lines per file (averaged)",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "charactersPerLine",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of characters per line (averaged)",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "bytesPerCharacter",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of bytes per character",
+                                      "type": "number"
+                                    }
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            {
+                              "name": "textSize",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "type interface that can be used to summarize multiple files",
+                                "properties": [
+                                  {
+                                    "name": "numberOfFiles",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "if this is about multiple files, the number of files is specified here",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "characters",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of characters",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "lines",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of lines",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "bytes",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of bytes",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "linesPerFile",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of lines per file (averaged)",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "charactersPerLine",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of characters per line (averaged)",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "bytesPerCharacter",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of bytes per character",
+                                      "type": "number"
+                                    }
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            {
+                              "name": "dataSize",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "type interface that can be used to summarize multiple files",
+                                "properties": [
+                                  {
+                                    "name": "numberOfFiles",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "if this is about multiple files, the number of files is specified here",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "characters",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of characters",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "lines",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of lines",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "bytes",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of bytes",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "linesPerFile",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of lines per file (averaged)",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "charactersPerLine",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of characters per line (averaged)",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "bytesPerCharacter",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of bytes per character",
+                                      "type": "number"
+                                    }
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            {
+                              "name": "codeSize",
+                              "required": true,
+                              "schema": {
+                                "fullComment": "type interface that can be used to summarize multiple files",
+                                "properties": [
+                                  {
+                                    "name": "numberOfFiles",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "if this is about multiple files, the number of files is specified here",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "characters",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of characters",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "lines",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of lines",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "bytes",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "amount of bytes",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "linesPerFile",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of lines per file (averaged)",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "charactersPerLine",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of characters per line (averaged)",
+                                      "type": "number"
+                                    }
+                                  },
+                                  {
+                                    "name": "bytesPerCharacter",
+                                    "required": true,
+                                    "schema": {
+                                      "fullComment": "rounded, amount of bytes per character",
+                                      "type": "number"
+                                    }
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            }
+                          ],
+                          "type": "object"
                         }
                       },
                       {
@@ -349,6 +859,29 @@
                         "required": false,
                         "schema": {
                           "fullComment": "relative path to the operation (does not include operation folder itself)\n\nrelative from project root",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "classificationIndexed",
+                        "required": false,
+                        "schema": {
+                          "enum": [
+                            "cjs",
+                            "ts",
+                            "esm",
+                            "node-cjs",
+                            "node-esm",
+                            "node-ts",
+                            "server-cjs",
+                            "ui-web",
+                            "ui-app",
+                            "ui-ts",
+                            "ui-cjs",
+                            "ui-esm"
+                          ],
+                          "fullComment": "TODO: Ensure embedding this will embed the actual docs in my markdown renderer. I guess it might already do so!\n\n![](../docs/OperationClassification.md)\n\nTODO: It would be great to learn more about this topic and see if I can make more cross-environment packages. A great use case would be to create a wrapper around the current `fs-orm` to enable using it at the frontend too.",
+                          "todo": "Ensure embedding this will embed the actual docs in my markdown renderer. I guess it might already do so!",
                           "type": "string"
                         }
                       },
@@ -596,5 +1129,5 @@
     "linesPerFile": 112,
     "numberOfFiles": 1
   },
-  "id": "ikasyilmxcddtffnrzggqbvk"
+  "id": "ylubuahbbhskkbxjxkiuixnq"
 }

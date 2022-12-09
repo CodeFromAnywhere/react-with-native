@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669467149736,
-  "updatedAt": 1669467149736,
+  "createdAt": 1670528662049,
+  "updatedAt": 1670528662049,
   "deletedAt": 0,
-  "createdFirstAt": 1669467149736,
+  "createdFirstAt": 1670528662049,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  /**\n   * STRING! don't put a JSON object here,  first use JSON.stringify!\n   */\n  text: string;\n  extension?: string;\n  /**\n   * If set, this is the mode when minimised\n   */\n  minimalMode?: CodeblockMode;\n  /**\n   * If set, this is the mode when expanded\n   */\n  expandedMode?: CodeblockMode;\n  /**\n   * if true, by default it's expanded\n   */\n  isInitiallyExpanded?: boolean;\n  /**\n   * if true, mode cannot be changed\n   */\n  isModeStatic?: boolean;\n}) => {\n  const {\n    text,\n    extension,\n    expandedMode,\n    isInitiallyExpanded,\n    minimalMode,\n    isModeStatic,\n  } = props;\n\n  const [isExpanded, setIsExpanded] = useState(isInitiallyExpanded);\n\n  const mode = isExpanded\n    ? expandedMode || defaultExpandedMode\n    : minimalMode || defaultMinimalMode;\n\n  const realText =\n    mode === \"preview\"\n      ? text.length > 200\n        ? text.slice(0, 198) + \"..\"\n        : text\n      : text;\n\n  const nothingToExpand = mode === \"preview\" && text === realText;\n  return (\n    <Div className=\"w-full\">\n      {isModeStatic ? null : nothingToExpand ? null : (\n        <Div>\n          <ClickableIcon\n            onClick={() => {\n              setIsExpanded(!isExpanded);\n            }}\n            emoji={isExpanded ? \"➖ Minimise\" : \"➕ Expand\"}\n          />\n        </Div>\n      )}\n\n      <Div\n        className={\n          mode === \"scroll\"\n            ? \"overflow-y-auto max-h-[60vh] max-w-[60vw]\"\n            : mode === \"preview\"\n            ? \"opacity-25 bg-black\"\n            : undefined\n        }\n      >\n        {renderMarkdownContent(\n          createCodeblockMarkdown(realText, extension || null),\n          // The config below is not needed since all that is renderedd is a codeblock, which doesn't need to render links etc.\n          {\n            projectRelativeBaseFolderPath: \"\",\n            projectRelativeMarkdownFilePath: \"\",\n          }\n        )}\n      </Div>\n    </Div>\n  );\n}",
   "description": "Renders a markdown codeblock with a text as content and an optional extension",
-  "id": "nnkqgloijjbqoyegfgimsdxj"
+  "id": "fvcgscrkxwzmhniavzycvxry"
 }

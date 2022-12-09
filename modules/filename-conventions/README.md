@@ -11,6 +11,8 @@ Any functions and variables related to filename conventions
 
 ## 📄 databaseFolderName (exported const)
 
+## 🔹 FileType
+
 ## 🔹 SearchableExtension
 
 ## 📄 buildFolderName (exported const)
@@ -60,6 +62,15 @@ Returns true if a fileid includes one of the specified subextensions.
 
 ## 📄 sourceFolderName (exported const)
 
+## getFileTypeFromPath()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| path (optional) | string |  |
+| **Output** | other / code / data / text   |    |
+
+
+
 ## getWriterType()
 
 Gets the writer type based on the extension
@@ -103,6 +114,8 @@ Type of content that can be interpreted by the `writer-input`
 these special operations are generated, so should not be copied, but should be generated in the bundle after everything is copied
 
 
+## 📄 getFileTypeFromPath (exported const)
+
 ## 📄 getWriterType (exported const)
 
 Gets the writer type based on the extension
@@ -120,7 +133,7 @@ Gets the writer type based on the extension
 
 # Internal
 
-<details><summary>Show internal (9)</summary>
+<details><summary>Show internal (8)</summary>
     
   # 🔹 DropboxExtension
 
@@ -132,8 +145,6 @@ these filetypes should never be opened with explore. They should be processed an
 
 
 
-
-## 🔹 FileType
 
 ## 🔹 JsonExtension
 

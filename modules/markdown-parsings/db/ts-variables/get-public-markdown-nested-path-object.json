@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200471269,
-  "updatedAt": 1669200471269,
+  "createdAt": 1670590081692,
+  "updatedAt": 1670590081692,
   "deletedAt": 0,
-  "createdFirstAt": 1669200471269,
+  "createdFirstAt": 1670590081692,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  absoluteFolderPath: string\n): Promise<NestedObject<string>> => {\n  const promises = (\n    await getPublicMarkdownFilePaths(absoluteFolderPath, true)\n  ).map(async (result) => {\n    const name = getFolderJs(removeExtensionsFromPath(result.path));\n\n    const nestedPathObjectOrPath: NestedObject<string> | string =\n      result.isFolder\n        ? await getPublicMarkdownNestedPathObject(result.path)\n        : result.path;\n\n    return {\n      [name]: nestedPathObjectOrPath,\n    };\n  });\n\n  const completeNestedObject: NestedObject<string> = mergeObjectsArray(\n    await Promise.all(promises)\n  );\n\n  return completeNestedObject;\n}",
   "description": "Recursively searches a folder for public markdown files, and returns a `NestedObject` with the keys being the file or folder names, and the leafs being the absolute file paths.\n\nFile and folder names are stripped (number prefixes are removed, )\n\nexample:\n```json\n{\n\"README\": \"path/path/README.md\"\n\"folder1\":{\n\"README\": \"path/path/folder1/REAMDE.md\"\n\"file1\": \"path/path/folder1/file1.md\",\n}\n}",
-  "id": "fifmnpgjlrtqxekykykblscv"
+  "id": "cmagbvehxhgkwecwmogairyi"
 }

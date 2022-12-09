@@ -1,0 +1,196 @@
+{
+  "createdAt": 1670528580111,
+  "updatedAt": 1670528580111,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528580111,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/useContextMenu.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  items: ContextMenuItem[];\n  longTouchDurationMs?: number;\n  /**\n   * Customise the container class\n   */\n  className?: string;\n\n  /**\n   * Customise the contextMenuItem className\n   *\n   * Example:\n   *\n   * `select-none cursor-pointer lg:hover:bg-blue-300 py-2 px-4`\n   */\n  itemClassName?: string;\n  /**\n   * \n   * Overwrite the default item using this custom renderer:\n   * \n   * Example:\n   * \n   * ```tsx\n  customItemRender={(\n    contextMenuItem,\n    index,\n    onClose,\n    id\n  ) => (\n      <P\n        onClick={() => {\n          contextMenuItem.onClick(id);\n          onClose();\n        }}\n        className=\"select-none cursor-pointer lg:hover:bg-blue-300 py-2 px-4\"\n        key={`menu${index}`}\n      >\n        {contextMenuItem.getTitle(id)}\n      </P>)}\n              \n   * ```\n   */\n  customItemRender?: (\n    contextMenuItem: ContextMenuItem,\n    index: number,\n    onClose: () => any,\n    id: string | undefined\n  ) => JSX.Element | null;\n}) => {\n  const {\n    items,\n    longTouchDurationMs,\n    className,\n    customItemRender,\n    itemClassName,\n  } = props;\n  const {\n    renderContextPopper: renderContextMenu,\n    openContextPopperProps: openContextMenuProps,\n    onClose,\n    isOpen,\n  } = useContextPopper({\n    longTouchDurationMs,\n    renderPopper: (props) => {\n      const { id } = props;\n      return (\n        <Div\n          className={\n            // className ||\n            \"bg-white dark:bg-gray-700 border border-black h-40 overflow-y-scroll\"\n          }\n        >\n          {items\n            .filter((x) => (x.getIsEnabled ? x.getIsEnabled(id) : true))\n            .map((contextMenuItem, index) => {\n              if (customItemRender) {\n                return customItemRender(contextMenuItem, index, onClose, id);\n              }\n\n              return (\n                <ContextMenuItemComponent\n                  id={id}\n                  item={contextMenuItem}\n                  key={`menuItem${index}`}\n                  onClose={onClose}\n                  itemClassName={itemClassName}\n                />\n              );\n            })}\n        </Div>\n      );\n    },\n  });\n\n  return { renderContextMenu, openContextMenuProps, onClose, isOpen };\n}",
+  "name": "useContextMenu",
+  "slug": "use-context-menu",
+  "parameters": [],
+  "description": "Use this if you want to render a context menu where the menu closes if you click one of the items.\n\nOptionally, you can create a custom renderer for it.",
+  "returnType": {
+    "rawType": "{ renderContextMenu: () => JSX.Element | null; openContextMenuProps: { ref: React.RefObject<HTMLDivElement>; onContextMenu: (event: React.MouseEvent<Element, MouseEvent>) => void; onTouchStart: (event: React.TouchEvent<Element>) => void; onTouchEnd: () => void; onClick: (mouseEvent: React.MouseEvent<Element, MouseEvent>) => void; style: React.CSSProperties; }; onClose: () => void; isOpen: boolean; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "renderContextMenu": {
+          "type": "object",
+          "properties": {}
+        },
+        "openContextMenuProps": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "type": "object",
+              "properties": {
+                "current": {
+                  "enum": [
+                    "ul",
+                    ""
+                  ],
+                  "x-enumNames": [
+                    "ul",
+                    ""
+                  ],
+                  "type": "string"
+                }
+              }
+            },
+            "onContextMenu": {
+              "type": "object",
+              "properties": {}
+            },
+            "onTouchStart": {
+              "type": "object",
+              "properties": {}
+            },
+            "onTouchEnd": {
+              "type": "object",
+              "properties": {}
+            },
+            "onClick": {
+              "type": "object",
+              "properties": {}
+            },
+            "style": {
+              "$ref": "#/definitions/React.CSSProperties"
+            }
+          },
+          "required": [
+            "ref",
+            "onContextMenu",
+            "onTouchStart",
+            "onTouchEnd",
+            "onClick",
+            "style"
+          ]
+        },
+        "onClose": {
+          "type": "object",
+          "properties": {}
+        },
+        "isOpen": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "renderContextMenu",
+        "openContextMenuProps",
+        "onClose",
+        "isOpen"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "renderContextMenu",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "openContextMenuProps",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "ref",
+                "required": true,
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "current",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "ul",
+                          ""
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "onContextMenu",
+                "required": true,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "onTouchStart",
+                "required": true,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "onTouchEnd",
+                "required": true,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "onClick",
+                "required": true,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "onClose",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "isOpen",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 9,
+  "size": {
+    "characters": 2353,
+    "lines": 98,
+    "bytes": 2353,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 98,
+    "numberOfFiles": 1
+  },
+  "id": "vgzuupxywzbowzlplbjaujux"
+}

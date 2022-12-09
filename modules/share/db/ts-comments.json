@@ -1,0 +1,50 @@
+[
+  {
+    "createdAt": 1670529077728,
+    "updatedAt": 1670529077728,
+    "deletedAt": 0,
+    "createdFirstAt": 1670529077728,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/Share.tsx",
+    "comment": "import { useState } from \"react\";",
+    "rawStatement": "import { queries } from \"api\";",
+    "parameters": {},
+    "types": [],
+    "firstLine": 2,
+    "lastLine": 2,
+    "id": "tnehqbmyxwbubjspraikglbb"
+  },
+  {
+    "createdAt": 1670529077728,
+    "updatedAt": 1670529077728,
+    "deletedAt": 0,
+    "createdFirstAt": 1670529077728,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/Share.tsx",
+    "comment": "and",
+    "rawStatement": "export const Share = (props: {\n  /**\n   * Can be a more specific text instead of the text of the whole page. Can be omitted. Will just take full page text\n   */\n  contextText?: string;\n}) => {\n  const { contextText } = props;\n  const { handleModal } = useModal();\n\n  const contextualPromptQuery =\n    queries.useGetReferencableModelData(\"ContextualPrompt\");\n  const alert = useAlert();\n  const allText = useAllText();\n  const lastSelection = useLastSelection();\n\n  const modalContent = (\n    <Div className=\"h-[60vh] overflow-y-auto\">\n      {/* \n        - show text + selection, both editable\n        - show prompt input to ask chat-gpt\n        - open prompt textbox based on text and selection\n        */}\n      <FunctionForm\n        tsFunction={Index}\n        initialValues={[\n          contextText || allText || \"\",\n          lastSelection || \"\",\n          undefined,\n          \"\",\n          \"\",\n          \"\",\n        ]}\n        referencableModelData={{\n          ContextualPrompt: {\n            isLoading: contextualPromptQuery.isLoading,\n            data: contextualPromptQuery.data?.result,\n          },\n        }}\n        projectRelativeStorageFilePath=\"README.md\"\n        modelName=\"\"\n        withApiResult={(result: RealApiReturnType<\"processChatGptPrompt\">) => {\n          console.log({ result });\n\n          if (!result.result?.isSuccessful) {\n            errorToast(\n              result?.result?.message ||\n                result.message ||\n                \"Something went wrong\"\n            );\n            return;\n          }\n\n          handleModal(null);\n          const text = result?.result?.result?.text;\n          alert?.(\"You did it\", text, [\n            { text: \"Share\", style: \"default\" },\n            { text: \"Do nothing\", style: \"destructive\" },\n          ]);\n        }}\n      />\n    </Div>\n  );\n\n  return (\n    <ClickableIcon\n      emoji=\"💡\"\n      onClick={() => {\n        // opens modal\n        handleModal(modalContent);\n      }}\n    />\n  );\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 14,
+    "lastLine": 14,
+    "id": "kmtnjgfqfzuahsupwuozskbg"
+  },
+  {
+    "createdAt": 1670529077728,
+    "updatedAt": 1670529077728,
+    "deletedAt": 0,
+    "createdFirstAt": 1670529077728,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/Share.tsx",
+    "comment": "",
+    "rawStatement": "export const Share = (props: {\n  /**\n   * Can be a more specific text instead of the text of the whole page. Can be omitted. Will just take full page text\n   */\n  contextText?: string;\n}) => {\n  const { contextText } = props;\n  const { handleModal } = useModal();\n\n  const contextualPromptQuery =\n    queries.useGetReferencableModelData(\"ContextualPrompt\");\n  const alert = useAlert();\n  const allText = useAllText();\n  const lastSelection = useLastSelection();\n\n  const modalContent = (\n    <Div className=\"h-[60vh] overflow-y-auto\">\n      {/* \n        - show text + selection, both editable\n        - show prompt input to ask chat-gpt\n        - open prompt textbox based on text and selection\n        */}\n      <FunctionForm\n        tsFunction={Index}\n        initialValues={[\n          contextText || allText || \"\",\n          lastSelection || \"\",\n          undefined,\n          \"\",\n          \"\",\n          \"\",\n        ]}\n        referencableModelData={{\n          ContextualPrompt: {\n            isLoading: contextualPromptQuery.isLoading,\n            data: contextualPromptQuery.data?.result,\n          },\n        }}\n        projectRelativeStorageFilePath=\"README.md\"\n        modelName=\"\"\n        withApiResult={(result: RealApiReturnType<\"processChatGptPrompt\">) => {\n          console.log({ result });\n\n          if (!result.result?.isSuccessful) {\n            errorToast(\n              result?.result?.message ||\n                result.message ||\n                \"Something went wrong\"\n            );\n            return;\n          }\n\n          handleModal(null);\n          const text = result?.result?.result?.text;\n          alert?.(\"You did it\", text, [\n            { text: \"Share\", style: \"default\" },\n            { text: \"Do nothing\", style: \"destructive\" },\n          ]);\n        }}\n      />\n    </Div>\n  );\n\n  return (\n    <ClickableIcon\n      emoji=\"💡\"\n      onClick={() => {\n        // opens modal\n        handleModal(modalContent);\n      }}\n    />\n  );\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 16,
+    "lastLine": 18,
+    "id": "mkwyajuhsaigqoldhslwriqe"
+  }
+]

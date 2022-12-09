@@ -1,0 +1,72 @@
+{
+  "createdAt": 1670216176318,
+  "updatedAt": 1670216176318,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216176318,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getFileTypeFromPath.ts",
+  "commentsInside": [],
+  "rawText": " (path?: string): FileType | \"other\" => {\n  if (!path) return \"other\";\n  //code\n  if (path.endsWith(\".ts\")) return \"code\";\n  if (path.endsWith(\".tsx\")) return \"code\";\n  if (path.endsWith(\".js\")) return \"code\";\n  if (path.endsWith(\".jsx\")) return \"code\";\n\n  //text\n  if (path.endsWith(\".md\")) return \"text\";\n  if (path.endsWith(\".mdx\")) return \"text\";\n  if (path.endsWith(\".txt\")) return \"text\";\n\n  //data\n  if (path.endsWith(\".json\")) return \"data\";\n\n  return \"other\";\n}",
+  "name": "getFileTypeFromPath",
+  "slug": "get-file-type-from-path",
+  "parameters": [
+    {
+      "name": "path",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "\"other\" | import(\"/Users/king/King/operations/tools/conventions/filename-conventions/src/extensions\").FileType",
+    "typeDefinition": {
+      "optional": false,
+      "enum": [
+        "other",
+        "code",
+        "data",
+        "text"
+      ],
+      "x-enumNames": [
+        "other",
+        "code",
+        "data",
+        "text"
+      ],
+      "type": "string"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "enum": [
+        "other",
+        "code",
+        "data",
+        "text"
+      ],
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 470,
+    "lines": 18,
+    "bytes": 470,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "id": "wgxvqlbzcvlteimapdyljuqv"
+}

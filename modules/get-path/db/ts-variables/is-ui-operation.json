@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055053781,
-  "updatedAt": 1669055053781,
+  "createdAt": 1670589862535,
+  "updatedAt": 1670589862535,
   "deletedAt": 0,
-  "createdFirstAt": 1669055053781,
+  "createdFirstAt": 1670589862535,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  tsconfig: TsConfig | null,\n  packageJson: Operation | null\n) => {\n  const isReactPackage =\n    !!packageJson &&\n    (hasDependency(packageJson, \"react\") ||\n      hasDependency(packageJson, \"react-native\") ||\n      hasDependency(packageJson, \"next\") ||\n      hasDependency(packageJson, \"expo\"));\n\n  const usesJsx = !!tsconfig?.compilerOptions?.jsx;\n\n  return isReactPackage || usesJsx;\n}",
   "description": "",
-  "id": "yjhxgwubwzerxhnqgdjoyjhn"
+  "id": "ysxjoprrvsmwrhcevrtwrxdf"
 }

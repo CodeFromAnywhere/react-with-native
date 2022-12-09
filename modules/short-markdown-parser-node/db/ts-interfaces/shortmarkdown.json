@@ -1,0 +1,191 @@
+{
+  "createdAt": 1670216318033,
+  "updatedAt": 1670216318033,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216318033,
+  "id": "shortmarkdown",
+  "name": "ShortMarkdown",
+  "slug": "shortmarkdown",
+  "operationRelativeTypescriptFilePath": "src/augmentShortMarkdown.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "audioWithViewsArray": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AudioWithViews"
+          }
+        },
+        "backgroundMusicTrack": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AudioTrackItem"
+          },
+          "description": "LATER:"
+        }
+      },
+      "required": [
+        "audioWithViewsArray"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "audioWithViewsArray",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "audioPath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "audioKey",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Unique key for the audio",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "audioDurationMs",
+                      "required": false,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "viewEmbeds",
+                      "required": true,
+                      "schema": {
+                        "items": [
+                          {
+                            "schema": {
+                              "fullComment": "",
+                              "properties": [
+                                {
+                                  "name": "audioKey",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Unique key for the belonging audio, used to find the desired audio",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "title",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Either viewPath or title is required",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "viewPath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Either viewPath or title is required",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "spokenText",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Text in the alt of the image or video, but only if the alt is wrapped in quotes (e.g. \"your spoken text\"). Can be parsed into an audio and subtitles, and also a duration.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "durationMs",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Added afterwards",
+                                    "type": "number"
+                                  }
+                                }
+                              ],
+                              "type": "object"
+                            },
+                            "name": "ViewEmbed"
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "AudioWithViews"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "backgroundMusicTrack",
+          "required": false,
+          "schema": {
+            "fullComment": "LATER:",
+            "later": "",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "",
+                  "properties": [
+                    {
+                      "name": "relativeAudioFilePath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "durationMs",
+                      "required": false,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "startMs",
+                      "required": false,
+                      "schema": {
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": "AudioTrackItem"
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ShortMarkdown",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

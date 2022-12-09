@@ -1,2 +1,13 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.removeTokenIfPresent=void 0;var tokenPrefix_1=require("./tokenPrefix"),removeTokenIfPresent=function(e,o){if(!o)return{nameWithoutToken:e,token:void 0};var r=e.split(tokenPrefix_1.tokenPrefix);return{nameWithoutToken:r[0],token:r[1]}};exports.removeTokenIfPresent=removeTokenIfPresent;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.removeTokenIfPresent = void 0;
+var tokenPrefix_1 = require("./tokenPrefix");
+var removeTokenIfPresent = function (name, attachTokenToFilename) {
+    if (!attachTokenToFilename) {
+        return { nameWithoutToken: name, token: undefined };
+    }
+    var _a = name.split(tokenPrefix_1.tokenPrefix), nameWithoutToken = _a[0], token = _a[1];
+    return { nameWithoutToken: nameWithoutToken, token: token };
+};
+exports.removeTokenIfPresent = removeTokenIfPresent;
 //# sourceMappingURL=removeTokenIfPresent.js.map

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200459612,
-  "updatedAt": 1669200459612,
+  "createdAt": 1670590060167,
+  "updatedAt": 1670590060167,
   "deletedAt": 0,
-  "createdFirstAt": 1669200459612,
+  "createdFirstAt": 1670590060167,
   "id": "namedparameterstypeof-sayablestomp3",
   "name": "NamedParameters<typeof sayablesToMp3>",
   "slug": "namedparameterstypeof-sayablestomp3",
@@ -17,7 +17,7 @@
     "typeDefinition": {
       "type": "object",
       "properties": {
-        "{\n  sayables,\n  destinationAbsoluteFilePath,\n}": {
+        "config": {
           "type": "object",
           "properties": {
             "destinationAbsoluteFilePath": {
@@ -38,14 +38,14 @@
         }
       },
       "required": [
-        "{\n  sayables,\n  destinationAbsoluteFilePath,\n}"
+        "config"
       ],
       "additionalProperties": false
     },
     "simplifiedSchema": {
       "properties": [
         {
-          "name": "{\n  sayables,\n  destinationAbsoluteFilePath,\n}",
+          "name": "config",
           "required": true,
           "schema": {
             "properties": [
@@ -63,7 +63,7 @@
                   "items": [
                     {
                       "schema": {
-                        "fullComment": "",
+                        "fullComment": "GOAL:\n- distribute read only (and audio only) material of my codebase\n- it is also a fundament for other applications in the future",
                         "properties": [
                           {
                             "name": "sayableText",

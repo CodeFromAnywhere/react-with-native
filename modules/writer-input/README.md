@@ -44,9 +44,37 @@ Writer input for any utf8 based text, file or no file
 
 ## 📄 MarkdownView (exported const)
 
+## `<EditWriterInput />`
+
+the newer one, eventually to replace `ContextTextArea`
+<SmartContentEditableDivInput
+writerType={writerType}
+value={value}
+onChange={onChange}
+markdownParseRenderConfig={markdownParseRenderConfig}
+/>
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 📄 EditWriterInput (exported const)
+
+the newer one, eventually to replace `ContextTextArea`
+<SmartContentEditableDivInput
+writerType={writerType}
+value={value}
+onChange={onChange}
+markdownParseRenderConfig={markdownParseRenderConfig}
+/>
+
 # Internal
 
-<details><summary>Show internal (69)</summary>
+<details><summary>Show internal (67)</summary>
     
   # `<Completion />`
 
@@ -73,6 +101,28 @@ Div that is `contentEditable` by default and has possibilities for color/style h
 
 
 ## `<ContextTextArea />`
+
+TextArea with ability to enhance personal database and execute prompts
+
+
+QUESTION:
+
+How to make color highlighting?
+
+I guess we need to wrap all words with a span and make it contenteditable, so we can create a editor where we are styling all words that are written
+
+We can then also change the value of the word if you are NOT editing that word.
+
+So you would only see the true value of a word when your cursor is on that word
+
+TODO:
+
+- replace the textarea with a div contenteditable
+- make selectionStart and selectionEnd still working (on the original text)
+- whenever you stop editing a word, it needs to be wrapped with a span and styled with a function taking that word and returning a style
+- whenver you start a new word through a separator, an empty span should be created
+- the span of the current word being edited must have a location (x,y). get that exact location so we can render an autocompletion intellisense
+
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -101,24 +151,6 @@ NB: DEPRECATED: TODO: function isn't used. Since the indexation didn't go right,
 | ---------- | -- | -- |
 | subtextConfig | `SubtextConfig` |  |,| subwordConfig | `SubwordConfig` |  |
 | **Output** | { subtextConfig: { isEnabled?: boolean, <br />translations?: { language: english / dutch / nepali / portuguese / brazilian / german / french / spanish / italian / norwegian / swedish / danish / vietnamese / indonesian / southAfrican / tokiPona / hindi / mandarin / arabic / bengali / urdu / japanese / swahili, <br />showAlternative?: boolean, <br />showPhonetic?: boolean, <br />showLatin?: boolean, <br />showTokiPona?: boolean, <br />showCommon?: boolean, <br /> }[], <br />showEmojiTranslation?: boolean, <br />showDefinitionsWithPriority?: critical / high / medium / low[], <br />showRelated?: { type: image / asset / pages / data / code, <br />quantity: single / short / all, <br /> }[], <br /> }, <br />subwordConfig: { isEnabled?: boolean, <br />subwordSize?: normal / mini / micro, <br />translations?: english / dutch / nepali / portuguese / brazilian / german / french / spanish / italian / norwegian / swedish / danish / vietnamese / indonesian / southAfrican / tokiPona / hindi / mandarin / arabic / bengali / urdu / japanese / swahili[], <br />translationsViewMode?: disabled / tooltip / context / subword, <br />showDefinition?: boolean, <br />occurenceAmountViewMode?: disabled / tooltip / context / subword, <br />blurMode?: disabled / special, <br />audioMode?: disabled / tooltip / context / subword, <br />replaceWordMode?: tokiPona / disabled / translate / alternative / phonetic / emoji, <br />heatmapMode?: disabled / projectFrequency / englishFrequency, <br /> }, <br /> }   |    |
-
-
-
-## `<EditWriterInput />`
-
-the newer one, eventually to replace `ContextTextArea`
-<SmartContentEditableDivInput
-writerType={writerType}
-value={value}
-onChange={onChange}
-markdownParseRenderConfig={markdownParseRenderConfig}
-/>
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | `JSX.Element`   |    |
 
 
 
@@ -447,6 +479,28 @@ Div that is `contentEditable` by default and has possibilities for color/style h
 
 ## 📄 ContextTextArea (exported const)
 
+TextArea with ability to enhance personal database and execute prompts
+
+
+QUESTION:
+
+How to make color highlighting?
+
+I guess we need to wrap all words with a span and make it contenteditable, so we can create a editor where we are styling all words that are written
+
+We can then also change the value of the word if you are NOT editing that word.
+
+So you would only see the true value of a word when your cursor is on that word
+
+TODO:
+
+- replace the textarea with a div contenteditable
+- make selectionStart and selectionEnd still working (on the original text)
+- whenever you stop editing a word, it needs to be wrapped with a span and styled with a function taking that word and returning a style
+- whenver you start a new word through a separator, an empty span should be created
+- the span of the current word being edited must have a location (x,y). get that exact location so we can render an autocompletion intellisense
+
+
 ## 📄 depthFontSizes (exported const)
 
 ## 📄 DivContentEditable (exported const)
@@ -456,17 +510,6 @@ Div that is `contentEditable` by default and has possibilities for color/style h
 Interesting... In order to auto-generate a form for this, we need to combine the two into a simple function that does NOTHING. Why? Because we can't store it in the database, it is better to keep this in the frontend...
 
 NB: DEPRECATED: TODO: function isn't used. Since the indexation didn't go right, the solution with a `SimplifiedSchemaForm` ended up being easier. Keeping it here because I need to fix the indexation nonetheless.
-
-
-## 📄 EditWriterInput (exported const)
-
-the newer one, eventually to replace `ContextTextArea`
-<SmartContentEditableDivInput
-writerType={writerType}
-value={value}
-onChange={onChange}
-markdownParseRenderConfig={markdownParseRenderConfig}
-/>
 
 
 ## 📄 FrontmatterForm (exported const)

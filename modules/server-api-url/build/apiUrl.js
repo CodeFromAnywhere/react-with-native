@@ -1,15 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.apiUrl = void 0;
-var sdk_env_public_1 = require("sdk-env-public");
-var port_conventions_1 = require("port-conventions");
-var isDev_1 = require("./isDev");
-var hostname = typeof window !== "undefined" ? window.location.hostname : "localhost";
-var runRemoteServer = sdk_env_public_1.publicLocalEnvironmentVariables.runRemoteServer ||
-    sdk_env_public_1.publicEnvironmentVariables.runRemoteServer;
-// same ip as the ip used in the browser (not only localhost)
-var localhostServer = "http://".concat(hostname, ":").concat(port_conventions_1.ports["function-server"]);
-exports.apiUrl = !isDev_1.isDev || runRemoteServer
-    ? sdk_env_public_1.publicEnvironmentVariables.remoteServer
-    : localhostServer;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.apiUrl=void 0;var sdk_env_public_1=require("sdk-env-public"),port_conventions_1=require("port-conventions"),isDev_1=require("./isDev"),runRemoteServer=sdk_env_public_1.publicLocalEnvironmentVariables.runRemoteServer||sdk_env_public_1.publicEnvironmentVariables.runRemoteServer,hostname="undefined"!=typeof window?window.location.hostname:"localhost",localhostServer="http://".concat(hostname,":").concat(port_conventions_1.ports["function-server"]);exports.apiUrl=!isDev_1.isDev||runRemoteServer?sdk_env_public_1.publicEnvironmentVariables.remoteServer||
+// NB: TODO: this would only work in next.js environment with the api url set
+process.env.NEXT_PUBLIC_API_URL:localhostServer;
 //# sourceMappingURL=apiUrl.js.map

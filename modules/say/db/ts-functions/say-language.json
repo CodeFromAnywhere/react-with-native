@@ -1,0 +1,63 @@
+{
+  "createdAt": 1669962593566,
+  "updatedAt": 1669962593566,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962593566,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/saySomething.ts",
+  "commentsInside": [],
+  "rawText": " (message: string, language: SayLanguageEnum) => {\n  const voice =\n    language === \"np\" ? \"Lekha\" : language === \"nl\" ? \"Xander\" : \"Alex\";\n  spawnSync(`say \"${message}\" --voice ${voice}`, { shell: true });\n}",
+  "name": "sayLanguage",
+  "slug": "say-language",
+  "parameters": [
+    {
+      "name": "message",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "language",
+      "schema": {
+        "$ref": "#/definitions/SayLanguageEnum"
+      },
+      "simplifiedSchema": {
+        "enum": [
+          "np",
+          "nl",
+          "en"
+        ],
+        "fullComment": "",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "void",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 208,
+    "lines": 5,
+    "bytes": 208,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 42,
+    "linesPerFile": 5,
+    "numberOfFiles": 1
+  },
+  "id": "pomhakzdfgapzmxwnazybxal"
+}

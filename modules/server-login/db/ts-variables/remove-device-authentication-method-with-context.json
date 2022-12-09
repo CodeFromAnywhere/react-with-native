@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385340890,
-  "updatedAt": 1669385340890,
+  "createdAt": 1670528503560,
+  "updatedAt": 1670528503560,
   "deletedAt": 0,
-  "createdFirstAt": 1669385340890,
+  "createdFirstAt": 1670528503560,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  functionContext: FunctionContext,\n  method: AuthenticationMethodMethod\n) => {\n  const newAuthenticationMethods =\n    functionContext.device.authenticationMethods.filter(\n      (x) => x.method !== method\n    );\n\n  const updateResult = await db.update(\n    \"Device\",\n    (item) => item.authToken === functionContext.authToken,\n    (old) => ({ ...old, authenticationMethods: newAuthenticationMethods })\n  );\n\n  return {\n    isSuccessful: updateResult.isSuccesful,\n    message: updateResult.isSuccesful ? \"Removed\" : updateResult.message,\n  };\n}",
   "description": "removes an `authenticatedMethod` from `Device`\n\nUsually the authentication methods are an attempt to login into a new account, so if you remove something it doesnt have impact on the accounts you already logged into, because these authentications are not stored on the device but on the person.\n\nWe can therefore remove it without much validation",
-  "id": "jichfgytfkccwsazijcnnjhl"
+  "id": "eywjygqxsplkpvfmibvqsfxs"
 }

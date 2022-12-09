@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669639006798,
-  "updatedAt": 1669639006798,
+  "createdAt": 1670063472279,
+  "updatedAt": 1670063472279,
   "deletedAt": 0,
-  "createdFirstAt": 1669639006798,
+  "createdFirstAt": 1670063472279,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/readMarkdownFileToModel.ts",
   "commentsInside": [],
-  "rawText": " async (\n  absoluteFilePath: string,\n  webOperationName: string,\n  /**\n   * Only the ones that are not from this domain without path (filter based on hostname/path)\n   */\n  markdownCallToActions: MarkdownCallToAction[]\n): Promise<null | WebMarkdownFile> => {\n  const filename = path.parse(absoluteFilePath).name;\n\n  const projectRoot = getProjectRoot(absoluteFilePath);\n\n  if (!projectRoot) return null;\n  const mdParse = await readMarkdownFile(absoluteFilePath);\n  if (!mdParse) return null;\n\n  const projectRelativeWebOperationPath =\n    operations[webOperationName as keyof typeof operations];\n\n  if (!projectRelativeWebOperationPath) return null;\n\n  const absoluteHeadersFolderPath = path.join(\n    projectRoot,\n    projectRelativeWebOperationPath,\n    \"public/headers\"\n  );\n\n  const publicHeaderFilenames = fs.existsSync(absoluteHeadersFolderPath)\n    ? await fs.readdir(absoluteHeadersFolderPath, \"utf8\")\n    : [];\n\n  const parsedParameters = frontmatterToObject(\n    mdParse.parameters,\n    webMarkdownFileTsInterface.type.simplifiedSchema as SimplifiedSchema\n  ) as Partial<\n    ExtendedMarkdownProperties & WebMarkdownProperties & PostableProperties\n  >;\n\n  if (!parsedParameters.headerImage && publicHeaderFilenames.length) {\n    /**\n     *  Should be a number that depends on the absolute file path. Should be quite random because every charCode is a different number.\n     */\n    const uniqueDeterministicFilepathNumber = sum(\n      absoluteFilePath.split(\"\").map((letter) => letter.charCodeAt(0))\n    );\n    /**\n     * Makes the `uniqueDeterministicFilePathNumber into a number between 0 and length - 1,\n     */\n    const deterministicHeaderImageNumber =\n      uniqueDeterministicFilepathNumber % (publicHeaderFilenames.length - 1);\n\n    /**\n     * Gets the actual header filename\n     */\n    const deterministicHeaderImage =\n      publicHeaderFilenames[deterministicHeaderImageNumber];\n\n    /**\n     * Puts it as backendAsset\n     */\n    parsedParameters.headerImage = {\n      // NB: this ensures the URL isn't later altered to a backend-url (in dev mode)\n      absoluteUrl: `/headers/${deterministicHeaderImage}`,\n    };\n  }\n\n  if (!parsedParameters.markdownCallToActionSlugs) {\n    parsedParameters.markdownCallToActionSlugs = markdownCallToActions.map(\n      (x) => x.slug\n    );\n  }\n\n  // attach the actual call to actions\n\n  parsedParameters.markdownCallToActions =\n    parsedParameters.markdownCallToActionSlugs\n      ?.map((slug) => markdownCallToActions.find((x) => x.slug === slug))\n      .filter(notEmpty) || [];\n\n  parsedParameters.header_markdownCallToActions =\n    parsedParameters.header_markdownCallToActionSlugs\n      ?.map((slug) => markdownCallToActions.find((x) => x.slug === slug))\n      .filter(notEmpty) || [];\n\n  // NB: this markdown file is not always located in an operation. Yet we are trying to find it.\n  const operationBasePath = findOperationBasePath(absoluteFilePath);\n  const modelLocation: ModelLocation = {\n    operationName: operationBasePath ? getLastFolder(operationBasePath) : null,\n    projectRelativePath: makeRelative(absoluteFilePath, projectRoot),\n    operationRelativePath: operationBasePath\n      ? makeRelative(absoluteFilePath, operationBasePath)\n      : undefined,\n  };\n\n  const name = mdParse.fileName || \"untitled\";\n  const markdownFile: WebMarkdownFile = {\n    ...modelLocation,\n    ...parsedParameters,\n    markdown: mdParse.raw,\n    categoryStackCalculated: [],\n    ...parsedParameters,\n    id: name,\n    createdFirstAt: Date.now(),\n    deletedAt: 0,\n    createdAt: Date.now(),\n    privacy: parsedParameters.privacy || \"public\",\n    language: parsedParameters.language || \"english\",\n    updatedAt: parsedParameters.updatedAt || Date.now(),\n    name,\n    slug: name,\n  };\n\n  return omitUndefinedValues(markdownFile);\n}",
+  "rawText": " async (\n  absoluteFilePath: string,\n  webOperationName: string,\n  /**\n   * Only the ones that are not from this domain without path (filter based on hostname/path)\n   */\n  markdownCallToActions: MarkdownCallToAction[]\n): Promise<null | WebMarkdownFile> => {\n  const filename = path.parse(absoluteFilePath).name;\n\n  const projectRoot = getProjectRoot(absoluteFilePath);\n\n  if (!projectRoot) {\n    console.log(\"Projectroot not found\");\n    return null;\n  }\n  const mdParse = await readMarkdownFile(absoluteFilePath);\n  if (!mdParse) {\n    console.log(\"mdParse not found\");\n    return null;\n  }\n\n  const projectRelativeWebOperationPath =\n    operations[webOperationName as keyof typeof operations];\n\n  if (!projectRelativeWebOperationPath) return null;\n\n  const absoluteHeadersFolderPath = path.join(\n    projectRoot,\n    projectRelativeWebOperationPath,\n    \"public/headers\"\n  );\n\n  const publicHeaderFilenames = fs.existsSync(absoluteHeadersFolderPath)\n    ? await fs.readdir(absoluteHeadersFolderPath, \"utf8\")\n    : [];\n\n  const parsedParameters = frontmatterToObject(\n    mdParse.parameters,\n    webMarkdownFileTsInterface.type.simplifiedSchema as SimplifiedSchema\n  ) as Partial<\n    ExtendedMarkdownProperties & WebMarkdownProperties & PostableProperties\n  >;\n\n  if (!parsedParameters.headerImage && publicHeaderFilenames.length) {\n    /**\n     *  Should be a number that depends on the absolute file path. Should be quite random because every charCode is a different number.\n     */\n    const uniqueDeterministicFilepathNumber = sum(\n      absoluteFilePath.split(\"\").map((letter) => letter.charCodeAt(0))\n    );\n    /**\n     * Makes the `uniqueDeterministicFilePathNumber into a number between 0 and length - 1,\n     */\n    const deterministicHeaderImageNumber =\n      uniqueDeterministicFilepathNumber % (publicHeaderFilenames.length - 1);\n\n    /**\n     * Gets the actual header filename\n     */\n    const deterministicHeaderImage =\n      publicHeaderFilenames[deterministicHeaderImageNumber];\n\n    /**\n     * Puts it as backendAsset\n     */\n    parsedParameters.headerImage = {\n      // NB: this ensures the URL isn't later altered to a backend-url (in dev mode)\n      absoluteUrl: `/headers/${deterministicHeaderImage}`,\n    };\n  }\n\n  if (!parsedParameters.markdownCallToActionSlugs) {\n    parsedParameters.markdownCallToActionSlugs = markdownCallToActions.map(\n      (x) => x.slug\n    );\n  }\n\n  // attach the actual call to actions\n\n  parsedParameters.markdownCallToActions =\n    parsedParameters.markdownCallToActionSlugs\n      ?.map((slug) => markdownCallToActions.find((x) => x.slug === slug))\n      .filter(notEmpty) || [];\n\n  parsedParameters.header_markdownCallToActions =\n    parsedParameters.header_markdownCallToActionSlugs\n      ?.map((slug) => markdownCallToActions.find((x) => x.slug === slug))\n      .filter(notEmpty) || [];\n\n  // NB: this markdown file is not always located in an operation. Yet we are trying to find it.\n  const operationBasePath = findOperationBasePath(absoluteFilePath);\n  const modelLocation: ModelLocation = {\n    operationName: operationBasePath ? getLastFolder(operationBasePath) : null,\n    projectRelativePath: makeRelative(absoluteFilePath, projectRoot),\n    operationRelativePath: operationBasePath\n      ? makeRelative(absoluteFilePath, operationBasePath)\n      : undefined,\n  };\n\n  const name = mdParse.fileName || \"untitled\";\n  const markdownFile: WebMarkdownFile = {\n    ...modelLocation,\n    ...parsedParameters,\n    markdown: mdParse.raw,\n    categoryStackCalculated: [],\n    ...parsedParameters,\n    id: name,\n    createdFirstAt: Date.now(),\n    deletedAt: 0,\n    createdAt: Date.now(),\n    privacy: parsedParameters.privacy || \"public\",\n    language: parsedParameters.language || \"english\",\n    updatedAt: parsedParameters.updatedAt || Date.now(),\n    name,\n    slug: name,\n  };\n\n  return omitUndefinedValues(markdownFile);\n}",
   "name": "readMarkdownFileToModel",
   "slug": "read-markdown-file-to-model",
   "parameters": [
@@ -295,6 +295,14 @@
                           "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                           "type": "string"
                         }
+                      },
+                      {
+                        "name": "absoluteUrl",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                          "type": "string"
+                        }
                       }
                     ],
                     "type": "object"
@@ -323,13 +331,13 @@
   },
   "maxIndentationDepth": 3,
   "size": {
-    "characters": 3888,
-    "lines": 116,
-    "bytes": 3888,
+    "characters": 3988,
+    "lines": 122,
+    "bytes": 3988,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 34,
-    "linesPerFile": 116,
+    "charactersPerLine": 33,
+    "linesPerFile": 122,
     "numberOfFiles": 1
   },
-  "id": "yciznqmzxejktyboqubyolsk"
+  "id": "lrdcxeqmzeybccakoovtuisn"
 }

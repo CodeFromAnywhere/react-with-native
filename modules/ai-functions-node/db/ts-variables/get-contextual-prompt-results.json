@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670589807408,
+  "updatedAt": 1670589807408,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589807408,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getContextualPromptResults",
+  "slug": "get-contextual-prompt-results",
+  "operationRelativeTypescriptFilePath": "src/getContextualPromptResults.ts",
+  "type": {
+    "rawType": "(config?: { prompt_projectRelativePath?: string | undefined; promptSlugs?: string[] | undefined; } | undefined) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config?: {\n  prompt_projectRelativePath?: string;\n  promptSlugs?: string[];\n}) => {\n  const { prompt_projectRelativePath, promptSlugs } =\n    destructureOptionalObject(config);\n  const results = (await db.get(\"ContextualPromptResult\")).map(\n    omitUndefinedValues\n  );\n\n  const onlyForPath = prompt_projectRelativePath\n    ? results?.filter(\n        (x) => x.prompt_projectRelativePath === prompt_projectRelativePath\n      )\n    : results;\n\n  const onlyForPrompts = promptSlugs\n    ? onlyForPath.filter((result) => {\n        if (!result.contextualPromptSlug) return false;\n\n        if (promptSlugs.includes(result.contextualPromptSlug)) return true;\n\n        return false;\n      })\n    : onlyForPath;\n  return onlyForPrompts;\n}",
+  "description": "Gets all contextualPromptResults, but only if specific things are true\n\nTODO:\n\n- For any prompt we have for this filetype: get it from the database\n- For prompts about a folder: path/to/folder/.index/prompt-results.json\n- For prompts about a file or a selection thereof: path/to/folder/.index/[filename]/prompt-results.json\n\nNB: the slug of the ones in index should be the ID, and does not need to be set by the user, because we cannot guarantee that it's no duplicate.",
+  "id": "cqfspvakzfuabkeigmxorpsp"
+}

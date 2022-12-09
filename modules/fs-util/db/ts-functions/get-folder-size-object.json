@@ -1,0 +1,69 @@
+{
+  "createdAt": 1670526995658,
+  "updatedAt": 1670526995658,
+  "deletedAt": 0,
+  "createdFirstAt": 1670526995658,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getFolderSizeObject.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  absoluteFolderPath: string,\n  /**\n   * Folders smaller than this won't provide details\n   */\n  minimumReportSizeMb: number = 0,\n  ignoreGenerated: boolean = true\n): Promise<ChildObject<{ size: number; name: string }>[]> => {\n  const files = await fs.readdir(absoluteFolderPath, { withFileTypes: true });\n\n  const paths = (\n    await Promise.all(\n      files.map(async (file) => {\n        const newPath = path.join(absoluteFolderPath, file.name);\n\n        if (file.isDirectory()) {\n          if (\n            ignoreGenerated &&\n            [...generatedFolders, \"public\"].includes(file.name)\n          )\n            return;\n          const children = await getFolderSizeObject(newPath);\n\n          const size = sum(children.map((x) => x.size));\n          return {\n            name: file.name,\n            size,\n            /**\n             *\n             */\n            children:\n              size > minimumReportSizeMb * 1024 * 1024 ? children : undefined,\n          };\n        }\n\n        if (file.isFile()) {\n          const { size } = await fs.stat(newPath);\n\n          return {\n            size,\n            children: undefined,\n            name: file.name,\n          };\n        }\n\n        return minimumReportSizeMb\n          ? undefined\n          : { size: 0, children: undefined, name: file.name };\n      })\n    )\n  ).filter(notEmpty);\n\n  return paths;\n}",
+  "name": "getFolderSizeObject",
+  "slug": "get-folder-size-object",
+  "parameters": [
+    {
+      "name": "absoluteFolderPath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "minimumReportSizeMb",
+      "schema": {
+        "type": "number",
+        "description": "Folders smaller than this won't provide details"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Folders smaller than this won't provide details",
+        "type": "number"
+      },
+      "required": false
+    },
+    {
+      "name": "ignoreGenerated",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "returns an object with all sizes of all folders and files, recursively",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/types/recursive-types/build/ChildObject\").ChildObject<{ size: number; name: string; }>[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 1442,
+    "lines": 54,
+    "bytes": 1442,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 54,
+    "numberOfFiles": 1
+  },
+  "id": "rtyuhpgctgnloqiigelxekyp"
+}

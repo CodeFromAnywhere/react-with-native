@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055706739,
-  "updatedAt": 1669055706739,
+  "createdAt": 1670590377517,
+  "updatedAt": 1670590377517,
   "deletedAt": 0,
-  "createdFirstAt": 1669055706739,
+  "createdFirstAt": 1670590377517,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  operationName: string,\n  manualProjectRoot?: string\n) => {\n  const imports = (\n    await Promise.all(\n      [\"watch-operations\", \"rebuild-operation\"].map(\n        async (operationName) =>\n          // @ts-ignore\n          db.get(\"TsImport\", { operationName, manualProjectRoot }) as Promise<\n            TsImport[]\n          >\n      )\n    )\n  )\n    .flat()\n    .map((i: TsImport) => i.module)\n    // apparently this isn't a dependency of the above 3\n    .concat([\"watch-operations\"])\n    .filter(onlyUnique);\n\n  if (operationName && imports.includes(operationName)) {\n    log(`One of our dependencies (${operationName}) changed. Let's restart.`, {\n      type: \"important\",\n    });\n    process.exit(1);\n  }\n}",
   "description": "exits the process if our own dependencies change",
-  "id": "lycjmjxwazsyddrridaelyjt"
+  "id": "uoyrefsmwiulaftfstfdmogv"
 }

@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669385316499,
-  "updatedAt": 1669385316499,
+  "createdAt": 1670528464186,
+  "updatedAt": 1670528464186,
   "deletedAt": 0,
-  "createdFirstAt": 1669385316499,
+  "createdFirstAt": 1670528464186,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/addDeviceAuthenticationMethodWithContext.ts",
   "commentsInside": [],
-  "rawText": " async (\n  functionContext: FunctionContext,\n  method: AuthenticationMethodMethod,\n  handle: string,\n  credential?: string\n): Promise<{\n  isSuccessful?: boolean;\n  message?: string;\n  functionContext?: FunctionContext;\n  authenticationMethod?: AuthenticationMethod;\n}> => {\n  const { isSuccessful, message, authenticationMethod } =\n    await addAuthenticationMethod(method, handle, false, credential);\n  if (!isSuccessful || !authenticationMethod) {\n    return { isSuccessful, message };\n  }\n\n  const newAuthenticationMethods = functionContext.device.authenticationMethods\n    .filter((x) => x.method !== authenticationMethod.method)\n    .concat(authenticationMethod);\n\n  const updateResult = await db.update(\n    \"Device\",\n    (item) => item.authToken === functionContext.authToken,\n    (old) => {\n      return {\n        ...old,\n        authenticationMethods: newAuthenticationMethods,\n      };\n    }\n  );\n\n  const newFunctionContext = mergeNestedObject(functionContext, {\n    device: {\n      authenticationMethods: newAuthenticationMethods,\n    },\n  });\n\n  return {\n    isSuccessful: updateResult.isSuccesful,\n    message: \"Method added\",\n    functionContext: newFunctionContext,\n    authenticationMethod,\n  };\n}",
+  "rawText": " async (\n  functionContext: FunctionContext,\n  method: AuthenticationMethodMethod,\n  handle: string,\n  credential?: string\n): Promise<{\n  isSuccessful?: boolean;\n  message?: string;\n  functionContext?: FunctionContext;\n  authenticationMethod?: AuthenticationMethod;\n}> => {\n  const { isSuccessful, message, authenticationMethod } =\n    await addAuthenticationMethod(method, handle, false, credential);\n  if (!isSuccessful || !authenticationMethod) {\n    return { isSuccessful, message };\n  }\n  // removes this method if you was alrady trying the same method (basically overwrite)\n  const cleanAuthenticationMethods =\n    functionContext.device.authenticationMethods?.filter(\n      (x) => x.method !== authenticationMethod.method\n    ) || [];\n\n  // then adds the new one\n  const newAuthenticationMethods =\n    cleanAuthenticationMethods.concat(authenticationMethod);\n\n  const updateResult = await db.update(\n    \"Device\",\n    (item) => item.authToken === functionContext.authToken,\n    (old) => {\n      return {\n        ...old,\n        authenticationMethods: newAuthenticationMethods,\n      };\n    }\n  );\n\n  const newFunctionContext = mergeNestedObject(functionContext, {\n    device: {\n      authenticationMethods: newAuthenticationMethods,\n    },\n  });\n\n  return {\n    isSuccessful: updateResult.isSuccesful,\n    message: \"Method added\",\n    functionContext: newFunctionContext,\n    authenticationMethod,\n  };\n}",
   "name": "addDeviceAuthenticationMethodWithContext",
   "slug": "add-device-authentication-method-with-context",
   "parameters": [
@@ -3013,6 +3013,14 @@
                                 "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                                 "type": "string"
                               }
+                            },
+                            {
+                              "name": "absoluteUrl",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                                "type": "string"
+                              }
                             }
                           ],
                           "type": "object"
@@ -3289,6 +3297,14 @@
                                     "required": false,
                                     "schema": {
                                       "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "credential",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "original credential. should only be available on the device, not on the person",
                                       "type": "string"
                                     }
                                   },
@@ -3605,6 +3621,14 @@
                               "required": false,
                               "schema": {
                                 "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "credential",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "original credential. should only be available on the device, not on the person",
                                 "type": "string"
                               }
                             },
@@ -4229,13 +4253,13 @@
   },
   "maxIndentationDepth": 4,
   "size": {
-    "characters": 1274,
-    "lines": 45,
-    "bytes": 1274,
+    "characters": 1471,
+    "lines": 50,
+    "bytes": 1471,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 28,
-    "linesPerFile": 45,
+    "charactersPerLine": 29,
+    "linesPerFile": 50,
     "numberOfFiles": 1
   },
-  "id": "cfrgchauzuggynmsuhehfgrm"
+  "id": "cefzvfdidohnnpwjjudjebyq"
 }

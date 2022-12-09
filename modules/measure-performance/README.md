@@ -17,6 +17,18 @@ Properties:
 
 
 
+## cleanupTimer()
+
+Ensure you run this after finishing the measurement, or you'll run into memory leaks!
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| uniqueId | string |  |
+| **Output** |    |    |
+
+
+
 ## generateUniqueId()
 
 Bit annoying that we need to use all model-types here xD.
@@ -73,6 +85,11 @@ cleanupTimer(executionId);
 
 
 
+## 📄 cleanupTimer (exported const)
+
+Ensure you run this after finishing the measurement, or you'll run into memory leaks!
+
+
 ## 📄 generateUniqueId (exported const)
 
 Bit annoying that we need to use all model-types here xD.
@@ -113,21 +130,4 @@ Don't forget to run `cleanupTimer`, or you'll run into memory leaks!
 ```ts
 cleanupTimer(executionId);
 ```
-
-
-## cleanupTimer()
-
-Ensure you run this after finishing the measurement, or you'll run into memory leaks!
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| uniqueId | string |  |
-| **Output** |    |    |
-
-
-
-## 📄 cleanupTimer (exported const)
-
-Ensure you run this after finishing the measurement, or you'll run into memory leaks!
 

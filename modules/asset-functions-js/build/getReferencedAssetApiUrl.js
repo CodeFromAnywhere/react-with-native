@@ -1,6 +1,19 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getReferencedAssetApiUrl=void 0;var api_1=require("api"),getReferencedAssetApiUrl=function(e,t,r,
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getReferencedAssetApiUrl = void 0;
+var api_1 = require("api");
+var getReferencedAssetApiUrl = function (apiUrl, projectRelativeReferencingFilePath, referencingFileRelativeAssetPath, 
 /**
  * If true, asset will be returned as download
  */
-i){return(0,api_1.getGetApiUrl)(e,"getReferencedAssetGetApi",{projectRelativeReferencingFilePath:t,referencingFileRelativeAssetPath:r,isDownload:i?"1":void 0})};exports.getReferencedAssetApiUrl=getReferencedAssetApiUrl;
+isDownload) {
+    if (!apiUrl)
+        return undefined;
+    return (0, api_1.getGetApiUrl)(apiUrl, "getReferencedAssetGetApi", {
+        projectRelativeReferencingFilePath: projectRelativeReferencingFilePath,
+        referencingFileRelativeAssetPath: referencingFileRelativeAssetPath,
+        isDownload: isDownload ? "1" : undefined,
+    });
+};
+exports.getReferencedAssetApiUrl = getReferencedAssetApiUrl;
 //# sourceMappingURL=getReferencedAssetApiUrl.js.map

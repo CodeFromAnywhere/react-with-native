@@ -1,17 +1,28 @@
 {
-  "createdAt": 1669467159891,
-  "updatedAt": 1669467159891,
+  "createdAt": 1670528672204,
+  "updatedAt": 1670528672204,
   "deletedAt": 0,
-  "createdFirstAt": 1669467159891,
+  "createdFirstAt": 1670528672204,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
-  "operationRelativeTypescriptFilePath": "src/renderMarkdownContent.tsx",
+  "operationRelativeTypescriptFilePath": "src/getYoutubeId.ts",
   "commentsInside": [],
   "rawText": " (url: string | undefined): string | undefined => {\n  if (!url) return;\n\n  const regExp =\n    /^.*(youtu.be\\/|v\\/|u\\/\\w\\/|embed\\/|watch\\?v=|\\&v=|\\?v=)([^#\\&\\?]*).*/;\n  const match = url.match(regExp);\n\n  if (match && match[2].length == 11) {\n    return match[2];\n  }\n  return;\n}",
   "name": "getYoutubeId",
   "slug": "get-youtube-id",
-  "parameters": [],
+  "parameters": [
+    {
+      "name": "url",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
   "description": "",
   "returnType": {
     "rawType": "string | undefined",
@@ -49,5 +60,5 @@
     "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "dksfskvpwslsisuqhdhltann"
+  "id": "bpjqcmfgglbvyvnezodypvsv"
 }

@@ -1,0 +1,61 @@
+{
+  "createdAt": 1670528904384,
+  "updatedAt": 1670528904384,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528904384,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/card/shimmer.ts",
+  "commentsInside": [],
+  "rawText": " (w: number, h: number) => `\n<svg width=\"${w}\" height=\"${h}\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n  <defs>\n    <linearGradient id=\"g\">\n      <stop stop-color=\"#CCC\" offset=\"20%\" />\n      <stop stop-color=\"#AAA\" offset=\"50%\" />\n      <stop stop-color=\"#CCC\" offset=\"70%\" />\n    </linearGradient>\n  </defs>\n  <rect width=\"${w}\" height=\"${h}\" fill=\"#CCC\" />\n  <rect id=\"r\" width=\"${w}\" height=\"${h}\" fill=\"url(#g)\" />\n  <animate xlink:href=\"#r\" attributeName=\"x\" from=\"-${w}\" to=\"${w}\" dur=\"1s\" repeatCount=\"indefinite\"  />\n</svg>`",
+  "name": "shimmer",
+  "slug": "shimmer",
+  "parameters": [
+    {
+      "name": "w",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    },
+    {
+      "name": "h",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "String",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/String"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 584,
+    "lines": 13,
+    "bytes": 584,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 45,
+    "linesPerFile": 13,
+    "numberOfFiles": 1
+  },
+  "id": "uapxtuyrnznuwojvrnrvsknt"
+}

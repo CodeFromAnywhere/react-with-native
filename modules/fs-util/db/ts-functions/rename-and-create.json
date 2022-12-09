@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667378808388,
-  "updatedAt": 1667378808388,
+  "createdAt": 1670527014667,
+  "updatedAt": 1670527014667,
   "deletedAt": 0,
-  "createdFirstAt": 1667378808388,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670527014667,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/renameAndCreate.ts",
   "commentsInside": [],
   "rawText": " async (oldPath: string, newPath: string) => {\n  const newPathFolderPath = path.parse(newPath).dir;\n\n  if (!fs.existsSync(newPathFolderPath)) {\n    await fs.mkdir(newPathFolderPath, { recursive: true });\n  }\n\n  await fs.rename(oldPath, newPath);\n}",
@@ -58,5 +53,5 @@
     "linesPerFile": 9,
     "numberOfFiles": 1
   },
-  "id": "ihbsvaucsjujjxkaxdnvehmg"
+  "id": "cshhbevelyskqnyyohrwbdce"
 }

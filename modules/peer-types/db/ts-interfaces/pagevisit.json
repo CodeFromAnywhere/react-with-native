@@ -1,15 +1,15 @@
 {
-  "createdAt": 1669384898093,
-  "updatedAt": 1669384898093,
+  "createdAt": 1670527454771,
+  "updatedAt": 1670527454771,
   "deletedAt": 0,
-  "createdFirstAt": 1669384898093,
+  "createdFirstAt": 1670527454771,
   "id": "pagevisit",
   "name": "PageVisit",
   "slug": "pagevisit",
   "operationRelativeTypescriptFilePath": "src/PageVisit.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n * Any visit tracked based on a server request\n *\n * NB: TODO: it might occur that a page fetches multiple api endpoints, which will create duplicate data here. How do I fix that?\n */\nexport interface PageVisit extends DefaultModelType {\n  deviceId: string;\n  /**\n   * complete url of the page that was visited\n   */\n  path: string;\n  /**\n   * When was the page visited\n   */\n  createdAt: number;\n  ipInfo: IPInfo;\n\n  hello: string;\n}",
+  "rawText": "\n\n/**\n * Any visit tracked based on a server request\n *\n * NB: TODO: it might occur that a page fetches multiple api endpoints, which will create duplicate data here. How do I fix that?\n */\nexport interface PageVisit extends DefaultModelType {\n  deviceId: string;\n  /**\n   * complete url of the page that was visited\n   */\n  path: string;\n  /**\n   * When was the page visited\n   */\n  createdAt: number;\n  ipInfo: IPInfo;\n}",
   "extensions": [
     "DefaultModelType"
   ],
@@ -66,9 +66,6 @@
         },
         "ipInfo": {
           "$ref": "#/definitions/IPInfo"
-        },
-        "hello": {
-          "type": "string"
         }
       },
       "required": [
@@ -76,7 +73,6 @@
         "createdFirstAt",
         "deletedAt",
         "deviceId",
-        "hello",
         "id",
         "ipInfo",
         "operationName",
@@ -263,13 +259,6 @@
               }
             ],
             "type": "object"
-          }
-        },
-        {
-          "name": "hello",
-          "required": true,
-          "schema": {
-            "type": "string"
           }
         }
       ],

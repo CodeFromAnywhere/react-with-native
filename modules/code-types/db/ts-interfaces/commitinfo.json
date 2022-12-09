@@ -1,0 +1,74 @@
+{
+  "createdAt": 1670063987901,
+  "updatedAt": 1670063987901,
+  "deletedAt": 0,
+  "createdFirstAt": 1670063987901,
+  "id": "commitinfo",
+  "name": "CommitInfo",
+  "slug": "commitinfo",
+  "operationRelativeTypescriptFilePath": "src/CommitInfo.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type CommitInfo = {\n  /**\n   * unique commit sha\n   */\n  commitSha: string;\n  committedAt?: number;\n  commitMessage: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "commitSha": {
+          "type": "string",
+          "description": "unique commit sha"
+        },
+        "committedAt": {
+          "type": "number"
+        },
+        "commitMessage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "commitSha",
+        "commitMessage"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "commitSha",
+          "required": true,
+          "schema": {
+            "fullComment": "unique commit sha",
+            "type": "string"
+          }
+        },
+        {
+          "name": "committedAt",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "commitMessage",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "CommitInfo",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

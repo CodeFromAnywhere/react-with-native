@@ -6,14 +6,7 @@ augmented-word-node (`OperationClassification` node-cjs)
 
 # Api reference
 
-# Internal
-
-<details><summary>Show internal (6)</summary>
-    
-  # getAugmentedWordObject()
-
-
-
+## getAugmentedWordObject()
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -22,7 +15,13 @@ augmented-word-node (`OperationClassification` node-cjs)
 
 
 
-## getAugmentedWords()
+## 📄 getAugmentedWordObject (exported const)
+
+# Internal
+
+<details><summary>Show internal (4)</summary>
+    
+  # getAugmentedWords()
 
 Gets all augmented words of the entire project
 
@@ -49,8 +48,6 @@ NB: should only be executed if this is not a sensible-project, as it might not h
 | **Output** |    |    |
 
 
-
-## 📄 getAugmentedWordObject (exported const)
 
 ## 📄 getAugmentedWords (exported const)
 

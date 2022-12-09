@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200482460,
-  "updatedAt": 1669200482460,
+  "createdAt": 1670590100984,
+  "updatedAt": 1670590100984,
   "deletedAt": 0,
-  "createdFirstAt": 1669200482460,
+  "createdFirstAt": 1670590100984,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "markdown-to-sayable",
   "operationRelativeTypescriptFilePath": "src/parsing/markdownToSayable.ts",
   "type": {
-    "rawType": "({ markdown, markdownFilePath, }: { markdownFilePath: string; markdown: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParse; }) => import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/expose/sayablesToMp3\").Sayable[]",
+    "rawType": "({ markdown, markdownFilePath, }: { markdownFilePath: string; markdown: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParse; }) => import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/markdown-parsings/src/expose/sayablesToMp3\").Sayable[]",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "({\n  markdown,\n  markdownFilePath,\n}: {\n  markdownFilePath: string;\n  markdown: MarkdownParse;\n}): Sayable[] => {\n  //1 get markdownparse\n\n  //2. alter every piece of content as needed into a sayable text that can be understood through audio only\n\n  /*\n    - headings should be paused before (long) and after (shorter)\n    - headings should be numbered\n    - images and other inline assets should be referenced with alt text, unless it's an audio file\n    - new alineas should get some pause before\n    - OPTIONAL: maybe, when starting a (sub)chapter, tell the reader how many subchapters there are in this (sub)chapter. This can give a better orientation\n    */\n\n  return [];\n}",
   "description": "all mp3s should be stored in a separate location because we don't need them in the file system and we don't reference them, as they are data that is located by convention. all markdowns should have a linked `TextToSpeechAudio[]` which is auto updated every time `dev` is ran. `TextToSpeechAudio` also includes infromation about the `duration`, `voice` and more...\n\na bigger `.md.mp3` file is auto-created for every markdown file that concatenates all `sayable` audio pieces in the right order, but also includes the audio pieces in between.",
-  "id": "aqeqigetlikaoyqljhelxcgr"
+  "id": "zdcmwuekqlhxymjufidkifqo"
 }

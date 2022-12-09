@@ -1,9 +1,5 @@
-import { FunctionContext } from "function-context-type";
+import { ApiFunction } from "function-server-types";
 /**
- * ---
- * publicAuthorization: read, search, execute
- * ---
- *
  * Login with username and password
  *
  * 1. Adds an username/password combo as auth-method to the device,
@@ -11,8 +7,5 @@ import { FunctionContext } from "function-context-type";
  * 3. In case of match, moves the method to the person and connects the device
  *
  */
-export declare const loginWithPasswordWithContext: (functionContext: FunctionContext, username: string, password: string) => Promise<{
-    isSuccessful: boolean;
-    message?: string | undefined;
-}>;
+export declare const loginWithPasswordWithContext: ApiFunction;
 //# sourceMappingURL=loginWithPasswordWithContext.d.ts.map

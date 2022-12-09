@@ -1,6 +1,6 @@
 # Frontmatter util
 
-frontmatter-util (`OperationClassification` undefined)
+frontmatter-util (`OperationClassification` cjs)
 
 
 
@@ -34,9 +34,20 @@ Parses frontmatter object into a frontmatter string
 
 ## 📄 frontmatterToObject (exported const)
 
+## objectToFrontmatter()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| parse | `FrontmatterParse` |  |,| schema | `SimplifiedSchema` |  |
+| **Output** | {  }   |    |
+
+
+
+## 📄 objectToFrontmatter (exported const)
+
 # Internal
 
-<details><summary>Show internal (12)</summary>
+<details><summary>Show internal (10)</summary>
     
   # getFrontmatterValueString()
 
@@ -46,15 +57,6 @@ Parses frontmatter object into a frontmatter string
 | Input      |    |    |
 | ---------- | -- | -- |
 | value (optional) | {  } |  |
-| **Output** | {  }   |    |
-
-
-
-## objectToFrontmatter()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| parse | `FrontmatterParse` |  |,| schema | `SimplifiedSchema` |  |
 | **Output** | {  }   |    |
 
 
@@ -97,8 +99,6 @@ There are probably more edgecases that need to be fixed here
 ## 🔹 FrontmatterValue
 
 ## 📄 getFrontmatterValueString (exported const)
-
-## 📄 objectToFrontmatter (exported const)
 
 ## 📄 parseFrontmatterString (exported const)
 

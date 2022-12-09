@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528898195,
+  "updatedAt": 1670528898195,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528898195,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "UpsertPage",
+  "slug": "upsert-page",
+  "operationRelativeTypescriptFilePath": "src/UpsertPage.tsx",
+  "type": {
+    "rawType": "() => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  const router = useRouter();\n  const query = mapValuesSync(router.query, (value) => takeFirst(value));\n  const model = useInfiniteGetDbModel();\n  const allItems = model?.data?.pages\n    ?.map((x) => x.result?.data)\n    .flat()\n    .filter(notEmpty) as AugmentedAnyModelType[];\n  const instance = allItems?.find((x) => x.id === query.id);\n  const modelName = useModelFromUrl();\n  const metadataQuery = queries.useGetDbModelMetadata(modelName);\n  const { tsInterface } = destructureOptionalObject(metadataQuery.data?.result);\n  const simplifiedSchema = tsInterface?.type?.simplifiedSchema;\n  const referencableModelNames = getReferencableModels(simplifiedSchema)\n    ?.map((x) => x.interfaceName)\n    .filter(notEmpty);\n\n  return (\n    <Div scroll className=\"py-4 px-8 lg:px-20\">\n      {model.isLoading || !simplifiedSchema || !modelName ? null : (\n        <UpsertForm\n          modelName={modelName}\n          simplifiedSchema={simplifiedSchema}\n          instance={instance}\n          referencableModelNames={referencableModelNames}\n        />\n      )}\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "zgqzgfiiuvcozvfppjkxaohw"
+}

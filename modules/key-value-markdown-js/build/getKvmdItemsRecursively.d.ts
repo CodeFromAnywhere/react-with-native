@@ -1,4 +1,4 @@
-import { MarkdownChunk } from "code-types";
+import { MarkdownChunk } from "markdown-types";
 import { CategoryStack, KeyValueMarkdownModelType, Storing } from "model-types";
 /**
  * recursively dives into the Chunk to get all kvmd items

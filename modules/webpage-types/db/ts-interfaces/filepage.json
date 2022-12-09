@@ -1,15 +1,15 @@
 {
-  "createdAt": 1669276584384,
-  "updatedAt": 1669276584384,
+  "createdAt": 1670064134186,
+  "updatedAt": 1670064134186,
   "deletedAt": 0,
-  "createdFirstAt": 1669276584384,
+  "createdFirstAt": 1670064134186,
   "id": "filepage",
   "name": "FilePage",
   "slug": "filepage",
   "operationRelativeTypescriptFilePath": "src/types.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\nexport type FilePage = {\n  projectRelativeFilePath: string;\n  internalLinkWord?: string | null;\n  imagePath?: string | null;\n  shortDescription?: string | null;\n};",
+  "rawText": "\n\nexport type FilePage = {\n  projectRelativeFilePath: string;\n  internalLinkWord?: string | null;\n  imagePath?: string | null;\n  /**\n   * One line description of the content\n   */\n  shortDescription?: string | null;\n  /**\n   * Intor, usually the first alinea of the page, may contain markdown\n   */\n  introDescription?: string;\n};",
   "extensions": [],
   "isOperationIndex": false,
   "description": "",
@@ -38,7 +38,12 @@
           "type": [
             "string",
             "null"
-          ]
+          ],
+          "description": "One line description of the content"
+        },
+        "introDescription": {
+          "type": "string",
+          "description": "Intor, usually the first alinea of the page, may contain markdown"
         }
       },
       "required": [
@@ -73,6 +78,15 @@
           "name": "shortDescription",
           "required": false,
           "schema": {
+            "fullComment": "One line description of the content",
+            "type": "string"
+          }
+        },
+        {
+          "name": "introDescription",
+          "required": false,
+          "schema": {
+            "fullComment": "Intor, usually the first alinea of the page, may contain markdown",
             "type": "string"
           }
         }

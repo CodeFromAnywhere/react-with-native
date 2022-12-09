@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669639117075,
-  "updatedAt": 1669639117075,
+  "createdAt": 1670063674541,
+  "updatedAt": 1670063674541,
   "deletedAt": 0,
-  "createdFirstAt": 1669639117075,
+  "createdFirstAt": 1670063674541,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getMarkdownPageInfo.ts",
   "commentsInside": [],
-  "rawText": " async (config: {\n  projectRoot: string;\n  webPages: WebPage<any>[];\n  queryPath: string;\n  contentPage: ReaderWebPage;\n  webOperationName: string;\n  markdownCallToActions: MarkdownCallToAction[];\n}): Promise<{\n  markdownFile: WebMarkdownFile | null;\n  nextQueryPath: string | null;\n  previousQueryPath: string | null;\n  projectRelativeMarkdownPath: string | null;\n}> => {\n  console.log({ config });\n\n  const {\n    contentPage,\n    markdownCallToActions,\n    projectRoot,\n    queryPath,\n    webOperationName,\n    webPages,\n  } = config;\n\n  const parentQuery = getOneFolderUpPath(queryPath);\n  const siblings = getChildren(webPages, parentQuery);\n  const thisPageKey = queryPath.split(\"/\").pop();\n  const meIndex = siblings.findIndex((sibling) => thisPageKey === sibling);\n\n  const previousFolder = siblings[meIndex - 1];\n  const previousQueryPath = previousFolder\n    ? `${parentQuery}/${previousFolder}`\n    : null;\n  const nextFolder = siblings[meIndex + 1];\n  const nextQueryPath = nextFolder ? `${parentQuery}/${nextFolder}` : null;\n\n  const absoluteMarkdownPath = contentPage.pageData?.projectRelativeFilePath\n    ? path.join(projectRoot, contentPage.pageData.projectRelativeFilePath)\n    : undefined;\n\n  console.log({ absoluteMarkdownPath });\n\n  const markdownFile = absoluteMarkdownPath\n    ? await readMarkdownFileToModel(\n        absoluteMarkdownPath,\n        webOperationName,\n        markdownCallToActions\n      )\n    : null;\n\n  const projectRelativeMarkdownPath = absoluteMarkdownPath\n    ? makeRelative(absoluteMarkdownPath, projectRoot)\n    : null;\n\n  return {\n    markdownFile,\n    nextQueryPath,\n    previousQueryPath,\n    projectRelativeMarkdownPath,\n  };\n}",
+  "rawText": " async (config: {\n  projectRoot: string;\n  webPages: WebPage<any>[];\n  queryPath: string;\n  contentPage: ReaderWebPage;\n  webOperationName: string;\n  markdownCallToActions: MarkdownCallToAction[];\n}): Promise<{\n  markdownFile: WebMarkdownFile | null;\n  nextQueryPath: string | null;\n  previousQueryPath: string | null;\n  projectRelativeMarkdownPath: string | null;\n}> => {\n  const {\n    contentPage,\n    markdownCallToActions,\n    projectRoot,\n    queryPath,\n    webOperationName,\n    webPages,\n  } = config;\n\n  const parentQuery = getOneFolderUpPath(queryPath);\n  const siblings = getChildren(webPages, parentQuery);\n  const thisPageKey = queryPath.split(\"/\").pop();\n  const meIndex = siblings.findIndex((sibling) => thisPageKey === sibling);\n\n  const previousFolder = siblings[meIndex - 1];\n  const previousQueryPath = previousFolder\n    ? `${parentQuery}/${previousFolder}`\n    : null;\n  const nextFolder = siblings[meIndex + 1];\n  const nextQueryPath = nextFolder ? `${parentQuery}/${nextFolder}` : null;\n\n  const absoluteMarkdownPath = contentPage.pageData?.projectRelativeFilePath\n    ? path.join(projectRoot, contentPage.pageData.projectRelativeFilePath)\n    : undefined;\n\n  const markdownFile = absoluteMarkdownPath\n    ? await readMarkdownFileToModel(\n        absoluteMarkdownPath,\n        webOperationName,\n        markdownCallToActions\n      )\n    : null;\n\n  const projectRelativeMarkdownPath = absoluteMarkdownPath\n    ? makeRelative(absoluteMarkdownPath, projectRoot)\n    : null;\n\n  return {\n    markdownFile,\n    nextQueryPath,\n    previousQueryPath,\n    projectRelativeMarkdownPath,\n  };\n}",
   "name": "getMarkdownPageInfo",
   "slug": "get-markdown-page-info",
   "parameters": [
@@ -339,6 +339,14 @@
                                 "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                                 "type": "string"
                               }
+                            },
+                            {
+                              "name": "absoluteUrl",
+                              "required": false,
+                              "schema": {
+                                "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                                "type": "string"
+                              }
                             }
                           ],
                           "type": "object"
@@ -371,13 +379,13 @@
   },
   "maxIndentationDepth": 4,
   "size": {
-    "characters": 1773,
-    "lines": 61,
-    "bytes": 1773,
+    "characters": 1703,
+    "lines": 57,
+    "bytes": 1703,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 29,
-    "linesPerFile": 61,
+    "charactersPerLine": 30,
+    "linesPerFile": 57,
     "numberOfFiles": 1
   },
-  "id": "cjksnkhgbveiyjzlhqckokvn"
+  "id": "iofronpotwpyponydgsudvtm"
 }

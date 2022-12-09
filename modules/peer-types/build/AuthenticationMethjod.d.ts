@@ -25,6 +25,10 @@ export declare type AuthenticationMethod = {
      */
     encryptedCredential?: string;
     /**
+     * original credential. should only be available on the device, not on the person
+     */
+    credential?: string;
+    /**
      * one time password code, that will be sent to email or sms (or in the future other ways)
      */
     otp?: number;

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670216338383,
+  "updatedAt": 1670216338383,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216338383,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "uberduckSpeak",
+  "slug": "uberduck-speak",
+  "operationRelativeTypescriptFilePath": "src/uberduckSpeak.ts",
+  "type": {
+    "rawType": "(uberduckVoice: string, text: string) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(uberduckVoice: string, text: string) => {\n  const resultString = execSync(\n    `curl -u ${uberduckApiKey}:${uberduckSecret} \\\n    'https://api.uberduck.ai/speak' \\\n    --data-raw '{\"speech\":\"${text.replaceAll(\n      \"'\",\n      \"\"\n    )}\",\"voice\":\"${uberduckVoice}\"}'`,\n    { encoding: \"utf8\" }\n  );\n\n  console.log({ resultString });\n\n  const result = tryParseJson<{ uuid: string }>(resultString);\n  const uuid = result?.uuid;\n\n  return uuid;\n}",
+  "description": "",
+  "id": "iefelfhswrvhwbwudiupeabk"
+}

@@ -1,6 +1,6 @@
 # Augmented word types
 
-augmented-word-types (`OperationClassification` undefined)
+augmented-word-types (`OperationClassification` cjs)
 
 
 

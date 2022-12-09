@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200508513,
-  "updatedAt": 1669200508513,
+  "createdAt": 1670590147147,
+  "updatedAt": 1670590147147,
   "deletedAt": 0,
-  "createdFirstAt": 1669200508513,
+  "createdFirstAt": 1670590147147,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  property: SimplifiedSchemaProperty\n): string => {\n  const requiredString = property.required ? \"\" : \"(optional)\";\n\n  const descriptionString = noNewlines(property.schema.description) || \"\";\n\n  // TODO: stack deeper objects and make sure to also print tables for those\n  return `| ${property.name} ${requiredString} | ${property.schema.type} | ${descriptionString} |`;\n}",
   "description": "",
-  "id": "hwjrrjevuqxqulahqdhewhpl"
+  "id": "htuanlfigqjcrlfevlotuofx"
 }

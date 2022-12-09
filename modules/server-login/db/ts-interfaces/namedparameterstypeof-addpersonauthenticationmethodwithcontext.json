@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385317956,
-  "updatedAt": 1669385317956,
+  "createdAt": 1670528466589,
+  "updatedAt": 1670528466589,
   "deletedAt": 0,
-  "createdFirstAt": 1669385317956,
+  "createdFirstAt": 1670528466589,
   "id": "namedparameterstypeof-addpersonauthenticationmethodwithcontext",
   "name": "NamedParameters<typeof addPersonAuthenticationMethodWithContext>",
   "slug": "namedparameterstypeof-addpersonauthenticationmethodwithcontext",
@@ -2911,6 +2911,14 @@
                                     "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                                     "type": "string"
                                   }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                                    "type": "string"
+                                  }
                                 }
                               ],
                               "type": "object"
@@ -2931,6 +2939,31 @@
                                 }
                               ],
                               "type": "array"
+                            }
+                          },
+                          {
+                            "name": "mediaChannelIds",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "After the `MediaChannel` DB is filled, we can index the names of the persons of the `MediaChannel`, and and we can push them to here, if the name is \"similar\" to the name of this `Person`.\n\n`*` = \"similar\" means: exact match, or at least first name + last name match",
+                              "items": [
+                                {
+                                  "schema": {
+                                    "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                                    "type": "string"
+                                  },
+                                  "name": "Id"
+                                }
+                              ],
+                              "type": "array"
+                            }
+                          },
+                          {
+                            "name": "preferred_mediaChannelId",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "Optional. Can be set by admin (not indexed)\n\nIf not available, take the first (mediaChannelIds[0])\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                              "type": "string"
                             }
                           },
                           {
@@ -2991,14 +3024,6 @@
                                 }
                               ],
                               "type": "array"
-                            }
-                          },
-                          {
-                            "name": "preferredContactMedium",
-                            "required": false,
-                            "schema": {
-                              "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
-                              "type": "string"
                             }
                           },
                           {
@@ -3187,6 +3212,14 @@
                                         "required": false,
                                         "schema": {
                                           "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                                          "type": "string"
+                                        }
+                                      },
+                                      {
+                                        "name": "credential",
+                                        "required": false,
+                                        "schema": {
+                                          "fullComment": "original credential. should only be available on the device, not on the person",
                                           "type": "string"
                                         }
                                       },
@@ -3503,6 +3536,14 @@
                                   "required": false,
                                   "schema": {
                                     "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "credential",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "original credential. should only be available on the device, not on the person",
                                     "type": "string"
                                   }
                                 },

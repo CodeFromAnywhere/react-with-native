@@ -1,0 +1,55 @@
+{
+  "createdAt": 1669962593565,
+  "updatedAt": 1669962593565,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962593565,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/saySomething.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  input: string | SayOptions\n): Promise<void> => {\n  const paramKeys =\n    typeof input === \"string\"\n      ? null\n      : (Object.keys(input) as (keyof SayOptions)[]);\n\n  const params =\n    typeof input === \"string\"\n      ? null\n      : paramKeys?.reduce((all, key) => {\n          const value = input[key];\n\n          if (value === undefined) {\n            return all;\n          }\n\n          if (key === \"message\") {\n            return `${all} \"${value}\"`;\n          }\n\n          return `${all} --${shorthands[key]}=${String(value)}`;\n        }, \"\");\n\n  const spawnInput = typeof input === \"string\" ? input : (params as string);\n\n  const result = execSync(`say ${spawnInput}`, { stdio: \"inherit\" });\n\n  return;\n  // const res= spawn(`say ${spawnInput}`, {shell:true})\n  // res.\n}",
+  "name": "saySomething",
+  "slug": "say-something",
+  "parameters": [
+    {
+      "name": "input",
+      "schema": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "$ref": "#/definitions/SayOptions"
+          }
+        ]
+      },
+      "simplifiedSchema": {
+        "properties": [],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "TODO: do research what else is out there\n\nsay [-v voice] [-r rate] [-o outfile [aud\nio format options] | -n name:port | -a device] [-f f\nile | string ...]\n\nDESCRIPTION\nThis tool uses the Speech Synthesis manager\nto convert input text to audible speech and\neither play it through the sound output\ndevice chosen in System Preferences or save\nit to an AIFF file.\n\n\nfor usage, see `man say`",
+  "returnType": {
+    "rawType": "Promise<void>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 1174,
+    "lines": 47,
+    "bytes": 1174,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 47,
+    "numberOfFiles": 1
+  },
+  "id": "czorlrhvknvhphrqzzpvkbnh"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670529080920,
+  "updatedAt": 1670529080920,
+  "deletedAt": 0,
+  "createdFirstAt": 1670529080920,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useAllText",
+  "slug": "use-all-text",
+  "operationRelativeTypescriptFilePath": "src/useAllText.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  // Use a state to store the current value of the body element's text\n  const [text, setText] = React.useState(\n    typeof document === \"undefined\" ? undefined : document.body.innerText\n  );\n\n  // When the text of the body element changes, update the state\n  React.useEffect(() => {\n    if (typeof document === \"undefined\") return;\n\n    const observer = new MutationObserver((mutations) => {\n      mutations.forEach((mutation) => {\n        if (mutation.type === \"childList\") {\n          setText(document.body.innerText);\n        }\n      });\n    });\n\n    observer.observe(document.body, {\n      childList: true,\n      subtree: true,\n    });\n\n    // Return a cleanup function that stops observing changes\n    return () => observer.disconnect();\n  }, []);\n\n  // Return the current text of the body element\n  return text;\n}",
+  "description": "",
+  "id": "itnyedajmwwcqbfzkemeigon"
+}

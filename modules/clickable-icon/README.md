@@ -1,6 +1,6 @@
 # Clickable icon
 
-clickable-icon (`OperationClassification` cjs)
+clickable-icon (`OperationClassification` ui-cjs)
 
 
 

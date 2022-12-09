@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668334792015,
-  "updatedAt": 1668334792015,
+  "createdAt": 1669962078497,
+  "updatedAt": 1669962078497,
   "deletedAt": 0,
-  "createdFirstAt": 1668334792015,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669962078497,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/flattenMarkdownChunks.ts",
   "commentsInside": [],
   "rawText": " (\n  markdownChunks: MarkdownChunk[]\n): MarkdownParagraph[] => {\n  const flatMarkdownChunks = markdownChunks\n    .map((chunk) => getParagraphsRecursively(chunk))\n    .flat();\n  return flatMarkdownChunks;\n}",
@@ -32,10 +27,97 @@
               "fullComment": "",
               "properties": [
                 {
+                  "name": "level",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "0 is a paragraph 1-6 is h1 until h6",
+                    "type": "number"
+                  }
+                },
+                {
                   "name": "content",
                   "required": false,
                   "schema": {
                     "type": "string"
+                  }
+                },
+                {
+                  "name": "markdownEmbed",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works",
+                    "nb": "I need to be very clear how this one works",
+                    "properties": [
+                      {
+                        "name": "alt",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "src",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "type",
+                        "required": true,
+                        "schema": {
+                          "enum": [
+                            "video",
+                            "audio",
+                            "image",
+                            "text",
+                            "other"
+                          ],
+                          "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  }
+                },
+                {
+                  "name": "markdownLink",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Anything in the format `[alt](href)`\n\nIt needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here",
+                    "properties": [
+                      {
+                        "name": "alt",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "href",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "type",
+                        "required": true,
+                        "schema": {
+                          "enum": [
+                            "video",
+                            "audio",
+                            "image",
+                            "text",
+                            "other"
+                          ],
+                          "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "type": "object"
                   }
                 },
                 {
@@ -76,9 +158,9 @@
       "required": true
     }
   ],
-  "description": "",
+  "description": "Flatten markdown content into an array of paragraphs",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParagraph[]",
+    "rawType": "import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParagraph[]",
     "typeDefinition": {
       "optional": false,
       "type": "array",
@@ -175,13 +257,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 205,
+    "characters": 257,
     "lines": 8,
-    "bytes": 205,
+    "bytes": 257,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 26,
+    "charactersPerLine": 32,
     "linesPerFile": 8,
     "numberOfFiles": 1
   },
-  "id": "zyqfsnhavbmxxbjsznqcplnq"
+  "id": "kyinioayuypajvneptlkriwa"
 }

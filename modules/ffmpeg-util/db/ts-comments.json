@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1670063318407,
+    "updatedAt": 1670063318407,
+    "deletedAt": 0,
+    "createdFirstAt": 1670063318407,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/convertToMp4.ts",
+    "comment": "Uses ffmpeg to convert a file to mp3\n\nReturns the new file path on success",
+    "rawStatement": "export const convertToMp4 = (\n  sourcePath: string,\n  destinationPath: string\n): Promise<string | undefined> => {\n  return new Promise<string | undefined>((resolve, reject) => {\n    ffmpeg({ source: sourcePath })\n      .toFormat(\"mp4\")\n      .saveToFile(destinationPath)\n      .on(\"end\", () => {\n        resolve(destinationPath);\n      })\n      .on(\"error\", (e: Error) => {\n        resolve(undefined);\n      });\n  });\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 3,
+    "lastLine": 7,
+    "id": "sfnehrbnmymsdenuauymjpvh"
+  }
+]

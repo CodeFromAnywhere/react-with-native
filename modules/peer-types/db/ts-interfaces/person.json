@@ -1,15 +1,15 @@
 {
-  "createdAt": 1669384899820,
-  "updatedAt": 1669384899820,
+  "createdAt": 1670527457686,
+  "updatedAt": 1670527457686,
   "deletedAt": 0,
-  "createdFirstAt": 1669384899820,
+  "createdFirstAt": 1670527457686,
   "id": "person",
   "name": "Person",
   "slug": "person",
   "operationRelativeTypescriptFilePath": "src/Person.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n/**\n * Model to describe a human person. This model gathers and stores all persons around the world, except for yourself. Kind of a user-like model...\n *\n *\n * The data inside this model is coming from the `Person` itself but also from the owner of the OS server. It should be possible for the person to automatically push information into any of their instances on any server, but the OS owner can augment this.\n *\n * NB: This is a `DefaultModelType`, which means name and slug need not to be unique, but it is highly preferred.\n */\nexport interface Person extends DefaultModelType {\n  name: string;\n  slug: string;\n  pictureImage?: BackendAsset;\n\n  /**\n   * slugs of interest categories that this person should be notified about.\n   *\n   * Since this is a hierarchical model, parent interests will ensure all children are also applied.\n   */\n  interestSlugs?: Slug[];\n\n  /**\n   * Media that is attached to this person.\n   *\n   * NB: not used to authenticate! Can be filled in by King OS, might be erroneous\n   */\n  media?: PersonSocialMedia[];\n\n  preferredContactMedium?: Slug;\n\n  dataEntries?: PersonInformationValue[];\n\n  /**\n   * Devices can be attached to a person by looking in the device model and finding the devices that refer to this person\n   *\n   * Among other things, this can be used to determine the `Person` location\n   */\n  devicesCalculated?: Device[];\n\n  /**\n   * Methods that can be used to identify yourself as being this user\n   *\n   * Should be set up by the user either when registering, or in settings, to provide more methods.\n   *\n   * NB: It's important to note that a `Person` should not be able to add credentials that are already added by another person. This means that, when adding such a method, all `Person`s need to be searched!\n   */\n  authenticationMethods: AuthenticationMethod[];\n\n  /**\n   * To which groups does this person belong?\n   *\n   * This determines additional authorizations\n   *\n   * Can be set on signup, but can always be edited by admin\n   */\n  groupSlugs?: Slug[];\n  groups?: Group[];\n\n  /**\n   * Which custom authorizations does this `Person` have?\n   */\n  authorizations?: Authorization[];\n\n  /**\n   * By default, one is enough, but if this is defined, the user needs to use this amount of authentication methods before he/she is authenticated. Must be at least one\n   */\n  amountAuthenticationMethodsRequired?: number;\n  /**\n   * Optionally, the user can setup for themselves which authentication methods they require for themselves to authenticate on another device\n   */\n  requiredAuthenticationMethods?: AuthenticationMethodMethod[];\n\n  /**\n   * For now this can be a stripe token, stored for this \"customer\". Handy to connect the customer to the Person. Later this can become an array of multiple credentials, for example if you want to add multiple creditcards.\n   */\n  paymentAuthToken?: string;\n  /**\n   * Actions by the `Person` can create changes in the amount of credits\n   *\n   * The exact meaning of the number of credits is determined by the OS settings. Can for example be 1:1 to euro, 1:1 to bitcoin, or a custom credit system. Transferability is also customisable.\n   *\n   * Insufficient credit can limit the persons possibilities within the OS\n   */\n  credit?: Credit;\n}",
+  "rawText": "\n/**\n * Model to describe a human person. This model gathers and stores all persons around the world, except for yourself. Kind of a user-like model...\n *\n *\n * The data inside this model is coming from the `Person` itself but also from the owner of the OS server. It should be possible for the person to automatically push information into any of their instances on any server, but the OS owner can augment this.\n *\n * NB: This is a `DefaultModelType`, which means name and slug need not to be unique, but it is highly preferred.\n */\nexport interface Person extends DefaultModelType {\n  name: string;\n  slug: string;\n  pictureImage?: BackendAsset;\n\n  /**\n   * slugs of interest categories that this person should be notified about.\n   *\n   * Since this is a hierarchical model, parent interests will ensure all children are also applied.\n   */\n  interestSlugs?: Slug[];\n\n  /**\n   * After the `MediaChannel` DB is filled, we can index the names of the persons of the `MediaChannel`, and and we can push them to here, if the name is \"similar\" to the name of this `Person`.\n   *\n   * `*` = \"similar\" means: exact match, or at least first name + last name match\n   */\n  mediaChannelIds?: Id[];\n  /**\n   * Optional. Can be set by admin (not indexed)\n   *\n   * If not available, take the first (mediaChannelIds[0])\n   */\n  preferred_mediaChannelId?: Id;\n\n  /**\n   * Media that is attached to this person.\n   *\n   * NB: not used to authenticate! Can be filled in by King OS, might be erroneous\n   */\n  media?: PersonSocialMedia[];\n\n  dataEntries?: PersonInformationValue[];\n\n  /**\n   * Devices can be attached to a person by looking in the device model and finding the devices that refer to this person\n   *\n   * Among other things, this can be used to determine the `Person` location\n   */\n  devicesCalculated?: Device[];\n\n  /**\n   * Methods that can be used to identify yourself as being this user\n   *\n   * Should be set up by the user either when registering, or in settings, to provide more methods.\n   *\n   * NB: It's important to note that a `Person` should not be able to add credentials that are already added by another person. This means that, when adding such a method, all `Person`s need to be searched!\n   */\n  authenticationMethods: AuthenticationMethod[];\n\n  /**\n   * To which groups does this person belong?\n   *\n   * This determines additional authorizations\n   *\n   * Can be set on signup, but can always be edited by admin\n   */\n  groupSlugs?: Slug[];\n  groups?: Group[];\n\n  /**\n   * Which custom authorizations does this `Person` have?\n   */\n  authorizations?: Authorization[];\n\n  /**\n   * By default, one is enough, but if this is defined, the user needs to use this amount of authentication methods before he/she is authenticated. Must be at least one\n   */\n  amountAuthenticationMethodsRequired?: number;\n  /**\n   * Optionally, the user can setup for themselves which authentication methods they require for themselves to authenticate on another device\n   */\n  requiredAuthenticationMethods?: AuthenticationMethodMethod[];\n\n  /**\n   * For now this can be a stripe token, stored for this \"customer\". Handy to connect the customer to the Person. Later this can become an array of multiple credentials, for example if you want to add multiple creditcards.\n   */\n  paymentAuthToken?: string;\n  /**\n   * Actions by the `Person` can create changes in the amount of credits\n   *\n   * The exact meaning of the number of credits is determined by the OS settings. Can for example be 1:1 to euro, 1:1 to bitcoin, or a custom credit system. Transferability is also customisable.\n   *\n   * Insufficient credit can limit the persons possibilities within the OS\n   */\n  credit?: Credit;\n}",
   "extensions": [
     "DefaultModelType"
   ],
@@ -72,15 +72,23 @@
           },
           "description": "slugs of interest categories that this person should be notified about.\n\nSince this is a hierarchical model, parent interests will ensure all children are also applied."
         },
+        "mediaChannelIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Id"
+          },
+          "description": "After the `MediaChannel` DB is filled, we can index the names of the persons of the `MediaChannel`, and and we can push them to here, if the name is \"similar\" to the name of this `Person`.\n\n`*` = \"similar\" means: exact match, or at least first name + last name match"
+        },
+        "preferred_mediaChannelId": {
+          "$ref": "#/definitions/Id",
+          "description": "Optional. Can be set by admin (not indexed)\n\nIf not available, take the first (mediaChannelIds[0])"
+        },
         "media": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/PersonSocialMedia"
           },
           "description": "Media that is attached to this person.\n\nNB: not used to authenticate! Can be filled in by King OS, might be erroneous"
-        },
-        "preferredContactMedium": {
-          "$ref": "#/definitions/Slug"
         },
         "dataEntries": {
           "type": "array",
@@ -310,6 +318,14 @@
                   "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                   "type": "string"
                 }
+              },
+              {
+                "name": "absoluteUrl",
+                "required": false,
+                "schema": {
+                  "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                  "type": "string"
+                }
               }
             ],
             "type": "object"
@@ -330,6 +346,31 @@
               }
             ],
             "type": "array"
+          }
+        },
+        {
+          "name": "mediaChannelIds",
+          "required": false,
+          "schema": {
+            "fullComment": "After the `MediaChannel` DB is filled, we can index the names of the persons of the `MediaChannel`, and and we can push them to here, if the name is \"similar\" to the name of this `Person`.\n\n`*` = \"similar\" means: exact match, or at least first name + last name match",
+            "items": [
+              {
+                "schema": {
+                  "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                  "type": "string"
+                },
+                "name": "Id"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "preferred_mediaChannelId",
+          "required": false,
+          "schema": {
+            "fullComment": "Optional. Can be set by admin (not indexed)\n\nIf not available, take the first (mediaChannelIds[0])\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+            "type": "string"
           }
         },
         {
@@ -390,14 +431,6 @@
               }
             ],
             "type": "array"
-          }
-        },
-        {
-          "name": "preferredContactMedium",
-          "required": false,
-          "schema": {
-            "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
-            "type": "string"
           }
         },
         {
@@ -1160,6 +1193,14 @@
                                   }
                                 },
                                 {
+                                  "name": "credential",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "original credential. should only be available on the device, not on the person",
+                                    "type": "string"
+                                  }
+                                },
+                                {
                                   "name": "otp",
                                   "required": false,
                                   "schema": {
@@ -1237,6 +1278,14 @@
                       "required": false,
                       "schema": {
                         "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "credential",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "original credential. should only be available on the device, not on the person",
                         "type": "string"
                       }
                     },

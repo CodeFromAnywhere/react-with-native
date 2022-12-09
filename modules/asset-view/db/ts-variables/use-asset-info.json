@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384252016,
-  "updatedAt": 1669384252016,
+  "createdAt": 1670526901013,
+  "updatedAt": 1670526901013,
   "deletedAt": 0,
-  "createdFirstAt": 1669384252016,
+  "createdFirstAt": 1670526901013,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(url?: string, filename?: string) => {\n  if (!url && !filename) {\n    console.log(\"MUST PROVIDE EITHER URL OR FILENAME\");\n    return;\n  }\n  const urlOrFilename = (url || filename)!;\n  const realFilename = (url ? url.split(\"/\").pop() : filename)!;\n  const isTextFile = isText(realFilename) === true ? true : false;\n\n  const [rawText, setRawText] = useState<string | null>(null);\n  useEffect(() => {\n    if (!!url && isTextFile) {\n      fetch(url).then((result) => {\n        result.text().then((text) => setRawText(text));\n      });\n    }\n  }, [url, isTextFile]);\n\n  const type = getTypeFromUrlOrPath(urlOrFilename);\n\n  return { rawText, type };\n}",
   "description": "",
-  "id": "ttyxabgdxwjwxzcggjqqsdcm"
+  "id": "hbmjgpazyrfhbqmdejhemppp"
 }

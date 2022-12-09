@@ -1,0 +1,89 @@
+{
+  "createdAt": 1668328702827,
+  "updatedAt": 1668328702827,
+  "deletedAt": 0,
+  "createdFirstAt": 1668328702827,
+  "id": "ilXwGuLYVpwmgrhQ",
+  "bin": {
+    "saysomething": "build/cli.js"
+  },
+  "dependencies": {
+    "make-test": "0.0.1",
+    "fs-util": "1.0.5",
+    "ffmpeg-util": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1",
+    "typescript": "^4.7.2"
+  },
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./build/cli.js",
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  },
+  "source": "src/index.ts",
+  "version": "0.0.1",
+  "name": "say",
+  "language": "english",
+  "slug": "say",
+  "operation": {
+    "buildResultIndexed": {
+      "buildSucceeded": true,
+      "dependenciesBuildsFailed": false,
+      "indexErrors": [],
+      "indexImportExportError": "",
+      "indexInteracesErrors": [],
+      "lintProblems": []
+    },
+    "classificationIndexed": "node-cjs",
+    "coreDependenciesIndexed": [],
+    "folderNameIndexed": "say",
+    "hasGeneratedDependenciesIndexed": false,
+    "lastPullTimeAtIndexed": 0,
+    "lastRebuildAt": 1669962601502,
+    "operationDependenciesIndexed": [
+      "makeTest",
+      "fs",
+      "path",
+      "convertToMp3",
+      "path"
+    ],
+    "packageDependenciesIndexed": [
+      "spawnSync",
+      "spawn",
+      "execSync"
+    ],
+    "relativeOperationLocationPathIndexed": "operations/tools/user-interfaces/auditory-ui",
+    "markdown": "Operation that contains multiple functions that wrap the `say` cli on MacOS to let the device speak out text.\n\nCan later be extended to wrap other clis or even api's.\n\nShould also be extended to work on multiple operating systems.\n",
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 4,
+        "lines": 172,
+        "characters": 4279,
+        "bytes": 4279
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 123,
+        "characters": 2991,
+        "bytes": 2991
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 165,
+        "characters": 3350,
+        "bytes": 3350
+      },
+      "size": {
+        "bytes": 10620,
+        "characters": 10620,
+        "lines": 460,
+        "numberOfFiles": 8
+      }
+    },
+    "hasGeneratedImportsIndexed": false
+  }
+}

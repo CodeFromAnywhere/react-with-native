@@ -34,6 +34,7 @@ import { lowerCaseArray } from "convert-case";
 import { pascalCase } from "convert-case";
 import { slugify } from "convert-case";
 import { snakeCase } from "convert-case";
+import { getFileTypeFromPath } from "filename-conventions";
 import { getWriterType } from "filename-conventions";
 import { hasSubExtension } from "filename-conventions";
 import { isGeneratedOperationName } from "filename-conventions";
@@ -61,6 +62,7 @@ import { findFileNameCaseInsensitive } from "fs-util";
 import { getAllFoldersUntilFolder } from "fs-util";
 import { getFileName } from "fs-util";
 import { getFirstAvailableFilename } from "fs-util";
+import { getFolderSizeObject } from "fs-util";
 import { getFolder } from "fs-util";
 import { getLastFolder } from "fs-util";
 import { getOneFolderUpPath } from "fs-util";
@@ -280,6 +282,7 @@ lowerCaseArray,
 pascalCase,
 slugify,
 snakeCase,
+getFileTypeFromPath,
 getWriterType,
 hasSubExtension,
 isGeneratedOperationName,
@@ -307,6 +310,7 @@ findFileNameCaseInsensitive,
 getAllFoldersUntilFolder,
 getFileName,
 getFirstAvailableFilename,
+getFolderSizeObject,
 getFolder,
 getLastFolder,
 getOneFolderUpPath,

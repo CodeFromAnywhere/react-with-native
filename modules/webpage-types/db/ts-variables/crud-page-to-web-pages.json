@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669276583697,
-  "updatedAt": 1669276583697,
+  "createdAt": 1670064133306,
+  "updatedAt": 1670064133306,
   "deletedAt": 0,
-  "createdFirstAt": 1669276583697,
+  "createdFirstAt": 1670064133306,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(pageData: CrudPage): WebPage<CrudPage>[] => {\n  const dataPage = {\n    pageData,\n    queryPath: `data/${pageData.modelName}`,\n    isMenuHidden: false,\n    menuTitle: humanCase(pageData.modelName),\n  };\n  const upsertOrNot =\n    pageData.canCreate || pageData.canUpdate\n      ? {\n          pageData,\n          queryPath: `upsert/${pageData.modelName}`,\n          isMenuHidden: true,\n        }\n      : undefined;\n\n  return [dataPage, upsertOrNot].filter(notEmpty);\n}",
   "description": "",
-  "id": "mftjsbqzscgubbiukwoextuk"
+  "id": "ipsooxvmdmrjzmmyivguwffl"
 }

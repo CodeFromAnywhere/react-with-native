@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385162409,
-  "updatedAt": 1669385162409,
+  "createdAt": 1670527812050,
+  "updatedAt": 1670527812050,
   "deletedAt": 0,
-  "createdFirstAt": 1669385162409,
+  "createdFirstAt": 1670527812050,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(editorDetails: {\n  text: string;\n  positionIndex: number;\n}): TextEditingContext => {\n  const { positionIndex, text } = editorDetails;\n  const wordSeparators = [\" \", \"\\n\", \"\\t\"];\n\n  // NB: find the first separator after the word that we are typing at the position of the cursor.\n  const firstIndexWithSeparatorAfterPosition = Math.min(\n    ...wordSeparators.map((separator) => {\n      const separatorAfterPositionIndex = text.indexOf(\n        separator,\n        positionIndex\n      );\n      if (separatorAfterPositionIndex === -1) return Infinity;\n      return separatorAfterPositionIndex;\n    })\n  );\n\n  const endOfWordIndex =\n    firstIndexWithSeparatorAfterPosition === Infinity\n      ? text.length\n      : firstIndexWithSeparatorAfterPosition;\n\n  const lastIndexWithSeparatorBeforePosition = Math.max(\n    ...wordSeparators.map((separator) => {\n      const spaceBeforePositionIndex =\n        text.slice(0, positionIndex).lastIndexOf(separator) + 1;\n\n      return spaceBeforePositionIndex;\n    })\n  );\n\n  const beginningOfWordIndex =\n    lastIndexWithSeparatorBeforePosition === -1\n      ? 0\n      : lastIndexWithSeparatorBeforePosition;\n\n  const wordAtPosition = text.slice(beginningOfWordIndex, endOfWordIndex);\n\n  /*\n    console.log({\n      beginningOfWordIndex,\n      endOfWordIndex,\n      wordAtPosition,\n    });\n    */\n\n  return {\n    wordAtPosition,\n    positionIndex,\n  };\n}",
   "description": "Gets the current word you are typing from a text and the cursor position.\n\nTakes into account multiple word separators: tabs, newlines, and spaces.",
-  "id": "rmulifkbbcdidazyxlrcvcmu"
+  "id": "xbfffxjwakgrshuhxyacsflz"
 }

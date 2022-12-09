@@ -1,0 +1,171 @@
+{
+  "createdAt": 1670528574410,
+  "updatedAt": 1670528574410,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528574410,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/useContext.ts",
+  "commentsInside": [],
+  "rawText": " (\n  /**\n   * The callback that activates whenever you right-click or long-press\n   */\n  callback: (position: ContextEvent) => any,\n  config?: {\n    /**\n     * Customise the time for a longpress to enable the callback. Defaults to browser default (onContextMenu default). If you set this, we detect the duration ourselves via the onTouchStart and onTouchEnd events.\n     */\n    longTouchDurationMs?: number;\n  }\n) => {\n  const [timeoutRef, setTimeoutRef] = useState<NodeJS.Timeout | null>(null);\n\n  const openTouchMenu = (event: React.TouchEvent) => {\n    const touch = event.touches.item(event.touches.length - 1);\n    const { clientX, clientY, screenX, screenY } = touch;\n    const id = event.currentTarget?.id;\n    callback({ clientX, clientY, screenX, screenY, id });\n    setTimeoutRef(null);\n  };\n\n  const openContextMenu = (event: React.MouseEvent) => {\n    const { clientX, clientY, screenX, screenY } = event;\n    const id = event.currentTarget?.id;\n    callback({ clientX, clientY, screenX, screenY, id });\n  };\n\n  const onTouchStart = (event: React.TouchEvent) => {\n    // Only allow for a single timeout\n    if (timeoutRef) return;\n    if (!config?.longTouchDurationMs) return;\n    const timeout = setTimeout(\n      () => openTouchMenu(event),\n      config.longTouchDurationMs\n    );\n    setTimeoutRef(timeout);\n  };\n\n  /**\n   * Required for ensuring that you don't close  the menu immediately when opening it on mobile, because a click-event is also fired there\n   */\n  const onClick = (mouseEvent: React.MouseEvent) =>\n    mouseEvent.stopPropagation();\n\n  const onTouchEnd = () => {\n    if (timeoutRef) {\n      clearTimeout(timeoutRef);\n    }\n  };\n\n  const onContextMenu = (event: React.MouseEvent) => {\n    event.preventDefault();\n    // NB: needed to stop it from opening anywhere above (mobile)\n    event.stopPropagation();\n    openContextMenu(event);\n  };\n  //\n  const contextProps = {\n    onContextMenu,\n    // onContextMenuCapture: (event: React.MouseEvent) => {\n    //   event.preventDefault();\n    //   event.stopPropagation();\n    // },\n    onTouchStart,\n    onTouchEnd,\n    onClick,\n    style: { userSelect: \"none\" as React.CSSProperties[\"userSelect\"] },\n  };\n  return contextProps;\n}",
+  "name": "useContext",
+  "slug": "use-context",
+  "parameters": [],
+  "description": "Use this if you want to create a completely custom behavior from a context action. On top of the default `.onContextMenu` behavior, this hook enables the possibility for a custom hold duration on mobile.",
+  "returnType": {
+    "rawType": "{ onContextMenu: (event: React.MouseEvent<Element, MouseEvent>) => void; onTouchStart: (event: React.TouchEvent<Element>) => void; onTouchEnd: () => void; onClick: (mouseEvent: React.MouseEvent<Element, MouseEvent>) => void; style: { userSelect: import(\"/Users/king/King/operations/node_modules/csstype/index\").Property.UserSelect | undefined; }; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "onContextMenu": {
+          "type": "object",
+          "properties": {}
+        },
+        "onTouchStart": {
+          "type": "object",
+          "properties": {}
+        },
+        "onTouchEnd": {
+          "type": "object",
+          "properties": {}
+        },
+        "onClick": {
+          "type": "object",
+          "properties": {}
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "userSelect": {
+              "enum": [
+                "none",
+                "-moz-initial",
+                "inherit",
+                "initial",
+                "revert",
+                "revert-layer",
+                "unset",
+                "-moz-none",
+                "all",
+                "auto",
+                "contain",
+                "element",
+                "text"
+              ],
+              "x-enumNames": [
+                "none",
+                "-moz-initial",
+                "inherit",
+                "initial",
+                "revert",
+                "revert-layer",
+                "unset",
+                "-moz-none",
+                "all",
+                "auto",
+                "contain",
+                "element",
+                "text"
+              ],
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "onContextMenu",
+        "onTouchStart",
+        "onTouchEnd",
+        "onClick",
+        "style"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "onContextMenu",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "onTouchStart",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "onTouchEnd",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "onClick",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        },
+        {
+          "name": "style",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "userSelect",
+                "required": false,
+                "schema": {
+                  "enum": [
+                    "none",
+                    "-moz-initial",
+                    "inherit",
+                    "initial",
+                    "revert",
+                    "revert-layer",
+                    "unset",
+                    "-moz-none",
+                    "all",
+                    "auto",
+                    "contain",
+                    "element",
+                    "text"
+                  ],
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 2410,
+    "lines": 71,
+    "bytes": 2410,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 34,
+    "linesPerFile": 71,
+    "numberOfFiles": 1
+  },
+  "id": "wxhsumofqonzqibbvolcfdlu"
+}

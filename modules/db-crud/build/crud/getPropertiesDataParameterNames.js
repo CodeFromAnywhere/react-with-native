@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getPropertiesDataParameterNames=void 0;var js_util_1=require("js-util"),schema_util_1=require("schema-util"),getPropertiesDataParameterNames=function(e){return e.map((function(e){return(0,schema_util_1.getReferenceParameterInfo)(e.name).dataParameterName})).filter(js_util_1.notEmpty)};exports.getPropertiesDataParameterNames=getPropertiesDataParameterNames;
+//# sourceMappingURL=getPropertiesDataParameterNames.js.map

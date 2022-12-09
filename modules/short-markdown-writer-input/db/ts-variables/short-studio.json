@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670215598358,
+  "updatedAt": 1670215598358,
+  "deletedAt": 0,
+  "createdFirstAt": 1670215598358,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "ShortStudio",
+  "slug": "short-studio",
+  "operationRelativeTypescriptFilePath": "src/ShortStudio.tsx",
+  "type": {
+    "rawType": "(props: { onChange: (value: string) => void; value: string; projectRelativeFilePath: string; markdownModelName?: keyof import(\"/Users/king/King/operations/tools/generated/sdk-db/build/sdk-db\").DbModels | undefined; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  onChange: (value: string) => void;\n  value: string;\n  projectRelativeFilePath: string;\n  markdownModelName?: keyof DbModels;\n}) => {\n  const { projectRelativeFilePath } = props;\n\n  const shortMarkdownQuery = queries.useGetOrGenerateShortMarkdown(\n    projectRelativeFilePath\n  );\n\n  const shortMarkdown = shortMarkdownQuery.data?.result || undefined;\n\n  // console.log({ shortMarkdown });\n  return (\n    <Div className=\"w-full h-full flex flex-1 flex-col\">\n      {shortMarkdownQuery.isLoading ? <FancyLoader /> : null}\n      <ShortMarkdownPlayer\n        shortMarkdown={shortMarkdown}\n        projectRelativeFilePath={projectRelativeFilePath}\n      />\n    </Div>\n  );\n}",
+  "description": "the newer one, eventually to replace `ContextTextArea`\n<SmartContentEditableDivInput\nwriterType={writerType}\nvalue={value}\nonChange={onChange}\nmarkdownParseRenderConfig={markdownParseRenderConfig}\n/>",
+  "id": "jbnlufgsibvuxoiavflhpigm"
+}

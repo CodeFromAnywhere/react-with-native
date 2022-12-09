@@ -1,0 +1,74 @@
+{
+  "createdAt": 1670216338252,
+  "updatedAt": 1670216338252,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216338252,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/uberduckSpeak.ts",
+  "commentsInside": [],
+  "rawText": " (uberduckVoice: string, text: string) => {\n  const resultString = execSync(\n    `curl -u ${uberduckApiKey}:${uberduckSecret} \\\n    'https://api.uberduck.ai/speak' \\\n    --data-raw '{\"speech\":\"${text.replaceAll(\n      \"'\",\n      \"\"\n    )}\",\"voice\":\"${uberduckVoice}\"}'`,\n    { encoding: \"utf8\" }\n  );\n\n  console.log({ resultString });\n\n  const result = tryParseJson<{ uuid: string }>(resultString);\n  const uuid = result?.uuid;\n\n  return uuid;\n}",
+  "name": "uberduckSpeak",
+  "slug": "uberduck-speak",
+  "parameters": [
+    {
+      "name": "uberduckVoice",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "text",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "string | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 445,
+    "lines": 18,
+    "bytes": 445,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 18,
+    "numberOfFiles": 1
+  },
+  "id": "tzpboyqjgoerspzaojeclokc"
+}

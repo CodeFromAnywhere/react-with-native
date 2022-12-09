@@ -1,0 +1,169 @@
+{
+  "createdAt": 1670589813179,
+  "updatedAt": 1670589813179,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589813179,
+  "id": "namedparameterstypeof-processchatgptprompt",
+  "name": "NamedParameters<typeof processChatGptPrompt>",
+  "slug": "namedparameterstypeof-processchatgptprompt",
+  "operationRelativeTypescriptFilePath": "src/processChatGptPrompt.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "contextContent": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "selectionContent": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "contextualPromptSlug": {
+              "type": "string"
+            },
+            "customPromptContent": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "DESCRIPTION: These variables can be used: %context will be replaced by your context, %selection will be replaced by your selection. Provide a good prompt that combines that in a specific format"
+            },
+            "saveNewPromptWithName": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "commentContent": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "isHeadless": {
+              "type": "boolean"
+            },
+            "prompt_projectRelativePath": {
+              "type": "string"
+            },
+            "thread": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "contextContent",
+            "selectionContent",
+            "customPromptContent",
+            "saveNewPromptWithName",
+            "commentContent"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "config",
+          "required": true,
+          "schema": {
+            "properties": [
+              {
+                "name": "contextContent",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "selectionContent",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "contextualPromptSlug",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "customPromptContent",
+                "required": true,
+                "schema": {
+                  "fullComment": "DESCRIPTION: These variables can be used: %context will be replaced by your context, %selection will be replaced by your selection. Provide a good prompt that combines that in a specific format",
+                  "description": "These variables can be used: %context will be replaced by your context, %selection will be replaced by your selection. Provide a good prompt that combines that in a specific format",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "saveNewPromptWithName",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "commentContent",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "isHeadless",
+                "required": false,
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "prompt_projectRelativePath",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "thread",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof processChatGptPrompt>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

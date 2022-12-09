@@ -1,4 +1,4 @@
-import { MarkdownParse } from "code-types";
+import { MarkdownParse } from "markdown-types";
 /**
 Have function `mdToPdf` like the vscode plugin. Probably exists.
 

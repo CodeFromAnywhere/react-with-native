@@ -1,8 +1,8 @@
 /// <reference types="react" />
+import type { DbModels } from "sdk-db";
+import { AugmentedWord } from "augmented-word-types";
 import { WriterType } from "filename-conventions";
 import { MappedObject } from "js-util";
-import { AugmentedWord } from "augmented-word-types";
-import type { DbModels } from "sdk-db";
 import { WriterViewEnum } from "writer-types";
 /**
 Writer input for any utf8 based text, file or no file

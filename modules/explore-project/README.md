@@ -26,17 +26,6 @@ get file paths within your project
 get file paths within your project
 
 
-## getTodoPaths()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| config (optional) | `TodoPagesConfig` |  |
-| **Output** |    |    |
-
-
-
-## 📄 getTodoPaths (exported const)
-
 ## getFrontmattersMappedObject()
 
 | Input      |    |    |
@@ -46,7 +35,18 @@ get file paths within your project
 
 
 
+## getTodoPaths()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| config (optional) | `TodoPagesConfig` |  |
+| **Output** |    |    |
+
+
+
 ## 📄 getFrontmattersMappedObject (exported const)
+
+## 📄 getTodoPaths (exported const)
 
 # Tests
 

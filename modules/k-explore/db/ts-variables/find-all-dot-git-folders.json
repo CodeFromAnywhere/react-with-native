@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668976641052,
-  "updatedAt": 1668976641052,
+  "createdAt": 1670216116716,
+  "updatedAt": 1670216116716,
   "deletedAt": 0,
-  "createdFirstAt": 1668976641052,
+  "createdFirstAt": 1670216116716,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "find-all-dot-git-folders",
   "operationRelativeTypescriptFilePath": "src/explore.ts",
   "type": {
-    "rawType": "(config: import(\"/Users/king/King/operations/tools/control-project/k-explore/src/explore\").BaseConfig) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TextJson\").TextJson[]>",
+    "rawType": "(config: import(\"/Users/king/King/operations/tools/control-project/k-explore/src/explore\").BaseConfig) => Promise<import(\"/Users/king/King/operations/tools/types/markdown-types/build/TextJson\").TextJson[]>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(config: BaseConfig) => {\n  return explore({\n    basePath: config?.basePath,\n    search: \".git\",\n    exact: true,\n    searchLevel: \"folder\",\n    doNotExploreMatch: true,\n    // I guess we can assume there will never be git folders inside an operation on a deeper level, that would be strange... Therefore, these can be ignored\n    ignore: [\"node_modules\", \"build\", \".next\", \"src\", \"assets\", \"data\"],\n  });\n}",
   "description": "",
-  "id": "ayhmrsofnzfprtqtzldxsjxd"
+  "id": "sqowfovcrrctwubuzvujljld"
 }

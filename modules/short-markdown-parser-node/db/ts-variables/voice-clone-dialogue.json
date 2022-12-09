@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670216340396,
+  "updatedAt": 1670216340396,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216340396,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "voiceCloneDialogue",
+  "slug": "voice-clone-dialogue",
+  "operationRelativeTypescriptFilePath": "src/voiceCloneDialogue.ts",
+  "type": {
+    "rawType": "(textContent: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (textContent: string) => {\n  const parsedDialogue = parseDialogue(textContent);\n\n  console.log({ parsedDialogue });\n  const sentencesWithUuid = await oneByOne(parsedDialogue, async (sentence) => {\n    if (sentence.voice === \"Morty\") {\n      return {\n        ...sentence,\n        uuid: uberduckSpeak(\"morty\", sentence.sentence),\n      };\n    }\n    return {\n      ...sentence,\n      uuid: uberduckSpeak(\"rick-sanchez\", sentence.sentence),\n    };\n  });\n\n  console.log({ sentencesWithUuid });\n  return sentencesWithUuid;\n}",
+  "description": "",
+  "id": "ltbuupotfcdcbzspftprduom"
+}

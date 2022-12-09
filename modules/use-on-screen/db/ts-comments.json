@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1669962619986,
+    "updatedAt": 1669962619986,
+    "deletedAt": 0,
+    "createdFirstAt": 1669962619986,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/useOnScreen.ts",
+    "comment": "checks wheter or not a certain element is in the browsers screen view, or not.",
+    "rawStatement": "export function useOnScreen(ref: RefObject<HTMLDivElement>) {\n  const [isIntersecting, setIntersecting] = useState(false);\n\n  const observer =\n    typeof window === \"undefined\"\n      ? null\n      : new IntersectionObserver(([entry]) =>\n          setIntersecting(entry.isIntersecting)\n        );\n\n  useEffect(() => {\n    if (observer) {\n      if (ref.current) {\n        observer?.observe(ref.current);\n      }\n      // Remove the observer as soon as the component is unmounted\n      return () => {\n        observer?.disconnect();\n      };\n    }\n  }, [observer]);\n\n  return isIntersecting;\n}",
+    "parameters": {},
+    "types": [],
+    "firstLine": 3,
+    "lastLine": 5,
+    "id": "wnotsjghpbgvjstpiqybzpnp"
+  }
+]

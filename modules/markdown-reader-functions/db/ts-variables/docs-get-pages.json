@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669639090504,
-  "updatedAt": 1669639090504,
+  "createdAt": 1670063645561,
+  "updatedAt": 1670063645561,
   "deletedAt": 0,
-  "createdFirstAt": 1669639090504,
+  "createdFirstAt": 1670063645561,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  basePaths: { projectRelativeBasePath: string; queryPath: string }[]\n) => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return [];\n  }\n\n  const realProjectRelativeBasePaths = isBundle()\n    ? [\"docs\"]\n    : basePaths.map((x) => x.projectRelativeBasePath);\n\n  const absoluteBasePaths = realProjectRelativeBasePaths.map((x) =>\n    path.join(projectRoot, x)\n  );\n\n  const flat =\n    (await getMarkdownReaderPages({\n      projectRoot,\n      basePaths: absoluteBasePaths,\n      mapQueryPath: (queryPath) => {\n        const found = realProjectRelativeBasePaths.find((x) =>\n          queryPath.startsWith(x)\n        );\n        if (!found) {\n          return queryPath;\n        }\n        const prefix = basePaths.find(\n          (x) => x.projectRelativeBasePath === found\n        );\n\n        if (!prefix) {\n          return queryPath;\n        }\n\n        const newQueryPath = queryPath.replace(\n          prefix.projectRelativeBasePath,\n          prefix.queryPath\n        );\n\n        return newQueryPath;\n      },\n    })) || [];\n\n  return flat;\n}",
   "description": "",
-  "id": "erekdiznpnksodmkplufdqbe"
+  "id": "rdjwjupobpxydpukfqjrjkgr"
 }

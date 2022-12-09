@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055718993,
-  "updatedAt": 1669055718993,
+  "createdAt": 1670590417402,
+  "updatedAt": 1670590417402,
   "deletedAt": 0,
-  "createdFirstAt": 1669055718993,
+  "createdFirstAt": 1670590417402,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  /**\n   * If true, you are indicating that the rebuilding process has changed and all operations should be rebuilt after this date.\n   */\n  isRebuildingProcessUpdated?: boolean,\n  manualProjectRoot?: string\n) => {\n  const configPath = path.join(__dirname, \"..\", \"config.json\");\n\n  if (isRebuildingProcessUpdated) {\n    await writeJsonToFile(configPath, { updatedAt: Date.now() });\n  }\n\n  const config = await readJsonFile<{ updatedAt: number }>(configPath);\n\n  forAllFolders({\n    type: \"operations\",\n    basePath: getPathsWithOperations({ manualProjectRoot }),\n    callback: async (folderPath, index) => {\n      log(`#${index}: Let's do ${folderPath}`, { type: \"success\" });\n\n      await rebuildOperation({\n        operationBasePath: folderPath,\n        noExit: true,\n        updatedAt: config?.updatedAt,\n      });\n\n      return;\n    },\n  });\n}",
   "description": "Rebuilds all operations that are needed to be rebuilt",
-  "id": "jucuktvmldjdarlxczrekakb"
+  "id": "ubeuvfqmahtaxjafojdolhtb"
 }

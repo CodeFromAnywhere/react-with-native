@@ -1,0 +1,217 @@
+{
+  "createdAt": 1670064013931,
+  "updatedAt": 1670064013931,
+  "deletedAt": 0,
+  "createdFirstAt": 1670064013931,
+  "id": "operationrepositoryinfo",
+  "name": "OperationRepositoryInfo",
+  "slug": "operationrepositoryinfo",
+  "operationRelativeTypescriptFilePath": "src/OperationRepositoryInfo.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\nexport type OperationRepositoryInfo = {\n  //default NPM stuff\n  type?: string;\n  url: string;\n  directory?: string;\n\n  // Indexed Operation-stuff that we added\n  lastPullTimeAt?: number;\n  lastCommitInfo?: CommitInfo;\n  htmlUrl?: string;\n  collaborators?: string[];\n  forksCount?: number;\n  stargazersCount?: number;\n  watchersCount?: number;\n  openIssuesCount?: number;\n  size?: number;\n  visibility?: string;\n  defaultBranch?: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "directory": {
+          "type": "string"
+        },
+        "lastPullTimeAt": {
+          "type": "number"
+        },
+        "lastCommitInfo": {
+          "$ref": "#/definitions/CommitInfo"
+        },
+        "htmlUrl": {
+          "type": "string"
+        },
+        "collaborators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forksCount": {
+          "type": "number"
+        },
+        "stargazersCount": {
+          "type": "number"
+        },
+        "watchersCount": {
+          "type": "number"
+        },
+        "openIssuesCount": {
+          "type": "number"
+        },
+        "size": {
+          "type": "number"
+        },
+        "visibility": {
+          "type": "string"
+        },
+        "defaultBranch": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "type",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "url",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "directory",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "lastPullTimeAt",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "lastCommitInfo",
+          "required": false,
+          "schema": {
+            "fullComment": "",
+            "properties": [
+              {
+                "name": "commitSha",
+                "required": true,
+                "schema": {
+                  "fullComment": "unique commit sha",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "committedAt",
+                "required": false,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "commitMessage",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "htmlUrl",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "collaborators",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "forksCount",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "stargazersCount",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "watchersCount",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "openIssuesCount",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "size",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "visibility",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "defaultBranch",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "OperationRepositoryInfo",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

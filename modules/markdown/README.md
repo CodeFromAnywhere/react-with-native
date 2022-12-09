@@ -16,19 +16,27 @@ This is a ui-esm operation. This means it's a ui operation that builds to javasc
 
 ## renderMarkdownContent()
 
-renders a markdown striing (without frontmatter)
+Renders a markdown string (without frontmatter)
+
+TODO:
+
+- **Show selection prompt-results** In `renderMarkdownContent`, augment the alineas with the `ContextualPromptResult`. Would be great to see the results when hovering over the selected thing, or maybe showing it with a button, or inline, even.
 
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| - | | |
-| **Output** | {  }   |    |
+| content | string |  |,| config | `MarkdownParseRenderConfig` |  |
+| **Output** | `JSX.Element`   |    |
 
 
 
 ## 📄 renderMarkdownContent (exported const)
 
-renders a markdown striing (without frontmatter)
+Renders a markdown string (without frontmatter)
+
+TODO:
+
+- **Show selection prompt-results** In `renderMarkdownContent`, augment the alineas with the `ContextualPromptResult`. Would be great to see the results when hovering over the selected thing, or maybe showing it with a button, or inline, even.
 
 
 ## `<MarkdownCodeblock />`
@@ -50,7 +58,7 @@ Renders a markdown codeblock with a text as content and an optional extension
 
 ## getRealSrc()
 
-Based on markdown info, gest the real source for an image
+Based on markdown info, gest the real source for an asset
 
 
 | Input      |    |    |
@@ -66,9 +74,13 @@ Properties:
 
  | Name | Type | Description |
 |---|---|---|
-| projectRelativeBaseFolderPath  | string |  |
-| projectRelativeMarkdownFilePath  | string |  |
+| disableSelectionContextMenu (optional) | boolean |  |
+| projectRelativeBaseFolderPath (optional) | string |  |
+| projectRelativeMarkdownFilePath (optional) | string |  |
 | augmentedWordObject (optional) | object |  |
+| selectionPrompts (optional) | array |  |
+| selectionContextualPromptResults (optional) | array |  |
+| fileContextualPromptResults (optional) | array |  |
 | isStatic (optional) | boolean |  |
 | isDev (optional) | boolean |  |
 | big (optional) | boolean |  |
@@ -77,7 +89,7 @@ Properties:
 
 ## 📄 getRealSrc (exported const)
 
-Based on markdown info, gest the real source for an image
+Based on markdown info, gest the real source for an asset
 
 # Internal
 
@@ -91,7 +103,7 @@ gets the renderable asset url from the relative url
 | Input      |    |    |
 | ---------- | -- | -- |
 | relativeUrl | string |  |,| relativeUrlStrategy | api / static |  |,| projectRelativeBaseFolderPath | string |  |,| projectRelativeMarkdownFilePath | string |  |
-| **Output** | `String`   |    |
+| **Output** | string   |    |
 
 
 
@@ -99,7 +111,7 @@ gets the renderable asset url from the relative url
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| - | | |
+| url (optional) | string |  |
 | **Output** | string   |    |
 
 

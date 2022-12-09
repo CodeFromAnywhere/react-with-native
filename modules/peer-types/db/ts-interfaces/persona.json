@@ -1,15 +1,15 @@
 {
-  "createdAt": 1669384911907,
-  "updatedAt": 1669384911907,
+  "createdAt": 1670527476019,
+  "updatedAt": 1670527476019,
   "deletedAt": 0,
-  "createdFirstAt": 1669384911907,
+  "createdFirstAt": 1670527476019,
   "id": "persona",
   "name": "Persona",
   "slug": "persona",
   "operationRelativeTypescriptFilePath": "src/Persona.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n/**\n * Highly private model.\n *\n * Configuration for a person identity that you say that is you.\n *\n * As a OS user you can have multiple personas between which you can easily switch.\n *\n * The difference from `Person` is that `Person` stores other people, whereas `Persona` stores different identities you give to yourself.\n *\n * NB: brands should also be able to be personas, and since some brands are shared between people, you should be able to share Persona's with other `Person`s into their OS...\n *\n * > Persona: A persona, depending on the context, is the public image of one's personality, the social role that one adopts, or simply a fictional character. The word derives from Latin, where it originally referred to a theatrical mask. On the social web, users develop virtual personas as online identities. (Wikipedia)\n */\nexport interface Persona extends SlugModelType {\n  /**\n   * If this is set to true, this persona instance will be selected when searching for a persona. Ensure that there is just one default persona!\n   *\n   * If none are `isPrimary`, the first persona instance can be selected\n   */\n  isPrimary?: boolean;\n  /**\n   * If true, this will pop up in persona selection\n   *\n   * If not, you can still find it using auto-complete, though\n   */\n  isFavorite?: boolean;\n\n  /**\n   * Some pictures that can be used that show this person\n   */\n  pictureImages?: BackendAsset[];\n\n  /**\n   * You can give different characteristics to your personas if you wish\n   */\n  dataEntries: PersonInformationValue[];\n\n  /** Interests this persona has\n   *\n   * Can be matched against a channel to be the recommended persona\n   */\n  interestSlugs?: Slug[];\n  interests?: Interest[];\n\n  /**\n   * Where does this persona reside? can be multiple locations\n   *\n   * Can be matched against a channel to be the recommended persona\n   */\n  locationSlugs?: Slug[];\n  locations?: Location[];\n\n  /**\n   * Languages that this persona can speak\n   *\n   * Can be matched against a channel to be the recommended persona\n   */\n  spokenLanguages: Language[];\n\n  /**\n   * NB: should have a custom input in the `SimplifiedSchemaForm`\n   */\n  stripeSecret?: string;\n\n  twilioAccountSid?: string;\n  twilioAuthToken?: string;\n  /**\n   * Provide the phone number you are using by default for sending SMS messages\n   */\n  twilioFromPhoneNumber?: string;\n\n  sendgridApiKey?: string;\n  sendgridFromEmail?: string;\n\n  /**\n   * Github stuff\n   */\n  githubEmail?: string;\n  githubAccessToken?: string;\n  githubOrganisation?: string;\n  useGithubOrganisation?: boolean;\n\n  mediaCredentialIds?: Id[];\n  mediaCredentials?: MediaCredentail[];\n}",
+  "rawText": "\n/**\n * Highly private model.\n *\n * Configuration for a person identity that you say that is you.\n *\n * As a OS user you can have multiple personas between which you can easily switch.\n *\n * The difference from `Person` is that `Person` stores other people, whereas `Persona` stores different identities you give to yourself.\n *\n * NB: brands should also be able to be personas, and since some brands are shared between people, you should be able to share Persona's with other `Person`s into their OS...\n *\n * > Persona: A persona, depending on the context, is the public image of one's personality, the social role that one adopts, or simply a fictional character. The word derives from Latin, where it originally referred to a theatrical mask. On the social web, users develop virtual personas as online identities. (Wikipedia)\n */\nexport interface Persona extends SlugModelType {\n  /**\n   * If this is set to true, this persona instance will be selected when searching for a persona. Ensure that there is just one default persona!\n   *\n   * If none are `isPrimary`, the first persona instance can be selected\n   */\n  isPrimary?: boolean;\n  /**\n   * If true, this will pop up in persona selection\n   *\n   * If not, you can still find it using auto-complete, though\n   */\n  isFavorite?: boolean;\n\n  /**\n   * Some pictures that can be used that show this person\n   */\n  pictureImages?: BackendAsset[];\n\n  /**\n   * You can give different characteristics to your personas if you wish\n   */\n  dataEntries: PersonInformationValue[];\n\n  /** Interests this persona has\n   *\n   * Can be matched against a channel to be the recommended persona\n   */\n  interestSlugs?: Slug[];\n  interests?: Interest[];\n\n  /**\n   * Where does this persona reside? can be multiple locations\n   *\n   * Can be matched against a channel to be the recommended persona\n   */\n  locationSlugs?: Slug[];\n  locations?: Location[];\n\n  /**\n   * Languages that this persona can speak\n   *\n   * Can be matched against a channel to be the recommended persona\n   */\n  spokenLanguages: Language[];\n\n  /**\n   * NB: should have a custom input in the `SimplifiedSchemaForm`\n   */\n  stripeSecret?: string;\n\n  twilioAccountSid?: string;\n  twilioAuthToken?: string;\n  /**\n   * Provide the phone number you are using by default for sending SMS messages\n   */\n  twilioFromPhoneNumber?: string;\n\n  sendgridApiKey?: string;\n  sendgridFromEmail?: string;\n\n  /**\n   * Github stuff\n   */\n  githubEmail?: string;\n  /**\n   * Personal access token\n   */\n  githubAccessToken?: string;\n  githubOrganisation?: string;\n  useGithubOrganisation?: boolean;\n\n  mediaCredentialIds?: Id[];\n  mediaCredentials?: MediaCredential[];\n}",
   "extensions": [
     "SlugModelType"
   ],
@@ -147,7 +147,8 @@
           "description": "Github stuff"
         },
         "githubAccessToken": {
-          "type": "string"
+          "type": "string",
+          "description": "Personal access token"
         },
         "githubOrganisation": {
           "type": "string"
@@ -164,7 +165,7 @@
         "mediaCredentials": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/MediaCredentail"
+            "$ref": "#/definitions/MediaCredential"
           }
         }
       },
@@ -390,6 +391,14 @@
                       "required": false,
                       "schema": {
                         "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -660,6 +669,7 @@
           "name": "githubAccessToken",
           "required": false,
           "schema": {
+            "fullComment": "Personal access token",
             "type": "string"
           }
         },

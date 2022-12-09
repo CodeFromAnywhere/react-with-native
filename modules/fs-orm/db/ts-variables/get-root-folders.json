@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669312125975,
-  "updatedAt": 1669312125975,
+  "createdAt": 1670592538266,
+  "updatedAt": 1670592538266,
   "deletedAt": 0,
-  "createdFirstAt": 1669312125975,
+  "createdFirstAt": 1670592538266,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (config: {\n  manualProjectRoot?: string;\n  projectRoot: string;\n  mergedConfig: MergedQueryConfig;\n  operationPath: string | false;\n}): Promise<RootDbFolder[]> => {\n  const { mergedConfig, operationPath, projectRoot, manualProjectRoot } =\n    config;\n\n  // simple case: specific operation\n  if (operationPath && mergedConfig.operationName) {\n    return [\n      { basePath: operationPath, operationName: mergedConfig.operationName },\n    ];\n  }\n\n  const shouldSearchOperations = mergedConfig.operationName === \"*\";\n  const shouldSearchProject =\n    mergedConfig.operationName === undefined ||\n    mergedConfig.operationName === null ||\n    mergedConfig.operationName !== \"*\";\n\n  const projectFolder: RootDbFolder | undefined = shouldSearchProject\n    ? { operationName: null, basePath: projectRoot }\n    : undefined;\n\n  if (!shouldSearchOperations) {\n    // early return for performance reasons\n    return shouldSearchProject && projectFolder ? [projectFolder] : [];\n  }\n\n  // NB: for this we need to be sure that sdk-operations is up-to-date!\n  const realProjectRelativeOperationPathsObject: {\n    [operationName: string]: string;\n  } = manualProjectRoot\n    ? // NB: this is super slow!!! (up to 80ms)\n      await calculateOperationsObject(manualProjectRoot)\n    : operations;\n\n  const operationFolders: RootDbFolder[] = Object.keys(\n    realProjectRelativeOperationPathsObject\n  ).map((operationName) => {\n    const operationBasePath = path.join(\n      projectRoot,\n      realProjectRelativeOperationPathsObject[operationName]\n    );\n\n    return {\n      basePath: operationBasePath,\n      operationName,\n    };\n  });\n\n  const rootFolders: RootDbFolder[] = [\n    projectFolder,\n    ...operationFolders,\n  ].filter(notEmpty);\n\n  return rootFolders;\n}",
   "description": "Gets all root folders where db folders can be located inside of\n\nNB: Before november '22, this function is quite slow if it needs to find all operation folders becuase this takes at least 60ms.",
-  "id": "hvohpznkubiteoezrtgchvme"
+  "id": "uljhqixmmxcekhvdzaxrfazr"
 }

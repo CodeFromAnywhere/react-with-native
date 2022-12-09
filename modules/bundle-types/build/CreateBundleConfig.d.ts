@@ -93,6 +93,8 @@ export declare type CreateBundleConfig = {
      * if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated
      *
      * can be handy if you're working with someone else...
+     *
+     * Should later be deprecated and p2p operation-sync should be used
      */
     foldersFromRepo?: string[];
 };

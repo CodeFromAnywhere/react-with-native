@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669276841579,
-  "updatedAt": 1669276841579,
+  "createdAt": 1670529014571,
+  "updatedAt": 1670529014571,
   "deletedAt": 0,
-  "createdFirstAt": 1669276841579,
+  "createdFirstAt": 1670529014571,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  children: React.ReactNode;\n  header: React.ReactNode;\n  /**\n   * Menu is only rendered if you pass it here\n   */\n  menu?: MenuProps;\n}) => {\n  const { children, header, menu } = props;\n\n  const [isMobileMenuEnabled] = useStore(\"menu.isMobileMenuEnabled\");\n\n  const renderMenu = () => {\n    return menu ? <Menu {...menu} message={undefined} /> : null;\n  };\n\n  return (\n    <main className=\"dark:bg-zinc-900 dark:text-white relative\">\n      {/* mobile layout */}\n      <Div className=\"lg:invisible absolute overflow-y-scroll top-0 left-0 w-screen h-screen\">\n        {header}\n        {isMobileMenuEnabled ? <Div>{renderMenu()}</Div> : children}\n      </Div>\n\n      {/* Big screen layout */}\n      <Div\n        className={`w-screen h-screen flex flex-1 invisible lg:visible flex-col`}\n      >\n        {header}\n\n        <Div\n          className={`h-full overflow-hidden flex-1 flex ${\n            menu?.menuPosition === \"left\" ? \"flex-row-reverse\" : \"flex-row\"\n          }`}\n        >\n          <Div className=\"min-h-0 overflow-y-scroll w-full h-full inline-block\">\n            {children}\n          </Div>\n          {menu ? (\n            <Div className=\"inline-block min-h-0 overflow-y-scroll h-full w-80\">\n              {renderMenu()}\n            </Div>\n          ) : null}\n        </Div>\n      </Div>\n    </main>\n  );\n}",
   "description": "Style for creating a grid for the layout that is mobile friendly and has menu support\n\n\n\nI run into this problem all the time\n\nhttps://stackoverflow.com/questions/71616561/css-tailwind-grid-height-100vh-not-working\n\nfinal solution came from here\n\nhttps://stackoverflow.com/questions/47094742/fullscreen-flex-layouts-necessity-of-intermediate-flex-boxes\n\nUnfortunately, I can't seem to hide stuff anymore for some reason on non-mobile. \"lg:flex hidden\" just doesn't work, just hides!\n\nMy elegant solution was to just use visible/invisible and make the mobile layout hover over the invisible one in case of a small screen, it works!",
-  "id": "dgpnynjkvmozghotdmuedcub"
+  "id": "pyvoastrgbkucatayhrgnjip"
 }

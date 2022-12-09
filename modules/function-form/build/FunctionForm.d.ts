@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import { ReferencableModelData } from "simplified-schema-form";
 import type { WithoutPromise } from "api-types";
 /**
 FunctionForm is a very easy way to create a frontend component that is connected with an api that is connected with a function on your backend (that can do anything)
@@ -46,5 +47,9 @@ export declare const FunctionForm: <T extends (...params: any[]) => any>(props: 
     withApiResult?: ((result: any) => void) | undefined;
     initialValues?: any[] | undefined;
     showResult?: boolean | undefined;
+    /**
+     * Provide referencable model data if you want to
+     */
+    referencableModelData?: ReferencableModelData | undefined;
 }) => JSX.Element;
 //# sourceMappingURL=FunctionForm.d.ts.map

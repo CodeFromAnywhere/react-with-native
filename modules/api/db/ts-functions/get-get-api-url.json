@@ -1,14 +1,14 @@
 {
-  "createdAt": 1668775441912,
-  "updatedAt": 1668775441912,
+  "createdAt": 1670528160982,
+  "updatedAt": 1670528160982,
   "deletedAt": 0,
-  "createdFirstAt": 1668775441912,
+  "createdFirstAt": 1670528160982,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getGetApiUrl.ts",
   "commentsInside": [],
-  "rawText": " (\n  apiUrl: string,\n  apiFunctionName: string,\n  query: { [name: string]: string[] | string | undefined }\n) => {\n  const queryString = Object.keys(query).length > 0 ? toQueryString(query) : \"\";\n  const url = `${apiUrl}/function/${apiFunctionName}${queryString}`;\n  return url;\n}",
+  "rawText": " (\n  apiUrl: string | undefined,\n  apiFunctionName: string,\n  query: { [name: string]: string[] | string | undefined }\n): string | undefined => {\n  if (!apiUrl) return;\n  const queryString = Object.keys(query).length > 0 ? toQueryString(query) : \"\";\n  const url = `${apiUrl}/function/${apiFunctionName}${queryString}`;\n  return url;\n}",
   "name": "getGetApiUrl",
   "slug": "get-get-api-url",
   "parameters": [
@@ -20,7 +20,7 @@
       "simplifiedSchema": {
         "type": "string"
       },
-      "required": true
+      "required": false
     },
     {
       "name": "apiFunctionName",
@@ -62,27 +62,40 @@
   ],
   "description": "gets an api url for a context get api\n\nreturns something like `[apiUrl]/[apiFunctionName][queryString]`",
   "returnType": {
-    "rawType": "String",
+    "rawType": "string | undefined",
     "typeDefinition": {
-      "optional": false,
-      "$ref": "#/definitions/String"
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
     },
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
-    "isObject": true,
+    "isObject": false,
     "isPrimitive": false,
-    "isEnumLiteral": false
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
   },
   "maxIndentationDepth": 1,
   "size": {
-    "characters": 382,
-    "lines": 11,
-    "bytes": 382,
+    "characters": 437,
+    "lines": 12,
+    "bytes": 437,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 35,
-    "linesPerFile": 11,
+    "charactersPerLine": 36,
+    "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "woakwzdmbokmvkxvtgmrsxgt"
+  "id": "zeprbqxputkpjmnxvimlsraz"
 }

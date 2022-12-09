@@ -36,6 +36,8 @@ NB: not sure, but could be nice to replace this with path.extname(pathString)
 
 
 
+## 📄 getFolderJs (exported const)
+
 ## withoutExtension()
 
 removes extension from the filename
@@ -48,23 +50,10 @@ removes extension from the filename
 
 
 
-## 📄 getFolderJs (exported const)
-
 ## 📄 withoutExtension (exported const)
 
 removes extension from the filename
 
-
-## getFileOrFolderName()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** | string   |    |
-
-
-
-## 📄 getFileOrFolderName (exported const)
 
 ## getSubExtension()
 
@@ -93,6 +82,17 @@ Provide a filename including its extension, to get the subextension.
 
 
 ## 📄 isPathRelative (exported const)
+
+## getFileOrFolderName()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | string   |    |
+
+
+
+## 📄 getFileOrFolderName (exported const)
 
 ## 📄 path (exported const)
 

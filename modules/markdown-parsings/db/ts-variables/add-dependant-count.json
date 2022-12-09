@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200439965,
-  "updatedAt": 1669200439965,
+  "createdAt": 1670590021235,
+  "updatedAt": 1670590021235,
   "deletedAt": 0,
-  "createdFirstAt": 1669200439965,
+  "createdFirstAt": 1670590021235,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(type: \"tsFunction\" | \"tsVariable\" | \"tsInterface\", imports: TsImport[]) =>\n  async (\n    item: TsFunction | TsVariable | TsInterface\n  ): Promise<DependantCountObject> => {\n    return {\n      [type]: item,\n      externalDependantFiles: item.operationName\n        ? await findDependants({\n            operationName: item.operationName,\n            importName: item.name,\n            imports,\n            onlyExternal: true,\n          })\n        : [],\n    } as DependantCountObject;\n  }",
   "description": "Double arrow function to get the count for the item",
-  "id": "euiyyhrlozrfcbddutzsrndp"
+  "id": "uawdnzmgwnaxuvpvgxswriob"
 }

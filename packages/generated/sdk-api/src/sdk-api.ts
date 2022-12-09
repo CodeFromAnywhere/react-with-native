@@ -1,3 +1,10 @@
+import { controlChatGpt } from "ai-functions-node";
+import { getContextualPromptResults } from "ai-functions-node";
+import { getContextualPrompt } from "ai-functions-node";
+import { getContextualPromptsArray } from "ai-functions-node";
+import { getContextualPrompts } from "ai-functions-node";
+import { getFolderRelativeScopeDbFilePath } from "ai-functions-node";
+import { processChatGptPrompt } from "ai-functions-node";
 import { allOperationsRemoveJsSrc } from "all";
 import { allOperationsToMarkdown } from "all";
 import { clearAllTsDatabases } from "all";
@@ -16,8 +23,6 @@ import { renameAll } from "all";
 import { runScriptEverywhere } from "all";
 import { setScriptEverywhere } from "all";
 import { compressAsset } from "asset-functions-node";
-import { convertToMp3 } from "asset-functions-node";
-import { convertToMp4 } from "asset-functions-node";
 import { deleteReferencedAsset } from "asset-functions-node";
 import { downloadRemoteAsset } from "asset-functions-node";
 import { findAbsoluteAssetPathFromReference } from "asset-functions-node";
@@ -53,6 +58,22 @@ import { getMergedQueryConfig } from "database";
 import { randomName } from "database";
 import { runModelEndToEndTest } from "database";
 import { testOperationModels } from "database";
+import { cacheLookup } from "db-recipes";
+import { calculateOperatingSystemBundle } from "db-recipes";
+import { deleteDbModel } from "db-recipes";
+import { getDatabaseMenu } from "db-recipes";
+import { getDbModelMetadata } from "db-recipes";
+import { getDbModelNames } from "db-recipes";
+import { getDbModel } from "db-recipes";
+import { getFunctionIndex } from "db-recipes";
+import { getNestedDatabaseMenu } from "db-recipes";
+import { getReferencableModelData } from "db-recipes";
+import { hasDbRecipes } from "db-recipes";
+import { makeSrcRelativeFolder } from "db-recipes";
+import { tsInterfaceToDbMenu } from "db-recipes";
+import { upsertDbModel } from "db-recipes";
+import { validateInput } from "db-recipes";
+import { validateResult } from "db-recipes";
 import { filterInterfacesFromOperationNames } from "db-util";
 import { getDbModelsFromOperations } from "db-util";
 import { comparePassword } from "encrypt-password";
@@ -68,6 +89,10 @@ import { getProjectRelativePaths } from "explore-project";
 import { getTodoPages } from "explore-project";
 import { getTodoPaths } from "explore-project";
 import { hasSameProjectPath } from "explore-project";
+import { compressImage } from "ffmpeg-util";
+import { compressImages } from "ffmpeg-util";
+import { convertToMp3 } from "ffmpeg-util";
+import { convertToMp4 } from "ffmpeg-util";
 import { findAllDependencyOperations } from "find-all-dependency-operations";
 import { findDependantsRecursively } from "find-all-dependency-operations";
 import { findDependants } from "find-all-dependency-operations";
@@ -109,6 +134,7 @@ import { removeMultiple } from "fs-orm";
 import { upsertItems } from "fs-orm";
 import { upsertKeyValueMarkdown } from "fs-orm";
 import { upsert } from "fs-orm";
+import { waitForLockfile } from "fs-orm";
 import { getExtension } from "fs-util-js";
 import { getFileOrFolderName } from "fs-util-js";
 import { getFolderJs } from "fs-util-js";
@@ -261,6 +287,11 @@ import { rebuildAllOperations } from "rebuild-operation";
 import { rebuildOperation } from "rebuild-operation";
 import { shouldSkip } from "rebuild-operation";
 import { yarnBuild } from "rebuild-operation";
+import { sayDutch } from "say";
+import { sayLanguage } from "say";
+import { sayNepali } from "say";
+import { saySomething } from "say";
+import { textToMp3 } from "say";
 import { addAuthenticationMethod } from "server-login";
 import { addDeviceAuthenticationMethodConfirm } from "server-login";
 import { addDeviceAuthenticationMethodWithContext } from "server-login";
@@ -283,6 +314,17 @@ import { switchCurrentPersonWithContext } from "server-login";
 import { updateMeWithContext } from "server-login";
 import { setJsonKey } from "set-json-key";
 import { setKeyAtLocation } from "set-json-key";
+import { findAudioWithViewsArray } from "short-markdown-parser-js";
+import { markdownParseToShortMarkdown } from "short-markdown-parser-js";
+import { shortMarkdownToMarkdownParse } from "short-markdown-parser-js";
+import { augmentShortMarkdown } from "short-markdown-parser-node";
+import { fetchVoices } from "short-markdown-parser-node";
+import { generateAugmentedShortMarkdown } from "short-markdown-parser-node";
+import { getOrGenerateShortMarkdown } from "short-markdown-parser-node";
+import { parseDialogue } from "short-markdown-parser-node";
+import { uberduckGetPath } from "short-markdown-parser-node";
+import { uberduckSpeak } from "short-markdown-parser-node";
+import { voiceCloneDialogue } from "short-markdown-parser-node";
 import { sendSms } from "sms";
 import { getAllTsMorphSourceFiles } from "ts-morph-util";
 import { getHasGeneric } from "ts-morph-util";
@@ -334,6 +376,7 @@ import { lowerCaseArray } from "convert-case";
 import { pascalCase } from "convert-case";
 import { slugify } from "convert-case";
 import { snakeCase } from "convert-case";
+import { getFileTypeFromPath } from "filename-conventions";
 import { getWriterType } from "filename-conventions";
 import { hasSubExtension } from "filename-conventions";
 import { isGeneratedOperationName } from "filename-conventions";
@@ -361,6 +404,7 @@ import { findFileNameCaseInsensitive } from "fs-util";
 import { getAllFoldersUntilFolder } from "fs-util";
 import { getFileName } from "fs-util";
 import { getFirstAvailableFilename } from "fs-util";
+import { getFolderSizeObject } from "fs-util";
 import { getFolder } from "fs-util";
 import { getLastFolder } from "fs-util";
 import { getOneFolderUpPath } from "fs-util";
@@ -544,7 +588,14 @@ import { createCodeblockMarkdown } from "ui-util";
 import { crudPageToWebPages } from "webpage-types";
 import { functionFormPageToWebPage } from "webpage-types";
 
-export const sdk = { allOperationsRemoveJsSrc,
+export const sdk = { controlChatGpt,
+getContextualPromptResults,
+getContextualPrompt,
+getContextualPromptsArray,
+getContextualPrompts,
+getFolderRelativeScopeDbFilePath,
+processChatGptPrompt,
+allOperationsRemoveJsSrc,
 allOperationsToMarkdown,
 clearAllTsDatabases,
 codeAll,
@@ -562,8 +613,6 @@ renameAll,
 runScriptEverywhere,
 setScriptEverywhere,
 compressAsset,
-convertToMp3,
-convertToMp4,
 deleteReferencedAsset,
 downloadRemoteAsset,
 findAbsoluteAssetPathFromReference,
@@ -599,6 +648,22 @@ getMergedQueryConfig,
 randomName,
 runModelEndToEndTest,
 testOperationModels,
+cacheLookup,
+calculateOperatingSystemBundle,
+deleteDbModel,
+getDatabaseMenu,
+getDbModelMetadata,
+getDbModelNames,
+getDbModel,
+getFunctionIndex,
+getNestedDatabaseMenu,
+getReferencableModelData,
+hasDbRecipes,
+makeSrcRelativeFolder,
+tsInterfaceToDbMenu,
+upsertDbModel,
+validateInput,
+validateResult,
 filterInterfacesFromOperationNames,
 getDbModelsFromOperations,
 comparePassword,
@@ -614,6 +679,10 @@ getProjectRelativePaths,
 getTodoPages,
 getTodoPaths,
 hasSameProjectPath,
+compressImage,
+compressImages,
+convertToMp3,
+convertToMp4,
 findAllDependencyOperations,
 findDependantsRecursively,
 findDependants,
@@ -655,6 +724,7 @@ removeMultiple,
 upsertItems,
 upsertKeyValueMarkdown,
 upsert,
+waitForLockfile,
 getExtension,
 getFileOrFolderName,
 getFolderJs,
@@ -807,6 +877,11 @@ rebuildAllOperations,
 rebuildOperation,
 shouldSkip,
 yarnBuild,
+sayDutch,
+sayLanguage,
+sayNepali,
+saySomething,
+textToMp3,
 addAuthenticationMethod,
 addDeviceAuthenticationMethodConfirm,
 addDeviceAuthenticationMethodWithContext,
@@ -829,6 +904,17 @@ switchCurrentPersonWithContext,
 updateMeWithContext,
 setJsonKey,
 setKeyAtLocation,
+findAudioWithViewsArray,
+markdownParseToShortMarkdown,
+shortMarkdownToMarkdownParse,
+augmentShortMarkdown,
+fetchVoices,
+generateAugmentedShortMarkdown,
+getOrGenerateShortMarkdown,
+parseDialogue,
+uberduckGetPath,
+uberduckSpeak,
+voiceCloneDialogue,
 sendSms,
 getAllTsMorphSourceFiles,
 getHasGeneric,
@@ -880,6 +966,7 @@ lowerCaseArray,
 pascalCase,
 slugify,
 snakeCase,
+getFileTypeFromPath,
 getWriterType,
 hasSubExtension,
 isGeneratedOperationName,
@@ -907,6 +994,7 @@ findFileNameCaseInsensitive,
 getAllFoldersUntilFolder,
 getFileName,
 getFirstAvailableFilename,
+getFolderSizeObject,
 getFolder,
 getLastFolder,
 getOneFolderUpPath,

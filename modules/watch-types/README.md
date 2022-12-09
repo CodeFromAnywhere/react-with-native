@@ -1,16 +1,12 @@
 # Watch types
 
-watch-types (`OperationClassification` undefined)
+watch-types (`OperationClassification` cjs)
 
 
 
 # Api reference
 
-# Internal
-
-<details><summary>Show internal (1)</summary>
-    
-  # 🔹 WatchEventType
+## 🔹 WatchEventType
 
 Different event types for the watcher of the file system (chokidar)
 
@@ -25,5 +21,4 @@ Different event types for the watcher of the file system (chokidar)
 
 
 
-  </details>
 

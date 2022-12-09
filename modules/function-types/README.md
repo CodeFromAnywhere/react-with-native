@@ -1,6 +1,6 @@
 # Function types
 
-function-types (`OperationClassification` undefined)
+function-types (`OperationClassification` cjs)
 
 
 

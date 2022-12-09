@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384222362,
-  "updatedAt": 1669384222362,
+  "createdAt": 1670526754126,
+  "updatedAt": 1670526754126,
   "deletedAt": 0,
-  "createdFirstAt": 1669384222362,
+  "createdFirstAt": 1670526754126,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  absoluteAssetPath: string,\n  isDownload: boolean\n) => {\n  const parsedAsset = path.parse(absoluteAssetPath);\n\n  if (isDownload) {\n    return server.reply.download(absoluteAssetPath, parsedAsset.base);\n  }\n  return (\n    server.reply\n      // @ts-ignore NB: TODO: why doesn't server.js has the right types???\n      .file(absoluteAssetPath)\n  );\n}",
   "description": "Returns a `server.reply.download` or `server.reply.file` but also sets the `Content-Disposition` header correctly and the `Content-Type`\n\n\n\nFor this I finally ended up using builtin server.js stuff, we don't need to set those manually...\n\nSee https://serverjs.io/documentation/reply/#file-\nAnd https://serverjs.io/documentation/reply/#download-\n\nSee https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition\n\nNB: ensure to return the result of this function in your endpoint, otherwise it won't work",
-  "id": "romqpufotllsenmojiptlrux"
+  "id": "czlmslfngsvmpyxtihrvjhxs"
 }

@@ -1,15 +1,15 @@
 {
-  "createdAt": 1669384892368,
-  "updatedAt": 1669384892368,
+  "createdAt": 1670527446063,
+  "updatedAt": 1670527446063,
   "deletedAt": 0,
-  "createdFirstAt": 1669384892368,
+  "createdFirstAt": 1670527446063,
   "id": "device",
   "name": "Device",
   "slug": "device",
   "operationRelativeTypescriptFilePath": "src/Device.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\n/**\n A Device that accesses any King OS api.\n\n A device can be connected to a person. A person can have multiple `Device`s.\n\n A Device does not necissarily have King OS installed themselves, they can also be a visitor to another King OS app of someone else.\n */\nexport interface Device extends DefaultModelType, IPInfo {\n  /**\n   * AuthToken is used to identify a device. Unique identifier that is saved in the devices browser/app.\n   *\n   * If the authToken is the same, we can be sure that the device is matched, even if the IP is different.\n   */\n  authToken: string;\n\n  /**\n   * Parsed User Agent header.\n   *\n   * NOT used to identify the device, since the device can already be connected to a person!\n   */\n  userAgent: IResult;\n  /**\n   * Raw `User-Agent` header.\n   *\n   * NOT used to identify the device, since the device can already be connected to a person!\n   */\n  userAgentString: IResult[\"ua\"];\n  /**\n   * Name of the device, calculated based on metadata like location, os, and ip\n   *\n   * Can be edited by the user\n   */\n  name: string;\n\n  /**\n   * the root IPInfo is from the latest IP the device had. All previous IPs are added to this array\n   */\n  previousIps: IPInfo[];\n\n  /**\n   * Domains the Device has visited\n   *\n   * The Origin request header indicates the origin (scheme, hostname, and port) that caused the request\n   */\n  origins: string[];\n\n  /**\n   * Is set to true if the devices IP is pinged and seems to have something that resembles a King OS PAPI.\n   */\n  hasPapi?: boolean;\n\n  /**\n   * Returning `true` or `false` indicating whether or not the IP is giving a response\n   */\n  isOnlineCalculated?: boolean;\n\n  /**\n   * Whenever the peer is online, this should update\n   */\n  lastOnlineAt: number;\n\n  /**\n   * if true, the above IP is a local one, meaning it cannot be accessed from outside of this network\n   *\n   * This is easy to determine: local IP's must start with \"192.168\"\n   */\n  isLocalIpCalculated?: boolean;\n\n  /**\n   * if `true`, this device will show on top\n   */\n  isFavorite?: boolean;\n\n  /**\n   * If true, this peer should not be shared\n   */\n  isPrivate?: boolean;\n\n  /**\n   * last sync of any model\n   *\n   * Useful for example for a p2p messaging\n   */\n  lastSyncDatabaseAtObject: {\n    [modelName: string]: number;\n  };\n\n  /**\n   * If the device is authenticated, this should be set.\n   *\n   * Can be unset by the person\n   */\n  personIds?: Id[];\n  persons?: Person[];\n\n  /**\n   * A device can switch between persons, by changing this value\n   */\n  currentPersonId?: Id;\n  /**\n   * If you have a currentPersonId, it is calculated and provided by selecting it from the persons array\n   *\n   * For now, only provided by functioncontext\n   */\n  currentPersonCalculated?: Person;\n  /**\n   * Calculated all operations that can be exposed as apps. This is taken from `getAllAppOperations` function\n   */\n  appOperationsCalculated?: AppOperation[];\n\n  /**\n   * If the `Device` is not identified as a person yet, this can be configured to authenticate with different methods. Once it matches to a person, this can be cleared and `personId` can be attached.\n   */\n  authenticationMethods: AuthenticationMethod[];\n}",
+  "rawText": "\n\n/**\n * \n A Device that accesses any King OS api.\n\n A device can be connected to a person. A person can have multiple `Device`s.\n\n A Device does not necissarily have King OS installed themselves, they can also be a visitor to another King OS app of someone else.\n */\nexport interface Device extends DefaultModelType, IPInfo {\n  /**\n   * AuthToken is used to identify a device. Unique identifier that is saved in the devices browser/app.\n   *\n   * If the authToken is the same, we can be sure that the device is matched, even if the IP is different.\n   */\n  authToken: string;\n\n  /**\n   * Parsed User Agent header.\n   *\n   * NOT used to identify the device, since the device can already be connected to a person!\n   */\n  userAgent: IResult;\n  /**\n   * Raw `User-Agent` header.\n   *\n   * NOT used to identify the device, since the device can already be connected to a person!\n   */\n  userAgentString: IResult[\"ua\"];\n  /**\n   * Name of the device, calculated based on metadata like location, os, and ip\n   *\n   * Can be edited by the user\n   */\n  name: string;\n\n  /**\n   * the root IPInfo is from the latest IP the device had. All previous IPs are added to this array\n   */\n  previousIps: IPInfo[];\n\n  /**\n   * Domains the Device has visited\n   *\n   * The Origin request header indicates the origin (scheme, hostname, and port) that caused the request\n   */\n  origins: string[];\n\n  /**\n   * Is set to true if the devices IP is pinged and seems to have something that resembles a King OS PAPI.\n   */\n  hasPapi?: boolean;\n\n  /**\n   * Returning `true` or `false` indicating whether or not the IP is giving a response\n   */\n  isOnlineCalculated?: boolean;\n\n  /**\n   * Whenever the peer is online, this should update\n   */\n  lastOnlineAt: number;\n\n  /**\n   * if true, the above IP is a local one, meaning it cannot be accessed from outside of this network\n   *\n   * This is easy to determine: local IP's must start with \"192.168\"\n   */\n  isLocalIpCalculated?: boolean;\n\n  /**\n   * if `true`, this device will show on top\n   */\n  isFavorite?: boolean;\n\n  /**\n   * If true, this peer should not be shared\n   */\n  isPrivate?: boolean;\n\n  /**\n   * last sync of any model\n   *\n   * Useful for example for a p2p messaging\n   */\n  lastSyncDatabaseAtObject: {\n    [modelName: string]: number;\n  };\n\n  /**\n   * If the device is authenticated, this should be set.\n   *\n   * Can be unset by the person\n   */\n  personIds?: Id[];\n  persons?: Person[];\n\n  /**\n   * A device can switch between persons, by changing this value\n   */\n  currentPersonId?: Id;\n  /**\n   * If you have a currentPersonId, it is calculated and provided by selecting it from the persons array\n   *\n   * For now, only provided by functioncontext\n   */\n  currentPersonCalculated?: Person;\n  /**\n   * Calculated all operations that can be exposed as apps. This is taken from `getAllAppOperations` function\n   */\n  appOperationsCalculated?: AppOperation[];\n\n  /**\n   * If the `Device` is not identified as a person yet, this can be configured to authenticate with different methods. Once it matches to a person, this can be cleared and `personId` can be attached.\n   */\n  authenticationMethods: AuthenticationMethod[];\n}",
   "extensions": [
     "DefaultModelType",
     "IPInfo"
@@ -871,6 +871,14 @@
                         "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                         "type": "string"
                       }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                        "type": "string"
+                      }
                     }
                   ],
                   "type": "object"
@@ -891,6 +899,31 @@
                     }
                   ],
                   "type": "array"
+                }
+              },
+              {
+                "name": "mediaChannelIds",
+                "required": false,
+                "schema": {
+                  "fullComment": "After the `MediaChannel` DB is filled, we can index the names of the persons of the `MediaChannel`, and and we can push them to here, if the name is \"similar\" to the name of this `Person`.\n\n`*` = \"similar\" means: exact match, or at least first name + last name match",
+                  "items": [
+                    {
+                      "schema": {
+                        "fullComment": "Should be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                        "type": "string"
+                      },
+                      "name": "Id"
+                    }
+                  ],
+                  "type": "array"
+                }
+              },
+              {
+                "name": "preferred_mediaChannelId",
+                "required": false,
+                "schema": {
+                  "fullComment": "Optional. Can be set by admin (not indexed)\n\nIf not available, take the first (mediaChannelIds[0])\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+                  "type": "string"
                 }
               },
               {
@@ -951,14 +984,6 @@
                     }
                   ],
                   "type": "array"
-                }
-              },
-              {
-                "name": "preferredContactMedium",
-                "required": false,
-                "schema": {
-                  "fullComment": "use this for any identifier that's not an Id-type. Usually this is a kebab-case version of a written text, but it can also be a file path, for example.",
-                  "type": "string"
                 }
               },
               {
@@ -1147,6 +1172,14 @@
                             "required": false,
                             "schema": {
                               "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "credential",
+                            "required": false,
+                            "schema": {
+                              "fullComment": "original credential. should only be available on the device, not on the person",
                               "type": "string"
                             }
                           },
@@ -1463,6 +1496,14 @@
                       "required": false,
                       "schema": {
                         "fullComment": "This can be a password or token, depending on the method.\n\nIn case of OTP, this isn't required (e.g. for `phoneNumber`)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "credential",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "original credential. should only be available on the device, not on the person",
                         "type": "string"
                       }
                     },

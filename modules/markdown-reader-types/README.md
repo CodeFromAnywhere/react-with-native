@@ -17,17 +17,8 @@ Properties:
 | content (optional) | object |  |
 
 
-# Internal
 
-<details><summary>Show internal (1)</summary>
-    
-  # 🔹 ReaderPageContentProps
-
-
-
-
-
-
+## 🔹 ReaderPageContentProps
 
 Properties: 
 
@@ -42,5 +33,4 @@ Properties:
 | nextQueryPath (optional) | string |  |
 | description (optional) | string |  |
 
-  </details>
 

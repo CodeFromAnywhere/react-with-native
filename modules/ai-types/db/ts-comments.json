@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1670526417199,
+    "updatedAt": 1670526417199,
+    "deletedAt": 0,
+    "createdFirstAt": 1670526417199,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/ContextualPromptResult.ts",
+    "comment": "A result from a contextual prompt. Doesn't include the full context, for that you can find all results for a certain thread",
+    "rawStatement": "export interface ContextualPromptResult extends DefaultModelType {\n  /**\n   * When was the result created\n   *\n   */\n  createdAt: number;\n\n  /**\n   * It's a crucial question whether prompt results are still valid once the actual file has been altered. If we have prompts in a chain, it may be so that all of them become invalid\n   *\n   * For example, if a very fundamental belief changes, I need to alter all generated inferences for that belief.\n   *\n   * I think it might be better to add indexation on the validity maybe, if beliefs change, and mark the file as \"old\" if I want to write a new version. The frontmatter may change, but we should probably keep the content immutable because it has too many implications if we don't\n   *\n   * It is the same as the O in the SOLID principle!\n   */\n  isValidCalculated?: boolean;\n\n  /**\n   * Contextual prompt this prompt was based on. We don't have the acutal prompt here since we use an extended convention from `fs-orm`\n   */\n  contextualPromptSlug: string;\n\n  /**\n   * Path the result is about, if any. Can also be a folder!\n   */\n  prompt_projectRelativePath?: string;\n\n  /**\n   * Prompt string of the prompt, but only of this very question, not all previous things if this is a later item in a thread, that can be stored in another result.\n   */\n  prompt?: string;\n  /**\n   * In case the prompt had `.useSelection: true`, this should be the selected string, so the location can be found in the markdown, so the markdown can be augmented with a link to the result.\n   */\n  selectionString?: string;\n  /**\n   * If true, will get priority in where it's shown\n   */\n  isFavorite?: boolean;\n\n  resultText?: string;\n  resultAssets: BackendAsset[];\n  /**\n   * Unique ID for this thread, generated if not given to the prompt\n   */\n  thread?: string;\n}",
+    "parameters": {},
+    "types": [],
+    "firstLine": 4,
+    "lastLine": 6,
+    "id": "kkyynvwigbhptuemfevtbmoo"
+  }
+]

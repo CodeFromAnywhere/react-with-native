@@ -1,5 +1,5 @@
-export declare type UnixTimestamp = number;
-export declare type MarkdownContent = string;
+export type UnixTimestamp = number;
+export type MarkdownContent = string;
 export interface Markdown {
     fileName: string;
     params: {
@@ -19,11 +19,11 @@ export interface Markdown {
  *
  * For now, we don't have a clear convention whether or not this string should be absolute or anything.
  */
-export declare type Path = string;
+export type Path = string;
 /**
  * DEPRECATED: just use ParsedPath
  */
-export declare type FolderPath = {
+export type FolderPath = {
     relativeFolder: string | undefined;
     path: Path;
 };

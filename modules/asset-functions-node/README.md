@@ -7,20 +7,6 @@ asset-functions-node (`OperationClassification` node-cjs)
 
 
 
-# Docs
-
-<details><summary>getting-started.md</summary>
-    
-  # Asset upload
-
-If you want to use `sensible-asset`, you need to add it into a `typerepo`. Ensure that you convert your project into a `typerepo` first, if you don't have that already...
-
-After that, all you need to do is add the `asset` folder to your project `packages`. Besides that, you can use it in your form by adding it as a plugin.
-
-Now all you need to do is use the `AssetInput` anywhere you want to upload assets, and use the `processAsset` function if you want to put it somewhere.
-
-  </details>
-
 # Api reference
 
 ## processAsset()
@@ -159,20 +145,6 @@ Audio, image, video can be compressed. This should be done to logical defaults, 
 - image: resolution
 
 Returns the new absolute path of the compressed asset (which can be the same as the initial path)
-
-
-## 📄 convertToMp3 (exported const)
-
-Uses ffmpeg to convert a file to mp3
-
-Returns the new file path on success
-
-
-## 📄 convertToMp4 (exported const)
-
-Uses ffmpeg to convert a file to mp3
-
-Returns the new file path on success
 
 
 ## 📄 deleteReferencedAsset (exported const)

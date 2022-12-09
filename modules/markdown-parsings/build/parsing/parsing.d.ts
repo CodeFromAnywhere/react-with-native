@@ -1,4 +1,4 @@
-import { MarkdownChunk } from "code-types";
+import { MarkdownChunk } from "markdown-types";
 /**
  * Ups the levels of the markdownChunk array, recursively.
  *

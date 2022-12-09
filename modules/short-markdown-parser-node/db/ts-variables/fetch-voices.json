@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670216325279,
+  "updatedAt": 1670216325279,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216325279,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "fetchVoices",
+  "slug": "fetch-voices",
+  "operationRelativeTypescriptFilePath": "src/fetchVoices.ts",
+  "type": {
+    "rawType": "(dialogue: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/short-markdown/short-markdown-parser-node/src/types\").DialogueSentence[]) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (dialogue: DialogueSentence[]) => {\n  const voicesWithPath = dialogue.map((sentence) => {\n    if (!sentence.uuid) return sentence;\n    return { ...sentence, remotePath: uberduckGetPath(sentence.uuid) };\n  });\n\n  await Promise.all(\n    voicesWithPath.map((voice) => {\n      if (!voice.remotePath) return;\n      const storePath = path.join(__dirname, \"..\", \"data\", `${voice.uuid}.wav`);\n      const file = fs.createWriteStream(storePath);\n      const request = https.get(voice.remotePath, function (response) {\n        response.pipe(file);\n\n        // after download completed close filestream\n        file.on(\"finish\", () => {\n          file.close();\n          console.log(\"Download Completed\", voice.uuid);\n        });\n      });\n    })\n  );\n\n  console.log(\"ALL DONE\");\n}",
+  "description": "",
+  "id": "edwwefvvifoabsglzucrgbrn"
+}

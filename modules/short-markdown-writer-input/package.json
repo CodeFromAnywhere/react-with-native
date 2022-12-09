@@ -1,0 +1,114 @@
+{
+  "createdAt": 1670215585221,
+  "updatedAt": 1670215585221,
+  "deletedAt": 0,
+  "createdFirstAt": 1670215585221,
+  "name": "short-markdown-writer-input",
+  "version": "1.0.0",
+  "main": "./build/esm/index.js",
+  "types": "./build/esm/index.d.ts",
+  "files": [
+    "/build"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.8.4"
+  },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "npx tsc-watch --onSuccess 'yarn css'",
+    "wcss": "tailwindcss -w -o css.css",
+    "css": "tailwindcss -o css.css"
+  },
+  "operation": {
+    "indirectDependencies": [
+      "short-markdown-parser-node"
+    ],
+    "hasGeneratedDependenciesIndexed": false,
+    "buildResultIndexed": {
+      "indexInteracesErrors": [
+        "No schema/definitions found for /Users/king/King/operations/tools/purpose/writer/short-markdown-writer-input/src/ShortStudio.tsx. Error: TypeError: Cannot read properties of undefined (reading 'filter')"
+      ],
+      "buildSucceeded": true,
+      "indexImportExportError": "",
+      "lintProblems": []
+    },
+    "lastRebuildAt": 1670215602464,
+    "sizeIndexed": {
+      "codeSize": {
+        "numberOfFiles": 4,
+        "lines": 311,
+        "characters": 8581,
+        "bytes": 8581
+      },
+      "dataSize": {
+        "numberOfFiles": 2,
+        "lines": 79,
+        "characters": 2123,
+        "bytes": 2123
+      },
+      "textSize": {
+        "numberOfFiles": 2,
+        "lines": 94,
+        "characters": 2645,
+        "bytes": 2645
+      },
+      "size": {
+        "bytes": 13349,
+        "characters": 13349,
+        "lines": 484,
+        "numberOfFiles": 8
+      }
+    },
+    "folderNameIndexed": "short-markdown-writer-input",
+    "relativeOperationLocationPathIndexed": "operations/tools/purpose/writer",
+    "classificationIndexed": "ui-esm",
+    "coreDependenciesIndexed": [
+      "useState",
+      "useEffect",
+      "useRef",
+      "useEffect",
+      "useState",
+      "useEffect",
+      "useState"
+    ],
+    "operationDependenciesIndexed": [
+      "getSrc",
+      "notEmpty",
+      "Div",
+      "ShortMarkdown",
+      "Div",
+      "P",
+      "ViewEmbed",
+      "getSrc",
+      "isDev",
+      "useOnScreen",
+      "queries",
+      "FancyLoader",
+      "Div",
+      "DbModels"
+    ],
+    "packageDependenciesIndexed": []
+  },
+  "dependencies": {
+    "asset-view": "0.0.0",
+    "js-util": "0.0.1",
+    "react-with-native": "1.4.9",
+    "short-markdown-types": "0.0.1",
+    "server-api-url": "0.0.1",
+    "use-on-screen": "0.0.0",
+    "api": "0.0.1",
+    "fancy-loader": "0.0.1",
+    "react": "*"
+  },
+  "slug": "short-markdown-writer-input",
+  "id": "xhjznnhvilrykjrgpzyhnaqs"
+}

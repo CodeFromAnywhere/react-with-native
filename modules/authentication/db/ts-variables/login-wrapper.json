@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385481513,
-  "updatedAt": 1669385481513,
+  "createdAt": 1670528760375,
+  "updatedAt": 1670528760375,
   "deletedAt": 0,
-  "createdFirstAt": 1669385481513,
+  "createdFirstAt": 1670528760375,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: { children: any }) => {\n  const { children } = props;\n  const [authToken, setAuthToken, { hydrated }] = useStore(\"api.authToken\");\n\n  // Ensure there is an authToken\n  useEffect(() => {\n    if (!hydrated) return;\n    if (!authToken || authToken.length === 0) {\n      setAuthToken(generateId());\n    }\n  }, [authToken, hydrated]);\n\n  return children;\n}",
   "description": "ensures the auth-token is set",
-  "id": "qqdvvknhxeewotfwyiawhtjg"
+  "id": "jvasyensipuqlqyriipixwdj"
 }

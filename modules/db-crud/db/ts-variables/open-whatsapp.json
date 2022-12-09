@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528953040,
+  "updatedAt": 1670528953040,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528953040,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "openWhatsapp",
+  "slug": "open-whatsapp",
+  "operationRelativeTypescriptFilePath": "src/openWhatsapp.tsx",
+  "type": {
+    "rawType": "({ phone, text, }: { phone: string; text: string; }) => void",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "({\n  phone,\n  text,\n}: {\n  phone: string;\n  text: string;\n}) => {\n  const url =\n    \"https://api.whatsapp.com/send/\" +\n    toQueryString({ phone, text, app_absent: 0 });\n  window.open(url, \"_blank\")?.focus();\n}",
+  "description": "",
+  "id": "ktmarvrztvglqxpjyzwrdplk"
+}

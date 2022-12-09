@@ -1,0 +1,74 @@
+{
+  "createdAt": 1670526407733,
+  "updatedAt": 1670526407733,
+  "deletedAt": 0,
+  "createdFirstAt": 1670526407733,
+  "id": "contextualcontent",
+  "name": "ContextualContent",
+  "slug": "contextualcontent",
+  "operationRelativeTypescriptFilePath": "src/ContextualContent.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type ContextualContent = {\n  contextContent: string;\n  contextSelection?: string | null;\n  context_projectRelativeFilePath?: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "contextContent": {
+          "type": "string"
+        },
+        "contextSelection": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "context_projectRelativeFilePath": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contextContent"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "contextContent",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "contextSelection",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "context_projectRelativeFilePath",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ContextualContent",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

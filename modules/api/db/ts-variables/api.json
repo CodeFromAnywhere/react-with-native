@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668775439686,
-  "updatedAt": 1668775439686,
+  "createdAt": 1670528155758,
+  "updatedAt": 1670528155758,
   "deletedAt": 0,
-  "createdFirstAt": 1668775439686,
+  "createdFirstAt": 1670528155758,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -20,5 +20,5 @@
   },
   "value": "mergeObjectsArray(\n  functionApiKeys.map((fnName) => {\n    const config: ApiConfig = { apiUrl };\n    const apiWithConfigFunction = (...parameters: any[]) =>\n      untypedApiFunction(fnName, config, ...parameters);\n    const objectPart = { [fnName]: apiWithConfigFunction };\n\n    return objectPart;\n  })\n) as unknown as ApiTypeWithoutConfig",
   "description": "This object contains an api function for every function in the backend\n\n\nNB: only use this if you can access localStorage of the browser or the app. This means this won't work in node or in getStaticProps functions or so",
-  "id": "qtpqiuxlrgkvhvzgmsaiawmp"
+  "id": "bouzdoqgidzgncfgjemjwpvz"
 }

@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669385033605,
-  "updatedAt": 1669385033605,
+  "createdAt": 1670218853104,
+  "updatedAt": 1670218853104,
   "deletedAt": 0,
-  "createdFirstAt": 1669385033605,
+  "createdFirstAt": 1670218853104,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getWriterWebPages.ts",
   "commentsInside": [],
-  "rawText": " async () => {\n  const projectRelativePaths = (await getProjectRelativePaths()) || [];\n\n  console.log({ results: projectRelativePaths.length });\n  const writerWebPages: WriterWebPage[] = projectRelativePaths.map(\n    (projectRelativeFilePath) => {\n      const writerWebPage: WriterWebPage = {\n        pageData: { projectRelativeFilePath },\n        queryPath: projectRelativeFilePath,\n      };\n      return writerWebPage;\n    }\n  );\n\n  return writerWebPages;\n}",
+  "rawText": " async () => {\n  const projectRelativePaths = (await getProjectRelativePaths()) || [];\n\n  const writerWebPages: WriterWebPage[] = projectRelativePaths.map(\n    (projectRelativeFilePath) => {\n      const writerWebPage: WriterWebPage = {\n        pageData: { projectRelativeFilePath },\n        queryPath: projectRelativeFilePath,\n      };\n      return writerWebPage;\n    }\n  );\n\n  return writerWebPages;\n}",
   "name": "getWriterWebPages",
   "slug": "get-writer-web-pages",
   "parameters": [],
@@ -24,13 +24,13 @@
   },
   "maxIndentationDepth": 4,
   "size": {
-    "characters": 459,
-    "lines": 16,
-    "bytes": 459,
+    "characters": 402,
+    "lines": 15,
+    "bytes": 402,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 29,
-    "linesPerFile": 16,
+    "charactersPerLine": 27,
+    "linesPerFile": 15,
     "numberOfFiles": 1
   },
-  "id": "swaaendkmtonspjnulfmapkx"
+  "id": "vagcngottcyxddegxliieywd"
 }

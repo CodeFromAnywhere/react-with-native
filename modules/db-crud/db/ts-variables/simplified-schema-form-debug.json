@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528888257,
+  "updatedAt": 1670528888257,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528888257,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "SimplifiedSchemaFormDebug",
+  "slug": "simplified-schema-form-debug",
+  "operationRelativeTypescriptFilePath": "src/SimplifiedSchemaFormDebug.tsx",
+  "type": {
+    "rawType": "({ parameters, values, }: { parameters: import(\"/Users/king/King/operations/tools/types/code-types/build/FunctionParameter\").FunctionParameter[] | undefined; values: any[]; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "({\n  parameters,\n  values,\n}: {\n  parameters: FunctionParameter[] | undefined;\n  values: any[];\n}) => {\n  const [showParams, setShowParams] = useState(false);\n  return (\n    <Div>\n      <P>values</P>\n      {renderMarkdownContent(\n        createCodeblockMarkdown(JSON.stringify(values, null, 2), \"json\"),\n        // NB: since there won't be any assets in here, it doesn't matter where the md is made\n        {\n          projectRelativeBaseFolderPath: \"\",\n          projectRelativeMarkdownFilePath: \"\",\n        }\n      )}\n      <P\n        className=\"hover:underline cursor-pointer\"\n        onClick={() => setShowParams(!showParams)}\n      >\n        params (toggle)\n      </P>{\" \"}\n      {showParams\n        ? renderMarkdownContent(\n            createCodeblockMarkdown(\n              JSON.stringify(parameters, null, 2),\n              \"json\"\n            ),\n            // NB: since there won't be any assets in here, it doesn't matter where the md is made\n            {\n              projectRelativeBaseFolderPath: \"\",\n              projectRelativeMarkdownFilePath: \"\",\n            }\n          )\n        : null}\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "xbspktgcafowzuqkwazekamz"
+}

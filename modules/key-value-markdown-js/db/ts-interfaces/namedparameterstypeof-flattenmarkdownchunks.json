@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668334791765,
-  "updatedAt": 1668334791765,
+  "createdAt": 1669962077461,
+  "updatedAt": 1669962077461,
   "deletedAt": 0,
-  "createdFirstAt": 1668334791765,
+  "createdFirstAt": 1669962077461,
   "id": "namedparameterstypeof-flattenmarkdownchunks",
   "name": "NamedParameters<typeof flattenMarkdownChunks>",
   "slug": "namedparameterstypeof-flattenmarkdownchunks",
@@ -81,16 +81,13 @@
                             "required": true,
                             "schema": {
                               "enum": [
-                                "youtube",
                                 "video",
-                                "image",
                                 "audio",
-                                "markdown",
-                                "json",
-                                "typescript",
-                                "file"
+                                "image",
+                                "text",
+                                "other"
                               ],
-                              "fullComment": "type of asset that is being embedded",
+                              "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                               "type": "string"
                             }
                           }
@@ -123,16 +120,13 @@
                             "required": true,
                             "schema": {
                               "enum": [
-                                "youtube",
                                 "video",
-                                "image",
                                 "audio",
-                                "markdown",
-                                "json",
-                                "typescript",
-                                "file"
+                                "image",
+                                "text",
+                                "other"
                               ],
-                              "fullComment": "Can be inferred from href\n\ntype of asset that is being embedded",
+                              "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                               "type": "string"
                             }
                           }

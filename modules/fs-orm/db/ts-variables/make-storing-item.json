@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669312131637,
-  "updatedAt": 1669312131637,
+  "createdAt": 1670592545131,
+  "updatedAt": 1670592545131,
   "deletedAt": 0,
-  "createdFirstAt": 1669312131637,
+  "createdFirstAt": 1670592545131,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<T extends AugmentedAnyModelType>(\n  item: T\n): Storing<T> => {\n  // remove location related stuff\n\n  const { operationName, projectRelativePath, operationRelativePath, ...rest } =\n    item;\n\n  // remove referenced model data\n\n  const dataParameterNames = getDataParameterNames(item);\n  const restWithoutDataParameters = removeOptionalKeysFromObject(\n    rest,\n    dataParameterNames as any\n  );\n\n  // remove `.xyzCalculated` keys\n\n  const calculatedKeys = Object.keys(restWithoutDataParameters).filter((key) =>\n    key.endsWith(\"Calculated\")\n  );\n  const finalItem = removeOptionalKeysFromObject(\n    restWithoutDataParameters,\n    calculatedKeys as any\n  ) as Storing<T>;\n\n  return finalItem;\n}",
   "description": "Three things need to happen in order to store an item\n\n1) keys that can be inferred from the file path are omitted\n2) referenced data is omitted\n3) calculated data is omitted",
-  "id": "ftylhfpqzcbupkecvbmtmtrv"
+  "id": "redbnjcmiirxtntvzndlnede"
 }

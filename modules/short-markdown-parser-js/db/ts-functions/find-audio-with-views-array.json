@@ -1,0 +1,248 @@
+{
+  "createdAt": 1669962260501,
+  "updatedAt": 1669962260501,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962260501,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/findAudioWithViewsArray.ts",
+  "commentsInside": [],
+  "rawText": " (\n  content: string,\n  index: number,\n  title?: string\n): AudioWithViews[] => {\n  const relativeEmbeds = findEmbeds(content)\n    .filter((x) => isPathRelative(x.src))\n    .filter((x) => x.type !== \"other\" && x.type !== \"text\");\n\n  const initialViewEmbeds: ViewEmbed[] = [\n    title ? { title, audioKey: `audio${index}.0` } : undefined,\n  ].filter(notEmpty);\n\n  const initialValue: AudioWithViews[] = [\n    {\n      audioPath: null,\n      viewEmbeds: initialViewEmbeds,\n      audioKey: `audio${index}.0`,\n    },\n  ];\n\n  const audioWithViewsArray = relativeEmbeds.reduce(\n    (previous, current, currentIndex) => {\n      // Create a new item in the AudioWithViews for a new audio\n      if (current.type === \"audio\") {\n        previous.push({\n          audioPath: current.src,\n          viewEmbeds: [],\n          audioKey: `audio${index}.${currentIndex}`,\n        });\n        return previous;\n      }\n\n      // If a view is encountered, add it to the viewEmbeds array\n      if (current.type === \"image\" || current.type === \"video\") {\n        const quoteCharacters = \"&quot;\";\n        const isSpoken =\n          current.alt.startsWith(quoteCharacters) &&\n          current.alt.endsWith(quoteCharacters);\n\n        if (isSpoken) {\n          // add new one because this has a spokentext.\n\n          const spokenText = isSpoken\n            ? current.alt.substring(\n                quoteCharacters.length,\n                current.alt.length - quoteCharacters.length\n              )\n            : undefined;\n\n          const audioKey = `audio${index}.${currentIndex}`;\n          previous.push({\n            audioPath: null,\n            viewEmbeds: [\n              {\n                viewPath: current.src,\n                audioKey,\n                spokenText,\n              },\n            ],\n            audioKey,\n          });\n        } else {\n          // attach to the lastone\n          previous[previous.length - 1].viewEmbeds.push({\n            viewPath: current.src,\n            audioKey: previous[previous.length - 1].audioKey,\n            spokenText: undefined,\n          });\n        }\n      }\n\n      // Do nothing for other types\n      return previous;\n    },\n    initialValue\n  );\n\n  return audioWithViewsArray;\n}",
+  "name": "findAudioWithViewsArray",
+  "slug": "find-audio-with-views-array",
+  "parameters": [
+    {
+      "name": "content",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "index",
+      "schema": {
+        "type": "number"
+      },
+      "simplifiedSchema": {
+        "type": "number"
+      },
+      "required": true
+    },
+    {
+      "name": "title",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/short-markdown/short-markdown-types/build/AudioWithViews\").AudioWithViews[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "audioPath": {
+            "type": "string | null"
+          },
+          "audioKey": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "audioDurationMs": {
+            "type": "number"
+          },
+          "viewEmbeds": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "audioKey": {
+                  "type": "string",
+                  "allOf": [
+                    {
+                      "transform": [
+                        "trim"
+                      ]
+                    },
+                    {
+                      "minLength": 1
+                    }
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "allOf": [
+                    {
+                      "transform": [
+                        "trim"
+                      ]
+                    },
+                    {
+                      "minLength": 1
+                    }
+                  ]
+                },
+                "viewPath": {
+                  "type": "string",
+                  "allOf": [
+                    {
+                      "transform": [
+                        "trim"
+                      ]
+                    },
+                    {
+                      "minLength": 1
+                    }
+                  ]
+                },
+                "spokenText": {
+                  "type": "string",
+                  "allOf": [
+                    {
+                      "transform": [
+                        "trim"
+                      ]
+                    },
+                    {
+                      "minLength": 1
+                    }
+                  ]
+                },
+                "durationMs": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "viewEmbeds"
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [
+              {
+                "name": "audioPath",
+                "required": false,
+                "schema": {
+                  "properties": [],
+                  "type": "object"
+                }
+              },
+              {
+                "name": "audioKey",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "audioDurationMs",
+                "required": false,
+                "schema": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "viewEmbeds",
+                "required": true,
+                "schema": {
+                  "items": [
+                    {
+                      "schema": {
+                        "properties": [
+                          {
+                            "name": "audioKey",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "title",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "viewPath",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "spokenText",
+                            "required": false,
+                            "schema": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "durationMs",
+                            "required": false,
+                            "schema": {
+                              "type": "number"
+                            }
+                          }
+                        ],
+                        "type": "object"
+                      },
+                      "name": null
+                    }
+                  ],
+                  "type": "array"
+                }
+              }
+            ],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 8,
+  "size": {
+    "characters": 2212,
+    "lines": 80,
+    "bytes": 2212,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 80,
+    "numberOfFiles": 1
+  },
+  "id": "zfaeawqfkduwetalpilfgquc"
+}

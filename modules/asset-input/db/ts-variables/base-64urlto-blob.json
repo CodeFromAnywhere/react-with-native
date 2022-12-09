@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669054961429,
-  "updatedAt": 1669054961429,
+  "createdAt": 1670526825184,
+  "updatedAt": 1670526825184,
   "deletedAt": 0,
-  "createdFirstAt": 1669054961429,
+  "createdFirstAt": 1670526825184,
   "classification": "const",
   "comments": [],
   "isExported": false,
@@ -29,5 +29,5 @@
   },
   "value": "(dataurl: string | null) => {\n  if (!dataurl) return;\n  const arr = dataurl.split(\",\");\n  const mime = arr[0].match(/:(.*?);/)?.[1];\n  const bstr = atob(arr[1]);\n\n  let n = bstr.length;\n  const u8arr = new Uint8Array(n);\n\n  while (n--) {\n    u8arr[n] = bstr.charCodeAt(n);\n  }\n\n  return new Blob([u8arr], { type: mime });\n}",
   "description": "Taken from https://github.com/mozmorris/react-webcam/issues/65#issuecomment-385126201\n\nThere are probably much better solutions",
-  "id": "lzijhzxasyhstvajjasubmse"
+  "id": "flpslnhqznhvjxthufixcvsb"
 }

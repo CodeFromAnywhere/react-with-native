@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669312092829,
-  "updatedAt": 1669312092829,
+  "createdAt": 1670592508815,
+  "updatedAt": 1670592508815,
   "deletedAt": 0,
-  "createdFirstAt": 1669312092829,
+  "createdFirstAt": 1670592508815,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  dbFileLocation,\n  alterFn\n) => {\n  const { absolutePath } = dbFileLocation;\n  const storedJson = await readJsonFile<Storing<AugmentedAnyModelType>[]>(\n    dbFileLocation.absolutePath\n  );\n\n  const storedData = storedJson || [];\n\n  const isNewFile = !storedJson;\n  const { newStoredData, ...queryResult } = alterFn(storedData);\n\n  if (newStoredData.length === 0 && !!storedJson) {\n    // NB: if new stored data is an empty array, just remove the file\n    await fs.rm(absolutePath);\n    return { isNewFile: false, ...queryResult };\n  }\n\n  const isSuccesful = await writeJsonToFile(absolutePath, newStoredData);\n\n  if (!isSuccesful) return { isSuccesful, message: \"Could not write to file\" };\n  return {\n    isNewFile,\n    isSuccesful,\n    ...queryResult,\n  };\n}",
   "description": "Alters a json multiple file",
-  "id": "uqqajbsybemcebgjievdoyfe"
+  "id": "wwwgfrzzyjfevdauxbrdnbvk"
 }

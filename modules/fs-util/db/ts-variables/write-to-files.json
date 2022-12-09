@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378793208,
-  "updatedAt": 1667378793208,
+  "createdAt": 1670526968487,
+  "updatedAt": 1670526968487,
   "deletedAt": 0,
-  "createdFirstAt": 1667378793208,
+  "createdFirstAt": 1670526968487,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "write-to-files",
   "operationRelativeTypescriptFilePath": "src/files.ts",
   "type": {
-    "rawType": "(fileObject: { [filePath: string]: any; }) => any",
+    "rawType": "(fileObject: { [absoluteFilePath: string]: any; }) => any",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (fileObject: { [filePath: string]: any }) => {\n  let s = 0;\n  let e = 0;\n  const writePromises = Object.keys(fileObject).map(async (filePath) => {\n    const value = fileObject[filePath];\n    const success = await writeJsonToFile(filePath, value);\n    if (success) s++;\n    if (!success) e++;\n\n    return success;\n  });\n  await Promise.all(writePromises);\n}",
+  "value": "async (fileObject: {\n  [absoluteFilePath: string]: any;\n}) => {\n  let s = 0;\n  let e = 0;\n  const writePromises = Object.keys(fileObject).map(async (filePath) => {\n    const value = fileObject[filePath];\n    const success = await writeJsonToFile(filePath, value);\n    if (success) s++;\n    if (!success) e++;\n\n    return success;\n  });\n  await Promise.all(writePromises);\n}",
   "description": "writes all values in an object to the file that should be specified as key of that value",
-  "id": "ktzybaazrsierqtvjzsfeutd"
+  "id": "uknyimhnalgudnjmnaivwlod"
 }

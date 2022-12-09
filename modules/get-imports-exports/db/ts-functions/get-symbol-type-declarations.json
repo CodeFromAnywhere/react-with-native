@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150643213,
-  "updatedAt": 1668150643213,
+  "createdAt": 1670590326140,
+  "updatedAt": 1670590326140,
   "deletedAt": 0,
-  "createdFirstAt": 1668150643213,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670590326140,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util.ts",
   "commentsInside": [],
   "rawText": " (symbol: Symbol) => {\n  return [\n    ...getSymbolDeclarationsOfKind<TypeAliasDeclaration>(\n      symbol,\n      SyntaxKind.TypeAliasDeclaration\n    ),\n    ...getSymbolDeclarationsOfKind<InterfaceDeclaration>(\n      symbol,\n      SyntaxKind.InterfaceDeclaration\n    ),\n  ];\n}",
@@ -54,5 +49,5 @@
     "linesPerFile": 12,
     "numberOfFiles": 1
   },
-  "id": "scsdobvzpsbavmmgpyzaumec"
+  "id": "qkylglqcwtznmnaubdjofmtt"
 }

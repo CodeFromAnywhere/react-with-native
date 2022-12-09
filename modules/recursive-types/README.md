@@ -1,6 +1,6 @@
 # Recursive types
 
-recursive-types (`OperationClassification` undefined)
+recursive-types (`OperationClassification` node-cjs)
 
 
 

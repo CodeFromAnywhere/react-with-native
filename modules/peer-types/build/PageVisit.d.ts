@@ -16,6 +16,5 @@ export interface PageVisit extends DefaultModelType {
      */
     createdAt: number;
     ipInfo: IPInfo;
-    hello: string;
 }
 //# sourceMappingURL=PageVisit.d.ts.map

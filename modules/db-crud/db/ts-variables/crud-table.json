@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528915965,
+  "updatedAt": 1670528915965,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528915965,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "CrudTable",
+  "slug": "crud-table",
+  "operationRelativeTypescriptFilePath": "src/crud/CrudTable.tsx",
+  "type": {
+    "rawType": "(props: import(\"/Users/king/King/operations/tools/user-interfaces/gui/wise/db-crud/src/crud/types\").CrudViewProps) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: CrudViewProps) => {\n  const { tsInterface, onEndReached, data, highlight, actions } = props;\n\n  const alert = useAlert();\n  const properties = getProperties(tsInterface?.type?.typeDefinition);\n  const dataParameterNames = getPropertiesDataParameterNames(properties);\n\n  const columns: ColumnType<any>[] = properties\n    // Omit referenced data\n    .filter((property) => !dataParameterNames.includes(property.name))\n    .map((property) => {\n      const referenceParameterInfo = getReferenceParameterInfo(property.name);\n      const {\n        descriptor,\n        interfaceName,\n        isReferenceMultipleParameter,\n        isReferenceParameter,\n        isReferenceSingleParameter,\n      } = referenceParameterInfo;\n\n      const isBackendAssetParameter = getAssetInputType(property.name);\n      const presentationType = isReferenceSingleParameter\n        ? \"referenceSingle\"\n        : isReferenceMultipleParameter\n        ? \"referenceMultiple\"\n        : isBackendAssetParameter\n        ? \"backendAsset\"\n        : \"text\";\n\n      const name =\n        isReferenceParameter && interfaceName\n          ? descriptor\n            ? humanCase(`${descriptor}-${interfaceName}`)\n            : humanCase(interfaceName)\n          : humanCase(property.name);\n\n      const column: ColumnType<any> = {\n        name,\n        objectParameterKey: property.name,\n        presentationType,\n      };\n      return column;\n    })\n    .filter(notEmpty);\n\n  return (\n    <Table\n      data={data}\n      onEndReached={onEndReached}\n      shouldHighlightItem={(item: any) =>\n        !!(\n          (highlight.id && item.id === highlight.id) ||\n          (highlight.slug && item.slug === highlight.slug)\n        )\n      }\n      columns={columns}\n      renderExtraColumns={(item) => {\n        return (\n          <Div className=\"flex flex-row\">\n            {item\n              ? actions.map((action) => {\n                  return (\n                    <LabeledButton\n                      onClick={() => action.action(item)}\n                      title={action.name}\n                      emoji={action.emoji}\n                      size=\"small\"\n                    />\n                  );\n                })\n              : null}\n          </Div>\n        );\n      }}\n      extraColumnsAtStart\n    />\n  );\n}",
+  "description": "",
+  "id": "bsuopztsiaytpahzphuiusbw"
+}

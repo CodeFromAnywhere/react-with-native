@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670215600220,
+  "updatedAt": 1670215600220,
+  "deletedAt": 0,
+  "createdFirstAt": 1670215600220,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useMultiAudio",
+  "slug": "use-multi-audio",
+  "operationRelativeTypescriptFilePath": "src/useMultiAudio.tsx",
+  "type": {
+    "rawType": "(urls: string[]) => { players: { url: string; playing: boolean; }[]; toggle: (targetIndex: number) => () => void; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(urls: string[]) => {\n  const [sources, setSources] = useState<\n    { url: string; audio: HTMLAudioElement }[]\n  >([]);\n\n  const [players, setPlayers] = useState<{ url: string; playing: boolean }[]>(\n    []\n  );\n  useEffect(() => {\n    setSources(\n      urls.map((url) => {\n        return {\n          url,\n          audio: new Audio(url),\n        };\n      })\n    );\n\n    setPlayers(\n      urls.map((url) => {\n        return {\n          url,\n          playing: false,\n        };\n      })\n    );\n  }, [urls.length]);\n\n  const toggle = (targetIndex: number) => () => {\n    if (!players[targetIndex]) {\n      console.log(\"VAAG\");\n      return;\n    }\n    const newPlayers = [...players];\n    const currentIndex = players.findIndex((p) => p.playing === true);\n    if (currentIndex !== -1 && currentIndex !== targetIndex) {\n      newPlayers[currentIndex].playing = false;\n      newPlayers[targetIndex].playing = true;\n    } else if (currentIndex !== -1) {\n      newPlayers[targetIndex].playing = false;\n    } else {\n      newPlayers[targetIndex].playing = true;\n    }\n    setPlayers(newPlayers);\n  };\n\n  useEffect(() => {\n    sources.forEach((source, i) => {\n      players[i].playing ? source.audio.play() : source.audio.pause();\n    });\n  }, [sources, players]);\n\n  useEffect(() => {\n    sources.forEach((source, i) => {\n      source.audio.addEventListener(\"ended\", () => {\n        const newPlayers = [...players];\n        newPlayers[i].playing = false;\n        setPlayers(newPlayers);\n      });\n    });\n    return () => {\n      sources.forEach((source, i) => {\n        source.audio.removeEventListener(\"ended\", () => {\n          const newPlayers = [...players];\n          newPlayers[i].playing = false;\n          setPlayers(newPlayers);\n        });\n      });\n    };\n  }, []);\n\n  return { players, toggle };\n}",
+  "description": "- Implement a component that preloads all audios for the `ShortMarkdown` and lets you play one with a callback (look at https://stackoverflow.com/questions/47686345/playing-sound-in-react-js)\n- If slide has audio belonging to it, find it and play it. Start at certain point, depending on which part you are at.\n- Select the correct audio for every slide, and get the API url for it. Load it in into an `<audio>` element once you go to the slide.",
+  "id": "jemigfdhwdakyzfegkjyjbkz"
+}

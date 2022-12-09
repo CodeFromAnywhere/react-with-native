@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668976644940,
-  "updatedAt": 1668976644940,
+  "createdAt": 1670216121766,
+  "updatedAt": 1670216121766,
   "deletedAt": 0,
-  "createdFirstAt": 1668976644940,
+  "createdFirstAt": 1670216121766,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  config: BaseConfig\n): Promise<string[]> => {\n  const folders = (\n    await findAllPackages({\n      basePath: config?.basePath,\n    })\n  )\n    .map((x) => x.path)\n    .map((p) => getFolder(p))\n    .filter((p) => {\n      const alsoTsConfig = fs.existsSync(path.join(p, \"tsconfig.json\"));\n      return alsoTsConfig;\n    });\n\n  return folders;\n}",
   "description": "find all active operations (folders having `package.json` but also `tsconfig.json`)\n\nreturns folder path array",
-  "id": "wnprgghnznlcsmyhgteqfmxv"
+  "id": "spxpdkbvkvexmsxjfdwovrid"
 }

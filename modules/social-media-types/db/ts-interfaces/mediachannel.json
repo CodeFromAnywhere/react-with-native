@@ -1,15 +1,15 @@
 {
-  "createdAt": 1669384960221,
-  "updatedAt": 1669384960221,
+  "createdAt": 1670063878845,
+  "updatedAt": 1670063878845,
   "deletedAt": 0,
-  "createdFirstAt": 1669384960221,
+  "createdFirstAt": 1670063878845,
   "id": "mediachannel",
   "name": "MediaChannel",
   "slug": "mediachannel",
   "operationRelativeTypescriptFilePath": "src/MediaChannel.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n/** channel where messages can be posted to\n *\n * examples:\n * - facebook group\n * - slack channel\n * - whatsapp pm\n * - facebook pm\n */\nexport interface MediaChannel extends DefaultModelType {\n  platformSlug: Slug;\n  /** way to identify the channel on the platform\n   *\n   * e.g. on slack we can say `xyz/meet` for the `#meet` channel on the `xyz` slack\n   */\n  platformChannelId: string;\n  url?: string;\n  name: string;\n  slug: string;\n  description?: string;\n\n  /** if true, this channel is a group */\n  isGroup?: boolean;\n\n  /** ids that each identify a `Person` that is part of this channel. Isn't always available */\n  memberPersonIds?: Id[];\n\n  /**\n   * The below parameters should ONLY be used if the instance is a channel for a group.\n   * if this is a channel for a person, the interests should be stored on the person instead.\n   */\n\n  /** group-only: interests this group has */\n  interestSlugs?: Slug[];\n  interests?: Interest[];\n\n  /** group-only: most specific location of the people in this channel (if any) */\n  locationSlug?: Slug;\n  location?: Location;\n\n  /** group-only: preferred spoken language in this channel. `Postable` should be translated into this language */\n  language: Language;\n\n  /**\n   * Which account do you want to use to post something in this channel?\n   *\n   * TODO: maybe refactor this to use `Persona` and match the persona automatically based on interests, location, and language, then get the mediaCredential for the platform from the `Persona` that matches this channel the most...\n   */\n  mediaCredentialId?: Id;\n  mediaCredential?: MediaCredential;\n\n  /** when did you make your last post? */\n  myLastPostAt: number;\n}",
+  "rawText": "\n/** channel where messages can be posted to\n *\n * examples:\n * - facebook group\n * - slack channel\n * - whatsapp pm\n * - facebook pm\n */\nexport interface MediaChannel extends DefaultModelType {\n  platformSlug: Slug;\n  /** way to identify the channel on the platform\n   *\n   * e.g. on slack we can say `xyz/meet` for the `#meet` channel on the `xyz` slack\n   */\n  platformChannelId: string;\n  url?: string;\n  name: string;\n  slug: string;\n  description?: string;\n\n  /**\n   * Person this channel is connected to\n   *\n   * Can be indexed once the `MediaChannel` is found, and it seems to be a person. Then the person neds to be created as well and the `.personId` needs to be attached to the `MediaChannel`\n   */\n  personId?: Id;\n\n  // person?:Person;\n\n  /** if true, this channel is a group */\n  isGroup?: boolean;\n\n  /**\n   * Ids that each identify a `Person` that is part of this channel. Isn't always available\n   */\n  member_personIds?: Id[];\n\n  /**\n   * The below parameters should ONLY be used if the instance is a channel for a group.\n   * if this is a channel for a person, the interests should be stored on the person instead.\n   */\n\n  /** group-only: interests this group has */\n  interestSlugs?: Slug[];\n  interests?: Interest[];\n\n  /** group-only: most specific location of the people in this channel (if any) */\n  locationSlug?: Slug;\n  location?: Location;\n\n  /** group-only: preferred spoken language in this channel. `Postable` should be translated into this language */\n  language: Language;\n\n  /**\n   * Which account do you want to use to post something in this channel?\n   *\n   * TODO: maybe refactor this to use `Persona` and match the persona automatically based on interests, location, and language, then get the mediaCredential for the platform from the `Persona` that matches this channel the most...\n   */\n  mediaCredentialId?: Id;\n  mediaCredential?: MediaCredential;\n\n  /** when did you make your last post? */\n  myLastPostAt: number;\n}",
   "extensions": [
     "DefaultModelType"
   ],
@@ -75,16 +75,20 @@
         "description": {
           "type": "string"
         },
+        "personId": {
+          "$ref": "#/definitions/Id",
+          "description": "Person this channel is connected to\n\nCan be indexed once the `MediaChannel` is found, and it seems to be a person. Then the person neds to be created as well and the `.personId` needs to be attached to the `MediaChannel`"
+        },
         "isGroup": {
           "type": "boolean",
           "description": "if true, this channel is a group"
         },
-        "memberPersonIds": {
+        "member_personIds": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Id"
           },
-          "description": "ids that each identify a `Person` that is part of this channel. Isn't always available"
+          "description": "Ids that each identify a `Person` that is part of this channel. Isn't always available"
         },
         "interestSlugs": {
           "type": "array",
@@ -269,6 +273,14 @@
           }
         },
         {
+          "name": "personId",
+          "required": false,
+          "schema": {
+            "fullComment": "Person this channel is connected to\n\nCan be indexed once the `MediaChannel` is found, and it seems to be a person. Then the person neds to be created as well and the `.personId` needs to be attached to the `MediaChannel`\n\nShould be an unique string By default, you can use `generateId()` to generate a random string of 16 characters. If you wish, you can also use any other string, as long as you are sure it's unique.\n\n# Background Info\n\nazAZ09 characters are easy to copy and provide 62 characters. the goal of an id is to be unique.\n\nthe advantage of a random id compared to an numeric id starting with 1 with auto increment is that you can set them up decentralised.\n\nthe change of duplicate ids gets bigger once you make them shorter the change of finding an existing id gets bigger once you make them shorter\n\nAn Id with 12 characters would provide 3.22e21 combinations.\n\nWhat is the change of duplicate ids? This depends on the amount of identifyable items in the data What is the change of guessing an id? This depends on speed of a brute force attack and the amount of available datapoints. If you can guess 10000 times per second, you can make 864.000.000 guesses. A billion guesses on a dataset of a billion datapoints yields 3226 correct ids on average.\n\nWhy make an id short? I don't know if there's an important reason.\n\nAll in all, I think we should make ids 24 characters by default. This would make it very easy to store, yet, with more than E42 combinations, make it nearly impossible to get duplication or brute force hits.\n\nAn id would look like this:\n\n``` { \"id\": \"sk2EcW9AkZpksk2EcW9AkZpk\" } ```\n\nLooks good to me! Don't think about it and just keep it simple. We can always migrate later to a bigger amount, but I don't see good reason to keep it smaller than this.",
+            "type": "string"
+          }
+        },
+        {
           "name": "isGroup",
           "required": false,
           "schema": {
@@ -277,10 +289,10 @@
           }
         },
         {
-          "name": "memberPersonIds",
+          "name": "member_personIds",
           "required": false,
           "schema": {
-            "fullComment": "ids that each identify a `Person` that is part of this channel. Isn't always available",
+            "fullComment": "Ids that each identify a `Person` that is part of this channel. Isn't always available",
             "items": [
               {
                 "schema": {

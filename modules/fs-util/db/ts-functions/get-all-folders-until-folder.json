@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667378800060,
-  "updatedAt": 1667378800060,
+  "createdAt": 1670526986365,
+  "updatedAt": 1670526986365,
   "deletedAt": 0,
-  "createdFirstAt": 1667378800060,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670526986365,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getAllFoldersUntilFolder.ts",
   "commentsInside": [],
   "rawText": " (folderPath: string): string[] => {\n  const chunks = trimSlashes(folderPath).split(\"/\");\n  // chunks = ['a', 'random', 'path']\n\n  const result = chunks.map((_, index, array) => {\n    return \"/\" + array.slice(0, index + 1).join(\"/\");\n  });\n\n  return result;\n}",
@@ -76,5 +71,5 @@
     "linesPerFile": 16,
     "numberOfFiles": 1
   },
-  "id": "msjdwhwpxhhptewrggzplcis"
+  "id": "nsuxyakrfqbiteksoarzahpe"
 }

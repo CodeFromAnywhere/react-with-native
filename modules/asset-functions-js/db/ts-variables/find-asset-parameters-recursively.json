@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384143905,
-  "updatedAt": 1669384143905,
+  "createdAt": 1670526615537,
+  "updatedAt": 1670526615537,
   "deletedAt": 0,
-  "createdFirstAt": 1669384143905,
+  "createdFirstAt": 1670526615537,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  object: {\n    [key: string]: any;\n  },\n  stack?: string[]\n): AssetParameter[] => {\n  if (!object) return [];\n\n  const result = Object.keys(object)\n    .map((objectProperty) => {\n      const value = object[objectProperty];\n\n      const assetInputType = getAssetInputType(objectProperty);\n\n      if (assetInputType) {\n        return [\n          {\n            assetInputType,\n            parameterName: objectProperty,\n            stack,\n          },\n        ];\n      }\n\n      if (typeof value === \"object\") {\n        const newStack = stack ? [...stack, objectProperty] : [objectProperty];\n\n        return findAssetParametersRecursively(value, newStack);\n      }\n    })\n    .filter(notEmpty)\n    .flat();\n\n  return result;\n}",
   "description": "Recursively finds all asset parameters in an object (for example in a database model item)",
-  "id": "zmfvlhpuwgodvwzbkvupnmww"
+  "id": "qpfamhaxedzxsbwnsretskwa"
 }

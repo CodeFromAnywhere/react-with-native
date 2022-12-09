@@ -17,6 +17,18 @@ recursive-util (`OperationClassification` cjs)
 
 ## 📄 getMenuPagesObject (exported const)
 
+## nestedPathObjectToNestedMenuRecursive()
+
+Transform a nested path object into a nested menu (MenuType), recursively
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
 ## queryPathsArrayToNestedPathObject()
 
 Handy function to transform an array of `querypaths` into a nested menu, assuming you want to create a new sub-menu for every path
@@ -43,6 +55,11 @@ Output:
 | queryPaths | string[] |  |
 | **Output** | {  }   |    |
 
+
+
+## 📄 nestedPathObjectToNestedMenuRecursive (exported const)
+
+Transform a nested path object into a nested menu (MenuType), recursively
 
 
 ## 📄 queryPathsArrayToNestedPathObject (exported const)
@@ -82,18 +99,6 @@ The reduce is a bit vague, I need to  test this function further to make sure it
 
 
 
-## nestedPathObjectToNestedMenuRecursive()
-
-Transform a nested path object into a nested menu (MenuType), recursively
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-
 ## 📄 getKeysAtPathFromNestedObject (exported const)
 
 Gets all children keys of a nested object at a certain (nested) location in the nested object
@@ -101,11 +106,6 @@ Gets all children keys of a nested object at a certain (nested) location in the 
 `nestedObject` should extend the `NestedObject`.
 
 The reduce is a bit vague, I need to  test this function further to make sure it does exactly what I want.
-
-
-## 📄 nestedPathObjectToNestedMenuRecursive (exported const)
-
-Transform a nested path object into a nested menu (MenuType), recursively
 
 # Internal
 

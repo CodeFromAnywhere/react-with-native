@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200443725,
-  "updatedAt": 1669200443725,
+  "createdAt": 1670590028309,
+  "updatedAt": 1670590028309,
   "deletedAt": 0,
-  "createdFirstAt": 1669200443725,
+  "createdFirstAt": 1670590028309,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
@@ -50,6 +50,14 @@
                   "name": "name",
                   "required": true,
                   "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "deploymentHostname",
+                  "required": false,
+                  "schema": {
+                    "fullComment": "Used to determine which call to actions are relevant (must be hostname without schema (name + tld))",
                     "type": "string"
                   }
                 },
@@ -436,6 +444,13 @@
                         }
                       },
                       {
+                        "name": "keepCodestories",
+                        "required": false,
+                        "schema": {
+                          "type": "boolean"
+                        }
+                      },
+                      {
                         "name": "informationStrategy",
                         "required": false,
                         "schema": {
@@ -798,6 +813,23 @@
                         }
                       },
                       {
+                        "name": "imagesProjectRelativeFolderPaths",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "paths to image folders that should randomly be used as default headers or footers in the generated markdown.",
+                          "items": [
+                            {
+                              "schema": {
+                                "fullComment": "later this could be known by the frontend so it will render a ui to select a folder\n\nWe need to figure out how we can know all type types in between when getting the type definition schema, not only the final type. If I'm lucky there is a way to find it as a #ref in a consistent way.",
+                                "type": "string"
+                              },
+                              "name": "ProjectRelativeFolderPath"
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      },
+                      {
                         "name": "readmeRelativeFilePath",
                         "required": false,
                         "schema": {
@@ -809,7 +841,7 @@
                         "name": "foldersFromRepo",
                         "required": false,
                         "schema": {
-                          "fullComment": "if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated\n\ncan be handy if you're working with someone else...",
+                          "fullComment": "if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated\n\ncan be handy if you're working with someone else...\n\nShould later be deprecated and p2p operation-sync should be used",
                           "items": [
                             {
                               "schema": {
@@ -890,5 +922,5 @@
     "linesPerFile": 56,
     "numberOfFiles": 1
   },
-  "id": "fcqlibtzkpsdiznbafkukeot"
+  "id": "huyrgssyzqanjsmyimorlbju"
 }

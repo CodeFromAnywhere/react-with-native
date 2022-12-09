@@ -1,0 +1,140 @@
+{
+  "createdAt": 1670218577819,
+  "updatedAt": 1670218577819,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218577819,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/validateInput.ts",
+  "commentsInside": [],
+  "rawText": " <TFunctionName extends keyof typeof sdk>(\n  functionName: TFunctionName,\n  parameters: undefined | any[],\n  tsFunction: TsFunction\n): ValidationResult => {\n  const invalidParameters =\n    tsFunction.parameters\n      ?.map((parameter, index) => {\n        if (!parameter.schema) return;\n\n        // NB: we have a problem now because of the references missing. Recursively including all references every time can be hard though, that is another indexation step probably... May also become quite slow given the side of these schemas. We can either try and create a mapped validation object that includes the schemas for every function or we can try to use typescript-json instead, that may be easier, and better since we already need that for the backend as well. The last option would be to validate it ourselves using our own SimplifiedSchema. A validator for that would be useful anyway because it can also be used at the frontend with SimplifiedSchemaForm.\n        // const validate = ajv.compile(parameter.schema);\n        // const isValid = validate(value);\n\n        const value = parameters?.[index];\n\n        const isValid = true;\n        if (isValid) return;\n\n        return { isValid, parameter, value };\n      })\n      .filter(notEmpty) || [];\n\n  const isValid = invalidParameters.length === 0;\n  if (!isValid) {\n    log(\n      `According to the schema, you have given invalid arguments to the function`,\n      { type: \"warning\" }\n    );\n    console.dir({ invalidParameters }, { depth: 99 });\n  }\n\n  return { isValid };\n}",
+  "name": "validateInput",
+  "slug": "validate-input",
+  "parameters": [],
+  "description": "wrapper function that takes that data but also the interface of the function and validates the parameters before it executes the function.",
+  "returnType": {
+    "rawType": "ValidationResult",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "isValid": {
+          "type": "boolean"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fieldStack": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "allOf": [
+                    {
+                      "transform": [
+                        "trim"
+                      ]
+                    },
+                    {
+                      "minLength": 1
+                    }
+                  ]
+                }
+              },
+              "error": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              }
+            },
+            "required": [
+              "fieldStack",
+              "error"
+            ]
+          }
+        }
+      },
+      "required": [
+        "isValid"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "isValid",
+          "required": true,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "errors",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "fieldStack",
+                      "required": true,
+                      "schema": {
+                        "items": [
+                          {
+                            "schema": {
+                              "type": "string"
+                            },
+                            "name": null
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "name": "error",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 1667,
+    "lines": 34,
+    "bytes": 1667,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 49,
+    "linesPerFile": 34,
+    "numberOfFiles": 1
+  },
+  "id": "lljklopxzpmzmqpbctrorxiu"
+}

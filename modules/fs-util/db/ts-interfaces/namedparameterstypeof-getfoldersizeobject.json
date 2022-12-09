@@ -1,0 +1,71 @@
+{
+  "createdAt": 1670526994009,
+  "updatedAt": 1670526994009,
+  "deletedAt": 0,
+  "createdFirstAt": 1670526994009,
+  "id": "namedparameterstypeof-getfoldersizeobject",
+  "name": "NamedParameters<typeof getFolderSizeObject>",
+  "slug": "namedparameterstypeof-getfoldersizeobject",
+  "operationRelativeTypescriptFilePath": "src/getFolderSizeObject.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "absoluteFolderPath": {
+          "type": "string"
+        },
+        "minimumReportSizeMb": {
+          "type": "number",
+          "description": "Folders smaller than this won't provide details"
+        },
+        "ignoreGenerated": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "absoluteFolderPath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "absoluteFolderPath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "minimumReportSizeMb",
+          "required": false,
+          "schema": {
+            "fullComment": "Folders smaller than this won't provide details",
+            "type": "number"
+          }
+        },
+        {
+          "name": "ignoreGenerated",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getFolderSizeObject>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669276144640,
-  "updatedAt": 1669276144640,
+  "createdAt": 1670527324105,
+  "updatedAt": 1670527324105,
   "deletedAt": 0,
-  "createdFirstAt": 1669276144640,
+  "createdFirstAt": 1670527324105,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  functionName: string | undefined\n): Promise<FunctionExecution[]> => {\n  if (!functionName) return [];\n  const functionExecutions = (\n    await db.get(\"FunctionExecution\", {\n      // TODO: ensure executiosn are stored in the right place before I add this back\n      //  operationName: tsFunction.operationName,\n    })\n  )\n    .filter((x) => x.functionName === functionName)\n    .map(omitUndefinedValues);\n\n  return functionExecutions;\n}",
   "description": "",
-  "id": "tovznkzubytzbswdaoginrcn"
+  "id": "uknkzqiaznpzoqvpetcmkxwq"
 }

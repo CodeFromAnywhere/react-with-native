@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670063312752,
+  "updatedAt": 1670063312752,
+  "deletedAt": 0,
+  "createdFirstAt": 1670063312752,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "compressImage",
+  "slug": "compress-image",
+  "operationRelativeTypescriptFilePath": "src/compressImage.ts",
+  "type": {
+    "rawType": "(absoluteSourceImagePath: string, config?: { sizeWidthPx?: number | undefined; aspectRatio?: { x: number; y: number; } | undefined; quality?: number | undefined; targetFormat?: \"webp\" | \"png\" | \"mp4\" | undefined; keepOriginal?: boolean | undefined; isDebug?: boolean | undefined; } | undefined) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  absoluteSourceImagePath: string,\n  config?: {\n    sizeWidthPx?: number;\n    aspectRatio?: { x: number; y: number };\n    quality?: number;\n    targetFormat?: \"webp\" | \"png\" | \"mp4\";\n    keepOriginal?: boolean;\n    isDebug?: boolean;\n  }\n) => {\n  let result = ffmpeg({ source: absoluteSourceImagePath });\n  if (config?.quality) {\n    result = result.addOption(`-quality ${config?.quality || 100}`);\n  }\n\n  if (config?.sizeWidthPx) {\n    result = result.size(`${config?.sizeWidthPx}x?`);\n  }\n\n  if (config?.aspectRatio) {\n    result = result.aspect(`${config?.aspectRatio.x}:${config.aspectRatio.y}`);\n  }\n\n  if (config?.targetFormat) {\n    result = result.toFormat(config?.targetFormat);\n  }\n\n  const parsedPath = path.parse(absoluteSourceImagePath);\n\n  // ffmpeg can't edit in-place\n  const destinationPath = getFirstAvailableFilename(\n    path.join(\n      parsedPath.dir,\n      `${parsedPath.name}.converted${\n        config?.targetFormat ? `.${config?.targetFormat}` : parsedPath.ext\n      }`\n    )\n  );\n\n  result = result.save(destinationPath);\n\n  let totalTime = 1;\n\n  const finalPath = await new Promise<string | undefined>((resolve) => {\n    result\n      .on(\"codecData\", (data) => {\n        // HERE YOU GET THE TOTAL TIME\n        totalTime = parseInt(data.duration.replace(/:/g, \"\"));\n        console.log(\"Downloading Start...\");\n      })\n      .on(\"progress\", (progress) => {\n        // HERE IS THE CURRENT TIME\n        const time = parseInt(progress.timemark.replace(/:/g, \"\"));\n        // AND HERE IS THE CALCULATION\n        const percent = Math.floor((time / totalTime) * 100);\n        if (config?.isDebug) {\n          console.log(`${percent}%`);\n        }\n      })\n      .on(\"end\", async () => {\n        if (!config?.keepOriginal) {\n          // new file is created, old one is not overwritten, and we need to remove the old\n          // NB: don't wait for it!\n          await fs.rm(absoluteSourceImagePath);\n        }\n\n        const finalDestinationPath = replaceLastOccurence(\n          destinationPath,\n          \".converted\",\n          \"\"\n        );\n\n        if (fs.existsSync(finalDestinationPath)) {\n          resolve(destinationPath);\n        }\n\n        await fs.rename(destinationPath, finalDestinationPath);\n        resolve(finalDestinationPath);\n      })\n      .on(\"error\", (e: Error) => {\n        console.log({ e });\n        resolve(undefined);\n      });\n  });\n\n  return finalPath;\n}",
+  "description": "",
+  "id": "elacyfxydyzblfclzjhqsplf"
+}

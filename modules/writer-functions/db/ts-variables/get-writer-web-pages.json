@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385033733,
-  "updatedAt": 1669385033733,
+  "createdAt": 1670218853237,
+  "updatedAt": 1670218853237,
   "deletedAt": 0,
-  "createdFirstAt": 1669385033733,
+  "createdFirstAt": 1670218853237,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async () => {\n  const projectRelativePaths = (await getProjectRelativePaths()) || [];\n\n  console.log({ results: projectRelativePaths.length });\n  const writerWebPages: WriterWebPage[] = projectRelativePaths.map(\n    (projectRelativeFilePath) => {\n      const writerWebPage: WriterWebPage = {\n        pageData: { projectRelativeFilePath },\n        queryPath: projectRelativeFilePath,\n      };\n      return writerWebPage;\n    }\n  );\n\n  return writerWebPages;\n}",
+  "value": "async () => {\n  const projectRelativePaths = (await getProjectRelativePaths()) || [];\n\n  const writerWebPages: WriterWebPage[] = projectRelativePaths.map(\n    (projectRelativeFilePath) => {\n      const writerWebPage: WriterWebPage = {\n        pageData: { projectRelativeFilePath },\n        queryPath: projectRelativeFilePath,\n      };\n      return writerWebPage;\n    }\n  );\n\n  return writerWebPages;\n}",
   "description": "",
-  "id": "rlcjqwjnsjprvwkahnsopoxc"
+  "id": "efiytsdfuwmvnpoaagyfbcht"
 }

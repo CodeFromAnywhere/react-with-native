@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055045365,
-  "updatedAt": 1669055045365,
+  "createdAt": 1670589845763,
+  "updatedAt": 1670589845763,
   "deletedAt": 0,
-  "createdFirstAt": 1669055045365,
+  "createdFirstAt": 1670589845763,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<T>(\n  fullSourcePath: string,\n  /**\n   * match must be truthy in order to match, and falsy if it's not a match\n   *\n   * the result of the matchFunction will be returned at the end of the recursion\n   */\n  matchFunction: (folderPath: string) => T\n): undefined | { folderPath: string; matchResult: T } => {\n  if (fullSourcePath === undefined) {\n    console.log(\"WTF\");\n    process.exit(1);\n  }\n  // Basecase to make sure that the provided sourcepath is valid\n  if (!fs.existsSync(fullSourcePath)) {\n    log(`full source path invalid ${fullSourcePath}`, { type: \"debug\" });\n    return;\n  }\n\n  // Basecase to make sure that it doesn't go on infinitely, even if package.json doesn't exist anywhere\n  if (fullSourcePath === \"/\") {\n    log(`folder was not found, went all the way to root '/'`, {\n      type: \"debug\",\n    });\n    return;\n  }\n\n  const matchResult = matchFunction(fullSourcePath);\n\n  if (matchResult) return { folderPath: fullSourcePath, matchResult };\n\n  return findFolderWhereMatch(path.join(fullSourcePath, \"..\"), matchFunction);\n}",
   "description": "recursive. goes up a folder until it finds a package.json",
-  "id": "rsaympiynbedgeclcdmathix"
+  "id": "hcxldrqlupeojjunqqsbnbjg"
 }

@@ -1,0 +1,143 @@
+{
+  "createdAt": 1670528941839,
+  "updatedAt": 1670528941839,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528941839,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/crud/sortToItem.ts",
+  "commentsInside": [],
+  "rawText": " (sort: DatasetSort): Item<DatasetSort> => {\n  return {\n    label: `${sort.sortDirection === \"ascending\" ? \"↑\" : \"↓\"} ${humanCase(\n      sort.objectParameterKey\n    )}`,\n    value: `${sort.objectParameterKey},${sort.sortDirection}`,\n    data: sort,\n  };\n}",
+  "name": "sortToItem",
+  "slug": "sort-to-item",
+  "parameters": [
+    {
+      "name": "sort",
+      "schema": {
+        "$ref": "#/definitions/DatasetSort"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Sort by comparing the two values using the `Array.sort` method and Greater than and Less than operators.",
+        "properties": [
+          {
+            "name": "objectParameterKey",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortDirection",
+            "required": false,
+            "schema": {
+              "enum": [
+                "ascending",
+                "descending"
+              ],
+              "fullComment": "sort normally or in reverse order",
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortFunctionName",
+            "required": false,
+            "schema": {
+              "fullComment": "TODO:",
+              "todo": "",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/gui/react-with-native/react-with-native-select/build/types\").Item<import(\"/Users/king/King/operations/tools/types/code-types/build/Dataset\").DatasetSort>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "label": {
+          "type": "string",
+          "allOf": [
+            {
+              "transform": [
+                "trim"
+              ]
+            },
+            {
+              "minLength": 1
+            }
+          ]
+        },
+        "data": {}
+      },
+      "required": [
+        "value",
+        "label",
+        "data"
+      ],
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "value",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "label",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "data",
+          "required": true,
+          "schema": {
+            "properties": [],
+            "type": "object"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 255,
+    "lines": 9,
+    "bytes": 259,
+    "bytesPerCharacter": 1.0156862745098039,
+    "charactersPerLine": 28,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "edqfcwcnikpwuudxgkxzhifd"
+}

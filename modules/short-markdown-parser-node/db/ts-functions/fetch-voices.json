@@ -1,0 +1,89 @@
+{
+  "createdAt": 1670216325148,
+  "updatedAt": 1670216325148,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216325148,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/fetchVoices.ts",
+  "commentsInside": [],
+  "rawText": " async (dialogue: DialogueSentence[]) => {\n  const voicesWithPath = dialogue.map((sentence) => {\n    if (!sentence.uuid) return sentence;\n    return { ...sentence, remotePath: uberduckGetPath(sentence.uuid) };\n  });\n\n  await Promise.all(\n    voicesWithPath.map((voice) => {\n      if (!voice.remotePath) return;\n      const storePath = path.join(__dirname, \"..\", \"data\", `${voice.uuid}.wav`);\n      const file = fs.createWriteStream(storePath);\n      const request = https.get(voice.remotePath, function (response) {\n        response.pipe(file);\n\n        // after download completed close filestream\n        file.on(\"finish\", () => {\n          file.close();\n          console.log(\"Download Completed\", voice.uuid);\n        });\n      });\n    })\n  );\n\n  console.log(\"ALL DONE\");\n}",
+  "name": "fetchVoices",
+  "slug": "fetch-voices",
+  "parameters": [
+    {
+      "name": "dialogue",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/DialogueSentence"
+        }
+      },
+      "simplifiedSchema": {
+        "items": [
+          {
+            "schema": {
+              "fullComment": "",
+              "properties": [
+                {
+                  "name": "remotePath",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "uuid",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "voice",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "sentence",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            },
+            "name": "DialogueSentence"
+          }
+        ],
+        "type": "array"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 777,
+    "lines": 25,
+    "bytes": 777,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 25,
+    "numberOfFiles": 1
+  },
+  "id": "hcjukwajkmoujgagkbrdjgvk"
+}

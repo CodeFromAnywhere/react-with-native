@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385039989,
-  "updatedAt": 1669385039989,
+  "createdAt": 1670218858793,
+  "updatedAt": 1670218858793,
   "deletedAt": 0,
-  "createdFirstAt": 1669385039989,
+  "createdFirstAt": 1670218858793,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  projectRelativeFilePath: string\n): Promise<{ isSuccessful: boolean; message?: string }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root found\" };\n  }\n\n  const absolutePath = path.join(projectRoot, projectRelativeFilePath);\n\n  if (fs.existsSync(absolutePath)) {\n    return { isSuccessful: false, message: \"This file already exists\" };\n  }\n\n  const folderPath = path.parse(absolutePath).dir;\n\n  if (!fs.existsSync(folderPath)) {\n    return { isSuccessful: false, message: \"Folder doesn't exist\" };\n  }\n\n  await fs.writeFile(absolutePath, \"\", { encoding: \"utf8\" });\n\n  return { isSuccessful: true };\n}",
   "description": "",
-  "id": "tdjbyjqifklnrjyvmkmggfei"
+  "id": "bmgigetpbwywckuxajkxtxvv"
 }

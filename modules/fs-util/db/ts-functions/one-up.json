@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667378801227,
-  "updatedAt": 1667378801227,
+  "createdAt": 1670526989497,
+  "updatedAt": 1670526989497,
   "deletedAt": 0,
-  "createdFirstAt": 1667378801227,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670526989497,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getFirstAvailableFilename.ts",
   "commentsInside": [],
   "rawText": " (filename: string): string => {\n  const lastNumber = filename.match(/\\d+$/)?.[0];\n  const newNumber = lastNumber ? String(Number(lastNumber) + 1) : \"1\";\n  return `${filename}${newNumber}`;\n}",
@@ -52,5 +47,5 @@
     "linesPerFile": 11,
     "numberOfFiles": 1
   },
-  "id": "dxhrrccwanqsjpzqztihdwgv"
+  "id": "rdphgwhofowgrtmushmsphvb"
 }

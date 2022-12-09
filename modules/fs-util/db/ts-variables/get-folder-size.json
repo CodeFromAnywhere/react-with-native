@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670526992959,
+  "updatedAt": 1670526992959,
+  "deletedAt": 0,
+  "createdFirstAt": 1670526992959,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "getFolderSize",
+  "slug": "get-folder-size",
+  "operationRelativeTypescriptFilePath": "src/getFolderSize.ts",
+  "type": {
+    "rawType": "(absoluteFolderPath: string) => Promise<number>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (absoluteFolderPath: string): Promise<number> => {\n  const files = await fs.readdir(absoluteFolderPath, { withFileTypes: true });\n\n  const paths = files.map(async (file) => {\n    const newPath = path.join(absoluteFolderPath, file.name);\n\n    if (file.isDirectory()) return await getFolderSize(newPath);\n\n    if (file.isFile()) {\n      const { size } = await fs.stat(newPath);\n\n      return size;\n    }\n\n    return 0;\n  });\n\n  return (\n    (await Promise.all(paths))\n      //  NB: lol!\n      .flat(Infinity)\n      .reduce((i, size) => i + size, 0)\n  );\n}",
+  "description": "",
+  "id": "rhfsnaegsjcczgmrnqrwnnxa"
+}

@@ -9,6 +9,14 @@ export declare const getMarkdownReaderPages: (config: {
      */
     basePaths: string[];
     /**
+     * If given, uses a basePath relative queryPath and prefixes this before it.
+     *
+     * if there's a prefix, don't use the basePath as prefix, but use that prefix instead.
+     *
+     * Should end with slash (/) in order for it to be folder
+     */
+    queryPathCustomPrefix?: ((basePath?: string) => string | undefined) | undefined;
+    /**
      * if set, maps query path further
      */
     mapQueryPath?: ((queryPath: string) => string) | undefined;

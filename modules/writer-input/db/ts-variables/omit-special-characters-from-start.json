@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385145519,
-  "updatedAt": 1669385145519,
+  "createdAt": 1670527787388,
+  "updatedAt": 1670527787388,
   "deletedAt": 0,
-  "createdFirstAt": 1669385145519,
+  "createdFirstAt": 1670527787388,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(word?: string) => {\n  if (word === undefined) return;\n\n  const finalWord = specialCharacters.reduce(\n    (word, character) => {\n      // NB: if a word was already trimmed from a special character, the other special characters don't need to be trimmed\n      if (word.hasChanged) return word;\n      const newWord = trimLeft(word.word, character);\n      return { word: newWord, hasChanged: word.word !== newWord };\n    },\n    { word, hasChanged: false }\n  );\n\n  return finalWord.word;\n}",
   "description": "Omits all special characters from the start of a word for the first special character it finds. The other special characters found after that won't be trimmed.",
-  "id": "gategecargrmiaskedvuamkj"
+  "id": "jdmkwaeypdxgdpdovevfjnek"
 }

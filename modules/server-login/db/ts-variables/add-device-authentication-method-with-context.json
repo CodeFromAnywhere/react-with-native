@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385316627,
-  "updatedAt": 1669385316627,
+  "createdAt": 1670528464391,
+  "updatedAt": 1670528464391,
   "deletedAt": 0,
-  "createdFirstAt": 1669385316627,
+  "createdFirstAt": 1670528464391,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (\n  functionContext: FunctionContext,\n  method: AuthenticationMethodMethod,\n  handle: string,\n  credential?: string\n): Promise<{\n  isSuccessful?: boolean;\n  message?: string;\n  functionContext?: FunctionContext;\n  authenticationMethod?: AuthenticationMethod;\n}> => {\n  const { isSuccessful, message, authenticationMethod } =\n    await addAuthenticationMethod(method, handle, false, credential);\n  if (!isSuccessful || !authenticationMethod) {\n    return { isSuccessful, message };\n  }\n\n  const newAuthenticationMethods = functionContext.device.authenticationMethods\n    .filter((x) => x.method !== authenticationMethod.method)\n    .concat(authenticationMethod);\n\n  const updateResult = await db.update(\n    \"Device\",\n    (item) => item.authToken === functionContext.authToken,\n    (old) => {\n      return {\n        ...old,\n        authenticationMethods: newAuthenticationMethods,\n      };\n    }\n  );\n\n  const newFunctionContext = mergeNestedObject(functionContext, {\n    device: {\n      authenticationMethods: newAuthenticationMethods,\n    },\n  });\n\n  return {\n    isSuccessful: updateResult.isSuccesful,\n    message: \"Method added\",\n    functionContext: newFunctionContext,\n    authenticationMethod,\n  };\n}",
+  "value": "async (\n  functionContext: FunctionContext,\n  method: AuthenticationMethodMethod,\n  handle: string,\n  credential?: string\n): Promise<{\n  isSuccessful?: boolean;\n  message?: string;\n  functionContext?: FunctionContext;\n  authenticationMethod?: AuthenticationMethod;\n}> => {\n  const { isSuccessful, message, authenticationMethod } =\n    await addAuthenticationMethod(method, handle, false, credential);\n  if (!isSuccessful || !authenticationMethod) {\n    return { isSuccessful, message };\n  }\n  // removes this method if you was alrady trying the same method (basically overwrite)\n  const cleanAuthenticationMethods =\n    functionContext.device.authenticationMethods?.filter(\n      (x) => x.method !== authenticationMethod.method\n    ) || [];\n\n  // then adds the new one\n  const newAuthenticationMethods =\n    cleanAuthenticationMethods.concat(authenticationMethod);\n\n  const updateResult = await db.update(\n    \"Device\",\n    (item) => item.authToken === functionContext.authToken,\n    (old) => {\n      return {\n        ...old,\n        authenticationMethods: newAuthenticationMethods,\n      };\n    }\n  );\n\n  const newFunctionContext = mergeNestedObject(functionContext, {\n    device: {\n      authenticationMethods: newAuthenticationMethods,\n    },\n  });\n\n  return {\n    isSuccessful: updateResult.isSuccesful,\n    message: \"Method added\",\n    functionContext: newFunctionContext,\n    authenticationMethod,\n  };\n}",
   "description": "returns new function context with added authenticationmethod",
-  "id": "qocveuvoozmnysenohavtwnu"
+  "id": "iihsccafnkstmdwmhhhseejj"
 }

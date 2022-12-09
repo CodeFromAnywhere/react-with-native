@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528893267,
+  "updatedAt": 1670528893267,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528893267,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "UpsertForm",
+  "slug": "upsert-form",
+  "operationRelativeTypescriptFilePath": "src/UpsertForm.tsx",
+  "type": {
+    "rawType": "(props: { simplifiedSchema: import(\"/Users/king/King/operations/tools/types/code-types/build/SimplifiedSchema\").SimplifiedSchema; instance: any; referencableModelNames?: string[] | undefined; modelName: string; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  /**\n   * the schema for the model we want to update/create\n   */\n  simplifiedSchema: SimplifiedSchema;\n  /**\n   * an instance, if it's an update form\n   */\n  instance: any;\n  /**\n   * NB: this thing will make hooks appear, so it must be constant!\n   */\n  referencableModelNames?: string[];\n  /**\n   * Provide this\n   */\n  modelName: string;\n}) => {\n  const { instance, simplifiedSchema, referencableModelNames, modelName } =\n    props;\n  const router = useRouter();\n  const alert = useAlert();\n  const [debug, setDebug] = useState(false);\n  const [id] = useState<string>(generateId());\n  const [loading, setLoading] = useState(false);\n  const [body, setBody] = useState<any>(instance);\n  const [result, setResult] = useState<any>();\n  const modelFromUrl = useModelFromUrl();\n  const metadataQuery = queries.useGetDbModelMetadata(modelFromUrl);\n  const model = useInfiniteGetDbModel();\n  const projectRelativeStorageFilePath =\n    metadataQuery.data?.result?.projectRelativeStorageFilePath;\n\n  // NB: all items that this model has can be referenced to in other forms also need to refresh\n\n  const getReferencableModelDataQuery = queries.useGetReferencableModelData(\n    modelFromUrl as DbModelEnum\n  );\n\n  const referencableModelData = useReferencableModelData(simplifiedSchema);\n\n  const parameters: RenderableFunctionParameter[] = [\n    {\n      name: \"\",\n      required: true,\n      simplifiedSchema,\n      renderButtons: () => <Span />,\n      isDbModel: true,\n    },\n  ];\n  const values = [body];\n\n  const onSubmitForm = () => {\n    if (!modelFromUrl) return;\n\n    setLoading(true);\n\n    upsertDbModel(modelFromUrl as any, body)\n      .then(async (result) => {\n        if (!result.result?.isSuccesful) {\n          // If the upsert fails for some reason, this should be made clear\n          alert?.(\"Error\", result.result?.message || result.message);\n          setLoading(false);\n        } else {\n          // NB: we are not waiting for this, we're going back immediately, assuming that there will be loading indicators\n          getReferencableModelDataQuery.refetch();\n          model.refetch();\n\n          setLoading(false);\n          router.back();\n        }\n      })\n      .catch((e) => {\n        setLoading(false);\n        setResult(e);\n      });\n  };\n\n  const explainButton = {\n    onClick: () => {\n      setDebug(!debug);\n    },\n    title: \"Explain\",\n    emoji: \"🧐\",\n  };\n\n  const buttons: LabeledButtonType[] = [explainButton];\n\n  // console.log({ referencableModelData });\n  return (\n    <Div>\n      <IndexInstanceContainer\n        buttons={buttons}\n        title={humanCase(modelFromUrl || \"\")}\n      >\n        {simplifiedSchema ? (\n          <Div>\n            <FormContainer onSubmit={onSubmitForm} isLoading={loading}>\n              <SimplifiedSchemaForm\n                modelName={modelName}\n                itemNameOrId={body?.name || body?.id}\n                parameterNameStack={undefined}\n                projectRelativeStorageFilePath={projectRelativeStorageFilePath}\n                id={id}\n                parameters={parameters}\n                values={values}\n                onChange={(values) => setBody(values[0])}\n                referencableModelData={referencableModelData}\n                isDebug={debug}\n              />\n            </FormContainer>\n            <Div className=\"mt-6\">\n              <ClickableIcon emoji=\"❌ Go back\" onClick={() => router.back()} />\n            </Div>\n            {result ? <P>{JSON.stringify(result)}</P> : null}\n            {debug ? (\n              <SimplifiedSchemaFormDebug\n                parameters={parameters}\n                values={values}\n              />\n            ) : null}\n          </Div>\n        ) : null}\n      </IndexInstanceContainer>\n    </Div>\n  );\n}",
+  "description": "TODO: Provide all the fetched data with `hasMore` and `fetchAll` to the `SimplifiedJsonForm`",
+  "id": "isgwaabkpvlbdqqrdpcknptc"
+}

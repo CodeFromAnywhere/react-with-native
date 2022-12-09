@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150643213,
-  "updatedAt": 1668150643213,
+  "createdAt": 1670590326140,
+  "updatedAt": 1670590326140,
   "deletedAt": 0,
-  "createdFirstAt": 1668150643213,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670590326140,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util.ts",
   "commentsInside": [],
   "rawText": " (\n  symbol: Symbol,\n  sourceFile: SourceFile,\n  debug?: boolean\n): TypeSpecifier | undefined => {\n  const exportSpecifierNames = getExportSpecifierNames(symbol);\n\n  if (debug) console.log(exportSpecifierNames);\n\n  if (exportSpecifierNames.length > 0) {\n    // get the ImportSpecifier of this ExportSpecifier, and if one exists, recurse this function on it.\n\n    const importSpecifiers = getImportSpecifiersWithNames(\n      sourceFile,\n      exportSpecifierNames\n    );\n\n    if (importSpecifiers.length > 1) {\n      // NB: warn if there is more than one as that would be strange\n\n      log(\n        `More than one importsSpecifiers with that name: ${exportSpecifierNames.join(\n          \",\"\n        )} (imports: ${importSpecifiers\n          .map((x) => x.getName())\n          .join(\",\")})... file: ${sourceFile.getFilePath()}`,\n        {\n          type: \"warning\",\n        }\n      );\n    }\n\n    if (importSpecifiers.length > 0) {\n      return getTypeFromImportSpecifierRecursive(importSpecifiers[0], debug);\n    }\n\n    /* REmoved this.... seems that this will make it never do the default one\n      else {\n        if (debug) {\n          console.log(\n            \"Weird, we couldn't find the importspecifier for exportSpecifiers\"\n          );\n        }\n        return { type: undefined };\n      }\n      */\n  }\n\n  return getDefaultSymbolType(symbol, debug);\n}",
@@ -83,5 +78,5 @@
     "linesPerFile": 52,
     "numberOfFiles": 1
   },
-  "id": "npqmyxredwalevmpfxwcuvhn"
+  "id": "csdnifyfafzhcxxbehxsxlba"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670218559565,
+  "updatedAt": 1670218559565,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218559565,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDbModelMetadata",
+  "slug": "get-db-model-metadata",
+  "operationRelativeTypescriptFilePath": "src/getDbModelMetadata.ts",
+  "type": {
+    "rawType": "(modelName: string | undefined) => Promise<{ tsInterface?: import(\"/Users/king/King/operations/tools/types/code-types/build/TsInterface\").TsInterface | undefined; datasets?: import(\"/Users/king/King/operations/tools/types/code-types/build/Dataset\").Dataset[] | undefined; projectRelativeStorageFilePath?: string | undefined; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  modelName: string | undefined\n): Promise<{\n  tsInterface?: TsInterface;\n  datasets?: Dataset[];\n  projectRelativeStorageFilePath?: string;\n}> => {\n  if (!modelName) return {};\n  if (!([...dbModelKeys] as string[]).includes(modelName)) {\n    return {};\n  }\n\n  const realModelName = modelName as DbModelEnum;\n\n  const mergedConfig: MergedQueryConfig = getMergedQueryConfig(realModelName);\n  const projectRelativeStorageFilePath = (\n    await getDatabaseFiles(realModelName, mergedConfig)\n  ).map((x) => x.projectRelativePath)[0];\n\n  const indexPath = sdkInterfacePaths[realModelName];\n  const tsInterface =\n    (await readProjectRelativeJsonFile<TsInterface>(indexPath)) || undefined;\n\n  const allDatasets = await db.get(\"Dataset\");\n  const datasets = allDatasets.filter((x) => x.modelName === realModelName);\n\n  return { tsInterface, datasets, projectRelativeStorageFilePath };\n}",
+  "description": "",
+  "id": "rjfkavukeipmqbuphdtisrqz"
+}

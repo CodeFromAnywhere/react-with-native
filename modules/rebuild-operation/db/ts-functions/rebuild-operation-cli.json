@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669055703625,
-  "updatedAt": 1669055703625,
+  "createdAt": 1670590373458,
+  "updatedAt": 1670590373458,
   "deletedAt": 0,
-  "createdFirstAt": 1669055703625,
+  "createdFirstAt": 1670590373458,
   "isApiExposed": true,
   "isExported": false,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/cli/rebuildOperation.cli.ts",
   "commentsInside": [],
-  "rawText": " async () => {\n  const argumentsArray = process.argv.slice(2);\n\n  if (argumentsArray.length > 0) {\n    oneByOne(argumentsArray, async (operationNameOrRelativePath) => {\n      let operationBasePath: string | undefined;\n      let operationManualProjectRoot: string | undefined;\n      if (operationNameOrRelativePath.startsWith(\".\")) {\n        operationBasePath = path.join(\n          process.cwd(),\n          operationNameOrRelativePath\n        );\n\n        operationManualProjectRoot = getProjectRoot(operationBasePath);\n      } else {\n        operationBasePath = await getOperationPath(operationNameOrRelativePath);\n      }\n\n      if (!operationBasePath) {\n        log(\"couldn't find that operation\");\n        return;\n      }\n\n      // console.log({ operationNames, operationName });\n\n      const x = await rebuildOperation({\n        operationBasePath,\n        operationManualProjectRoot,\n        force: true,\n        debug: true,\n        noExit: true,\n      });\n    });\n  }\n}",
+  "rawText": " async () => {\n  const argumentsArray = process.argv.slice(2);\n  const currentProjectRoot = getProjectRoot();\n\n  if (argumentsArray.length > 0) {\n    oneByOne(argumentsArray, async (operationNameOrRelativePath) => {\n      let operationBasePath: string | undefined;\n      let realProjectRoot: string | undefined;\n      if (operationNameOrRelativePath.startsWith(\".\")) {\n        operationBasePath = path.join(\n          process.cwd(),\n          operationNameOrRelativePath\n        );\n\n        realProjectRoot = getProjectRoot(operationBasePath);\n      } else {\n        realProjectRoot = await getOperationPath(operationNameOrRelativePath);\n      }\n\n      if (!operationBasePath) {\n        log(\"couldn't find that operation\");\n        return;\n      }\n\n      // console.log({ operationNames, operationName });\n\n      const x = await rebuildOperation({\n        operationBasePath,\n        operationManualProjectRoot:\n          realProjectRoot !== currentProjectRoot ? realProjectRoot : undefined,\n        force: true,\n        debug: true,\n        noExit: true,\n      });\n    });\n  }\n}",
   "name": "rebuildOperationCli",
   "slug": "rebuild-operation-cli",
   "parameters": [],
@@ -24,13 +24,13 @@
   },
   "maxIndentationDepth": 5,
   "size": {
-    "characters": 1406,
-    "lines": 45,
-    "bytes": 1406,
+    "characters": 1509,
+    "lines": 47,
+    "bytes": 1509,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 31,
-    "linesPerFile": 45,
+    "charactersPerLine": 32,
+    "linesPerFile": 47,
     "numberOfFiles": 1
   },
-  "id": "anslppanxgnmddsdvclpykxz"
+  "id": "slppxxpkopfcuodcobhcjqoo"
 }

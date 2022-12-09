@@ -1,6 +1,6 @@
 import { WordPriority } from "language-types";
 import { Language } from "model-types";
-export declare type WriterViewEnum = "config" | "view" | "edit" | "presentation" | "frontmatter";
+export declare type WriterViewEnum = "config" | "view" | "edit" | "presentation" | "frontmatter" | "todoOffers" | "postable" | "shortStudio" | "prompts" | "prompt-results";
 export declare type SubtextRelatedThing = {
     type: "image" | "asset" | "pages" | "data" | "code";
     quantity: "single" | "short" | "all";

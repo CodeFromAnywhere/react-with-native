@@ -1,0 +1,517 @@
+{
+  "createdAt": 1669962262742,
+  "updatedAt": 1669962262742,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962262742,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/markdownParseToShortMarkdown.ts",
+  "commentsInside": [],
+  "rawText": " (\n  markdownParse: MarkdownParse\n): ShortMarkdown | undefined => {\n  if (!markdownParse.content) return;\n\n  // TODO: Make a nested function for this that actually works... -.-\n  const paragraphs: { title?: string; paragraph: string }[] =\n    markdownParse.content?.[0]?.children?.map((child) => {\n      return {\n        title: child.title,\n        paragraph:\n          child.content || child.children?.[0]?.content || \"No content\",\n      };\n    }) || [];\n\n  const audioWithViewsArray = paragraphs\n    .map((p, index) => {\n      const viewSlides = findAudioWithViewsArray(p.paragraph, index, p.title);\n      return viewSlides;\n    })\n    .flat()\n    // No empty items\n    .filter((x) => x.audioPath || x.viewEmbeds.length > 0);\n\n  const shortMarkdown: ShortMarkdown = {\n    // Can add this option later\n    backgroundMusicTrack: [],\n    audioWithViewsArray,\n  };\n\n  return shortMarkdown;\n}",
+  "name": "markdownParseToShortMarkdown",
+  "slug": "markdown-parse-to-short-markdown",
+  "parameters": [
+    {
+      "name": "markdownParse",
+      "schema": {
+        "$ref": "#/definitions/MarkdownParse"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "fileName",
+            "required": false,
+            "schema": {
+              "fullComment": "if available, this can be the filename of the markdown in this markdown-parse. Can be used for things like merging",
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "openedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "updatedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "deletedAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "createdFirstAt",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "parameters",
+            "required": true,
+            "schema": {
+              "fullComment": "parameters found in frontmatter\n\nOur version of frontmatter is a bit simpler than regular frontmatter\n\nNot sure if this is a good idea, but it keeps it simple for our OS\n\nall values parse in a similar way to csv\n\nmake sure that you use quotes if you want to store a string with commas, because commas in a parameter indicate that it is a string array\n\nNB: string arrays are comma separated values, where you can put values with special characters in between quotes",
+              "nb": "string arrays are comma separated values, where you can put values with special characters in between quotes",
+              "properties": [],
+              "type": "object"
+            }
+          },
+          {
+            "name": "content",
+            "required": false,
+            "schema": {
+              "fullComment": "structured content based on h1, h2, h3, etc (paragraphs, recursive)",
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [
+                      {
+                        "name": "level",
+                        "required": true,
+                        "schema": {
+                          "fullComment": "0 is a paragraph 1-6 is h1 until h6",
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "content",
+                        "required": false,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "markdownEmbed",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works",
+                          "nb": "I need to be very clear how this one works",
+                          "properties": [
+                            {
+                              "name": "alt",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "src",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "type",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "video",
+                                  "audio",
+                                  "image",
+                                  "text",
+                                  "other"
+                                ],
+                                "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "markdownLink",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Anything in the format `[alt](href)`\n\nIt needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here",
+                          "properties": [
+                            {
+                              "name": "alt",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "href",
+                              "required": true,
+                              "schema": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "name": "type",
+                              "required": true,
+                              "schema": {
+                                "enum": [
+                                  "video",
+                                  "audio",
+                                  "image",
+                                  "text",
+                                  "other"
+                                ],
+                                "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                                "type": "string"
+                              }
+                            }
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      {
+                        "name": "title",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "NB: title can also be an empty string (\"\")",
+                          "nb": "title can also be an empty string (\"\")",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "children",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "all content until the next title. it's either a content array if there's any titles found, or a string[] if it's paragraphs",
+                          "items": [
+                            {
+                              "schema": {
+                                "circularRefName": "MarkdownChunk",
+                                "properties": [],
+                                "type": "object"
+                              },
+                              "name": "MarkdownChunk"
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "MarkdownChunk"
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "raw",
+            "required": true,
+            "schema": {
+              "fullComment": "raw markdown without frontmatter",
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/short-markdown/short-markdown-types/build/ShortMarkdown\").ShortMarkdown | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "audioWithViewsArray": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "audioPath": {
+                "type": "string | null"
+              },
+              "audioKey": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              },
+              "audioDurationMs": {
+                "type": "number"
+              },
+              "viewEmbeds": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "audioKey": {
+                      "type": "string",
+                      "allOf": [
+                        {
+                          "transform": [
+                            "trim"
+                          ]
+                        },
+                        {
+                          "minLength": 1
+                        }
+                      ]
+                    },
+                    "title": {
+                      "type": "string",
+                      "allOf": [
+                        {
+                          "transform": [
+                            "trim"
+                          ]
+                        },
+                        {
+                          "minLength": 1
+                        }
+                      ]
+                    },
+                    "viewPath": {
+                      "type": "string",
+                      "allOf": [
+                        {
+                          "transform": [
+                            "trim"
+                          ]
+                        },
+                        {
+                          "minLength": 1
+                        }
+                      ]
+                    },
+                    "spokenText": {
+                      "type": "string",
+                      "allOf": [
+                        {
+                          "transform": [
+                            "trim"
+                          ]
+                        },
+                        {
+                          "minLength": 1
+                        }
+                      ]
+                    },
+                    "durationMs": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "viewEmbeds"
+            ]
+          }
+        },
+        "backgroundMusicTrack": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "relativeAudioFilePath": {
+                "type": "string",
+                "allOf": [
+                  {
+                    "transform": [
+                      "trim"
+                    ]
+                  },
+                  {
+                    "minLength": 1
+                  }
+                ]
+              },
+              "durationMs": {
+                "type": "number"
+              },
+              "startMs": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "relativeAudioFilePath"
+            ]
+          }
+        }
+      },
+      "required": [
+        "audioWithViewsArray"
+      ],
+      "optional": true
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "audioWithViewsArray",
+          "required": true,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "audioPath",
+                      "required": false,
+                      "schema": {
+                        "properties": [],
+                        "type": "object"
+                      }
+                    },
+                    {
+                      "name": "audioKey",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "audioDurationMs",
+                      "required": false,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "viewEmbeds",
+                      "required": true,
+                      "schema": {
+                        "items": [
+                          {
+                            "schema": {
+                              "properties": [
+                                {
+                                  "name": "audioKey",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "title",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "viewPath",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "spokenText",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "durationMs",
+                                  "required": false,
+                                  "schema": {
+                                    "type": "number"
+                                  }
+                                }
+                              ],
+                              "type": "object"
+                            },
+                            "name": null
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        },
+        {
+          "name": "backgroundMusicTrack",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "properties": [
+                    {
+                      "name": "relativeAudioFilePath",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "durationMs",
+                      "required": false,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "name": "startMs",
+                      "required": false,
+                      "schema": {
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 889,
+    "lines": 32,
+    "bytes": 889,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 32,
+    "numberOfFiles": 1
+  },
+  "id": "tzzxsnvgpiwawqcofkmblwqh"
+}

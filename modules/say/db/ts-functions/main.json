@@ -1,0 +1,36 @@
+{
+  "createdAt": 1669962591401,
+  "updatedAt": 1669962591401,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962591401,
+  "isApiExposed": true,
+  "isExported": false,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/cli/textToMp3.cli.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const [...message] = process.argv.slice(2);\n  const messageString = message.join(\" \");\n\n  const mp3DataPath = path.join(\n    __dirname,\n    \"../..\",\n    \"data\",\n    `${Math.round(Math.random() * 9999)}.mp3`\n  );\n  const finalPath = await textToMp3({ message: messageString }, mp3DataPath);\n\n  console.log({ finalPath });\n}",
+  "name": "main",
+  "slug": "main",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 339,
+    "lines": 14,
+    "bytes": 339,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 24,
+    "linesPerFile": 14,
+    "numberOfFiles": 1
+  },
+  "id": "ozuioqaqulvxwgcvvjpiutzi"
+}

@@ -34,15 +34,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+import { api, queries } from "api";
+import { ClickableIcon } from "clickable-icon";
+import { errorToast } from "cool-toast";
+import { getFileTypeFromPath } from "filename-conventions";
+import { getFileOrFolderName } from "fs-util-js";
+import dynamic from "next/dynamic";
+import { FilePromptSelect } from "prompt-components";
 import * as React from "react";
 import { useState } from "react";
-import { ClickableIcon } from "clickable-icon";
 import { Div } from "react-with-native";
 import { ContextTextArea } from "./old/ContextTextArea";
-import { errorToast } from "cool-toast";
-import dynamic from "next/dynamic";
-import { api } from "api";
-import { getFileOrFolderName } from "fs-util-js";
+// import { ContextTextArea } from "./old/ContextTextArea";
 var AssetInput = dynamic(function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
     switch (_a.label) {
         case 0: return [4 /*yield*/, import("react-with-native-form-asset-input")];
@@ -62,12 +65,15 @@ the newer one, eventually to replace `ContextTextArea`
 
 */
 export var EditWriterInput = function (props) {
+    var _a, _b;
     var onChange = props.onChange, value = props.value, projectRelativeFilePath = props.projectRelativeFilePath, markdownModelName = props.markdownModelName;
-    var _a = useState(value.length), lastIndex = _a[0], setLastIndex = _a[1];
-    var _b = useState(false), showAssetUpload = _b[0], setShowAssetUpload = _b[1];
+    var fileType = getFileTypeFromPath(projectRelativeFilePath);
+    var contextualPromptsQuery = queries.useGetContextualPrompts(fileType === "other" ? undefined : fileType);
+    var _c = useState(value.length), lastIndex = _c[0], setLastIndex = _c[1];
+    var _d = useState(false), showAssetUpload = _d[0], setShowAssetUpload = _d[1];
     var toggleAssetUpload = function () { return setShowAssetUpload(!showAssetUpload); };
-    return (React.createElement(Div, { className: "w-full h-full flex flex-1 flex-col" },
-        React.createElement(Div, { className: "flex flex-row" },
+    var AssetUpload = function () {
+        return (React.createElement(Div, { className: "flex flex-row" },
             React.createElement(ClickableIcon, { emoji: showAssetUpload ? "❌" : "📂", onClick: function () { return toggleAssetUpload(); } }),
             showAssetUpload ? (React.createElement(Div, null,
                 React.createElement(AssetInput, { config: {}, fieldName: "upload", uniqueFieldId: "upload", onChange: function (newBackendAssets) { return __awaiter(void 0, void 0, void 0, function () {
@@ -105,9 +111,14 @@ export var EditWriterInput = function (props) {
                         modelName: markdownModelName,
                         size: "md",
                         theme: "Outlined",
-                    }, value: [] }))) : null),
+                    }, value: [] }))) : null));
+    };
+    return (React.createElement(Div, { className: "w-full h-full flex flex-1 flex-col" },
+        React.createElement(Div, { className: "flex flex-row" },
+            React.createElement(AssetUpload, null),
+            React.createElement(FilePromptSelect, { contextContent: value, context_projectRelativeFilePath: projectRelativeFilePath, items: (_b = (_a = contextualPromptsQuery.data) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.pageContextualPrompts })),
         React.createElement(ContextTextArea, { withContext: function (context) {
                 setLastIndex(context.positionIndex);
                 // console.log(`Context`, context);
-            }, className: "w-full bg-transparent flex flex-1", onChange: onChange, value: value })));
+            }, className: "w-full bg-transparent flex flex-1", onChange: onChange, value: value, projectRelativeFilePath: projectRelativeFilePath })));
 };

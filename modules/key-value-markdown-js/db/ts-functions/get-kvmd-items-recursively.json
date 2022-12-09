@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668334793351,
-  "updatedAt": 1668334793351,
+  "createdAt": 1669962080527,
+  "updatedAt": 1669962080527,
   "deletedAt": 0,
-  "createdFirstAt": 1668334793351,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669962080527,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getKvmdItemsRecursively.ts",
   "commentsInside": [],
   "rawText": " (\n  chunk: MarkdownChunk,\n  categoryStackCalculatedUntilNow?: CategoryStack\n): Storing<KeyValueMarkdownModelType>[] => {\n  // NB: copy\n  let categoryStackCalculated = categoryStackCalculatedUntilNow\n    ? [...categoryStackCalculatedUntilNow]\n    : [];\n\n  let allKvmdItems: Storing<KeyValueMarkdownModelType>[] = [];\n\n  // If this chunk has a title (this is a header)\n  if (chunk.title) {\n    const headerParsedKvmdLine = parseKvmdLine(chunk.title);\n\n    // NB: titles with an empty key are ignored\n    if (headerParsedKvmdLine) {\n      // NB: also add the title as a model item\n      const headerKvmdItem: Storing<KeyValueMarkdownModelType> = {\n        ...headerParsedKvmdLine,\n        isHeaderCalculated: true,\n        // NB: copy!\n        categoryStackCalculated: [...categoryStackCalculated],\n      };\n      allKvmdItems.push(headerKvmdItem);\n\n      // NB: the slug of the title is added to the categoryStackCalculated, but only AFTER adding the kvmd item of the title\n      categoryStackCalculated.push(headerParsedKvmdLine.slug);\n    }\n  }\n\n  const childKvmdItems =\n    chunk.children\n      ?.map((childChunk) =>\n        getKvmdItemsRecursively(childChunk, categoryStackCalculated)\n      )\n      .flat() || [];\n\n  allKvmdItems = allKvmdItems.concat(childKvmdItems);\n\n  const lineKvmdItems = (chunk.content || \"\")\n    // NB: we are splitting on newlines here because content can still contain newlines.\n    .split(\"\\n\")\n    .map((line) => {\n      const parsedKvmdLine = parseKvmdLine(line);\n      if (!parsedKvmdLine) return;\n\n      const contentKvmdItem: Storing<KeyValueMarkdownModelType> = {\n        ...parsedKvmdLine,\n        isHeaderCalculated: false,\n        categoryStackCalculated,\n      };\n\n      return contentKvmdItem;\n    })\n    .filter(notEmpty);\n\n  allKvmdItems = allKvmdItems.concat(lineKvmdItems);\n\n  return allKvmdItems;\n}",
@@ -26,10 +21,97 @@
         "fullComment": "",
         "properties": [
           {
+            "name": "level",
+            "required": true,
+            "schema": {
+              "fullComment": "0 is a paragraph 1-6 is h1 until h6",
+              "type": "number"
+            }
+          },
+          {
             "name": "content",
             "required": false,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "markdownEmbed",
+            "required": false,
+            "schema": {
+              "fullComment": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works",
+              "nb": "I need to be very clear how this one works",
+              "properties": [
+                {
+                  "name": "alt",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "src",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "video",
+                      "audio",
+                      "image",
+                      "text",
+                      "other"
+                    ],
+                    "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "markdownLink",
+            "required": false,
+            "schema": {
+              "fullComment": "Anything in the format `[alt](href)`\n\nIt needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here",
+              "properties": [
+                {
+                  "name": "alt",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "href",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "video",
+                      "audio",
+                      "image",
+                      "text",
+                      "other"
+                    ],
+                    "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
             }
           },
           {
@@ -122,5 +204,5 @@
     "linesPerFile": 63,
     "numberOfFiles": 1
   },
-  "id": "wgdlpyzcxcqnryyofrgejvkl"
+  "id": "glltjagvjpkcnlgfvydvtsbp"
 }

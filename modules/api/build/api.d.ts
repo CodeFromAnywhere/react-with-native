@@ -4,6 +4,7 @@ import type { ApiConfig, ApiTypeWithoutConfig, ApiTypeWithConfig, RealApiReturnT
  *
  */
 export declare const AUTH_TOKEN_STORAGE_KEY = "api.authToken";
+export declare const API_NO_RESPONSE_TIME_KEY = "api.timeoutAt";
 /**
  * Used for calling the actual api for a function with some config
  *

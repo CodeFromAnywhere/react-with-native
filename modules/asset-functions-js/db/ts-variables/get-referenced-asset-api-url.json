@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384154197,
-  "updatedAt": 1669384154197,
+  "createdAt": 1670526634439,
+  "updatedAt": 1670526634439,
   "deletedAt": 0,
-  "createdFirstAt": 1669384154197,
+  "createdFirstAt": 1670526634439,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "get-referenced-asset-api-url",
   "operationRelativeTypescriptFilePath": "src/getReferencedAssetApiUrl.ts",
   "type": {
-    "rawType": "(apiUrl: string, projectRelativeReferencingFilePath: string, referencingFileRelativeAssetPath: string, isDownload?: boolean | undefined) => string",
+    "rawType": "(apiUrl: string | undefined, projectRelativeReferencingFilePath: string, referencingFileRelativeAssetPath: string, isDownload?: boolean | undefined) => string | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(\n  apiUrl: string,\n  projectRelativeReferencingFilePath: string,\n  referencingFileRelativeAssetPath: string,\n  /**\n   * If true, asset will be returned as download\n   */\n  isDownload?: boolean\n) => {\n  return getGetApiUrl(apiUrl, \"getReferencedAssetGetApi\", {\n    projectRelativeReferencingFilePath,\n    referencingFileRelativeAssetPath,\n    isDownload: isDownload ? \"1\" : undefined,\n  });\n}",
+  "value": "(\n  apiUrl: string | undefined,\n  projectRelativeReferencingFilePath: string,\n  referencingFileRelativeAssetPath: string,\n  /**\n   * If true, asset will be returned as download\n   */\n  isDownload?: boolean\n): string | undefined => {\n  if (!apiUrl) return undefined;\n  return getGetApiUrl(apiUrl, \"getReferencedAssetGetApi\", {\n    projectRelativeReferencingFilePath,\n    referencingFileRelativeAssetPath,\n    isDownload: isDownload ? \"1\" : undefined,\n  });\n}",
   "description": "",
-  "id": "zizhaplakmpmmxgljngdhkvk"
+  "id": "guwikjobzzecmyqqipkrmgda"
 }

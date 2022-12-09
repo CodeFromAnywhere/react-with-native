@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384242822,
-  "updatedAt": 1669384242822,
+  "createdAt": 1670526879536,
+  "updatedAt": 1670526879536,
   "deletedAt": 0,
-  "createdFirstAt": 1669384242822,
+  "createdFirstAt": 1670526879536,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "asset-view",
   "operationRelativeTypescriptFilePath": "src/AssetView.tsx",
   "type": {
-    "rawType": "(props: { asset: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").Asset; className?: string | undefined; projectRelativeReferencingFilePath: string; hideDownloadLink?: boolean | undefined; }) => JSX.Element",
+    "rawType": "(props: { asset: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").Asset; className?: string | undefined; projectRelativeReferencingFilePath?: string | undefined; hideDownloadLink?: boolean | undefined; }) => JSX.Element",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(props: {\n  asset: Asset;\n  className?: string;\n  projectRelativeReferencingFilePath: string;\n  hideDownloadLink?: boolean;\n}) => {\n  const {\n    asset,\n    className,\n    projectRelativeReferencingFilePath,\n    hideDownloadLink,\n  } = props;\n\n  const result = useAsset(asset, projectRelativeReferencingFilePath, !isDev);\n  const { downloadUrl, rawText, src, type, extension } =\n    destructureOptionalObject(result);\n\n  // console.log({ src });\n\n  const sizeText =\n    asset.sizeBytes !== undefined\n      ? `(${readableSize(asset.sizeBytes)})`\n      : undefined;\n\n  const downloadText = \" ⬇️ Download\";\n\n  return (\n    <Span style={{ position: \"relative\" }}>\n      {downloadUrl && !hideDownloadLink ? (\n        <Div\n          style={{\n            padding: \"5px\",\n          }}\n        >\n          <A target=\"_blank\" href={downloadUrl}>\n            {downloadText} {sizeText}\n          </A>\n        </Div>\n      ) : null}\n\n      {type === \"image\" && src && (\n        <img\n          src={src}\n          className={className || \"w-40\"}\n          style={{ aspectRatio: \"auto\" }}\n        />\n      )}\n      {type === \"audio\" && src && <audio controls src={src} />}\n      {type === \"video\" && src && (\n        <video\n          style={{ aspectRatio: \"auto\" }}\n          className={className || \"w-40\"}\n          preload=\"none\"\n          // not always available, should I check first somehow?\n          poster={src.replace(\".mp4\", \".placeholder.jpeg\")}\n          controls\n          src={src}\n        />\n      )}\n\n      {type === \"text\" && rawText ? (\n        <MarkdownCodeblock text={rawText} extension={extension} />\n      ) : null}\n\n      {/* LATER: render PDF renderer here */}\n      {type === \"other\" && extension === \"pdf\" ? null : null}\n\n      {src === undefined ? <P>Asset src not found</P> : null}\n    </Span>\n  );\n}",
+  "value": "(props: {\n  asset: Asset;\n  className?: string;\n  /**\n   * Must be provided for relative assets to know the location\n   */\n  projectRelativeReferencingFilePath?: string;\n  hideDownloadLink?: boolean;\n}) => {\n  const {\n    asset,\n    className,\n    projectRelativeReferencingFilePath,\n    hideDownloadLink,\n  } = props;\n\n  const result = useAsset(asset, projectRelativeReferencingFilePath, !isDev);\n  const { downloadUrl, rawText, src, type, extension } =\n    destructureOptionalObject(result);\n\n  // console.log({ src });\n\n  const sizeText =\n    asset.sizeBytes !== undefined\n      ? `(${readableSize(asset.sizeBytes)})`\n      : undefined;\n\n  const downloadText = \" ⬇️ Download\";\n\n  return (\n    <Span style={{ position: \"relative\" }}>\n      {downloadUrl && !hideDownloadLink ? (\n        <Div\n          style={{\n            padding: \"5px\",\n          }}\n        >\n          <A target=\"_blank\" href={downloadUrl}>\n            {downloadText} {sizeText}\n          </A>\n        </Div>\n      ) : null}\n\n      {type === \"image\" && src && (\n        <img\n          src={src}\n          className={className || \"w-40\"}\n          style={{ aspectRatio: \"auto\" }}\n        />\n      )}\n      {type === \"audio\" && src && <audio controls src={src} />}\n      {type === \"video\" && src && (\n        <video\n          style={{ aspectRatio: \"auto\" }}\n          className={className || \"w-40\"}\n          preload=\"none\"\n          // not always available, should I check first somehow?\n          poster={src.replace(\".mp4\", \".placeholder.jpeg\")}\n          controls\n          src={src}\n        />\n      )}\n\n      {type === \"text\" && rawText ? (\n        <MarkdownCodeblock text={rawText} extension={extension} />\n      ) : null}\n\n      {/* LATER: render PDF renderer here */}\n      {type === \"other\" && extension === \"pdf\" ? null : null}\n\n      {src === undefined ? <P>Asset src not found</P> : null}\n    </Span>\n  );\n}",
   "description": "",
-  "id": "vsuhnipgirvvybsnaylkhfms"
+  "id": "llimownlpytnuzigfjteloig"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669639092505,
-  "updatedAt": 1669639092505,
+  "createdAt": 1670063647603,
+  "updatedAt": 1670063647603,
   "deletedAt": 0,
-  "createdFirstAt": 1669639092505,
+  "createdFirstAt": 1670063647603,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  context: GetStaticPathsContext,\n  basePaths: { projectRelativeBasePath: string; queryPath: string }[]\n): Promise<GetStaticPathsResult> => {\n  const paths: string[] | undefined = (await docsGetPages(basePaths)).map(\n    (x) => x.queryPath\n  );\n\n  // console.log({ paths });\n  if (!paths) {\n    return { paths: [], fallback: \"blocking\" };\n  }\n\n  const staticPaths = paths\n    .filter((x) => x !== \"\")\n    .map((p) => ({ params: { paths: p.split(\"/\") } }));\n\n  return {\n    paths: staticPaths,\n    fallback: \"blocking\",\n  };\n}",
   "description": "Function that tells Next.js what the pages are that need to be statically generated",
-  "id": "rzpwrxgsxfxwzbfsnsvunflm"
+  "id": "zpsqfvnptwyickdqqzqsxbek"
 }

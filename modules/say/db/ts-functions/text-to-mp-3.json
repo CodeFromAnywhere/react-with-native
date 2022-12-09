@@ -1,0 +1,178 @@
+{
+  "createdAt": 1669962596064,
+  "updatedAt": 1669962596064,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962596064,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/textToMp3.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  options: Omit<SayOptions, \"outputFilePath\">,\n  /**\n   * Absolute path to the mp3\n   */\n  absoluteOutputFilePath: string\n) => {\n  const parsed = path.parse(absoluteOutputFilePath);\n  const aiffPath = path.join(parsed.dir, `${parsed.name}.aiff`);\n  const finalOptions: SayOptions = { ...options, outputFilePath: aiffPath };\n\n  await saySomething(finalOptions);\n  const finalPath = await convertToMp3(aiffPath, absoluteOutputFilePath);\n\n  if (finalPath) {\n    await fs.rm(aiffPath);\n  }\n\n  return finalPath;\n}",
+  "name": "textToMp3",
+  "slug": "text-to-mp-3",
+  "parameters": [
+    {
+      "name": "options",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "type": "string",
+            "description": "Specify an absolute path to a file with some text"
+          },
+          "message": {
+            "type": "string",
+            "description": "message string to be said"
+          },
+          "speechRate": {
+            "type": "number"
+          },
+          "voice": {
+            "type": "string"
+          },
+          "audioDevice": {
+            "type": "string"
+          },
+          "showProgress": {
+            "type": "boolean"
+          },
+          "interactive": {
+            "type": "string"
+          },
+          "fileFormat": {
+            "type": "string"
+          },
+          "dataFormat": {
+            "type": "string"
+          },
+          "bitRate": {
+            "type": "number"
+          },
+          "quality": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "filePath",
+            "required": false,
+            "schema": {
+              "fullComment": "Specify an absolute path to a file with some text",
+              "type": "string"
+            }
+          },
+          {
+            "name": "message",
+            "required": false,
+            "schema": {
+              "fullComment": "message string to be said",
+              "type": "string"
+            }
+          },
+          {
+            "name": "speechRate",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "voice",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "audioDevice",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "showProgress",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "interactive",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileFormat",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataFormat",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bitRate",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "quality",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "absoluteOutputFilePath",
+      "schema": {
+        "type": "string",
+        "description": "Absolute path to the mp3"
+      },
+      "simplifiedSchema": {
+        "fullComment": "Absolute path to the mp3",
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 517,
+    "lines": 20,
+    "bytes": 517,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 20,
+    "numberOfFiles": 1
+  },
+  "id": "jjyplivddfulpeoghajvkwzk"
+}

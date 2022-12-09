@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669467153614,
-  "updatedAt": 1669467153614,
+  "createdAt": 1670528668875,
+  "updatedAt": 1670528668875,
   "deletedAt": 0,
-  "createdFirstAt": 1669467153614,
+  "createdFirstAt": 1670528668875,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
@@ -63,17 +63,30 @@
   ],
   "description": "gets the renderable asset url from the relative url",
   "returnType": {
-    "rawType": "String",
+    "rawType": "string | undefined",
     "typeDefinition": {
-      "optional": false,
-      "$ref": "#/definitions/String"
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
     },
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
-    "isObject": true,
+    "isObject": false,
     "isPrimitive": false,
-    "isEnumLiteral": false
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
   },
   "maxIndentationDepth": 2,
   "size": {
@@ -85,5 +98,5 @@
     "linesPerFile": 17,
     "numberOfFiles": 1
   },
-  "id": "qqjiwlevxicgkpwdjwzxcdfq"
+  "id": "wtjchjyygmrurdkbkonkddfk"
 }

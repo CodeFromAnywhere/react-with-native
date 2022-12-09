@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670589815027,
+  "updatedAt": 1670589815027,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589815027,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "processChatGptPrompt",
+  "slug": "process-chat-gpt-prompt",
+  "operationRelativeTypescriptFilePath": "src/processChatGptPrompt.ts",
+  "type": {
+    "rawType": "(config: { contextContent: string | null; selectionContent: string | null; contextualPromptSlug: string | undefined; customPromptContent: string | null; saveNewPromptWithName: string | null; commentContent: string | null; isHeadless?: boolean | undefined; prompt_projectRelativePath?: string | undefined; thread?: string | undefined; }) => Promise<{ isSuccessful: boolean; message: string; result?: { text?: string | undefined; assets?: import(\"/Users/king/King/operations/tools/asset/asset-type/build/BackendAsset\").BackendAsset[] | undefined; thread: string; } | undefined; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config: {\n  contextContent: string | null;\n  selectionContent: string | null;\n  contextualPromptSlug: string | undefined;\n  /**\n   * DESCRIPTION: These variables can be used: %context will be replaced by your context, %selection will be replaced by your selection. Provide a good prompt that combines that in a specific format\n   */\n  customPromptContent: string | null;\n  saveNewPromptWithName: string | null;\n  commentContent: string | null;\n  isHeadless?: boolean;\n  prompt_projectRelativePath?: string;\n  thread?: string;\n}): Promise<{\n  isSuccessful: boolean;\n  message: string;\n  result?: { text?: string; assets?: BackendAsset[]; thread: string };\n}> => {\n  const {\n    commentContent,\n    contextContent,\n    contextualPromptSlug,\n    customPromptContent,\n    saveNewPromptWithName,\n    prompt_projectRelativePath,\n    selectionContent,\n    isHeadless,\n    thread,\n  } = config;\n\n  const contextualPrompt = await getContextualPrompt(\n    contextualPromptSlug,\n    customPromptContent,\n    saveNewPromptWithName\n  );\n  if (!contextualPrompt) {\n    return {\n      isSuccessful: false,\n      message: \"Couldn't create or find a contextual prompt\",\n    };\n  }\n\n  /**\nensure `%context, %selection, %comment` are all valid variables in the prompt\n*/\n\n  const finalPrompt = contextualPrompt.promptContent\n    .replaceAll(\"%context\", contextContent || \"\")\n    .replaceAll(\"%selection\", selectionContent || \"\")\n    .replaceAll(\"%comment\", commentContent || \"\");\n\n  /**\nsend it to the processor, which sends response back after a few seconds\n*/\n  const text = await controlChatGpt(finalPrompt, isHeadless);\n\n  const realThread = thread || generateId();\n\n  const newResult: Creation<ContextualPromptResult> = {\n    resultAssets: [],\n    resultText: text,\n    prompt: finalPrompt,\n    prompt_projectRelativePath,\n    thread: realThread,\n    contextualPromptSlug: contextualPrompt.slug,\n  };\n  const upsertResult = await db.upsert(\"ContextualPromptResult\", newResult);\n\n  return {\n    isSuccessful: true,\n    message: \"Whoa\",\n    result: { text, thread: realThread },\n  };\n}",
+  "description": "",
+  "id": "cuzridvpixajbuayvkvommed"
+}

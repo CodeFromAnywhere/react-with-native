@@ -1,20 +1,24 @@
 import * as React from "react";
-import { Div } from "react-with-native";
-import { FancyLoader } from "fancy-loader";
-import { api, queries } from "api";
-import { getWriterType } from "filename-conventions";
 import { useEffect } from "react";
+import { Div } from "react-with-native";
+import { api, queries } from "api";
+import { DbPage } from "db-crud";
+import { FancyLoader } from "fancy-loader";
+import { getWriterType } from "filename-conventions";
 import { getFolderJs } from "fs-util-js";
 import { mdToJsonParse } from "markdown-parse-js";
+import { ContextualPromptResultsTab } from "prompt-components";
 import { isDev } from "server-api-url";
+import { ShortStudio } from "short-markdown-writer-input";
 // relative
+import { WriterConfigForm } from "./config/WriterConfigForm";
+import { FrontmatterForm } from "./FrontmatterForm";
 import { TitleContainer } from "./TitleContainer";
 import { getWriterTypeFromContent } from "./util/getWriterTypeFromContent";
-import { FrontmatterForm } from "./FrontmatterForm";
-import { WriterConfigForm } from "./config/WriterConfigForm";
-import { useStore } from "./store";
-import { MarkdownView } from "./MarkdownView";
+// import { SmartContentEditableDivInput } from "./editors/SmartContentEditableDivInput";
 import { EditWriterInput } from "./EditWriterInput";
+import { MarkdownView } from "./MarkdownView";
+import { useStore } from "./store";
 var vscodeOpen = api.vscodeOpen;
 /**
 Writer input for any utf8 based text, file or no file
@@ -42,9 +46,6 @@ export var WriterInput = function (props) {
         projectRelativeMarkdownFilePath !== undefined;
     var renderWriter = function () {
         var _a, _b, _c;
-        if (!projectRelativeBaseFolderPath || !projectRelativeMarkdownFilePath) {
-            return;
-        }
         var frontmatterSchemaQuery = queries.useGetFrontmatterSchema(markdownModelName);
         var markdownParse = mdToJsonParse(value, filename, {
             frontmatterSchema: (_a = frontmatterSchemaQuery.data) === null || _a === void 0 ? void 0 : _a.result,
@@ -52,18 +53,25 @@ export var WriterInput = function (props) {
         });
         var markdownParseRenderConfig = {
             augmentedWordObject: augmentedWordObject,
-            projectRelativeBaseFolderPath: projectRelativeBaseFolderPath,
-            projectRelativeMarkdownFilePath: projectRelativeMarkdownFilePath,
+            projectRelativeBaseFolderPath: projectRelativeBaseFolderPath || "",
+            projectRelativeMarkdownFilePath: projectRelativeMarkdownFilePath || "",
             isDev: isDev,
             isStatic: false,
         };
         return (React.createElement(Div, { className: "flex flex-col flex-1 px-4" },
+            writerView === "shortStudio" ? (React.createElement(ShortStudio, { onChange: onChange, value: value, projectRelativeFilePath: projectRelativeFilePath || "", markdownModelName: markdownModelName })) : null,
+            writerView === "postable" ? React.createElement(Div, null, "This is postable") : null,
+            writerView === "todoOffers" ? React.createElement(Div, null, "This is todo offers") : null,
+            writerView === "prompt-results" && projectRelativeFilePath ? (React.createElement(ContextualPromptResultsTab, { projectRelativeFilePath: projectRelativeFilePath })) : null,
+            writerView === "prompts" ? (React.createElement(DbPage, { modelName: "ContextualPrompt", filter: function (item) {
+                    return item.projectRelativeFilePath === projectRelativeFilePath;
+                } })) : null,
             writerView === "config" ? React.createElement(WriterConfigForm, null) : null,
             writerView === "frontmatter" &&
                 !frontmatterSchemaQuery.isLoading &&
                 ((_b = frontmatterSchemaQuery.data) === null || _b === void 0 ? void 0 : _b.result) &&
                 projectRelativeMarkdownFilePath ? (React.createElement(FrontmatterForm, { modelName: markdownModelName, key: projectRelativeMarkdownFilePath, markdownParse: markdownParse, projectRelativeMarkdownFilePath: projectRelativeMarkdownFilePath, frontmatterSchema: (_c = frontmatterSchemaQuery.data) === null || _c === void 0 ? void 0 : _c.result, onChange: onChange })) : null,
-            writerView === "edit" || writerView === undefined ? (React.createElement(EditWriterInput, { onChange: onChange, value: value, projectRelativeFilePath: projectRelativeFilePath, markdownModelName: markdownModelName })) : null,
+            writerView === "edit" || writerView === undefined ? (React.createElement(EditWriterInput, { onChange: onChange, value: value, projectRelativeFilePath: projectRelativeFilePath || "", markdownModelName: markdownModelName })) : null,
             writerView === "view" || writerView === "presentation" ? (React.createElement(MarkdownView, { view: writerView, markdownParse: markdownParse, markdownParseRenderConfig: markdownParseRenderConfig })) : null));
     };
     return (React.createElement(Div, { className: "flex flex-col flex-1 ".concat(className) },
@@ -113,6 +121,51 @@ export var WriterInput = function (props) {
                     emoji: "⚙️",
                     title: "Configuration",
                     isActive: writerView === "config",
+                },
+                {
+                    onClick: function () {
+                        setWriterView("postable");
+                    },
+                    emoji: "💬",
+                    title: "Postables",
+                    isActive: writerView === "postable",
+                    isEnabled: projectRelativeFilePath === null || projectRelativeFilePath === void 0 ? void 0 : projectRelativeFilePath.endsWith(".postable.md"),
+                },
+                {
+                    onClick: function () {
+                        setWriterView("shortStudio");
+                    },
+                    emoji: "🎙",
+                    title: "Short Studio",
+                    isActive: writerView === "shortStudio",
+                    isEnabled: projectRelativeFilePath === null || projectRelativeFilePath === void 0 ? void 0 : projectRelativeFilePath.endsWith(".short.md"),
+                },
+                {
+                    onClick: function () {
+                        setWriterView("todoOffers");
+                    },
+                    emoji: "📖",
+                    title: "Todo Offers",
+                    isActive: writerView === "todoOffers",
+                    isEnabled: projectRelativeFilePath === null || projectRelativeFilePath === void 0 ? void 0 : projectRelativeFilePath.includes("/todo/"),
+                },
+                {
+                    onClick: function () {
+                        setWriterView("prompts");
+                    },
+                    emoji: "💡",
+                    title: "Prompts",
+                    isActive: writerView === "prompts",
+                    isEnabled: true,
+                },
+                {
+                    onClick: function () {
+                        setWriterView("prompt-results");
+                    },
+                    emoji: "🤯",
+                    title: "Prompt-results",
+                    isActive: writerView === "prompt-results",
+                    isEnabled: true,
                 },
                 {
                     onClick: function () {

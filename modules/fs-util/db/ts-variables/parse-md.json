@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378805370,
-  "updatedAt": 1667378805370,
+  "createdAt": 1670527006010,
+  "updatedAt": 1670527006010,
   "deletedAt": 0,
-  "createdFirstAt": 1667378805370,
+  "createdFirstAt": 1670527006010,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(mdFilePath: Path): Markdown => {\n  const fileContents = fs.readFileSync(mdFilePath, \"utf8\");\n  const fileStats = fs.statSync(mdFilePath);\n\n  const config: matter.GrayMatterOption<string, any> | undefined = undefined;\n  const matterResult = matter(fileContents, config);\n\n  const fileName = mdFilePath.split(\"/\").pop()!.replace(/\\.md$/, \"\");\n\n  return {\n    content: matterResult.content,\n    createdAt: fileStats.birthtimeMs,\n    fileName,\n    openedAt: fileStats.atimeMs,\n    params: matterResult.data,\n    updatedAt: fileStats.ctimeMs,\n    modifiedAt: fileStats.mtimeMs,\n  };\n}",
   "description": "DEPRECATED: just use `md-to-json-parse`\n\nparse a md file to all the needed info\n@param mdFilePath path to a md file\n@returns Md",
-  "id": "kuzrjzquubjpimucyxnmqhgk"
+  "id": "suhqeblobpjcjowmzxhlzxel"
 }

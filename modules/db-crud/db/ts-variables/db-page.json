@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528881366,
+  "updatedAt": 1670528881366,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528881366,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "DbPage",
+  "slug": "db-page",
+  "operationRelativeTypescriptFilePath": "src/DbPage.tsx",
+  "type": {
+    "rawType": "(props: { filter?: ((item: import(\"/Users/king/King/operations/tools/types/model-types/build/any-model\").AugmentedAnyModelType) => boolean) | undefined; modelName?: string | undefined; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  filter?: (item: AugmentedAnyModelType) => boolean;\n  modelName?: string;\n}) => {\n  const router = useRouter();\n  const { modelName, filter } = props;\n  const paths = router.query.paths ? makeArray(router.query.paths) : [];\n  const modelQuery = modelName || paths.pop();\n  const [slug] = useUrl(\"slug\");\n  const [id] = useUrl(\"id\");\n\n  return (\n    <Div scroll>\n      <ModelComponent modelName={modelQuery} highlight={{ slug, id }} />\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "qchugnrsdlsafblsymiiyfmo"
+}

@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669639098170,
-  "updatedAt": 1669639098170,
+  "createdAt": 1670063653308,
+  "updatedAt": 1670063653308,
   "deletedAt": 0,
-  "createdFirstAt": 1669639098170,
+  "createdFirstAt": 1670063653308,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getAllMarkdownReaderPages.ts",
   "commentsInside": [],
-  "rawText": " async (config?: {\n  manualProjectRoot?: string;\n}): Promise<undefined | WebPage<any>[]> => {\n  const projectRoot = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n\n  const publicBundleConfig = await readJsonFile<\n    Omit<BundleConfig, \"customisableBundleConfig\" | \"createBundleConfig\">\n  >(path.join(projectRoot, \"public-bundle-config.json\"));\n\n  const bundleMarkdownReaderConfig =\n    publicBundleConfig?.bundleMarkdownReaderConfig;\n\n  // the docs folder with all its files\n  const docsPaths = await findAllDocsFolderPaths(true);\n\n  const relativeDocsPages: ReaderWebPage[] = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths: docsPaths,\n    // remove docs prefix if docs should be shown as in root\n    mapQueryPath: bundleMarkdownReaderConfig?.docsInRoot\n      ? (old) =>\n          old.startsWith(\"docs/\")\n            ? old.slice(\"docs/\".length)\n            : // NB: \"docs/README.md\" becomes \"docs\", which should, in turn, become \"\" in this case...\n            old === \"docs\"\n            ? \"\"\n            : old\n      : undefined,\n  });\n\n  // operations\n  const operationPages: ReaderWebPage[] = await getOperationPages(\n    projectRoot,\n    bundleMarkdownReaderConfig\n  );\n\n  // markdown model type pages\n  const markdownModelTypePages = await getMarkdownModelPages(projectRoot);\n  // todo pages\n  const todoPages = await getReaderTodoPages(projectRoot);\n\n  const mainReadme: ReaderWebPage | undefined =\n    bundleMarkdownReaderConfig?.docsInRoot\n      ? undefined\n      : {\n          queryPath: \"\",\n          pageData: { projectRelativeFilePath: \"README.md\" },\n          isMenuHidden: false,\n        };\n\n  const dictionaryPage: CustomWebPage = {\n    queryPath: \"dictionary\",\n    isMenuHidden: false,\n    pageData: null,\n  };\n\n  const allPages: WebPage<any>[] = [\n    mainReadme,\n    ...relativeDocsPages,\n    ...operationPages,\n    // `/dictionary` page with all words/definitions, categorised\n    dictionaryPage,\n    // all markdown model types, optionally (with config)\n    ...markdownModelTypePages,\n    // all todo markdown folders, both in operations and outside (with config)\n    ...todoPages,\n  ].filter(notEmpty);\n\n  const filteredPages = allPages.filter(\n    onlyUnique2<ReaderWebPage>((a, b) => a.queryPath === b.queryPath)\n  );\n\n  return filteredPages;\n}",
+  "rawText": " async (config?: {\n  manualProjectRoot?: string;\n}): Promise<undefined | WebPage<any>[]> => {\n  const projectRoot = config?.manualProjectRoot || getProjectRoot();\n  if (!projectRoot) return;\n\n  const publicBundleConfig = await readJsonFile<PublicBundleConfig>(\n    path.join(projectRoot, \"public-bundle-config.json\")\n  );\n\n  const bundleMarkdownReaderConfig =\n    publicBundleConfig?.bundleMarkdownReaderConfig;\n\n  // the docs folder with all its files\n  const docsPaths = await findAllDocsFolderPaths(true);\n\n  const customOperationDocsPaths =\n    bundleMarkdownReaderConfig?.customOperationNames\n      ?.map((operationName) => {\n        const relativeOperationPath =\n          operations[operationName as keyof typeof operations];\n        if (!relativeOperationPath) return;\n        const absoluteDocsPath = path.join(\n          projectRoot,\n          relativeOperationPath,\n          \"docs\"\n        );\n        if (!fs.existsSync(absoluteDocsPath)) return;\n        return {\n          absoluteDocsPath,\n          queryPath: bundleMarkdownReaderConfig?.docsInRoot\n            ? operationName\n            : `docs/${operationName}`,\n        };\n      })\n      .filter(notEmpty) || [];\n\n  const customOperationDocsPages: ReaderWebPage[] =\n    await getMarkdownReaderPages({\n      projectRoot,\n      basePaths: customOperationDocsPaths.map((x) => x.absoluteDocsPath),\n      queryPathCustomPrefix: (basePath) =>\n        customOperationDocsPaths.find((x) => x.absoluteDocsPath === basePath)\n          ?.queryPath,\n    });\n\n  const relativeDocsPages: ReaderWebPage[] = await getMarkdownReaderPages({\n    projectRoot,\n    basePaths: docsPaths,\n    // remove docs prefix if docs should be shown as in root\n    mapQueryPath: bundleMarkdownReaderConfig?.docsInRoot\n      ? (old) =>\n          old.startsWith(\"docs/\")\n            ? old.slice(\"docs/\".length)\n            : // NB: \"docs/README.md\" becomes \"docs\", which should, in turn, become \"\" in this case...\n            old === \"docs\"\n            ? \"\"\n            : old\n      : undefined,\n  });\n\n  // operations\n  const operationPages: ReaderWebPage[] = await getOperationPages(\n    projectRoot,\n    bundleMarkdownReaderConfig\n  );\n\n  // markdown model type pages\n  const markdownModelTypePages = await getMarkdownModelPages(projectRoot);\n  // todo pages\n  const todoPages = await getReaderTodoPages(projectRoot);\n\n  const mainReadme: ReaderWebPage | undefined =\n    bundleMarkdownReaderConfig?.docsInRoot\n      ? undefined\n      : {\n          queryPath: \"\",\n          pageData: { projectRelativeFilePath: \"README.md\" },\n          isMenuHidden: false,\n        };\n\n  const dictionaryPage: CustomWebPage = {\n    queryPath: \"dictionary\",\n    isMenuHidden: false,\n    pageData: null,\n  };\n\n  const allPages: WebPage<any>[] = [\n    mainReadme,\n    ...relativeDocsPages,\n    ...customOperationDocsPages,\n    ...operationPages,\n    // `/dictionary` page with all words/definitions, categorised\n    dictionaryPage,\n    // all markdown model types, optionally (with config)\n    ...markdownModelTypePages,\n    // all todo markdown folders, both in operations and outside (with config)\n    ...todoPages,\n  ].filter(notEmpty);\n\n  const filteredPages = allPages.filter(\n    onlyUnique2<ReaderWebPage>((a, b) => a.queryPath === b.queryPath)\n  );\n\n  return filteredPages;\n}",
   "name": "getAllMarkdownReaderPages",
   "slug": "get-all-markdown-reader-pages",
   "parameters": [
@@ -50,13 +50,13 @@
   },
   "maxIndentationDepth": 6,
   "size": {
-    "characters": 3297,
-    "lines": 120,
-    "bytes": 3297,
+    "characters": 4285,
+    "lines": 151,
+    "bytes": 4285,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 27,
-    "linesPerFile": 120,
+    "charactersPerLine": 28,
+    "linesPerFile": 151,
     "numberOfFiles": 1
   },
-  "id": "cizreaesikvsbgelgobfilpc"
+  "id": "xwtwdvmmxtkwtsscdsmxnxfr"
 }

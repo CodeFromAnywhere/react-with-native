@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669962596190,
+  "updatedAt": 1669962596190,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962596190,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "textToMp3",
+  "slug": "text-to-mp-3",
+  "operationRelativeTypescriptFilePath": "src/textToMp3.ts",
+  "type": {
+    "rawType": "(options: Omit<import(\"/Users/king/King/operations/tools/user-interfaces/auditory-ui/say/src/saySomething\").SayOptions, \"outputFilePath\">, absoluteOutputFilePath: string) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  options: Omit<SayOptions, \"outputFilePath\">,\n  /**\n   * Absolute path to the mp3\n   */\n  absoluteOutputFilePath: string\n) => {\n  const parsed = path.parse(absoluteOutputFilePath);\n  const aiffPath = path.join(parsed.dir, `${parsed.name}.aiff`);\n  const finalOptions: SayOptions = { ...options, outputFilePath: aiffPath };\n\n  await saySomething(finalOptions);\n  const finalPath = await convertToMp3(aiffPath, absoluteOutputFilePath);\n\n  if (finalPath) {\n    await fs.rm(aiffPath);\n  }\n\n  return finalPath;\n}",
+  "description": "",
+  "id": "xmgazsberejiulimtbzttqzk"
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670218561454,
+  "updatedAt": 1670218561454,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218561454,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDbModelNames",
+  "slug": "get-db-model-names",
+  "operationRelativeTypescriptFilePath": "src/getDbModelNames.ts",
+  "type": {
+    "rawType": "(config?: { bundleId?: string | undefined; } | undefined) => Promise<(keyof import(\"/Users/king/King/operations/tools/generated/sdk-db/build/sdk-db\").DbModels)[]>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config?: {\n  bundleId?: string;\n}): Promise<(keyof DbModels)[]> => {\n  const bundleId = config?.bundleId;\n  let dbModels: TsInterface[] | undefined = undefined;\n\n  if (bundleId) {\n    const bundleConfig = (await db.get(\"BundleConfig\")).find(\n      (x) => x.id === bundleId\n    );\n\n    if (bundleConfig) {\n      dbModels = await getDbModelsForBundle(bundleConfig);\n    }\n  }\n  const projectRoot = getProjectRoot();\n  if (isBundle(projectRoot) && projectRoot) {\n    const operationNames: string[] = (\n      await exploreOperationFolders({\n        basePath: path.join(projectRoot, \"packages\"),\n      })\n    ).map(getLastFolder);\n\n    dbModels = await getDbModelsFromOperations(operationNames);\n  }\n\n  const dbModelNames = dbModels\n    ? (dbModels?.map((x) => x.name) as (keyof DbModels)[])\n    : [...dbModelKeys];\n\n  return dbModelNames;\n}",
+  "description": "",
+  "id": "qtltnvsorgbisqruvdddvhwl"
+}

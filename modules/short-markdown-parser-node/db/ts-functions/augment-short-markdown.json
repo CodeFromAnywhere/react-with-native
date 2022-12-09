@@ -1,0 +1,199 @@
+{
+  "createdAt": 1670216319456,
+  "updatedAt": 1670216319456,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216319456,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/augmentShortMarkdown.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  shortMarkdown: ShortMarkdown,\n  projectRelativeFilePath: string\n) => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n\n  const absoluteFilePath = path.join(projectRoot, projectRelativeFilePath);\n\n  const fileParse = path.parse(absoluteFilePath);\n\n  const audioWithViewsArray = await Promise.all(\n    shortMarkdown.audioWithViewsArray.map(async (audioWithViews) => {\n      const spokenText = audioWithViews.audioPath\n        ? undefined\n        : audioWithViews.viewEmbeds.find((x) => x.spokenText)?.spokenText;\n      const absoluteSpeechFilePath = path.join(\n        fileParse.dir,\n        `${fileParse.name}.speech-${audioWithViews.audioKey}.mp3`\n      );\n\n      const finalSpeechFilePath = spokenText\n        ? await textToMp3({ message: spokenText }, absoluteSpeechFilePath)\n        : undefined;\n      const relativeSpeechFilePath = finalSpeechFilePath\n        ? \"./\" + makeRelative(finalSpeechFilePath, fileParse.dir)\n        : undefined;\n\n      const audioPath =\n        audioWithViews.audioPath || relativeSpeechFilePath || null;\n\n      const audioDurationMs = finalSpeechFilePath\n        ? await new Promise<number | undefined>((resolve) =>\n            ffprobe(finalSpeechFilePath, (err, data) =>\n              resolve((data.format.duration || 0) * 1000)\n            )\n          )\n        : undefined;\n\n      const newAudioWithViews: AudioWithViews = {\n        audioPath,\n        audioDurationMs,\n        audioKey: audioWithViews.audioKey,\n        viewEmbeds: audioWithViews.viewEmbeds.map((x) => {\n          const durationMs = audioDurationMs\n            ? audioDurationMs / audioWithViews.viewEmbeds.length\n            : MINIMUM_DURATION_MS;\n          return { ...x, durationMs };\n        }),\n      };\n\n      return newAudioWithViews;\n    })\n  );\n\n  const newShortMarkdown: ShortMarkdown = {\n    ...shortMarkdown,\n    audioWithViewsArray,\n  };\n\n  const indexFilePath = path.join(fileParse.dir, `${fileParse.name}.json`);\n  await writeJsonToFile(indexFilePath, newShortMarkdown);\n\n  return newShortMarkdown;\n}",
+  "name": "augmentShortMarkdown",
+  "slug": "augment-short-markdown",
+  "parameters": [
+    {
+      "name": "shortMarkdown",
+      "schema": {
+        "$ref": "#/definitions/ShortMarkdown"
+      },
+      "simplifiedSchema": {
+        "fullComment": "",
+        "properties": [
+          {
+            "name": "audioWithViewsArray",
+            "required": true,
+            "schema": {
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [
+                      {
+                        "name": "audioPath",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "audioKey",
+                        "required": false,
+                        "schema": {
+                          "fullComment": "Unique key for the audio",
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "audioDurationMs",
+                        "required": false,
+                        "schema": {
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "viewEmbeds",
+                        "required": true,
+                        "schema": {
+                          "items": [
+                            {
+                              "schema": {
+                                "fullComment": "",
+                                "properties": [
+                                  {
+                                    "name": "audioKey",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "Unique key for the belonging audio, used to find the desired audio",
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "title",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "Either viewPath or title is required",
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "viewPath",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "Either viewPath or title is required",
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "spokenText",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "Text in the alt of the image or video, but only if the alt is wrapped in quotes (e.g. \"your spoken text\"). Can be parsed into an audio and subtitles, and also a duration.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  {
+                                    "name": "durationMs",
+                                    "required": false,
+                                    "schema": {
+                                      "fullComment": "Added afterwards",
+                                      "type": "number"
+                                    }
+                                  }
+                                ],
+                                "type": "object"
+                              },
+                              "name": "ViewEmbed"
+                            }
+                          ],
+                          "type": "array"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "AudioWithViews"
+                }
+              ],
+              "type": "array"
+            }
+          },
+          {
+            "name": "backgroundMusicTrack",
+            "required": false,
+            "schema": {
+              "fullComment": "LATER:",
+              "later": "",
+              "items": [
+                {
+                  "schema": {
+                    "fullComment": "",
+                    "properties": [
+                      {
+                        "name": "relativeAudioFilePath",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "durationMs",
+                        "required": false,
+                        "schema": {
+                          "type": "number"
+                        }
+                      },
+                      {
+                        "name": "startMs",
+                        "required": false,
+                        "schema": {
+                          "type": "number"
+                        }
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "name": "AudioTrackItem"
+                }
+              ],
+              "type": "array"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    },
+    {
+      "name": "projectRelativeFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 2049,
+    "lines": 65,
+    "bytes": 2049,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 65,
+    "numberOfFiles": 1
+  },
+  "id": "rboaskrwyhpseavchomtuzul"
+}

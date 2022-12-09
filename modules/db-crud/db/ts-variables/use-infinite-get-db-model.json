@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528949739,
+  "updatedAt": 1670528949739,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528949739,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useInfiniteGetDbModel",
+  "slug": "use-infinite-get-db-model",
+  "operationRelativeTypescriptFilePath": "src/crud/useInfiniteGetDbModel.ts",
+  "type": {
+    "rawType": "() => import(\"/Users/king/King/operations/node_modules/react-query/types/react/types\").UseInfiniteQueryResult<unknown, unknown>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "() => {\n  const modelName = useModelFromUrl();\n\n  const [datasetConfig] = useStore(\"db-crud.datasetConfig\");\n  const [search] = useStore(\"db-crud.search\");\n\n  const dependencies = [\"getDbModel\", modelName, datasetConfig, search];\n\n  const hook = useInfiniteQuery(\n    dependencies,\n    (context) => {\n      const params = context.pageParam as PageParam | undefined;\n\n      const configuration = {\n        ...datasetConfig,\n        startFromIndex:\n          (datasetConfig?.startFromIndex || 0) + (params?.start || 0),\n        maxRows: datasetConfig?.maxRows || params?.limit || defaultLimit,\n      };\n\n      // @ts-ignore\n      const result = getDbModel(modelName!, configuration, search);\n      return result;\n    },\n    {\n      getNextPageParam: (lastPage, allPages) => {\n        const realLimit =\n          lastPage.result?.datasetConfig?.maxRows || defaultLimit;\n        const oldStart = lastPage.result?.datasetConfig?.startFromIndex || 0;\n        const pageParam: PageParam = {\n          start: oldStart + realLimit,\n          limit: realLimit,\n        };\n\n        return pageParam;\n      },\n    }\n  );\n\n  return hook;\n}",
+  "description": "",
+  "id": "hkdyegfdgnwowuwilwgrytzt"
+}

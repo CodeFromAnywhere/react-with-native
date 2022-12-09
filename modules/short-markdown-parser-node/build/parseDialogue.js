@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.parseDialogue=void 0;var js_util_1=require("js-util"),parseDialogue=function(e){return e.split("\n").map((function(e){return""===e.trim()?void 0:e})).filter(js_util_1.notEmpty).map((function(e){var t=e.split(":");return{voice:t.length<2?void 0:t.shift(),sentence:t.join(":").trim()}}))};exports.parseDialogue=parseDialogue;
+//# sourceMappingURL=parseDialogue.js.map

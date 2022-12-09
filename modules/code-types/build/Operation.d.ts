@@ -1,6 +1,7 @@
 import { Id, Markdown, SlugModelType } from "model-types";
 import { OperationClassification } from "./OperationClassification";
 import { FolderSummary } from "./FolderSummary";
+import { OperationRepositoryInfo } from "./OperationRepositoryInfo";
 /**
  * filepaths categorized based on the filetype. With king os there are only these filetypes:
  *
@@ -15,6 +16,24 @@ export declare type CategorizedFilePaths = {
 };
 export declare type PackageInfoObject = {
     [key: string]: string;
+};
+export declare type ContributorPersonInfo = {
+    /**
+     * NPM convention, name of the contributor
+     */
+    name: string;
+    /**
+     * NPM convention, url with more info of the contributor
+     */
+    url?: string;
+    /**
+     * NPM convention, email of the contributor
+     */
+    email?: string;
+    /**
+     * Relative amount of estimated contribution to this operation, should be a number between 0 and 1
+     */
+    contributionAmount?: number;
 };
 /**
  * ---
@@ -31,6 +50,7 @@ export interface Operation extends SlugModelType {
     name: string;
     main?: string;
     source?: string;
+    contributors?: ContributorPersonInfo[];
     /**
      * one-line description of the operation
      */
@@ -40,11 +60,10 @@ export interface Operation extends SlugModelType {
     author?: string | {
         [key: string]: string;
     };
-    repository?: string | {
-        type?: string;
-        url: string;
-        directory?: string;
-    };
+    /**
+     * NB: this data becomes public, even for private repositories. If you don't want this, you're out of luck.
+     */
+    repository?: string | OperationRepositoryInfo;
     homepage?: string;
     dependencies?: PackageInfoObject;
     devDependencies?: PackageInfoObject;
@@ -58,6 +77,10 @@ export interface Operation extends SlugModelType {
     };
     /** custom keys, both indexed and generated */
     operation?: {
+        /**
+         * Can be set in case this is a ui-web operation
+         */
+        port?: number;
         /**
          * Who is responsible for this operation?
          */
@@ -92,7 +115,6 @@ export interface Operation extends SlugModelType {
             indexInteracesErrors?: string[];
             indexErrors?: string[];
         };
-        lastPullTimeAtIndexed?: number;
         lastRebuildAt?: number;
         sizeIndexed?: FolderSummary;
         /**

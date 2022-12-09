@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150643213,
-  "updatedAt": 1668150643213,
+  "createdAt": 1670590326141,
+  "updatedAt": 1670590326141,
   "deletedAt": 0,
-  "createdFirstAt": 1668150643213,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670590326141,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util.ts",
   "commentsInside": [],
   "rawText": " <T>(symbol: Symbol, kind: SyntaxKind) => {\n  const declarations = symbol\n    .getDeclarations()\n    .filter((x) => x.getKind() === kind)\n    .map((x) => x.asKind(kind))\n    .filter(notEmpty) as unknown as T[];\n\n  return declarations;\n}",
@@ -54,5 +49,5 @@
     "linesPerFile": 9,
     "numberOfFiles": 1
   },
-  "id": "oxrnnaywdiblixdhmquhnaxj"
+  "id": "azuwxpdvanfjoazrztphxaoo"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670063310921,
+  "updatedAt": 1670063310921,
+  "deletedAt": 0,
+  "createdFirstAt": 1670063310921,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "compressImagesCli",
+  "slug": "compress-images-cli",
+  "operationRelativeTypescriptFilePath": "src/cli/compressImages.cli.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const argumentsArray = process.argv.slice(2);\n\n  if (argumentsArray.length > 0) {\n    oneByOne(argumentsArray, async (absoluteOrRelativePath) => {\n      const absoluteFolderPath = absoluteOrRelativePath.startsWith(\".\")\n        ? path.join(process.cwd(), absoluteOrRelativePath)\n        : absoluteOrRelativePath;\n\n      if (!absoluteFolderPath) {\n        log(\"couldn't find that path\");\n        return;\n      }\n\n      // console.log({ operationNames, operationName });\n      await compressImages(absoluteFolderPath);\n    });\n  }\n}",
+  "description": "`compressImages` CLI syntax:\n\n`compressImages [basePath]`\n\ncan also be relative path",
+  "id": "ifhitetwnwgqkvqvgdkqsnot"
+}

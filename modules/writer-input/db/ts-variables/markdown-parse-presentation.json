@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385109984,
-  "updatedAt": 1669385109984,
+  "createdAt": 1670527735044,
+  "updatedAt": 1670527735044,
   "deletedAt": 0,
-  "createdFirstAt": 1669385109984,
+  "createdFirstAt": 1670527735044,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(props: {\n  markdownParse: MarkdownParse;\n  augmentedWordObject?: MappedObject<AugmentedWord>;\n  projectRelativeBaseFolderPath: string;\n  projectRelativeMarkdownFilePath: string;\n}) => {\n  const {\n    markdownParse,\n    augmentedWordObject,\n    projectRelativeBaseFolderPath,\n    projectRelativeMarkdownFilePath,\n  } = props;\n  const [slide, setSlide] = useState(0);\n\n  if (!markdownParse.content) return null;\n\n  const markdownParagraphs = flattenMarkdownChunks(\n    markdownParse.content\n  ).filter((x) => x.paragraph !== \"\");\n\n  const paragraph = markdownParagraphs[slide];\n\n  if (!paragraph) return <P>No slides</P>;\n\n  const navigationIcons: ClickableIconType[] = [\n    {\n      onClick: () => setSlide(0),\n      emoji: \"⏮\",\n      disabled: slide === 0,\n    },\n\n    {\n      onClick: () => setSlide(slide - 1),\n      emoji: \"⬅\",\n      disabled: slide === 0,\n    },\n\n    {\n      onClick: () => setSlide(slide + 1),\n      emoji: \"➡\",\n      disabled: slide === markdownParagraphs.length - 1,\n    },\n\n    {\n      onClick: () => setSlide(markdownParagraphs.length - 1),\n      emoji: \"⏭\",\n      disabled: slide === markdownParagraphs.length - 1,\n    },\n  ];\n  const navigation = (\n    <Div className=\"flex flex-row gap-3\">\n      {navigationIcons.map((item, index) => (\n        <ClickableIcon {...item} key={`icon${index}`} />\n      ))}\n    </Div>\n  );\n\n  return (\n    <Div className=\"flex flex-col flex-1\">\n      <Div className=\"flex flex-1 flex-col\">\n        <Div className=\"flex flex-col justify-center items-center\">\n          <P className=\"text-4xl\">\n            {\n              paragraph.categoryStackCalculated[\n                paragraph.categoryStackCalculated.length - 1\n              ]\n            }\n          </P>\n\n          <Div className=\"flex flex-row flex-wrap\">\n            {renderBreadCrumbs(paragraph.categoryStackCalculated)}\n          </Div>\n        </Div>\n\n        <Div className=\"flex flex-1 flex-col items-center justify-center overflow-y-auto\">\n          {renderMarkdownContent(paragraph.paragraph, {\n            big: true,\n            projectRelativeBaseFolderPath,\n            projectRelativeMarkdownFilePath,\n            augmentedWordObject,\n            isDev,\n            isStatic: false,\n          })}\n        </Div>\n      </Div>\n\n      {navigation}\n    </Div>\n  );\n}",
   "description": "",
-  "id": "romqbrfgqwikjqqseymjqumg"
+  "id": "ncakygufpwoycuhfgrazmwnu"
 }

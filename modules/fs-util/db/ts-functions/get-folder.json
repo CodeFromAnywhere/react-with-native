@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667378803634,
-  "updatedAt": 1667378803634,
+  "createdAt": 1670527001919,
+  "updatedAt": 1670527001919,
   "deletedAt": 0,
-  "createdFirstAt": 1667378803634,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670527001919,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/js.ts",
   "commentsInside": [],
   "rawText": " (pathString: string) => {\n  const parsedPath = path.parse(pathString);\n  const hasExtension = parsedPath.ext.length > 0;\n\n  if (hasExtension) {\n    // NB: assume it's a file, let's avoid folders with dots!\n    const pathChunks = pathString.split(\"/\");\n    pathChunks.pop(); //remove the filename\n    return pathChunks.join(\"/\");\n  } else {\n    // NB: it's already a folder!\n    return pathString;\n  }\n}",
@@ -48,5 +43,5 @@
     "linesPerFile": 18,
     "numberOfFiles": 1
   },
-  "id": "wrgkuudbwjqikgyxmedhrdqp"
+  "id": "mcdweqegfacgaacssqvawqit"
 }

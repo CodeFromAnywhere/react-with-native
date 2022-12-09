@@ -47,6 +47,22 @@ input: /Users/king/Documents/some/folder/xyz.txt
 output: folder
 
 
+## getFolder()
+
+if the path exists:
+- if the pathString is a folder, that is returned.
+- if the pathstring is not a folder, returns the pathstring without the file suffix
+
+if the path doesn't exist: returns pathString witout last chunk (this would only work for file paths)
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| pathString | string |  |
+| **Output** |    |    |
+
+
+
 ## writeJsonToFile()
 
 write json to a file
@@ -61,6 +77,22 @@ makes the dir and file if they don't exist
 
 
 
+## 📄 getFolder (exported const)
+
+if the path exists:
+- if the pathString is a folder, that is returned.
+- if the pathstring is not a folder, returns the pathstring without the file suffix
+
+if the path doesn't exist: returns pathString witout last chunk (this would only work for file paths)
+
+
+## 📄 writeJsonToFile (exported const)
+
+write json to a file
+
+makes the dir and file if they don't exist
+
+
 ## writeStringToFile()
 
 write string to a file
@@ -73,13 +105,6 @@ makes the dir and file if they don't exist
 | - | | |
 | **Output** |    |    |
 
-
-
-## 📄 writeJsonToFile (exported const)
-
-write json to a file
-
-makes the dir and file if they don't exist
 
 
 ## 📄 writeStringToFile (exported const)
@@ -101,34 +126,9 @@ File is readable to the calling process
 
 
 
-## getFolder()
-
-if the path exists:
-- if the pathString is a folder, that is returned.
-- if the pathstring is not a folder, returns the pathstring without the file suffix
-
-if the path doesn't exist: returns pathString witout last chunk (this would only work for file paths)
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| pathString | string |  |
-| **Output** |    |    |
-
-
-
 ## 📄 canRead (exported const)
 
 File is readable to the calling process
-
-
-## 📄 getFolder (exported const)
-
-if the path exists:
-- if the pathString is a folder, that is returned.
-- if the pathstring is not a folder, returns the pathstring without the file suffix
-
-if the path doesn't exist: returns pathString witout last chunk (this would only work for file paths)
 
 
 ## 🔹 Path
@@ -186,6 +186,15 @@ The result of this function will be:
 
 
 
+## getFirstAvailableFilename()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| absoluteFilePath | string |  |
+| **Output** | `String`   |    |
+
+
+
 ## removeAllExcept()
 
 Removes everything inside a folder except some files and folders that can, optionally, be ignored for removal. does not remove the folder itself
@@ -220,6 +229,8 @@ The result of this function will be:
 
 ['/a', '/a/random', '/a/random/path']
 
+
+## 📄 getFirstAvailableFilename (exported const)
 
 ## 📄 removeAllExcept (exported const)
 
@@ -264,15 +275,6 @@ removes everything before the last slash to get file name
 
 
 
-## getFirstAvailableFilename()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| absoluteFilePath | string |  |
-| **Output** | `String`   |    |
-
-
-
 ## getOneFolderUpPath()
 
 Takes a folder path and returns a path that is one folder up
@@ -309,8 +311,6 @@ File is writable to the calling process
 removes everything before the last slash to get file name
 
 
-## 📄 getFirstAvailableFilename (exported const)
-
 ## 📄 getOneFolderUpPath (exported const)
 
 Takes a folder path and returns a path that is one folder up
@@ -320,7 +320,7 @@ Takes a folder path and returns a path that is one folder up
 
 # Internal
 
-<details><summary>Show internal (30)</summary>
+<details><summary>Show internal (32)</summary>
     
   # canAccessSync()
 
@@ -406,6 +406,18 @@ returns a path of a fileName
 | Input      |    |    |
 | ---------- | -- | -- |
 | folderPath | string |  |,| fileName | string | fileName with extension |
+| **Output** |    |    |
+
+
+
+## getFolderSizeObject()
+
+returns an object with all sizes of all folders and files, recursively
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| absoluteFolderPath | string |  |,| minimumReportSizeMb (optional) | number | Folders smaller than this won't provide details |,| ignoreGenerated (optional) | boolean |  |
 | **Output** |    |    |
 
 
@@ -585,6 +597,11 @@ File is writable to the calling process
 ## 📄 findFileNameCaseInsensitive (exported const)
 
 returns a path of a fileName
+
+
+## 📄 getFolderSizeObject (exported const)
+
+returns an object with all sizes of all folders and files, recursively
 
 
 ## 📄 getPathCombinations (exported const)

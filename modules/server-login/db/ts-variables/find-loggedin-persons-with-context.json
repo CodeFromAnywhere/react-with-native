@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385325758,
-  "updatedAt": 1669385325758,
+  "createdAt": 1670528479439,
+  "updatedAt": 1670528479439,
   "deletedAt": 0,
-  "createdFirstAt": 1669385325758,
+  "createdFirstAt": 1670528479439,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "find-loggedin-persons-with-context",
   "operationRelativeTypescriptFilePath": "src/findLoggedInPersonsWithContext.ts",
   "type": {
-    "rawType": "(functionContext: import(\"/Users/king/King/operations/tools/user-interfaces/api/function-context-type/build/FunctionContext\").FunctionContext) => Promise<{ isSuccessful: boolean; persons?: import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/Person\").Person[] | undefined; message?: string | undefined; }>",
+    "rawType": "(functionContext: import(\"/Users/king/King/operations/tools/user-interfaces/api/function-context-type/build/FunctionContext\").FunctionContext) => Promise<{ isSuccessful: boolean; persons?: import(\"/Users/king/King/operations/tools/purpose/p2p/peer-types/build/Person\").Person[] | undefined; message: string; }>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (\n  functionContext: FunctionContext\n): Promise<{\n  isSuccessful: boolean;\n  persons?: Person[];\n  message?: string;\n}> => {\n  const { device } = functionContext;\n\n  if (!device) {\n    return {\n      isSuccessful: false,\n      message: \"Couldn't find that device\",\n    };\n  }\n\n  // NB: probably need to extrahere this part so I can use it to view the authentication status while logging in...\n\n  const persons = (await db.get(\"Person\")).filter((person) => {\n    const matchingMethods = person.authenticationMethods.filter(\n      (authenticationMethod) => {\n        // NB: finds the method with the same handle and credential\n        const matchingMethod = device.authenticationMethods.find(\n          (method) =>\n            method.method === authenticationMethod.method &&\n            method.handle === authenticationMethod.handle &&\n            method.encryptedCredential ===\n              authenticationMethod.encryptedCredential\n        );\n\n        return !!matchingMethod;\n      }\n    );\n\n    const hasEnoughMethods =\n      (person.amountAuthenticationMethodsRequired || 1) <=\n      matchingMethods.length;\n\n    const hasMissingMethod = !!person.requiredAuthenticationMethods?.find(\n      (method) => {\n        const isMethodMissing = !device.authenticationMethods.find(\n          (x) => x.method === method\n        );\n        return isMethodMissing;\n      }\n    );\n\n    if (hasEnoughMethods && !hasMissingMethod) {\n      // if you have authenticated with enough methods, and aren't missing a method\n      return true;\n    }\n\n    return false;\n  });\n\n  if (!persons) {\n    return { isSuccessful: false, message: \"Couldn't login\" };\n  }\n\n  return { isSuccessful: true, persons };\n}",
+  "value": "async (\n  functionContext: FunctionContext\n): Promise<{\n  isSuccessful: boolean;\n  persons?: Person[];\n  message: string;\n}> => {\n  const { device } = functionContext;\n\n  if (!device) {\n    return {\n      isSuccessful: false,\n      message: \"Couldn't find that device\",\n    };\n  }\n\n  // NB: probably need to extrahere this part so I can use it to view the authentication status while logging in...\n\n  const persons = (await db.get(\"Person\")).filter((person) => {\n    const matchingMethods = person.authenticationMethods.filter(\n      (authenticationMethod) => {\n        // NB: finds the method with the same handle and credential\n        const matchingMethod = device.authenticationMethods.find(\n          (method) =>\n            method.method === authenticationMethod.method &&\n            method.handle === authenticationMethod.handle &&\n            method.credential &&\n            authenticationMethod.encryptedCredential &&\n            comparePassword(\n              method.credential,\n              authenticationMethod.encryptedCredential\n            )\n        );\n\n        return !!matchingMethod;\n      }\n    );\n\n    const hasEnoughMethods =\n      (person.amountAuthenticationMethodsRequired || 1) <=\n      matchingMethods.length;\n\n    const hasMissingMethod = !!person.requiredAuthenticationMethods?.find(\n      (method) => {\n        const isMethodMissing = !device.authenticationMethods.find(\n          (x) => x.method === method\n        );\n        return isMethodMissing;\n      }\n    );\n\n    if (hasEnoughMethods && !hasMissingMethod) {\n      // if you have authenticated with enough methods, and aren't missing a method\n      return true;\n    }\n\n    return false;\n  });\n\n  if (!persons || persons.length === 0) {\n    console.log({ methods: device.authenticationMethods });\n    return {\n      isSuccessful: false,\n      message: \"Couldn't find anyone with those credentials\",\n    };\n  }\n\n  return { isSuccessful: true, persons, message: \"Found the persons\" };\n}",
   "description": "This finds all persons you should be logged in as according to all your device's Authentication Methods.\n\nDoes not update your device to add the found persons.",
-  "id": "onoleuldrjckqjfhcqsonftq"
+  "id": "qtwhkasoprawljkqshoowukd"
 }

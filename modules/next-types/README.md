@@ -1,6 +1,6 @@
 # Next types
 
-next-types (`OperationClassification` undefined)
+next-types (`OperationClassification` cjs)
 
 
 

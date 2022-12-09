@@ -1,0 +1,57 @@
+{
+  "createdAt": 1670589800692,
+  "updatedAt": 1670589800692,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589800692,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/controlChatGpt.ts",
+  "commentsInside": [],
+  "rawText": " async (prompt: string, headless?: boolean) => {\n  const api = new ChatGPTAPI({ headless });\n  // open chromium and wait until you've logged in\n  await api.init({ auth: \"blocking\" });\n  // send a message and wait for the response\n  const response = await api.sendMessage(prompt);\n  api.close();\n  return response;\n}",
+  "name": "controlChatGpt",
+  "slug": "control-chat-gpt",
+  "parameters": [
+    {
+      "name": "prompt",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "headless",
+      "schema": {
+        "type": "boolean"
+      },
+      "simplifiedSchema": {
+        "type": "boolean"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 1,
+  "size": {
+    "characters": 315,
+    "lines": 9,
+    "bytes": 315,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 35,
+    "linesPerFile": 9,
+    "numberOfFiles": 1
+  },
+  "id": "kzzeafhmtzhayhdvygrrmbcy"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669467098860,
-  "updatedAt": 1669467098860,
+  "createdAt": 1669962238412,
+  "updatedAt": 1669962238412,
   "deletedAt": 0,
-  "createdFirstAt": 1669467098860,
+  "createdFirstAt": 1669962238412,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  markdownString: string,\n  findFunction: (token: marked.Token) => boolean\n): marked.Token[] => {\n  const result = marked\n    .lexer(markdownString)\n    .map((x) => flattenMarkedTokenRecursive(x, findFunction))\n    .filter(notEmpty)\n    .flat();\n\n  return result;\n}",
   "description": "find all items that match a token, recursively in all nested things",
-  "id": "flvznirgmnvscfnmwthveloj"
+  "id": "tdmolhkkqvdrjendhhghrrgi"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378793209,
-  "updatedAt": 1667378793209,
+  "createdAt": 1670526968488,
+  "updatedAt": 1670526968488,
   "deletedAt": 0,
-  "createdFirstAt": 1667378793209,
+  "createdFirstAt": 1670526968488,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async <T>(\n  p: Path,\n  data: T\n): Promise<boolean> => {\n  if (!data) {\n    console.log({ p, data });\n    return false;\n  }\n  const stringifiedData = JSON.stringify(data, null, 2);\n\n  const folderToBe = getFolder(p);\n  if (!fs.existsSync(folderToBe)) {\n    //first, make sure the folder exists\n    await fs.mkdir(folderToBe, { recursive: true });\n  }\n  //then write it\n  await fs.writeFile(p, stringifiedData, \"utf8\");\n  return true;\n}",
   "description": "write json to a file\n\nmakes the dir and file if they don't exist",
-  "id": "rwovlnutxessxcuuikcudupz"
+  "id": "fmptlcyrizdmcgpzkpjveyuf"
 }

@@ -10,16 +10,16 @@ import { isBinary } from "text-or-binary";
 import { isText } from "text-or-binary";
 export declare const sdk: {
     useCustomUrlStore: <T extends string | number | boolean | string[] | boolean[] | number[] | undefined>(queryKey: string, config: import("use-url-store").CustomUrlStoreConfig) => [T, (newValue: T | undefined) => Promise<boolean>];
-    getGetApiUrl: (apiUrl: string, apiFunctionName: string, query: {
+    getGetApiUrl: (apiUrl: string | undefined, apiFunctionName: string, query: {
         [name: string]: string | string[] | undefined;
-    }) => string;
+    }) => string | undefined;
     untypedApiFunction: (fnName: string, config: import("api-types").ApiConfig, ...parameters: any) => Promise<import("api-types").ApiReturnType<any>>;
     addToken: (name: string, previousToken?: string | undefined, attachTokenToFilename?: boolean | undefined) => string;
     ensureToken: (name: string, newToken?: string | undefined, attachTokenToFilename?: boolean | undefined) => string;
     findAssetParametersRecursively: (object: {
         [key: string]: any;
     }, stack?: string[] | undefined) => import("asset-functions-js").AssetParameter[];
-    getAssetDirectlyApiUrl: (projectRelativeAssetPath: string) => string;
+    getAssetDirectlyApiUrl: (projectRelativeAssetPath: string) => string | undefined;
     getConversionInfoFromType: (uploadMimeType: string | undefined) => {
         uploadMimeType: string | undefined;
         targetFormat: string | undefined;
@@ -28,7 +28,7 @@ export declare const sdk: {
     getExtensionFromAsset: (asset: import("asset-type").Asset) => string | undefined;
     getNameFromRelativePath: (relativePath: string) => string;
     getNameWithTokenFromRelativePath: (relativePath: string, attachTokenToFilename?: boolean | undefined, newToken?: string | undefined) => string;
-    getReferencedAssetApiUrl: (apiUrl: string, projectRelativeReferencingFilePath: string, referencingFileRelativeAssetPath: string, isDownload?: boolean | undefined) => string;
+    getReferencedAssetApiUrl: (apiUrl: string | undefined, projectRelativeReferencingFilePath: string, referencingFileRelativeAssetPath: string, isDownload?: boolean | undefined) => string | undefined;
     getTypeFromUrlOrPath: (urlOrPath: string) => import("asset-type").AssetType;
     readableSize: (sizeBytes: number) => string;
     removeTokenIfPresent: (name: string, attachTokenToFilename?: boolean | undefined) => {
@@ -56,6 +56,7 @@ export declare const sdk: {
     pascalCase: (text: string) => string;
     slugify: typeof slugify;
     snakeCase: (text: string) => string;
+    getFileTypeFromPath: (path?: string | undefined) => "other" | import("filename-conventions").FileType;
     getWriterType: (extension: string | undefined) => import("filename-conventions").WriterType;
     hasSubExtension: (srcRelativeFileId: string, subExtensions: string | string[], includeRootName?: boolean | undefined) => boolean;
     isGeneratedOperationName: (operationName: string) => boolean;
@@ -83,6 +84,13 @@ export declare const sdk: {
     getAllFoldersUntilFolder: (folderPath: string) => string[];
     getFileName: (pathString: string) => string;
     getFirstAvailableFilename: (absoluteFilePath: string) => string;
+    getFolderSizeObject: {
+        (absoluteFolderPath: string, minimumReportSizeMb?: number | undefined, ignoreGenerated?: boolean | undefined): Promise<import("recursive-types").ChildObject<{
+            size: number;
+            name: string;
+        }>[]>;
+        isPublic: boolean;
+    };
     getFolder: (pathString: string) => string;
     getLastFolder: (pathString: string) => string;
     getOneFolderUpPath: (folderPath: string) => string;
@@ -226,9 +234,9 @@ export declare const sdk: {
     takeFirst: <T_27>(arrayOrNot: T_27 | T_27[]) => T_27;
     trimSlashes: (absoluteOrRelativePath: string) => string;
     getSimpleJsonString: (json: import("json-util").Json) => string | undefined;
-    flattenMarkdownChunks: (markdownChunks: MarkdownChunk[]) => MarkdownParagraph[];
-    getKvmdItemsRecursively: (chunk: MarkdownChunk, categoryStackCalculatedUntilNow?: import("model-types").CategoryStack | undefined) => import("model-types").Storing<import("model-types").KeyValueMarkdownModelType>[];
-    getParagraphsRecursively: (chunk: MarkdownChunk, categoryStackCalculatedUntilNow?: import("model-types").CategoryStack | undefined) => MarkdownParagraph[];
+    flattenMarkdownChunks: (markdownChunks: import("markdown-types").MarkdownChunk[]) => import("markdown-types").MarkdownParagraph[];
+    getKvmdItemsRecursively: (chunk: import("markdown-types").MarkdownChunk, categoryStackCalculatedUntilNow?: import("model-types").CategoryStack | undefined) => import("model-types").Storing<import("model-types").KeyValueMarkdownModelType>[];
+    getParagraphsRecursively: (chunk: import("markdown-types").MarkdownChunk, categoryStackCalculatedUntilNow?: import("model-types").CategoryStack | undefined) => import("markdown-types").MarkdownParagraph[];
     kvmdDataMap: <T_28 extends {
         [key: string]: string | string[] | undefined;
     }>(data: import("model-types").KeyValueMarkdownModelType[], { keyName, valueName, categoryStackCalculatedName, commentName, }: {

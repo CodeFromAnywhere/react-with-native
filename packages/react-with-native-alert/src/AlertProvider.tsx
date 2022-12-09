@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { AlertStatic } from "react-native";
 import { AlertContext } from "./Alert";
-import { AlertState } from "./types";
+import { AlertFn, AlertState } from "./types";
 import { Dialog as HeadlessUiDialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { Div, P } from "react-with-native";
+import { AlertButton } from "react-native";
+import { AlertOptions } from "react-native";
 
 export const AlertProvider = ({ children }: { children: any }) => {
   // console.log("normal alertprovider");
@@ -13,7 +14,7 @@ export const AlertProvider = ({ children }: { children: any }) => {
   const firstAlert: AlertState | undefined = alertState[0];
 
   // console.log({ firstAlert, alertState });
-  const alert: AlertStatic["alert"] = (title, message, buttons, options) => {
+  const alert: AlertFn = (title, message, buttons, options) => {
     const newState = { title, message, buttons, options };
     const newAlertState = alertState.concat([newState]);
 

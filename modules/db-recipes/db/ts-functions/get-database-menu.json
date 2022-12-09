@@ -1,0 +1,62 @@
+{
+  "createdAt": 1670218555120,
+  "updatedAt": 1670218555120,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218555120,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getDatabaseMenu.ts",
+  "commentsInside": [],
+  "rawText": " async (config?: { bundleId?: string }) => {\n  const dbModelNames = await getDbModelNames(config);\n  const databaseMenu: ModelInfo[] = dbModelNames\n    .map((modelKey) => {\n      if (!modelKey) return;\n\n      const modelInfo: ModelInfo = {\n        name: humanCase(modelKey),\n        slug: modelKey,\n        rows: 0,\n      };\n      return modelInfo;\n    })\n    .filter(notEmpty);\n\n  return {\n    menu: databaseMenu,\n  };\n}",
+  "name": "getDatabaseMenu",
+  "slug": "get-database-menu",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "bundleId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "bundleId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "Finds all relevant Db models to show in the menu\n\n- for a bundleId, it gets all models from the bundleSummary\n- for a bundled project (bundled) gets all models from the packages\n- for the main project, gets all models from sdk-db directly\n\nTODO: NB: the first and the second are not the same, so this needs to be cleaned up.",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 745,
+    "lines": 25,
+    "bytes": 745,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 30,
+    "linesPerFile": 25,
+    "numberOfFiles": 1
+  },
+  "id": "uyzcexkcpdcezoeummpylcli"
+}

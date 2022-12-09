@@ -6,9 +6,20 @@ function-functions-node (`OperationClassification` node-cjs)
 
 # Api reference
 
+## getPublicBundleConfig()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 getPublicBundleConfig (exported const)
+
 # Internal
 
-<details><summary>Show internal (10)</summary>
+<details><summary>Show internal (8)</summary>
     
   # getFunctionExecutions()
 
@@ -60,15 +71,6 @@ NB: if possible, rename the menu items if the items in a folder are not unique (
 | Input      |    |    |
 | ---------- | -- | -- |
 | tsFunctions (optional) | `TsFunction`[] |  |
-| **Output** |    |    |
-
-
-
-## getPublicBundleConfig()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
 | **Output** |    |    |
 
 
@@ -127,8 +129,6 @@ Example:
 
 NB: if possible, rename the menu items if the items in a folder are not unique (use file-name to replace item name if this happens)
 
-
-## 📄 getPublicBundleConfig (exported const)
 
 ## 📄 getSrcRelativeFolderPath (exported const)
 

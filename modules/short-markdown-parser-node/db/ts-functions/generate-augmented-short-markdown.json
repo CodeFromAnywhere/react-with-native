@@ -1,0 +1,47 @@
+{
+  "createdAt": 1670216329039,
+  "updatedAt": 1670216329039,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216329039,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/generateAugmentedShortMarkdown.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  projectRelativeMarkdownFilePath: string\n) => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n\n  const parse = await readMarkdownFile(\n    path.join(projectRoot, projectRelativeMarkdownFilePath)\n  );\n\n  if (!parse) return;\n\n  const shortMarkdown = markdownParseToShortMarkdown(parse);\n\n  if (!shortMarkdown) return;\n\n  const augmentedShortMarkdown = await augmentShortMarkdown(\n    shortMarkdown,\n    projectRelativeMarkdownFilePath\n  );\n\n  return augmentedShortMarkdown;\n}",
+  "name": "generateAugmentedShortMarkdown",
+  "slug": "generate-augmented-short-markdown",
+  "parameters": [
+    {
+      "name": "projectRelativeMarkdownFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "The first step is to ensure that this would actually work. It needs to generate the MP3s and refer to them correctly in the file.",
+  "returnType": {
+    "rawType": "unknown",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 634,
+    "lines": 23,
+    "bytes": 634,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 23,
+    "numberOfFiles": 1
+  },
+  "id": "ztqfrctozaitnlauisjfryhj"
+}

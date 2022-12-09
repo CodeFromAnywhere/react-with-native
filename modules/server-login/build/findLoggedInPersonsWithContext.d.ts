@@ -8,6 +8,6 @@ import { Person } from "peer-types";
 export declare const findLoggedinPersonsWithContext: (functionContext: FunctionContext) => Promise<{
     isSuccessful: boolean;
     persons?: Person[] | undefined;
-    message?: string | undefined;
+    message: string;
 }>;
 //# sourceMappingURL=findLoggedInPersonsWithContext.d.ts.map

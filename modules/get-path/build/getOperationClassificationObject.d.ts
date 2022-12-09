@@ -1,5 +1,5 @@
 import { OperationClassification } from "code-types";
-export declare type OperationClassificationObject = {
+export type OperationClassificationObject = {
     [operationName: string]: OperationClassification;
 };
 export declare const getOperationClassificationObject: () => Promise<OperationClassificationObject>;

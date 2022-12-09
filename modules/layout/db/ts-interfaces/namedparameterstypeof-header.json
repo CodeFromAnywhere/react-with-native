@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669276838767,
-  "updatedAt": 1669276838767,
+  "createdAt": 1670529009270,
+  "updatedAt": 1670529009270,
   "deletedAt": 0,
-  "createdFirstAt": 1669276838767,
+  "createdFirstAt": 1670529009270,
   "id": "namedparameterstypeof-header",
   "name": "NamedParameters<typeof Header>",
   "slug": "namedparameterstypeof-header",
@@ -50,6 +50,14 @@
                       "required": true,
                       "schema": {
                         "fullComment": "Human readable name of the monorepo (A kebab-case version of this will be used as root foldername)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "deploymentHostname",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Used to determine which call to actions are relevant (must be hostname without schema (name + tld))",
                         "type": "string"
                       }
                     },

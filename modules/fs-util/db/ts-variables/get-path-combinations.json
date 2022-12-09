@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378803944,
-  "updatedAt": 1667378803944,
+  "createdAt": 1670527002429,
+  "updatedAt": 1670527002429,
   "deletedAt": 0,
-  "createdFirstAt": 1667378803944,
+  "createdFirstAt": 1670527002429,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  ...chunksSegments: (string[] | string)[]\n): string[] => {\n  return (\n    chunksSegments\n      .map((x) => makeArray(x))\n      // small check to prevent crashes in case there is an invalid type given (not a string)\n      .map((chunks) => chunks.filter(notEmpty))\n      .reduce((cumSegments, chunks) => {\n        // first chunk is the combination of itself\n        if (cumSegments.length === 0) return chunks;\n        // all next chunks use the accummualted segments and reduce them\n        const nextCumSegments = cumSegments.reduce((all, segment) => {\n          // for every segment add all the chunks to that segment\n          const newChunks = chunks.map((chunk) => path.join(segment, chunk));\n          //add them to all new cumSegments\n          return all.concat(newChunks);\n        }, [] as string[]);\n        return nextCumSegments;\n      }, [] as string[])\n  );\n}",
   "description": "gets combinations for paths\n\ninput: [[\"operation1\",\"operation2\"], \"db/value-export\", [\"index.ts\",\"test.ts\",\"cli.ts\"]]\noutput: [\"operation1/db/value-export/index.ts\",\"operation2/db/value-export/index.ts\",\"operation1/db/value-export/test.ts\",\"operation2/db/value-export/test.ts\",\"operation1/db/value-export/cli.ts\",\"operation2/db/value-export/cli.ts\"]",
-  "id": "eslazfbxqqaqzuqzasehepxx"
+  "id": "ppgllwpsybmewfqncqsbxzrg"
 }

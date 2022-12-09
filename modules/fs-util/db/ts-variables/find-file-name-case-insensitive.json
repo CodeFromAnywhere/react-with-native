@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378795572,
-  "updatedAt": 1667378795572,
+  "createdAt": 1670526974961,
+  "updatedAt": 1670526974961,
   "deletedAt": 0,
-  "createdFirstAt": 1667378795572,
+  "createdFirstAt": 1670526974961,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  folderPath: string,\n  /**\n   * fileName with extension\n   */\n  fileName: string\n): Promise<string | undefined> => {\n  if (!fs.existsSync(folderPath)) return;\n\n  const results = await fs.readdir(folderPath);\n\n  const foundPath = results\n    .map((fileName) => {\n      const absolutePath = path.join(folderPath, fileName);\n      return absolutePath;\n    })\n    .find((absolutePath) => {\n      const parsedPath = path.parse(absolutePath);\n      const isMatchCaseInsensitive =\n        parsedPath.base.toLowerCase() === fileName.toLowerCase();\n\n      return isMatchCaseInsensitive;\n    });\n\n  return foundPath;\n}",
   "description": "returns a path of a fileName",
-  "id": "itzhiwqconufgxapcemiimzi"
+  "id": "ulnssigbzpswwiyymmlfxhjo"
 }

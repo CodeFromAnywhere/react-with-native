@@ -204,11 +204,13 @@ Properties:
 | slug  | string |  |
 | markdown  | string |  |
 | categoryStackCalculated  | array |  |
-| type (optional) | string |  |
 | url (optional) | string |  |
 | author (optional) | string |  |
 | agreement (optional) | number |  |
-| importancyCalculated (optional) | number |  |
+| readersAgreement (optional) | number |  |
+| readersAgreementVotedCount (optional) | number |  |
+| importancy (optional) | number |  |
+| isImportancySet (optional) | boolean |  |
 | wordSlugs  | array |  |
 
 

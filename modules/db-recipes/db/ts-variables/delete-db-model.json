@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670218551302,
+  "updatedAt": 1670218551302,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218551302,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "deleteDbModel",
+  "slug": "delete-db-model",
+  "operationRelativeTypescriptFilePath": "src/deleteDbModel.ts",
+  "type": {
+    "rawType": "<KInterface extends any>(interfaceName: KInterface, id: string) => Promise<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/build/types\").DbQueryResult>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async <KInterface extends DbModelEnum>(\n  interfaceName: KInterface,\n  id: string\n): Promise<DbQueryResult> => {\n  const deleteResult = await db.remove(\n    interfaceName,\n    (content) => content.id === id\n  );\n  return deleteResult;\n}",
+  "description": "deletes an instance of an db data interface from the db in a typesafe way",
+  "id": "czmbyzshywhhwuxlghzjtehz"
+}

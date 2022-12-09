@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385497840,
-  "updatedAt": 1669385497840,
+  "createdAt": 1670528789206,
+  "updatedAt": 1670528789206,
   "deletedAt": 0,
-  "createdFirstAt": 1669385497840,
+  "createdFirstAt": 1670528789206,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "() => {\n  const router = useRouter();\n  const meQuery = queries.useGetMeWithContext();\n\n  return (\n    <Div className=\"flex flex-1 flex-row mx-10\">\n      <Div className=\"flex flex-1 flex-col\">\n        <P className=\"text-4xl\">Sign up</P>\n        <FunctionForm\n          modelName=\"Person\"\n          projectRelativeStorageFilePath=\"db/persons.json\"\n          tsFunction={Index}\n          withApiResult={(\n            result: RealApiReturnType<\"signupWithPasswordWithContext\">\n          ) => {\n            if (result.isSuccessful && result.result?.isSuccessful) {\n              router.push(\"/\");\n            }\n            meQuery.refetch();\n            showStandardResponse(result);\n          }}\n        />\n        <ALink href=\"/login\">Or click here to login</ALink>\n      </Div>\n    </Div>\n  );\n}",
   "description": "",
-  "id": "nruaqwbknzffoivcfpoywbps"
+  "id": "armnqkskwonuuvaiiunitmuz"
 }

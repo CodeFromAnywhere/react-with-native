@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528938672,
+  "updatedAt": 1670528938672,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528938672,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getPropertiesDataParameterNames",
+  "slug": "get-properties-data-parameter-names",
+  "operationRelativeTypescriptFilePath": "src/crud/getPropertiesDataParameterNames.ts",
+  "type": {
+    "rawType": "(properties: import(\"/Users/king/King/operations/tools/typescript/schema-util/build/schema-util\").SchemaProperty[]) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  properties: SchemaProperty[]\n) => {\n  const dataParameterNames = properties\n    .map((property) => {\n      const { dataParameterName } = getReferenceParameterInfo(property.name);\n\n      return dataParameterName;\n    })\n    .filter(notEmpty);\n\n  return dataParameterNames;\n}",
+  "description": "",
+  "id": "gcmlgjnjcamowazzonypghss"
+}

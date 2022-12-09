@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670218555249,
+  "updatedAt": 1670218555249,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218555249,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getDatabaseMenu",
+  "slug": "get-database-menu",
+  "operationRelativeTypescriptFilePath": "src/getDatabaseMenu.ts",
+  "type": {
+    "rawType": "(config?: { bundleId?: string | undefined; } | undefined) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (config?: { bundleId?: string }) => {\n  const dbModelNames = await getDbModelNames(config);\n  const databaseMenu: ModelInfo[] = dbModelNames\n    .map((modelKey) => {\n      if (!modelKey) return;\n\n      const modelInfo: ModelInfo = {\n        name: humanCase(modelKey),\n        slug: modelKey,\n        rows: 0,\n      };\n      return modelInfo;\n    })\n    .filter(notEmpty);\n\n  return {\n    menu: databaseMenu,\n  };\n}",
+  "description": "Finds all relevant Db models to show in the menu\n\n- for a bundleId, it gets all models from the bundleSummary\n- for a bundled project (bundled) gets all models from the packages\n- for the main project, gets all models from sdk-db directly\n\nTODO: NB: the first and the second are not the same, so this needs to be cleaned up.",
+  "id": "vcsipujgvskzcesceilptwuf"
+}

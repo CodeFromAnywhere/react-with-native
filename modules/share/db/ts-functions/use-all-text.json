@@ -1,0 +1,36 @@
+{
+  "createdAt": 1670529080716,
+  "updatedAt": 1670529080716,
+  "deletedAt": 0,
+  "createdFirstAt": 1670529080716,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/useAllText.ts",
+  "commentsInside": [],
+  "rawText": " () => {\n  // Use a state to store the current value of the body element's text\n  const [text, setText] = React.useState(\n    typeof document === \"undefined\" ? undefined : document.body.innerText\n  );\n\n  // When the text of the body element changes, update the state\n  React.useEffect(() => {\n    if (typeof document === \"undefined\") return;\n\n    const observer = new MutationObserver((mutations) => {\n      mutations.forEach((mutation) => {\n        if (mutation.type === \"childList\") {\n          setText(document.body.innerText);\n        }\n      });\n    });\n\n    observer.observe(document.body, {\n      childList: true,\n      subtree: true,\n    });\n\n    // Return a cleanup function that stops observing changes\n    return () => observer.disconnect();\n  }, []);\n\n  // Return the current text of the body element\n  return text;\n}",
+  "name": "useAllText",
+  "slug": "use-all-text",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 829,
+    "lines": 30,
+    "bytes": 829,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 30,
+    "numberOfFiles": 1
+  },
+  "id": "wlhgpvgowoerbrpljyqttwfp"
+}

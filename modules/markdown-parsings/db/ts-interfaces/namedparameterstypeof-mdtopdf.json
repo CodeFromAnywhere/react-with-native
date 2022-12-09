@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200454242,
-  "updatedAt": 1669200454242,
+  "createdAt": 1670590050298,
+  "updatedAt": 1670590050298,
   "deletedAt": 0,
-  "createdFirstAt": 1669200454242,
+  "createdFirstAt": 1670590050298,
   "id": "namedparameterstypeof-mdtopdf",
   "name": "NamedParameters<typeof mdToPdf>",
   "slug": "namedparameterstypeof-mdtopdf",
@@ -172,16 +172,13 @@
                                         "required": true,
                                         "schema": {
                                           "enum": [
-                                            "youtube",
                                             "video",
-                                            "image",
                                             "audio",
-                                            "markdown",
-                                            "json",
-                                            "typescript",
-                                            "file"
+                                            "image",
+                                            "text",
+                                            "other"
                                           ],
-                                          "fullComment": "type of asset that is being embedded",
+                                          "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                                           "type": "string"
                                         }
                                       }
@@ -214,16 +211,13 @@
                                         "required": true,
                                         "schema": {
                                           "enum": [
-                                            "youtube",
                                             "video",
-                                            "image",
                                             "audio",
-                                            "markdown",
-                                            "json",
-                                            "typescript",
-                                            "file"
+                                            "image",
+                                            "text",
+                                            "other"
                                           ],
-                                          "fullComment": "Can be inferred from href\n\ntype of asset that is being embedded",
+                                          "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                                           "type": "string"
                                         }
                                       }

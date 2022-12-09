@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668333109708,
-  "updatedAt": 1668333109708,
+  "createdAt": 1670528405579,
+  "updatedAt": 1670528405579,
   "deletedAt": 0,
-  "createdFirstAt": 1668333109708,
+  "createdFirstAt": 1670528405579,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,9 +10,9 @@
   "slug": "api-url",
   "operationRelativeTypescriptFilePath": "src/apiUrl.ts",
   "type": {
-    "rawType": "String",
+    "rawType": "string | undefined",
     "typeDefinition": {
-      "optional": false,
+      "optional": true,
       "type": "string",
       "allOf": [
         {
@@ -29,13 +29,13 @@
     "isArray": false,
     "isEnum": false,
     "isObject": false,
-    "isPrimitive": true,
+    "isPrimitive": false,
     "isEnumLiteral": false,
     "simplifiedSchema": {
       "type": "string"
     }
   },
-  "value": "!isDev || runRemoteServer\n    ? publicEnvironmentVariables.remoteServer\n    : localhostServer",
+  "value": "!isDev || runRemoteServer\n    ? publicEnvironmentVariables.remoteServer ||\n      // NB: TODO: this would only work in next.js environment with the api url set\n      process.env.NEXT_PUBLIC_API_URL\n    : localhostServer",
   "description": "",
-  "id": "jgiondvjjlwgyyfufzakgyjy"
+  "id": "eupupdpddmpyzbdkzfbnctvp"
 }

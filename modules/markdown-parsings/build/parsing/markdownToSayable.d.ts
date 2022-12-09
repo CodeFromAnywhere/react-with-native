@@ -1,4 +1,4 @@
-import { MarkdownParse } from "code-types";
+import { MarkdownParse } from "markdown-types";
 import { Sayable } from "../expose/sayablesToMp3";
 /**
 all mp3s should be stored in a separate location because we don't need them in the file system and we don't reference them, as they are data that is located by convention. all markdowns should have a linked `TextToSpeechAudio[]` which is auto updated every time `dev` is ran. `TextToSpeechAudio` also includes infromation about the `duration`, `voice` and more...

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384309456,
-  "updatedAt": 1669384309456,
+  "createdAt": 1670216085204,
+  "updatedAt": 1670216085204,
   "deletedAt": 0,
-  "createdFirstAt": 1669384309456,
+  "createdFirstAt": 1670216085204,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  config?: TodoPagesConfig\n): Promise<string[]> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return [];\n\n  const { recency, categoryStack, personId, priority, subExtension, sort } =\n    destructureOptionalObject(config);\n\n  /**\n   * TODO:\n   */\n  const todayTimestamp = 0;\n  const thisWeekTimestamp = 0;\n  const earliestUpdatedAt =\n    recency === \"24-hours\"\n      ? Date.now() - 86400000\n      : recency === \"7-days\"\n      ? Date.now() - 86400000 * 7\n      : recency === \"today\"\n      ? todayTimestamp\n      : recency === \"this-week\"\n      ? thisWeekTimestamp\n      : undefined;\n\n  let todoPaths = await getProjectRelativePaths({\n    type: \"todo\",\n    filterPrivate: true,\n    filterDraft: true,\n    filterGenerated: true,\n    earliestUpdatedAt,\n    sort,\n  });\n\n  // filter on categoryStack, if it's there. Filter BEFORE getting the markdown frontmatter, that's slow...\n\n  if (categoryStack && categoryStack.length === 0) {\n    todoPaths = todoPaths?.filter((todoPath) => {\n      const lastIndexTodoFolder = todoPath.lastIndexOf(\"todo/\");\n\n      if (lastIndexTodoFolder === -1) {\n        return false;\n      }\n\n      const todoRelativeFileId = todoPath.slice(\n        lastIndexTodoFolder + \"todo/\".length\n      );\n\n      const depth = todoRelativeFileId.split(\"/\").length - 1;\n\n      return depth === 0;\n    });\n  }\n  if (categoryStack && categoryStack.length > 0) {\n    todoPaths = todoPaths?.filter((todoPath) => {\n      const lastIndexTodoFolder = todoPath.lastIndexOf(\"todo/\");\n\n      if (lastIndexTodoFolder === -1) {\n        return false;\n      }\n\n      const todoRelativeFileId = todoPath.slice(\n        lastIndexTodoFolder + \"todo/\".length\n      );\n\n      // console.log({ todoRelativeFileId });\n\n      const categoryStackPrefix = categoryStack.join(\"/\") + \"/\";\n\n      if (!todoRelativeFileId.startsWith(categoryStackPrefix)) {\n        return false;\n      }\n\n      return true;\n    });\n  }\n\n  if (subExtension) {\n    todoPaths = todoPaths?.filter((filePath) => {\n      const filename = path.parse(filePath).base;\n      const thisSubExtension = getSubExtension(filename);\n\n      if (subExtension !== thisSubExtension) {\n        return false;\n      }\n\n      return true;\n    });\n  }\n\n  if (personId || priority) {\n    // ONLY get the mapped object of all frontmatters if it's really needed. It may take a little longer... Filter AFTER applying filter for recency and categoryStack.\n    const frontmatterObject = await getFrontmattersMappedObject(\n      projectRoot,\n      todoPaths\n    );\n\n    if (priority) {\n      todoPaths = todoPaths?.filter((todoPath) => {\n        const frontmatterPriority = frontmatterObject[todoPath]?.priority;\n\n        const matchPriority = priority === String(frontmatterPriority);\n\n        return matchPriority;\n      });\n    }\n\n    if (personId) {\n      todoPaths = todoPaths?.filter((todoPath) => {\n        const frontmatterOwner_personId =\n          frontmatterObject[todoPath]?.owner_personId;\n\n        const matchPerson = personId === String(frontmatterOwner_personId);\n\n        return matchPerson;\n      });\n    }\n  }\n\n  return todoPaths || [];\n}",
   "description": "",
-  "id": "arqvmrdhyyrgdegdiwdayfcl"
+  "id": "ftovwpqdildzysgalhuupuso"
 }

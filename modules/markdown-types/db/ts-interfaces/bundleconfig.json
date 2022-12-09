@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385207127,
-  "updatedAt": 1669385207127,
+  "createdAt": 1670527944741,
+  "updatedAt": 1670527944741,
   "deletedAt": 0,
-  "createdFirstAt": 1669385207127,
+  "createdFirstAt": 1670527944741,
   "id": "bundleconfig",
   "name": "BundleConfig",
   "slug": "bundleconfig",
@@ -19,6 +19,10 @@
       "properties": {
         "name": {
           "type": "string"
+        },
+        "deploymentHostname": {
+          "type": "string",
+          "description": "Used to determine which call to actions are relevant (must be hostname without schema (name + tld))"
         },
         "description": {
           "type": "string",
@@ -120,6 +124,14 @@
           "name": "name",
           "required": true,
           "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "deploymentHostname",
+          "required": false,
+          "schema": {
+            "fullComment": "Used to determine which call to actions are relevant (must be hostname without schema (name + tld))",
             "type": "string"
           }
         },
@@ -892,14 +904,6 @@
                 }
               },
               {
-                "name": "deploymentHostname",
-                "required": false,
-                "schema": {
-                  "fullComment": "Used to determine which images to show",
-                  "type": "string"
-                }
-              },
-              {
                 "name": "readmeRelativeFilePath",
                 "required": false,
                 "schema": {
@@ -911,7 +915,7 @@
                 "name": "foldersFromRepo",
                 "required": false,
                 "schema": {
-                  "fullComment": "if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated\n\ncan be handy if you're working with someone else...",
+                  "fullComment": "if given, it will fetch these folders from the repo and paste them in the bundle whenever the bundle is generated\n\ncan be handy if you're working with someone else...\n\nShould later be deprecated and p2p operation-sync should be used",
                   "items": [
                     {
                       "schema": {

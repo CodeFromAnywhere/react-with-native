@@ -1,2 +1,3 @@
-export declare const getPublicPerson: (id?: string) => Promise<import("peer-types").PublicPerson | undefined>;
+import { ApiFunction } from "function-server-types";
+export declare const getPublicPerson: ApiFunction;
 //# sourceMappingURL=getPublicPerson.d.ts.map

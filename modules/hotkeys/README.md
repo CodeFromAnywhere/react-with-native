@@ -1,6 +1,6 @@
 # Hotkeys
 
-hotkeys (`OperationClassification` cjs)
+hotkeys (`OperationClassification` ui-cjs)
 
 
 ## ⌨️ hotkeys
@@ -24,6 +24,11 @@ hook that creates an eventlistener for keydown and cleans it up when needed
 
 
 
+## 📄 useHotkey (exported const)
+
+hook that creates an eventlistener for keydown and cleans it up when needed
+
+
 ## useHotkeys()
 
 hook that creates an eventlistener for keydown and cleans it up when needed
@@ -34,11 +39,6 @@ hook that creates an eventlistener for keydown and cleans it up when needed
 | - | | |
 | **Output** |    |    |
 
-
-
-## 📄 useHotkey (exported const)
-
-hook that creates an eventlistener for keydown and cleans it up when needed
 
 
 ## 📄 useHotkeys (exported const)
@@ -56,28 +56,6 @@ hook that creates an eventlistener for keydown and cleans it up when needed
 | - | | |
 | **Output** |    |    |
 
-
-
-## isCtrlP()
-
-^ P
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| - | | |
-| **Output** |    |    |
-
-
-
-## 📄 isAltB (exported const)
-
-⎇ B
-
-
-## 📄 isCtrlP (exported const)
-
-^ P
 
 
 ## isAltN()
@@ -107,6 +85,18 @@ hook that creates an eventlistener for keydown and cleans it up when needed
 
 
 
+## isCtrlP()
+
+^ P
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
 ## isCtrlS()
 
 ^ S
@@ -119,11 +109,21 @@ hook that creates an eventlistener for keydown and cleans it up when needed
 
 
 
+## 📄 isAltB (exported const)
+
+⎇ B
+
+
 ## 📄 isAltN (exported const)
 
 ## 📄 isAltO (exported const)
 
 ## 📄 isAltW (exported const)
+
+## 📄 isCtrlP (exported const)
+
+^ P
+
 
 ## 📄 isCtrlS (exported const)
 

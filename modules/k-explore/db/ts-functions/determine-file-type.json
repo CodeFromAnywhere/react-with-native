@@ -1,36 +1,61 @@
 {
-  "createdAt": 1668976640377,
-  "updatedAt": 1668976640377,
+  "createdAt": 1670216115809,
+  "updatedAt": 1670216115809,
   "deletedAt": 0,
-  "createdFirstAt": 1668976640377,
+  "createdFirstAt": 1670216115809,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/explore.ts",
   "commentsInside": [],
-  "rawText": " (filePath: string) => {\n  const extension = path.parse(filePath).ext.substring(1);\n  if (!isSearchContentExtension(extension)) return null;\n  const index = fileTypes.findIndex((fileType) =>\n    extensions[fileType].includes(extension)\n  );\n  const fileType = fileTypes[index];\n  return fileType;\n}",
+  "rawText": " (filePath: string): FileType | null => {\n  const extension = path.parse(filePath).ext.substring(1);\n  if (!isSearchContentExtension(extension)) return null;\n  const index = fileTypes.findIndex((fileType) =>\n    extensions[fileType].includes(extension)\n  );\n  const fileType = fileTypes[index];\n  return fileType;\n}",
   "name": "determineFileType",
   "slug": "determine-file-type",
   "parameters": [],
   "description": "returns the file type or null if it's unknown",
   "returnType": {
-    "rawType": "any",
+    "rawType": "import(\"/Users/king/King/operations/tools/conventions/filename-conventions/build/extensions\").FileType | null",
+    "typeDefinition": {
+      "optional": true,
+      "enum": [
+        "ul",
+        "code",
+        "data",
+        "text"
+      ],
+      "x-enumNames": [
+        "ul",
+        "code",
+        "data",
+        "text"
+      ],
+      "type": "string"
+    },
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
     "isObject": false,
     "isPrimitive": false,
-    "isEnumLiteral": false
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "enum": [
+        "ul",
+        "code",
+        "data",
+        "text"
+      ],
+      "type": "string"
+    }
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 343,
+    "characters": 360,
     "lines": 9,
-    "bytes": 343,
+    "bytes": 360,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 38,
+    "charactersPerLine": 40,
     "linesPerFile": 9,
     "numberOfFiles": 1
   },
-  "id": "srjxphxamefyslfrjgsthvol"
+  "id": "tpoioxlloxyapjteltgfurpy"
 }

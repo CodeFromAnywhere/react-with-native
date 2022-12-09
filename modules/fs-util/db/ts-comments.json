@@ -1,18 +1,34 @@
 [
   {
-    "createdAt": 1668446792785,
-    "updatedAt": 1668446792785,
+    "createdAt": 1670527018862,
+    "updatedAt": 1670527018862,
     "deletedAt": 0,
-    "createdFirstAt": 1668446792785,
+    "createdFirstAt": 1670527018862,
     "name": "Comment",
     "slug": "comment",
-    "operationRelativeTypescriptFilePath": "src/copyAllRelativeFiles.ts",
-    "comment": "copy a bunch of relative files from one root folder to another",
-    "rawStatement": "export const copyAllRelativeFiles = async (\n  relativeFilePaths: string[],\n  absoluteSourceRoot: string,\n  absoluteDestinationRoot: string,\n  /**\n   * Overwrite existing file or directory\n   */\n  force?: boolean\n) => {\n  const promises = relativeFilePaths.map(async (relativeFilePath) => {\n    const fullSourcePath = path.join(absoluteSourceRoot, relativeFilePath);\n    const fullDestinationPath = path.join(\n      absoluteDestinationRoot,\n      relativeFilePath\n    );\n    if (fs.existsSync(fullSourcePath)) {\n      await fs.cpAsync(fullSourcePath, fullDestinationPath, {\n        recursive: true,\n        force: force || false,\n      });\n    }\n  });\n  await Promise.all(promises);\n\n  return true;\n};",
+    "operationRelativeTypescriptFilePath": "src/types.ts",
+    "comment": "unlike PathLike, this is only a string\n\nFor now, we don't have a clear convention whether or not this string should be absolute or anything.",
+    "rawStatement": "export type Path = string;",
     "parameters": {},
     "types": [],
-    "firstLine": 3,
-    "lastLine": 5,
-    "id": "gdxspxztyyegjhbzyadvxxsd"
+    "firstLine": 20,
+    "lastLine": 24,
+    "id": "wsyvjnzxhdglxseqmpxmzpgy"
+  },
+  {
+    "createdAt": 1670527018862,
+    "updatedAt": 1670527018862,
+    "deletedAt": 0,
+    "createdFirstAt": 1670527018862,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/types.ts",
+    "comment": "DEPRECATED: just use ParsedPath",
+    "rawStatement": "export type FolderPath = { relativeFolder: string | undefined; path: Path };",
+    "parameters": {},
+    "types": [],
+    "firstLine": 26,
+    "lastLine": 28,
+    "id": "dhcdtckwijkfitwpgvfyuiuu"
   }
 ]

@@ -1,0 +1,73 @@
+{
+  "createdAt": 1670589803997,
+  "updatedAt": 1670589803997,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589803997,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getContextualPrompt.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  contextualPromptSlug: string | undefined,\n  customPromptContent: string | null,\n  saveNewPromptWithName: string | null\n): Promise<(Creation<ContextualPrompt> & { slug: string }) | undefined> => {\n  if (contextualPromptSlug) {\n    const contextualPrompts = await db.get(\"ContextualPrompt\");\n\n    const contextualPrompt = contextualPrompts.find(\n      (x) => x.slug === contextualPromptSlug\n    );\n\n    if (!contextualPrompt) {\n      return undefined;\n    }\n\n    return contextualPrompt;\n  }\n\n  if (!customPromptContent || customPromptContent.length === 0) {\n    return undefined;\n  }\n\n  const isNew = saveNewPromptWithName && saveNewPromptWithName.length > 0;\n\n  const name = isNew ? saveNewPromptWithName : generateId();\n  const newContextualPrompt: Creation<ContextualPrompt> & { slug: string } = {\n    name,\n    slug: slugify(name),\n    promptContent: customPromptContent,\n  };\n\n  if (isNew) {\n    await db.upsert(\"ContextualPrompt\", newContextualPrompt);\n  }\n\n  return newContextualPrompt;\n}",
+  "name": "getContextualPrompt",
+  "slug": "get-contextual-prompt",
+  "parameters": [
+    {
+      "name": "contextualPromptSlug",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": false
+    },
+    {
+      "name": "customPromptContent",
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "name": "saveNewPromptWithName",
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<any>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1005,
+    "lines": 38,
+    "bytes": 1005,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 38,
+    "numberOfFiles": 1
+  },
+  "id": "opojwkelwhnymzawelitncga"
+}

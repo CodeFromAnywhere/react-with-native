@@ -1,0 +1,36 @@
+{
+  "createdAt": 1670590034634,
+  "updatedAt": 1670590034634,
+  "deletedAt": 0,
+  "createdFirstAt": 1670590034634,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/concatMarkdownFiles.test.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  //\n  const absoluteBasePath = \"/Users/king/King/operations/tools/ai/free-docs\";\n  const results = await explore({\n    basePath: absoluteBasePath,\n    extension: \"md\",\n    readmeOnTop: true,\n  });\n\n  const string = results\n    .map((x) => x.path)\n    .map(\n      (path) =>\n        `## ${makeRelative(\n          path,\n          getProjectRoot()! + \"/operations/tools\"\n        )}\\n\\n` + fs.readFileSync(path, \"utf8\")\n    )\n    .join(\n      \"\\n\\n\\n\\n_© Code From Anywhere - Discord: https://discord.gg/9jMHwBEW_\\n\\n\\n\\n\\n\\n\"\n    );\n\n  writeToAssets(__filename, string, \"result.md\");\n}",
+  "name": "concatMarkdownFiles",
+  "slug": "concat-markdown-files",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 5,
+  "size": {
+    "characters": 597,
+    "lines": 24,
+    "bytes": 598,
+    "bytesPerCharacter": 1.001675041876047,
+    "charactersPerLine": 25,
+    "linesPerFile": 24,
+    "numberOfFiles": 1
+  },
+  "id": "rutzmumpudpsedsvokjsixos"
+}

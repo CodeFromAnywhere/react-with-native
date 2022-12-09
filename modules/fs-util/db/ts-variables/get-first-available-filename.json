@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378801484,
-  "updatedAt": 1667378801484,
+  "createdAt": 1670526989803,
+  "updatedAt": 1670526989803,
   "deletedAt": 0,
-  "createdFirstAt": 1667378801484,
+  "createdFirstAt": 1670526989803,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(absoluteFilePath: string): string => {\n  // If that doesn't exist, use that\n  if (!fs.existsSync(absoluteFilePath)) return absoluteFilePath;\n\n  const parsedPath = path.parse(absoluteFilePath);\n\n  const newFilename = `${oneUp(parsedPath.name)}${parsedPath.ext}`;\n  const newProposedPath = path.join(parsedPath.dir, newFilename);\n  return getFirstAvailableFilename(newProposedPath);\n}",
   "description": "",
-  "id": "sggjhlwuvixwpgkedzdvlfzn"
+  "id": "zrsyfpwecyfomtubqeyvoqwe"
 }

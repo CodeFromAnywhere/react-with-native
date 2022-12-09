@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668976646824,
-  "updatedAt": 1668976646824,
+  "createdAt": 1670216124043,
+  "updatedAt": 1670216124043,
   "deletedAt": 0,
-  "createdFirstAt": 1668976646824,
+  "createdFirstAt": 1670216124043,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (config: {\n  basePath: string;\n  folderName: string;\n  ignoreOperations?: boolean;\n  /**\n   * folders to ignore\n   */\n  ignoreFolders?: string[];\n}): Promise<string[]> => {\n  const { basePath, folderName, ignoreOperations, ignoreFolders } = config;\n\n  const result = (\n    await explore({\n      basePath,\n      searchLevel: \"folder\",\n      search: folderName,\n      ignore: [...generatedFolders, ...(ignoreFolders || [])],\n      exact: true,\n      cancelRecursionOn: ignoreOperations ? pathArrayIsOperation : undefined,\n    })\n  ).map((x) => x.path);\n\n  return result;\n}",
   "description": "",
-  "id": "dxmqyudtakchqhbxgicujrqn"
+  "id": "hfnutbfjgoictydjlnhgncvc"
 }

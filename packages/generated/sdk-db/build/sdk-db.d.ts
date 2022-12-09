@@ -1,3 +1,6 @@
+import type { AiDemoApp } from "ai-types";
+import type { ContextualPrompt } from "ai-types";
+import type { ContextualPromptResult } from "ai-types";
 import type { AuthorizationModel } from "auth-types";
 import type { BundleConfig } from "bundle-types";
 import type { FrontBackBundle } from "bundle-types";
@@ -32,6 +35,7 @@ import type { WordMatrix } from "language-types";
 import type { MarkdownCallToAction } from "markdown-types";
 import type { WebMarkdownFile } from "markdown-types";
 import type { WebsiteHeader } from "markdown-types";
+import type { CategoryModelType } from "model-types";
 import type { SlugModelType } from "model-types";
 import type { Device } from "peer-types";
 import type { Group } from "peer-types";
@@ -51,6 +55,9 @@ import type { SelfSprintReview } from "todo-types";
 import type { TodoFile } from "todo-types";
 import type { TodoOffer } from "todo-types";
 export declare type DbModels = {
+    AiDemoApp: AiDemoApp;
+    ContextualPrompt: ContextualPrompt;
+    ContextualPromptResult: ContextualPromptResult;
     AuthorizationModel: AuthorizationModel;
     BundleConfig: BundleConfig;
     FrontBackBundle: FrontBackBundle;
@@ -85,6 +92,7 @@ export declare type DbModels = {
     MarkdownCallToAction: MarkdownCallToAction;
     WebMarkdownFile: WebMarkdownFile;
     WebsiteHeader: WebsiteHeader;
+    CategoryModelType: CategoryModelType;
     SlugModelType: SlugModelType;
     Device: Device;
     Group: Group;
@@ -104,9 +112,18 @@ export declare type DbModels = {
     TodoFile: TodoFile;
     TodoOffer: TodoOffer;
 };
-export declare const dbModelKeys: readonly ["AuthorizationModel", "BundleConfig", "FrontBackBundle", "Dataset", "FunctionExecution", "Operation", "TsBuildError", "TsComment", "TsConfig", "TsExport", "TsFunction", "TsImport", "TsInterface", "TsLintWarning", "TsVariable", "TypescriptFile", "Address", "Area", "City", "Country", "Location", "KvmdWord", "MarkdownWord", "NepaliEnglishTranslationMatrix", "Statement", "TokiPonaMatrix", "Translation", "Word", "WordCategory", "WordCombination", "WordMatrix", "MarkdownCallToAction", "WebMarkdownFile", "WebsiteHeader", "SlugModelType", "Device", "Group", "PageVisit", "PeerMessage", "Person", "Persona", "PersonInformation", "PersonInformationValue", "PersonPlatformConnection", "Platform", "Interest", "MediaChannel", "MediaCredential", "MediaPost", "SelfSprintReview", "TodoFile", "TodoOffer"];
+export declare const dbModelKeys: readonly ["AiDemoApp", "ContextualPrompt", "ContextualPromptResult", "AuthorizationModel", "BundleConfig", "FrontBackBundle", "Dataset", "FunctionExecution", "Operation", "TsBuildError", "TsComment", "TsConfig", "TsExport", "TsFunction", "TsImport", "TsInterface", "TsLintWarning", "TsVariable", "TypescriptFile", "Address", "Area", "City", "Country", "Location", "KvmdWord", "MarkdownWord", "NepaliEnglishTranslationMatrix", "Statement", "TokiPonaMatrix", "Translation", "Word", "WordCategory", "WordCombination", "WordMatrix", "MarkdownCallToAction", "WebMarkdownFile", "WebsiteHeader", "CategoryModelType", "SlugModelType", "Device", "Group", "PageVisit", "PeerMessage", "Person", "Persona", "PersonInformation", "PersonInformationValue", "PersonPlatformConnection", "Platform", "Interest", "MediaChannel", "MediaCredential", "MediaPost", "SelfSprintReview", "TodoFile", "TodoOffer"];
 export declare type DbModelEnum = typeof dbModelKeys[number];
 export declare const modelQueryConfig: {
+    AiDemoApp: {
+        dbStorageMethod: string;
+    };
+    ContextualPrompt: {
+        dbStorageMethod: string;
+    };
+    ContextualPromptResult: {
+        dbStorageMethod: string;
+    };
     AuthorizationModel: {
         dbStorageMethod: string;
     };
@@ -219,6 +236,9 @@ export declare const modelQueryConfig: {
         dbStorageMethod: string;
     };
     WebsiteHeader: {
+        dbStorageMethod: string;
+    };
+    CategoryModelType: {
         dbStorageMethod: string;
     };
     SlugModelType: {

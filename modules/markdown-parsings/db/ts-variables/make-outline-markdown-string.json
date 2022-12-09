@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200477051,
-  "updatedAt": 1669200477051,
+  "createdAt": 1670590091446,
+  "updatedAt": 1670590091446,
   "deletedAt": 0,
-  "createdFirstAt": 1669200477051,
+  "createdFirstAt": 1670590091446,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  title: string,\n  urls: MergedMarkdownOutlineUrl[]\n): string => {\n  const outlineString =\n    urls.length > 0\n      ? `## ${title}\\n\\n${urls\n          .map((url) => {\n            return `- [${url.title}](#${url.hashtagPath})`;\n          })\n          .join(\"\\n\")}\\n\\n`\n      : \"\";\n\n  return outlineString;\n}",
   "description": "",
-  "id": "vsiwqxczhxnwmqnuhizdchbk"
+  "id": "lncqihuooysnhqbncftlyfuy"
 }

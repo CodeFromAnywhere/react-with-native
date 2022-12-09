@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669467091062,
-  "updatedAt": 1669467091062,
+  "createdAt": 1669962230758,
+  "updatedAt": 1669962230758,
   "deletedAt": 0,
-  "createdFirstAt": 1669467091062,
+  "createdFirstAt": 1669962230758,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(markdownString: string): string[] => {\n  const result = flattenMarkdownString(\n    markdownString,\n    (token) => token.type === \"codespan\"\n  );\n\n  const codespans: string[] = result\n    .map((token) => {\n      if (token.type !== \"codespan\") return;\n\n      return token.text;\n    })\n    .filter(notEmpty);\n\n  return codespans;\n}",
   "description": "find all codespans",
-  "id": "xdcwcbfmlltpekhknuywzdfr"
+  "id": "nxfyffjdjfizudthkmnztcax"
 }

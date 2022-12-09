@@ -1,0 +1,45 @@
+{
+  "createdAt": 1670218582798,
+  "updatedAt": 1670218582798,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218582798,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/wrapFunction.test.ts",
+  "commentsInside": [],
+  "rawText": " <TFunc extends (...parameters: any[]) => any>(\n  originalFunction: TFunc\n) => {\n  const wrappedFunction = (\n    ...parameters: Parameters<TFunc>\n  ): ReturnType<TFunc> => {\n    /**\ndo other stuff, both with await and without awaiting\n\n- logging io + cache lookup (@pure tag)\n- logging performance\n- logging errors\n- input validation\n- output validation\n- tracking usage quantity, checking if there is still permission for execution based on credit balance\n*/\n    console.log(\"I'm wrapping this function\", originalFunction.name);\n    return originalFunction(...parameters);\n  };\n\n  return wrappedFunction;\n}",
+  "name": "wrapFunction",
+  "slug": "wrap-function",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "(...parameters: Parameters<TFunc>) => ReturnType<TFunc>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 607,
+    "lines": 22,
+    "bytes": 607,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 22,
+    "numberOfFiles": 1
+  },
+  "id": "sskkwiodcevjoxxahmodfsyr"
+}

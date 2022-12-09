@@ -1,18 +1,18 @@
 [
   {
-    "createdAt": 1668545170332,
-    "updatedAt": 1668545170332,
+    "createdAt": 1670528223129,
+    "updatedAt": 1670528223129,
     "deletedAt": 0,
-    "createdFirstAt": 1668545170332,
+    "createdFirstAt": 1670528223129,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/encryptPassword.ts",
     "comment": "Method to encrypt any password. Uses `bcrypt`",
-    "rawStatement": "export const encryptPassword = async (rawPassword: string): Promise<string> => {\n  return hash(rawPassword, 10);\n};",
+    "rawStatement": "export const encryptPassword = (rawPassword: string): string => {\n  return hashSync(rawPassword, 10);\n};",
     "parameters": {},
     "types": [],
     "firstLine": 3,
     "lastLine": 5,
-    "id": "esuyaiuklwvjpxcojmkmobtv"
+    "id": "aibcrhomgmmvmzfecibpsbsy"
   }
 ]

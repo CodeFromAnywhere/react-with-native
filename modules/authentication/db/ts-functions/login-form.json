@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669385479543,
-  "updatedAt": 1669385479543,
+  "createdAt": 1670528757047,
+  "updatedAt": 1670528757047,
   "deletedAt": 0,
-  "createdFirstAt": 1669385479543,
+  "createdFirstAt": 1670528757047,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/LoginForm.tsx",
   "commentsInside": [],
-  "rawText": " () => {\n  const router = useRouter();\n  const meQuery = queries.useGetMeWithContext();\n\n  const [pass, setPass] = useStore(\"api.authToken\");\n  return (\n    <Div className=\"flex flex-1 flex-col mx-10\">\n      <P className=\"text-4xl\">Login</P>\n      {/* <Input\n        className={UI.textInput}\n        placeholder=\"Password\"\n        type=\"password\"\n        value={pass}\n        onChange={(e) => setPass(e.target.value)}\n      />\n      <BigButton title=\"Login\" onClick={() => router.reload()} /> */}\n      {/* New way */}\n      <FunctionForm\n        tsFunction={Index}\n        withApiResult={(\n          result: RealApiReturnType<\"loginWithPasswordWithContext\">\n        ) => {\n          if (result.isSuccessful && result.result?.isSuccessful) {\n            router.push(\"/\");\n          }\n          meQuery.refetch();\n          showStandardResponse(result);\n        }}\n      />\n      <ALink href=\"/signup\">Or click here to sign up</ALink>\n    </Div>\n  );\n}",
+  "rawText": " () => {\n  const router = useRouter();\n  const meQuery = queries.useGetMeWithContext();\n\n  return (\n    <Div className=\"flex flex-1 flex-col mx-10\">\n      <P className=\"text-4xl\">Login</P>\n\n      {/* <Input\n        className={UI.textInput}\n        placeholder=\"Password\"\n        type=\"password\"\n        value={pass}\n        onChange={(e) => setPass(e.target.value)}\n      />\n      <BigButton title=\"Login\" onClick={() => router.reload()} /> */}\n\n      {/* New way */}\n      <FunctionForm\n        tsFunction={Index}\n        withApiResult={(\n          result: RealApiReturnType<\"loginWithPasswordWithContext\">\n        ) => {\n          if (result.isSuccessful && result.result?.isSuccessful) {\n            router.push(\"/\");\n          }\n          meQuery.refetch();\n          showStandardResponse(result);\n        }}\n      />\n      <ALink href=\"/signup\">Or click here to sign up</ALink>\n    </Div>\n  );\n}",
   "name": "LoginForm",
   "slug": "login-form",
   "parameters": [],
@@ -28,13 +28,13 @@
   },
   "maxIndentationDepth": 6,
   "size": {
-    "characters": 951,
-    "lines": 33,
-    "bytes": 951,
+    "characters": 900,
+    "lines": 34,
+    "bytes": 900,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 29,
-    "linesPerFile": 33,
+    "charactersPerLine": 26,
+    "linesPerFile": 34,
     "numberOfFiles": 1
   },
-  "id": "mifmnmvmizzwmqcumglmlymm"
+  "id": "heloxmbuezpwuaftznxbkxrw"
 }

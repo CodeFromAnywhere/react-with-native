@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528907721,
+  "updatedAt": 1670528907721,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528907721,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "toBase64",
+  "slug": "to-base-64",
+  "operationRelativeTypescriptFilePath": "src/card/toBase64.ts",
+  "type": {
+    "rawType": "(str: string) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(str: string) =>\n  typeof window === \"undefined\"\n    ? Buffer.from(str).toString(\"base64\")\n    : window.btoa(str)",
+  "description": "",
+  "id": "ffwfjnyjkhawbzeccpvnczbt"
+}

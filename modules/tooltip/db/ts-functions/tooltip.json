@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668189276427,
-  "updatedAt": 1668189276427,
+  "createdAt": 1669885164903,
+  "updatedAt": 1669885164903,
   "deletedAt": 0,
-  "createdFirstAt": 1668189276427,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669885164903,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/Tooltip.tsx",
   "commentsInside": [],
-  "rawText": " (props: {\n  tooltipComponent: (\n    tooltipComponentProps: TooltipComponentProps\n  ) => React.ReactElement;\n  tooltipContent: () => React.ReactElement;\n}) => {\n  const [popoverShow, setPopoverShow] = React.useState(false);\n  const btnRef = React.createRef<HTMLAnchorElement>();\n  const popoverRef = React.createRef<HTMLSpanElement>();\n  const openTooltip = () => {\n    if (!btnRef.current || !popoverRef.current) return;\n    createPopper(btnRef.current, popoverRef.current, {\n      placement: \"left\",\n    });\n    setPopoverShow(true);\n  };\n  const closeTooltip = () => {\n    setPopoverShow(false);\n  };\n\n  return (\n    <span>\n      <props.tooltipComponent\n        ref={btnRef}\n        onMouseEnter={openTooltip}\n        onMouseLeave={closeTooltip}\n      />\n\n      <span\n        className={\n          (popoverShow ? \"\" : \"hidden \") +\n          \"bg-gray-200 border-0 mr-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg\"\n        }\n        ref={popoverRef}\n      >\n        {props.tooltipContent}\n      </span>\n    </span>\n  );\n}",
+  "rawText": " (props: {\n  tooltip: React.ReactElement;\n  children: React.ReactNode;\n  placement?: Placement;\n}) => {\n  const [popoverShow, setPopoverShow] = React.useState(false);\n  const btnRef = React.createRef<HTMLAnchorElement>();\n  const popoverRef = React.createRef<HTMLSpanElement>();\n  const openTooltip = () => {\n    if (!btnRef.current || !popoverRef.current) return;\n    createPopper(btnRef.current, popoverRef.current, {\n      placement: props.placement || \"auto\",\n    });\n    setPopoverShow(true);\n  };\n  const closeTooltip = () => {\n    setPopoverShow(false);\n  };\n\n  return (\n    <span>\n      <span\n        className={`mb-8 dark:text-gray-100 text-black bg-slate-200 dark:bg-slate-800 p-2 z-30 text-sm max-w-xs break-words rounded-md${\n          popoverShow ? \" block\" : \" hidden\"\n        }`}\n        ref={popoverRef}\n      >\n        {props.tooltip}\n      </span>\n      <span onMouseEnter={openTooltip} onMouseLeave={closeTooltip} ref={btnRef}>\n        {props.children}\n      </span>\n    </span>\n  );\n}",
   "name": "Tooltip",
   "slug": "tooltip",
   "parameters": [],
@@ -33,13 +28,13 @@
   },
   "maxIndentationDepth": 5,
   "size": {
-    "characters": 1079,
-    "lines": 40,
-    "bytes": 1079,
+    "characters": 1004,
+    "lines": 35,
+    "bytes": 1004,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 27,
-    "linesPerFile": 40,
+    "charactersPerLine": 29,
+    "linesPerFile": 35,
     "numberOfFiles": 1
   },
-  "id": "wjzxduhxyljoibgnwbeqybhh"
+  "id": "gsmxnduzjuugfvtdhhiqfakc"
 }

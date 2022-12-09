@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385029105,
-  "updatedAt": 1669385029105,
+  "createdAt": 1670218849093,
+  "updatedAt": 1670218849093,
   "deletedAt": 0,
-  "createdFirstAt": 1669385029105,
+  "createdFirstAt": 1670218849093,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  projectRelativeFilePath: string\n): Promise<{\n  isSuccessful: boolean;\n  message?: string;\n  fileContents?: string;\n}> => {\n  const projectRoot = getProjectRoot();\n\n  if (!projectRoot) {\n    return { isSuccessful: false, message: \"No project root\" };\n  }\n\n  const absolutePath = path.join(projectRoot, projectRelativeFilePath);\n\n  if (!fs.existsSync(absolutePath)) {\n    return { isSuccessful: false, message: \"File doesn't exist\" };\n  }\n\n  const stats = await fs.stat(absolutePath);\n\n  if (stats.size > 1024 * 1024 || stats.isDirectory()) {\n    return {\n      isSuccessful: false,\n      message: \"That's a directory or bigger than 1MB\",\n    };\n  }\n\n  const fileContents = await fs.readFile(absolutePath, \"utf8\");\n\n  return { fileContents, isSuccessful: true };\n}",
   "description": "Gets the contents of a file in the project",
-  "id": "ikxfovldbpozfhiwzstzxfvj"
+  "id": "dlhrigxpsgfjofnwpzfvqwed"
 }

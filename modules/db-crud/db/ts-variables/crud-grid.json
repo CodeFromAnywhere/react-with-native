@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528911120,
+  "updatedAt": 1670528911120,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528911120,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "CrudGrid",
+  "slug": "crud-grid",
+  "operationRelativeTypescriptFilePath": "src/crud/CrudGrid.tsx",
+  "type": {
+    "rawType": "(props: import(\"/Users/king/King/operations/tools/user-interfaces/gui/wise/db-crud/src/crud/types\").CrudViewProps) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: CrudViewProps) => {\n  const { actions, data, highlight, tsInterface, onEndReached } = props;\n\n  return (\n    <Div className=\"flex flex-row flex-wrap\">\n      {data?.map((item) => {\n        const imageUrl = itemGetBackendAssetUrl({\n          item,\n          backendAsset: (item as any).pictureImage,\n        });\n        return imageUrl && typeof imageUrl === \"string\" ? (\n          <SpaceCard\n            ctaText=\"More info\"\n            imageUrl={imageUrl}\n            darkened={false}\n            secondaryImageUrl={imageUrl}\n            subtitle=\"Subtitle\"\n            title=\"Title\"\n          />\n        ) : (\n          \"no img url\"\n        );\n      })}\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "htqhcvqndotjigjdkwjqhili"
+}

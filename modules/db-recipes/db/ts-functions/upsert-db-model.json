@@ -1,0 +1,36 @@
+{
+  "createdAt": 1670218574846,
+  "updatedAt": 1670218574846,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218574846,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/upsertDbModel.ts",
+  "commentsInside": [],
+  "rawText": " async <\n  KInterfaceName extends keyof DbModels,\n  KItem extends DbModels[KInterfaceName]\n>(\n  interfaceName: KInterfaceName,\n  data: KItem | KItem[],\n  /**\n   * NOT USED\n   */\n  isNew?: boolean\n): Promise<DbQueryResult> => {\n  if (!data || (Array.isArray(data) && data.length === 0)) {\n    return { isSuccesful: false, message: \"Please provide some data\" };\n  }\n\n  // use the first item to get the operationName, sometimes needed for storing in the right location\n  const item = Array.isArray(data) ? data[0] : data;\n  const { operationName } = item;\n\n  /**\n  \n  Assets need to be placed: \n\n  1) find all assets in data\n\n  2) for every parameter that adheres to asset naming convention, call `processAsset`\n\n  */\n\n  const config: CustomQueryConfig = { operationName };\n\n  const realData = (await Promise.all(\n    makeArray(data).map((item) => {\n      return processItemAssets(item, interfaceName, operationName, config);\n    })\n  )) as KItem[];\n\n  // console.dir({ realData }, { depth: 999 });\n  // return { message: \"test\" };\n  //@ts-ignore\n  const upsertResult = await db.upsert(interfaceName, realData, config);\n\n  return upsertResult;\n}",
+  "name": "upsertDbModel",
+  "slug": "upsert-db-model",
+  "parameters": [],
+  "description": "upserts an instance of an db data interface from the db in a typesafe way",
+  "returnType": {
+    "rawType": "Promise<import(\"/Users/king/King/operations/tools/purpose/codebase-introspection/database/fs-orm/build/types\").DbQueryResult>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1215,
+    "lines": 44,
+    "bytes": 1215,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 44,
+    "numberOfFiles": 1
+  },
+  "id": "adlzjdilrarssnhqunsexkvz"
+}

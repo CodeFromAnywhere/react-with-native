@@ -1,0 +1,167 @@
+{
+  "createdAt": 1670589814831,
+  "updatedAt": 1670589814831,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589814831,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/processChatGptPrompt.ts",
+  "commentsInside": [],
+  "rawText": " async (config: {\n  contextContent: string | null;\n  selectionContent: string | null;\n  contextualPromptSlug: string | undefined;\n  /**\n   * DESCRIPTION: These variables can be used: %context will be replaced by your context, %selection will be replaced by your selection. Provide a good prompt that combines that in a specific format\n   */\n  customPromptContent: string | null;\n  saveNewPromptWithName: string | null;\n  commentContent: string | null;\n  isHeadless?: boolean;\n  prompt_projectRelativePath?: string;\n  thread?: string;\n}): Promise<{\n  isSuccessful: boolean;\n  message: string;\n  result?: { text?: string; assets?: BackendAsset[]; thread: string };\n}> => {\n  const {\n    commentContent,\n    contextContent,\n    contextualPromptSlug,\n    customPromptContent,\n    saveNewPromptWithName,\n    prompt_projectRelativePath,\n    selectionContent,\n    isHeadless,\n    thread,\n  } = config;\n\n  const contextualPrompt = await getContextualPrompt(\n    contextualPromptSlug,\n    customPromptContent,\n    saveNewPromptWithName\n  );\n  if (!contextualPrompt) {\n    return {\n      isSuccessful: false,\n      message: \"Couldn't create or find a contextual prompt\",\n    };\n  }\n\n  /**\nensure `%context, %selection, %comment` are all valid variables in the prompt\n*/\n\n  const finalPrompt = contextualPrompt.promptContent\n    .replaceAll(\"%context\", contextContent || \"\")\n    .replaceAll(\"%selection\", selectionContent || \"\")\n    .replaceAll(\"%comment\", commentContent || \"\");\n\n  /**\nsend it to the processor, which sends response back after a few seconds\n*/\n  const text = await controlChatGpt(finalPrompt, isHeadless);\n\n  const realThread = thread || generateId();\n\n  const newResult: Creation<ContextualPromptResult> = {\n    resultAssets: [],\n    resultText: text,\n    prompt: finalPrompt,\n    prompt_projectRelativePath,\n    thread: realThread,\n    contextualPromptSlug: contextualPrompt.slug,\n  };\n  const upsertResult = await db.upsert(\"ContextualPromptResult\", newResult);\n\n  return {\n    isSuccessful: true,\n    message: \"Whoa\",\n    result: { text, thread: realThread },\n  };\n}",
+  "name": "processChatGptPrompt",
+  "slug": "process-chat-gpt-prompt",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "contextContent": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "selectionContent": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "contextualPromptSlug": {
+            "type": "string"
+          },
+          "customPromptContent": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "DESCRIPTION: These variables can be used: %context will be replaced by your context, %selection will be replaced by your selection. Provide a good prompt that combines that in a specific format"
+          },
+          "saveNewPromptWithName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "commentContent": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "isHeadless": {
+            "type": "boolean"
+          },
+          "prompt_projectRelativePath": {
+            "type": "string"
+          },
+          "thread": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "contextContent",
+          "selectionContent",
+          "customPromptContent",
+          "saveNewPromptWithName",
+          "commentContent"
+        ],
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "contextContent",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selectionContent",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contextualPromptSlug",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customPromptContent",
+            "required": true,
+            "schema": {
+              "fullComment": "DESCRIPTION: These variables can be used: %context will be replaced by your context, %selection will be replaced by your selection. Provide a good prompt that combines that in a specific format",
+              "description": "These variables can be used: %context will be replaced by your context, %selection will be replaced by your selection. Provide a good prompt that combines that in a specific format",
+              "type": "string"
+            }
+          },
+          {
+            "name": "saveNewPromptWithName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentContent",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isHeadless",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "prompt_projectRelativePath",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "thread",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<{ isSuccessful: boolean; message: string; result?: { text?: string | undefined; assets?: import(\"/Users/king/King/operations/tools/asset/asset-type/build/BackendAsset\").BackendAsset[] | undefined; thread: string; } | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 2077,
+    "lines": 74,
+    "bytes": 2077,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 28,
+    "linesPerFile": 74,
+    "numberOfFiles": 1
+  },
+  "id": "isbrhzyrdqiivitjxrlwfzon"
+}

@@ -8,8 +8,8 @@ export declare const osRootFoldersConst: readonly ["assets", "backups", "bundled
 export declare const projectRootFoldersConst: readonly ["text", "db"];
 export declare const projectRootFolders: string[];
 export declare const osRootFolders: string[];
-export declare type OSRootFolder = typeof osRootFoldersConst[number];
-export declare type ProjectRootFolder = typeof projectRootFoldersConst[number];
+export type OSRootFolder = typeof osRootFoldersConst[number];
+export type ProjectRootFolder = typeof projectRootFoldersConst[number];
 export declare const getRootPath: (name?: OSRootFolder | ProjectRootFolder, config?: {
     manualProjectRoot?: string;
 }) => string | undefined;

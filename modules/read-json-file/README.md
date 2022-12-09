@@ -41,20 +41,7 @@ make sure to specify what type the file contains as a generic!
 
 
 
-## 📄 readJsonFileSync (exported const)
-
-Reads and parses JSON file
-
-make sure to specify what type the file contains as a generic!
-
-# Internal
-
-<details><summary>Show internal (2)</summary>
-    
-  # readProjectRelativeJsonFile()
-
-
-
+## readProjectRelativeJsonFile()
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -63,7 +50,12 @@ make sure to specify what type the file contains as a generic!
 
 
 
-## 📄 readProjectRelativeJsonFile (exported const)
+## 📄 readJsonFileSync (exported const)
 
-  </details>
+Reads and parses JSON file
+
+make sure to specify what type the file contains as a generic!
+
+
+## 📄 readProjectRelativeJsonFile (exported const)
 

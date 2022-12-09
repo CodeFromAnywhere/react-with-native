@@ -7,7 +7,7 @@ export { Dir, Dirent, Stats };
 /**
  * all handy Fs types
  */
-export declare type Fs = {
+export type Fs = {
     PathLike: PathLike;
     Stats: Stats;
     Dir: Dir;

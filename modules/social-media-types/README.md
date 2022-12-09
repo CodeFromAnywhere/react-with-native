@@ -6,6 +6,30 @@ social-media-types (`OperationClassification` cjs)
 
 # Api reference
 
+## 🔹 SocialMediaPostTypeReturnType
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| isSuccess  | boolean |  |
+| message  | string |  |
+| postUrl (optional) | string |  |
+
+
+
+## 🔹 SocialMediaPostTypeReturnType
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| isSuccess  | boolean |  |
+| message  | string |  |
+| postUrl (optional) | string |  |
+
+
+
 ## 🔸 Interest
 
 keyValueMarkdown model
@@ -33,6 +57,39 @@ Properties:
 | categoryStackCalculated  | array |  |
 | isHeaderCalculated  | boolean |  |
 | parent_interestSlug  | string |  |
+
+
+
+## 🔸 MediaCredential
+
+jsonMultiple model
+
+
+
+
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| createdAt  | number |  |
+| updatedAt  | number |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| categoryStackCalculated (optional) | array |  |
+| mediaType  | string |  |
+| email (optional) | string |  |
+| password  | string |  |
+| username (optional) | string |  |
+| phoneNumber (optional) | string |  |
 
 
 
@@ -81,11 +138,8 @@ Properties:
 | postedDetailsIndexed (optional) | object |  |
 
 
-# Internal
 
-<details><summary>Show internal (4)</summary>
-    
-  # 🔸 MediaChannel
+## 🔸 MediaChannel
 
 jsonMultiple model
 
@@ -122,70 +176,13 @@ Properties:
 | name  | string |  |
 | slug  | string |  |
 | description (optional) | string |  |
+| personId (optional) | string |  |
 | isGroup (optional) | boolean |  |
-| memberPersonIds (optional) | array |  |
+| member_personIds (optional) | array |  |
 | interestSlugs (optional) | array |  |
 | locationSlug (optional) | string |  |
 | language  | string |  |
 | mediaCredentialId (optional) | string |  |
 | myLastPostAt  | number |  |
 
-
-
-## 🔸 MediaCredential
-
-jsonMultiple model
-
-
-
-
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| createdAt  | number |  |
-| updatedAt  | number |  |
-| deletedAt  | number |  |
-| createdFirstAt  | number |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| categoryStackCalculated (optional) | array |  |
-| mediaType  | string |  |
-| email (optional) | string |  |
-| password  | string |  |
-| username (optional) | string |  |
-| phoneNumber (optional) | string |  |
-
-
-
-## 🔹 SocialMediaPostTypeReturnType
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isSuccess  | boolean |  |
-| message  | string |  |
-| postUrl (optional) | string |  |
-
-
-
-## 🔹 SocialMediaPostTypeReturnType
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| isSuccess  | boolean |  |
-| message  | string |  |
-| postUrl (optional) | string |  |
-
-  </details>
 

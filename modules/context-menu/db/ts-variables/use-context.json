@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528574622,
+  "updatedAt": 1670528574622,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528574622,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "useContext",
+  "slug": "use-context",
+  "operationRelativeTypescriptFilePath": "src/useContext.ts",
+  "type": {
+    "rawType": "(callback: (position: import(\"/Users/king/King/operations/tools/user-interfaces/gui/dumb/context-menu/src/types\").ContextEvent) => any, config?: { longTouchDurationMs?: number | undefined; } | undefined) => { onContextMenu: (event: React.MouseEvent<Element, MouseEvent>) => void; onTouchStart: (event: React.TouchEvent<Element>) => void; onTouchEnd: () => void; onClick: (mouseEvent: React.MouseEvent<Element, MouseEvent>) => void; style: { userSelect: import(\"/Users/king/King/operations/node_modules/csstype/index\").Property.UserSelect | undefined; }; }",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  /**\n   * The callback that activates whenever you right-click or long-press\n   */\n  callback: (position: ContextEvent) => any,\n  config?: {\n    /**\n     * Customise the time for a longpress to enable the callback. Defaults to browser default (onContextMenu default). If you set this, we detect the duration ourselves via the onTouchStart and onTouchEnd events.\n     */\n    longTouchDurationMs?: number;\n  }\n) => {\n  const [timeoutRef, setTimeoutRef] = useState<NodeJS.Timeout | null>(null);\n\n  const openTouchMenu = (event: React.TouchEvent) => {\n    const touch = event.touches.item(event.touches.length - 1);\n    const { clientX, clientY, screenX, screenY } = touch;\n    const id = event.currentTarget?.id;\n    callback({ clientX, clientY, screenX, screenY, id });\n    setTimeoutRef(null);\n  };\n\n  const openContextMenu = (event: React.MouseEvent) => {\n    const { clientX, clientY, screenX, screenY } = event;\n    const id = event.currentTarget?.id;\n    callback({ clientX, clientY, screenX, screenY, id });\n  };\n\n  const onTouchStart = (event: React.TouchEvent) => {\n    // Only allow for a single timeout\n    if (timeoutRef) return;\n    if (!config?.longTouchDurationMs) return;\n    const timeout = setTimeout(\n      () => openTouchMenu(event),\n      config.longTouchDurationMs\n    );\n    setTimeoutRef(timeout);\n  };\n\n  /**\n   * Required for ensuring that you don't close  the menu immediately when opening it on mobile, because a click-event is also fired there\n   */\n  const onClick = (mouseEvent: React.MouseEvent) =>\n    mouseEvent.stopPropagation();\n\n  const onTouchEnd = () => {\n    if (timeoutRef) {\n      clearTimeout(timeoutRef);\n    }\n  };\n\n  const onContextMenu = (event: React.MouseEvent) => {\n    event.preventDefault();\n    // NB: needed to stop it from opening anywhere above (mobile)\n    event.stopPropagation();\n    openContextMenu(event);\n  };\n  //\n  const contextProps = {\n    onContextMenu,\n    // onContextMenuCapture: (event: React.MouseEvent) => {\n    //   event.preventDefault();\n    //   event.stopPropagation();\n    // },\n    onTouchStart,\n    onTouchEnd,\n    onClick,\n    style: { userSelect: \"none\" as React.CSSProperties[\"userSelect\"] },\n  };\n  return contextProps;\n}",
+  "description": "Use this if you want to create a completely custom behavior from a context action. On top of the default `.onContextMenu` behavior, this hook enables the possibility for a custom hold duration on mobile.",
+  "id": "pmumzxgmmfkhffgwsogpmasp"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384965042,
-  "updatedAt": 1669384965042,
+  "createdAt": 1670063884496,
+  "updatedAt": 1670063884496,
   "deletedAt": 0,
-  "createdFirstAt": 1669384965042,
+  "createdFirstAt": 1670063884496,
   "id": "backendasset",
   "name": "BackendAsset",
   "slug": "backendasset",
@@ -40,6 +40,10 @@
         "modelName": {
           "type": "string",
           "description": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to"
+        },
+        "absoluteUrl": {
+          "type": "string",
+          "description": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project"
         }
       },
       "additionalProperties": false,
@@ -94,6 +98,14 @@
           "required": false,
           "schema": {
             "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+            "type": "string"
+          }
+        },
+        {
+          "name": "absoluteUrl",
+          "required": false,
+          "schema": {
+            "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
             "type": "string"
           }
         }

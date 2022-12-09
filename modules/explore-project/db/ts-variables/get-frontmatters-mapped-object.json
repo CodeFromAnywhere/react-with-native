@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384299557,
-  "updatedAt": 1669384299557,
+  "createdAt": 1670216073339,
+  "updatedAt": 1670216073339,
   "deletedAt": 0,
-  "createdFirstAt": 1669384299557,
+  "createdFirstAt": 1670216073339,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  projectRoot: string,\n  markdownPaths?: string[]\n) => {\n  const frontmatterPromises = markdownPaths?.map(async (markdownPath) => {\n    const absoluteFilePath = path.join(projectRoot, markdownPath);\n    const frontmatter = (await readMarkdownFile(absoluteFilePath))?.parameters;\n    return { [markdownPath]: frontmatter };\n  });\n  const frontmattersArray = frontmatterPromises\n    ? await Promise.all(frontmatterPromises)\n    : [];\n  const frontmattersMappedObject = mergeObjectsArray(frontmattersArray);\n\n  return frontmattersMappedObject;\n}",
   "description": "",
-  "id": "imyqijocihhucxruohyeijvw"
+  "id": "njhctlhlbfbbggzxrbmbxiqf"
 }

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670218572971,
+  "updatedAt": 1670218572971,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218572971,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "tsInterfaceToDbMenu",
+  "slug": "ts-interface-to-db-menu",
+  "operationRelativeTypescriptFilePath": "src/tsInterfaceToDbMenu.ts",
+  "type": {
+    "rawType": "(tsInterface: import(\"/Users/king/King/operations/tools/types/code-types/build/TsInterface\").TsInterface, type: string) => { name: string; operationName: string; type: string; srcRelativeFolder: string | undefined; } | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(tsInterface: TsInterface, type: string) => {\n  const srcRelativeFolder = makeSrcRelativeFolder(\n    tsInterface.operationRelativeTypescriptFilePath\n  );\n  if (!tsInterface.operationName) return;\n\n  return {\n    name: tsInterface.name,\n    operationName: tsInterface.operationName,\n    type,\n    srcRelativeFolder,\n  };\n}",
+  "description": "",
+  "id": "vwunnospugaspzusdfdkxfpo"
+}

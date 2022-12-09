@@ -1,3 +1,3 @@
-import { PublicBundleConfig } from "function-types";
-export declare const getPublicBundleConfig: () => Promise<PublicBundleConfig | undefined>;
+import { ApiFunction } from "function-server-types";
+export declare const getPublicBundleConfig: ApiFunction;
 //# sourceMappingURL=getPublicBundleConfig.d.ts.map

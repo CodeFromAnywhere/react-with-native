@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378800215,
-  "updatedAt": 1667378800215,
+  "createdAt": 1670526986616,
+  "updatedAt": 1670526986616,
   "deletedAt": 0,
-  "createdFirstAt": 1667378800215,
+  "createdFirstAt": 1670526986616,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(folderPath: string): string[] => {\n  const chunks = trimSlashes(folderPath).split(\"/\");\n  // chunks = ['a', 'random', 'path']\n\n  const result = chunks.map((_, index, array) => {\n    return \"/\" + array.slice(0, index + 1).join(\"/\");\n  });\n\n  return result;\n}",
   "description": "NB: I already have this somewhere else but couldn't find it!\n\nIf the path is /a/random/path\n\nThe result of this function will be:\n\n['/a', '/a/random', '/a/random/path']",
-  "id": "kdgvpxrfaeakselahisrfpnf"
+  "id": "vsbvvnfcekyamaqybyrgbdwy"
 }

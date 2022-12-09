@@ -1,0 +1,64 @@
+{
+  "createdAt": 1670218570709,
+  "updatedAt": 1670218570709,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218570709,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/makeSrcRelativeFolder.ts",
+  "commentsInside": [],
+  "rawText": " (\n  operationRelativeTypescriptFilePath: string\n): string | undefined => {\n  const srcPrefix = \"src/\";\n  if (!operationRelativeTypescriptFilePath.startsWith(srcPrefix)) return;\n  const withoutSrc = operationRelativeTypescriptFilePath.substring(\n    srcPrefix.length\n  );\n\n  const parts = withoutSrc.split(\"/\");\n\n  parts.pop();\n\n  const withoutFile = parts.join(\"/\");\n\n  if (withoutFile.length === 0) return;\n\n  return withoutFile;\n}",
+  "name": "makeSrcRelativeFolder",
+  "slug": "make-src-relative-folder",
+  "parameters": [
+    {
+      "name": "operationRelativeTypescriptFilePath",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "gets a src relative folder path (so maybe \"\" for a file `src/util.ts` or \"util\" for a file `src/util/thing.ts`)",
+  "returnType": {
+    "rawType": "string | undefined",
+    "typeDefinition": {
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 544,
+    "lines": 19,
+    "bytes": 544,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 29,
+    "linesPerFile": 19,
+    "numberOfFiles": 1
+  },
+  "id": "fygtjznncjqgimoocaxsacxj"
+}

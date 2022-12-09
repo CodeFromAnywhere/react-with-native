@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669312112785,
-  "updatedAt": 1669312112785,
+  "createdAt": 1670592525325,
+  "updatedAt": 1670592525325,
   "deletedAt": 0,
-  "createdFirstAt": 1669312112785,
+  "createdFirstAt": 1670592525325,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (\n  operationName: string | null | undefined,\n  manualProjectRoot?: string\n): Promise<string | undefined> => {\n  const projectRoot = manualProjectRoot || getProjectRoot();\n  if (!projectRoot) {\n    log(\"getDatabaseRootFolder: No project root found\");\n    process.exit(1);\n  }\n\n  if (!operationName) {\n    return projectRoot;\n  }\n\n  const operationBasePath = await getOperationPath(operationName, {\n    manualProjectRoot: projectRoot,\n  });\n\n  if (!operationBasePath) {\n    log(`Couldn't find operation base path for ${operationName}`, {\n      type: \"error\",\n    });\n  }\n\n  return operationBasePath;\n}",
+  "value": "async (\n  operationName: string | null | undefined,\n  manualProjectRoot?: string\n): Promise<string | undefined> => {\n  const projectRoot = manualProjectRoot || getProjectRoot();\n  if (!projectRoot) {\n    log(\"getDatabaseRootFolder: No project root found\");\n    process.exit(1);\n  }\n\n  if (!operationName) {\n    return projectRoot;\n  }\n\n  const operationBasePath = await getOperationPath(operationName, {\n    manualProjectRoot,\n  });\n\n  if (!operationBasePath) {\n    log(`Couldn't find operation base path for ${operationName}`, {\n      type: \"error\",\n    });\n  }\n\n  return operationBasePath;\n}",
   "description": "Tries to get the root folder where the database folder can be found.\n\nIf an operationName is specified, this will be the operation base path\nIf not, this will be the project root.",
-  "id": "zcfhhenqokxelvbykslxwzjr"
+  "id": "hpgschjiyjoljofxyhjzxsoi"
 }

@@ -6,6 +6,26 @@ get-imports-exports (`OperationClassification` node-cjs)
 
 # Api reference
 
+## findAndWriteImportsExports()
+
+takes an operation base path and finds all imports and exports in all the files, and writes it to the ts-imports/ts-exports indexes
+
+NB: has a side effect: it also updates the package.json to include all needed dependencies.
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| operationBasePath | string |  |,| manualProjectRoot (optional) | string | Manual project root of the operation where the imports and exports needs to be detected and written to database |
+| **Output** |    |    |
+
+
+
+## 📄 findAndWriteImportsExports (exported const)
+
+takes an operation base path and finds all imports and exports in all the files, and writes it to the ts-imports/ts-exports indexes
+
+NB: has a side effect: it also updates the package.json to include all needed dependencies.
+
 # CLI
 
 <details><summary>Show CLI information (1)</summary>
@@ -42,7 +62,7 @@ get-imports-exports (`OperationClassification` node-cjs)
 
 ## 📄 getImportsExportsTest (exported const)
 
-## 📄 test (unexported const)
+## 📄 test (exported const)
 
   </details>
 
@@ -67,20 +87,6 @@ Also keeps the dependencies that were already there, nothing is removed.
 | ---------- | -- | -- |
 | dependencies (optional) | `PackageInfoObject` | Current dependencies object in your operation |,| imports | `Creation<TsImport>`[] | All imports found in your operation |,| operations | `Operation`[] | All package-json's in your monorepo |,| operationName | string |  |
 | **Output** | { newDependencies: {  }, <br />hasGeneratedDependenciesIndexed: boolean, <br /> }   |    |
-
-
-
-## findAndWriteImportsExports()
-
-takes an operation base path and finds all imports and exports in all the files, and writes it to the ts-imports/ts-exports indexes
-
-NB: has a side effect: it also updates the package.json to include all needed dependencies.
-
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| operationBasePath | string |  |,| manualProjectRoot (optional) | string | Manual project root of the operation where the imports and exports needs to be detected and written to database |
-| **Output** |    |    |
 
 
 
@@ -146,6 +152,10 @@ Uses ts-morph to get all exports inside all files in a project or an array of so
 Doesn't use index, it actually looks in all files except index,
 so some of them may not be exported from the package itself depending on your indexing strategy!
 
+NB: uses a lot of memory!
+
+#performance
+
 
 | Input      |    |    |
 | ---------- | -- | -- |
@@ -207,7 +217,7 @@ returns true if the absolute import is built in into node
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| - | | |
+| moduleString | string |  |
 | **Output** | {  }   |    |
 
 
@@ -246,12 +256,7 @@ For external modules, uses the version that was already present in dependencies,
 Also keeps the dependencies that were already there, nothing is removed.
 
 
-## 📄 findAndWriteImportsExports (exported const)
-
-takes an operation base path and finds all imports and exports in all the files, and writes it to the ts-imports/ts-exports indexes
-
-NB: has a side effect: it also updates the package.json to include all needed dependencies.
-
+## 📄 CONCURRENTLY_INDEXED_FILES_AMOUNT (exported const)
 
 ## 📄 getDefaultSymbolType (exported const)
 
@@ -279,6 +284,10 @@ get the ImportSpecifier(s) of with a certain name.
 Uses ts-morph to get all exports inside all files in a project or an array of source files.
 Doesn't use index, it actually looks in all files except index,
 so some of them may not be exported from the package itself depending on your indexing strategy!
+
+NB: uses a lot of memory!
+
+#performance
 
 
 ## 📄 getPackageNameFromAbsoluteImport (exported const)
@@ -308,6 +317,8 @@ returns true if the absolute import is built in into node
 
 returns true if the import was found in an optional file, e.g. this import is not always included in the bundle, so should not be a dependency
 
+
+## 📄 test (exported const)
 
 ## 📄 writeResult (exported const)
 

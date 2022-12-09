@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669384155782,
-  "updatedAt": 1669384155782,
+  "createdAt": 1670526637262,
+  "updatedAt": 1670526637262,
   "deletedAt": 0,
-  "createdFirstAt": 1669384155782,
+  "createdFirstAt": 1670526637262,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getTypeFromUrlOrPath.ts",
   "commentsInside": [],
-  "rawText": " (urlOrPath: string): AssetType => {\n  const extension = getExtension(urlOrPath);\n  if ([\"mp3\", \"m4a\", \"wav\"].includes(extension)) return \"audio\";\n  if ([\"mp4\", \"avi\"].includes(extension)) return \"video\";\n  if ([\"jpeg\", \"jpg\", \"png\", \"gif\", \"svg\"].includes(extension)) return \"image\";\n  if (isText(urlOrPath)) return \"text\";\n  return \"other\";\n}",
+  "rawText": " (urlOrPath: string): AssetType => {\n  const extension = getExtension(urlOrPath);\n  if ([\"mp3\", \"m4a\", \"wav\"].includes(extension)) return \"audio\";\n  if ([\"mp4\", \"avi\", \"mov\"].includes(extension)) return \"video\";\n  if ([\"jpeg\", \"jpg\", \"png\", \"gif\", \"svg\"].includes(extension)) return \"image\";\n  if (isText(urlOrPath)) return \"text\";\n  return \"other\";\n}",
   "name": "getTypeFromUrlOrPath",
   "slug": "get-type-from-url-or-path",
   "parameters": [
@@ -63,13 +63,13 @@
   },
   "maxIndentationDepth": 1,
   "size": {
-    "characters": 415,
+    "characters": 422,
     "lines": 8,
-    "bytes": 415,
+    "bytes": 422,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 52,
+    "charactersPerLine": 53,
     "linesPerFile": 8,
     "numberOfFiles": 1
   },
-  "id": "usffnjcozbjlefptbenjabnj"
+  "id": "senimrbkpipdpnqsuxkgaeoc"
 }

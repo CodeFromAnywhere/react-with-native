@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200491672,
-  "updatedAt": 1669200491672,
+  "createdAt": 1670590117905,
+  "updatedAt": 1670590117905,
   "deletedAt": 0,
-  "createdFirstAt": 1669200491672,
+  "createdFirstAt": 1670590117905,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "up-markdown-chunk-level-recursively",
   "operationRelativeTypescriptFilePath": "src/parsing/parsing.ts",
   "type": {
-    "rawType": "(markdownChunks: import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownChunk[] | undefined) => import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownChunk[] | undefined",
+    "rawType": "(markdownChunks: import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownChunk[] | undefined) => import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownChunk[] | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(\n  markdownChunks: MarkdownChunk[] | undefined\n): MarkdownChunk[] | undefined => {\n  if (!markdownChunks) return;\n\n  const newMarkdownChunks: MarkdownChunk[] = markdownChunks.map((chunk) => ({\n    ...chunk,\n    level: chunk.level + 1,\n    children: upMarkdownChunkLevelRecursively(chunk.children),\n  }));\n\n  return newMarkdownChunks;\n}",
   "description": "Ups the levels of the markdownChunk array, recursively.\n\nCan be useful for merging multiple markdown sources",
-  "id": "kfymndulnnhxgxikspfcakcl"
+  "id": "xqxbcppalintqbhnqzmrzbvq"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668836129425,
-  "updatedAt": 1668836129425,
+  "createdAt": 1670528615489,
+  "updatedAt": 1670528615489,
   "deletedAt": 0,
-  "createdFirstAt": 1668836129425,
+  "createdFirstAt": 1670528615489,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -18,7 +18,7 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "value": "(props) => {\n  const { onChange, value, extra, errors } = props;\n\n  const config = props.config || {};\n\n  const hasError = errors && errors.length > 0;\n  const inputClassWithError = `\n  w-full\n  ${InputTheme[extra?.theme]} \n  ${InputSize[extra?.size]}\n    ${\n      hasError\n        ? config.errorClassName\n          ? config.errorClassName\n          : \" border border-red-400\"\n        : \"\"\n    }`;\n\n  return (\n    <OriginalAssetInput\n      attachTokenToFilename={extra.attachTokenToFilename}\n      defaultAssetName={extra.defaultAssetName}\n      projectRelativeReferencingFilePath={\n        extra.projectRelativeReferencingFilePath\n      }\n      modelName={extra.modelName}\n      allowMultiple={extra.allowMultiple}\n      inputTypes={extra.inputTypes}\n      value={value}\n      onChange={(newAssets) => onChange(newAssets)}\n    />\n  );\n}",
+  "value": "(props) => {\n  const { onChange, value, extra, errors, className } = props;\n\n  const config = props.config || {};\n\n  const hasError = errors && errors.length > 0;\n  const inputClassWithError = `\n  w-full\n  ${InputTheme[extra?.theme]} \n  ${InputSize[extra?.size]}\n    ${\n      hasError\n        ? config.errorClassName\n          ? config.errorClassName\n          : \" border border-red-400\"\n        : \"\"\n    }`;\n\n  return (\n    <OriginalAssetInput\n      attachTokenToFilename={extra.attachTokenToFilename}\n      defaultAssetName={extra.defaultAssetName}\n      projectRelativeReferencingFilePath={\n        extra.projectRelativeReferencingFilePath\n      }\n      modelName={extra.modelName}\n      allowMultiple={extra.allowMultiple}\n      inputTypes={extra.inputTypes}\n      value={value}\n      onChange={(newAssets) => onChange(newAssets)}\n    />\n  );\n}",
   "description": "",
-  "id": "pnufewrlqjkozhzvjxayukxs"
+  "id": "udvvgprvqcyqieyiwuzbvgst"
 }

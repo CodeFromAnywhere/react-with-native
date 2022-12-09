@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669312106899,
-  "updatedAt": 1669312106899,
+  "createdAt": 1670592520810,
+  "updatedAt": 1670592520810,
   "deletedAt": 0,
-  "createdFirstAt": 1669312106899,
+  "createdFirstAt": 1670592520810,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (manualProjectRoot: string) => {\n  const operationBasePaths = await exploreOperationFolders({\n    basePath: getPathsWithOperations({ manualProjectRoot }),\n  });\n\n  const operationsObject = mergeObjectsArray(\n    operationBasePaths.map((operationBasePath) => {\n      return {\n        [getLastFolder(operationBasePath)]: makeRelative(\n          operationBasePath,\n          manualProjectRoot\n        ),\n      };\n    })\n  );\n\n  return operationsObject;\n}",
   "description": "Needed in case of manual project root, otherwise use SDK!\n\nReturns project relative operation base paths",
-  "id": "hsyissznaeaisypxugybpesl"
+  "id": "opcrblqsjoiwosssuikjgggz"
 }

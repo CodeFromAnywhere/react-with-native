@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670589811159,
+  "updatedAt": 1670589811159,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589811159,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getContextualPrompts",
+  "slug": "get-contextual-prompts",
+  "operationRelativeTypescriptFilePath": "src/getContextualPrompts.ts",
+  "type": {
+    "rawType": "(contextType?: import(\"/Users/king/King/operations/tools/conventions/filename-conventions/build/extensions\").FileType | undefined, scopeProjectRelativePath?: string | undefined) => Promise<import(\"/Users/king/King/operations/tools/ai/ai-functions-node/src/types\").ContextualPromptsObject>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  /**\n   * If not given, will return all\n   */\n  contextType?: FileType,\n  scopeProjectRelativePath?: string\n): Promise<ContextualPromptsObject> => {\n  const contextualPromptsObject = await getContextualPromptsArray(\n    scopeProjectRelativePath\n  );\n\n  const databaseContextualPromptSlugs =\n    contextualPromptsObject.databaseResult.map((x) => x.slug);\n  const contextualPrompts = Object.values(contextualPromptsObject).flat();\n\n  const rightType = contextualPrompts\n    .filter((x) => (contextType ? x.contextType === contextType : true))\n    .map(omitUndefinedValues);\n\n  const selectionContextualPrompts = rightType.filter(\n    (x) => x.usesSelection || x.usesAnyContext\n  );\n\n  const pageContextualPrompts = rightType.filter(\n    (x) => (!x.usesSelection && x.usesContext) || x.usesAnyContext\n  );\n\n  const folderContextualPrompts = rightType.filter(\n    (x) =>\n      (!x.usesSelection && !x.usesContext && x.folderContentContext) ||\n      x.usesAnyContext\n  );\n  return {\n    selectionContextualPrompts,\n    pageContextualPrompts,\n    folderContextualPrompts,\n    databaseContextualPromptSlugs,\n  };\n}",
+  "description": "Returns all contextual prompts for the selection and for the page with the right context type",
+  "id": "ipbsqiwzxorwowdpliepbljd"
+}

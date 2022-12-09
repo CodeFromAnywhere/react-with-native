@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200473221,
-  "updatedAt": 1669200473221,
+  "createdAt": 1670590084879,
+  "updatedAt": 1670590084879,
   "deletedAt": 0,
-  "createdFirstAt": 1669200473221,
+  "createdFirstAt": 1670590084879,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  schema: JSONSchema7,\n  /**\n   * If true, references will be links, otherwise, just the name of the referred interface\n   */\n  isMarkdown: boolean\n): string => {\n  const refLink = getRefLink(schema.$ref);\n  // console.log({ $ref: schema.$ref, refLink });\n\n  const type = Array.isArray(schema.type) ? schema.type[0] : schema.type;\n\n  if (refLink) {\n    return isMarkdown ? `\\`${refLink}\\`` : refLink;\n  } //(#${getImplicitId(refLink)})\n\n  if (schema.enum) {\n    const enumString = `${schema.enum.map(String).join(\" / \")}`;\n    return type === \"number\" ? `${enumString} (number)` : enumString;\n  }\n\n  if (type === \"boolean\") return \"boolean\";\n  if (type === \"string\") return \"string\";\n  if (type === \"number\" || type === \"integer\") return \"number\";\n  if (type === \"null\") return \"null\";\n  if (type === \"array\") {\n    const items = getSchemaItems(schema);\n\n    const itemsString = items\n      .map((item) => getTypeDescriptorRecursive(item, true))\n      .join(\" | \");\n\n    return `${items.length > 1 ? `(${itemsString})` : itemsString}[]`;\n  }\n\n  //   NB: only type object is left now\n\n  const properties = getProperties(schema);\n\n  const additionalProperties = getSchema(schema.additionalProperties);\n  const additionalPropertiesString = additionalProperties\n    ? `[key: string]: ${getTypeDescriptorRecursive(\n        additionalProperties,\n        isMarkdown\n      )}`\n    : \"\";\n\n  const propertyStrings = properties\n    .map((property) => {\n      const propertyString = `${property.name}${\n        property?.required ? \":\" : \"?:\"\n      } ${getTypeDescriptorRecursive(property.schema, isMarkdown)}`;\n\n      return propertyString;\n    })\n    .concat(additionalPropertiesString);\n\n  return isMarkdown\n    ? noNewlines(`{ ${propertyStrings.join(\", \\n\")} }`)!\n    : propertyStrings.join(\", \");\n}",
   "description": "Returns a single line descriptor of the type of a json schema. Can be used in markdown tables.",
-  "id": "yvoegtizxiyogctdzmujifju"
+  "id": "civofkopebhvvuubaejouysx"
 }

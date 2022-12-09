@@ -1,8 +1,8 @@
 {
-  "createdAt": 1667378803944,
-  "updatedAt": 1667378803944,
+  "createdAt": 1670527002429,
+  "updatedAt": 1670527002429,
   "deletedAt": 0,
-  "createdFirstAt": 1667378803944,
+  "createdFirstAt": 1670527002429,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(pathString: string) => {\n  const parsedPath = path.parse(pathString);\n  const hasExtension = parsedPath.ext.length > 0;\n\n  if (hasExtension) {\n    // NB: assume it's a file, let's avoid folders with dots!\n    const pathChunks = pathString.split(\"/\");\n    pathChunks.pop(); //remove the filename\n    return pathChunks.join(\"/\");\n  } else {\n    // NB: it's already a folder!\n    return pathString;\n  }\n}",
   "description": "if the path exists:\n- if the pathString is a folder, that is returned.\n- if the pathstring is not a folder, returns the pathstring without the file suffix\n\nif the path doesn't exist: returns pathString witout last chunk (this would only work for file paths)",
-  "id": "cbbiltdtkhhxddcnwzpozcok"
+  "id": "rapdxugsfbfvudgwyzvkqiuh"
 }

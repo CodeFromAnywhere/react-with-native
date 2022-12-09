@@ -7,16 +7,6 @@ Operation that makes the typerepo API exposable on the frontend in a completely 
 
 
 
-# Docs
-
-<details><summary>demo.md</summary>
-    
-  Please check this video for an explanation about the queries
-
-https://youtu.be/gGfGVvRn5xw
-
-  </details>
-
 # Api reference
 
 ## 📄 queries (exported const)
@@ -41,8 +31,8 @@ returns something like `[apiUrl]/[apiFunctionName][queryString]`
 
 | Input      |    |    |
 | ---------- | -- | -- |
-| apiUrl | string |  |,| apiFunctionName | string |  |,| query | { [key: string]: {  } } |  |
-| **Output** | `String`   |    |
+| apiUrl (optional) | string |  |,| apiFunctionName | string |  |,| query | { [key: string]: {  } } |  |
+| **Output** | string   |    |
 
 
 
@@ -63,7 +53,7 @@ returns something like `[apiUrl]/[apiFunctionName][queryString]`
 
 # Internal
 
-<details><summary>Show internal (3)</summary>
+<details><summary>Show internal (4)</summary>
     
   # untypedApiFunction()
 
@@ -78,6 +68,8 @@ NB: this is not a typed function as we are just overwriting it so we don't need 
 | **Output** |    |    |
 
 
+
+## 📄 API_NO_RESPONSE_TIME_KEY (exported const)
 
 ## 📄 sdkExample (exported const)
 

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668335518281,
-  "updatedAt": 1668335518281,
+  "createdAt": 1670527876735,
+  "updatedAt": 1670527876735,
   "deletedAt": 0,
-  "createdFirstAt": 1668335518281,
+  "createdFirstAt": 1670527876735,
   "id": "wordmatrix",
   "name": "WordMatrix",
   "slug": "wordmatrix",
@@ -19,16 +19,7 @@
   "type": {
     "typeDefinition": {
       "type": "object",
-      "additionalProperties": {
-        "anyOf": [
-          {
-            "$ref": "#/definitions/Id"
-          },
-          {
-            "not": {}
-          }
-        ]
-      },
+      "additionalProperties": false,
       "properties": {
         "slug": {
           "$ref": "#/definitions/Slug"
@@ -578,7 +569,31 @@
                 "name": "temporaryDestination",
                 "required": false,
                 "schema": {
-                  "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                  "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "projectRelativeReferencingFilePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "modelName",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "absoluteUrl",
+                "required": false,
+                "schema": {
+                  "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                   "type": "string"
                 }
               }
@@ -621,7 +636,31 @@
                 "name": "temporaryDestination",
                 "required": false,
                 "schema": {
-                  "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                  "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "projectRelativeReferencingFilePath",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "modelName",
+                "required": false,
+                "schema": {
+                  "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                  "type": "string"
+                }
+              },
+              {
+                "name": "absoluteUrl",
+                "required": false,
+                "schema": {
+                  "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                   "type": "string"
                 }
               }
@@ -730,7 +769,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -790,7 +853,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -883,7 +970,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -943,7 +1054,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -1036,7 +1171,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -1096,7 +1255,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -1189,7 +1372,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -1249,7 +1456,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -1342,7 +1573,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -1402,7 +1657,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -1495,7 +1774,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -1555,7 +1858,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -1648,7 +1975,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -1708,7 +2059,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -1801,7 +2176,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -1861,7 +2260,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -1954,7 +2377,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -2014,7 +2461,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -2107,7 +2578,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -2167,7 +2662,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -2260,7 +2779,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -2320,7 +2863,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -2413,7 +2980,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -2473,7 +3064,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -2566,7 +3181,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -2626,7 +3265,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -2719,7 +3382,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -2779,7 +3466,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -2872,7 +3583,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -2932,7 +3667,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -3025,7 +3784,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -3085,7 +3868,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -3178,7 +3985,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -3238,7 +4069,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -3331,7 +4186,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -3391,7 +4270,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -3484,7 +4387,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -3544,7 +4471,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -3637,7 +4588,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -3697,7 +4672,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -3790,7 +4789,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -3850,7 +4873,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -3943,7 +4990,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -4003,7 +5074,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }
@@ -4096,7 +5191,31 @@
                       "name": "temporaryDestination",
                       "required": false,
                       "schema": {
-                        "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "projectRelativeReferencingFilePath",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "modelName",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "absoluteUrl",
+                      "required": false,
+                      "schema": {
+                        "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                         "type": "string"
                       }
                     }
@@ -4156,7 +5275,31 @@
                                   "name": "temporaryDestination",
                                   "required": false,
                                   "schema": {
-                                    "fullComment": "Not stored\n\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "fullComment": "Not stored\n\nFilename after uploading in the temporary folder. should still be moved to its final location\n\nOnly available straight after uploading. After the function processes the asset, this is removed and a `relativePath` is created.",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "projectRelativeReferencingFilePath",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nLocation of the place where the asset is referenced\n\n- markdown file (or folder where it is located)\n- typescript file (or folder where it is located)\n- database file (or folder where it is located)",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "modelName",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "absoluteUrl",
+                                  "required": false,
+                                  "schema": {
+                                    "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
                                     "type": "string"
                                   }
                                 }

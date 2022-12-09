@@ -1,0 +1,92 @@
+{
+  "createdAt": 1670218566470,
+  "updatedAt": 1670218566470,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218566470,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getNestedDatabaseMenu.ts",
+  "commentsInside": [],
+  "rawText": " async (config?: {\n  noOperationPath?: boolean;\n  noOperationName?: boolean;\n  noSrcRelativeFolder?: boolean;\n  noPrefix?: boolean;\n}): Promise<{ flat?: WebPage[]; nested?: NestedWebPage[] }> => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return {};\n  const { noOperationPath, noOperationName, noSrcRelativeFolder, noPrefix } =\n    destructureOptionalObject(config);\n  const dbModels = (await db.get(\"TsInterface\")).filter((x) => x.isDbModel);\n\n  const queryPaths = dbModels.map((dbModel) => {\n    const projectRelativeOperationPath =\n      operations[dbModel.operationName as keyof typeof operations];\n\n    const slicedProjectRelativeOperationPath = projectRelativeOperationPath\n      .split(\"/\")\n      // in bundles, we still want to make the distinction between modules and packages, so this is great.\n      .slice(isBundle(projectRoot) ? 0 : 2)\n      .join(\"/\");\n    const operationPart = noOperationName\n      ? \"\"\n      : noOperationPath\n      ? dbModel.operationName + \"/\"\n      : slicedProjectRelativeOperationPath + \"/\";\n\n    const folder = getFolder(\n      dbModel.operationRelativeTypescriptFilePath.slice(\"src/\".length)\n    );\n    const folderPart = noSrcRelativeFolder\n      ? \"\"\n      : folder.length === 0\n      ? \"\"\n      : folder + \"/\";\n\n    const prefixPart = noPrefix ? \"\" : \"db/\";\n    const url = `${prefixPart}${operationPart}${folderPart}${dbModel.name}`;\n\n    return url;\n  });\n\n  const dbPages: WebPage[] = queryPaths.map((queryPath) => {\n    return { queryPath, pageData: null };\n  });\n\n  const upsertPages: WebPage[] = dbModels.map((dbModel) => ({\n    queryPath: `upsert/${dbModel.name}`,\n    pageData: null,\n    isMenuHidden: true,\n  }));\n\n  const flat = dbPages.concat(upsertPages);\n\n  return getMenuPagesObject(flat);\n}",
+  "name": "getNestedDatabaseMenu",
+  "slug": "get-nested-database-menu",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "noOperationPath": {
+            "type": "boolean"
+          },
+          "noOperationName": {
+            "type": "boolean"
+          },
+          "noSrcRelativeFolder": {
+            "type": "boolean"
+          },
+          "noPrefix": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "noOperationPath",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "noOperationName",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "noSrcRelativeFolder",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "noPrefix",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "TODO: support search for bundles (but this can be augmented word based)",
+  "returnType": {
+    "rawType": "Promise<{ flat?: import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").WebPage<null>[] | undefined; nested?: import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").NestedWebPage[] | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 1837,
+    "lines": 56,
+    "bytes": 1837,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 33,
+    "linesPerFile": 56,
+    "numberOfFiles": 1
+  },
+  "id": "fwhihvaljemjfpftozdyhalg"
+}

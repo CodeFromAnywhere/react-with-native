@@ -4,4 +4,5 @@ export declare type EditorProps = {
     onChange: (value: string) => void;
     withContext?: (context: TextEditingContext) => void;
     className: string;
+    projectRelativeFilePath?: string;
 };

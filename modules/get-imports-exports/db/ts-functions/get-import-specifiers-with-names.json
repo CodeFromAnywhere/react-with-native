@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668150643213,
-  "updatedAt": 1668150643213,
+  "createdAt": 1670590326140,
+  "updatedAt": 1670590326140,
   "deletedAt": 0,
-  "createdFirstAt": 1668150643213,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670590326140,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/util.ts",
   "commentsInside": [],
   "rawText": " (\n  sourceFile: SourceFile,\n  names: string[]\n) => {\n  return sourceFile\n    .getImportDeclarations()\n    .map((x) => x.getNamedImports())\n    .flat()\n    .filter((x) => names.includes(x.getName()));\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 10,
     "numberOfFiles": 1
   },
-  "id": "ssphqzffpwfmvlcxdkcijwoc"
+  "id": "lmpwbelwgakiqpvuzuxiagpl"
 }

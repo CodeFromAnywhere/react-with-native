@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669639111252,
-  "updatedAt": 1669639111252,
+  "createdAt": 1670063664983,
+  "updatedAt": 1670063664983,
   "deletedAt": 0,
-  "createdFirstAt": 1669639111252,
+  "createdFirstAt": 1670063664983,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(webPages: WebPage<any>[], queryPath: string) => {\n  const queryPathDepth = queryPath.split(\"/\").length;\n  const childrenKeys = webPages\n    .filter(\n      (x) =>\n        x.queryPath.startsWith(queryPath) &&\n        x.queryPath.split(\"/\").length - queryPathDepth === 1\n    )\n    .map((x) => x.queryPath.split(\"/\")[queryPathDepth]);\n\n  return childrenKeys;\n}",
   "description": "",
-  "id": "psxdsjobatbtuhdgjistuaun"
+  "id": "ajpthbxoavoacydbebokodzz"
 }

@@ -6,6 +6,17 @@ markdown-reader-functions (`OperationClassification` ui-cjs)
 
 # Api reference
 
+## docsGetStaticProps()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| context | `GetStaticPropsContext` |  |,| basePaths | { projectRelativeBasePath: string, <br />queryPath: string, <br /> }[] |  |,| webOperationName | string | Operation of the website that is going to be deployed |
+| **Output** |    |    |
+
+
+
+## 📄 docsGetStaticProps (exported const)
+
 ## getPublicMarkdownFilePaths()
 
 Returns all absolute markdown file paths within a basePath which are not drafts and which are not marked private (through frontmatter)
@@ -132,7 +143,7 @@ Works for files and folders
 
 # Internal
 
-<details><summary>Show internal (37)</summary>
+<details><summary>Show internal (35)</summary>
     
   # copyStaticAssets()
 
@@ -167,15 +178,6 @@ Function that tells Next.js what the pages are that need to be statically genera
 | Input      |    |    |
 | ---------- | -- | -- |
 | context | `GetStaticPathsContext` |  |,| basePaths | { projectRelativeBasePath: string, <br />queryPath: string, <br /> }[] |  |
-| **Output** |    |    |
-
-
-
-## docsGetStaticProps()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| context | `GetStaticPropsContext` |  |,| basePaths | { projectRelativeBasePath: string, <br />queryPath: string, <br /> }[] |  |,| webOperationName | string | Operation of the website that is going to be deployed |
 | **Output** |    |    |
 
 
@@ -416,8 +418,6 @@ To get a file from public assets after running this function, you need to get it
 
 Function that tells Next.js what the pages are that need to be statically generated
 
-
-## 📄 docsGetStaticProps (exported const)
 
 ## 📄 getAllMarkdownReaderPages (exported const)
 

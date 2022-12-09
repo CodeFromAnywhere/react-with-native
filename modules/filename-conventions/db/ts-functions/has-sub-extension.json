@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668332413275,
-  "updatedAt": 1668332413275,
+  "createdAt": 1670216178142,
+  "updatedAt": 1670216178142,
   "deletedAt": 0,
-  "createdFirstAt": 1668332413275,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670216178142,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/hasSubExtension.ts",
   "commentsInside": [],
   "rawText": " (\n  srcRelativeFileId: string,\n  subExtensions: string | string[],\n  /**\n   * if true, also returns true if the extension is the complete name of the file\n   */\n  includeRootName?: boolean\n): boolean => {\n  const subExtensionsArray = makeArray(subExtensions);\n  const parts = srcRelativeFileId.split(\".\");\n  const isSinglePart = parts.length === 1;\n  const subExtension = parts.pop()!;\n  const includesSubExtension = subExtensionsArray.includes(subExtension);\n  const isCounting = includeRootName ? true : !isSinglePart;\n  const has = isCounting && includesSubExtension;\n  return has;\n}",
@@ -90,5 +85,5 @@
     "linesPerFile": 17,
     "numberOfFiles": 1
   },
-  "id": "vcsrgcuulkynpfixyqktzxte"
+  "id": "xviwqnswylysmbomgeqiqain"
 }

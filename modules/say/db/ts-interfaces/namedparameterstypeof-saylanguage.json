@@ -1,0 +1,66 @@
+{
+  "createdAt": 1669962592213,
+  "updatedAt": 1669962592213,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962592213,
+  "id": "namedparameterstypeof-saylanguage",
+  "name": "NamedParameters<typeof sayLanguage>",
+  "slug": "namedparameterstypeof-saylanguage",
+  "operationRelativeTypescriptFilePath": "src/saySomething.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "language": {
+          "$ref": "#/definitions/SayLanguageEnum"
+        }
+      },
+      "required": [
+        "message",
+        "language"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "message",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "language",
+          "required": true,
+          "schema": {
+            "enum": [
+              "np",
+              "nl",
+              "en"
+            ],
+            "fullComment": "",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof sayLanguage>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

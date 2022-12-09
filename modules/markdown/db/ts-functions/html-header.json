@@ -1,13 +1,13 @@
 {
-  "createdAt": 1669467159891,
-  "updatedAt": 1669467159891,
+  "createdAt": 1670528658238,
+  "updatedAt": 1670528658238,
   "deletedAt": 0,
-  "createdFirstAt": 1669467159891,
+  "createdFirstAt": 1670528658238,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "explicitTypeName": "| Components[\"h1\"]\n  | Components[\"h2\"]\n  | Components[\"h3\"]\n  | Components[\"h4\"]\n  | Components[\"h5\"]\n  | Components[\"h6\"]",
-  "operationRelativeTypescriptFilePath": "src/renderMarkdownContent.tsx",
+  "operationRelativeTypescriptFilePath": "src/HtmlHeader.tsx",
   "commentsInside": [],
   "rawText": " ({ level, children }) => {\n  const levelSize =\n    level === 1\n      ? \"text-3xl\"\n      : level === 2\n      ? \"text-2xl\"\n      : level === 3\n      ? \"text-xl\"\n      : level === 4\n      ? \"text-lg\"\n      : level === 5\n      ? \"text-md\"\n      : level === 6\n      ? \"text-sm\"\n      : \"text-xs\";\n  // {...props\n  return (\n    <Div id={getImplicitId(String(children))} className={levelSize}>\n      {children}\n    </Div>\n  );\n}",
   "name": "HtmlHeader",
@@ -37,5 +37,5 @@
     "linesPerFile": 22,
     "numberOfFiles": 1
   },
-  "id": "njmgffgymudjdwziyqcsziop"
+  "id": "gzmtlpmbaqmoltmkvzelobjc"
 }

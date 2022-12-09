@@ -1,0 +1,76 @@
+{
+  "createdAt": 1670528935254,
+  "updatedAt": 1670528935254,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528935254,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/crud/SearchBar.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  initialValue?: string;\n  placeholder?: string;\n}) => {\n  const { initialValue, placeholder } = props;\n  const [tempSearch, setTempSearch] = useState(initialValue || \"\");\n\n  const [search, setSearch] = useStore(\"db-crud.search\");\n\n  const go = () => {\n    setSearch(tempSearch);\n  };\n\n  const clearSearch = () => setSearch(\"\");\n\n  return (\n    <Div className=\"rounded-full border border-zinc-700 dark:border-zinc-300 p-1 px-3 text-lg hover:bg-zinc-200 dark:hover:bg-zinc-800 bg-zinc-100 dark:bg-zinc-600 dark flex flex-row max-w-xl mx-4\">\n      {search.length > 0 ? (\n        <Div\n          className={`cursor-pointer pr-2`}\n          onClick={() => {\n            setSearch(\"\");\n            setTempSearch(\"\");\n          }}\n        >\n          🗑\n        </Div>\n      ) : null}\n      <Form\n        onSubmit={(e) => {\n          e.preventDefault();\n          go();\n        }}\n      >\n        <Input\n          placeholder={placeholder || \"Search\"}\n          className=\"flex flex-1 bg-transparent focus:outline-none\"\n          value={tempSearch}\n          onChange={(e) => setTempSearch(e.target.value)}\n        />\n      </Form>\n      <Div\n        className={\n          tempSearch.length === 0 ? \"cursor-default\" : \"cursor-pointer\"\n        }\n        onClick={go}\n      >\n        🔎\n      </Div>\n    </Div>\n  );\n}",
+  "name": "SearchBar",
+  "slug": "search-bar",
+  "parameters": [
+    {
+      "name": "props",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "initialValue": {
+            "type": "string"
+          },
+          "placeholder": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "initialValue",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 6,
+  "size": {
+    "characters": 1319,
+    "lines": 52,
+    "bytes": 1323,
+    "bytesPerCharacter": 1.0030326004548902,
+    "charactersPerLine": 25,
+    "linesPerFile": 52,
+    "numberOfFiles": 1
+  },
+  "id": "obvomffotcqfrmgdtxxyotgf"
+}

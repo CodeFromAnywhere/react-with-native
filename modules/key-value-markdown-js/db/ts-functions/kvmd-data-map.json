@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668334796142,
-  "updatedAt": 1668334796142,
+  "createdAt": 1669962084653,
+  "updatedAt": 1669962084653,
   "deletedAt": 0,
-  "createdFirstAt": 1668334796142,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669962084653,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/kvmdDataMap.ts",
   "commentsInside": [],
   "rawText": " <\n  T extends { [key: string]: string | string[] | undefined }\n>(\n  data: KeyValueMarkdownModelType[],\n  {\n    keyName,\n    valueName,\n    categoryStackCalculatedName,\n    commentName,\n  }: {\n    /**\n     * key by default\n     */\n    keyName?: string;\n    /**\n     * value by default\n     */\n    valueName?: string;\n    /**\n     * comment by default\n     */\n    commentName?: string;\n    /**\n     * categoryStackCalculated by default\n     */\n    categoryStackCalculatedName?: string;\n  }\n): T[] => {\n  const newDataObject = data.map((item) => {\n    const newData = {\n      [keyName || \"name\"]: item.name,\n      [valueName || \"value\"]: item.value,\n      [commentName || \"comment\"]: item.comment,\n      [categoryStackCalculatedName || \"categoryStackCalculated\"]:\n        item.categoryStackCalculated,\n    } as T;\n\n    return newData;\n  });\n\n  return newDataObject;\n}",
@@ -95,6 +90,23 @@
                   "schema": {
                     "fullComment": "path to db file\n\n- relatively from the operation root folder (without slash at start)\n- calculated value (not stored in database)\n- can be `undefined` if the db file does not belong to an operation\n- can be `undefined` when you are creating an item, because then it can be set for you",
                     "type": "string"
+                  }
+                },
+                {
+                  "name": "categoryStackCalculated",
+                  "required": true,
+                  "schema": {
+                    "fullComment": "calculated value that contains the slugs of all preceding categories to this item.\n\nWill be present when fetching from the the db with `fs-orm`\n\nTaken from the location in the folder of the db-model.\n\nNB: Changing this value when updating/upserting, changes where the item is located!",
+                    "nb": "Changing this value when updating/upserting, changes where the item is located!",
+                    "items": [
+                      {
+                        "schema": {
+                          "type": "string"
+                        },
+                        "name": null
+                      }
+                    ],
+                    "type": "array"
                   }
                 },
                 {
@@ -216,5 +228,5 @@
     "linesPerFile": 46,
     "numberOfFiles": 1
   },
-  "id": "sqzfkiujlusnhhsylgxdyzxv"
+  "id": "xhgmzldbsnoaqzqgnbcasoqw"
 }

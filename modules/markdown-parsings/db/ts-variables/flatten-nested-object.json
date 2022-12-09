@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200462569,
-  "updatedAt": 1669200462569,
+  "createdAt": 1670590065587,
+  "updatedAt": 1670590065587,
   "deletedAt": 0,
-  "createdFirstAt": 1669200462569,
+  "createdFirstAt": 1670590065587,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<T>(\n  nestedObject: NestedObject<T>,\n  isLeaf?: (content: NestedObject<T> | T | undefined) => boolean\n) => {\n  Object.keys(nestedObject).map((key) => {\n    const value = nestedObject[key];\n\n    const isValueLeaf = isLeaf ? isLeaf(value) : typeof value !== \"object\";\n\n    return;\n  });\n}",
   "description": "Flattens a nested object by returning an object that hasa the nested path as the key and the leaf as the value\n\nTODO: Finish, if needed. seems hard!",
-  "id": "iouwcwpwzcwnxnhycdgkkhop"
+  "id": "oocjnjenufubdrubhzcyonfz"
 }

@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1670526558316,
+    "updatedAt": 1670526558316,
+    "deletedAt": 0,
+    "createdFirstAt": 1670526558316,
+    "name": "Comment",
+    "slug": "comment",
+    "operationRelativeTypescriptFilePath": "src/useSelectionPromptsMenu.tsx",
+    "comment": "Provides the props needed to render a context-menu that allows you to add prompts and other things into your database. All actions require api access.",
+    "rawStatement": "export const useSelectionPromptsMenu = (\n  selectionPrompts: ContextualPrompt[],\n  contextualContent: ContextualContent\n) => {\n  const showPromptAlert = usePromptResultAlert();\n\n  /**\n   * TODO: also sort them here based on which selection you make (`.contextualContent.contextSelection`) and your settings (probably isFavorite first, but other sorting may be beneficial.\n   */\n  const promptItems = selectionPrompts.map((prompt) => {\n    const item: ContextMenuItem = {\n      onClick: () =>\n        processPrompt({ prompt, contextualContent, showPromptAlert }),\n      getTitle: () => prompt.name,\n      // TODO: not sure if this is the right level, but eventually we want to filter based on the selection, maybe\n      getIsEnabled: () => true,\n    };\n\n    return item;\n  });\n\n  const alert = useAlert();\n\n  const selectionWordCount = contextualContent.contextSelection\n    ? contextualContent.contextSelection.split(\" \").length\n    : 0;\n\n  const isStatement = selectionWordCount > 1;\n  const isWord = selectionWordCount === 1;\n\n  const { renderContextMenu, openContextMenuProps, onClose } = useContextMenu({\n    items: [\n      {\n        onClick: () => {\n          alert?.(\n            \"Not implemented yet\",\n            `should add the word into the WordMatrix, providing its category, your personal agreement/disagreement, and possibly a description/opnion and some prompts that should be executed on it (there's much more here)`\n          );\n        },\n        getTitle: () => \"🧠 Add word\",\n        getIsEnabled: () => isWord,\n      },\n\n      {\n        onClick: () => {\n          alert?.(\n            \"Not implemented yet\",\n            `should add the statement into the database, providing its type, your personal agreement/disagreement, and possibly an opinion (maybe more?)`\n          );\n        },\n        getTitle: () => \"🧠 Add statement\",\n        getIsEnabled: () => isStatement,\n      },\n\n      {\n        getTitle: () => \"🕊 Free-form prompt\",\n        getIsEnabled: () => true,\n        onClick: () => {\n          alert?.(\n            \"Not implemented yet\",\n            `Should allow to ask a free question about this selection, should allow you to choose which context should be provided, if any (free form text input with a preset is probably easiest, for programmers)`\n          );\n        },\n      },\n\n      {\n        getTitle: () => \"🎤 Speak\",\n        getIsEnabled: () => true,\n        onClick: () => {\n          alert?.(\n            \"Not implemented yet\",\n            `Should record your audio, convert into text by whisper, and make it select any of these actions, or the free-form prompt. Would be nice if this option is there by default, also for other menus, or it's even accessible via other ways, but this is a great way to try it out first.`\n          );\n        },\n      },\n\n      ...promptItems,\n    ],\n  });\n\n  return {\n    renderContextMenu,\n    openContextMenuProps,\n    onClose,\n  };\n};",
+    "parameters": {},
+    "types": [],
+    "firstLine": 7,
+    "lastLine": 9,
+    "id": "khswvcmsphyuopplgmntayvb"
+  }
+]

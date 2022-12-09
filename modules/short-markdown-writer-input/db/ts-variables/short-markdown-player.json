@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670215593227,
+  "updatedAt": 1670215593227,
+  "deletedAt": 0,
+  "createdFirstAt": 1670215593227,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "ShortMarkdownPlayer",
+  "slug": "short-markdown-player",
+  "operationRelativeTypescriptFilePath": "src/ShortMarkdownPlayer.tsx",
+  "type": {
+    "rawType": "(props: { shortMarkdown?: import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/short-markdown/short-markdown-types/build/ShortMarkdown\").ShortMarkdown | undefined; projectRelativeFilePath?: string | undefined; }) => JSX.Element | null",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: {\n  shortMarkdown?: ShortMarkdown;\n  projectRelativeFilePath?: string;\n}) => {\n  const { shortMarkdown, projectRelativeFilePath } = props;\n  const [slide, setSlide] = useState<number | null>(null);\n\n  const audioUrls =\n    shortMarkdown?.audioWithViewsArray\n      .filter((x) => !!x.audioPath)\n      .map((x) => {\n        if (!x.audioPath || !projectRelativeFilePath) return;\n\n        const src = getSrc(\n          { relativePath: x.audioPath },\n          projectRelativeFilePath\n        ).src;\n\n        return { audioKey: x.audioKey, src };\n      })\n      .filter(notEmpty) || [];\n\n  const audioPlayer = useMultiAudio(audioUrls.map((x) => x.src));\n\n  const items = shortMarkdown?.audioWithViewsArray\n    .map((x) => x.viewEmbeds)\n    .flat();\n\n  useEffect(() => {\n    if (!items) return;\n    if (slide === null) return;\n    // 1 - find corresponding item\n    const item = items[slide];\n\n    // 2 - find the audio connected to it and where it should start for that audio\n    const audioIndex = audioUrls.findIndex((x) => x.audioKey === item.audioKey);\n\n    if (audioIndex === -1) return;\n\n    // 3 - stop the previous audio, start next audio\n    audioPlayer.toggle(audioIndex)();\n  }, [slide]);\n\n  if (!shortMarkdown) return null;\n  if (!projectRelativeFilePath) return null;\n  if (!items) return null;\n\n  return (\n    <Div className=\"h-[80vh] overflow-auto snap-mandatory snap-y\">\n      {items.map((item, index) => {\n        return (\n          <div id={`slide${index}`}>\n            <ShortMarkdownSlide\n              projectRelativeFilePath={projectRelativeFilePath}\n              setSlide={setSlide}\n              isAutoplay\n              item={item}\n              index={index}\n              key={`slidekey${index}`}\n            />\n          </div>\n        );\n      })}\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "wonlblziwgbpzkjxcujldqsb"
+}

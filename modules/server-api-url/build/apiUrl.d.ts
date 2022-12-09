@@ -1,2 +1,2 @@
-export declare const apiUrl: string;
+export declare const apiUrl: string | undefined;
 //# sourceMappingURL=apiUrl.d.ts.map

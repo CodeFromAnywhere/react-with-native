@@ -37,11 +37,6 @@ this is part of the database convention
 
 
 
-## 📄 isCalculatedParameter (exported const)
-
-this is part of the database convention
-
-
 ## 🔹 AssetInputType
 
 Properties: 
@@ -51,6 +46,11 @@ Properties:
 | type  | string |  |
 | isMultiple  | boolean |  |
 
+
+
+## 📄 isCalculatedParameter (exported const)
+
+this is part of the database convention
 
 
 ## 📄 markdownTextParameterNames (exported const)

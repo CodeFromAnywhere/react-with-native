@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669312129841,
-  "updatedAt": 1669312129841,
+  "createdAt": 1670592542986,
+  "updatedAt": 1670592542986,
   "deletedAt": 0,
-  "createdFirstAt": 1669312129841,
+  "createdFirstAt": 1670592542986,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "<TModels extends AnyModelObject>(\n  modelName: Keys<TModels>,\n  dbConfig?: DbConfig<TModels>,\n  config?: CustomQueryConfig | GetQueryConfig<TModels[keyof TModels]>\n) => {\n  const hardcodedDefaultQueryConfig: QueryConfig = {\n    dbStorageMethod: \"jsonMultiple\",\n    // NB: this was hardcoded, but this is reducing performance a lot! Not sure why this was needed...\n    // manualProjectRoot: getProjectRoot(),\n  };\n\n  const modelConfig = dbConfig?.modelQueryConfig?.[modelName];\n\n  const mergedQueryConfig = mergeObjects<QueryConfig>(\n    hardcodedDefaultQueryConfig,\n    dbConfig?.defaultQueryConfig,\n    modelConfig,\n    config\n  )!;\n\n  // NB: dbStorageMethod is now always set\n  const merged = {\n    projectRoot: getProjectRoot(),\n    ...mergedQueryConfig,\n  } as MergedQueryConfig;\n  return merged;\n}",
   "description": "",
-  "id": "ikxqovdckjyzvtambsrjwctl"
+  "id": "iurwxlseseudgogrqkgblgcq"
 }

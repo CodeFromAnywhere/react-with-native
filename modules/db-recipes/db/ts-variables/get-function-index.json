@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670218564011,
+  "updatedAt": 1670218564011,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218564011,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getFunctionIndex",
+  "slug": "get-function-index",
+  "operationRelativeTypescriptFilePath": "src/getFunctionIndex.ts",
+  "type": {
+    "rawType": "({ functionName, }: { functionName: string; }) => Promise<{ success: boolean; response: string; function?: import(\"/Users/king/King/operations/tools/types/code-types/build/TsFunction\").TsFunction | undefined; }>",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async ({\n  functionName,\n}: {\n  functionName: string;\n}): Promise<{ success: boolean; response: string; function?: TsFunction }> => {\n  const cachedFunctions = await getCachedFunctions();\n\n  // get info about this operation\n  const functionIndex = cachedFunctions.find(\n    (fn) => fn.name === camelCase(functionName)\n  );\n\n  if (!functionIndex) {\n    return { success: false, response: \"Couldn't find function\" };\n  }\n\n  return { success: true, function: functionIndex, response: \"Found\" };\n}",
+  "description": "finds function indexation from database\n\nTODO: this should be used!",
+  "id": "qohczczpfbcrrocahvgppwfq"
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055697664,
-  "updatedAt": 1669055697664,
+  "createdAt": 1670590365880,
+  "updatedAt": 1670590365880,
   "deletedAt": 0,
-  "createdFirstAt": 1669055697664,
+  "createdFirstAt": 1670590365880,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (operationName: string | undefined) => {\n  const result = await Promise.all(\n    typescriptIndexModels.map((modelName) => {\n      return db.clear(modelName, { operationName });\n    })\n  );\n\n  await db.update(\n    \"Operation\",\n    () => true,\n    (old) =>\n      mergeNestedObject(old, {\n        operation: {\n          sizeIndexed: undefined,\n          buildResultIndexed: undefined,\n          classificationIndexed: undefined,\n          folderNameIndexed: undefined,\n          coreDependenciesIndexed: undefined,\n          hasGeneratedDependenciesIndexed: undefined,\n          lastPullTimeAtIndexed: undefined,\n          operationDependenciesIndexed: undefined,\n          packageDependenciesIndexed: undefined,\n          relativeOperationLocationPathIndexed: undefined,\n        },\n      }),\n    { operationName }\n  );\n}",
+  "value": "async (operationName: string | undefined) => {\n  const result = await Promise.all(\n    typescriptIndexModels.map((modelName) => {\n      return db.clear(modelName, { operationName });\n    })\n  );\n\n  await db.update(\n    \"Operation\",\n    () => true,\n    (old) =>\n      mergeNestedObject(old, {\n        operation: {\n          sizeIndexed: undefined,\n          buildResultIndexed: undefined,\n          classificationIndexed: undefined,\n          folderNameIndexed: undefined,\n          coreDependenciesIndexed: undefined,\n          hasGeneratedDependenciesIndexed: undefined,\n          operationDependenciesIndexed: undefined,\n          packageDependenciesIndexed: undefined,\n          relativeOperationLocationPathIndexed: undefined,\n        },\n      }),\n    { operationName }\n  );\n}",
   "description": "Clears all typescript indexation models, and removes all indexation from the oprations\n\nTODO: test first, not sure about the Operation one",
-  "id": "ddeqxtacyusztwlndrbzwpmf"
+  "id": "mdvkqvscrdywoollnwufhizp"
 }

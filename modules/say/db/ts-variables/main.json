@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669962591527,
+  "updatedAt": 1669962591527,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962591527,
+  "classification": "const",
+  "comments": [],
+  "isExported": false,
+  "name": "main",
+  "slug": "main",
+  "operationRelativeTypescriptFilePath": "src/cli/textToMp3.cli.ts",
+  "type": {
+    "rawType": "() => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async () => {\n  const [...message] = process.argv.slice(2);\n  const messageString = message.join(\" \");\n\n  const mp3DataPath = path.join(\n    __dirname,\n    \"../..\",\n    \"data\",\n    `${Math.round(Math.random() * 9999)}.mp3`\n  );\n  const finalPath = await textToMp3({ message: messageString }, mp3DataPath);\n\n  console.log({ finalPath });\n}",
+  "description": "",
+  "id": "cmkwzsoxybjfumlqzlqptmuk"
+}

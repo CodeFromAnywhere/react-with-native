@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669639119315,
-  "updatedAt": 1669639119315,
+  "createdAt": 1670063677369,
+  "updatedAt": 1670063677369,
   "deletedAt": 0,
-  "createdFirstAt": 1669639119315,
+  "createdFirstAt": 1670063677369,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "get-markdown-reader-pages",
   "operationRelativeTypescriptFilePath": "src/getMarkdownReaderPages.ts",
   "type": {
-    "rawType": "(config: { projectRoot: string; basePaths: string[]; mapQueryPath?: ((queryPath: string) => string) | undefined; }) => Promise<import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").FileWebPage[]>",
+    "rawType": "(config: { projectRoot: string; basePaths: string[]; queryPathCustomPrefix?: ((basePath?: string | undefined) => string | undefined) | undefined; mapQueryPath?: ((queryPath: string) => string) | undefined; }) => Promise<import(\"/Users/king/King/operations/tools/types/webpage-types/build/types\").FileWebPage[]>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (config: {\n  projectRoot: string;\n  /**\n   * basePaths to search for public markdown for\n   */\n  basePaths: string[];\n  /**\n   * if set, maps query path further\n   */\n  mapQueryPath?: (\n    /**\n     * already mapped the relative path to remove extension and numbers from folders\n     */\n    queryPath: string\n  ) => string;\n}): Promise<ReaderWebPage[]> => {\n  const { basePaths, projectRoot, mapQueryPath } = config;\n  const markdownReaderPages: ReaderWebPage[] = (\n    await Promise.all(\n      basePaths.map(async (basePath) => {\n        const publicMarkdownFileAbsolutePaths =\n          await getPublicMarkdownFilePaths(basePath, false);\n\n        const markdownReaderPages = publicMarkdownFileAbsolutePaths.map((x) => {\n          const filePath = makeRelative(x.path, projectRoot);\n          const pathWithoutReadme = stripReadmeFromFolder(filePath);\n          const pathWithoutExtensions =\n            removeExtensionsFromPath(pathWithoutReadme);\n\n          const queryPath = mapQueryPath\n            ? mapQueryPath(pathWithoutExtensions)\n            : pathWithoutExtensions;\n\n          // NB: folders are no menu items because menu is built from queryPaths recursively\n          const readerWebPage: ReaderWebPage = {\n            queryPath,\n            pageData: { projectRelativeFilePath: filePath },\n            isMenuHidden: x.isFolder,\n          };\n\n          return readerWebPage;\n        });\n\n        return markdownReaderPages;\n      })\n    )\n  ).flat();\n\n  return markdownReaderPages;\n}",
+  "value": "async (config: {\n  projectRoot: string;\n  /**\n   * basePaths to search for public markdown for\n   */\n  basePaths: string[];\n\n  /**\n   * If given, uses a basePath relative queryPath and prefixes this before it.\n   *\n   * if there's a prefix, don't use the basePath as prefix, but use that prefix instead.\n   *\n   * Should end with slash (/) in order for it to be folder\n   */\n  queryPathCustomPrefix?: (basePath?: string) => string | undefined;\n  /**\n   * if set, maps query path further\n   */\n  mapQueryPath?: (\n    /**\n     * already mapped the relative path to remove extension and numbers from folders\n     */\n    queryPath: string\n  ) => string;\n}): Promise<ReaderWebPage[]> => {\n  const { basePaths, projectRoot, mapQueryPath } = config;\n  const markdownReaderPages: ReaderWebPage[] = (\n    await Promise.all(\n      basePaths.map(async (basePath) => {\n        const publicMarkdownFileAbsolutePaths =\n          await getPublicMarkdownFilePaths(basePath, false);\n\n        const markdownReaderPages = publicMarkdownFileAbsolutePaths.map((x) => {\n          const filePath = makeRelative(x.path, projectRoot);\n          const pathWithoutReadme = stripReadmeFromFolder(filePath);\n          const pathWithoutExtensions =\n            removeExtensionsFromPath(pathWithoutReadme);\n\n          const mappedQueryPath = mapQueryPath\n            ? mapQueryPath(pathWithoutExtensions)\n            : pathWithoutExtensions;\n\n          const customQueryPrefix = config.queryPathCustomPrefix\n            ? config.queryPathCustomPrefix(basePath)\n            : undefined;\n\n          const relativeBasePath = makeRelative(basePath, projectRoot);\n\n          // console.log({ mappedQueryPath, relativeBasePath });\n          const queryPath = customQueryPrefix\n            ? customQueryPrefix + mappedQueryPath.replace(relativeBasePath, \"\")\n            : mappedQueryPath;\n\n          // NB: folders are no menu items because menu is built from queryPaths recursively\n          const readerWebPage: ReaderWebPage = {\n            queryPath,\n            pageData: { projectRelativeFilePath: filePath },\n            isMenuHidden: x.isFolder,\n          };\n\n          return readerWebPage;\n        });\n\n        return markdownReaderPages;\n      })\n    )\n  ).flat();\n\n  return markdownReaderPages;\n}",
   "description": "Gets all markdownreader pages for multiple basePaths. Can add a prefix, can also remove the last folder of basePath from the suffix.",
-  "id": "pjzsmyovudjteocsvtglrvwa"
+  "id": "xusigzjzfzhxgstuhabcdziw"
 }

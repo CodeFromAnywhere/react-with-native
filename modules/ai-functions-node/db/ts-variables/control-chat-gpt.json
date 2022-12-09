@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670589800889,
+  "updatedAt": 1670589800889,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589800889,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "controlChatGpt",
+  "slug": "control-chat-gpt",
+  "operationRelativeTypescriptFilePath": "src/controlChatGpt.ts",
+  "type": {
+    "rawType": "(prompt: string, headless?: boolean | undefined) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (prompt: string, headless?: boolean) => {\n  const api = new ChatGPTAPI({ headless });\n  // open chromium and wait until you've logged in\n  await api.init({ auth: \"blocking\" });\n  // send a message and wait for the response\n  const response = await api.sendMessage(prompt);\n  api.close();\n  return response;\n}",
+  "description": "",
+  "id": "hqrihxdinvjvylodmtnwmcqr"
+}

@@ -32,11 +32,23 @@
     "asset-type": "0.0.1",
     "frontmatter-util": "0.0.1",
     "markdown-types": "0.0.1",
-    "matter-types": "0.0.1"
+    "matter-types": "0.0.1",
+    "short-markdown-types": "0.0.1",
+    "asset-view": "0.0.0",
+    "use-on-screen": "0.0.0",
+    "ai-types": "0.0.1",
+    "react-with-native-alert": "1.0.33",
+    "react-with-native-select": "2.0.7",
+    "share": "1.0.0",
+    "db-crud": "0.0.0",
+    "context-menu": "0.0.0",
+    "react-native": "*",
+    "short-markdown-writer-input": "1.0.0",
+    "prompt-components": "1.0.0"
   },
   "devDependencies": {
     "@types/marked": "^4.0.7",
-    "@types/react": "^17.0.33",
+    "@types/react": "17.0.30",
     "@types/react-dom": "^17.0.10",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -59,7 +71,8 @@
   "slug": "writer-input",
   "operation": {
     "indirectDependencies": [
-      "writer-functions"
+      "writer-functions",
+      "ai-functions-node"
     ],
     "buildResultIndexed": {
       "buildSucceeded": true,
@@ -84,14 +97,17 @@
     "folderNameIndexed": "writer-input",
     "hasGeneratedDependenciesIndexed": false,
     "lastPullTimeAtIndexed": 0,
-    "lastRebuildAt": 1669385177941,
+    "lastRebuildAt": 1670527834389,
     "operationDependenciesIndexed": [
+      "api",
+      "queries",
       "ClickableIcon",
+      "errorToast",
+      "getFileTypeFromPath",
+      "getFileOrFolderName",
+      "FilePromptSelect",
       "Div",
       "DbModels",
-      "errorToast",
-      "api",
-      "getFileOrFolderName",
       "api",
       "findAssetParametersRecursively",
       "BackendAsset",
@@ -130,18 +146,21 @@
       "MappedObject",
       "AugmentedWord",
       "Div",
-      "MarkdownParseRenderConfig",
-      "FancyLoader",
+      "DbModels",
       "api",
       "queries",
+      "AugmentedWord",
+      "DbPage",
+      "FancyLoader",
       "getWriterType",
       "WriterType",
-      "MappedObject",
-      "AugmentedWord",
       "getFolderJs",
-      "DbModels",
+      "MappedObject",
+      "MarkdownParseRenderConfig",
       "mdToJsonParse",
+      "ContextualPromptResultsTab",
       "isDev",
+      "ShortStudio",
       "WriterViewEnum",
       "SubtextConfig",
       "SubwordConfig",
@@ -181,7 +200,12 @@
       "MarkdownParseRenderConfig",
       "SubtextConfig",
       "SubwordConfig",
+      "useLastSelection",
+      "useAlert",
       "useHotkeys",
+      "queries",
+      "getFileTypeFromPath",
+      "useSelectionPromptsMenu",
       "Div",
       "WriterType",
       "tryParseJson"
@@ -201,26 +225,26 @@
     "sizeIndexed": {
       "codeSize": {
         "numberOfFiles": 30,
-        "lines": 2326,
-        "characters": 66565,
-        "bytes": 66565
+        "lines": 2449,
+        "characters": 70582,
+        "bytes": 70582
       },
       "dataSize": {
         "numberOfFiles": 2,
-        "lines": 246,
-        "characters": 6303,
-        "bytes": 6303
+        "lines": 291,
+        "characters": 7402,
+        "bytes": 7402
       },
       "textSize": {
         "numberOfFiles": 2,
-        "lines": 608,
-        "characters": 17169,
-        "bytes": 17169
+        "lines": 651,
+        "characters": 19026,
+        "bytes": 19026
       },
       "size": {
-        "bytes": 90037,
-        "characters": 90037,
-        "lines": 3180,
+        "bytes": 97010,
+        "characters": 97010,
+        "lines": 3391,
         "numberOfFiles": 34
       }
     },

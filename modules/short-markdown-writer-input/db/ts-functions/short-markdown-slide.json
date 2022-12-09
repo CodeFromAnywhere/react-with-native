@@ -1,0 +1,40 @@
+{
+  "createdAt": 1670215595182,
+  "updatedAt": 1670215595182,
+  "deletedAt": 0,
+  "createdFirstAt": 1670215595182,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/ShortMarkdownSlide.tsx",
+  "commentsInside": [],
+  "rawText": " (props: {\n  item: ViewEmbed;\n  index: number;\n  projectRelativeFilePath: string;\n  setSlide: (index: number) => void;\n  isAutoplay?: boolean;\n}) => {\n  const { item, index, projectRelativeFilePath, setSlide, isAutoplay } = props;\n\n  const [timeoutRef, setTimeoutRef] = useState<NodeJS.Timeout | null>(null);\n  const slideRef = useRef<HTMLDivElement>(null);\n  const isOnScreen = useOnScreen(slideRef);\n\n  useEffect(() => {\n    if (isOnScreen) {\n      setSlide(index);\n\n      const durationMs = item.durationMs;\n\n      console.log({ index, durationMs });\n\n      if (!durationMs) {\n        return;\n      }\n\n      const timeout = setTimeout(() => {\n        if (isAutoplay) {\n          console.log(\"times up, should scroll to next!\");\n          setSlide(index + 1);\n\n          const nextElement = document.getElementById(`slide${index + 1}`);\n\n          if (!nextElement) {\n            console.log(\"Couldn't find next\");\n            return;\n          }\n\n          console.log(\n            \"scrolling into view the next element\",\n            nextElement.id,\n            \"????\",\n            nextElement.getBoundingClientRect()\n          );\n\n          nextElement.scrollIntoView({ behavior: \"smooth\", block: \"start\" });\n        }\n      }, durationMs);\n\n      setTimeoutRef(timeout);\n    }\n\n    if (!isOnScreen && timeoutRef) {\n      clearTimeout(timeoutRef);\n    }\n\n    return () => {\n      if (timeoutRef) {\n        clearTimeout(timeoutRef);\n      }\n    };\n  }, [isOnScreen]);\n\n  const src =\n    item.viewPath && projectRelativeFilePath\n      ? getSrc({ relativePath: item.viewPath }, projectRelativeFilePath, !isDev)\n          .src\n      : undefined;\n\n  return (\n    <Div\n      ref={slideRef}\n      className=\"relative snap-center h-[80vh] flex justify-center items-center border-2 border-black\"\n    >\n      {src ? (\n        item.viewPath?.endsWith(\".png\") ? (\n          <Div className=\"absolute top-0 left-0 w-full h-full bg-blue-200\">\n            <Image src={src} width=\"100%\" objectFit=\"fill\" layout=\"fill\" />\n          </Div>\n        ) : item.viewPath?.endsWith(\".mov\") ? (\n          <Div className=\"absolute top-0 left-0 w-full h-full bg-blue-200\">\n            <video\n              muted\n              src={src}\n              autoPlay\n              loop\n              preload=\"none\"\n              width=\"100%\"\n              style={{ objectFit: \"fill\" }}\n            />\n          </Div>\n        ) : null\n      ) : null}\n      {item.title ? <P className=\"text-8xl font-bold\">{item.title}</P> : null}\n    </Div>\n  );\n}",
+  "name": "ShortMarkdownSlide",
+  "slug": "short-markdown-slide",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "JSX.Element",
+    "typeDefinition": {
+      "optional": false,
+      "$ref": "#/definitions/JSX.Element"
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 7,
+  "size": {
+    "characters": 2515,
+    "lines": 96,
+    "bytes": 2515,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 96,
+    "numberOfFiles": 1
+  },
+  "id": "nrsakmgdikpnrrhuxluwnjiq"
+}

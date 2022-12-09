@@ -1,16 +1,11 @@
 {
-  "createdAt": 1667378803634,
-  "updatedAt": 1667378803634,
+  "createdAt": 1670527001918,
+  "updatedAt": 1670527001918,
   "deletedAt": 0,
-  "createdFirstAt": 1667378803634,
-  "publicAuthorization": [
-    "read-docs",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1670527001918,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/js.ts",
   "commentsInside": [],
   "rawText": " (\n  ...chunksSegments: (string[] | string)[]\n): string[] => {\n  return (\n    chunksSegments\n      .map((x) => makeArray(x))\n      // small check to prevent crashes in case there is an invalid type given (not a string)\n      .map((chunks) => chunks.filter(notEmpty))\n      .reduce((cumSegments, chunks) => {\n        // first chunk is the combination of itself\n        if (cumSegments.length === 0) return chunks;\n        // all next chunks use the accummualted segments and reduce them\n        const nextCumSegments = cumSegments.reduce((all, segment) => {\n          // for every segment add all the chunks to that segment\n          const newChunks = chunks.map((chunk) => path.join(segment, chunk));\n          //add them to all new cumSegments\n          return all.concat(newChunks);\n        }, [] as string[]);\n        return nextCumSegments;\n      }, [] as string[])\n  );\n}",
@@ -98,5 +93,5 @@
     "linesPerFile": 25,
     "numberOfFiles": 1
   },
-  "id": "mmvtwbeprfszladhyvutizmq"
+  "id": "xwjrwvnhtopdjsnfybdfkhej"
 }

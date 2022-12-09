@@ -1,0 +1,112 @@
+{
+  "createdAt": 1670216332956,
+  "updatedAt": 1670216332956,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216332956,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/parseDialogue.ts",
+  "commentsInside": [],
+  "rawText": " (\n  textMarkdown: string\n): { voice: string | undefined; sentence: string }[] => {\n  const sentences = textMarkdown\n    .split(\"\\n\")\n    .map((line) => (line.trim() === \"\" ? undefined : line))\n    .filter(notEmpty)\n    .map((line) => {\n      const parts = line.split(\":\");\n      const voice = parts.length < 2 ? undefined : parts.shift();\n      const sentence = parts.join(\":\").trim();\n\n      return { voice, sentence };\n    });\n\n  return sentences;\n}",
+  "name": "parseDialogue",
+  "slug": "parse-dialogue",
+  "parameters": [
+    {
+      "name": "textMarkdown",
+      "schema": {
+        "type": "string"
+      },
+      "simplifiedSchema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "{ voice: string | undefined; sentence: string; }[]",
+    "typeDefinition": {
+      "optional": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "voice": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          },
+          "sentence": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          }
+        },
+        "required": [
+          "sentence"
+        ]
+      }
+    },
+    "typeCoverage": 0,
+    "isArray": true,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "items": [
+        {
+          "schema": {
+            "properties": [
+              {
+                "name": "voice",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "sentence",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "type": "object"
+          },
+          "name": null
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "maxIndentationDepth": 3,
+  "size": {
+    "characters": 452,
+    "lines": 17,
+    "bytes": 452,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 27,
+    "linesPerFile": 17,
+    "numberOfFiles": 1
+  },
+  "id": "injekfrrziffjbbwrhwwxqys"
+}

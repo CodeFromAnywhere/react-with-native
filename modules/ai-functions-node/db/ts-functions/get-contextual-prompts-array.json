@@ -1,0 +1,49 @@
+{
+  "createdAt": 1670589810743,
+  "updatedAt": 1670589810743,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589810743,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getContextualPrompts.ts",
+  "commentsInside": [],
+  "rawText": " async (\n  /**\n   * If available, will also get the scoped context\n   */\n  scopeProjectRelativePath?: string\n): Promise<{\n  databaseResult: ContextualPrompt[];\n  scopeResult?: ContextualPrompt[];\n}> => {\n  const databaseResult = await db.get(\"ContextualPrompt\");\n  if (!scopeProjectRelativePath) {\n    return { databaseResult };\n  }\n\n  // if we need the scoped contextual prompt, it should be saved in the index of the file itself.\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return { databaseResult };\n\n  // it can be a file or a folder\n\n  const scopeAbsolutePath = path.join(projectRoot, scopeProjectRelativePath);\n\n  if (!fs.existsSync(scopeAbsolutePath)) {\n    return { databaseResult };\n  }\n\n  const stats = await fs.stat(scopeAbsolutePath);\n\n  const parsedScopePath = path.parse(scopeAbsolutePath);\n  const filename = stats.isFile() ? parsedScopePath.base : undefined;\n  const scopeFolderPath = stats.isDirectory()\n    ? scopeAbsolutePath\n    : parsedScopePath.dir;\n  const scopeAbsoluteDbPath = path.join(\n    scopeFolderPath,\n    getFolderRelativeScopeDbFilePath(filename)\n  );\n\n  if (!fs.existsSync(scopeAbsoluteDbPath)) return { databaseResult };\n\n  // if it exists, add it to the result\n  const jsonString = await fs.readFile(scopeAbsoluteDbPath, \"utf8\");\n  const scopeResult = tryParseJson<ContextualPrompt[]>(jsonString);\n  if (!scopeResult) return { databaseResult };\n\n  const finalScopeResult: ContextualPrompt[] = scopeResult.map((x) => ({\n    ...x,\n    scopeProjectRelativePath,\n  }));\n\n  // add the scopeProjectRelativePath so we don't need to store it in the db\n  return {\n    databaseResult,\n    scopeResult: finalScopeResult,\n  };\n}",
+  "name": "getContextualPromptsArray",
+  "slug": "get-contextual-prompts-array",
+  "parameters": [
+    {
+      "name": "scopeProjectRelativePath",
+      "schema": {
+        "type": "string",
+        "description": "If available, will also get the scoped context"
+      },
+      "simplifiedSchema": {
+        "fullComment": "If available, will also get the scoped context",
+        "type": "string"
+      },
+      "required": false
+    }
+  ],
+  "description": "Wrapper around the database to support the usecase of storing a file in a custom location for contextualPrompts.",
+  "returnType": {
+    "rawType": "Promise<{ databaseResult: import(\"/Users/king/King/operations/tools/ai/ai-types/build/ContextualPrompt\").ContextualPrompt[]; scopeResult?: import(\"/Users/king/King/operations/tools/ai/ai-types/build/ContextualPrompt\").ContextualPrompt[] | undefined; }>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 1781,
+    "lines": 56,
+    "bytes": 1781,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 32,
+    "linesPerFile": 56,
+    "numberOfFiles": 1
+  },
+  "id": "ysbjcbedqxjqkiczyckvsnbh"
+}

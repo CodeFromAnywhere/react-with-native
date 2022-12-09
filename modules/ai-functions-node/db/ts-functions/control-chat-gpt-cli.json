@@ -1,0 +1,36 @@
+{
+  "createdAt": 1670589797671,
+  "updatedAt": 1670589797671,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589797671,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/cli/controlChatGpt.cli.ts",
+  "commentsInside": [],
+  "rawText": " async () => {\n  const promptArray = process.argv.slice(2);\n  const noHeadless = promptArray[0] === \"show\";\n  const prompt = noHeadless\n    ? promptArray.slice(1).join(\" \")\n    : promptArray.join(\" \");\n  console.log({ noHeadless, prompt });\n  const result = await controlChatGpt(prompt, noHeadless);\n  console.log({ result });\n  return;\n}",
+  "name": "controlChatGptCli",
+  "slug": "control-chat-gpt-cli",
+  "parameters": [],
+  "description": "",
+  "returnType": {
+    "rawType": "any",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 2,
+  "size": {
+    "characters": 338,
+    "lines": 11,
+    "bytes": 338,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 31,
+    "linesPerFile": 11,
+    "numberOfFiles": 1
+  },
+  "id": "sbrfhqxbmholsglnhdcyihbs"
+}

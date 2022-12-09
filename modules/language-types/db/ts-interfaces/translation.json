@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668335515220,
-  "updatedAt": 1668335515220,
+  "createdAt": 1670527868789,
+  "updatedAt": 1670527868789,
   "deletedAt": 0,
-  "createdFirstAt": 1668335515220,
+  "createdFirstAt": 1670527868789,
   "id": "translation",
   "name": "Translation",
   "slug": "translation",
@@ -83,16 +83,7 @@
         "text",
         "updatedAt"
       ],
-      "additionalProperties": {
-        "anyOf": [
-          {
-            "$ref": "#/definitions/Id"
-          },
-          {
-            "not": {}
-          }
-        ]
-      },
+      "additionalProperties": false,
       "description": "We could have a Translation model that collects any translation for any key for any model for any language. The original source text is still stored in the models itself, and every model has just one language.\n\nIf you want a markdown or text key to be translated, add `{parameter}_TranslationId` to the model. The translation can then be generated on-demand and improved afterwards."
     },
     "simplifiedSchema": {

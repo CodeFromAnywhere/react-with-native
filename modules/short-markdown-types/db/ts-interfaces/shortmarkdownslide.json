@@ -1,0 +1,100 @@
+{
+  "createdAt": 1669884005130,
+  "updatedAt": 1669884005130,
+  "deletedAt": 0,
+  "createdFirstAt": 1669884005130,
+  "id": "shortmarkdownslide",
+  "name": "ShortMarkdownSlide",
+  "slug": "shortmarkdownslide",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "/**\n * Duration is required, and either title or viewPath must be there\n */\nexport type ShortMarkdownSlide = {\n  title?: string;\n  viewPath?: string;\n  /**\n   * First calculate this based on the belonging audio, its duration, and that divided by the amount of views that belong to that audio\n   */\n  durationMs: number;\n  /**\n   * Calculaled\n   */\n  startMs?: number;\n  /**\n   * LATER:\n   */\n  subtitle?: string;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "Duration is required, and either title or viewPath must be there",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "viewPath": {
+          "type": "string"
+        },
+        "durationMs": {
+          "type": "number",
+          "description": "First calculate this based on the belonging audio, its duration, and that divided by the amount of views that belong to that audio"
+        },
+        "startMs": {
+          "type": "number",
+          "description": "Calculaled"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "LATER:"
+        }
+      },
+      "required": [
+        "durationMs"
+      ],
+      "additionalProperties": false,
+      "description": "Duration is required, and either title or viewPath must be there"
+    },
+    "simplifiedSchema": {
+      "fullComment": "Duration is required, and either title or viewPath must be there",
+      "properties": [
+        {
+          "name": "title",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "viewPath",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "durationMs",
+          "required": true,
+          "schema": {
+            "fullComment": "First calculate this based on the belonging audio, its duration, and that divided by the amount of views that belong to that audio",
+            "type": "number"
+          }
+        },
+        {
+          "name": "startMs",
+          "required": false,
+          "schema": {
+            "fullComment": "Calculaled",
+            "type": "number"
+          }
+        },
+        {
+          "name": "subtitle",
+          "required": false,
+          "schema": {
+            "fullComment": "LATER:",
+            "later": "",
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ShortMarkdownSlide",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670528927590,
+  "updatedAt": 1670528927590,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528927590,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "DatasetForm",
+  "slug": "dataset-form",
+  "operationRelativeTypescriptFilePath": "src/crud/DatasetForm.tsx",
+  "type": {
+    "rawType": "(props: { modelName: string; }) => JSX.Element",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(props: { modelName: string }) => {\n  const { modelName } = props;\n\n  const [newDatasetName, setNewDatasetName] = useState(\"\");\n  const [datasetConfig, setDatasetConfig] = useStore(\"db-crud.datasetConfig\");\n\n  const addDatasetFromDatasetConfig = async () => {\n    if (!modelName) return;\n    if (newDatasetName.length === 0) return;\n\n    const dataset: Creation<Dataset> = {\n      ...datasetConfig,\n      modelName,\n      name: newDatasetName,\n    };\n\n    const { isSuccessful, result, message } = await api.upsertDbModel(\n      \"Dataset\",\n      //@ts-ignore\n      dataset,\n      true\n    );\n\n    metadataQuery.refetch();\n\n    successToast(\n      isSuccessful && result?.isSuccesful\n        ? \"Succesfully added\"\n        : result?.message || message || \"Error\"\n    );\n  };\n\n  const metadataQuery = queries.useGetDbModelMetadata(modelName as DbModelEnum);\n  const { datasets, tsInterface } = destructureOptionalObject(\n    metadataQuery.data?.result\n  );\n\n  const removeDataset = async () => {\n    if (!datasetConfig?.id) return;\n\n    const { isSuccessful, result, message } = await api.deleteDbModel(\n      \"Dataset\",\n      datasetConfig.id\n    );\n\n    // refetch datasets\n    metadataQuery.refetch();\n    setDatasetConfig(null);\n\n    successToast(\n      isSuccessful && result?.isSuccesful\n        ? \"Succesfully removed\"\n        : result?.message || message || \"Error\"\n    );\n  };\n\n  const properties = getProperties(tsInterface?.type?.typeDefinition);\n\n  const allSorts = properties\n    .map((property) => {\n      const sorts: DatasetSort[] = [\n        { objectParameterKey: property.name, sortDirection: \"ascending\" },\n        { objectParameterKey: property.name, sortDirection: \"descending\" },\n      ];\n      return sorts;\n    })\n    .flat();\n\n  const [SelectSorts] = useSelectMultiple(\n    allSorts.map(sortToItem),\n    datasetConfig?.sort?.map(sortToItem) || [],\n    (value) =>\n      setDatasetConfig({\n        ...datasetConfig,\n        sort: value.map((x) => x.data).filter(notEmpty),\n      }),\n    {\n      className: \"bg-transparent w-20\",\n    }\n  );\n\n  return (\n    <Div className=\"border rounded-md border-gray-700\">\n      <P className=\"text-3xl\">Dataset Configuration</P>\n      <P>Sort</P>\n      <SelectSorts />\n      <P>Name:</P>\n      <Input\n        className=\"bg-transparent text-md py-0 my-0\"\n        value={newDatasetName}\n        onChange={(e) => setNewDatasetName(e.target.value)}\n        placeholder=\"new dataset name\"\n      />\n      <P className=\"text-3xl\">Coming soon</P>\n      <P>\n        key (select) operator (select) value (input) (always an empty one below)\n      </P>\n      <P>start/max (number, number)</P>\n      <P>Price</P>\n      <P>DefaultView</P>\n      <P>allowedModelViews (selectMultiple)</P>\n      <ClickableIcon\n        emoji=\"➕ New dataset\"\n        onClick={addDatasetFromDatasetConfig}\n        disabled={newDatasetName.length === 0}\n      />\n      <ClickableIcon\n        emoji=\"🧹 Clear dataset\"\n        onClick={() => setDatasetConfig(null)}\n      />\n      {datasetConfig?.id ? (\n        <ClickableIcon emoji=\"🗑 Remove dataset\" onClick={removeDataset} />\n      ) : null}\n    </Div>\n  );\n}",
+  "description": "",
+  "id": "ampoyopgokjwwulmftmcbkxa"
+}

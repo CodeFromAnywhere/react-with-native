@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670216336580,
+  "updatedAt": 1670216336580,
+  "deletedAt": 0,
+  "createdFirstAt": 1670216336580,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "uberduckGetPath",
+  "slug": "uberduck-get-path",
+  "operationRelativeTypescriptFilePath": "src/uberduckGetPath.ts",
+  "type": {
+    "rawType": "(uuid: string) => string | undefined",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(uuid: string) => {\n  const resultString = execSync(\n    `curl -u ${uberduckApiKey}:${uberduckSecret} \\\n        'https://api.uberduck.ai/speak-status?uuid=${uuid}'`,\n    { encoding: \"utf8\" }\n  );\n\n  const result = tryParseJson<{ path: string | null }>(resultString);\n  if (result?.path) return result.path;\n\n  return undefined;\n}",
+  "description": "",
+  "id": "oudoxcqewpjqkidmhwdtbpta"
+}

@@ -1,18 +1,18 @@
 {
-  "createdAt": 1669385157114,
-  "updatedAt": 1669385157114,
+  "createdAt": 1670527805290,
+  "updatedAt": 1670527805290,
   "deletedAt": 0,
-  "createdFirstAt": 1669385157114,
+  "createdFirstAt": 1670527805290,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/old/ContextTextArea.tsx",
   "commentsInside": [],
-  "rawText": " (props: EditorProps) => {\n  const { value, onChange, withContext, className } = props;\n\n  // EDITOR HOTKEYS\n  useHotkeys([], ({ code, metaKey, ctrlKey, altKey, shiftKey, key }) => {\n    if (code === \"Escape\") {\n      // go out of intellisense\n      alert?.(\"ESCAPE\");\n    }\n\n    if (ctrlKey && code === \"Space\") {\n      // intellisense on\n      alert?.(\"intellisense on\");\n    }\n    if (altKey && code === \"KeyZ\") {\n      if (shiftKey) {\n        alert?.(\"redo\");\n      } else {\n        alert?.(\"undo\");\n      }\n    }\n\n    if (metaKey && key === \"b\") {\n      alert?.(\"bold\");\n    }\n\n    if (metaKey && key === \"i\") {\n      alert?.(\"italic\");\n    }\n  });\n\n  return (\n    <textarea\n      className={className}\n      value={value}\n      // onKeyPress={(e) => {\n      //   console.log({ e });\n      // }}\n      // onCh\n      // onFocusCapture={(e) => {\n      //   const newText = e.target.value;\n      //   const positionIndex = e.target.selectionStart;\n\n      //   console.log({ newText, positionIndex });\n      //   const textEditingContext = getContext({\n      //     text: newText,\n      //     positionIndex,\n      //   });\n      //   withContext?.(textEditingContext);\n\n      //   onChange(newText);\n      // }}\n      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {\n        const newText = e.target.value;\n        const positionIndex = e.target.selectionStart;\n        const textEditingContext = getContext({\n          text: newText,\n          positionIndex,\n        });\n        withContext?.(textEditingContext);\n\n        onChange(newText);\n      }}\n    />\n  );\n}",
+  "rawText": " (props: EditorProps) => {\n  const { value, onChange, withContext, className, projectRelativeFilePath } =\n    props;\n\n  const fileType = getFileTypeFromPath(props.projectRelativeFilePath);\n\n  const contextualPromptsQuery = queries.useGetContextualPrompts(\n    fileType === \"other\" ? undefined : fileType\n  );\n\n  const alert = useAlert();\n\n  const contextSelection = useLastSelection();\n\n  const selectionPrompts =\n    contextualPromptsQuery.data?.result?.selectionContextualPrompts || [];\n\n  const { onClose, openContextMenuProps, renderContextMenu } =\n    useSelectionPromptsMenu(selectionPrompts, {\n      contextContent: value,\n      context_projectRelativeFilePath: projectRelativeFilePath,\n      contextSelection,\n    });\n\n  // EDITOR HOTKEYS\n  useHotkeys([], ({ code, metaKey, ctrlKey, altKey, shiftKey, key }) => {\n    if (code === \"Escape\") {\n      // go out of intellisense\n      alert?.(\"ESCAPE\");\n      onClose();\n    }\n\n    if (ctrlKey && code === \"Space\") {\n      // intellisense on\n      alert?.(\"intellisense on\");\n    }\n    if (altKey && code === \"KeyZ\") {\n      if (shiftKey) {\n        alert?.(\"redo\");\n      } else {\n        alert?.(\"undo\");\n      }\n    }\n\n    if (metaKey && key === \"b\") {\n      alert?.(\"bold\");\n    }\n\n    if (metaKey && key === \"i\") {\n      alert?.(\"italic\");\n    }\n  });\n\n  return (\n    <>\n      {renderContextMenu()}\n      <div\n        className={className}\n        {...openContextMenuProps}\n        ref={openContextMenuProps.ref}\n        onClick={() => onClose()}\n      >\n        <textarea\n          className={className}\n          value={value}\n          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {\n            const newText = e.target.value;\n            const positionIndex = e.target.selectionStart;\n            const textEditingContext = getContext({\n              text: newText,\n              positionIndex,\n            });\n            withContext?.(textEditingContext);\n\n            onChange(newText);\n          }}\n        />\n      </div>\n    </>\n  );\n}",
   "name": "ContextTextArea",
   "slug": "context-text-area",
   "parameters": [],
-  "description": "",
+  "description": "TextArea with ability to enhance personal database and execute prompts\n\n\nQUESTION:\n\nHow to make color highlighting?\n\nI guess we need to wrap all words with a span and make it contenteditable, so we can create a editor where we are styling all words that are written\n\nWe can then also change the value of the word if you are NOT editing that word.\n\nSo you would only see the true value of a word when your cursor is on that word\n\nTODO:\n\n- replace the textarea with a div contenteditable\n- make selectionStart and selectionEnd still working (on the original text)\n- whenever you stop editing a word, it needs to be wrapped with a span and styled with a function taking that word and returning a style\n- whenver you start a new word through a separator, an empty span should be created\n- the span of the current word being edited must have a location (x,y). get that exact location so we can render an autocompletion intellisense",
   "returnType": {
     "rawType": "JSX.Element",
     "typeDefinition": {
@@ -26,15 +26,15 @@
     "isPrimitive": false,
     "isEnumLiteral": false
   },
-  "maxIndentationDepth": 5,
+  "maxIndentationDepth": 7,
   "size": {
-    "characters": 1577,
-    "lines": 66,
-    "bytes": 1577,
+    "characters": 2940,
+    "lines": 100,
+    "bytes": 2940,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 24,
-    "linesPerFile": 66,
+    "charactersPerLine": 29,
+    "linesPerFile": 100,
     "numberOfFiles": 1
   },
-  "id": "zwbdrswdxusagkyhycgqijgv"
+  "id": "dqpbgzfpkttwpmvorebufhyl"
 }

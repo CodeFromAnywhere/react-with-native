@@ -1,9 +1,9 @@
 [
   {
-    "createdAt": 1668336950937,
-    "updatedAt": 1668336950937,
+    "createdAt": 1670218884793,
+    "updatedAt": 1670218884793,
     "deletedAt": 0,
-    "createdFirstAt": 1668336950937,
+    "createdFirstAt": 1670218884793,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/types.ts",
@@ -11,15 +11,15 @@
     "rawStatement": "export type SubtextConfig = {\n  /**\n   * TITLE: Enable\n   */\n  isEnabled?: boolean;\n\n  /**\n   * You can show multiple translations in the subtext\n   */\n  translations?: {\n    language: Language;\n    showAlternative?: boolean;\n    showPhonetic?: boolean;\n    showLatin?: boolean;\n    showTokiPona?: boolean;\n    showCommon?: boolean;\n  }[];\n\n  showEmojiTranslation?: boolean;\n\n  /**\n   * show definitions of words occuring in this paragraph\n   */\n  showDefinitionsWithPriority?: WordPriority[];\n\n  /**\n   * Related stuff related to this paragraph, e.g. other articles/markdown\n   */\n  showRelated?: SubtextRelatedThing[];\n};",
     "parameters": {},
     "types": [],
-    "firstLine": 16,
-    "lastLine": 18,
-    "id": "ttscryddndkbeugeqadzqkni"
+    "firstLine": 21,
+    "lastLine": 23,
+    "id": "uuoeubdmnaxijqemifjdpqhp"
   },
   {
-    "createdAt": 1668336950938,
-    "updatedAt": 1668336950938,
+    "createdAt": 1670218884794,
+    "updatedAt": 1670218884794,
     "deletedAt": 0,
-    "createdFirstAt": 1668336950938,
+    "createdFirstAt": 1670218884794,
     "name": "Comment",
     "slug": "comment",
     "operationRelativeTypescriptFilePath": "src/types.ts",
@@ -27,8 +27,8 @@
     "rawStatement": "export type SubwordConfig = {\n  /**\n   * TITLE: Enable\n   */\n  isEnabled?: boolean;\n  /**\n   * Optionally, make the subwords smaller for a better overview\n   */\n  subwordSize?: \"normal\" | \"mini\" | \"micro\";\n  /**\n   * show subwords for one or multiple languages\n   */\n  translations?: Language[];\n  translationsViewMode?: SubwordViewMode;\n  /**\n   * Show definition (always in tooltip)\n   */\n  showDefinition?: boolean;\n  /**\n   * Show occurrence amount\n   */\n  occurenceAmountViewMode?: SubwordViewMode;\n\n  /**\n   * Blur the word unless it's special for one reason or another. Might be useful for skimming (or maybe more)\n   */\n  blurMode?: \"disabled\" | \"special\";\n\n  /**\n   * Audio for `WordMatrix` word can be played\n   */\n  audioMode?: SubwordViewMode;\n\n  /**\n   * if \"translate\" is selected, first language from `translations` will be used\n   *\n   * `alternative` picks the alternative writing using the `WordMatrix` if available\n   *\n   * `phonetic` picks the phonetic writing using the `WordMatrix` if available\n   */\n  replaceWordMode?:\n    | \"disabled\"\n    | \"translate\"\n    | \"alternative\"\n    | \"phonetic\"\n    | \"tokiPona\"\n    | \"emoji\";\n\n  /**\n   * colour words with heat having different meanings\n   */\n  heatmapMode?: \"disabled\" | \"projectFrequency\" | \"englishFrequency\";\n};",
     "parameters": {},
     "types": [],
-    "firstLine": 52,
-    "lastLine": 54,
-    "id": "iopnroxhrvzrzfuxmsavgdgr"
+    "firstLine": 57,
+    "lastLine": 59,
+    "id": "hpgcwvhcwgpaqztbzqoglbnp"
   }
 ]

@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670063314573,
+  "updatedAt": 1670063314573,
+  "deletedAt": 0,
+  "createdFirstAt": 1670063314573,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "compressImages",
+  "slug": "compress-images",
+  "operationRelativeTypescriptFilePath": "src/compressImages.ts",
+  "type": {
+    "rawType": "(absoluteBasePath: string, sizeWidthPx?: number | undefined, quality?: number | undefined) => any",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (\n  absoluteBasePath: string,\n  sizeWidthPx?: number,\n  quality?: number\n) => {\n  const results = (\n    await explore({\n      basePath: absoluteBasePath,\n      extension: [\"jpg\", \"jpeg\", \"png\"],\n    })\n  ).map((x) => x.path);\n\n  const compressionResult = await Promise.all(\n    results.map((path) =>\n      compressImage(path, {\n        targetFormat: \"webp\",\n        quality: quality || 50,\n        sizeWidthPx: sizeWidthPx || 1920,\n      })\n    )\n  );\n\n  const isSuccessful =\n    compressionResult.filter(notEmpty).length === compressionResult.length;\n\n  console.log(\"DONE\", { isSuccessful });\n}",
+  "description": "searches the folder recursively for all images and converts them to webp",
+  "id": "vjrawbxzjljoemavnxydrjny"
+}

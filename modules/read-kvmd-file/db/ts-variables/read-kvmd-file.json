@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668334990798,
-  "updatedAt": 1668334990798,
+  "createdAt": 1669884027262,
+  "updatedAt": 1669884027262,
   "deletedAt": 0,
-  "createdFirstAt": 1668334990798,
+  "createdFirstAt": 1669884027262,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "async (\n  filePath: Path,\n  /**\n   * TODO: make this optional. if not provided, calculate it ourselves here.\n   */\n  dbFileLocation: DbFileLocation\n): Promise<KeyValueMarkdownParse | null> => {\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isMarkdownFile = [\"md\", \"mdx\"].includes(pathParse.ext.slice(1));\n  if (!isMarkdownFile) return null;\n\n  if (!fs.existsSync(filePath)) return null;\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const keyValueMarkdownParse = markdownStringToKvmdParse(\n    fileString,\n    dbFileLocation\n  );\n\n  console.log({ keyValueMarkdownParse });\n  return keyValueMarkdownParse;\n}",
+  "value": "async (\n  filePath: Path,\n  /**\n   * TODO: make this optional. if not provided, calculate it ourselves here.\n   */\n  dbFileLocation: DbFileLocation\n): Promise<KeyValueMarkdownParse | null> => {\n  // TODO: is this needed?\n  const pathParse = path.parse(filePath);\n  const isMarkdownFile = [\"md\", \"mdx\"].includes(pathParse.ext.slice(1));\n  if (!isMarkdownFile) return null;\n\n  if (!fs.existsSync(filePath)) return null;\n  const readable = await canRead(filePath);\n  if (!readable) return null;\n  const fileString = await fs.readFile(filePath, \"utf8\");\n  if (!fileString) return null;\n\n  const keyValueMarkdownParse = markdownStringToKvmdParse(\n    fileString,\n    dbFileLocation\n  );\n\n  // console.log({ keyValueMarkdownParse });\n  return keyValueMarkdownParse;\n}",
   "description": "Reads and parses a markdown file",
-  "id": "guuetylqqlqrkxgbvcxglctk"
+  "id": "ugdjnbinsbhzjojhjjqjhxrz"
 }

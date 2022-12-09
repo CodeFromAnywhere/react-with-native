@@ -1,0 +1,45 @@
+{
+  "createdAt": 1669962619799,
+  "updatedAt": 1669962619799,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962619799,
+  "isApiExposed": false,
+  "name": "useOnScreen",
+  "slug": "use-on-screen",
+  "isExported": true,
+  "operationRelativeTypescriptFilePath": "src/useOnScreen.ts",
+  "groupAuthorization": {},
+  "commentsInside": [],
+  "description": "/**\n * checks wheter or not a certain element is in the browsers screen view, or not.\n */",
+  "parameters": [],
+  "returnType": {
+    "rawType": "{}",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "size": {
+    "characters": 770,
+    "lines": 31,
+    "bytes": 770,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 25,
+    "linesPerFile": 31,
+    "numberOfFiles": 1
+  },
+  "rawText": "\n\n/**\n * checks wheter or not a certain element is in the browsers screen view, or not.\n */\nexport function useOnScreen(ref: RefObject<HTMLDivElement>) {\n  const [isIntersecting, setIntersecting] = useState(false);\n\n  const observer =\n    typeof window === \"undefined\"\n      ? null\n      : new IntersectionObserver(([entry]) =>\n          setIntersecting(entry.isIntersecting)\n        );\n\n  useEffect(() => {\n    if (observer) {\n      if (ref.current) {\n        observer?.observe(ref.current);\n      }\n      // Remove the observer as soon as the component is unmounted\n      return () => {\n        observer?.disconnect();\n      };\n    }\n  }, [observer]);\n\n  return isIntersecting;\n}",
+  "maxIndentationDepth": 5,
+  "id": "kztgthtfkhtxmlphfssxugor"
+}

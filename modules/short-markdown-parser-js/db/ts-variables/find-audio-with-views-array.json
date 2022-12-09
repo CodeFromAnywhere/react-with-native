@@ -1,0 +1,33 @@
+{
+  "createdAt": 1669962260642,
+  "updatedAt": 1669962260642,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962260642,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "findAudioWithViewsArray",
+  "slug": "find-audio-with-views-array",
+  "operationRelativeTypescriptFilePath": "src/findAudioWithViewsArray.ts",
+  "type": {
+    "rawType": "(content: string, index: number, title?: string | undefined) => import(\"/Users/king/King/operations/tools/parsing/file-conversion/md/short-markdown/short-markdown-types/build/AudioWithViews\").AudioWithViews[]",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "(\n  content: string,\n  index: number,\n  title?: string\n): AudioWithViews[] => {\n  const relativeEmbeds = findEmbeds(content)\n    .filter((x) => isPathRelative(x.src))\n    .filter((x) => x.type !== \"other\" && x.type !== \"text\");\n\n  const initialViewEmbeds: ViewEmbed[] = [\n    title ? { title, audioKey: `audio${index}.0` } : undefined,\n  ].filter(notEmpty);\n\n  const initialValue: AudioWithViews[] = [\n    {\n      audioPath: null,\n      viewEmbeds: initialViewEmbeds,\n      audioKey: `audio${index}.0`,\n    },\n  ];\n\n  const audioWithViewsArray = relativeEmbeds.reduce(\n    (previous, current, currentIndex) => {\n      // Create a new item in the AudioWithViews for a new audio\n      if (current.type === \"audio\") {\n        previous.push({\n          audioPath: current.src,\n          viewEmbeds: [],\n          audioKey: `audio${index}.${currentIndex}`,\n        });\n        return previous;\n      }\n\n      // If a view is encountered, add it to the viewEmbeds array\n      if (current.type === \"image\" || current.type === \"video\") {\n        const quoteCharacters = \"&quot;\";\n        const isSpoken =\n          current.alt.startsWith(quoteCharacters) &&\n          current.alt.endsWith(quoteCharacters);\n\n        if (isSpoken) {\n          // add new one because this has a spokentext.\n\n          const spokenText = isSpoken\n            ? current.alt.substring(\n                quoteCharacters.length,\n                current.alt.length - quoteCharacters.length\n              )\n            : undefined;\n\n          const audioKey = `audio${index}.${currentIndex}`;\n          previous.push({\n            audioPath: null,\n            viewEmbeds: [\n              {\n                viewPath: current.src,\n                audioKey,\n                spokenText,\n              },\n            ],\n            audioKey,\n          });\n        } else {\n          // attach to the lastone\n          previous[previous.length - 1].viewEmbeds.push({\n            viewPath: current.src,\n            audioKey: previous[previous.length - 1].audioKey,\n            spokenText: undefined,\n          });\n        }\n      }\n\n      // Do nothing for other types\n      return previous;\n    },\n    initialValue\n  );\n\n  return audioWithViewsArray;\n}",
+  "description": "",
+  "id": "ebobjaxcbxdhloyoxgjalwmd"
+}

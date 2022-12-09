@@ -1,0 +1,63 @@
+{
+  "createdAt": 1670589808784,
+  "updatedAt": 1670589808784,
+  "deletedAt": 0,
+  "createdFirstAt": 1670589808784,
+  "id": "namedparameterstypeof-getcontextualprompts",
+  "name": "NamedParameters<typeof getContextualPrompts>",
+  "slug": "namedparameterstypeof-getcontextualprompts",
+  "operationRelativeTypescriptFilePath": "src/getContextualPrompts.ts",
+  "hasGeneric": false,
+  "isExported": false,
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "contextType": {
+          "$ref": "#/definitions/FileType",
+          "description": "If not given, will return all"
+        },
+        "scopeProjectRelativePath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "contextType",
+          "required": false,
+          "schema": {
+            "enum": [
+              "code",
+              "data",
+              "text"
+            ],
+            "fullComment": "If not given, will return all\n\n",
+            "type": "string"
+          }
+        },
+        {
+          "name": "scopeProjectRelativePath",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "NamedParameters<typeof getContextualPrompts>",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

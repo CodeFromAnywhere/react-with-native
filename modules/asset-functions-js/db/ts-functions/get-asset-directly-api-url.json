@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384146245,
-  "updatedAt": 1669384146245,
+  "createdAt": 1670526620159,
+  "updatedAt": 1670526620159,
   "deletedAt": 0,
-  "createdFirstAt": 1669384146245,
+  "createdFirstAt": 1670526620159,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
@@ -25,17 +25,30 @@
   ],
   "description": "",
   "returnType": {
-    "rawType": "String",
+    "rawType": "string | undefined",
     "typeDefinition": {
-      "optional": false,
-      "$ref": "#/definitions/String"
+      "optional": true,
+      "type": "string",
+      "allOf": [
+        {
+          "transform": [
+            "trim"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
     },
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
-    "isObject": true,
+    "isObject": false,
     "isPrimitive": false,
-    "isEnumLiteral": false
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "type": "string"
+    }
   },
   "maxIndentationDepth": 2,
   "size": {
@@ -47,5 +60,5 @@
     "linesPerFile": 5,
     "numberOfFiles": 1
   },
-  "id": "zoovtyetnhahkhyksbsrccez"
+  "id": "qdizkjqiupxznmkpyngibaus"
 }

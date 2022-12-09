@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200491434,
-  "updatedAt": 1669200491434,
+  "createdAt": 1670590117501,
+  "updatedAt": 1670590117501,
   "deletedAt": 0,
-  "createdFirstAt": 1669200491434,
+  "createdFirstAt": 1670590117501,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
@@ -67,16 +67,13 @@
                         "required": true,
                         "schema": {
                           "enum": [
-                            "youtube",
                             "video",
-                            "image",
                             "audio",
-                            "markdown",
-                            "json",
-                            "typescript",
-                            "file"
+                            "image",
+                            "text",
+                            "other"
                           ],
-                          "fullComment": "type of asset that is being embedded",
+                          "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                           "type": "string"
                         }
                       }
@@ -109,16 +106,13 @@
                         "required": true,
                         "schema": {
                           "enum": [
-                            "youtube",
                             "video",
-                            "image",
                             "audio",
-                            "markdown",
-                            "json",
-                            "typescript",
-                            "file"
+                            "image",
+                            "text",
+                            "other"
                           ],
-                          "fullComment": "Can be inferred from href\n\ntype of asset that is being embedded",
+                          "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
                           "type": "string"
                         }
                       }
@@ -166,7 +160,7 @@
   ],
   "description": "Ups the levels of the markdownChunk array, recursively.\n\nCan be useful for merging multiple markdown sources",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownChunk[] | undefined",
+    "rawType": "import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownChunk[] | undefined",
     "typeCoverage": 0,
     "isArray": false,
     "isEnum": false,
@@ -184,5 +178,5 @@
     "linesPerFile": 15,
     "numberOfFiles": 1
   },
-  "id": "ytcglssnyqexquprgaetiuhz"
+  "id": "szjydydtrnvaakxlyaqyaail"
 }

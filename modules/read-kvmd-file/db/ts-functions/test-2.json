@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668334988249,
-  "updatedAt": 1668334988249,
+  "createdAt": 1669884023321,
+  "updatedAt": 1669884023321,
   "deletedAt": 0,
-  "createdFirstAt": 1668334988249,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669884023321,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/kvmdParseToMarkdownString.test.ts",
   "commentsInside": [],
   "rawText": " async () => {\n  const absolutePath = path.join(__dirname, \"..\", \"assets\", \"test.json\");\n\n  const kvmdParse = await readJsonFile<KeyValueMarkdownParse>(absolutePath);\n\n  if (!kvmdParse) {\n    console.log(\"reading json file failed\");\n    return;\n  }\n\n  const string = kvmdParseToMarkdownString(kvmdParse);\n\n  await writeStringToFile(\n    absolutePath.replace(\"test.json\", \"stringifiedTest.md\"),\n    string\n  );\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 17,
     "numberOfFiles": 1
   },
-  "id": "usidahphixvfbdljaxsiwurf"
+  "id": "zwhcacxmranujwnxvequiail"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669200501290,
-  "updatedAt": 1669200501290,
+  "createdAt": 1670590134299,
+  "updatedAt": 1670590134299,
   "deletedAt": 0,
-  "createdFirstAt": 1669200501290,
+  "createdFirstAt": 1670590134299,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  tsInterface: TsInterface\n): string => {\n  const icon = tsInterface.isDbModel ? \"🔸\" : \"🔹\";\n\n  const titleString = `# ${icon} ${tsInterface.name}`;\n  const storageMethodString = tsInterface.dbStorageMethod\n    ? `${tsInterface.dbStorageMethod} model\\n\\n`\n    : undefined;\n\n  // const operationName = tsInterface.operationName\n  //   ? `(from: \\`${tsInterface.operationName}\\`)`\n  //   : undefined;\n\n  // const interfaceText = `\\`\\`\\`ts\\n${tsInterface.rawText}\\n\\`\\`\\``;\n\n  const interfaceText = simplifiedSchemaToMarkdownString(\n    tsInterface.type.simplifiedSchema,\n    undefined,\n    true,\n    2\n  );\n\n  const alineas: (string | undefined)[] = [\n    titleString,\n    // operationName,\n    storageMethodString,\n    tsInterface.description,\n    interfaceText,\n  ];\n\n  return alineas.filter(notEmpty).join(\"\\n\\n\");\n}",
   "description": "properties, their type, and their description\n\nuse simplifiedJsonSchema, but split up nested things into multiple tables (ive written a thing for splitting up nested objects before, use that)",
-  "id": "mvcgtrcqmtcxnigppjmzcprs"
+  "id": "udcxlxdkbvupynnidwamerpz"
 }

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668775442069,
-  "updatedAt": 1668775442069,
+  "createdAt": 1670528161215,
+  "updatedAt": 1670528161215,
   "deletedAt": 0,
-  "createdFirstAt": 1668775442069,
+  "createdFirstAt": 1670528161215,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "get-get-api-url",
   "operationRelativeTypescriptFilePath": "src/getGetApiUrl.ts",
   "type": {
-    "rawType": "(apiUrl: string, apiFunctionName: string, query: { [name: string]: string | string[] | undefined; }) => string",
+    "rawType": "(apiUrl: string | undefined, apiFunctionName: string, query: { [name: string]: string | string[] | undefined; }) => string | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(\n  apiUrl: string,\n  apiFunctionName: string,\n  query: { [name: string]: string[] | string | undefined }\n) => {\n  const queryString = Object.keys(query).length > 0 ? toQueryString(query) : \"\";\n  const url = `${apiUrl}/function/${apiFunctionName}${queryString}`;\n  return url;\n}",
+  "value": "(\n  apiUrl: string | undefined,\n  apiFunctionName: string,\n  query: { [name: string]: string[] | string | undefined }\n): string | undefined => {\n  if (!apiUrl) return;\n  const queryString = Object.keys(query).length > 0 ? toQueryString(query) : \"\";\n  const url = `${apiUrl}/function/${apiFunctionName}${queryString}`;\n  return url;\n}",
   "description": "gets an api url for a context get api\n\nreturns something like `[apiUrl]/[apiFunctionName][queryString]`",
-  "id": "azoejqfzqvynfkazurhgeafj"
+  "id": "ckavopzdejqisjgiawiawnvt"
 }

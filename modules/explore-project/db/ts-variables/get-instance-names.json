@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669384311210,
-  "updatedAt": 1669384311210,
+  "createdAt": 1670216087282,
+  "updatedAt": 1670216087282,
   "deletedAt": 0,
-  "createdFirstAt": 1669384311210,
+  "createdFirstAt": 1670216087282,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(\n  array: any[],\n  // NB: I tried with  <T extends TsIndexModelType> but didn't work with a map over an object... strange...\n  relativePathFromProjectRoot: string\n): string[] => {\n  const instances = array.filter(\n    hasSameProjectPath(relativePathFromProjectRoot)\n  );\n\n  const instancePaths = instances.map((x) => x.name);\n  return instancePaths;\n}",
   "description": "returns the paths of instances in a file, like functions, variables or interfaces",
-  "id": "tnnaawfxqqaqeatngcokeaqc"
+  "id": "stbrxuyofiqsmgtwlcjokfbc"
 }

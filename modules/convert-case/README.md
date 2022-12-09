@@ -17,17 +17,6 @@ convert-case (`OperationClassification` cjs)
 
 ## 📄 kebabCase (exported const)
 
-## humanCase()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| text | string |  |
-| **Output** |    |    |
-
-
-
-## 📄 humanCase (exported const)
-
 ## slugify()
 
 /**
@@ -48,6 +37,17 @@ convert-case (`OperationClassification` cjs)
 
 
 
+## humanCase()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| text | string |  |
+| **Output** |    |    |
+
+
+
+## 📄 humanCase (exported const)
+
 ## camelCase()
 
 | Input      |    |    |
@@ -56,6 +56,8 @@ convert-case (`OperationClassification` cjs)
 | **Output** |    |    |
 
 
+
+## 📄 camelCase (exported const)
 
 ## lowerCaseArray()
 
@@ -71,22 +73,11 @@ format ["word1","word2","word3"] from a string of any casing.
 
 
 
-## 📄 camelCase (exported const)
-
 ## 📄 lowerCaseArray (exported const)
 
 converts any string to an array of lowercase words
 
 format ["word1","word2","word3"] from a string of any casing.
-
-
-## capitaliseFirstLetter()
-
-| Input      |    |    |
-| ---------- | -- | -- |
-| word | string |  |
-| **Output** |    |    |
-
 
 
 ## pascalCase()
@@ -98,9 +89,18 @@ format ["word1","word2","word3"] from a string of any casing.
 
 
 
-## 📄 capitaliseFirstLetter (exported const)
-
 ## 📄 pascalCase (exported const)
+
+## capitaliseFirstLetter()
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| word | string |  |
+| **Output** |    |    |
+
+
+
+## 📄 capitaliseFirstLetter (exported const)
 
 # Internal
 

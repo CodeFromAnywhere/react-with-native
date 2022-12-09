@@ -1,0 +1,62 @@
+{
+  "createdAt": 1670218561307,
+  "updatedAt": 1670218561307,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218561307,
+  "isApiExposed": true,
+  "isExported": true,
+  "groupAuthorization": {},
+  "operationRelativeTypescriptFilePath": "src/getDbModelNames.ts",
+  "commentsInside": [],
+  "rawText": " async (config?: {\n  bundleId?: string;\n}): Promise<(keyof DbModels)[]> => {\n  const bundleId = config?.bundleId;\n  let dbModels: TsInterface[] | undefined = undefined;\n\n  if (bundleId) {\n    const bundleConfig = (await db.get(\"BundleConfig\")).find(\n      (x) => x.id === bundleId\n    );\n\n    if (bundleConfig) {\n      dbModels = await getDbModelsForBundle(bundleConfig);\n    }\n  }\n  const projectRoot = getProjectRoot();\n  if (isBundle(projectRoot) && projectRoot) {\n    const operationNames: string[] = (\n      await exploreOperationFolders({\n        basePath: path.join(projectRoot, \"packages\"),\n      })\n    ).map(getLastFolder);\n\n    dbModels = await getDbModelsFromOperations(operationNames);\n  }\n\n  const dbModelNames = dbModels\n    ? (dbModels?.map((x) => x.name) as (keyof DbModels)[])\n    : [...dbModelKeys];\n\n  return dbModelNames;\n}",
+  "name": "getDbModelNames",
+  "slug": "get-db-model-names",
+  "parameters": [
+    {
+      "name": "config",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "bundleId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "simplifiedSchema": {
+        "properties": [
+          {
+            "name": "bundleId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "required": false
+    }
+  ],
+  "description": "",
+  "returnType": {
+    "rawType": "Promise<(keyof import(\"/Users/king/King/operations/tools/generated/sdk-db/build/sdk-db\").DbModels)[]>",
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": false,
+    "isPrimitive": false,
+    "isEnumLiteral": false
+  },
+  "maxIndentationDepth": 4,
+  "size": {
+    "characters": 844,
+    "lines": 32,
+    "bytes": 844,
+    "bytesPerCharacter": 1,
+    "charactersPerLine": 26,
+    "linesPerFile": 32,
+    "numberOfFiles": 1
+  },
+  "id": "dfsdgpnfkzkomjflmirkauce"
+}

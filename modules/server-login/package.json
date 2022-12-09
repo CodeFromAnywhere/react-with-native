@@ -17,7 +17,9 @@
     "convert-case": "0.0.1",
     "js-util": "0.0.1",
     "asset-functions-node": "0.0.1",
-    "asset-type": "0.0.1"
+    "asset-type": "0.0.1",
+    "function-server-types": "0.0.1",
+    "fs-orm": "1.0.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -46,7 +48,7 @@
     "folderNameIndexed": "server-login",
     "hasGeneratedDependenciesIndexed": false,
     "lastPullTimeAtIndexed": 0,
-    "lastRebuildAt": 1669385365472,
+    "lastRebuildAt": 1670528537017,
     "operationDependenciesIndexed": [
       "db",
       "isEmail",
@@ -73,16 +75,20 @@
       "db",
       "AuthenticationMethodMethod",
       "db",
+      "comparePassword",
       "FunctionContext",
       "Device",
       "Person",
       "FunctionContext",
+      "ApiFunction",
+      "ApiFunction",
       "db",
       "getSubsetFromObject",
       "publicPersonKeys",
       "PublicPerson",
       "db",
       "FunctionContext",
+      "ApiFunction",
       "FunctionContext",
       "db",
       "FunctionContext",
@@ -93,6 +99,7 @@
       "FunctionContext",
       "AuthenticationMethodMethod",
       "db",
+      "upsert",
       "FunctionContext",
       "Creation",
       "generateId",
@@ -101,10 +108,9 @@
       "FunctionContext",
       "AuthenticationMethodMethod",
       "slugify",
-      "mergeNestedObject",
       "BackendAsset",
       "processAsset",
-      "Id",
+      "ApiFunction",
       "db",
       "FunctionContext",
       "db",
@@ -118,26 +124,26 @@
     "sizeIndexed": {
       "codeSize": {
         "numberOfFiles": 20,
-        "lines": 951,
-        "characters": 27244,
-        "bytes": 27244
+        "lines": 966,
+        "characters": 27815,
+        "bytes": 27815
       },
       "dataSize": {
         "numberOfFiles": 2,
-        "lines": 184,
-        "characters": 5739,
-        "bytes": 5739
+        "lines": 186,
+        "characters": 5800,
+        "bytes": 5800
       },
       "textSize": {
         "numberOfFiles": 4,
-        "lines": 366,
-        "characters": 11719,
-        "bytes": 11719
+        "lines": 460,
+        "characters": 15039,
+        "bytes": 15039
       },
       "size": {
-        "bytes": 44702,
-        "characters": 44702,
-        "lines": 1501,
+        "bytes": 48654,
+        "characters": 48654,
+        "lines": 1612,
         "numberOfFiles": 26
       }
     },

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669276148171,
-  "updatedAt": 1669276148171,
+  "createdAt": 1670527330898,
+  "updatedAt": 1670527330898,
   "deletedAt": 0,
-  "createdFirstAt": 1669276148171,
+  "createdFirstAt": 1670527330898,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,10 +10,30 @@
   "slug": "get-public-bundle-config",
   "operationRelativeTypescriptFilePath": "src/getPublicBundleConfig.ts",
   "type": {
-    "rawType": "() => unknown",
+    "rawType": "import(\"/Users/king/King/operations/tools/user-interfaces/api/function-server-types/build/ApiFunction\").ApiFunction",
     "typeDefinition": {
       "type": "object",
-      "properties": {},
+      "properties": {
+        "isPublic": {
+          "type": "boolean"
+        },
+        "allowedRoles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "allOf": [
+              {
+                "transform": [
+                  "trim"
+                ]
+              },
+              {
+                "minLength": 1
+              }
+            ]
+          }
+        }
+      },
       "optional": false
     },
     "typeCoverage": 0,
@@ -23,11 +43,34 @@
     "isPrimitive": false,
     "isEnumLiteral": false,
     "simplifiedSchema": {
-      "properties": [],
+      "properties": [
+        {
+          "name": "isPublic",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "allowedRoles",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
       "type": "object"
     }
   },
   "value": "async () => {\n  const projectRoot = getProjectRoot();\n  if (!projectRoot) return;\n  const publicBundleConfigPath = path.join(\n    projectRoot,\n    \"public-bundle-config.json\"\n  );\n\n  const publicBundleConfig = await readJsonFile<PublicBundleConfig>(\n    publicBundleConfigPath\n  );\n\n  if (!publicBundleConfig) {\n    return;\n  }\n  return publicBundleConfig;\n}",
   "description": "",
-  "id": "islcyicghbuiasrlvterzmdt"
+  "id": "sfbkswkntnpnivqwagmmqxyc"
 }

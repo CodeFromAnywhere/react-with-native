@@ -1,14 +1,14 @@
 {
-  "createdAt": 1669384250208,
-  "updatedAt": 1669384250208,
+  "createdAt": 1670526896988,
+  "updatedAt": 1670526896988,
   "deletedAt": 0,
-  "createdFirstAt": 1669384250208,
+  "createdFirstAt": 1670526896988,
   "isApiExposed": true,
   "isExported": true,
   "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/useAsset.ts",
   "commentsInside": [],
-  "rawText": " (\n  asset: Asset | undefined,\n  projectRelativeReferencingFilePath?: string | null,\n  isNextStaticProductionBuild?: boolean\n) => {\n  if (!asset || !projectRelativeReferencingFilePath) return;\n  // console.log({ apiUrl });\n  /**\n   * NB: `relativePath` is required\n   */\n  const getRemoteUrl = (isDownload: boolean) =>\n    getReferencedAssetApiUrl(\n      apiUrl,\n      projectRelativeReferencingFilePath,\n      asset.relativePath!,\n      isDownload\n    );\n\n  const getPublicUrl = (relativePath: string) =>\n    `markdown-assets/${path.join(\n      path.parse(projectRelativeReferencingFilePath).dir,\n      relativePath\n    )}`;\n  /**\n   * NB: `asset.temporaryDestination` is not a URL that can be used to retreive the image as \"src\"\n   */\n  const src = asset.absoluteUrl\n    ? asset.absoluteUrl\n    : asset.blobPath\n    ? asset.blobPath\n    : isNextStaticProductionBuild && asset.relativePath\n    ? getPublicUrl(asset.relativePath)\n    : getRemoteUrl(false);\n\n  // console.log(\"UseAssetSRC:\", src);\n  const downloadRemotely = !asset.blobPath && !!asset.relativePath;\n\n  const downloadUrl =\n    isNextStaticProductionBuild && asset.relativePath\n      ? getPublicUrl(asset.relativePath)\n      : downloadRemotely\n      ? getRemoteUrl(true)\n      : // NB: other type is ugly when downloading. Also doesn't make sense much to want to download an asset after uploading\n      asset.type !== \"other\"\n      ? asset.blobPath\n      : undefined;\n\n  const extension = getExtensionFromAsset(asset);\n\n  const assetInfo = useAssetInfo(src, asset.originalFilename);\n\n  const rawText = assetInfo?.rawText || null;\n  const type = asset.type || assetInfo?.type;\n\n  return { rawText, type, downloadUrl, src, extension };\n}",
+  "rawText": " (\n  asset: Asset | undefined,\n  projectRelativeReferencingFilePath?: string | null,\n  isNextStaticProductionBuild?: boolean\n) => {\n  if (!asset || !projectRelativeReferencingFilePath) return;\n\n  const { src, downloadUrl } = getSrc(\n    asset,\n    projectRelativeReferencingFilePath,\n    isNextStaticProductionBuild\n  );\n\n  const extension = getExtensionFromAsset(asset);\n\n  const assetInfo = useAssetInfo(src, asset.originalFilename);\n\n  const rawText = assetInfo?.rawText || null;\n  const type = asset.type || assetInfo?.type;\n\n  return { rawText, type, downloadUrl, src, extension };\n}",
   "name": "useAsset",
   "slug": "use-asset",
   "parameters": [
@@ -71,6 +71,14 @@
             }
           },
           {
+            "name": "absoluteUrl",
+            "required": false,
+            "schema": {
+              "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+              "type": "string"
+            }
+          },
+          {
             "name": "blobPath",
             "required": false,
             "schema": {
@@ -90,14 +98,6 @@
                 "other"
               ],
               "fullComment": "can be calculated from the path, or come directly from the blob\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
-              "type": "string"
-            }
-          },
-          {
-            "name": "absoluteUrl",
-            "required": false,
-            "schema": {
-              "fullComment": "Can be available in case it's an asset from an external source URL for example within md.",
               "type": "string"
             }
           },
@@ -180,7 +180,7 @@
   ],
   "description": "",
   "returnType": {
-    "rawType": "{ rawText: string | null; type: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").AssetType | undefined; downloadUrl: string | undefined; src: string; extension: string | undefined; } | undefined",
+    "rawType": "{ rawText: string | null; type: import(\"/Users/king/King/operations/tools/asset/asset-type/build/Asset\").AssetType | undefined; downloadUrl: string | undefined; src: string | undefined; extension: string | undefined; } | undefined",
     "typeDefinition": {
       "type": "object",
       "properties": {
@@ -244,9 +244,6 @@
           ]
         }
       },
-      "required": [
-        "src"
-      ],
       "optional": true
     },
     "typeCoverage": 0,
@@ -288,7 +285,7 @@
         },
         {
           "name": "src",
-          "required": true,
+          "required": false,
           "schema": {
             "type": "string"
           }
@@ -304,15 +301,15 @@
       "type": "object"
     }
   },
-  "maxIndentationDepth": 3,
+  "maxIndentationDepth": 2,
   "size": {
-    "characters": 1699,
-    "lines": 56,
-    "bytes": 1699,
+    "characters": 588,
+    "lines": 22,
+    "bytes": 588,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 30,
-    "linesPerFile": 56,
+    "charactersPerLine": 27,
+    "linesPerFile": 22,
     "numberOfFiles": 1
   },
-  "id": "zyrxsmgjkfrwtrfnpvorqyod"
+  "id": "kvtybauwkhuybtnvwoodgtpu"
 }

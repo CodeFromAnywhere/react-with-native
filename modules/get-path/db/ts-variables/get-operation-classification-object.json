@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669055055662,
-  "updatedAt": 1669055055662,
+  "createdAt": 1670589866118,
+  "updatedAt": 1670589866118,
   "deletedAt": 0,
-  "createdFirstAt": 1669055055662,
+  "createdFirstAt": 1670589866118,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (): Promise<OperationClassificationObject> => {\n    const operationFolders = await exploreOperationFolders({});\n\n    return mergeObjectsArray(\n      operationFolders\n        .map((operationBasePath) => {\n          const operationClassification =\n            getOperationClassification(operationBasePath);\n          if (!operationClassification) return;\n          const operationName = getLastFolder(operationBasePath);\n          return { [operationName]: operationClassification };\n        })\n        .filter(notEmpty)\n    );\n  }",
   "description": "",
-  "id": "wxwuolivpphpdcwyxzumhnxp"
+  "id": "mlerqxycmvbnxwwfcxefqwkf"
 }

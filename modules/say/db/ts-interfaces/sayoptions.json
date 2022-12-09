@@ -1,0 +1,162 @@
+{
+  "createdAt": 1669962592213,
+  "updatedAt": 1669962592213,
+  "deletedAt": 0,
+  "createdFirstAt": 1669962592213,
+  "id": "sayoptions",
+  "name": "SayOptions",
+  "slug": "sayoptions",
+  "operationRelativeTypescriptFilePath": "src/saySomething.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\nexport type SayOptions = {\n  /**\n   * Specify an absolute path to a file with some text\n   */\n  filePath?: string;\n  /**\n   * message string to be said\n   */\n  message?: string;\n  speechRate?: number;\n  voice?: string;\n  outputFilePath?: string;\n  audioDevice?: string;\n  showProgress?: boolean;\n  interactive?: string;\n  fileFormat?: string;\n  dataFormat?: string;\n  bitRate?: number;\n  quality?: number;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "filePath": {
+          "type": "string",
+          "description": "Specify an absolute path to a file with some text"
+        },
+        "message": {
+          "type": "string",
+          "description": "message string to be said"
+        },
+        "speechRate": {
+          "type": "number"
+        },
+        "voice": {
+          "type": "string"
+        },
+        "outputFilePath": {
+          "type": "string"
+        },
+        "audioDevice": {
+          "type": "string"
+        },
+        "showProgress": {
+          "type": "boolean"
+        },
+        "interactive": {
+          "type": "string"
+        },
+        "fileFormat": {
+          "type": "string"
+        },
+        "dataFormat": {
+          "type": "string"
+        },
+        "bitRate": {
+          "type": "number"
+        },
+        "quality": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "filePath",
+          "required": false,
+          "schema": {
+            "fullComment": "Specify an absolute path to a file with some text",
+            "type": "string"
+          }
+        },
+        {
+          "name": "message",
+          "required": false,
+          "schema": {
+            "fullComment": "message string to be said",
+            "type": "string"
+          }
+        },
+        {
+          "name": "speechRate",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "voice",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "outputFilePath",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "audioDevice",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "showProgress",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "interactive",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "fileFormat",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "dataFormat",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "bitRate",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "quality",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "SayOptions",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668150643821,
-  "updatedAt": 1668150643821,
+  "createdAt": 1670590327042,
+  "updatedAt": 1670590327042,
   "deletedAt": 0,
-  "createdFirstAt": 1668150643821,
+  "createdFirstAt": 1670590327042,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "(symbol: Symbol) => {\n  return (\n    symbol\n      ?.getDeclarations()\n      ?.filter((x) => x.isKind(SyntaxKind.ExportSpecifier))\n      .map((x) => x.asKind(SyntaxKind.ExportSpecifier))\n      .filter(notEmpty)\n      .map((x) => x.getName()) || []\n  );\n}",
   "description": "",
-  "id": "ofexexdlffdhqvphrfnyewki"
+  "id": "dxcucohpqnrgnenpaozwwupp"
 }

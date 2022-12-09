@@ -69,7 +69,7 @@ My elegant solution was to just use visible/invisible and make the mobile layout
 
 # Internal
 
-<details><summary>Show internal (3)</summary>
+<details><summary>Show internal (5)</summary>
     
   # `<Header />`
 
@@ -83,7 +83,18 @@ My elegant solution was to just use visible/invisible and make the mobile layout
 
 
 
+## `<PingApi />`
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
 ## 📄 Header (exported const)
+
+## 📄 PingApi (exported const)
 
 ## 📄 { StoreProvider, useStore } (exported const)
 

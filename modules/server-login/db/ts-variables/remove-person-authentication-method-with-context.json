@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669385343373,
-  "updatedAt": 1669385343373,
+  "createdAt": 1670528507146,
+  "updatedAt": 1670528507146,
   "deletedAt": 0,
-  "createdFirstAt": 1669385343373,
+  "createdFirstAt": 1670528507146,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -29,5 +29,5 @@
   },
   "value": "async (\n  functionContext: FunctionContext,\n  method: AuthenticationMethodMethod\n) => {\n  if (\n    !functionContext.device.currentPersonId ||\n    !functionContext.device.persons\n  ) {\n    return {\n      isSuccessful: false,\n      message: \"Not logged in\",\n    };\n  }\n\n  const person = functionContext.device.persons.find(\n    (x) => x.id === functionContext.device.currentPersonId\n  );\n\n  if (!person) {\n    return {\n      isSuccessful: false,\n      message: \"Not logged in\",\n    };\n  }\n\n  const authenticationMethod = person.authenticationMethods.find(\n    (x) => x.method === method\n  );\n\n  if (!authenticationMethod) {\n    return { isSuccessful: false, message: \"You didn't add that method yet\" };\n  }\n\n  const newAuthenticationMethods = person.authenticationMethods.filter(\n    (x) => x.method !== method\n  );\n\n  const updateResult = await db.update(\n    \"Person\",\n    (item) => item.id === functionContext.device.currentPersonId,\n    (old) => ({ ...old, authenticationMethods: newAuthenticationMethods })\n  );\n\n  return {\n    isSuccessful: updateResult.isSuccesful,\n    message: updateResult.isSuccesful ? \"Removed\" : updateResult.message,\n  };\n}",
   "description": "removes an `authenticationMethod` from `Person` from currentPerson from authenticated device",
-  "id": "yiptmlvsubssewnzuxpvacfk"
+  "id": "ovagflhqtzgrvfbjkquhugcp"
 }

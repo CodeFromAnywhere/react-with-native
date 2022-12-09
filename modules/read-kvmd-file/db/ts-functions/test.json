@@ -1,16 +1,11 @@
 {
-  "createdAt": 1668334989357,
-  "updatedAt": 1668334989357,
+  "createdAt": 1669884025141,
+  "updatedAt": 1669884025141,
   "deletedAt": 0,
-  "createdFirstAt": 1668334989357,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669884025141,
+  "isApiExposed": true,
   "isExported": false,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/readKvmdFile.test.ts",
   "commentsInside": [],
   "rawText": " async () => {\n  const absolutePath = path.join(__dirname, \"..\", \"assets\", \"test.md\");\n  const kvmdParse = await readKvmdFile(absolutePath, {\n    absolutePath,\n    modelName: \"TestModel\",\n    operationName: \"read-kvmd-file\",\n    projectRelativePath:\n      \"/operations/tools/control-fs/read-kvmd-file/assets/test.md\",\n    operationRelativePath: \"/read-kvmd-file/assets/test.md\",\n  });\n\n  await writeJsonToFile(\n    absolutePath.replace(\"test.md\", \"test.json\"),\n    kvmdParse\n  );\n}",
@@ -37,5 +32,5 @@
     "linesPerFile": 16,
     "numberOfFiles": 1
   },
-  "id": "zutbeqwlrdtuhhpybnmtcsrn"
+  "id": "urmflbrdztvtqibgzfskntoh"
 }

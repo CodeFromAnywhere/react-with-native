@@ -1,0 +1,33 @@
+{
+  "createdAt": 1670218569023,
+  "updatedAt": 1670218569023,
+  "deletedAt": 0,
+  "createdFirstAt": 1670218569023,
+  "classification": "const",
+  "comments": [],
+  "isExported": true,
+  "name": "getReferencableModelData",
+  "slug": "get-referencable-model-data",
+  "operationRelativeTypescriptFilePath": "src/getReferencableModelData.ts",
+  "type": {
+    "rawType": "(dbModelName: keyof import(\"/Users/king/King/operations/tools/generated/sdk-db/build/sdk-db\").DbModels) => unknown",
+    "typeDefinition": {
+      "type": "object",
+      "properties": {},
+      "optional": false
+    },
+    "typeCoverage": 0,
+    "isArray": false,
+    "isEnum": false,
+    "isObject": true,
+    "isPrimitive": false,
+    "isEnumLiteral": false,
+    "simplifiedSchema": {
+      "properties": [],
+      "type": "object"
+    }
+  },
+  "value": "async (dbModelName: keyof DbModels) => {\n  if (!dbModelName) {\n    return [];\n  }\n  const referencableModelData = (await db.get(dbModelName)).map(\n    (item: AugmentedAnyModelType) => ({\n      id: item.id,\n      name: item.name,\n      slug: item.slug,\n      categoryStackCalculated: item.categoryStackCalculated,\n    })\n  );\n\n  return referencableModelData;\n}",
+  "description": "Get referencableModelData for a single DbModel.\n\nNB: this does not get the items that can be referenced in that model!\n\nFor getting all required `ReferencableModelData` for the prop in `SimplifiedSchemaForm`, use `useGetReferencableModelData`.",
+  "id": "agopzttwhcbqoxbfbxkwykqh"
+}

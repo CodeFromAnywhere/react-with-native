@@ -4,27 +4,102 @@ react-with-native-select (`OperationClassification` ui-cjs)
 
 
 
-# Docs
+# Api reference
 
-<details><summary>README.md</summary>
-    
-  # Select input
+## useSelect()
 
-## `NB: Experimental package!`
+Create a value selector in a single line of code, including its state!
 
-`react-with-native-select` renders a native ActionSheet on iOS, a custom actionsheet on Android, and a `<select>` html element on web.
 
-## Installation
+## **Usage**
 
-```bash
-yarn add react-with-native-select
+```ts
+const [SelectView, view, setView] = useSelect(views);
 ```
 
-## Usage
 
-Coming soon
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 useSelect (exported const)
+
+Create a value selector in a single line of code, including its state!
+
+
+## **Usage**
+
+```ts
+const [SelectView, view, setView] = useSelect(views);
+```
+
+
+## `<Select />`
+
+renders either a SelectDropdown or SelectDrawer, based on screensize
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## useSelectMultiple()
+
+Create a value selector in a single line of code, including its state!
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** |    |    |
+
+
+
+## 📄 Select (exported const)
+
+renders either a SelectDropdown or SelectDrawer, based on screensize
+
+
+## 📄 useSelectMultiple (exported const)
+
+Create a value selector in a single line of code, including its state!
+
+# Internal
+
+<details><summary>Show internal (5)</summary>
+    
+  # getRealValue()
+
+
+
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | { value: string, <br />label: string, <br />data: {  }, <br /> }   |    |
+
+
+
+## `<SelectMultipleInput />`
+
+| Input      |    |    |
+| ---------- | -- | -- |
+| - | | |
+| **Output** | `JSX.Element`   |    |
+
+
+
+## 🔹 ID
+
+## 📄 getRealValue (exported const)
+
+## 📄 SelectMultipleInput (exported const)
 
   </details>
-
-# Api reference
 

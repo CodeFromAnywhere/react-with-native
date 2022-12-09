@@ -1,0 +1,69 @@
+{
+  "createdAt": 1670528380023,
+  "updatedAt": 1670528380023,
+  "deletedAt": 0,
+  "createdFirstAt": 1670528380023,
+  "id": "apifunction",
+  "name": "ApiFunction",
+  "slug": "apifunction",
+  "operationRelativeTypescriptFilePath": "src/ApiFunction.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "export type ApiFunction = {\n  (...parameters: any[]): any;\n  isPublic?: boolean;\n  allowedRoles?: string[];\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "isPublic": {
+          "type": "boolean"
+        },
+        "allowedRoles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "isPublic",
+          "required": false,
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "allowedRoles",
+          "required": false,
+          "schema": {
+            "items": [
+              {
+                "schema": {
+                  "type": "string"
+                },
+                "name": null
+              }
+            ],
+            "type": "array"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "ApiFunction",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

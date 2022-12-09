@@ -31,9 +31,69 @@ Properties:
 
 ## 📄 todoPagesConfigRecencys (exported const)
 
+## 🔸 TodoFile
+
+markdown model
+
+
+
+Any markdown file in the todo folder should become this model
+
+
+
+
+
+Properties: 
+
+ | Name | Type | Description |
+|---|---|---|
+| priority (optional) | string |  |
+| isHiddenForFreelancer (optional) | boolean |  |
+| isClaimable (optional) | boolean |  |
+| doNowPrice (optional) | number |  |
+| deadlineAt (optional) | number |  |
+| codeRequired_operationSlugs  | array |  |
+| todoOffersCalculated (optional) | array |  |
+| owner_personId (optional) | string |  |
+| categoryStackCalculated  | array |  |
+| isPreset (optional) | boolean |  |
+| isPostable (optional) | boolean |  |
+| isCodestory (optional) | boolean |  |
+| tsInterfaceIds (optional) | array |  |
+| tsFunctionIds (optional) | array |  |
+| bundleConfigSlugs (optional) | array |  |
+| operationIds (optional) | array |  |
+| reference_assets (optional) | array |  |
+| headerImage (optional) | object |  |
+| headerTitle (optional) | string |  |
+| headerBig (optional) | boolean |  |
+| headerSubTitle (optional) | string |  |
+| header_markdownCallToActionSlugs (optional) | array |  |
+| markdownCallToActionSlugs (optional) | array |  |
+| shop_itemIds (optional) | array |  |
+| author_personSlugs (optional) | array |  |
+| interestSlugs (optional) | array |  |
+| price (optional) | number |  |
+| isDraft (optional) | boolean |  |
+| updatedAt  | number |  |
+| createdAt  | number |  |
+| privacy  | string |  |
+| language  | string |  |
+| isLanguageCustom (optional) | boolean |  |
+| deletedAt  | number |  |
+| createdFirstAt  | number |  |
+| operationName  | null |  |
+| projectRelativePath  | string |  |
+| operationRelativePath (optional) | string |  |
+| id  | string |  |
+| name  | string |  |
+| slug  | string |  |
+| markdown  | string |  |
+
+
 # Internal
 
-<details><summary>Show internal (10)</summary>
+<details><summary>Show internal (9)</summary>
     
   # 🔹 ReviewSummary
 
@@ -196,67 +256,6 @@ Properties:
 | assigned_personId (optional) | string |  |
 | duration (optional) | number |  |
 | durationTimeIndicator  | string |  |
-
-
-
-## 🔸 TodoFile
-
-markdown model
-
-
-
-Any markdown file in the todo folder should become this model
-
-
-
-
-
-Properties: 
-
- | Name | Type | Description |
-|---|---|---|
-| priority (optional) | string |  |
-| isHiddenForFreelancer (optional) | boolean |  |
-| isClaimable (optional) | boolean |  |
-| doNowPrice (optional) | number |  |
-| deadlineAt (optional) | number |  |
-| codeRequired_operationSlugs  | array |  |
-| todoOffersCalculated (optional) | array |  |
-| owner_personId (optional) | string |  |
-| categoryStackCalculated  | array |  |
-| isPreset (optional) | boolean |  |
-| isPostable (optional) | boolean |  |
-| isCodestory (optional) | boolean |  |
-| tsInterfaceIds (optional) | array |  |
-| tsFunctionIds (optional) | array |  |
-| bundleConfigSlugs (optional) | array |  |
-| operationIds (optional) | array |  |
-| reference_assets (optional) | array |  |
-| headerImage (optional) | object |  |
-| headerTitle (optional) | string |  |
-| headerBig (optional) | boolean |  |
-| headerSubTitle (optional) | string |  |
-| header_markdownCallToActionSlugs (optional) | array |  |
-| markdownCallToActionSlugs (optional) | array |  |
-| shop_itemIds (optional) | array |  |
-| author_personSlugs (optional) | array |  |
-| interestSlugs (optional) | array |  |
-| price (optional) | number |  |
-| isDraft (optional) | boolean |  |
-| updatedAt  | number |  |
-| createdAt  | number |  |
-| privacy  | string |  |
-| language  | string |  |
-| isLanguageCustom (optional) | boolean |  |
-| deletedAt  | number |  |
-| createdFirstAt  | number |  |
-| operationName  | null |  |
-| projectRelativePath  | string |  |
-| operationRelativePath (optional) | string |  |
-| id  | string |  |
-| name  | string |  |
-| slug  | string |  |
-| markdown  | string |  |
 
 
 

@@ -1,6 +1,6 @@
 # Breadcrumbs
 
-breadcrumbs (`OperationClassification` cjs)
+breadcrumbs (`OperationClassification` ui-cjs)
 
 
 ## 🥐 breadcrumbs
@@ -24,11 +24,6 @@ Shows where we are in the filesystem
 
 
 
-## 📄 BreadCrumbs (exported const)
-
-Shows where we are in the filesystem
-
-
 ## renderBreadCrumbs()
 
 | Input      |    |    |
@@ -36,6 +31,11 @@ Shows where we are in the filesystem
 | chunks | string[] |  |
 | **Output** |    |    |
 
+
+
+## 📄 BreadCrumbs (exported const)
+
+Shows where we are in the filesystem
 
 
 ## 📄 renderBreadCrumbs (exported const)

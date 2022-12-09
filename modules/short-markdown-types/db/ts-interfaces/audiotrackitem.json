@@ -1,0 +1,71 @@
+{
+  "createdAt": 1669884005130,
+  "updatedAt": 1669884005130,
+  "deletedAt": 0,
+  "createdFirstAt": 1669884005130,
+  "id": "audiotrackitem",
+  "name": "AudioTrackItem",
+  "slug": "audiotrackitem",
+  "operationRelativeTypescriptFilePath": "src/types.ts",
+  "hasGeneric": false,
+  "isExported": true,
+  "rawText": "\n\n/**\n *\n */\nexport type AudioTrackItem = {\n  relativeAudioFilePath: string;\n  durationMs?: number;\n  startMs?: number;\n};",
+  "extensions": [],
+  "isOperationIndex": false,
+  "description": "",
+  "isDbModel": false,
+  "commentsInside": [],
+  "type": {
+    "typeDefinition": {
+      "type": "object",
+      "properties": {
+        "relativeAudioFilePath": {
+          "type": "string"
+        },
+        "durationMs": {
+          "type": "number"
+        },
+        "startMs": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "relativeAudioFilePath"
+      ],
+      "additionalProperties": false
+    },
+    "simplifiedSchema": {
+      "properties": [
+        {
+          "name": "relativeAudioFilePath",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "durationMs",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "startMs",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "typeCoverage": 0,
+    "rawType": "AudioTrackItem",
+    "isArray": false,
+    "isEnum": false,
+    "isEnumLiteral": false,
+    "isObject": false,
+    "isPrimitive": false
+  }
+}

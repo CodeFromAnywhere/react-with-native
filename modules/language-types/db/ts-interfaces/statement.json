@@ -1,15 +1,15 @@
 {
-  "createdAt": 1668335514190,
-  "updatedAt": 1668335514190,
+  "createdAt": 1670527865663,
+  "updatedAt": 1670527865663,
   "deletedAt": 0,
-  "createdFirstAt": 1668335514190,
+  "createdFirstAt": 1670527865663,
   "id": "statement",
   "name": "Statement",
   "slug": "statement",
   "operationRelativeTypescriptFilePath": "src/Statement.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\nexport interface Statement extends MarkdownModelType {\n  /**\n   * your statement: definition, fact, question, quote\n   */\n  name: string;\n  type?: \"definition\" | \"fact\" | \"question\" | \"quote\";\n  url?: string;\n  author?: string;\n\n  /**\n   * number [0-1] representing agreement\n   *\n   * - 1 meaning 100% agreement\n   * - 0 means 0% agreement or complete disagreement\n   */\n  agreement?: number;\n  /**\n   * defaults to 0.5 meaning average importancy\n   * this could be either a calculated or set property.\n   * could it be calculated on your value hierarchy?\n   * not sure if this is practical (yet) but still a very interesting property to have, or somehow calculate.\n   */\n  importancyCalculated?: number;\n  /**\n   * A statement can connect to one or more words.\n   */\n  wordSlugs: Slug[];\n  words?: Word[];\n}",
+  "rawText": "\n\nexport interface Statement extends MarkdownModelType {\n  /**\n   * your statement: definition, fact, question, quote\n   */\n  name: string;\n  url?: string;\n  author?: string;\n\n  /**\n   * Number [0-1] representing agreement of admin\n   *\n   * - 1 meaning 100% agreement\n   * - 0 means 0% agreement or complete disagreement\n   */\n  agreement?: number;\n\n  /**\n   * Number [0,1] representing agreement of readers\n   *\n   * 1 reader can vote once\n   */\n  readersAgreement?: number;\n  readersAgreementVotedCount?: number;\n\n  /**\n   * defaults to 0.5 meaning average importancy\n   * this could be either a calculated or set property.\n   * could it be calculated on your value hierarchy?\n   * not sure if this is practical (yet) but still a very interesting property to have, or somehow calculate.\n   */\n  importancy?: number;\n  /**\n   * by default, importancy is calculated by one or multiple systems. As the admin you can change it\n   */\n  isImportancySet?: boolean;\n  /**\n   * A statement can connect to one or more words.\n   */\n  wordSlugs: Slug[];\n  words?: Word[];\n}",
   "extensions": [
     "MarkdownModelType"
   ],
@@ -67,15 +67,6 @@
         "categoryStackCalculated": {
           "$ref": "#/definitions/CategoryStack"
         },
-        "type": {
-          "type": "string",
-          "enum": [
-            "definition",
-            "fact",
-            "question",
-            "quote"
-          ]
-        },
         "url": {
           "type": "string"
         },
@@ -84,11 +75,22 @@
         },
         "agreement": {
           "type": "number",
-          "description": "number [0-1] representing agreement\n\n- 1 meaning 100% agreement\n- 0 means 0% agreement or complete disagreement"
+          "description": "Number [0-1] representing agreement of admin\n\n- 1 meaning 100% agreement\n- 0 means 0% agreement or complete disagreement"
         },
-        "importancyCalculated": {
+        "readersAgreement": {
+          "type": "number",
+          "description": "Number [0,1] representing agreement of readers\n\n1 reader can vote once"
+        },
+        "readersAgreementVotedCount": {
+          "type": "number"
+        },
+        "importancy": {
           "type": "number",
           "description": "defaults to 0.5 meaning average importancy this could be either a calculated or set property. could it be calculated on your value hierarchy? not sure if this is practical (yet) but still a very interesting property to have, or somehow calculate."
+        },
+        "isImportancySet": {
+          "type": "boolean",
+          "description": "by default, importancy is calculated by one or multiple systems. As the admin you can change it"
         },
         "wordSlugs": {
           "type": "array",
@@ -124,22 +126,13 @@
             "description": "This kind of overwrites frontmatter, but it is needed because there need to be models attached to the markdown model sometimes."
           },
           {
-            "not": {}
-          },
-          {
             "$ref": "#/definitions/Id"
           },
           {
             "not": {}
           },
           {
-            "type": [
-              "string",
-              "number",
-              "null",
-              "boolean",
-              "array"
-            ]
+            "type": "string"
           }
         ]
       }
@@ -252,19 +245,6 @@
           }
         },
         {
-          "name": "type",
-          "required": false,
-          "schema": {
-            "enum": [
-              "definition",
-              "fact",
-              "question",
-              "quote"
-            ],
-            "type": "string"
-          }
-        },
-        {
           "name": "url",
           "required": false,
           "schema": {
@@ -282,16 +262,39 @@
           "name": "agreement",
           "required": false,
           "schema": {
-            "fullComment": "number [0-1] representing agreement\n\n- 1 meaning 100% agreement\n- 0 means 0% agreement or complete disagreement",
+            "fullComment": "Number [0-1] representing agreement of admin\n\n- 1 meaning 100% agreement\n- 0 means 0% agreement or complete disagreement",
             "type": "number"
           }
         },
         {
-          "name": "importancyCalculated",
+          "name": "readersAgreement",
+          "required": false,
+          "schema": {
+            "fullComment": "Number [0,1] representing agreement of readers\n\n1 reader can vote once",
+            "type": "number"
+          }
+        },
+        {
+          "name": "readersAgreementVotedCount",
+          "required": false,
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "importancy",
           "required": false,
           "schema": {
             "fullComment": "defaults to 0.5 meaning average importancy this could be either a calculated or set property. could it be calculated on your value hierarchy? not sure if this is practical (yet) but still a very interesting property to have, or somehow calculate.",
             "type": "number"
+          }
+        },
+        {
+          "name": "isImportancySet",
+          "required": false,
+          "schema": {
+            "fullComment": "by default, importancy is calculated by one or multiple systems. As the admin you can change it",
+            "type": "boolean"
           }
         },
         {

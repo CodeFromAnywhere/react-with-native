@@ -1,8 +1,8 @@
 {
-  "createdAt": 1669467096873,
-  "updatedAt": 1669467096873,
+  "createdAt": 1669962236307,
+  "updatedAt": 1669962236307,
   "deletedAt": 0,
-  "createdFirstAt": 1669467096873,
+  "createdFirstAt": 1669962236307,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -27,7 +27,7 @@
       "type": "object"
     }
   },
-  "value": "(markdownString: string): MarkdownLink[] => {\n  const result = flattenMarkdownString(\n    markdownString,\n    (token) => token.type === \"link\"\n  );\n\n  const links: MarkdownLink[] = result\n    .map((token) => {\n      if (token.type !== \"link\") return;\n\n      const markdownEmbed: MarkdownLink = {\n        alt: token.title,\n        href: token.href,\n        type: getTypeFromUrlOrPath(token.href),\n      };\n\n      return markdownEmbed;\n    })\n    .filter(notEmpty);\n\n  return links;\n}",
+  "value": "(markdownString: string): MarkdownLink[] => {\n  const result = flattenMarkdownString(\n    markdownString,\n    (token) => token.type === \"link\"\n  );\n\n  const links: MarkdownLink[] = result\n    .map((token) => {\n      if (token.type !== \"link\") return;\n\n      const markdownEmbed: MarkdownLink = {\n        alt: token.text || \"\",\n        href: token.href,\n        type: getTypeFromUrlOrPath(token.href),\n      };\n\n      return markdownEmbed;\n    })\n    .filter(notEmpty);\n\n  return links;\n}",
   "description": "find all links",
-  "id": "vzlxlciebcyqrhnciwsmxmkh"
+  "id": "yicrzkwqfexpnuvbcqfsrrne"
 }

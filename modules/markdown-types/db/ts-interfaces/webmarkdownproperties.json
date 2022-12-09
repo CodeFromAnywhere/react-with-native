@@ -1,15 +1,15 @@
 {
-  "createdAt": 1669385212922,
-  "updatedAt": 1669385212922,
+  "createdAt": 1670527954883,
+  "updatedAt": 1670527954883,
   "deletedAt": 0,
-  "createdFirstAt": 1669385212922,
+  "createdFirstAt": 1670527954883,
   "id": "webmarkdownproperties",
   "name": "WebMarkdownProperties",
   "slug": "webmarkdownproperties",
   "operationRelativeTypescriptFilePath": "src/WebMarkdownProperties.ts",
   "hasGeneric": false,
   "isExported": true,
-  "rawText": "\n\nexport interface WebMarkdownProperties\n  /**\n   * NB: it extends WebsiteHeader here because the MarkdownModelType needs to be flat, and cannot have objects\n   *\n   * We won't make the websiteHeader into an object, although, that would also be a possibility.\n   */\n  extends WebsiteHeaderProperties {\n  markdownCallToActionSlugs?: Slug[];\n  markdownCallToActions?: MarkdownCallToAction[];\n  /**\n   * Refers to an `Item` from the shop\n   */\n  shop_itemIds?: Id[];\n  //shop_items:Item[];\n\n  /**\n   * Author, reference to persons\n   */\n  author_personSlugs?: Slug[];\n  //author_persons: Person[];\n\n  /**\n   * Labels referring to interests\n   */\n  interestSlugs?: Slug[];\n  //interests: Interest[];\n\n  /**\n   * Price for this file\n   *\n   * NB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.\n   */\n  price?: Price;\n}",
+  "rawText": "\n\nexport interface WebMarkdownProperties\n  /**\n   * NB: it extends WebsiteHeader here because the MarkdownModelType needs to be flat, and cannot have objects\n   *\n   * We won't make the websiteHeader into an object, although, that would also be a possibility.\n   */\n  extends WebsiteHeaderProperties {\n  /**\n   * Domainname for this file (or folder if it's applied on a readme).\n   *\n   * On top of this, we can build automation that:\n   *\n   * - Infers social media channel names for the domain and creates them\n   * - Buys the domain and sets the DNS if you don't own it yet\n   * - Connects the domain to a Vercel project with the right environment variables if it's not already\n   *\n   * Furthermore we can:\n   *\n   * - create a feature where domains are suggested for subsets of your content and you can easily choose one of the suggested domains to buy it automatically and set it in the file\n   * - cleans up your domains if it seems you don't use them anymore (or at least detects unused domains, so you can also potentially sell them)\n   * - show domain authority for your domains and possible ways to improve it (this can, again, have a whole lot of automations built on top of it)\n   */\n  domain?: string;\n\n  markdownCallToActionSlugs?: Slug[];\n  markdownCallToActions?: MarkdownCallToAction[];\n  /**\n   * Refers to an `Item` from the shop\n   */\n  shop_itemIds?: Id[];\n  //shop_items:Item[];\n\n  /**\n   * Author, reference to persons\n   */\n  author_personSlugs?: Slug[];\n  //author_persons: Person[];\n\n  /**\n   * Labels referring to interests\n   */\n  interestSlugs?: Slug[];\n  //interests: Interest[];\n\n  /**\n   * Price for this file\n   *\n   * NB: in case the file is a README file, the price applies to all files in this folder, recursively, PER FILE.\n   */\n  price?: Price;\n}",
   "extensions": [
     "WebsiteHeaderProperties"
   ],
@@ -44,6 +44,10 @@
           "items": {
             "$ref": "#/definitions/MarkdownCallToAction"
           }
+        },
+        "domain": {
+          "type": "string",
+          "description": "Domainname for this file (or folder if it's applied on a readme).\n\nOn top of this, we can build automation that:\n\n- Infers social media channel names for the domain and creates them\n- Buys the domain and sets the DNS if you don't own it yet\n- Connects the domain to a Vercel project with the right environment variables if it's not already\n\nFurthermore we can:\n\n- create a feature where domains are suggested for subsets of your content and you can easily choose one of the suggested domains to buy it automatically and set it in the file\n- cleans up your domains if it seems you don't use them anymore (or at least detects unused domains, so you can also potentially sell them)\n- show domain authority for your domains and possible ways to improve it (this can, again, have a whole lot of automations built on top of it)"
         },
         "markdownCallToActionSlugs": {
           "type": "array",
@@ -141,6 +145,14 @@
                   "fullComment": "Not stored\n\nNeeds to be there before calling `processAsset`. Should be augmented to the backendAsset in the frontend, before sending it to the backend.\n\nModel that the asset is related to",
                   "type": "string"
                 }
+              },
+              {
+                "name": "absoluteUrl",
+                "required": false,
+                "schema": {
+                  "fullComment": "NOT STORED\n\nCan be available in case it's an asset from an external source URL for example within md.\n\nAlso can be set in case it's a static asset from a next project",
+                  "type": "string"
+                }
               }
             ],
             "type": "object"
@@ -181,6 +193,14 @@
               }
             ],
             "type": "array"
+          }
+        },
+        {
+          "name": "domain",
+          "required": false,
+          "schema": {
+            "fullComment": "Domainname for this file (or folder if it's applied on a readme).\n\nOn top of this, we can build automation that:\n\n- Infers social media channel names for the domain and creates them\n- Buys the domain and sets the DNS if you don't own it yet\n- Connects the domain to a Vercel project with the right environment variables if it's not already\n\nFurthermore we can:\n\n- create a feature where domains are suggested for subsets of your content and you can easily choose one of the suggested domains to buy it automatically and set it in the file\n- cleans up your domains if it seems you don't use them anymore (or at least detects unused domains, so you can also potentially sell them)\n- show domain authority for your domains and possible ways to improve it (this can, again, have a whole lot of automations built on top of it)",
+            "type": "string"
           }
         },
         {

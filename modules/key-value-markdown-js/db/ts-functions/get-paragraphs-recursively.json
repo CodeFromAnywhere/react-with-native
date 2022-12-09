@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668334794800,
-  "updatedAt": 1668334794800,
+  "createdAt": 1669962082703,
+  "updatedAt": 1669962082703,
   "deletedAt": 0,
-  "createdFirstAt": 1668334794800,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669962082703,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/getParagraphsRecursively.ts",
   "commentsInside": [],
-  "rawText": " (\n  chunk: MarkdownChunk,\n  categoryStackCalculatedUntilNow?: CategoryStack\n): MarkdownParagraph[] => {\n  const categoryStackCalculated = categoryStackCalculatedUntilNow || [];\n  if (chunk.title) {\n    categoryStackCalculated.push(chunk.title);\n  }\n\n  const childParagraphs =\n    chunk.children\n      ?.map((childChunk) =>\n        getParagraphsRecursively(childChunk, categoryStackCalculated)\n      )\n      .flat() || [];\n\n  const thisParagraph: MarkdownParagraph = {\n    paragraph: chunk.content || \"\",\n    categoryStackCalculated,\n  };\n\n  return [thisParagraph, ...childParagraphs];\n}",
+  "rawText": " (\n  chunk: MarkdownChunk,\n  categoryStackCalculatedUntilNow?: CategoryStack\n): MarkdownParagraph[] => {\n  // NB: no copy!\n  const categoryStackCalculated = categoryStackCalculatedUntilNow\n    ? categoryStackCalculatedUntilNow\n    : [];\n\n  if (chunk.title) {\n    categoryStackCalculated.push(chunk.title);\n  }\n\n  const childParagraphs =\n    chunk.children\n      ?.map((childChunk) =>\n        getParagraphsRecursively(childChunk, categoryStackCalculated)\n      )\n      .flat() || [];\n\n  const thisParagraph: MarkdownParagraph = {\n    paragraph: chunk.content || \"\",\n    categoryStackCalculated,\n  };\n\n  return [thisParagraph, ...childParagraphs];\n}",
   "name": "getParagraphsRecursively",
   "slug": "get-paragraphs-recursively",
   "parameters": [
@@ -26,10 +21,97 @@
         "fullComment": "",
         "properties": [
           {
+            "name": "level",
+            "required": true,
+            "schema": {
+              "fullComment": "0 is a paragraph 1-6 is h1 until h6",
+              "type": "number"
+            }
+          },
+          {
             "name": "content",
             "required": false,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "markdownEmbed",
+            "required": false,
+            "schema": {
+              "fullComment": "Anything in the format `![alt](src)`\n\nNB: I need to be very clear how this one works",
+              "nb": "I need to be very clear how this one works",
+              "properties": [
+                {
+                  "name": "alt",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "src",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "video",
+                      "audio",
+                      "image",
+                      "text",
+                      "other"
+                    ],
+                    "fullComment": "Possible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "markdownLink",
+            "required": false,
+            "schema": {
+              "fullComment": "Anything in the format `[alt](href)`\n\nIt needs to be clear how this works. There is a convention for this, and I should implement that as good as possible, and document it here",
+              "properties": [
+                {
+                  "name": "alt",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "href",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "video",
+                      "audio",
+                      "image",
+                      "text",
+                      "other"
+                    ],
+                    "fullComment": "Can be inferred from href\n\nPossible Asset Types\n\nLater, maybe also support: \"markdown\",\"json\",\"typescript\"",
+                    "type": "string"
+                  }
+                }
+              ],
+              "type": "object"
             }
           },
           {
@@ -87,7 +169,7 @@
   ],
   "description": "recursively dives into the Chunk to get all paragraphs inside",
   "returnType": {
-    "rawType": "import(\"/Users/king/King/operations/tools/types/code-types/build/MarkdownParse\").MarkdownParagraph[]",
+    "rawType": "import(\"/Users/king/King/operations/tools/types/markdown-types/build/MarkdownParse\").MarkdownParagraph[]",
     "typeDefinition": {
       "optional": false,
       "type": "array",
@@ -184,13 +266,13 @@
   },
   "maxIndentationDepth": 4,
   "size": {
-    "characters": 648,
-    "lines": 23,
-    "bytes": 648,
+    "characters": 708,
+    "lines": 27,
+    "bytes": 708,
     "bytesPerCharacter": 1,
-    "charactersPerLine": 28,
-    "linesPerFile": 23,
+    "charactersPerLine": 26,
+    "linesPerFile": 27,
     "numberOfFiles": 1
   },
-  "id": "cnexrecrkgedvcwpmcionged"
+  "id": "lscqiaolxtdtiugcellescoc"
 }

@@ -1,19 +1,14 @@
 {
-  "createdAt": 1668334801588,
-  "updatedAt": 1668334801588,
+  "createdAt": 1669962092639,
+  "updatedAt": 1669962092639,
   "deletedAt": 0,
-  "createdFirstAt": 1668334801588,
-  "publicAuthorization": [
-    "read",
-    "search"
-  ],
-  "isApiExposed": false,
-  "isPostApi": false,
-  "isGetApi": false,
+  "createdFirstAt": 1669962092639,
+  "isApiExposed": true,
   "isExported": true,
+  "groupAuthorization": {},
   "operationRelativeTypescriptFilePath": "src/parseKvmdLine.ts",
   "commentsInside": [],
-  "rawText": " (string: string): KvmdLine | undefined => {\n  const htmlCommentRegex = /<!--[\\s\\S]*?-->/g;\n  const lineWithoutComment = string.replace(htmlCommentRegex, \"\");\n\n  const commentMatch = string.match(htmlCommentRegex)?.[0];\n  const comment = commentMatch\n    ? commentMatch.replace(\"<!--\", \"\").replace(\"-->\", \"\").trim()\n    : null;\n\n  const [keyString, valueString] = lineWithoutComment\n    .split(\":\")\n    .map((x) => x.trim());\n\n  const value = valueString?.length ? valueString : undefined;\n  const slug = kebabCase(keyString);\n\n  if (keyString.length === 0) return;\n\n  return {\n    id: slug,\n    name: keyString,\n    value,\n    comment,\n    slug,\n  };\n}",
+  "rawText": " (string: string): KvmdLine | undefined => {\n  const htmlCommentRegex = /<!--[\\s\\S]*?-->/g;\n  const lineWithoutComment = string.replace(htmlCommentRegex, \"\");\n\n  const commentMatch = string.match(htmlCommentRegex)?.[0];\n  const comment = commentMatch\n    ? commentMatch.replace(\"<!--\", \"\").replace(\"-->\", \"\").trim()\n    : null;\n\n  const [keyString, valueString] = lineWithoutComment\n    .split(\":\")\n    .map((x) => x.trim());\n\n  const value = valueString?.length ? valueString : undefined;\n  const slug = slugify(keyString);\n\n  if (keyString.length === 0) return;\n\n  return {\n    id: slug,\n    name: keyString,\n    value,\n    comment,\n    slug,\n  };\n}",
   "name": "parseKvmdLine",
   "slug": "parse-kvmd-line",
   "parameters": [
@@ -158,13 +153,13 @@
   },
   "maxIndentationDepth": 2,
   "size": {
-    "characters": 791,
+    "characters": 789,
     "lines": 28,
-    "bytes": 791,
+    "bytes": 789,
     "bytesPerCharacter": 1,
     "charactersPerLine": 28,
     "linesPerFile": 28,
     "numberOfFiles": 1
   },
-  "id": "zzdkqxplfcjobalrdicohcof"
+  "id": "ndwdiizzamguqxhfrpuydsmu"
 }

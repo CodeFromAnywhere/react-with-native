@@ -1,5 +1,5 @@
 import { Authorization } from "auth-types";
-import { Credit, DefaultModelType, Slug } from "model-types";
+import { Credit, DefaultModelType, Id, Slug } from "model-types";
 import { BackendAsset } from "asset-type";
 import { AuthenticationMethod, AuthenticationMethodMethod } from "./AuthenticationMethjod";
 import { Device } from "./Device";
@@ -11,7 +11,7 @@ import { PersonSocialMedia } from "./PersonSocialMedia";
  *
  * NB: I wish it were possible to ensure these keys exist on the person here, but we can't validate that while still keeping it a const I guess
  */
-export declare const publicPersonKeys: readonly ["name", "slug", "id", "pictureImage", "interestSlugs", "media", "preferredContactMedium", "groupSlugs", "operationName", "projectRelativePath"];
+export declare const publicPersonKeys: readonly ["name", "slug", "id", "pictureImage", "interestSlugs", "media", "preferred_mediaChannelId", "groupSlugs", "operationName", "projectRelativePath"];
 export declare type PublicPersonKeys = typeof publicPersonKeys[number];
 export declare type PublicPerson = Pick<Person, PublicPersonKeys>;
 /**
@@ -33,12 +33,23 @@ export interface Person extends DefaultModelType {
      */
     interestSlugs?: Slug[];
     /**
+     * After the `MediaChannel` DB is filled, we can index the names of the persons of the `MediaChannel`, and and we can push them to here, if the name is "similar" to the name of this `Person`.
+     *
+     * `*` = "similar" means: exact match, or at least first name + last name match
+     */
+    mediaChannelIds?: Id[];
+    /**
+     * Optional. Can be set by admin (not indexed)
+     *
+     * If not available, take the first (mediaChannelIds[0])
+     */
+    preferred_mediaChannelId?: Id;
+    /**
      * Media that is attached to this person.
      *
      * NB: not used to authenticate! Can be filled in by King OS, might be erroneous
      */
     media?: PersonSocialMedia[];
-    preferredContactMedium?: Slug;
     dataEntries?: PersonInformationValue[];
     /**
      * Devices can be attached to a person by looking in the device model and finding the devices that refer to this person

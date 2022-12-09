@@ -1,8 +1,8 @@
 {
-  "createdAt": 1668976648511,
-  "updatedAt": 1668976648511,
+  "createdAt": 1670216126479,
+  "updatedAt": 1670216126479,
   "deletedAt": 0,
-  "createdFirstAt": 1668976648511,
+  "createdFirstAt": 1670216126479,
   "classification": "const",
   "comments": [],
   "isExported": true,
@@ -10,7 +10,7 @@
   "slug": "find-all-packages",
   "operationRelativeTypescriptFilePath": "src/findAllPackages.ts",
   "type": {
-    "rawType": "(config?: { basePath: string | string[] | undefined; } | undefined) => Promise<import(\"/Users/king/King/operations/tools/types/code-types/build/TextJson\").TextJson[]>",
+    "rawType": "(config?: { basePath: string | string[] | undefined; } | undefined) => Promise<import(\"/Users/king/King/operations/tools/types/markdown-types/build/TextJson\").TextJson[]>",
     "typeDefinition": {
       "type": "object",
       "properties": {},
@@ -29,5 +29,5 @@
   },
   "value": "(config?: {\n  basePath: string | string[] | undefined;\n}) => {\n  return explore({\n    basePath: config?.basePath || getPathsWithOperations(),\n    search: \"package.json\",\n    exact: true,\n    extension: \"json\",\n    searchLevel: \"fileName\",\n    ignore: generatedFolders.concat([\"src\", \"assets\", \"data\"]),\n  });\n}",
   "description": "",
-  "id": "ujodpfbwpiphaxiklwmucgal"
+  "id": "pqpcdhvqmfirexutwsqnxzcd"
 }
